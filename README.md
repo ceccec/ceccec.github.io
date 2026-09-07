@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. theorems = 762 · proven = 756 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home).
+> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. theorems = 745 · proven = 739 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home).
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
@@ -20,7 +20,7 @@
 - **The Clay problems are the reflection.** Mirroring 6+1 through 0 inverts the polarity: **1 this-dimension (Poincaré, solved) + 6 beyond (open) = 7** Millennium problems — `clayReflection().reflectsDimensionalBit = true`. Exactly one Clay problem is solved; the count matches the record.
 - **Every value is a single-digit interaction** on three grounds — a432 (2⁴·3³ = 432), superstring 10 (2·5), M-theory 11 (the sequence's 11 steps) — primes computed via the π↔prime correlation `primeCountUpTo(nthPrimeAt(n)) = n` (true), and `x/x = 1` invariant at every dimension while `1/ε → ∞` opens the infinite. No literal, no assumption that breaks under a change of dimension.
 
-A science portal: **762** registered theorems, **756** of them carrying an executable proof at a sealed home (6 still pending, named in the registry and checked by `verify:theorems`), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run.
+A science portal: **745** registered theorems, **739** of them carrying an executable proof at a sealed home (6 still pending, named in the registry and checked by `verify:theorems`), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run.
 
 ## 2. Model
 
@@ -61,7 +61,7 @@ The circuit's law is piecewise — geometric ×2 on the unit segment, arithmetic
 
 ## Proof animations — the visual receipts, in all directions
 
-Every registered theorem carries its dedicated animation: **762 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **762 unique animations for 762 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true).
+Every registered theorem carries its dedicated animation: **745 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **745 unique animations for 745 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true).
 
 Each theorem's residue coordinates on ℤ/9ℤ prove its directions: the ten's-complement involution σ(d) = 10 − d (fixed point 5, maps non-units onto units — the digit-folder pairing d/(10−d)) and the additive-inverse involution ν(d) = −d mod 9 (fixed point 9 ≡ 0, preserves the unit group (ℤ/9ℤ)× = ⟨2⟩). Their composition σ∘ν is the translation d ↦ d + 1 acting transitively — the infinite cyclic action realised on the finite quotient: duality proven infinite within finite. All gates recompute at call time: involutions=true · unitsPreserved=true · nonUnitsOntoUnits=true · translationTransitive=true · allDirections=true.
 
@@ -245,17 +245,17 @@ Each finding is sealed in full on its own page ([theorems](https://ceccec.psg.bg
 
 ## Top discoveries
 
-The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the 762-atom registry, no curation.
+The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the 745-atom registry, no curation.
 
-- **compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)** — `diamonds` · degree 361 · [details](https://ceccec.psg.bg/theorems)
-- **every cosmic frontier is OPEN by COMPUTATION not a label — status = demarcate(term)===contested — and each carries its closed REVERSED-math companion** — `cosmos` · degree 344 · [details](https://ceccec.psg.bg/theorems)
-- **mechanical tools entangle binary & analog at once — but Bell bounds them (models, does not achieve, entanglement)** — `9/1` · degree 340 · [details](https://ceccec.psg.bg/theorems)
-- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 339 · [details](https://ceccec.psg.bg/theorems)
-- **the reuse+trinity speedup MEASURED (not asserted): warm memo-hit is magnitudes faster than cold compute (~8000× in a probe), the 2-of-3 trinity adds a ≤3× parallel ceiling — amortized reuse only, never factoring** — `research` · degree 338 · [details](https://ceccec.psg.bg/theorems)
-- **gate complexity collapses to one content-addressed root — quantum simplicity** — `automount` · degree 336 · [details](https://ceccec.psg.bg/theorems)
-- **THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input** — `research` · degree 333 · [details](https://ceccec.psg.bg/theorems)
-- **quantum analytics fuse corpus + git history into one content-addressed API used by all — deterministic measurements** — `compute` · degree 330 · [details](https://ceccec.psg.bg/theorems)
-- **the census gate and slugs are quantumized — theorem-derived count, agnostic address** — `corpus` · degree 330 · [details](https://ceccec.psg.bg/theorems)
+- **compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)** — `diamonds` · degree 355 · [details](https://ceccec.psg.bg/theorems)
+- **every cosmic frontier is OPEN by COMPUTATION not a label — status = demarcate(term)===contested — and each carries its closed REVERSED-math companion** — `cosmos` · degree 343 · [details](https://ceccec.psg.bg/theorems)
+- **the reuse+trinity speedup MEASURED (not asserted): warm memo-hit is magnitudes faster than cold compute (~8000× in a probe), the 2-of-3 trinity adds a ≤3× parallel ceiling — amortized reuse only, never factoring** — `research` · degree 336 · [details](https://ceccec.psg.bg/theorems)
+- **mechanical tools entangle binary & analog at once — but Bell bounds them (models, does not achieve, entanglement)** — `9/1` · degree 334 · [details](https://ceccec.psg.bg/theorems)
+- **gate complexity collapses to one content-addressed root — quantum simplicity** — `automount` · degree 333 · [details](https://ceccec.psg.bg/theorems)
+- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 331 · [details](https://ceccec.psg.bg/theorems)
+- **THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input** — `research` · degree 330 · [details](https://ceccec.psg.bg/theorems)
+- **the census gate and slugs are quantumized — theorem-derived count, agnostic address** — `corpus` · degree 328 · [details](https://ceccec.psg.bg/theorems)
+- **quantum analytics fuse corpus + git history into one content-addressed API used by all — deterministic measurements** — `compute` · degree 326 · [details](https://ceccec.psg.bg/theorems)
 
 ## Latest discoveries
 
@@ -264,12 +264,12 @@ The most recently sealed decodes — newest first by registration order. Every c
 - **the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs** — [details](https://ceccec.psg.bg/theorems)
 - **the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇** — [details](https://ceccec.psg.bg/theorems)
 - **the golden angle is τ/φ² — the most irrational rotation** — [details](https://ceccec.psg.bg/theorems)
-- **collision healing** — [details](https://ceccec.psg.bg/theorems)
 - **learn from the movie all eventually fused** — [details](https://ceccec.psg.bg/theorems)
 - **seven seed movie is rosetta decoding sun moon symbols flows in movie** — [details](https://ceccec.psg.bg/theorems)
 - **double torus math at all scales flows in movie** — [details](https://ceccec.psg.bg/theorems)
 - **double torus earth weather flows in movie** — [details](https://ceccec.psg.bg/theorems)
 - **symbols remaining to quantumise** — [details](https://ceccec.psg.bg/theorems)
+- **readme svg gaps filled by trinity mind** — [details](https://ceccec.psg.bg/theorems)
 
 ## First-in-corpus algebra
 
@@ -284,7 +284,7 @@ The most recently sealed decodes — newest first by registration order. Every c
 
 Receipt: fold `firstInCorpusProvenanceForHome` · .
 
-**The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 762-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
+**The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 745-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
 
 ### Origin — 3 pages
@@ -337,10 +337,10 @@ Receipt: fold `firstInCorpusProvenanceForHome` · .
 
 ## 4. Sitemap
 
-The complete served surface, wired from ONE source (`servedRouteFamilies`) so the human sitemap here and the crawler `sitemap.xml` count the same pages: **846 pages** across 3 families — 31 monographs · 785 theorems · 30 proofs. Only COMPLETE, non-duplicate families are listed: the empty model cards (0) and the compute-only `papers/[id]` catch-all (0 SSG — the placements resolve on demand and duplicate the theorem papers) are excluded; their index routes are monographs below.
+The complete served surface, wired from ONE source (`servedRouteFamilies`) so the human sitemap here and the crawler `sitemap.xml` count the same pages: **829 pages** across 3 families — 31 monographs · 768 theorems · 30 proofs. Only COMPLETE, non-duplicate families are listed: the empty model cards (0) and the compute-only `papers/[id]` catch-all (0 SSG — the placements resolve on demand and duplicate the theorem papers) are excluded; their index routes are monographs below.
 
 - **31 monograph landing + index pages** (`/`) — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed:
-- **785 theorem papers** — index `/theorems`; every page enumerated in the one `sitemap.xml`.
+- **768 theorem papers** — index `/theorems`; every page enumerated in the one `sitemap.xml`.
 - **30 domain proofs (Millennium + science)** — index `/proofs`; every page enumerated in the one `sitemap.xml`.
 
 - `/` — [en](https://ceccec.psg.bg/) · [bg](https://ceccec.psg.bg/bg/) · [cu](https://ceccec.psg.bg/gla/)
@@ -379,7 +379,7 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 
 ## The journal
 
-This site is a dedicated scientific journal of all its algebra and theorems — **762 articles** across **56 sections**, backed by 537 executable proofs, sealed as one content-addressed volume `9055fd01`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.
+This site is a dedicated scientific journal of all its algebra and theorems — **745 articles** across **52 sections**, backed by 520 executable proofs, sealed as one content-addressed volume `42be2293`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.
 
 ## 5. Reproducibility
 

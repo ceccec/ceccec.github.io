@@ -1186,6 +1186,25 @@ export const PRIOR_ART_POOL: readonly {
   readonly theorem: string
   readonly pool: 'bounded' | 'unbounded' | 'mixed'
   readonly why: string
+  /**
+   * WHO DECIDES THE MARKS? Until now: whoever typed them, on no evidence the gate could see.
+   *
+   * `attributed` / `claimed` / `unclassified` are COMPUTED — priorArtLedger derives them from whether a
+   * search row exists. But `bounded` / `unbounded` / `mixed` were hand-written assertions, and so were
+   * the coverage verdicts. Seventy-four declarations, and the gate required nothing behind any of them.
+   * That is an assert-not-measure surface sitting inside the honesty ledger itself.
+   *
+   * The evidence requirement was also INVERTED. `unbounded` is the strongest claim here — a negative
+   * about all literature everywhere — and it needed the least. `bounded` at least is refutable by
+   * running the search. Twice already an `unbounded` row turned out to be textbook: the polyphase
+   * harmonic law is triplen harmonics, and the digital-root closed form is casting out nines.
+   *
+   * A search that comes back EMPTY moves a row to `claimed`, so requiring one here would move the very
+   * rows this pool describes. What can be required is a record of the ATTEMPT. `looked` says what was
+   * actually done — a query, or the admission that none was run — and prior-art.unbounded-unsearched
+   * ratchets the admissions down as real looking replaces them.
+   */
+  readonly looked?: string
 }[] = [
   // ── AUDIT OF THE REMAINING 185 UNDECLARED, 2026-09-07. Read every one, no filter.
   //
@@ -1241,29 +1260,20 @@ export const PRIOR_ART_POOL: readonly {
   { theorem: "the local MCP leak boundary is clean at scale — 24/24 in-corpus resolve, 8/8 external leak, zero false positives", pool: 'mixed',
     why: "the Model Context Protocol is a published specification with a defined boundary; the 24/24 measurement is local." },
   { theorem: "the chat develops itself by chatting with itself — a deterministic self-conversation that collides and fills its gaps", pool: 'unbounded',
-    why: "the subject is this chat instance developing itself; there is no external referent, and the self-reference row that DOES name a general mechanism is declared mixed instead." },
+    why: "the subject is this chat instance developing itself; there is no external referent, and the self-reference row that DOES name a general mechanism is declared mixed instead.",
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: "the chat improves by chatting — each turn is experience, relevance feedback boosts the surfaced fold", pool: 'unbounded',
-    why: "a claim about this chat’s own turns." },
+    why: "a claim about this chat’s own turns.",
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: "the portal defaults to chat as the primary surface — every capability reached through one unified turn", pool: 'unbounded',
-    why: "a product decision about this site." },
+    why: "a product decision about this site.",
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: "the site audits itself through chat for usability and accessibility — automatable WCAG subset, manual criteria flagged", pool: 'unbounded',
-    why: "this site auditing itself." },
-  { theorem: "endless background movie", pool: 'unbounded',
-    why: "this project’s movie surface." },
-  { theorem: "auto movies8k", pool: 'unbounded',
-    why: "this project’s movie surface." },
-  { theorem: "screensaver movie computes", pool: 'unbounded',
-    why: "this project’s movie surface." },
-  { theorem: "hero law alignment", pool: 'unbounded',
-    why: "a stub naming this corpus’s own hero law." },
-  { theorem: "archangels dry clean", pool: 'unbounded',
-    why: "this project’s own cleaning wave." },
-  { theorem: "only quantum remains", pool: 'unbounded',
-    why: "a statement of this project’s end state." },
-  { theorem: "collision healing", pool: 'unbounded',
-    why: "this corpus’s own collision handling." },
+    why: "this site auditing itself.",
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: "the app finishes in all aspects at once — seven expert lanes fold to one root", pool: 'unbounded',
-    why: "a claim about this app’s completion." },
+    why: "a claim about this app’s completion.",
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'associativity independent of division and norm', pool: 'bounded',
     why: 'the octonions are a normed division algebra that is NOT associative — Hurwitz and the Cayley\u2013Dickson literature settle exactly this independence. Well posed, unrun.' },
   { theorem: 'divisibility by 11 by alternating digit sum', pool: 'bounded',
@@ -1297,25 +1307,34 @@ export const PRIOR_ART_POOL: readonly {
   { theorem: 'divisor-count multiplicativity τ(2^a·3^b) = (a+1)(b+1)', pool: 'bounded',
     why: 'an instance of τ\u2019s multiplicativity, which this ledger cites; the instance is findable.' },
   { theorem: 'The theorems decide the addresses', pool: 'unbounded',
-    why: 'the subject is this corpus\u2019s own addressing scheme \u2014 what decides an address HERE. No external literature states it because no external literature has these addresses.' },
+    why: 'the subject is this corpus\u2019s own addressing scheme \u2014 what decides an address HERE. No external literature states it because no external literature has these addresses.',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'Theorems are the gates', pool: 'unbounded',
-    why: 'a claim about how THIS repository enforces itself: its gates are its theorems. Restating it elsewhere would require the gates.' },
+    why: 'a claim about how THIS repository enforces itself: its gates are its theorems. Restating it elsewhere would require the gates.',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'Two interacting rosettas are realtime', pool: 'unbounded',
-    why: 'the rosetta is a structure of this tree; a claim about two of them interacting has no referent outside it.' },
+    why: 'the rosetta is a structure of this tree; a claim about two of them interacting has no referent outside it.',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'The sealed thought precedes the edit', pool: 'unbounded',
-    why: 'describes this project\u2019s own working order \u2014 seal, then edit. A statement about a workflow that exists here.' },
+    why: 'describes this project\u2019s own working order \u2014 seal, then edit. A statement about a workflow that exists here.',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'digital root closed form validates the sealed src/0 code', pool: 'mixed',
     why: 'MIXED, corrected 2026-09-07 from unbounded. The row has two halves and only one is local. The DIGITAL ROOT CLOSED FORM is textbook \u2014 dr(n) = 1 + (n\u22121) mod 9, the same fact as casting out nines \u2014 and calling that unrestatable was wrong. That it VALIDATES src/0\u2019s implementation is the half with no external referent. Split before searching.' },
   { theorem: 'the self-sufficient kernel derives from the corpus — the stack ranks itself by theorem density', pool: 'unbounded',
-    why: 'ranks THIS corpus by its own theorem density; there is no outside author' },
+    why: 'ranks THIS corpus by its own theorem density; there is no outside author',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'the waves feed the chat — the wave chain reports itself as computation', pool: 'unbounded',
-    why: 'a property of this system reporting on itself' },
+    why: 'a property of this system reporting on itself',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'waves of waves in chat — the composition of the chat’s wave engines has its own fixed point', pool: 'unbounded',
-    why: 'the fixed point is of this chat is own engines' },
+    why: 'the fixed point is of this chat is own engines',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'rosters derive or ledger — a hand-list inside a fold is the hardcoded-value crack one level up', pool: 'unbounded',
-    why: 'a rule this repository holds about its own folds' },
+    why: 'a rule this repository holds about its own folds',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'zeropoint-node is the origin — the published sequence is the sealed genesis cycle entered at the void', pool: 'unbounded',
-    why: 'about a sibling repository is published sequence — another artifact, still not literature' },
+    why: 'about a sibling repository is published sequence — another artifact, still not literature',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   // ── Wave tick 2026-09-05 (seventh): thirty-five more pools declared — seventeen bounded, fourteen
   // unbounded, four mixed. The unbounded ones matter as much as the bounded: they are rows that will
   // NEVER leave unclassified, because their subject is this repository or its own output, and marking
@@ -1323,31 +1342,42 @@ export const PRIOR_ART_POOL: readonly {
   // external literature with a claim of this corpus — MOND acceleration scale, the cosmic
   // coincidence, patent doctrine, the Open Graph standard — and must be split before searching.
   { theorem: 'immediate save is reuse — a theorem, not a loop; the identity opens the infinite core', pool: 'unbounded',
-    why: 'the subject IS this artifact — a property of this system own save-and-reuse loop — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a property of this system own save-and-reuse loop — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'Theorem of theorems', pool: 'unbounded',
-    why: 'the subject IS this artifact — a claim about this corpus own theorem set — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a claim about this corpus own theorem set — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'The crowd that carries signal is the code', pool: 'unbounded',
-    why: 'the subject IS this artifact — a claim about this project own contributors and code — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a claim about this project own contributors and code — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'route-independent work computes once — the render transform is O(1) per page', pool: 'mixed',
     why: 'MIXED, corrected 2026-09-07 from unbounded. O(1)-per-call work from a cache hit is memoisation, and there is a large literature on it \u2014 the general complexity claim is restatable. That THIS site\u2019s render transform achieves it per page is the local half.' },
   { theorem: 'every animation is itself a unique theorem — content-addressed, refutable, bijective with the corpus', pool: 'unbounded',
-    why: 'the subject IS this artifact — a property of the animations this repository generates — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a property of the animations this repository generates — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'the solved-bit is the binary output per problem (0/1, measured); the published metrics are computable achievements in the quantum development sequence — two separate axes', pool: 'unbounded',
-    why: 'the subject IS this artifact — a claim about this corpus own per-problem output — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a claim about this corpus own per-problem output — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'the gravity units are real bits of computation — the content-address bit-content of each related theorem (~64/128 bits), summed per problem; the solved-bit center stays 0', pool: 'mixed',
     why: 'MIXED, corrected 2026-09-07 from unbounded. That a 128-bit content address carries 128 bits of information is Shannon, not this repository \u2014 hash entropy in bits is standard. Summing those bits per problem over THIS corpus\u2019s theorems is the local half.' },
   { theorem: 'learning to use the diamonds in chat — a query content-addresses to a diamond slot that points to the theorem addressing it; the diamonds index, not solve', pool: 'unbounded',
-    why: 'the subject IS this artifact — a claim about this project own chat surface — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a claim about this project own chat surface — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'animation uniqueness is layered — identity unique (no logic gap), but the visible speed collides by the 108-divisor clock law so colour carries the salience (a rendering gap, not logic)', pool: 'unbounded',
-    why: 'the subject IS this artifact — a property of the animations this repository generates — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a property of the animations this repository generates — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'top-level hub routes are computable from theorem gravity and distribution, not a hardcoded list — empty placeholders (like /apps) fall away, content domains rise', pool: 'unbounded',
-    why: 'the subject IS this artifact — a claim about this site own routing — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a claim about this site own routing — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'the theorem-science lens — the visible page set is computed, never curated', pool: 'unbounded',
-    why: 'the subject IS this artifact — a claim about this site own page computation — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a claim about this site own page computation — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'the census gate and slugs are quantumized — theorem-derived count, agnostic address', pool: 'unbounded',
-    why: 'the subject IS this artifact — a claim about this repository own census gate — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a claim about this repository own census gate — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'chat also uses the referrer to quantumise all — one (referrer, node) law over pages and chat', pool: 'unbounded',
-    why: 'the subject IS this artifact — a claim about this project own chat and page behaviour — and no literature can restate a claim about this repository' },
+    why: 'the subject IS this artifact — a claim about this project own chat and page behaviour — and no literature can restate a claim about this repository',
+    looked: 'NOT SEARCHED — declared on reading the row alone, by me, in this session.' },
   { theorem: 'inverting dark matter closes the REVERSED MATH as a theorem (density inversion + a₀≈cH₀/2π); the particle IDENTITY stays empirical, not an open theorem', pool: 'mixed',
     why: 'carries both — the MOND acceleration scale a0 and cH0 are external physics with a literature; the inversion claim is this corpus own — so it must be split before it is searched' },
   { theorem: 'the cosmic coincidence inverts to an exact matter–dark-energy equality redshift z_eq≈0.30; the WHY-NOW timing stays empirical, not an open theorem', pool: 'mixed',
@@ -1759,6 +1789,13 @@ export function assertPriorArtLedger(): void {
   const unclassified = new Set(l.unclassified)
   const declared = PRIOR_ART_POOL.filter((d) => unclassified.has(d.theorem))
   const stale = PRIOR_ART_POOL.filter((d) => !unclassified.has(d.theorem))
+  // TWO WAYS A DECLARATION GOES STALE, AND THEY ARE NOT THE SAME EVENT. The row may have MOVED — searched
+  // and attributed, so it no longer needs a pool. Or the row may have been DELETED from the registry, in
+  // which case the declaration describes something that does not exist. Purging 17 directive rows produced
+  // seven of the second kind and the error called them all promotions.
+  const registryNames = new Set(
+    (THEOREM_ATOM_SEED as readonly { theorem?: string }[]).map((r) => String(r.theorem ?? '')),
+  )
   const count = (pool: string) => declared.filter((d) => d.pool === pool).length
   const undeclared = l.unclassified.length - declared.length
   console.log(`  of the ${l.unclassified.length} unclassified, by DECLARED pool:`)
@@ -1815,7 +1852,10 @@ export function assertPriorArtLedger(): void {
   if (stale.length) {
     throw new Error(
       `${stale.length} prior-art pool declaration(s) name rows that are no longer unclassified: ` +
-      `${stale.map((d) => d.theorem).join(', ')}. A row that has been attributed or claimed does not need a pool.`
+      `${stale.map((d) => `${d.theorem}${registryNames.has(d.theorem) ? '' : ' [NOT IN THE REGISTRY AT ALL]'}`).join(', ')}. ` +
+      `A row that has been attributed or claimed does not need a pool — and a row marked NOT IN THE REGISTRY was DELETED, ` +
+      `so its declaration now describes nothing. The message used to say only the first thing, which misdiagnosed every ` +
+      `deletion as a promotion.`
     )
   }
   if (l.attributed.length + l.claimed.length + l.unclassified.length !== l.total) {
@@ -1842,6 +1882,22 @@ export function assertPriorArtLedger(): void {
   //
   // DIRECTION OF FAILURE: red on a repeated theorem, whatever the pools say. Unlike the searched-row
   // check there is no scope to key on: a row belongs to exactly one pool or the declaration is undecided.
+  // EVERY UNBOUNDED DECLARATION MUST SAY WHAT WAS LOOKED FOR. It asserts that no literature can restate
+  // the row, and that is the one claim in this file nothing could previously check.
+  const unboundedNoLook = PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && !(d.looked ?? '').trim())
+  if (unboundedNoLook.length) {
+    throw new Error(
+      `${unboundedNoLook.length} unbounded declaration(s) record no attempt to look: ` +
+      `${unboundedNoLook.map((d) => d.theorem).join(' · ')}. Unbounded says NO LITERATURE CAN RESTATE THIS — ` +
+      `the strongest claim in this ledger — so it must at least name the search that was tried, or admit none was.`
+    )
+  }
+  const unsearchedUnbounded = PRIOR_ART_POOL.filter(
+    (d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim()),
+  ).length
+  console.log(`  of the ${PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded').length} unbounded declarations, ${unsearchedUnbounded} rest on READING ALONE — no query was run`)
+  console.log(`  ${ratchet('prior-art.unbounded-unsearched', unsearchedUnbounded)}`)
+
   const poolSeen = new Map<string, string[]>()
   for (const d of PRIOR_ART_POOL) {
     if (!poolSeen.has(d.theorem)) poolSeen.set(d.theorem, [])
