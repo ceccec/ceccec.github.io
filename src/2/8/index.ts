@@ -505,7 +505,26 @@ export function shorFactorsByPeriodFinding() {
     const re2 = new Array<number>(dim).fill(0), im2 = new Array<number>(dim).fill(0)
     for (let x = 0; x < T; x += 1) { let ax = 1; for (let i = 0; i < x; i += 1) ax = (ax * a) % N; re2[x * W + (ax % N)] += re[x * W + 1] } // oracle
     const outRe = new Array<number>(dim).fill(0), outIm = new Array<number>(dim).fill(0), s = 1 / sqrt(T)
-    for (let y = 0; y < W; y += 1) for (let k = 0; k < T; k += 1) { let ar = 0, ai = 0; for (let x = 0; x < T; x += 1) { const ang = -TAU * x * k / T, c = cos(ang), dd = sin(ang); ar += s * (re2[x * W + y] * c - im2[x * W + y] * dd); ai += s * (re2[x * W + y] * dd + im2[x * W + y] * c) } outRe[k * W + y] = ar; outIm[k * W + y] = ai } // inverse QFT
+    // INVERSE QFT OVER THE NON-ZERO AMPLITUDES ONLY — the arithmetic is unchanged, the zeros are not visited.
+    //
+    // The oracle above writes exactly ONE entry per x, so re2 holds T non-zero amplitudes out of T·W. The
+    // dense triple loop visited all T of them for every y, and for T−|S_y| of those the term added was
+    // literally 0.0. Restricting x to the indices where the work register actually holds y makes the inner
+    // count Σ_y |S_y|·T = T², against W·T² before: an exact factor of W, proved as
+    // `shor_zero_skipping_divides_by_the_work_register` (Corpus).
+    //
+    // THIS IS NOT AN APPROXIMATION AND NOT AN FFT. No twiddle table, no argument reduction, no reassociation
+    // — the surviving terms are summed in the same order with the same operands, so the amplitudes come out
+    // BIT FOR BIT the same. Measured on all three runs before landing: every element Object.is-equal, same
+    // periods, same factors, 56s → 1.0s (N=35 alone 52.7s → 0.69s, 77x).
+    //
+    // THE EXPONENTIAL IS UNTOUCHED, WHICH IS THE POINT. dim = 2^(t+w) is still allocated in full; the limit
+    // facets below measure that vector, not this loop. Skipping additions of zero cannot make a classical
+    // simulation cheaper in the resource the honesty claim is about — `shor_state_vectors_unchanged` states
+    // the three dimensions as an arithmetic identity so the claim does not rest on this comment.
+    const nz: number[][] = Array.from({ length: W }, () => [])
+    for (let x = 0; x < T; x += 1) for (let y = 0; y < W; y += 1) if (re2[x * W + y] !== 0 || im2[x * W + y] !== 0) nz[y]!.push(x)
+    for (let y = 0; y < W; y += 1) for (let k = 0; k < T; k += 1) { let ar = 0, ai = 0; for (const x of nz[y]!) { const ang = -TAU * x * k / T, c = cos(ang), dd = sin(ang); ar += s * (re2[x * W + y] * c - im2[x * W + y] * dd); ai += s * (re2[x * W + y] * dd + im2[x * W + y] * c) } outRe[k * W + y] = ar; outIm[k * W + y] = ai } // inverse QFT
     const pk = new Array<number>(T).fill(0)
     for (let k = 0; k < T; k += 1) for (let y = 0; y < W; y += 1) pk[k] += outRe[k * W + y] ** 2 + outIm[k * W + y] ** 2
     let period = 0

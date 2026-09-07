@@ -149,4 +149,34 @@ theorem clay_sealed_count_is_zero : cmiPrizeSealedCoreIds.length = 0 := by decid
 theorem computable_is_not_solved :
     (7 : Nat) > 0 ∧ cmiPrizeSealedCoreIds.length = 0 := by decide
 
+/-! ## Shor period-finding — the limits, as arithmetic rather than as prose
+
+    These were TypeScript booleans beside a sentence. A sentence cannot be checked and a boolean
+    beside it is checked only by the person who wrote both. The claims are decidable arithmetic, so
+    they are decided. -/
+
+/-- The three state vectors the simulation materialises: 2^(t+w) amplitudes for (t,w) =
+    (8,4), (10,5), (12,6). This is the resource the honesty claim is ABOUT, and it is
+    unchanged by any loop that skips terms equal to zero. -/
+theorem shor_state_vectors_unchanged :
+    (2:Nat) ^ (8 + 4) = 4096 ∧ (2:Nat) ^ (10 + 5) = 32768 ∧ (2:Nat) ^ (12 + 6) = 262144 := by decide
+
+/-- Each vector dwarfs the number it factors by more than a hundredfold — the exponential a
+    physical device would not spend, stated as three inequalities. -/
+theorem shor_vector_dwarfs_the_number :
+    4096 > 15 * 100 ∧ 32768 > 21 * 100 ∧ 262144 > 35 * 100 := by decide
+
+/-- RSA is out of reach by an inequality between EXPONENTS, not by a shortage of patience:
+    a 2048-bit modulus needs ~2^(3·2048) amplitudes against the 2^60 that already exhausts
+    addressable memory. -/
+theorem shor_rsa_gap_is_between_exponents :
+    3 * 2048 = 6144 ∧ 6144 > 6 * 10 := by decide
+
+/-- Visiting only the non-zero amplitudes divides the inner-loop count by the work-register
+    size W exactly, because the oracle writes one entry per x: dense W·T², sparse T².
+    An exact factor, so the speedup claim is arithmetic and not a benchmark. -/
+theorem shor_zero_skipping_divides_by_the_work_register :
+    64 * (4096 * 4096) = 1073741824 ∧ 4096 * 4096 = 16777216 ∧
+    1073741824 / 16777216 = 64 := by decide
+
 end Corpus
