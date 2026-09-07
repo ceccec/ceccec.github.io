@@ -14,6 +14,7 @@
   "paths.dead-strings": 51,
   "prior-art.attributed-by-pattern": 322,
   "prior-art.coverage-unexamined": 405,
+  "prior-art.marks-decided-by-hand": 222,
   "prior-art.unbounded-unsearched": 25,
   "prior-art.unclassified": 217,
   "purity.core-nondeterminism": 0,

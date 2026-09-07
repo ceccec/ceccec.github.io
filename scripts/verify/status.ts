@@ -69,6 +69,19 @@ function write(root: string, next: Status, before: Status): void {
  * Compare a measurement to the recorded one. Throws when worse; tightens the record when
  * better; returns the line to print either way.
  */
+/**
+ * A DOWNWARD PERTURBATION WRITES A FLOOR THAT THE RESTORE CANNOT UNDO.
+ *
+ * Perturbing a gate in both directions is the discipline here, and the downward half has a side effect
+ * nobody sees until the restore: ratchet() RECORDS the improvement. Put the file back and the true, higher
+ * measurement now sits above a floor that only a perturbation ever produced, and the gate throws on a clean
+ * tree. It has happened three times in this session — folds.order-dependent, prior-art.coverage-unexamined
+ * twice — and each time the fix was to edit status.json back by hand.
+ *
+ * There is no way for ratchet() to know it is being perturbed. So the rule belongs with whoever perturbs:
+ * RESTORING THE SOURCE IS NOT RESTORING THE FLOOR. Check status.json after any perturbation that made a
+ * number fall, and put the recorded value back to what the clean tree measures.
+ */
 export function ratchet(name: string, measured: number, root: string = process.cwd()): string {
   const status = read(root)
   const recorded = status[name]

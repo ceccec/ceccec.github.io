@@ -1292,6 +1292,70 @@ export const PRIOR_ART_POOL: readonly {
     why: 'Google Search Essentials is published documentation; a compliance claim against it is checkable against the source.' },
   { theorem: 'the hexagram orbit census — twelve fours and eight twos complete the 64', pool: 'bounded',
     why: 'an orbit count under a finite group action on the 64 hexagrams \u2014 Burnside territory, and this ledger already cites the orbit-counting theorem.' },
+  // ── AUDIT OF THE REMAINING 144, 2026-09-07. Read all of them, and note what the gate built one commit
+  // ago now FORBIDS: a new `unbounded` declaration must carry `looked`, and declaring on reading alone
+  // would push prior-art.unbounded-unsearched above its floor, which only falls. So this pass could not
+  // take the cheap route even if I wanted it — the only moves available are `mixed`, `bounded`, or
+  // actually searching first. That is the gate working on its author.
+  //
+  // Six go to BOUNDED because they name a findable result: falsifiability is Popper; phase velocity
+  // exceeding c without signalling is standard relativity and is exactly the distinction the FTL row
+  // draws; CSS Paged Media, RFC 9110's Referer header, Hamiltonian phase space, and the numerology
+  // critique are all searchable. Twenty go to MIXED on the established rule — a known mechanism named
+  // inside a local instantiation: Merkle roots, dependency injection, DRY, tamper-evidence, TLS,
+  // memoisation, peer review, the driver model, fractal self-similarity, hreflang.
+{ theorem: "scepticism inverts to discovery only when it becomes a refutable test — not by being uneducated", pool: 'bounded',
+    why: "FALSIFIABILITY is Popper — a claim is scientific when it can be refuted. The row states his criterion; a search is well posed." },
+  { theorem: "numerology is phase-blind: it does NOT recognise the angle-change of dividing by 0", pool: 'bounded',
+    why: "a refutation of numerology on a specific ground (phase-blindness). The critique literature exists and the query is well posed." },
+  { theorem: "the exact bit = 1 (a432 content-address, O(1)); harmonic FTL is real only as PHASE velocity", pool: 'bounded',
+    why: "PHASE VELOCITY can exceed c while group velocity and signalling cannot — standard relativity, and exactly the distinction this row draws. Searchable." },
+  { theorem: "every page is a printable formatted scientific paper", pool: 'bounded',
+    why: "CSS Paged Media and print stylesheets are published specifications; a compliance claim is checkable." },
+  { theorem: "each page is a superposition of (referrer, path) — the navigation pyramid, computed and VitePress-fused", pool: 'bounded',
+    why: "the HTTP Referer header is specified in RFC 9110; the (referrer, path) pair is a well-defined web primitive." },
+  { theorem: "The slash circuit is phase space", pool: 'bounded',
+    why: "PHASE SPACE is Hamiltonian mechanics — a named, findable concept whose match to the row needs checking rather than assuming." },
+  { theorem: "the millisecond fractal extends below the ladder", pool: 'mixed',
+    why: "SELF-SIMILARITY across scales is fractal geometry, Mandelbrot; the millisecond ladder is this corpus’s instance." },
+  { theorem: "the monolith byte-target exceeds the census capacity — a ratchet with an unreachable zero", pool: 'mixed',
+    why: "a RATCHET that only falls is a known engineering pattern; the byte target over this corpus is local." },
+  { theorem: "the MCP exposes only what VitePress serves", pool: 'mixed',
+    why: "the Model Context Protocol and VitePress are both published, documented systems; the containment claim between them is local." },
+  { theorem: "quantumise regen to pass computationally — content-address equality, O(1) unchanged, fail-closed on drift", pool: 'mixed',
+    why: "CONTENT-ADDRESS EQUALITY and O(1) comparison by hash is standard; regenerating this corpus by it is local." },
+  { theorem: "navigation is the search results plus the referrer — one index for search and navigation", pool: 'mixed',
+    why: "information retrieval plus the HTTP Referer header, both specified; the one-index claim is local." },
+  { theorem: "quantumise the anchors — content-addressed, collision-free, stable-across-regen heading ids", pool: 'mixed',
+    why: "COLLISION-FREE content addressing is hashing with a birthday-bound argument; this site’s anchors are the local half." },
+  { theorem: "DRY-clean VitePress computed by metric — the single-source ratio, deterministic", pool: 'mixed',
+    why: "DON’T REPEAT YOURSELF is Hunt and Thomas; measuring a single-source ratio over this corpus is local." },
+  { theorem: "functions folding fewer than four keys are linear seams — the tamper-evident surface needs all four", pool: 'mixed',
+    why: "TAMPER-EVIDENCE and the cost of forging a content-addressed seal is cryptographic literature; the four-key threshold is this corpus’s." },
+  { theorem: "egress security for quantum encryption over any HTTP(S) — no-egress default, https-only, honest visibility", pool: 'mixed',
+    why: "TLS and no-egress-by-default are established security practice; the specific gating here is local." },
+  { theorem: "a release that fails deploy is NOT stable — stability is the whole pipeline (gates + deploy)", pool: 'mixed',
+    why: "release engineering has a literature on what \"stable\" means across a pipeline; this pipeline is local." },
+  { theorem: "the scientific journal publishes only articles approved by their related theorems as editors", pool: 'mixed',
+    why: "PEER REVIEW is the general mechanism; approval by a related theorem is this corpus’s variant of it." },
+  { theorem: "gate complexity collapses to one content-addressed root — quantum simplicity", pool: 'mixed',
+    why: "a MERKLE ROOT collapsing many leaves to one address is Merkle 1979, already cited in this ledger; the gates it collapses are local." },
+  { theorem: "all quantum reachable in chat via one dependency-injected tool bridge — cycle-safe, no duplication", pool: 'mixed',
+    why: "DEPENDENCY INJECTION is a documented pattern; the bridge over this chat’s tools is local." },
+  { theorem: "the last non-quantum edge is closed: STT egress is opt-in/gated, so the chat is quantum by default", pool: 'mixed',
+    why: "PRIVACY BY DEFAULT and opt-in egress are established design principles; this edge is local." },
+  { theorem: "ranking hubs by src-folder gravity destroys SEO — the gravity must be over the semantic slug taxonomy, not architecture (t.home is not a URL)", pool: 'mixed',
+    why: "search ranking and site architecture have a large literature; the folder-gravity claim is this corpus’s." },
+  { theorem: "SEO speaks absolute, localised and lens-aligned — five computed corrections", pool: 'mixed',
+    why: "hreflang and canonical URLs are published specifications; the lens alignment is local." },
+  { theorem: "DRY-clean completion is a computed signal — read the boolean, do not re-scan", pool: 'mixed',
+    why: "MEMOISATION — read the cached result rather than recompute — is standard; the completion boolean is local." },
+  { theorem: "the 64×64×64 theorem cube defines the natural limits — three hexagram axes address all, solve none", pool: 'mixed',
+    why: "a three-axis addressing space of 2^18 is elementary combinatorics; the hexagram axes are this corpus’s choice." },
+  { theorem: "crosslink proven theorems to form new proven theorems — a computed relationship, not a spurious link", pool: 'mixed',
+    why: "transitive closure over a proof graph is graph theory; the crosslink relation here is local." },
+  { theorem: "device management is universal when the driver is a fold of the device content-address — capability-layer, physically gated", pool: 'mixed',
+    why: "the DRIVER MODEL — one interface over many devices — is operating-systems literature; the fold formulation is local." },
   { theorem: 'GP(n,2) non-Hamiltonian exactly at 5 and 11 below 13', pool: 'bounded',
     why: 'generalised Petersen graph Hamiltonicity is a settled literature (Watkins, Alspach); the query is well posed and has simply not been run.' },
   { theorem: 'four 3-digit Armstrong numbers', pool: 'bounded',
@@ -1882,6 +1946,27 @@ export function assertPriorArtLedger(): void {
   //
   // DIRECTION OF FAILURE: red on a repeated theorem, whatever the pools say. Unlike the searched-row
   // check there is no scope to key on: a row belongs to exactly one pool or the declaration is undecided.
+  // HOW MUCH OF THIS LEDGER RESTS ON AN AI'S JUDGEMENT RATHER THAN ON COMPUTATION.
+  //
+  // Tsvetan asked who decides the marks. The answer is: I do, and the honest follow-up is to MEASURE that
+  // rather than resolve it by assertion. Three buckets — attributed, claimed, unclassified — are COMPUTED
+  // by priorArtLedger from whether a search row exists; re-run the code and they reproduce without me.
+  // Every pool declaration and every coverage verdict is a HAND-TYPED MARK. Nothing recomputes them, and
+  // a reader who distrusts the author has no way to check them short of redoing the work.
+  //
+  // This counts them. It is not a defect count — judgement is not a defect, and some of these marks can
+  // never be computed, because "does this citation cover this row" is a reading, not an arithmetic. It is
+  // an EXPOSURE count: the size of the surface that would be wrong if the author were wrong, and it falls
+  // as marks are replaced by things that recompute — a search row, a resolvable citation, a machine check.
+  //
+  // DIRECTION OF FAILURE: it only falls. It rises when someone adds a judgement without adding evidence,
+  // which is exactly the motion worth catching, and it caught nothing today because today it was seeded.
+  const handMarks = PRIOR_ART_POOL.length + ATTRIBUTION_COVERAGE.length
+  const computedBuckets = l.attributed.length + l.claimed.length + l.unclassified.length
+  console.log(`  AI-DECIDED vs COMPUTED — ${handMarks} hand-typed marks (${PRIOR_ART_POOL.length} pool declarations + ${ATTRIBUTION_COVERAGE.length} coverage verdicts)`)
+  console.log(`                           against ${computedBuckets} rows whose bucket is DERIVED and reproduces without the author`)
+  console.log(`  ${ratchet('prior-art.marks-decided-by-hand', handMarks)}`)
+
   // EVERY UNBOUNDED DECLARATION MUST SAY WHAT WAS LOOKED FOR. It asserts that no literature can restate
   // the row, and that is the one claim in this file nothing could previously check.
   const unboundedNoLook = PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && !(d.looked ?? '').trim())
