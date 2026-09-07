@@ -20,7 +20,7 @@
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
-import { ratchet, recordedFloor } from './status.ts'
+import { ratchet } from './status.ts'
 
 
 /** Segment-matched, never substring: this repository is named "ceccec.github.io", which
@@ -92,15 +92,10 @@ export function assertPathsResolve(): void {
   // happened today: identifying it took reconstructing the state by hand, twice, against a gate
   // that already knew the answer and refused to say it before dying.
   console.log(`  by extension: ${[...byExt].map(([e, n]) => `${e}=${n}`).join(' ')}`)
-  // WHEN IT IS ABOUT TO FAIL, SHOW EVERYTHING. Twelve of fifty-two sorted by name is a sample, and
-  // the entry that caused the regression sits wherever the alphabet put it — proving the reorder
-  // worked required a perturbation that happened to sort third. A gate that knows it is failing has
-  // no reason to abbreviate.
-  const floor = recordedFloor('paths.dead-strings')
-  const failing = floor !== undefined && dead.length > floor
-  const show = failing ? dead.length : 12
-  for (const d of dead.slice(0, show)) console.log(`  ${d.path}  <- ${d.citedBy[0]}${d.citedBy.length > 1 ? ` (+${d.citedBy.length - 1})` : ''}`)
-  if (dead.length > show) console.log(`  ...and ${dead.length - show} more`)
-  if (failing) console.log(`  ALL ${dead.length} listed above — ${dead.length - floor} more than the recorded ${floor}; the new one is in that list`)
-  console.log(ratchet('paths.dead-strings', dead.length))
+  // TWELVE IS A SAMPLE FOR THE PASSING CASE ONLY. When the ratchet breaks it prints the FULL list
+  // itself, from the evidence thunk below — so this listing no longer has to guess how much to show,
+  // and the `recordedFloor` lookup that used to widen it here is gone. One mechanism, not two.
+  for (const d of dead.slice(0, 12)) console.log(`  ${d.path}  <- ${d.citedBy[0]}${d.citedBy.length > 1 ? ` (+${d.citedBy.length - 1})` : ''}`)
+  if (dead.length > 12) console.log(`  ...and ${dead.length - 12} more`)
+  console.log(ratchet('paths.dead-strings', dead.length, { evidence: () => dead.map((d) => `${d.path}  <- ${d.citedBy.join(', ')}`) }))
 }

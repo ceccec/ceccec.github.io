@@ -331,13 +331,13 @@ export function assertScopesCompute(): void {
   // hand after every wave — a hardcoded value maintained by a human, inside the file that exists to catch
   // exactly that. ratchet() reads what was measured, throws on worse, records on better, and the record is
   // committed so every tightening is a diff. Adopted from ceccec-github-io-7a's status.ts.
-  console.log(`fold scopes still narrated rather than computed — ${ratchet('scope.narrated', narrated.length)}`)
+  console.log(`fold scopes still narrated rather than computed — ${ratchet('scope.narrated', narrated.length, { evidence: () => narrated.map((n) => `${n.file}:${n.line}  ${n.head}`) })}`)
   for (const n of narrated.slice(0, 10)) console.log(`  ${n.file}:${n.line}  ${n.head}`)
   if (narrated.length > 10) console.log(`  ...and ${narrated.length - 10} more`)
 
   const boundaries = findNarratedBoundaries()
   const labelled = boundaries.filter((b) => /HONEST SCOPE/.test(b.says))
-  console.log(`\nboundaries whose limits are prose rather than computation — ${ratchet('scope.boundaries', boundaries.length)} · a CEILING, not a target`)
+  console.log(`\nboundaries whose limits are prose rather than computation — ${ratchet('scope.boundaries', boundaries.length, { evidence: () => boundaries.map((b) => `${b.file}:${b.line}  ${b.says}`) })} · a CEILING, not a target`)
   console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — navigation only; deleting the label converts nothing`)
   for (const b of labelled.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
   if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)

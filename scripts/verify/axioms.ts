@@ -145,7 +145,7 @@ export function assertAxiomIndex(): void {
   // regression threw "N, above the recorded M" with no way to see WHICH entry lost its research.
   // The count was the whole report; the entries were never listed at all.
   for (const e of unresearched) console.log(`  unresearched: ${e.name}`)
-  console.log(ratchet('axiom-index.unresearched', unresearched.length))
+  console.log(ratchet('axiom-index.unresearched', unresearched.length, { evidence: () => unresearched.map((e) => `unresearched: ${e.name}`) }))
 
   // WHICH THEOREMS REST ON WHICH AXIOM — the index described seven axioms and named no theorem.
   const fam = theoremAxiomFamilies()
@@ -155,7 +155,7 @@ export function assertAxiomIndex(): void {
   console.log(`  ${String(fam.unplaced).padStart(4)}  UNPLACED — the fold references none of the indexed artefacts.`)
   console.log(`         NOT a claim of axiom-freedom: an axiom the index has not named cannot be found by looking for the names it has.`)
   console.log(`         Axiom-freedom is decided on the Lean side, per theorem, and reported by verify:lean.`)
-  console.log(ratchet('axiom-index.unplaced', fam.unplaced))
+  console.log(ratchet('axiom-index.unplaced', fam.unplaced, { evidence: () => [`${fam.unplaced} fold(s) reference none of the indexed artefacts — see the family table above; axiom-freedom is decided per theorem by verify:lean, not here`] }))
   void total
 }
 

@@ -68,5 +68,5 @@ export function assertEveryPageIsCredited(root: string = process.cwd()): void {
       `. Every page here is a scientific paper by this corpus's own law; one without an author or a licence is not.`
     )
   }
-  console.log(ratchet('credits.uncredited-pages', missing.size, root))
+  console.log(ratchet('credits.uncredited-pages', missing.size, { root, evidence: () => [...missing].map((m) => `uncredited page: ${String(m)}`) }))
 }

@@ -114,5 +114,5 @@ export function assertBuildIsNotSlower(root: string = process.cwd()): void {
     return
   }
   console.log(`  app entry chunk ${w.appChunkKb} KiB — the shell every visitor loads; this is what may not regress`)
-  console.log(ratchet('build.app-chunk-kilobytes', w.appChunkKb, root))
+  console.log(ratchet('build.app-chunk-kilobytes', w.appChunkKb, { root, evidence: () => [`app entry chunk ${w.appChunkKb} KiB in ${root}/.vitepress/dist/assets (app.*.js) — the shell every visitor loads, across ${w.pages} page(s) totalling ${w.kilobytes} KiB`] }))
 }

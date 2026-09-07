@@ -82,22 +82,15 @@ function write(root: string, next: Status, before: Status): void {
  * RESTORING THE SOURCE IS NOT RESTORING THE FLOOR. Check status.json after any perturbation that made a
  * number fall, and put the recorded value back to what the clean tree measures.
  */
-/**
- * THE RECORDED FLOOR, WITHOUT ENFORCING IT — so a gate can know it is about to fail before it does.
- *
- * A ratchet throws on regression, which means any evidence a gate prints AFTER the call is
- * destroyed at the one moment it is wanted. Reordering fixes the ordering; it does not fix a gate
- * that shows the first twelve of fifty-two entries sorted by name, because the entry that caused
- * the regression is at whatever position the alphabet put it. Reading the floor first lets a gate
- * widen its own listing exactly when the listing matters.
- *
- * Returns undefined when there is no floor. That is not zero and must not be treated as zero.
- */
-export function recordedFloor(name: string, root: string = process.cwd()): number | undefined {
-  return read(root)[name]
-}
-
-export function ratchet(name: string, measured: number, root: string = process.cwd()): string {
+export function ratchet(
+  name: string,
+  measured: number,
+  opts: { evidence: () => readonly string[]; root?: string },
+): string {
+  if (typeof opts?.evidence !== 'function') {
+    throw new Error(`${name}: ratchet called with no evidence thunk. A floor that cannot say what it counted cannot be acted on when it breaks.`)
+  }
+  const root = opts.root ?? process.cwd()
   const status = read(root)
   const recorded = status[name]
 
@@ -116,6 +109,12 @@ export function ratchet(name: string, measured: number, root: string = process.c
     return `${name}: ${measured} — SEEDED (VERIFY_SEED=1), from this tree`
   }
   if (measured > recorded) {
+    // THE EVIDENCE GOES OUT BEFORE THE THROW. Everything, not a sample: a gate that knows it is
+    // failing has no reason to abbreviate, and the entry that caused the regression sits wherever
+    // the sort put it — a twelve-line sample of fifty-two made finding it a matter of luck.
+    const lines = opts.evidence()
+    console.log(`  ${name} — ${measured} against the recorded ${recorded}; all ${lines.length} listed, the ${measured - recorded} new one(s) are among them:`)
+    for (const l of lines) console.log(`    ${l}`)
     throw new Error(`${name}: ${measured}, above the recorded ${recorded}. The ratchet only falls.`)
   }
   if (measured < recorded) {

@@ -75,7 +75,7 @@ export function show() {
   // single number in this file that is good news when it moves reported nothing when it did.
   console.log(`folds carrying facets:            ${folds.size}`)
   console.log(`  constrained by a predicate      ${crossed}  in another file`)
-  console.log(`  ${ratchet('independence.cross-checked', -crossed)}  — stored negated, so ${crossed} cross-checked may only RISE`)
+  console.log(`  ${ratchet('independence.cross-checked', -crossed, { evidence: () => [`${crossed} fold(s) constrained by a predicate in another file, of ${folds.size} carrying facets — this figure FELL, which for a negated ratchet means cross-checking was lost, not gained`] })}  — stored negated, so ${crossed} cross-checked may only RISE`)
   console.log(`  asserted only by their own      ${selfOnly}  facets, and nothing else`)
   console.log(`\nself-asserted sample:`)
   for (const e of examples) console.log('   ', e)

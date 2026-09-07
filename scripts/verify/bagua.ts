@@ -117,6 +117,6 @@ export function assertBaguaNamesRealFolders(): void {
       `and the derivation in src/quantum/index.ts must stop filtering it out.`
     )
   }
-  console.log(ratchet('bagua.parallel-tables', a.parallelTables))
+  console.log(ratchet('bagua.parallel-tables', a.parallelTables, { evidence: () => parallelBaguaTables().map((t) => String(t)) }))
   console.log('bagua -- every ray names a folder that exists')
 }

@@ -55,6 +55,6 @@ export function findTopLevelSideEffects(root: string = process.cwd()): SideEffec
 
 export function assertNoImportTimeSideEffects(): void {
   const found = findTopLevelSideEffects()
-  console.log(ratchet('side-effects.top-level', found.length))
+  console.log(ratchet('side-effects.top-level', found.length, { evidence: () => found.map((f) => `${f.file}:${f.line}  ${f.text}`) }))
   for (const f of found.slice(0, 20)) console.log(`  ${f.file}:${f.line}  ${f.text}`)
 }

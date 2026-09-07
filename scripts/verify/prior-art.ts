@@ -1883,7 +1883,8 @@ export function assertPriorArtLedger(): void {
   console.log(`    covers     ${String(covers.length).padStart(4)}  examined and clean — the citation entails the row, nothing over- or under-credited`)
   // THE REMAINDER GETS A FLOOR TOO. It was reported and nothing held it: rows could be added to the
   // registry faster than they were examined and this line would climb while every gate stayed green.
-  console.log(ratchet('prior-art.coverage-unexamined', l.attributed.length - coverage.length))
+  const examined = new Set(coverage.map((c) => c.theorem))
+  console.log(ratchet('prior-art.coverage-unexamined', l.attributed.length - coverage.length, { evidence: () => l.attributed.filter((n) => !examined.has(n)).map((n) => `no coverage verdict: ${n}`) }))
 
   // WHAT THE ATTRIBUTED BUCKET IS ACTUALLY MADE OF. Its label says prior art EXISTS, and only a
   // minority of it rests on a search. The rest matched the eponym-or-standards pattern: a word in the
@@ -1902,7 +1903,7 @@ export function assertPriorArtLedger(): void {
   console.log(`    by SEARCH  ${String(bySearch).padStart(4)}  a query was run and a citation recorded`)
   console.log(`    by PATTERN ${String(byPattern).padStart(4)}  an eponym or standards word appeared in the row text; no query was ever run`)
   console.log(`               of those, ~${selfRef} read as statements about THIS TREE — filed as prior-art-exists though no literature can restate them. HEURISTIC, and no row moves on it.`)
-  console.log(ratchet('prior-art.attributed-by-pattern', byPattern))
+  console.log(ratchet('prior-art.attributed-by-pattern', byPattern, { evidence: () => l.attributed.filter((n) => !searchedNames.has(n)).map((n) => `by pattern, no query ever run: ${n}`) }))
 
   if (staleCoverage.length) {
     throw new Error(
@@ -1965,7 +1966,7 @@ export function assertPriorArtLedger(): void {
   const computedBuckets = l.attributed.length + l.claimed.length + l.unclassified.length
   console.log(`  AI-DECIDED vs COMPUTED — ${handMarks} hand-typed marks (${PRIOR_ART_POOL.length} pool declarations + ${ATTRIBUTION_COVERAGE.length} coverage verdicts)`)
   console.log(`                           against ${computedBuckets} rows whose bucket is DERIVED and reproduces without the author`)
-  console.log(`  ${ratchet('prior-art.marks-decided-by-hand', handMarks)}`)
+  console.log(`  ${ratchet('prior-art.marks-decided-by-hand', handMarks, { evidence: () => [`${PRIOR_ART_POOL.length} pool declarations + ${ATTRIBUTION_COVERAGE.length} coverage verdicts, each typed by hand, against ${computedBuckets} rows whose bucket is derived`, ...PRIOR_ART_POOL.map((d) => `pool ${d.pool}: ${d.theorem}`), ...ATTRIBUTION_COVERAGE.map((c) => `coverage ${c.coverage}: ${c.theorem}`)] })}`)
 
   // EVERY UNBOUNDED DECLARATION MUST SAY WHAT WAS LOOKED FOR. It asserts that no literature can restate
   // the row, and that is the one claim in this file nothing could previously check.
@@ -1981,7 +1982,7 @@ export function assertPriorArtLedger(): void {
     (d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim()),
   ).length
   console.log(`  of the ${PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded').length} unbounded declarations, ${unsearchedUnbounded} rest on READING ALONE — no query was run`)
-  console.log(`  ${ratchet('prior-art.unbounded-unsearched', unsearchedUnbounded)}`)
+  console.log(`  ${ratchet('prior-art.unbounded-unsearched', unsearchedUnbounded, { evidence: () => PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim())).map((d) => `unbounded on reading alone: ${d.theorem}`) })}`)
 
   const poolSeen = new Map<string, string[]>()
   for (const d of PRIOR_ART_POOL) {
@@ -2020,5 +2021,5 @@ export function assertPriorArtLedger(): void {
   // Ifá odu — so "every theorem has registered prior art" is not merely unproven, it is impossible.
   // The count and the caveat are emitted together so neither can be quoted without the other.
   console.log(`  claimed=${l.claimed.length} does NOT mean everything here has a known author: ${l.unclassified.length} rows have had no search, and much of what IS attributed predates the DOI system`)
-  console.log(ratchet('prior-art.unclassified', l.unclassified.length))
+  console.log(ratchet('prior-art.unclassified', l.unclassified.length, { evidence: () => l.unclassified.map((n) => `unclassified, no search run: ${n}`) }))
 }

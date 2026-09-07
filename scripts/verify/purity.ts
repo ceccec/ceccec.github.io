@@ -112,7 +112,7 @@ export function assertPurity(): void {
   //   const success = Math.random() > 0.1                               "verification" of build, tests and types
   // The last two are the class this repository exists to refuse — a function that answers instead of
   // refusing — and they are shipped in a package whose description begins "Deterministic".
-  console.log(ratchet('purity.core-nondeterminism', core.counts['Math.random']!))
+  console.log(ratchet('purity.core-nondeterminism', core.counts['Math.random']!, { evidence: () => [`Math.random×${core.counts['Math.random']} in the published core bundle — a package whose description begins "Deterministic". The bundle is built, not read from source, so the line numbers are in the artefact; grep the core bundle for Math.random to place them`] }))
   if (core.counts['fetch']! > EGRESS_ALLOWED) {
     throw new Error(`${core.counts['fetch']} fetch call(s) in the core bundle, ${EGRESS_ALLOWED} allowed — every egress point must be named in fromPublicData or counted here`)
   }
