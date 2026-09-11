@@ -311,9 +311,25 @@ export async function runCrackMeasureExit(root: string, argv: readonly string[] 
   const scan = await importQuantumBundle('src/pair/enforcement/gates/strict/scan/index.ts', root) as {
     scanCrackSurface: (root: string) => { file: string; literal: string; count: number }[]
   }
+  // THE INVARIANT IS MEASURED HERE, NOT ONLY BY THE ORPHAN `cracks` RUNNER. crackLedgerAccounts().holds
+  // (duplicates · stale rows · tuned-without-frontier · double wildcards) sat BROKEN for two months because the
+  // only runner that read it is dispatched by nothing — the same crack as the dead npm scripts (paths.dead-scripts).
+  const law = await importQuantumBundle('src/3/7/index.ts', root) as {
+    crackLedgerAccounts: () => { holds: boolean; entries: number; duplicates: string[]; nonPositive: number; tunedWithoutFrontier: number; doubleWildcards: string[] }
+  }
+  const accounts = law.crackLedgerAccounts()
+  if (!accounts.holds) {
+    process.stderr.write(`✗ cracks:measure — ledger invariants BROKEN over ${accounts.entries} entries · duplicates=${accounts.duplicates.length} stale=${accounts.nonPositive} tunedWithoutFrontier=${accounts.tunedWithoutFrontier} doubleWildcards=${accounts.doubleWildcards.length}\n`)
+    for (const d of accounts.duplicates) process.stderr.write(`  duplicate ${d}\n`)
+    for (const d of accounts.doubleWildcards) process.stderr.write(`  double wildcard ${d}\n`)
+  }
   const filter = argv.find((a) => !a.startsWith('-'))
   const offenders = scan.scanCrackSurface(root).filter((o) => !filter || o.file.includes(filter))
-  if (!offenders.length) { process.stdout.write('✓ cracks:measure — every literal accounted (lattice, named rows, wildcards exact)\n'); return 0 }
+  if (!offenders.length) {
+    if (!accounts.holds) return 1
+    process.stdout.write(`✓ cracks:measure — every literal accounted (lattice, named rows, wildcards exact) · ledger invariants hold over ${accounts.entries} entries\n`)
+    return 0
+  }
   const lattice = [2, 3, 4, 5, 6, 7, 8, 9, 16, 27, 54, 64, 100, 108, 216, 360, 432, 864]
   const suggest = (lit: string): string => {
     const v = Number(lit)
