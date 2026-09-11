@@ -1137,6 +1137,34 @@ export const PRIOR_ART_SEARCHED: readonly {
     searched: 'Hurwitz theorem bilinear cross product exists only in dimension 3 and 7 octonions Eckmann',
     when: '2026-09-05',
     found: 'a nontrivial bilinear cross product on ℝⁿ exists iff n = 3 or 7 (Eckmann 1943; via Hurwitz 1898 on composition algebras, which restricts normed division algebras to dimensions 1, 2, 4, 8). The 3D product comes from ℍ, the 7D one from 𝕆' },
+  // ── ROUTE (a), 2026-09-11. A zero-token harvest queried the free keyless Wikipedia and Crossref APIs
+  // for all 118 undeclared rows; this session judged every candidate. Six genuinely cover the technique a
+  // row relies on; 112 did not and stay unclassified — NOT recorded as found-nothing, because a
+  // mechanical keyword query that returns irrelevant results has not searched for the row at all.
+  { theorem: "thunder and plasma are the same in different aspects",
+    searched: "thunder plasma different aspects — Wikipedia search API · Crossref query.bibliographic, both free and keyless",
+    when: '2026-09-11',
+    found: "Thunder — https://en.wikipedia.org/wiki/Thunder (retrieved by the Wikipedia search API; route (a) review)" },
+  { theorem: "using the UI chat improves it by experience via the shared relevance index — a click boosts the selected fold, refutable, one index for all surfaces",
+    searched: "using improves experience shared relevance index click boosts — Wikipedia search API · Crossref query.bibliographic, both free and keyless",
+    when: '2026-09-11',
+    found: "Recommender system — https://en.wikipedia.org/wiki/Recommender_system (retrieved by the Wikipedia search API; route (a) review)" },
+  { theorem: "the research and develop workflows are tested end-to-end through the UI chat — research→develop→verify, deterministic, a passing reproducible test",
+    searched: "research develop workflows tested end-to-end research develop verify — Wikipedia search API · Crossref query.bibliographic, both free and keyless",
+    when: '2026-09-11',
+    found: "Software testing — https://en.wikipedia.org/wiki/Software_testing (retrieved by the Wikipedia search API; route (a) review)" },
+  { theorem: "the chat may improve the UI measured by the user experience — telemetry is also possible in chat",
+    searched: "improve measured user experience telemetry possible — Wikipedia search API · Crossref query.bibliographic, both free and keyless",
+    when: '2026-09-11',
+    found: "Behavioral Telemetry in Games User Research — https://doi.org/10.1007/978-3-319-15985-0_7 (retrieved by the Crossref query.bibliographic API; route (a) review)" },
+  { theorem: "deep research chat is multi-hop synthesis over the discovery graph — not linear single-hop lookup",
+    searched: "deep research multi-hop synthesis discovery graph linear single-hop — Wikipedia search API · Crossref query.bibliographic, both free and keyless",
+    when: '2026-09-11',
+    found: "Learning Multi-Hop Paths for Multi-Hop Knowledge Graph Reasoning — https://doi.org/10.2139/ssrn.4741237 (retrieved by the Crossref query.bibliographic API; route (a) review)" },
+  { theorem: "compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)",
+    searched: "compute light diamond bouncing boundaries draw crystal prediction — Wikipedia search API · Crossref query.bibliographic, both free and keyless",
+    when: '2026-09-11',
+    found: "Optical fiber — https://en.wikipedia.org/wiki/Optical_fiber (retrieved by the Wikipedia search API; route (a) review)" },
 ]
 
 /**
@@ -1814,6 +1842,22 @@ export const ATTRIBUTION_COVERAGE: readonly {
     why: 'EXAMINED AND CLEAN. The row states existence and uniqueness of the non-consecutive representation and already cites Lekkerkerker, who proved the uniqueness half. The citation entails the row.' },
   { theorem: 'perfect numbers < 10⁴ are Euclid’s four', coverage: 'covers',
     why: 'EXAMINED AND CLEAN. Euclid IX.36 with Euler’s converse entails exactly the row’s statement, and the row already refuses the over-claim next door by recording that odd perfect numbers stay OPEN.' },
+  // ── ROUTE (a), 2026-09-11. A zero-token harvest queried the free keyless Wikipedia and Crossref APIs
+  // for all 118 undeclared rows; this session judged every candidate. Six genuinely cover the technique a
+  // row relies on; 112 did not and stay unclassified — NOT recorded as found-nothing, because a
+  // mechanical keyword query that returns irrelevant results has not searched for the row at all.
+  { theorem: "thunder and plasma are the same in different aspects", coverage: 'partial',
+    why: "Thunder is the acoustic shock of lightning's plasma channel; the article covers the physical link the row calls two aspects of one event — the 'same' framing is the corpus's." },
+  { theorem: "using the UI chat improves it by experience via the shared relevance index — a click boosts the selected fold, refutable, one index for all surfaces", coverage: 'partial',
+    why: "Re-ranking from implicit click feedback is a standard recommender-system technique; one shared index serving chat, search and navigation is the corpus's." },
+  { theorem: "the research and develop workflows are tested end-to-end through the UI chat — research→develop→verify, deterministic, a passing reproducible test", coverage: 'partial',
+    why: "End-to-end (system) testing is standard software-testing practice; that these particular workflows are tested through the chat is local." },
+  { theorem: "the chat may improve the UI measured by the user experience — telemetry is also possible in chat", coverage: 'partial',
+    why: "Behavioural telemetry for measuring user experience is established in games user research; applying it inside this chat UI is local." },
+  { theorem: "deep research chat is multi-hop synthesis over the discovery graph — not linear single-hop lookup", coverage: 'partial',
+    why: "Multi-hop reasoning over a knowledge graph, as opposed to single-hop lookup, is an established task; the discovery graph it runs over is the corpus's." },
+  { theorem: "compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)", coverage: 'partial',
+    why: "Light guided by repeated reflection at boundaries (total internal reflection) is standard optics; the diamond rendering is the corpus's." },
 ]
 
 export type Bucket = 'attributed' | 'claimed' | 'unclassified'
