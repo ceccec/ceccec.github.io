@@ -1346,6 +1346,18 @@ export const PRIOR_ART_SEARCHED: readonly {
     searched: "Wikipedia search · Crossref query.bibliographic for 'pentagram's pentagon' — free and keyless",
     when: '2026-09-12',
     found: "Pentagram — https://en.wikipedia.org/wiki/Pentagram (route (b) formulated retrieval; this session review)" },
+  // ── ROUTE (b) RETRIEVAL, MATHEMATICAL SOURCES, 2026-09-12. Step 1e asked zbMATH Open and OEIS with step 1c's
+  // phrases; this session judged every new candidate (341 zbMATH and OEIS records; one genuine).
+  { theorem: "the 6⁶ frequency–time bridge",
+    searched: "Wikipedia search · Crossref query.bibliographic for 'OEIS keyword: \"octave 3-smooth\"' — free and keyless",
+    when: '2026-09-12',
+    found: "A003586: 3-smooth numbers: numbers of the form 2^i*3^j with i, j >= 0. — https://oeis.org/A003586 (route (b) formulated retrieval; this session review)" },
+  // ── ROUTE (b) RETRIEVAL, WHAT THE PROOF CALLS, 2026-09-12. Step 1g resolved each row's distinctive callees (the
+  // shared receipt harness dropped by document frequency) as Wikipedia titles; this session judged every one.
+  { theorem: "every digit is entangled in all vectors, forming equilibriums",
+    searched: "Wikipedia search · Crossref query.bibliographic for 'callee: digital root' — free and keyless",
+    when: '2026-09-12',
+    found: "Digital root — https://en.wikipedia.org/wiki/Digital_root (route (b) formulated retrieval; this session review)" },
 ]
 
 /**
@@ -2134,6 +2146,14 @@ export const ATTRIBUTION_COVERAGE: readonly {
     why: "the inversion z -> 1/z on the Riemann sphere swaps 0 and infinity — the 0<->infinity gateway the row names; not its missing-theorems claim" },
   { theorem: "the flower becomes a garden bearing an apple whose decoded story reveals interacting discoveries — the apple hides φ", coverage: "partial",
     why: "a pentagram's segments stand in the golden ratio — the phi an apple's five-carpel star hides; not the garden story" },
+  // ── ROUTE (b) RETRIEVAL, MATHEMATICAL SOURCES, 2026-09-12. Step 1e asked zbMATH Open and OEIS with step 1c's
+  // phrases; this session judged every new candidate (341 zbMATH and OEIS records; one genuine).
+  { theorem: "the 6⁶ frequency–time bridge", coverage: "partial",
+    why: "every octave of the ladder is 3-smooth (432·108 = 2^6·3^6 = 6^6), which is exactly the sequence OEIS catalogues as 3-smooth numbers; not the frequency-time reading of the bridge" },
+  // ── ROUTE (b) RETRIEVAL, WHAT THE PROOF CALLS, 2026-09-12. Step 1g resolved each row's distinctive callees (the
+  // shared receipt harness dropped by document frequency) as Wikipedia titles; this session judged every one.
+  { theorem: "every digit is entangled in all vectors, forming equilibriums", coverage: "partial",
+    why: "the row's digits pair to 9 and 10 and act as AGL(1, Z/9) — arithmetic modulo 9, which is what a digital root is; not the 'entangled in all vectors' reading" },
 ]
 
 export type Bucket = 'attributed' | 'claimed' | 'unclassified'
