@@ -2916,7 +2916,7 @@ export function detectBuildLockState(): BuildLockState {
   }
 
   // Count stale node processes
-  const ps = spawnSync('pgrep', ['-f', 'node.*docs:build'], { encoding: 'utf-8' })
+  const ps = spawnSync('pgrep', ['-f', BUILD_PROCESS_PATTERN], { encoding: 'utf-8' })
   const staleProcCount = ps.stdout.trim().split('\n').filter(Boolean).length
   if (staleProcCount > 0) {
     issues.push(`${staleProcCount} stale build process${staleProcCount > 1 ? 'es' : ''} running`)
@@ -2937,9 +2937,41 @@ export function detectBuildLockState(): BuildLockState {
   }
 }
 
-export function killStaleBuildProcesses(): { killed: number; errors: string[] } {
+/**
+ * REPAIR IS DELIBERATE, SO IT TAKES AN ARGUMENT.
+ *
+ * killStaleBuildProcesses, restoreBuildLockFromGit, clearBuildCache and repairBuildLocks took no
+ * arguments. The every-fold census calls every zero-arity export in src/ to see what it returns, so
+ * every verification run CALLED them: it SIGKILLed every process matching node.*docs:build on the
+ * machine, ran `git checkout HEAD -- .vitepress/build-lock.mjs`, and recursively deleted
+ * .vitepress/cache, .vitepress/dist, .temp and .vite-temp — the first of which holds the esbuild cache
+ * the gates running beside the census load from.
+ *
+ * Measured, not inferred: during one stream, an uncommitted edit to build-lock.mjs was reverted to
+ * HEAD at 22:25:39 while the plugin that imported its new export kept its edit, and the next
+ * docs:build failed with MISSING_EXPORT; a monitoring shell whose command line mentioned the phrase
+ * `node .*docs:build` stopped two seconds earlier without a word. The stream reported 40/40 clean,
+ * because the census's tree digest did not cover .vitepress.
+ *
+ * The census's own header prescribes the cure — give a writer an argument so its arity excludes it
+ * from the walk. The argument is a typed intent, and it is checked at runtime too: a JavaScript caller
+ * or an `as any` could otherwise still reach the destructive branch by calling with nothing.
+ */
+export type RepairIntent = 'repair'
+function assertRepairIntent(intent: unknown, name: string): void {
+  if (intent !== 'repair') throw new Error(`${name} is destructive and runs only on deliberate repair — call it with 'repair' (got ${JSON.stringify(intent)}).`)
+}
+
+// A BUILD IS A PROCESS WHOSE COMMAND BEGINS WITH node. The pattern was `node.*docs:build` anywhere in
+// the command line, so it matched — and SIGKILLed — any shell, editor or monitor that merely MENTIONED
+// the phrase: a plain `sleep` whose command line contained it matched, a plain `sleep` without it did
+// not. The name promised STALE processes; there is no staleness test, and every running build matched.
+const BUILD_PROCESS_PATTERN = '^([^ ]*/)?node .*docs:build'
+
+export function killStaleBuildProcesses(intent: RepairIntent): { killed: number; errors: string[] } {
+  assertRepairIntent(intent, 'killStaleBuildProcesses')
   const errors: string[] = []
-  const ps = spawnSync('pgrep', ['-f', 'node.*docs:build'], { encoding: 'utf-8' })
+  const ps = spawnSync('pgrep', ['-f', BUILD_PROCESS_PATTERN], { encoding: 'utf-8' })
   const pids = ps.stdout.trim().split('\n').filter(Boolean)
 
   let killed = 0
@@ -2955,7 +2987,8 @@ export function killStaleBuildProcesses(): { killed: number; errors: string[] } 
   return { killed, errors }
 }
 
-export function restoreBuildLockFromGit(): { restored: boolean; error?: string } {
+export function restoreBuildLockFromGit(intent: RepairIntent): { restored: boolean; error?: string } {
+  assertRepairIntent(intent, 'restoreBuildLockFromGit')
   const result = spawnSync('git', ['checkout', 'HEAD', '--', '.vitepress/build-lock.mjs'], {
     encoding: 'utf-8',
     cwd: process.cwd()
@@ -2971,7 +3004,8 @@ export function restoreBuildLockFromGit(): { restored: boolean; error?: string }
   }
 }
 
-export function clearBuildCache(): { cleared: string[]; errors: string[] } {
+export function clearBuildCache(intent: RepairIntent): { cleared: string[]; errors: string[] } {
+  assertRepairIntent(intent, 'clearBuildCache')
   const cleared: string[] = []
   const errors: string[] = []
   const paths = ['.vitepress/cache', '.vitepress/dist', '.temp', '.vite-temp']
@@ -2997,25 +3031,26 @@ export interface BuildRepairPlan {
   summary: string
 }
 
-export function repairBuildLocks(): BuildRepairPlan {
+export function repairBuildLocks(intent: RepairIntent): BuildRepairPlan {
+  assertRepairIntent(intent, 'repairBuildLocks')
   const actions: Array<{ action: string; result: any }> = []
   const diagnose = detectBuildLockState()
 
   // 1. Kill stale processes
   if (diagnose.staleProcCount > 0) {
-    const killResult = killStaleBuildProcesses()
+    const killResult = killStaleBuildProcesses(intent)
     actions.push({ action: 'killStaleProcesses', result: killResult })
   }
 
   // 2. Restore lock file if missing
   if (!diagnose.lockFileExists) {
-    const restoreResult = restoreBuildLockFromGit()
+    const restoreResult = restoreBuildLockFromGit(intent)
     actions.push({ action: 'restoreLockFromGit', result: restoreResult })
   }
 
   // 3. Clear cache if stale
   if (diagnose.cacheExists && diagnose.lockFileStale) {
-    const clearResult = clearBuildCache()
+    const clearResult = clearBuildCache(intent)
     actions.push({ action: 'clearCache', result: clearResult })
   }
 
@@ -3069,7 +3104,7 @@ export async function runRepairCli(argv: string[] = []): Promise<number> {
   // Kill stale processes
   if (state.staleProcCount > 0) {
     console.log(`[build-repair] Killing ${state.staleProcCount} stale process(es)...`)
-    const result = killStaleBuildProcesses()
+    const result = killStaleBuildProcesses('repair')
     if (result.killed > 0) console.log(`[build-repair] ✓ Killed ${result.killed} process(es)`)
     if (result.errors.length > 0) result.errors.forEach(err => console.log(`[build-repair] ✗ ${err}`))
   }
@@ -3077,7 +3112,7 @@ export async function runRepairCli(argv: string[] = []): Promise<number> {
   // Restore lock file
   if (!state.lockFileExists) {
     console.log('[build-repair] Restoring build-lock.mjs from git...')
-    const result = restoreBuildLockFromGit()
+    const result = restoreBuildLockFromGit('repair')
     if (result.restored) {
       console.log('[build-repair] ✓ Restored build-lock.mjs')
     } else {
@@ -3088,7 +3123,7 @@ export async function runRepairCli(argv: string[] = []): Promise<number> {
   // Clear cache if stale
   if (state.lockFileStale) {
     console.log('[build-repair] Clearing stale cache...')
-    const result = clearBuildCache()
+    const result = clearBuildCache('repair')
     result.cleared.forEach(p => console.log(`[build-repair] ✓ Cleared ${p}`))
     result.errors.forEach(err => console.log(`[build-repair] ✗ ${err}`))
   }
@@ -3109,7 +3144,7 @@ export async function runRepairCli(argv: string[] = []): Promise<number> {
 // ─── build object (repair dissolved into this index; ./repair import now local) ───
 export const build = {
   repair: async () => {
-    return repairBuildLocks()
+    return repairBuildLocks('repair')
   }
 }
 

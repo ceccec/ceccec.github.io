@@ -80,7 +80,7 @@ import { ratchet } from './status.ts'
  */
 export function treeDigest(root: string): string {
   const h = createHash('sha256')
-  const walk = (dir: string) => {
+  const walk = (dir: string, skip: RegExp = /^(node_modules|dist|receipts|\.git)$/) => {
     let entries
     try { entries = readdirSync(dir, { withFileTypes: true }) } catch { return }
     for (const e of entries.sort((a, b) => a.name.localeCompare(b.name))) {
@@ -89,7 +89,7 @@ export function treeDigest(root: string): string {
       // by the runner that is calling this function to decide whether the tree held still. Including
       // them would make every run move its own tree at the moment it recorded the result, so every
       // receipt would report a tree that changed and no two runs could ever be compared.
-      if (e.isDirectory()) { if (!/^(node_modules|dist|receipts|\.git)$/.test(e.name)) walk(p); continue }
+      if (e.isDirectory()) { if (!skip.test(e.name)) walk(p, skip); continue }
       // CONTENT, NOT size:mtime. The proxy was wrong in BOTH directions: a file restored to its
       // exact original bytes produced a THIRD digest, because restoring moves mtime — so a
       // perturb-and-restore, the standard discipline here, made every prior receipt incomparable
@@ -122,6 +122,13 @@ export function treeDigest(root: string): string {
   // comparison between two runs of different instruments was never a reproduction, it only looked
   // like one.
   walk(join(root, 'scripts'))
+  // .vitepress/ SOURCES ARE IN THE TREE, BECAUSE THE CENSUS MUTATED THEM AND THIS DID NOT SEE IT.
+  // A zero-arity repair export ran `git checkout HEAD -- .vitepress/build-lock.mjs` from inside the
+  // census and discarded an uncommitted edit; the digest covered src/, scripts/ and package.json, so
+  // before and after agreed and the stream reported 40/40 clean over a tree that had just been changed
+  // under it. Build products are excluded — cache (which also holds the esbuild cache every gate
+  // writes), dist, .temp, .vite-temp and the build lock — because a run legitimately writes those.
+  walk(join(root, '.vitepress'), /^(node_modules|dist|receipts|\.git|cache|\.temp|\.vite-temp|\.build-lock)$/)
   try { h.update(readFileSync(join(root, 'package.json'))) } catch { h.update('package.json:GONE') }
   return h.digest('hex').slice(0, 16)
 }
