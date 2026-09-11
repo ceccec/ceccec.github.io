@@ -12,6 +12,7 @@
   "limits.always-true": 34,
   "limits.weakest-bar": 60,
   "pages.unstamped-figures": 9,
+  "paths.dead-scripts": 0,
   "paths.dead-strings": 51,
   "prior-art.attributed-by-pattern": 322,
   "prior-art.coverage-unexamined": 405,

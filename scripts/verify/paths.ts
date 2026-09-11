@@ -16,6 +16,13 @@
  *
  * Aspirational paths are legitimate; silently rotten ones are not. The ratchet keeps both
  * visible and stops the count rising, without forcing a judgement about which is which.
+ *
+ * THE SECOND HALF: package.json. The quoted-literal scan above never read it, because an npm
+ * script embeds its path bare inside a longer command string. So the monolith dissolve of
+ * 2026-08-03 moved five folds and left 137 scripts pointing at the old homes for forty days —
+ * three of the crack-finding CLIs among them, dying at "bundle entry missing" before measuring
+ * anything, while the gate that certifies them stayed green. A script that cannot launch is not
+ * aspirational; it is a dead command. That count is a hard zero, not a floor.
  */
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
@@ -31,6 +38,10 @@ const SCAN = /\.(ts|mts|vue)$/
 const PATHISH = /['"`]((?:src|scripts|lean|docs)\/[A-Za-z0-9_./-]+\.(?:ts|tsx|vue|mts|mjs|lean|json|md|css))['"`]/g
 
 export type DeadPath = { path: string; citedBy: string[] }
+/** A bare repo path inside an npm script line — unquoted, bounded by whitespace. */
+const SCRIPT_PATH = /(?:^|\s)((?:src|scripts|lean|docs)\/[A-Za-z0-9_./-]+\.(?:ts|mts|mjs|js|json|lean|md))(?=\s|$)/g
+
+export type DeadScript = { name: string; path: string }
 
 function sources(root: string): string[] {
   const out: string[] = []
@@ -77,7 +88,27 @@ export function findDeadPaths(root: string = process.cwd()): DeadPath[] {
   return [...missing].map(([path, who]) => ({ path, citedBy: [...who] })).sort((a, b) => a.path.localeCompare(b.path))
 }
 
+/** Every path named by a `scripts.*` entry in package.json exists on disk. */
+export function findDeadScriptPaths(root: string = process.cwd()): DeadScript[] {
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const out: DeadScript[] = []
+  for (const [name, cmd] of Object.entries(pkg.scripts ?? {})) {
+    for (const m of cmd.matchAll(SCRIPT_PATH)) {
+      const p = m[1]!
+      if (!existsSync(join(root, p))) out.push({ name, path: p })
+    }
+  }
+  return out.sort((a, b) => a.path.localeCompare(b.path) || a.name.localeCompare(b.name))
+}
+
 export function assertPathsResolve(): void {
+  // SCRIPTS FIRST: the strings ratchet below throws on regression, and a throw must not hide
+  // the one measurement whose floor is zero.
+  const deadScripts = findDeadScriptPaths()
+  for (const d of deadScripts.slice(0, 12)) console.log(`  ${d.name}  -> ${d.path}`)
+  if (deadScripts.length > 12) console.log(`  ...and ${deadScripts.length - 12} more`)
+  console.log(ratchet('paths.dead-scripts', deadScripts.length, { evidence: () => deadScripts.map((d) => `${d.name} -> ${d.path}`) }))
+
   const dead = findDeadPaths()
   const byExt = new Map<string, number>()
   for (const d of dead) {
