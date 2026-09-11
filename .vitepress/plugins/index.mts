@@ -3,12 +3,12 @@
 // build hooks (no deep src imports); the src-consuming plugins route through the barrels in later increments.
 import type { Plugin } from 'vite'
 import { fileURLToPath } from 'node:url'
-import { acquireBuildLock, releaseBuildLock, BUILD_LOCK_HARMONIC_MS, BUILD_LOCK_TRINITY_CYCLES } from '../build-lock.mjs'
+import { acquireBuildLock, releaseBuildLock, BUILD_LOCK_QUEUE_MS } from '../build-lock.mjs'
 
 // ── build-lock: hold .build-lock for a direct `vitepress build` (docs-build.mjs sets VITEPRESS_BUILD_LOCK_HELD=1).
 const projectRoot = fileURLToPath(new URL('..', import.meta.url))
-const harmonicTotal = BUILD_LOCK_HARMONIC_MS.reduce((a, b) => a + b, 0)
-const lockWaitMs = BUILD_LOCK_TRINITY_CYCLES * harmonicTotal
+// A direct `vitepress build` queues behind a live holder for one build's length (see build-lock.mjs).
+const lockWaitMs = BUILD_LOCK_QUEUE_MS
 let pluginHeldLock = false
 
 export function buildLockPlugin(): Plugin {

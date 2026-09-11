@@ -679,8 +679,12 @@ export async function runDocsBuildExit(root: string, argv: readonly string[] = [
   const { acquireBuildLock, releaseBuildLock, BUILD_LOCK_HARMONIC_MS, BUILD_LOCK_TRINITY_CYCLES } = lockMod
   const cli = parseTimeoutCliArgs([...argv])
   const buildTimeoutMs = resolveScriptTimeoutMs('build', cli)
-  const lockWaitMs = BUILD_LOCK_TRINITY_CYCLES * BUILD_LOCK_HARMONIC_MS.reduce((a, b) => a + b, 0)
-  logDocsBuildDetail(`build timeout ${buildTimeoutMs}ms · lock wait ${lockWaitMs}ms`, verbose)
+  // A QUEUED BUILD MAY WAIT AS LONG AS A BUILD MAY RUN. This passed the trinity budget (14.4s) and the
+  // lock treated it as a hard cap, so the second of two real builds exited 124 while the first was
+  // still healthily working. The trinity cycles still run first; after them the lock queues behind a
+  // live holder, up to this build's own timeout. A dead holder is cleared immediately, as before.
+  const lockWaitMs = buildTimeoutMs
+  logDocsBuildDetail(`build timeout ${buildTimeoutMs}ms · lock: trinity ${BUILD_LOCK_TRINITY_CYCLES}×${BUILD_LOCK_HARMONIC_MS.reduce((a, b) => a + b, 0)}ms, then queued behind a live holder up to ${lockWaitMs}ms`, verbose)
 
   async function acquireLockOrExit124() {
     logDocsBuildPhase('build-lock', 'acquireBuildLock')

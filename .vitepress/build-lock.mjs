@@ -10,6 +10,14 @@ export function buildLockPath(root) {
 export const BUILD_LOCK_HARMONIC_MS = [200, 600, 4000]
 /** Trinity depth — max lock-wait cycles (nine waves, not ten). */
 export const BUILD_LOCK_TRINITY_CYCLES = 3
+/**
+ * QUEUE CEILING — how long a build waits behind a LIVE holder once the trinity cycles are spent.
+ * The same expression as src's default build timeout (defaultTimeoutMs('build') = 540s), so a
+ * queued build waits at most one build's length. It was not a number before; it was the trinity
+ * budget, 14.4s, against builds that take a minute or more — so the second of two real builds did
+ * not queue, it failed, and docs:build reported it as EXIT=124, a timeout, as if the build had hung.
+ */
+export const BUILD_LOCK_QUEUE_MS = 54 * (5 * 2) ** 4
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -40,20 +48,30 @@ function clearStaleBuildLock(root) {
 }
 
 /**
- * Wait for sole .build-lock holder — harmonic ich-dur poll, max BUILD_LOCK_TRINITY_CYCLES, then timeout.
+ * Wait for sole .build-lock holder — the harmonic ich-dur poll for BUILD_LOCK_TRINITY_CYCLES, then
+ * QUEUE behind a holder that is still alive, breathing at the slowest harmonic, up to maxWaitMs.
+ *
+ * The exclusion is kept: parallel builds race .vitepress/.temp during SSR render, so two may never
+ * write at once. What changed is what a second build does when it finds the first still working.
+ * It used to give up after the trinity budget — 14.4s — and a real build takes a minute or more, so
+ * concurrent waves that each changed the tree failed one another. A dead holder is still cleared at
+ * once by clearStaleBuildLock, so the only thing a waiter can now wait on is a build that is running.
+ *
  * @param {string} root
- * @param {number} [maxWaitMs] capped to trinity harmonic budget
+ * @param {number} [maxWaitMs] ceiling while the holder is alive; never below the trinity budget,
+ *   defaults to BUILD_LOCK_QUEUE_MS
  */
 export async function acquireBuildLock(root, maxWaitMs) {
   const dir = buildLockPath(root)
   const harmonicTotal = BUILD_LOCK_HARMONIC_MS.reduce((a, b) => a + b, 0)
   const trinityBudgetMs = BUILD_LOCK_TRINITY_CYCLES * harmonicTotal
-  const budgetMs = Math.min(Number(maxWaitMs) || trinityBudgetMs, trinityBudgetMs)
+  const budgetMs = Math.max(Number(maxWaitMs) || BUILD_LOCK_QUEUE_MS, trinityBudgetMs)
+  const breathMs = BUILD_LOCK_HARMONIC_MS[BUILD_LOCK_HARMONIC_MS.length - 1]
   const start = Date.now()
   let cycle = 0
   let step = 0
 
-  while (Date.now() - start < budgetMs && cycle < BUILD_LOCK_TRINITY_CYCLES) {
+  while (Date.now() - start < budgetMs) {
     try {
       mkdirSync(dir)
       writeFileSync(join(dir, 'pid'), String(process.pid))
@@ -63,12 +81,17 @@ export async function acquireBuildLock(root, maxWaitMs) {
       if (clearStaleBuildLock(root)) continue
     }
 
-    const waitMs = BUILD_LOCK_HARMONIC_MS[step % BUILD_LOCK_HARMONIC_MS.length]
-    step += 1
-    if (step % BUILD_LOCK_HARMONIC_MS.length === 0) cycle += 1
+    const inTrinity = cycle < BUILD_LOCK_TRINITY_CYCLES
+    const waitMs = inTrinity ? BUILD_LOCK_HARMONIC_MS[step % BUILD_LOCK_HARMONIC_MS.length] : breathMs
+    if (inTrinity) {
+      step += 1
+      if (step % BUILD_LOCK_HARMONIC_MS.length === 0) cycle += 1
+    }
 
     process.stderr.write(
-      `[build-lock] waiting cycle ${Math.min(cycle + 1, BUILD_LOCK_TRINITY_CYCLES)}/${BUILD_LOCK_TRINITY_CYCLES} (${waitMs}ms ich sequence)…\n`,
+      inTrinity
+        ? `[build-lock] waiting cycle ${Math.min(cycle + 1, BUILD_LOCK_TRINITY_CYCLES)}/${BUILD_LOCK_TRINITY_CYCLES} (${waitMs}ms ich sequence)…\n`
+        : `[build-lock] holder alive — queued ${Math.round((Date.now() - start) / 1000)}s of ${Math.round(budgetMs / 1000)}s (${waitMs}ms breath)…\n`,
     )
     await sleep(waitMs)
   }
