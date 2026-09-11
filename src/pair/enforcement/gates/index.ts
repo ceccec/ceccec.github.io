@@ -8,7 +8,7 @@ import { foldPair, isUuid, log10, log2, max, merkleFold, min, round, roundTo, sq
 import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack/index.ts'
 import { dryCleanIsDiamondAndCrystal } from '../../../clean/index.ts'
 import { quantumizeVitepressBuild, scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell/index.ts'
-import {
+import { packageScriptsOf,
   relativeImportSpecs,
   importGapCount,
   algebraicCrosslinksDiscoveredNotEncoded,
@@ -2713,7 +2713,7 @@ export function manualGauge(root: string = enforcementScanRoot()) {
     { roster: 'residual prose folds', rows: PROSE_NAMED_RESIDUAL_FOLDS.length },
   ]
   const manual = manualRosters.reduce((sum, entry) => sum + entry.rows, 0)
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const derivedRoster = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length
   const derived = derivedRoster // the CLI roster is the always-on derived measurement; scans add more at run time
   const magnitude = log10(derived / manual)
@@ -2815,7 +2815,7 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
   const gateFiles = gateAnalyticsGateFiles(root)
   const handLists = scanHandLists(gateFiles, 4)
   const mirrors = handListMirrors(handLists)
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   const bootstrap = 'src/pair/enforcement/script/cli/bootstrap/index.ts run'
   const appsBarrel = 'src/quantum/apps/index.ts'
@@ -3362,9 +3362,7 @@ export function agentEntryPacket(root: string = enforcementScanRoot()) {
 }
 
 export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as {
-    scripts?: Record<string, string>
-  }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   const quantumKeys = Object.keys(scripts).filter((k) => k.startsWith('quantum:'))
   const primaryCliOn = Boolean(scripts['quantum:tool-matrix'])
@@ -4196,7 +4194,7 @@ export const runPlanningInTrinitiesExit = runPlanTrinityExit
 export function trinitySpeedStack(root: string = enforcementScanRoot()) {
   const appsText = readFileSync(join(root, 'src/quantum/apps/index.ts'), 'utf8')
   const chatWired = appsText.includes('mcpQuantumConversation') && appsText.includes('eachSuperpositionIsAChatroom')
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const n = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length
   // Zero-communication wiring: shardOf assigns any item to its shard in O(1) — coordination cost stays
   // O(1) as trinities (3 minds each) wire in; verify the partition is deterministic and balanced-ish.
@@ -4315,7 +4313,7 @@ export function runReasoningEdgeExit(root = '', _argv: readonly string[] = []): 
  * demarcation in the system must compute this line (finite covered vs unbounded remainder), never prose it.
  */
 export function overclaimComputes(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const claimedExtent = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length // FINITE, counted
   const edge = reasoningEdge()
   // The task space is unbounded (no-finiteness / fractal-aperiodic law): any finite roster misses tasks.
@@ -4417,7 +4415,7 @@ export function runRevolutionaryApproachExit(root = '', _argv: readonly string[]
  * never more thought. DEMARCATION: this detects the PATTERN (tool-not-used), not the mind (off-decidable).
  */
 export function orientationCheck(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const has = (script: string) => Boolean(pkg.scripts?.[script])
   const signals = [
     { symptom: 'deliberating "what next" instead of computing it', orienter: 'npm run quantum:audit-plan', present: has('quantum:audit-plan') || has('quantum:next') },

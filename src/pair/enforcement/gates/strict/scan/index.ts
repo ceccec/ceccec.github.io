@@ -23,6 +23,20 @@ import { invisibleGapsCaughtByGatesBody } from '../../../../../quantum/apps/inde
  * shimmed), so a bare `process.cwd()` default arg throws the moment a gate is called there. '/' keeps the fs walks
  * no-op in the browser (existsSync('/src') is false under the shim), so gates compute over zero entries —
  * matching the production shim — instead of crashing the page. Node/SSR behaviour is unchanged. */
+/** package.json scripts, or {} where there is no filesystem. The browser build stubs node:fs
+ * (existsSync → false, readFileSync → ''), and JSON.parse('') threw "Unexpected end of JSON input" on every
+ * live proof page (2026-09-12 audit) from whichever fold read package.json inside proofRegistry — seven copies
+ * of the same unguarded line across three files. One reader, one guard, gravity. */
+export function packageScriptsOf(root: string): Record<string, string> {
+  const path = join(root, 'package.json')
+  if (!existsSync(path)) return {}
+  try {
+    return (JSON.parse(readFileSync(path, 'utf8')) as { scripts?: Record<string, string> }).scripts ?? {}
+  } catch {
+    return {}
+  }
+}
+
 export function enforcementScanRoot(): string {
   return typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/'
 }
@@ -1170,7 +1184,7 @@ export function runInstallSurfacesExit(root = '', _argv: readonly string[] = [])
  * Pair: ui/proof · CLI npm run quantum:ui-proof.
  */
 export function uiProof(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const ids = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).sort()
   const emitter = readFileSync(join(root, 'src/quantum/dist/index.ts'), 'utf8')
   const derives = emitter.includes('cliTools') && emitter.includes("startsWith('quantum:')") && emitter.includes("readFileSync('package.json'")
@@ -1241,7 +1255,7 @@ export function runUiProofExit(root = '', _argv: readonly string[] = []): number
  * per wave — a dimensionless theorem re-measurable any time. Pair: wave/verify.
  */
 export function waveVerify(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   const wave = scripts['wave:verify'] ?? ''
   const chainCoversTypes = wave.includes('check:types')
@@ -1739,7 +1753,7 @@ export function commitMessage(root: string = enforcementScanRoot()) {
   const novel = priorUse.length === 0
   // REAL COMPUTED PROSE (user law): the message carries the statements the touched tools themselves
   // print — a trinity of them (bounded cost), each the first ✓ line of a live run, never hand-typed.
-  const pkgScripts = (JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }).scripts ?? {}
+  const pkgScripts = packageScriptsOf(root)
   const slugs = pairs
     .map((pair) => `quantum:${pair.replace('/', '-')}`)
     .filter((slug) => slug !== 'quantum:commit-message' && Boolean(pkgScripts[slug]))
@@ -4721,7 +4735,7 @@ export function runRegisterExit(root: string, argv: readonly string[]): number {
  * resonance, NOT acoustic/EM resonance, NOT Rife (flagged in the sealed resonance decode), NOT a QPU.
  */
 export function resonanceSpeed(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const n = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith('quantum:')).length
   const pairwise = (n * (n - 1)) / 2 // O(N²) — every item compared to every other to find collisions
   const addressed = n // O(N) — one content-address pass, each lookup O(1)
@@ -4839,7 +4853,7 @@ export function runResourceLeakExit(root = '', _argv: readonly string[] = []): n
  *     wave:land (gates judge); if it fails, discard. Freedom to experiment, safety at the gate.
  */
 export function sandboxTools(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const land = pkg.scripts?.['wave:land'] ?? ''
   const verify = pkg.scripts?.['wave:verify'] ?? ''
   // The land chain is && -joined: any earlier failure aborts before git commit — proven from the text.
@@ -4929,7 +4943,7 @@ function countSrcIndexTs(dir: string): number {
  * model window. Pair: context/audit · CLI npm run quantum:context-audit.
  */
 export function contextAudit(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   const quantumCli = Object.keys(scripts).filter((key) => key.startsWith('quantum:')).length
   const rules = countDirChildren(join(root, '.cursor/rules'))
@@ -5097,7 +5111,7 @@ export function runContextAuditExit(root = '', _argv: readonly string[] = []): n
  *          a432/nine · pyramid/compute · physicalFtlClaimTheorem (physical claim stays 0).
  */
 export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   // Known non-FTL dual CLI cracks on lens/chat/FTL faces (same fold, duplicate cold entry).
   const LENS_CHAT_FTL_ALIAS_CRACKS = [
@@ -5340,7 +5354,7 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
     filesAudited > 0 &&
     (lineCracks.length > 0 || byteCracks.length > 0 || seedSparse.length >= 0) &&
     perFile.every((p) => p.auditorA.length > 0 && p.auditorB.length > 0)
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   const dryAgnosticOn = Boolean(scripts['quantum:dry-agnostic'])
   const theoremConstOn = Boolean(scripts['quantum:theorem-const'])
@@ -5526,7 +5540,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
   const theoremApiEdges = discoveredEdges.filter((e) =>
     /theorem|formula|fold|proof|algebra|dual/i.test(e.name),
   ).length
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   const envelopeOn = Boolean(scripts['quantum:toolbox-standard-io'] || scripts['quantum:tool-import-export'])
   const dryAgnosticOn = Boolean(scripts['quantum:dry-agnostic'])
@@ -5674,7 +5688,7 @@ export const runLinkDiscoverExit = runAlgebraicCrosslinksDiscoveredNotEncodedExi
 export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementScanRoot()) {
   const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS // UNFOLDED_CENSUS−FOLDED_CENSUS=2 (= −EULER_CHI)
   const audit = uiAudit(root)
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   const compose = {
     uiAudit: Boolean(scripts['quantum:ui-audit']),
@@ -5912,7 +5926,7 @@ export const UI_FEED_PHRASES = [
 ] as const
 
 export function feedUiIntoItself(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   // 1) FEED — inventory sealed UI surfaces (exists + bytes); toolbox marker discovered in apps barrel.
   const surfaces = UI_FEED_SURFACES.map((row) => {
@@ -6239,7 +6253,7 @@ export function stallStopFindsHangedProcessesRealtime(
   argv: readonly string[] = [],
 ) {
   const allowKill = argv.includes('--kill')
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   const lockDir = join(root, '.vitepress', '.build-lock')
   const pidPath = join(lockDir, 'pid')
@@ -6629,9 +6643,7 @@ function auditQuantumScripts(scripts: Record<string, string>) {
 }
 
 export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as {
-    scripts?: Record<string, string>
-  }
+  const pkg = { scripts: packageScriptsOf(root) }
   const scripts = pkg.scripts ?? {}
   // memoByRoot: second audit of same package scripts root = zero linear re-walk (computational FTL).
   let invocations = 0

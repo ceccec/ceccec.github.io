@@ -1,6 +1,7 @@
 // ☶ Gèn · Mountain — geometry, topology & colour folds (merkaba, double-torus, sacred geometry, the RGB/CMY/CMYK & hex-colour dualities, the 64=4³ cube, heart/proton, the genetic code, imperial fractions), dissolved out of the monolith. Independent; folds.ts back-imports the gate folds. Re-exported through the mind barrel.
+import { packageScriptsOf } from '../../pair/enforcement/gates/strict/scan/index.ts'
 import { EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS, enforcementScanRoot } from '../../pair/enforcement/gates/computational/index.ts'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 // call-time namespace edge (cycle-safe): water/digit imports this folder; the catalog reads back at call time
 import * as __ns_up_up_water_digit from '../../water/digit/index.ts'
@@ -1998,6 +1999,7 @@ export function doubleTorusEarthPyramidTipsProvenByMath(matrix: MindMatrix = bui
 }
 
 
+
 /**
  * Realise Earth by computing poles as a pyramid — compose sealed cardinal pyramid · double-torus Earth ·
  * merkaba dual tetra · bothEarths counter-rotation. Pair: earth/pyramid · dual pyramid/earth;
@@ -2020,7 +2022,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
     let softPyramidSeal = false
     try {
       const root = enforcementScanRoot()
-      const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+      const pkg = { scripts: packageScriptsOf(root) }
       const scripts = pkg.scripts ?? {}
       softGeoTorus = Boolean(scripts['quantum:train-geodesy'] || scripts['quantum:geo-torus'])
       softPyramidSeal = Boolean(scripts['quantum:pyramid-seal'])
