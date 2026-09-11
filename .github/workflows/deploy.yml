@@ -7,6 +7,13 @@ on:
   # using the `master` branch as the default branch.
   push:
     branches: [main]
+    # A ratchet-only push (a verify floor tightened, a prior-art row attributed, the manifest) changes nothing
+    # the site serves; several land per day and each cost a five-minute Pages build with byte-identical output.
+    paths-ignore:
+      - 'scripts/verify/status.json'
+      - 'scripts/verify/prior-art.ts'
+      - 'MANIFEST.md'
+      - '.claude/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -49,8 +56,14 @@ jobs:
             .vitepress/.temp
             .vitepress/cache/quantum-esbuild
             ~/.cache/node-compile
-          key: vitepress-warm-${{ hashFiles('pnpm-lock.yaml') }}
+          # THE KEY MUST CHANGE EVERY RUN, OR THE CACHE IS SAVED ONCE AND NEVER AGAIN. actions/cache saves only
+          # on a miss of the exact key; keyed by the lockfile alone, the first run's bundle cache was frozen and
+          # every later build restored it stale and rebuilt the quantum-esbuild bundles from scratch (287 s in CI
+          # for a build that takes ~150 s warm locally). The sha makes each run save; the prefix restore-keys
+          # make the next run restore the newest.
+          key: vitepress-warm-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
           restore-keys: |
+            vitepress-warm-${{ hashFiles('pnpm-lock.yaml') }}-
             vitepress-warm-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
