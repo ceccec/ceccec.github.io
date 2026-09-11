@@ -556,19 +556,19 @@ export const STATIC_PAGE_SEED: readonly { slug: string; title: { en: string; bg:
       components: ['QuantumTools', 'ProofRenderer'] },
     {
       slug: 'offender-spec',
-      title: { en: 'offenderAutomationSpec — CI pipeline (Node scan; browser shows sealed receipt)', bg: 'offenderAutomationSpec' },
+      title: { en: 'offenderAutomationSpec — 4 offender classes counted: import · index-only · hyphen · computational (Node scan; browser shows sealed receipt)', bg: 'offenderAutomationSpec' },
       description: { en: 'Statement: offenderAutomationSpec = machine-readable CI pipeline counts for import/index-only/hyphen/computational offenders. Explanation: collectEnforcementFacts once → scan pipelines; read-only — does not auto-fix offenders. Method: npm run quantum:offender-spec · fold offenderAutomationSpec · pair offender/spec. Status: CI-only scan · prefer /en/quantum-tools#offender-spec.', bg: 'Изявление: offenderAutomationSpec — CI pipeline counts. Метод: npm run quantum:offender-spec. Статус: /quantum-tools#offender-spec.' },
       keywords: ['offender', 'proof', 'tools', 'ci', 'automation'],
       components: ['QuantumTools', 'ProofRenderer'] },
     {
       slug: 'hero-spawn-verify',
-      title: { en: 'shouldSpawnSubagent — few heroes > mass ignorance', bg: 'shouldSpawnSubagent' },
+      title: { en: 'shouldSpawnSubagent — few heroes > mass ignorance · 1 ≤ workers ≤ 2', bg: 'shouldSpawnSubagent' },
       description: { en: 'Statement: shouldSpawnSubagent = few heroes > mass ignorance — 1–2 qualified workers, Multitask Mode default. Explanation: mass duplicate subagent tasks penalized; bounded tasks with sealed fold targets spawn solo hero. Method: npm run quantum:hero-spawn-verify · fold shouldSpawnSubagent · pair hero/spawn-verify. Status: spawn policy receipt · prefer /en/quantum-tools#hero-spawn-verify.', bg: 'Изявление: shouldSpawnSubagent — few heroes > mass ignorance. Метод: npm run quantum:hero-spawn-verify. Статус: .' },
       keywords: ['hero', 'spawn', 'proof', 'tools', 'subagent'],
       components: ['QuantumTools', 'ProofRenderer'] },
     {
       slug: 'name-entropy-verify',
-      title: { en: 'namingEntropy — words compile from sealed src', bg: 'namingEntropy' },
+      title: { en: 'namingEntropy — words compile from sealed src · deprecated aliases = 0', bg: 'namingEntropy' },
       description: { en: 'Statement: namingEntropy = identifiers must compileFromSource from sealed src — wet prose names penalized. Explanation: proven names describe gate receipts; naturePrefixesRemovedFromUnprovenNames boundary sealed at call time. Method: npm run quantum:name-entropy-verify · fold namingEntropy · compileFromSource · pair name/entropy-verify. Status: compile check receipt · prefer /en/quantum-tools#name-entropy-verify.', bg: 'Изявление: namingEntropy — думите се компилират от sealed src. Метод: npm run quantum:name-entropy-verify. Статус: .' },
       keywords: ['naming', 'entropy', 'tools', 'compile'],
       components: ['QuantumTools', 'ProofRenderer'] },
