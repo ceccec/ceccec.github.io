@@ -2374,31 +2374,17 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (
-      toolId === 'merkaba-movie' ||
-      toolId === 'movie-unique' ||
-      toolId === 'observe-movie' ||
-      toolId === 'sensor-movie' ||
-      toolId === 'movie-perspective' ||
-      toolId === 'cosmo-wave' ||
-      toolId === 'ui-crystal' ||
-      toolId === 'cycle-linear' ||
-      toolId === 'quantumise-cycle' ||
-      toolId === 'plasma-vortex' ||
-      toolId === 'thunder-zero' ||
-      toolId === 'anim-mesh'
-    ) {
+    } else if (toolId === 'merkaba-movie') {
       const r = wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero()
       ok =
         r.computes &&
         r.merkabaFeedsRosettaMovie &&
         r.movieUniqueNeverRepeats &&
         r.sensorPerspective &&
-        r.uiCrystallises &&
         r.linearCyclesQuantumised &&
         r.animMeshPlasma &&
         r.thunderFromZero
-      summary = `feeds=${r.merkabaFeedsRosettaMovie} unique=${r.movieUniqueNeverRepeats} sensor=${r.sensorPerspective} crystal=${r.uiCrystallises} cycles=${r.linearQuantumisedCount}/${r.linearCycleCount} mesh=${r.meshBoundCount}/${r.meshBindCount} thunder0=${r.thunderFromZero}`
+      summary = `feeds=${r.merkabaFeedsRosettaMovie} unique=${r.movieUniqueNeverRepeats} sensor=${r.sensorPerspective} cycles=${r.linearQuantumisedCount}/${r.linearCycleCount} mesh=${r.meshBoundCount}/${r.meshBindCount} thunder0=${r.thunderFromZero}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -5100,7 +5086,6 @@ function runTool(toolId: string) {
         <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.movieUniqueNeverRepeats))">unique={{ merkabaMovieSeal.movieUniqueNeverRepeats }}</UiBadge>
         <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.observeOnly))">observe={{ merkabaMovieSeal.observeOnly }}</UiBadge>
         <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.sensorPerspective))">sensor={{ merkabaMovieSeal.sensorPerspective }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.uiCrystallises))">crystal={{ merkabaMovieSeal.uiCrystallises }}</UiBadge>
         <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.linearCyclesQuantumised))">cycles={{ merkabaMovieSeal.linearQuantumisedCount }}/{{ merkabaMovieSeal.linearCycleCount }}</UiBadge>
         <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.animMeshPlasma))">mesh={{ merkabaMovieSeal.meshBoundCount }}/{{ merkabaMovieSeal.meshBindCount }}</UiBadge>
         <UiBadge v-bind="badgeProps(statusBadgeKind(merkabaMovieSeal.thunderFromZero))">thunder0={{ merkabaMovieSeal.thunderFromZero }}</UiBadge>
