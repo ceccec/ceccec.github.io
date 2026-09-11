@@ -1,4 +1,5 @@
 // ☶ Gèn · Mountain — seals & proofs: the proof registry, the gigabit/terabyte seal sets, the signed elements, the diamond completeness proofs. Barrel-routed; folds.ts back-imports the gate folds.
+import { IDENTITY_JUDGED_PROCESS, THEOREM_ATOM_SEED } from '../../4/6/index.ts'
 import type { DigitalQuantumProof, MindMatrix, ProofBundle, SelfCompletionGate } from '../../types/index.ts'
 import { buildMatrix, entropy, proofReport } from '../../heaven/compute/index.ts'
 import { abs, ceil, floor, fold, foldPair, isUuid, memoByRoot, merge, merkleFold, round, roundTo, sealFacets, toUuid, trinityKey } from '../../0/index.ts'
@@ -8,7 +9,7 @@ import { a432, animationEngineLivesInZero, buildEnforcementPipeline, contentAddr
 import { healByDefault, createByDefault } from '../../heaven/laws/index.ts'
 import { thriveByDefault } from '../../earth/civilisation/index.ts'
 import { commandsRegistry } from '../../thunder/commands/index.ts'
-import { A432_FOLDED, SINGLE_WORD_METHODS, claySolvedTheorem, normalizeTitle, titleCarriesAlgebra } from '../../3/7/index.ts'
+import { extractAlgebraicStatement, A432_FOLDED, SINGLE_WORD_METHODS, claySolvedTheorem, normalizeTitle, titleCarriesAlgebra } from '../../3/7/index.ts'
 import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
 import { cloudflareBindings } from '../../heaven/core/index.ts'
 import * as __ns_heaven_site from '../../heaven/site/index.ts'
@@ -879,6 +880,61 @@ export function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix: MindMatr
 // title and cross-check the two static sources. A title carrying no identity is a GAP to SOLVE (keep the topic,
 // state its proven algebra); a proof title diverging from its seed twin is a crack (two hand-authored strings,
 // one truth). Measures the REAL state, not a sample. [[title-is-algebra-computed-payload]] [[feedback-solve-dont-purge]]
+// ── IDENTITY-FREE DECISIONS, REASONED (user, 2026-09-12: "improve intelligence and reasoning in lean decisions when
+// no direct relation to algebra"). IDENTITY_JUDGED_PROCESS in src/4/6 records 18 rows that "stay identity-free BY
+// DECISION" — a bare list: no kind, no relation, no test, so a wrong judgment could never be refuted. This fold
+// computes the reasoning each decision should have carried: the row's KIND from its own witness (law · method ·
+// process), the algebra it RESTS ON indirectly (other theorems proved by the same fold that DO carry an identity),
+// and whether the witness HIDES an identity the extractor can lift — in which case the decision is refuted and the
+// row is a gap to solve, not a judgment to keep. Two honest-open counts: refuted and unanchored; both ratchet.
+export type IdentityFreeDecision = {
+  name: string
+  kind: 'law' | 'method' | 'process'
+  anchored: boolean
+  provedBy: string
+  home: string
+  restsOn: readonly string[]
+  hiddenAlgebra?: string
+  verdict: 'refuted' | 'reasoned' | 'unanchored'
+}
+export function identityFreeDecisionsReasoned(matrix: MindMatrix = buildMatrix()) {
+  const byTheorem = new Map(THEOREM_ATOM_SEED.map((row) => [row.theorem, row]))
+  const algebraByFold = new Map<string, string[]>()
+  for (const row of THEOREM_ATOM_SEED) if (row.algebraicStatement) algebraByFold.set(row.provedBy, [...(algebraByFold.get(row.provedBy) ?? []), row.theorem])
+  const algebraByHome = new Map<string, string[]>()
+  for (const row of THEOREM_ATOM_SEED) if (row.algebraicStatement) algebraByHome.set(row.home, [...(algebraByHome.get(row.home) ?? []), row.theorem])
+  const kindOf = (states: string): IdentityFreeDecision['kind'] =>
+    /\b(law|must|never|only|forbid|refuse|cannot|no [a-z]+ may)\b/iu.test(states) ? 'law'
+      : /\b(via|by|using|computes?|finder|scan|audit|close|decode|detect|measure|derive)\b/iu.test(states) ? 'method'
+      : 'process'
+  const decisions: IdentityFreeDecision[] = IDENTITY_JUDGED_PROCESS.map((name) => {
+    const row = byTheorem.get(name)
+    const states = row?.states ?? name
+    // refuted only when the extractor LIFTS an identity (a leading clause asserting a relation) — a digit in prose is not algebra
+    const hidden = row ? extractAlgebraicStatement(row.states) : undefined
+    // the indirect relation is folder gravity: identities proved in the same home, then by the same fold
+    const restsOn = row ? [...new Set([...(algebraByHome.get(row.home) ?? []), ...(algebraByFold.get(row.provedBy) ?? [])])] : []
+    const anchored = Boolean(row)
+    const verdict: IdentityFreeDecision['verdict'] = hidden ? 'refuted' : anchored && restsOn.length > 0 ? 'reasoned' : 'unanchored'
+    return { name, kind: kindOf(states), anchored, provedBy: row?.provedBy ?? '', home: row?.home ?? '', restsOn, hiddenAlgebra: hidden, verdict }
+  })
+  const refuted = decisions.filter((d) => d.verdict === 'refuted')
+  const unanchored = decisions.filter((d) => d.verdict === 'unanchored')
+  const reasoned = decisions.filter((d) => d.verdict === 'reasoned')
+  const kinds = { law: decisions.filter((d) => d.kind === 'law').length, method: decisions.filter((d) => d.kind === 'method').length, process: decisions.filter((d) => d.kind === 'process').length }
+  const facets = [
+    { facet: `ANCHORED — ${decisions.filter((d) => d.anchored).length}/${decisions.length} judged names resolve to an atom row (witness · prover fold · home)`, on: decisions.every((d) => d.anchored) },
+    { facet: `KIND FROM THE WITNESS — law ${kinds.law} · method ${kinds.method} · process ${kinds.process}: every decision names why it carries no identity`, on: decisions.every((d) => d.kind.length > 0) && decisions.length > 0 },
+    { facet: `RESTS ON ALGEBRA — ${reasoned.length}/${decisions.length} decisions rest on identities proved in the same home or by the same fold (the indirect relation, folder gravity); ${unanchored.length} rest on none or resolve to no atom (honest-open)`, on: unanchored.length === 0 },
+    { facet: `NOT REFUTED — ${refuted.length} decisions hide an extractable identity (a refuted judgment is a gap to solve, not a decision to keep)`, on: refuted.length === 0 },
+  ]
+  return {
+    computes: facets.every((f) => f.on), decisions, refuted: refuted.map((d) => d.name), unanchored: unanchored.map((d) => d.name), kinds, facets,
+    root: merkleFold(decisions.map((d) => toUuid(`decision:${d.name}:${d.kind}:${d.verdict}:${d.restsOn.join('|')}`))),
+    statement: `Identity-free decisions reasoned — ${decisions.length} judged rows: ${reasoned.length} rest on algebra through their prover fold, ${unanchored.length} rest on none, ${refuted.length} hide an extractable identity · kinds law ${kinds.law} · method ${kinds.method} · process ${kinds.process}.`,
+    boundary: 'Kind is read from the witness by three verb classes; the indirect relation is folder gravity (identities in the same home, then the same prover fold) — a structural relation, not a proof that the decision is right. Refuted means the extractor finds an identity the judgment missed. Reads IDENTITY_JUDGED_PROCESS; does not edit it.' }
+}
+
 export function theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks(matrix: MindMatrix = buildMatrix()) {
   const proofs = proofRegistry(matrix)
   const seedBySlug = new Map(STATIC_PAGE_SEED.map((page) => [page.slug, page.title.en]))
