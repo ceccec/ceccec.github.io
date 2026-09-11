@@ -1818,9 +1818,27 @@ export const ATTRIBUTION_COVERAGE: readonly {
 
 export type Bucket = 'attributed' | 'claimed' | 'unclassified'
 
+/**
+ * THE LOOKUP THE LEDGER BUCKETS WITH — by name, last row winning. The ledger uses it to bucket registry
+ * rows and the unanchored-marks floor uses it to decide which verdicts stand on a search. Those two MUST
+ * agree, because coverage-unexamined is computed from the ledger's buckets; one function makes them
+ * agree by construction.
+ *
+ * IT IS NOT THE ONLY LOOKUP OVER THESE ROWS, and an earlier draft of this comment said it was.
+ * statusFor() in discoveries.ts finds a search for each Lean theorem in a deposit: scoped by leanFile,
+ * case-insensitive, with a leanFile-wide `*` row as a fallback. That is the more careful lookup, and it
+ * only works for rows that carry a file — registry rows carry none, so this one cannot be scoped. Two
+ * lookups over one table with different rules is a code-gravity debt, recorded here rather than papered
+ * over: unifying them would change which bucket some registry rows land in, which is a separate change
+ * from the one that broke the deadlock.
+ */
+export function searchIndex(): Map<string, (typeof PRIOR_ART_SEARCHED)[number]> {
+  return new Map(PRIOR_ART_SEARCHED.map((r) => [r.theorem, r]))
+}
+
 export function priorArtLedger() {
   const rows = THEOREM_ATOM_SEED as readonly { theorem?: string; states?: string; algebraicStatement?: string }[]
-  const searched = new Map(PRIOR_ART_SEARCHED.map((r) => [r.theorem, r]))
+  const searched = searchIndex()
   const buckets: Record<Bucket, string[]> = { attributed: [], claimed: [], unclassified: [] }
   for (const r of rows) {
     const name = String(r.theorem ?? '')
@@ -1883,6 +1901,36 @@ export function assertPriorArtLedger(): void {
   console.log(`    covers     ${String(covers.length).padStart(4)}  examined and clean — the citation entails the row, nothing over- or under-credited`)
   // THE REMAINDER GETS A FLOOR TOO. It was reported and nothing held it: rows could be added to the
   // registry faster than they were examined and this line would climb while every gate stayed green.
+  // UNANCHORED HAND MARKS — the floor that replaced prior-art.marks-decided-by-hand, and why.
+  //
+  // The old floor counted every pool declaration and every coverage verdict alike, and it deadlocked the
+  // ledger against its own purpose. Measured by perturbation: a search that FINDS literature attributes
+  // its row, which raises coverage-unexamined unless a verdict is added — and the verdict raised
+  // marks-decided-by-hand. Both only fall, so every search that found prior art threw. A search that found
+  // NOTHING claimed its row, passed, and tightened unclassified on the way. A prior-art ledger that pays
+  // out for claiming novelty and blocks attribution is inverted at the root.
+  //
+  // The old floor's own definition already said which marks count: exposure "falls as marks are replaced
+  // by things that recompute — a search row, a resolvable citation". A coverage verdict on a theorem whose
+  // search is on record — query, date, citation — is anchored to that search: anyone can re-read the
+  // citation and re-judge it. A pool declaration, or a verdict with no search behind it, is the bare
+  // judgement the floor exists to catch, so only those count. Anchoring is a JOIN through searchIndex(),
+  // the same lookup the ledger buckets with — not a pattern over prose.
+  //
+  // A NEW KEY, NOT A TIGHTENED OLD ONE. Every one of the 123 coverage verdicts was already anchored —
+  // search and verdict were always made in the same move — so the redefined count is 99, the pool alone.
+  // Under the old key ratchet() would have printed "222 -> 99, tightened": a redefinition presented as
+  // progress. Nothing improved. The measure now counts what its name says.
+  //
+  // IT RUNS BEFORE coverage-unexamined ON PURPOSE. A verdict with no search behind it LOWERS
+  // coverage-unexamined and RAISES this. In the other order the lower floor would be recorded before this
+  // threw, and reverting the verdict would then fail against a floor the revert cannot restore.
+  const index = searchIndex()
+  const anchored = (theorem: string) => { const r = index.get(theorem); return r !== undefined && r.found !== null }
+  const unanchoredVerdicts = ATTRIBUTION_COVERAGE.filter((c) => !anchored(c.theorem))
+  const unanchored = PRIOR_ART_POOL.length + unanchoredVerdicts.length
+  console.log(`  hand marks with no search on record: ${unanchored} (${PRIOR_ART_POOL.length} pool declarations + ${unanchoredVerdicts.length} unanchored verdicts)`)
+  console.log(`  ${ratchet('prior-art.unanchored-hand-marks', unanchored, { evidence: () => [...PRIOR_ART_POOL.map((d) => `pool ${d.pool}, no search behind it: ${d.theorem}`), ...unanchoredVerdicts.map((c) => `coverage '${c.coverage}' with no search row whose citation it could be judging: ${c.theorem}`)] })}`)
   const examined = new Set(coverage.map((c) => c.theorem))
   console.log(ratchet('prior-art.coverage-unexamined', l.attributed.length - coverage.length, { evidence: () => l.attributed.filter((n) => !examined.has(n)).map((n) => `no coverage verdict: ${n}`) }))
 
@@ -1926,47 +1974,15 @@ export function assertPriorArtLedger(): void {
   if (l.attributed.length + l.claimed.length + l.unclassified.length !== l.total) {
     throw new Error('the buckets do not partition the registry — every atom must fall in exactly one')
   }
-  // A CLAIM MUST NAME ITS SEARCH. Silence is not evidence of absence, so a row cannot reach the
-  // claimed bucket without one, and this is the check that makes that structural rather than stated.
-  //  shadowed nothing here before the record grew a field; naming the row plainly avoids it.
-  // ONE SEARCH ROW PER THEOREM, PER SCOPE. priorArtLedger builds a Map from PRIOR_ART_SEARCHED, so a second
-  // row for the same theorem SILENTLY WINS and the first is never read again — two citations for one
-  // result, with only the later one in force and no sign that the other exists. I created exactly that
-  // today: rows for `Heawood graph is the (3,6)-cage` and `exactly 576 Latin squares of order 4` that had
-  // already been searched on earlier ticks, with different wording and different sources. Nothing
-  // complained, because nothing looked.
-  //
-  // DIRECTION OF FAILURE: red on a repeated (theorem, leanFile) key. The leanFile scope is deliberately
-  // part of the key — `Sigma is an involution` is a DIFFERENT statement in riemann.lean, bsd.lean and
-  // hodge.lean, and those legitimately carry a row each. Same title, different file, is not a duplicate.
-  // ONE POOL DECLARATION PER THEOREM. PRIOR_ART_SEARCHED has been gated against duplicates since the
-  // tick where I wrote two citations for one row; the POOL had no such check, and I promptly declared
-  // `The crowd that carries signal is the code` a second time without noticing one already existed. Two
-  // declarations of the same row can disagree about which pool it belongs to, and nothing would say so —
-  // the count would simply be wrong by one in whichever direction the second row leaned.
-  //
-  // DIRECTION OF FAILURE: red on a repeated theorem, whatever the pools say. Unlike the searched-row
-  // check there is no scope to key on: a row belongs to exactly one pool or the declaration is undecided.
-  // HOW MUCH OF THIS LEDGER RESTS ON AN AI'S JUDGEMENT RATHER THAN ON COMPUTATION.
-  //
-  // Tsvetan asked who decides the marks. The answer is: I do, and the honest follow-up is to MEASURE that
-  // rather than resolve it by assertion. Three buckets — attributed, claimed, unclassified — are COMPUTED
-  // by priorArtLedger from whether a search row exists; re-run the code and they reproduce without me.
-  // Every pool declaration and every coverage verdict is a HAND-TYPED MARK. Nothing recomputes them, and
-  // a reader who distrusts the author has no way to check them short of redoing the work.
-  //
-  // This counts them. It is not a defect count — judgement is not a defect, and some of these marks can
-  // never be computed, because "does this citation cover this row" is a reading, not an arithmetic. It is
-  // an EXPOSURE count: the size of the surface that would be wrong if the author were wrong, and it falls
-  // as marks are replaced by things that recompute — a search row, a resolvable citation, a machine check.
-  //
-  // DIRECTION OF FAILURE: it only falls. It rises when someone adds a judgement without adding evidence,
-  // which is exactly the motion worth catching, and it caught nothing today because today it was seeded.
+  // HAND MARKS IN TOTAL — reported, NOT ratcheted. This was prior-art.marks-decided-by-hand until it was
+  // measured blocking every search that found prior art; prior-art.unanchored-hand-marks, above, is the
+  // floor that replaced it. The total is still printed so the exposure stays visible. Correct research
+  // raises it — one verdict per attributing search — and that is the price of attribution, not a defect.
   const handMarks = PRIOR_ART_POOL.length + ATTRIBUTION_COVERAGE.length
   const computedBuckets = l.attributed.length + l.claimed.length + l.unclassified.length
   console.log(`  AI-DECIDED vs COMPUTED — ${handMarks} hand-typed marks (${PRIOR_ART_POOL.length} pool declarations + ${ATTRIBUTION_COVERAGE.length} coverage verdicts)`)
   console.log(`                           against ${computedBuckets} rows whose bucket is DERIVED and reproduces without the author`)
-  console.log(`  ${ratchet('prior-art.marks-decided-by-hand', handMarks, { evidence: () => [`${PRIOR_ART_POOL.length} pool declarations + ${ATTRIBUTION_COVERAGE.length} coverage verdicts, each typed by hand, against ${computedBuckets} rows whose bucket is derived`, ...PRIOR_ART_POOL.map((d) => `pool ${d.pool}: ${d.theorem}`), ...ATTRIBUTION_COVERAGE.map((c) => `coverage ${c.coverage}: ${c.theorem}`)] })}`)
+  console.log(`                           ${ATTRIBUTION_COVERAGE.length - unanchoredVerdicts.length} verdicts stand on a search on record, ${unanchoredVerdicts.length} do not — REPORT, not a floor`)
 
   // EVERY UNBOUNDED DECLARATION MUST SAY WHAT WAS LOOKED FOR. It asserts that no literature can restate
   // the row, and that is the one claim in this file nothing could previously check.
