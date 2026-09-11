@@ -241,6 +241,9 @@ export function derivedMonolithTargetBytes() { return { target: 0, corpus: 0, co
 export function scanFileSizeOffenders() { return [] }
 export function monolithFileGapDetail() { return '' }
 export function scanCrackSurface() { return [] }
+// packageScriptsOf: the one guarded package.json reader (scan). No filesystem in the browser → no scripts.
+// (2026-09-12: its absence here failed the Pages build with MISSING_EXPORT — the stub is a fixed list.)
+export function packageScriptsOf() { return {} }
 export function stripComments(text) { return text }
 export const ONE_MATH_LAW = 'one math — every derived constant/primitive is defined once at its home and imported everywhere else'
 export function scanOneMathOffenders() { return [] }
