@@ -31,7 +31,7 @@ import { quantumProjectionParams, type QuantumProjection } from './apps/index.ts
 import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU, entangledArmField, type LatticeArm } from '../3/7/index.ts'
 import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational/index.ts'
 import { memoByRoot, gcd } from '../0/index.ts'
-import { existsSync, rmSync, statSync } from 'node:fs'
+import { existsSync, rmSync, statSync, readFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { log } from '../0/index.ts'
 import { physicalFtlBooleanAtCallTime } from '../3/7/index.ts'
@@ -2888,8 +2888,11 @@ export function quantumAlgorithmComparison(matrix: MindMatrix = buildMatrix()) {
 
 // ── merged from build/ (census: one index per fold; nothing imported it) ──
 export interface BuildLockState {
-  lockFileExists: boolean
-  lockFileStale: boolean
+  /** the runtime lock directory .vitepress/.build-lock exists */
+  lockPresent: boolean
+  /** it exists and its holder process is gone — the only thing that makes a lock stale */
+  lockHolderDead: boolean
+  /** build processes running with NO live lock holder — the only ones repair may kill */
   staleProcCount: number
   cacheExists: boolean
   distExists: boolean
@@ -2897,44 +2900,49 @@ export interface BuildLockState {
   issues: string[]
 }
 
+// THE LOCK IS THE RUNTIME DIRECTORY, NOT A SOURCE FILE. This read .vitepress/build-lock.mjs — the lock
+// MODULE, source code — as "the lock file", called it stale when nobody had edited it for five minutes, and
+// treated its absence as a reason to restore it from git. On a healthy tree with no build running it
+// reported "build-lock.mjs stale (537s old)" and healthy=false, and repair would then have deleted the
+// build cache and dist. The lock is .vitepress/.build-lock, the directory a build creates with its pid
+// inside, and it is stale exactly when that pid is dead — the test the lock itself applies.
+const BUILD_LOCK_DIR = '.vitepress/.build-lock'
+
 export function detectBuildLockState(): BuildLockState {
-  const lockFile = '.vitepress/build-lock.mjs'
   const cacheDir = '.vitepress/cache'
   const distDir = '.vitepress/dist'
-
   const issues: string[] = []
-  const lockFileExists = existsSync(lockFile)
 
-  let lockFileStale = false
-  if (lockFileExists) {
-    const stat = statSync(lockFile)
-    const ageMs = Date.now() - stat.mtimeMs
-    lockFileStale = ageMs > 3 * (2 * 5) ** 5 // > 5 minutes
-    if (lockFileStale) issues.push(`build-lock.mjs stale (${round(ageMs / (2 * 5) ** 3)}s old)`)
-  } else {
-    issues.push('build-lock.mjs missing')
+  const lockPresent = existsSync(BUILD_LOCK_DIR)
+  let lockHolderDead = false
+  if (lockPresent) {
+    const pidFile = `${BUILD_LOCK_DIR}/pid`
+    const pid = existsSync(pidFile) ? Number.parseInt(readFileSync(pidFile, 'utf8').trim(), (5 * 2)) : Number.NaN
+    let alive = false
+    if (Number.isFinite(pid) && pid > 0) {
+      try { process.kill(pid, 0); alive = true } catch { alive = false }
+    }
+    lockHolderDead = !alive
+    if (lockHolderDead) issues.push(`${BUILD_LOCK_DIR} is held by a process that no longer exists (pid ${Number.isFinite(pid) ? pid : 'unreadable'})`)
   }
+  const liveHolder = lockPresent && !lockHolderDead
 
-  // Count stale node processes
+  // A RUNNING BUILD IS NOT A STALE ONE. Every process matching the build pattern used to count as stale, so
+  // any live build made the tree "unhealthy" and repair would kill it. Build processes are stale only when
+  // no live process holds the lock. (A build still in its type check has not taken the lock yet and would
+  // count here — repair is deliberate, so do not run it while a build is starting.)
   const ps = spawnSync('pgrep', ['-f', BUILD_PROCESS_PATTERN], { encoding: 'utf-8' })
-  const staleProcCount = ps.stdout.trim().split('\n').filter(Boolean).length
+  const running = ps.stdout.trim().split('\n').filter(Boolean).length
+  const staleProcCount = liveHolder ? 0 : running
   if (staleProcCount > 0) {
-    issues.push(`${staleProcCount} stale build process${staleProcCount > 1 ? 'es' : ''} running`)
+    issues.push(`${staleProcCount} build process${staleProcCount > 1 ? 'es' : ''} running with no live lock holder`)
   }
 
   const cacheExists = existsSync(cacheDir)
   const distExists = existsSync(distDir)
   if (!distExists) issues.push('.vitepress/dist missing')
 
-  return {
-    lockFileExists,
-    lockFileStale,
-    staleProcCount,
-    cacheExists,
-    distExists,
-    healthy: issues.length === 0,
-    issues
-  }
+  return { lockPresent, lockHolderDead, staleProcCount, cacheExists, distExists, healthy: issues.length === 0, issues }
 }
 
 /**
@@ -2957,6 +2965,7 @@ export function detectBuildLockState(): BuildLockState {
  * from the walk. The argument is a typed intent, and it is checked at runtime too: a JavaScript caller
  * or an `as any` could otherwise still reach the destructive branch by calling with nothing.
  */
+// (restoreBuildLockFromGit has since been REMOVED — a source file was never a lock; see clearDeadBuildLock.)
 export type RepairIntent = 'repair'
 function assertRepairIntent(intent: unknown, name: string): void {
   if (intent !== 'repair') throw new Error(`${name} is destructive and runs only on deliberate repair — call it with 'repair' (got ${JSON.stringify(intent)}).`)
@@ -2987,20 +2996,17 @@ export function killStaleBuildProcesses(intent: RepairIntent): { killed: number;
   return { killed, errors }
 }
 
-export function restoreBuildLockFromGit(intent: RepairIntent): { restored: boolean; error?: string } {
-  assertRepairIntent(intent, 'restoreBuildLockFromGit')
-  const result = spawnSync('git', ['checkout', 'HEAD', '--', '.vitepress/build-lock.mjs'], {
-    encoding: 'utf-8',
-    cwd: process.cwd()
-  })
-
-  if (result.status === 0) {
-    return { restored: true }
-  } else {
-    return {
-      restored: false,
-      error: result.stderr || 'git checkout failed'
-    }
+// A LOCK HELD BY A DEAD PROCESS IS REMOVED — THAT IS THE REPAIR. It replaces restoreBuildLockFromGit, which
+// ran git checkout on a source file because it was "missing" or five minutes old; a source file was never a
+// lock. This re-reads the state and refuses to touch a lock a live build holds.
+export function clearDeadBuildLock(intent: RepairIntent): { cleared: string[]; errors: string[] } {
+  assertRepairIntent(intent, 'clearDeadBuildLock')
+  if (!detectBuildLockState().lockHolderDead) return { cleared: [], errors: [] }
+  try {
+    rmSync(BUILD_LOCK_DIR, { recursive: true, force: true })
+    return { cleared: [BUILD_LOCK_DIR], errors: [] }
+  } catch (err) {
+    return { cleared: [], errors: [`Failed to clear ${BUILD_LOCK_DIR}: ${err instanceof Error ? err.message : String(err)}`] }
   }
 }
 
@@ -3042,14 +3048,13 @@ export function repairBuildLocks(intent: RepairIntent): BuildRepairPlan {
     actions.push({ action: 'killStaleProcesses', result: killResult })
   }
 
-  // 2. Restore lock file if missing
-  if (!diagnose.lockFileExists) {
-    const restoreResult = restoreBuildLockFromGit(intent)
-    actions.push({ action: 'restoreLockFromGit', result: restoreResult })
+  // 2. Remove a lock whose holder is dead
+  if (diagnose.lockHolderDead) {
+    actions.push({ action: 'clearDeadLock', result: clearDeadBuildLock(intent) })
   }
 
   // 3. Clear cache if stale
-  if (diagnose.cacheExists && diagnose.lockFileStale) {
+  if (diagnose.cacheExists && diagnose.lockHolderDead) {
     const clearResult = clearBuildCache(intent)
     actions.push({ action: 'clearCache', result: clearResult })
   }
@@ -3081,7 +3086,7 @@ export function repairBuildLocks(intent: RepairIntent): BuildRepairPlan {
 export const buildRepair = {
   detectState: detectBuildLockState,
   killStaleProcesses: killStaleBuildProcesses,
-  restoreLockFromGit: restoreBuildLockFromGit,
+  clearDeadLock: clearDeadBuildLock,
   clearCache: clearBuildCache,
   repair: repairBuildLocks,
 }
@@ -3109,20 +3114,13 @@ export async function runRepairCli(argv: string[] = []): Promise<number> {
     if (result.errors.length > 0) result.errors.forEach(err => console.log(`[build-repair] ✗ ${err}`))
   }
 
-  // Restore lock file
-  if (!state.lockFileExists) {
-    console.log('[build-repair] Restoring build-lock.mjs from git...')
-    const result = restoreBuildLockFromGit('repair')
-    if (result.restored) {
-      console.log('[build-repair] ✓ Restored build-lock.mjs')
-    } else {
-      console.log(`[build-repair] ✗ Failed: ${result.error}`)
-    }
-  }
-
-  // Clear cache if stale
-  if (state.lockFileStale) {
-    console.log('[build-repair] Clearing stale cache...')
+  // A lock held by a dead process, and the cache it may have left
+  if (state.lockHolderDead) {
+    console.log('[build-repair] Clearing a build lock held by a dead process...')
+    const lock = clearDeadBuildLock('repair')
+    lock.cleared.forEach(p => console.log(`[build-repair] ✓ Cleared ${p}`))
+    lock.errors.forEach(err => console.log(`[build-repair] ✗ ${err}`))
+    console.log('[build-repair] Clearing the cache it may have left...')
     const result = clearBuildCache('repair')
     result.cleared.forEach(p => console.log(`[build-repair] ✓ Cleared ${p}`))
     result.errors.forEach(err => console.log(`[build-repair] ✗ ${err}`))

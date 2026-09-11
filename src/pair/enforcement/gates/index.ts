@@ -283,7 +283,6 @@ export function collectEnforcementFacts(root: string): EnforcementFacts {
       '.vitepress/config.mts',
       '.vitepress/computed-pages.mts',
       '.vitepress/src-plugins.mts',
-      '.vitepress/build-lock.mjs',
       '.vitepress/lib/component-bagua-groups.ts',
       '.vitepress/lib/component-folds.ts',
       '.vitepress/lib/hero-chrome.ts',
