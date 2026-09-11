@@ -14,6 +14,8 @@ export function splitQuantumCommandPair(command: string): { readonly a: string; 
 
 /** All quantum command pairs from AGENTS.md — saved in src before npm/CLI use. */
 export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
+  'mcp/cluster',
+  'cluster/mcp',
   'anim/cluster',
   'cluster/anim',
   'commit/push',
