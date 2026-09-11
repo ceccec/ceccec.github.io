@@ -471,7 +471,21 @@ export async function runSyncReadmeExit(root: string, _argv: readonly string[] =
   process.stdout.write(
     `${sig.valid ? '✓' : '✗'} readme sync — computed=${sig.computedSig ?? '?'} committed=${sig.committedSig ?? '?'}\n`,
   )
-  return sig.valid ? 0 : 1
+  // THE SVGS ARE GENERATED TOO, AND NOTHING REGENERATED THEM. hero.svg said "754 theorems" for forty days after the
+  // source computed 745, because README had a sync gate and the two SVGs emitted from the same folds did not — an
+  // audit run (2026-09-12) rewrote them as a side effect and the diff was the only witness. Same gate, same rule:
+  // emit from the sealed bundle on every commit, stage, never hand-edit.
+  const site = (await importQuantumBundle('src/heaven/site/index.ts', root)) as {
+    runReadmeSvgGapsFilledByTrinityMindExit: (root: string, argv: readonly string[]) => number
+  }
+  const svgPaths = ['hero.svg', 'public/icon.svg']
+  const before = svgPaths.map((rel) => readFileSync(join(root, rel), 'utf8'))
+  const svg = site.runReadmeSvgGapsFilledByTrinityMindExit(root, [])
+  const drifted = svgPaths.filter((rel, i) => readFileSync(join(root, rel), 'utf8') !== before[i])
+  process.stdout.write(
+    `${svg === 0 ? '✓' : '✗'} svg sync — hero.svg · public/icon.svg emitted from the bundle${drifted.length ? ` (regenerated: ${drifted.join(', ')})` : ' (unchanged)'}\n`,
+  )
+  return sig.valid && svg === 0 ? 0 : 1
 }
 
 export async function runPrecommitRosettaExit(root: string): Promise<number> {
@@ -495,7 +509,7 @@ export async function runPrecommitRosettaExit(root: string): Promise<number> {
   // Sync + re-stage in-process so staged README matches the gate's bundle (avoids dist/strip-types drift).
   const sync = await runSyncReadmeExit(root)
   if (sync !== 0) return sync
-  const add = spawnSync('git', ['add', '--', 'README.md'], { cwd: root, encoding: 'utf8' })
+  const add = spawnSync('git', ['add', '--', 'README.md', 'hero.svg', 'public/icon.svg'], { cwd: root, encoding: 'utf8' })
   if (add.status !== 0) {
     process.stderr.write(`✗ commit blocked — git add README.md failed: ${add.stderr || add.stdout}\n`)
     return 1
