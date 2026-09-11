@@ -221,9 +221,14 @@ export function assertDepositsAreHonest(): void {
   // matters most, because a Zenodo record is permanent and its URL cannot be corrected after minting.
   // It is checked against dist, so a page that stops being built fails here before anything is
   // deposited. If dist is absent the step says so instead of passing.
-  const dist = existsSync(join(process.cwd(), '.vitepress/dist'))
+  // A BUILD DIRECTORY IS NOT A BUILD. This asked whether .vitepress/dist EXISTED, and a directory exists
+  // after a build fails half-way, or after some other step writes a few files into it: a stream found a
+  // 27-file dist with no index.html — left by a docs:build that wiped dist and then failed, plus later
+  // writes — and measured 82 landing pages against it as if it were a finished site. index.html is the
+  // page a completed VitePress build always emits, so its absence is NOT MEASURED, never a verdict.
+  const dist = existsSync(join(process.cwd(), '.vitepress/dist/index.html'))
   if (!dist) {
-    console.log(`  landing pages NOT MEASURED — .vitepress/dist absent, run docs:build`)
+    console.log(`  landing pages NOT MEASURED — no completed build in .vitepress/dist (no index.html), run docs:build`)
   } else {
     const dead = records.filter((r) => !existsSync(join(process.cwd(), r.landingPageBuilt)))
     if (dead.length) throw new Error(`${dead.length} deposit(s) name a landing page the build does not produce: ${dead.slice(0, 3).map((r) => r.landingPage).join(', ')}`)

@@ -45,9 +45,14 @@ function htmlFiles(dir: string, out: string[] = []): string[] {
 
 export function assertEveryPageIsCredited(root: string = process.cwd()): void {
   const dist = join(root, DIST)
-  if (!existsSync(dist)) {
+  // A BUILD DIRECTORY IS NOT A BUILD. This asked whether .vitepress/dist EXISTED, and a directory exists
+  // after a build fails half-way, or after some other step writes a few files into it: a stream found a
+  // 27-file dist with no index.html — left by a docs:build that wiped dist and then failed, plus later
+  // writes — and measured 82 landing pages against it as if it were a finished site. index.html is the
+  // page a completed VitePress build always emits, so its absence is NOT MEASURED, never a verdict.
+  if (!existsSync(join(dist, 'index.html'))) {
     // Unmeasured is its own outcome, never silently a pass.
-    console.log('credits — .vitepress/dist absent, NOT MEASURED in this run (run docs:build)')
+    console.log('credits — no completed build in .vitepress/dist (no index.html), NOT MEASURED in this run (run docs:build)')
     return
   }
   const pages = htmlFiles(dist).filter((p) => !NOT_A_PUBLICATION.has(p.slice(p.lastIndexOf('/') + 1)))

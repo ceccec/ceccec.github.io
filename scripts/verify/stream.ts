@@ -109,8 +109,11 @@ function classify(gate: string, status: number | null, ms: number, out: string, 
  * on every run and this runner had deleted every time. A fused runner that destroys the evidence it
  * fuses is a worse instrument than the chain it replaced, which at least left a log.
  */
-function transcript(dir: string, gate: string, out: string): void {
-  appendFileSync(join(dir, 'gates.log'), `\n${'='.repeat(78)}\n=== ${gate}\n${'='.repeat(78)}\n${out}`)
+// ONE TRANSCRIPT PER RUN. Every run appended to a single gates.log, so two consecutive streams shared a
+// file, and reading "the" verify:discoveries block meant reading whichever run wrote first: a NOT MEASURED
+// line from the first stream was quoted as the second stream's verdict. The run id is in the name now.
+function transcript(file: string, gate: string, out: string): void {
+  appendFileSync(file, `\n${'='.repeat(78)}\n=== ${gate}\n${'='.repeat(78)}\n${out}`)
 }
 
 /**
@@ -128,7 +131,7 @@ function transcript(dir: string, gate: string, out: string): void {
  * AND THE RECEIPT IS THE SAFETY NET: if running in parallel changes any verdict, the address changes
  * and says so against the serial receipts already stored for this tree.
  */
-async function runPool(gates: readonly string[], dir: string, width: number): Promise<Result[]> {
+async function runPool(gates: readonly string[], dir: string, width: number, transcriptFile: string): Promise<Result[]> {
   const results = new Array<Result>(gates.length)
   let next = 0
   const worker = async (): Promise<void> => {
@@ -147,7 +150,7 @@ async function runPool(gates: readonly string[], dir: string, width: number): Pr
         child.on('close', (code) => resolve({ status: code, text }))
       })
       const r = { ...classify(gate, out.status, Date.now() - t0, out.text, out.err), tree: at }
-      transcript(dir, gate, out.text)
+      transcript(transcriptFile, gate, out.text)
       results[i] = r
       const mark = r.verdict === 'clean' ? '✓' : r.verdict === 'violated' ? '✗' : '?'
       console.log(`  ${mark} ${gate.padEnd(30)} ${r.verdict.padEnd(9)} ${String(Math.round(r.ms / 1000)).padStart(4)}s ${r.detail}`)
@@ -247,7 +250,8 @@ export async function runVerificationStream(): Promise<void> {
   mkdirSync(dir, { recursive: true })
   const width = Number(process.env.STREAM_WIDTH ?? Math.min(8, Math.max(2, cpus().length - 1)))
   console.log(`  ${width} at a time — serially this is the SUM of every gate, in parallel it is the slowest one\n`)
-  const results = await runPool(gates, dir, width)
+  const transcriptFile = join(dir, `gates-${runId}.log`)
+  const results = await runPool(gates, dir, width, transcriptFile)
 
   const after = treeDigest(ROOT)
   const onMovedTree = results.filter((r) => r.tree !== before)
@@ -291,6 +295,7 @@ export async function runVerificationStream(): Promise<void> {
   console.log(`\n  ${clean}/${gates.length} clean · ${violated.length} violated · ${notRun.length} NOT RUN`)
   console.log(`  receipt ${address} over tree ${before}${before === after ? '' : ` — TREE MOVED to ${after} during the run`}`)
   console.log(`  ${file.replace(`${ROOT}/`, '')} — consume this, do not read a log tail`)
+  console.log(`  transcript of THIS run only: ${transcriptFile.replace(`${ROOT}/`, '')}`)
   console.log(`  ${priorRuns(before, address)}\n`)
 
   if (onMovedTree.length > 0) {
