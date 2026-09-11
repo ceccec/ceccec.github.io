@@ -1404,7 +1404,7 @@ export type CommandPlacementRow = {
 export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'quantumCliToolsCatalog', pair: 'rosetta/core', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'registry/UI shell · strangler surface' },
   { fold: 'dryCleanAllVueComponentsToTheUniversalSet', pair: 'vue/dry', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'apps strangler tip until residual drains' },
-  { fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', pair: 'dry/rosetta', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'apps strangler · residual:quantum-apps-monolith' },
+  { fold: 'animationRosettaStreamClusters', pair: 'anim/cluster', currentBarrel: 'src/quantum/apps', bestPlace: 'src/quantum/apps', action: 'keep', reason: 'apps strangler · residual:quantum-apps-monolith' },
   { fold: 'folderGravityMeasuredByTheCode', pair: 'folder/gravity', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'keep', reason: 'already migrated · gravity law' },
   { fold: 'pathMeansMessageFitsInThreeWords', pair: 'path/message', currentBarrel: 'src/water/stack', bestPlace: 'src/water/stack', action: 'keep', reason: 'already migrated · ≤3 words' },
   { fold: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', pair: 'compact/matrix', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'keep', reason: 'already migrated · compose gravity+path' },
@@ -1592,7 +1592,7 @@ export const PROSE_GAPS_MERGE_MAP = [
   { from: 'sealTheCracksInSelfCoordinatedFractal', to: 'mathGaps', pair: 'fractal/seal' },
   // The six science-unaddressed prose folds collapse to their computing slots (2026-07-24):
   { from: 'codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix', to: 'placeMerge', pair: 'compact/matrix' },
-  { from: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', to: 'animationCore', pair: 'dry/rosetta' },
+  { from: 'animationRosettaStreamClusters', to: 'animationCore', pair: 'anim/cluster' },
   { from: 'dryCleanAllVueComponentsToTheUniversalSet', to: 'dryDupe', pair: 'vue/dry' },
   { from: 'foldInvertUntilDryCleanAppGapless', to: 'dryDupe', pair: 'dry/clean' },
   { from: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', to: 'proseScience', pair: 'prose/science' },

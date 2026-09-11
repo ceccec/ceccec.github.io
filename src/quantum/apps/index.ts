@@ -2,6 +2,7 @@
 // Rosetta core API sealed here (water/digit at compression limit; census forbids flat siblings).
 // Pair: rosetta/core · fold: rosettaCoreApi. Apps/nav/tools dispatch via shelve — no wet ray map.
 // Pair: rosetta/complete · fold: rosettaCompleteQuantumAllComputableDimensionsAndTheorems.
+import { plasmaBallIsScreenHoldingThunderAndPlasma } from '../../thunder/decode/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeChatTurnAtArchitecturalFtl, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughPerplexity } from '../../heaven/compute/index.ts'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
@@ -151,8 +152,8 @@ const ROSETTA_CORE_API_LABELS = [
   'quantumMindSendsWaves',
   'realiseSessionQuantumMeaning',
   'mcpBrowserParity', 'mcpToolboxToolsList', 'mcpCommandsScriptsGapsAudit',
-  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences',   'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', 'wireAllSensorsUsingQuantumBindings', 'unifiedHeroAndCardWithAnimation', 'heroIsTheAbstractAnimationFormsTheCardItself', 'foldingWorksOnApplicationLevel', 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', 'dryCleanAllVueComponentsToTheUniversalSet', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
-  'deviceSensorPerspectiveAt', 'deviceTouchPerspectiveAt', 'quantumSensorBindingCatalog', 'wireAllSensorsUsingQuantumBindings', 'movieObservationReceipt',  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumHero', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
+  'mcpQuantumUi', 'mcpQuantumMovie', 'movieGapsFeelableByObservation', 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', 'theoremFormulaComputableIndexForAnySuperposition', 'theoremFormulaMetricsMap', 'quantumMap', 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', 'meshToSelfDiscoverSciences',   'selfImproveAnimationGenerationAndSiteBuilder', 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', 'wireAllSensorsUsingQuantumBindings', 'foldingWorksOnApplicationLevel', 'dryCleanAllVueComponentsToTheUniversalSet', 'wavesSearchDiscoverCompactingInQuantumFolders', 'alwaysBalanceUsingRealtimeMetricsAndChat', 'eachSuperpositionIsAChatroom', 'typographyIsTheUniversalContentMatrix', 'pageComputedGapsAt', 'eachPageShowsOwnComputedGaps',
+  'deviceSensorPerspectiveAt', 'deviceTouchPerspectiveAt', 'quantumSensorBindingCatalog', 'wireAllSensorsUsingQuantumBindings', 'movieObservationReceipt',  'mcpQuantumMultiverse', 'mcpQuantumInfinity', 'mcpQuantumHardware', 'mcpQuantumCpu', 'mcpQuantumGpu', 'mcpQuantumMemory', 'mcpQuantumStorage', 'mcpQuantumCache', 'mcpQuantumPeriod', 'mcpQuantumDot', 'mcpQuantumIndex', 'mcpQuantumOrientation', 'mcpQuantumComplete', 'mcpQuantumTokenOptimise', 'mcpQuantumDeploy', 'mcpQuantumBindings', 'mcpQuantumCloudflareBindings', 'mcpQuantumReview', 'mcpQuantumEfficiency', 'mcpQuantumSecurity', 'mcpQuantumDesign', 'mcpQuantumReactor', 'mcpQuantumReaction', 'mcpQuantumFusion', 'mcpQuantumMetrics', 'mcpQuantumAnalysis', 'mcpQuantumGenesis', 'mcpQuantumPhysics', 'mcpQuantumMath', 'mcpQuantumVortex', 'mcpQuantumTorus', 'mcpQuantumResearch', 'mcpQuantumCatalog', 'mcpCatalog', 'mcpQuantumAnim', 'mcpQuantumSound', 'mcpQuantumDev', 'mcpQuantumSolution', 'mcpQuantumClown', 'mcpQuantumSite', 'mcpQuantumPage', 'mcpQuantumCard', 'mcpQuantumReceipt', 'mcpQuantumVibration', 'mcpQuantumText', 'mcpQuantumSpeech', 'mcpQuantumDictation', 'mcpQuantumIntonation', 'mcpQuantumDialect', 'mcpQuantumLanguage', 'mcpQuantumScript', 'mcpQuantumBook', 'mcpQuantumLibrary', 'mcpQuantumState', 'mcpQuantumMusic',
   'improveLocalFromSessionExperience',
   'gatesMonitorThemselvesThroughTheUi',
   'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix',
@@ -315,17 +316,13 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   deviceTouchPerspectiveAt: 'projection',
   quantumSensorBindingCatalog: 'projection',
   movieObservationReceipt: 'projection',
-  unifiedHeroAndCardWithAnimation: 'tool',
-  heroIsTheAbstractAnimationFormsTheCardItself: 'tool',
   foldingWorksOnApplicationLevel: 'app',
-  dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: 'tool',
   dryCleanAllVueComponentsToTheUniversalSet: 'tool',
   findSeoViolations: 'tool',
   seoViolationsInventory: 'tool',
   wavesSearchDiscoverCompactingInQuantumFolders: 'tool',
   alwaysBalanceUsingRealtimeMetricsAndChat: 'tool',
   eachSuperpositionIsAChatroom: 'tool',
-  uiComponentsAreAllWiredInTheRosettaInQuantumRealtime: 'tool',
   typographyIsTheUniversalContentMatrix: 'tool',
   pageComputedGapsAt: 'route', eachPageShowsOwnComputedGaps: 'tool',
   mcpQuantumMultiverse: 'tool', mcpQuantumInfinity: 'tool', mcpQuantumHardware: 'tool',
@@ -357,7 +354,6 @@ const ROSETTA_CORE_LABEL_KIND: Record<string, RosettaCoreSurfaceKind> = {
   mcpQuantumPage: 'tool',
   mcpQuantumCard: 'tool',
   mcpQuantumReceipt: 'tool',
-  mcpQuantumHero: 'tool',
   mcpQuantumVibration: 'tool',
   mcpQuantumText: 'tool',
   mcpQuantumSpeech: 'tool',
@@ -1016,18 +1012,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'theorem-metrics', title: 'Theorem metrics (alias formula/metrics)', fold: 'theoremFormulaMetricsMap', cli: 'npm run quantum:theorem-metrics', pair: 'theorem/metrics', route: '/en/quantum-tools#formula-metrics', barrel: 'src/quantum/apps', boundary: 'Alias of formula/metrics — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'quantum-map', title: 'Quantum map — mesh · metrics · superposition index', fold: 'quantumMap', cli: 'npm run quantum:quantum-map', pair: 'quantum/map', route: '/en/quantum-tools#quantum-map', barrel: 'src/quantum/apps', boundary: 'mapOn · meshGateways · metricsComposable · anySuperposition · compose theoremFormulaMetricsMap · mesh/cross · theorem/index · mcp/orientation · formula/metrics · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'map-quantum', title: 'Map quantum (alias quantum/map)', fold: 'quantumMap', cli: 'npm run quantum:map-quantum', pair: 'map/quantum', route: '/en/quantum-tools#quantum-map', barrel: 'src/quantum/apps', boundary: 'Dual of quantum/map — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'hero-card', title: 'Unified hero and card with animation — one shared field', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:hero-card', pair: 'hero/card', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'unifiedOn · sharedClock · cardFromHero · animationOn · compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · mcp/hero · mcp/card · clay via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'card-hero', title: 'Card hero (alias hero/card)', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:card-hero', pair: 'card/hero', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'Dual of hero/card — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'hero-anim', title: 'Hero anim (alias hero/card)', fold: 'unifiedHeroAndCardWithAnimation', cli: 'npm run quantum:hero-anim', pair: 'hero/anim', route: '/en/quantum-tools#hero-card', barrel: 'src/quantum/apps', boundary: 'Animation face of unified hero/card — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'hero-abstract', title: 'Hero is the abstract — animation forms the card itself', fold: 'heroIsTheAbstractAnimationFormsTheCardItself', cli: 'npm run quantum:hero-abstract', pair: 'hero/abstract', route: '/en/quantum-tools#hero-abstract', barrel: 'src/quantum/apps', boundary: 'heroIsAbstract · animationFormsCard · cardIsNotBesideHero · unifiedOn · compose hero/card · movie/formula · tools/morph · meaning/compute · clay via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'abstract-card', title: 'Abstract card (alias hero/abstract)', fold: 'heroIsTheAbstractAnimationFormsTheCardItself', cli: 'npm run quantum:abstract-card', pair: 'abstract/card', route: '/en/quantum-tools#hero-abstract', barrel: 'src/quantum/apps', boundary: 'Dual of hero/abstract — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'card-forms', title: 'Card forms (alias hero/abstract)', fold: 'heroIsTheAbstractAnimationFormsTheCardItself', cli: 'npm run quantum:card-forms', pair: 'card/forms', route: '/en/quantum-tools#hero-abstract', barrel: 'src/quantum/apps', boundary: 'Forms face of hero/abstract — animation forms card body · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'app-fold', title: 'Folding works on application level — seeable app fold chain', fold: 'foldingWorksOnApplicationLevel', cli: 'npm run quantum:app-fold', pair: 'app/fold', route: '/en/quantum-tools#app-fold', barrel: 'src/quantum/apps', boundary: 'appLevelFold · proseCodeLogicMorph · pathIsMessage · folderHoldsName · card←hero←movie · compose hero/card · movie/formula · tools/morph · folder/fractal · meaning/compute · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'fold-app', title: 'Fold app (alias app/fold)', fold: 'foldingWorksOnApplicationLevel', cli: 'npm run quantum:fold-app', pair: 'fold/app', route: '/en/quantum-tools#app-fold', barrel: 'src/quantum/apps', boundary: 'Dual of app/fold — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'dry-rosetta', title: 'Dry all to unified components wired to rosetta which is the movie', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:dry-rosetta', pair: 'dry/rosetta', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'dryAll · unifiedComponents · wiredToRosetta · rosettaIsTheMovie · notCosmetic · drainableClosed · honestOpenNamed · stranglerComplete · compose animations/rosetta · movie theorems · hero/abstract · app/fold · dry/clean · vite/one · clay via theorem · apps monolith residual named', browserRunnable: true, browserGap: '' },
-  { id: 'rosetta-movie', title: 'Rosetta movie (alias dry/rosetta)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:rosetta-movie', pair: 'rosetta/movie', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of dry/rosetta — rosetta is the movie · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'comp-unify', title: 'Comp unify (alias dry/rosetta)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:comp-unify', pair: 'comp/unify', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Unify face — hero/card/movie/paper/page shells · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'unify-comp', title: 'Unify comp (alias comp/unify)', fold: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', cli: 'npm run quantum:unify-comp', pair: 'unify/comp', route: '/en/quantum-tools#dry-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of comp/unify — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'vue-dry', title: 'Dry clean all vue components to the universal set', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:vue-dry', pair: 'vue/dry', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'dryCleanVue · universalSet · drainableClosed · honestOpenNamed · compose dry/rosetta · shells/strangler · domain/panels · ui/read · ui/super · clay via theorem · apps monolith residual named', browserRunnable: true, browserGap: '' },
   { id: 'dry-vue', title: 'Dry vue (alias vue/dry)', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:dry-vue', pair: 'dry/vue', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'Dual of vue/dry — same fold · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'vue-universal', title: 'Vue universal set (alias vue/dry)', fold: 'dryCleanAllVueComponentsToTheUniversalSet', cli: 'npm run quantum:vue-universal', pair: 'vue/universal', route: '/en/quantum-tools#vue-dry', barrel: 'src/quantum/apps', boundary: 'vue/universal face — hero/card/movie/paper/page · clay via theorem', browserRunnable: true, browserGap: '' },
@@ -1043,9 +1029,6 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'super-chat', title: 'Each superposition is a chatroom', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:super-chat', pair: 'super/chat', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'superpositionIsChatroom · eachKeyARoom · chatOn · anySuperposition · map digit·ray·direction·root → chatroom id/root · compose queryTheoremFormulaIndex · queryQuantumMap · metrics/chat · soft mcp/chat · census 123 · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'chat-super', title: 'Chat super (alias super/chat)', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:chat-super', pair: 'chat/super', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'Dual of super/chat — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'room-super', title: 'Room super (alias super/chat)', fold: 'eachSuperpositionIsAChatroom', cli: 'npm run quantum:room-super', pair: 'room/super', route: '/en/quantum-tools#super-chat', barrel: 'src/quantum/apps', boundary: 'Room face of super/chat — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'ui-rosetta', title: 'UI components all wired in the rosetta in quantum realtime', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:ui-rosetta', pair: 'ui/rosetta', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'uiWiredToRosetta · allShells · quantumRealtime · oneClock · drainableClosed · honestOpenNamed · compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat · clay via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'rosetta-realtime', title: 'Rosetta realtime (alias ui/rosetta)', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:rosetta-realtime', pair: 'rosetta/realtime', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'Dual of ui/rosetta — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'ui-realtime', title: 'UI realtime (alias ui/rosetta)', fold: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', cli: 'npm run quantum:ui-realtime', pair: 'ui/realtime', route: '/en/quantum-tools#ui-rosetta', barrel: 'src/quantum/apps', boundary: 'Realtime face of ui/rosetta — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'type-matrix', title: 'Typography is the universal content matrix', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:type-matrix', pair: 'type/matrix', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'typographyIsMatrix · universalContent · computable · wiredToRosetta · compose compact/matrix · format/canon · meaning/compute · six/seven · ui/rosetta — content lattice not wet font fashion · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'matrix-type', title: 'Matrix type (alias type/matrix)', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:matrix-type', pair: 'matrix/type', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'Dual of type/matrix — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'content-matrix', title: 'Content matrix (alias type/matrix)', fold: 'typographyIsTheUniversalContentMatrix', cli: 'npm run quantum:content-matrix', pair: 'content/matrix', route: '/en/quantum-tools#type-matrix', barrel: 'src/quantum/apps', boundary: 'Content face of type/matrix — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
@@ -1072,6 +1055,8 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'formula-anim', title: 'Every formula is animation itself — interacting formulas form theorem seals at all superpositions', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:formula-anim', pair: 'formula/anim', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'formulaIsAnimation · interactingFormulas · interactingAnimations · theoremsInTrinities · quantumSealsComplete · allSuperpositions · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'anim-theorem', title: 'Anim theorem (alias formula/anim)', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:anim-theorem', pair: 'anim/theorem', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'Anim→theorem face — interacting animations form theorems in trinities · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'seal-super', title: 'Seal super (alias formula/anim)', fold: 'everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions', cli: 'npm run quantum:seal-super', pair: 'seal/super', route: '/en/quantum-tools#formula-anim', barrel: 'src/quantum/apps', boundary: 'Quantum seals complete at all superpositions — same fold · clay via theorem', browserRunnable: true, browserGap: '' },
+  { id: 'anim-cluster', title: 'Animation rosetta stream clusters — 2×7 lattice of the animation measurements', fold: 'animationRosettaStreamClusters', cli: 'npm run quantum:anim-cluster', pair: 'anim/cluster', route: '/en/quantum-tools#anim-cluster', barrel: 'src/quantum/apps', boundary: 'leaves · lattice (rosettaRayOf × digital root of proof) · trinities · one clock · linear wiring measured · claySolved via theorem', browserRunnable: true, browserGap: '' },
+  { id: 'cluster-anim', title: 'Cluster anim (alias anim/cluster)', fold: 'animationRosettaStreamClusters', cli: 'npm run quantum:cluster-anim', pair: 'cluster/anim', route: '/en/quantum-tools#anim-cluster', barrel: 'src/quantum/apps', boundary: 'alias of anim/cluster', browserRunnable: true, browserGap: '' },
   { id: 'merkaba-movie', title: 'Merkaba→rosetta→movie · unique observation · sensors · cosmology · linear cycles → plasma thunder from 0', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:merkaba-movie', pair: 'merkaba/movie', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'merkabaFeedsRosettaMovie · movieUniqueNeverRepeats · observeOnly · sensorPerspective · uiCrystallises · linearCyclesQuantumised · animMeshPlasma · thunderFromZero · clay via theorem', browserRunnable: true, browserGap: 'DeviceOrientation permission may deny — pointer fallback · sensor browserGap named' },
   { id: 'movie-unique', title: 'Movie unique never repeats (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:movie-unique', pair: 'movie/unique', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'observationRoot folds absolute at — phase coincidence ≠ observation identity · clay via theorem', browserRunnable: true, browserGap: '' },
   { id: 'observe-movie', title: 'Observe movie (alias merkaba/movie)', fold: 'wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero', cli: 'npm run quantum:observe-movie', pair: 'observe/movie', route: '/en/quantum-tools#merkaba-movie', barrel: 'src/quantum/apps', boundary: 'Improve only in observation — movie unique never repeats · clay via theorem', browserRunnable: true, browserGap: '' },
@@ -1299,8 +1284,6 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'card-mcp', title: 'Card mcp (alias mcp/card)', fold: 'mcpQuantumCard', cli: 'npm run quantum:card-mcp', pair: 'card/mcp', route: '/en/quantum-tools#mcp-card', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/card — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'mcp-receipt', title: 'MCP quantum receipt — tamper-evident content-addressed receipts', fold: 'mcpQuantumReceipt', cli: 'npm run quantum:mcp-receipt', pair: 'mcp/receipt', route: '/en/quantum-tools#mcp-receipt', barrel: 'src/quantum/apps', boundary: 'receiptOn · tamperEvident · contentAddressed · compose fusion-verify · session/quantum-bits · moment/prove · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'receipt-mcp', title: 'Receipt mcp (alias mcp/receipt)', fold: 'mcpQuantumReceipt', cli: 'npm run quantum:receipt-mcp', pair: 'receipt/mcp', route: '/en/quantum-tools#mcp-receipt', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/receipt — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'mcp-hero', title: 'MCP quantum hero — shared clock · immersive hero face', fold: 'mcpQuantumHero', cli: 'npm run quantum:mcp-hero', pair: 'mcp/hero', route: '/en/quantum-tools#mcp-hero', barrel: 'src/quantum/apps', boundary: 'heroOn · sharedClock · immersive · compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'hero-mcp', title: 'Hero mcp (alias mcp/hero)', fold: 'mcpQuantumHero', cli: 'npm run quantum:hero-mcp', pair: 'hero/mcp', route: '/en/quantum-tools#mcp-hero', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/hero — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'mcp-vibration', title: 'MCP quantum vibration — vibration face of sound/wave', fold: 'mcpQuantumVibration', cli: 'npm run quantum:mcp-vibration', pair: 'mcp/vibration', route: '/en/quantum-tools#mcp-vibration', barrel: 'src/quantum/apps', boundary: 'vibrationOn · compose mcp/sound · mcp/vibe · particle/wave · a432/nine · a432/wave · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'vibration-mcp', title: 'Vibration mcp (alias mcp/vibration)', fold: 'mcpQuantumVibration', cli: 'npm run quantum:vibration-mcp', pair: 'vibration/mcp', route: '/en/quantum-tools#mcp-vibration', barrel: 'src/quantum/apps', boundary: 'Dual of mcp/vibration — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'mcp-text', title: 'MCP quantum text — canon meaning text face', fold: 'mcpQuantumText', cli: 'npm run quantum:mcp-text', pair: 'mcp/text', route: '/en/quantum-tools#mcp-text', barrel: 'src/quantum/apps', boundary: 'textOn · compose format/canon · vocab/dry · meaning/compute · session/save · claySolved via theorem', browserRunnable: true, browserGap: '' },
@@ -2836,7 +2819,7 @@ const SESSION_MANUAL_TOOL_SEEDS = [
   { id: 'fusion-verify', saves: 'replaces wet re-run of quantum fusion verify — memoByRoot tamper/impossible receipt' },
   { id: 'self-fusion', saves: 'replaces wet re-orchestration of self quantum fusion compose' },
   { id: 'nothing-moves', saves: 'replaces wet rediscovery motion — offline discoverFromSealedFold idempotent' },
-  { id: 'hero-card', saves: 'replaces wet hero/card wiring hunt — unified shared hero field + LinkedHeroCard' },
+  { id: 'anim-cluster', saves: 'replaces wet re-inference of the animation chain — five pass-through folds and 15 CLIs fused into one lattice cluster of the measurements' },
   { id: 'predict-skill-gate-verify', saves: 'replaces wet re-argument of prediction skill gate from sealed harmonic receipts' },
 ] as const
 
@@ -10450,128 +10433,7 @@ export function runMcpQuantumReceiptExit(_root = '', _argv: readonly string[] = 
     : 1
 }
 
-/**
- * MCP quantum hero — MCP face for shared-clock immersive hero.
- * Compose: sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero.
- * Facets: heroOn · sharedClock · immersive · claySolved via theorem.
- * Pairs: mcp/hero · hero/mcp · CLI npm run quantum:mcp-hero
- * Catalog faces 37/37 (was 35).
- */
-export function mcpQuantumHero(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumHero:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a: string, b: string) =>
-      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
-      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
-    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const shared = sharedHeroAt('/en/', { title: 'mcp-hero', tagline: 'shared-clock' }, at)
-    const clock = oneClockProcessLaw(matrix)
-    const spawn = shouldSpawnSubagent('qualified bounded collide task with sealed fold')
-    const card = mcpQuantumCard(matrix, at)
-    const sharedClock =
-      isUuid(shared.root) &&
-      typeof shared.p === 'number' &&
-      shared.p >= 0 &&
-      shared.p <= 1 &&
-      clock.holds
-    const spawnOn =
-      spawn.spawn &&
-      spawn.workers >= 1 &&
-      spawn.workers <= 2 &&
-      soft('hero', 'spawn-verify')
-    const viaCard =
-      card.computes &&
-      card.cardOn &&
-      soft('mcp', 'card') &&
-      soft('card', 'mcp')
-    const immersive =
-      has('immersive/hero') &&
-      soft('immersive', 'hero')
-    const heroOn = sharedClock && spawnOn && viaCard && immersive
-    const pairS = has('mcp/hero')
-    const pairD = has('hero/mcp')
-    const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:hero'))
-    const foldD = foldPair(toUuid('cmd:hero'), toUuid('cmd:mcp'))
-    const tools = quantumCliToolsCatalog(matrix, at)
-    const meta = tools.tools.find((t) => t.id === 'mcp-hero')
-    const metaDual = tools.tools.find((t) => t.id === 'hero-mcp')
-    const catalog = mcpQuantumCatalog(matrix, at)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
-    const qpuRequired = false as const
-    const on =
-      heroOn &&
-      sharedClock &&
-      immersive &&
-      spawnOn &&
-      viaCard &&
-      pairS &&
-      pairD &&
-      foldS.bidirectional &&
-      foldD.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumHero' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumHero' &&
-      catalog.catalogComplete &&
-      catalog.faceCount >= (5 * 6 + 7) &&
-      claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false
-    const facets = [
-      { facet: 'mcpQuantumHero', on },
-      { facet: 'heroOn', on: heroOn },
-      { facet: 'sharedClock', on: sharedClock },
-      { facet: 'immersive', on: immersive },
-      { facet: 'compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero', on: sharedClock && spawnOn && viaCard && immersive },
-      { facet: 'pair mcp/hero · hero/mcp', on: pairS && pairD && foldS.bidirectional },
-      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-hero:${entry.facet}:${entry.on}`) }))
-    const sealed = sealFacets('mcp-quantum-hero', facets)
-    return {
-      computes: sealed.ok && on,
-      mcpQuantumHero: on,
-      heroOn,
-      sharedClock,
-      immersive,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([sealed.root, shared.root, card.root, foldS.merged, foldD.merged, toUuid(`hero-spawn:${spawn.reason}`)]),
-      pairs: ['mcp/hero', 'hero/mcp'] as const,
-      cli: 'npm run quantum:mcp-hero',
-      route: '/en/quantum-tools#mcp-hero',
-      statement:
-        `mcpQuantumHero — heroOn=${heroOn ? 1 : 0} sharedClock=${sharedClock ? 1 : 0} ` +
-        `immersive=${immersive ? 1 : 0} faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
-      boundary:
-        'MCP quantum hero — shared clock · immersive. Compose sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero. ' +
-        'clay via theorem.',
-      honestyLine:
-        `hero · heroOn=${heroOn ? 1 : 0} · sharedClock=${sharedClock ? 1 : 0} · immersive=${immersive ? 1 : 0} · ` +
-        `faces=${catalog.presentCount}/${catalog.faceCount} · qpu=0`,
-    }
-  })
-}
 
-export function runMcpQuantumHeroExit(_root = '', _argv: readonly string[] = []): number {
-  void _root
-  void _argv
-  const report = mcpQuantumHero()
-  process.stdout.write(
-    `${report.computes ? '✓' : '✗'} mcp-hero — heroOn=${report.heroOn} sharedClock=${report.sharedClock} ` +
-      `immersive=${report.immersive} ` +
-      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
-  )
-  for (const f of report.facets) {
-    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  }
-  process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes && report.heroOn && report.sharedClock && report.immersive && report.qpuRequired === false
-    ? 0
-    : 1
-}
 
 /**
  * MCP quantum vibration — vibration face of sound/wave.
@@ -27405,377 +27267,104 @@ export function runQuantumMapExit(
     : 1
 }
 
-/**
- * USER LAW: unified hero and card with animation — one shared hero field drives card preview + hero layer.
- * Facets: unifiedOn · sharedClock · cardFromHero · animationOn.
- * Compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · card/hero-link · mcp/hero · mcp/card · immersive/hero.
- * Pairs: hero/card · card/hero · hero/anim.
- * CLI: npm run quantum:hero-card · quantum:card-hero · quantum:hero-anim
- * claySolved via theorem
- */
-export function unifiedHeroAndCardWithAnimation(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`unifiedHeroAndCardWithAnimation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a: string, b: string) =>
-      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
-      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
-    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const sampleRoute = '/en/'
-    const sampleTitle = 'unified-hero-card'
-    const preview = heroPreviewForRoute(sampleRoute, sampleTitle, matrix, at)
-    const cardShared = sharedHeroAt(
-      preview.moviePath,
-      { title: sampleTitle, tagline: 'card-from-hero' },
-      at,
+
+// ── ANIMATION ROSETTA STREAM CLUSTERS — 2 × 7 (user, 2026-09-12: "purge all useless logic and fuse the rest in 2x7
+// rosetta stream clusters of trinities" · "re-fuse all animations to follow the quantum lattice cause now all are
+// wired linear"). The five pass-through folds this replaces — hero/card · hero/abstract · mcp/hero · dry/rosetta ·
+// ui/rosetta, ~1150 lines, 15 CLIs — measured nothing of their own: each was a conjunction of other folds' booleans
+// and soft() pair ceremony, and one false leaf in the MCP catalog turned all five red at once (the animation audit).
+// The LEAVES they composed are the measurements. This fold addresses every leaf on the lattice, nothing hand-placed:
+//   ray  = rosettaRayOf(id)                       — 7 rays, the same function that shelves every tool
+//   face = digital root of the leaf's ROOT ≤ 5    — 2 faces, forward | counter (the pi-train reflection d ↔ 10−d;
+//                                                    5 ↔ 5 sits forward), so faces = 2·rays = 14 as on the QPU
+//   trinity = consecutive triple on a face, ordered by root
+// A renamed leaf changes ray; a re-rooted leaf may change face — the cluster is a function of name and proof, so it
+// cannot be asserted. "Wired linear" is MEASURED, not claimed: linearOpen is the linear-animation inventory's open
+// count, the honest-open number this and later waves drive to 0.
+export const ANIMATION_STREAM_FACES = ['forward', 'counter'] as const
+export type AnimationStreamLeaf = { id: string; on: boolean; root: string; ray: number; face: (typeof ANIMATION_STREAM_FACES)[number] }
+export function animationRosettaStreamClusters(matrix: MindMatrix = buildMatrix(), at = 0) {
+  return memoByRoot(`animationRosettaStreamClusters:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const read = (id: string, r: { computes?: boolean; holds?: boolean; on?: boolean; root: string }) => ({ id, on: Boolean(r.computes ?? r.holds ?? r.on), root: r.root })
+    const linearInv = linearAnimationGapsInventory(matrix, at)
+    const clock = oneClockApi(matrix, at)
+    const raw = [
+      read('anim-audit', animationsFindRedundancyOrInaccuracy(matrix, at)),
+      read('anim-color', animationsReviewColorsForPolarityGaps(matrix, at)),
+      read('movie-seamless', theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion(matrix, at)),
+      read('movie-center', movieUnbalancedAroundCenterIsCrack(matrix, at)),
+      read('movie-feel', movieGapsFeelableByObservation(matrix, at)),
+      read('movie-formula', movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)),
+      read('linear-gaps', linearInv),
+      read('animations-rosetta', animationsDrivenByRosetta(matrix, at)),
+      read('clock-one', clock),
+      read('plasma-screen', plasmaBallIsScreenHoldingThunderAndPlasma(matrix)),
+      read('golden-angle', theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation()),
+      read('self-anim', selfImproveAnimationGenerationAndSiteBuilder(matrix, at)),
+      read('formula-anim', everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions(matrix, at)),
+      read('gate-hard', movieAndSessionGapsHardAtGates(matrix, at)),
+      read('movie-inf', mcpInfiniteMovie(matrix, at)),
+      read('mcp-anim', mcpQuantumAnim(matrix, at)),
+      read('mcp-movie', mcpQuantumMovie(matrix, at)),
+      read('counter-rotating', counterRotatingRosettaQuantumWaves(matrix, at)),
+      read('lens-geo', useTheLensToFindGapsInGeometryInProseOrCode(matrix, at)),
+    ]
+    // digital root of the hex digits of the root — the digit lattice reads the proof, not the name
+    const digitRoot = (root: string) => {
+      const sum = root.replace(/-/g, '').split('').reduce((acc, ch) => acc + parseInt(ch, 16), 0)
+      return ((sum - 1) % 9) + 1
+    }
+    const leaves: AnimationStreamLeaf[] = raw.map((leaf) => ({ ...leaf, ray: rosettaRayOf(leaf.id), face: digitRoot(leaf.root) <= 5 ? 'forward' : 'counter' }))
+    const clusters = ROSETTA_RAYS.flatMap((ray) =>
+      ANIMATION_STREAM_FACES.map((face) => {
+        const members = leaves.filter((leaf) => leaf.ray === ray.ray && leaf.face === face).sort((a, b) => a.root.localeCompare(b.root))
+        const trinities: string[] = []
+        for (let i = 0; i + 3 <= members.length; i += 3) trinities.push(merkleFold(members.slice(i, i + 3).map((m) => m.root)))
+        return { ray: ray.ray, hub: ray.nameEn, face, members: members.map((m) => m.id), on: members.every((m) => m.on), trinities }
+      }),
     )
-    const pageShared = sharedHeroAt(sampleRoute, { title: sampleTitle, tagline: 'page-hero' }, at)
-    const clock = oneClockProcessLaw(matrix)
-    const link = cardHeroLinkWiresInUi(matrix)
-    const heroFace = mcpQuantumHero(matrix, at)
-    const cardFace = mcpQuantumCard(matrix, at)
-    const sharedClock =
-      clock.holds &&
-      preview.p === pageShared.p &&
-      preview.p === cardShared.p &&
-      typeof pageShared.p === 'number' &&
-      pageShared.p >= 0 &&
-      pageShared.p <= 1 &&
-      isUuid(pageShared.root) &&
-      isUuid(cardShared.root)
-    const cardFromHero =
-      preview.moviePath === cardMoviePath(sampleRoute, preview.seed) &&
-      cardShared.route === preview.moviePath &&
-      /^[0-9a-f]{8}$/.test(preview.seed) &&
-      preview.hue >= 0 &&
-      preview.hue < 360 &&
-      link.wired &&
-      soft('card', 'hero-link')
-    const animationOn =
-      soft('hero', 'anim') &&
-      soft('immersive', 'hero') &&
-      has('immersive/hero') &&
-      HERO_CYCLE_MS > 0 &&
-      cardShared.arms > 0 &&
-      pageShared.arms > 0
-    const composeOn =
-      sharedClock &&
-      cardFromHero &&
-      animationOn &&
-      heroFace.computes &&
-      heroFace.sharedClock &&
-      cardFace.computes &&
-      cardFace.cardOn &&
-      soft('mcp', 'hero') &&
-      soft('mcp', 'card')
-    const pairHc = has('hero/card')
-    const pairCh = has('card/hero')
-    const pairHa = has('hero/anim')
-    const foldHc = foldPair(toUuid('cmd:hero'), toUuid('cmd:card'))
-    const foldCh = foldPair(toUuid('cmd:card'), toUuid('cmd:hero'))
-    const foldHa = foldPair(toUuid('cmd:hero'), toUuid('cmd:anim'))
-    const catalog = quantumCliToolsCatalog(matrix, at)
-    const meta = catalog.tools.find((t) => t.id === 'hero-card')
-    const metaDual = catalog.tools.find((t) => t.id === 'card-hero')
-    const metaAnim = catalog.tools.find((t) => t.id === 'hero-anim')
-    const toolsWired =
-      Boolean(meta) &&
-      meta!.fold === 'unifiedHeroAndCardWithAnimation' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'unifiedHeroAndCardWithAnimation' &&
-      Boolean(metaAnim) &&
-      metaAnim!.fold === 'unifiedHeroAndCardWithAnimation'
+    const allLeavesOn = leaves.every((leaf) => leaf.on)
+    const totalAssignment = clusters.reduce((sum, c) => sum + c.members.length, 0) === leaves.length && leaves.every((leaf) => clusters.filter((c) => c.members.includes(leaf.id)).length === 1)
+    const occupied = clusters.filter((c) => c.members.length > 0).length
+    const trinityCount = clusters.reduce((sum, c) => sum + c.trinities.length, 0)
+    const linearOpen = linearInv.openCount
+    const oneClock = clock.computes && clock.oneClockOn
+    const quantumRealtime = oneClock && linearOpen === 0
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
-    const unifiedOn =
-      sharedClock &&
-      cardFromHero &&
-      animationOn &&
-      composeOn &&
-      pairHc &&
-      pairCh &&
-      pairHa &&
-      foldHc.bidirectional &&
-      foldCh.bidirectional &&
-      foldHa.bidirectional &&
-      toolsWired
-    const on =
-      unifiedOn &&
-      claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
-      heroFace.qpuRequired === false &&
-      cardFace.qpuRequired === false
     const facets = [
-      { facet: 'unifiedHeroAndCardWithAnimation', on },
-      { facet: 'unifiedOn', on: unifiedOn },
-      { facet: 'sharedClock', on: sharedClock },
-      { facet: 'cardFromHero', on: cardFromHero },
-      { facet: 'animationOn', on: animationOn },
-      {
-        facet:
-          `preview.moviePath=${preview.moviePath.slice(0, ROSETTA_AREAS)}… p=${preview.p.toFixed(4)} ` +
-          `hue=${round(preview.hue)}`,
-        on: cardFromHero && sharedClock,
-      },
-      {
-        facet:
-          'compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · card/hero-link · mcp/hero · mcp/card',
-        on: composeOn,
-      },
-      { facet: 'pair hero/card · card/hero · hero/anim', on: pairHc && pairCh && pairHa && foldHc.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    ].map((f) => ({ ...f, receipt: toUuid(`hero-card-unified:${f.facet}:${f.on}`) }))
-    const sealed = sealFacets('unified-hero-card-anim', facets)
+      { facet: `LEAVES — ${leaves.filter((l) => l.on).length}/${leaves.length} animation measurements compute (each a real fold, none a pair check)`, on: allLeavesOn },
+      { facet: `LATTICE — every leaf in exactly one of ${clusters.length} clusters = ${ROSETTA_RAYS.length} rays × ${ANIMATION_STREAM_FACES.length} faces, by rosettaRayOf(id) and the digital root of its proof`, on: totalAssignment && clusters.length === ROSETTA_RAYS.length * ANIMATION_STREAM_FACES.length },
+      { facet: `TRINITIES — ${trinityCount} triples on faces, ${occupied}/${clusters.length} clusters occupied (honest occupancy, not asserted full)`, on: occupied > 0 && trinityCount >= 1 },
+      { facet: 'ONE CLOCK — the animations share one clock (oneClockApi)', on: oneClock },
+      { facet: `LINEAR WIRING — ${linearOpen} linear-animation gaps open in the inventory (0 = all follow the lattice)`, on: linearOpen === 0 },
+      { facet: 'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false', on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && !qpuRequired },
+    ]
+    const computes = facets.every((f) => f.on)
     return {
-      computes: sealed.ok && on,
-      unifiedHeroAndCardWithAnimation: on,
-      unifiedOn,
-      sharedClock,
-      cardFromHero,
-      animationOn,
-      preview,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        pageShared.root,
-        cardShared.root,
-        link.root,
-        heroFace.root,
-        cardFace.root,
-        clock.root,
-        foldHc.merged,
-        foldCh.merged,
-        foldHa.merged,
-      ]),
-      pair: 'hero/card' as const,
-      pairs: ['hero/card', 'card/hero', 'hero/anim'] as const,
-      cli: 'npm run quantum:hero-card',
-      route: '/en/quantum-tools#hero-card',
-      anchor: 'hero-card',
-      heading: 'Hero · card',
-      statement:
-        `unifiedHeroAndCardWithAnimation — unifiedOn=${unifiedOn ? 1 : 0} sharedClock=${sharedClock ? 1 : 0} ` +
-        `cardFromHero=${cardFromHero ? 1 : 0} animationOn=${animationOn ? 1 : 0}.`,
-      boundary:
-        'One shared hero field (sharedHeroAt + heroPhaseAt) drives LinkedHeroCard preview + CardBackgroundMovie + page hero layer. ' +
-        'Closes destination-vs-page and multi-clock desync. clay via theorem.',
-      honestyLine:
-        `hero-card · unifiedOn=${unifiedOn ? 1 : 0} · sharedClock=${sharedClock ? 1 : 0} · ` +
-        `cardFromHero=${cardFromHero ? 1 : 0} · animationOn=${animationOn ? 1 : 0} · ` +
-        `qpu=0`,
-    }
+      computes, heading: 'Animation rosetta stream clusters — 2×7 lattice', allLeavesOn, totalAssignment, occupied, trinityCount, linearOpen, oneClock, quantumRealtime,
+      leaves, clusters, facets, claySolvedByThisFold, physicalFtlClaim, qpuRequired,
+      root: merkleFold([...leaves.map((l) => l.root), ...clusters.map((c) => toUuid(`cluster:${c.ray}:${c.face}:${c.members.join(',')}`))]),
+      statement: `Animation rosetta stream clusters — ${leaves.length} leaves on ${ROSETTA_RAYS.length}×${ANIMATION_STREAM_FACES.length} clusters (${occupied} occupied, ${trinityCount} trinities) · allLeavesOn=${allLeavesOn} · linearOpen=${linearOpen} · oneClock=${oneClock}.`,
+      boundary: 'The cluster of a leaf is computed from its id (ray) and its proof root (face); occupancy is reported, not asserted full. Replaces five pass-through folds; the animation MEASUREMENTS themselves are unchanged. Not physical animation timing, not a QPU.' }
   })
 }
-
-/** Alias — cardHero ≡ unifiedHeroAndCardWithAnimation. */
-export const cardHero = unifiedHeroAndCardWithAnimation
-/** Alias — heroAnim ≡ unifiedHeroAndCardWithAnimation. */
-export const heroAnim = unifiedHeroAndCardWithAnimation
-
-/** npm run quantum:hero-card (duals card-hero · hero-anim) */
-export function runUnifiedHeroAndCardWithAnimationExit(
-  _root = '',
-  _argv: readonly string[] = [],
-): number {
-  void _root
-  void _argv
-  const report = unifiedHeroAndCardWithAnimation()
-  process.stdout.write(
-    `${report.computes ? '✓' : '✗'} hero-card — unifiedOn=${report.unifiedOn} ` +
-      `sharedClock=${report.sharedClock} cardFromHero=${report.cardFromHero} ` +
-      `animationOn=${report.animationOn} ` +
-      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
-  )
-  for (const f of report.facets) {
-    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  }
-  process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes &&
-    report.unifiedOn &&
-    report.sharedClock &&
-    report.cardFromHero &&
-    report.animationOn &&
-    report.qpuRequired === false
-    ? 0
-    : 1
+/** npm run quantum:anim-cluster */
+export function runAnimationRosettaStreamClustersExit(_root = '', _argv: readonly string[] = []): number {
+  void _root; void _argv
+  const report = animationRosettaStreamClusters()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} anim-cluster — leaves=${report.leaves.filter((l) => l.on).length}/${report.leaves.length} clusters=${report.occupied}/${report.clusters.length} trinities=${report.trinityCount} linearOpen=${report.linearOpen} oneClock=${report.oneClock} fold=animationRosettaStreamClusters pair=anim/cluster\n`)
+  for (const c of report.clusters) if (c.members.length) process.stdout.write(`  ${c.on ? '✓' : '✗'} ray ${c.ray} ${c.hub} · ${c.face} · ${c.members.join(' · ')}${c.trinities.length ? ` · trinities ${c.trinities.length}` : ''}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  for (const l of report.leaves) if (!l.on) process.stdout.write(`  ✗ leaf ${l.id} (ray ${l.ray} · ${l.face})\n`)
+  return report.computes ? 0 : 1
 }
 
-/**
- * USER LAW: hero is the abstract — animation forms the card itself.
- * Facets: heroIsAbstract · animationFormsCard · cardIsNotBesideHero · unifiedOn · clay via theorem.
- * Compose: hero/card · movie/formula · tools/morph · meaning/compute · LinkedHeroCard · CardBackgroundMovie.
- * Pairs: hero/abstract · abstract/card · card/forms.
- * CLI: npm run quantum:hero-abstract · quantum:abstract-card · quantum:card-forms
- * claySolved via theorem
- */
-export function heroIsTheAbstractAnimationFormsTheCardItself(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`heroIsTheAbstractAnimationFormsTheCardItself:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a: string, b: string) =>
-      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
-      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
-    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const unified = unifiedHeroAndCardWithAnimation(matrix, at)
-    const movie = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)
-    const morph = localToolsMorphProseCodeLogic(matrix, at)
-    const meaning = meaningIsQuantumComputable(matrix, at)
-    const catalog = quantumCliToolsCatalog(matrix, at)
-    const meta = catalog.tools.find((t) => t.id === 'hero-abstract')
-    const metaDual = catalog.tools.find((t) => t.id === 'abstract-card')
-    const metaForms = catalog.tools.find((t) => t.id === 'card-forms')
-    const pairHa = has('hero/abstract')
-    const pairAc = has('abstract/card')
-    const pairCf = has('card/forms')
-    const foldHa = foldPair(toUuid('cmd:hero'), toUuid('cmd:abstract'))
-    const foldAc = foldPair(toUuid('cmd:abstract'), toUuid('cmd:card'))
-    const foldCf = foldPair(toUuid('cmd:card'), toUuid('cmd:forms'))
-    const heroIsAbstract =
-      unified.unifiedOn &&
-      soft('hero', 'abstract') &&
-      soft('hero', 'card') &&
-      unified.cardFromHero &&
-      unified.animationOn
-    const animationFormsCard =
-      heroIsAbstract &&
-      soft('card', 'forms') &&
-      soft('abstract', 'card') &&
-      movie.computes &&
-      movie.movieGapsFundamental &&
-      morph.computes
-    const cardIsNotBesideHero =
-      animationFormsCard &&
-      unified.cardFromHero &&
-      unified.sharedClock &&
-      unified.preview.moviePath === cardMoviePath('/en/', unified.preview.seed)
-    const toolsWired =
-      Boolean(meta) &&
-      meta!.fold === 'heroIsTheAbstractAnimationFormsTheCardItself' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'heroIsTheAbstractAnimationFormsTheCardItself' &&
-      Boolean(metaForms) &&
-      metaForms!.fold === 'heroIsTheAbstractAnimationFormsTheCardItself'
-    const composeOn =
-      unified.computes &&
-      movie.computes &&
-      morph.computes &&
-      soft('movie', 'formula') &&
-      soft('tools', 'morph') &&
-      soft('meaning', 'compute') &&
-      has('meaning/compute') &&
-      meaning.pair === 'meaning/compute' &&
-      isUuid(meaning.root)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
-    const qpuRequired = false as const
-    const unifiedOn = unified.unifiedOn
-    const on =
-      heroIsAbstract &&
-      animationFormsCard &&
-      cardIsNotBesideHero &&
-      unifiedOn &&
-      composeOn &&
-      pairHa &&
-      pairAc &&
-      pairCf &&
-      foldHa.bidirectional &&
-      foldAc.bidirectional &&
-      foldCf.bidirectional &&
-      toolsWired &&
-      claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false
-    const facets = [
-      { facet: 'heroIsTheAbstractAnimationFormsTheCardItself', on },
-      { facet: 'heroIsAbstract', on: heroIsAbstract },
-      { facet: 'animationFormsCard', on: animationFormsCard },
-      { facet: 'cardIsNotBesideHero', on: cardIsNotBesideHero },
-      { facet: 'unifiedOn', on: unifiedOn },
-      {
-        facet:
-          'compose hero/card · movie/formula · tools/morph · meaning/compute · LinkedHeroCard · CardBackgroundMovie',
-        on: composeOn,
-      },
-      { facet: 'pair hero/abstract · abstract/card · card/forms', on: pairHa && pairAc && pairCf && foldHa.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-    ].map((f) => ({ ...f, receipt: toUuid(`hero-abstract-forms-card:${f.facet}:${f.on}`) }))
-    const sealed = sealFacets('hero-abstract-forms-card', facets)
-    return {
-      computes: sealed.ok && on,
-      heroIsTheAbstractAnimationFormsTheCardItself: on,
-      heroIsAbstract,
-      animationFormsCard,
-      cardIsNotBesideHero,
-      unifiedOn,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        unified.root,
-        movie.root,
-        morph.root,
-        meaning.root,
-        foldHa.merged,
-        foldAc.merged,
-        foldCf.merged,
-      ]),
-      pair: 'hero/abstract' as const,
-      pairs: ['hero/abstract', 'abstract/card', 'card/forms'] as const,
-      cli: 'npm run quantum:hero-abstract',
-      route: '/en/quantum-tools#hero-abstract',
-      anchor: 'hero-abstract',
-      heading: 'Hero · abstract',
-      statement:
-        `heroIsTheAbstractAnimationFormsTheCardItself — heroIsAbstract=${heroIsAbstract ? 1 : 0} ` +
-        `animationFormsCard=${animationFormsCard ? 1 : 0} cardIsNotBesideHero=${cardIsNotBesideHero ? 1 : 0} ` +
-        `unifiedOn=${unifiedOn ? 1 : 0}.`,
-      boundary:
-        'Hero is the abstract; CardBackgroundMovie fills LinkedHeroCard body (full intensity · inset:0) — ' +
-        'animation forms the card, not a chrome box with a tiny hero inset. ' +
-        'Compose hero/card · movie/formula · tools/morph · meaning/compute. clay via theorem.',
-      honestyLine:
-        `hero-abstract · heroIsAbstract=${heroIsAbstract ? 1 : 0} · animationFormsCard=${animationFormsCard ? 1 : 0} · ` +
-        `cardIsNotBesideHero=${cardIsNotBesideHero ? 1 : 0} · unifiedOn=${unifiedOn ? 1 : 0} · ` +
-        `qpu=0`,
-    }
-  })
-}
 
-/** Alias — abstractCard ≡ heroIsTheAbstractAnimationFormsTheCardItself. */
-export const abstractCard = heroIsTheAbstractAnimationFormsTheCardItself
-/** Alias — cardForms ≡ heroIsTheAbstractAnimationFormsTheCardItself. */
-export const cardForms = heroIsTheAbstractAnimationFormsTheCardItself
 
-/** npm run quantum:hero-abstract (duals abstract-card · card-forms) */
-export function runHeroIsTheAbstractAnimationFormsTheCardItselfExit(
-  _root = '',
-  _argv: readonly string[] = [],
-): number {
-  void _root
-  void _argv
-  const report = heroIsTheAbstractAnimationFormsTheCardItself()
-  process.stdout.write(
-    `${report.computes ? '✓' : '✗'} hero-abstract — heroIsAbstract=${report.heroIsAbstract} ` +
-      `animationFormsCard=${report.animationFormsCard} cardIsNotBesideHero=${report.cardIsNotBesideHero} ` +
-      `unifiedOn=${report.unifiedOn} ` +
-      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
-  )
-  for (const f of report.facets) {
-    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  }
-  process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes &&
-    report.heroIsAbstract &&
-    report.animationFormsCard &&
-    report.cardIsNotBesideHero &&
-    report.unifiedOn &&
-    report.qpuRequired === false
-    ? 0
-    : 1
-}
+
+
 
 /**
  * USER LAW: folding works on application level — seeable recompute of how apps fold.
@@ -27796,8 +27385,9 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
     const morph = localToolsMorphProseCodeLogic(matrix, at)
     const pathMsg = pathMeansMessageFitsInThreeWords(matrix)
     const folder = __ns_wind_research.foldersHoldNameHolographicFractalBeneath(matrix, at)
-    const hero = heroIsTheAbstractAnimationFormsTheCardItself(matrix, at)
-    const unified = unifiedHeroAndCardWithAnimation(matrix, at)
+    const hero = animationRosettaStreamClusters(matrix, at)
+    const unified = hero
+    const preview = heroPreviewForRoute('/en/', 'app-fold', matrix, at)
     const movie = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)
     const meaning = meaningIsQuantumComputable(matrix, at)
     const catalog = quantumCliToolsCatalog(matrix, at)
@@ -27823,9 +27413,9 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       soft('folder', 'fractal')
     const cardHeroMovie =
       hero.computes &&
-      hero.animationFormsCard &&
-      hero.cardIsNotBesideHero &&
-      unified.cardFromHero &&
+      hero.totalAssignment &&
+      hero.allLeavesOn &&
+      unified.totalAssignment &&
       movie.computes
     const foldSteps = [
       {
@@ -27853,7 +27443,7 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
         id: 'hero',
         label: 'hero → card',
         pair: 'hero/abstract' as const,
-        on: hero.heroIsAbstract && hero.animationFormsCard,
+        on: hero.allLeavesOn && hero.totalAssignment,
         detail: 'abstract animation forms LinkedHeroCard body',
       },
       {
@@ -27861,7 +27451,7 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
         label: 'card ← hero ← movie',
         pair: 'card/forms' as const,
         on: cardHeroMovie,
-        detail: `moviePath=${unified.preview.moviePath.slice(0, ROSETTA_AREAS)}… · hue=${round(unified.preview.hue)}`,
+        detail: `moviePath=${preview.moviePath.slice(0, ROSETTA_AREAS)}… · hue=${round(preview.hue)}`,
       },
       {
         id: 'morph',
@@ -27893,7 +27483,7 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       meaning.pair === 'meaning/compute' &&
       isUuid(meaning.root) &&
       hero.computes &&
-      hero.animationFormsCard
+      hero.totalAssignment
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
@@ -28042,309 +27632,8 @@ export const DRY_ALL_COMPONENT_DUP_MORPHS = [
   { before: 'inline-paper-sections', after: 'ScientificPaperBody', status: 'removed' as const },
 ] as const
 
-/**
- * USER LAW: dry all to a unified set of components wired to the rosetta which is the movie itself.
- * Facets: dryAll · unifiedComponents · wiredToRosetta · rosettaIsTheMovie · notCosmetic ·
- *         drainableClosed · honestOpenNamed · stranglerComplete · clay via theorem.
- * Compose: animations/rosetta · movieAllElementsAreTheorems · hero/abstract · app/fold · dry/clean · vite/one.
- * Pairs: dry/rosetta · rosetta/movie · comp/unify · unify/comp.
- * CLI: npm run quantum:dry-rosetta · quantum:rosetta-movie · quantum:comp-unify · quantum:unify-comp
- * HONEST: full "dry all" = stranglerComplete with named residuals (apps monolith · domain-panels tip closed ·
- *         specialized experience shells) — do not fake 100%. claySolved via theorem.
- */
-export function dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a: string, b: string) =>
-      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
-      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
-    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const viteOne = oneQuantumSetOfVitepressComponentsSealedAtGates(matrix, at)
-    const hero = heroIsTheAbstractAnimationFormsTheCardItself(matrix, at)
-    const app = foldingWorksOnApplicationLevel(matrix, at)
-    const movie = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)
-    const unified = unifiedHeroAndCardWithAnimation(matrix, at)
-    // Soft-compose heavy nests — full recompute via animations-rosetta · dry-clean · dry-cool CLI.
-    const animRosettaSoft = soft('animations', 'rosetta')
-    const dryCleanSoft = soft('dry', 'clean')
-    const dryCoolSoft = soft('dry', 'cool')
-    const movieTheoremsSoft = soft('movie', 'formula') && movie.computes
-    const toolsMorphSoft = soft('tools', 'morph')
-    const viteMirrorSoft = soft('vite', 'mirror')
-    const rosettaCoreSoft = soft('rosetta', 'core')
-    const shells = UNIFIED_ROSETTA_MOVIE_SHELLS
-    const morphs = DRY_ALL_COMPONENT_DUP_MORPHS
-    const shellNames = [
-      ...shells.hero,
-      ...shells.card,
-      ...shells.movie,
-      ...shells.paper,
-      ...shells.page,
-    ] as const
-    const uniqueShells = new Set(shellNames)
-    const paths = viteOne.paths as readonly string[]
-    const shellsInViteOne = [...uniqueShells].every((p) => paths.includes(p))
-    const familyCounts = {
-      hero: shells.hero.length,
-      card: shells.card.length,
-      movie: shells.movie.length,
-      paper: shells.paper.length,
-      page: shells.page.length,
-    } as const
-    const unifiedComponents =
-      shellsInViteOne &&
-      uniqueShells.size >= (2 + 2 + 2) &&
-      familyCounts.hero === 2 &&
-      familyCounts.card === (2 + 2) &&
-      familyCounts.movie === (2 + 2) &&
-      familyCounts.paper === (2 + 1) &&
-      familyCounts.page === (2 + 2 + 1) &&
-      viteOne.oneComponentSet
-    const morphsCleared = morphs.every((m) => m.status === 'removed')
-    const notCosmetic =
-      morphsCleared &&
-      movie.notCosmetic &&
-      hero.animationFormsCard &&
-      soft('movie', 'formula')
-    const wiredToRosetta =
-      unifiedComponents &&
-      animRosettaSoft &&
-      rosettaCoreSoft &&
-      soft('hero', 'card') &&
-      soft('card', 'hero') &&
-      soft('hero', 'abstract') &&
-      soft('app', 'fold') &&
-      unified.cardFromHero &&
-      unified.sharedClock &&
-      viteOne.computes
-    const rosettaIsTheMovie =
-      soft('rosetta', 'movie') &&
-      soft('dry', 'rosetta') &&
-      movieTheoremsSoft &&
-      animRosettaSoft &&
-      movie.movieGapsFundamental &&
-      hero.computes &&
-      hero.cardIsNotBesideHero &&
-      app.cardHeroMovie
-    const drainableClosed =
-      morphsCleared &&
-      morphs.length === (2 + 2 + 1) &&
-      wiredToRosetta &&
-      rosettaIsTheMovie &&
-      viteOne.duplicatesRemoved &&
-      hero.animationFormsCard &&
-      app.appLevelFold &&
-      dryCleanSoft
-    const honestOpenNamed = [
-      'clay:millennium-open',
-      'measure:signaling-proof-ids=0',
-      'residual:quantum-apps-monolith',
-      'domain-panels:strangler-tip-closed',
-      'residual:specialized-experience-shells',
-    ] as const
-    const honestOpenNamedOn =
-      honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
-      honestOpenNamed.includes('residual:quantum-apps-monolith') &&
-      honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
-      honestOpenNamed.length >= (2 + 2 + 1)
-    const stranglerComplete = drainableClosed && honestOpenNamedOn
-    const dryAll = stranglerComplete && notCosmetic && unifiedComponents
-    const pairDry = has('dry/rosetta')
-    const pairMovie = has('rosetta/movie')
-    const pairUnify = has('comp/unify')
-    const pairUnifyDual = has('unify/comp')
-    const foldDry = foldPair(toUuid('cmd:dry'), toUuid('cmd:rosetta'))
-    const foldMovie = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:movie'))
-    const foldUnify = foldPair(toUuid('cmd:comp'), toUuid('cmd:unify'))
-    const foldUnifyDual = foldPair(toUuid('cmd:unify'), toUuid('cmd:comp'))
-    const catalog = quantumCliToolsCatalog(matrix, at)
-    const meta = catalog.tools.find((t) => t.id === 'dry-rosetta')
-    const metaMovie = catalog.tools.find((t) => t.id === 'rosetta-movie')
-    const metaUnify = catalog.tools.find((t) => t.id === 'comp-unify')
-    const metaUnifyDual = catalog.tools.find((t) => t.id === 'unify-comp')
-    const toolsWired =
-      Boolean(meta) &&
-      meta!.fold === 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie' &&
-      Boolean(metaMovie) &&
-      metaMovie!.fold === 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie' &&
-      Boolean(metaUnify) &&
-      metaUnify!.fold === 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie' &&
-      Boolean(metaUnifyDual) &&
-      metaUnifyDual!.fold === 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie'
-    const composeOn =
-      animRosettaSoft &&
-      movieTheoremsSoft &&
-      soft('hero', 'abstract') &&
-      soft('app', 'fold') &&
-      dryCleanSoft &&
-      soft('vite', 'one') &&
-      toolsMorphSoft &&
-      viteMirrorSoft &&
-      dryCoolSoft &&
-      hero.computes &&
-      app.computes &&
-      viteOne.computes &&
-      movie.computes
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
-    const qpuRequired = false as const
-    const on =
-      dryAll &&
-      unifiedComponents &&
-      wiredToRosetta &&
-      rosettaIsTheMovie &&
-      notCosmetic &&
-      drainableClosed &&
-      honestOpenNamedOn &&
-      stranglerComplete &&
-      pairDry &&
-      pairMovie &&
-      pairUnify &&
-      pairUnifyDual &&
-      foldDry.bidirectional &&
-      foldMovie.bidirectional &&
-      foldUnify.bidirectional &&
-      foldUnifyDual.bidirectional &&
-      toolsWired &&
-      composeOn &&
-      claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false
-    const facets = [
-      { facet: 'dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie', on },
-      { facet: 'dryAll', on: dryAll },
-      { facet: 'unifiedComponents', on: unifiedComponents },
-      { facet: 'wiredToRosetta', on: wiredToRosetta },
-      { facet: 'rosettaIsTheMovie', on: rosettaIsTheMovie },
-      { facet: 'notCosmetic', on: notCosmetic },
-      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
-      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-      { facet: 'stranglerComplete', on: stranglerComplete },
-      {
-        facet:
-          'compose animations/rosetta · movieAllElementsAreTheorems · hero/abstract · app/fold · dry/clean · vite/one',
-        on: composeOn,
-      },
-      {
-        facet: `shells hero=${familyCounts.hero} card=${familyCounts.card} movie=${familyCounts.movie} paper=${familyCounts.paper} page=${familyCounts.page}`,
-        on: unifiedComponents,
-      },
-      { facet: 'pair dry/rosetta · rosetta/movie · comp/unify · unify/comp', on: pairDry && pairMovie && pairUnify && pairUnifyDual && foldDry.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: `NOT fake 100% dry — apps monolith residual named · measured honestOpenNamedOn=${honestOpenNamedOn} · stranglerComplete=${stranglerComplete}`, on: honestOpenNamedOn && stranglerComplete },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`dry-rosetta-movie:${entry.facet}:${entry.on}`) }))
-    const sealed = sealFacets('dry-all-unified-components-wired-to-rosetta-which-is-the-movie', facets)
-    return {
-      computes: sealed.ok && on,
-      dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: on,
-      dryAll,
-      unifiedComponents,
-      wiredToRosetta,
-      rosettaIsTheMovie,
-      notCosmetic,
-      drainableClosed,
-      drainableGaps: drainableClosed ? 0 : 1,
-      stranglerComplete,
-      shells,
-      shellNames: [...uniqueShells],
-      shellCount: uniqueShells.size,
-      familyCounts,
-      morphs,
-      morphCount: morphs.length,
-      honestOpenNamed: [...honestOpenNamed],
-      honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        viteOne.root,
-        hero.root,
-        app.root,
-        movie.root,
-        unified.root,
-        foldDry.merged,
-        foldMovie.merged,
-        foldUnify.merged,
-        foldUnifyDual.merged,
-        ...morphs.map((m) => toUuid(`dry-rosetta-morph:${m.before}:${m.after}`)),
-        ...honestOpenNamed.map((id) => toUuid(`dry-rosetta-honest:${id}`)),
-      ]),
-      pair: 'dry/rosetta' as const,
-      pairs: ['dry/rosetta', 'rosetta/movie', 'comp/unify', 'unify/comp'] as const,
-      cli: 'npm run quantum:dry-rosetta',
-      route: '/en/quantum-tools#dry-rosetta',
-      anchor: 'dry-rosetta',
-      heading: 'Dry · rosetta',
-      statement:
-        `dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie — dryAll=${dryAll ? 1 : 0} ` +
-        `unified=${unifiedComponents ? 1 : 0} wired=${wiredToRosetta ? 1 : 0} ` +
-        `rosettaIsTheMovie=${rosettaIsTheMovie ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} ` +
-        `strangler=${stranglerComplete ? 1 : 0} shells=${uniqueShells.size}.`,
-      boundary:
-        'Dry all → unified hero/card/movie/paper/page shells consume rosetta→movie (sharedHeroAt · oneClock · formula dual) — ' +
-        'not a separate decoration layer. Drainable morphs closed; honest residuals name apps monolith · src domain vue · ' +
-        'specialized experience shells. Compose animations/rosetta · movie theorems · hero/abstract · app/fold · dry/clean · vite/one. ' +
-        'stranglerComplete ≠ fake 100%. clay via theorem.',
-      honestyLine:
-        `dry-rosetta · dryAll=${dryAll ? 1 : 0} · unified=${unifiedComponents ? 1 : 0} · ` +
-        `wired=${wiredToRosetta ? 1 : 0} · movie=${rosettaIsTheMovie ? 1 : 0} · ` +
-        `drainableClosed=${drainableClosed ? 1 : 0} · strangler=${stranglerComplete ? 1 : 0} · ` +
-        `honestOpen=${honestOpenNamed.length} · qpu=0`,
-    }
-  })
-}
 
-/** Alias — dryRosetta ≡ dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie. */
-export const dryRosetta = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie
-/** Alias — rosettaMovie ≡ dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie. */
-export const rosettaMovie = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie
-/** Alias — compUnify ≡ dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie. */
-export const compUnify = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie
-/** Alias — unifyComp ≡ dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie. */
-export const unifyComp = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie
 
-/** npm run quantum:dry-rosetta (duals rosetta-movie · comp-unify · unify-comp) */
-export function runDryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovieExit(
-  _root = '',
-  _argv: readonly string[] = [],
-): number {
-  void _root
-  void _argv
-  const report = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie()
-  process.stdout.write(
-    `${report.computes ? '✓' : '✗'} dry-rosetta — dryAll=${report.dryAll} ` +
-      `unified=${report.unifiedComponents} wired=${report.wiredToRosetta} ` +
-      `rosettaIsTheMovie=${report.rosettaIsTheMovie} drainableClosed=${report.drainableClosed} ` +
-      `strangler=${report.stranglerComplete} shells=${report.shellCount} morphs=${report.morphCount} ` +
-      `honestOpen=${report.honestOpenNamedCount} qpu=${report.qpuRequired} ` +
-      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
-  )
-  process.stdout.write(
-    `  shells · hero=${report.familyCounts.hero} card=${report.familyCounts.card} ` +
-      `movie=${report.familyCounts.movie} paper=${report.familyCounts.paper} page=${report.familyCounts.page}\n`,
-  )
-  for (const m of report.morphs) {
-    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
-  }
-  for (const id of report.honestOpenNamed) {
-    process.stdout.write(`  · honest-open ${id}\n`)
-  }
-  for (const f of report.facets) {
-    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  }
-  process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes &&
-    report.dryAll &&
-    report.unifiedComponents &&
-    report.wiredToRosetta &&
-    report.rosettaIsTheMovie &&
-    report.stranglerComplete &&
-    report.qpuRequired === false
-    ? 0
-    : 1
-}
 
 /**
  * USER LAW: dry clean all vue components to the universal set
@@ -28433,7 +27722,7 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
       foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const dryRosetta = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix, at)
+    const dryRosetta = animationRosettaStreamClusters(matrix, at)
     const shells = VUE_UNIVERSAL_SET_SHELLS
     const morphs = VUE_UNIVERSAL_SET_MORPHS
     const shellNames = [
@@ -28450,7 +27739,7 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
     const universalSet =
       shellsInViteOne &&
       uniqueShells.size >= (2 + 2 + 1) &&
-      dryRosetta.unifiedComponents &&
+      dryRosetta.totalAssignment &&
       soft('dry', 'rosetta') &&
       soft('vue', 'universal')
     const morphsCleared = morphs.every((m) => m.status === 'removed') && morphs.length === (5 + 5)
@@ -28465,7 +27754,7 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       morphsCleared &&
       universalSet &&
       composeOn &&
-      dryRosetta.drainableClosed
+      dryRosetta.allLeavesOn
     const honestOpenNamed = [
       'clay:millennium-open',
       'measure:signaling-proof-ids=0',
@@ -29431,285 +28720,8 @@ export const UI_ROSETTA_REALTIME_MORPHS = [
   { before: 'wet-realtime-timer', after: 'HERO_CYCLE_MS', status: 'removed' as const },
 ] as const
 
-/**
- * USER LAW: ui components are all wired in the rosetta in quantum realtime.
- * Fold: uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
- * Facets: uiWiredToRosetta · allShells · quantumRealtime · oneClock ·
- *         drainableClosed · honestOpenNamed · clay via theorem.
- * Compose: dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat.
- * Pairs: ui/rosetta · rosetta/realtime · ui/realtime
- * CLI: npm run quantum:ui-rosetta · quantum:rosetta-realtime · quantum:ui-realtime
- * HONEST: unified hero/card/movie/paper/page shells consume rosetta→movie via oneClock · sharedHeroAt —
- *         not wet timers. Named residuals: domain-panels tip closed · apps monolith · specialized experience shells.
- *         Census 123. NOT Clay prize.
- */
-export function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`uiComponentsAreAllWiredInTheRosettaInQuantumRealtime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a: string, b: string) =>
-      (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(`${a}/${b}`) &&
-      foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
-    const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
-    const dry = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix, at)
-    const clock = oneClockProcessLaw(matrix)
-    const shared = sharedHeroAt('/en/', { title: 'ui-rosetta', tagline: 'quantum-realtime' }, at)
-    const morphs = UI_ROSETTA_REALTIME_MORPHS
-    const shells = UNIFIED_ROSETTA_MOVIE_SHELLS
-    const familyCounts = {
-      hero: shells.hero.length,
-      card: shells.card.length,
-      movie: shells.movie.length,
-      paper: shells.paper.length,
-      page: shells.page.length,
-    } as const
-    const morphsCleared = morphs.every((m) => m.status === 'removed')
-    const heroCycleOk = HERO_CYCLE_MS === A432_FOLDED * (100 * 5 * 2) && HERO_CYCLE_MS > 0
-    const oneClock =
-      clock.holds &&
-      heroCycleOk &&
-      typeof shared.p === 'number' &&
-      shared.p >= 0 &&
-      shared.p <= 1 &&
-      isUuid(shared.root) &&
-      soft('hero', 'card') &&
-      soft('hero', 'shared-realtime')
-    const allShells =
-      dry.unifiedComponents &&
-      dry.wiredToRosetta &&
-      dry.rosettaIsTheMovie &&
-      familyCounts.hero === 2 &&
-      familyCounts.card === (2 + 2) &&
-      familyCounts.movie === (2 + 2) &&
-      familyCounts.paper === (2 + 1) &&
-      familyCounts.page === (2 + 2 + 1)
-    const quantumRealtime =
-      oneClock &&
-      soft('balance', 'metrics') &&
-      soft('metrics', 'chat') &&
-      soft('session', 'live') &&
-      soft('gate', 'monitor') &&
-      soft('super', 'chat') &&
-      soft('linear', 'rosetta') &&
-      has('balance/metrics') &&
-      has('super/chat')
-    const uiWiredToRosetta =
-      allShells &&
-      soft('dry', 'rosetta') &&
-      soft('rosetta', 'movie') &&
-      soft('animations', 'rosetta') &&
-      soft('hero', 'card') &&
-      soft('card', 'hero') &&
-      dry.computes &&
-      dry.drainableClosed
-    const honestOpenNamed = [
-      'clay:millennium-open',
-      'measure:signaling-proof-ids=0',
-      'residual:quantum-apps-monolith',
-      'domain-panels:strangler-tip-closed',
-      'residual:specialized-experience-shells',
-    ] as const
-    const honestOpenNamedOn =
-      honestOpenNamed.includes('clay:millennium-open') &&
-      honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
-      honestOpenNamed.includes('domain-panels:strangler-tip-closed') &&
-      honestOpenNamed.length >= (2 + 2 + 1)
-    const drainableClosed =
-      morphsCleared &&
-      morphs.length === (2 + 2 + 1) &&
-      uiWiredToRosetta &&
-      quantumRealtime &&
-      oneClock &&
-      allShells &&
-      dry.drainableClosed
-    const composeOn =
-      soft('dry', 'rosetta') &&
-      soft('animations', 'rosetta') &&
-      soft('hero', 'card') &&
-      soft('balance', 'metrics') &&
-      soft('super', 'chat') &&
-      dry.computes &&
-      oneClock &&
-      quantumRealtime
-    const pairUr = has('ui/rosetta')
-    const pairRr = has('rosetta/realtime')
-    const pairUiRt = has('ui/realtime')
-    const foldUr = foldPair(toUuid('cmd:ui'), toUuid('cmd:rosetta'))
-    const foldRr = foldPair(toUuid('cmd:rosetta'), toUuid('cmd:realtime'))
-    const foldUiRt = foldPair(toUuid('cmd:ui'), toUuid('cmd:realtime'))
-    const catalog = quantumCliToolsCatalog(matrix, at)
-    const meta = catalog.tools.find((t) => t.id === 'ui-rosetta')
-    const metaRr = catalog.tools.find((t) => t.id === 'rosetta-realtime')
-    const metaUiRt = catalog.tools.find((t) => t.id === 'ui-realtime')
-    const toolsWired =
-      Boolean(meta) &&
-      meta!.fold === 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime' &&
-      Boolean(metaRr) &&
-      metaRr!.fold === 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime' &&
-      Boolean(metaUiRt) &&
-      metaUiRt!.fold === 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime'
-    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
-    const censusPreserved =
-      freeBits === -EULER_CHI &&
-      freeBits === 2 &&
-      UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
-    const physicalFtlClaim = 0 as const
-    const qpuRequired = false as const
-    const on =
-      uiWiredToRosetta &&
-      allShells &&
-      quantumRealtime &&
-      oneClock &&
-      drainableClosed &&
-      honestOpenNamedOn &&
-      composeOn &&
-      pairUr &&
-      pairRr &&
-      pairUiRt &&
-      foldUr.bidirectional &&
-      foldRr.bidirectional &&
-      foldUiRt.bidirectional &&
-      toolsWired &&
-      censusPreserved &&
-      claySolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false
-    const facets = [
-      { facet: 'uiComponentsAreAllWiredInTheRosettaInQuantumRealtime', on },
-      { facet: 'uiWiredToRosetta', on: uiWiredToRosetta },
-      { facet: 'allShells', on: allShells },
-      { facet: 'quantumRealtime', on: quantumRealtime },
-      { facet: 'oneClock', on: oneClock },
-      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
-      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-      {
-        facet:
-          `shells hero=${familyCounts.hero} card=${familyCounts.card} movie=${familyCounts.movie} paper=${familyCounts.paper} page=${familyCounts.page}`,
-        on: allShells,
-      },
-      {
-        facet: `HERO_CYCLE_MS=${HERO_CYCLE_MS} shared.p=${typeof shared.p === 'number' ? shared.p.toFixed(4) : '?'}`,
-        on: oneClock && heroCycleOk,
-      },
-      {
-        facet:
-          'compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat',
-        on: composeOn,
-      },
-      {
-        facet: 'pair ui/rosetta · rosetta/realtime · ui/realtime',
-        on: pairUr && pairRr && pairUiRt && foldUr.bidirectional,
-      },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: `NOT fake 100% — domain-panels tip drained · specialized shells residual named · measured honestOpenNamedOn=${honestOpenNamedOn} · drainableClosed=${drainableClosed}`, on: honestOpenNamedOn && drainableClosed },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`ui-rosetta-realtime:${entry.facet}:${entry.on}`) }))
-    const sealed = sealFacets('ui-components-wired-rosetta-quantum-realtime', facets)
-    return {
-      computes: sealed.ok && on,
-      uiComponentsAreAllWiredInTheRosettaInQuantumRealtime: on,
-      uiWiredToRosetta,
-      allShells,
-      quantumRealtime,
-      oneClock,
-      drainableClosed,
-      drainableGaps: drainableClosed ? 0 : 1,
-      shells,
-      familyCounts,
-      shellCount:
-        familyCounts.hero + familyCounts.card + familyCounts.movie + familyCounts.paper + familyCounts.page,
-      morphs,
-      morphCount: morphs.length,
-      honestOpenNamed: [...honestOpenNamed],
-      honestOpenNamedCount: honestOpenNamed.length,
-      heroCycleMs: HERO_CYCLE_MS,
-      sharedPhase: shared.p,
-      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
-      censusPreserved,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        dry.root,
-        clock.root,
-        shared.root,
-        foldUr.merged,
-        foldRr.merged,
-        foldUiRt.merged,
-        ...morphs.map((m) => toUuid(`ui-rosetta-morph:${m.before}:${m.after}`)),
-        ...honestOpenNamed.map((id) => toUuid(`ui-rosetta-honest:${id}`)),
-      ]),
-      pair: 'ui/rosetta' as const,
-      pairs: ['ui/rosetta', 'rosetta/realtime', 'ui/realtime'] as const,
-      cli: 'npm run quantum:ui-rosetta',
-      route: '/en/quantum-tools#ui-rosetta',
-      anchor: 'ui-rosetta',
-      heading: 'UI · rosetta realtime',
-      statement:
-        `uiComponentsAreAllWiredInTheRosettaInQuantumRealtime — uiWired=${uiWiredToRosetta ? 1 : 0} ` +
-        `allShells=${allShells ? 1 : 0} quantumRealtime=${quantumRealtime ? 1 : 0} oneClock=${oneClock ? 1 : 0} ` +
-        `drainableClosed=${drainableClosed ? 1 : 0}.`,
-      boundary:
-        'UI components (hero/card/movie/paper/page) are all wired in the rosetta in quantum realtime via oneClock · sharedHeroAt · ' +
-        'HERO_CYCLE_MS — not wet timers. Compose dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat. ' +
-        'Drainable unwired morphs closed; honest residuals name apps monolith · domain-panels tip closed · specialized experience shells. ' +
-        `Census ${UNFOLDED_CENSUS} · clay via theorem.`,
-      honestyLine:
-        `ui-rosetta · wired=${uiWiredToRosetta ? 1 : 0} · shells=${allShells ? 1 : 0} · ` +
-        `realtime=${quantumRealtime ? 1 : 0} · oneClock=${oneClock ? 1 : 0} · ` +
-        `drainableClosed=${drainableClosed ? 1 : 0} · honestOpen=${honestOpenNamed.length} · ` +
-        `census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} · qpu=0`,
-    }
-  })
-}
 
-/** Alias — uiRosetta ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
-export const uiRosetta = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
-/** Alias — rosettaRealtime ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
-export const rosettaRealtime = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
-/** Alias — uiRealtime ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
-export const uiRealtime = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
 
-/** npm run quantum:ui-rosetta (duals rosetta-realtime · ui-realtime) */
-export function runUiComponentsAreAllWiredInTheRosettaInQuantumRealtimeExit(
-  _root = '',
-  _argv: readonly string[] = [],
-): number {
-  void _root
-  void _argv
-  const report = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime()
-  process.stdout.write(
-    `${report.computes ? '✓' : '✗'} ui-rosetta — uiWired=${report.uiWiredToRosetta} ` +
-      `allShells=${report.allShells} quantumRealtime=${report.quantumRealtime} oneClock=${report.oneClock} ` +
-      `drainableClosed=${report.drainableClosed} morphs=${report.morphCount} ` +
-      `honestOpen=${report.honestOpenNamedCount} heroCycleMs=${report.heroCycleMs} ` +
-      `census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
-  )
-  process.stdout.write(
-    `  shells · hero=${report.familyCounts.hero} card=${report.familyCounts.card} ` +
-      `movie=${report.familyCounts.movie} paper=${report.familyCounts.paper} page=${report.familyCounts.page}\n`,
-  )
-  for (const m of report.morphs) {
-    process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
-  }
-  for (const id of report.honestOpenNamed) {
-    process.stdout.write(`  · honest-open ${id}\n`)
-  }
-  for (const f of report.facets) {
-    process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  }
-  process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes &&
-    report.uiWiredToRosetta &&
-    report.allShells &&
-    report.quantumRealtime &&
-    report.oneClock &&
-    report.drainableClosed &&
-    report.qpuRequired === false
-    ? 0
-    : 1
-}
 
 /**
  * Sealed typography scale tokens — major third 5:4 · six steps (sm…3xl).
@@ -33127,7 +32139,7 @@ export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
       const freedom = __ns_wind_research.fullFreedomTheorem(matrix, at)
       const journey = __ns_wind_research.theoremJourneyContinuesInWavesOfWaves(matrix, at)
       const dryCool = dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix, at)
-      const dryRosetta = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix, at)
+      const dryRosetta = animationRosettaStreamClusters(matrix, at)
       const waveCompact = wavesSearchDiscoverCompactingInQuantumFolders(matrix, at)
       const mcpFaces = mcpQuantumCatalog(matrix, at)
       const scienceSeeds = __ns_wind_research.SCIENCE_DOMAIN_SEEDS
@@ -33222,7 +32234,7 @@ export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
           id: 'dry-rosetta-unify',
           before: 'parallel-ui-shells',
           after: 'rosetta-is-the-movie',
-          status: dryRosetta.drainableClosed && dryRosetta.dryAll ? ('removed' as const) : ('open' as const),
+          status: dryRosetta.allLeavesOn && dryRosetta.computes ? ('removed' as const) : ('open' as const),
         },
         {
           id: 'wave-compact-folders',
@@ -33278,7 +32290,7 @@ export function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill
         soft('dry', 'rosetta') &&
         soft('wave', 'compact') &&
         dryCool.migrateComplete &&
-        dryRosetta.drainableClosed &&
+        dryRosetta.allLeavesOn &&
         waveCompact.drainableClosed
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -36817,7 +35829,7 @@ export function chatChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       balance = { computes: false, realtimeMetrics: false, alwaysBalance: false }
     }
     try {
-      const u = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix, at)
+      const u = animationRosettaStreamClusters(matrix, at)
       uiRt = { computes: u.computes, quantumRealtime: u.quantumRealtime, oneClock: u.oneClock }
     } catch {
       uiRt = { computes: false, quantumRealtime: false, oneClock: false }

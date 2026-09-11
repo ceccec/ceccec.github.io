@@ -55,10 +55,8 @@ import {
   movieGapsFeelableByObservation,
   movieGapsAreFundamentalDesignAndFormulaMappingGaps,
   theoremFormulaComputableIndexForAnySuperposition,
-  unifiedHeroAndCardWithAnimation,
-  heroIsTheAbstractAnimationFormsTheCardItself,
+  animationRosettaStreamClusters,
   foldingWorksOnApplicationLevel,
-  dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie,
   dryCleanAllVueComponentsToTheUniversalSet,
   wavesSearchDiscoverCompactingInQuantumFolders,
   importFractalMap,
@@ -67,7 +65,6 @@ import {
   mergeWave,
   alwaysBalanceUsingRealtimeMetricsAndChat,
   eachSuperpositionIsAChatroom,
-  uiComponentsAreAllWiredInTheRosettaInQuantumRealtime,
   typographyIsTheUniversalContentMatrix,
   allColorsDryCleanWiredToRosettaAndThemes,
   cssShowsTheHiddenGapsInDryFusion,
@@ -1187,10 +1184,8 @@ const mcpMovie = computed(() => mcpQuantumMovie())
 const movieFeel = computed(() => movieGapsFeelableByObservation())
 const movieFormula = computed(() => movieGapsAreFundamentalDesignAndFormulaMappingGaps())
 const theoremIndexPanel = computed(() => theoremFormulaComputableIndexForAnySuperposition())
-const heroCard = computed(() => unifiedHeroAndCardWithAnimation())
-const heroAbstract = computed(() => heroIsTheAbstractAnimationFormsTheCardItself())
+const animCluster = computed(() => animationRosettaStreamClusters())
 const appFold = computed(() => foldingWorksOnApplicationLevel())
-const dryRosetta = computed(() => dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie())
 const vueDryUniversal = computed(() => dryCleanAllVueComponentsToTheUniversalSet())
 const seoGapsReport = computed(() => findSeoViolations())
 const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
@@ -1200,7 +1195,6 @@ const importAuditPanel = computed(() => importAudit())
 const mergeWavePanel = computed(() => mergeWave())
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const superChat = computed(() => eachSuperpositionIsAChatroom())
-const uiRosetta = computed(() => uiComponentsAreAllWiredInTheRosettaInQuantumRealtime())
 const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
 const cssGaps = computed(() => cssShowsTheHiddenGapsInDryFusion())
@@ -2239,17 +2233,10 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'hero-card' || toolId === 'card-hero' || toolId === 'hero-anim') {
-      const r = unifiedHeroAndCardWithAnimation()
-      ok = r.computes && r.unifiedOn && r.cardFromHero
-      summary = `unifiedOn=${r.unifiedOn} sharedClock=${r.sharedClock} cardFromHero=${r.cardFromHero} animationOn=${r.animationOn}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'hero-abstract' || toolId === 'abstract-card' || toolId === 'card-forms') {
-      const r = heroIsTheAbstractAnimationFormsTheCardItself()
-      ok = r.computes && r.heroIsAbstract && r.animationFormsCard && r.cardIsNotBesideHero
-      summary = `heroIsAbstract=${r.heroIsAbstract} animationFormsCard=${r.animationFormsCard} cardIsNotBesideHero=${r.cardIsNotBesideHero} unifiedOn=${r.unifiedOn}`
+    } else if (toolId === 'anim-cluster' || toolId === 'cluster-anim') {
+      const r = animationRosettaStreamClusters()
+      ok = r.computes && r.allLeavesOn && r.totalAssignment
+      summary = `leaves=${r.leaves.filter((l) => l.on).length}/${r.leaves.length} clusters=${r.occupied}/${r.clusters.length} trinities=${r.trinityCount} linearOpen=${r.linearOpen} oneClock=${r.oneClock}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2257,13 +2244,6 @@ function runTool(toolId: string) {
       const r = foldingWorksOnApplicationLevel()
       ok = r.computes && r.appLevelFold && r.foldSteps.every((s) => s.on)
       summary = `appLevelFold=${r.appLevelFold} morph=${r.proseCodeLogicMorph} path=${r.pathIsMessage} folder=${r.folderHoldsName} apps=${r.appCount} steps=${r.foldSteps.filter((s) => s.on).length}/${r.foldSteps.length}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'dry-rosetta' || toolId === 'rosetta-movie' || toolId === 'comp-unify' || toolId === 'unify-comp') {
-      const r = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie()
-      ok = r.computes && r.dryAll && r.stranglerComplete && r.rosettaIsTheMovie
-      summary = `dryAll=${r.dryAll} unified=${r.unifiedComponents} wired=${r.wiredToRosetta} movie=${r.rosettaIsTheMovie} drainableClosed=${r.drainableClosed} strangler=${r.stranglerComplete} shells=${r.shellCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2299,13 +2279,6 @@ function runTool(toolId: string) {
       const r = eachSuperpositionIsAChatroom()
       ok = r.computes && r.superpositionIsChatroom && r.eachKeyARoom && r.chatOn && r.anySuperposition
       summary = `chatroom=${r.superpositionIsChatroom} eachKey=${r.eachKeyARoom} chat=${r.chatOn} anySuper=${r.anySuperposition} room=${r.room.id} index=${r.room.index} slug=${r.room.slug} probes=${r.probeCount}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'ui-rosetta' || toolId === 'rosetta-realtime' || toolId === 'ui-realtime') {
-      const r = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime()
-      ok = r.computes && r.uiWiredToRosetta && r.allShells && r.quantumRealtime && r.oneClock && r.drainableClosed
-      summary = `wired=${r.uiWiredToRosetta} shells=${r.allShells} realtime=${r.quantumRealtime} oneClock=${r.oneClock} drainableClosed=${r.drainableClosed} morphs=${r.morphCount} honestOpen=${r.honestOpenNamedCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -4668,35 +4641,25 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="hero-card" aria-label="Unified hero and card with animation">
-        <h3>{{ heroCard.heading }}</h3>
-        <p class="quantum-apps__meta">{{ heroCard.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(heroCard.unifiedOn))">unifiedOn={{ heroCard.unifiedOn }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(heroCard.sharedClock))">sharedClock={{ heroCard.sharedClock }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(heroCard.cardFromHero))">cardFromHero={{ heroCard.cardFromHero }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(heroCard.animationOn))">animationOn={{ heroCard.animationOn }}</UiBadge>
+      <section id="anim-cluster" aria-label="Animation rosetta stream clusters">
+        <h3>{{ animCluster.heading }}</h3>
+        <p class="quantum-apps__meta">{{ animCluster.statement }}</p>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(animCluster.allLeavesOn))">leaves={{ animCluster.leaves.filter((l) => l.on).length }}/{{ animCluster.leaves.length }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(animCluster.totalAssignment))">clusters={{ animCluster.occupied }}/{{ animCluster.clusters.length }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(animCluster.trinityCount > 0))">trinities={{ animCluster.trinityCount }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(animCluster.oneClock))">oneClock={{ animCluster.oneClock }}</UiBadge>
+        <UiBadge v-bind="badgeProps(statusBadgeKind(animCluster.linearOpen === 0))">linearOpen={{ animCluster.linearOpen }}</UiBadge>
+        <ul class="quantum-apps__list">
+          <li v-for="c in animCluster.clusters.filter((c) => c.members.length)" :key="`${c.ray}-${c.face}`">
+            ray {{ c.ray }} {{ c.hub }} · {{ c.face }} · {{ c.members.join(' · ') }}
+          </li>
+        </ul>
         <p class="quantum-apps__meta">
-          pairs <code>hero/card</code> · <code>card/hero</code> · <code>hero/anim</code> ·
-          CLI <code>npm run quantum:hero-card</code>
+          pairs <code>anim/cluster</code> · <code>cluster/anim</code> ·
+          CLI <code>npm run quantum:anim-cluster</code>
         </p>
-        <UiButton size="sm" :disabled="runningId === 'hero-card'" @click="runTool('hero-card')">
-          {{ runningId === 'hero-card' ? '…' : 'Run hero-card' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="hero-abstract" aria-label="Hero abstract animation forms the card">
-        <h3>{{ heroAbstract.heading }}</h3>
-        <p class="quantum-apps__meta">{{ heroAbstract.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(heroAbstract.heroIsAbstract))">heroIsAbstract={{ heroAbstract.heroIsAbstract }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(heroAbstract.animationFormsCard))">animationFormsCard={{ heroAbstract.animationFormsCard }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(heroAbstract.cardIsNotBesideHero))">cardIsNotBesideHero={{ heroAbstract.cardIsNotBesideHero }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(heroAbstract.unifiedOn))">unifiedOn={{ heroAbstract.unifiedOn }}</UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>hero/abstract</code> · <code>abstract/card</code> · <code>card/forms</code> ·
-          CLI <code>npm run quantum:hero-abstract</code>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'hero-abstract'" @click="runTool('hero-abstract')">
-          {{ runningId === 'hero-abstract' ? '…' : 'Run hero-abstract' }}
+        <UiButton size="sm" :disabled="runningId === 'anim-cluster'" @click="runTool('anim-cluster')">
+          {{ runningId === 'anim-cluster' ? '…' : 'Run anim-cluster' }}
         </UiButton>
       </section>
       <UiSeparator />
@@ -4723,36 +4686,6 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'app-fold'" @click="runTool('app-fold')">
           {{ runningId === 'app-fold' ? '…' : 'Run app-fold' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="dry-rosetta" aria-label="Dry all unified components rosetta movie">
-        <h3>{{ dryRosetta.heading }}</h3>
-        <p class="quantum-apps__meta">{{ dryRosetta.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.dryAll))">dryAll={{ dryRosetta.dryAll }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.unifiedComponents))">unified={{ dryRosetta.unifiedComponents }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.wiredToRosetta))">wired={{ dryRosetta.wiredToRosetta }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.rosettaIsTheMovie))">rosettaIsTheMovie={{ dryRosetta.rosettaIsTheMovie }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.drainableClosed))">drainableClosed={{ dryRosetta.drainableClosed }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.stranglerComplete))">strangler={{ dryRosetta.stranglerComplete }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(dryRosetta.honestOpenNamedCount > 0))">honestOpen={{ dryRosetta.honestOpenNamedCount }}</UiBadge>
-        <p class="quantum-apps__meta">
-          shells · hero={{ dryRosetta.familyCounts.hero }} · card={{ dryRosetta.familyCounts.card }} ·
-          movie={{ dryRosetta.familyCounts.movie }} · paper={{ dryRosetta.familyCounts.paper }} ·
-          page={{ dryRosetta.familyCounts.page }} · unique={{ dryRosetta.shellCount }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="id in dryRosetta.honestOpenNamed" :key="id">
-            <UiBadge variant="outline">honest-open</UiBadge>
-            <strong>{{ id }}</strong>
-          </li>
-        </ul>
-        <p class="quantum-apps__meta">
-          pairs <code>dry/rosetta</code> · <code>rosetta/movie</code> · <code>comp/unify</code> · <code>unify/comp</code> ·
-          CLI <code>npm run quantum:dry-rosetta</code>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'dry-rosetta'" @click="runTool('dry-rosetta')">
-          {{ runningId === 'dry-rosetta' ? '…' : 'Run dry-rosetta' }}
         </UiButton>
       </section>
       <UiSeparator />
@@ -4913,36 +4846,6 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'super-chat'" @click="runTool('super-chat')">
           {{ runningId === 'super-chat' ? '…' : 'Run super-chat' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="ui-rosetta" aria-label="UI components wired in rosetta quantum realtime">
-        <h3>{{ uiRosetta.heading }}</h3>
-        <p class="quantum-apps__meta">{{ uiRosetta.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.uiWiredToRosetta))">uiWiredToRosetta={{ uiRosetta.uiWiredToRosetta }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.allShells))">allShells={{ uiRosetta.allShells }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.quantumRealtime))">quantumRealtime={{ uiRosetta.quantumRealtime }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.oneClock))">oneClock={{ uiRosetta.oneClock }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.drainableClosed))">drainableClosed={{ uiRosetta.drainableClosed }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.censusPreserved))">census={{ uiRosetta.census.unfolded }}/{{ uiRosetta.census.folded }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiRosetta.honestOpenNamedCount > 0))">honestOpen={{ uiRosetta.honestOpenNamedCount }}</UiBadge>
-        <p class="quantum-apps__meta">
-          shells · hero={{ uiRosetta.familyCounts.hero }} · card={{ uiRosetta.familyCounts.card }} ·
-          movie={{ uiRosetta.familyCounts.movie }} · paper={{ uiRosetta.familyCounts.paper }} ·
-          page={{ uiRosetta.familyCounts.page }} · HERO_CYCLE_MS={{ uiRosetta.heroCycleMs }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="id in uiRosetta.honestOpenNamed" :key="id">
-            <UiBadge variant="outline">honest-open</UiBadge>
-            <strong>{{ id }}</strong>
-          </li>
-        </ul>
-        <p class="quantum-apps__meta">
-          pairs <code>ui/rosetta</code> · <code>rosetta/realtime</code> · <code>ui/realtime</code> ·
-          CLI <code>npm run quantum:ui-rosetta</code> · <code>npm run quantum:rosetta-realtime</code>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'ui-rosetta'" @click="runTool('ui-rosetta')">
-          {{ runningId === 'ui-rosetta' ? '…' : 'Run ui-rosetta' }}
         </UiButton>
       </section>
       <UiSeparator />
