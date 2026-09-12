@@ -21,7 +21,7 @@ import { ratchet } from './status.ts'
 /** Directory names never walked. Matched as SEGMENTS, not substrings: this repository
  *  is named "ceccec.github.io", which CONTAINS ".git" — a substring test would exclude
  *  every path in the tree and the walk would never recurse. */
-const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
+const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', '.lake']) // .lake — Lake build output under src/heaven/compute, not source
 const CODE = /\.(ts|mts|vue)$/
 const CANDIDATE_SUFFIXES = ['', '.ts', '.mts', '.vue', '.js', '.mjs', '/index.ts', '/index.mts', '/index.vue']
 

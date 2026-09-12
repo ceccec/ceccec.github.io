@@ -1070,6 +1070,71 @@ export function fleetCacheEconomicsDecoded(matrix: MindMatrix = buildMatrix()) {
 }
 
 /**
+ * aluRtlMeasured — reads the SEALED hardware of the qubit-analog ALU: src/heaven/compute is also a Lake package
+ * written in Sparkle (Lean 4 HDL) with seven kernel-checked theorems, an emitted SystemVerilog module (alu.sv)
+ * and a 42-row trace (alu-trace.csv: 7 gates × 6 poles, hardware and pure spec side by side). Every row is
+ * compared here, live, with blochGate/blochMeasure — the TypeScript the hardware claims to implement — so the
+ * agreement is recomputed at call time, never quoted. Clifford rows must match exactly; T rows within the
+ * rounding the Lean bounds (t_floor_bound: under 1.5 units of 2⁻¹⁴).
+ *
+ * HONEST: the files are read from disk, so this is MEASURED under node (verify:sparkle regenerates and diffs
+ * both files on every run) and NOT MEASURED in the browser, where `measured` is false and nothing is claimed.
+ * A read that cannot happen is reported as absent, never as agreement.
+ */
+export function aluRtlMeasured(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.') {
+  const ONE = 2 ** (16 - 2) // Q2.14 — a 16-bit word, two integer/sign bits, so 1.0 is 2¹⁴: the Lean `ONE`
+  const C = floor(ONE / sqrt(2)) // the T constant ⌊2¹⁴/√2⌋, derived here as the Lean proves it
+  const T_TOLERANCE_UNITS = 1 + 2 * abs(C / ONE - 1 / sqrt(2)) * ONE // one unit of floor + the constant's error over |d| ≤ 2·ONE — the t_floor_bound
+  const poles: Record<string, readonly [number, number, number]> = {
+    '+x': [1, 0, 0], '-x': [-1, 0, 0], '+y': [0, 1, 0], '-y': [0, -1, 0], '+z': [0, 0, 1], '-z': [0, 0, -1] }
+  const absent = { measured: false, rows: 0, agreeing: 0, disagreeing: [] as string[], verilogModule: false, verilogLines: 0, theorems: 0, root: toUuid('alu-rtl:not-measured') }
+  const fs = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+    : undefined
+  const path = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
+    : undefined
+  if (!fs || !path) return absent
+  try {
+    const pkg = path.join(root, 'src', 'heaven', 'compute')
+    const svPath = path.join(pkg, 'alu.sv')
+    const csvPath = path.join(pkg, 'alu-trace.csv')
+    const leanPath = path.join(pkg, 'Alu.lean')
+    if (!fs.existsSync(svPath) || !fs.existsSync(csvPath) || !fs.existsSync(leanPath)) return absent
+    const sv = fs.readFileSync(svPath, 'utf8')
+    const theorems = (fs.readFileSync(leanPath, 'utf8').match(/^theorem\s+[A-Za-z0-9_]+/gm) ?? []).length
+    const disagreeing: string[] = []
+    const rows = fs.readFileSync(csvPath, 'utf8').split('\n').filter((l) => /^[IXYZHST],/.test(l)).map((l) => {
+      const f = l.split(',')
+      const op = f[0] as 'I' | 'X' | 'Y' | 'Z' | 'H' | 'S' | 'T'
+      const pole = f[1]!
+      const design = [2, 3, 4, 5].map((i) => Number(f[i]))
+      const spec = [6, 7, 8, 9].map((i) => Number(f[i]))
+      const [x, y, z] = poles[pole] ?? [NaN, NaN, NaN]
+      const after = __ns_quantum_science.blochGate(__ns_quantum_science.blochQubit(x, y, z), op)
+      const model = [after.bloch[0] * ONE, after.bloch[1] * ONE, after.bloch[2] * ONE, __ns_quantum_science.blochMeasure(after).p0 * 2 * ONE]
+      const tol = op === 'T' ? T_TOLERANCE_UNITS : 0
+      const hardwareIsSpec = design.every((v, i) => v === spec[i])
+      const specIsModel = model.every((m, i) => abs(m - spec[i]!) <= tol + 1e-9)
+      if (!hardwareIsSpec || !specIsModel) disagreeing.push(`${op} ${pole}: hardware ${design.join(',')} spec ${spec.join(',')} model ${model.map((m) => roundTo(m, 3)).join(',')}`)
+      return { op, pole, design, spec, model, hardwareIsSpec, specIsModel, receipt: toUuid(`alu-row:${op}:${pole}:${design.join(',')}:${hardwareIsSpec && specIsModel}`) }
+    })
+    const verilogModule = sv.includes('module Alu_alu (')
+    return {
+      measured: rows.length > 0,
+      rows: rows.length,
+      agreeing: rows.length - disagreeing.length,
+      disagreeing,
+      verilogModule,
+      verilogLines: sv.split('\n').length,
+      theorems,
+      root: merkleFold([toUuid(`alu-rtl:${verilogModule}:${theorems}:${rows.length - disagreeing.length}/${rows.length}`), ...rows.map((r) => r.receipt)]) }
+  } catch {
+    return absent
+  }
+}
+
+/**
  * hardwareSpecFromInvariants — the quantum model designs the hardware from its own sealed invariants. The vortex
  * spin (VORTEX_SEQUENCE / groupOrbit(2,9)) fixes the on-chip ring/NoC order; the resource cooperation policy fixes
  * the memory/storage/GPU tiers; blochQubitFaithful fixes the qubit-analog ALU width (4 UUIDs/qubit); and
@@ -1083,23 +1148,52 @@ export function hardwareSpecFromInvariants(matrix: MindMatrix = buildMatrix()) {
     const bloch = __ns_quantum_science.blochQubitFaithful(matrix)
     const ringOrder = [...VORTEX_SEQUENCE] // 1·2·4·8·7·5·3·6·9 — the NoC ring traversal order
     const doublingOrbit = groupOrbit(2, 9) // [1,2,4,8,7,5] — the doubling sub-orbit (data-path lanes)
+    const poleVectors: readonly (readonly [number, number, number])[] = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]]
+    const isPole = (v: readonly [number, number, number]) => poleVectors.some((p) => p.every((c, i) => abs(c - v[i]!) < 1e-9))
+    const keepsPoles = (gate: 'I' | 'X' | 'Y' | 'Z' | 'H' | 'S' | 'T') =>
+      poleVectors.every((p) => isPole(__ns_quantum_science.blochGate(__ns_quantum_science.blochQubit(p[0], p[1], p[2]), gate).bloch))
+    const cliffordKeepsPoles = (['I', 'X', 'Y', 'Z', 'H', 'S'] as const).every(keepsPoles)
+    const tKeepsPoles = keepsPoles('T')
+    const aluOne = 2 ** (16 - 2) // Q2.14 — a 16-bit word, two integer/sign bits: the Lean `ONE`
+    const aluC = floor(aluOne / sqrt(2)) // the Sparkle ALU's T constant ⌊2¹⁴/√2⌋, derived here the same way
+    const cIsFloor = 2 * aluC * aluC <= aluOne * aluOne && aluOne * aluOne < 2 * (aluC + 1) * (aluC + 1) // 2·C² ≤ 2²⁸ = ONE² < 2·(C+1)²
+    const tRoundingUnits = abs(aluC / aluOne - 1 / sqrt(2)) * aluOne * 2 + 1 // constant error over |d| ≤ 2·ONE, plus the floor
+    const rtl = aluRtlMeasured()
     const facets = [
       { facet: 'core topology — the vortex spin VORTEX_SEQUENCE fixes the on-chip ring/NoC traversal order (9 stops)', on: ringOrder.length === 9 && doublingOrbit.length === 6 },
       { facet: 'resource tiers — memory/storage/GPU envelopes read from the sealed resourceCooperationPolicy', on: policy.tiers.length >= 3 && cooperation.cooperates },
       { facet: 'qubit-analog ALU width — 4 UUIDs/qubit, the faithful Bloch encoding (single/product states only)', on: bloch.faithful },
       { facet: 'power/thermal envelope — the honest energy ledger (drains slower, heats less; never charges or cools)', on: energy.honest },
+      // THE ALU AS INTEGER HARDWARE — computed here, not declared. In Q2.14 the Clifford gates I·X·Y·Z·H·S are sign
+      // flips and axis swaps, so blochGate itself keeps the six poles ±x ±y ±z on the poles (checked by running it);
+      // T needs 1/√2 and leaves them, and its fixed-point constant is the exact integer floor ⌊2¹⁴/√2⌋ = 11585
+      // (2·C² ≤ 2²⁸ < 2·(C+1)², integers only). This is the Clifford/non-Clifford boundary the Sparkle module
+      // Alu.lean beside this file implements and proves; the same three facts, recomputed in TypeScript.
+      { facet: 'Clifford gates keep the six Bloch poles on the poles; T is the one gate that leaves them (computed with blochGate)', on: cliffordKeepsPoles && !tKeepsPoles },
+      { facet: `T's fixed-point constant is the integer floor of 2¹⁴/√2 — C=${aluC}, 2·C² ≤ 2²⁸ < 2·(C+1)² (the Lean literal is checked against this by verify:sparkle's trace)`, on: cIsFloor && aluC > 0 && aluC < aluOne },
+      { facet: `T's rounding stays under one and a half units of 2⁻¹⁴ on the unit sphere (|C/2¹⁴ − 1/√2|·2 + 1 unit = ${roundTo(tRoundingUnits, 4)} units)`, on: tRoundingUnits < 1 + 1 / 2 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hw-spec:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),
       ringOrder,
       doublingOrbit,
       tiers: policy.tiers.map((t) => t.tier),
-      documented: ['The hardware spec is DERIVED from sealed invariants: vortex order → NoC ring; cooperation policy → tiers; Bloch encoding → ALU width; energy ledger → power envelope.', 'A spec is reproducible from the matrix root — the same invariants always design the same hardware.'],
-      flagged: ['A deterministic SPECIFICATION, NOT a synthesized RTL/GDSII netlist or a physical chip.', 'The qubit-analog ALU is a CLASSICAL faithful encoding (4 UUIDs/qubit) — a physical QPU is a separate technology (category difference).'],
+      rtl,
+      documented: [
+        'The hardware spec is DERIVED from sealed invariants: vortex order → NoC ring; cooperation policy → tiers; Bloch encoding → ALU width; energy ledger → power envelope.',
+        'A spec is reproducible from the matrix root — the same invariants always design the same hardware.',
+        'The ALU is RTL: Alu.lean beside this file writes it in Sparkle (Verilean, https://github.com/Verilean/sparkle — a Lean 4 HDL that simulates, proves and emits SystemVerilog; cf. Rtl2lean, arXiv:2607.16855, the reverse direction), with seven kernel-checked theorems: Clifford closure on the poles, T leaving them, the involutions, the Born rule, C=⌊2¹⁴/√2⌋ exactly, the T floor bound, and the 32-bit path equalling the integer floor. npm run verify:sparkle regenerates alu.sv and the 42-row trace and diffs both.',
+      ],
+      flagged: [
+        rtl.measured
+          ? `The ALU IS an RTL module (alu.sv, ${rtl.verilogLines} lines, module Alu_alu, ${rtl.theorems} theorems) and its trace agrees with blochGate on ${rtl.agreeing}/${rtl.rows} rows — MEASURED on this machine. It is NOT a GDSII netlist and NOT a physical chip.`
+          : 'The ALU RTL (alu.sv + alu-trace.csv beside this file) is NOT MEASURED in this environment — verify:sparkle measures it under node. NOT a GDSII netlist, NOT a physical chip.',
+        'The qubit-analog ALU is a CLASSICAL faithful encoding (4 UUIDs/qubit; in hardware three 16-bit Q2.14 registers) — single-qubit only (quantumDimensionCost), a physical QPU is a separate technology (category difference).',
+      ],
       facets,
-      root: merge(cooperation.root, merkleFold([bloch.root, energy.root, ...facets.map((entry) => entry.receipt)])),
-      statement: 'The quantum model designs the hardware from its invariants: the vortex spin (1·2·4·8·7·5·3·6·9) fixes the on-chip ring order, the resource cooperation policy fixes the memory/storage/GPU tiers, the faithful Bloch encoding fixes the qubit-analog ALU width (4 UUIDs/qubit), and the honest energy ledger fixes the power/thermal envelope — a deterministic hardware specification reproducible from the matrix root.',
-      boundary: 'A deterministic hardware SPEC derived from sealed invariants — reproducible and content-addressed. It is NOT a synthesized netlist, NOT a physical chip, and the qubit-analog ALU is a classical faithful encoding (a physical QPU is a separate technology).' }
+      root: merge(cooperation.root, merkleFold([bloch.root, energy.root, rtl.root, ...facets.map((entry) => entry.receipt)])),
+      statement: 'The quantum model designs the hardware from its invariants: the vortex spin (1·2·4·8·7·5·3·6·9) fixes the on-chip ring order, the resource cooperation policy fixes the memory/storage/GPU tiers, the faithful Bloch encoding fixes the qubit-analog ALU width (4 UUIDs/qubit), and the honest energy ledger fixes the power/thermal envelope — a deterministic hardware specification reproducible from the matrix root. The ALU itself is written as RTL in Sparkle (Lean 4), proved and emitted as SystemVerilog, and its trace is compared with blochGate.',
+      boundary: 'A deterministic hardware SPEC derived from sealed invariants — reproducible and content-addressed. The ALU is a proved RTL module (Sparkle → alu.sv), measured by verify:sparkle; the rest of the spec is NOT a netlist, nothing here is a physical chip, and the ALU is a single-qubit classical encoding (a physical QPU is a separate technology).' }
   })
 }
 /** alias — the quantum model designs the hardware (same fold). */

@@ -32,7 +32,9 @@ import { ratchet } from './status.ts'
 
 /** Segment-matched, never substring: this repository is named "ceccec.github.io", which
  *  contains ".git" — a substring test would exclude the whole tree. */
-const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
+// `.lake` is Lake's build output under src/heaven/compute (the Sparkle dependency's own tests name paths
+// relative to ITS repository); build products are excluded for the same reason dist is.
+const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', '.lake'])
 const SCAN = /\.(ts|mts|vue)$/
 /** A literal that looks like a repo-relative path to a file. */
 const PATHISH = /['"`]((?:src|scripts|lean|docs)\/[A-Za-z0-9_./-]+\.(?:ts|tsx|vue|mts|mjs|lean|json|md|css))['"`]/g

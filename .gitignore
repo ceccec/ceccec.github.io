@@ -31,3 +31,6 @@
 # A receipt describes ONE RUN of one tree, not the source. It is written by verify:stream and
 # would dirty the tree on every run; the verdict it carries belongs in the commit message.
 scripts/verify/receipts/
+
+# Lake build output of the Sparkle ALU package (src/heaven/compute) — rebuilt by verify:sparkle, never source.
+**/.lake/**

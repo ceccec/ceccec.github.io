@@ -1,0 +1,14 @@
+name = "alu"
+defaultTargets = ["Alu"]
+
+[[require]]
+name = "sparkle"
+git = "https://github.com/Verilean/sparkle.git"
+rev = "6eee2ecbd25d841874c0218f3132e4a3a7561040"
+
+[[lean_lib]]
+name = "Alu"
+
+[[lean_exe]]
+name = "alu-trace"
+root = "Main"

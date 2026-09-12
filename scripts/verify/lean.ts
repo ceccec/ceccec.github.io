@@ -19,9 +19,9 @@
  */
 
 import { execFileSync } from 'node:child_process'
-import { mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join, relative } from 'node:path'
+import { dirname, join, relative } from 'node:path'
 
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', 'worktrees'])
 
@@ -39,6 +39,34 @@ export function stripLeanComments(text: string): string {
     out += text[i]
   }
   return out
+}
+
+/**
+ * A .lean FILE INSIDE A LAKE PACKAGE IS NOT COMPILED BY BARE `lean`. src/heaven/compute is also a Lake
+ * package (lakefile.toml, its own lean-toolchain pinned to the Sparkle HDL's Lean) whose files begin
+ * `import Sparkle`; bare `lean` from the repository root cannot resolve that import and elan would hand it
+ * the machine-default toolchain besides. Both facts are answered by one move: run `lake env lean` WITH THE
+ * PACKAGE DIRECTORY AS CWD, after `lake build` has produced the package's own oleans. Elan picks the
+ * toolchain by cwd, lake supplies LEAN_PATH. Files outside any package keep the bare compiler.
+ */
+export function lakePackageOf(file: string, stopAt: string): string | null {
+  let dir = dirname(file)
+  while (dir.startsWith(stopAt) && dir !== stopAt) {
+    if (existsSync(join(dir, 'lakefile.toml')) || existsSync(join(dir, 'lakefile.lean'))) return dir
+    dir = dirname(dir)
+  }
+  return null
+}
+
+const builtPackages = new Set<string>()
+function leanCommand(file: string, root: string): { readonly cmd: string; readonly args: (extra: string) => string[]; readonly cwd: string } {
+  const pkg = lakePackageOf(file, join(root, 'src'))
+  if (!pkg) return { cmd: 'lean', args: (f) => [f], cwd: root }
+  if (!builtPackages.has(pkg)) {
+    execFileSync('lake', ['build'], { cwd: pkg, stdio: 'pipe', timeout: 900_000 })
+    builtPackages.add(pkg)
+  }
+  return { cmd: 'lake', args: (f) => ['env', 'lean', f], cwd: pkg }
 }
 
 function leanFiles(root: string): string[] {
@@ -77,8 +105,9 @@ function leanFiles(root: string): string[] {
  * rest on Classical.choice or, worse, sorryAx, which `#print axioms` would surface and a plain
  * compile would not.
  */
-export function axiomFreedom(file: string): { total: number; axiomFree: number; propextOnly: number; dependent: string[] } {
+export function axiomFreedom(file: string, root: string = process.cwd()): { total: number; axiomFree: number; propextOnly: number; dependent: string[] } {
   const text = readFileSync(file, 'utf8')
+  const via = leanCommand(file, root)
   // DIGITS ARE PART OF A NAMESPACE. This read [A-Za-z.]+, so `namespace Wave57` parsed as `Wave`, every
   // probe line asked for `Wave.first_descent_is_six`, lean answered unknownIdentifier seven times, the
   // call threw, and the gate reported 0/7 PROVE THEMSELVES. All seven do. The gate could not ask, and
@@ -98,7 +127,7 @@ export function axiomFreedom(file: string): { total: number; axiomFree: number; 
   writeFileSync(tmp, probe)
   let out = ''
   try {
-    out = execFileSync('lean', [tmp], { stdio: 'pipe', timeout: 300_000 }).toString()
+    out = execFileSync(via.cmd, via.args(tmp), { cwd: via.cwd, stdio: 'pipe', timeout: 300_000 }).toString()
   } catch (e) {
     out = `${(e as { stdout?: Buffer }).stdout?.toString() ?? ''}`
   } finally {
@@ -140,7 +169,8 @@ export function compileLean(root: string = process.cwd()): LeanResult[] {
     const sorries = (stripLeanComments(readFileSync(file, 'utf8')).match(/(?<![\w.])sorry(?![\w])/g) ?? []).length
     const started = Date.now()
     try {
-      execFileSync('lean', [file], { stdio: 'pipe', timeout: 300_000 })
+      const via = leanCommand(file, root)
+      execFileSync(via.cmd, via.args(file), { cwd: via.cwd, stdio: 'pipe', timeout: 300_000 })
       return { file: rel, ok: sorries === 0, sorries, ms: Date.now() - started, error: '', timedOut: false }
     } catch (e) {
       const err = e as { stdout?: Buffer; stderr?: Buffer; message?: string; code?: string; signal?: string }

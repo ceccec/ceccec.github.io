@@ -80,7 +80,9 @@ import { ratchet } from './status.ts'
  */
 export function treeDigest(root: string): string {
   const h = createHash('sha256')
-  const walk = (dir: string, skip: RegExp = /^(node_modules|dist|receipts|\.git)$/) => {
+  // `.lake` is Lake's build output under src/heaven/compute — 122MB of oleans that verify:lean and
+  // verify:sparkle rebuild earlier in the same chain; build products are not the subject any more than dist is.
+  const walk = (dir: string, skip: RegExp = /^(node_modules|dist|receipts|\.git|\.lake)$/) => {
     let entries
     try { entries = readdirSync(dir, { withFileTypes: true }) } catch { return }
     for (const e of entries.sort((a, b) => a.name.localeCompare(b.name))) {

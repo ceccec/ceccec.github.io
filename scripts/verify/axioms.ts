@@ -114,7 +114,7 @@ export function axiomsInUse(root: string = process.cwd()): Map<string, number> {
     return here
   }
   for (const rel of walk('src')) {
-    const a = axiomFreedom(join(root, rel))
+    const a = axiomFreedom(join(root, rel), root)
     if (a.propextOnly) out.set('propext', (out.get('propext') ?? 0) + a.propextOnly)
     for (const d of a.dependent) {
       for (const name of ['Classical.choice', 'sorryAx', 'Quot.sound']) if (d.includes(name)) out.set(name, (out.get(name) ?? 0) + 1)

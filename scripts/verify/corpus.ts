@@ -29,7 +29,7 @@ const require = createRequire(`${process.cwd()}/`)
 
 /** Segment-matched, never substring: this repository is named "ceccec.github.io", which
  *  contains ".git" — a substring test would exclude the whole tree. */
-export const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
+export const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', '.lake']) // .lake — Lake build output under src/heaven/compute, not source
 
 export type CorpusFile = {
   readonly abs: string

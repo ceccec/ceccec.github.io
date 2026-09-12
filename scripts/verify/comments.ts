@@ -113,7 +113,7 @@ export function commentDefects(root: string = ROOT): readonly CommentDefect[] {
     try { entries = readdirSync(dir, { withFileTypes: true }) } catch { return }
     for (const e of entries) {
       const p = join(dir, e.name)
-      if (e.isDirectory()) { if (!/^(node_modules|dist|cache|\.git)$/.test(e.name)) walk(p); continue }
+      if (e.isDirectory()) { if (!/^(node_modules|dist|cache|\.git|\.lake)$/.test(e.name)) walk(p); continue }
       if (!CODE.has(extname(e.name))) continue
       const rel = p.replace(`${root}/`, '')
       const blocks = blockComments(readFileSync(p, 'utf8'))

@@ -1180,7 +1180,11 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
   try {
     const src = path.join(root, 'src')
     if (!fs.existsSync(src)) return empty
-    const lean = (fs.readdirSync(src, { recursive: true }) as string[]).filter((p) => String(p).endsWith('.lean'))
+    // DOT-DIRECTORIES ARE NOT THE CORPUS. src/heaven/compute is also a Lake package, and its `.lake/` holds the
+    // Sparkle dependency's ~1000 .lean sources: counted once, the README announced "1015 files green" for a
+    // corpus of 19. Build output is walked past here exactly as every verify walker walks past it.
+    const lean = (fs.readdirSync(src, { recursive: true }) as string[])
+      .filter((p) => String(p).endsWith('.lean') && !String(p).split(/[\\/]/).some((seg) => seg.startsWith('.')))
     const proofsDir = path.join('pair', 'formal', 'proofs')
     // A `theorem` at the head of a line — the declaration, never the word inside prose.
     const declared = (text: string) => (text.match(/^[ \t]*theorem[ \t]/gm) ?? []).length
