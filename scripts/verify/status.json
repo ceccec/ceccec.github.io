@@ -1,5 +1,5 @@
 {
-  "axiom-index.unplaced": 707,
+  "axiom-index.unplaced": 695,
   "axiom-index.unresearched": 2,
   "bagua.parallel-tables": 7,
   "build.app-chunk-kilobytes": 649,
@@ -18,9 +18,9 @@
   "paths.dead-strings": 51,
   "prior-art.attributed-by-pattern": 322,
   "prior-art.coverage-unexamined": 405,
-  "prior-art.unanchored-hand-marks": 99,
+  "prior-art.unanchored-hand-marks": 76,
   "prior-art.unbounded-unsearched": 25,
-  "prior-art.unclassified": 166,
+  "prior-art.unclassified": 76,
   "purity.core-nondeterminism": 0,
   "scope.boundaries": 2763,
   "scope.narrated": 523,
