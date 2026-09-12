@@ -92,6 +92,12 @@ export function treeDigest(root: string): string {
       // them would make every run move its own tree at the moment it recorded the result, so every
       // receipt would report a tree that changed and no two runs could ever be compared.
       if (e.isDirectory()) { if (!skip.test(e.name)) walk(p, skip); continue }
+      // scripts/verify/status.json IS EXCLUDED FOR THE SAME REASON receipts ARE: it is the ratchet ledger, and the
+      // gates of the SAME run rewrite it whenever a floor tightens or a key is seeded. Covering scripts/ (right —
+      // it is the instrument) swept it in, and a stream whose change tightened a floor mid-census failed here
+      // intermittently — "the census CHANGED THE TREE", with nothing changed afterwards — whenever another
+      // gate's write landed inside this window: twice in three runs of one wave, never on an unchanged tree.
+      if (p.endsWith(join('scripts', 'verify', 'status.json'))) continue
       // CONTENT, NOT size:mtime. The proxy was wrong in BOTH directions: a file restored to its
       // exact original bytes produced a THIRD digest, because restoring moves mtime — so a
       // perturb-and-restore, the standard discipline here, made every prior receipt incomparable
@@ -228,7 +234,7 @@ export function main() {
   const digestAfter = treeDigest(root)
   if (digestAfter !== digestBefore) {
     throw new Error(
-      `the fold census CHANGED THE TREE while measuring it: src+package.json digest ${digestBefore} → ${digestAfter}. ` +
+      `the fold census CHANGED THE TREE while measuring it: src+scripts+.vitepress+package.json digest ${digestBefore} → ${digestAfter}. ` +
       `It calls every zero-arg export in src/, and at least two of those write to disk. No count from this run is ` +
       `recorded, because a census that mutates its subject has measured something that is already gone. ` +
       `Find the writer (git status will name it) and give it an argument, so its arity excludes it from the walk.`
