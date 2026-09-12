@@ -480,7 +480,16 @@ export async function runSyncReadmeExit(root: string, _argv: readonly string[] =
   }
   const svgPaths = ['hero.svg', 'public/icon.svg']
   const before = svgPaths.map((rel) => readFileSync(join(root, rel), 'utf8'))
-  const svg = site.runReadmeSvgGapsFilledByTrinityMindExit(root, [])
+  // QUIET ON SUCCESS. The emitter prints its whole 28-line report on every commit AND every push, and each of those
+  // lines then rides in an agent's context for the rest of its session (2026-09-12: ~500k cached tokens per assistant
+  // message across 7 sessions, the largest bill this corpus pays). The report is captured and replayed only when the
+  // emitter fails — a green hook says one line.
+  const captured: string[] = []
+  const write = process.stdout.write.bind(process.stdout)
+  process.stdout.write = ((chunk: string | Uint8Array) => { captured.push(String(chunk)); return true }) as typeof process.stdout.write
+  let svg = 1
+  try { svg = site.runReadmeSvgGapsFilledByTrinityMindExit(root, []) } finally { process.stdout.write = write }
+  if (svg !== 0) for (const line of captured) process.stdout.write(line)
   const drifted = svgPaths.filter((rel, i) => readFileSync(join(root, rel), 'utf8') !== before[i])
   process.stdout.write(
     `${svg === 0 ? '✓' : '✗'} svg sync — hero.svg · public/icon.svg emitted from the bundle${drifted.length ? ` (regenerated: ${drifted.join(', ')})` : ' (unchanged)'}\n`,
