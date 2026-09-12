@@ -1316,14 +1316,15 @@ var SHA256_K = [
 ];
 function sha256Sync(text) {
   const rotr = (x, n) => x >>> n | x << 16 * 2 - n;
-  const bytes = [...new TextEncoder().encode(text)];
-  const bitLen = bytes.length * 8;
-  bytes.push(128);
-  while (bytes.length % 64 !== 8 * 7) bytes.push(0);
-  for (let i = 7; i >= 0; i--) bytes.push(Math.floor(bitLen / 2 ** (8 * i)) & 255);
+  const input = new TextEncoder().encode(text);
+  const bitLen = input.length * 8;
+  const bytes = new Uint8Array(((input.length + 8 >>> 6) + 1) * 64);
+  bytes.set(input);
+  bytes[input.length] = 128;
+  for (let i = 7; i >= 0; i--) bytes[bytes.length - 1 - i] = Math.floor(bitLen / 2 ** (8 * i)) & 255;
   const h = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225];
+  const w = new Int32Array(64);
   for (let i = 0; i < bytes.length; i += 64) {
-    const w = new Array(64);
     for (let t = 0; t < 16; t++) w[t] = bytes[i + 4 * t] << 8 * 3 | bytes[i + 4 * t + 1] << 16 | bytes[i + 4 * t + 2] << 8 | bytes[i + 4 * t + 3] | 0;
     for (let t = 16; t < 64; t++) {
       const s0 = rotr(w[t - 5 * 3], 7) ^ rotr(w[t - 5 * 3], 9 * 2) ^ w[t - 5 * 3] >>> 3;

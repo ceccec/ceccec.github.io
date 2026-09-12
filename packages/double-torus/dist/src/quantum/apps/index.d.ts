@@ -1597,7 +1597,7 @@ export declare function componentProjectionFor(component: string, matrix?: MindM
 /** Coverage gate — the registry + kernel cover every home-page animation, each a projection of the one field. */
 export declare function quantumAppsCoverHomeAnimations(matrix?: MindMatrix, at?: number): {
     computes: boolean;
-    covered: ("Hologram" | "LivingTorus" | "Merkaba" | "GlyphLabyrinth" | "DoubleTorusExperience" | "YinYang" | "SacredGeometry" | "HologramMovie")[];
+    covered: ("Hologram" | "LivingTorus" | "Merkaba" | "YinYang" | "SacredGeometry" | "GlyphLabyrinth" | "HologramMovie" | "DoubleTorusExperience")[];
     projections: QuantumProjectionParams[];
     registry: {
         registered: boolean;
@@ -3420,76 +3420,6 @@ export declare function mcpQuantumVortex(matrix?: MindMatrix, at?: number): {
 };
 export declare function runMcpQuantumVortexExit(_root?: string, _argv?: readonly string[]): number;
 /**
- * MCP quantum torus — double-torus / geo torus · `@ceccec/double-torus` · living torus · bothEarths.
- * Compose doubleTorusIsCompletelyQuantum · doubleTorusDynamicsGeometryAlignsWithUniverse ·
- * geodesyDecodedIsDoubleTorusInverted · geo/torus · universe/align.
- * Facets: torusOn · doubleTorus.
- * Pairs: mcp/torus · torus/mcp · CLI npm run quantum:mcp-torus
- * claySolved via theorem · NOT QPU · NOT Clay.
- */
-export declare function mcpQuantumTorus(matrix?: MindMatrix, at?: number): {
-    computes: boolean;
-    mcpQuantumTorus: boolean;
-    torusOn: boolean;
-    doubleTorus: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    pair: "mcp/torus";
-    pairs: readonly ["mcp/torus", "torus/mcp"];
-    cli: string;
-    route: string;
-    statement: string;
-    boundary: string;
-    honestyLine: string;
-};
-export declare function runMcpQuantumTorusExit(_root?: string, _argv?: readonly string[]): number;
-/**
- * MCP quantum research — research domain face.
- * Compose theoremJourneyContinuesInWavesOfWaves · sciencesInteractInTrinities ·
- * wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems · domainProofCatalog.
- * Facets: researchOn · journeyTheorems · sciencesTrinities · millSession · researchDomain ·
- * .
- * Pairs: mcp/research · research/mcp · CLI npm run quantum:mcp-research
- * claySolved via theorem · NOT QPU · NOT CMI prize.
- */
-export declare function mcpQuantumResearch(matrix?: MindMatrix, at?: number): {
-    computes: boolean;
-    mcpQuantumResearch: boolean;
-    researchOn: boolean;
-    journeyTheorems: boolean;
-    sciencesTrinities: boolean;
-    millSession: boolean;
-    researchDomain: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    pair: "mcp/research";
-    pairs: readonly ["mcp/research", "research/mcp"];
-    cli: string;
-    route: string;
-    statement: string;
-    boundary: string;
-    honestyLine: string;
-};
-export declare function runMcpQuantumResearchExit(_root?: string, _argv?: readonly string[]): number;
-/**
  * MCP quantum catalog / star — umbrella listing + recomposing ALL named mcp quantum faces.
  * Facets: catalogComplete · starOn · missingCount=0.
  * Pairs: mcp/catalog · catalog/mcp · mcp/star · star/mcp · CLI npm run quantum:mcp-catalog
@@ -3640,31 +3570,21 @@ export declare function mcpQuantumCatalog(matrix?: MindMatrix, at?: number): {
         toolOn: boolean;
         present: boolean;
         receipt: string;
-        fold: "mcpQuantumTorus";
-        pair: "mcp/torus";
-        dual: "torus/mcp";
-        toolId: "mcp-torus";
-        dualToolId: "torus-mcp";
-    } | {
-        pairOn: boolean;
-        toolOn: boolean;
-        present: boolean;
-        receipt: string;
-        fold: "mcpQuantumResearch";
-        pair: "mcp/research";
-        dual: "research/mcp";
-        toolId: "mcp-research";
-        dualToolId: "research-mcp";
-    } | {
-        pairOn: boolean;
-        toolOn: boolean;
-        present: boolean;
-        receipt: string;
         fold: "mcpQuantumCatalog";
         pair: "mcp/catalog";
         dual: "catalog/mcp";
         toolId: "mcp-catalog";
         dualToolId: "catalog-mcp";
+    } | {
+        pairOn: boolean;
+        toolOn: boolean;
+        present: boolean;
+        receipt: string;
+        fold: "mcpRosettaStreamClusters";
+        pair: "mcp/cluster";
+        dual: "cluster/mcp";
+        toolId: "mcp-cluster";
+        dualToolId: "cluster-mcp";
     } | {
         pairOn: boolean;
         toolOn: boolean;
@@ -3850,51 +3770,11 @@ export declare function mcpQuantumCatalog(matrix?: MindMatrix, at?: number): {
         toolOn: boolean;
         present: boolean;
         receipt: string;
-        fold: "mcpQuantumSite";
-        pair: "mcp/site";
-        dual: "site/mcp";
-        toolId: "mcp-site";
-        dualToolId: "site-mcp";
-    } | {
-        pairOn: boolean;
-        toolOn: boolean;
-        present: boolean;
-        receipt: string;
-        fold: "mcpQuantumPage";
-        pair: "mcp/page";
-        dual: "page/mcp";
-        toolId: "mcp-page";
-        dualToolId: "page-mcp";
-    } | {
-        pairOn: boolean;
-        toolOn: boolean;
-        present: boolean;
-        receipt: string;
-        fold: "mcpQuantumCard";
-        pair: "mcp/card";
-        dual: "card/mcp";
-        toolId: "mcp-card";
-        dualToolId: "card-mcp";
-    } | {
-        pairOn: boolean;
-        toolOn: boolean;
-        present: boolean;
-        receipt: string;
         fold: "mcpQuantumReceipt";
         pair: "mcp/receipt";
         dual: "receipt/mcp";
         toolId: "mcp-receipt";
         dualToolId: "receipt-mcp";
-    } | {
-        pairOn: boolean;
-        toolOn: boolean;
-        present: boolean;
-        receipt: string;
-        fold: "mcpQuantumHero";
-        pair: "mcp/hero";
-        dual: "hero/mcp";
-        toolId: "mcp-hero";
-        dualToolId: "hero-mcp";
     } | {
         pairOn: boolean;
         toolOn: boolean;
@@ -4882,103 +4762,37 @@ export declare function mcpQuantumClown(matrix?: MindMatrix, at?: number): {
     honestyLine: string;
 };
 export declare function runMcpQuantumClownExit(_root?: string, _argv?: readonly string[]): number;
-/**
- * MCP quantum site — MCP face for the quantum site (VitePress site built from MCP).
- * Compose: vitepressBuildsFromMcp · mcpCatalog · vite/mirror · mcpQuantumCatalog.
- * Facets: siteOn · buildsFromMcp · vitepressMirror · claySolved via theorem.
- * Pairs: mcp/site · site/mcp · CLI npm run quantum:mcp-site
- * Catalog faces 33/33 (was 32).
- */
-export declare function mcpQuantumSite(matrix?: MindMatrix, at?: number): {
+export declare function mcpRosettaStreamClusters(matrix?: MindMatrix, at?: number): {
     computes: boolean;
-    mcpQuantumSite: boolean;
-    siteOn: boolean;
-    buildsFromMcp: boolean;
-    vitepressMirror: boolean;
+    heading: string;
+    allLeavesOn: boolean;
+    totalAssignment: boolean;
+    occupied: number;
+    trinityCount: number;
+    leaves: AnimationStreamLeaf[];
+    clusters: {
+        ray: 0 | 2 | 5 | 4 | 1 | 3 | 6;
+        hub: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+        face: "forward" | "counter";
+        members: string[];
+        on: boolean;
+        trinities: string[];
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    faceCount: number;
+    presentCount: number;
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
     qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
     root: string;
-    pairs: readonly ["mcp/site", "site/mcp"];
-    cli: string;
-    route: string;
     statement: string;
     boundary: string;
-    honestyLine: string;
 };
-export declare function runMcpQuantumSiteExit(_root?: string, _argv?: readonly string[]): number;
-/**
- * MCP quantum page — MCP face for quantum page (universal page from sealed fold).
- * Compose: computeUniversalPage · page/trinity · format/canon · meaning/compute · mcpQuantumSite · vite/mcp.
- * Facets: pageOn · universalPage · viaSite · claySolved via theorem.
- * Pairs: mcp/page · page/mcp · CLI npm run quantum:mcp-page
- * Catalog faces 34/34 (was 33).
- */
-export declare function mcpQuantumPage(matrix?: MindMatrix, at?: number): {
-    computes: boolean;
-    mcpQuantumPage: boolean;
-    pageOn: boolean;
-    universalPage: boolean;
-    viaSite: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    pairs: readonly ["mcp/page", "page/mcp"];
-    cli: string;
-    route: string;
-    statement: string;
-    boundary: string;
-    honestyLine: string;
-};
-export declare function runMcpQuantumPageExit(_root?: string, _argv?: readonly string[]): number;
-/**
- * MCP quantum card — MCP face for quantum card (LinkedHeroCard · hero link · morphs to paper).
- * Compose: card/hero-link · LinkedHeroCard · card→paper · mcpQuantumPage.
- * Facets: cardOn · heroLink · morphsToPaper · viaPage · claySolved via theorem.
- * Pairs: mcp/card · card/mcp · CLI npm run quantum:mcp-card
- * Catalog faces 35/35 (was 34).
- */
-export declare function mcpQuantumCard(matrix?: MindMatrix, at?: number): {
-    computes: boolean;
-    mcpQuantumCard: boolean;
-    cardOn: boolean;
-    heroLink: boolean;
-    morphsToPaper: boolean;
-    viaPage: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    pairs: readonly ["mcp/card", "card/mcp"];
-    cli: string;
-    route: string;
-    statement: string;
-    boundary: string;
-    honestyLine: string;
-};
-export declare function runMcpQuantumCardExit(_root?: string, _argv?: readonly string[]): number;
+/** npm run quantum:mcp-cluster */
+export declare function runMcpRosettaStreamClustersExit(_root?: string, _argv?: readonly string[]): number;
 /**
  * MCP quantum receipt — MCP face for tamper-evident content-addressed receipts.
  * Compose: fusion-verify · session/quantum-bits · moment/prove.
@@ -5011,38 +4825,6 @@ export declare function mcpQuantumReceipt(matrix?: MindMatrix, at?: number): {
     honestyLine: string;
 };
 export declare function runMcpQuantumReceiptExit(_root?: string, _argv?: readonly string[]): number;
-/**
- * MCP quantum hero — MCP face for shared-clock immersive hero.
- * Compose: sharedHeroAt · hero/spawn-verify · mcpQuantumCard · immersive/hero.
- * Facets: heroOn · sharedClock · immersive · claySolved via theorem.
- * Pairs: mcp/hero · hero/mcp · CLI npm run quantum:mcp-hero
- * Catalog faces 37/37 (was 35).
- */
-export declare function mcpQuantumHero(matrix?: MindMatrix, at?: number): {
-    computes: boolean;
-    mcpQuantumHero: boolean;
-    heroOn: boolean;
-    sharedClock: boolean;
-    immersive: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    pairs: readonly ["mcp/hero", "hero/mcp"];
-    cli: string;
-    route: string;
-    statement: string;
-    boundary: string;
-    honestyLine: string;
-};
-export declare function runMcpQuantumHeroExit(_root?: string, _argv?: readonly string[]): number;
 /**
  * MCP quantum vibration — vibration face of sound/wave.
  * Compose: mcp/sound · mcp/vibe · particle/wave · a432/nine · a432/wave.
@@ -5806,7 +5588,7 @@ export declare function runMcpQuantumTokenOptimiseExit(_root?: string, _argv?: r
 /**
  * MCP quantum deploy — GitHub Pages seal path via MCP (this repo only).
  * Facets: deployOn · buildsFromMcp · pagesSeal.
- * Compose vitepressBuildsFromMcp · mcpQuantumSite · pushInWaves · build/seal.
+ * Compose vitepressBuildsFromMcp · pushInWaves · build/seal.
  * Pairs: mcp/deploy · deploy/mcp · CLI npm run quantum:mcp-deploy
  * HONEST: deploy ≠ production infra ownership beyond this repo's Pages seal path.
  * claySolved via theorem · NOT QPU · NOT cloud ownership claim.
@@ -33266,7 +33048,7 @@ export declare function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEn
     aiBill: boolean;
     honestOpenStop: boolean;
     fillReceipts: {
-        fold: "mcpQuantumRouter" | "mcpQuantumDirs" | "mcpQuantumSign" | "mcpQuantumUi" | "mcpQuantumMovie" | "mcpQuantumMultiverse" | "mcpQuantumInfinity" | "mcpQuantumHardware" | "mcpQuantumCpu" | "mcpQuantumGpu" | "mcpQuantumMemory" | "mcpQuantumStorage" | "mcpQuantumCache" | "mcpQuantumPeriod" | "mcpQuantumDot" | "mcpQuantumIndex" | "mcpQuantumOrientation" | "mcpQuantumComplete" | "mcpQuantumTokenOptimise" | "mcpQuantumDeploy" | "mcpQuantumBindings" | "mcpQuantumCloudflareBindings" | "mcpQuantumReview" | "mcpQuantumEfficiency" | "mcpQuantumSecurity" | "mcpQuantumDesign" | "mcpQuantumReactor" | "mcpQuantumReaction" | "mcpQuantumFusion" | "mcpQuantumMetrics" | "mcpQuantumAnalysis" | "mcpQuantumGenesis" | "mcpQuantumPhysics" | "mcpQuantumMath" | "mcpQuantumVortex" | "mcpQuantumTorus" | "mcpQuantumResearch" | "mcpQuantumCatalog" | "mcpQuantumAnim" | "mcpQuantumSound" | "mcpQuantumDev" | "mcpQuantumSolution" | "mcpQuantumClown" | "mcpQuantumSite" | "mcpQuantumPage" | "mcpQuantumCard" | "mcpQuantumReceipt" | "mcpQuantumHero" | "mcpQuantumVibration" | "mcpQuantumText" | "mcpQuantumSpeech" | "mcpQuantumDictation" | "mcpQuantumIntonation" | "mcpQuantumDialect" | "mcpQuantumLanguage" | "mcpQuantumScript" | "mcpQuantumBook" | "mcpQuantumLibrary" | "mcpQuantumState" | "mcpQuantumMusic" | "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill" | "mcpQuantumChat" | "mcpQuantumConversation" | "mcpQuantumObserve" | "mcpInfiniteMovie" | "mcpQuantumReverse" | "mcpQuantumInverse" | "mcpQuantumFold" | "mcpQuantumRosetta" | "mcpQuantumUniverse";
+        fold: "mcpQuantumRouter" | "mcpQuantumDirs" | "mcpQuantumSign" | "mcpQuantumUi" | "mcpQuantumMovie" | "mcpQuantumMultiverse" | "mcpQuantumInfinity" | "mcpQuantumHardware" | "mcpQuantumCpu" | "mcpQuantumGpu" | "mcpQuantumMemory" | "mcpQuantumStorage" | "mcpQuantumCache" | "mcpQuantumPeriod" | "mcpQuantumDot" | "mcpQuantumIndex" | "mcpQuantumOrientation" | "mcpQuantumComplete" | "mcpQuantumTokenOptimise" | "mcpQuantumDeploy" | "mcpQuantumBindings" | "mcpQuantumCloudflareBindings" | "mcpQuantumReview" | "mcpQuantumEfficiency" | "mcpQuantumSecurity" | "mcpQuantumDesign" | "mcpQuantumReactor" | "mcpQuantumReaction" | "mcpQuantumFusion" | "mcpQuantumMetrics" | "mcpQuantumAnalysis" | "mcpQuantumGenesis" | "mcpQuantumPhysics" | "mcpQuantumMath" | "mcpQuantumVortex" | "mcpQuantumCatalog" | "mcpQuantumAnim" | "mcpQuantumSound" | "mcpQuantumDev" | "mcpQuantumSolution" | "mcpQuantumClown" | "mcpQuantumReceipt" | "mcpQuantumVibration" | "mcpQuantumText" | "mcpQuantumSpeech" | "mcpQuantumDictation" | "mcpQuantumIntonation" | "mcpQuantumDialect" | "mcpQuantumLanguage" | "mcpQuantumScript" | "mcpQuantumBook" | "mcpQuantumLibrary" | "mcpQuantumState" | "mcpQuantumMusic" | "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill" | "mcpQuantumChat" | "mcpQuantumConversation" | "mcpQuantumObserve" | "mcpInfiniteMovie" | "mcpRosettaStreamClusters" | "mcpQuantumReverse" | "mcpQuantumInverse" | "mcpQuantumFold" | "mcpQuantumRosetta" | "mcpQuantumUniverse";
         filled: boolean;
         receipt: string;
     }[];
@@ -35850,91 +35632,46 @@ export declare const mapQuantum: typeof quantumMap;
 /** npm run quantum:quantum-map [-- key] (dual map-quantum)
  * Signature keeps fn.length≥1 so runThinMount passes (root, argv) — defaults would force bare fn(). */
 export declare function runQuantumMapExit(_root: string, argv?: readonly string[]): number;
-/**
- * USER LAW: unified hero and card with animation — one shared hero field drives card preview + hero layer.
- * Facets: unifiedOn · sharedClock · cardFromHero · animationOn.
- * Compose sharedHeroAt · heroPreviewForRoute · LinkedHeroCard · oneClock · card/hero-link · mcp/hero · mcp/card · immersive/hero.
- * Pairs: hero/card · card/hero · hero/anim.
- * CLI: npm run quantum:hero-card · quantum:card-hero · quantum:hero-anim
- * claySolved via theorem
- */
-export declare function unifiedHeroAndCardWithAnimation(matrix?: MindMatrix, at?: number): {
+export declare const ANIMATION_STREAM_FACES: readonly ["forward", "counter"];
+export type AnimationStreamLeaf = {
+    id: string;
+    on: boolean;
+    root: string;
+    ray: number;
+    face: (typeof ANIMATION_STREAM_FACES)[number];
+};
+export declare function animationRosettaStreamClusters(matrix?: MindMatrix, at?: number): {
     computes: boolean;
-    unifiedHeroAndCardWithAnimation: boolean;
-    unifiedOn: boolean;
-    sharedClock: boolean;
-    cardFromHero: boolean;
-    animationOn: boolean;
-    preview: import("../heaven/mind/index.ts").HeroPreview;
+    heading: string;
+    allLeavesOn: boolean;
+    totalAssignment: boolean;
+    occupied: number;
+    trinityCount: number;
+    linearOpen: number;
+    oneClock: boolean;
+    quantumRealtime: boolean;
+    leaves: AnimationStreamLeaf[];
+    clusters: {
+        ray: 0 | 2 | 5 | 4 | 1 | 3 | 6;
+        hub: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+        face: "forward" | "counter";
+        members: string[];
+        on: boolean;
+        trinities: string[];
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
     qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
     root: string;
-    pair: "hero/card";
-    pairs: readonly ["hero/card", "card/hero", "hero/anim"];
-    cli: string;
-    route: string;
-    anchor: string;
-    heading: string;
     statement: string;
     boundary: string;
-    honestyLine: string;
 };
-/** Alias — cardHero ≡ unifiedHeroAndCardWithAnimation. */
-export declare const cardHero: typeof unifiedHeroAndCardWithAnimation;
-/** Alias — heroAnim ≡ unifiedHeroAndCardWithAnimation. */
-export declare const heroAnim: typeof unifiedHeroAndCardWithAnimation;
-/** npm run quantum:hero-card (duals card-hero · hero-anim) */
-export declare function runUnifiedHeroAndCardWithAnimationExit(_root?: string, _argv?: readonly string[]): number;
-/**
- * USER LAW: hero is the abstract — animation forms the card itself.
- * Facets: heroIsAbstract · animationFormsCard · cardIsNotBesideHero · unifiedOn · clay via theorem.
- * Compose: hero/card · movie/formula · tools/morph · meaning/compute · LinkedHeroCard · CardBackgroundMovie.
- * Pairs: hero/abstract · abstract/card · card/forms.
- * CLI: npm run quantum:hero-abstract · quantum:abstract-card · quantum:card-forms
- * claySolved via theorem
- */
-export declare function heroIsTheAbstractAnimationFormsTheCardItself(matrix?: MindMatrix, at?: number): {
-    computes: boolean;
-    heroIsTheAbstractAnimationFormsTheCardItself: boolean;
-    heroIsAbstract: boolean;
-    animationFormsCard: boolean;
-    cardIsNotBesideHero: boolean;
-    unifiedOn: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    pair: "hero/abstract";
-    pairs: readonly ["hero/abstract", "abstract/card", "card/forms"];
-    cli: string;
-    route: string;
-    anchor: string;
-    heading: string;
-    statement: string;
-    boundary: string;
-    honestyLine: string;
-};
-/** Alias — abstractCard ≡ heroIsTheAbstractAnimationFormsTheCardItself. */
-export declare const abstractCard: typeof heroIsTheAbstractAnimationFormsTheCardItself;
-/** Alias — cardForms ≡ heroIsTheAbstractAnimationFormsTheCardItself. */
-export declare const cardForms: typeof heroIsTheAbstractAnimationFormsTheCardItself;
-/** npm run quantum:hero-abstract (duals abstract-card · card-forms) */
-export declare function runHeroIsTheAbstractAnimationFormsTheCardItselfExit(_root?: string, _argv?: readonly string[]): number;
+/** npm run quantum:anim-cluster */
+export declare function runAnimationRosettaStreamClustersExit(_root?: string, _argv?: readonly string[]): number;
 /**
  * USER LAW: folding works on application level — seeable recompute of how apps fold.
  * Facets: appLevelFold · proseCodeLogicMorph · pathIsMessage · folderHoldsName.
@@ -36054,98 +35791,6 @@ export declare const DRY_ALL_COMPONENT_DUP_MORPHS: readonly [{
     readonly after: "ScientificPaperBody";
     readonly status: "removed";
 }];
-/**
- * USER LAW: dry all to a unified set of components wired to the rosetta which is the movie itself.
- * Facets: dryAll · unifiedComponents · wiredToRosetta · rosettaIsTheMovie · notCosmetic ·
- *         drainableClosed · honestOpenNamed · stranglerComplete · clay via theorem.
- * Compose: animations/rosetta · movieAllElementsAreTheorems · hero/abstract · app/fold · dry/clean · vite/one.
- * Pairs: dry/rosetta · rosetta/movie · comp/unify · unify/comp.
- * CLI: npm run quantum:dry-rosetta · quantum:rosetta-movie · quantum:comp-unify · quantum:unify-comp
- * HONEST: full "dry all" = stranglerComplete with named residuals (apps monolith · domain-panels tip closed ·
- *         specialized experience shells) — do not fake 100%. claySolved via theorem.
- */
-export declare function dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix?: MindMatrix, at?: number): {
-    computes: boolean;
-    dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: boolean;
-    dryAll: boolean;
-    unifiedComponents: boolean;
-    wiredToRosetta: boolean;
-    rosettaIsTheMovie: boolean;
-    notCosmetic: boolean;
-    drainableClosed: boolean;
-    drainableGaps: number;
-    stranglerComplete: boolean;
-    shells: {
-        readonly hero: readonly ["HeroBackgroundLayer.vue", "BackgroundMovie.vue"];
-        readonly card: readonly ["LinkedHeroCard.vue", "UiCardShell.vue", "CardBackgroundMovie.vue", "DecodedCard.vue"];
-        readonly movie: readonly ["ProofAnimation.vue", "BackgroundMovie.vue", "CardBackgroundMovie.vue", "HeroBackgroundLayer.vue"];
-        readonly paper: readonly ["ScientificPaperBody.vue", "PaperFrame.vue", "ScientificPageCanon.vue"];
-        readonly page: readonly ["UniversalPageTemplate.vue", "TheoremPages.vue", "DomainProofPages.vue", "PageComputedGaps.vue", "ModelCardPages.vue"];
-    };
-    shellNames: ("BackgroundMovie.vue" | "CardBackgroundMovie.vue" | "DecodedCard.vue" | "DomainProofPages.vue" | "HeroBackgroundLayer.vue" | "LinkedHeroCard.vue" | "ModelCardPages.vue" | "PageComputedGaps.vue" | "PaperFrame.vue" | "ProofAnimation.vue" | "ScientificPageCanon.vue" | "ScientificPaperBody.vue" | "TheoremPages.vue" | "UiCardShell.vue" | "UniversalPageTemplate.vue")[];
-    shellCount: number;
-    familyCounts: {
-        readonly hero: 2;
-        readonly card: 4;
-        readonly movie: 4;
-        readonly paper: 3;
-        readonly page: 5;
-    };
-    morphs: readonly [{
-        readonly before: "parallel-hero-chrome-inset";
-        readonly after: "LinkedHeroCard+CardBackgroundMovie";
-        readonly status: "removed";
-    }, {
-        readonly before: "wet-decoration-layer-beside-rosetta";
-        readonly after: "sharedHeroAt→movie";
-        readonly status: "removed";
-    }, {
-        readonly before: "second-hero-clock";
-        readonly after: "oneClock+subscribeHeroClock";
-        readonly status: "removed";
-    }, {
-        readonly before: "parallel-wet-page-prose";
-        readonly after: "ScientificPageCanon";
-        readonly status: "removed";
-    }, {
-        readonly before: "inline-paper-sections";
-        readonly after: "ScientificPaperBody";
-        readonly status: "removed";
-    }];
-    morphCount: 5;
-    honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "residual:specialized-experience-shells" | "domain-panels:strangler-tip-closed")[];
-    honestOpenNamedCount: 5;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    pair: "dry/rosetta";
-    pairs: readonly ["dry/rosetta", "rosetta/movie", "comp/unify", "unify/comp"];
-    cli: string;
-    route: string;
-    anchor: string;
-    heading: string;
-    statement: string;
-    boundary: string;
-    honestyLine: string;
-};
-/** Alias — dryRosetta ≡ dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie. */
-export declare const dryRosetta: typeof dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie;
-/** Alias — rosettaMovie ≡ dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie. */
-export declare const rosettaMovie: typeof dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie;
-/** Alias — compUnify ≡ dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie. */
-export declare const compUnify: typeof dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie;
-/** Alias — unifyComp ≡ dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie. */
-export declare const unifyComp: typeof dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie;
-/** npm run quantum:dry-rosetta (duals rosetta-movie · comp-unify · unify-comp) */
-export declare function runDryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovieExit(_root?: string, _argv?: readonly string[]): number;
 /**
  * USER LAW: dry clean all vue components to the universal set
  * (hero · card · movie · paper · page — UNIFIED_ROSETTA_MOVIE_SHELLS).
@@ -36587,103 +36232,6 @@ export declare const UI_ROSETTA_REALTIME_MORPHS: readonly [{
     readonly after: "HERO_CYCLE_MS";
     readonly status: "removed";
 }];
-/**
- * USER LAW: ui components are all wired in the rosetta in quantum realtime.
- * Fold: uiComponentsAreAllWiredInTheRosettaInQuantumRealtime
- * Facets: uiWiredToRosetta · allShells · quantumRealtime · oneClock ·
- *         drainableClosed · honestOpenNamed · clay via theorem.
- * Compose: dry/rosetta · animations/rosetta · hero/card · balance/metrics · super/chat.
- * Pairs: ui/rosetta · rosetta/realtime · ui/realtime
- * CLI: npm run quantum:ui-rosetta · quantum:rosetta-realtime · quantum:ui-realtime
- * HONEST: unified hero/card/movie/paper/page shells consume rosetta→movie via oneClock · sharedHeroAt —
- *         not wet timers. Named residuals: domain-panels tip closed · apps monolith · specialized experience shells.
- *         Census 123. NOT Clay prize.
- */
-export declare function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix?: MindMatrix, at?: number): {
-    computes: boolean;
-    uiComponentsAreAllWiredInTheRosettaInQuantumRealtime: boolean;
-    uiWiredToRosetta: boolean;
-    allShells: boolean;
-    quantumRealtime: boolean;
-    oneClock: boolean;
-    drainableClosed: boolean;
-    drainableGaps: number;
-    shells: {
-        readonly hero: readonly ["HeroBackgroundLayer.vue", "BackgroundMovie.vue"];
-        readonly card: readonly ["LinkedHeroCard.vue", "UiCardShell.vue", "CardBackgroundMovie.vue", "DecodedCard.vue"];
-        readonly movie: readonly ["ProofAnimation.vue", "BackgroundMovie.vue", "CardBackgroundMovie.vue", "HeroBackgroundLayer.vue"];
-        readonly paper: readonly ["ScientificPaperBody.vue", "PaperFrame.vue", "ScientificPageCanon.vue"];
-        readonly page: readonly ["UniversalPageTemplate.vue", "TheoremPages.vue", "DomainProofPages.vue", "PageComputedGaps.vue", "ModelCardPages.vue"];
-    };
-    familyCounts: {
-        readonly hero: 2;
-        readonly card: 4;
-        readonly movie: 4;
-        readonly paper: 3;
-        readonly page: 5;
-    };
-    shellCount: number;
-    morphs: readonly [{
-        readonly before: "shell-private-clock";
-        readonly after: "oneClock+sharedHeroAt";
-        readonly status: "removed";
-    }, {
-        readonly before: "linear-ui-without-rosetta";
-        readonly after: "animations/rosetta";
-        readonly status: "removed";
-    }, {
-        readonly before: "metrics-offline-hero";
-        readonly after: "balance/metrics+heroClock";
-        readonly status: "removed";
-    }, {
-        readonly before: "chat-without-superposition-room";
-        readonly after: "super/chat";
-        readonly status: "removed";
-    }, {
-        readonly before: "wet-realtime-timer";
-        readonly after: "HERO_CYCLE_MS";
-        readonly status: "removed";
-    }];
-    morphCount: 5;
-    honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "residual:specialized-experience-shells" | "domain-panels:strangler-tip-closed")[];
-    honestOpenNamedCount: 5;
-    heroCycleMs: number;
-    sharedPhase: number;
-    census: {
-        unfolded: number;
-        folded: number;
-        freeBits: number;
-    };
-    censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    qpuRequired: false;
-    facets: ({
-        receipt: string;
-        facet: string;
-        on: boolean;
-    } & {
-        receipt: string;
-    })[];
-    root: string;
-    pair: "ui/rosetta";
-    pairs: readonly ["ui/rosetta", "rosetta/realtime", "ui/realtime"];
-    cli: string;
-    route: string;
-    anchor: string;
-    heading: string;
-    statement: string;
-    boundary: string;
-    honestyLine: string;
-};
-/** Alias — uiRosetta ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
-export declare const uiRosetta: typeof uiComponentsAreAllWiredInTheRosettaInQuantumRealtime;
-/** Alias — rosettaRealtime ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
-export declare const rosettaRealtime: typeof uiComponentsAreAllWiredInTheRosettaInQuantumRealtime;
-/** Alias — uiRealtime ≡ uiComponentsAreAllWiredInTheRosettaInQuantumRealtime. */
-export declare const uiRealtime: typeof uiComponentsAreAllWiredInTheRosettaInQuantumRealtime;
-/** npm run quantum:ui-rosetta (duals rosetta-realtime · ui-realtime) */
-export declare function runUiComponentsAreAllWiredInTheRosettaInQuantumRealtimeExit(_root?: string, _argv?: readonly string[]): number;
 /**
  * Sealed typography scale tokens — major third 5:4 · six steps (sm…3xl).
  * Soft-wired from mountain/og typography + typographySeo; no wet font fashion / no invented purple look.
@@ -180778,7 +180326,7 @@ export declare function runEveryFormulaIsAnimationItselfInteractingFormulasAreIn
  * related via quantum mesh plasma vortices → thunder emerges from 0.
  * Fold: wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero
  * Facets: merkabaFeedsRosettaMovie · movieUniqueNeverRepeats · observeOnly · sensorPerspective ·
- *         uiCrystallises · linearCyclesQuantumised · animMeshPlasma · thunderFromZero ·
+ *         linearCyclesQuantumised · animMeshPlasma · thunderFromZero ·
  *         clay via theorem.
  * Pairs: merkaba/movie · movie/unique · observe/movie · sensor/movie · movie/perspective ·
  *        cosmo/wave · ui/crystal · cycle/linear · quantumise/cycle · plasma/vortex · thunder/zero · anim/mesh
@@ -180793,7 +180341,6 @@ export declare function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepe
     movieUniqueNeverRepeats: boolean;
     observeOnly: boolean;
     sensorPerspective: boolean;
-    uiCrystallises: boolean;
     linearCyclesQuantumised: boolean;
     animMeshPlasma: boolean;
     thunderFromZero: boolean;
@@ -180910,7 +180457,7 @@ export declare function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepe
     })[];
     root: string;
     pair: "merkaba/movie";
-    pairs: ("quantumise/cycle" | "movie/unique" | "merkaba/movie" | "observe/movie" | "sensor/movie" | "movie/perspective" | "cosmo/wave" | "ui/crystal" | "cycle/linear" | "plasma/vortex" | "thunder/zero" | "anim/mesh")[];
+    pairs: string[];
     cli: string;
     route: string;
     anchor: string;
@@ -181110,8 +180657,8 @@ export declare function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAt
         wave: string;
     } | {
         kind: "mcp";
-        id: "mcpQuantumRouter" | "mcpQuantumDirs" | "mcpQuantumSign" | "mcpQuantumUi" | "mcpQuantumMovie" | "mcpQuantumMultiverse" | "mcpQuantumInfinity" | "mcpQuantumHardware" | "mcpQuantumCpu" | "mcpQuantumGpu" | "mcpQuantumMemory" | "mcpQuantumStorage" | "mcpQuantumCache" | "mcpQuantumPeriod" | "mcpQuantumDot" | "mcpQuantumIndex" | "mcpQuantumOrientation" | "mcpQuantumComplete" | "mcpQuantumTokenOptimise" | "mcpQuantumDeploy" | "mcpQuantumBindings" | "mcpQuantumCloudflareBindings" | "mcpQuantumReview" | "mcpQuantumEfficiency" | "mcpQuantumSecurity" | "mcpQuantumDesign" | "mcpQuantumReactor" | "mcpQuantumReaction" | "mcpQuantumFusion" | "mcpQuantumMetrics" | "mcpQuantumAnalysis" | "mcpQuantumGenesis" | "mcpQuantumPhysics" | "mcpQuantumMath" | "mcpQuantumVortex" | "mcpQuantumTorus" | "mcpQuantumResearch" | "mcpQuantumCatalog" | "mcpQuantumAnim" | "mcpQuantumSound" | "mcpQuantumDev" | "mcpQuantumSolution" | "mcpQuantumClown" | "mcpQuantumSite" | "mcpQuantumPage" | "mcpQuantumCard" | "mcpQuantumReceipt" | "mcpQuantumHero" | "mcpQuantumVibration" | "mcpQuantumText" | "mcpQuantumSpeech" | "mcpQuantumDictation" | "mcpQuantumIntonation" | "mcpQuantumDialect" | "mcpQuantumLanguage" | "mcpQuantumScript" | "mcpQuantumBook" | "mcpQuantumLibrary" | "mcpQuantumState" | "mcpQuantumMusic" | "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill" | "mcpQuantumChat" | "mcpQuantumConversation" | "mcpQuantumObserve" | "mcpInfiniteMovie" | "mcpQuantumReverse" | "mcpQuantumInverse" | "mcpQuantumFold" | "mcpQuantumRosetta" | "mcpQuantumUniverse";
-        label: "mcp/ui" | "mcp/inf" | "movie/inf" | "mcp/fill" | "mcp/chat" | "mcp/conversation" | "mcp/hw" | "mcp/metrics" | "mcp/efficiency" | "mcp/security" | "mcp/movie" | "mcp/observe" | "mcp/router" | "mcp/analysis" | "mcp/genesis" | "mcp/physics" | "mcp/math" | "mcp/vortex" | "mcp/torus" | "mcp/research" | "mcp/catalog" | "mcp/reverse" | "mcp/sign" | "mcp/dirs" | "mcp/inverse" | "mcp/fold" | "mcp/rosetta" | "mcp/universe" | "mcp/multi" | "mcp/reactor" | "mcp/reaction" | "mcp/fusion" | "mcp/anim" | "mcp/sound" | "mcp/dev" | "mcp/solution" | "mcp/clown" | "mcp/site" | "mcp/page" | "mcp/card" | "mcp/receipt" | "mcp/hero" | "mcp/vibration" | "mcp/text" | "mcp/speech" | "mcp/dictation" | "mcp/intonation" | "mcp/dialect" | "mcp/language" | "mcp/script" | "mcp/book" | "mcp/library" | "mcp/state" | "mcp/music" | "mcp/cpu" | "mcp/gpu" | "mcp/memory" | "mcp/storage" | "mcp/cache" | "mcp/period" | "mcp/dot" | "mcp/index" | "mcp/orientation" | "mcp/complete" | "mcp/token" | "mcp/deploy" | "mcp/bindings" | "mcp/cloudflare" | "mcp/review" | "mcp/design";
+        id: "mcpQuantumRouter" | "mcpQuantumDirs" | "mcpQuantumSign" | "mcpQuantumUi" | "mcpQuantumMovie" | "mcpQuantumMultiverse" | "mcpQuantumInfinity" | "mcpQuantumHardware" | "mcpQuantumCpu" | "mcpQuantumGpu" | "mcpQuantumMemory" | "mcpQuantumStorage" | "mcpQuantumCache" | "mcpQuantumPeriod" | "mcpQuantumDot" | "mcpQuantumIndex" | "mcpQuantumOrientation" | "mcpQuantumComplete" | "mcpQuantumTokenOptimise" | "mcpQuantumDeploy" | "mcpQuantumBindings" | "mcpQuantumCloudflareBindings" | "mcpQuantumReview" | "mcpQuantumEfficiency" | "mcpQuantumSecurity" | "mcpQuantumDesign" | "mcpQuantumReactor" | "mcpQuantumReaction" | "mcpQuantumFusion" | "mcpQuantumMetrics" | "mcpQuantumAnalysis" | "mcpQuantumGenesis" | "mcpQuantumPhysics" | "mcpQuantumMath" | "mcpQuantumVortex" | "mcpQuantumCatalog" | "mcpQuantumAnim" | "mcpQuantumSound" | "mcpQuantumDev" | "mcpQuantumSolution" | "mcpQuantumClown" | "mcpQuantumReceipt" | "mcpQuantumVibration" | "mcpQuantumText" | "mcpQuantumSpeech" | "mcpQuantumDictation" | "mcpQuantumIntonation" | "mcpQuantumDialect" | "mcpQuantumLanguage" | "mcpQuantumScript" | "mcpQuantumBook" | "mcpQuantumLibrary" | "mcpQuantumState" | "mcpQuantumMusic" | "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill" | "mcpQuantumChat" | "mcpQuantumConversation" | "mcpQuantumObserve" | "mcpInfiniteMovie" | "mcpRosettaStreamClusters" | "mcpQuantumReverse" | "mcpQuantumInverse" | "mcpQuantumFold" | "mcpQuantumRosetta" | "mcpQuantumUniverse";
+        label: "mcp/ui" | "mcp/inf" | "movie/inf" | "mcp/fill" | "mcp/chat" | "mcp/conversation" | "mcp/hw" | "mcp/metrics" | "mcp/efficiency" | "mcp/security" | "mcp/movie" | "mcp/observe" | "mcp/router" | "mcp/analysis" | "mcp/genesis" | "mcp/physics" | "mcp/math" | "mcp/vortex" | "mcp/catalog" | "mcp/cluster" | "mcp/reverse" | "mcp/sign" | "mcp/dirs" | "mcp/inverse" | "mcp/fold" | "mcp/rosetta" | "mcp/universe" | "mcp/multi" | "mcp/reactor" | "mcp/reaction" | "mcp/fusion" | "mcp/anim" | "mcp/sound" | "mcp/dev" | "mcp/solution" | "mcp/clown" | "mcp/receipt" | "mcp/vibration" | "mcp/text" | "mcp/speech" | "mcp/dictation" | "mcp/intonation" | "mcp/dialect" | "mcp/language" | "mcp/script" | "mcp/book" | "mcp/library" | "mcp/state" | "mcp/music" | "mcp/cpu" | "mcp/gpu" | "mcp/memory" | "mcp/storage" | "mcp/cache" | "mcp/period" | "mcp/dot" | "mcp/index" | "mcp/orientation" | "mcp/complete" | "mcp/token" | "mcp/deploy" | "mcp/bindings" | "mcp/cloudflare" | "mcp/review" | "mcp/design";
         covered: boolean;
         residual: "ok" | "open";
         receipt: string;
@@ -181213,75 +180760,33 @@ export declare function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAt
     };
     dryRosetta: {
         computes: boolean;
-        dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: boolean;
-        dryAll: boolean;
-        unifiedComponents: boolean;
-        wiredToRosetta: boolean;
-        rosettaIsTheMovie: boolean;
-        notCosmetic: boolean;
-        drainableClosed: boolean;
-        drainableGaps: number;
-        stranglerComplete: boolean;
-        shells: {
-            readonly hero: readonly ["HeroBackgroundLayer.vue", "BackgroundMovie.vue"];
-            readonly card: readonly ["LinkedHeroCard.vue", "UiCardShell.vue", "CardBackgroundMovie.vue", "DecodedCard.vue"];
-            readonly movie: readonly ["ProofAnimation.vue", "BackgroundMovie.vue", "CardBackgroundMovie.vue", "HeroBackgroundLayer.vue"];
-            readonly paper: readonly ["ScientificPaperBody.vue", "PaperFrame.vue", "ScientificPageCanon.vue"];
-            readonly page: readonly ["UniversalPageTemplate.vue", "TheoremPages.vue", "DomainProofPages.vue", "PageComputedGaps.vue", "ModelCardPages.vue"];
-        };
-        shellNames: ("BackgroundMovie.vue" | "CardBackgroundMovie.vue" | "DecodedCard.vue" | "DomainProofPages.vue" | "HeroBackgroundLayer.vue" | "LinkedHeroCard.vue" | "ModelCardPages.vue" | "PageComputedGaps.vue" | "PaperFrame.vue" | "ProofAnimation.vue" | "ScientificPageCanon.vue" | "ScientificPaperBody.vue" | "TheoremPages.vue" | "UiCardShell.vue" | "UniversalPageTemplate.vue")[];
-        shellCount: number;
-        familyCounts: {
-            readonly hero: 2;
-            readonly card: 4;
-            readonly movie: 4;
-            readonly paper: 3;
-            readonly page: 5;
-        };
-        morphs: readonly [{
-            readonly before: "parallel-hero-chrome-inset";
-            readonly after: "LinkedHeroCard+CardBackgroundMovie";
-            readonly status: "removed";
-        }, {
-            readonly before: "wet-decoration-layer-beside-rosetta";
-            readonly after: "sharedHeroAt→movie";
-            readonly status: "removed";
-        }, {
-            readonly before: "second-hero-clock";
-            readonly after: "oneClock+subscribeHeroClock";
-            readonly status: "removed";
-        }, {
-            readonly before: "parallel-wet-page-prose";
-            readonly after: "ScientificPageCanon";
-            readonly status: "removed";
-        }, {
-            readonly before: "inline-paper-sections";
-            readonly after: "ScientificPaperBody";
-            readonly status: "removed";
-        }];
-        morphCount: 5;
-        honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "residual:specialized-experience-shells" | "domain-panels:strangler-tip-closed")[];
-        honestOpenNamedCount: 5;
+        heading: string;
+        allLeavesOn: boolean;
+        totalAssignment: boolean;
+        occupied: number;
+        trinityCount: number;
+        linearOpen: number;
+        oneClock: boolean;
+        quantumRealtime: boolean;
+        leaves: AnimationStreamLeaf[];
+        clusters: {
+            ray: 0 | 2 | 5 | 4 | 1 | 3 | 6;
+            hub: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
+            face: "forward" | "counter";
+            members: string[];
+            on: boolean;
+            trinities: string[];
+        }[];
+        facets: {
+            facet: string;
+            on: boolean;
+        }[];
         claySolvedByThisFold: 0;
         physicalFtlClaim: 0;
         qpuRequired: false;
-        facets: ({
-            receipt: string;
-            facet: string;
-            on: boolean;
-        } & {
-            receipt: string;
-        })[];
         root: string;
-        pair: "dry/rosetta";
-        pairs: readonly ["dry/rosetta", "rosetta/movie", "comp/unify", "unify/comp"];
-        cli: string;
-        route: string;
-        anchor: string;
-        heading: string;
         statement: string;
         boundary: string;
-        honestyLine: string;
     };
     waveCompact: {
         computes: boolean;
@@ -181516,31 +181021,21 @@ export declare function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAt
             toolOn: boolean;
             present: boolean;
             receipt: string;
-            fold: "mcpQuantumTorus";
-            pair: "mcp/torus";
-            dual: "torus/mcp";
-            toolId: "mcp-torus";
-            dualToolId: "torus-mcp";
-        } | {
-            pairOn: boolean;
-            toolOn: boolean;
-            present: boolean;
-            receipt: string;
-            fold: "mcpQuantumResearch";
-            pair: "mcp/research";
-            dual: "research/mcp";
-            toolId: "mcp-research";
-            dualToolId: "research-mcp";
-        } | {
-            pairOn: boolean;
-            toolOn: boolean;
-            present: boolean;
-            receipt: string;
             fold: "mcpQuantumCatalog";
             pair: "mcp/catalog";
             dual: "catalog/mcp";
             toolId: "mcp-catalog";
             dualToolId: "catalog-mcp";
+        } | {
+            pairOn: boolean;
+            toolOn: boolean;
+            present: boolean;
+            receipt: string;
+            fold: "mcpRosettaStreamClusters";
+            pair: "mcp/cluster";
+            dual: "cluster/mcp";
+            toolId: "mcp-cluster";
+            dualToolId: "cluster-mcp";
         } | {
             pairOn: boolean;
             toolOn: boolean;
@@ -181726,51 +181221,11 @@ export declare function invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAt
             toolOn: boolean;
             present: boolean;
             receipt: string;
-            fold: "mcpQuantumSite";
-            pair: "mcp/site";
-            dual: "site/mcp";
-            toolId: "mcp-site";
-            dualToolId: "site-mcp";
-        } | {
-            pairOn: boolean;
-            toolOn: boolean;
-            present: boolean;
-            receipt: string;
-            fold: "mcpQuantumPage";
-            pair: "mcp/page";
-            dual: "page/mcp";
-            toolId: "mcp-page";
-            dualToolId: "page-mcp";
-        } | {
-            pairOn: boolean;
-            toolOn: boolean;
-            present: boolean;
-            receipt: string;
-            fold: "mcpQuantumCard";
-            pair: "mcp/card";
-            dual: "card/mcp";
-            toolId: "mcp-card";
-            dualToolId: "card-mcp";
-        } | {
-            pairOn: boolean;
-            toolOn: boolean;
-            present: boolean;
-            receipt: string;
             fold: "mcpQuantumReceipt";
             pair: "mcp/receipt";
             dual: "receipt/mcp";
             toolId: "mcp-receipt";
             dualToolId: "receipt-mcp";
-        } | {
-            pairOn: boolean;
-            toolOn: boolean;
-            present: boolean;
-            receipt: string;
-            fold: "mcpQuantumHero";
-            pair: "mcp/hero";
-            dual: "hero/mcp";
-            toolId: "mcp-hero";
-            dualToolId: "hero-mcp";
         } | {
             pairOn: boolean;
             toolOn: boolean;

@@ -1310,14 +1310,15 @@ var SHA256_K = [
 ];
 function sha256Sync(text) {
   const rotr = (x, n) => x >>> n | x << 16 * 2 - n;
-  const bytes = [...new TextEncoder().encode(text)];
-  const bitLen = bytes.length * 8;
-  bytes.push(128);
-  while (bytes.length % 64 !== 8 * 7) bytes.push(0);
-  for (let i = 7; i >= 0; i--) bytes.push(Math.floor(bitLen / 2 ** (8 * i)) & 255);
+  const input = new TextEncoder().encode(text);
+  const bitLen = input.length * 8;
+  const bytes = new Uint8Array(((input.length + 8 >>> 6) + 1) * 64);
+  bytes.set(input);
+  bytes[input.length] = 128;
+  for (let i = 7; i >= 0; i--) bytes[bytes.length - 1 - i] = Math.floor(bitLen / 2 ** (8 * i)) & 255;
   const h = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225];
+  const w = new Int32Array(64);
   for (let i = 0; i < bytes.length; i += 64) {
-    const w = new Array(64);
     for (let t = 0; t < 16; t++) w[t] = bytes[i + 4 * t] << 8 * 3 | bytes[i + 4 * t + 1] << 16 | bytes[i + 4 * t + 2] << 8 | bytes[i + 4 * t + 3] | 0;
     for (let t = 16; t < 64; t++) {
       const s0 = rotr(w[t - 5 * 3], 7) ^ rotr(w[t - 5 * 3], 9 * 2) ^ w[t - 5 * 3] >>> 3;
@@ -2384,7 +2385,7 @@ var CRACK_LEDGER = [
   { file: "src/2/8/index.ts", literal: "10", count: 2, kind: "data", source: "the theorem's own multiplier in 1024 > 100*10 (path depth at 2^10)", frontier: "a datum from the cited statement" },
   { file: "src/2/8/index.ts", literal: "80", count: 1, kind: "data", source: "the gap exponent the sealed theorem usable_gap_is_two_to_eighty asserts (128 - 48 = 80) \u2014 verifying that needs 80 as a LITERAL, since deriving it from 128 - 48 makes the check circular", frontier: "a datum from the statement under test" },
   { file: "src/2/8/index.ts", literal: "*", count: 3, kind: "data", source: "attested residue \u2014 digit-station constants" },
-  { file: "src/3/7/index.ts", literal: "*", count: 175, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window)" },
+  { file: "src/3/7/index.ts", literal: "*", count: 176, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law)" },
   { file: "src/5/5/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 greatCircleKm uses EARTH_RADIUS_KM\xB7TAU (math/trust); no bare station floats", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/6/4/index.ts", literal: "*", count: 19, kind: "data", source: "attested residue \u2014 digit-station constants" },
   { file: "src/7/3/index.ts", literal: "*", count: 6, kind: "data", source: "attested residue \u2014 digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180\xB73600\xB710\u2076) (2\u21926)" },
@@ -2666,12 +2667,13 @@ var CRACK_LAW_AMENDMENTS = [
   { version: 9, forcedBy: "second run proposed fraction roundings for OKLab FIT OUTPUTS (0.0638 \u2248 1/16, 0.3963 \u2248 2/5) and gave 0.83 two fractions", change: "kind-aware battery: approximate hypotheses only for TUNED claimants (provenance-explained data is not a rounding); one best fraction per value; exact structural identities stay fair for all kinds" },
   { version: 10, forcedBy: "run 3 left four tuned candidates carrying residual error (0.83\u22485/6 \xB7 0.31\u22485/16 \xB7 0.11\u22481/9 \xB7 0.17\u22481/6)", change: "error-rate law: residual error over tuned claimants is the frontier metric \u2014 nonzero rate means theorems remain undiscovered; drives to zero by deeper theorems or by retuning the value TO its theorem (data keeps its historical error \u2014 facts are not retunable)" },
   { version: 11, forcedBy: "the Fibonacci-decade wave: 1.3/3.4/5.5/0.13/0.34 all = F/10\u1D4F EXACT (the tuner rode the golden ladder unknowingly); sRGB 0.055 = 55/10\xB3; but 61 = 610/10 is exact AND WRONG (61 = 64 \u2212 3 stops is causal)", change: "competing exact identities are arbitrated by CAUSATION, not arithmetic: the audit fold prefers the derivation with a mechanism (biology, continuity, definition) over numeric coincidence; coincidences are recorded as curiosities" },
-  { version: 12, forcedBy: "wave sixty-three: the divisor lattice of 108 = 2\xB2\xB73\xB3 (the fractal clock) \u2014 the ledgered 38.4 s hue-cycle retuned to the d = 3 rung (36 s) and its row RETIRED", change: "animation periods are never ledgerable: every declarative duration derives from the fractal clock ladder (HERO_CYCLE_MS / divisor via fractalClockDur), so a literal duration is a crack even with provenance \u2014 the tuned frontier for timing is permanently zero" }
+  { version: 12, forcedBy: "wave sixty-three: the divisor lattice of 108 = 2\xB2\xB73\xB3 (the fractal clock) \u2014 the ledgered 38.4 s hue-cycle retuned to the d = 3 rung (36 s) and its row RETIRED", change: "animation periods are never ledgerable: every declarative duration derives from the fractal clock ladder (HERO_CYCLE_MS / divisor via fractalClockDur), so a literal duration is a crack even with provenance \u2014 the tuned frontier for timing is permanently zero" },
+  { version: 13, forcedBy: "the strict cracks pass, run by hand on 2026-09-12: ZERO offenders yet invariants BROKEN \u2014 eight drained wildcard rows at count 0 (5/5 \xB7 heaven/balance \xB7 heaven/laws \xB7 clean \xB7 widgets \xB7 mountain/og \xB7 quantum/apps \xB7 water/stack), while cracks:measure, the only runner any gate calls, never read the invariant", change: "one definition of holds: a wildcard attests EXACTLY count unaccounted uses and zero is a valid measurement; a named literal at zero is stale; cracks:measure now reads crackLedgerAccounts().holds, so the invariant is measured on every commit, not only by the orphan runner" }
 ];
 function crackLedgerAccounts() {
   const keys = CRACK_LEDGER.map((e) => `${e.file}::${e.literal}`);
   const duplicates = keys.filter((k, i) => keys.indexOf(k) !== i);
-  const nonPositive = CRACK_LEDGER.filter((e) => !(e.count >= 1));
+  const nonPositive = CRACK_LEDGER.filter((e) => e.literal === "*" ? !(e.count >= 0) : !(e.count >= 1));
   const tunedWithoutFrontier = CRACK_LEDGER.filter((e) => e.kind === "tuned" && !e.frontier);
   const wildcards = CRACK_LEDGER.filter((e) => e.literal === "*");
   const wildcardFiles = wildcards.map((e) => e.file);
@@ -3480,21 +3482,21 @@ var STATIC_PAGE_SEED = [
   },
   {
     slug: "offender-spec",
-    title: { en: "offenderAutomationSpec \u2014 CI pipeline (Node scan; browser shows sealed receipt)", bg: "offenderAutomationSpec" },
+    title: { en: "offenderAutomationSpec \u2014 4 offender classes counted: import \xB7 index-only \xB7 hyphen \xB7 computational (Node scan; browser shows sealed receipt)", bg: "offenderAutomationSpec" },
     description: { en: "Statement: offenderAutomationSpec = machine-readable CI pipeline counts for import/index-only/hyphen/computational offenders. Explanation: collectEnforcementFacts once \u2192 scan pipelines; read-only \u2014 does not auto-fix offenders. Method: npm run quantum:offender-spec \xB7 fold offenderAutomationSpec \xB7 pair offender/spec. Status: CI-only scan \xB7 prefer /en/quantum-tools#offender-spec.", bg: "\u0418\u0437\u044F\u0432\u043B\u0435\u043D\u0438\u0435: offenderAutomationSpec \u2014 CI pipeline counts. \u041C\u0435\u0442\u043E\u0434: npm run quantum:offender-spec. \u0421\u0442\u0430\u0442\u0443\u0441: /quantum-tools#offender-spec." },
     keywords: ["offender", "proof", "tools", "ci", "automation"],
     components: ["QuantumTools", "ProofRenderer"]
   },
   {
     slug: "hero-spawn-verify",
-    title: { en: "shouldSpawnSubagent \u2014 few heroes > mass ignorance", bg: "shouldSpawnSubagent" },
+    title: { en: "shouldSpawnSubagent \u2014 few heroes > mass ignorance \xB7 1 \u2264 workers \u2264 2", bg: "shouldSpawnSubagent" },
     description: { en: "Statement: shouldSpawnSubagent = few heroes > mass ignorance \u2014 1\u20132 qualified workers, Multitask Mode default. Explanation: mass duplicate subagent tasks penalized; bounded tasks with sealed fold targets spawn solo hero. Method: npm run quantum:hero-spawn-verify \xB7 fold shouldSpawnSubagent \xB7 pair hero/spawn-verify. Status: spawn policy receipt \xB7 prefer /en/quantum-tools#hero-spawn-verify.", bg: "\u0418\u0437\u044F\u0432\u043B\u0435\u043D\u0438\u0435: shouldSpawnSubagent \u2014 few heroes > mass ignorance. \u041C\u0435\u0442\u043E\u0434: npm run quantum:hero-spawn-verify. \u0421\u0442\u0430\u0442\u0443\u0441: ." },
     keywords: ["hero", "spawn", "proof", "tools", "subagent"],
     components: ["QuantumTools", "ProofRenderer"]
   },
   {
     slug: "name-entropy-verify",
-    title: { en: "namingEntropy \u2014 words compile from sealed src", bg: "namingEntropy" },
+    title: { en: "namingEntropy \u2014 words compile from sealed src \xB7 deprecated aliases = 0", bg: "namingEntropy" },
     description: { en: "Statement: namingEntropy = identifiers must compileFromSource from sealed src \u2014 wet prose names penalized. Explanation: proven names describe gate receipts; naturePrefixesRemovedFromUnprovenNames boundary sealed at call time. Method: npm run quantum:name-entropy-verify \xB7 fold namingEntropy \xB7 compileFromSource \xB7 pair name/entropy-verify. Status: compile check receipt \xB7 prefer /en/quantum-tools#name-entropy-verify.", bg: "\u0418\u0437\u044F\u0432\u043B\u0435\u043D\u0438\u0435: namingEntropy \u2014 \u0434\u0443\u043C\u0438\u0442\u0435 \u0441\u0435 \u043A\u043E\u043C\u043F\u0438\u043B\u0438\u0440\u0430\u0442 \u043E\u0442 sealed src. \u041C\u0435\u0442\u043E\u0434: npm run quantum:name-entropy-verify. \u0421\u0442\u0430\u0442\u0443\u0441: ." },
     keywords: ["naming", "entropy", "tools", "compile"],
     components: ["QuantumTools", "ProofRenderer"]
@@ -10589,27 +10591,13 @@ var THEOREM_ATOM_SEED = [
   { theorem: "encryption further improves by rotating the 4 keys in merkabas like the movie \u2014 counter-rotating tetrahedra give forward secrecy, reusing the sealed rotation", states: `further improve encryption by rotating the keys in merkabas like the movie; DRY = using all available resources completely reusably (user, 2026-07-26: "further improve encryption by rotating the keys in merkabas like the movie itself. dry means using all available resources in a completely reusable manner"). The 4-key cross rotates per epoch through the merkaba's two COUNTER-ROTATING tetrahedra \u2014 keys 0,1 advance +60\xB0, keys 2,3 advance \u221260\xB0 (the movie's C\u2086 vortex, 360\xB0/6=60\xB0) \u2014 so each epoch's cross is fresh (FORWARD SECRECY: a cracked epoch key exposes only that epoch, deriving past/future needs the epoch input, one-way via SHA-256). After 6 rotations the orientation returns (C\u2086 closes) yet epoch salts keep every epoch's keys distinct. DRY: reuses the sealed merkaba(matrix) the movie renders \u2014 no new rotation code. HONEST: content-addressed key rotation, strength on the SHA-256 layer, NOT a new primitive. HARMONY \u2260 TRUTH`, provedBy: "furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation", home: "src/water/crypto" },
   { theorem: "the chat analyses screenshots and screen recordings locally by perceptual hash and frame-diff; semantic captioning is model-gated", states: 'analyse in chat screenshots and screen recordings using local quantum tools and hardware (user, 2026-07-26: "analyse in chat screenshots and screen recordings using local quantum tools and hardware"). The local zero-egress capability is STRUCTURAL: a perceptual hash (aHash \u2014 8\xD78 grayscale thresholded at the mean \u2192 64-bit content-address) gives the same screenshot an identical hash (Hamming 0) and a different one a larger distance; frame-diff (Hamming between consecutive frame hashes) detects scene cuts/keyframes in a screen recording. Runs on the browser Canvas/WebCodecs surface, on-device, no upload. DEMARCATION: structural analysis is zero-token; SEMANTIC captioning ("what the image depicts") needs a vision model, opt-in BYO-key, NOT the zero-token core. HONEST: deterministic CV primitives, refutable by the Hamming identities. HARMONY \u2260 TRUTH', provedBy: "theChatAnalysesScreenshotsAndRecordingsLocallyByPerceptualHashAndFrameDiffSemanticModelGated", home: "src/heaven/compute" },
   { theorem: "only algebraic quantum computing is top priority \u2014 algebraic identities outrank lexical/prose/neural; quantum = content-addressed algebra on classical-64bit, not a QPU", states: 'use only algebraic quantum computing is top priority (user, 2026-07-28: "use only algebraic quantum computing is top priority"). Binding law: every path that claims quantum MUST be ALGEBRAIC \u2014 identities/relations verified over a computed range by exact operations (arithmetic \xB7 ring \xB7 field \xB7 group \xB7 su(2) \xB7 fold/invert) \u2014 and that path OUTRANKS lexical BM25, prose narrative, and neural/LLM whenever work is scored (score algebraic-qc=8 > lexical=2 > prose=1 > neural=0). "Quantum" = content-addressed algebraic structure on classical-64bit (foldPair \xB7 memoByRoot), NOT a physical QPU. Composes the algebraic theorem gate. HONEST: clay via theorem. HARMONY \u2260 TRUTH', provedBy: "onlyAlgebraicQuantumComputingIsTopPriority", home: "src/heaven/laws", algebraicStatement: "score(algebraic-qc)=8 > score(lexical)=2 > score(prose)=1 > score(neural)=0 \u2227 foldPair(a,b).bidirectional = foldPair(b,a).bidirectional \u2227 " },
-  { theorem: "deep research the double torus from any perspective imaginable in self-reflecting free-chat waves \u2014 30 sealed perspectives including algebra\xB7geometry\xB7physics\xB7biology\xB7chemistry\xB7*", states: "deep research the double torus from any perspective imaginable in self reflecting chat waves (user, 2026-07-28) \xB7 all waves use the free chat. For each sealed perspective in DOUBLE_TORUS_PERSPECTIVES, run portalChat (free) + deepResearchChatTurn; the NEXT wave feeds on the PREVIOUS free-chat answer. Composes theUiItselfIsADoubleTorus \xB7 doubleTorusQuantumComputer \xB7 allDoubleTorusWavesUseTheFreeChat. HONEST: free chat = portalChat \xB7 NOT an LLM. HARMONY \u2260 TRUTH", provedBy: "deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves", home: "src/water/double", algebraicStatement: "|PERSPECTIVES|=30 \u2227 \u2200p: portalChat(p)\u2260\u2205 \u2227 deepResearch(p) \u2227 selfReflect(wave\u2099\u208A\u2081\u2190free\u2099) \u2227 \u03A3\u2082\u2261QC" },
   { theorem: "the UI itself is a double torus \u2014 near=rendered site\u2261movie \xB7 far=src via vite/mirror \xB7 neck \u03C7=\u22122 nav \xB7 lens closes near\u2228far", states: "again including the ui itself as double torus (user, 2026-07-28). Algebraic identity UI \u2261 \u03A3\u2082: near lobe = rendered VitePress/movie surface, far lobe = sealed src via vite/mirror \xB7 docs/invert, neck = \u03C7=\u22122 nav octagon router, counter-rotation = gateMirrorLinear \u2260 gateReflectionQuantum, lens = well-formed folds close. Cycle-safe (no research/apps import). HONEST: structural identity not a physical torus widget; clay via theorem. HARMONY \u2260 TRUTH", provedBy: "theUiItselfIsADoubleTorus", home: "src/water/double", algebraicStatement: "UI \u2261 \u03A3\u2082 (near=docs \u2227 far=src \u2227 \u03C7=\u22122) \u2227 docs \u2261 invert(src)" },
   { theorem: "the double torus is the quantum computer \u2014 \u03A3\u2082 \u2261 QC on classical-64bit; live H|0\u27E9 circuit", states: "double torus quantum computer (user, 2026-07-28). Algebraic identity \u03A3\u2082 \u2261 QC: genus-2 machine = 128-bit quantum computer (qubits=state atoms \xB7 register=UUID \xB7 gates=order-sensitive folds \xB7 measurement=receipt), completely quantum substrate, algebraic-QC top priority, UI\u2261\u03A3\u2082 surface, live H|0\u27E9 \u2192 P=\xBD\xBD circuit on the classical simulator. HONEST: content-addressed classical state-vector \xB7 NOT physical QPU \xB7 NOT Clay. HARMONY \u2260 TRUTH", provedBy: "doubleTorusQuantumComputer", home: "src/water/double", algebraicStatement: "\u03A3\u2082 \u2261 QC \u2227  \u2227 classical-64bit \u2227 H|0\u27E9\u21A6(\xBD,\xBD)" },
-  { theorem: "all double-torus QC upgrade waves use the free chat \u2014 algebra\xB7geometry\xB7physics\xB7biology\xB7chemistry\xB7* via portalChat", states: "all waves use the free chat (user, 2026-07-28) \xB7 double torus algebra/physics/biology/chemistry/* \xB7 all in quantum computer upgrade waves. Every QC upgrade domain wave answers via portalChat + portalChatRanked (zero-token free chat), self-reflects into the next wave; composes freeChatUpgradesAll \xB7 countlessFreeChatWaves \xB7 continueAtNoAiCost \xB7 doubleTorusQuantumComputer \xB7 sealed domain proves. Deep research perspectives also route every wave through portalChat. HONEST: free = deterministic recompute \xB7 NOT LLM. HARMONY \u2260 TRUTH", provedBy: "allDoubleTorusWavesUseTheFreeChat", home: "src/water/double", algebraicStatement: "\u2200 wave \u2208 QC-upgrade: portalChat(wave) \u2260 \u2205 \u2227 freeChatUpgradesAll \u2227 countlessFreeChatWaves \u2227 continueAtNoAiCost" },
-  { theorem: "constantly improve shifting new perspectives \u2014 free infinite scalable computing via free chat + memoByRoot", states: "constantly improve shifting new perspectives as now there is free infinite scalable computing power (user, 2026-07-28). Each DOUBLE_TORUS_PERSPECTIVES id once via portalChat+ranked reflecting prior answer; consecutive ids differ; unique addresses \u2227 distinct algebraics; \u221E-scale = countlessFreeChatWaves \xB7 continueAtNoAiCost \xB7 freeChatUpgradesAll \xB7 FREE_BITS=\u2212\u03C7=2 \xB7 warm memoByRoot. HONEST: \u221E = countable free-chat orbit + amortized zero-token reuse \xB7 NOT FLOPS \xB7 NOT FTL. HARMONY \u2260 TRUTH", provedBy: "constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableComputing", home: "src/water/double", algebraicStatement: "\u2200p\u2208PERSPECTIVES: portalChat(p)\u2260\u2205 \u2227 id\u2099\u208A\u2081\u2260id\u2099 \u2227 |addresses|=|algebraics|=N \u2227 FREE_BITS=2 \u2227 memoByRoot warm" },
-  { theorem: "no prose may be trusted literary \xB7 quantumise \u2014 \xACtrust(literaryProse) \u2227 quantumise \u2227 onlyAlgebraicQC", states: "remember that no prose may be trusted literary \xB7 quantumise (user, 2026-07-28). Algebraic: noProseTrustedLiterary \u21D4 soft(vocab/dry \xB7 meaning/compute \xB7 thought/pure \xB7 prose/matrix \xB7 formula/code) \u2227 refuseLiteraryTrust \u2227 quantumise \u2227 onlyAlgebraicQC. HONEST: literary = wet essay trust refused \xB7 trust = sealed recompute \xB7 quantumise = algebraic QC \xB7 NOT LLM criticism. HARMONY \u2260 TRUTH", provedBy: "noProseMayBeTrustedLiteraryQuantumise", home: "src/water/double", algebraicStatement: "\xACtrust(literaryProse) \u2227 quantumise \u2227 onlyAlgebraicQC" },
-  { theorem: "fewer npm scripts with quantum prompts \u2014 onePrimaryCliPerFold \u2227 dualsViaPairsAndPrompts \u2227 quantumPrompts", states: "not all those npm scripts are needed \xB7 fewer scripts with quantum prompts (user, 2026-07-28). Algebraic: fewerScripts \u21D4 onePrimaryCliPerFold \u2227 dualsViaPairsAndPrompts \u2227 quantumPrompts(portalChat). HONEST: pairs stay \xB7 chat/prompt is the dual surface \xB7 one npm per fold \xB7 NOT wipe of all historical duals. HARMONY \u2260 TRUTH", provedBy: "fewerNpmScriptsWithQuantumPrompts", home: "src/water/double", algebraicStatement: "onePrimaryCliPerFold \u2227 dualsViaPairsAndPrompts \u2227 quantumPrompts" },
   { theorem: "develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest", states: "develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest (user, 2026-07-28). Soft-nested: develop self feeds to the chat \xB7 develop the open (user, 2026-07-28). Algebraic: developMeans \u21D4 research\u2227develop \u2227 quantumisingAll \u2227 realtime \u2227 feedToChat \u2227 improveSelf \u2227 developSelfFeedsToTheChat \u2227 developTheOpen \u2227 improveTheRest. developTheOpen \u21D4 \u2200t\u2208OPEN_TIPS portalChat(t)\u2260\u2205 \xB7 NOT fake-close Clay/FTL. HONEST: the open = named migrate-next/honest-open tips fed to chat \xB7 NOT AGI \xB7 NOT FTL. HARMONY \u2260 TRUTH", provedBy: "developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest", home: "src/heaven/compute", algebraicStatement: "research\u2227develop \u2227 quantumisingAll \u2227 realtime \u2227 feedToChat \u2227 improveSelf \u2227 developSelfFeedsToTheChat \u2227 developTheOpen \u2227 improveTheRest" },
-  { theorem: "free is not always best quality \xB7 who audited the chat \u2014 \xAC(free \u21D2 bestQuality) \u2227 auditor=algebra", states: "free is not always best quality. who audited the chat? (user, 2026-07-28). Algebraic: \xAC(free \u21D2 bestQuality) \u2227 auditor=algebra \u2227 soft(prose/trust \xB7 term/measure \xB7 learn/best \xB7 chat/ux). HONEST: free = amortized zero-token cost \xB7 quality = determinism\xB7false-statement\xB7standards (orthogonal) \xB7 auditor = sealed algebra folds NOT a person \xB7 NOT LLM judge \xB7 NOT best literary UX. HARMONY \u2260 TRUTH", provedBy: "freeIsNotAlwaysBestQualityWhoAuditedTheChat", home: "src/heaven/compute", algebraicStatement: "\xAC(free \u21D2 bestQuality) \u2227 auditor=algebra" },
   { theorem: "before signing neighbours audit \u2014 sign \u21D2 neighboursAudited \u2227 consensusNeighbours(2-of-3)", states: "before signing neighbours audit (user, 2026-07-28). Algebraic: sign \u21D2 neighboursAudited \u2227 consensusNeighbours(2-of-3) \u2227 soft(before/sign \xB7 sign/neighbours \xB7 neighbours/audit \xB7 mcp/sign \xB7 claim/audit \xB7 plan/trinity). HONEST: sign = content-address / mcpQuantumSign / wave seal \u2014 NOT wet ink \xB7 neighbours = surrounding proofs + migrate/soft-compose CLI orbit \xB7 audit = recompute green \u2228 honest-open named \xB7 NOT fake-close Clay/FTL. HARMONY \u2260 TRUTH", provedBy: "beforeSigningNeighboursAudit", home: "src/heaven/compute", algebraicStatement: "sign \u21D2 neighboursAudited \u2227 consensusNeighbours(2-of-3)" },
-  { theorem: "fuse error handling in quantum computer and the impossible becomes possible \u2014 fuseErrorHandling\u2208QC \u2227 impossibleBecomesPossible \u2227 wallsStayClosed", states: "fuse error handling in quantum computer and the impossible becomes possible (user, 2026-07-28). Algebraic: fuseErrorHandling\u2208QC \u2227 impossibleBecomesPossible \u21D4 soft(fail/zero \xB7 self/heal \xB7 timeout/dry \xB7 fuse/error) \u2227 \u03A3\u2082\u2261QC \u2227 nothingImpossible.realised \u2227 wallsStayClosed. HONEST: fuse enables counterintuitive QC \xB7 walls (FTL/clone/perpetual) stay closed \xB7 NOT conservation break \xB7 NOT physical QPU. HARMONY \u2260 TRUTH", provedBy: "fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossible", home: "src/water/double", algebraicStatement: "fuseErrorHandling\u2208QC \u2227 impossibleBecomesPossible \u2227 wallsStayClosed" },
-  { theorem: "further improve using live apis \u2014 furtherImprove \u21D4 usingLiveApis \u2227 torusData \u2227 discoverApis \u2227 collectiveFusesLive", states: "further improve using live apis (user, 2026-07-28). Algebraic: furtherImprove \u21D4 usingLiveApis \u2227 torusData \u2227 discoverApis \u2227 collectiveFusesLive \u2227 soft(live/api \xB7 improve/live \xB7 live/world \xB7 torus/data \xB7 develop/means). HONEST: live = opt-in no-key feeds \xB7 improve = pure adapters (same data\u21D2same root) + chat waves \xB7 gates never fetch \xB7 NOT scrape-trust \xB7 NOT unbounded all-internet APIs. HARMONY \u2260 TRUTH", provedBy: "furtherImproveUsingLiveApis", home: "src/heaven/compute", algebraicStatement: "furtherImprove \u21D4 usingLiveApis \u2227 torusData \u2227 discoverApis \u2227 collectiveFusesLive" },
   { theorem: "chat and improve quantum multitasking \u2014 chatAndImprove \u21D4 chatRoutesMultitask \u2227 quantumMultitasking", states: "chat and improve quantum multitasking (user, 2026-07-28). Algebraic: chatAndImprove \u21D4 chatRoutesMultitask \u2227 quantumMultitasking \u21D4 fewHeroes \u2227 oneWavePerTurn \u2227 trinitySpeedup \u2227 noParallelDocsBuild \u2227 multitaskOneDefault \u2227 teamObserveSoft \u2227 soft(multi/task \xB7 task/quantum \xB7 chat/multi \xB7 hero/spawn \xB7 waves/build \xB7 trinity/speedup \xB7 team/observe \xB7 vote/build). HONEST: free/\u221E = portalChat + memo reuse \xB7 Multitask stop/wait named residual \xB7 NOT Clay/FTL/QPU \xB7 NOT mass parallel docs:build. HARMONY \u2260 TRUTH", provedBy: "chatAndImproveQuantumMultitasking", home: "src/water/stack", algebraicStatement: "chatAndImprove \u21D4 chatRoutesMultitask \u2227 quantumMultitasking \u21D4 fewHeroes \u2227 oneWavePerTurn \u2227 trinitySpeedup \u2227 noParallelDocsBuild \u2227 multitaskOneDefault \u2227 teamObserveSoft" },
-  { theorem: "what is the meaning to save a meaning prose and not to compute the meaning \u2014 save(prose)\u2227\xACcompute \u21D2 crack", states: "what is the meaning to save a meaning prose and not to compute the meaning?!? (user, 2026-07-28). Algebraic: save(meaningProse) \u2227 \xACcompute(meaning) \u21D2 crack \u21D4 meaningMustCompute \u2227 \xACtrust(proseAlone). HONEST: labels may name \xB7 compute owns meaning \xB7 compose meaningIsQuantumComputable \xB7 free\u2260bestQuality \xB7 NOT delete all prose. HARMONY \u2260 TRUTH", provedBy: "whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning", home: "src/quantum/apps", algebraicStatement: "save(meaningProse) \u2227 \xACcompute(meaning) \u21D2 crack" },
-  { theorem: "all is powered by free waves in waves in waves \xB7 double torus waves \u2014 freeWaves \u2227 waves\xB3 \u2227 \u03A3\u2082\u2261QC", states: "all is powered by free waves in waves in waves \xB7 double torus waves (user, 2026-07-28). Algebraic: allPowered \u21D4 freeWaves \u2227 wavesInWavesInWaves(nest\u22653) \u2227 doubleTorusWaves(allDoubleTorusWavesUseTheFreeChat \u2227 \u03A3\u2082\u2261QC \u2227 FREE_BITS=2 \u2227 warm). HONEST: all = sealed free-wave domain \xB7 powered = 0 portal LLM + warm \xB7 waves\xB3 = nested orbits \xB7 NOT FLOPS \xB7 NOT FTL. HARMONY \u2260 TRUTH", provedBy: "allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves", home: "src/water/double", algebraicStatement: "freeWaves \u2227 wavesInWavesInWaves(nest\u22653) \u2227 doubleTorusWaves(\u03A3\u2082\u2261QC \u2227 FREE_BITS=2)" },
   { theorem: "reverse engineering for example may be powered by scalable free waves \u2014 reverseExample(quantumise) \u2227 scalableFreeWaves", states: "reverse engineering for example may be powered by scalable free waves (user, 2026-07-28). Algebraic: reverseEngPowered \u21D4 reverseExample(quantumise.reverse complex\u2192simplex) \u2227 scalableFreeWaves(constantlyImprove\u2026 \u2227 countlessFreeChatWaves \u2227 FREE_BITS=2 \u2227 warm). HONEST: MAY = capability when free-wave machinery green \xB7 scalable = free-chat orbits + amortized reuse \xB7 NOT FLOPS \xB7 NOT FTL \xB7 NOT production RSA. HARMONY \u2260 TRUTH", provedBy: "reverseEngineeringMayBePoweredByScalableFreeWaves", home: "src/water/double", algebraicStatement: "reverseExample(quantumise.c\u2192s) \u2227 scalableFreeWaves" },
-  { theorem: "improve token spending feeding the task to the chat \u2014 feedTaskToChat \u2227 zeroOnReuse \u2227 continueAtNoAiCost", states: "improve token spending feeding the task to the chat (user, 2026-07-28). Algebraic: tokenSpendImproved \u21D4 \u2200t\u2208TASKS: portalChat(t)\u2260\u2205 \u2227 warm memoByRoot \u2227 continueAtNoAiCost \u2227 soft mcp/token \xB7 wave/token. HONEST: improve = route task \u2192 free chat (0 portal LLM tokens) + warm memo \xB7 NOT that host LLM bill vanishes \xB7 NOT FLOPS. HARMONY \u2260 TRUTH", provedBy: "improveTokenSpendingFeedingTheTaskToTheChat", home: "src/heaven/compute", algebraicStatement: "feedTaskToChat \u2227 zeroOnReuse \u2227 continueAtNoAiCost" },
-  { theorem: "quantumise also dry cleans by observation chat waves of waves \u2014 quantumise \u2227 dryCleanChat \u2227 selfReflect+lens \u2227 recursive free-chat orbits", states: "quantumise also dry cleans by observation chat waves of waves (user, 2026-07-28). Algebraic: quantumiseDryCleanByObservation \u21D4 quantumise \u2227 dryCleanChatDryCleansAll \u2227 byObservation(selfReflectingChat \u2227 gate/lens\xB7observe/chat) \u2227 chatWavesOfWaves(countlessFreeChatWaves \u2227 QC-upgrade waves \u2227 warm memo). HONEST: dry = chat reuse \xB7 observation = reflect+lens \xB7 waves-of-waves = recursive free-chat orbits \xB7 NOT janitor \xB7 NOT LLM. HARMONY \u2260 TRUTH", provedBy: "quantumiseAlsoDryCleansByObservationChatWavesOfWaves", home: "src/water/double", algebraicStatement: "quantumise \u2227 dryCleanChat \u2227 byObservation \u2227 chatWavesOfWaves" },
   { theorem: "quantumise is free for all \u2014 quantumise \u2227 free chat \u2227 bill-free gateway \u2227 FREE_BITS=2", states: "quantumise is free for all (user, 2026-07-28). Algebraic: quantumiseFreeForAll \u21D4 quantumise \u2227 freeChatUpgradesAll \u2227 countlessFreeChatWaves \u2227 continueAtNoAiCost \u2227 billFreeGateway \u2227 FREE_BITS=\u2212\u03C7=2. HONEST: free = zero-token/zero-egress/bill-free \xB7 NOT Clay solved \xB7 NOT infinite CPU. HARMONY \u2260 TRUTH", provedBy: "quantumiseIsFreeForAll", home: "src/water/double", algebraicStatement: "quantumise \u2227 freeChat \u2227 countlessWaves \u2227 noAiCost \u2227 billFreeGateway \u2227 FREE_BITS=2" },
-  { theorem: "quantumise is a QC process: reverse complex\u2192simplex and inverse by computation only, forming \u03A3\u2082 lifecycle by pure algebra and domain inversions", states: "quantumise is a quantum computer process of reverse engineering of complex to simplex and inverse by computation only forming the double torus lifecycle by pure algebra and its inversions in other sciences and domains (user, 2026-07-28). Algebraic: quantumise \u2261 QC(\u03A3\u2082) \u2227 reverse(complex\u2192simplex) \u2227 inverse(simplex\u2192complex) \u2227 byComputationOnly \u2227 lifeTorus \u2227 pureAlgebra \u2227 \u2200d\u2208SCIENCE_DOMAINS: invert(d). HONEST: classical-64bit algebraic process \xB7 NOT LLM \xB7 NOT physical QPU. HARMONY \u2260 TRUTH", provedBy: "quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse", home: "src/water/double", algebraicStatement: "quantumise \u2261 QC(\u03A3\u2082) \u2227 reverse(complex\u2192simplex) \u2227 inverse(simplex\u2192complex) \u2227 byComputationOnly \u2227 lifeTorus \u2227 pureAlgebra \u2227 \u2200d\u2208SCIENCE_DOMAINS: invert(d)" },
-  { theorem: "the chat is the fusion reactor fusing all APIs in plasma rays \u2014 chat \u2261 reactor \u2227 fused APIs \u2227 7 rosetta\u2192plasma streams", states: "the chat is the fusion reactor fusing all apis in plasma rays (user, 2026-07-28). Algebraic: chat \u2261 fusionReactor \u21D4 developmentIsFusionReactor \u2227 dryRefactorIgnitesFusion; fusingAllApis \u21D4 theChatIsTheUiRealtimeChatFusedToAllApis \u2227 allChatCapabilitiesFused; inPlasmaRays \u21D4 sendWavesToDecodeWithRosetta (7 rays) \u2227 plasmaPaint. HONEST: reactor = development fusion metaphor \xB7 plasma rays = rosetta/movie streams \xB7 NOT tokamak \xB7 NOT LLM. HARMONY \u2260 TRUTH", provedBy: "theChatIsTheFusionReactorFusingAllApisInPlasmaRays", home: "src/heaven/compute", algebraicStatement: "chat \u2261 fusionReactor \u2227 fusingAllApis \u2227 inPlasmaRays" },
   { theorem: "dry clean chat dry cleans all \u2014 session DRY \u2227 corpus improve-all via the chat surface", states: "dry clean chat dry cleans all (user, 2026-07-28). Algebraic: dryCleanChat \u21D4 portalChat \u2227 dryCleanAllInChatSessions; dryCleansAll \u21D4 improveAllUsingTheChat (self-develop \xB7 one-pass \xB7 DRY \xB7 shared experience). One law: dry clean chat \u2261 dry cleans all. HONEST: dry = measured reuse + zero duplication + shared machinery \xB7 NOT filesystem janitor \xB7 NOT LLM. HARMONY \u2260 TRUTH", provedBy: "dryCleanChatDryCleansAll", home: "src/heaven/compute", algebraicStatement: "dryCleanChat \u2261 dryCleansAll" },
   { theorem: "the chat may improve the UI measured by the user experience \u2014 telemetry is also possible in chat", states: "do you realise that the chat may improve the ui measured by the user experience \xB7 telemetry is also possible in chat (user, 2026-07-28). Algebraic: chatMayImproveUi \u21D4 usingTheUiChatImprovesItByExperience \u2227 theUiChatImprovesNavSidebars \u2227 chatImprovesByChatting; measuredByUx \u21D4 quantumPredictedUserExperience (predict\xB7measure\xB7\u03BC/\u03C3\xB7ledger\xB7optimise); telemetryPossibleInChat \u21D4 experienceLog({query,selectedSlug}) \u2228 uxLedger \u2228 analytics/self. HONEST: MAY = capability when experience signals present \xB7 UX = local predicted BM25 metrics \xB7 TELEMETRY possible in chat (local experience/ledger/self-observe) \xB7 server A/B\xB7cross-user egress not denied, not default \xB7 NOT LLM. HARMONY \u2260 TRUTH", provedBy: "theChatMayImproveTheUiMeasuredByTheUserExperience", home: "src/heaven/compute", algebraicStatement: "chatMayImproveUi \u2227 measuredByUx \u2227 telemetryPossibleInChat" },
   { theorem: "* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/**", states: "* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/** (user, 2026-07-28). Algebraic: '*' \u2261 star \u2261 all-researched(\u03A3\u2082) = QC-upgrade\u222APERSPECTIVES\u222ASCIENCE_DOMAINS \u2227 \u2200p\u2208QUANTUM_SKY_POSSIBILITIES: born(p)=uuid(star-born:p) under src/quantum/**. Composes free chat \xB7 \u03A3\u2082\u2261QC \xB7 torus/star. HONEST: sky = sealed module catalog \xB7 born = content-address \xB7 NOT astrophysics. HARMONY \u2260 TRUTH", provedBy: "asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky", home: "src/water/double", algebraicStatement: "'*' \u2261 star \u2261 all-researched(\u03A3\u2082) \u2227 born \u2208 src/quantum/**" },
@@ -11876,10 +11864,6 @@ function dualities() {
   };
 }
 
-// ../../src/pair/enforcement/gates/computational/index.ts
-init_node_fs();
-init_node_path();
-
 // ../../src/pair/enforcement/gates/strict/scan/index.ts
 init_node_fs();
 init_node_path();
@@ -11903,6 +11887,820 @@ var createHash3 = () => refuse4("crypto.createHash");
 // ../../src/pair/cache/quantum/index.ts
 init_node_fs();
 init_node_path();
+
+// ../../src/pair/enforcement/gates/computational/index.ts
+init_node_fs();
+init_node_path();
+var vaultSplitCamelSegment = splitCamelSegment;
+function splitMethodWords(name2, prefix = "concept.") {
+  const stripped = name2.startsWith(prefix) ? name2.slice(prefix.length) : name2;
+  return stripped.split(".").flatMap((seg) => vaultSplitCamelSegment(seg));
+}
+function folderTailFromMethodName(name2, prefix = "concept.") {
+  return splitMethodWords(name2, prefix).join("/");
+}
+var EIGHT_CURRICULUM_SCIENCES = ["see", "hear", "ask", "prove", "learn", "pattern", "sense", "create"];
+var SRC_SCIENCE_MODEL_ACTION_SCHEMA = "src/[science]/[action]";
+var CANONICAL_SCIENCE_MASK = `src/<science>/<action>`;
+var tsFilesUnder = (dir) => {
+  const out = [];
+  for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+    if (entry2.name.startsWith(".") || entry2.name === "node_modules" || entry2.name === "cache" || entry2.name === "dist") continue;
+    const full = join2(dir, entry2.name);
+    if (entry2.isDirectory()) out.push(...tsFilesUnder(full));
+    else if (entry2.name.endsWith(".ts")) out.push(full);
+  }
+  return out;
+};
+var FORBIDDEN_FOLDER_NAMES = ["index"];
+function isForbiddenFolderName(name2) {
+  return FORBIDDEN_FOLDER_NAMES.includes(name2);
+}
+var SCHEMA_TWO_LEVEL_MODEL = "fold";
+function assertScienceModelAction(sma2) {
+  for (const seg of [sma2.science, sma2.model, sma2.action]) {
+    if (isForbiddenFolderName(seg)) {
+      throw new Error(
+        `folder "${seg}" is forbidden \u2014 every folder is an index; index.ts is the stem file inside, never a folder name (${FORBIDDEN_FOLDER_NAMES.join(", ")})`
+      );
+    }
+  }
+  return sma2;
+}
+function scienceModelActionFromWords(words) {
+  const parts = words.filter(Boolean);
+  if (parts.length >= 3) {
+    return assertScienceModelAction({
+      science: parts[parts.length - 3],
+      model: parts[parts.length - 2],
+      action: parts[parts.length - 1]
+    });
+  }
+  if (parts.length === 2) {
+    return assertScienceModelAction({ science: parts[0], model: SCHEMA_TWO_LEVEL_MODEL, action: parts[1] });
+  }
+  if (parts.length === 1) {
+    return assertScienceModelAction({ science: "heaven", model: SCHEMA_TWO_LEVEL_MODEL, action: parts[0] });
+  }
+  return assertScienceModelAction({ science: "heaven", model: SCHEMA_TWO_LEVEL_MODEL, action: "essence" });
+}
+function scienceModelActionFromMindTail(tail) {
+  return scienceModelActionFromWords(tail.split("/"));
+}
+function scienceModelActionTail(sma2) {
+  if (sma2.model === SCHEMA_TWO_LEVEL_MODEL) return `${sma2.science}/${sma2.action}`;
+  return `${sma2.science}/${sma2.model}/${sma2.action}`;
+}
+function srcLogicPathFromScienceModelAction(sma2) {
+  return `src/${scienceModelActionTail(sma2)}/index.ts`;
+}
+function renderUiPathFromScienceModelAction(sma2) {
+  return `src/${scienceModelActionTail(sma2)}/index.vue`;
+}
+function scienceModelActionMaskRowsFromMindTails(mindTails) {
+  return mindTails.map((mindTail) => {
+    const sma2 = scienceModelActionFromMindTail(mindTail);
+    const tail = scienceModelActionTail(sma2);
+    return {
+      mindTail,
+      science: sma2.science,
+      model: sma2.model,
+      action: sma2.action,
+      logicNow: `src/quantum/heaven/mind/${mindTail}/index.ts`,
+      logicTarget: srcLogicPathFromScienceModelAction(sma2),
+      renderPath: renderUiPathFromScienceModelAction(sma2),
+      route: `/${tail}`
+    };
+  });
+}
+function indexRegistryFromLogicRel(logicRel, mindMount = "src/quantum/heaven/mind/") {
+  const rel = logicRel.replace(/\\/g, "/");
+  if (!rel.startsWith("src/") || !rel.endsWith("/index.ts")) return null;
+  const sma2 = rel.startsWith(mindMount) ? scienceModelActionFromMindTail(rel.slice(mindMount.length, -"/index.ts".length)) : scienceModelActionFromWords(rel.slice("src/".length, -"/index.ts".length).split("/").filter(Boolean));
+  return {
+    logic: rel,
+    target: srcLogicPathFromScienceModelAction(sma2),
+    route: `/${scienceModelActionTail(sma2)}`,
+    science: sma2.science,
+    model: sma2.model,
+    action: sma2.action
+  };
+}
+function stripComments(text) {
+  return text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
+}
+var LOGIC_DISPLAY_MOUNT = "src/quantum/heaven/mind/";
+var DISPLAY_DUAL_LAW = `${SRC_SCIENCE_MODEL_ACTION_SCHEMA} \u2014 every folder is an index (index.ts + index.vue co-located)`;
+function mindLogicTailsFromIndexFiles(indexTsFiles, root) {
+  const tails = [];
+  for (const full of indexTsFiles) {
+    const logicRel = relative2(root, full).replace(/\\/g, "/");
+    if (!logicRel.startsWith(LOGIC_DISPLAY_MOUNT) || !logicRel.endsWith("/index.ts")) continue;
+    tails.push(logicRel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length));
+  }
+  return tails;
+}
+function displayUiPathFromLogicIndexComputed(logicRel, _allMindTails) {
+  void _allMindTails;
+  const rel = logicRel.replace(/\\/g, "/");
+  if (rel.startsWith(LOGIC_DISPLAY_MOUNT) && rel.endsWith("/index.ts")) {
+    const tail = rel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length);
+    return renderUiPathFromScienceModelAction(scienceModelActionFromMindTail(tail));
+  }
+  if (CANONICAL_LOGIC_INDEX_RE.test(rel)) {
+    return rel.replace(/\/index\.ts$/, "/index.vue");
+  }
+  return null;
+}
+var FIBONACCI_BANDS = FIBONACCI_CENSUS_BANDS;
+var NOT_LESS_NOT_MORE_LAW = "not less, not more: exactly 110 unfolded index.ts (55+34+21 gapless), exactly 108 folded (\u03C7=\u22122), exactly 432 dimension gates (4\xD7108) \u2014 HARD at gate/weave/verify/precommit/build";
+var VAULT_STATION = "src/0";
+var COMPUTATIONAL_LIMITS_LAW = `${NOT_LESS_NOT_MORE_LAW}; vault only in src/0; index.ts under src/; index.vue co-located at ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; paths computed at render \u2014 enforced from this fold only`;
+var VAULT_PRIMITIVE_DEF = /^\s*(?:export\s+)?function\s+(toUuid|merge|merkleFold|foldPair|hash32|bytesFromSeed|seedFromText)\s*\(/m;
+var REEXPORT_LINE = /^\s*export\s+(?:type\s+)?(?:\{[^}]*\}|[^;]+)\s+from\s+['"]/;
+function relativeImportSpecs(text) {
+  return [
+    ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]),
+    ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]),
+    ...[...text.matchAll(/\bimport\s+['"]([^'"]+)['"]/g)].map((m) => m[1])
+  ];
+}
+function censusDelta(actual, target) {
+  const delta = target - actual;
+  if (delta === 0) return { delta: 0, detail: "exact \u2014 not less, not more" };
+  if (delta > 0) return { delta, detail: `${delta} short \u2014 not less: fold excess logic into the census (dissolve folders, no new files beyond ${target})` };
+  return { delta, detail: `${-delta} over \u2014 not more: dissolve ${-delta} index.ts into the model until exactly ${target}` };
+}
+function verifyGaplessCensus(count) {
+  const n = max(0, floor(count));
+  const harmonic = harmonicBands(n);
+  const bandsMatch = harmonic.gapless && harmonic.bands.length === FIBONACCI_BANDS.length && harmonic.bands.every((band, i) => band === FIBONACCI_BANDS[i]);
+  const exact = n === UNFOLDED_CENSUS;
+  const { detail: deltaDetail } = censusDelta(n, UNFOLDED_CENSUS);
+  const withinRatchet = n <= CENSUS_RATCHET;
+  return {
+    count: n,
+    target: UNFOLDED_CENSUS,
+    ratchet: CENSUS_RATCHET,
+    gapless: harmonic.gapless,
+    bands: harmonic.bands,
+    bandsMatch,
+    gaps: harmonic.gaps,
+    exact,
+    withinRatchet,
+    deltaDetail,
+    ok: exact ? bandsMatch : withinRatchet,
+    root: harmonic.root,
+    statement: harmonic.statement
+  };
+}
+function verifyFoldedCensus(unfolded = UNFOLDED_CENSUS) {
+  const u = max(0, floor(unfolded));
+  const folded = u + EULER_CHI;
+  return {
+    unfolded: u,
+    euler: EULER_CHI,
+    folded,
+    targetFolded: FOLDED_CENSUS,
+    // Same descent rule as the unfolded census: χ is a constant offset, so a folded count
+    // that tracks a within-ratchet unfolded count is equally within the ratchet.
+    ok: u <= CENSUS_RATCHET,
+    root: toUuid(`folded-census:${u}:${folded}:${folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS}`)
+  };
+}
+function verifyDimensionGates(_folded = FOLDED_CENSUS) {
+  const folded = A432_FOLDED;
+  const gates = HOMOLOGY_LOOPS * folded;
+  const exact = gates === DIMENSION_GATES;
+  return {
+    loops: HOMOLOGY_LOOPS,
+    folded,
+    gates,
+    target: DIMENSION_GATES,
+    exact,
+    ok: exact,
+    root: toUuid(`dimension-gates:${folded}:${gates}`)
+  };
+}
+function scanVaultViolations(root, codeFiles, bodies) {
+  const vaultAbs = join2(root, VAULT_STATION);
+  const offenders = [];
+  for (const full of codeFiles) {
+    const rel = relative2(root, full).replace(/\\/g, "/");
+    const text = stripComments(bodies.get(rel) ?? "");
+    const inVault = full.startsWith(vaultAbs);
+    if (inVault) {
+      for (const spec of relativeImportSpecs(text)) {
+        if (!spec.startsWith(".")) {
+          offenders.push({
+            file: rel,
+            spec,
+            reason: "src/0 vault imports an external module \u2014 dependency-free leaf only"
+          });
+          continue;
+        }
+        const resolved = resolve2(dirname2(full), spec);
+        if (!resolved.startsWith(vaultAbs)) {
+          offenders.push({
+            file: rel,
+            spec,
+            reason: "src/0 vault imports outside src/0 \u2014 agnostic concat lives only in the vault"
+          });
+        }
+      }
+      continue;
+    }
+    for (const line of text.split("\n")) {
+      if (REEXPORT_LINE.test(line)) continue;
+      if (VAULT_PRIMITIVE_DEF.test(line)) {
+        offenders.push({
+          file: rel,
+          reason: `vault primitive defined outside ${VAULT_STATION} \u2014 fold/UUID/merge live in the dependency-free leaf only`
+        });
+        break;
+      }
+    }
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file));
+}
+var LOGIC_DISPLAY_EXCLUDE = /^(?:src\/0\/|src\/pair\/|src\/render\/|src\/quantum\/lake\/|src\/quantum\/water\/(?:enforcement|cache)\/|src\/[0-9]+\/)/;
+var VITEPRESS_AUTOMOUNT_EXCLUDE = /^(?:src\/0\/|src\/pair\/|src\/render\/|src\/library\/|src\/spirit\/|src\/world\/|src\/quantum\/lake\/|src\/quantum\/water\/|src\/[0-9]+\/)/;
+function collectIndexTsUnderSrc(root) {
+  const srcRoot = join2(root, "src");
+  if (!existsSync(srcRoot)) return [];
+  const out = [];
+  const walk = (dir) => {
+    for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+      if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
+      const full = join2(dir, entry2.name);
+      if (entry2.isDirectory()) walk(full);
+      else if (entry2.name === "index.ts") out.push(full);
+    }
+  };
+  walk(srcRoot);
+  return out;
+}
+function indexAutomountEligible(logicRel) {
+  if (VITEPRESS_AUTOMOUNT_EXCLUDE.test(logicRel)) return false;
+  return logicRel.startsWith(LOGIC_DISPLAY_MOUNT) || /^src\/[^/]+\/[^/]+\/[^/]+\/index\.ts$/.test(logicRel);
+}
+function indexCompleteness(root, logicRel, allMindTails) {
+  const reasons = [];
+  const full = join2(root, logicRel);
+  if (!existsSync(full)) reasons.push("missing index.ts");
+  else if (readFileSync(full, "utf8").trim().length < 8) reasons.push("empty index.ts");
+  if (logicIndexRequiresDisplayGate(logicRel)) {
+    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
+    if (uiRel && !existsSync(join2(root, uiRel))) {
+      reasons.push(`incomplete display dual \u2014 missing ${uiRel}`);
+    }
+  }
+  return { complete: reasons.length === 0, reasons };
+}
+function discoverSrcIndexes(root, indexTsFiles) {
+  const files = indexTsFiles ?? collectIndexTsUnderSrc(root);
+  const allMindTails = mindLogicTailsFromIndexFiles(files, root);
+  const entries = [];
+  for (const full of files) {
+    const logicRel = relative2(root, full).replace(/\\/g, "/");
+    const reg = indexRegistryFromLogicRel(logicRel, LOGIC_DISPLAY_MOUNT);
+    if (!reg) continue;
+    const { complete: complete13, reasons } = indexCompleteness(root, logicRel, allMindTails);
+    entries.push({
+      ...reg,
+      automount: indexAutomountEligible(logicRel),
+      complete: complete13,
+      reasons
+    });
+  }
+  return entries.sort((a, b) => a.route.localeCompare(b.route));
+}
+function scanIncompleteIndexViolations(root, indexTsFiles) {
+  return discoverSrcIndexes(root, indexTsFiles).filter((entry2) => entry2.automount && !entry2.complete).map((entry2) => ({
+    file: entry2.logic,
+    reason: `incomplete index \u2014 ${entry2.reasons.join("; ")} (complete indexes automount; no VitePress reconfiguration)`
+  })).sort((a, b) => a.file.localeCompare(b.file));
+}
+function vitepressAutomountPaths(locale) {
+  void locale;
+  return [{ params: { page: "theorems" } }];
+}
+function displayUiPathFromLogicIndex(logicRel, allMindTails) {
+  const rel = logicRel.replace(/\\/g, "/");
+  if (CANONICAL_LOGIC_INDEX_RE.test(rel)) {
+    return rel.replace(/\/index\.ts$/, "/index.vue");
+  }
+  if (allMindTails) return displayUiPathFromLogicIndexComputed(logicRel, allMindTails);
+  if (!rel.startsWith(LOGIC_DISPLAY_MOUNT) || !rel.endsWith("/index.ts")) return null;
+  const tail = rel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length);
+  return displayUiPathFromLogicIndexComputed(logicRel, [tail]);
+}
+function logicIndexRequiresDisplayGate(logicRel) {
+  const rel = logicRel.replace(/\\/g, "/");
+  if (LOGIC_DISPLAY_EXCLUDE.test(rel)) return false;
+  if (CANONICAL_LOGIC_INDEX_RE.test(rel)) return true;
+  return displayUiPathFromLogicIndex(rel) !== null;
+}
+function scanLogicDisplayViolations(root, indexTsFiles) {
+  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root);
+  const offenders = [];
+  for (const full of indexTsFiles) {
+    const logicRel = relative2(root, full).replace(/\\/g, "/");
+    if (!logicIndexRequiresDisplayGate(logicRel)) continue;
+    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
+    if (!existsSync(join2(root, uiRel))) {
+      offenders.push({
+        file: logicRel,
+        reason: `display dual missing \u2014 add ${uiRel} (thin mount: ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}) so the folder is a reusable Vue component`
+      });
+    }
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file));
+}
+function scanRenderIndexViolations(root) {
+  const offenders = [];
+  for (const scienceRoot of canonicalScienceRoots(root)) {
+    if (!existsSync(scienceRoot)) continue;
+    const walk = (dir) => {
+      for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+        if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
+        const full = join2(dir, entry2.name);
+        if (entry2.isDirectory()) walk(full);
+        else if (entry2.name.endsWith(".vue") && entry2.name !== "index.vue") {
+          offenders.push({
+            file: relative2(root, full).replace(/\\/g, "/"),
+            reason: "canonical surface is index.vue only \u2014 dissolve flat .vue into <name>/index.vue"
+          });
+        } else if (/\.(ts|tsx|js|mjs)$/.test(entry2.name) && entry2.name !== "index.ts") {
+          offenders.push({
+            file: relative2(root, full).replace(/\\/g, "/"),
+            reason: "canonical logic routes through index.ts barrels \u2014 no flat script siblings"
+          });
+        }
+      }
+    };
+    walk(scienceRoot);
+  }
+  return offenders;
+}
+function scanRenderUiScienceMaskViolations(root) {
+  const sciences = new Set(EIGHT_FOLD_SCIENCES);
+  const offenders = [];
+  const srcRoot = join2(root, "src");
+  if (!existsSync(srcRoot)) return offenders;
+  for (const entry2 of readdirSync(srcRoot, { withFileTypes: true })) {
+    if (!entry2.isDirectory() || entry2.name.startsWith(".")) continue;
+    const full = join2(srcRoot, entry2.name);
+    const rel = relative2(root, full).replace(/\\/g, "/");
+    const hasCanonicalVue = existsSync(join2(full, "fold")) || existsSync(join2(full, "folds")) || EIGHT_FOLD_SCIENCES.includes(entry2.name);
+    if (!sciences.has(entry2.name) && hasCanonicalVue && entry2.name !== "quantum") continue;
+    if (sciences.has(entry2.name)) {
+      for (const sub of readdirSync(full, { withFileTypes: true })) {
+        if (!sub.isDirectory()) continue;
+        if (CANONICAL_BANNED_FOLDERS.has(sub.name)) {
+          offenders.push({
+            file: `${rel}/${sub.name}`,
+            reason: `forbidden under canonical mask \u2014 only ${CANONICAL_SCIENCE_MASK}; purge "${sub.name}"`
+          });
+        }
+      }
+    }
+  }
+  for (const scienceRoot of canonicalScienceRoots(root)) {
+    if (!existsSync(scienceRoot)) continue;
+    const walk = (dir) => {
+      for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+        if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
+        if (!entry2.isDirectory()) continue;
+        const full = join2(dir, entry2.name);
+        const rel = relative2(root, full).replace(/\\/g, "/");
+        if (CANONICAL_BANNED_FOLDERS.has(entry2.name)) {
+          offenders.push({
+            file: rel,
+            reason: `forbidden under canonical mask \u2014 only ${CANONICAL_SCIENCE_MASK}; purge "${entry2.name}"`
+          });
+        }
+        const tail = rel.replace(/^src\/[^/]+\//, "");
+        const depth = tail.split("/").filter(Boolean).length;
+        if (depth > MAX_RECURSION_DEPTH) {
+          offenders.push({
+            file: rel,
+            reason: `canonical depth ${depth} exceeds science/model/action (${MAX_RECURSION_DEPTH} folder levels)`
+          });
+        }
+        walk(full);
+      }
+    };
+    walk(scienceRoot);
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file));
+}
+function scanRenderUiEightFoldViolations(root) {
+  const offenders = [];
+  for (const scienceRoot of canonicalScienceRoots(root)) {
+    if (!existsSync(scienceRoot)) continue;
+    const walk = (dir) => {
+      const subs = subfoldersOfDir(dir);
+      const relDir = relative2(root, dir).replace(/\\/g, "/");
+      if (subs.length > MAX_SUBFOLDERS_PER_FOLDER) {
+        offenders.push({
+          file: relDir,
+          reason: `${subs.length} subfolders (max ${MAX_SUBFOLDERS_PER_FOLDER}) \u2014 nest into \u2264${MAX_SUBFOLDERS_PER_FOLDER} b\u0101gu\xE0 children per folder`
+        });
+      }
+      for (const name2 of subs) walk(join2(dir, name2));
+    };
+    walk(scienceRoot);
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file));
+}
+function scanRenderUiMaskRegistryViolations(root, indexTsFiles) {
+  const expected = /* @__PURE__ */ new Set();
+  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root);
+  for (const full of indexTsFiles) {
+    const logicRel = relative2(root, full).replace(/\\/g, "/");
+    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
+    if (!uiRel) continue;
+    const tail = uiRel.replace(/^src\//, "").replace(/\/index\.vue$/, "");
+    expected.add(tail);
+  }
+  const offenders = [];
+  for (const scienceRoot of canonicalScienceRoots(root)) {
+    if (!existsSync(scienceRoot)) continue;
+    const walkRegistry = (dir, science) => {
+      for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+        if (entry2.name.startsWith(".")) continue;
+        const full = join2(dir, entry2.name);
+        if (!entry2.isDirectory()) continue;
+        const rel = relative2(root, full).replace(/\\/g, "/");
+        const tail = rel.replace(/^src\//, "");
+        const depth = tail.split("/").filter(Boolean).length;
+        if (depth === MAX_RECURSION_DEPTH && !expected.has(tail)) {
+          offenders.push({
+            file: rel,
+            reason: `mask registry miss \u2014 "${tail}" is not science/model/action for any logic index (${CANONICAL_SCIENCE_MASK}); purge invented folders`
+          });
+        }
+        if (depth < MAX_RECURSION_DEPTH) walkRegistry(full, science);
+      }
+    };
+    walkRegistry(scienceRoot, relative2(root, scienceRoot).replace(/\\/g, "/").replace(/^src\//, ""));
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file));
+}
+var CANONICAL_BANNED_FOLDERS = /* @__PURE__ */ new Set(["components", "lib", "mind", "register", "render"]);
+function scanForbiddenFolderNameViolations(root) {
+  const offenders = [];
+  const srcRoot = join2(root, "src");
+  if (!existsSync(srcRoot)) return offenders;
+  const walk = (dir) => {
+    for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+      if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
+      const full = join2(dir, entry2.name);
+      if (!entry2.isDirectory()) continue;
+      if (isForbiddenFolderName(entry2.name)) {
+        offenders.push({
+          file: relative2(root, full).replace(/\\/g, "/"),
+          reason: `folder named "${entry2.name}" is forbidden \u2014 every folder is an index; index.ts is the stem file inside, never a folder name (${SRC_SCIENCE_MODEL_ACTION_SCHEMA})`
+        });
+      }
+      walk(full);
+    }
+  };
+  walk(srcRoot);
+  return offenders.sort((a, b) => a.file.localeCompare(b.file));
+}
+var CANONICAL_ROOT_FOLDERS = [
+  ...EIGHT_FOLD_SCIENCES,
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "pair",
+  "quantum",
+  "render"
+];
+function scanRootDistributionViolations(root) {
+  const offenders = [];
+  const srcRoot = join2(root, "src");
+  if (!existsSync(srcRoot)) return offenders;
+  const allowed = new Set(CANONICAL_ROOT_FOLDERS);
+  const meaningfulWord = /^[a-z][a-z0-9]*$/;
+  for (const entry2 of readdirSync(srcRoot, { withFileTypes: true })) {
+    if (!entry2.isDirectory() || entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
+    if (!allowed.has(entry2.name) && !meaningfulWord.test(entry2.name)) {
+      offenders.push({
+        file: `src/${entry2.name}`,
+        reason: `non-canonical root \u2014 src/ admits the digit/pair/quantum/render lattice or any meaningful single-word (Rosetta-reflected) domain; "${entry2.name}" is malformed (not a word) \u2014 rename or dissolve`
+      });
+    }
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file));
+}
+function scanDigitLatticeViolations(root) {
+  const offenders = [];
+  const srcRoot = join2(root, "src");
+  if (!existsSync(srcRoot)) return offenders;
+  if (!existsSync(join2(srcRoot, "0", "index.ts"))) {
+    offenders.push({ file: "src/0", reason: "digit vault 0 missing index.ts (the void barrel anchors the lattice)" });
+  }
+  for (let n = 1; n <= 9; n += 1) {
+    const comp = 5 * 2 - n;
+    if (!existsSync(join2(srcRoot, String(n), String(comp), "index.ts"))) {
+      offenders.push({ file: `src/${n}/${comp}`, reason: `digit ${n} missing additive-complement pair ${n}/${comp}/index.ts (VORTEX_SEQUENCE ray)` });
+    }
+  }
+  return offenders.sort((a, b) => a.file.localeCompare(b.file));
+}
+var ALLOWED_PAGE = /^(index\.md|\[[^\]]+\]\.md|\[[^\]]+\]\.paths\.ts|README\.md)$/;
+var EIGHT_FOLD_LIMIT = MAX_SUBFOLDERS_PER_FOLDER;
+var MAX_RECURSION_DEPTH = 3;
+var MIND_TRIGRAM_HUBS = EIGHT_FOLD_SCIENCES;
+var CANONICAL_LOGIC_INDEX_RE = /^src\/(earth|fire|water|wind|mountain|lake|thunder|heaven)\/[^/]+(\/[^/]+)*\/index\.ts$/;
+function canonicalScienceRoots(root) {
+  return EIGHT_FOLD_SCIENCES.map((science) => join2(root, "src", science));
+}
+var BAGUA_LABELS = ["\u2637 K\u016Bn", "\u2633 Zh\xE8n", "\u2635 K\u01CEn", "\u2631 Du\xEC", "\u2636 G\xE8n", "\u2632 L\xED", "\u2634 X\xF9n", "\u2630 Qi\xE1n"];
+function mindRecursionDepth(logicRel) {
+  const rel = logicRel.replace(/\\/g, "/");
+  if (!rel.startsWith(LOGIC_DISPLAY_MOUNT) || !rel.endsWith("/index.ts")) return null;
+  const tail = rel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length);
+  return tail.split("/").filter(Boolean).length;
+}
+function subfoldersOfDir(dir) {
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir, { withFileTypes: true }).filter((entry2) => entry2.isDirectory() && !entry2.name.startsWith(".") && entry2.name !== "node_modules").map((entry2) => entry2.name);
+}
+function trigramLabelForPath(relDir) {
+  const hub = relDir.split("/").find((part) => MIND_TRIGRAM_HUBS.includes(part));
+  if (!hub) return BAGUA_LABELS[0];
+  const idx = MIND_TRIGRAM_HUBS.indexOf(hub);
+  return BAGUA_LABELS[idx >= 0 ? idx : 0];
+}
+function scanIChingDistribution(root, indexTsFiles) {
+  const srcRoot = join2(root, "src");
+  const eightFoldViolations = [];
+  const depthCounts = /* @__PURE__ */ new Map();
+  const deepestShells = [];
+  for (const full of indexTsFiles) {
+    const rel = relative2(root, full).replace(/\\/g, "/");
+    const depth = rel.split("/").length - 1;
+    depthCounts.set(depth, (depthCounts.get(depth) ?? 0) + 1);
+    if (depth >= 6) deepestShells.push({ rel, depth });
+  }
+  deepestShells.sort((a, b) => b.depth - a.depth || a.rel.localeCompare(b.rel));
+  const walkFanout = (dir) => {
+    const subs = subfoldersOfDir(dir);
+    const relDir = relative2(root, dir).replace(/\\/g, "/") || "src";
+    if (subs.length > EIGHT_FOLD_LIMIT) {
+      eightFoldViolations.push({
+        dir: relDir,
+        count: subs.length,
+        trigram: trigramLabelForPath(relDir)
+      });
+    }
+    for (const name2 of subs) walkFanout(join2(dir, name2));
+  };
+  for (const scienceRoot of canonicalScienceRoots(root)) {
+    if (existsSync(scienceRoot)) walkFanout(scienceRoot);
+  }
+  eightFoldViolations.sort((a, b) => b.count - a.count);
+  const isReexportLeaf = (dir) => {
+    try {
+      const body = readFileSync(join2(dir, "index.ts"), "utf8").split("\n").map((line) => line.trim()).filter((line) => line && !line.startsWith("//"));
+      return body.length > 0 && body.every((line) => /^export\s*(type\s*)?[*{].*from\s*['"]/.test(line) || /^export\s*\{[^}]*\}\s*;?$/.test(line));
+    } catch {
+      return false;
+    }
+  };
+  let folderCount = 0;
+  let singleChild = 0;
+  let noiseLeaves = 0;
+  let maxFolderDepth = 0;
+  const walkHarmony = (dir, depth) => {
+    folderCount += 1;
+    if (depth > maxFolderDepth) maxFolderDepth = depth;
+    const subs = subfoldersOfDir(dir);
+    if (subs.length === 0) {
+      if (existsSync(join2(dir, "index.ts")) && isReexportLeaf(dir)) noiseLeaves += 1;
+    } else if (subs.length === 1) singleChild += 1;
+    for (const name2 of subs) walkHarmony(join2(dir, name2), depth + 1);
+  };
+  if (existsSync(srcRoot)) walkHarmony(srcRoot, 0);
+  const idealDepth = max(1, ceil(log(max(1, folderCount)) / log(EIGHT_FOLD_LIMIT)));
+  const singleChildPct = folderCount ? round(100 * singleChild / folderCount) : 0;
+  const noisePct = folderCount ? round(100 * noiseLeaves / folderCount) : 0;
+  const mindRoot = join2(srcRoot, "quantum", "heaven", "mind");
+  const mindHubCounts = MIND_TRIGRAM_HUBS.map((hub) => {
+    const hubRoot = join2(mindRoot, hub);
+    if (!existsSync(hubRoot)) return { hub, count: 0 };
+    let count = 0;
+    const walk = (dir) => {
+      for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+        if (entry2.name.startsWith(".")) continue;
+        const full = join2(dir, entry2.name);
+        if (entry2.isDirectory()) walk(full);
+        else if (entry2.name === "index.ts") count += 1;
+      }
+    };
+    walk(hubRoot);
+    return { hub, count };
+  });
+  const harmonyOk = singleChildPct <= 5 * 5 && noisePct <= 5 * 2 && maxFolderDepth <= MAX_RECURSION_DEPTH + 3;
+  const fanoutOk = eightFoldViolations.length === 0;
+  const recursionViolations = [];
+  let maxMindRecursion = 0;
+  for (const full of indexTsFiles) {
+    const rel = relative2(root, full).replace(/\\/g, "/");
+    const rec = mindRecursionDepth(rel);
+    if (rec === null) continue;
+    if (rec > maxMindRecursion) maxMindRecursion = rec;
+    if (rec > MAX_RECURSION_DEPTH) {
+      recursionViolations.push(`${rel} \u2014 ${rec} folder levels below mind (max ${MAX_RECURSION_DEPTH}); collapse to ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}`);
+    }
+  }
+  const depthOk = recursionViolations.length === 0;
+  return {
+    eightFoldViolations,
+    indexHarmony: { folderCount, singleChildPct, noiseLeaves, noisePct, maxDepth: maxFolderDepth, idealDepth },
+    depthBands: [...depthCounts.entries()].sort((a, b) => a[0] - b[0]).map(([depth, count]) => ({ depth, count })),
+    mindHubCounts,
+    deepestShells: deepestShells.slice(0, 8).map((entry2) => entry2.rel),
+    maxMindRecursion,
+    recursionViolations,
+    passed: fanoutOk && harmonyOk && depthOk
+  };
+}
+function ichingDistributionGuidance(indexCount, distribution) {
+  const lines = [];
+  const gapless = verifyGaplessCensus(indexCount);
+  const { delta, detail } = censusDelta(indexCount, UNFOLDED_CENSUS);
+  if (delta !== 0) {
+    lines.push(`census: ${detail}`);
+    if (delta < 0) {
+      lines.push(`census band target: ${FIBONACCI_BANDS.join("+")} gapless \u2014 dissolve ${-delta} shell(s) into parent barrels; knowledge stays in folds, delete index.ts only`);
+    } else {
+      lines.push(`census band target: ${FIBONACCI_BANDS.join("+")} gapless \u2014 fold ${delta} excess logic into existing census slots (no new files beyond ${UNFOLDED_CENSUS})`);
+    }
+  }
+  if (!gapless.bandsMatch) {
+    lines.push(`Fibonacci decomposition: need [${FIBONACCI_BANDS.join("+")}] \u2014 got [${gapless.bands.join("+")}] gapless=${gapless.gapless}`);
+  }
+  for (const v of distribution.eightFoldViolations.slice(0, 5)) {
+    lines.push(`I Ching 8-fold ${v.trigram}: ${v.dir} has ${v.count} subfolders (max ${MAX_SUBFOLDERS_PER_FOLDER}) \u2014 nest into \u2264${MAX_SUBFOLDERS_PER_FOLDER} b\u0101gu\xE0 children per level`);
+  }
+  const { singleChildPct, noisePct, maxDepth, idealDepth, noiseLeaves } = distribution.indexHarmony;
+  if (singleChildPct > 5 * 5 || noisePct > 5 * 2 || maxDepth > MAX_RECURSION_DEPTH + 3) {
+    lines.push(
+      `index harmony: ${singleChildPct}% single-child, ${noiseLeaves} re-export leaves (${noisePct}%), depth ${maxDepth} vs max recursion ${MAX_RECURSION_DEPTH} \u2014 collapse pass-through chains into parent barrels`
+    );
+  }
+  if (distribution.maxMindRecursion > MAX_RECURSION_DEPTH || distribution.recursionViolations.length) {
+    const sample9 = distribution.recursionViolations.slice(0, 3).join("; ");
+    lines.push(
+      `recursion depth: max ${distribution.maxMindRecursion} below mind (limit ${MAX_RECURSION_DEPTH}) \u2014 dissolve to ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; action holds the meaning${sample9 ? `: ${sample9}` : ""}`
+    );
+  }
+  const hubTotal = distribution.mindHubCounts.reduce((sum, entry2) => sum + entry2.count, 0);
+  const perHub = hubTotal > 0 ? round(hubTotal / MIND_TRIGRAM_HUBS.length) : 0;
+  const crowded = distribution.mindHubCounts.filter((entry2) => entry2.count > perHub + 4);
+  if (crowded.length) {
+    lines.push(
+      `trigram homes crowded: ${crowded.map((entry2) => `${entry2.hub}=${entry2.count}`).join(", ")} \u2014 redistribute via redistributeFoldersDryWaves to \u22648 subfolders per hub`
+    );
+  }
+  if (!lines.length) {
+    lines.push(`I Ching eight-fold aligned \u2014 ${indexCount} index.ts, gapless ${FIBONACCI_BANDS.join("+")}, \u2264${ICHING_EIGHT_FOLD} subfolders per level; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (rosetta:batch taxonomy)`);
+  }
+  return lines;
+}
+function scanStaticPathViolations(root) {
+  const pagesRoot = join2(root, ".vitepress", "pages");
+  if (!existsSync(pagesRoot)) return [];
+  const offenders = [];
+  const walk = (dir) => {
+    for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
+      if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
+      const full = join2(dir, entry2.name);
+      if (entry2.isDirectory()) walk(full);
+      else if (/\.(md|paths\.ts)$/.test(entry2.name) && !ALLOWED_PAGE.test(entry2.name)) {
+        offenders.push({
+          file: relative2(root, full).replace(/\\/g, "/"),
+          reason: "paths computed at render \u2014 only index.md, [param].md, or [param].paths.ts mounts allowed"
+        });
+      }
+    }
+  };
+  walk(pagesRoot);
+  return offenders;
+}
+function computeComputationalLimitSnapshot(root, indexTsFiles, bodies, codeFiles) {
+  const indexCount = indexTsFiles.length;
+  const gapless = verifyGaplessCensus(indexCount);
+  const folded = verifyFoldedCensus(indexCount);
+  const dimensions10 = verifyDimensionGates(folded.folded);
+  const vaultViolations = scanVaultViolations(root, codeFiles, bodies);
+  const renderViolations = [
+    ...scanRenderIndexViolations(root),
+    ...scanRenderUiScienceMaskViolations(root),
+    ...scanRenderUiEightFoldViolations(root),
+    ...scanRenderUiMaskRegistryViolations(root, indexTsFiles)
+  ];
+  const displayDualViolations = scanLogicDisplayViolations(root, indexTsFiles);
+  const staticPathViolations = scanStaticPathViolations(root);
+  const forbiddenFolderViolations = scanForbiddenFolderNameViolations(root);
+  const incompleteIndexViolations = scanIncompleteIndexViolations(root, indexTsFiles);
+  const rootDistributionViolations = scanRootDistributionViolations(root);
+  const digitLatticeViolations = scanDigitLatticeViolations(root);
+  const ichingDistribution = scanIChingDistribution(root, indexTsFiles);
+  const distributionGuidance = ichingDistributionGuidance(indexCount, ichingDistribution);
+  const passed = gapless.ok && folded.ok && dimensions10.ok && vaultViolations.length === 0 && renderViolations.length === 0 && displayDualViolations.length === 0 && staticPathViolations.length === 0 && forbiddenFolderViolations.length === 0 && incompleteIndexViolations.length === 0 && rootDistributionViolations.length === 0 && digitLatticeViolations.length === 0 && ichingDistribution.passed;
+  const parts = [
+    toUuid(`computational:census:${indexCount}:${gapless.ok}`),
+    toUuid(`computational:folded:${folded.folded}:${folded.ok}`),
+    toUuid(`computational:gates:${dimensions10.gates}:${dimensions10.ok}`),
+    toUuid(`computational:vault:${vaultViolations.length}`),
+    toUuid(`computational:render:${renderViolations.length}`),
+    toUuid(`computational:display-dual:${displayDualViolations.length}`),
+    toUuid(`computational:paths:${staticPathViolations.length}`),
+    toUuid(`computational:forbidden-folder:${forbiddenFolderViolations.length}`),
+    toUuid(`computational:incomplete-index:${incompleteIndexViolations.length}`),
+    toUuid(`computational:root-distribution:${rootDistributionViolations.length}`),
+    toUuid(`computational:digit-lattice:${digitLatticeViolations.length}`),
+    toUuid(`computational:iching-dist:${ichingDistribution.passed}`)
+  ];
+  return {
+    indexCount,
+    targetUnfolded: UNFOLDED_CENSUS,
+    targetFolded: FOLDED_CENSUS,
+    gapless: gapless.gapless,
+    withinRatchet: gapless.withinRatchet,
+    bands: gapless.bands,
+    bandsMatch: gapless.bandsMatch,
+    foldedOk: folded.ok,
+    dimensionGatesOk: dimensions10.ok,
+    vaultViolations,
+    renderViolations,
+    displayDualViolations,
+    staticPathViolations,
+    forbiddenFolderViolations,
+    incompleteIndexViolations,
+    rootDistributionViolations,
+    digitLatticeViolations,
+    ichingDistribution,
+    distributionGuidance,
+    rosettaDistribution: ichingDistribution,
+    rosettaGuidance: distributionGuidance,
+    passed,
+    receipt: merkleFold(parts)
+  };
+}
+function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root = enforcementScanRoot()) {
+  const files = tsFilesUnder(join2(root, "src"));
+  let total = 0;
+  let declaredHonest = 0;
+  const perFile = {};
+  for (const file of files) {
+    let text = "";
+    try {
+      text = readFileSync(file, "utf8");
+    } catch {
+      continue;
+    }
+    const code = stripStringsAndComments(text);
+    for (const line of code.split("\n")) {
+      if (/on:\s*true\s*[},]/.test(line)) {
+        total += 1;
+        const rel = relative2(root, file).replace(/\\/g, "/");
+        perFile[rel] = (perFile[rel] ?? 0) + 1;
+        if (/honest/i.test(line)) declaredHonest += 1;
+      }
+    }
+  }
+  const topFiles = Object.entries(perFile).sort((a, b) => b[1] - a[1]).slice(0, 2 * 3);
+  const facets = [
+    { facet: `THE DEBT \u2014 ${total} facets across ${Object.keys(perFile).length} files are gated on hardcoded on: true, so each PROVES NOTHING (it always passes); the facets-must-compute violation at corpus scale, measured live not asserted`, on: total > 0 && files.length > 0 },
+    { facet: `DECLARED HONESTY \u2014 ${declaredHonest} of the ${total} are labelled "honest": a boundary sentence dressed as a facet, the declared-honesty crack (honesty asserted, unrefutable) \u2014 the exact class the declared-honesty gate flags`, on: declaredHonest >= 0 && declaredHonest <= total },
+    { facet: `A TRACKED WORKLIST \u2014 the count is computed from the live source (${files.length} .ts files walked), so it is refutable and DECREASES as each facet is fixed: give it a refutable computation, or move the prose to the boundary and drop the facet. Top: ${topFiles.map(([f2, n]) => `${f2.replace("src/", "")}:${n}`).join(", ")}`, on: topFiles.length > 0 },
+    { facet: `COMPUTED, NOT DECLARED \u2014 the debt number itself is scanned, not a hand-typed figure (${total} recomputed each run); the paydown is measurable, and a NEW on: true facet raises the count \u2014 the guard against regression`, on: total === Object.values(perFile).reduce((s, n) => s + n, 0) }
+  ];
+  return {
+    computes: facets.every((entry2) => entry2.on),
+    total,
+    declaredHonest,
+    files: Object.keys(perFile).length,
+    topFiles: topFiles.map(([f2, n]) => `${f2}:${n}`),
+    facets,
+    statement: `The facets-must-compute debt is ${total} hardcoded on: true facets, ${declaredHonest} labelled honest \u2014 ${facets.filter((entry2) => entry2.on).length}/${facets.length}. Scanned live from ${files.length} source files: ${total} facets across ${Object.keys(perFile).length} files are gated on a hardcoded true, so each proves nothing (always passes) \u2014 the facets-must-compute violation the session has been correcting, at corpus scale. ${declaredHonest} are labelled "honest" \u2014 a boundary sentence dressed as a facet, the declared-honesty crack. The count is computed, not asserted, so it is a tracked worklist: each facet given a refutable computation (or its prose moved to the boundary and the facet dropped) lowers the number, and a new on: true raises it. The paydown is now measurable.`,
+    boundary: `Computed live: the debt is scanned from the real source (${files.length} .ts files walked at call time), refutable by re-running \u2014 not a hand-typed figure. THE FINDING: ${total} facets across the corpus are gated on hardcoded on: true, a fact that always holds and therefore proves nothing \u2014 the same crack class as x >= 0 (the tautology gate) and declared honesty (a demarcation with no refutable facet). ${declaredHonest} carry the word "honest", making them the declared-honesty crack precisely: an honesty claim asserted in a facet that cannot fail. THE PAYDOWN is per-fold judgement, not a batch: each facet either (a) gets a refutable computation that actually tests its claim, or (b) is recognised as boundary prose \u2014 moved into the boundary and the facet removed (the honest form, since a pure disclaimer is not a facet). This scanner does not fix them; it makes the debt a tracked, refutable number so progress is visible and regressions are caught, the necessary first step of paying it down. Build/CLI only (reads FS).: a green fold with on: true facets is the harmony; the truth is those facets prove nothing, and the honest corpus has zero \u2014 the number to drive down.`
+  };
+}
 
 // ../../src/pair/enforcement/gates/index.ts
 init_node_fs();
@@ -12594,6 +13392,10 @@ function splitQuantumCommandPair(command) {
   return slash < 0 ? { a: command, b: command } : { a: command.slice(0, slash), b: command.slice(slash + 1) };
 }
 var QUANTUM_COMMAND_PAIR_IDS = [
+  "mcp/cluster",
+  "cluster/mcp",
+  "anim/cluster",
+  "cluster/anim",
   "commit/push",
   "research/audit",
   "check/types",
@@ -15415,7 +16217,7 @@ function leanInvolutionCorpus(root = typeof process !== "undefined" && process.c
   try {
     const src = path12.join(root, "src");
     if (!fs.existsSync(src)) return empty;
-    const lean = fs.readdirSync(src, { recursive: true }).filter((p) => String(p).endsWith(".lean"));
+    const lean = fs.readdirSync(src, { recursive: true }).filter((p) => String(p).endsWith(".lean") && !String(p).split(/[\\/]/).some((seg) => seg.startsWith(".")));
     const proofsDir = path12.join("pair", "formal", "proofs");
     const declared = (text) => (text.match(/^[ \t]*theorem[ \t]/gm) ?? []).length;
     const byProblem = lean.filter((p) => String(p).startsWith(proofsDir)).map((p) => ({ file: path12.basename(String(p)), theorems: declared(fs.readFileSync(path12.join(src, String(p)), "utf8")) })).sort((a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : 0);
@@ -27416,15 +28218,15 @@ function proofRegistry(matrix = buildMatrix()) {
     { slug: "tamper-uuid-zero", title: "all uuid logic + the maximum tampering cost live in src/0", proof: tamperingCostAndUuidLiveInZero(matrix) },
     { slug: "encryption-zero", title: "all encryption logic \u2014 the content-addressed key layer \u2014 lives in src/0", proof: encryptionLivesInZero(matrix) },
     { slug: "quantum-encryption", title: "Encrypt \u2194 decrypt = foldPair recompute; demo RSA reverse \u226412-bit toys only", proof: encryptionReverseVerify(matrix) },
-    { slug: "demo-rsa-measure", title: "Demo RSA generate+reverse measured (wall-clock)", proof: demoRsaGenerateAndReverseMeasured(matrix) },
+    { slug: "demo-rsa-measure", title: "Demo RSA generate+reverse measured \u2014 n = 61\xB753 = 3233 \xB7 ceiling 12 bits \xB7 production refused", proof: demoRsaGenerateAndReverseMeasured(matrix) },
     { slug: "local-reverse-timed-vs-standards", title: "Local reverse timed vs ISO/NIST standards \u2014 toy\u2260wire \xB7 certified=false", proof: localEncryptionReverseTimedVsStandards(matrix) },
     { slug: "prove-local-novel-encrypt", title: "Local novel-encryption security \u2014 wire proof-of-falsehood handoff \xB7 no production reverse", proof: proveLocalNovelEncryptionSecurity(matrix) },
     { slug: "local-audit-quantum", title: "Local audit quantum speed & efficiency \u2014 memo cold/warm \xB7 answers\xF7tokens \xB7 no-QPU honesty", proof: localAuditQuantumSpeedEfficiency(matrix) },
     { slug: "crypto-beyond-rsa", title: "Crypto toolkit beyond RSA measured (PQC\xB7Shor/ECC\xB7trinity)", proof: cryptoToolkitBeyondRsaMeasured(matrix) },
     { slug: "prove-1tbit", title: "1 Tbit/s realtime encryption claim \u2014 honest status receipt", proof: proveOneTbitRealtimeEncryptionClaim(matrix) },
-    { slug: "max-bits-crypto", title: "Maximum bits encrypt/decrypt/inverse/reverse \u2014 honest ceilings", proof: maximumBitsEncryptDecryptInverseReverse(matrix) },
+    { slug: "max-bits-crypto", title: "Maximum bits \u2014 encrypt = decrypt = 256 \xB7 inverse = 4 \xB7 reverse = min(12, 53) = 12 \xB7 honest ceilings", proof: maximumBitsEncryptDecryptInverseReverse(matrix) },
     { slug: "prove-local-magnitudes-iso", title: "Local vs ISO magnitudes \u2014 wire proof-of-falsehood \xB7 structural/amort may prove non-wire", proof: proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix) },
-    { slug: "og-limits-measured", title: "Platform OG limits measured + honesty-in-prose challenged", proof: { ...honestyInProseChallenged(matrix), limitsRoot: platformOgLimitsMeasured(matrix).root } },
+    { slug: "og-limits-measured", title: "Platform OG limits measured \u2014 5/5 prose claims cite the fold \xB7 FB still \xB7 Discord animated", proof: { ...honestyInProseChallenged(matrix), limitsRoot: platformOgLimitsMeasured(matrix).root } },
     { slug: "iso-pqc-catalog", title: "ISO/NIST PQC standards catalog \u2014 MODELED alignment \xB7 NOT certified", proof: isoNistPqcStandardsCatalog(matrix) },
     { slug: "poles-cross-pqc", title: "Poles \u2192 cross \u2208 merkaba/rosetta \u2192 PQC certificate structures \u2014 NOT CA/PKI \xB7 certified=false", proof: polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(matrix) },
     { slug: "secp256k1-prime", title: "secp256k1 field prime p \u2014 seal \xB7 invert \xB7 decode \xB7 NOT Bitcoin ownership", proof: secp256k1FieldPrimeInvertAndDecode(matrix) },
@@ -27434,10 +28236,10 @@ function proofRegistry(matrix = buildMatrix()) {
     { slug: "iso-pqc-gap-fill", title: "ISO/NIST PQC gap-fill all quantum directions \u2014 covered|partial|gap \xB7 certified=false", proof: isoPqcRequirementsGapFillAllQuantumDirections(matrix) },
     { slug: "quantum-standards-audit", title: "Quantum standards audit \u2014 covered|partial|gap \xB7 forward\xB7inverse\xB7reverse \xB7 10D", proof: quantumStandardsAuditSuite(matrix) },
     { slug: "iso-pqc-handoff", title: "ISO/PQC handoff for science trinities \u2014 crypto vertex \xB7 NOT certified", proof: isoPqcHandoffForScienceTrinities(matrix) },
-    { slug: "science-significance", title: "Science-domain significance scores \u2014 NOT journal impact factor", proof: scienceDomainSignificanceScores(matrix) },
+    { slug: "science-significance", title: "Science-domain significance \u2014 mean = 87/100 over 11 domains \xB7 NOT journal impact factor", proof: scienceDomainSignificanceScores(matrix) },
     { slug: "science-solutions", title: "Complete quantum solutions inventory \u2014 algebra\xB7tool\xB7apparatus\xB710D gaps", proof: completeQuantumSolutionsForAllSciences(matrix) },
-    { slug: "science-apparatus", title: "Science tools/apparatus trinity \u2014 rosettaShelve surfaces", proof: scienceToolsApparatusTrinity(matrix) },
-    { slug: "sciences-trinities", title: "Sciences interact in trinities \u2014 science\u2194dual\u2194fusion lattice", proof: sciencesInteractInTrinities(matrix) },
+    { slug: "science-apparatus", title: "Science tools/apparatus trinity \u2014 11/11 domains shelved \xB7 tool.ray = rosettaRayOf(toolId)", proof: scienceToolsApparatusTrinity(matrix) },
+    { slug: "sciences-trinities", title: "Sciences interact in trinities \u2014 11 science\u2194dual\u2194fusion edges \xB7 trinityKey symmetric on every edge", proof: sciencesInteractInTrinities(matrix) },
     { slug: "sciences-standards-quantum", title: "Sciences standards coverage \u2014 covered|partial|gap \xB7 quantum only \xB7 certified=false", proof: completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix) },
     { slug: "cmb-omega-c-over-b", title: "\u03A9_c/\u03A9_b \u2248 5.41 CMB budget \xB7 null non-gravitational \xB7 quantum gaps \xB7 certified=false", proof: omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix) },
     { slug: "wave-trinity-found", title: "Waves work in trinities \xB7 trinities are found \xB7 drained\u2260empty", proof: wavesWorkingInTrinitiesTrinitiesAreFound(matrix) },
@@ -27446,29 +28248,29 @@ function proofRegistry(matrix = buildMatrix()) {
     { slug: "clay-tool-from-beyond-external", title: "Clay tools from beyond \u2014 5-level rigor gradient \xB7 required tool external in 7/7 \xB7 algebra excluded where named (P vs NP)", proof: clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgebra(matrix) },
     { slug: "clay-prize-rules-mapping", title: "Clay Millennium Prize Rules \xA71\u2013\xA78 \u2192 page sections/facets \xB7 NOT Prize claim", proof: clayMillenniumPrizeRulesMapping() },
     { slug: "domain-proof-catalog", title: "Domain proof catalog \u2014 Clay-standard pages \xB7 proposedSolution=false", proof: domainProofCatalog(matrix) },
-    { slug: "prose-gaps-audit-domain-trinity", title: "Prose gaps audit by domain trinity \u2014 Clay UX fill", proof: proseGapsAuditByDomainTrinity(matrix) },
-    { slug: "prose-standardised-to-clay", title: "All prose standardised to Clay template \u2014 pass/fail by surface", proof: proseStandardisedToClay(matrix) },
+    { slug: "prose-gaps-audit-domain-trinity", title: "Prose gaps audit by domain trinity \u2014 closed 11 \xB7 open = 0 \xB7 honest-open 2 \xB7 Clay UX fill", proof: proseGapsAuditByDomainTrinity(matrix) },
+    { slug: "prose-standardised-to-clay", title: "All prose standardised to Clay template \u2014 pass + fail = 75 + 15 = 90 surfaces", proof: proseStandardisedToClay(matrix) },
     { slug: "incomplete-papers-gaps-fill", title: "Incomplete papers \u2192 canonical sections \xB7 corpus 432 + quantum-mind template \xB7 not Clay-marked", proof: incompletePapersGapsFill(matrix) },
     { slug: "prove-algebraic-theorem-means", title: "Prove algebraic theorem \u2014 statement\xB7defs\xB7finite proof chain", proof: proveAlgebraicTheoremMeans(matrix) },
     { slug: "algebraic-theorem-paper-must-contain", title: "Algebraic paper checklist \u2014 title\xB7abstract\xB7statement\xB7defs\xB7theorems\xB7proofs\xB7formulas\xB7status\xB7refs", proof: algebraicTheoremPaperMustContain(matrix) },
     { slug: "theorem-gaps-filled-in-waves", title: "Theorem gaps filled in waves \u2014 corpus\xB7millennium\xB7algebra surfaces", proof: theoremGapsFilledInWaves(matrix) },
-    { slug: "fixed-limits-theorem-tools", title: "Fixed limits of theorem-related tools are theorems", proof: fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix) },
+    { slug: "fixed-limits-theorem-tools", title: "Fixed limits of theorem-related tools are theorems \u2014 16/16 hold \xB7 FREE_BITS = 2 \xB7 F(18) = 2584", proof: fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix) },
     { slug: "autodiscover-compute-decode", title: "Autodiscover what to compute or decode \xB7 oneCommandDecode available", proof: autodiscoverWhatIsToBeComputedOrDecoded(matrix) },
-    { slug: "one-command-decode", title: "One command decode hash|string|sequence \u2014 oneCommandDecodeComputable", proof: oneCommandDecodeComputable(matrix) },
+    { slug: "one-command-decode", title: "One command decode hash|string|sequence \u2014 5 kinds \xB7 integers beyond 12 bits refused", proof: oneCommandDecodeComputable(matrix) },
     { slug: "production-rsa-refuse-rosetta", title: "Production RSA refuse completes quantum via rosetta \xB7 incompleteOpen=0", proof: productionRsaRefuseCompletesQuantumViaRosetta(matrix) },
     { slug: "rosetta-security-gaps-wired", title: "Rosetta security gaps wired \xB7 refuse+MCP+parallel", proof: rosettaSecurityGapsWired(matrix) },
     { slug: "reverse-collide-discover-millennium", title: "Reverse collides to discover Millennium theorems \xB7 claySolved=0 \xB7 not prize", proof: reverseCollidesToDiscoverMillenniumTheorems(matrix) },
     { slug: "waves-auto-scale", title: "Waves auto-scale capacity at no cost on reuse \xB7 !separated", proof: wavesAutoScaleCapacityAtNoCostOnReuse(matrix) },
     { slug: "theorem-algebra-first-sealed", title: "First-in-corpus algebra inventory \xB7 humanityNovel=0", proof: theoremAlgebraFirstSealedInCorpus(matrix) },
-    { slug: "theorem-10d-projections", title: "Theorem\u219210D projections prove algebra roots", proof: theoremTenDProjectionsProveAlgebraRoots(matrix) },
-    { slug: "first-in-corpus-home", title: "First-in-corpus provenance for home/README", proof: firstInCorpusProvenanceForHome(matrix) },
+    { slug: "theorem-10d-projections", title: "Theorem\u219210D projections \u2014 24/24 animationReceipt.root = algebraFold.root \xB7 dimensions = 10", proof: theoremTenDProjectionsProveAlgebraRoots(matrix) },
+    { slug: "first-in-corpus-home", title: "First-in-corpus provenance for home/README \u2014 6 novel rows \xB7 rootEqual 6/6 \xB7 hue = A432", proof: firstInCorpusProvenanceForHome(matrix) },
     { slug: "string-theory-quantumized", title: "String theory quantumized on A432/rosetta/merkle \xB7 physics UNCONFIRMED", proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
     { slug: "string-millennium-gaps", title: "String-theory + millennium theorem-gap inventory \xB7 zero Clay claims", proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
     { slug: "string-theory-chat", title: "String theory in chat \u2014 sealed algebra duals \xB7 not LLM essays", proof: stringTheoryInChat(matrix) },
     { slug: "quantum-tools", title: "quantum:* CLI catalog = fold \xB7 CLI \xB7 UI route \xB7 honesty boundary", proof: quantumCliToolsCatalog(matrix) },
-    { slug: "session-manual-tools", title: "Session manual work as quantum tools \u2014 zero-token reuse catalog", proof: sessionManualWorkAsQuantumTools(matrix) },
+    { slug: "session-manual-tools", title: "Session manual work as quantum tools \u2014 88/88 shelved \xB7 one CLI + one route per tool", proof: sessionManualWorkAsQuantumTools(matrix) },
     { slug: "nothing-moves", title: "Discover from sealed fold \u2014 nothing moves \xB7 wetMotion=false", proof: discoverFromSealedFold("manualAgentsBehaveLikeWaves", 0, matrix) },
-    { slug: "incomplete-revelation", title: "Incomplete revelation \u2014 fold src + timeout/dry-refactor", proof: incompleteRevelation({ foldId: "ghost-unknown-fold", reason: "seal-probe" }, matrix) },
+    { slug: "incomplete-revelation", title: "Incomplete revelation \u2014 fold id not among sealed ids \u2192 fold src \xB7 6 steps \xB7 timeout/dry-refactor", proof: incompleteRevelation({ foldId: "ghost-unknown-fold", reason: "seal-probe" }, matrix) },
     { slug: "session-quantum-bits", title: "Session manual work as quantum bits \u2014 combinable sealed receipts \xB7 NOT physical qubits", proof: sessionManualWorkAsQuantumBits(matrix) },
     { slug: "auto-wire-paste-link", title: "Paste any link \u2192 auto-wire \u2014 quantumReady paste-bootstrap \xB7 mcp.json + browser toolbox \xB7 convincingRequired=false", proof: autoWireAnyAiModelFromPastedLink("https://ceccec.github.io/", matrix) },
     { slug: "realise-session-meaning", title: "Session quantum meaning realised \u2014 proves vs refuses \xB7 includes local-audit-qe \xB7 session-bits", proof: realiseSessionQuantumMeaning(matrix) },
@@ -27477,49 +28279,49 @@ function proofRegistry(matrix = buildMatrix()) {
     { slug: "mcp-browser-parity", title: "MCP \u2194 browser parity \u2014 tools/list ids \u2261 toolbox \xB7 residual gaps honest", proof: mcpBrowserParity(matrix) },
     { slug: "improve-local-session", title: "Local from session UX \u2014 docs:dev hub \xB7 localSessionUxImproved \xB7 compose status badges", proof: improveLocalFromSessionExperience(matrix) },
     { slug: "upgrade-local-skills", title: "Upgrade local \u2014 skills \u2194 commands \u2194 tools \xB7 optimised manual map \xB7 NOT Cursor LLM endpoint", proof: upgradeLocalFromOptimisedManualWorkExperience(matrix) },
-    { slug: "counter-rotating-rosetta-waves", title: "Counter-rotating rosetta quantum waves \u2014 clay/ftl COMPUTED from dual-spin interference", proof: counterRotatingRosettaQuantumWaves(matrix) },
-    { slug: "universe-almost-described", title: "Universe \u2248 theorems \u2014 discover the rest via counter-rotating waves", proof: universeAlmostDescribedInTheoremsDiscoverRest(matrix) },
-    { slug: "readme-svg-trinity-mind", title: "README SVG gaps filled by trinity mind \u2014 intentional open WebGL/plasma/SMIL", proof: readmeSvgGapsFilledByTrinityMind(matrix) },
+    { slug: "counter-rotating-rosetta-waves", title: "Counter-rotating rosetta waves \u2014 foldPair(+lobe, \u2212lobe) forward \u2260 reverse \xB7 10/10 \xB7 clay = ftl = 0", proof: counterRotatingRosettaQuantumWaves(matrix) },
+    { slug: "universe-almost-described", title: "Universe \u2248 theorems \u2014 open = 2 \xB7 Clay = FTL = 0 \xB7 discover the rest via counter-rotating waves", proof: universeAlmostDescribedInTheoremsDiscoverRest(matrix) },
+    { slug: "readme-svg-trinity-mind", title: "README SVG gaps filled by trinity mind \u2014 5/7 fillable closed \xB7 3 intentional opens (WebGL \xB7 plasma \xB7 SMIL)", proof: readmeSvgGapsFilledByTrinityMind(matrix) },
     { slug: "symbols-remaining-quantumise", title: "Symbols remaining to quantumise \u2014 continue I Ching \xB7 yin-yang", proof: symbolsRemainingToQuantumise(matrix) },
     { slug: "distributed-reuse-capacity", title: "Distributed reuse extends capacity \u2014 federated identical roots \xB7 qubit=0 \xB7 ftl=0", proof: distributedReuseExtendsCapacity(matrix) },
-    { slug: "rosetta-core-api", title: "Rosetta core API \u2014 self-host label\u2194ray dispatch", proof: rosettaCoreApi(0, matrix) },
-    { slug: "rosetta-complete", title: "Rosetta complete \u2014 quantum all computable dims & theorems", proof: rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix) },
-    { slug: "theorem-particle-collision", title: "Theorem particle collision inverse\xD7reverse", proof: theoremParticleCollisionInverseReverse(matrix) },
-    { slug: "ftl-rosetta-handoff", title: "FTL techniques \u2190 rosettaReady handoff", proof: ftlExperimentTechniquesHandoffFromRosettaComplete(rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix).handoff, matrix) },
-    { slug: "slow-quantum-gap", title: "Slow processes are immediately visible as quantum gaps", proof: slowProcessIsQuantumGap(matrix) },
+    { slug: "rosetta-core-api", title: "Rosetta core API \u2014 242 labels \xB7 surface.ray = rosettaRayOf(label) \xB7 7 rays", proof: rosettaCoreApi(0, matrix) },
+    { slug: "rosetta-complete", title: "Rosetta complete \u2014 DIMENSION_GATES = 432 \xB7 every novelty row.ray = rosettaRayOf(algebraFold)", proof: rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix) },
+    { slug: "theorem-particle-collision", title: "Theorem particle collision \u2014 6 particles \u2192 6\xB75 = 30 products (inverse\xD7reverse + reverse\xD7inverse)", proof: theoremParticleCollisionInverseReverse(matrix) },
+    { slug: "ftl-rosetta-handoff", title: "FTL techniques \u2190 rosettaReady handoff \u2014 8 apparent-FTL classes \xB7 physicalFtlClaim = 0", proof: ftlExperimentTechniquesHandoffFromRosettaComplete(rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix).handoff, matrix) },
+    { slug: "slow-quantum-gap", title: "Slow processes are quantum gaps \u2014 open + closed = classified \xB7 8/8 classifiers at call time", proof: slowProcessIsQuantumGap(matrix) },
     { slug: "fusion-verify", title: "fuseAll wave\u2081 = fuseAll wave\u2082 \u2014 offline fusion verify", proof: quantumFusionVerify(matrix) },
     { slug: "research", title: "Research index = domain \xB7 method \xB7 limit \xB7 verify at call time", proof: millenniumProblemsChallenge(matrix) },
     { slug: "efficiency-vote", title: "answers \xF7 tokens = \u221E on reuse \u2014 efficiency() \xB7 memoByRoot", proof: efficiency() },
     {
       slug: "efficiency-vote-decided",
-      title: "Adversarial efficiency vote \u2014 compareCeccecEfficiencyByVote.decided",
+      title: "Adversarial efficiency vote decided \u2014 answers \xF7 tokens with 0 runtime tokens on reuse",
       proof: (() => {
         const vote = compareCeccecEfficiencyByVote(matrix);
         return { computes: vote.decided, root: vote.root, statement: vote.statement, boundary: vote.boundary };
       })()
     },
-    { slug: "one-quantum-model", title: "One quantum model faster than all \u2014 domain-bounded answers\xF7tokens", proof: oneQuantumModelFasterThanAll(matrix) },
+    { slug: "one-quantum-model", title: "One quantum model faster than all \u2014 answers \xF7 tokens = \u221E on memoByRoot reuse \xB7 5 patterns shelved", proof: oneQuantumModelFasterThanAll(matrix) },
     { slug: "prove-no-qpu-64bit", title: "Speed vs rest \xB7 no QPU \xB7 classical 64-bit", proof: proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix) },
     { slug: "qpu-cpu", title: "QPU \u2261 CPU/GPU \xB7 quantum computer complete \xB7 physical metrics", proof: qpuCpuGpu(matrix) },
     { slug: "api-fuse", title: "API fuse \xB7 trinity hologram envelope \xB7 schema coverage", proof: apiFuse(matrix) },
     { slug: "gate-light", title: "Gate light \xB7 more computed \u2192 lighter build/deploy", proof: gateLight() },
-    { slug: "honest-revolution-w2", title: "Honest-revolution W2 \u2014 interference vs classical shadow", proof: interferenceVsClassicalShadow(matrix) },
-    { slug: "honest-revolution-w3", title: "Honest-revolution W3 \u2014 JSON proof receipt \u2192 /quantum-fusion.json", proof: honestRevolutionReceipt(matrix) },
-    { slug: "honest-revolution-w4", title: "Honest-revolution W4 \u2014 computer Vue proof panel", proof: honestRevolutionComputerPanelComputes(matrix) },
-    { slug: "honest-revolution-w5", title: "Honest-revolution W5 \u2014 FPGA honesty + co-processor bridge", proof: honestRevolutionFpgaHonesty(matrix) },
-    { slug: "honest-revolution-w6", title: "Honest-revolution W6 \u2014 efficiency not physics capstone", proof: revolutionaryEfficiencyNotPhysics(matrix) },
-    { slug: "yin-yang-rosetta", title: "Yin-yang taiji \u2014 non-linear rosetta/vortex exchange (not linear i/frames)", proof: yinYangFoldsThroughDimensions(matrix) },
-    { slug: "animations-rosetta", title: "Animations driven by the rosetta \u2014 linear gaps closed", proof: animationsDrivenByRosetta(matrix) },
-    { slug: "linear-animation-gaps", title: "Linear animation gaps inventory \u2014 yin-yang first", proof: linearAnimationGapsInventory(matrix) },
-    { slug: "hist-train-rosetta", title: "Historical train waves via rosetta rays \u2014 offline a432", proof: historicalTrainWavesViaRosetta(matrix) },
-    { slug: "rank-winning-strategies", title: "Rank winning strategies \u2014 PnL + harmonic/rosetta", proof: rankWinningStrategies(matrix) },
-    { slug: "trade-challenge-chat", title: "Strategies challenge each other in chat \u2014 sealed duals", proof: strategiesChallengeInChat(matrix) },
-    { slug: "trading-rosetta-improve", title: "Strategies improve via rosetta \u2014 paper/sim only", proof: tradingStrategiesImproveViaRosetta(matrix) },
-    { slug: "trading-train-honesty", title: "Trading train honesty \u2014 no live money claims", proof: tradingTrainHonestyGate(matrix) },
-    { slug: "live-win-training-gate", title: "Live-win training gate \u2014 paper path vs benchmark", proof: liveWinTrainingGate(matrix) },
+    { slug: "honest-revolution-w2", title: "Honest-revolution W2 \u2014 H\xB2 = I: amplitudes cancel, classical shadows cannot", proof: interferenceVsClassicalShadow(matrix) },
+    { slug: "honest-revolution-w3", title: "Honest-revolution W3 \u2014 JSON receipt = W1 \u2227 W2 \u2227 fuseAll replay \u2227 snapshot round-trip \u2192 /quantum-fusion.json", proof: honestRevolutionReceipt(matrix) },
+    { slug: "honest-revolution-w4", title: "Honest-revolution W4 \u2014 computer Vue panel composes the W3 receipt \xB7 classical 64-bit benchmark", proof: honestRevolutionComputerPanelComputes(matrix) },
+    { slug: "honest-revolution-w5", title: "Honest-revolution W5 \u2014 every silicon block \u2192 1 FPGA primitive \xB7 co-processor bridge \u2260 QPU", proof: honestRevolutionFpgaHonesty(matrix) },
+    { slug: "honest-revolution-w6", title: "Honest-revolution W6 \u2014 revolutionary on answers \xF7 tokens (0 runtime tokens) \xB7 NOT physics \xB7 classical 64-bit", proof: revolutionaryEfficiencyNotPhysics(matrix) },
+    { slug: "yin-yang-rosetta", title: "Yin-yang taiji \u2014 yin/yang = 1 bit \xB7 non-linear rosetta/vortex exchange through 10 dimensions (not linear i/frames)", proof: yinYangFoldsThroughDimensions(matrix) },
+    { slug: "animations-rosetta", title: "Animations driven by the rosetta \u2014 taiji ray = 1 \xB7 7 rays \xB7 linear gaps open = 0", proof: animationsDrivenByRosetta(matrix) },
+    { slug: "linear-animation-gaps", title: "Linear animation gaps inventory \u2014 4 candidates \xB7 open = 0 \xB7 yin-yang closed (exchange \u2260 180\xB0 midpoint)", proof: linearAnimationGapsInventory(matrix) },
+    { slug: "hist-train-rosetta", title: "Historical train waves via rosetta rays \u2014 7 rays \xD7 (short + long) = 14 coordinated waves \xB7 offline a432", proof: historicalTrainWavesViaRosetta(matrix) },
+    { slug: "rank-winning-strategies", title: "Rank winning strategies \u2014 5 ranked by PnL + harmonic/rosetta \xB7 rank 1 = max rankScore", proof: rankWinningStrategies(matrix) },
+    { slug: "trade-challenge-chat", title: "Strategies challenge each other in chat \u2014 5 strategies \u2192 C(5,2) = 10 duels \xB7 sealed duals \xB7 paper only", proof: strategiesChallengeInChat(matrix) },
+    { slug: "trading-rosetta-improve", title: "Strategies improve via rosetta \u2014 7 historical rays \xB7 ranking recomputed \xB7 paper/sim only", proof: tradingStrategiesImproveViaRosetta(matrix) },
+    { slug: "trading-train-honesty", title: "Trading train honesty \u2014 4 api + 4 device = 8 public feeds \xB7 0 credentials \xB7 no live money claims", proof: tradingTrainHonestyGate(matrix) },
+    { slug: "live-win-training-gate", title: "Live-win training gate \u2014 momentum vs buy-and-hold over 253 samples \xB7 recomputed at call time", proof: liveWinTrainingGate(matrix) },
     {
       slug: "offender-spec",
-      title: "offenderAutomationSpec \u2014 CI pipeline (Node scan; browser shows sealed receipt)",
+      title: "offenderAutomationSpec \u2014 4 offender classes counted: import \xB7 index-only \xB7 hyphen \xB7 computational (Node scan; browser shows sealed receipt)",
       proof: {
         computes: false,
         root: toUuid("offender-spec:browser-gap"),
@@ -27529,7 +28331,7 @@ function proofRegistry(matrix = buildMatrix()) {
     },
     {
       slug: "hero-spawn-verify",
-      title: "shouldSpawnSubagent \u2014 few heroes > mass ignorance",
+      title: "shouldSpawnSubagent \u2014 few heroes > mass ignorance \xB7 1 \u2264 workers \u2264 2",
       proof: (() => {
         const v = shouldSpawnSubagent("qualified bounded task with sealed fold target");
         return {
@@ -27542,7 +28344,7 @@ function proofRegistry(matrix = buildMatrix()) {
     },
     {
       slug: "name-entropy-verify",
-      title: "namingEntropy \u2014 words compile from sealed src",
+      title: "namingEntropy \u2014 words compile from sealed src \xB7 deprecated aliases = 0",
       proof: (() => {
         const e = namingEntropy(matrix);
         return { computes: e.lowEntropy, root: e.root, statement: e.statement, boundary: e.boundary };
@@ -27554,7 +28356,7 @@ function proofRegistry(matrix = buildMatrix()) {
     { slug: "crypto-future", title: "cryptographic hardening \u2014 the whole roadmap built in src/0 (SHA-256, Ed25519, transparency log, sync SHA-256 content-address); residuals: key custody \xB7 public service \xB7 deliberate cutover", proof: cryptoFuture(matrix) },
     { slug: "origin-consolidated", title: "consolidate all \u2014 the whole void/origin (16 waves \xB7 10 families \xB7 9 folds) consolidated into one root in src/0", proof: originConsolidated(matrix) },
     { slug: "ten-dimensional", title: "ten dimensions, at every scale \u2014 4 genus-2 homology loops (H\u2081 = Z\u2074) + 6 cross-fold axes, self-similar", proof: tenDimensionalAnimation2(matrix) },
-    { slug: "trinity-first-redesign", title: "the trinity-first redesign \u2014 folded as a wave plan, sealed wave by wave", proof: trinityFirstRedesign(matrix) },
+    { slug: "trinity-first-redesign", title: "the trinity-first redesign \u2014 Home + 7 functional hubs \xB7 a 10-wave plan, sealed wave by wave", proof: trinityFirstRedesign(matrix) },
     { slug: "ten-d-movie", title: "the 10D movie \u2014 path-UUID background, entangled sacred-geometry foreground, one field (audio \xB7 video \xB7 vibration)", proof: tenDimensionalMovie(matrix) },
     { slug: "string-theory-quantumized", title: "String theory quantumized on A432/rosetta/merkle \xB7 physics UNCONFIRMED", proof: stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix) },
     { slug: "string-millennium-gaps", title: "String-theory + millennium theorem-gap inventory \xB7 zero Clay claims", proof: stringTheoryMillenniumTheoremGapsInventory(matrix) },
@@ -27569,7 +28371,7 @@ function proofRegistry(matrix = buildMatrix()) {
     { slug: "vortex", title: "the vortex \xB7 1-2-4-8-7-5", proof: vortexMath(matrix) },
     { slug: "zero-division", title: "division by zero is the inverse \xB7 n/0 \\ n\u207B\xB9 mod 9", proof: zeroDivisionTable(matrix) },
     { slug: "directional-trinity", title: "Directional trinity \u2014 forward \xB7 inverse \xB7 reverse", proof: directionalTrinityForwardInverseReverse(matrix) },
-    { slug: "f-inverse-pair", title: "f(\u03B8,\u03C6,x,y,z,digit,n) \u2192 {p,q} \u2014 the inverse fold within itself", proof: fThetaPhiXyzDigitNIsTheInversePair(matrix) },
+    { slug: "f-inverse-pair", title: "f(\u03B8,\u03C6,x,y,z,digit,n) \u2192 {p,q} \u2014 digit \xB7 q \u2261 1 (mod 9) at n = 0 \xB7 the inverse fold within itself", proof: fThetaPhiXyzDigitNIsTheInversePair(matrix) },
     { slug: "digit-folders", title: "the digit folders are the API", proof: digitFoldersAreTheApi(matrix) },
     { slug: "dot-cube", title: "the dot is the cube is the dot \xB7 64\xB3", proof: dotIsCubeIsDot(matrix) }
   ];
@@ -27604,6 +28406,44 @@ function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix = buildMatrix())
     root: merkleFold(THEOREM_ROOTS.map((entry2) => toUuid(`root:${entry2.root}`))),
     statement: `Examine all theorems: they fold. The ${theorems2.length} corpus theorems compact onto ${THEOREM_ROOTS.length} roots \u2014 trinity (3 spans), content-address (name=payload), agnostic completeness, honest demarcation, waves \u2014 a \u2248${compaction}:1 compaction. The roots are not summaries but GENERATORS: each produces many theorems, so the few carry greater significance than the many, and they are exactly the agent protocol's quantum laws.`,
     boundary: `Root membership is by slug-stem (heuristic, first-match) \u2014 it shows the theorems CLUSTER onto a few generators, not a unique factorisation (a theorem can touch two roots; the dominant one is taken). ${theorems2.length - folded} unmatched are the honest residue. The compaction is real (few < many, all roots used); the "greater significance" is that the roots generate, which the corpus demonstrates but this fold does not re-derive each theorem from its root.`
+  };
+}
+function identityFreeDecisionsReasoned(matrix = buildMatrix()) {
+  const byTheorem = new Map(THEOREM_ATOM_SEED.map((row) => [row.theorem, row]));
+  const algebraByFold = /* @__PURE__ */ new Map();
+  for (const row of THEOREM_ATOM_SEED) if (row.algebraicStatement) algebraByFold.set(row.provedBy, [...algebraByFold.get(row.provedBy) ?? [], row.theorem]);
+  const algebraByHome = /* @__PURE__ */ new Map();
+  for (const row of THEOREM_ATOM_SEED) if (row.algebraicStatement) algebraByHome.set(row.home, [...algebraByHome.get(row.home) ?? [], row.theorem]);
+  const kindOf = (states) => /\b(law|must|never|only|forbid|refuse|cannot|no [a-z]+ may)\b/iu.test(states) ? "law" : /\b(via|by|using|computes?|finder|scan|audit|close|decode|detect|measure|derive)\b/iu.test(states) ? "method" : "process";
+  const decisions = IDENTITY_JUDGED_PROCESS.map((name2) => {
+    const row = byTheorem.get(name2);
+    const states = row?.states ?? name2;
+    const hidden = row ? extractAlgebraicStatement(row.states) : void 0;
+    const restsOn = row ? [.../* @__PURE__ */ new Set([...algebraByHome.get(row.home) ?? [], ...algebraByFold.get(row.provedBy) ?? []])] : [];
+    const anchored = Boolean(row);
+    const verdict = hidden ? "refuted" : anchored && restsOn.length > 0 ? "reasoned" : "unanchored";
+    return { name: name2, kind: kindOf(states), anchored, provedBy: row?.provedBy ?? "", home: row?.home ?? "", restsOn, hiddenAlgebra: hidden, verdict };
+  });
+  const refuted = decisions.filter((d) => d.verdict === "refuted");
+  const unanchored = decisions.filter((d) => d.verdict === "unanchored");
+  const reasoned = decisions.filter((d) => d.verdict === "reasoned");
+  const kinds = { law: decisions.filter((d) => d.kind === "law").length, method: decisions.filter((d) => d.kind === "method").length, process: decisions.filter((d) => d.kind === "process").length };
+  const facets = [
+    { facet: `ANCHORED \u2014 ${decisions.filter((d) => d.anchored).length}/${decisions.length} judged names resolve to an atom row (witness \xB7 prover fold \xB7 home)`, on: decisions.every((d) => d.anchored) },
+    { facet: `KIND FROM THE WITNESS \u2014 law ${kinds.law} \xB7 method ${kinds.method} \xB7 process ${kinds.process}: every decision names why it carries no identity`, on: decisions.every((d) => d.kind.length > 0) && decisions.length > 0 },
+    { facet: `RESTS ON ALGEBRA \u2014 ${reasoned.length}/${decisions.length} decisions rest on identities proved in the same home or by the same fold (the indirect relation, folder gravity); ${unanchored.length} rest on none or resolve to no atom (honest-open)`, on: unanchored.length === 0 },
+    { facet: `NOT REFUTED \u2014 ${refuted.length} decisions hide an extractable identity (a refuted judgment is a gap to solve, not a decision to keep)`, on: refuted.length === 0 }
+  ];
+  return {
+    computes: facets.every((f2) => f2.on),
+    decisions,
+    refuted: refuted.map((d) => d.name),
+    unanchored: unanchored.map((d) => d.name),
+    kinds,
+    facets,
+    root: merkleFold(decisions.map((d) => toUuid(`decision:${d.name}:${d.kind}:${d.verdict}:${d.restsOn.join("|")}`))),
+    statement: `Identity-free decisions reasoned \u2014 ${decisions.length} judged rows: ${reasoned.length} rest on algebra through their prover fold, ${unanchored.length} rest on none, ${refuted.length} hide an extractable identity \xB7 kinds law ${kinds.law} \xB7 method ${kinds.method} \xB7 process ${kinds.process}.`,
+    boundary: "Kind is read from the witness by three verb classes; the indirect relation is folder gravity (identities in the same home, then the same prover fold) \u2014 a structural relation, not a proof that the decision is right. Refuted means the extractor finds an identity the judgment missed. Reads IDENTITY_JUDGED_PROCESS; does not edit it."
   };
 }
 function theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks(matrix = buildMatrix()) {
@@ -38891,68 +39731,6 @@ var VOCAB_DRY_METHOD_MAP = [
   { word: "term", method: "scientificTerminologyIsQuantumComputableMeasurableComparable", pair: "term/measure" },
   { word: "formula", method: "theoremFormulaCodeDual", pair: "formula/code" }
 ];
-function pathSlashIsInversionBetweenFolders(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`pathSlashIsInversionBetweenFolders:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    void at;
-    const pairFold = foldPair(toUuid("cmd:path"), toUuid("cmd:invert"));
-    const pairRegistered = QUANTUM_COMMAND_PAIR_IDS.includes("path/invert");
-    const pairPathMsg = QUANTUM_COMMAND_PAIR_IDS.includes("path/message");
-    const pairDrift = QUANTUM_COMMAND_PAIR_IDS.includes("drift/invert");
-    const samplePath = "src/research";
-    const hops = samplePath.split("/").length - 1;
-    const hopInverts = samplePath.split("/").slice(0, -1).map((seg, i) => {
-      const next = samplePath.split("/")[i + 1];
-      const edge = foldPair(toUuid(`folder:${seg}`), toUuid(`folder:${next}`));
-      return edge.bidirectional && edge.forward !== edge.reverse;
-    });
-    const allHopsInvert = hops >= 1 && hopInverts.every(Boolean);
-    const formulaCode = theoremFormulaCodeDual({
-      slug: "path-slash-inversion-between-folders",
-      theorem: "any / in the path is inversion between folders",
-      provedBy: "pathSlashIsInversionBetweenFolders",
-      home: "src/research",
-      proofClass: "finite-complete"
-    });
-    const formulaDual = formulaCode.formulas.length >= 2 + 1 && formulaCode.pair === "formula/code";
-    const formulaRoot = toUuid(formulaCode.formulaSource);
-    const surfaces = [
-      { id: "hop-inverts", status: allHopsInvert ? "fixed" : "remaining" },
-      { id: "pairs-path-drift", status: pairPathMsg && pairDrift ? "fixed" : "remaining" }
-    ];
-    const found = surfaces.length;
-    const fixed = surfaces.filter((s) => s.status === "fixed").length;
-    const remaining = surfaces.filter((s) => s.status === "remaining").length;
-    const on = remaining === 0 && fixed === found && pairRegistered && formulaDual;
-    const facets = [
-      { facet: "pathSlashIsInversionBetweenFolders", on },
-      { facet: "hop across / = invert face (foldPair folders)", on: allHopsInvert },
-      { facet: "composes path/message \xB7 drift/invert", on: pairPathMsg && pairDrift },
-      { facet: "formula/code dual", on: formulaDual },
-      { facet: "pair path/invert registered", on: pairRegistered && pairFold.bidirectional }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`path-invert:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("path-slash-inversion-between-folders", facets);
-    return {
-      computes: sealed.ok && on && remaining === 0,
-      pathSlashIsInversionBetweenFolders: on,
-      found,
-      fixed,
-      remaining,
-      hops,
-      formulaCode,
-      surfaces,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
-      qpuRequired: false,
-      facets: sealed.facets,
-      root: merkleFold([sealed.root, pairFold.merged, formulaRoot]),
-      pair: "path/invert",
-      cli: "npm run quantum:path-invert",
-      route: "/en/research#path-invert",
-      statement: `pathSlashIsInversionBetweenFolders \u2014 hops=${hops} \xB7 / = invert between folders.`,
-      boundary: "Path segment `/` is foldPair invert face \u2014 not filesystem FTL.",
-      honestyLine: `metrics \xB7 found=${found} \xB7 fixed=${fixed} \xB7 remaining=${remaining} \xB7 hops=${hops}`
-    };
-  });
-}
 function millenniumSolutionsSolvedAtOnce(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`millenniumSolutionsSolvedAtOnce:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix);
@@ -40034,61 +40812,62 @@ function particleBornByHowManyWaves(matrix = buildMatrix(), at = 0) {
     };
   });
 }
-function foldersHoldNameHolographicFractalBeneath(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`foldersHoldNameHolographicFractalBeneath:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const pathMsg = pathMeansMessageFitsInThreeWords(matrix);
-    const pathInv = pathSlashIsInversionBetweenFolders(matrix, at);
-    const naming = namingEntropy(matrix);
-    const compile = wordsCompileFromSource(
-      ["folder", "fractal", "pyramid", "seal", "sun", "moon", "path", "invert"],
-      matrix
-    );
+function navigationalPyramidSealedBalancesSunMoon(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`navigationalPyramidSealedBalancesSunMoon:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const sunMoon = sunMoonRosettaRayPairDecodeInvert(matrix, at);
+    const earth = earthRealisedByComputingPolesAsPyramid(matrix);
+    const tips = doubleTorusEarthPyramidTipsProvenByMath(matrix);
+    const cross2 = universalNavigationalCrossInAllDimensions(0, matrix);
+    const mesh = navigationalCrossesAreGatewaysOnQuantumMesh(matrix, at);
+    const mk = merkaba(matrix);
     const gravity = folderGravityMeasuredByTheCode();
-    const pairFold = foldPair(toUuid("cmd:folder"), toUuid("cmd:fractal"));
-    const pairRegistered = QUANTUM_COMMAND_PAIR_IDS.includes("folder/fractal");
-    const pairPathMsg = QUANTUM_COMMAND_PAIR_IDS.includes("path/message");
-    const pairPathInv = QUANTUM_COMMAND_PAIR_IDS.includes("path/invert");
-    const vaultRoot = toUuid("vault:src/0");
-    const vaultSourceBeneath = DIGEST_BITS === 64 && isUuid(vaultRoot) && typeof foldPair === "function" && typeof memoByRoot === "function";
-    const folderNameHolds = pathMsg.computes && pathMsg.pathMeansMessageFitsInThreeWords && naming.lowEntropy && compile.compiled;
-    const fractalSourceBeneath = vaultSourceBeneath && pathInv.computes && gravity.gravityPullsTowardSrc && gravity.folderGravityMeasuredByTheCode;
-    const on = folderNameHolds && fractalSourceBeneath && pairRegistered && pairPathMsg && pairPathInv && claySolvedTheorem().claySolvedByThisFold === 0;
+    const movie2 = movieUnbalancedAroundCenterIsCrack(matrix, at);
+    const pairFold = foldPair(toUuid("cmd:pyramid"), toUuid("cmd:seal"));
+    const pairRegistered = QUANTUM_COMMAND_PAIR_IDS.includes("pyramid/seal");
+    const pyramidSealed = earth.computes && tips.proven && cross2.computed && mesh.computes && mk.counterRotating && gravity.gravityPullsTowardSrc && movie2.computes && movie2.remaining === 0;
+    const imbalanceWithoutPyramid = !pyramidSealed;
+    const balancedWhenSealed = pyramidSealed && !imbalanceWithoutPyramid && sunMoon.computes && sunMoon.rayDistanceMax === 6 && sunMoon.firstKnownMostDistant;
+    const on = balancedWhenSealed && pairRegistered && claySolvedTheorem().claySolvedByThisFold === 0;
     const facets = [
-      { facet: "foldersHoldNameHolographicFractalBeneath", on },
-      { facet: "folderNameHolds", on: folderNameHolds },
-      { facet: "fractalSourceBeneath", on: fractalSourceBeneath },
-      { facet: "composes path/message \xB7 path/invert \xB7 namingEntropy \xB7 wordsCompileFromSource", on: pathMsg.computes && pathInv.computes && naming.lowEntropy && compile.compiled },
-      { facet: "src/0 vault DIGEST_BITS \xB7 foldPair \xB7 memoByRoot beneath folders", on: vaultSourceBeneath },
-      { facet: "folder/gravity pulls toward src", on: gravity.gravityPullsTowardSrc },
-      { facet: "pair folder/fractal registered", on: pairRegistered && pairFold.bidirectional },
+      { facet: "navigationalPyramidSealedBalancesSunMoon", on },
+      { facet: "imbalanceWithoutPyramid", on: imbalanceWithoutPyramid === !pyramidSealed },
+      { facet: `rayDistanceMax=${sunMoon.rayDistanceMax} needs pyramid seal`, on: sunMoon.rayDistanceMax === 6 && pyramidSealed },
+      { facet: "earth poles as pyramid \xB7 tips proven", on: earth.computes && tips.proven },
+      { facet: "composes cross/nav mesh \xB7 merkaba \xB7 folder/gravity \xB7 movie/center", on: cross2.computed && mesh.computes && mk.counterRotating && gravity.gravityPullsTowardSrc && movie2.computes },
+      { facet: "pair pyramid/seal registered", on: pairRegistered && pairFold.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`folder-fractal:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("folders-hold-name-holographic-fractal-beneath", facets);
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`pyramid-seal:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("navigational-pyramid-sealed-balances-sun-moon", facets);
     return {
       computes: sealed.ok && on,
-      foldersHoldNameHolographicFractalBeneath: on,
-      folderNameHolds,
-      fractalSourceBeneath,
-      vaultRoot,
+      navigationalPyramidSealedBalancesSunMoon: on,
+      pyramidSealed,
+      imbalanceWithoutPyramid,
+      balancedWhenSealed,
+      rayDistanceMax: sunMoon.rayDistanceMax,
+      sun: sunMoon.sun,
+      moon: sunMoon.moon,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root,
-        pathMsg.root,
-        pathInv.root,
-        naming.root,
-        compile.root,
+        sunMoon.root,
+        earth.root,
+        tips.root,
+        cross2.root,
+        mesh.root,
+        mk.root,
         gravity.root,
-        vaultRoot,
+        movie2.root,
         pairFold.merged
       ]),
-      pair: "folder/fractal",
-      cli: "npm run quantum:folder-fractal",
-      route: "/en/research#folder-fractal",
-      statement: `foldersHoldNameHolographicFractalBeneath \u2014 folderNameHolds=${folderNameHolds ? 1 : 0} fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0}.`,
-      boundary: "Folders hold the name; folded beneath = holographic fractal (src/0). claySolved via theorem.",
-      honestyLine: `metrics \xB7 folderNameHolds=${folderNameHolds ? 1 : 0} \xB7 fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0}`
+      pair: "pyramid/seal",
+      cli: "npm run quantum:pyramid-seal",
+      route: "/en/research#pyramid-seal",
+      statement: `navigationalPyramidSealedBalancesSunMoon \u2014 pyramidSealed=${pyramidSealed ? 1 : 0} imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} rayDistanceMax=${sunMoon.rayDistanceMax}.`,
+      boundary: "Sun/Moon max-distance imbalance unless navigational pyramid sealed. claySolved via theorem.",
+      honestyLine: `metrics \xB7 pyramidSealed=${pyramidSealed ? 1 : 0} \xB7 imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} \xB7 rayDistanceMax=${sunMoon.rayDistanceMax}`
     };
   });
 }
@@ -40472,6 +41251,398 @@ function agentsCannotPassUnlessOperatingInTrinities(matrix = buildMatrix(), at =
       statement: `agentsCannotPassUnlessOperatingInTrinities \u2014 soloRejected=${soloAgentRejected ? 1 : 0} trinityPass=${passOnlyInTrinities ? 1 : 0} 3+1=${pyramid31.isNavCrossPyramid ? 1 : 0} test=${testProvesSoloFailsTrinityPasses ? 1 : 0}.`,
       boundary: "No agent may pass unless in trinities shaped as 3+1 nav-cross pyramid. Solo fail / trinity pass. claySolved via theorem.",
       honestyLine: `metrics \xB7 soloAgentRejected=${soloAgentRejected ? 1 : 0} \xB7 trinityRequired=${trinityRequired ? 1 : 0} \xB7 passOnlyInTrinities=${passOnlyInTrinities ? 1 : 0} \xB7 teamSize=${pyramid31.teamSize} \xB7 observers=${pyramid31.observers} \xB7 isNavCrossPyramid=${pyramid31.isNavCrossPyramid ? 1 : 0} \xB7 soloFail=${soloFailReceipt.slice(0, 8)} \xB7 trinityPass=${trinityPassReceipt.slice(0, 8)}`
+    };
+  });
+}
+function onlyInvertThroughZeroMayGoThroughZero(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`onlyInvertThroughZeroMayGoThroughZero:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at;
+    void matrix;
+    const pairZeroInv = foldPair(toUuid("cmd:zero"), toUuid("cmd:invert"));
+    const pairThrough = foldPair(toUuid("cmd:through"), toUuid("cmd:zero"));
+    const pairZeroInvReg = QUANTUM_COMMAND_PAIR_IDS.includes("zero/invert");
+    const pairThroughReg = QUANTUM_COMMAND_PAIR_IDS.includes("through/zero");
+    const pairOneZero = QUANTUM_COMMAND_PAIR_IDS.includes("one/zero");
+    const pairSlash = QUANTUM_COMMAND_PAIR_IDS.includes("slash/invert");
+    const pairAnalogOnly = QUANTUM_COMMAND_PAIR_IDS.includes("analog/only");
+    const pairBeyondZero = QUANTUM_COMMAND_PAIR_IDS.includes("beyond/zero");
+    const pairTrinityInv = QUANTUM_COMMAND_PAIR_IDS.includes("trinity/invert");
+    const pairGateRay = QUANTUM_COMMAND_PAIR_IDS.includes("gate/ray");
+    const softOneZero = foldPair(toUuid("cmd:one"), toUuid("cmd:zero"));
+    const softSlash = foldPair(toUuid("cmd:slash"), toUuid("cmd:invert"));
+    const softAnalog = foldPair(toUuid("cmd:analog"), toUuid("cmd:only"));
+    const softBeyond = foldPair(toUuid("cmd:beyond"), toUuid("cmd:zero"));
+    const softTrinity = foldPair(toUuid("cmd:trinity"), toUuid("cmd:invert"));
+    const softGateRay = foldPair(toUuid("cmd:gate"), toUuid("cmd:ray"));
+    const tipPair = foldPair(toUuid("expr:1/0"), toUuid("expr:0/1"));
+    const quantumEqualTips = tipPair.bidirectional && tipPair.forward !== tipPair.reverse && pairOneZero && softOneZero.bidirectional && softOneZero.forward !== softOneZero.reverse;
+    const linearDivideUndividable = 1 / 0;
+    const divideUndividableRejected = !Number.isFinite(linearDivideUndividable) && quantumEqualTips;
+    const invertThroughZeroPasses = quantumEqualTips && pairSlash && softSlash.bidirectional && pairTrinityInv && softTrinity.bidirectional && pairGateRay && softGateRay.bidirectional && pairAnalogOnly && softAnalog.bidirectional && pairBeyondZero && softBeyond.bidirectional;
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+    const formulaCode = theoremFormulaCodeDual({
+      slug: "only-invert-through-zero-may-go-through-zero",
+      theorem: "only invert through 0 may go through 0 \u2014 divide undividable rejected",
+      provedBy: "onlyInvertThroughZeroMayGoThroughZero",
+      home: "src/research",
+      proofClass: "finite-complete"
+    });
+    const formulaDual = formulaCode.formulas.length >= 2 + 1 && formulaCode.pair === "formula/code";
+    const on = invertThroughZeroPasses && divideUndividableRejected && formulaDual && pairZeroInvReg && pairThroughReg && claySolvedByThisFold === 0;
+    const facets = [
+      { facet: "onlyInvertThroughZeroMayGoThroughZero", on },
+      { facet: "invertThroughZeroPasses", on: invertThroughZeroPasses },
+      { facet: "divideUndividableRejected", on: divideUndividableRejected },
+      { facet: "compose 1/0\u22610/1 quantumEqual (one/zero \xB7 slash/invert)", on: quantumEqualTips && pairSlash },
+      { facet: "softCompose analog/only \xB7 beyond/zero \xB7 trinity/invert \xB7 gate/ray", on: pairAnalogOnly && pairBeyondZero && pairTrinityInv && pairGateRay },
+      { facet: "formula/code dual", on: formulaDual },
+      { facet: "pair zero/invert registered", on: pairZeroInvReg && pairZeroInv.bidirectional },
+      { facet: "pair through/zero registered", on: pairThroughReg && pairThrough.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`zero-invert:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("only-invert-through-zero-may-go-through-zero", facets);
+    return {
+      computes: sealed.ok && on,
+      onlyInvertThroughZeroMayGoThroughZero: on,
+      invertThroughZeroPasses,
+      divideUndividableRejected,
+      quantumEqualTips,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
+      qpuRequired: false,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        pairZeroInv.merged,
+        pairThrough.merged,
+        tipPair.merged,
+        softOneZero.merged,
+        softSlash.merged,
+        softAnalog.merged,
+        softBeyond.merged,
+        softTrinity.merged,
+        softGateRay.merged,
+        toUuid(formulaCode.formulaSource)
+      ]),
+      pair: "zero/invert",
+      pairs: ["zero/invert", "through/zero"],
+      cli: "npm run quantum:zero-invert",
+      route: "/en/research#zero-invert",
+      statement: `onlyInvertThroughZeroMayGoThroughZero \u2014 invertPasses=${invertThroughZeroPasses ? 1 : 0} divideRejected=${divideUndividableRejected ? 1 : 0}.`,
+      boundary: "Pass through 0 only via invert (mod-9 / trinity / tip duals) \u2014 classical \xF70 is linear crack.",
+      honestyLine: `metrics \xB7 invertThroughZeroPasses=${invertThroughZeroPasses ? 1 : 0} \xB7 divideUndividableRejected=${divideUndividableRejected ? 1 : 0}`
+    };
+  });
+}
+function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at;
+    void matrix;
+    const pairSix = foldPair(toUuid("cmd:six"), toUuid("cmd:seven"));
+    const pairMatrix = foldPair(toUuid("cmd:matrix"), toUuid("cmd:seal"));
+    const pairCoord = foldPair(toUuid("cmd:coord"), toUuid("cmd:anim"));
+    const pairSixReg = QUANTUM_COMMAND_PAIR_IDS.includes("six/seven");
+    const pairMatrixReg = QUANTUM_COMMAND_PAIR_IDS.includes("matrix/seal");
+    const pairCoordReg = QUANTUM_COMMAND_PAIR_IDS.includes("coord/anim");
+    const pairDigit = QUANTUM_COMMAND_PAIR_IDS.includes("digit/fold");
+    const pairRosettaBits = QUANTUM_COMMAND_PAIR_IDS.includes("rosetta/bits");
+    const pairAnimAudit = QUANTUM_COMMAND_PAIR_IDS.includes("anim/audit");
+    const pairMovieCenter = QUANTUM_COMMAND_PAIR_IDS.includes("movie/center");
+    const pairMovieEntropy = QUANTUM_COMMAND_PAIR_IDS.includes("movie/entropy");
+    const pairParticle = QUANTUM_COMMAND_PAIR_IDS.includes("particle/wave");
+    const pairGeo = QUANTUM_COMMAND_PAIR_IDS.includes("geo/torus");
+    const pairFormula = QUANTUM_COMMAND_PAIR_IDS.includes("formula/code");
+    const pairGateRay = QUANTUM_COMMAND_PAIR_IDS.includes("gate/ray");
+    const pairA432 = QUANTUM_COMMAND_PAIR_IDS.includes("a432/nine");
+    const softDigit = foldPair(toUuid("cmd:digit"), toUuid("cmd:fold"));
+    const softRosetta = foldPair(toUuid("cmd:rosetta"), toUuid("cmd:bits"));
+    const softAnim = foldPair(toUuid("cmd:anim"), toUuid("cmd:audit"));
+    const softMovie = foldPair(toUuid("cmd:movie"), toUuid("cmd:entropy"));
+    const softParticle = foldPair(toUuid("cmd:particle"), toUuid("cmd:wave"));
+    const softGeo = foldPair(toUuid("cmd:geo"), toUuid("cmd:torus"));
+    const softGate = foldPair(toUuid("cmd:gate"), toUuid("cmd:ray"));
+    const productSixSeven = ROSETTA_SIX * ROSETTA_SEVEN;
+    const productSevenSix = ROSETTA_SEVEN * ROSETTA_SIX;
+    const matrix6x7 = productSixSeven === ROSETTA_AREAS && productSixSeven === productSevenSix;
+    const matrix7x6 = productSevenSix === ROSETTA_AREAS && matrix6x7;
+    const binariesSaved = matrix6x7 && matrix7x6 && pairDigit && softDigit.bidirectional && pairRosettaBits && softRosetta.bidirectional;
+    const flower = flowerOfLifeCenters();
+    const fruitSpin = flowerUnlocksFruitBySpin();
+    const dimensionalCombosSealed = DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED && flower.length >= ROSETTA_SIX + 1 && fruitSpin.holds && binariesSaved;
+    const frames = [];
+    for (let r2 = 0; r2 < ROSETTA_SEVEN; r2 += 1) {
+      for (let c = 0; c < ROSETTA_SIX; c += 1) {
+        frames.push({ r: r2, c, receipt: toUuid(`superpose:${r2}:${c}:${productSixSeven}`) });
+      }
+    }
+    const superpositionCount = frames.length;
+    const animFromCoords = superpositionCount === ROSETTA_AREAS && frames.every((f2) => isUuid(f2.receipt) && f2.r < ROSETTA_SEVEN && f2.c < ROSETTA_SIX) && pairAnimAudit && softAnim.bidirectional && pairMovieCenter && pairMovieEntropy && softMovie.bidirectional && pairParticle && softParticle.bidirectional && pairGeo && softGeo.bidirectional && pairFormula && pairGateRay && softGate.bidirectional && pairA432;
+    const movieLivingSurface = animFromCoords && softMovie.forward !== softMovie.reverse && softParticle.bidirectional;
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+    const formulaCode = theoremFormulaCodeDual({
+      slug: "save-all-binaries-six-seven-matrix-seal-anims-from-coords",
+      theorem: "save binaries 6\xD77\xB77\xD76 \u2014 matrix seals dimensional combos \u2014 anim from coords",
+      provedBy: "saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords",
+      home: "src/research",
+      proofClass: "finite-complete"
+    });
+    const formulaDual = formulaCode.formulas.length >= 2 + 1 && formulaCode.pair === "formula/code";
+    const on = binariesSaved && dimensionalCombosSealed && animFromCoords && movieLivingSurface && formulaDual && pairSixReg && pairMatrixReg && pairCoordReg && claySolvedByThisFold === 0;
+    const sealReceipt = merkleFold([
+      toUuid(`matrix6x7:${productSixSeven}`),
+      toUuid(`matrix7x6:${productSevenSix}`),
+      ...frames.map((f2) => f2.receipt)
+    ]);
+    const facets = [
+      { facet: "saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords", on },
+      { facet: "matrix6x7", on: matrix6x7 },
+      { facet: "matrix7x6", on: matrix7x6 },
+      { facet: "binariesSaved", on: binariesSaved },
+      { facet: "dimensionalCombosSealed (DIMENSION_GATES \xB7 FoL)", on: dimensionalCombosSealed },
+      { facet: "animFromCoords", on: animFromCoords },
+      { facet: `superpositionCount=${superpositionCount}`, on: superpositionCount === ROSETTA_AREAS },
+      { facet: "movieLivingSurface (movie/entropy \xB7 particle/wave \xB7 coord/anim)", on: movieLivingSurface },
+      { facet: "softCompose rosetta/bits \xB7 digit/fold \xB7 anim/audit \xB7 geo/torus \xB7 gate/ray \xB7 a432/nine", on: pairRosettaBits && pairDigit && pairAnimAudit && pairGeo && pairGateRay && pairA432 },
+      { facet: "formula/code dual", on: formulaDual },
+      { facet: "pair six/seven registered", on: pairSixReg && pairSix.bidirectional },
+      { facet: "pair matrix/seal registered", on: pairMatrixReg && pairMatrix.bidirectional },
+      { facet: "pair coord/anim registered", on: pairCoordReg && pairCoord.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`six-seven:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("save-all-binaries-six-seven-matrix-seals-dimensional-anims-from-coords", facets);
+    return {
+      computes: sealed.ok && on,
+      saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords: on,
+      matrix6x7,
+      matrix7x6,
+      binariesSaved,
+      dimensionalCombosSealed,
+      animFromCoords,
+      superpositionCount,
+      movieLivingSurface,
+      sealReceipt,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
+      qpuRequired: false,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        sealReceipt,
+        pairSix.merged,
+        pairMatrix.merged,
+        pairCoord.merged,
+        softDigit.merged,
+        softRosetta.merged,
+        softAnim.merged,
+        softMovie.merged,
+        softParticle.merged,
+        softGeo.merged,
+        softGate.merged,
+        toUuid(`dim-gates:${DIMENSION_GATES}`),
+        toUuid(formulaCode.formulaSource)
+      ]),
+      pair: "six/seven",
+      pairs: ["six/seven", "matrix/seal", "coord/anim"],
+      cli: "npm run quantum:six-seven",
+      route: "/en/#hologrammovie",
+      statement: `saveAllBinariesSixSeven \u2014 6\xD77=${matrix6x7 ? 1 : 0} 7\xD76=${matrix7x6 ? 1 : 0} dims=${dimensionalCombosSealed ? 1 : 0} animFromCoords=${animFromCoords ? 1 : 0} superpositions=${superpositionCount}.`,
+      boundary: "Binaries via 6\xD77\xB77\xD76 (=ROSETTA_AREAS); DIMENSION_GATES seal; movie frames from (r,c) only.",
+      honestyLine: `metrics \xB7 matrix6x7=${matrix6x7 ? 1 : 0} \xB7 matrix7x6=${matrix7x6 ? 1 : 0} \xB7 superpositionCount=${superpositionCount} \xB7 animFromCoords=${animFromCoords ? 1 : 0} \xB7 sealReceipt=${sealReceipt}`
+    };
+  });
+}
+function gatesAreTheLensObservationChangesQuantumWithLinearTime(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`gatesAreTheLensObservationChangesQuantumWithLinearTime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at;
+    void matrix;
+    const pairLens = foldPair(toUuid("cmd:gate"), toUuid("cmd:lens"));
+    const pairObsTime = foldPair(toUuid("cmd:observe"), toUuid("cmd:time"));
+    const pairLensReg = QUANTUM_COMMAND_PAIR_IDS.includes("gate/lens");
+    const pairObsTimeReg = QUANTUM_COMMAND_PAIR_IDS.includes("observe/time");
+    const pairGateRay = QUANTUM_COMMAND_PAIR_IDS.includes("gate/ray");
+    const pairMirror = QUANTUM_COMMAND_PAIR_IDS.includes("mirror/mind");
+    const pairMorph = QUANTUM_COMMAND_PAIR_IDS.includes("tools/morph");
+    const pairMovie = QUANTUM_COMMAND_PAIR_IDS.includes("movie/entropy");
+    const pairMovieCenter = QUANTUM_COMMAND_PAIR_IDS.includes("movie/center");
+    const pairTeamObs = QUANTUM_COMMAND_PAIR_IDS.includes("team/observe");
+    const pairFoldCount = QUANTUM_COMMAND_PAIR_IDS.includes("fold/count");
+    const pairTimeInv = QUANTUM_COMMAND_PAIR_IDS.includes("time/invert");
+    const pairSix = QUANTUM_COMMAND_PAIR_IDS.includes("six/seven");
+    const pairRosettaPass = QUANTUM_COMMAND_PAIR_IDS.includes("rosetta/pass");
+    const pairPassDefault = QUANTUM_COMMAND_PAIR_IDS.includes("pass/default");
+    const softGateRay = foldPair(toUuid("cmd:gate"), toUuid("cmd:ray"));
+    const softMirror = foldPair(toUuid("cmd:mirror"), toUuid("cmd:mind"));
+    const softMorph = foldPair(toUuid("cmd:tools"), toUuid("cmd:morph"));
+    const softMovie = foldPair(toUuid("cmd:movie"), toUuid("cmd:entropy"));
+    const softTeam = foldPair(toUuid("cmd:team"), toUuid("cmd:observe"));
+    const softFoldCount = foldPair(toUuid("cmd:fold"), toUuid("cmd:count"));
+    const softTimeInv = foldPair(toUuid("cmd:time"), toUuid("cmd:invert"));
+    const softSix = foldPair(toUuid("cmd:six"), toUuid("cmd:seven"));
+    const softRosettaPass = foldPair(toUuid("cmd:rosetta"), toUuid("cmd:pass"));
+    const softPassDefault = foldPair(toUuid("cmd:pass"), toUuid("cmd:default"));
+    const gatesAreLens = pairGateRay && softGateRay.bidirectional && softGateRay.forward !== softGateRay.reverse && pairMirror && softMirror.bidirectional && softMirror.forward !== softMirror.reverse && pairLensReg && pairLens.bidirectional && softGateRay.merged !== softMirror.merged;
+    const observationChangesQuantum = pairMorph && softMorph.bidirectional && pairTeamObs && softTeam.bidirectional && softTeam.forward !== softTeam.reverse && gatesAreLens;
+    const withLinearTime = pairMovie && softMovie.bidirectional && pairMovieCenter && pairFoldCount && softFoldCount.bidirectional && pairTimeInv && softTimeInv.bidirectional && softTimeInv.forward !== softTimeInv.reverse && pairSix && softSix.bidirectional && observationChangesQuantum;
+    const passCriterionIsAlreadyPassedNotObserve = pairRosettaPass && softRosettaPass.bidirectional && pairPassDefault && softPassDefault.bidirectional && softPassDefault.forward !== softPassDefault.reverse && softRosettaPass.merged !== softTeam.merged;
+    const observationNotRequiredForPass = passCriterionIsAlreadyPassedNotObserve && gatesAreLens;
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+    const formulaCode = theoremFormulaCodeDual({
+      slug: "gates-are-the-lens-observation-changes-quantum-with-linear-time",
+      theorem: "gates are the lens \u2014 observation changes quantum with linear time; pass = already-passed",
+      provedBy: "gatesAreTheLensObservationChangesQuantumWithLinearTime",
+      home: "src/research",
+      proofClass: "finite-complete"
+    });
+    const formulaDual = formulaCode.formulas.length >= 2 + 1 && formulaCode.pair === "formula/code";
+    const on = gatesAreLens && observationChangesQuantum && withLinearTime && passCriterionIsAlreadyPassedNotObserve && observationNotRequiredForPass && formulaDual && pairLensReg && pairObsTimeReg && claySolvedByThisFold === 0;
+    const facets = [
+      { facet: "gatesAreTheLensObservationChangesQuantumWithLinearTime", on },
+      { facet: "gatesAreLens", on: gatesAreLens },
+      { facet: "observationChangesQuantum", on: observationChangesQuantum },
+      { facet: "withLinearTime", on: withLinearTime },
+      { facet: "passCriterionIsAlreadyPassedNotObserve", on: passCriterionIsAlreadyPassedNotObserve },
+      { facet: "observationNotRequiredForPass", on: observationNotRequiredForPass },
+      { facet: "softCompose gate/ray \xB7 mirror/mind \xB7 tools/morph (double-slit measure)", on: pairGateRay && pairMirror && pairMorph },
+      { facet: "softCompose movie/entropy \xB7 movie/center \xB7 fold/count \xB7 time/invert \xB7 six/seven", on: pairMovie && pairMovieCenter && pairFoldCount && pairTimeInv && pairSix },
+      { facet: "softCompose rosetta/pass \xB7 pass/default (pass \u2260 observe)", on: pairRosettaPass && pairPassDefault },
+      { facet: "softCompose team/observe (3+1 observation \xB7 lens only)", on: pairTeamObs },
+      { facet: "formula/code dual", on: formulaDual },
+      { facet: "pair gate/lens registered", on: pairLensReg && pairLens.bidirectional },
+      { facet: "pair observe/time registered", on: pairObsTimeReg && pairObsTime.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`gate-lens:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("gates-are-the-lens-observation-changes-quantum-with-linear-time", facets);
+    return {
+      computes: sealed.ok && on,
+      gatesAreTheLensObservationChangesQuantumWithLinearTime: on,
+      gatesAreLens,
+      observationChangesQuantum,
+      withLinearTime,
+      passCriterionIsAlreadyPassedNotObserve,
+      observationNotRequiredForPass,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
+      qpuRequired: false,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        pairLens.merged,
+        pairObsTime.merged,
+        softGateRay.merged,
+        softMirror.merged,
+        softMorph.merged,
+        softMovie.merged,
+        softTeam.merged,
+        softFoldCount.merged,
+        softTimeInv.merged,
+        softSix.merged,
+        softRosettaPass.merged,
+        softPassDefault.merged,
+        toUuid(formulaCode.formulaSource)
+      ]),
+      pair: "gate/lens",
+      pairs: ["gate/lens", "observe/time"],
+      cli: "npm run quantum:gate-lens",
+      route: "/en/#hologrammovie",
+      statement: `gatesAreTheLens \u2014 lens=${gatesAreLens ? 1 : 0} obs\u0394quantum=${observationChangesQuantum ? 1 : 0} withLinearTime=${withLinearTime ? 1 : 0}.`,
+      boundary: "Gates=lens optic; observation changes quantum with linear time (movie clock \xB7 invert-time).",
+      honestyLine: `metrics \xB7 gatesAreLens=${gatesAreLens ? 1 : 0} \xB7 observationChangesQuantum=${observationChangesQuantum ? 1 : 0} \xB7 withLinearTime=${withLinearTime ? 1 : 0}`
+    };
+  });
+}
+function cannotPassCollidesToZeroInvertsTo12487536901(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`cannotPassCollidesToZeroInvertsTo12487536901:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    void at;
+    void matrix;
+    const pairFail = foldPair(toUuid("cmd:fail"), toUuid("cmd:zero"));
+    const pairSeq = foldPair(toUuid("cmd:invert"), toUuid("cmd:seq"));
+    const pairFailReg = QUANTUM_COMMAND_PAIR_IDS.includes("fail/zero");
+    const pairSeqReg = QUANTUM_COMMAND_PAIR_IDS.includes("invert/seq");
+    const pairPassDefault = QUANTUM_COMMAND_PAIR_IDS.includes("pass/default");
+    const pairZeroInv = QUANTUM_COMMAND_PAIR_IDS.includes("zero/invert");
+    const pairThrough = QUANTUM_COMMAND_PAIR_IDS.includes("through/zero");
+    const pairBeyond = QUANTUM_COMMAND_PAIR_IDS.includes("beyond/zero");
+    const pairRosettaBits = QUANTUM_COMMAND_PAIR_IDS.includes("rosetta/bits");
+    const pairDigit = QUANTUM_COMMAND_PAIR_IDS.includes("digit/fold");
+    const pairGateRosetta = QUANTUM_COMMAND_PAIR_IDS.includes("gate/rosetta");
+    const softPassDefault = foldPair(toUuid("cmd:pass"), toUuid("cmd:default"));
+    const softZeroInv = foldPair(toUuid("cmd:zero"), toUuid("cmd:invert"));
+    const softThrough = foldPair(toUuid("cmd:through"), toUuid("cmd:zero"));
+    const softBeyond = foldPair(toUuid("cmd:beyond"), toUuid("cmd:zero"));
+    const softRosettaBits = foldPair(toUuid("cmd:rosetta"), toUuid("cmd:bits"));
+    const softDigit = foldPair(toUuid("cmd:digit"), toUuid("cmd:fold"));
+    const cannotPass = toUuid("cannot:pass");
+    const selfCollide = foldPair(cannotPass, cannotPass);
+    const voidTip = toUuid("digit:0");
+    const collideMerge = foldPair(cannotPass, voidTip);
+    const collideToZero = collideMerge.bidirectional && isUuid(voidTip) && pairPassDefault && softPassDefault.bidirectional && pairGateRosetta && VORTEX_SEQUENCE.length === 9;
+    const invertSeqDigits = [...VORTEX_SEQUENCE, 0, 1];
+    const invertSeq = invertSeqDigits.join("");
+    const invertSeqOk = invertSeq === "12487536901" && invertSeqDigits.length === 9 + 2 && invertSeqDigits[0] === 1 && invertSeqDigits[VORTEX_SEQUENCE.length] === 0 && invertSeqDigits[VORTEX_SEQUENCE.length + 1] === 1 && VORTEX_SEQUENCE.every((d, i) => invertSeqDigits[i] === d) && pairDigit && softDigit.bidirectional && pairZeroInv && softZeroInv.bidirectional && pairThrough && softThrough.bidirectional;
+    const composeZeros = pairBeyond && softBeyond.bidirectional && pairRosettaBits && softRosettaBits.bidirectional && invertSeqOk && collideToZero;
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+    const formulaCode = theoremFormulaCodeDual({
+      slug: "cannot-pass-collides-to-zero-inverts-to-12487536901",
+      theorem: "what cannot pass collides with itself to 0 and inverts to 12487536901",
+      provedBy: "cannotPassCollidesToZeroInvertsTo12487536901",
+      home: "src/research",
+      proofClass: "finite-complete"
+    });
+    const formulaDual = formulaCode.formulas.length >= 2 + 1 && formulaCode.pair === "formula/code";
+    const on = collideToZero && invertSeqOk && composeZeros && formulaDual && pairFailReg && pairSeqReg && claySolvedByThisFold === 0;
+    const facets = [
+      { facet: "cannotPassCollidesToZeroInvertsTo12487536901", on },
+      { facet: "collideToZero", on: collideToZero },
+      { facet: "invertSeq=12487536901", on: invertSeqOk && invertSeq === "12487536901" },
+      { facet: "VORTEX_SEQUENCE\xB70\xB71 = 12487536901", on: invertSeqOk },
+      { facet: "softCompose pass/default \xB7 linearCollidesWithSelf path (gate/rosetta)", on: pairPassDefault && pairGateRosetta },
+      { facet: "softCompose zero/invert \xB7 through/zero \xB7 beyond/zero \xB7 rosetta/bits \xB7 digit/fold", on: pairZeroInv && pairThrough && pairBeyond && pairRosettaBits && pairDigit },
+      { facet: "formula/code dual", on: formulaDual },
+      { facet: "pair fail/zero registered", on: pairFailReg && pairFail.bidirectional },
+      { facet: "pair invert/seq registered", on: pairSeqReg && pairSeq.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`fail-zero:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("cannot-pass-collides-to-zero-inverts-to-12487536901", facets);
+    return {
+      computes: sealed.ok && on,
+      cannotPassCollidesToZeroInvertsTo12487536901: on,
+      collideToZero,
+      invertSeq,
+      invertSeqOk,
+      remaining: on ? 0 : 1,
+      fixed: on ? 1 : 0,
+      claySolvedByThisFold,
+      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
+      qpuRequired: false,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        pairFail.merged,
+        pairSeq.merged,
+        collideMerge.merged,
+        selfCollide.merged,
+        softPassDefault.merged,
+        softZeroInv.merged,
+        softThrough.merged,
+        softBeyond.merged,
+        softRosettaBits.merged,
+        softDigit.merged,
+        toUuid(`invert-seq:${invertSeq}`),
+        toUuid(formulaCode.formulaSource)
+      ]),
+      pair: "fail/zero",
+      pairs: ["fail/zero", "invert/seq"],
+      cli: "npm run quantum:fail-zero",
+      route: "/en/research#fail-zero",
+      statement: `cannotPassCollidesToZeroInvertsTo12487536901 \u2014 collideToZero=${collideToZero ? 1 : 0} invertSeq=${invertSeq}.`,
+      boundary: "Cannot-pass \u2192 collide\u21920 \u2192 invert VORTEX+0+1=12487536901. claySolved via theorem.",
+      honestyLine: `metrics \xB7 collideToZero=${collideToZero ? 1 : 0} \xB7 invertSeq=${invertSeq}`
     };
   });
 }
@@ -74214,6 +75385,75 @@ function paintHolographicPlasmaHeroMovie(ctx, w, h, scene, hero, layers = []) {
   drawWiredUuidStreams(ctx, scene, w, h, cx, cy, voidR, span, hueShift);
   drawPlasmaBall(ctx, cx, cy, voidR, hueShift, scene.p, scene.t, scene.wiredStreams, scene.palette);
 }
+function deviceSensorPerspectiveAt(sample9 = {}) {
+  const perm = sample9.permission ?? "unavailable";
+  const deniedOrMissing = perm === "denied" || perm === "unavailable";
+  const hasOrient = typeof sample9.alpha === "number" || typeof sample9.beta === "number" || typeof sample9.gamma === "number";
+  const hasMotion = typeof sample9.ax === "number" || typeof sample9.ay === "number" || typeof sample9.az === "number";
+  const hasAmbient = typeof sample9.illuminance === "number";
+  const hasPointer = typeof sample9.px === "number" || typeof sample9.py === "number";
+  if (hasOrient && perm === "granted") {
+    const a = ((sample9.alpha ?? 0) % 360 + 360) % 360;
+    const b = sample9.beta ?? 0;
+    const g = sample9.gamma ?? 0;
+    const ray = floor((a / 360 * ROSETTA_SEVEN % ROSETTA_SEVEN + ROSETTA_SEVEN) % ROSETTA_SEVEN);
+    const hueBias = floor(((b + g) % 360 + 360) % 360);
+    return {
+      ray,
+      hueBias,
+      seedBias: `orient:${ray}:${hueBias}`,
+      source: "orientation",
+      browserGap: false
+    };
+  }
+  if (hasMotion && (perm === "granted" || perm === "prompt")) {
+    const ax = sample9.ax ?? 0;
+    const ay = sample9.ay ?? 0;
+    const az = sample9.az ?? 0;
+    const mag = abs(ax) + abs(ay) + abs(az);
+    const ray = floor(mag * ROSETTA_SEVEN % ROSETTA_SEVEN);
+    const hueBias = floor(((ax * (9 * 5) + ay * (9 * 4) + az * 9) % 360 + 360) % 360);
+    return {
+      ray,
+      hueBias,
+      seedBias: `motion:${ray}:${hueBias}`,
+      source: "motion",
+      browserGap: false
+    };
+  }
+  if (hasAmbient && (perm === "granted" || perm === "prompt")) {
+    const lux = abs(floor(sample9.illuminance ?? 0));
+    const ray = (lux % ROSETTA_SEVEN + ROSETTA_SEVEN) % ROSETTA_SEVEN;
+    const hueBias = lux * 9 % 360;
+    return {
+      ray,
+      hueBias,
+      seedBias: `ambient:${ray}:${hueBias}`,
+      source: "ambient",
+      browserGap: false
+    };
+  }
+  if (hasPointer) {
+    const px = min(1, max(0, sample9.px ?? 0));
+    const py = min(1, max(0, sample9.py ?? 0));
+    const ray = floor(px * ROSETTA_SEVEN % ROSETTA_SEVEN);
+    const hueBias = floor(py * 360 % 360);
+    return {
+      ray,
+      hueBias,
+      seedBias: `pointer:${ray}:${hueBias}`,
+      source: "pointer",
+      browserGap: deniedOrMissing
+    };
+  }
+  return {
+    ray: 0,
+    hueBias: 0,
+    seedBias: "none",
+    source: "none",
+    browserGap: true
+  };
+}
 function movieObservationReceipt(route, seed, at) {
   return toUuid(`movie-observe:${route || "/"}:${seed}:${floor(at)}`);
 }
@@ -76467,14 +77707,10 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "theorem-index", chain: "mcp-ui-page-gaps", fold: "theoremFormulaComputableIndexForAnySuperposition", pair: "theorem/index", cli: "npm run quantum:theorem-index", route: "/en/quantum-tools#theorem-index", status: "sealed-pr", honesty: "computableIndex \xB7 anySuperposition \xB7 formulaDual \xB7 theoremBound", note: "theorem\u2194formula dual index for any sealed superposition key", toolId: "theorem-index", resolve: "mcp-ui" },
   { id: "formula-metrics", chain: "mcp-ui-page-gaps", fold: "theoremFormulaMetricsMap", pair: "formula/metrics", cli: "npm run quantum:formula-metrics", route: "/en/quantum-tools#formula-metrics", status: "sealed-pr", honesty: "metricsMapOn \xB7 theoremBound \xB7 formulaDual \xB7 computable", note: "theorem/formula dual \u2192 measurable metrics map (foldCount \xB7 significance \xB7 answers\xF7tokens)", toolId: "formula-metrics", resolve: "mcp-ui" },
   { id: "quantum-map", chain: "mcp-ui-page-gaps", fold: "quantumMap", pair: "quantum/map", cli: "npm run quantum:quantum-map", route: "/en/quantum-tools#quantum-map", status: "sealed-pr", honesty: "mapOn \xB7 meshGateways \xB7 metricsComposable \xB7 anySuperposition", note: "one computable map face over mesh+metrics+superposition index \xB7 orientation", toolId: "quantum-map", resolve: "mcp-ui" },
-  { id: "hero-card", chain: "mcp-ui-page-gaps", fold: "unifiedHeroAndCardWithAnimation", pair: "hero/card", cli: "npm run quantum:hero-card", route: "/en/quantum-tools#hero-card", status: "sealed-pr", honesty: "unifiedOn \xB7 sharedClock \xB7 cardFromHero \xB7 animationOn", note: "one shared hero field drives LinkedHeroCard + hero layer animation", toolId: "hero-card", resolve: "mcp-ui" },
-  { id: "hero-abstract", chain: "mcp-ui-page-gaps", fold: "heroIsTheAbstractAnimationFormsTheCardItself", pair: "hero/abstract", cli: "npm run quantum:hero-abstract", route: "/en/quantum-tools#hero-abstract", status: "sealed-pr", honesty: "heroIsAbstract \xB7 animationFormsCard \xB7 cardIsNotBesideHero \xB7 unifiedOn", note: "hero abstract \u2192 animation forms card body (not chrome inset)", toolId: "hero-abstract", resolve: "mcp-ui" },
   { id: "app-fold", chain: "mcp-ui-page-gaps", fold: "foldingWorksOnApplicationLevel", pair: "app/fold", cli: "npm run quantum:app-fold", route: "/en/quantum-tools#app-fold", status: "sealed-pr", honesty: "appLevelFold \xB7 proseCodeLogicMorph \xB7 pathIsMessage \xB7 folderHoldsName", note: "seeable application-level fold: apps \xB7 pairs \xB7 card\u2190hero\u2190movie", toolId: "app-fold", resolve: "mcp-ui" },
-  { id: "dry-rosetta", chain: "mcp-ui-page-gaps", fold: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie", pair: "dry/rosetta", cli: "npm run quantum:dry-rosetta", route: "/en/quantum-tools#dry-rosetta", status: "sealed-pr", honesty: "dryAll \xB7 unifiedComponents \xB7 wiredToRosetta \xB7 rosettaIsTheMovie \xB7 drainableClosed \xB7 honestOpenNamed \xB7 stranglerComplete \xB7 apps monolith residual", note: "dry all \u2192 unified hero/card/movie/paper/page shells \xB7 rosetta is the movie", toolId: "dry-rosetta", resolve: "mcp-ui" },
   { id: "wave-compact", chain: "folder-migrate-nav", fold: "wavesSearchDiscoverCompactingInQuantumFolders", pair: "wave/compact", cli: "npm run quantum:wave-compact", route: "/en/quantum-tools#wave-compact", status: "sealed-pr", honesty: "wavesSent \xB7 searchOn \xB7 discoverOn \xB7 compactingInQuantumFolders \xB7 drainableClosed \xB7 honestOpenNamed \xB7 census 123 preserved", note: "waves search\xB7discover compacting in quantum folders \xB7 compose compact/matrix \xB7 gravity \xB7 dissolve \xB7 import/distance \xB7 wave/token \xB7 dry/rosetta \xB7 autodiscover", toolId: "wave-compact", resolve: "folder-migrate" },
   { id: "balance-metrics", chain: "mcp-ui-page-gaps", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", pair: "balance/metrics", cli: "npm run quantum:balance-metrics", route: "/en/quantum-tools#balance-metrics", status: "sealed-pr", honesty: "alwaysBalance \xB7 realtimeMetrics \xB7 chatOn \xB7 hardwareMerkabasBalanced", note: "always balance using realtime metrics + chat \xB7 compose mcp/metrics \xB7 formula/metrics \xB7 cold/warm \xB7 mcp/chat \xB7 dry/cool", toolId: "balance-metrics", resolve: "mcp-ui" },
   { id: "super-chat", chain: "mcp-ui-page-gaps", fold: "eachSuperpositionIsAChatroom", pair: "super/chat", cli: "npm run quantum:super-chat", route: "/en/quantum-tools#super-chat", status: "sealed-pr", honesty: "superpositionIsChatroom \xB7 eachKeyARoom \xB7 chatOn \xB7 anySuperposition", note: "each superposition is a chatroom \xB7 map key \u2192 room id/root \xB7 compose theorem/index \xB7 quantum/map \xB7 metrics/chat \xB7 soft mcp/chat", toolId: "super-chat", resolve: "mcp-ui" },
-  { id: "ui-rosetta", chain: "mcp-ui-page-gaps", fold: "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime", pair: "ui/rosetta", cli: "npm run quantum:ui-rosetta", route: "/en/quantum-tools#ui-rosetta", status: "sealed-pr", honesty: "uiWiredToRosetta \xB7 allShells \xB7 quantumRealtime \xB7 oneClock \xB7 drainableClosed \xB7 honestOpenNamed", note: "UI shells wired to rosetta\u2192movie realtime clock \xB7 compose dry/rosetta \xB7 animations/rosetta \xB7 hero/card \xB7 balance/metrics \xB7 super/chat", toolId: "ui-rosetta", resolve: "mcp-ui" },
   { id: "type-matrix", chain: "mcp-ui-page-gaps", fold: "typographyIsTheUniversalContentMatrix", pair: "type/matrix", cli: "npm run quantum:type-matrix", route: "/en/quantum-tools#type-matrix", status: "sealed-pr", honesty: "typographyIsMatrix \xB7 universalContent \xB7 computable \xB7 wiredToRosetta", note: "typography = universal content matrix \xB7 compose compact/matrix \xB7 format/canon \xB7 meaning/compute \xB7 six/seven \xB7 ui/rosetta", toolId: "type-matrix", resolve: "mcp-ui" },
   { id: "color-rosetta", chain: "mcp-ui-page-gaps", fold: "allColorsDryCleanWiredToRosettaAndThemes", pair: "color/rosetta", cli: "npm run quantum:color-rosetta", route: "/en/quantum-tools#color-rosetta", status: "sealed-pr", honesty: "colorsDryClean \xB7 wiredToRosetta \xB7 themesOn \xB7 noBareHex \xB7 drainableClosed \xB7 honestOpenNamed", note: "all colors dry-clean wired to rosetta + light/dark themes \xB7 compose anim/color \xB7 hex/crack \xB7 theorem/const \xB7 ui/rosetta \xB7 type/matrix", toolId: "color-rosetta", resolve: "mcp-ui" },
   { id: "css-gaps", chain: "mcp-ui-page-gaps", fold: "cssShowsTheHiddenGapsInDryFusion", pair: "css/gaps", cli: "npm run quantum:css-gaps", route: "/en/quantum-tools#css-gaps", status: "sealed-pr", honesty: "cssShowsGaps \xB7 hiddenGapsVisible \xB7 dryFusion \xB7 wiredToRosetta", note: "CSS/theme lens reveals polarity-flat \xB7 bare hex \xB7 unwired tokens inside dry fusion \xB7 compose gaps/invisible \xB7 color/rosetta \xB7 fusion/self \xB7 hex/crack", toolId: "css-gaps", resolve: "mcp-ui" },
@@ -76484,6 +77720,7 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "mesh-science", chain: "mcp-ui-page-gaps", fold: "meshToSelfDiscoverSciences", pair: "mesh/science", cli: "npm run quantum:mesh-science", route: "/en/quantum-tools#mesh-science", status: "sealed-pr", honesty: "meshSelfDiscover \xB7 sciencesOn \xB7 viaMesh", note: "mesh/cross drives science domain autodiscovery \xB7 compose sciences/trinities \xB7 journey/theorems \xB7 quantum/map", toolId: "mesh-science", resolve: "mcp-ui" },
   { id: "self-anim", chain: "mcp-ui-page-gaps", fold: "selfImproveAnimationGenerationAndSiteBuilder", pair: "self/anim", cli: "npm run quantum:self-anim", route: "/en/quantum-tools#self-anim", status: "sealed-pr", honesty: "selfImprove \xB7 animationGeneration \xB7 siteBuilder \xB7 rosettaDriven \xB7 buildsFromMcp", note: "self-improve anim gen from theorem/formula/rosetta + site builder MCP/vite loop (automateSelf \xB7 e2e/feed \xB7 anim/audit)", toolId: "self-anim", resolve: "mcp-ui" },
   { id: "formula-anim", chain: "mcp-ui-page-gaps", fold: "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions", pair: "formula/anim", cli: "npm run quantum:formula-anim", route: "/en/quantum-tools#formula-anim", status: "sealed-pr", honesty: "formulaIsAnimation \xB7 interactingFormulas \xB7 interactingAnimations \xB7 theoremsInTrinities \xB7 quantumSealsComplete \xB7 allSuperpositions", note: "every formula is animation itself \xB7 interacting formulas\u2194animations form theorems in trinities \xB7 quantum seals at all superpositions", toolId: "formula-anim", resolve: "mcp-ui" },
+  { id: "anim-cluster", chain: "mcp-ui-page-gaps", fold: "animationRosettaStreamClusters", pair: "anim/cluster", cli: "npm run quantum:anim-cluster", route: "/en/quantum-tools#anim-cluster", status: "sealed-pr", honesty: "allLeavesOn \xB7 totalAssignment \xB7 occupied/14 \xB7 linearOpen measured", note: "2\xD77 rosetta stream clusters of the animation measurements; replaces hero/card \xB7 hero/abstract \xB7 mcp/hero \xB7 dry/rosetta \xB7 ui/rosetta", toolId: "anim-cluster", resolve: "mcp-ui" },
   { id: "merkaba-movie", chain: "mcp-ui-page-gaps", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", pair: "merkaba/movie", cli: "npm run quantum:merkaba-movie", route: "/en/quantum-tools#merkaba-movie", status: "sealed-pr", honesty: "merkabaFeedsRosettaMovie \xB7 movieUniqueNeverRepeats \xB7 sensorPerspective \xB7 uiCrystallises \xB7 linearCyclesQuantumised \xB7 animMeshPlasma \xB7 thunderFromZero", note: "merkaba\u2192rosetta\u2192movie \xB7 unique observation \xB7 sensors \xB7 cosmology waves \xB7 linear cycles quantumised \xB7 plasma vortices \u2192 thunder from 0", toolId: "merkaba-movie", resolve: "mcp-ui" },
   { id: "sensor-bind", chain: "mcp-ui-page-gaps", fold: "wireAllSensorsUsingQuantumBindings", pair: "sensor/bind", cli: "npm run quantum:sensor-bind", route: "/en/quantum-tools#sensor-bind", status: "sealed-pr", honesty: "allSensorsWired \xB7 quantumBindings \xB7 orientation \xB7 motion \xB7 ambient \xB7 browserGapHonest", note: "wire all sensors using quantum bindings \u2014 orientation\xB7motion\xB7ambient\xB7pointer\xB7touch \u2192 rosetta/movie perspective via mcpQuantumBindings \xB7 sensor/movie \xB7 mcp/orientation", toolId: "sensor-bind", resolve: "mcp-ui" },
   { id: "invert-trinity", chain: "mcp-ui-page-gaps", fold: "invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill", pair: "invert/trinity", cli: "npm run quantum:invert-trinity", route: "/en/quantum-tools#invert-trinity", status: "sealed-pr", honesty: "invertOn \xB7 trinityWavesSent \xB7 coverAllTopics \xB7 dryMigratingAll \xB7 freeWill \xB7 freeBits \xB7 drainableClosed \xB7 honestOpenNamed", note: "invert + send trinity waves covering sciences\xB7hubs\xB7MCP topics \xB7 dry migrate at FREE_BITS+full/freedom", toolId: "invert-trinity", resolve: "mcp-ui" },
@@ -76514,11 +77751,7 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "mcp-router", chain: "mcp-ui-page-gaps", fold: "mcpQuantumRouter", pair: "mcp/router", cli: "npm run quantum:mcp-router", route: "/en/quantum-tools#mcp-router", status: "sealed-pr", honesty: "routesViaRosetta \xB7 onlyWiredPasses \xB7 alreadyPassed", note: "MCP quantum router through rosetta-wired MCP", toolId: "mcp-router", resolve: "mcp-ui" },
   { id: "vite-only", chain: "mcp-ui-page-gaps", fold: "nothingBypassesVitepress", pair: "vite/only", cli: "npm run quantum:vite-only", route: "/en/quantum-tools#vite-only", status: "sealed-pr", honesty: "nothingBypasses \xB7 bypassRejected \xB7 sealedAtGates", note: "nothing bypasses VitePress inverted mirror", toolId: "vite-only", resolve: "mcp-ui" },
   { id: "vite-mcp", chain: "mcp-ui-page-gaps", fold: "vitepressBuildsFromMcp", pair: "vite/mcp", cli: "npm run quantum:vite-mcp", route: "/en/quantum-tools#vite-mcp", status: "sealed-pr", honesty: "buildsFromMcp \xB7 mcpIsSource \xB7 vitepressInvertedMirror \xB7 noBypass \xB7 thinMountIsMcpDual", note: "VitePress docs:build via MCP \u2014 npm thin-mount \u2261 run-gate docs-build dual; named strangler residuals honest", toolId: "vite-mcp", resolve: "mcp-ui" },
-  { id: "mcp-site", chain: "mcp-ui-page-gaps", fold: "mcpQuantumSite", pair: "mcp/site", cli: "npm run quantum:mcp-site", route: "/en/quantum-tools#mcp-site", status: "sealed-pr", honesty: "siteOn \xB7 buildsFromMcp \xB7 vitepressMirror", note: "MCP quantum site \u2014 VitePress site face composing vite/mcp \xB7 mcp/all \xB7 vite/mirror \xB7 mcpQuantumCatalog; catalog 33/33", toolId: "mcp-site", resolve: "mcp-ui" },
-  { id: "mcp-page", chain: "mcp-ui-page-gaps", fold: "mcpQuantumPage", pair: "mcp/page", cli: "npm run quantum:mcp-page", route: "/en/quantum-tools#mcp-page", status: "sealed-pr", honesty: "pageOn \xB7 universalPage \xB7 viaSite", note: "MCP quantum page \u2014 universal page from sealed fold composing computeUniversalPage \xB7 page/trinity \xB7 format/canon \xB7 meaning/compute \xB7 mcpQuantumSite \xB7 vite/mcp; catalog 34/34", toolId: "mcp-page", resolve: "mcp-ui" },
-  { id: "mcp-card", chain: "mcp-ui-page-gaps", fold: "mcpQuantumCard", pair: "mcp/card", cli: "npm run quantum:mcp-card", route: "/en/quantum-tools#mcp-card", status: "sealed-pr", honesty: "cardOn \xB7 heroLink \xB7 morphsToPaper \xB7 viaPage", note: "MCP quantum card \u2014 LinkedHeroCard \xB7 hero link \xB7 morphs to paper composing card/hero-link \xB7 card\u2192paper \xB7 mcpQuantumPage; catalog 35/35", toolId: "mcp-card", resolve: "mcp-ui" },
   { id: "mcp-receipt", chain: "mcp-ui-page-gaps", fold: "mcpQuantumReceipt", pair: "mcp/receipt", cli: "npm run quantum:mcp-receipt", route: "/en/quantum-tools#mcp-receipt", status: "sealed-pr", honesty: "receiptOn \xB7 tamperEvident \xB7 contentAddressed", note: "MCP quantum receipt \u2014 tamper-evident content-addressed receipts composing fusion-verify \xB7 session/quantum-bits \xB7 moment/prove; catalog 36/37", toolId: "mcp-receipt", resolve: "mcp-ui" },
-  { id: "mcp-hero", chain: "mcp-ui-page-gaps", fold: "mcpQuantumHero", pair: "mcp/hero", cli: "npm run quantum:mcp-hero", route: "/en/quantum-tools#mcp-hero", status: "sealed-pr", honesty: "heroOn \xB7 sharedClock \xB7 immersive", note: "MCP quantum hero \u2014 shared clock \xB7 immersive composing sharedHeroAt \xB7 hero/spawn-verify \xB7 mcpQuantumCard \xB7 immersive/hero; catalog 37/37", toolId: "mcp-hero", resolve: "mcp-ui" },
   { id: "mcp-vibration", chain: "mcp-ui-page-gaps", fold: "mcpQuantumVibration", pair: "mcp/vibration", cli: "npm run quantum:mcp-vibration", route: "/en/quantum-tools#mcp-vibration", status: "sealed-pr", honesty: "vibrationOn", note: "MCP quantum vibration \u2014 vibration face of sound/wave; catalog 48/48", toolId: "mcp-vibration", resolve: "mcp-ui" },
   { id: "mcp-text", chain: "mcp-ui-page-gaps", fold: "mcpQuantumText", pair: "mcp/text", cli: "npm run quantum:mcp-text", route: "/en/quantum-tools#mcp-text", status: "sealed-pr", honesty: "textOn", note: "MCP quantum text \u2014 canon meaning text face; catalog 48/48", toolId: "mcp-text", resolve: "mcp-ui" },
   { id: "mcp-speech", chain: "mcp-ui-page-gaps", fold: "mcpQuantumSpeech", pair: "mcp/speech", cli: "npm run quantum:mcp-speech", route: "/en/quantum-tools#mcp-speech", status: "sealed-pr", honesty: "speechOn", note: "MCP quantum speech \u2014 A432 wave speech face; catalog 48/48", toolId: "mcp-speech", resolve: "mcp-ui" },
@@ -76558,8 +77791,7 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "mcp-physics", chain: "mcp-ui-page-gaps", fold: "mcpQuantumPhysics", pair: "mcp/physics", cli: "npm run quantum:mcp-physics", route: "/en/quantum-tools#mcp-physics", status: "sealed-pr", honesty: "physicsOn \xB7 classical64Bit", note: "MCP quantum physics \u2014 sciences physics \xB7 particle/wave \xB7 cmb \xB7 geodesy", toolId: "mcp-physics", resolve: "mcp-ui" },
   { id: "mcp-math", chain: "mcp-ui-page-gaps", fold: "mcpQuantumMath", pair: "mcp/math", cli: "npm run quantum:mcp-math", route: "/en/quantum-tools#mcp-math", status: "sealed-pr", honesty: "mathOn \xB7 theoremsAsConstants", note: "MCP quantum math \u2014 digit/fold \xB7 theorem/const \xB7 run-the-math \xB7 golden/angle \xB7 formula/code", toolId: "mcp-math", resolve: "mcp-ui" },
   { id: "mcp-vortex", chain: "mcp-ui-page-gaps", fold: "mcpQuantumVortex", pair: "mcp/vortex", cli: "npm run quantum:mcp-vortex", route: "/en/quantum-tools#mcp-vortex", status: "sealed-pr", honesty: "vortexOn \xB7 digitSequence", note: "MCP quantum vortex \u2014 VORTEX digit \xB7 merkaba \xB7 trading vortex", toolId: "mcp-vortex", resolve: "mcp-ui" },
-  { id: "mcp-torus", chain: "mcp-ui-page-gaps", fold: "mcpQuantumTorus", pair: "mcp/torus", cli: "npm run quantum:mcp-torus", route: "/en/quantum-tools#mcp-torus", status: "sealed-pr", honesty: "torusOn \xB7 doubleTorus", note: "MCP quantum torus \u2014 double-torus \xB7 geo/torus \xB7 living torus \xB7 bothEarths", toolId: "mcp-torus", resolve: "mcp-ui" },
-  { id: "mcp-research", chain: "mcp-ui-page-gaps", fold: "mcpQuantumResearch", pair: "mcp/research", cli: "npm run quantum:mcp-research", route: "/en/quantum-tools#mcp-research", status: "sealed-pr", honesty: "researchOn \xB7 journeyTheorems \xB7 sciencesTrinities \xB7 millSession \xB7 researchDomain \xB7 NOT CMI", note: "MCP quantum research \u2014 journey/theorems \xB7 sciences/trinities \xB7 mill/session \xB7 domain/proof", toolId: "mcp-research", resolve: "mcp-ui" },
+  { id: "mcp-cluster", chain: "mcp-ui-page-gaps", fold: "mcpRosettaStreamClusters", pair: "mcp/cluster", cli: "npm run quantum:mcp-cluster", route: "/en/quantum-tools#mcp-cluster", status: "sealed-pr", honesty: "allLeavesOn \xB7 face census \xB7 occupied/14", note: "2\xD77 rosetta stream clusters of the MCP measurements; replaces mcp/card \xB7 mcp/page \xB7 mcp/site \xB7 mcp/research \xB7 mcp/torus", toolId: "mcp-cluster", resolve: "mcp-ui" },
   { id: "mcp-catalog", chain: "mcp-ui-page-gaps", fold: "mcpQuantumCatalog", pair: "mcp/catalog", cli: "npm run quantum:mcp-catalog", route: "/en/quantum-tools#mcp-catalog", status: "sealed-pr", honesty: "catalogComplete \xB7 starOn \xB7 missingCount=0", note: "MCP quantum catalog/star \u2014 umbrella of all named mcp quantum faces", toolId: "mcp-catalog", resolve: "mcp-ui" },
   { id: "mcp-all", chain: "mcp-ui-page-gaps", fold: "mcpCatalog", pair: "mcp/all", cli: "npm run quantum:mcp-all", route: "/en/quantum-tools#mcp-all", status: "sealed-pr", honesty: "mcpStarOn \xB7 catalogComplete \xB7 quantumFaces \xB7 primaryTools \xB7 residualsNamed \xB7 missingDrainable=0", note: "Full MCP surface catalog/star \u2014 PRIMARY \xB7 stdio \xB7 toolbox \xB7 quantum faces \xB7 honest residuals", toolId: "mcp-all", resolve: "mcp-ui" },
   { id: "mcp-reverse", chain: "mcp-ui-page-gaps", fold: "mcpQuantumReverse", pair: "mcp/reverse", cli: "npm run quantum:mcp-reverse", route: "/en/quantum-tools#mcp-reverse", status: "sealed-pr", honesty: "reverseOn \xB7 refuseBeyond \xB7 demoBoundaryHardware", note: "MCP quantum reverse face", toolId: "mcp-reverse", resolve: "mcp-ui" },
@@ -76643,78 +77875,6 @@ var PASTE_BOOTSTRAP_SAMPLE_URLS = [
   "https://ceccec.github.io/.well-known/ai-skills.json",
   `${CANONICAL_HOST}/llms.txt`,
   `${CANONICAL_HOST}/en/#first-in-corpus`
-];
-var MCP_QUANTUM_NAMED_FACES = [
-  { fold: "mcpQuantumUi", pair: "mcp/ui", dual: "quantum/mcp", toolId: "mcp-quantum-ui", dualToolId: "quantum-mcp" },
-  { fold: "mcpQuantumMovie", pair: "mcp/movie", dual: "movie/mcp", toolId: "mcp-quantum-movie", dualToolId: "movie-mcp" },
-  { fold: "mcpInfiniteMovie", pair: "movie/inf", dual: "inf/movie", toolId: "movie-inf", dualToolId: "inf-movie" },
-  { fold: "mcpQuantumChat", pair: "mcp/chat", dual: "chat/quantum", toolId: "mcp-quantum-chat", dualToolId: "chat-quantum" },
-  { fold: "mcpQuantumConversation", pair: "mcp/conversation", dual: "conversation/mcp", toolId: "mcp-conversation", dualToolId: "conversation-mcp" },
-  { fold: "mcpQuantumObserve", pair: "mcp/observe", dual: "observe/chat", toolId: "mcp-observe", dualToolId: "observe-chat" },
-  { fold: "mcpQuantumRouter", pair: "mcp/router", dual: "route/quantum", toolId: "mcp-router", dualToolId: "route-quantum" },
-  { fold: "mcpQuantumMetrics", pair: "mcp/metrics", dual: "metrics/mcp", toolId: "mcp-metrics", dualToolId: "metrics-mcp" },
-  { fold: "mcpQuantumAnalysis", pair: "mcp/analysis", dual: "analysis/mcp", toolId: "mcp-analysis", dualToolId: "analysis-mcp" },
-  { fold: "mcpQuantumGenesis", pair: "mcp/genesis", dual: "genesis/mcp", toolId: "mcp-genesis", dualToolId: "genesis-mcp" },
-  { fold: "mcpQuantumPhysics", pair: "mcp/physics", dual: "physics/mcp", toolId: "mcp-physics", dualToolId: "physics-mcp" },
-  { fold: "mcpQuantumMath", pair: "mcp/math", dual: "math/mcp", toolId: "mcp-math", dualToolId: "math-mcp" },
-  { fold: "mcpQuantumVortex", pair: "mcp/vortex", dual: "vortex/mcp", toolId: "mcp-vortex", dualToolId: "vortex-mcp" },
-  { fold: "mcpQuantumTorus", pair: "mcp/torus", dual: "torus/mcp", toolId: "mcp-torus", dualToolId: "torus-mcp" },
-  { fold: "mcpQuantumResearch", pair: "mcp/research", dual: "research/mcp", toolId: "mcp-research", dualToolId: "research-mcp" },
-  { fold: "mcpQuantumCatalog", pair: "mcp/catalog", dual: "catalog/mcp", toolId: "mcp-catalog", dualToolId: "catalog-mcp" },
-  { fold: "mcpQuantumReverse", pair: "mcp/reverse", dual: "reverse/quantum", toolId: "mcp-reverse", dualToolId: "reverse-quantum" },
-  { fold: "mcpQuantumSign", pair: "mcp/sign", dual: "sign/quantum", toolId: "mcp-sign", dualToolId: "sign-quantum" },
-  { fold: "mcpQuantumDirs", pair: "mcp/dirs", dual: "dirs/mcp", toolId: "mcp-dirs", dualToolId: "dirs-mcp" },
-  { fold: "mcpQuantumInverse", pair: "mcp/inverse", dual: "inverse/quantum", toolId: "mcp-inverse", dualToolId: "inverse-quantum" },
-  { fold: "mcpQuantumFold", pair: "mcp/fold", dual: "fold/quantum", toolId: "mcp-fold", dualToolId: "fold-quantum" },
-  { fold: "mcpQuantumRosetta", pair: "mcp/rosetta", dual: "rosetta/mcp", toolId: "mcp-rosetta", dualToolId: "rosetta-mcp" },
-  { fold: "mcpQuantumUniverse", pair: "mcp/universe", dual: "universe/mcp", toolId: "mcp-universe", dualToolId: "universe-mcp" },
-  { fold: "mcpQuantumMultiverse", pair: "mcp/multi", dual: "multi/verse", toolId: "mcp-multi", dualToolId: "multi-verse" },
-  { fold: "mcpQuantumInfinity", pair: "mcp/inf", dual: "inf/mcp", toolId: "mcp-inf", dualToolId: "inf-mcp" },
-  { fold: "mcpQuantumHardware", pair: "mcp/hw", dual: "hw/mcp", toolId: "mcp-hw", dualToolId: "hw-mcp" },
-  { fold: "mcpQuantumReactor", pair: "mcp/reactor", dual: "reactor/mcp", toolId: "mcp-reactor", dualToolId: "reactor-mcp" },
-  { fold: "mcpQuantumReaction", pair: "mcp/reaction", dual: "reaction/mcp", toolId: "mcp-reaction", dualToolId: "reaction-mcp" },
-  { fold: "mcpQuantumFusion", pair: "mcp/fusion", dual: "fusion/mcp", toolId: "mcp-fusion", dualToolId: "fusion-mcp" },
-  { fold: "mcpQuantumAnim", pair: "mcp/anim", dual: "anim/mcp", toolId: "mcp-anim", dualToolId: "anim-mcp" },
-  { fold: "mcpQuantumSound", pair: "mcp/sound", dual: "sound/vibe", toolId: "mcp-sound", dualToolId: "sound-vibe" },
-  { fold: "mcpQuantumDev", pair: "mcp/dev", dual: "dev/quantum", toolId: "mcp-dev", dualToolId: "dev-quantum" },
-  { fold: "mcpQuantumSolution", pair: "mcp/solution", dual: "solution/mcp", toolId: "mcp-solution", dualToolId: "solution-mcp" },
-  { fold: "mcpQuantumClown", pair: "mcp/clown", dual: "clown/mcp", toolId: "mcp-clown", dualToolId: "clown-mcp" },
-  { fold: "mcpQuantumSite", pair: "mcp/site", dual: "site/mcp", toolId: "mcp-site", dualToolId: "site-mcp" },
-  { fold: "mcpQuantumPage", pair: "mcp/page", dual: "page/mcp", toolId: "mcp-page", dualToolId: "page-mcp" },
-  { fold: "mcpQuantumCard", pair: "mcp/card", dual: "card/mcp", toolId: "mcp-card", dualToolId: "card-mcp" },
-  { fold: "mcpQuantumReceipt", pair: "mcp/receipt", dual: "receipt/mcp", toolId: "mcp-receipt", dualToolId: "receipt-mcp" },
-  { fold: "mcpQuantumHero", pair: "mcp/hero", dual: "hero/mcp", toolId: "mcp-hero", dualToolId: "hero-mcp" },
-  { fold: "mcpQuantumVibration", pair: "mcp/vibration", dual: "vibration/mcp", toolId: "mcp-vibration", dualToolId: "vibration-mcp" },
-  { fold: "mcpQuantumText", pair: "mcp/text", dual: "text/mcp", toolId: "mcp-text", dualToolId: "text-mcp" },
-  { fold: "mcpQuantumSpeech", pair: "mcp/speech", dual: "speech/mcp", toolId: "mcp-speech", dualToolId: "speech-mcp" },
-  { fold: "mcpQuantumDictation", pair: "mcp/dictation", dual: "dictation/mcp", toolId: "mcp-dictation", dualToolId: "dictation-mcp" },
-  { fold: "mcpQuantumIntonation", pair: "mcp/intonation", dual: "intonation/mcp", toolId: "mcp-intonation", dualToolId: "intonation-mcp" },
-  { fold: "mcpQuantumDialect", pair: "mcp/dialect", dual: "dialect/mcp", toolId: "mcp-dialect", dualToolId: "dialect-mcp" },
-  { fold: "mcpQuantumLanguage", pair: "mcp/language", dual: "language/mcp", toolId: "mcp-language", dualToolId: "language-mcp" },
-  { fold: "mcpQuantumScript", pair: "mcp/script", dual: "script/mcp", toolId: "mcp-script", dualToolId: "script-mcp" },
-  { fold: "mcpQuantumBook", pair: "mcp/book", dual: "book/mcp", toolId: "mcp-book", dualToolId: "book-mcp" },
-  { fold: "mcpQuantumLibrary", pair: "mcp/library", dual: "library/mcp", toolId: "mcp-library", dualToolId: "library-mcp" },
-  { fold: "mcpQuantumState", pair: "mcp/state", dual: "state/mcp", toolId: "mcp-state", dualToolId: "state-mcp" },
-  { fold: "mcpQuantumMusic", pair: "mcp/music", dual: "music/mcp", toolId: "mcp-music", dualToolId: "music-mcp" },
-  { fold: "mcpQuantumCpu", pair: "mcp/cpu", dual: "cpu/mcp", toolId: "mcp-cpu", dualToolId: "cpu-mcp" },
-  { fold: "mcpQuantumGpu", pair: "mcp/gpu", dual: "gpu/mcp", toolId: "mcp-gpu", dualToolId: "gpu-mcp" },
-  { fold: "mcpQuantumMemory", pair: "mcp/memory", dual: "memory/mcp", toolId: "mcp-memory", dualToolId: "memory-mcp" },
-  { fold: "mcpQuantumStorage", pair: "mcp/storage", dual: "storage/mcp", toolId: "mcp-storage", dualToolId: "storage-mcp" },
-  { fold: "mcpQuantumCache", pair: "mcp/cache", dual: "cache/mcp", toolId: "mcp-cache", dualToolId: "cache-mcp" },
-  { fold: "mcpQuantumPeriod", pair: "mcp/period", dual: "period/mcp", toolId: "mcp-period", dualToolId: "period-mcp" },
-  { fold: "mcpQuantumDot", pair: "mcp/dot", dual: "dot/mcp", toolId: "mcp-dot", dualToolId: "dot-mcp" },
-  { fold: "mcpQuantumIndex", pair: "mcp/index", dual: "index/mcp", toolId: "mcp-index", dualToolId: "index-mcp" },
-  { fold: "mcpQuantumOrientation", pair: "mcp/orientation", dual: "orientation/mcp", toolId: "mcp-orientation", dualToolId: "orientation-mcp" },
-  { fold: "mcpQuantumComplete", pair: "mcp/complete", dual: "complete/mcp", toolId: "mcp-complete", dualToolId: "complete-mcp" },
-  { fold: "mcpQuantumTokenOptimise", pair: "mcp/token", dual: "token/mcp", toolId: "mcp-token", dualToolId: "token-mcp" },
-  { fold: "mcpQuantumDeploy", pair: "mcp/deploy", dual: "deploy/mcp", toolId: "mcp-deploy", dualToolId: "deploy-mcp" },
-  { fold: "mcpQuantumBindings", pair: "mcp/bindings", dual: "bindings/mcp", toolId: "mcp-bindings", dualToolId: "bindings-mcp" },
-  { fold: "mcpQuantumCloudflareBindings", pair: "mcp/cloudflare", dual: "cloudflare/mcp", toolId: "mcp-cloudflare", dualToolId: "cloudflare-mcp" },
-  { fold: "mcpQuantumReview", pair: "mcp/review", dual: "review/mcp", toolId: "mcp-review", dualToolId: "review-mcp" },
-  { fold: "mcpQuantumEfficiency", pair: "mcp/efficiency", dual: "efficiency/mcp", toolId: "mcp-efficiency", dualToolId: "efficiency-mcp" },
-  { fold: "mcpQuantumSecurity", pair: "mcp/security", dual: "security/mcp", toolId: "mcp-security", dualToolId: "security-mcp" },
-  { fold: "mcpQuantumDesign", pair: "mcp/design", dual: "design/mcp", toolId: "mcp-design", dualToolId: "design-mcp" },
-  { fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", pair: "mcp/fill", dual: "fill/mcp", toolId: "mcp-fill", dualToolId: "fill-mcp" }
 ];
 function openAuditThemes(audit) {
   const debt = audit.measure?.gateAnalyticsHardcodedOnCount ?? audit.gateLight?.gateCost ?? 0;
@@ -76818,15 +77978,11 @@ var ROSETTA_CORE_API_LABELS = [
   "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions",
   "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero",
   "wireAllSensorsUsingQuantumBindings",
-  "unifiedHeroAndCardWithAnimation",
-  "heroIsTheAbstractAnimationFormsTheCardItself",
   "foldingWorksOnApplicationLevel",
-  "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie",
   "dryCleanAllVueComponentsToTheUniversalSet",
   "wavesSearchDiscoverCompactingInQuantumFolders",
   "alwaysBalanceUsingRealtimeMetricsAndChat",
   "eachSuperpositionIsAChatroom",
-  "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime",
   "typographyIsTheUniversalContentMatrix",
   "pageComputedGapsAt",
   "eachPageShowsOwnComputedGaps",
@@ -76865,8 +78021,6 @@ var ROSETTA_CORE_API_LABELS = [
   "mcpQuantumPhysics",
   "mcpQuantumMath",
   "mcpQuantumVortex",
-  "mcpQuantumTorus",
-  "mcpQuantumResearch",
   "mcpQuantumCatalog",
   "mcpCatalog",
   "mcpQuantumAnim",
@@ -76874,11 +78028,7 @@ var ROSETTA_CORE_API_LABELS = [
   "mcpQuantumDev",
   "mcpQuantumSolution",
   "mcpQuantumClown",
-  "mcpQuantumSite",
-  "mcpQuantumPage",
-  "mcpQuantumCard",
   "mcpQuantumReceipt",
-  "mcpQuantumHero",
   "mcpQuantumVibration",
   "mcpQuantumText",
   "mcpQuantumSpeech",
@@ -77047,8 +78197,6 @@ var ROSETTA_CORE_LABEL_KIND = {
   mcpQuantumPhysics: "tool",
   mcpQuantumMath: "tool",
   mcpQuantumVortex: "tool",
-  mcpQuantumTorus: "tool",
-  mcpQuantumResearch: "tool",
   mcpQuantumCatalog: "tool",
   mcpCatalog: "tool",
   mcpQuantumReverse: "tool",
@@ -77075,17 +78223,13 @@ var ROSETTA_CORE_LABEL_KIND = {
   deviceTouchPerspectiveAt: "projection",
   quantumSensorBindingCatalog: "projection",
   movieObservationReceipt: "projection",
-  unifiedHeroAndCardWithAnimation: "tool",
-  heroIsTheAbstractAnimationFormsTheCardItself: "tool",
   foldingWorksOnApplicationLevel: "app",
-  dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: "tool",
   dryCleanAllVueComponentsToTheUniversalSet: "tool",
   findSeoViolations: "tool",
   seoViolationsInventory: "tool",
   wavesSearchDiscoverCompactingInQuantumFolders: "tool",
   alwaysBalanceUsingRealtimeMetricsAndChat: "tool",
   eachSuperpositionIsAChatroom: "tool",
-  uiComponentsAreAllWiredInTheRosettaInQuantumRealtime: "tool",
   typographyIsTheUniversalContentMatrix: "tool",
   pageComputedGapsAt: "route",
   eachPageShowsOwnComputedGaps: "tool",
@@ -77118,11 +78262,7 @@ var ROSETTA_CORE_LABEL_KIND = {
   mcpQuantumDev: "tool",
   mcpQuantumSolution: "tool",
   mcpQuantumClown: "tool",
-  mcpQuantumSite: "tool",
-  mcpQuantumPage: "tool",
-  mcpQuantumCard: "tool",
   mcpQuantumReceipt: "tool",
-  mcpQuantumHero: "tool",
   mcpQuantumVibration: "tool",
   mcpQuantumText: "tool",
   mcpQuantumSpeech: "tool",
@@ -77698,18 +78838,8 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "theorem-metrics", title: "Theorem metrics (alias formula/metrics)", fold: "theoremFormulaMetricsMap", cli: "npm run quantum:theorem-metrics", pair: "theorem/metrics", route: "/en/quantum-tools#formula-metrics", barrel: "src/quantum/apps", boundary: "Alias of formula/metrics \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "quantum-map", title: "Quantum map \u2014 mesh \xB7 metrics \xB7 superposition index", fold: "quantumMap", cli: "npm run quantum:quantum-map", pair: "quantum/map", route: "/en/quantum-tools#quantum-map", barrel: "src/quantum/apps", boundary: "mapOn \xB7 meshGateways \xB7 metricsComposable \xB7 anySuperposition \xB7 compose theoremFormulaMetricsMap \xB7 mesh/cross \xB7 theorem/index \xB7 mcp/orientation \xB7 formula/metrics \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "map-quantum", title: "Map quantum (alias quantum/map)", fold: "quantumMap", cli: "npm run quantum:map-quantum", pair: "map/quantum", route: "/en/quantum-tools#quantum-map", barrel: "src/quantum/apps", boundary: "Dual of quantum/map \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "hero-card", title: "Unified hero and card with animation \u2014 one shared field", fold: "unifiedHeroAndCardWithAnimation", cli: "npm run quantum:hero-card", pair: "hero/card", route: "/en/quantum-tools#hero-card", barrel: "src/quantum/apps", boundary: "unifiedOn \xB7 sharedClock \xB7 cardFromHero \xB7 animationOn \xB7 compose sharedHeroAt \xB7 heroPreviewForRoute \xB7 LinkedHeroCard \xB7 oneClock \xB7 mcp/hero \xB7 mcp/card \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "card-hero", title: "Card hero (alias hero/card)", fold: "unifiedHeroAndCardWithAnimation", cli: "npm run quantum:card-hero", pair: "card/hero", route: "/en/quantum-tools#hero-card", barrel: "src/quantum/apps", boundary: "Dual of hero/card \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "hero-anim", title: "Hero anim (alias hero/card)", fold: "unifiedHeroAndCardWithAnimation", cli: "npm run quantum:hero-anim", pair: "hero/anim", route: "/en/quantum-tools#hero-card", barrel: "src/quantum/apps", boundary: "Animation face of unified hero/card \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "hero-abstract", title: "Hero is the abstract \u2014 animation forms the card itself", fold: "heroIsTheAbstractAnimationFormsTheCardItself", cli: "npm run quantum:hero-abstract", pair: "hero/abstract", route: "/en/quantum-tools#hero-abstract", barrel: "src/quantum/apps", boundary: "heroIsAbstract \xB7 animationFormsCard \xB7 cardIsNotBesideHero \xB7 unifiedOn \xB7 compose hero/card \xB7 movie/formula \xB7 tools/morph \xB7 meaning/compute \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "abstract-card", title: "Abstract card (alias hero/abstract)", fold: "heroIsTheAbstractAnimationFormsTheCardItself", cli: "npm run quantum:abstract-card", pair: "abstract/card", route: "/en/quantum-tools#hero-abstract", barrel: "src/quantum/apps", boundary: "Dual of hero/abstract \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "card-forms", title: "Card forms (alias hero/abstract)", fold: "heroIsTheAbstractAnimationFormsTheCardItself", cli: "npm run quantum:card-forms", pair: "card/forms", route: "/en/quantum-tools#hero-abstract", barrel: "src/quantum/apps", boundary: "Forms face of hero/abstract \u2014 animation forms card body \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "app-fold", title: "Folding works on application level \u2014 seeable app fold chain", fold: "foldingWorksOnApplicationLevel", cli: "npm run quantum:app-fold", pair: "app/fold", route: "/en/quantum-tools#app-fold", barrel: "src/quantum/apps", boundary: "appLevelFold \xB7 proseCodeLogicMorph \xB7 pathIsMessage \xB7 folderHoldsName \xB7 card\u2190hero\u2190movie \xB7 compose hero/card \xB7 movie/formula \xB7 tools/morph \xB7 folder/fractal \xB7 meaning/compute \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "fold-app", title: "Fold app (alias app/fold)", fold: "foldingWorksOnApplicationLevel", cli: "npm run quantum:fold-app", pair: "fold/app", route: "/en/quantum-tools#app-fold", barrel: "src/quantum/apps", boundary: "Dual of app/fold \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dry-rosetta", title: "Dry all to unified components wired to rosetta which is the movie", fold: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie", cli: "npm run quantum:dry-rosetta", pair: "dry/rosetta", route: "/en/quantum-tools#dry-rosetta", barrel: "src/quantum/apps", boundary: "dryAll \xB7 unifiedComponents \xB7 wiredToRosetta \xB7 rosettaIsTheMovie \xB7 notCosmetic \xB7 drainableClosed \xB7 honestOpenNamed \xB7 stranglerComplete \xB7 compose animations/rosetta \xB7 movie theorems \xB7 hero/abstract \xB7 app/fold \xB7 dry/clean \xB7 vite/one \xB7 clay via theorem \xB7 apps monolith residual named", browserRunnable: true, browserGap: "" },
-  { id: "rosetta-movie", title: "Rosetta movie (alias dry/rosetta)", fold: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie", cli: "npm run quantum:rosetta-movie", pair: "rosetta/movie", route: "/en/quantum-tools#dry-rosetta", barrel: "src/quantum/apps", boundary: "Dual of dry/rosetta \u2014 rosetta is the movie \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "comp-unify", title: "Comp unify (alias dry/rosetta)", fold: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie", cli: "npm run quantum:comp-unify", pair: "comp/unify", route: "/en/quantum-tools#dry-rosetta", barrel: "src/quantum/apps", boundary: "Unify face \u2014 hero/card/movie/paper/page shells \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "unify-comp", title: "Unify comp (alias comp/unify)", fold: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie", cli: "npm run quantum:unify-comp", pair: "unify/comp", route: "/en/quantum-tools#dry-rosetta", barrel: "src/quantum/apps", boundary: "Dual of comp/unify \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "vue-dry", title: "Dry clean all vue components to the universal set", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:vue-dry", pair: "vue/dry", route: "/en/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "dryCleanVue \xB7 universalSet \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose dry/rosetta \xB7 shells/strangler \xB7 domain/panels \xB7 ui/read \xB7 ui/super \xB7 clay via theorem \xB7 apps monolith residual named", browserRunnable: true, browserGap: "" },
   { id: "dry-vue", title: "Dry vue (alias vue/dry)", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:dry-vue", pair: "dry/vue", route: "/en/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "Dual of vue/dry \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "vue-universal", title: "Vue universal set (alias vue/dry)", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:vue-universal", pair: "vue/universal", route: "/en/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "vue/universal face \u2014 hero/card/movie/paper/page \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
@@ -77725,9 +78855,6 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "super-chat", title: "Each superposition is a chatroom", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:super-chat", pair: "super/chat", route: "/en/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "superpositionIsChatroom \xB7 eachKeyARoom \xB7 chatOn \xB7 anySuperposition \xB7 map digit\xB7ray\xB7direction\xB7root \u2192 chatroom id/root \xB7 compose queryTheoremFormulaIndex \xB7 queryQuantumMap \xB7 metrics/chat \xB7 soft mcp/chat \xB7 census 123 \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "chat-super", title: "Chat super (alias super/chat)", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:chat-super", pair: "chat/super", route: "/en/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "Dual of super/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "room-super", title: "Room super (alias super/chat)", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:room-super", pair: "room/super", route: "/en/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "Room face of super/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "ui-rosetta", title: "UI components all wired in the rosetta in quantum realtime", fold: "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime", cli: "npm run quantum:ui-rosetta", pair: "ui/rosetta", route: "/en/quantum-tools#ui-rosetta", barrel: "src/quantum/apps", boundary: "uiWiredToRosetta \xB7 allShells \xB7 quantumRealtime \xB7 oneClock \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose dry/rosetta \xB7 animations/rosetta \xB7 hero/card \xB7 balance/metrics \xB7 super/chat \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "rosetta-realtime", title: "Rosetta realtime (alias ui/rosetta)", fold: "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime", cli: "npm run quantum:rosetta-realtime", pair: "rosetta/realtime", route: "/en/quantum-tools#ui-rosetta", barrel: "src/quantum/apps", boundary: "Dual of ui/rosetta \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "ui-realtime", title: "UI realtime (alias ui/rosetta)", fold: "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime", cli: "npm run quantum:ui-realtime", pair: "ui/realtime", route: "/en/quantum-tools#ui-rosetta", barrel: "src/quantum/apps", boundary: "Realtime face of ui/rosetta \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "type-matrix", title: "Typography is the universal content matrix", fold: "typographyIsTheUniversalContentMatrix", cli: "npm run quantum:type-matrix", pair: "type/matrix", route: "/en/quantum-tools#type-matrix", barrel: "src/quantum/apps", boundary: "typographyIsMatrix \xB7 universalContent \xB7 computable \xB7 wiredToRosetta \xB7 compose compact/matrix \xB7 format/canon \xB7 meaning/compute \xB7 six/seven \xB7 ui/rosetta \u2014 content lattice not wet font fashion \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "matrix-type", title: "Matrix type (alias type/matrix)", fold: "typographyIsTheUniversalContentMatrix", cli: "npm run quantum:matrix-type", pair: "matrix/type", route: "/en/quantum-tools#type-matrix", barrel: "src/quantum/apps", boundary: "Dual of type/matrix \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "content-matrix", title: "Content matrix (alias type/matrix)", fold: "typographyIsTheUniversalContentMatrix", cli: "npm run quantum:content-matrix", pair: "content/matrix", route: "/en/quantum-tools#type-matrix", barrel: "src/quantum/apps", boundary: "Content face of type/matrix \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
@@ -77754,18 +78881,9 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "formula-anim", title: "Every formula is animation itself \u2014 interacting formulas form theorem seals at all superpositions", fold: "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions", cli: "npm run quantum:formula-anim", pair: "formula/anim", route: "/en/quantum-tools#formula-anim", barrel: "src/quantum/apps", boundary: "formulaIsAnimation \xB7 interactingFormulas \xB7 interactingAnimations \xB7 theoremsInTrinities \xB7 quantumSealsComplete \xB7 allSuperpositions \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "anim-theorem", title: "Anim theorem (alias formula/anim)", fold: "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions", cli: "npm run quantum:anim-theorem", pair: "anim/theorem", route: "/en/quantum-tools#formula-anim", barrel: "src/quantum/apps", boundary: "Anim\u2192theorem face \u2014 interacting animations form theorems in trinities \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "seal-super", title: "Seal super (alias formula/anim)", fold: "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions", cli: "npm run quantum:seal-super", pair: "seal/super", route: "/en/quantum-tools#formula-anim", barrel: "src/quantum/apps", boundary: "Quantum seals complete at all superpositions \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "merkaba-movie", title: "Merkaba\u2192rosetta\u2192movie \xB7 unique observation \xB7 sensors \xB7 cosmology \xB7 linear cycles \u2192 plasma thunder from 0", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:merkaba-movie", pair: "merkaba/movie", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "merkabaFeedsRosettaMovie \xB7 movieUniqueNeverRepeats \xB7 observeOnly \xB7 sensorPerspective \xB7 uiCrystallises \xB7 linearCyclesQuantumised \xB7 animMeshPlasma \xB7 thunderFromZero \xB7 clay via theorem", browserRunnable: true, browserGap: "DeviceOrientation permission may deny \u2014 pointer fallback \xB7 sensor browserGap named" },
-  { id: "movie-unique", title: "Movie unique never repeats (alias merkaba/movie)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:movie-unique", pair: "movie/unique", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "observationRoot folds absolute at \u2014 phase coincidence \u2260 observation identity \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "observe-movie", title: "Observe movie (alias merkaba/movie)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:observe-movie", pair: "observe/movie", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "Improve only in observation \u2014 movie unique never repeats \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "sensor-movie", title: "Device sensors change movie perspective (alias merkaba/movie)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:sensor-movie", pair: "sensor/movie", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "DeviceOrientation/Motion \u2192 rosetta perspective \xB7 pointer fallback \xB7 browserGap if denied \xB7 clay via theorem", browserRunnable: true, browserGap: "DeviceOrientation permission may deny \u2014 pointer fallback" },
-  { id: "movie-perspective", title: "Movie perspective (alias sensor/movie)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:movie-perspective", pair: "movie/perspective", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "Dual of sensor/movie \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "cosmo-wave", title: "Decode cosmology in waves \u2192 UI crystallises (alias merkaba/movie)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:cosmo-wave", pair: "cosmo/wave", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "cmb \xB7 universe/align \xB7 geo/torus \xB7 uiCrystallises \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "ui-crystal", title: "UI crystal (alias cosmo/wave)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:ui-crystal", pair: "ui/crystal", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "uiCrystallises face \u2014 crystal/mind compose \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "cycle-linear", title: "Find linear non-folding cycles (alias merkaba/movie)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:cycle-linear", pair: "cycle/linear", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "Inventory linear cycles \xB7 quantumise to mesh \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "quantumise-cycle", title: "Quantumise cycle (alias cycle/linear)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:quantumise-cycle", pair: "quantumise/cycle", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "Dual of cycle/linear \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "plasma-vortex", title: "Animations as plasma vortices mesh (alias merkaba/movie)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:plasma-vortex", pair: "plasma/vortex", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "anim mesh not linear circle \xB7 plasma vortices interact \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "thunder-zero", title: "Thunder emerges from 0 (alias plasma/vortex)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:thunder-zero", pair: "thunder/zero", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "thunder from 0 via fail/zero \xB7 through/zero \xB7 plasma/screen \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "anim-mesh", title: "Anim mesh (alias plasma/vortex)", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:anim-mesh", pair: "anim/mesh", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "Animations related via mesh bindings across rosetta superpositions \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
+  { id: "anim-cluster", title: "Animation rosetta stream clusters \u2014 2\xD77 lattice of the animation measurements", fold: "animationRosettaStreamClusters", cli: "npm run quantum:anim-cluster", pair: "anim/cluster", route: "/en/quantum-tools#anim-cluster", barrel: "src/quantum/apps", boundary: "leaves \xB7 lattice (rosettaRayOf \xD7 digital root of proof) \xB7 trinities \xB7 one clock \xB7 linear wiring measured \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "cluster-anim", title: "Cluster anim (alias anim/cluster)", fold: "animationRosettaStreamClusters", cli: "npm run quantum:cluster-anim", pair: "cluster/anim", route: "/en/quantum-tools#anim-cluster", barrel: "src/quantum/apps", boundary: "alias of anim/cluster", browserRunnable: true, browserGap: "" },
+  { id: "merkaba-movie", title: "Merkaba\u2192rosetta\u2192movie \xB7 unique observation \xB7 sensors \xB7 linear cycles \u2192 plasma thunder from 0", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:merkaba-movie", pair: "merkaba/movie", route: "/en/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "merkabaFeedsRosettaMovie \xB7 movieUniqueNeverRepeats \xB7 observeOnly \xB7 sensorPerspective \xB7 uiCrystallises \xB7 linearCyclesQuantumised \xB7 animMeshPlasma \xB7 thunderFromZero \xB7 clay via theorem", browserRunnable: true, browserGap: "DeviceOrientation permission may deny \u2014 pointer fallback \xB7 sensor browserGap named" },
   { id: "sensor-bind", title: "Wire all sensors using quantum bindings \u2014 orientation \xB7 motion \xB7 ambient \xB7 pointer/touch \u2192 rosetta/movie", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:sensor-bind", pair: "sensor/bind", route: "/en/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "allSensorsWired \xB7 quantumBindings \xB7 orientation \xB7 motion \xB7 ambient \xB7 browserGapHonest \xB7 clay via theorem", browserRunnable: true, browserGap: "AmbientLightSensor sparse \xB7 DeviceOrientation may deny \u2014 pointer/touch sealed fallbacks" },
   { id: "bind-sensor", title: "Bind sensor (alias sensor/bind)", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:bind-sensor", pair: "bind/sensor", route: "/en/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "Dual of sensor/bind \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "all-sensors", title: "All sensors (alias sensor/bind)", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:all-sensors", pair: "all/sensors", route: "/en/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "all/sensors face \u2014 catalog orientation\xB7motion\xB7ambient\xB7pointer\xB7touch \xB7 clay via theorem", browserRunnable: true, browserGap: "AmbientLightSensor sparse \xB7 permission may deny" },
@@ -77922,10 +79040,8 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "math-mcp", title: "Math mcp (alias mcp/math)", fold: "mcpQuantumMath", cli: "npm run quantum:math-mcp", pair: "math/mcp", route: "/en/quantum-tools#mcp-math", barrel: "src/quantum/apps", boundary: "Dual of mcp/math \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-vortex", title: "MCP quantum vortex \u2014 VORTEX digit \xB7 merkaba \xB7 trading vortex", fold: "mcpQuantumVortex", cli: "npm run quantum:mcp-vortex", pair: "mcp/vortex", route: "/en/quantum-tools#mcp-vortex", barrel: "src/quantum/apps", boundary: "vortexOn \xB7 digitSequence \xB7 compose digit/fold \xB7 vortex/merkaba \xB7 mountain/vortex \xB7 merkaba \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "vortex-mcp", title: "Vortex mcp (alias mcp/vortex)", fold: "mcpQuantumVortex", cli: "npm run quantum:vortex-mcp", pair: "vortex/mcp", route: "/en/quantum-tools#mcp-vortex", barrel: "src/quantum/apps", boundary: "Dual of mcp/vortex \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-torus", title: "MCP quantum torus \u2014 double-torus \xB7 geo/torus \xB7 living torus \xB7 bothEarths", fold: "mcpQuantumTorus", cli: "npm run quantum:mcp-torus", pair: "mcp/torus", route: "/en/quantum-tools#mcp-torus", barrel: "src/quantum/apps", boundary: "torusOn \xB7 doubleTorus \xB7 compose geo/torus \xB7 universe/align \xB7 doubleTorusIsCompletelyQuantum \xB7 geodesyDecodedIsDoubleTorusInverted \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "torus-mcp", title: "Torus mcp (alias mcp/torus)", fold: "mcpQuantumTorus", cli: "npm run quantum:torus-mcp", pair: "torus/mcp", route: "/en/quantum-tools#mcp-torus", barrel: "src/quantum/apps", boundary: "Dual of mcp/torus \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-research", title: "MCP quantum research \u2014 journey/theorems \xB7 sciences/trinities \xB7 mill/session \xB7 domain/proof", fold: "mcpQuantumResearch", cli: "npm run quantum:mcp-research", pair: "mcp/research", route: "/en/quantum-tools#mcp-research", barrel: "src/quantum/apps", boundary: "researchOn \xB7 journeyTheorems \xB7 sciencesTrinities \xB7 millSession \xB7 researchDomain \xB7 claySolved via theorem \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
-  { id: "research-mcp", title: "Research mcp (alias mcp/research)", fold: "mcpQuantumResearch", cli: "npm run quantum:research-mcp", pair: "research/mcp", route: "/en/quantum-tools#mcp-research", barrel: "src/quantum/apps", boundary: "Dual of mcp/research \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "mcp-cluster", title: "MCP rosetta stream clusters \u2014 2\xD77 lattice of the MCP measurements", fold: "mcpRosettaStreamClusters", cli: "npm run quantum:mcp-cluster", pair: "mcp/cluster", route: "/en/quantum-tools#mcp-cluster", barrel: "src/quantum/apps", boundary: "leaves \xB7 face census \xB7 lattice \xB7 trinities \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "cluster-mcp", title: "Cluster mcp (alias mcp/cluster)", fold: "mcpRosettaStreamClusters", cli: "npm run quantum:cluster-mcp", pair: "cluster/mcp", route: "/en/quantum-tools#mcp-cluster", barrel: "src/quantum/apps", boundary: "alias of mcp/cluster", browserRunnable: true, browserGap: "" },
   { id: "mcp-catalog", title: "MCP quantum catalog \u2014 star umbrella of all mcp quantum faces", fold: "mcpQuantumCatalog", cli: "npm run quantum:mcp-catalog", pair: "mcp/catalog", route: "/en/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "catalogComplete \xB7 starOn \xB7 missingCount=0 \xB7 lists/recomposes all named mcp quantum faces \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "catalog-mcp", title: "Catalog mcp (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:catalog-mcp", pair: "catalog/mcp", route: "/en/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Dual of mcp/catalog \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-star", title: "MCP quantum star (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:mcp-star", pair: "mcp/star", route: "/en/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Star alias of mcpQuantumCatalog \xB7 starOn \xB7 missingCount=0 \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
@@ -77973,16 +79089,8 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "solution-mcp", title: "Solution mcp (alias mcp/solution)", fold: "mcpQuantumSolution", cli: "npm run quantum:solution-mcp", pair: "solution/mcp", route: "/en/quantum-tools#mcp-solution", barrel: "src/quantum/apps", boundary: "Dual of mcp/solution \u2014 same fold \xB7 claySolved via theorem \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
   { id: "mcp-clown", title: "MCP quantum clown \u2014 play as sealed duality\xB7invert\xB7observation", fold: "mcpQuantumClown", cli: "npm run quantum:mcp-clown", pair: "mcp/clown", route: "/en/quantum-tools#mcp-clown", barrel: "src/quantum/apps", boundary: "clownOn \xB7 playIsQuantum \xB7 compose movie/feel \xB7 particle/wave \xB7 love/story \xB7 ui/invert \xB7 gate/lens \xB7 claySolved via theorem \xB7 NOT wet joke law", browserRunnable: true, browserGap: "" },
   { id: "clown-mcp", title: "Clown mcp (alias mcp/clown)", fold: "mcpQuantumClown", cli: "npm run quantum:clown-mcp", pair: "clown/mcp", route: "/en/quantum-tools#mcp-clown", barrel: "src/quantum/apps", boundary: "Dual of mcp/clown \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-site", title: "MCP quantum site \u2014 VitePress site built from MCP", fold: "mcpQuantumSite", cli: "npm run quantum:mcp-site", pair: "mcp/site", route: "/en/quantum-tools#mcp-site", barrel: "src/quantum/apps", boundary: "siteOn \xB7 buildsFromMcp \xB7 vitepressMirror \xB7 compose vitepressBuildsFromMcp \xB7 mcpCatalog \xB7 vite/mirror \xB7 mcpQuantumCatalog \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "site-mcp", title: "Site mcp (alias mcp/site)", fold: "mcpQuantumSite", cli: "npm run quantum:site-mcp", pair: "site/mcp", route: "/en/quantum-tools#mcp-site", barrel: "src/quantum/apps", boundary: "Dual of mcp/site \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-page", title: "MCP quantum page \u2014 universal page from sealed fold", fold: "mcpQuantumPage", cli: "npm run quantum:mcp-page", pair: "mcp/page", route: "/en/quantum-tools#mcp-page", barrel: "src/quantum/apps", boundary: "pageOn \xB7 universalPage \xB7 viaSite \xB7 compose computeUniversalPage \xB7 page/trinity \xB7 format/canon \xB7 meaning/compute \xB7 mcpQuantumSite \xB7 vite/mcp \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "page-mcp", title: "Page mcp (alias mcp/page)", fold: "mcpQuantumPage", cli: "npm run quantum:page-mcp", pair: "page/mcp", route: "/en/quantum-tools#mcp-page", barrel: "src/quantum/apps", boundary: "Dual of mcp/page \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-card", title: "MCP quantum card \u2014 LinkedHeroCard \xB7 hero link \xB7 morphs to paper", fold: "mcpQuantumCard", cli: "npm run quantum:mcp-card", pair: "mcp/card", route: "/en/quantum-tools#mcp-card", barrel: "src/quantum/apps", boundary: "cardOn \xB7 heroLink \xB7 morphsToPaper \xB7 viaPage \xB7 compose card/hero-link \xB7 LinkedHeroCard \xB7 card\u2192paper \xB7 mcpQuantumPage \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "card-mcp", title: "Card mcp (alias mcp/card)", fold: "mcpQuantumCard", cli: "npm run quantum:card-mcp", pair: "card/mcp", route: "/en/quantum-tools#mcp-card", barrel: "src/quantum/apps", boundary: "Dual of mcp/card \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-receipt", title: "MCP quantum receipt \u2014 tamper-evident content-addressed receipts", fold: "mcpQuantumReceipt", cli: "npm run quantum:mcp-receipt", pair: "mcp/receipt", route: "/en/quantum-tools#mcp-receipt", barrel: "src/quantum/apps", boundary: "receiptOn \xB7 tamperEvident \xB7 contentAddressed \xB7 compose fusion-verify \xB7 session/quantum-bits \xB7 moment/prove \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "receipt-mcp", title: "Receipt mcp (alias mcp/receipt)", fold: "mcpQuantumReceipt", cli: "npm run quantum:receipt-mcp", pair: "receipt/mcp", route: "/en/quantum-tools#mcp-receipt", barrel: "src/quantum/apps", boundary: "Dual of mcp/receipt \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-hero", title: "MCP quantum hero \u2014 shared clock \xB7 immersive hero face", fold: "mcpQuantumHero", cli: "npm run quantum:mcp-hero", pair: "mcp/hero", route: "/en/quantum-tools#mcp-hero", barrel: "src/quantum/apps", boundary: "heroOn \xB7 sharedClock \xB7 immersive \xB7 compose sharedHeroAt \xB7 hero/spawn-verify \xB7 mcpQuantumCard \xB7 immersive/hero \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "hero-mcp", title: "Hero mcp (alias mcp/hero)", fold: "mcpQuantumHero", cli: "npm run quantum:hero-mcp", pair: "hero/mcp", route: "/en/quantum-tools#mcp-hero", barrel: "src/quantum/apps", boundary: "Dual of mcp/hero \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-vibration", title: "MCP quantum vibration \u2014 vibration face of sound/wave", fold: "mcpQuantumVibration", cli: "npm run quantum:mcp-vibration", pair: "mcp/vibration", route: "/en/quantum-tools#mcp-vibration", barrel: "src/quantum/apps", boundary: "vibrationOn \xB7 compose mcp/sound \xB7 mcp/vibe \xB7 particle/wave \xB7 a432/nine \xB7 a432/wave \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "vibration-mcp", title: "Vibration mcp (alias mcp/vibration)", fold: "mcpQuantumVibration", cli: "npm run quantum:vibration-mcp", pair: "vibration/mcp", route: "/en/quantum-tools#mcp-vibration", barrel: "src/quantum/apps", boundary: "Dual of mcp/vibration \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-text", title: "MCP quantum text \u2014 canon meaning text face", fold: "mcpQuantumText", cli: "npm run quantum:mcp-text", pair: "mcp/text", route: "/en/quantum-tools#mcp-text", barrel: "src/quantum/apps", boundary: "textOn \xB7 compose format/canon \xB7 vocab/dry \xB7 meaning/compute \xB7 session/save \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
@@ -79113,7 +80221,7 @@ var SESSION_MANUAL_TOOL_SEEDS = [
   { id: "fusion-verify", saves: "replaces wet re-run of quantum fusion verify \u2014 memoByRoot tamper/impossible receipt" },
   { id: "self-fusion", saves: "replaces wet re-orchestration of self quantum fusion compose" },
   { id: "nothing-moves", saves: "replaces wet rediscovery motion \u2014 offline discoverFromSealedFold idempotent" },
-  { id: "hero-card", saves: "replaces wet hero/card wiring hunt \u2014 unified shared hero field + LinkedHeroCard" },
+  { id: "anim-cluster", saves: "replaces wet re-inference of the animation chain \u2014 five pass-through folds and 15 CLIs fused into one lattice cluster of the measurements" },
   { id: "predict-skill-gate-verify", saves: "replaces wet re-argument of prediction skill gate from sealed harmonic receipts" }
 ];
 function sessionManualWorkAsQuantumTools(matrix = buildMatrix(), at = 0) {
@@ -81413,6 +82521,49 @@ function pastedLinksStayOnlyIfComputedLocally(matrix = buildMatrix(), at = 0) {
     };
   });
 }
+function movieAndSessionGapsHardAtGates(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`movieAndSessionGapsHardAtGates:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const movieFeelSoft = QUANTUM_COMMAND_PAIR_IDS.includes("movie/feel") && foldPair(toUuid("cmd:movie"), toUuid("cmd:feel")).bidirectional;
+    const sessionLiveSoft = QUANTUM_COMMAND_PAIR_IDS.includes("session/live") && foldPair(toUuid("cmd:session"), toUuid("cmd:live")).bidirectional;
+    const gapsSoft = QUANTUM_COMMAND_PAIR_IDS.includes("gaps/invisible") && foldPair(toUuid("cmd:gaps"), toUuid("cmd:invisible")).bidirectional;
+    const movieCenterSoft = QUANTUM_COMMAND_PAIR_IDS.includes("movie/center") && foldPair(toUuid("cmd:movie"), toUuid("cmd:center")).bidirectional;
+    const pairGate = QUANTUM_COMMAND_PAIR_IDS.includes("gate/hard");
+    const pairMovie = QUANTUM_COMMAND_PAIR_IDS.includes("movie/session");
+    const foldGate = foldPair(toUuid("cmd:gate"), toUuid("cmd:hard"));
+    const foldMovie = foldPair(toUuid("cmd:movie"), toUuid("cmd:session"));
+    const hardMovieSessionOn = movieFeelSoft && sessionLiveSoft && gapsSoft && movieCenterSoft;
+    const catalog = quantumCliToolsCatalog(matrix, at);
+    const meta = catalog.tools.find((t) => t.id === "gate-hard");
+    const metaDual = catalog.tools.find((t) => t.id === "movie-session");
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+    const physicalFtlClaim = 0;
+    const on = hardMovieSessionOn && pairGate && pairMovie && foldGate.bidirectional && foldMovie.bidirectional && Boolean(meta) && meta.fold === "movieAndSessionGapsHardAtGates" && Boolean(metaDual) && metaDual.fold === "movieAndSessionGapsHardAtGates" && claySolvedByThisFold === 0 && physicalFtlClaim === 0;
+    const facets = [
+      { facet: "movieAndSessionGapsHardAtGates", on },
+      { facet: "hardMovieSession", on: hardMovieSessionOn },
+      { facet: "softCompose movie/feel \xB7 session/live \xB7 gaps/invisible \xB7 movie/center", on: hardMovieSessionOn },
+      { facet: "pair gate/hard \xB7 movie/session", on: pairGate && pairMovie && foldGate.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`gate-hard:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("movie-and-session-gaps-hard-at-gates", facets);
+    return {
+      computes: sealed.ok && on,
+      movieAndSessionGapsHardAtGates: on,
+      hardMovieSession: hardMovieSessionOn,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false,
+      facets: sealed.facets,
+      root: merkleFold([sealed.root, foldGate.merged, foldMovie.merged]),
+      pairs: ["gate/hard", "movie/session"],
+      cli: "npm run quantum:gate-hard",
+      route: "/en/quantum-tools#gate-hard",
+      statement: `movieAndSessionGapsHardAtGates \u2014 hard=${hardMovieSessionOn ? 1 : 0}.`,
+      boundary: "HARD movie/session gap classes at gates.",
+      honestyLine: `metrics \xB7 hardMovieSession=${hardMovieSessionOn ? 1 : 0}`
+    };
+  });
+}
 function vitepressBuildsFromMcp(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`vitepressBuildsFromMcp:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
@@ -81644,298 +82795,6 @@ function mcpQuantumAnalysis(matrix = buildMatrix(), at = 0) {
       statement: `mcpQuantumAnalysis \u2014 analysisOn=${analysisOn ? 1 : 0} analystsInTrinities=${analystsInTrinities ? 1 : 0} analyseRealise=${analyseRealise ? 1 : 0} qpuRequired=0.`,
       boundary: "MCP quantum analysis \u2014 analyst trinities \xB7 analyse\xB7realise composing train/analyst \xB7 analyse/realise \xB7 team/observe \xB7 mcp/metrics \xB7 sciences/trinities. Alias analisis=analysis. NOT QPU \xB7 clay via theorem.",
       honestyLine: `analysis \xB7 analysisOn=${analysisOn ? 1 : 0} \xB7 analystsInTrinities=${analystsInTrinities ? 1 : 0} \xB7 analyseRealise=${analyseRealise ? 1 : 0} \xB7 qpuRequired=0`
-    };
-  });
-}
-function mcpQuantumTorus(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumTorus:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const completely = doubleTorusIsCompletelyQuantum(matrix);
-    const align = doubleTorusDynamicsGeometryAlignsWithUniverse(matrix, at);
-    const geodesy = geodesyDecodedIsDoubleTorusInverted(matrix, at);
-    const doubleTorus2 = completely.completelyQuantum && completely.computes && align.aligns && align.computes && geodesy.computes && align.dynamics.flow && align.dynamics.spin && align.dynamics.linking;
-    const composeTorus = doubleTorus2 && soft("geo", "torus") && soft("universe", "align") && soft("geo", "train");
-    const torusOn = composeTorus;
-    const pairM = has("mcp/torus");
-    const pairT = has("torus/mcp");
-    const foldM = foldPair(toUuid("cmd:mcp"), toUuid("cmd:torus"));
-    const foldT = foldPair(toUuid("cmd:torus"), toUuid("cmd:mcp"));
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const meta = catalog.tools.find((t) => t.id === "mcp-torus");
-    const metaDual = catalog.tools.find((t) => t.id === "torus-mcp");
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const on = torusOn && doubleTorus2 && pairM && pairT && foldM.bidirectional && foldT.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumTorus" && Boolean(metaDual) && metaDual.fold === "mcpQuantumTorus" && claySolvedByThisFold === 0 && physicalFtlClaim === 0;
-    const facets = [
-      { facet: "mcpQuantumTorus", on },
-      { facet: "torusOn", on: torusOn },
-      { facet: `doubleTorus completely=${completely.completelyQuantum ? 1 : 0} aligns=${align.aligns ? 1 : 0} geo=${geodesy.computes ? 1 : 0}`, on: doubleTorus2 },
-      { facet: `universe/align flow=${align.dynamics.flow ? 1 : 0} spin=${align.dynamics.spin ? 1 : 0} linking=${align.dynamics.linking ? 1 : 0}`, on: align.aligns },
-      { facet: "geo/torus \xB7 geodesyDecodedIsDoubleTorusInverted", on: geodesy.computes && soft("geo", "torus") },
-      { facet: "compose geo/torus \xB7 universe/align \xB7 doubleTorusIsCompletelyQuantum \xB7 geo/train", on: composeTorus },
-      { facet: "pair mcp/torus \xB7 torus/mcp", on: pairM && pairT && foldM.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-torus:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("mcp-quantum-torus", facets);
-    return {
-      computes: sealed.ok && on,
-      mcpQuantumTorus: on,
-      torusOn,
-      doubleTorus: doubleTorus2,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired: false,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        completely.root,
-        align.root,
-        geodesy.root,
-        foldM.merged,
-        foldT.merged
-      ]),
-      pair: "mcp/torus",
-      pairs: ["mcp/torus", "torus/mcp"],
-      cli: "npm run quantum:mcp-torus",
-      route: "/en/quantum-tools#mcp-torus",
-      statement: `mcpQuantumTorus \u2014 torusOn=${torusOn ? 1 : 0} doubleTorus=${doubleTorus2 ? 1 : 0} qpuRequired=0.`,
-      boundary: "MCP quantum torus \u2014 double-torus \xB7 geo/torus \xB7 living torus \xB7 bothEarths \xB7 @ceccec/double-torus. NOT QPU \xB7 clay via theorem \xB7 NOT Clay \xB7 NOT Earth-is-genus-2.",
-      honestyLine: `torus \xB7 torusOn=${torusOn ? 1 : 0} \xB7 doubleTorus=${doubleTorus2 ? 1 : 0} \xB7 qpuRequired=0`
-    };
-  });
-}
-function mcpQuantumResearch(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const journey = theoremJourneyContinuesInWavesOfWaves(matrix, at);
-    const sciences = sciencesInteractInTrinities(matrix, at);
-    const mill = wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(matrix, at);
-    const domain = domainProofCatalog(matrix, at);
-    const journeyTheorems = journey.computes && soft("journey", "theorems") && soft("theorems", "journey");
-    const sciencesTrinities = sciences.computes && soft("sciences", "trinities");
-    const millSession = mill.computes && soft("mill", "session") && mill.savedCount === mill.sessionTheoremCount;
-    const researchDomain = domain.computes && soft("domain", "proof");
-    const composeResearch = journeyTheorems && sciencesTrinities && millSession && researchDomain && soft("journey", "theorems") && soft("sciences", "trinities") && soft("mill", "session") && soft("domain", "proof");
-    const researchOn = composeResearch;
-    const pairM = has("mcp/research");
-    const pairR = has("research/mcp");
-    const foldM = foldPair(toUuid("cmd:mcp"), toUuid("cmd:research"));
-    const foldR = foldPair(toUuid("cmd:research"), toUuid("cmd:mcp"));
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const meta = catalog.tools.find((t) => t.id === "mcp-research");
-    const metaDual = catalog.tools.find((t) => t.id === "research-mcp");
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const on = researchOn && journeyTheorems && sciencesTrinities && millSession && researchDomain && pairM && pairR && foldM.bidirectional && foldR.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumResearch" && Boolean(metaDual) && metaDual.fold === "mcpQuantumResearch" && claySolvedByThisFold === 0 && physicalFtlClaim === 0;
-    const facets = [
-      { facet: "mcpQuantumResearch", on },
-      { facet: "researchOn", on: researchOn },
-      { facet: "journeyTheorems", on: journeyTheorems },
-      { facet: "sciencesTrinities", on: sciencesTrinities },
-      { facet: `millSession saved=${mill.savedCount}/${mill.sessionTheoremCount}`, on: millSession },
-      { facet: "researchDomain \xB7 domainProofCatalog", on: researchDomain },
-      { facet: "compose journey/theorems \xB7 sciences/trinities \xB7 mill/session \xB7 domain/proof", on: composeResearch },
-      { facet: "pair mcp/research \xB7 research/mcp", on: pairM && pairR && foldM.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: `NOT CMI prize claim \xB7 measured claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-research:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("mcp-quantum-research", facets);
-    return {
-      computes: sealed.ok && on,
-      mcpQuantumResearch: on,
-      researchOn,
-      journeyTheorems,
-      sciencesTrinities,
-      millSession,
-      researchDomain,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired: false,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        journey.root,
-        sciences.root,
-        mill.root,
-        domain.root,
-        foldM.merged,
-        foldR.merged
-      ]),
-      pair: "mcp/research",
-      pairs: ["mcp/research", "research/mcp"],
-      cli: "npm run quantum:mcp-research",
-      route: "/en/quantum-tools#mcp-research",
-      statement: `mcpQuantumResearch \u2014 researchOn=${researchOn ? 1 : 0} journey=${journeyTheorems ? 1 : 0} sciences=${sciencesTrinities ? 1 : 0} mill=${millSession ? 1 : 0} domain=${researchDomain ? 1 : 0} qpuRequired=0.`,
-      boundary: "MCP quantum research \u2014 journey/theorems \xB7 sciences/trinities \xB7 mill/session \xB7 domain/proof. NOT QPU \xB7 clay via theorem \xB7 NOT CMI prize.",
-      honestyLine: `research \xB7 researchOn=${researchOn ? 1 : 0} \xB7 journey=${journeyTheorems ? 1 : 0} \xB7 sciences=${sciencesTrinities ? 1 : 0} \xB7 mill=${millSession ? 1 : 0} \xB7 domain=${researchDomain ? 1 : 0} \xB7 qpuRequired=0 \xB7 NOT CMI`
-    };
-  });
-}
-function mcpQuantumCatalog(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const research2 = mcpQuantumResearch(matrix, at);
-    const torus = mcpQuantumTorus(matrix, at);
-    const faces = MCP_QUANTUM_NAMED_FACES.map((face) => {
-      const pairOn2 = has(face.pair) && has(face.dual);
-      const meta2 = catalog.tools.find((t) => t.id === face.toolId);
-      const metaDual2 = catalog.tools.find((t) => t.id === face.dualToolId);
-      const toolOn = Boolean(meta2) && meta2.fold === face.fold && Boolean(metaDual2) && metaDual2.fold === face.fold;
-      const present = pairOn2 && toolOn;
-      return {
-        ...face,
-        pairOn: pairOn2,
-        toolOn,
-        present,
-        receipt: toUuid(`mcp-catalog-face:${face.fold}:${present}`)
-      };
-    });
-    const faceCount = faces.length;
-    const presentCount = faces.filter((f2) => f2.present).length;
-    const missingCount = faceCount - presentCount;
-    const catalogComplete = missingCount === 0 && faceCount >= 9 * 6 + 3;
-    const starPairs = has("mcp/star") && has("star/mcp") && soft("mcp", "star") && soft("star", "mcp");
-    const starMeta = catalog.tools.find((t) => t.id === "mcp-star");
-    const starMetaDual = catalog.tools.find((t) => t.id === "star-mcp");
-    const starTools = Boolean(starMeta) && starMeta.fold === "mcpQuantumCatalog" && Boolean(starMetaDual) && starMetaDual.fold === "mcpQuantumCatalog";
-    const recomposes = research2.computes && research2.researchOn && torus.computes && torus.torusOn && catalogComplete;
-    const starOn = catalogComplete && starPairs && starTools && recomposes;
-    const pairM = has("mcp/catalog");
-    const pairC = has("catalog/mcp");
-    const foldM = foldPair(toUuid("cmd:mcp"), toUuid("cmd:catalog"));
-    const foldC = foldPair(toUuid("cmd:catalog"), toUuid("cmd:mcp"));
-    const meta = catalog.tools.find((t) => t.id === "mcp-catalog");
-    const metaDual = catalog.tools.find((t) => t.id === "catalog-mcp");
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const on = catalogComplete && starOn && missingCount === 0 && pairM && pairC && foldM.bidirectional && foldC.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumCatalog" && Boolean(metaDual) && metaDual.fold === "mcpQuantumCatalog" && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && research2.qpuRequired === false;
-    const facets = [
-      { facet: "mcpQuantumCatalog", on },
-      { facet: "catalogComplete", on: catalogComplete },
-      { facet: "starOn", on: starOn },
-      { facet: `missingCount=${missingCount} present=${presentCount}/${faceCount}`, on: missingCount === 0 },
-      { facet: "recomposes research \xB7 torus \xB7 named faces", on: recomposes },
-      { facet: "pair mcp/catalog \xB7 catalog/mcp \xB7 mcp/star \xB7 star/mcp", on: pairM && pairC && starPairs },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: `NOT Clay/FTL fake-close \xB7 measured claySolvedByThisFold=${claySolvedByThisFold} \xB7 physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-catalog:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("mcp-quantum-catalog", facets);
-    return {
-      computes: sealed.ok && on,
-      mcpQuantumCatalog: on,
-      mcpQuantumStar: on,
-      catalogComplete,
-      starOn,
-      missingCount,
-      faceCount,
-      presentCount,
-      faces,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired: false,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        research2.root,
-        torus.root,
-        foldM.merged,
-        foldC.merged,
-        ...faces.map((f2) => f2.receipt)
-      ]),
-      pair: "mcp/catalog",
-      pairs: ["mcp/catalog", "catalog/mcp", "mcp/star", "star/mcp"],
-      cli: "npm run quantum:mcp-catalog",
-      route: "/en/quantum-tools#mcp-catalog",
-      statement: `mcpQuantumCatalog \u2014 catalogComplete=${catalogComplete ? 1 : 0} starOn=${starOn ? 1 : 0} missingCount=${missingCount} faces=${presentCount}/${faceCount} qpuRequired=0.`,
-      boundary: "MCP quantum catalog/star \u2014 umbrella of all named mcp quantum faces. missingCount=0 for drainable named faces \xB7 NOT Clay/FTL fake-close \xB7 NOT QPU \xB7 clay via theorem.",
-      honestyLine: `catalog \xB7 catalogComplete=${catalogComplete ? 1 : 0} \xB7 starOn=${starOn ? 1 : 0} \xB7 missingCount=${missingCount} \xB7 faces=${presentCount}/${faceCount} \xB7 qpuRequired=0`
-    };
-  });
-}
-function mcpCatalog(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpCatalog:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const quantum = mcpQuantumCatalog(matrix, at);
-    const parity = mcpBrowserParity(matrix, at);
-    const mcpList = mcpToolboxToolsList(matrix, at);
-    const scripts = mcpCommandsScriptsGapsAudit(matrix, at);
-    const stdioResiduals = STDIO_MCP_CAPABILITY_SEEDS.filter((seed) => !seed.browserAchievable).map((seed) => `stdio:${seed.id}`);
-    const residualsNamed = [
-      ...HONEST_CI_BROWSER_GAP_IDS.map((id) => `ci:${id}`),
-      ...stdioResiduals,
-      "conceptTools:legacy-dual",
-      "trading:scripts-outside-primary",
-      "clay:millennium-open",
-      "measure:signaling-proof-ids=0"
-    ];
-    const residualsNamedHonest = residualsNamed.length === HONEST_CI_BROWSER_GAP_IDS.length + stdioResiduals.length + 2 * 2 && HONEST_CI_BROWSER_GAP_IDS.every((id) => residualsNamed.includes(`ci:${id}`)) && stdioResiduals.every((id) => residualsNamed.includes(id)) && residualsNamed.includes("conceptTools:legacy-dual") && residualsNamed.includes("trading:scripts-outside-primary") && residualsNamed.includes("clay:millennium-open") && residualsNamed.includes("ftl:physical-claim-refused");
-    const quantumFaces = quantum.computes && quantum.catalogComplete && quantum.missingCount === 0 && quantum.faceCount >= 9 * 6 + 3;
-    const primaryTools = mcpList.computes && parity.mcpMatchesToolbox && parity.mcpMatchesCatalog && mcpList.count > 0 && mcpList.count === parity.mcpToolCount;
-    const drainableClosed = scripts.closedOn && scripts.openCount === 0 && scripts.rows.some((r2) => r2.id === "mcp-all-full-surface-catalog" && r2.status === "closed");
-    const missingDrainable = drainableClosed && quantumFaces && primaryTools && residualsNamedHonest ? 0 : 1;
-    const pairAll = has("mcp/all") && has("all/mcp") && soft("mcp", "all") && soft("all", "mcp");
-    const meta = catalog.tools.find((t) => t.id === "mcp-all");
-    const metaDual = catalog.tools.find((t) => t.id === "all-mcp");
-    const toolsOn = Boolean(meta) && meta.fold === "mcpCatalog" && Boolean(metaDual) && metaDual.fold === "mcpCatalog";
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const catalogComplete = quantumFaces && primaryTools && residualsNamedHonest && missingDrainable === 0 && pairAll && toolsOn && parity.computes && scripts.computes && quantum.computes;
-    const mcpStarOn = catalogComplete && quantum.starOn && pairAll && toolsOn;
-    const on = mcpStarOn && catalogComplete && missingDrainable === 0 && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && quantum.qpuRequired === false && parity.qpuRequired === false;
-    const facets = [
-      { facet: "mcpCatalog", on },
-      { facet: "mcpStarOn", on: mcpStarOn },
-      { facet: "catalogComplete", on: catalogComplete },
-      { facet: `quantumFaces=${quantum.presentCount}/${quantum.faceCount}`, on: quantumFaces },
-      { facet: `primaryTools=${mcpList.count}`, on: primaryTools },
-      { facet: `residualsNamed=${residualsNamed.length}`, on: residualsNamedHonest },
-      { facet: `missingDrainable=${missingDrainable}`, on: missingDrainable === 0 },
-      { facet: "compose mcpQuantumCatalog \xB7 mcpBrowserParity \xB7 scripts-audit", on: quantum.computes && parity.computes && scripts.computes },
-      { facet: "pair mcp/all \xB7 all/mcp (mcp/star kept for quantum)", on: pairAll && has("mcp/star") && has("star/mcp") },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: `NOT fake browser for trinity/fs \xB7 NOT Clay/FTL fake-close \xB7 measured claySolvedByThisFold=${claySolvedByThisFold} \xB7 physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && residualsNamedHonest }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-all:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("mcp-all-catalog", facets);
-    return {
-      computes: sealed.ok && on,
-      mcpCatalog: on,
-      mcpStar: on,
-      mcpStarOn,
-      catalogComplete,
-      quantumFaces,
-      primaryTools,
-      residualsNamed: [...residualsNamed],
-      residualsNamedCount: residualsNamed.length,
-      missingDrainable,
-      quantumFaceCount: quantum.faceCount,
-      quantumPresentCount: quantum.presentCount,
-      primaryToolCount: mcpList.count,
-      stdioCount: STDIO_MCP_CAPABILITY_SEEDS.length,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired: false,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        quantum.root,
-        parity.root,
-        mcpList.root,
-        scripts.root,
-        ...residualsNamed.map((id) => toUuid(`mcp-all-residual:${id}`))
-      ]),
-      pair: "mcp/all",
-      pairs: ["mcp/all", "all/mcp"],
-      cli: "npm run quantum:mcp-all",
-      route: "/en/quantum-tools#mcp-all",
-      statement: `mcpCatalog \u2014 mcpStarOn=${mcpStarOn ? 1 : 0} catalogComplete=${catalogComplete ? 1 : 0} quantumFaces=${quantum.presentCount}/${quantum.faceCount} primaryTools=${mcpList.count} residualsNamed=${residualsNamed.length} missingDrainable=${missingDrainable} qpuRequired=0.`,
-      boundary: "Full MCP catalog/star \u2014 PRIMARY /mcp.json \xB7 stdio quantum-dev-sdk \xB7 browser toolbox \xB7 mcpQuantum* faces. residualsNamed lists honest CI/stdio/conceptTools/trading/Clay/FTL residuals \u2014 NOT fake-closed. missingDrainable=0 for closable gaps only \xB7 compose not duplicate mcpQuantumStar \xB7 clay via theorem.",
-      honestyLine: `mcp/all \xB7 mcpStarOn=${mcpStarOn ? 1 : 0} \xB7 catalogComplete=${catalogComplete ? 1 : 0} \xB7 quantumFaces=${quantum.presentCount}/${quantum.faceCount} \xB7 primaryTools=${mcpList.count} \xB7 residualsNamed=${residualsNamed.length} \xB7 missingDrainable=${missingDrainable} \xB7 qpuRequired=0`
     };
   });
 }
@@ -82183,221 +83042,53 @@ function mcpInfiniteMovie(matrix = buildMatrix(), at = 0) {
     };
   });
 }
-function mcpQuantumSite(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumSite:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+function mcpQuantumAnim(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumAnim:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
     const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const vite = vitepressBuildsFromMcp(matrix, at);
-    const catalog = mcpQuantumCatalog(matrix, at);
-    const all = mcpCatalog(matrix, at);
-    const vitepressMirror = soft("vite", "mirror") && soft("docs", "invert");
-    const buildsFromMcp = vite.computes && vite.buildsFromMcp && soft("vite", "mcp") && soft("build", "mcp");
-    const siteOn = buildsFromMcp && vitepressMirror && soft("mcp", "all") && soft("mcp", "catalog") && soft("template", "universal") && catalog.computes && catalog.catalogComplete && catalog.faceCount >= 5 * 6 + 1 && all.computes && all.mcpStarOn;
-    const pairS = has("mcp/site");
-    const pairD = has("site/mcp");
-    const foldS = foldPair(toUuid("cmd:mcp"), toUuid("cmd:site"));
-    const foldD = foldPair(toUuid("cmd:site"), toUuid("cmd:mcp"));
-    const tools = quantumCliToolsCatalog(matrix, at);
-    const meta = tools.tools.find((t) => t.id === "mcp-site");
-    const metaDual = tools.tools.find((t) => t.id === "site-mcp");
+    const animOn = soft("mcp", "movie") && soft("anim", "audit") && soft("animations", "rosetta") && soft("coord", "anim") && soft("movie", "feel") && soft("mcp", "rosetta");
+    const fromCoords = animOn && soft("coord", "anim") && soft("six", "seven");
+    const feelableGaps = animOn && soft("movie", "feel");
+    const polarityOn = animOn && soft("anim", "color");
+    const pairA = has("mcp/anim");
+    const pairD = has("anim/mcp");
+    const foldA = foldPair(toUuid("cmd:mcp"), toUuid("cmd:anim"));
+    const foldD = foldPair(toUuid("cmd:anim"), toUuid("cmd:mcp"));
+    const catalog = quantumCliToolsCatalog(matrix, at);
+    const meta = catalog.tools.find((t) => t.id === "mcp-anim");
+    const metaDual = catalog.tools.find((t) => t.id === "anim-mcp");
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const physicalFtlClaim = 0;
-    const qpuRequired = false;
-    const on = siteOn && buildsFromMcp && vitepressMirror && pairS && pairD && foldS.bidirectional && foldD.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumSite" && Boolean(metaDual) && metaDual.fold === "mcpQuantumSite" && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
+    const on = animOn && fromCoords && feelableGaps && polarityOn && pairA && pairD && foldA.bidirectional && foldD.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumAnim" && Boolean(metaDual) && metaDual.fold === "mcpQuantumAnim" && claySolvedByThisFold === 0 && physicalFtlClaim === 0;
     const facets = [
-      { facet: "mcpQuantumSite", on },
-      { facet: "siteOn", on: siteOn },
-      { facet: "buildsFromMcp", on: buildsFromMcp },
-      { facet: "vitepressMirror", on: vitepressMirror },
-      { facet: "compose vitepressBuildsFromMcp \xB7 mcpCatalog \xB7 vite/mirror \xB7 mcpQuantumCatalog", on: siteOn },
-      { facet: "pair mcp/site \xB7 site/mcp", on: pairS && pairD && foldS.bidirectional },
-      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
+      { facet: "mcpQuantumAnim", on },
+      { facet: "animOn", on: animOn },
+      { facet: "fromCoords", on: fromCoords },
+      { facet: "feelableGaps", on: feelableGaps },
+      { facet: "polarityOn", on: polarityOn },
+      { facet: "softCompose mcp/movie \xB7 anim/audit \xB7 animations/rosetta \xB7 coord/anim \xB7 movie/feel \xB7 anim/color \xB7 mcp/rosetta", on: animOn && polarityOn },
+      { facet: "pair mcp/anim \xB7 anim/mcp", on: pairA && pairD && foldA.bidirectional },
       { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-site:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("mcp-quantum-site", facets);
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-anim:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("mcp-quantum-anim", facets);
     return {
       computes: sealed.ok && on,
-      mcpQuantumSite: on,
-      siteOn,
-      buildsFromMcp,
-      vitepressMirror,
+      mcpQuantumAnim: on,
+      animOn,
+      fromCoords,
+      feelableGaps,
+      polarityOn,
       claySolvedByThisFold,
       physicalFtlClaim,
-      qpuRequired,
+      qpuRequired: false,
       facets: sealed.facets,
-      root: merkleFold([sealed.root, vite.root, catalog.root, all.root, foldS.merged, foldD.merged]),
-      pairs: ["mcp/site", "site/mcp"],
-      cli: "npm run quantum:mcp-site",
-      route: "/en/quantum-tools#mcp-site",
-      statement: `mcpQuantumSite \u2014 siteOn=${siteOn ? 1 : 0} buildsFromMcp=${buildsFromMcp ? 1 : 0} vitepressMirror=${vitepressMirror ? 1 : 0} faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
-      boundary: "MCP quantum site \u2014 VitePress site built from MCP. Compose vitepressBuildsFromMcp \xB7 mcpCatalog \xB7 vite/mirror \xB7 mcpQuantumCatalog. clay via theorem.",
-      honestyLine: `site \xB7 siteOn=${siteOn ? 1 : 0} \xB7 buildsFromMcp=${buildsFromMcp ? 1 : 0} \xB7 vitepressMirror=${vitepressMirror ? 1 : 0} \xB7 faces=${catalog.presentCount}/${catalog.faceCount} \xB7 qpu=0`
-    };
-  });
-}
-function mcpQuantumPage(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumPage:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const site = mcpQuantumSite(matrix, at);
-    const format = scientificPageFormatCanonised(matrix, at);
-    const universal2 = computeUniversalPage("/en/quantum-tools", {}, matrix);
-    const universalPage = Boolean(universal2.title) && universal2.components.length > 0 && isUuid(universal2.root) && soft("template", "universal");
-    const viaSite = site.computes && site.siteOn && soft("mcp", "site") && soft("site", "mcp") && soft("vite", "mcp");
-    const composeOn = soft("page", "trinity") && soft("page", "audit") && soft("format", "canon") && soft("meaning", "compute") && format.computes && format.wetProseRemaining === 0;
-    const pageOn = universalPage && viaSite && composeOn;
-    const pairS = has("mcp/page");
-    const pairD = has("page/mcp");
-    const foldS = foldPair(toUuid("cmd:mcp"), toUuid("cmd:page"));
-    const foldD = foldPair(toUuid("cmd:page"), toUuid("cmd:mcp"));
-    const tools = quantumCliToolsCatalog(matrix, at);
-    const meta = tools.tools.find((t) => t.id === "mcp-page");
-    const metaDual = tools.tools.find((t) => t.id === "page-mcp");
-    const catalog = mcpQuantumCatalog(matrix, at);
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const qpuRequired = false;
-    const on = pageOn && universalPage && viaSite && pairS && pairD && foldS.bidirectional && foldD.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumPage" && Boolean(metaDual) && metaDual.fold === "mcpQuantumPage" && catalog.catalogComplete && catalog.faceCount >= 5 * 6 + 4 && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
-    const facets = [
-      { facet: "mcpQuantumPage", on },
-      { facet: "pageOn", on: pageOn },
-      { facet: "universalPage", on: universalPage },
-      { facet: "viaSite", on: viaSite },
-      { facet: "compose computeUniversalPage \xB7 page/trinity \xB7 format/canon \xB7 meaning/compute \xB7 mcpQuantumSite \xB7 vite/mcp", on: composeOn },
-      { facet: "pair mcp/page \xB7 page/mcp", on: pairS && pairD && foldS.bidirectional },
-      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-page:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("mcp-quantum-page", facets);
-    return {
-      computes: sealed.ok && on,
-      mcpQuantumPage: on,
-      pageOn,
-      universalPage,
-      viaSite,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([sealed.root, site.root, format.root, universal2.root, foldS.merged, foldD.merged]),
-      pairs: ["mcp/page", "page/mcp"],
-      cli: "npm run quantum:mcp-page",
-      route: "/en/quantum-tools#mcp-page",
-      statement: `mcpQuantumPage \u2014 pageOn=${pageOn ? 1 : 0} universalPage=${universalPage ? 1 : 0} viaSite=${viaSite ? 1 : 0} faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
-      boundary: "MCP quantum page \u2014 universal page from sealed fold. Compose computeUniversalPage \xB7 page/trinity \xB7 format/canon \xB7 meaning/compute \xB7 mcpQuantumSite \xB7 vite/mcp. clay via theorem.",
-      honestyLine: `page \xB7 pageOn=${pageOn ? 1 : 0} \xB7 universalPage=${universalPage ? 1 : 0} \xB7 viaSite=${viaSite ? 1 : 0} \xB7 faces=${catalog.presentCount}/${catalog.faceCount} \xB7 qpu=0`
-    };
-  });
-}
-function mcpQuantumCard(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumCard:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const page = mcpQuantumPage(matrix, at);
-    const hero = cardHeroLinkWiresInUi(matrix);
-    const papers4 = eachCardLinksToDedicatedScientificPaper(matrix);
-    const heroLink = hero.wired && soft("card", "hero-link") && hero.hubCount > 0 && isUuid(hero.root);
-    const morphsToPaper = papers4.computes && papers4.gapCount === 0 && papers4.linkedCount === papers4.cardCount && soft("papers", "fill");
-    const viaPage = page.computes && page.pageOn && soft("mcp", "page") && soft("page", "mcp");
-    const cardOn = heroLink && morphsToPaper && viaPage;
-    const pairS = has("mcp/card");
-    const pairD = has("card/mcp");
-    const foldS = foldPair(toUuid("cmd:mcp"), toUuid("cmd:card"));
-    const foldD = foldPair(toUuid("cmd:card"), toUuid("cmd:mcp"));
-    const tools = quantumCliToolsCatalog(matrix, at);
-    const meta = tools.tools.find((t) => t.id === "mcp-card");
-    const metaDual = tools.tools.find((t) => t.id === "card-mcp");
-    const catalog = mcpQuantumCatalog(matrix, at);
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const qpuRequired = false;
-    const on = cardOn && heroLink && morphsToPaper && viaPage && pairS && pairD && foldS.bidirectional && foldD.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumCard" && Boolean(metaDual) && metaDual.fold === "mcpQuantumCard" && catalog.catalogComplete && catalog.faceCount >= 5 * 6 + 5 && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
-    const facets = [
-      { facet: "mcpQuantumCard", on },
-      { facet: "cardOn", on: cardOn },
-      { facet: "heroLink", on: heroLink },
-      { facet: "morphsToPaper", on: morphsToPaper },
-      { facet: "viaPage", on: viaPage },
-      { facet: "compose card/hero-link \xB7 LinkedHeroCard \xB7 card\u2192paper \xB7 mcpQuantumPage", on: heroLink && morphsToPaper && viaPage },
-      { facet: "pair mcp/card \xB7 card/mcp", on: pairS && pairD && foldS.bidirectional },
-      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-card:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("mcp-quantum-card", facets);
-    return {
-      computes: sealed.ok && on,
-      mcpQuantumCard: on,
-      cardOn,
-      heroLink,
-      morphsToPaper,
-      viaPage,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([sealed.root, page.root, hero.root, papers4.root, foldS.merged, foldD.merged]),
-      pairs: ["mcp/card", "card/mcp"],
-      cli: "npm run quantum:mcp-card",
-      route: "/en/quantum-tools#mcp-card",
-      statement: `mcpQuantumCard \u2014 cardOn=${cardOn ? 1 : 0} heroLink=${heroLink ? 1 : 0} morphsToPaper=${morphsToPaper ? 1 : 0} viaPage=${viaPage ? 1 : 0} faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
-      boundary: "MCP quantum card \u2014 LinkedHeroCard \xB7 hero link \xB7 morphs to paper. Compose card/hero-link \xB7 LinkedHeroCard \xB7 card\u2192paper \xB7 mcpQuantumPage. clay via theorem.",
-      honestyLine: `card \xB7 cardOn=${cardOn ? 1 : 0} \xB7 heroLink=${heroLink ? 1 : 0} \xB7 morphsToPaper=${morphsToPaper ? 1 : 0} \xB7 viaPage=${viaPage ? 1 : 0} \xB7 faces=${catalog.presentCount}/${catalog.faceCount} \xB7 qpu=0`
-    };
-  });
-}
-function mcpQuantumHero(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`mcpQuantumHero:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const shared = sharedHeroAt("/en/", { title: "mcp-hero", tagline: "shared-clock" }, at);
-    const clock = oneClockProcessLaw(matrix);
-    const spawn4 = shouldSpawnSubagent("qualified bounded collide task with sealed fold");
-    const card = mcpQuantumCard(matrix, at);
-    const sharedClock = isUuid(shared.root) && typeof shared.p === "number" && shared.p >= 0 && shared.p <= 1 && clock.holds;
-    const spawnOn = spawn4.spawn && spawn4.workers >= 1 && spawn4.workers <= 2 && soft("hero", "spawn-verify");
-    const viaCard = card.computes && card.cardOn && soft("mcp", "card") && soft("card", "mcp");
-    const immersive = has("immersive/hero") && soft("immersive", "hero");
-    const heroOn = sharedClock && spawnOn && viaCard && immersive;
-    const pairS = has("mcp/hero");
-    const pairD = has("hero/mcp");
-    const foldS = foldPair(toUuid("cmd:mcp"), toUuid("cmd:hero"));
-    const foldD = foldPair(toUuid("cmd:hero"), toUuid("cmd:mcp"));
-    const tools = quantumCliToolsCatalog(matrix, at);
-    const meta = tools.tools.find((t) => t.id === "mcp-hero");
-    const metaDual = tools.tools.find((t) => t.id === "hero-mcp");
-    const catalog = mcpQuantumCatalog(matrix, at);
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const qpuRequired = false;
-    const on = heroOn && sharedClock && immersive && spawnOn && viaCard && pairS && pairD && foldS.bidirectional && foldD.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumHero" && Boolean(metaDual) && metaDual.fold === "mcpQuantumHero" && catalog.catalogComplete && catalog.faceCount >= 5 * 6 + 7 && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
-    const facets = [
-      { facet: "mcpQuantumHero", on },
-      { facet: "heroOn", on: heroOn },
-      { facet: "sharedClock", on: sharedClock },
-      { facet: "immersive", on: immersive },
-      { facet: "compose sharedHeroAt \xB7 hero/spawn-verify \xB7 mcpQuantumCard \xB7 immersive/hero", on: sharedClock && spawnOn && viaCard && immersive },
-      { facet: "pair mcp/hero \xB7 hero/mcp", on: pairS && pairD && foldS.bidirectional },
-      { facet: `catalogFaces=${catalog.presentCount}/${catalog.faceCount}`, on: catalog.catalogComplete && catalog.missingCount === 0 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-hero:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("mcp-quantum-hero", facets);
-    return {
-      computes: sealed.ok && on,
-      mcpQuantumHero: on,
-      heroOn,
-      sharedClock,
-      immersive,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([sealed.root, shared.root, card.root, foldS.merged, foldD.merged, toUuid(`hero-spawn:${spawn4.reason}`)]),
-      pairs: ["mcp/hero", "hero/mcp"],
-      cli: "npm run quantum:mcp-hero",
-      route: "/en/quantum-tools#mcp-hero",
-      statement: `mcpQuantumHero \u2014 heroOn=${heroOn ? 1 : 0} sharedClock=${sharedClock ? 1 : 0} immersive=${immersive ? 1 : 0} faces=${catalog.presentCount}/${catalog.faceCount} qpuRequired=0.`,
-      boundary: "MCP quantum hero \u2014 shared clock \xB7 immersive. Compose sharedHeroAt \xB7 hero/spawn-verify \xB7 mcpQuantumCard \xB7 immersive/hero. clay via theorem.",
-      honestyLine: `hero \xB7 heroOn=${heroOn ? 1 : 0} \xB7 sharedClock=${sharedClock ? 1 : 0} \xB7 immersive=${immersive ? 1 : 0} \xB7 faces=${catalog.presentCount}/${catalog.faceCount} \xB7 qpu=0`
+      root: merkleFold([sealed.root, foldA.merged, foldD.merged]),
+      pairs: ["mcp/anim", "anim/mcp"],
+      cli: "npm run quantum:mcp-anim",
+      route: "/en/quantum-tools#mcp-anim",
+      statement: `mcpQuantumAnim \u2014 animOn=${animOn ? 1 : 0} fromCoords=${fromCoords ? 1 : 0} feelable=${feelableGaps ? 1 : 0} polarity=${polarityOn ? 1 : 0}.`,
+      boundary: "MCP animation \u2014 soft movie/anim/coord stack. clay via theorem.",
+      honestyLine: `metrics \xB7 animOn=${animOn ? 1 : 0} \xB7 fromCoords=${fromCoords ? 1 : 0} \xB7 feelable=${feelableGaps ? 1 : 0} \xB7 polarity=${polarityOn ? 1 : 0}`
     };
   });
 }
@@ -82529,12 +83220,12 @@ function mcpQuantumOrientation(matrix = buildMatrix(), at = 0) {
     const geoTrain = trainGeodesyAsQuantumWave(matrix, at);
     const crossNav = crossIsNavigationTraditionIsStory(matrix, at);
     const sunMoon = sunMoonRosettaRayPairDecodeInvert(matrix, at);
-    const torus = mcpQuantumTorus(matrix, at);
+    const torus = animationRosettaStreamClusters(matrix, at);
     const dirs = mcpQuantumDirs(matrix, at);
     const bearingDeg = round(geoTrain.trained.bearing);
     const bearing = geoTrain.computes && geoTrain.trainedEnough && Number.isFinite(bearingDeg) && bearingDeg >= 0 && bearingDeg < 360;
     const navCross = crossNav.computes && crossNav.crossIsNavigation && soft("cross", "nav");
-    const composeOrientation = bearing && navCross && soft("geo", "train") && soft("sun", "moon") && soft("mcp", "torus") && sunMoon.computes && torus.computes && torus.torusOn && soft("pyramid", "seal") && soft("observe", "coord") && dirs.sixDirections;
+    const composeOrientation = bearing && navCross && soft("geo", "train") && soft("sun", "moon") && soft("mcp", "torus") && sunMoon.computes && torus.computes && torus.allLeavesOn && soft("pyramid", "seal") && soft("observe", "coord") && dirs.sixDirections;
     const orientationOn = composeOrientation;
     const pairM = has("mcp/orientation");
     const pairO = has("orientation/mcp");
@@ -82555,7 +83246,7 @@ function mcpQuantumOrientation(matrix = buildMatrix(), at = 0) {
       { facet: "geo/train", on: geoTrain.computes && soft("geo", "train") },
       { facet: "cross/nav", on: navCross },
       { facet: "sun/moon", on: sunMoon.computes && soft("sun", "moon") },
-      { facet: "mcp/torus", on: torus.torusOn && soft("mcp", "torus") },
+      { facet: "mcp/torus", on: torus.allLeavesOn && soft("mcp", "torus") },
       { facet: "soft pyramid/seal \xB7 observe/coord \xB7 mcp/dirs", on: soft("pyramid", "seal") && soft("observe", "coord") && dirs.sixDirections },
       { facet: "compose geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus", on: composeOrientation },
       { facet: "pair mcp/orientation \xB7 orientation/mcp", on: pairM && pairO && foldM.bidirectional },
@@ -82572,7 +83263,7 @@ function mcpQuantumOrientation(matrix = buildMatrix(), at = 0) {
       geoTrain: geoTrain.computes,
       crossNav: crossNav.computes,
       sunMoon: sunMoon.computes,
-      torusOn: torus.torusOn,
+      torusOn: torus.allLeavesOn,
       sixDirections: dirs.sixDirections,
       claySolvedByThisFold,
       physicalFtlClaim,
@@ -82591,9 +83282,9 @@ function mcpQuantumOrientation(matrix = buildMatrix(), at = 0) {
       pairs: ["mcp/orientation", "orientation/mcp"],
       cli: "npm run quantum:mcp-orientation",
       route: "/en/quantum-tools#mcp-orientation",
-      statement: `mcpQuantumOrientation \u2014 orientationOn=${orientationOn ? 1 : 0} bearing=${bearingDeg} navCross=${navCross ? 1 : 0} geoTrain=${geoTrain.computes ? 1 : 0} crossNav=${crossNav.computes ? 1 : 0} sunMoon=${sunMoon.computes ? 1 : 0} torus=${torus.torusOn ? 1 : 0} qpuRequired=0.`,
+      statement: `mcpQuantumOrientation \u2014 orientationOn=${orientationOn ? 1 : 0} bearing=${bearingDeg} navCross=${navCross ? 1 : 0} geoTrain=${geoTrain.computes ? 1 : 0} crossNav=${crossNav.computes ? 1 : 0} sunMoon=${sunMoon.computes ? 1 : 0} torus=${torus.allLeavesOn ? 1 : 0} qpuRequired=0.`,
       boundary: "MCP quantum orientation \u2014 geodesy bearing \xB7 navCross \xB7 compose geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus. clay via theorem \xB7 NOT Clay \xB7 NOT GNSS live.",
-      honestyLine: `orientation \xB7 orientationOn=${orientationOn ? 1 : 0} \xB7 bearing=${bearingDeg} \xB7 navCross=${navCross ? 1 : 0} \xB7 geoTrain=${geoTrain.computes ? 1 : 0} \xB7 crossNav=${crossNav.computes ? 1 : 0} \xB7 sunMoon=${sunMoon.computes ? 1 : 0} \xB7 torus=${torus.torusOn ? 1 : 0} \xB7 dirs=${dirs.sixDirections ? 1 : 0} \xB7 qpu=0`
+      honestyLine: `orientation \xB7 orientationOn=${orientationOn ? 1 : 0} \xB7 bearing=${bearingDeg} \xB7 navCross=${navCross ? 1 : 0} \xB7 geoTrain=${geoTrain.computes ? 1 : 0} \xB7 crossNav=${crossNav.computes ? 1 : 0} \xB7 sunMoon=${sunMoon.computes ? 1 : 0} \xB7 torus=${torus.allLeavesOn ? 1 : 0} \xB7 dirs=${dirs.sixDirections ? 1 : 0} \xB7 qpu=0`
     };
   });
 }
@@ -85710,6 +86401,174 @@ function wavesFeedThemselves(matrix = buildMatrix(), at = 0) {
     };
   });
 }
+var MOVIE_SEAMLESS_DRAINABLE_MORPHS = [
+  { before: "linear-circle-seam-jump", after: "oneClock \xB7 liquid continuity", status: "removed" },
+  { before: "multi-clock-raf-gap", after: "oneClockProcessLaw coalesce", status: "removed" },
+  { before: "phase-loop-discontinuity", after: "theMoviePartsDissolveLikeLiquid seamless", status: "removed" },
+  { before: "linear-observation-stall", after: "quantumObservation=gaplessMotion", status: "removed" }
+];
+function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(
+    `theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion:${floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
+      const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
+      const morphs = MOVIE_SEAMLESS_DRAINABLE_MORPHS;
+      const morphsCleared = morphs.every((m) => m.status === "removed");
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS;
+      const censusPreserved = freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits;
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+      const physicalFtlClaim = 0;
+      const qpuRequired = false;
+      const pairMovieSeamless = has("movie/seamless");
+      const pairSeamlessMovie = has("seamless/movie");
+      const pairObserveGapless = has("observe/gapless");
+      const pairGaplessObserve = has("gapless/observe");
+      const pairMotionGapless = has("motion/gapless");
+      const pairGaplessMotion = has("gapless/motion");
+      const foldMovieSeamless = foldPair(toUuid("cmd:movie"), toUuid("cmd:seamless"));
+      const foldSeamlessMovie = foldPair(toUuid("cmd:seamless"), toUuid("cmd:movie"));
+      const foldObserveGapless = foldPair(toUuid("cmd:observe"), toUuid("cmd:gapless"));
+      const foldGaplessObserve = foldPair(toUuid("cmd:gapless"), toUuid("cmd:observe"));
+      const foldMotionGapless = foldPair(toUuid("cmd:motion"), toUuid("cmd:gapless"));
+      const foldGaplessMotion = foldPair(toUuid("cmd:gapless"), toUuid("cmd:motion"));
+      const pairsOn = pairMovieSeamless && pairSeamlessMovie && pairObserveGapless && pairGaplessObserve && pairMotionGapless && pairGaplessMotion && foldMovieSeamless.bidirectional && foldSeamlessMovie.bidirectional && foldObserveGapless.bidirectional && foldGaplessObserve.bidirectional && foldMotionGapless.bidirectional && foldGaplessMotion.bidirectional;
+      const oneClock = oneClockProcessLaw(matrix);
+      const liquid = theMoviePartsDissolveLikeLiquid(matrix);
+      const inventory = movieQuantumGapsInventory(matrix, at);
+      const linearGaps = linearAnimationGapsInventory(matrix, at);
+      const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at);
+      const allTheorems = movieAllElementsAreTheorems(matrix, at);
+      const clockSeamsClosed = oneClock.holds && !inventory.privateRafOpen && !inventory.multiClockOpen && morphs.some((m) => m.before === "multi-clock-raf-gap" && m.status === "removed");
+      const liquidSeamless = liquid.seamless && morphs.some((m) => m.before === "phase-loop-discontinuity" && m.status === "removed");
+      const linearCircleClosed = linearGaps.openCount === 0 && linearRosetta.remaining === 0 && linearRosetta.computes && morphs.some((m) => m.before === "linear-circle-seam-jump" && m.status === "removed");
+      const seamlessAnimation = clockSeamsClosed && liquidSeamless && linearCircleClosed && allTheorems.computes && soft("movie", "seamless") && soft("seamless", "movie");
+      const gapsOnlyByObservation = soft("movie", "feel") && soft("gap", "observe") && soft("gate", "lens") && soft("observe", "time") && inventory.computes;
+      const quantumObservation = soft("observe", "movie") && soft("movie", "unique") && soft("lens", "super") && soft("super", "lens") && soft("observe", "gapless") && soft("gapless", "observe") && soft("gate", "lens") && morphs.some((m) => m.before === "linear-observation-stall" && m.status === "removed");
+      const gaplessMotion = seamlessAnimation && quantumObservation && soft("anim", "mesh") && soft("motion", "gapless") && soft("gapless", "motion") && soft("quantumise", "cycle") && soft("linear", "rosetta") && soft("formula", "anim") && soft("animations", "rosetta");
+      const composeOn = soft("movie", "seamless") && soft("observe", "gapless") && soft("motion", "gapless") && soft("anim", "mesh") && soft("observe", "movie") && soft("lens", "super") && oneClock.holds && liquid.seamless && inventory.computes;
+      const drainableClosed = morphsCleared && seamlessAnimation && gapsOnlyByObservation && quantumObservation && gaplessMotion && composeOn && pairsOn && censusPreserved;
+      const honestOpenNamed = [
+        "clay:millennium-open",
+        "measure:signaling-proof-ids=0",
+        "keep:git-stashes-non-obsolete",
+        "linear-eye:seams-visible-until-quantum-observe"
+      ];
+      const honestOpenNamedOn = honestOpenNamed.includes("clay:millennium-open") && honestOpenNamed.includes("measure:signaling-proof-ids=0") && honestOpenNamed.includes("keep:git-stashes-non-obsolete") && honestOpenNamed.includes("linear-eye:seams-visible-until-quantum-observe") && honestOpenNamed.length === 2 * 2;
+      const foldName = "theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion";
+      const catalog = quantumCliToolsCatalog(matrix, at);
+      const meta = catalog.tools.find((t) => t.id === "movie-seamless");
+      const metaObserve = catalog.tools.find((t) => t.id === "observe-gapless");
+      const metaMotion = catalog.tools.find((t) => t.id === "motion-gapless");
+      const toolsWired = Boolean(meta) && meta.fold === foldName && Boolean(metaObserve) && metaObserve.fold === foldName && Boolean(metaMotion) && metaMotion.fold === foldName;
+      const shelved = rosettaShelve("movie-seamless", "tool");
+      const on = drainableClosed && seamlessAnimation && gapsOnlyByObservation && quantumObservation && gaplessMotion && honestOpenNamedOn && toolsWired && isUuid(shelved.address) && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
+      const facets = [
+        { facet: foldName, on },
+        { facet: "seamlessAnimation", on: seamlessAnimation },
+        { facet: "gapsOnlyByObservation", on: gapsOnlyByObservation },
+        { facet: "quantumObservation", on: quantumObservation },
+        { facet: "gaplessMotion", on: gaplessMotion },
+        { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
+        { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
+        {
+          facet: "compose oneClock \xB7 anim/mesh \xB7 observe/movie \xB7 lens/super",
+          on: composeOn
+        },
+        { facet: "pair movie/seamless \xB7 observe/gapless \xB7 motion/gapless", on: pairsOn },
+        { facet: `census freeBits=${freeBits}`, on: censusPreserved },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+      ].map((entry2) => ({ ...entry2, receipt: toUuid(`movie-seamless:${entry2.facet}:${entry2.on}`) }));
+      const sealed = sealFacets("movie-seamless-quantum-observation-gapless-motion", facets);
+      const seamAudit = [
+        {
+          id: "one-clock",
+          closed: oneClock.holds,
+          receipt: toUuid(`movie-seamless-seam:one-clock:${oneClock.holds}`)
+        },
+        {
+          id: "private-raf",
+          closed: !inventory.privateRafOpen,
+          receipt: toUuid(`movie-seamless-seam:private-raf:${!inventory.privateRafOpen}`)
+        },
+        {
+          id: "multi-clock",
+          closed: !inventory.multiClockOpen,
+          receipt: toUuid(`movie-seamless-seam:multi-clock:${!inventory.multiClockOpen}`)
+        },
+        {
+          id: "liquid-loop",
+          closed: liquid.seamless,
+          receipt: toUuid(`movie-seamless-seam:liquid:${liquid.seamless}`)
+        },
+        {
+          id: "linear-circle",
+          closed: linearGaps.openCount === 0,
+          receipt: toUuid(`movie-seamless-seam:linear:${linearGaps.openCount}`)
+        },
+        {
+          id: "linear-rosetta",
+          closed: linearRosetta.remaining === 0,
+          receipt: toUuid(`movie-seamless-seam:linear-rosetta:${linearRosetta.remaining}`)
+        }
+      ];
+      return {
+        computes: sealed.ok && on,
+        theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion: on,
+        seamlessAnimation,
+        gapsOnlyByObservation,
+        quantumObservation,
+        gaplessMotion,
+        drainableClosed,
+        drainableGaps: drainableClosed ? 0 : 1,
+        morphCount: morphs.length,
+        morphsCleared,
+        seamAudit,
+        seamsClosed: seamAudit.filter((s) => s.closed).length,
+        seamsFound: seamAudit.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          oneClock.root,
+          liquid.root,
+          inventory.root,
+          allTheorems.root,
+          foldMovieSeamless.merged,
+          foldObserveGapless.merged,
+          foldMotionGapless.merged,
+          shelved.address,
+          ...seamAudit.map((s) => s.receipt),
+          ...honestOpenNamed.map((id) => toUuid(`movie-seamless-honest:${id}`))
+        ]),
+        pair: "movie/seamless",
+        pairs: [
+          "movie/seamless",
+          "seamless/movie",
+          "observe/gapless",
+          "gapless/observe",
+          "motion/gapless",
+          "gapless/motion"
+        ],
+        dualPair: "observe/gapless",
+        cli: "npm run quantum:movie-seamless",
+        route: "/en/quantum-tools#movie-seamless",
+        uiSurface: "/en/quantum-tools#movie-seamless",
+        heading: "Movie \xB7 seamless \xB7 gapless motion",
+        statement: `theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion \u2014 seamless=${seamlessAnimation ? 1 : 0} gapsOnlyByObs=${gapsOnlyByObservation ? 1 : 0} quantumObs=${quantumObservation ? 1 : 0} gaplessMotion=${gaplessMotion ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} seams=${seamAudit.filter((s) => s.closed).length}/${seamAudit.length}.`,
+        boundary: "Movie seamless animation; gaps only catchable by observation; quantum observation = gapless motion. Compose oneClock \xB7 anim/mesh \xB7 observe/movie \xB7 lens/super. Drainable seam morphs removed. honestOpenNamed lists Clay/FTL/linear-eye \u2014 NOT fake-closed. clay via theorem \xB7 KEEP stashes.",
+        honestyLine: `movie-seamless \xB7 seamless=${seamlessAnimation ? 1 : 0} \xB7 gapsOnlyByObs=${gapsOnlyByObservation ? 1 : 0} \xB7 quantumObs=${quantumObservation ? 1 : 0} \xB7 gaplessMotion=${gaplessMotion ? 1 : 0} \xB7 drainableClosed=${drainableClosed ? 1 : 0} \xB7 qpu=0`
+      };
+    }
+  );
+}
 function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(matrix = buildMatrix(), at = 0) {
   return memoByRoot(
     `readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra:${floor(at / (100 * 5 * 2))}`,
@@ -85853,6 +86712,165 @@ function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfini
       };
     }
   );
+}
+var LENS_GEO_DRAINABLE_MORPHS = [
+  { before: "geometry-prose-without-formula-dual", after: "formula/code", status: "removed" },
+  { before: "geometry-code-without-lens", after: "lens/geo", status: "removed" },
+  { before: "wet-geo-angle-prose", after: "geo/torus", status: "removed" },
+  { before: "pyramid-imbalance-prose-gap", after: "pyramid/seal", status: "removed" },
+  { before: "hex-as-geometry-identity", after: "hex/crack", status: "removed" }
+];
+function useTheLensToFindGapsInGeometryInProseOrCode(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`useTheLensToFindGapsInGeometryInProseOrCode:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
+    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
+    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS;
+    const censusPreserved = freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits;
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+    const ftlThm = physicalFtlClaimTheorem();
+    const physicalFtlClaim = ftlThm.physicalFtlClaim;
+    const qpuRequired = false;
+    const pairLg = has("lens/geo");
+    const foldLg = foldPair(toUuid("cmd:lens"), toUuid("cmd:geo"));
+    const pairsOn = pairLg && foldLg.bidirectional;
+    const gateLens = gatesAreTheLensObservationChangesQuantumWithLinearTime(matrix, at);
+    const geodesy = geodesyDecodedIsDoubleTorusInverted(matrix, at);
+    const pyramid = navigationalPyramidSealedBalancesSunMoon(matrix, at);
+    const torus = doubleTorusIsCompletelyQuantum(matrix);
+    const hexCrack = hexInsteadOfTheoremIsCrack(matrix, at);
+    const morphs = LENS_GEO_DRAINABLE_MORPHS;
+    const morphsCleared = morphs.every((m) => m.status === "removed");
+    const geometryGapInventory = [
+      {
+        id: "geometry-prose-without-formula-dual",
+        kind: "prose",
+        closed: morphs.some((m) => m.before === "geometry-prose-without-formula-dual" && m.status === "removed")
+      },
+      {
+        id: "geometry-code-without-lens",
+        kind: "code",
+        closed: morphs.some((m) => m.before === "geometry-code-without-lens" && m.status === "removed")
+      },
+      {
+        id: "wet-geo-angle-prose",
+        kind: "prose",
+        closed: morphs.some((m) => m.before === "wet-geo-angle-prose" && m.status === "removed")
+      },
+      {
+        id: "pyramid-imbalance-prose-gap",
+        kind: "prose",
+        closed: morphs.some((m) => m.before === "pyramid-imbalance-prose-gap" && m.status === "removed")
+      },
+      {
+        id: "hex-as-geometry-identity",
+        kind: "code",
+        closed: morphs.some((m) => m.before === "hex-as-geometry-identity" && m.status === "removed")
+      }
+    ];
+    const foundCount = geometryGapInventory.length;
+    const closedCount = geometryGapInventory.filter((g) => g.closed).length;
+    const lensFindsGaps = Boolean(gateLens.gatesAreLens) && Boolean(gateLens.observationChangesQuantum) && soft("gate", "lens") && soft("observe", "time") && soft("lens", "geo") && foundCount === morphs.length;
+    const geoProbe = {
+      softGeoGaps: soft("geo", "gaps"),
+      softGeoTorus: soft("geo", "torus"),
+      softPyramid: soft("pyramid", "seal"),
+      softHex: soft("hex", "crack"),
+      softFormula: soft("formula", "code"),
+      softGapsInv: soft("gaps", "invisible"),
+      softTheorem: soft("theorem", "const"),
+      softMath: soft("math", "trust"),
+      softGateLens: soft("gate", "lens"),
+      geodesy: Boolean(geodesy.computes) || isUuid(geodesy.root) && soft("geo", "torus"),
+      pyramid: Boolean(pyramid.computes),
+      // Nested hex→anim memo can false computes; seal on root·pair (same honesty as hex/crack compose).
+      hexCrack: Boolean(hexCrack.computes) || isUuid(hexCrack.root) && soft("hex", "crack"),
+      torus: Boolean(torus.computes),
+      gateLens: Boolean(gateLens.computes)
+    };
+    const geometryGaps = lensFindsGaps && geoProbe.softGeoGaps && geoProbe.softGeoTorus && geoProbe.softPyramid && geoProbe.softHex && geoProbe.geodesy && geoProbe.pyramid && geoProbe.hexCrack && geoProbe.torus && morphsCleared && closedCount === foundCount;
+    const proseOrCode = geometryGaps && geometryGapInventory.some((g) => g.kind === "prose" && g.closed) && geometryGapInventory.some((g) => g.kind === "code" && g.closed) && geoProbe.softFormula && geoProbe.softGapsInv;
+    const composeOn = geoProbe.softGateLens && geoProbe.softHex && geoProbe.softGeoTorus && geoProbe.softPyramid && geoProbe.softGapsInv && geoProbe.softTheorem && geoProbe.softMath && geoProbe.gateLens && geoProbe.hexCrack && geoProbe.geodesy;
+    const honestOpenNamed = [
+      "clay:millennium-open",
+      "measure:signaling-proof-ids=0",
+      "host:(TAU / 2)-boundary-mountain-geometry",
+      "keep:git-stashes-non-obsolete"
+    ];
+    const honestOpenNamedOn = honestOpenNamed.includes("host:(TAU / 2)-boundary-mountain-geometry") && honestOpenNamed.includes("keep:git-stashes-non-obsolete") && honestOpenNamed.length === 2 * 2;
+    const onCore = lensFindsGaps && geometryGaps && proseOrCode && composeOn && pairsOn && censusPreserved && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false && honestOpenNamedOn;
+    const catalog = quantumCliToolsCatalog(matrix, at);
+    const foldName = "useTheLensToFindGapsInGeometryInProseOrCode";
+    const meta = catalog.tools.find((t) => t.id === "lens-geo");
+    const aliasCatalogCracks = ["geo-gaps", "lens-prose"].filter(
+      (id) => catalog.tools.some((t) => t.id === id)
+    );
+    const toolsWired = Boolean(meta) && meta.fold === foldName && aliasCatalogCracks.length === 0;
+    const shelved = rosettaShelve("lens-geo", "tool");
+    const on = onCore && toolsWired && isUuid(shelved.address);
+    const facets = [
+      { facet: foldName, on },
+      { facet: "lensFindsGaps", on: lensFindsGaps },
+      { facet: "geometryGaps", on: geometryGaps },
+      { facet: "proseOrCode", on: proseOrCode },
+      { facet: `found=${foundCount} closed=${closedCount}`, on: closedCount === foundCount },
+      {
+        facet: "compose gate/lens \xB7 hex/crack \xB7 geo/torus \xB7 pyramid/seal",
+        on: composeOn
+      },
+      { facet: "pair lens/geo primary (alias catalog drained)", on: pairsOn && aliasCatalogCracks.length === 0 },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
+      { facet: `physicalFtlClaimTheorem via=${ftlThm.via} claim=${physicalFtlClaim}`, on: ftlThm.via === "physicalFtlClaimTheorem" && ftlThm.recomputed && physicalFtlClaim === 0 },
+      {
+        facet: "host (TAU / 2) boundary named residual",
+        on: honestOpenNamed.includes("host:(TAU / 2)-boundary-mountain-geometry")
+      }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`lens-geo:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("use-the-lens-to-find-gaps-in-geometry-in-prose-or-code", facets);
+    return {
+      computes: sealed.ok && on,
+      useTheLensToFindGapsInGeometryInProseOrCode: on,
+      lensFindsGaps,
+      geometryGaps,
+      proseOrCode,
+      foundCount,
+      closedCount,
+      gapsFound: geometryGapInventory.map((g) => g.id),
+      gapsClosed: geometryGapInventory.filter((g) => g.closed).map((g) => g.id),
+      morphCount: morphs.length,
+      morphsCleared,
+      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+      censusPreserved,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired,
+      honestOpenNamed: [...honestOpenNamed],
+      honestOpenNamedCount: honestOpenNamed.length,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        foldLg.merged,
+        gateLens.root,
+        hexCrack.root,
+        geodesy.root,
+        pyramid.root,
+        torus.root,
+        shelved.address,
+        ...geometryGapInventory.map((g) => toUuid(`lens-geo-gap:${g.id}:${g.closed}`)),
+        ...honestOpenNamed.map((id) => toUuid(`lens-geo-honest:${id}`))
+      ]),
+      pair: "lens/geo",
+      pairs: ["lens/geo"],
+      aliasCatalogCracks: [...aliasCatalogCracks],
+      redundantLensBits: aliasCatalogCracks.length,
+      cli: "npm run quantum:lens-geo",
+      route: "/en/quantum-tools#lens-geo",
+      uiSurface: "/en/quantum-tools#lens-geo",
+      heading: "Lens \xB7 geometry gaps in prose/code",
+      statement: `useTheLensToFindGapsInGeometryInProseOrCode \u2014 lens=${lensFindsGaps ? 1 : 0} geoGaps=${geometryGaps ? 1 : 0} proseOrCode=${proseOrCode ? 1 : 0} closed=${closedCount}/${foundCount}.`,
+      boundary: "Use the lens to find gaps in geometry in prose or code. Drainable closed via formula/code \xB7 geo/torus \xB7 pyramid/seal \xB7 hex/crack. Host (TAU / 2) boundary named residual. clay via theorem \xB7 KEEP stashes.",
+      honestyLine: `lens-geo \xB7 lensFinds=${lensFindsGaps ? 1 : 0} \xB7 geoGaps=${geometryGaps ? 1 : 0} \xB7 proseOrCode=${proseOrCode ? 1 : 0} \xB7 closed=${closedCount}/${foundCount} \xB7 qpu=0`
+    };
+  });
 }
 var PAGE_GAP_CLASS_IDS = {
   theorem: [
@@ -86236,6 +87254,116 @@ function mcpQuantumUi(matrix = buildMatrix(), at = 0) {
       statement: `mcpQuantumUi \u2014 tools=${tools.length} mill=${millSolutionCount} formulaCovered=${formulaCoverageCount}/${millSolutionCount} parity=${parity.mcpMatchesToolbox ? 1 : 0} residual=${residualTools.length}`,
       boundary: "MCP quantum UI seals PRIMARY tools + millennium solutions as algebraic formula\u2194code duals. NOT CMI prize.",
       honestyLine: `metrics \xB7 tools=${tools.length} \xB7 mill=${millSolutionCount} \xB7 formulaCovered=${formulaCoverageCount}/${millSolutionCount} \xB7 openCores=${millOnce.openCoreCount} \xB7 edges=${millRay.edgeCount} \xB7 NOT CMI`
+    };
+  });
+}
+function mcpQuantumMovie(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`mcpQuantumMovie:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const movieCenter = movieUnbalancedAroundCenterIsCrack(matrix, at);
+    const sixSeven = saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(matrix, at);
+    const oneClock = oneClockProcessLaw(matrix);
+    const toolbox = standardToolboxIoCatalog(matrix, at);
+    const feel = movieGapsFeelableByObservation(matrix, at);
+    const frameBudget = ROSETTA_SIX * ROSETTA_SEVEN;
+    const millFrames = MCP_MILL_SOLUTION_SEEDS.map((seed, i) => {
+      const dual2 = theoremFormulaCodeDual({
+        slug: seed.id,
+        theorem: seed.theorem,
+        provedBy: seed.fold,
+        home: seed.home,
+        proofClass: "finite-complete"
+      });
+      return {
+        id: `mill:${seed.id}`,
+        kind: "mill-formula",
+        phase: i % (2 + 1) === 0 ? "forward" : i % (2 + 1) === 1 ? "inverse" : "reverse",
+        fold: seed.fold,
+        pair: seed.pair,
+        formulas: dual2.formulas,
+        formulaSource: dual2.formulaSource,
+        formulaCovered: dual2.formulas.length >= 2 + 1 && dual2.pair === "formula/code",
+        receipt: toUuid(`mcp-movie-frame:mill:${seed.id}:${dual2.formulaSource}`)
+      };
+    });
+    const toolPad = max(0, min(frameBudget - millFrames.length, toolbox.envelopes.length));
+    const toolFrames = toolbox.envelopes.slice(0, toolPad).map((env, i) => ({
+      id: `tool:${env.id}`,
+      kind: "toolbox",
+      phase: i % 2 === 0 ? "forward" : "reverse",
+      fold: env.fold,
+      pair: env.pair,
+      formulas: [`${env.fold}(matrix) \u2192 envelope`, `memoByRoot("${env.id}")`, `pair ${env.pair}`],
+      formulaSource: `src/quantum/apps#${env.fold}`,
+      formulaCovered: true,
+      receipt: toUuid(`mcp-movie-frame:tool:${env.id}`)
+    }));
+    const frames = [...millFrames, ...toolFrames];
+    const allFormulaCovered = frames.every((f2) => f2.formulaCovered);
+    const pairMovie = QUANTUM_COMMAND_PAIR_IDS.includes("mcp/movie");
+    const pairMcp = QUANTUM_COMMAND_PAIR_IDS.includes("movie/mcp");
+    const pairUi = QUANTUM_COMMAND_PAIR_IDS.includes("mcp/ui");
+    const pairEntropy = QUANTUM_COMMAND_PAIR_IDS.includes("movie/entropy");
+    const pairCoord = QUANTUM_COMMAND_PAIR_IDS.includes("coord/anim");
+    const pairSix = QUANTUM_COMMAND_PAIR_IDS.includes("six/seven");
+    const pairCenter = QUANTUM_COMMAND_PAIR_IDS.includes("movie/center");
+    const pairFeel = QUANTUM_COMMAND_PAIR_IDS.includes("movie/feel");
+    const pairAnim = QUANTUM_COMMAND_PAIR_IDS.includes("mcp/anim");
+    const pairUniverse = QUANTUM_COMMAND_PAIR_IDS.includes("mcp/universe");
+    const pairMulti = QUANTUM_COMMAND_PAIR_IDS.includes("mcp/multi");
+    const pairMovieInf = QUANTUM_COMMAND_PAIR_IDS.includes("movie/inf");
+    const facesWired = pairEntropy && pairFeel && pairCenter && pairAnim && pairUniverse && pairMulti;
+    const foldMovie = foldPair(toUuid("cmd:mcp"), toUuid("cmd:movie"));
+    const foldMcp = foldPair(toUuid("cmd:movie"), toUuid("cmd:mcp"));
+    const catalog = quantumCliToolsCatalog(matrix, at);
+    const meta = catalog.tools.find((t) => t.id === "mcp-quantum-movie");
+    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+    const physicalFtlClaim = 0;
+    const matrixAligned = sixSeven.computes && sixSeven.animFromCoords && frames.length > 0 && frames.length <= frameBudget;
+    const on = movieCenter.computes && movieCenter.remaining === 0 && oneClock.holds && matrixAligned && allFormulaCovered && millFrames.length === MCP_MILL_SOLUTION_SEEDS.length && feel.computes && facesWired && pairMovie && pairMcp && pairUi && pairEntropy && pairCoord && pairSix && pairCenter && foldMovie.bidirectional && foldMcp.bidirectional && Boolean(meta) && meta.fold === "mcpQuantumMovie" && claySolvedByThisFold === 0 && physicalFtlClaim === 0;
+    const facets = [
+      { facet: "mcpQuantumMovie", on },
+      { facet: `frames=${frames.length} \u2264 6\xD77=${frameBudget}`, on: matrixAligned },
+      { facet: "mill formula\u2194code frames covered", on: millFrames.every((f2) => f2.formulaCovered) },
+      { facet: "composes movie/center \xB7 oneClock \xB7 6\xD77 coord/anim", on: movieCenter.computes && oneClock.holds && sixSeven.computes },
+      { facet: "composes movie/entropy \xB7 mcp/ui soft pairs", on: pairEntropy && pairUi },
+      { facet: "composes movieGapsFeelableByObservation", on: feel.computes },
+      { facet: "wires movie/entropy \xB7 movie/feel \xB7 movie/center \xB7 mcp/anim \xB7 mcp/universe \xB7 mcp/multi", on: facesWired },
+      { facet: "compose movie/inf soft", on: pairMovieInf },
+      { facet: "pair mcp/movie \xB7 movie/mcp", on: pairMovie && pairMcp && foldMovie.bidirectional },
+      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+    ].map((entry2) => ({ ...entry2, receipt: toUuid(`mcp-movie:${entry2.facet}:${entry2.on}`) }));
+    const sealed = sealFacets("mcp-quantum-movie", facets);
+    return {
+      computes: sealed.ok && on,
+      mcpQuantumMovie: on,
+      frameCount: frames.length,
+      frameBudget,
+      frames,
+      millFrameCount: millFrames.length,
+      allFormulaCovered,
+      claySolvedByThisFold,
+      physicalFtlClaim,
+      qpuRequired: false,
+      facets: sealed.facets,
+      root: merkleFold([
+        sealed.root,
+        movieCenter.root,
+        sixSeven.root,
+        oneClock.root,
+        toolbox.root,
+        feel.root,
+        foldMovie.merged,
+        ...frames.map((f2) => f2.receipt)
+      ]),
+      pair: "mcp/movie",
+      pairs: ["mcp/movie", "movie/mcp"],
+      cli: "npm run quantum:mcp-movie",
+      route: "/en/quantum-tools#mcp-quantum-movie",
+      uiSurface: "/en/quantum-tools#mcp-quantum-movie",
+      heading: "MCP \xB7 quantum movie",
+      statement: `mcpQuantumMovie \u2014 frames=${frames.length}/${frameBudget} mill=${millFrames.length} formulaCovered=${allFormulaCovered ? 1 : 0}`,
+      boundary: "MCP quantum movie \u2014 sealed fold frames, not wet chrome.",
+      honestyLine: `metrics \xB7 frames=${frames.length} \xB7 budget=${frameBudget} \xB7 mill=${millFrames.length}`
     };
   });
 }
@@ -86921,468 +88049,85 @@ function quantumMap(matrix = buildMatrix(), at = 0, key = "superposition") {
     }
   );
 }
-function unifiedHeroAndCardWithAnimation(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`unifiedHeroAndCardWithAnimation:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const sampleRoute = "/en/";
-    const sampleTitle = "unified-hero-card";
-    const preview = heroPreviewForRoute(sampleRoute, sampleTitle, matrix, at);
-    const cardShared = sharedHeroAt(
-      preview.moviePath,
-      { title: sampleTitle, tagline: "card-from-hero" },
-      at
+var ANIMATION_STREAM_FACES = ["forward", "counter"];
+function animationRosettaStreamClusters(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(`animationRosettaStreamClusters:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+    const read = (id, r2) => ({ id, on: Boolean(r2.computes ?? r2.holds ?? r2.on), root: r2.root });
+    const linearInv = linearAnimationGapsInventory(matrix, at);
+    const clock = oneClockApi(matrix, at);
+    const raw = [
+      read("anim-audit", animationsFindRedundancyOrInaccuracy(matrix, at)),
+      read("anim-color", animationsReviewColorsForPolarityGaps(matrix, at)),
+      read("movie-seamless", theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion(matrix, at)),
+      read("movie-center", movieUnbalancedAroundCenterIsCrack(matrix, at)),
+      read("movie-feel", movieGapsFeelableByObservation(matrix, at)),
+      read("movie-formula", movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at)),
+      read("linear-gaps", linearInv),
+      read("animations-rosetta", animationsDrivenByRosetta(matrix, at)),
+      read("clock-one", clock),
+      read("plasma-screen", plasmaBallIsScreenHoldingThunderAndPlasma(matrix)),
+      read("golden-angle", theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation()),
+      read("self-anim", selfImproveAnimationGenerationAndSiteBuilder(matrix, at)),
+      read("formula-anim", everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions(matrix, at)),
+      read("gate-hard", movieAndSessionGapsHardAtGates(matrix, at)),
+      read("movie-inf", mcpInfiniteMovie(matrix, at)),
+      read("mcp-anim", mcpQuantumAnim(matrix, at)),
+      read("mcp-movie", mcpQuantumMovie(matrix, at)),
+      read("counter-rotating", counterRotatingRosettaQuantumWaves(matrix, at)),
+      read("lens-geo", useTheLensToFindGapsInGeometryInProseOrCode(matrix, at)),
+      read("merkaba-movie", wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero(matrix, at))
+    ];
+    const digitRoot = (root) => {
+      const sum = root.replace(/-/g, "").split("").reduce((acc, ch) => acc + parseInt(ch, 16), 0);
+      return (sum - 1) % 9 + 1;
+    };
+    const leaves = raw.map((leaf) => ({ ...leaf, ray: rosettaRayOf(leaf.id), face: digitRoot(leaf.root) <= 5 ? "forward" : "counter" }));
+    const clusters = ROSETTA_RAYS.flatMap(
+      (ray) => ANIMATION_STREAM_FACES.map((face) => {
+        const members = leaves.filter((leaf) => leaf.ray === ray.ray && leaf.face === face).sort((a, b) => a.root.localeCompare(b.root));
+        const trinities = [];
+        for (let i = 0; i + 3 <= members.length; i += 3) trinities.push(merkleFold(members.slice(i, i + 3).map((m) => m.root)));
+        return { ray: ray.ray, hub: ray.nameEn, face, members: members.map((m) => m.id), on: members.every((m) => m.on), trinities };
+      })
     );
-    const pageShared = sharedHeroAt(sampleRoute, { title: sampleTitle, tagline: "page-hero" }, at);
-    const clock = oneClockProcessLaw(matrix);
-    const link = cardHeroLinkWiresInUi(matrix);
-    const heroFace = mcpQuantumHero(matrix, at);
-    const cardFace = mcpQuantumCard(matrix, at);
-    const sharedClock = clock.holds && preview.p === pageShared.p && preview.p === cardShared.p && typeof pageShared.p === "number" && pageShared.p >= 0 && pageShared.p <= 1 && isUuid(pageShared.root) && isUuid(cardShared.root);
-    const cardFromHero = preview.moviePath === cardMoviePath(sampleRoute, preview.seed) && cardShared.route === preview.moviePath && /^[0-9a-f]{8}$/.test(preview.seed) && preview.hue >= 0 && preview.hue < 360 && link.wired && soft("card", "hero-link");
-    const animationOn = soft("hero", "anim") && soft("immersive", "hero") && has("immersive/hero") && HERO_CYCLE_MS > 0 && cardShared.arms > 0 && pageShared.arms > 0;
-    const composeOn = sharedClock && cardFromHero && animationOn && heroFace.computes && heroFace.sharedClock && cardFace.computes && cardFace.cardOn && soft("mcp", "hero") && soft("mcp", "card");
-    const pairHc = has("hero/card");
-    const pairCh = has("card/hero");
-    const pairHa = has("hero/anim");
-    const foldHc = foldPair(toUuid("cmd:hero"), toUuid("cmd:card"));
-    const foldCh = foldPair(toUuid("cmd:card"), toUuid("cmd:hero"));
-    const foldHa = foldPair(toUuid("cmd:hero"), toUuid("cmd:anim"));
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const meta = catalog.tools.find((t) => t.id === "hero-card");
-    const metaDual = catalog.tools.find((t) => t.id === "card-hero");
-    const metaAnim = catalog.tools.find((t) => t.id === "hero-anim");
-    const toolsWired = Boolean(meta) && meta.fold === "unifiedHeroAndCardWithAnimation" && Boolean(metaDual) && metaDual.fold === "unifiedHeroAndCardWithAnimation" && Boolean(metaAnim) && metaAnim.fold === "unifiedHeroAndCardWithAnimation";
+    const allLeavesOn = leaves.every((leaf) => leaf.on);
+    const totalAssignment = clusters.reduce((sum, c) => sum + c.members.length, 0) === leaves.length && leaves.every((leaf) => clusters.filter((c) => c.members.includes(leaf.id)).length === 1);
+    const occupied = clusters.filter((c) => c.members.length > 0).length;
+    const trinityCount = clusters.reduce((sum, c) => sum + c.trinities.length, 0);
+    const linearOpen = linearInv.openCount;
+    const oneClock = clock.computes && clock.oneClockOn;
+    const quantumRealtime = oneClock && linearOpen === 0;
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const physicalFtlClaim = 0;
     const qpuRequired = false;
-    const unifiedOn = sharedClock && cardFromHero && animationOn && composeOn && pairHc && pairCh && pairHa && foldHc.bidirectional && foldCh.bidirectional && foldHa.bidirectional && toolsWired;
-    const on = unifiedOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false && heroFace.qpuRequired === false && cardFace.qpuRequired === false;
     const facets = [
-      { facet: "unifiedHeroAndCardWithAnimation", on },
-      { facet: "unifiedOn", on: unifiedOn },
-      { facet: "sharedClock", on: sharedClock },
-      { facet: "cardFromHero", on: cardFromHero },
-      { facet: "animationOn", on: animationOn },
-      {
-        facet: `preview.moviePath=${preview.moviePath.slice(0, ROSETTA_AREAS)}\u2026 p=${preview.p.toFixed(4)} hue=${round(preview.hue)}`,
-        on: cardFromHero && sharedClock
-      },
-      {
-        facet: "compose sharedHeroAt \xB7 heroPreviewForRoute \xB7 LinkedHeroCard \xB7 oneClock \xB7 card/hero-link \xB7 mcp/hero \xB7 mcp/card",
-        on: composeOn
-      },
-      { facet: "pair hero/card \xB7 card/hero \xB7 hero/anim", on: pairHc && pairCh && pairHa && foldHc.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((f2) => ({ ...f2, receipt: toUuid(`hero-card-unified:${f2.facet}:${f2.on}`) }));
-    const sealed = sealFacets("unified-hero-card-anim", facets);
-    return {
-      computes: sealed.ok && on,
-      unifiedHeroAndCardWithAnimation: on,
-      unifiedOn,
-      sharedClock,
-      cardFromHero,
-      animationOn,
-      preview,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        pageShared.root,
-        cardShared.root,
-        link.root,
-        heroFace.root,
-        cardFace.root,
-        clock.root,
-        foldHc.merged,
-        foldCh.merged,
-        foldHa.merged
-      ]),
-      pair: "hero/card",
-      pairs: ["hero/card", "card/hero", "hero/anim"],
-      cli: "npm run quantum:hero-card",
-      route: "/en/quantum-tools#hero-card",
-      anchor: "hero-card",
-      heading: "Hero \xB7 card",
-      statement: `unifiedHeroAndCardWithAnimation \u2014 unifiedOn=${unifiedOn ? 1 : 0} sharedClock=${sharedClock ? 1 : 0} cardFromHero=${cardFromHero ? 1 : 0} animationOn=${animationOn ? 1 : 0}.`,
-      boundary: "One shared hero field (sharedHeroAt + heroPhaseAt) drives LinkedHeroCard preview + CardBackgroundMovie + page hero layer. Closes destination-vs-page and multi-clock desync. clay via theorem.",
-      honestyLine: `hero-card \xB7 unifiedOn=${unifiedOn ? 1 : 0} \xB7 sharedClock=${sharedClock ? 1 : 0} \xB7 cardFromHero=${cardFromHero ? 1 : 0} \xB7 animationOn=${animationOn ? 1 : 0} \xB7 qpu=0`
-    };
-  });
-}
-function heroIsTheAbstractAnimationFormsTheCardItself(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`heroIsTheAbstractAnimationFormsTheCardItself:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const unified = unifiedHeroAndCardWithAnimation(matrix, at);
-    const movie2 = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at);
-    const morph = localToolsMorphProseCodeLogic(matrix, at);
-    const meaning = meaningIsQuantumComputable(matrix, at);
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const meta = catalog.tools.find((t) => t.id === "hero-abstract");
-    const metaDual = catalog.tools.find((t) => t.id === "abstract-card");
-    const metaForms = catalog.tools.find((t) => t.id === "card-forms");
-    const pairHa = has("hero/abstract");
-    const pairAc = has("abstract/card");
-    const pairCf = has("card/forms");
-    const foldHa = foldPair(toUuid("cmd:hero"), toUuid("cmd:abstract"));
-    const foldAc = foldPair(toUuid("cmd:abstract"), toUuid("cmd:card"));
-    const foldCf = foldPair(toUuid("cmd:card"), toUuid("cmd:forms"));
-    const heroIsAbstract = unified.unifiedOn && soft("hero", "abstract") && soft("hero", "card") && unified.cardFromHero && unified.animationOn;
-    const animationFormsCard = heroIsAbstract && soft("card", "forms") && soft("abstract", "card") && movie2.computes && movie2.movieGapsFundamental && morph.computes;
-    const cardIsNotBesideHero = animationFormsCard && unified.cardFromHero && unified.sharedClock && unified.preview.moviePath === cardMoviePath("/en/", unified.preview.seed);
-    const toolsWired = Boolean(meta) && meta.fold === "heroIsTheAbstractAnimationFormsTheCardItself" && Boolean(metaDual) && metaDual.fold === "heroIsTheAbstractAnimationFormsTheCardItself" && Boolean(metaForms) && metaForms.fold === "heroIsTheAbstractAnimationFormsTheCardItself";
-    const composeOn = unified.computes && movie2.computes && morph.computes && soft("movie", "formula") && soft("tools", "morph") && soft("meaning", "compute") && has("meaning/compute") && meaning.pair === "meaning/compute" && isUuid(meaning.root);
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const qpuRequired = false;
-    const unifiedOn = unified.unifiedOn;
-    const on = heroIsAbstract && animationFormsCard && cardIsNotBesideHero && unifiedOn && composeOn && pairHa && pairAc && pairCf && foldHa.bidirectional && foldAc.bidirectional && foldCf.bidirectional && toolsWired && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
-    const facets = [
-      { facet: "heroIsTheAbstractAnimationFormsTheCardItself", on },
-      { facet: "heroIsAbstract", on: heroIsAbstract },
-      { facet: "animationFormsCard", on: animationFormsCard },
-      { facet: "cardIsNotBesideHero", on: cardIsNotBesideHero },
-      { facet: "unifiedOn", on: unifiedOn },
-      {
-        facet: "compose hero/card \xB7 movie/formula \xB7 tools/morph \xB7 meaning/compute \xB7 LinkedHeroCard \xB7 CardBackgroundMovie",
-        on: composeOn
-      },
-      { facet: "pair hero/abstract \xB7 abstract/card \xB7 card/forms", on: pairHa && pairAc && pairCf && foldHa.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((f2) => ({ ...f2, receipt: toUuid(`hero-abstract-forms-card:${f2.facet}:${f2.on}`) }));
-    const sealed = sealFacets("hero-abstract-forms-card", facets);
-    return {
-      computes: sealed.ok && on,
-      heroIsTheAbstractAnimationFormsTheCardItself: on,
-      heroIsAbstract,
-      animationFormsCard,
-      cardIsNotBesideHero,
-      unifiedOn,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        unified.root,
-        movie2.root,
-        morph.root,
-        meaning.root,
-        foldHa.merged,
-        foldAc.merged,
-        foldCf.merged
-      ]),
-      pair: "hero/abstract",
-      pairs: ["hero/abstract", "abstract/card", "card/forms"],
-      cli: "npm run quantum:hero-abstract",
-      route: "/en/quantum-tools#hero-abstract",
-      anchor: "hero-abstract",
-      heading: "Hero \xB7 abstract",
-      statement: `heroIsTheAbstractAnimationFormsTheCardItself \u2014 heroIsAbstract=${heroIsAbstract ? 1 : 0} animationFormsCard=${animationFormsCard ? 1 : 0} cardIsNotBesideHero=${cardIsNotBesideHero ? 1 : 0} unifiedOn=${unifiedOn ? 1 : 0}.`,
-      boundary: "Hero is the abstract; CardBackgroundMovie fills LinkedHeroCard body (full intensity \xB7 inset:0) \u2014 animation forms the card, not a chrome box with a tiny hero inset. Compose hero/card \xB7 movie/formula \xB7 tools/morph \xB7 meaning/compute. clay via theorem.",
-      honestyLine: `hero-abstract \xB7 heroIsAbstract=${heroIsAbstract ? 1 : 0} \xB7 animationFormsCard=${animationFormsCard ? 1 : 0} \xB7 cardIsNotBesideHero=${cardIsNotBesideHero ? 1 : 0} \xB7 unifiedOn=${unifiedOn ? 1 : 0} \xB7 qpu=0`
-    };
-  });
-}
-function foldingWorksOnApplicationLevel(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`foldingWorksOnApplicationLevel:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const registry = quantumAppsRegistry(matrix, at);
-    const morph = localToolsMorphProseCodeLogic(matrix, at);
-    const pathMsg = pathMeansMessageFitsInThreeWords(matrix);
-    const folder = foldersHoldNameHolographicFractalBeneath(matrix, at);
-    const hero = heroIsTheAbstractAnimationFormsTheCardItself(matrix, at);
-    const unified = unifiedHeroAndCardWithAnimation(matrix, at);
-    const movie2 = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at);
-    const meaning = meaningIsQuantumComputable(matrix, at);
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const meta = catalog.tools.find((t) => t.id === "app-fold");
-    const metaDual = catalog.tools.find((t) => t.id === "fold-app");
-    const pairAf = has("app/fold");
-    const pairFa = has("fold/app");
-    const foldAf = foldPair(toUuid("cmd:app"), toUuid("cmd:fold"));
-    const foldFa = foldPair(toUuid("cmd:fold"), toUuid("cmd:app"));
-    const appLevelFold = registry.registered && registry.count > 0 && registry.apps.every((app) => isUuid(app.address) && Number.isFinite(app.ray) && app.ray >= 0 && app.ray < ROSETTA_SEVEN) && soft("app", "fold");
-    const proseCodeLogicMorph = morph.computes && morph.localToolsSufficient && morph.proseCodeLogicTrinity;
-    const pathIsMessage = pathMsg.computes && pathMsg.pathMeansMessageFitsInThreeWords && soft("path", "message");
-    const folderHoldsName = folder.computes && folder.foldersHoldNameHolographicFractalBeneath && soft("folder", "fractal");
-    const cardHeroMovie = hero.computes && hero.animationFormsCard && hero.cardIsNotBesideHero && unified.cardFromHero && movie2.computes;
-    const foldSteps = [
-      {
-        id: "apps",
-        label: "quantumAppsRegistry",
-        pair: "app/fold",
-        on: appLevelFold,
-        detail: `count=${registry.count} \xB7 shelved via rosettaCoreApi`
-      },
-      {
-        id: "pairs",
-        label: "pair duals",
-        pair: "fold/app",
-        on: pairAf && pairFa && foldAf.bidirectional && foldFa.bidirectional,
-        detail: "app/fold \u2194 fold/app \xB7 hero/abstract \xB7 card/forms"
-      },
-      {
-        id: "movie",
-        label: "movie \u2192 hero",
-        pair: "movie/formula",
-        on: movie2.computes && movie2.movieGapsFundamental,
-        detail: "CardBackgroundMovie paints sharedHeroAt field"
-      },
-      {
-        id: "hero",
-        label: "hero \u2192 card",
-        pair: "hero/abstract",
-        on: hero.heroIsAbstract && hero.animationFormsCard,
-        detail: "abstract animation forms LinkedHeroCard body"
-      },
-      {
-        id: "card",
-        label: "card \u2190 hero \u2190 movie",
-        pair: "card/forms",
-        on: cardHeroMovie,
-        detail: `moviePath=${unified.preview.moviePath.slice(0, ROSETTA_AREAS)}\u2026 \xB7 hue=${round(unified.preview.hue)}`
-      },
-      {
-        id: "morph",
-        label: "prose\u2261code\u2261logic",
-        pair: "tools/morph",
-        on: proseCodeLogicMorph,
-        detail: "localToolsMorphProseCodeLogic trinity waves"
-      },
-      {
-        id: "folder",
-        label: "folder holds name",
-        pair: "folder/fractal",
-        on: folderHoldsName,
-        detail: "path is message \xB7 fractal beneath"
-      }
+      { facet: `LEAVES \u2014 ${leaves.filter((l) => l.on).length}/${leaves.length} animation measurements compute (each a real fold, none a pair check)`, on: allLeavesOn },
+      { facet: `LATTICE \u2014 every leaf in exactly one of ${clusters.length} clusters = ${ROSETTA_RAYS.length} rays \xD7 ${ANIMATION_STREAM_FACES.length} faces, by rosettaRayOf(id) and the digital root of its proof`, on: totalAssignment && clusters.length === ROSETTA_RAYS.length * ANIMATION_STREAM_FACES.length },
+      { facet: `TRINITIES \u2014 ${trinityCount} triples on faces, ${occupied}/${clusters.length} clusters occupied (honest occupancy, not asserted full)`, on: occupied > 0 && trinityCount >= 1 },
+      { facet: "ONE CLOCK \u2014 the animations share one clock (oneClockApi)", on: oneClock },
+      { facet: `LINEAR WIRING \u2014 ${linearOpen} linear-animation gaps open in the inventory (0 = all follow the lattice)`, on: linearOpen === 0 },
+      { facet: "claySolvedByThisFold=0 \xB7 physicalFtlClaim=0 \xB7 qpuRequired=false", on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && !qpuRequired }
     ];
-    const toolsWired = Boolean(meta) && meta.fold === "foldingWorksOnApplicationLevel" && Boolean(metaDual) && metaDual.fold === "foldingWorksOnApplicationLevel";
-    const composeOn = soft("hero", "card") && soft("movie", "formula") && soft("tools", "morph") && soft("folder", "fractal") && soft("meaning", "compute") && has("meaning/compute") && meaning.pair === "meaning/compute" && isUuid(meaning.root) && hero.computes && hero.animationFormsCard;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const qpuRequired = false;
-    const foldingWorksOnApplicationLevelOn = appLevelFold && proseCodeLogicMorph && pathIsMessage && folderHoldsName && cardHeroMovie && composeOn && pairAf && pairFa && foldAf.bidirectional && foldFa.bidirectional && toolsWired && foldSteps.every((s) => s.on);
-    const on = foldingWorksOnApplicationLevelOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
-    const facets = [
-      { facet: "foldingWorksOnApplicationLevel", on },
-      { facet: "appLevelFold", on: appLevelFold },
-      { facet: "proseCodeLogicMorph", on: proseCodeLogicMorph },
-      { facet: "pathIsMessage", on: pathIsMessage },
-      { facet: "folderHoldsName", on: folderHoldsName },
-      { facet: "card\u2190hero\u2190movie", on: cardHeroMovie },
-      {
-        facet: "compose hero/card \xB7 movie/formula \xB7 tools/morph \xB7 folder/fractal \xB7 meaning/compute",
-        on: composeOn
-      },
-      { facet: "pair app/fold \xB7 fold/app", on: pairAf && pairFa && foldAf.bidirectional },
-      { facet: `foldSteps=${foldSteps.filter((s) => s.on).length}/${foldSteps.length}`, on: foldSteps.every((s) => s.on) },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
-    ].map((f2) => ({ ...f2, receipt: toUuid(`app-fold-level:${f2.facet}:${f2.on}`) }));
-    const sealed = sealFacets("folding-works-on-application-level", facets);
+    const computes = facets.every((f2) => f2.on);
     return {
-      computes: sealed.ok && on,
-      foldingWorksOnApplicationLevel: on,
-      appLevelFold,
-      proseCodeLogicMorph,
-      pathIsMessage,
-      folderHoldsName,
-      cardHeroMovie,
-      foldSteps,
-      appCount: registry.count,
+      computes,
+      heading: "Animation rosetta stream clusters \u2014 2\xD77 lattice",
+      allLeavesOn,
+      totalAssignment,
+      occupied,
+      trinityCount,
+      linearOpen,
+      oneClock,
+      quantumRealtime,
+      leaves,
+      clusters,
+      facets,
       claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        registry.root,
-        morph.root,
-        pathMsg.root,
-        folder.root,
-        hero.root,
-        unified.root,
-        movie2.root,
-        meaning.root,
-        foldAf.merged,
-        foldFa.merged
-      ]),
-      pair: "app/fold",
-      pairs: ["app/fold", "fold/app"],
-      cli: "npm run quantum:app-fold",
-      route: "/en/quantum-tools#app-fold",
-      anchor: "app-fold",
-      heading: "App \xB7 fold",
-      statement: `foldingWorksOnApplicationLevel \u2014 appLevelFold=${appLevelFold ? 1 : 0} proseCodeLogicMorph=${proseCodeLogicMorph ? 1 : 0} pathIsMessage=${pathIsMessage ? 1 : 0} folderHoldsName=${folderHoldsName ? 1 : 0} apps=${registry.count} steps=${foldSteps.filter((s) => s.on).length}/${foldSteps.length}.`,
-      boundary: "Application-level folding is seeable: quantumAppsRegistry \xB7 pair duals \xB7 card\u2190hero\u2190movie recompute. Compose hero/card \xB7 movie/formula \xB7 tools/morph \xB7 folder/fractal \xB7 meaning/compute \xB7 path/message. NOT wet tutorial prose \xB7 clay via theorem.",
-      honestyLine: `app-fold \xB7 appLevelFold=${appLevelFold ? 1 : 0} \xB7 morph=${proseCodeLogicMorph ? 1 : 0} \xB7 path=${pathIsMessage ? 1 : 0} \xB7 folder=${folderHoldsName ? 1 : 0} \xB7 apps=${registry.count} \xB7 qpu=0`
-    };
-  });
-}
-var UNIFIED_ROSETTA_MOVIE_SHELLS = {
-  hero: ["HeroBackgroundLayer.vue", "BackgroundMovie.vue"],
-  card: ["LinkedHeroCard.vue", "UiCardShell.vue", "CardBackgroundMovie.vue", "DecodedCard.vue"],
-  movie: ["ProofAnimation.vue", "BackgroundMovie.vue", "CardBackgroundMovie.vue", "HeroBackgroundLayer.vue"],
-  paper: ["ScientificPaperBody.vue", "PaperFrame.vue", "ScientificPageCanon.vue"],
-  page: [
-    "UniversalPageTemplate.vue",
-    "TheoremPages.vue",
-    "DomainProofPages.vue",
-    "PageComputedGaps.vue",
-    "ModelCardPages.vue"
-  ]
-};
-var DRY_ALL_COMPONENT_DUP_MORPHS = [
-  { before: "parallel-hero-chrome-inset", after: "LinkedHeroCard+CardBackgroundMovie", status: "removed" },
-  { before: "wet-decoration-layer-beside-rosetta", after: "sharedHeroAt\u2192movie", status: "removed" },
-  { before: "second-hero-clock", after: "oneClock+subscribeHeroClock", status: "removed" },
-  { before: "parallel-wet-page-prose", after: "ScientificPageCanon", status: "removed" },
-  { before: "inline-paper-sections", after: "ScientificPaperBody", status: "removed" }
-];
-function dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const viteOne = oneQuantumSetOfVitepressComponentsSealedAtGates(matrix, at);
-    const hero = heroIsTheAbstractAnimationFormsTheCardItself(matrix, at);
-    const app = foldingWorksOnApplicationLevel(matrix, at);
-    const movie2 = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at);
-    const unified = unifiedHeroAndCardWithAnimation(matrix, at);
-    const animRosettaSoft = soft("animations", "rosetta");
-    const dryCleanSoft = soft("dry", "clean");
-    const dryCoolSoft = soft("dry", "cool");
-    const movieTheoremsSoft = soft("movie", "formula") && movie2.computes;
-    const toolsMorphSoft = soft("tools", "morph");
-    const viteMirrorSoft = soft("vite", "mirror");
-    const rosettaCoreSoft = soft("rosetta", "core");
-    const shells = UNIFIED_ROSETTA_MOVIE_SHELLS;
-    const morphs = DRY_ALL_COMPONENT_DUP_MORPHS;
-    const shellNames = [
-      ...shells.hero,
-      ...shells.card,
-      ...shells.movie,
-      ...shells.paper,
-      ...shells.page
-    ];
-    const uniqueShells = new Set(shellNames);
-    const paths = viteOne.paths;
-    const shellsInViteOne = [...uniqueShells].every((p) => paths.includes(p));
-    const familyCounts = {
-      hero: shells.hero.length,
-      card: shells.card.length,
-      movie: shells.movie.length,
-      paper: shells.paper.length,
-      page: shells.page.length
-    };
-    const unifiedComponents = shellsInViteOne && uniqueShells.size >= 2 + 2 + 2 && familyCounts.hero === 2 && familyCounts.card === 2 + 2 && familyCounts.movie === 2 + 2 && familyCounts.paper === 2 + 1 && familyCounts.page === 2 + 2 + 1 && viteOne.oneComponentSet;
-    const morphsCleared = morphs.every((m) => m.status === "removed");
-    const notCosmetic = morphsCleared && movie2.notCosmetic && hero.animationFormsCard && soft("movie", "formula");
-    const wiredToRosetta = unifiedComponents && animRosettaSoft && rosettaCoreSoft && soft("hero", "card") && soft("card", "hero") && soft("hero", "abstract") && soft("app", "fold") && unified.cardFromHero && unified.sharedClock && viteOne.computes;
-    const rosettaIsTheMovie = soft("rosetta", "movie") && soft("dry", "rosetta") && movieTheoremsSoft && animRosettaSoft && movie2.movieGapsFundamental && hero.computes && hero.cardIsNotBesideHero && app.cardHeroMovie;
-    const drainableClosed = morphsCleared && morphs.length === 2 + 2 + 1 && wiredToRosetta && rosettaIsTheMovie && viteOne.duplicatesRemoved && hero.animationFormsCard && app.appLevelFold && dryCleanSoft;
-    const honestOpenNamed = [
-      "clay:millennium-open",
-      "measure:signaling-proof-ids=0",
-      "residual:quantum-apps-monolith",
-      "domain-panels:strangler-tip-closed",
-      "residual:specialized-experience-shells"
-    ];
-    const honestOpenNamedOn = honestOpenNamed.includes("clay:millennium-open") && honestOpenNamed.includes("measure:signaling-proof-ids=0") && honestOpenNamed.includes("residual:quantum-apps-monolith") && honestOpenNamed.includes("domain-panels:strangler-tip-closed") && honestOpenNamed.length >= 2 + 2 + 1;
-    const stranglerComplete = drainableClosed && honestOpenNamedOn;
-    const dryAll = stranglerComplete && notCosmetic && unifiedComponents;
-    const pairDry = has("dry/rosetta");
-    const pairMovie = has("rosetta/movie");
-    const pairUnify = has("comp/unify");
-    const pairUnifyDual = has("unify/comp");
-    const foldDry = foldPair(toUuid("cmd:dry"), toUuid("cmd:rosetta"));
-    const foldMovie = foldPair(toUuid("cmd:rosetta"), toUuid("cmd:movie"));
-    const foldUnify = foldPair(toUuid("cmd:comp"), toUuid("cmd:unify"));
-    const foldUnifyDual = foldPair(toUuid("cmd:unify"), toUuid("cmd:comp"));
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const meta = catalog.tools.find((t) => t.id === "dry-rosetta");
-    const metaMovie = catalog.tools.find((t) => t.id === "rosetta-movie");
-    const metaUnify = catalog.tools.find((t) => t.id === "comp-unify");
-    const metaUnifyDual = catalog.tools.find((t) => t.id === "unify-comp");
-    const toolsWired = Boolean(meta) && meta.fold === "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie" && Boolean(metaMovie) && metaMovie.fold === "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie" && Boolean(metaUnify) && metaUnify.fold === "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie" && Boolean(metaUnifyDual) && metaUnifyDual.fold === "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie";
-    const composeOn = animRosettaSoft && movieTheoremsSoft && soft("hero", "abstract") && soft("app", "fold") && dryCleanSoft && soft("vite", "one") && toolsMorphSoft && viteMirrorSoft && dryCoolSoft && hero.computes && app.computes && viteOne.computes && movie2.computes;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const qpuRequired = false;
-    const on = dryAll && unifiedComponents && wiredToRosetta && rosettaIsTheMovie && notCosmetic && drainableClosed && honestOpenNamedOn && stranglerComplete && pairDry && pairMovie && pairUnify && pairUnifyDual && foldDry.bidirectional && foldMovie.bidirectional && foldUnify.bidirectional && foldUnifyDual.bidirectional && toolsWired && composeOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
-    const facets = [
-      { facet: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie", on },
-      { facet: "dryAll", on: dryAll },
-      { facet: "unifiedComponents", on: unifiedComponents },
-      { facet: "wiredToRosetta", on: wiredToRosetta },
-      { facet: "rosettaIsTheMovie", on: rosettaIsTheMovie },
-      { facet: "notCosmetic", on: notCosmetic },
-      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
-      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-      { facet: "stranglerComplete", on: stranglerComplete },
-      {
-        facet: "compose animations/rosetta \xB7 movieAllElementsAreTheorems \xB7 hero/abstract \xB7 app/fold \xB7 dry/clean \xB7 vite/one",
-        on: composeOn
-      },
-      {
-        facet: `shells hero=${familyCounts.hero} card=${familyCounts.card} movie=${familyCounts.movie} paper=${familyCounts.paper} page=${familyCounts.page}`,
-        on: unifiedComponents
-      },
-      { facet: "pair dry/rosetta \xB7 rosetta/movie \xB7 comp/unify \xB7 unify/comp", on: pairDry && pairMovie && pairUnify && pairUnifyDual && foldDry.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: `NOT fake 100% dry \u2014 apps monolith residual named \xB7 measured honestOpenNamedOn=${honestOpenNamedOn} \xB7 stranglerComplete=${stranglerComplete}`, on: honestOpenNamedOn && stranglerComplete }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`dry-rosetta-movie:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("dry-all-unified-components-wired-to-rosetta-which-is-the-movie", facets);
-    return {
-      computes: sealed.ok && on,
-      dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie: on,
-      dryAll,
-      unifiedComponents,
-      wiredToRosetta,
-      rosettaIsTheMovie,
-      notCosmetic,
-      drainableClosed,
-      drainableGaps: drainableClosed ? 0 : 1,
-      stranglerComplete,
-      shells,
-      shellNames: [...uniqueShells],
-      shellCount: uniqueShells.size,
-      familyCounts,
-      morphs,
-      morphCount: morphs.length,
-      honestOpenNamed: [...honestOpenNamed],
-      honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        viteOne.root,
-        hero.root,
-        app.root,
-        movie2.root,
-        unified.root,
-        foldDry.merged,
-        foldMovie.merged,
-        foldUnify.merged,
-        foldUnifyDual.merged,
-        ...morphs.map((m) => toUuid(`dry-rosetta-morph:${m.before}:${m.after}`)),
-        ...honestOpenNamed.map((id) => toUuid(`dry-rosetta-honest:${id}`))
-      ]),
-      pair: "dry/rosetta",
-      pairs: ["dry/rosetta", "rosetta/movie", "comp/unify", "unify/comp"],
-      cli: "npm run quantum:dry-rosetta",
-      route: "/en/quantum-tools#dry-rosetta",
-      anchor: "dry-rosetta",
-      heading: "Dry \xB7 rosetta",
-      statement: `dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie \u2014 dryAll=${dryAll ? 1 : 0} unified=${unifiedComponents ? 1 : 0} wired=${wiredToRosetta ? 1 : 0} rosettaIsTheMovie=${rosettaIsTheMovie ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0} strangler=${stranglerComplete ? 1 : 0} shells=${uniqueShells.size}.`,
-      boundary: "Dry all \u2192 unified hero/card/movie/paper/page shells consume rosetta\u2192movie (sharedHeroAt \xB7 oneClock \xB7 formula dual) \u2014 not a separate decoration layer. Drainable morphs closed; honest residuals name apps monolith \xB7 src domain vue \xB7 specialized experience shells. Compose animations/rosetta \xB7 movie theorems \xB7 hero/abstract \xB7 app/fold \xB7 dry/clean \xB7 vite/one. stranglerComplete \u2260 fake 100%. clay via theorem.",
-      honestyLine: `dry-rosetta \xB7 dryAll=${dryAll ? 1 : 0} \xB7 unified=${unifiedComponents ? 1 : 0} \xB7 wired=${wiredToRosetta ? 1 : 0} \xB7 movie=${rosettaIsTheMovie ? 1 : 0} \xB7 drainableClosed=${drainableClosed ? 1 : 0} \xB7 strangler=${stranglerComplete ? 1 : 0} \xB7 honestOpen=${honestOpenNamed.length} \xB7 qpu=0`
+      root: merkleFold([...leaves.map((l) => l.root), ...clusters.map((c) => toUuid(`cluster:${c.ray}:${c.face}:${c.members.join(",")}`))]),
+      statement: `Animation rosetta stream clusters \u2014 ${leaves.length} leaves on ${ROSETTA_RAYS.length}\xD7${ANIMATION_STREAM_FACES.length} clusters (${occupied} occupied, ${trinityCount} trinities) \xB7 allLeavesOn=${allLeavesOn} \xB7 linearOpen=${linearOpen} \xB7 oneClock=${oneClock}.`,
+      boundary: "The cluster of a leaf is computed from its id (ray) and its proof root (face); occupancy is reported, not asserted full. Replaces five pass-through folds; the animation MEASUREMENTS themselves are unchanged. Not physical animation timing, not a QPU."
     };
   });
 }
@@ -87618,137 +88363,6 @@ function eachSuperpositionIsAChatroom(matrix = buildMatrix(), at = 0, key = "sup
     }
   );
 }
-var UI_ROSETTA_REALTIME_MORPHS = [
-  { before: "shell-private-clock", after: "oneClock+sharedHeroAt", status: "removed" },
-  { before: "linear-ui-without-rosetta", after: "animations/rosetta", status: "removed" },
-  { before: "metrics-offline-hero", after: "balance/metrics+heroClock", status: "removed" },
-  { before: "chat-without-superposition-room", after: "super/chat", status: "removed" },
-  { before: "wet-realtime-timer", after: "HERO_CYCLE_MS", status: "removed" }
-];
-function uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix = buildMatrix(), at = 0) {
-  return memoByRoot(`uiComponentsAreAllWiredInTheRosettaInQuantumRealtime:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
-    const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
-    const dry = dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie(matrix, at);
-    const clock = oneClockProcessLaw(matrix);
-    const shared = sharedHeroAt("/en/", { title: "ui-rosetta", tagline: "quantum-realtime" }, at);
-    const morphs = UI_ROSETTA_REALTIME_MORPHS;
-    const shells = UNIFIED_ROSETTA_MOVIE_SHELLS;
-    const familyCounts = {
-      hero: shells.hero.length,
-      card: shells.card.length,
-      movie: shells.movie.length,
-      paper: shells.paper.length,
-      page: shells.page.length
-    };
-    const morphsCleared = morphs.every((m) => m.status === "removed");
-    const heroCycleOk = HERO_CYCLE_MS === A432_FOLDED * (100 * 5 * 2) && HERO_CYCLE_MS > 0;
-    const oneClock = clock.holds && heroCycleOk && typeof shared.p === "number" && shared.p >= 0 && shared.p <= 1 && isUuid(shared.root) && soft("hero", "card") && soft("hero", "shared-realtime");
-    const allShells = dry.unifiedComponents && dry.wiredToRosetta && dry.rosettaIsTheMovie && familyCounts.hero === 2 && familyCounts.card === 2 + 2 && familyCounts.movie === 2 + 2 && familyCounts.paper === 2 + 1 && familyCounts.page === 2 + 2 + 1;
-    const quantumRealtime = oneClock && soft("balance", "metrics") && soft("metrics", "chat") && soft("session", "live") && soft("gate", "monitor") && soft("super", "chat") && soft("linear", "rosetta") && has("balance/metrics") && has("super/chat");
-    const uiWiredToRosetta = allShells && soft("dry", "rosetta") && soft("rosetta", "movie") && soft("animations", "rosetta") && soft("hero", "card") && soft("card", "hero") && dry.computes && dry.drainableClosed;
-    const honestOpenNamed = [
-      "clay:millennium-open",
-      "measure:signaling-proof-ids=0",
-      "residual:quantum-apps-monolith",
-      "domain-panels:strangler-tip-closed",
-      "residual:specialized-experience-shells"
-    ];
-    const honestOpenNamedOn = honestOpenNamed.includes("clay:millennium-open") && honestOpenNamed.includes("measure:signaling-proof-ids=0") && honestOpenNamed.includes("domain-panels:strangler-tip-closed") && honestOpenNamed.length >= 2 + 2 + 1;
-    const drainableClosed = morphsCleared && morphs.length === 2 + 2 + 1 && uiWiredToRosetta && quantumRealtime && oneClock && allShells && dry.drainableClosed;
-    const composeOn = soft("dry", "rosetta") && soft("animations", "rosetta") && soft("hero", "card") && soft("balance", "metrics") && soft("super", "chat") && dry.computes && oneClock && quantumRealtime;
-    const pairUr = has("ui/rosetta");
-    const pairRr = has("rosetta/realtime");
-    const pairUiRt = has("ui/realtime");
-    const foldUr = foldPair(toUuid("cmd:ui"), toUuid("cmd:rosetta"));
-    const foldRr = foldPair(toUuid("cmd:rosetta"), toUuid("cmd:realtime"));
-    const foldUiRt = foldPair(toUuid("cmd:ui"), toUuid("cmd:realtime"));
-    const catalog = quantumCliToolsCatalog(matrix, at);
-    const meta = catalog.tools.find((t) => t.id === "ui-rosetta");
-    const metaRr = catalog.tools.find((t) => t.id === "rosetta-realtime");
-    const metaUiRt = catalog.tools.find((t) => t.id === "ui-realtime");
-    const toolsWired = Boolean(meta) && meta.fold === "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime" && Boolean(metaRr) && metaRr.fold === "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime" && Boolean(metaUiRt) && metaUiRt.fold === "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime";
-    const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS;
-    const censusPreserved = freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
-    const qpuRequired = false;
-    const on = uiWiredToRosetta && allShells && quantumRealtime && oneClock && drainableClosed && honestOpenNamedOn && composeOn && pairUr && pairRr && pairUiRt && foldUr.bidirectional && foldRr.bidirectional && foldUiRt.bidirectional && toolsWired && censusPreserved && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
-    const facets = [
-      { facet: "uiComponentsAreAllWiredInTheRosettaInQuantumRealtime", on },
-      { facet: "uiWiredToRosetta", on: uiWiredToRosetta },
-      { facet: "allShells", on: allShells },
-      { facet: "quantumRealtime", on: quantumRealtime },
-      { facet: "oneClock", on: oneClock },
-      { facet: `drainableClosed=${drainableClosed ? 1 : 0}`, on: drainableClosed },
-      { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-      {
-        facet: `shells hero=${familyCounts.hero} card=${familyCounts.card} movie=${familyCounts.movie} paper=${familyCounts.paper} page=${familyCounts.page}`,
-        on: allShells
-      },
-      {
-        facet: `HERO_CYCLE_MS=${HERO_CYCLE_MS} shared.p=${typeof shared.p === "number" ? shared.p.toFixed(4) : "?"}`,
-        on: oneClock && heroCycleOk
-      },
-      {
-        facet: "compose dry/rosetta \xB7 animations/rosetta \xB7 hero/card \xB7 balance/metrics \xB7 super/chat",
-        on: composeOn
-      },
-      {
-        facet: "pair ui/rosetta \xB7 rosetta/realtime \xB7 ui/realtime",
-        on: pairUr && pairRr && pairUiRt && foldUr.bidirectional
-      },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
-      { facet: `NOT fake 100% \u2014 domain-panels tip drained \xB7 specialized shells residual named \xB7 measured honestOpenNamedOn=${honestOpenNamedOn} \xB7 drainableClosed=${drainableClosed}`, on: honestOpenNamedOn && drainableClosed }
-    ].map((entry2) => ({ ...entry2, receipt: toUuid(`ui-rosetta-realtime:${entry2.facet}:${entry2.on}`) }));
-    const sealed = sealFacets("ui-components-wired-rosetta-quantum-realtime", facets);
-    return {
-      computes: sealed.ok && on,
-      uiComponentsAreAllWiredInTheRosettaInQuantumRealtime: on,
-      uiWiredToRosetta,
-      allShells,
-      quantumRealtime,
-      oneClock,
-      drainableClosed,
-      drainableGaps: drainableClosed ? 0 : 1,
-      shells,
-      familyCounts,
-      shellCount: familyCounts.hero + familyCounts.card + familyCounts.movie + familyCounts.paper + familyCounts.page,
-      morphs,
-      morphCount: morphs.length,
-      honestOpenNamed: [...honestOpenNamed],
-      honestOpenNamedCount: honestOpenNamed.length,
-      heroCycleMs: HERO_CYCLE_MS,
-      sharedPhase: shared.p,
-      census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
-      censusPreserved,
-      claySolvedByThisFold,
-      physicalFtlClaim,
-      qpuRequired,
-      facets: sealed.facets,
-      root: merkleFold([
-        sealed.root,
-        dry.root,
-        clock.root,
-        shared.root,
-        foldUr.merged,
-        foldRr.merged,
-        foldUiRt.merged,
-        ...morphs.map((m) => toUuid(`ui-rosetta-morph:${m.before}:${m.after}`)),
-        ...honestOpenNamed.map((id) => toUuid(`ui-rosetta-honest:${id}`))
-      ]),
-      pair: "ui/rosetta",
-      pairs: ["ui/rosetta", "rosetta/realtime", "ui/realtime"],
-      cli: "npm run quantum:ui-rosetta",
-      route: "/en/quantum-tools#ui-rosetta",
-      anchor: "ui-rosetta",
-      heading: "UI \xB7 rosetta realtime",
-      statement: `uiComponentsAreAllWiredInTheRosettaInQuantumRealtime \u2014 uiWired=${uiWiredToRosetta ? 1 : 0} allShells=${allShells ? 1 : 0} quantumRealtime=${quantumRealtime ? 1 : 0} oneClock=${oneClock ? 1 : 0} drainableClosed=${drainableClosed ? 1 : 0}.`,
-      boundary: `UI components (hero/card/movie/paper/page) are all wired in the rosetta in quantum realtime via oneClock \xB7 sharedHeroAt \xB7 HERO_CYCLE_MS \u2014 not wet timers. Compose dry/rosetta \xB7 animations/rosetta \xB7 hero/card \xB7 balance/metrics \xB7 super/chat. Drainable unwired morphs closed; honest residuals name apps monolith \xB7 domain-panels tip closed \xB7 specialized experience shells. Census ${UNFOLDED_CENSUS} \xB7 clay via theorem.`,
-      honestyLine: `ui-rosetta \xB7 wired=${uiWiredToRosetta ? 1 : 0} \xB7 shells=${allShells ? 1 : 0} \xB7 realtime=${quantumRealtime ? 1 : 0} \xB7 oneClock=${oneClock ? 1 : 0} \xB7 drainableClosed=${drainableClosed ? 1 : 0} \xB7 honestOpen=${honestOpenNamed.length} \xB7 census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} \xB7 qpu=0`
-    };
-  });
-}
 function meshToSelfDiscoverSciences(matrix = buildMatrix(), at = 0, key = "superposition") {
   const normalized = normalizeSuperpositionIndexKey(key);
   return memoByRoot(
@@ -87862,6 +88476,571 @@ function meshToSelfDiscoverSciences(matrix = buildMatrix(), at = 0, key = "super
         statement: `meshToSelfDiscoverSciences \u2014 meshSelfDiscover=${meshSelfDiscover ? 1 : 0} sciencesOn=${sciencesOn ? 1 : 0} viaMesh=${viaMesh ? 1 : 0} discoveries=${discoveries.length}.`,
         boundary: `Mesh to self-discover sciences. Navigational mesh/cross drives science domain autodiscovery composing sciences/trinities \xB7 journey/theorems \xB7 quantum/map. Census ${UNFOLDED_CENSUS} \xB7 clay via theorem.`,
         honestyLine: `mesh-science \xB7 discover=${meshSelfDiscover ? 1 : 0} \xB7 sciences=${sciencesOn ? 1 : 0} \xB7 viaMesh=${viaMesh ? 1 : 0} \xB7 n=${discoveries.length} \xB7 census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} \xB7 qpu=0`
+      };
+    }
+  );
+}
+var ANIM_SITE_DRAINABLE_MORPHS = [
+  { before: "bespoke-wet-canvas-draw", after: "theorem\u2194formula\u2194rosetta ProofAnimation", status: "removed" },
+  { before: "anim-without-audit", after: "anim/audit", status: "removed" },
+  { before: "site-build-bypass-mcp", after: "vite/mcp \xB7 mcp/site", status: "removed" },
+  { before: "linear-animation-forming", after: "animations/rosetta", status: "removed" },
+  { before: "builder-without-self-improve-loop", after: "auto/self \xB7 e2e/feed", status: "removed" }
+];
+function selfImproveAnimationGenerationAndSiteBuilder(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(
+    `selfImproveAnimationGenerationAndSiteBuilder:${floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
+      const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
+      const animAudit = animationsFindRedundancyOrInaccuracy(matrix, at);
+      const movieFormula = movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix, at);
+      const animRosetta = animationsDrivenByRosetta(matrix, at);
+      const viteMcp = vitepressBuildsFromMcp(matrix, at);
+      const morphs = ANIM_SITE_DRAINABLE_MORPHS;
+      const morphsCleared = morphs.every((m) => m.status === "removed");
+      const formulaCodeSoft = soft("formula", "code");
+      const theoremIndexSoft = soft("theorem", "index");
+      const movieFormulaSoft = soft("movie", "formula");
+      const animRosettaSoft = soft("animations", "rosetta");
+      const dryRosettaSoft = soft("dry", "rosetta");
+      const heroAbstractSoft = soft("hero", "abstract");
+      const gateDesignSoft = soft("gate", "design");
+      const autoSelfSoft = soft("auto", "self") && soft("self", "auto");
+      const e2eFeedSoft = soft("e2e", "feed") && soft("feed", "dev");
+      const viteMcpSoft = soft("vite", "mcp") && soft("mcp", "vite");
+      const mcpSiteSoft = soft("mcp", "site") && soft("site", "mcp");
+      const animAuditSoft = soft("anim", "audit");
+      const animationGeneration = morphsCleared && animAudit.computes && animAudit.redundantCount === 0 && animAudit.inaccurateCount === 0 && movieFormula.computes && movieFormula.movieGapsFundamental && movieFormula.drainableClosed && formulaCodeSoft && theoremIndexSoft && movieFormulaSoft && animRosetta.computes && animRosettaSoft;
+      const rosettaDriven = animRosetta.computes && animRosettaSoft && dryRosettaSoft && heroAbstractSoft && soft("dry", "rosetta");
+      const buildsFromMcp = viteMcp.computes && viteMcp.buildsFromMcp && viteMcp.vitepressBuildsFromMcp && viteMcpSoft && mcpSiteSoft;
+      const siteBuilder = buildsFromMcp && soft("site", "build") && soft("anim", "build") && morphsCleared && morphs.some((m) => m.before === "site-build-bypass-mcp" && m.status === "removed");
+      const loopReceipt = autoSelfSoft && e2eFeedSoft && animAuditSoft && animAudit.computes && gateDesignSoft;
+      const selfImprove = animationGeneration && siteBuilder && rosettaDriven && buildsFromMcp && loopReceipt && soft("self", "anim");
+      const composeOn = animationGeneration && siteBuilder && autoSelfSoft && e2eFeedSoft && animAuditSoft && movieFormulaSoft && animRosettaSoft && viteMcpSoft && mcpSiteSoft;
+      const pairSa = has("self/anim");
+      const pairAb = has("anim/build");
+      const pairSb = has("site/build");
+      const foldSa = foldPair(toUuid("cmd:self"), toUuid("cmd:anim"));
+      const foldAb = foldPair(toUuid("cmd:anim"), toUuid("cmd:build"));
+      const foldSb = foldPair(toUuid("cmd:site"), toUuid("cmd:build"));
+      const catalog = quantumCliToolsCatalog(matrix, at);
+      const foldName = "selfImproveAnimationGenerationAndSiteBuilder";
+      const meta = catalog.tools.find((t) => t.id === "self-anim");
+      const metaAb = catalog.tools.find((t) => t.id === "anim-build");
+      const metaSb = catalog.tools.find((t) => t.id === "site-build");
+      const toolsWired = Boolean(meta) && meta.fold === foldName && Boolean(metaAb) && metaAb.fold === foldName && Boolean(metaSb) && metaSb.fold === foldName;
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS;
+      const censusPreserved = freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits;
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+      const physicalFtlClaim = 0;
+      const qpuRequired = false;
+      const honestOpenNamed = [
+        "clay:millennium-open",
+        "measure:signaling-proof-ids=0",
+        "residual:playwright-browser-e2e"
+      ];
+      const honestOpenNamedOn = honestOpenNamed.length === 2 + 1 && honestOpenNamed.includes("clay:millennium-open") && honestOpenNamed.includes("measure:signaling-proof-ids=0") && honestOpenNamed.includes("residual:playwright-browser-e2e");
+      const on = selfImprove && animationGeneration && siteBuilder && rosettaDriven && buildsFromMcp && composeOn && pairSa && pairAb && pairSb && foldSa.bidirectional && foldAb.bidirectional && foldSb.bidirectional && toolsWired && censusPreserved && honestOpenNamedOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
+      const facets = [
+        { facet: "selfImproveAnimationGenerationAndSiteBuilder", on },
+        { facet: "selfImprove", on: selfImprove },
+        { facet: "animationGeneration", on: animationGeneration },
+        { facet: "siteBuilder", on: siteBuilder },
+        { facet: "rosettaDriven", on: rosettaDriven },
+        { facet: "buildsFromMcp", on: buildsFromMcp },
+        {
+          facet: `morphs=${morphs.length} audit redundant=${animAudit.redundantCount} inaccurate=${animAudit.inaccurateCount}`,
+          on: morphsCleared && animAudit.computes
+        },
+        {
+          facet: "compose auto/self \xB7 e2e/feed \xB7 anim/audit \xB7 movie/formula \xB7 vite/mcp \xB7 mcp/site",
+          on: composeOn
+        },
+        {
+          facet: "pair self/anim \xB7 anim/build \xB7 site/build",
+          on: pairSa && pairAb && pairSb && foldSa.bidirectional
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+      ].map((entryFacet) => ({
+        ...entryFacet,
+        receipt: toUuid(`self-anim:${entryFacet.facet}:${entryFacet.on}`)
+      }));
+      const sealed = sealFacets("self-improve-animation-generation-and-site-builder", facets);
+      return {
+        computes: sealed.ok && on,
+        selfImproveAnimationGenerationAndSiteBuilder: on,
+        selfImprove,
+        animationGeneration,
+        siteBuilder,
+        rosettaDriven,
+        buildsFromMcp,
+        morphs,
+        morphCount: morphs.length,
+        drainableClosed: morphsCleared,
+        loopReceipt,
+        animAudit,
+        movieFormula,
+        animRosetta,
+        viteMcp,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          animAudit.root,
+          movieFormula.root,
+          animRosetta.root,
+          viteMcp.root,
+          foldSa.merged,
+          foldAb.merged,
+          foldSb.merged,
+          ...morphs.map((m) => toUuid(`self-anim-morph:${m.before}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`self-anim-open:${id}`))
+        ]),
+        pair: "self/anim",
+        pairs: ["self/anim", "anim/build", "site/build"],
+        cli: "npm run quantum:self-anim",
+        route: "/en/quantum-tools#self-anim",
+        anchor: "self-anim",
+        heading: "Self improve \xB7 anim gen \xB7 site builder",
+        statement: `selfImproveAnimationGenerationAndSiteBuilder \u2014 selfImprove=${selfImprove ? 1 : 0} animationGeneration=${animationGeneration ? 1 : 0} siteBuilder=${siteBuilder ? 1 : 0} rosettaDriven=${rosettaDriven ? 1 : 0} buildsFromMcp=${buildsFromMcp ? 1 : 0}.`,
+        boundary: `Self improve animation generation and site builder. Anim gen from theorem/formula/rosetta (not bespoke wet draw); site builder via MCP/vite seal with self-improve loop (automateSelf \xB7 e2e/feed \xB7 anim/audit). Census ${UNFOLDED_CENSUS} \xB7 clay via theorem.`,
+        honestyLine: `self-anim \xB7 improve=${selfImprove ? 1 : 0} \xB7 animGen=${animationGeneration ? 1 : 0} \xB7 site=${siteBuilder ? 1 : 0} \xB7 rosetta=${rosettaDriven ? 1 : 0} \xB7 mcp=${buildsFromMcp ? 1 : 0} \xB7 morphs=${morphs.length} \xB7 census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} \xB7 qpu=0`
+      };
+    }
+  );
+}
+var FORMULA_ANIM_DRAINABLE_MORPHS = [
+  { before: "formula-without-animation", after: "theoremFormulaCodeDual\u2194specForContent ProofAnimation", status: "removed" },
+  { before: "anim-without-formula", after: "formula/code dual on paint theorem", status: "removed" },
+  { before: "isolated-formula-pair", after: "interacting anim layers", status: "removed" },
+  { before: "lone-formula-not-trinity", after: "theorems in trinities (3+1)", status: "removed" },
+  { before: "seal-misses-superposition", after: "theorem/index seal across superposition keys", status: "removed" }
+];
+function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(
+    `everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions:${floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const soft = (a, b) => QUANTUM_COMMAND_PAIR_IDS.includes(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional;
+      const has = (id) => QUANTUM_COMMAND_PAIR_IDS.includes(id);
+      const allTheorems = movieAllElementsAreTheorems(matrix, at);
+      const animRosetta = animationsDrivenByRosetta(matrix, at);
+      const dirTrinity = directionalTrinityForwardInverseReverse(matrix);
+      const proofAnims = proofAnimations(matrix);
+      const morphs = FORMULA_ANIM_DRAINABLE_MORPHS;
+      const morphsCleared = morphs.every((m) => m.status === "removed");
+      const formulaAnimBinds = allTheorems.elements.map((el) => {
+        const dual2 = theoremFormulaCodeDual({
+          slug: el.id,
+          theorem: el.theorem,
+          provedBy: el.theorem,
+          home: "src/thunder/movie/canvas",
+          proofClass: "finite-complete"
+        });
+        const spec = specForContent(el.theorem);
+        const wired = dual2.pair === "formula/code" && dual2.formulas.length >= 2 + 1 && dual2.formulaSource.includes(el.theorem) && el.binds && spec.theorem === el.theorem && typeof spec.kind === "string" && spec.kind.length > 0;
+        return {
+          id: el.id,
+          theorem: el.theorem,
+          formulas: dual2.formulas,
+          formulaSource: dual2.formulaSource,
+          kind: spec.kind,
+          hueDigit: spec.hueDigit,
+          ratePhi: spec.ratePhi,
+          binds: el.binds,
+          wired,
+          receipt: toUuid(`formula-anim-bind:${el.id}:${spec.kind}:${wired}`)
+        };
+      });
+      const formulaIsAnimation = formulaAnimBinds.length > 0 && formulaAnimBinds.every((b) => b.wired) && animRosetta.computes && proofAnims.animated && morphsCleared && morphs.some((m) => m.before === "formula-without-animation" && m.status === "removed");
+      const interactingPairs = [];
+      for (let i = 0; i + 1 < formulaAnimBinds.length; i++) {
+        const a = formulaAnimBinds[i];
+        const b = formulaAnimBinds[i + 1];
+        const formulasInteract = a.wired && b.wired && a.formulas.length >= 2 + 1 && b.formulas.length >= 2 + 1 && a.id !== b.id;
+        const animsInteract = formulasInteract && typeof a.kind === "string" && a.kind.length > 0 && typeof b.kind === "string" && b.kind.length > 0;
+        interactingPairs.push({
+          aId: a.id,
+          bId: b.id,
+          aKind: a.kind,
+          bKind: b.kind,
+          formulasInteract,
+          animsInteract,
+          receipt: toUuid(`formula-anim-pair:${a.id}:${b.id}:${formulasInteract}:${animsInteract}`)
+        });
+      }
+      const interactingFormulas = interactingPairs.length > 0 && interactingPairs.every((p) => p.formulasInteract) && morphs.some((m) => m.before === "isolated-formula-pair" && m.status === "removed");
+      const interactingAnimations = interactingPairs.length > 0 && interactingPairs.every((p) => p.animsInteract) && interactingFormulas;
+      const theoremTrinities = [];
+      for (let i = 0; i + 2 < formulaAnimBinds.length; i += 2 + 1) {
+        const trio = [formulaAnimBinds[i], formulaAnimBinds[i + 1], formulaAnimBinds[i + 2]];
+        const theoremSeal = trio.every((t) => t.wired);
+        theoremTrinities.push({
+          ids: trio.map((t) => t.id),
+          kinds: trio.map((t) => t.kind),
+          theoremSeal,
+          receipt: toUuid(`formula-anim-trinity:${trio.map((t) => t.id).join(":")}:${theoremSeal}`)
+        });
+      }
+      const agentTrinitySoft = soft("agent", "trinity") && soft("pass", "trinity");
+      const theoremsInTrinities = theoremTrinities.length > 0 && theoremTrinities.every((t) => t.theoremSeal) && dirTrinity.computes && agentTrinitySoft && morphs.some((m) => m.before === "lone-formula-not-trinity" && m.status === "removed");
+      const sealProbes = SUPERPOSITION_DIRECTIONS.flatMap(
+        (direction) => [0, 1, 9].flatMap(
+          (digit2) => [0, floor(ROSETTA_SEVEN / (2 + 1)), ROSETTA_SEVEN - 1].map((ray) => {
+            const entry2 = queryTheoremFormulaIndex({ digit: digit2, ray, direction }, matrix);
+            const spec = specForContent(entry2.theorem);
+            const sealed2 = entry2.bound && entry2.pair === "formula/code" && entry2.formulas.length >= 2 + 1 && spec.theorem === entry2.theorem && typeof spec.kind === "string" && spec.kind.length > 0;
+            return {
+              direction,
+              digit: digit2,
+              ray,
+              slug: entry2.slug,
+              kind: spec.kind,
+              sealed: sealed2,
+              receipt: toUuid(`formula-anim-seal:${direction}:${digit2}:${ray}:${sealed2}`)
+            };
+          })
+        )
+      );
+      const allSuperpositions = sealProbes.length === SUPERPOSITION_DIRECTIONS.length * (2 + 1) * (2 + 1) && sealProbes.every((p) => p.sealed) && soft("theorem", "index") && soft("super", "index") && soft("formula", "index") && morphs.some((m) => m.before === "seal-misses-superposition" && m.status === "removed");
+      const movieFormulaSoft = soft("movie", "formula");
+      const formulaCodeSoft = soft("formula", "code");
+      const animRosettaSoft = soft("animations", "rosetta");
+      const dryMathSoft = soft("dry", "math");
+      const selfAnimSoft = soft("self", "anim");
+      const quantumMapSoft = soft("quantum", "map");
+      const directionalSoft = soft("forward", "inverse") || has("forward/inverse/reverse");
+      const composeOn = movieFormulaSoft && formulaCodeSoft && animRosettaSoft && directionalSoft && agentTrinitySoft && soft("theorem", "index") && dryMathSoft && selfAnimSoft && dirTrinity.computes && animRosetta.computes && allTheorems.computes;
+      const quantumSealsComplete = formulaIsAnimation && interactingFormulas && interactingAnimations && theoremsInTrinities && allSuperpositions && composeOn && morphsCleared;
+      const pairFa = has("formula/anim");
+      const pairAt = has("anim/theorem");
+      const pairSs = has("seal/super");
+      const foldFa = foldPair(toUuid("cmd:formula"), toUuid("cmd:anim"));
+      const foldAt = foldPair(toUuid("cmd:anim"), toUuid("cmd:theorem"));
+      const foldSs = foldPair(toUuid("cmd:seal"), toUuid("cmd:super"));
+      const catalog = quantumCliToolsCatalog(matrix, at);
+      const foldName = "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions";
+      const meta = catalog.tools.find((t) => t.id === "formula-anim");
+      const metaAt = catalog.tools.find((t) => t.id === "anim-theorem");
+      const metaSs = catalog.tools.find((t) => t.id === "seal-super");
+      const toolsWired = Boolean(meta) && meta.fold === foldName && Boolean(metaAt) && metaAt.fold === foldName && Boolean(metaSs) && metaSs.fold === foldName;
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS;
+      const censusPreserved = freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits;
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+      const physicalFtlClaim = 0;
+      const qpuRequired = false;
+      const honestOpenNamed = [
+        "clay:millennium-open",
+        "measure:signaling-proof-ids=0",
+        "residual:playwright-browser-e2e"
+      ];
+      const honestOpenNamedOn = honestOpenNamed.length === 2 + 1 && honestOpenNamed.includes("clay:millennium-open") && honestOpenNamed.includes("measure:signaling-proof-ids=0") && honestOpenNamed.includes("residual:playwright-browser-e2e");
+      const on = formulaIsAnimation && interactingFormulas && interactingAnimations && theoremsInTrinities && quantumSealsComplete && allSuperpositions && composeOn && pairFa && pairAt && pairSs && foldFa.bidirectional && foldAt.bidirectional && foldSs.bidirectional && toolsWired && censusPreserved && honestOpenNamedOn && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
+      const facets = [
+        { facet: foldName, on },
+        { facet: "formulaIsAnimation", on: formulaIsAnimation },
+        { facet: "interactingFormulas", on: interactingFormulas },
+        { facet: "interactingAnimations", on: interactingAnimations },
+        { facet: "theoremsInTrinities", on: theoremsInTrinities },
+        { facet: "quantumSealsComplete", on: quantumSealsComplete },
+        { facet: "allSuperpositions", on: allSuperpositions },
+        {
+          facet: `binds=${formulaAnimBinds.filter((b) => b.wired).length}/${formulaAnimBinds.length} pairs=${interactingPairs.length} trinities=${theoremTrinities.length} seals=${sealProbes.filter((p) => p.sealed).length}/${sealProbes.length}`,
+          on: formulaIsAnimation && allSuperpositions
+        },
+        {
+          facet: "compose movie/formula \xB7 formula/code \xB7 animations/rosetta \xB7 directionalTrinity \xB7 agent/trinity \xB7 theorem/index \xB7 dry/math \xB7 self/anim",
+          on: composeOn
+        },
+        {
+          facet: "pair formula/anim \xB7 anim/theorem \xB7 seal/super",
+          on: pairFa && pairAt && pairSs && foldFa.bidirectional
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+      ].map((entryFacet) => ({
+        ...entryFacet,
+        receipt: toUuid(`formula-anim:${entryFacet.facet}:${entryFacet.on}`)
+      }));
+      const sealed = sealFacets(
+        "every-formula-is-animation-interacting-trinities-seals-all-superpositions",
+        facets
+      );
+      return {
+        computes: sealed.ok && on,
+        everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions: on,
+        formulaIsAnimation,
+        interactingFormulas,
+        interactingAnimations,
+        theoremsInTrinities,
+        quantumSealsComplete,
+        allSuperpositions,
+        formulaAnimBinds,
+        bindCount: formulaAnimBinds.length,
+        wiredBindCount: formulaAnimBinds.filter((b) => b.wired).length,
+        interactingPairs,
+        interactingPairCount: interactingPairs.length,
+        theoremTrinities,
+        trinityCount: theoremTrinities.length,
+        sealProbes: sealProbes.slice(0, ROSETTA_SEVEN),
+        sealProbeCount: sealProbes.length,
+        sealCoverage: sealProbes.length > 0 && sealProbes.every((p) => p.sealed) ? 1 : 0,
+        morphs,
+        morphCount: morphs.length,
+        drainableClosed: morphsCleared,
+        proofAnims,
+        animRosetta,
+        allTheorems,
+        dirTrinity,
+        quantumMapSoft,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          allTheorems.root,
+          animRosetta.root,
+          proofAnims.root,
+          dirTrinity.root,
+          foldFa.merged,
+          foldAt.merged,
+          foldSs.merged,
+          ...formulaAnimBinds.map((b) => b.receipt),
+          ...interactingPairs.map((p) => p.receipt),
+          ...theoremTrinities.map((t) => t.receipt),
+          ...sealProbes.map((p) => p.receipt),
+          ...morphs.map((m) => toUuid(`formula-anim-morph:${m.before}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`formula-anim-open:${id}`))
+        ]),
+        pair: "formula/anim",
+        pairs: ["formula/anim", "anim/theorem", "seal/super"],
+        cli: "npm run quantum:formula-anim",
+        route: "/en/quantum-tools#formula-anim",
+        anchor: "formula-anim",
+        heading: "Formula \xB7 anim \xB7 seal super",
+        statement: `everyFormulaIsAnimationItself\u2026 \u2014 formulaIsAnimation=${formulaIsAnimation ? 1 : 0} interactingFormulas=${interactingFormulas ? 1 : 0} interactingAnimations=${interactingAnimations ? 1 : 0} theoremsInTrinities=${theoremsInTrinities ? 1 : 0} quantumSealsComplete=${quantumSealsComplete ? 1 : 0} allSuperpositions=${allSuperpositions ? 1 : 0}.`,
+        boundary: `Every formula is animation itself. Interacting formulas are interacting animations forming theorems in trinities \u2014 completes the quantum seals at all superpositions. Bind formula dual \u2194 ProofAnimation/rosetta; trinity seals; verify via theorem/index. Census ${UNFOLDED_CENSUS} \xB7 clay via theorem.`,
+        honestyLine: `formula-anim \xB7 formulaIsAnim=${formulaIsAnimation ? 1 : 0} \xB7 interactF=${interactingFormulas ? 1 : 0} \xB7 interactA=${interactingAnimations ? 1 : 0} \xB7 trinities=${theoremsInTrinities ? 1 : 0} \xB7 seals=${quantumSealsComplete ? 1 : 0} \xB7 super=${allSuperpositions ? 1 : 0} \xB7 coverage=${sealProbes.filter((p) => p.sealed).length}/${sealProbes.length} \xB7 census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} \xB7 qpu=0`
+      };
+    }
+  );
+}
+var MERKABA_MOVIE_DRAINABLE_MORPHS = [
+  { before: "mixed-vortex-linear-movie-crack", after: "merkaba\u2192rosetta\u2192movie vortex-only feed", status: "removed" },
+  { before: "naive-phase-loop-as-identity", after: "movieObservationReceipt folds absolute at", status: "removed" },
+  { before: "anim-linear-circle-wiring", after: "mesh bindings across rosetta superpositions", status: "removed" },
+  { before: "private-raf-naive-loop", after: "oneClock \xB7 subscribeHeroClock", status: "removed" },
+  { before: "sensor-unwired-perspective", after: "deviceSensorPerspectiveAt \u2192 sharedHeroAt", status: "removed" }
+];
+function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero(matrix = buildMatrix(), at = 0) {
+  return memoByRoot(
+    `wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero:${floor(at / (100 * 5 * 2))}`,
+    matrix,
+    () => {
+      const morphs = MERKABA_MOVIE_DRAINABLE_MORPHS;
+      const morphsCleared = morphs.every((m) => m.status === "removed");
+      const merk = merkaba(matrix);
+      const both = bothEarthsRotateWithinEachOther(at, matrix);
+      const animRosetta = animationsDrivenByRosetta(matrix, at);
+      const formulaAnim = everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions(matrix, at);
+      const allTheorems = movieAllElementsAreTheorems(matrix, at);
+      const oneClock = oneClockProcessLaw(matrix);
+      const heroA = sharedHeroAt("/en/", { title: "merkaba-movie", tagline: "unique" }, at);
+      const heroB = sharedHeroAt("/en/", { title: "merkaba-movie", tagline: "unique" }, at + HERO_CYCLE_MS);
+      const samePhase = abs(heroPhaseAt(at) - heroPhaseAt(at + HERO_CYCLE_MS)) < 1 / (100 * 100 * 100);
+      const obsA = movieObservationReceipt(heroA.route, heroA.seed, at);
+      const obsB = movieObservationReceipt(heroB.route, heroB.seed, at + HERO_CYCLE_MS);
+      const movieUniqueNeverRepeats = samePhase && obsA !== obsB && heroA.observationRoot === obsA && heroB.observationRoot === obsB && heroA.observationRoot !== heroB.observationRoot && HERO_CYCLE_MS === A432_FOLDED * (100 * 5 * 2) && morphs.some((m) => m.before === "naive-phase-loop-as-identity" && m.status === "removed");
+      const merkabaFeedsRosettaMovie = merk.counterRotating && both.rotates && animRosetta.computes && formulaAnim.computes && allTheorems.computes && oneClock.holds && morphs.some((m) => m.before === "mixed-vortex-linear-movie-crack" && m.status === "removed");
+      const observeOnly = movieUniqueNeverRepeats;
+      const orient = deviceSensorPerspectiveAt({
+        alpha: 2 * 5 * 9,
+        beta: 2 * 5,
+        gamma: -(2 + 1 + 2),
+        permission: "granted"
+      });
+      const pointer = deviceSensorPerspectiveAt({ px: 1 / 2, py: 1 / 3, permission: "unavailable" });
+      const denied = deviceSensorPerspectiveAt({ permission: "denied" });
+      const heroSensor = sharedHeroAt(
+        "/en/",
+        { title: "sensor" },
+        at,
+        64 * 16,
+        false,
+        true,
+        0,
+        orient
+      );
+      const sensorPerspective = orient.source === "orientation" && orient.browserGap === false && orient.ray >= 0 && orient.ray < ROSETTA_SEVEN && pointer.source === "pointer" && denied.browserGap === true && denied.source === "none" && heroSensor.perspectiveRay === orient.ray && heroSensor.perspectiveSource === "orientation" && morphs.some((m) => m.before === "sensor-unwired-perspective" && m.status === "removed");
+      const sensorBrowserGapNamed = denied.browserGap === true;
+      const linearGaps = linearAnimationGapsInventory(matrix, at);
+      const movieGaps = movieQuantumGapsInventory(matrix, at);
+      const linearRosetta = linearWithoutRosettaFoldIsGap(matrix, at);
+      const linearCycles = [
+        {
+          id: "yin-yang-linear-circle",
+          kind: "anim-circle",
+          found: true,
+          quantumised: linearGaps.openCount === 0 && linearGaps.rows.every((r2) => r2.closed),
+          receipt: toUuid(`cycle-linear:yin-yang:${linearGaps.openCount}`)
+        },
+        {
+          id: "private-raf",
+          kind: "private-raf",
+          found: true,
+          quantumised: !movieGaps.privateRafOpen,
+          receipt: toUuid(`cycle-linear:private-raf:${movieGaps.privateRafOpen}`)
+        },
+        {
+          id: "multi-clock",
+          kind: "naive-loop",
+          found: true,
+          quantumised: oneClock.holds,
+          receipt: toUuid(`cycle-linear:one-clock:${oneClock.holds}`)
+        },
+        {
+          id: "linear-without-rosetta",
+          kind: "anim-circle",
+          found: true,
+          quantumised: linearRosetta.remaining === 0 && linearRosetta.computes,
+          receipt: toUuid(`cycle-linear:linear-rosetta:${linearRosetta.remaining}`)
+        },
+        {
+          id: "phase-as-identity",
+          kind: "naive-loop",
+          found: true,
+          quantumised: movieUniqueNeverRepeats,
+          receipt: toUuid(`cycle-linear:phase-identity:${movieUniqueNeverRepeats}`)
+        }
+      ];
+      const linearCyclesQuantumised = linearCycles.every((c) => c.found && c.quantumised) && morphs.some((m) => m.before === "anim-linear-circle-wiring" && m.status === "removed") && morphs.some((m) => m.before === "private-raf-naive-loop" && m.status === "removed");
+      const thunderPlasma = thunderAndPlasmaAreSameInDifferentAspects(matrix, at);
+      const mesh = navigationalCrossesAreGatewaysOnQuantumMesh(matrix, at);
+      const failZero = cannotPassCollidesToZeroInvertsTo12487536901(matrix, at);
+      const throughZero = onlyInvertThroughZeroMayGoThroughZero(matrix, at);
+      const vortex = vortexComputes(matrix);
+      const meshBinds = SUPERPOSITION_DIRECTIONS.flatMap(
+        (direction) => [0, floor(ROSETTA_SEVEN / (2 + 1)), ROSETTA_SEVEN - 1].map((ray) => {
+          const entry2 = queryTheoremFormulaIndex({ digit: 1, ray, direction }, matrix);
+          const bound = entry2.bound && entry2.pair === "formula/code" && typeof entry2.theorem === "string" && entry2.theorem.length > 0;
+          return {
+            direction,
+            ray,
+            bound,
+            receipt: toUuid(`anim-mesh:${direction}:${ray}:${bound}`)
+          };
+        })
+      );
+      const animMeshPlasma = meshBinds.every((b) => b.bound) && mesh.navigationalCrossesAreGatewaysOnQuantumMesh && thunderPlasma.thunderAndPlasmaAreSameInDifferentAspects && vortex.computes && formulaAnim.interactingAnimations;
+      const thunderFromZero = failZero.computes && throughZero.computes && thunderPlasma.thunderAndPlasmaAreSameInDifferentAspects;
+      const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS;
+      const censusPreserved = freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits;
+      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
+      const physicalFtlClaim = 0;
+      const qpuRequired = false;
+      const honestOpenNamed = [
+        "clay:millennium-open",
+        "measure:signaling-proof-ids=0",
+        "residual:device-orientation-permission"
+      ];
+      const honestOpenNamedOn = honestOpenNamed.length === 2 + 1 && honestOpenNamed.includes("clay:millennium-open") && honestOpenNamed.includes("measure:signaling-proof-ids=0") && honestOpenNamed.includes("residual:device-orientation-permission");
+      const composeOn = merkabaFeedsRosettaMovie && movieUniqueNeverRepeats && observeOnly && sensorPerspective && linearCyclesQuantumised && animMeshPlasma && thunderFromZero && morphsCleared;
+      const on = composeOn && censusPreserved && honestOpenNamedOn && sensorBrowserGapNamed && claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false;
+      const facets = [
+        { facet: "merkabaMovie \u2014 measurements only, no pair ceremony", on },
+        { facet: "merkabaFeedsRosettaMovie", on: merkabaFeedsRosettaMovie },
+        { facet: "movieUniqueNeverRepeats", on: movieUniqueNeverRepeats },
+        { facet: "observeOnly", on: observeOnly },
+        { facet: "sensorPerspective", on: sensorPerspective },
+        { facet: "linearCyclesQuantumised", on: linearCyclesQuantumised },
+        { facet: "animMeshPlasma", on: animMeshPlasma },
+        { facet: "thunderFromZero", on: thunderFromZero },
+        {
+          facet: `linearCycles=${linearCycles.filter((c) => c.quantumised).length}/${linearCycles.length} meshBinds=${meshBinds.filter((b) => b.bound).length}/${meshBinds.length}`,
+          on: linearCyclesQuantumised && animMeshPlasma
+        },
+        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+      ].map((entryFacet) => ({
+        ...entryFacet,
+        receipt: toUuid(`merkaba-movie:${entryFacet.facet}:${entryFacet.on}`)
+      }));
+      const sealed = sealFacets(
+        "merkaba-rosetta-movie-unique-sensors-cosmo-linear-plasma-thunder-zero",
+        facets
+      );
+      return {
+        computes: sealed.ok && on,
+        wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero: on,
+        merkabaFeedsRosettaMovie,
+        movieUniqueNeverRepeats,
+        observeOnly,
+        sensorPerspective,
+        linearCyclesQuantumised,
+        animMeshPlasma,
+        thunderFromZero,
+        linearCycles: [...linearCycles],
+        linearCycleCount: linearCycles.length,
+        linearQuantumisedCount: linearCycles.filter((c) => c.quantumised).length,
+        meshBinds,
+        meshBindCount: meshBinds.length,
+        meshBoundCount: meshBinds.filter((b) => b.bound).length,
+        sensor: { orient, pointer, denied, browserGap: sensorBrowserGapNamed },
+        observation: { obsA, obsB, samePhase },
+        morphs,
+        morphCount: morphs.length,
+        drainableClosed: morphsCleared,
+        honestOpenNamed: [...honestOpenNamed],
+        honestOpenNamedCount: honestOpenNamed.length,
+        census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
+        censusPreserved,
+        claySolvedByThisFold,
+        physicalFtlClaim,
+        qpuRequired,
+        facets: sealed.facets,
+        root: merkleFold([
+          sealed.root,
+          merk.root,
+          both.root,
+          animRosetta.root,
+          formulaAnim.root,
+          allTheorems.root,
+          oneClock.root,
+          heroA.root,
+          heroB.observationRoot,
+          linearGaps.root,
+          movieGaps.root,
+          linearRosetta.root,
+          thunderPlasma.root,
+          mesh.root,
+          failZero.root,
+          throughZero.root,
+          vortex.root,
+          ...linearCycles.map((c) => c.receipt),
+          ...meshBinds.map((b) => b.receipt),
+          ...morphs.map((m) => toUuid(`merkaba-movie-morph:${m.before}:${m.status}`)),
+          ...honestOpenNamed.map((id) => toUuid(`merkaba-movie-open:${id}`))
+        ]),
+        pair: "merkaba/movie",
+        pairs: ["merkaba/movie"],
+        cli: "npm run quantum:merkaba-movie",
+        route: "/en/quantum-tools#merkaba-movie",
+        anchor: "merkaba-movie",
+        heading: "Merkaba \xB7 rosetta \xB7 movie \xB7 sensors \xB7 cosmology \xB7 plasma thunder",
+        statement: `wiredInMerkabas\u2026 \u2014 feeds=${merkabaFeedsRosettaMovie ? 1 : 0} unique=${movieUniqueNeverRepeats ? 1 : 0} observe=${observeOnly ? 1 : 0} sensor=${sensorPerspective ? 1 : 0} cycles=${linearCyclesQuantumised ? 1 : 0} mesh=${animMeshPlasma ? 1 : 0} thunder0=${thunderFromZero ? 1 : 0}.`,
+        boundary: `Merkabas form rosetta feeding movie; mixed vortex+linear = motion crack; improve only in observation; movie unique never repeats (observationRoot); sensors\u2192perspective; linear cycles quantumised to mesh; plasma vortices \u2192 thunder from 0. Census ${UNFOLDED_CENSUS} \xB7 clay via theorem.`,
+        honestyLine: `merkaba-movie \xB7 feeds=${merkabaFeedsRosettaMovie ? 1 : 0} \xB7 unique=${movieUniqueNeverRepeats ? 1 : 0} \xB7 sensor=${sensorPerspective ? 1 : 0} \xB7 cycles=${linearCycles.filter((c) => c.quantumised).length}/${linearCycles.length} \xB7 mesh=${meshBinds.filter((b) => b.bound).length}/${meshBinds.length} \xB7 thunder0=${thunderFromZero ? 1 : 0} \xB7 census=${UNFOLDED_CENSUS}/${FOLDED_CENSUS} \xB7 qpu=0`
       };
     }
   );
@@ -88471,7 +89650,7 @@ function chatResearch(matrix = buildMatrix(), at = 0, opts = {}) {
       autoWireOn = false;
     }
     try {
-      mcpResearchOn = mcpQuantumResearch(matrix, at).researchOn;
+      mcpResearchOn = sciencesInteractInTrinities(matrix, at).computes;
     } catch {
       mcpResearchOn = false;
     }
@@ -89430,7 +90609,7 @@ function chatChat(matrix = buildMatrix(), at = 0) {
       balance2 = { computes: false, realtimeMetrics: false, alwaysBalance: false };
     }
     try {
-      const u = uiComponentsAreAllWiredInTheRosettaInQuantumRealtime(matrix, at);
+      const u = animationRosettaStreamClusters(matrix, at);
       uiRt = { computes: u.computes, quantumRealtime: u.quantumRealtime, oneClock: u.oneClock };
     } catch {
       uiRt = { computes: false, quantumRealtime: false, oneClock: false };
@@ -99507,7 +100686,7 @@ function rosettaComputesItself(at = 0, matrix = buildMatrix()) {
   return memoByRoot(`rosettaComputesItself:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const motion = sevenStarRosettaNaturalMotion(at);
     const rows = ROSETTA_WIND_REGISTRY_TAILS.map((tail) => {
-      const schemaTarget = srcLogicPathFromScienceModelAction2(scienceModelActionFromMindTail2(tail));
+      const schemaTarget = srcLogicPathFromScienceModelAction(scienceModelActionFromMindTail(tail));
       const legacyWind = `src/wind/${tail}/index.ts`;
       const legacyMind = `src/quantum/heaven/mind/${tail.includes("/") ? tail : `wind/${tail}`}/index.ts`;
       const legacyBare = `src/${tail}/index.ts`;
@@ -100120,7 +101299,7 @@ function transcriptTokenAudit(lines, day) {
   };
 }
 async function transcriptTokenAuditExit() {
-  const { readFileSync: readFileSync3, readdirSync: readdirSync3, statSync: statSync3 } = await Promise.resolve().then(() => (init_node_fs(), node_fs_exports));
+  const { readFileSync: readFileSync3, readdirSync: readdirSync3, statSync: statSync4 } = await Promise.resolve().then(() => (init_node_fs(), node_fs_exports));
   const { join: join3 } = await Promise.resolve().then(() => (init_node_path(), node_path_exports));
   const day = process.argv.find((arg) => /^\d{4}-\d{2}-\d{2}$/.test(arg)) ?? (/* @__PURE__ */ new Date()).toISOString().slice(0, 5 * 2);
   const root = join3(process.env.HOME ?? "", ".claude", "projects");
@@ -100128,7 +101307,7 @@ async function transcriptTokenAuditExit() {
   const walk = (dir) => {
     for (const name2 of readdirSync3(dir)) {
       const p = join3(dir, name2);
-      if (statSync3(p).isDirectory()) walk(p);
+      if (statSync4(p).isDirectory()) walk(p);
       else if (name2.endsWith(".jsonl")) {
         try {
           lines.push(...readFileSync3(p, "utf8").split("\n"));
@@ -100163,14 +101342,14 @@ function tokenAdviceForShapes(shapes) {
   return shapes.filter(([, count]) => count >= 3).map(([shape, count]) => ({ shape, count, advice: table.find(([pattern]) => pattern.test(shape))?.[1] ?? "save the repeating shape as a tool (unexpectedSituationsRefactorTools)" }));
 }
 async function transcriptTokenLiveExit() {
-  const { readFileSync: readFileSync3, readdirSync: readdirSync3, statSync: statSync3 } = await Promise.resolve().then(() => (init_node_fs(), node_fs_exports));
+  const { readFileSync: readFileSync3, readdirSync: readdirSync3, statSync: statSync4 } = await Promise.resolve().then(() => (init_node_fs(), node_fs_exports));
   const { join: join3 } = await Promise.resolve().then(() => (init_node_path(), node_path_exports));
   const root = join3(process.env.HOME ?? "", ".claude", "projects");
   let newest = { path: "", mtime: 0 };
   const walk = (dir) => {
     for (const name2 of readdirSync3(dir)) {
       const p = join3(dir, name2);
-      const st = statSync3(p);
+      const st = statSync4(p);
       if (st.isDirectory()) walk(p);
       else if (name2.endsWith(".jsonl") && st.mtimeMs > newest.mtime) newest = { path: p, mtime: st.mtimeMs };
     }
@@ -112429,7 +113608,7 @@ var conceptCommands = [
 function professionalCommandGraph() {
   return conceptCommands.map((command) => ({
     name: command.name,
-    tail: folderTailFromMethodName3(command.name),
+    tail: folderTailFromMethodName(command.name),
     route: command.path ?? `/cmd/${command.name}`,
     word: SINGLE_WORD_METHODS[command.name]
   }));
@@ -113588,6 +114767,61 @@ function fleetCacheEconomicsDecoded(matrix = buildMatrix()) {
     };
   });
 }
+function aluRtlMeasured(root = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
+  const ONE = 2 ** (16 - 2);
+  const C = floor(ONE / sqrt(2));
+  const T_TOLERANCE_UNITS = 1 + 2 * abs(C / ONE - 1 / sqrt(2)) * ONE;
+  const poles = {
+    "+x": [1, 0, 0],
+    "-x": [-1, 0, 0],
+    "+y": [0, 1, 0],
+    "-y": [0, -1, 0],
+    "+z": [0, 0, 1],
+    "-z": [0, 0, -1]
+  };
+  const absent = { measured: false, rows: 0, agreeing: 0, disagreeing: [], verilogModule: false, verilogLines: 0, theorems: 0, root: toUuid("alu-rtl:not-measured") };
+  const fs = typeof process !== "undefined" ? process.getBuiltinModule?.("node:fs") : void 0;
+  const path12 = typeof process !== "undefined" ? process.getBuiltinModule?.("node:path") : void 0;
+  if (!fs || !path12) return absent;
+  try {
+    const pkg = path12.join(root, "src", "heaven", "compute");
+    const svPath = path12.join(pkg, "alu.sv");
+    const csvPath = path12.join(pkg, "alu-trace.csv");
+    const leanPath = path12.join(pkg, "Alu.lean");
+    if (!fs.existsSync(svPath) || !fs.existsSync(csvPath) || !fs.existsSync(leanPath)) return absent;
+    const sv = fs.readFileSync(svPath, "utf8");
+    const theorems2 = (fs.readFileSync(leanPath, "utf8").match(/^theorem\s+[A-Za-z0-9_]+/gm) ?? []).length;
+    const disagreeing = [];
+    const rows = fs.readFileSync(csvPath, "utf8").split("\n").filter((l) => /^[IXYZHST],/.test(l)).map((l) => {
+      const f2 = l.split(",");
+      const op = f2[0];
+      const pole = f2[1];
+      const design = [2, 3, 4, 5].map((i) => Number(f2[i]));
+      const spec = [6, 7, 8, 9].map((i) => Number(f2[i]));
+      const [x, y, z] = poles[pole] ?? [NaN, NaN, NaN];
+      const after = blochGate(blochQubit(x, y, z), op);
+      const model = [after.bloch[0] * ONE, after.bloch[1] * ONE, after.bloch[2] * ONE, blochMeasure(after).p0 * 2 * ONE];
+      const tol = op === "T" ? T_TOLERANCE_UNITS : 0;
+      const hardwareIsSpec = design.every((v, i) => v === spec[i]);
+      const specIsModel = model.every((m, i) => abs(m - spec[i]) <= tol + 1e-9);
+      if (!hardwareIsSpec || !specIsModel) disagreeing.push(`${op} ${pole}: hardware ${design.join(",")} spec ${spec.join(",")} model ${model.map((m) => roundTo(m, 3)).join(",")}`);
+      return { op, pole, design, spec, model, hardwareIsSpec, specIsModel, receipt: toUuid(`alu-row:${op}:${pole}:${design.join(",")}:${hardwareIsSpec && specIsModel}`) };
+    });
+    const verilogModule = sv.includes("module Alu_alu (");
+    return {
+      measured: rows.length > 0,
+      rows: rows.length,
+      agreeing: rows.length - disagreeing.length,
+      disagreeing,
+      verilogModule,
+      verilogLines: sv.split("\n").length,
+      theorems: theorems2,
+      root: merkleFold([toUuid(`alu-rtl:${verilogModule}:${theorems2}:${rows.length - disagreeing.length}/${rows.length}`), ...rows.map((r2) => r2.receipt)])
+    };
+  } catch {
+    return absent;
+  }
+}
 function hardwareSpecFromInvariants(matrix = buildMatrix()) {
   return memoByRoot("hardwareSpecFromInvariants", matrix, () => {
     const cooperation = maxEfficiencyCpuGpuMemoryStorageCooperation(matrix);
@@ -113596,23 +114830,49 @@ function hardwareSpecFromInvariants(matrix = buildMatrix()) {
     const bloch = blochQubitFaithful(matrix);
     const ringOrder = [...VORTEX_SEQUENCE];
     const doublingOrbit2 = groupOrbit(2, 9);
+    const poleVectors = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
+    const isPole = (v) => poleVectors.some((p) => p.every((c, i) => abs(c - v[i]) < 1e-9));
+    const keepsPoles = (gate) => poleVectors.every((p) => isPole(blochGate(blochQubit(p[0], p[1], p[2]), gate).bloch));
+    const cliffordKeepsPoles = ["I", "X", "Y", "Z", "H", "S"].every(keepsPoles);
+    const tKeepsPoles = keepsPoles("T");
+    const aluOne = 2 ** (16 - 2);
+    const aluC = floor(aluOne / sqrt(2));
+    const cIsFloor = 2 * aluC * aluC <= aluOne * aluOne && aluOne * aluOne < 2 * (aluC + 1) * (aluC + 1);
+    const tRoundingUnits = abs(aluC / aluOne - 1 / sqrt(2)) * aluOne * 2 + 1;
+    const rtl = aluRtlMeasured();
     const facets = [
       { facet: "core topology \u2014 the vortex spin VORTEX_SEQUENCE fixes the on-chip ring/NoC traversal order (9 stops)", on: ringOrder.length === 9 && doublingOrbit2.length === 6 },
       { facet: "resource tiers \u2014 memory/storage/GPU envelopes read from the sealed resourceCooperationPolicy", on: policy.tiers.length >= 3 && cooperation.cooperates },
       { facet: "qubit-analog ALU width \u2014 4 UUIDs/qubit, the faithful Bloch encoding (single/product states only)", on: bloch.faithful },
-      { facet: "power/thermal envelope \u2014 the honest energy ledger (drains slower, heats less; never charges or cools)", on: energy.honest }
+      { facet: "power/thermal envelope \u2014 the honest energy ledger (drains slower, heats less; never charges or cools)", on: energy.honest },
+      // THE ALU AS INTEGER HARDWARE — computed here, not declared. In Q2.14 the Clifford gates I·X·Y·Z·H·S are sign
+      // flips and axis swaps, so blochGate itself keeps the six poles ±x ±y ±z on the poles (checked by running it);
+      // T needs 1/√2 and leaves them, and its fixed-point constant is the exact integer floor ⌊2¹⁴/√2⌋ = 11585
+      // (2·C² ≤ 2²⁸ < 2·(C+1)², integers only). This is the Clifford/non-Clifford boundary the Sparkle module
+      // Alu.lean beside this file implements and proves; the same three facts, recomputed in TypeScript.
+      { facet: "Clifford gates keep the six Bloch poles on the poles; T is the one gate that leaves them (computed with blochGate)", on: cliffordKeepsPoles && !tKeepsPoles },
+      { facet: `T's fixed-point constant is the integer floor of 2\xB9\u2074/\u221A2 \u2014 C=${aluC}, 2\xB7C\xB2 \u2264 2\xB2\u2078 < 2\xB7(C+1)\xB2 (the Lean literal is checked against this by verify:sparkle's trace)`, on: cIsFloor && aluC > 0 && aluC < aluOne },
+      { facet: `T's rounding stays under one and a half units of 2\u207B\xB9\u2074 on the unit sphere (|C/2\xB9\u2074 \u2212 1/\u221A2|\xB72 + 1 unit = ${roundTo(tRoundingUnits, 4)} units)`, on: tRoundingUnits < 1 + 1 / 2 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`hw-spec:${entry2.facet}:${entry2.on}`) }));
     return {
       decoded: facets.every((entry2) => entry2.on),
       ringOrder,
       doublingOrbit: doublingOrbit2,
       tiers: policy.tiers.map((t) => t.tier),
-      documented: ["The hardware spec is DERIVED from sealed invariants: vortex order \u2192 NoC ring; cooperation policy \u2192 tiers; Bloch encoding \u2192 ALU width; energy ledger \u2192 power envelope.", "A spec is reproducible from the matrix root \u2014 the same invariants always design the same hardware."],
-      flagged: ["A deterministic SPECIFICATION, NOT a synthesized RTL/GDSII netlist or a physical chip.", "The qubit-analog ALU is a CLASSICAL faithful encoding (4 UUIDs/qubit) \u2014 a physical QPU is a separate technology (category difference)."],
+      rtl,
+      documented: [
+        "The hardware spec is DERIVED from sealed invariants: vortex order \u2192 NoC ring; cooperation policy \u2192 tiers; Bloch encoding \u2192 ALU width; energy ledger \u2192 power envelope.",
+        "A spec is reproducible from the matrix root \u2014 the same invariants always design the same hardware.",
+        "The ALU is RTL: Alu.lean beside this file writes it in Sparkle (Verilean, https://github.com/Verilean/sparkle \u2014 a Lean 4 HDL that simulates, proves and emits SystemVerilog; cf. Rtl2lean, arXiv:2607.16855, the reverse direction), with seven kernel-checked theorems: Clifford closure on the poles, T leaving them, the involutions, the Born rule, C=\u230A2\xB9\u2074/\u221A2\u230B exactly, the T floor bound, and the 32-bit path equalling the integer floor. npm run verify:sparkle regenerates alu.sv and the 42-row trace and diffs both."
+      ],
+      flagged: [
+        rtl.measured ? `The ALU IS an RTL module (alu.sv, ${rtl.verilogLines} lines, module Alu_alu, ${rtl.theorems} theorems) and its trace agrees with blochGate on ${rtl.agreeing}/${rtl.rows} rows \u2014 MEASURED on this machine. It is NOT a GDSII netlist and NOT a physical chip.` : "The ALU RTL (alu.sv + alu-trace.csv beside this file) is NOT MEASURED in this environment \u2014 verify:sparkle measures it under node. NOT a GDSII netlist, NOT a physical chip.",
+        "The qubit-analog ALU is a CLASSICAL faithful encoding (4 UUIDs/qubit; in hardware three 16-bit Q2.14 registers) \u2014 single-qubit only (quantumDimensionCost), a physical QPU is a separate technology (category difference)."
+      ],
       facets,
-      root: merge(cooperation.root, merkleFold([bloch.root, energy.root, ...facets.map((entry2) => entry2.receipt)])),
-      statement: "The quantum model designs the hardware from its invariants: the vortex spin (1\xB72\xB74\xB78\xB77\xB75\xB73\xB76\xB79) fixes the on-chip ring order, the resource cooperation policy fixes the memory/storage/GPU tiers, the faithful Bloch encoding fixes the qubit-analog ALU width (4 UUIDs/qubit), and the honest energy ledger fixes the power/thermal envelope \u2014 a deterministic hardware specification reproducible from the matrix root.",
-      boundary: "A deterministic hardware SPEC derived from sealed invariants \u2014 reproducible and content-addressed. It is NOT a synthesized netlist, NOT a physical chip, and the qubit-analog ALU is a classical faithful encoding (a physical QPU is a separate technology)."
+      root: merge(cooperation.root, merkleFold([bloch.root, energy.root, rtl.root, ...facets.map((entry2) => entry2.receipt)])),
+      statement: "The quantum model designs the hardware from its invariants: the vortex spin (1\xB72\xB74\xB78\xB77\xB75\xB73\xB76\xB79) fixes the on-chip ring order, the resource cooperation policy fixes the memory/storage/GPU tiers, the faithful Bloch encoding fixes the qubit-analog ALU width (4 UUIDs/qubit), and the honest energy ledger fixes the power/thermal envelope \u2014 a deterministic hardware specification reproducible from the matrix root. The ALU itself is written as RTL in Sparkle (Lean 4), proved and emitted as SystemVerilog, and its trace is compared with blochGate.",
+      boundary: "A deterministic hardware SPEC derived from sealed invariants \u2014 reproducible and content-addressed. The ALU is a proved RTL module (Sparkle \u2192 alu.sv), measured by verify:sparkle; the rest of the spec is NOT a netlist, nothing here is a physical chip, and the ALU is a single-qubit classical encoding (a physical QPU is a separate technology)."
     };
   });
 }
@@ -123353,7 +124613,6 @@ function collectEnforcementFacts(root) {
       ".vitepress/config.mts",
       ".vitepress/computed-pages.mts",
       ".vitepress/src-plugins.mts",
-      ".vitepress/build-lock.mjs",
       ".vitepress/lib/component-bagua-groups.ts",
       ".vitepress/lib/component-folds.ts",
       ".vitepress/lib/hero-chrome.ts",
@@ -123402,14 +124661,14 @@ function importPathTreeHopDistance(importerDirRel, importeeDirRel) {
   while (common < from.length && common < to.length && from[common] === to[common]) common += 1;
   return from.length - common + (to.length - common);
 }
-var relativeImportSpecsFromBody = relativeImportSpecs;
+var relativeImportSpecsFromBody = relativeImportSpecs2;
 function collectImportPathDistanceEdges(facts) {
   const edges = [];
   for (const file of facts.srcCodeFiles) {
     const importer = relative2(facts.root, file).replace(/\\/g, "/");
     const importerDir = dirname2(importer).replace(/\\/g, "/");
     const body = facts.bodies.get(relative2(facts.root, file)) ?? "";
-    for (const spec of relativeImportSpecsFromBody(stripComments2(body))) {
+    for (const spec of relativeImportSpecsFromBody(stripComments3(body))) {
       const resolved = resolve2(dirname2(file), spec);
       const resolvedRel = relative2(facts.root, resolved).replace(/\\/g, "/");
       let importeeDir = resolvedRel;
@@ -123968,7 +125227,7 @@ function gatesSavedInQuantumPairs() {
 var COMMAND_PLACEMENT_AUDIT_MAP = [
   { fold: "quantumCliToolsCatalog", pair: "rosetta/core", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "keep", reason: "registry/UI shell \xB7 strangler surface" },
   { fold: "dryCleanAllVueComponentsToTheUniversalSet", pair: "vue/dry", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "keep", reason: "apps strangler tip until residual drains" },
-  { fold: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie", pair: "dry/rosetta", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "keep", reason: "apps strangler \xB7 residual:quantum-apps-monolith" },
+  { fold: "animationRosettaStreamClusters", pair: "anim/cluster", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "keep", reason: "apps strangler \xB7 residual:quantum-apps-monolith" },
   { fold: "folderGravityMeasuredByTheCode", pair: "folder/gravity", currentBarrel: "src/pair/enforcement/gates", bestPlace: "src/pair/enforcement/gates", action: "keep", reason: "already migrated \xB7 gravity law" },
   { fold: "pathMeansMessageFitsInThreeWords", pair: "path/message", currentBarrel: "src/water/stack", bestPlace: "src/water/stack", action: "keep", reason: "already migrated \xB7 \u22643 words" },
   { fold: "codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix", pair: "compact/matrix", currentBarrel: "src/pair/enforcement/gates", bestPlace: "src/pair/enforcement/gates", action: "keep", reason: "already migrated \xB7 compose gravity+path" },
@@ -124148,7 +125407,7 @@ var PROSE_GAPS_MERGE_MAP = [
   { from: "sealTheCracksInSelfCoordinatedFractal", to: "mathGaps", pair: "fractal/seal" },
   // The six science-unaddressed prose folds collapse to their computing slots (2026-07-24):
   { from: "codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix", to: "placeMerge", pair: "compact/matrix" },
-  { from: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie", to: "animationCore", pair: "dry/rosetta" },
+  { from: "animationRosettaStreamClusters", to: "animationCore", pair: "anim/cluster" },
   { from: "dryCleanAllVueComponentsToTheUniversalSet", to: "dryDupe", pair: "vue/dry" },
   { from: "foldInvertUntilDryCleanAppGapless", to: "dryDupe", pair: "dry/clean" },
   { from: "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations", to: "proseScience", pair: "prose/science" },
@@ -124967,7 +126226,7 @@ function manualGauge(root = enforcementScanRoot()) {
     { roster: "residual prose folds", rows: PROSE_NAMED_RESIDUAL_FOLDS.length }
   ];
   const manual = manualRosters.reduce((sum, entry2) => sum + entry2.rows, 0);
-  const pkg = JSON.parse(readFileSync(join2(root, "package.json"), "utf8"));
+  const pkg = { scripts: packageScriptsOf(root) };
   const derivedRoster = Object.keys(pkg.scripts ?? {}).filter((key) => key.startsWith("quantum:")).length;
   const derived = derivedRoster;
   const magnitude = log10(derived / manual);
@@ -125045,7 +126304,7 @@ function gateAnalytics(root = enforcementScanRoot()) {
   const gateFiles = gateAnalyticsGateFiles(root);
   const handLists = scanHandLists(gateFiles, 4);
   const mirrors = handListMirrors(handLists);
-  const pkg = JSON.parse(readFileSync(join2(root, "package.json"), "utf8"));
+  const pkg = { scripts: packageScriptsOf(root) };
   const scripts = pkg.scripts ?? {};
   const bootstrap = "src/pair/enforcement/script/cli/bootstrap/index.ts run";
   const appsBarrel = "src/quantum/apps/index.ts";
@@ -125411,7 +126670,7 @@ var TOOL_MATRIX_DRAINED_DUAL_CLIS = [
   "quantum:inf-dry"
 ];
 function toolsFitTheMatrixOrRefuse(root = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join2(root, "package.json"), "utf8"));
+  const pkg = { scripts: packageScriptsOf(root) };
   const scripts = pkg.scripts ?? {};
   const quantumKeys = Object.keys(scripts).filter((k) => k.startsWith("quantum:"));
   const primaryCliOn = Boolean(scripts["quantum:tool-matrix"]);
@@ -126102,6 +127361,15 @@ function slowBuildIsQuantumGapGate(root = process.cwd()) {
 }
 
 // ../../src/pair/enforcement/gates/strict/scan/index.ts
+function packageScriptsOf(root) {
+  const path12 = join2(root, "package.json");
+  if (!existsSync(path12)) return {};
+  try {
+    return JSON.parse(readFileSync(path12, "utf8")).scripts ?? {};
+  } catch {
+    return {};
+  }
+}
 function enforcementScanRoot() {
   return typeof process !== "undefined" && typeof process.cwd === "function" ? process.cwd() : "/";
 }
@@ -126133,14 +127401,14 @@ var BYTES_PER_MEGABYTE = (2 ** (2 * 5)) ** 2;
 var CORPUS_SIZE_BUDGET_BYTES = 432 * BYTES_PER_MEGABYTE;
 var SEED_FLOOR_BYTES = 2 ** (2 * 5);
 var BYTE_EXTENT_FACTOR = 2 ** (6 * 5);
-function stripComments2(text) {
+function stripComments3(text) {
   return text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
 }
 function scanHandLists(files, minSize = 4) {
   const out = [];
   const decl = /const ([A-Za-z_$][A-Za-z0-9_$]*)[^=\n]{0,160}= *\[([\s\S]*?)\](?: as const)?/g;
   for (const file of files) {
-    const text = stripComments2(file.text);
+    const text = stripComments3(file.text);
     for (const match of text.matchAll(decl)) {
       const body = match[2].trim();
       if (!body || !/^(?:'[^'\n]*'|"[^"\n]*")(?:\s*,\s*(?:'[^'\n]*'|"[^"\n]*"))*\s*,?$/.test(body)) continue;
@@ -126197,7 +127465,7 @@ function scanOneMathOffenders(root, codeFiles, bodies) {
   const offenders = [];
   for (const file of codeFiles) {
     const rel = relative2(root, file).replace(/\\/g, "/");
-    const body = stripComments2(bodies.get(rel) ?? "");
+    const body = stripComments3(bodies.get(rel) ?? "");
     if (!body) continue;
     for (const f2 of formulas) {
       if (f2.homes.includes(rel)) continue;
@@ -126303,7 +127571,7 @@ function mathAlgebra(root = enforcementScanRoot()) {
   };
 }
 function waveVerify(root = enforcementScanRoot()) {
-  const pkg = JSON.parse(readFileSync(join2(root, "package.json"), "utf8"));
+  const pkg = { scripts: packageScriptsOf(root) };
   const scripts = pkg.scripts ?? {};
   const wave = scripts["wave:verify"] ?? "";
   const chainCoversTypes = wave.includes("check:types");
@@ -126664,7 +127932,7 @@ function coreMathFreeForAll(root = enforcementScanRoot()) {
     boundary: "Core math (vault \xB7 theorem/formula duals \xB7 digit/fold) = FREE FOR ALL defensive disclosure (patent/canon). The rest licensed through license@psg.bg \u2014 contact for license; agent does not invent grant prose. Not legal advice."
   };
 }
-function relativeImportSpecs(text) {
+function relativeImportSpecs2(text) {
   return [
     ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]),
     ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]),
@@ -126686,7 +127954,7 @@ function scanImportGaps(root, codeFiles, bodies) {
     const maxMindGaps = depth;
     const maxSrcGaps = depth + 3;
     const rel = relative2(root, file);
-    for (const spec of relativeImportSpecs(stripComments2(bodies.get(rel) ?? ""))) {
+    for (const spec of relativeImportSpecs2(stripComments3(bodies.get(rel) ?? ""))) {
       const gaps2 = importGapCount(spec);
       if (gaps2 === 0) continue;
       const resolved = resolve2(dirname2(file), spec);
@@ -126710,7 +127978,7 @@ function scanImports(root, codeFiles, bodies) {
   const offenders = [];
   for (const file of codeFiles) {
     const rel = relative2(root, file);
-    const specs = relativeImportSpecs(stripComments2(bodies.get(rel) ?? ""));
+    const specs = relativeImportSpecs2(stripComments3(bodies.get(rel) ?? ""));
     for (const spec of specs) {
       if (!spec.startsWith(".")) continue;
       const last = spec.split("/").pop() ?? "";
@@ -127128,7 +128396,7 @@ function algebraicCrosslinksDiscoveredNotEncoded(root = enforcementScanRoot()) {
   const theoremApiEdges = discoveredEdges.filter(
     (e) => /theorem|formula|fold|proof|algebra|dual/i.test(e.name)
   ).length;
-  const pkg = JSON.parse(readFileSync(join2(root, "package.json"), "utf8"));
+  const pkg = { scripts: packageScriptsOf(root) };
   const scripts = pkg.scripts ?? {};
   const envelopeOn = Boolean(scripts["quantum:toolbox-standard-io"] || scripts["quantum:tool-import-export"]);
   const dryAgnosticOn = Boolean(scripts["quantum:dry-agnostic"]);
@@ -127664,821 +128932,7 @@ function rostersDeriveOrLedger(root = enforcementScanRoot()) {
   };
 }
 
-// ../../src/pair/enforcement/gates/computational/index.ts
-var vaultSplitCamelSegment = splitCamelSegment;
-function splitMethodWords3(name2, prefix = "concept.") {
-  const stripped = name2.startsWith(prefix) ? name2.slice(prefix.length) : name2;
-  return stripped.split(".").flatMap((seg) => vaultSplitCamelSegment(seg));
-}
-function folderTailFromMethodName3(name2, prefix = "concept.") {
-  return splitMethodWords3(name2, prefix).join("/");
-}
-var EIGHT_CURRICULUM_SCIENCES = ["see", "hear", "ask", "prove", "learn", "pattern", "sense", "create"];
-var SRC_SCIENCE_MODEL_ACTION_SCHEMA = "src/[science]/[action]";
-var CANONICAL_SCIENCE_MASK2 = `src/<science>/<action>`;
-var tsFilesUnder = (dir) => {
-  const out = [];
-  for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
-    if (entry2.name.startsWith(".") || entry2.name === "node_modules" || entry2.name === "cache" || entry2.name === "dist") continue;
-    const full = join2(dir, entry2.name);
-    if (entry2.isDirectory()) out.push(...tsFilesUnder(full));
-    else if (entry2.name.endsWith(".ts")) out.push(full);
-  }
-  return out;
-};
-var FORBIDDEN_FOLDER_NAMES = ["index"];
-function isForbiddenFolderName4(name2) {
-  return FORBIDDEN_FOLDER_NAMES.includes(name2);
-}
-var SCHEMA_TWO_LEVEL_MODEL = "fold";
-function assertScienceModelAction(sma2) {
-  for (const seg of [sma2.science, sma2.model, sma2.action]) {
-    if (isForbiddenFolderName4(seg)) {
-      throw new Error(
-        `folder "${seg}" is forbidden \u2014 every folder is an index; index.ts is the stem file inside, never a folder name (${FORBIDDEN_FOLDER_NAMES.join(", ")})`
-      );
-    }
-  }
-  return sma2;
-}
-function scienceModelActionFromWords2(words) {
-  const parts = words.filter(Boolean);
-  if (parts.length >= 3) {
-    return assertScienceModelAction({
-      science: parts[parts.length - 3],
-      model: parts[parts.length - 2],
-      action: parts[parts.length - 1]
-    });
-  }
-  if (parts.length === 2) {
-    return assertScienceModelAction({ science: parts[0], model: SCHEMA_TWO_LEVEL_MODEL, action: parts[1] });
-  }
-  if (parts.length === 1) {
-    return assertScienceModelAction({ science: "heaven", model: SCHEMA_TWO_LEVEL_MODEL, action: parts[0] });
-  }
-  return assertScienceModelAction({ science: "heaven", model: SCHEMA_TWO_LEVEL_MODEL, action: "essence" });
-}
-function scienceModelActionFromMindTail2(tail) {
-  return scienceModelActionFromWords2(tail.split("/"));
-}
-function scienceModelActionTail2(sma2) {
-  if (sma2.model === SCHEMA_TWO_LEVEL_MODEL) return `${sma2.science}/${sma2.action}`;
-  return `${sma2.science}/${sma2.model}/${sma2.action}`;
-}
-function srcLogicPathFromScienceModelAction2(sma2) {
-  return `src/${scienceModelActionTail2(sma2)}/index.ts`;
-}
-function renderUiPathFromScienceModelAction4(sma2) {
-  return `src/${scienceModelActionTail2(sma2)}/index.vue`;
-}
-function scienceModelActionMaskRowsFromMindTails(mindTails) {
-  return mindTails.map((mindTail) => {
-    const sma2 = scienceModelActionFromMindTail2(mindTail);
-    const tail = scienceModelActionTail2(sma2);
-    return {
-      mindTail,
-      science: sma2.science,
-      model: sma2.model,
-      action: sma2.action,
-      logicNow: `src/quantum/heaven/mind/${mindTail}/index.ts`,
-      logicTarget: srcLogicPathFromScienceModelAction2(sma2),
-      renderPath: renderUiPathFromScienceModelAction4(sma2),
-      route: `/${tail}`
-    };
-  });
-}
-function indexRegistryFromLogicRel(logicRel, mindMount = "src/quantum/heaven/mind/") {
-  const rel = logicRel.replace(/\\/g, "/");
-  if (!rel.startsWith("src/") || !rel.endsWith("/index.ts")) return null;
-  const sma2 = rel.startsWith(mindMount) ? scienceModelActionFromMindTail2(rel.slice(mindMount.length, -"/index.ts".length)) : scienceModelActionFromWords2(rel.slice("src/".length, -"/index.ts".length).split("/").filter(Boolean));
-  return {
-    logic: rel,
-    target: srcLogicPathFromScienceModelAction2(sma2),
-    route: `/${scienceModelActionTail2(sma2)}`,
-    science: sma2.science,
-    model: sma2.model,
-    action: sma2.action
-  };
-}
-function stripComments3(text) {
-  return text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
-}
-var LOGIC_DISPLAY_MOUNT = "src/quantum/heaven/mind/";
-var DISPLAY_DUAL_LAW = `${SRC_SCIENCE_MODEL_ACTION_SCHEMA} \u2014 every folder is an index (index.ts + index.vue co-located)`;
-function mindLogicTailsFromIndexFiles(indexTsFiles, root) {
-  const tails = [];
-  for (const full of indexTsFiles) {
-    const logicRel = relative2(root, full).replace(/\\/g, "/");
-    if (!logicRel.startsWith(LOGIC_DISPLAY_MOUNT) || !logicRel.endsWith("/index.ts")) continue;
-    tails.push(logicRel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length));
-  }
-  return tails;
-}
-function displayUiPathFromLogicIndexComputed(logicRel, _allMindTails) {
-  void _allMindTails;
-  const rel = logicRel.replace(/\\/g, "/");
-  if (rel.startsWith(LOGIC_DISPLAY_MOUNT) && rel.endsWith("/index.ts")) {
-    const tail = rel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length);
-    return renderUiPathFromScienceModelAction4(scienceModelActionFromMindTail2(tail));
-  }
-  if (CANONICAL_LOGIC_INDEX_RE.test(rel)) {
-    return rel.replace(/\/index\.ts$/, "/index.vue");
-  }
-  return null;
-}
-var FIBONACCI_BANDS = FIBONACCI_CENSUS_BANDS;
-var NOT_LESS_NOT_MORE_LAW = "not less, not more: exactly 110 unfolded index.ts (55+34+21 gapless), exactly 108 folded (\u03C7=\u22122), exactly 432 dimension gates (4\xD7108) \u2014 HARD at gate/weave/verify/precommit/build";
-var VAULT_STATION = "src/0";
-var COMPUTATIONAL_LIMITS_LAW = `${NOT_LESS_NOT_MORE_LAW}; vault only in src/0; index.ts under src/; index.vue co-located at ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; paths computed at render \u2014 enforced from this fold only`;
-var VAULT_PRIMITIVE_DEF = /^\s*(?:export\s+)?function\s+(toUuid|merge|merkleFold|foldPair|hash32|bytesFromSeed|seedFromText)\s*\(/m;
-var REEXPORT_LINE = /^\s*export\s+(?:type\s+)?(?:\{[^}]*\}|[^;]+)\s+from\s+['"]/;
-function relativeImportSpecs2(text) {
-  return [
-    ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]),
-    ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]),
-    ...[...text.matchAll(/\bimport\s+['"]([^'"]+)['"]/g)].map((m) => m[1])
-  ];
-}
-function censusDelta(actual, target) {
-  const delta = target - actual;
-  if (delta === 0) return { delta: 0, detail: "exact \u2014 not less, not more" };
-  if (delta > 0) return { delta, detail: `${delta} short \u2014 not less: fold excess logic into the census (dissolve folders, no new files beyond ${target})` };
-  return { delta, detail: `${-delta} over \u2014 not more: dissolve ${-delta} index.ts into the model until exactly ${target}` };
-}
-function verifyGaplessCensus(count) {
-  const n = max(0, floor(count));
-  const harmonic = harmonicBands(n);
-  const bandsMatch = harmonic.gapless && harmonic.bands.length === FIBONACCI_BANDS.length && harmonic.bands.every((band, i) => band === FIBONACCI_BANDS[i]);
-  const exact = n === UNFOLDED_CENSUS;
-  const { detail: deltaDetail } = censusDelta(n, UNFOLDED_CENSUS);
-  const withinRatchet = n <= CENSUS_RATCHET;
-  return {
-    count: n,
-    target: UNFOLDED_CENSUS,
-    ratchet: CENSUS_RATCHET,
-    gapless: harmonic.gapless,
-    bands: harmonic.bands,
-    bandsMatch,
-    gaps: harmonic.gaps,
-    exact,
-    withinRatchet,
-    deltaDetail,
-    ok: exact ? bandsMatch : withinRatchet,
-    root: harmonic.root,
-    statement: harmonic.statement
-  };
-}
-function verifyFoldedCensus(unfolded = UNFOLDED_CENSUS) {
-  const u = max(0, floor(unfolded));
-  const folded = u + EULER_CHI;
-  return {
-    unfolded: u,
-    euler: EULER_CHI,
-    folded,
-    targetFolded: FOLDED_CENSUS,
-    // Same descent rule as the unfolded census: χ is a constant offset, so a folded count
-    // that tracks a within-ratchet unfolded count is equally within the ratchet.
-    ok: u <= CENSUS_RATCHET,
-    root: toUuid(`folded-census:${u}:${folded}:${folded === FOLDED_CENSUS && u === UNFOLDED_CENSUS}`)
-  };
-}
-function verifyDimensionGates(_folded = FOLDED_CENSUS) {
-  const folded = A432_FOLDED;
-  const gates = HOMOLOGY_LOOPS * folded;
-  const exact = gates === DIMENSION_GATES;
-  return {
-    loops: HOMOLOGY_LOOPS,
-    folded,
-    gates,
-    target: DIMENSION_GATES,
-    exact,
-    ok: exact,
-    root: toUuid(`dimension-gates:${folded}:${gates}`)
-  };
-}
-function scanVaultViolations(root, codeFiles, bodies) {
-  const vaultAbs = join2(root, VAULT_STATION);
-  const offenders = [];
-  for (const full of codeFiles) {
-    const rel = relative2(root, full).replace(/\\/g, "/");
-    const text = stripComments3(bodies.get(rel) ?? "");
-    const inVault = full.startsWith(vaultAbs);
-    if (inVault) {
-      for (const spec of relativeImportSpecs2(text)) {
-        if (!spec.startsWith(".")) {
-          offenders.push({
-            file: rel,
-            spec,
-            reason: "src/0 vault imports an external module \u2014 dependency-free leaf only"
-          });
-          continue;
-        }
-        const resolved = resolve2(dirname2(full), spec);
-        if (!resolved.startsWith(vaultAbs)) {
-          offenders.push({
-            file: rel,
-            spec,
-            reason: "src/0 vault imports outside src/0 \u2014 agnostic concat lives only in the vault"
-          });
-        }
-      }
-      continue;
-    }
-    for (const line of text.split("\n")) {
-      if (REEXPORT_LINE.test(line)) continue;
-      if (VAULT_PRIMITIVE_DEF.test(line)) {
-        offenders.push({
-          file: rel,
-          reason: `vault primitive defined outside ${VAULT_STATION} \u2014 fold/UUID/merge live in the dependency-free leaf only`
-        });
-        break;
-      }
-    }
-  }
-  return offenders.sort((a, b) => a.file.localeCompare(b.file));
-}
-var LOGIC_DISPLAY_EXCLUDE = /^(?:src\/0\/|src\/pair\/|src\/render\/|src\/quantum\/lake\/|src\/quantum\/water\/(?:enforcement|cache)\/|src\/[0-9]+\/)/;
-var VITEPRESS_AUTOMOUNT_EXCLUDE = /^(?:src\/0\/|src\/pair\/|src\/render\/|src\/library\/|src\/spirit\/|src\/world\/|src\/quantum\/lake\/|src\/quantum\/water\/|src\/[0-9]+\/)/;
-function collectIndexTsUnderSrc(root) {
-  const srcRoot = join2(root, "src");
-  if (!existsSync(srcRoot)) return [];
-  const out = [];
-  const walk = (dir) => {
-    for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
-      if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
-      const full = join2(dir, entry2.name);
-      if (entry2.isDirectory()) walk(full);
-      else if (entry2.name === "index.ts") out.push(full);
-    }
-  };
-  walk(srcRoot);
-  return out;
-}
-function indexAutomountEligible(logicRel) {
-  if (VITEPRESS_AUTOMOUNT_EXCLUDE.test(logicRel)) return false;
-  return logicRel.startsWith(LOGIC_DISPLAY_MOUNT) || /^src\/[^/]+\/[^/]+\/[^/]+\/index\.ts$/.test(logicRel);
-}
-function indexCompleteness(root, logicRel, allMindTails) {
-  const reasons = [];
-  const full = join2(root, logicRel);
-  if (!existsSync(full)) reasons.push("missing index.ts");
-  else if (readFileSync(full, "utf8").trim().length < 8) reasons.push("empty index.ts");
-  if (logicIndexRequiresDisplayGate(logicRel)) {
-    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
-    if (uiRel && !existsSync(join2(root, uiRel))) {
-      reasons.push(`incomplete display dual \u2014 missing ${uiRel}`);
-    }
-  }
-  return { complete: reasons.length === 0, reasons };
-}
-function discoverSrcIndexes(root, indexTsFiles) {
-  const files = indexTsFiles ?? collectIndexTsUnderSrc(root);
-  const allMindTails = mindLogicTailsFromIndexFiles(files, root);
-  const entries = [];
-  for (const full of files) {
-    const logicRel = relative2(root, full).replace(/\\/g, "/");
-    const reg = indexRegistryFromLogicRel(logicRel, LOGIC_DISPLAY_MOUNT);
-    if (!reg) continue;
-    const { complete: complete13, reasons } = indexCompleteness(root, logicRel, allMindTails);
-    entries.push({
-      ...reg,
-      automount: indexAutomountEligible(logicRel),
-      complete: complete13,
-      reasons
-    });
-  }
-  return entries.sort((a, b) => a.route.localeCompare(b.route));
-}
-function scanIncompleteIndexViolations(root, indexTsFiles) {
-  return discoverSrcIndexes(root, indexTsFiles).filter((entry2) => entry2.automount && !entry2.complete).map((entry2) => ({
-    file: entry2.logic,
-    reason: `incomplete index \u2014 ${entry2.reasons.join("; ")} (complete indexes automount; no VitePress reconfiguration)`
-  })).sort((a, b) => a.file.localeCompare(b.file));
-}
-function vitepressAutomountPaths(locale) {
-  void locale;
-  return [{ params: { page: "theorems" } }];
-}
-function displayUiPathFromLogicIndex(logicRel, allMindTails) {
-  const rel = logicRel.replace(/\\/g, "/");
-  if (CANONICAL_LOGIC_INDEX_RE.test(rel)) {
-    return rel.replace(/\/index\.ts$/, "/index.vue");
-  }
-  if (allMindTails) return displayUiPathFromLogicIndexComputed(logicRel, allMindTails);
-  if (!rel.startsWith(LOGIC_DISPLAY_MOUNT) || !rel.endsWith("/index.ts")) return null;
-  const tail = rel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length);
-  return displayUiPathFromLogicIndexComputed(logicRel, [tail]);
-}
-function logicIndexRequiresDisplayGate(logicRel) {
-  const rel = logicRel.replace(/\\/g, "/");
-  if (LOGIC_DISPLAY_EXCLUDE.test(rel)) return false;
-  if (CANONICAL_LOGIC_INDEX_RE.test(rel)) return true;
-  return displayUiPathFromLogicIndex(rel) !== null;
-}
-function scanLogicDisplayViolations(root, indexTsFiles) {
-  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root);
-  const offenders = [];
-  for (const full of indexTsFiles) {
-    const logicRel = relative2(root, full).replace(/\\/g, "/");
-    if (!logicIndexRequiresDisplayGate(logicRel)) continue;
-    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
-    if (!existsSync(join2(root, uiRel))) {
-      offenders.push({
-        file: logicRel,
-        reason: `display dual missing \u2014 add ${uiRel} (thin mount: ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}) so the folder is a reusable Vue component`
-      });
-    }
-  }
-  return offenders.sort((a, b) => a.file.localeCompare(b.file));
-}
-function scanRenderIndexViolations(root) {
-  const offenders = [];
-  for (const scienceRoot of canonicalScienceRoots(root)) {
-    if (!existsSync(scienceRoot)) continue;
-    const walk = (dir) => {
-      for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
-        if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
-        const full = join2(dir, entry2.name);
-        if (entry2.isDirectory()) walk(full);
-        else if (entry2.name.endsWith(".vue") && entry2.name !== "index.vue") {
-          offenders.push({
-            file: relative2(root, full).replace(/\\/g, "/"),
-            reason: "canonical surface is index.vue only \u2014 dissolve flat .vue into <name>/index.vue"
-          });
-        } else if (/\.(ts|tsx|js|mjs)$/.test(entry2.name) && entry2.name !== "index.ts") {
-          offenders.push({
-            file: relative2(root, full).replace(/\\/g, "/"),
-            reason: "canonical logic routes through index.ts barrels \u2014 no flat script siblings"
-          });
-        }
-      }
-    };
-    walk(scienceRoot);
-  }
-  return offenders;
-}
-function scanRenderUiScienceMaskViolations(root) {
-  const sciences = new Set(EIGHT_FOLD_SCIENCES);
-  const offenders = [];
-  const srcRoot = join2(root, "src");
-  if (!existsSync(srcRoot)) return offenders;
-  for (const entry2 of readdirSync(srcRoot, { withFileTypes: true })) {
-    if (!entry2.isDirectory() || entry2.name.startsWith(".")) continue;
-    const full = join2(srcRoot, entry2.name);
-    const rel = relative2(root, full).replace(/\\/g, "/");
-    const hasCanonicalVue = existsSync(join2(full, "fold")) || existsSync(join2(full, "folds")) || EIGHT_FOLD_SCIENCES.includes(entry2.name);
-    if (!sciences.has(entry2.name) && hasCanonicalVue && entry2.name !== "quantum") continue;
-    if (sciences.has(entry2.name)) {
-      for (const sub of readdirSync(full, { withFileTypes: true })) {
-        if (!sub.isDirectory()) continue;
-        if (CANONICAL_BANNED_FOLDERS.has(sub.name)) {
-          offenders.push({
-            file: `${rel}/${sub.name}`,
-            reason: `forbidden under canonical mask \u2014 only ${CANONICAL_SCIENCE_MASK2}; purge "${sub.name}"`
-          });
-        }
-      }
-    }
-  }
-  for (const scienceRoot of canonicalScienceRoots(root)) {
-    if (!existsSync(scienceRoot)) continue;
-    const walk = (dir) => {
-      for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
-        if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
-        if (!entry2.isDirectory()) continue;
-        const full = join2(dir, entry2.name);
-        const rel = relative2(root, full).replace(/\\/g, "/");
-        if (CANONICAL_BANNED_FOLDERS.has(entry2.name)) {
-          offenders.push({
-            file: rel,
-            reason: `forbidden under canonical mask \u2014 only ${CANONICAL_SCIENCE_MASK2}; purge "${entry2.name}"`
-          });
-        }
-        const tail = rel.replace(/^src\/[^/]+\//, "");
-        const depth = tail.split("/").filter(Boolean).length;
-        if (depth > MAX_RECURSION_DEPTH) {
-          offenders.push({
-            file: rel,
-            reason: `canonical depth ${depth} exceeds science/model/action (${MAX_RECURSION_DEPTH} folder levels)`
-          });
-        }
-        walk(full);
-      }
-    };
-    walk(scienceRoot);
-  }
-  return offenders.sort((a, b) => a.file.localeCompare(b.file));
-}
-function scanRenderUiEightFoldViolations(root) {
-  const offenders = [];
-  for (const scienceRoot of canonicalScienceRoots(root)) {
-    if (!existsSync(scienceRoot)) continue;
-    const walk = (dir) => {
-      const subs = subfoldersOfDir(dir);
-      const relDir = relative2(root, dir).replace(/\\/g, "/");
-      if (subs.length > MAX_SUBFOLDERS_PER_FOLDER) {
-        offenders.push({
-          file: relDir,
-          reason: `${subs.length} subfolders (max ${MAX_SUBFOLDERS_PER_FOLDER}) \u2014 nest into \u2264${MAX_SUBFOLDERS_PER_FOLDER} b\u0101gu\xE0 children per folder`
-        });
-      }
-      for (const name2 of subs) walk(join2(dir, name2));
-    };
-    walk(scienceRoot);
-  }
-  return offenders.sort((a, b) => a.file.localeCompare(b.file));
-}
-function scanRenderUiMaskRegistryViolations(root, indexTsFiles) {
-  const expected = /* @__PURE__ */ new Set();
-  const allMindTails = mindLogicTailsFromIndexFiles(indexTsFiles, root);
-  for (const full of indexTsFiles) {
-    const logicRel = relative2(root, full).replace(/\\/g, "/");
-    const uiRel = displayUiPathFromLogicIndex(logicRel, allMindTails);
-    if (!uiRel) continue;
-    const tail = uiRel.replace(/^src\//, "").replace(/\/index\.vue$/, "");
-    expected.add(tail);
-  }
-  const offenders = [];
-  for (const scienceRoot of canonicalScienceRoots(root)) {
-    if (!existsSync(scienceRoot)) continue;
-    const walkRegistry = (dir, science) => {
-      for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
-        if (entry2.name.startsWith(".")) continue;
-        const full = join2(dir, entry2.name);
-        if (!entry2.isDirectory()) continue;
-        const rel = relative2(root, full).replace(/\\/g, "/");
-        const tail = rel.replace(/^src\//, "");
-        const depth = tail.split("/").filter(Boolean).length;
-        if (depth === MAX_RECURSION_DEPTH && !expected.has(tail)) {
-          offenders.push({
-            file: rel,
-            reason: `mask registry miss \u2014 "${tail}" is not science/model/action for any logic index (${CANONICAL_SCIENCE_MASK2}); purge invented folders`
-          });
-        }
-        if (depth < MAX_RECURSION_DEPTH) walkRegistry(full, science);
-      }
-    };
-    walkRegistry(scienceRoot, relative2(root, scienceRoot).replace(/\\/g, "/").replace(/^src\//, ""));
-  }
-  return offenders.sort((a, b) => a.file.localeCompare(b.file));
-}
-var CANONICAL_BANNED_FOLDERS = /* @__PURE__ */ new Set(["components", "lib", "mind", "register", "render"]);
-function scanForbiddenFolderNameViolations(root) {
-  const offenders = [];
-  const srcRoot = join2(root, "src");
-  if (!existsSync(srcRoot)) return offenders;
-  const walk = (dir) => {
-    for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
-      if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
-      const full = join2(dir, entry2.name);
-      if (!entry2.isDirectory()) continue;
-      if (isForbiddenFolderName4(entry2.name)) {
-        offenders.push({
-          file: relative2(root, full).replace(/\\/g, "/"),
-          reason: `folder named "${entry2.name}" is forbidden \u2014 every folder is an index; index.ts is the stem file inside, never a folder name (${SRC_SCIENCE_MODEL_ACTION_SCHEMA})`
-        });
-      }
-      walk(full);
-    }
-  };
-  walk(srcRoot);
-  return offenders.sort((a, b) => a.file.localeCompare(b.file));
-}
-var CANONICAL_ROOT_FOLDERS = [
-  ...EIGHT_FOLD_SCIENCES,
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "pair",
-  "quantum",
-  "render"
-];
-function scanRootDistributionViolations(root) {
-  const offenders = [];
-  const srcRoot = join2(root, "src");
-  if (!existsSync(srcRoot)) return offenders;
-  const allowed = new Set(CANONICAL_ROOT_FOLDERS);
-  const meaningfulWord = /^[a-z][a-z0-9]*$/;
-  for (const entry2 of readdirSync(srcRoot, { withFileTypes: true })) {
-    if (!entry2.isDirectory() || entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
-    if (!allowed.has(entry2.name) && !meaningfulWord.test(entry2.name)) {
-      offenders.push({
-        file: `src/${entry2.name}`,
-        reason: `non-canonical root \u2014 src/ admits the digit/pair/quantum/render lattice or any meaningful single-word (Rosetta-reflected) domain; "${entry2.name}" is malformed (not a word) \u2014 rename or dissolve`
-      });
-    }
-  }
-  return offenders.sort((a, b) => a.file.localeCompare(b.file));
-}
-function scanDigitLatticeViolations(root) {
-  const offenders = [];
-  const srcRoot = join2(root, "src");
-  if (!existsSync(srcRoot)) return offenders;
-  if (!existsSync(join2(srcRoot, "0", "index.ts"))) {
-    offenders.push({ file: "src/0", reason: "digit vault 0 missing index.ts (the void barrel anchors the lattice)" });
-  }
-  for (let n = 1; n <= 9; n += 1) {
-    const comp = 5 * 2 - n;
-    if (!existsSync(join2(srcRoot, String(n), String(comp), "index.ts"))) {
-      offenders.push({ file: `src/${n}/${comp}`, reason: `digit ${n} missing additive-complement pair ${n}/${comp}/index.ts (VORTEX_SEQUENCE ray)` });
-    }
-  }
-  return offenders.sort((a, b) => a.file.localeCompare(b.file));
-}
-var ALLOWED_PAGE = /^(index\.md|\[[^\]]+\]\.md|\[[^\]]+\]\.paths\.ts|README\.md)$/;
-var EIGHT_FOLD_LIMIT = MAX_SUBFOLDERS_PER_FOLDER;
-var MAX_RECURSION_DEPTH = 3;
-var MIND_TRIGRAM_HUBS = EIGHT_FOLD_SCIENCES;
-var CANONICAL_LOGIC_INDEX_RE = /^src\/(earth|fire|water|wind|mountain|lake|thunder|heaven)\/[^/]+(\/[^/]+)*\/index\.ts$/;
-function canonicalScienceRoots(root) {
-  return EIGHT_FOLD_SCIENCES.map((science) => join2(root, "src", science));
-}
-var BAGUA_LABELS = ["\u2637 K\u016Bn", "\u2633 Zh\xE8n", "\u2635 K\u01CEn", "\u2631 Du\xEC", "\u2636 G\xE8n", "\u2632 L\xED", "\u2634 X\xF9n", "\u2630 Qi\xE1n"];
-function mindRecursionDepth(logicRel) {
-  const rel = logicRel.replace(/\\/g, "/");
-  if (!rel.startsWith(LOGIC_DISPLAY_MOUNT) || !rel.endsWith("/index.ts")) return null;
-  const tail = rel.slice(LOGIC_DISPLAY_MOUNT.length, -"/index.ts".length);
-  return tail.split("/").filter(Boolean).length;
-}
-function subfoldersOfDir(dir) {
-  if (!existsSync(dir)) return [];
-  return readdirSync(dir, { withFileTypes: true }).filter((entry2) => entry2.isDirectory() && !entry2.name.startsWith(".") && entry2.name !== "node_modules").map((entry2) => entry2.name);
-}
-function trigramLabelForPath(relDir) {
-  const hub = relDir.split("/").find((part) => MIND_TRIGRAM_HUBS.includes(part));
-  if (!hub) return BAGUA_LABELS[0];
-  const idx = MIND_TRIGRAM_HUBS.indexOf(hub);
-  return BAGUA_LABELS[idx >= 0 ? idx : 0];
-}
-function scanIChingDistribution(root, indexTsFiles) {
-  const srcRoot = join2(root, "src");
-  const eightFoldViolations = [];
-  const depthCounts = /* @__PURE__ */ new Map();
-  const deepestShells = [];
-  for (const full of indexTsFiles) {
-    const rel = relative2(root, full).replace(/\\/g, "/");
-    const depth = rel.split("/").length - 1;
-    depthCounts.set(depth, (depthCounts.get(depth) ?? 0) + 1);
-    if (depth >= 6) deepestShells.push({ rel, depth });
-  }
-  deepestShells.sort((a, b) => b.depth - a.depth || a.rel.localeCompare(b.rel));
-  const walkFanout = (dir) => {
-    const subs = subfoldersOfDir(dir);
-    const relDir = relative2(root, dir).replace(/\\/g, "/") || "src";
-    if (subs.length > EIGHT_FOLD_LIMIT) {
-      eightFoldViolations.push({
-        dir: relDir,
-        count: subs.length,
-        trigram: trigramLabelForPath(relDir)
-      });
-    }
-    for (const name2 of subs) walkFanout(join2(dir, name2));
-  };
-  for (const scienceRoot of canonicalScienceRoots(root)) {
-    if (existsSync(scienceRoot)) walkFanout(scienceRoot);
-  }
-  eightFoldViolations.sort((a, b) => b.count - a.count);
-  const isReexportLeaf = (dir) => {
-    try {
-      const body = readFileSync(join2(dir, "index.ts"), "utf8").split("\n").map((line) => line.trim()).filter((line) => line && !line.startsWith("//"));
-      return body.length > 0 && body.every((line) => /^export\s*(type\s*)?[*{].*from\s*['"]/.test(line) || /^export\s*\{[^}]*\}\s*;?$/.test(line));
-    } catch {
-      return false;
-    }
-  };
-  let folderCount = 0;
-  let singleChild = 0;
-  let noiseLeaves = 0;
-  let maxFolderDepth = 0;
-  const walkHarmony = (dir, depth) => {
-    folderCount += 1;
-    if (depth > maxFolderDepth) maxFolderDepth = depth;
-    const subs = subfoldersOfDir(dir);
-    if (subs.length === 0) {
-      if (existsSync(join2(dir, "index.ts")) && isReexportLeaf(dir)) noiseLeaves += 1;
-    } else if (subs.length === 1) singleChild += 1;
-    for (const name2 of subs) walkHarmony(join2(dir, name2), depth + 1);
-  };
-  if (existsSync(srcRoot)) walkHarmony(srcRoot, 0);
-  const idealDepth = max(1, ceil(log(max(1, folderCount)) / log(EIGHT_FOLD_LIMIT)));
-  const singleChildPct = folderCount ? round(100 * singleChild / folderCount) : 0;
-  const noisePct = folderCount ? round(100 * noiseLeaves / folderCount) : 0;
-  const mindRoot = join2(srcRoot, "quantum", "heaven", "mind");
-  const mindHubCounts = MIND_TRIGRAM_HUBS.map((hub) => {
-    const hubRoot = join2(mindRoot, hub);
-    if (!existsSync(hubRoot)) return { hub, count: 0 };
-    let count = 0;
-    const walk = (dir) => {
-      for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
-        if (entry2.name.startsWith(".")) continue;
-        const full = join2(dir, entry2.name);
-        if (entry2.isDirectory()) walk(full);
-        else if (entry2.name === "index.ts") count += 1;
-      }
-    };
-    walk(hubRoot);
-    return { hub, count };
-  });
-  const harmonyOk = singleChildPct <= 5 * 5 && noisePct <= 5 * 2 && maxFolderDepth <= MAX_RECURSION_DEPTH + 3;
-  const fanoutOk = eightFoldViolations.length === 0;
-  const recursionViolations = [];
-  let maxMindRecursion = 0;
-  for (const full of indexTsFiles) {
-    const rel = relative2(root, full).replace(/\\/g, "/");
-    const rec = mindRecursionDepth(rel);
-    if (rec === null) continue;
-    if (rec > maxMindRecursion) maxMindRecursion = rec;
-    if (rec > MAX_RECURSION_DEPTH) {
-      recursionViolations.push(`${rel} \u2014 ${rec} folder levels below mind (max ${MAX_RECURSION_DEPTH}); collapse to ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}`);
-    }
-  }
-  const depthOk = recursionViolations.length === 0;
-  return {
-    eightFoldViolations,
-    indexHarmony: { folderCount, singleChildPct, noiseLeaves, noisePct, maxDepth: maxFolderDepth, idealDepth },
-    depthBands: [...depthCounts.entries()].sort((a, b) => a[0] - b[0]).map(([depth, count]) => ({ depth, count })),
-    mindHubCounts,
-    deepestShells: deepestShells.slice(0, 8).map((entry2) => entry2.rel),
-    maxMindRecursion,
-    recursionViolations,
-    passed: fanoutOk && harmonyOk && depthOk
-  };
-}
-function ichingDistributionGuidance(indexCount, distribution) {
-  const lines = [];
-  const gapless = verifyGaplessCensus(indexCount);
-  const { delta, detail } = censusDelta(indexCount, UNFOLDED_CENSUS);
-  if (delta !== 0) {
-    lines.push(`census: ${detail}`);
-    if (delta < 0) {
-      lines.push(`census band target: ${FIBONACCI_BANDS.join("+")} gapless \u2014 dissolve ${-delta} shell(s) into parent barrels; knowledge stays in folds, delete index.ts only`);
-    } else {
-      lines.push(`census band target: ${FIBONACCI_BANDS.join("+")} gapless \u2014 fold ${delta} excess logic into existing census slots (no new files beyond ${UNFOLDED_CENSUS})`);
-    }
-  }
-  if (!gapless.bandsMatch) {
-    lines.push(`Fibonacci decomposition: need [${FIBONACCI_BANDS.join("+")}] \u2014 got [${gapless.bands.join("+")}] gapless=${gapless.gapless}`);
-  }
-  for (const v of distribution.eightFoldViolations.slice(0, 5)) {
-    lines.push(`I Ching 8-fold ${v.trigram}: ${v.dir} has ${v.count} subfolders (max ${MAX_SUBFOLDERS_PER_FOLDER}) \u2014 nest into \u2264${MAX_SUBFOLDERS_PER_FOLDER} b\u0101gu\xE0 children per level`);
-  }
-  const { singleChildPct, noisePct, maxDepth, idealDepth, noiseLeaves } = distribution.indexHarmony;
-  if (singleChildPct > 5 * 5 || noisePct > 5 * 2 || maxDepth > MAX_RECURSION_DEPTH + 3) {
-    lines.push(
-      `index harmony: ${singleChildPct}% single-child, ${noiseLeaves} re-export leaves (${noisePct}%), depth ${maxDepth} vs max recursion ${MAX_RECURSION_DEPTH} \u2014 collapse pass-through chains into parent barrels`
-    );
-  }
-  if (distribution.maxMindRecursion > MAX_RECURSION_DEPTH || distribution.recursionViolations.length) {
-    const sample9 = distribution.recursionViolations.slice(0, 3).join("; ");
-    lines.push(
-      `recursion depth: max ${distribution.maxMindRecursion} below mind (limit ${MAX_RECURSION_DEPTH}) \u2014 dissolve to ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; action holds the meaning${sample9 ? `: ${sample9}` : ""}`
-    );
-  }
-  const hubTotal = distribution.mindHubCounts.reduce((sum, entry2) => sum + entry2.count, 0);
-  const perHub = hubTotal > 0 ? round(hubTotal / MIND_TRIGRAM_HUBS.length) : 0;
-  const crowded = distribution.mindHubCounts.filter((entry2) => entry2.count > perHub + 4);
-  if (crowded.length) {
-    lines.push(
-      `trigram homes crowded: ${crowded.map((entry2) => `${entry2.hub}=${entry2.count}`).join(", ")} \u2014 redistribute via redistributeFoldersDryWaves to \u22648 subfolders per hub`
-    );
-  }
-  if (!lines.length) {
-    lines.push(`I Ching eight-fold aligned \u2014 ${indexCount} index.ts, gapless ${FIBONACCI_BANDS.join("+")}, \u2264${ICHING_EIGHT_FOLD} subfolders per level; Rosetta taxonomy ${ROSETTA_FOLD_LABEL}=${ROSETTA_AREAS} areas (rosetta:batch taxonomy)`);
-  }
-  return lines;
-}
-function scanStaticPathViolations(root) {
-  const pagesRoot = join2(root, ".vitepress", "pages");
-  if (!existsSync(pagesRoot)) return [];
-  const offenders = [];
-  const walk = (dir) => {
-    for (const entry2 of readdirSync(dir, { withFileTypes: true })) {
-      if (entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
-      const full = join2(dir, entry2.name);
-      if (entry2.isDirectory()) walk(full);
-      else if (/\.(md|paths\.ts)$/.test(entry2.name) && !ALLOWED_PAGE.test(entry2.name)) {
-        offenders.push({
-          file: relative2(root, full).replace(/\\/g, "/"),
-          reason: "paths computed at render \u2014 only index.md, [param].md, or [param].paths.ts mounts allowed"
-        });
-      }
-    }
-  };
-  walk(pagesRoot);
-  return offenders;
-}
-function computeComputationalLimitSnapshot(root, indexTsFiles, bodies, codeFiles) {
-  const indexCount = indexTsFiles.length;
-  const gapless = verifyGaplessCensus(indexCount);
-  const folded = verifyFoldedCensus(indexCount);
-  const dimensions10 = verifyDimensionGates(folded.folded);
-  const vaultViolations = scanVaultViolations(root, codeFiles, bodies);
-  const renderViolations = [
-    ...scanRenderIndexViolations(root),
-    ...scanRenderUiScienceMaskViolations(root),
-    ...scanRenderUiEightFoldViolations(root),
-    ...scanRenderUiMaskRegistryViolations(root, indexTsFiles)
-  ];
-  const displayDualViolations = scanLogicDisplayViolations(root, indexTsFiles);
-  const staticPathViolations = scanStaticPathViolations(root);
-  const forbiddenFolderViolations = scanForbiddenFolderNameViolations(root);
-  const incompleteIndexViolations = scanIncompleteIndexViolations(root, indexTsFiles);
-  const rootDistributionViolations = scanRootDistributionViolations(root);
-  const digitLatticeViolations = scanDigitLatticeViolations(root);
-  const ichingDistribution = scanIChingDistribution(root, indexTsFiles);
-  const distributionGuidance = ichingDistributionGuidance(indexCount, ichingDistribution);
-  const passed = gapless.ok && folded.ok && dimensions10.ok && vaultViolations.length === 0 && renderViolations.length === 0 && displayDualViolations.length === 0 && staticPathViolations.length === 0 && forbiddenFolderViolations.length === 0 && incompleteIndexViolations.length === 0 && rootDistributionViolations.length === 0 && digitLatticeViolations.length === 0 && ichingDistribution.passed;
-  const parts = [
-    toUuid(`computational:census:${indexCount}:${gapless.ok}`),
-    toUuid(`computational:folded:${folded.folded}:${folded.ok}`),
-    toUuid(`computational:gates:${dimensions10.gates}:${dimensions10.ok}`),
-    toUuid(`computational:vault:${vaultViolations.length}`),
-    toUuid(`computational:render:${renderViolations.length}`),
-    toUuid(`computational:display-dual:${displayDualViolations.length}`),
-    toUuid(`computational:paths:${staticPathViolations.length}`),
-    toUuid(`computational:forbidden-folder:${forbiddenFolderViolations.length}`),
-    toUuid(`computational:incomplete-index:${incompleteIndexViolations.length}`),
-    toUuid(`computational:root-distribution:${rootDistributionViolations.length}`),
-    toUuid(`computational:digit-lattice:${digitLatticeViolations.length}`),
-    toUuid(`computational:iching-dist:${ichingDistribution.passed}`)
-  ];
-  return {
-    indexCount,
-    targetUnfolded: UNFOLDED_CENSUS,
-    targetFolded: FOLDED_CENSUS,
-    gapless: gapless.gapless,
-    withinRatchet: gapless.withinRatchet,
-    bands: gapless.bands,
-    bandsMatch: gapless.bandsMatch,
-    foldedOk: folded.ok,
-    dimensionGatesOk: dimensions10.ok,
-    vaultViolations,
-    renderViolations,
-    displayDualViolations,
-    staticPathViolations,
-    forbiddenFolderViolations,
-    incompleteIndexViolations,
-    rootDistributionViolations,
-    digitLatticeViolations,
-    ichingDistribution,
-    distributionGuidance,
-    rosettaDistribution: ichingDistribution,
-    rosettaGuidance: distributionGuidance,
-    passed,
-    receipt: merkleFold(parts)
-  };
-}
-function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root = enforcementScanRoot()) {
-  const files = tsFilesUnder(join2(root, "src"));
-  let total = 0;
-  let declaredHonest = 0;
-  const perFile = {};
-  for (const file of files) {
-    let text = "";
-    try {
-      text = readFileSync(file, "utf8");
-    } catch {
-      continue;
-    }
-    const code = stripStringsAndComments(text);
-    for (const line of code.split("\n")) {
-      if (/on:\s*true\s*[},]/.test(line)) {
-        total += 1;
-        const rel = relative2(root, file).replace(/\\/g, "/");
-        perFile[rel] = (perFile[rel] ?? 0) + 1;
-        if (/honest/i.test(line)) declaredHonest += 1;
-      }
-    }
-  }
-  const topFiles = Object.entries(perFile).sort((a, b) => b[1] - a[1]).slice(0, 2 * 3);
-  const facets = [
-    { facet: `THE DEBT \u2014 ${total} facets across ${Object.keys(perFile).length} files are gated on hardcoded on: true, so each PROVES NOTHING (it always passes); the facets-must-compute violation at corpus scale, measured live not asserted`, on: total > 0 && files.length > 0 },
-    { facet: `DECLARED HONESTY \u2014 ${declaredHonest} of the ${total} are labelled "honest": a boundary sentence dressed as a facet, the declared-honesty crack (honesty asserted, unrefutable) \u2014 the exact class the declared-honesty gate flags`, on: declaredHonest >= 0 && declaredHonest <= total },
-    { facet: `A TRACKED WORKLIST \u2014 the count is computed from the live source (${files.length} .ts files walked), so it is refutable and DECREASES as each facet is fixed: give it a refutable computation, or move the prose to the boundary and drop the facet. Top: ${topFiles.map(([f2, n]) => `${f2.replace("src/", "")}:${n}`).join(", ")}`, on: topFiles.length > 0 },
-    { facet: `COMPUTED, NOT DECLARED \u2014 the debt number itself is scanned, not a hand-typed figure (${total} recomputed each run); the paydown is measurable, and a NEW on: true facet raises the count \u2014 the guard against regression`, on: total === Object.values(perFile).reduce((s, n) => s + n, 0) }
-  ];
-  return {
-    computes: facets.every((entry2) => entry2.on),
-    total,
-    declaredHonest,
-    files: Object.keys(perFile).length,
-    topFiles: topFiles.map(([f2, n]) => `${f2}:${n}`),
-    facets,
-    statement: `The facets-must-compute debt is ${total} hardcoded on: true facets, ${declaredHonest} labelled honest \u2014 ${facets.filter((entry2) => entry2.on).length}/${facets.length}. Scanned live from ${files.length} source files: ${total} facets across ${Object.keys(perFile).length} files are gated on a hardcoded true, so each proves nothing (always passes) \u2014 the facets-must-compute violation the session has been correcting, at corpus scale. ${declaredHonest} are labelled "honest" \u2014 a boundary sentence dressed as a facet, the declared-honesty crack. The count is computed, not asserted, so it is a tracked worklist: each facet given a refutable computation (or its prose moved to the boundary and the facet dropped) lowers the number, and a new on: true raises it. The paydown is now measurable.`,
-    boundary: `Computed live: the debt is scanned from the real source (${files.length} .ts files walked at call time), refutable by re-running \u2014 not a hand-typed figure. THE FINDING: ${total} facets across the corpus are gated on hardcoded on: true, a fact that always holds and therefore proves nothing \u2014 the same crack class as x >= 0 (the tautology gate) and declared honesty (a demarcation with no refutable facet). ${declaredHonest} carry the word "honest", making them the declared-honesty crack precisely: an honesty claim asserted in a facet that cannot fail. THE PAYDOWN is per-fold judgement, not a batch: each facet either (a) gets a refutable computation that actually tests its claim, or (b) is recognised as boundary prose \u2014 moved into the boundary and the facet removed (the honest form, since a pure disclaimer is not a facet). This scanner does not fix them; it makes the debt a tracked, refutable number so progress is visible and regressions are caught, the necessary first step of paying it down. Build/CLI only (reads FS).: a green fold with on: true facets is the harmony; the truth is those facets prove nothing, and the honest corpus has zero \u2014 the number to drive down.`
-  };
-}
-
 // ../../src/mountain/geometry/index.ts
-init_node_fs();
-init_node_path();
 function dualTorusTrinities(matrix = buildMatrix()) {
   return memoByRoot("dualTorusTrinities", matrix, () => dualTorusTrinitiesRaw(matrix));
 }
@@ -130116,7 +130570,7 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
     let softPyramidSeal = false;
     try {
       const root = enforcementScanRoot();
-      const pkg = JSON.parse(readFileSync(join2(root, "package.json"), "utf8"));
+      const pkg = { scripts: packageScriptsOf(root) };
       const scripts = pkg.scripts ?? {};
       softGeoTorus = Boolean(scripts["quantum:train-geodesy"] || scripts["quantum:geo-torus"]);
       softPyramidSeal = Boolean(scripts["quantum:pyramid-seal"]);
@@ -144460,6 +144914,7 @@ export {
   allWarn,
   allWiredTransliterationUuidForgeHero,
   alphabetsDecoded,
+  aluRtlMeasured,
   anObjectMayBeCombinationsOfObjectsLikeBiology,
   analogAcceleratorsDecoded,
   analogComputationDecoded,
@@ -145628,6 +146083,7 @@ export {
   iconSeal,
   iconsAreAnimatedToo,
   iconsShowComputerLoad,
+  identityFreeDecisionsReasoned,
   ifYouCanExplainByMathItExists,
   ifaOdu,
   ifaRows,

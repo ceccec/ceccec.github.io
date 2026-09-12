@@ -152,23 +152,17 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly toolId: "mcp-vortex";
     readonly dualToolId: "vortex-mcp";
 }, {
-    readonly fold: "mcpQuantumTorus";
-    readonly pair: "mcp/torus";
-    readonly dual: "torus/mcp";
-    readonly toolId: "mcp-torus";
-    readonly dualToolId: "torus-mcp";
-}, {
-    readonly fold: "mcpQuantumResearch";
-    readonly pair: "mcp/research";
-    readonly dual: "research/mcp";
-    readonly toolId: "mcp-research";
-    readonly dualToolId: "research-mcp";
-}, {
     readonly fold: "mcpQuantumCatalog";
     readonly pair: "mcp/catalog";
     readonly dual: "catalog/mcp";
     readonly toolId: "mcp-catalog";
     readonly dualToolId: "catalog-mcp";
+}, {
+    readonly fold: "mcpRosettaStreamClusters";
+    readonly pair: "mcp/cluster";
+    readonly dual: "cluster/mcp";
+    readonly toolId: "mcp-cluster";
+    readonly dualToolId: "cluster-mcp";
 }, {
     readonly fold: "mcpQuantumReverse";
     readonly pair: "mcp/reverse";
@@ -278,35 +272,11 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly toolId: "mcp-clown";
     readonly dualToolId: "clown-mcp";
 }, {
-    readonly fold: "mcpQuantumSite";
-    readonly pair: "mcp/site";
-    readonly dual: "site/mcp";
-    readonly toolId: "mcp-site";
-    readonly dualToolId: "site-mcp";
-}, {
-    readonly fold: "mcpQuantumPage";
-    readonly pair: "mcp/page";
-    readonly dual: "page/mcp";
-    readonly toolId: "mcp-page";
-    readonly dualToolId: "page-mcp";
-}, {
-    readonly fold: "mcpQuantumCard";
-    readonly pair: "mcp/card";
-    readonly dual: "card/mcp";
-    readonly toolId: "mcp-card";
-    readonly dualToolId: "card-mcp";
-}, {
     readonly fold: "mcpQuantumReceipt";
     readonly pair: "mcp/receipt";
     readonly dual: "receipt/mcp";
     readonly toolId: "mcp-receipt";
     readonly dualToolId: "receipt-mcp";
-}, {
-    readonly fold: "mcpQuantumHero";
-    readonly pair: "mcp/hero";
-    readonly dual: "hero/mcp";
-    readonly toolId: "mcp-hero";
-    readonly dualToolId: "hero-mcp";
 }, {
     readonly fold: "mcpQuantumVibration";
     readonly pair: "mcp/vibration";

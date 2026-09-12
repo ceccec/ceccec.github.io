@@ -847,9 +847,9 @@ export declare const PROSE_GAPS_MERGE_MAP: readonly [{
     readonly to: "placeMerge";
     readonly pair: "compact/matrix";
 }, {
-    readonly from: "dryAllToUnifiedComponentsWiredToRosettaWhichIsTheMovie";
+    readonly from: "animationRosettaStreamClusters";
     readonly to: "animationCore";
-    readonly pair: "dry/rosetta";
+    readonly pair: "anim/cluster";
 }, {
     readonly from: "dryCleanAllVueComponentsToTheUniversalSet";
     readonly to: "dryDupe";

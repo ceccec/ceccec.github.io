@@ -47850,7 +47850,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                     storage: DriverProbeReceipt;
                 };
                 table: {
-                    id: "memory" | "storage" | "gpu" | "cpu";
+                    id: "memory" | "gpu" | "storage" | "cpu";
                     tier: HardwareDriverTier;
                     runtime: DriverRuntime;
                     surface: string;
@@ -48042,7 +48042,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                         storage: DriverProbeReceipt;
                     };
                     table: {
-                        id: "memory" | "storage" | "gpu" | "cpu";
+                        id: "memory" | "gpu" | "storage" | "cpu";
                         tier: HardwareDriverTier;
                         runtime: DriverRuntime;
                         surface: string;
@@ -48211,7 +48211,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
             };
             localMath: boolean;
             rows: {
-                id: "memory" | "storage" | "gpu" | "cpu";
+                id: "memory" | "gpu" | "storage" | "cpu";
                 tier: HardwareDriverTier;
                 runtime: DriverRuntime;
                 fallbackActive: boolean;
@@ -48267,7 +48267,7 @@ export declare function hardwareDriversResearch(matrix?: MindMatrix, at?: number
         storage: DriverProbeReceipt;
     };
     table: {
-        id: "memory" | "storage" | "gpu" | "cpu";
+        id: "memory" | "gpu" | "storage" | "cpu";
         tier: HardwareDriverTier;
         runtime: DriverRuntime;
         surface: string;
@@ -48291,7 +48291,7 @@ export declare function computeSubstrateDriversComputes(matrix?: MindMatrix, at?
             storage: DriverProbeReceipt;
         };
         table: {
-            id: "memory" | "storage" | "gpu" | "cpu";
+            id: "memory" | "gpu" | "storage" | "cpu";
             tier: HardwareDriverTier;
             runtime: DriverRuntime;
             surface: string;
@@ -48472,7 +48472,7 @@ export declare function computeAllWithHardwareDrivers(at?: number, matrix?: Mind
                 storage: DriverProbeReceipt;
             };
             table: {
-                id: "memory" | "storage" | "gpu" | "cpu";
+                id: "memory" | "gpu" | "storage" | "cpu";
                 tier: HardwareDriverTier;
                 runtime: DriverRuntime;
                 surface: string;
@@ -48641,7 +48641,7 @@ export declare function computeAllWithHardwareDrivers(at?: number, matrix?: Mind
     };
     localMath: boolean;
     rows: {
-        id: "memory" | "storage" | "gpu" | "cpu";
+        id: "memory" | "gpu" | "storage" | "cpu";
         tier: HardwareDriverTier;
         runtime: DriverRuntime;
         fallbackActive: boolean;
@@ -48666,7 +48666,7 @@ export declare function computeSubstrateWithBus(at?: number, matrix?: MindMatrix
                 storage: DriverProbeReceipt;
             };
             table: {
-                id: "memory" | "storage" | "gpu" | "cpu";
+                id: "memory" | "gpu" | "storage" | "cpu";
                 tier: HardwareDriverTier;
                 runtime: DriverRuntime;
                 surface: string;
@@ -48858,7 +48858,7 @@ export declare function computeSubstrateWithBus(at?: number, matrix?: MindMatrix
                     storage: DriverProbeReceipt;
                 };
                 table: {
-                    id: "memory" | "storage" | "gpu" | "cpu";
+                    id: "memory" | "gpu" | "storage" | "cpu";
                     tier: HardwareDriverTier;
                     runtime: DriverRuntime;
                     surface: string;
@@ -49027,7 +49027,7 @@ export declare function computeSubstrateWithBus(at?: number, matrix?: MindMatrix
         };
         localMath: boolean;
         rows: {
-            id: "memory" | "storage" | "gpu" | "cpu";
+            id: "memory" | "gpu" | "storage" | "cpu";
             tier: HardwareDriverTier;
             runtime: DriverRuntime;
             fallbackActive: boolean;
@@ -49060,7 +49060,7 @@ export declare function computeSubstrateComputes(matrix?: MindMatrix, at?: numbe
             storage: DriverProbeReceipt;
         };
         table: {
-            id: "memory" | "storage" | "gpu" | "cpu";
+            id: "memory" | "gpu" | "storage" | "cpu";
             tier: HardwareDriverTier;
             runtime: DriverRuntime;
             surface: string;
@@ -49253,7 +49253,7 @@ export declare function displayTerminalComputes(matrix?: MindMatrix, at?: number
                 storage: DriverProbeReceipt;
             };
             table: {
-                id: "memory" | "storage" | "gpu" | "cpu";
+                id: "memory" | "gpu" | "storage" | "cpu";
                 tier: HardwareDriverTier;
                 runtime: DriverRuntime;
                 surface: string;

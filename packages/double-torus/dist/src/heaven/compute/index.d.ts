@@ -427,6 +427,28 @@ export declare function fleetCacheEconomicsDecoded(matrix?: MindMatrix): {
     boundary: string;
 };
 /**
+ * aluRtlMeasured — reads the SEALED hardware of the qubit-analog ALU: src/heaven/compute is also a Lake package
+ * written in Sparkle (Lean 4 HDL) with seven kernel-checked theorems, an emitted SystemVerilog module (alu.sv)
+ * and a 42-row trace (alu-trace.csv: 7 gates × 6 poles, hardware and pure spec side by side). Every row is
+ * compared here, live, with blochGate/blochMeasure — the TypeScript the hardware claims to implement — so the
+ * agreement is recomputed at call time, never quoted. Clifford rows must match exactly; T rows within the
+ * rounding the Lean bounds (t_floor_bound: under 1.5 units of 2⁻¹⁴).
+ *
+ * HONEST: the files are read from disk, so this is MEASURED under node (verify:sparkle regenerates and diffs
+ * both files on every run) and NOT MEASURED in the browser, where `measured` is false and nothing is claimed.
+ * A read that cannot happen is reported as absent, never as agreement.
+ */
+export declare function aluRtlMeasured(root?: string): {
+    measured: boolean;
+    rows: number;
+    agreeing: number;
+    disagreeing: string[];
+    verilogModule: boolean;
+    verilogLines: number;
+    theorems: number;
+    root: string;
+};
+/**
  * hardwareSpecFromInvariants — the quantum model designs the hardware from its own sealed invariants. The vortex
  * spin (VORTEX_SEQUENCE / groupOrbit(2,9)) fixes the on-chip ring/NoC order; the resource cooperation policy fixes
  * the memory/storage/GPU tiers; blochQubitFaithful fixes the qubit-analog ALU width (4 UUIDs/qubit); and
@@ -437,6 +459,16 @@ export declare function hardwareSpecFromInvariants(matrix?: MindMatrix): {
     ringOrder: (2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6)[];
     doublingOrbit: number[];
     tiers: import("../../0/index.ts").ResourceTier[];
+    rtl: {
+        measured: boolean;
+        rows: number;
+        agreeing: number;
+        disagreeing: string[];
+        verilogModule: boolean;
+        verilogLines: number;
+        theorems: number;
+        root: string;
+    };
     documented: string[];
     flagged: string[];
     facets: {

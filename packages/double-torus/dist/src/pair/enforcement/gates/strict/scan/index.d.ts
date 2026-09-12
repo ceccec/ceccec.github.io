@@ -5,6 +5,11 @@ import { invisibleGapsCaughtByGatesBody } from '../../../../../quantum/apps/inde
  * shimmed), so a bare `process.cwd()` default arg throws the moment a gate is called there. '/' keeps the fs walks
  * no-op in the browser (existsSync('/src') is false under the shim), so gates compute over zero entries —
  * matching the production shim — instead of crashing the page. Node/SSR behaviour is unchanged. */
+/** package.json scripts, or {} where there is no filesystem. The browser build stubs node:fs
+ * (existsSync → false, readFileSync → ''), and JSON.parse('') threw "Unexpected end of JSON input" on every
+ * live proof page (2026-09-12 audit) from whichever fold read package.json inside proofRegistry — seven copies
+ * of the same unguarded line across three files. One reader, one guard, gravity. */
+export declare function packageScriptsOf(root: string): Record<string, string>;
 export declare function enforcementScanRoot(): string;
 export declare const MONOLITH_FILE_BYTES: number;
 export declare const MONOLITH_FILE_LAW = "no logic file may exceed the DERIVED fair-share target \u2014 the next power of two \u2265 corpus/census, recomputed each optimisation wave (the 2\u00B9\u00B3 floor is historic; its zero is unreachable under the census law \u2014 monolithTargetVsCensusCapacity)";
@@ -3109,7 +3114,7 @@ export declare function geoGebraEncode(): {
     theoremAuditAligned: number;
     encodeNotTheorem: number;
     apps: ("geometry" | "probability" | "graphing" | "3d" | "cas" | "scientific")[];
-    objectFamilies: ("function" | "sphere" | "ray" | "line" | "path" | "cube" | "angle" | "vector" | "segment" | "axis" | "point" | "parallel" | "distance" | "region" | "list" | "plane" | "conic" | "ellipse" | "parabola" | "hyperbola" | "arc" | "polygon" | "numeric" | "cone" | "cylinder" | "prism" | "polyhedron" | "midpoint" | "intersect" | "perpendicular")[];
+    objectFamilies: ("function" | "sphere" | "ray" | "line" | "path" | "cube" | "angle" | "vector" | "segment" | "axis" | "parallel" | "distance" | "region" | "list" | "point" | "plane" | "conic" | "ellipse" | "parabola" | "hyperbola" | "arc" | "polygon" | "numeric" | "cone" | "cylinder" | "prism" | "polyhedron" | "midpoint" | "intersect" | "perpendicular")[];
     apiMethods: ("evalCommand" | "evalLaTeX" | "evalCommandCAS" | "getObjectType" | "getAllObjectNames" | "setCoords" | "getCoords" | "setValue" | "getValue" | "setUndoPoint" | "registerObjectUpdateListener" | "registerAddListener" | "registerRemoveListener" | "getXcoord" | "getYcoord" | "getZcoord" | "setVisible" | "deleteObject" | "renameObject" | "evalGeoGEBRA")[];
     catalog: {
         auditKind: TheoremAuditKind;

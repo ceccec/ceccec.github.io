@@ -95,7 +95,7 @@ export declare function tenDimensionalMovie(matrix?: MindMatrix): {
 /** Thin facet — Quantum OS wallpaper = movieAsMostEfficientScreensaver capstone. */
 export declare function movieWallpaperIsMostEfficientScreensaver(at?: number, path?: string, matrix?: MindMatrix): {
     wallpaper: boolean;
-    tier: "NATIVE" | "FALLBACK" | "UNAVAILABLE";
+    tier: "UNAVAILABLE" | "NATIVE" | "FALLBACK";
     at: number;
     path: string;
     root: string;

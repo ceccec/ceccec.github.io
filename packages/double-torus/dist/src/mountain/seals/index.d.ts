@@ -1241,6 +1241,34 @@ export declare function theTheoremsFoldToFiveRootsOfGreaterSignificance(matrix?:
     statement: string;
     boundary: string;
 };
+export type IdentityFreeDecision = {
+    name: string;
+    kind: 'law' | 'method' | 'process';
+    anchored: boolean;
+    provedBy: string;
+    home: string;
+    restsOn: readonly string[];
+    hiddenAlgebra?: string;
+    verdict: 'refuted' | 'reasoned' | 'unanchored';
+};
+export declare function identityFreeDecisionsReasoned(matrix?: MindMatrix): {
+    computes: boolean;
+    decisions: IdentityFreeDecision[];
+    refuted: string[];
+    unanchored: string[];
+    kinds: {
+        law: number;
+        method: number;
+        process: number;
+    };
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks(matrix?: MindMatrix): {
     computes: boolean;
     gaps: string[];

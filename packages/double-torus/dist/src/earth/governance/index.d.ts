@@ -232,7 +232,7 @@ export declare function societyMerkabaGraphComputes(matrix?: MindMatrix): {
     actors: number;
     edges: number;
     nodes: {
-        actor: "science" | "commons" | "governance" | "traditions" | "observer" | "replicator" | "falsifier" | "steward" | "fair-life";
+        actor: "science" | "commons" | "governance" | "observer" | "traditions" | "replicator" | "falsifier" | "steward" | "fair-life";
         state: number[];
         receipt: string;
     }[];

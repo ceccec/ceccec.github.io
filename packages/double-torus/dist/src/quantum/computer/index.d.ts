@@ -531,7 +531,7 @@ export declare function computerComputes(matrix?: MindMatrix, at?: number): {
                 storage: __ns_up_stack_overflow.DriverProbeReceipt;
             };
             table: {
-                id: "memory" | "storage" | "gpu" | "cpu";
+                id: "memory" | "gpu" | "storage" | "cpu";
                 tier: __ns_up_stack_overflow.HardwareDriverTier;
                 runtime: __ns_up_stack_overflow.DriverRuntime;
                 surface: string;
@@ -1203,7 +1203,7 @@ export declare function computerPanelComputes(matrix?: MindMatrix, at?: number):
                     storage: __ns_up_stack_overflow.DriverProbeReceipt;
                 };
                 table: {
-                    id: "memory" | "storage" | "gpu" | "cpu";
+                    id: "memory" | "gpu" | "storage" | "cpu";
                     tier: __ns_up_stack_overflow.HardwareDriverTier;
                     runtime: __ns_up_stack_overflow.DriverRuntime;
                     surface: string;

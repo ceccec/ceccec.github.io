@@ -1449,8 +1449,11 @@ export declare function quantumAlgorithmComparison(matrix?: MindMatrix): {
     receipt: string;
 };
 export interface BuildLockState {
-    lockFileExists: boolean;
-    lockFileStale: boolean;
+    /** the runtime lock directory .vitepress/.build-lock exists */
+    lockPresent: boolean;
+    /** it exists and its holder process is gone — the only thing that makes a lock stale */
+    lockHolderDead: boolean;
+    /** build processes running with NO live lock holder — the only ones repair may kill */
     staleProcCount: number;
     cacheExists: boolean;
     distExists: boolean;
@@ -1458,15 +1461,36 @@ export interface BuildLockState {
     issues: string[];
 }
 export declare function detectBuildLockState(): BuildLockState;
-export declare function killStaleBuildProcesses(): {
+/**
+ * REPAIR IS DELIBERATE, SO IT TAKES AN ARGUMENT.
+ *
+ * killStaleBuildProcesses, restoreBuildLockFromGit, clearBuildCache and repairBuildLocks took no
+ * arguments. The every-fold census calls every zero-arity export in src/ to see what it returns, so
+ * every verification run CALLED them: it SIGKILLed every process matching node.*docs:build on the
+ * machine, ran `git checkout HEAD -- .vitepress/build-lock.mjs`, and recursively deleted
+ * .vitepress/cache, .vitepress/dist, .temp and .vite-temp — the first of which holds the esbuild cache
+ * the gates running beside the census load from.
+ *
+ * Measured, not inferred: during one stream, an uncommitted edit to build-lock.mjs was reverted to
+ * HEAD at 22:25:39 while the plugin that imported its new export kept its edit, and the next
+ * docs:build failed with MISSING_EXPORT; a monitoring shell whose command line mentioned the phrase
+ * `node .*docs:build` stopped two seconds earlier without a word. The stream reported 40/40 clean,
+ * because the census's tree digest did not cover .vitepress.
+ *
+ * The census's own header prescribes the cure — give a writer an argument so its arity excludes it
+ * from the walk. The argument is a typed intent, and it is checked at runtime too: a JavaScript caller
+ * or an `as any` could otherwise still reach the destructive branch by calling with nothing.
+ */
+export type RepairIntent = 'repair';
+export declare function killStaleBuildProcesses(intent: RepairIntent): {
     killed: number;
     errors: string[];
 };
-export declare function restoreBuildLockFromGit(): {
-    restored: boolean;
-    error?: string;
+export declare function clearDeadBuildLock(intent: RepairIntent): {
+    cleared: string[];
+    errors: string[];
 };
-export declare function clearBuildCache(): {
+export declare function clearBuildCache(intent: RepairIntent): {
     cleared: string[];
     errors: string[];
 };
@@ -1479,11 +1503,11 @@ export interface BuildRepairPlan {
     success: boolean;
     summary: string;
 }
-export declare function repairBuildLocks(): BuildRepairPlan;
+export declare function repairBuildLocks(intent: RepairIntent): BuildRepairPlan;
 export declare const buildRepair: {
     detectState: typeof detectBuildLockState;
     killStaleProcesses: typeof killStaleBuildProcesses;
-    restoreLockFromGit: typeof restoreBuildLockFromGit;
+    clearDeadLock: typeof clearDeadBuildLock;
     clearCache: typeof clearBuildCache;
     repair: typeof repairBuildLocks;
 };
