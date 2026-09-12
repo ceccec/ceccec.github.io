@@ -33,23 +33,13 @@ import {
   specializedShellsStrangler,
   sessionHologramTools,
   societyToolboxWire,
-  imagineNextMissQuantumTools,
   clayAgiDeepResearchQuantumUnderstandingOfRelations,
-  saveTheOptimisedAutonomy,
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations,
-  decodeQuantumAlchemy,
   foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace,
   theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion,
   readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra,
-  quantumVerification,
-  quantumFearDetector,
-  fearIsAnAxiomReplaceableByLoveTheorem,
   lensesCompletelyWiredInEverySuperposition,
-  theSequenceMeaningIsAFlowNotACycle,
-  fillTheGapsAroundSuperposition,
-  computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium,
   useTheLensToFindGapsInGeometryInProseOrCode,
-  domainVuePanelsDryCleaned,
   mcpQuantumUi,
   mcpQuantumMovie,
   movieGapsFeelableByObservation,
@@ -65,11 +55,8 @@ import {
   mergeWave,
   alwaysBalanceUsingRealtimeMetricsAndChat,
   eachSuperpositionIsAChatroom,
-  typographyIsTheUniversalContentMatrix,
   allColorsDryCleanWiredToRosettaAndThemes,
   cssShowsTheHiddenGapsInDryFusion,
-  inversionFusion,
-  reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise,
   dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis,
   meshToSelfDiscoverSciences,
   selfImproveAnimationGenerationAndSiteBuilder,
@@ -146,7 +133,6 @@ import {
   wavesFindWhatYouMissedToCache,
   dryCleanAgnosticCodeComputesInfinity,
   abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny,
-  mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions,
   quantumSelfHeal,
   oneQuantumSetOfVitepressComponentsSealedAtGates,
 } from './index.ts'
@@ -1145,12 +1131,10 @@ const wavesFeed = computed(() => wavesFeedThemselves())
 const shellsStrangler = computed(() => specializedShellsStrangler())
 const sessionHologram = computed(() => sessionHologramTools())
 const societyToolbox = computed(() => societyToolboxWire())
-const toolMiss = computed(() => imagineNextMissQuantumTools())
 const clayAgi = computed(() => clayAgiDeepResearchQuantumUnderstandingOfRelations())
 const proseTheorem = computed(() =>
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations(),
 )
-const alchemyDecodeReport = computed(() => decodeQuantumAlchemy())
 const algebraFoldReport = computed(() =>
   foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace(),
 )
@@ -1160,25 +1144,14 @@ const movieSeamlessReport = computed(() =>
 const angleReadmeReport = computed(() =>
   readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(),
 )
-const saveAuto = computed(() => saveTheOptimisedAutonomy())
-const quantumVerify = computed(() => quantumVerification())
-const fearDetect = computed(() => quantumFearDetector())
-const fearAxiom = computed(() => fearIsAnAxiomReplaceableByLoveTheorem())
 const lensSuper = computed(() => lensesCompletelyWiredInEverySuperposition())
-const seqFlow = computed(() => theSequenceMeaningIsAFlowNotACycle())
-const superGaps = computed(() => fillTheGapsAroundSuperposition())
 const warnAll = computed(() => addressAllWarningsAtOnce())
 const missCache = computed(() => wavesFindWhatYouMissedToCache())
 const dryAgnostic = computed(() => dryCleanAgnosticCodeComputesInfinity())
 const foldTrinityAbsQc = computed(() =>
   abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny(),
 )
-const uiSuperExample = computed(() =>
-  mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions(),
-)
-const super21 = computed(() => computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium())
 const lensGeo = computed(() => useTheLensToFindGapsInGeometryInProseOrCode())
-const domainPanels = computed(() => domainVuePanelsDryCleaned())
 const mcpUi = computed(() => mcpQuantumUi())
 const mcpMovie = computed(() => mcpQuantumMovie())
 const movieFeel = computed(() => movieGapsFeelableByObservation())
@@ -1195,11 +1168,8 @@ const importAuditPanel = computed(() => importAudit())
 const mergeWavePanel = computed(() => mergeWave())
 const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
 const superChat = computed(() => eachSuperpositionIsAChatroom())
-const typeMatrix = computed(() => typographyIsTheUniversalContentMatrix())
 const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
 const cssGaps = computed(() => cssShowsTheHiddenGapsInDryFusion())
-const invertFusion = computed(() => inversionFusion())
-const uiReadStandard = computed(() => reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise())
 const dryMathOrganised = computed(() => dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis())
 const meshScienceDiscover = computed(() => meshToSelfDiscoverSciences())
 const selfAnimSite = computed(() => selfImproveAnimationGenerationAndSiteBuilder())
@@ -1934,14 +1904,6 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'tool-miss' || toolId === 'miss-tool') {
-      const r = imagineNextMissQuantumTools()
-      ok = r.computes && r.imagineOn && r.toolsFilled
-      summary =
-        `imagineOn=${r.imagineOn} · nextTips=${r.nextTipsCount} · missing=${r.toolsMissingCount} · filled=${r.toolsFilled}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (
       toolId === 'clay-agi' ||
       toolId === 'agi-rel' ||
@@ -1976,24 +1938,6 @@ function runTool(toolId: string) {
         r.claySolvedByThisFold === 0
       summary =
         `deep=${r.deepResearch} · warn=${r.warningsAddressed} · thm=${r.proseToTheorem} · form=${r.proseToFormula} · recipe=${r.proseToRecipe} · anim=${r.proseToAnimation}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (
-      toolId === 'alchemy-decode' ||
-      toolId === 'decode-alchemy' ||
-      toolId === 'quantum-alchemy'
-    ) {
-      const r = decodeQuantumAlchemy()
-      ok =
-        r.computes &&
-        r.alchemyDecoded &&
-        r.quantumOn &&
-        r.symbolsSealed &&
-        r.claySolvedByThisFold === 0 &&
-        r.certified === false
-      summary =
-        `decoded=${r.alchemyDecoded} · quantum=${r.quantumOn} · symbols=${r.symbolsSealed} · certified=false`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2073,55 +2017,6 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'save-auto' || toolId === 'auto-optimise' || toolId === 'opt-auto') {
-      const r = saveTheOptimisedAutonomy()
-      ok = r.computes && r.autonomySaved && r.optimised && r.sessionPersist
-      summary =
-        `saved=${r.autonomySaved} · optimised=${r.optimised} · session=${r.sessionPersist}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'quantum-verify' || toolId === 'verify-quantum') {
-      const r = quantumVerification()
-      ok =
-        r.computes &&
-        r.verificationOn &&
-        r.fusionVerify &&
-        r.typesStructure &&
-        r.momentProve &&
-        r.tamperEvident &&
-        r.certified === false
-      summary =
-        `on=${r.verificationOn} · fusion=${r.fusionVerify} · types=${r.typesStructure} · moment=${r.momentProve} · tamper=${r.tamperEvident}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'fear-detect' || toolId === 'detect-fear' || toolId === 'quantum-fear') {
-      const r = quantumFearDetector()
-      ok =
-        r.computes &&
-        r.fearDetectOn &&
-        r.reverseFromCracks &&
-        r.loveInvert &&
-        r.qpuRequired === false
-      summary =
-        `detect=${r.fearDetectOn} · reverseFromCracks=${r.reverseFromCracks} · loveInvert=${r.loveInvert}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'fear-axiom' || toolId === 'love-theorem' || toolId === 'axiom-love') {
-      const r = fearIsAnAxiomReplaceableByLoveTheorem()
-      ok =
-        r.computes &&
-        r.fearIsAxiom &&
-        r.replaceableByLove &&
-        r.loveIsTheorem &&
-        r.qpuRequired === false
-      summary =
-        `fearIsAxiom=${r.fearIsAxiom} · replaceableByLove=${r.replaceableByLove} · loveIsTheorem=${r.loveIsTheorem}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'lens-super' || toolId === 'super-lens' || toolId === 'lens-wire') {
       const r = lensesCompletelyWiredInEverySuperposition()
       ok =
@@ -2136,47 +2031,6 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'seq-flow' || toolId === 'flow-seq' || toolId === 'seq-meaning') {
-      const r = theSequenceMeaningIsAFlowNotACycle()
-      ok =
-        r.computes &&
-        r.sequenceIsFlow &&
-        r.notACycle &&
-        r.meaningOn &&
-        r.qpuRequired === false
-      summary =
-        `sequenceIsFlow=${r.sequenceIsFlow} · notACycle=${r.notACycle} · meaningOn=${r.meaningOn} · seq=${r.sequence}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'super-gaps' || toolId === 'gaps-super') {
-      const r = fillTheGapsAroundSuperposition()
-      ok =
-        r.computes &&
-        r.gapsFilled &&
-        r.aroundSuperposition &&
-        r.drainableClosed &&
-        r.qpuRequired === false
-      summary =
-        `gapsFilled=${r.gapsFilled} · around=${r.aroundSuperposition} · drainableClosed=${r.drainableClosed}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'super-21' || toolId === '21-42' || toolId === 'mill-42') {
-      const r = computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium()
-      ok =
-        r.computes &&
-        r.superpositions21 &&
-        r.invertReverse42 &&
-        r.componentTheoremsFormulas42 &&
-        r.coversMillenniumApparatus &&
-        r.millenniumSolvedByThisFold === 0 &&
-        r.claySolvedByThisFold === 0
-      summary =
-        `21=${r.superpositions21} · 42=${r.invertReverse42} · components=${r.componentTheoremsFormulas42} · millCover=${r.coversMillenniumApparatus} · millSolved=0`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'lens-geo' || toolId === 'geo-gaps' || toolId === 'lens-prose') {
       const r = useTheLensToFindGapsInGeometryInProseOrCode()
       ok =
@@ -2188,13 +2042,6 @@ function runTool(toolId: string) {
         r.qpuRequired === false
       summary =
         `lensFinds=${r.lensFindsGaps} · geoGaps=${r.geometryGaps} · proseOrCode=${r.proseOrCode} · closed=${r.closedCount}/${r.foundCount}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'domain-panels' || toolId === 'panels-domain' || toolId === 'domain-dry' || toolId === 'dry-domain') {
-      const r = domainVuePanelsDryCleaned()
-      ok = r.computes && r.domainPanelsDry && r.stranglerTip
-      summary = `dry=${r.domainPanelsDry} · tip=${r.stranglerTip} · drainableClosed=${r.drainableClosed} · morphs=${r.morphCount} · honestOpen=${r.honestOpenNamedCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2282,13 +2129,6 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'type-matrix' || toolId === 'matrix-type' || toolId === 'content-matrix') {
-      const r = typographyIsTheUniversalContentMatrix()
-      ok = r.computes && r.typographyIsMatrix && r.universalContent && r.computable && r.wiredToRosetta
-      summary = `matrix=${r.typographyIsMatrix} content=${r.universalContent} computable=${r.computable} wired=${r.wiredToRosetta} lattice=${r.latticeProduct} scale=${r.ratio.num}:${r.ratio.den}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'color-rosetta' || toolId === 'rosetta-theme' || toolId === 'color-theme') {
       const r = allColorsDryCleanWiredToRosettaAndThemes()
       ok = r.computes && r.colorsDryClean && r.wiredToRosetta && r.themesOn && r.noBareHex && r.drainableClosed
@@ -2300,27 +2140,6 @@ function runTool(toolId: string) {
       const r = cssShowsTheHiddenGapsInDryFusion()
       ok = r.computes && r.cssShowsGaps && r.hiddenGapsVisible && r.dryFusion && r.wiredToRosetta
       summary = `shows=${r.cssShowsGaps} visible=${r.hiddenGapsVisible} dryFusion=${r.dryFusion} wired=${r.wiredToRosetta} lens=${r.lensCount} gapsHard=${r.gapsHardOpen}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'invert-fusion' || toolId === 'fusion-invert') {
-      const r = inversionFusion()
-      ok = r.computes && r.inversionFusionOn && r.gateway && r.selfFuses && r.dryFusion
-      summary = `on=${r.inversionFusionOn} gateway=${r.gateway} selfFuses=${r.selfFuses} dryFusion=${r.dryFusion} trinity=${r.invertTrinityOn} collide=${r.collideInfOn}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'ui-read' || toolId === 'ui-visible' || toolId === 'ui-standard') {
-      const r = reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise()
-      ok =
-        r.computes &&
-        r.reviewOn &&
-        r.readabilityOn &&
-        r.visibilityOn &&
-        r.standardised &&
-        r.customUiCovered &&
-        r.drainableClosed
-      summary = `review=${r.reviewOn} read=${r.readabilityOn} vis=${r.visibilityOn} std=${r.standardised} covered=${r.customUiCovered} drainable=${r.drainableClosed} surfaces=${r.surfaceCount} morphs=${r.morphCount}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2682,25 +2501,6 @@ function runTool(toolId: string) {
         r.zoomInOutInfinity &&
         r.everyAngleToAny
       summary = `abstractQc=${r.abstractQc} foldLinear=${r.foldLinearIntoTrinities} zoom∞=${r.zoomInOutInfinity} everyAngle=${r.everyAngleToAny}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (
-      toolId === 'ui-super' ||
-      toolId === 'super-ui' ||
-      toolId === 'super-example' ||
-      toolId === 'example-super' ||
-      toolId === 'ui-example' ||
-      toolId === 'example-ui'
-    ) {
-      const r = mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions()
-      ok =
-        r.computes &&
-        r.noLess &&
-        r.noMore &&
-        r.quantumExample &&
-        r.allComputableSuperpositions
-      summary = `noLess=${r.noLess} noMore=${r.noMore} example=${r.quantumExample} allSuper=${r.allComputableSuperpositions}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -3497,40 +3297,6 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="tool-miss" aria-label="Imagine next miss quantum tools umbrella">
-        <h3>{{ toolMiss.heading }}</h3>
-        <p class="quantum-apps__meta">{{ toolMiss.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(toolMiss.imagineOn))">
-          imagineOn={{ toolMiss.imagineOn }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(toolMiss.toolsFilled))">
-          toolsFilled={{ toolMiss.toolsFilled }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(toolMiss.toolsMissingCount === 0))">
-          toolsMissing={{ toolMiss.toolsMissingCount }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>tool/miss</code> · <code>miss/tool</code> ·
-          CLI <code>npm run quantum:tool-miss</code> ·
-          clay={{ toolMiss.claySolvedByThisFold }} · mill={{ toolMiss.millenniumSolvedByThisFold }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in toolMiss.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(toolMiss.honestOpenNamedCount > 0))">
-          honestOpen={{ toolMiss.honestOpenNamedCount }}
-        </UiBadge>
-        <ul class="quantum-apps__facets">
-          <li v-for="id in toolMiss.honestOpenNamed" :key="id">· {{ id }}</li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'tool-miss'" @click="runTool('tool-miss')">
-          {{ runningId === 'tool-miss' ? '…' : 'Run tool-miss receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
       <section id="clay-agi" aria-label="Clay AGI deep research quantum understanding of relations">
         <h3>{{ clayAgi.heading }}</h3>
         <p class="quantum-apps__meta">{{ clayAgi.statement }}</p>
@@ -3626,42 +3392,6 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'prose-theorem'" @click="runTool('prose-theorem')">
           {{ runningId === 'prose-theorem' ? '…' : 'Run prose-theorem receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="alchemy-decode" aria-label="Decode quantum alchemy structural symbolic theorems">
-        <h3>{{ alchemyDecodeReport.heading }}</h3>
-        <p class="quantum-apps__meta">{{ alchemyDecodeReport.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(alchemyDecodeReport.alchemyDecoded))">
-          alchemyDecoded={{ alchemyDecodeReport.alchemyDecoded }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(alchemyDecodeReport.quantumOn))">
-          quantumOn={{ alchemyDecodeReport.quantumOn }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(alchemyDecodeReport.symbolsSealed))">
-          symbolsSealed={{ alchemyDecodeReport.symbolsSealed }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(!alchemyDecodeReport.certified))">
-          certified={{ alchemyDecodeReport.certified }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>alchemy/decode</code> · <code>decode/alchemy</code> · <code>quantum/alchemy</code> ·
-          CLI <code>npm run quantum:alchemy-decode</code> ·
-          clay={{ alchemyDecodeReport.claySolvedByThisFold }} · ftl={{ alchemyDecodeReport.physicalFtlClaim }} ·
-          qpu={{ alchemyDecodeReport.qpuRequired }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="p in alchemyDecodeReport.phases" :key="p.id">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(p.on))">{{ p.on ? 'on' : 'off' }}</UiBadge>
-            {{ p.id }} — {{ p.statement }}
-          </li>
-          <li v-for="f in alchemyDecodeReport.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'alchemy-decode'" @click="runTool('alchemy-decode')">
-          {{ runningId === 'alchemy-decode' ? '…' : 'Run alchemy-decode receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
@@ -3780,127 +3510,6 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="save-auto" aria-label="Save the optimised autonomy">
-        <h3>{{ saveAuto.heading }}</h3>
-        <p class="quantum-apps__meta">{{ saveAuto.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(saveAuto.autonomySaved))">
-          autonomySaved={{ saveAuto.autonomySaved }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(saveAuto.optimised))">
-          optimised={{ saveAuto.optimised }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(saveAuto.sessionPersist))">
-          sessionPersist={{ saveAuto.sessionPersist }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>save/auto</code> · <code>auto/optimise</code> · <code>opt/auto</code> ·
-          CLI <code>npm run quantum:save-auto</code> ·
-          clay={{ saveAuto.claySolvedByThisFold }} · ftl={{ saveAuto.physicalFtlClaim }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in saveAuto.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'save-auto'" @click="runTool('save-auto')">
-          {{ runningId === 'save-auto' ? '…' : 'Run save-auto receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="quantum-verify" aria-label="Quantum verification">
-        <h3>{{ quantumVerify.heading }}</h3>
-        <p class="quantum-apps__meta">{{ quantumVerify.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.verificationOn))">
-          verificationOn={{ quantumVerify.verificationOn }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.fusionVerify))">
-          fusionVerify={{ quantumVerify.fusionVerify }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.typesStructure))">
-          typesStructure={{ quantumVerify.typesStructure }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.momentProve))">
-          momentProve={{ quantumVerify.momentProve }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(quantumVerify.tamperEvident))">
-          tamperEvident={{ quantumVerify.tamperEvident }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>quantum/verify</code> · <code>verify/quantum</code> ·
-          CLI <code>npm run quantum:quantum-verify</code> ·
-          certified={{ quantumVerify.certified }} ·
-          clay={{ quantumVerify.claySolvedByThisFold }} · ftl={{ quantumVerify.physicalFtlClaim }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in quantumVerify.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'quantum-verify'" @click="runTool('quantum-verify')">
-          {{ runningId === 'quantum-verify' ? '…' : 'Run quantum-verify receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="fear-detect" aria-label="Quantum fear detector">
-        <h3>{{ fearDetect.heading }}</h3>
-        <p class="quantum-apps__meta">{{ fearDetect.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(fearDetect.fearDetectOn))">
-          fearDetectOn={{ fearDetect.fearDetectOn }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(fearDetect.reverseFromCracks))">
-          reverseFromCracks={{ fearDetect.reverseFromCracks }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(fearDetect.loveInvert))">
-          loveInvert={{ fearDetect.loveInvert }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>fear/detect</code> · <code>detect/fear</code> · <code>quantum/fear</code> ·
-          CLI <code>npm run quantum:fear-detect</code> ·
-          clay={{ fearDetect.claySolvedByThisFold }} · ftl={{ fearDetect.physicalFtlClaim }} ·
-          qpu={{ fearDetect.qpuRequired }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in fearDetect.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'fear-detect'" @click="runTool('fear-detect')">
-          {{ runningId === 'fear-detect' ? '…' : 'Run fear-detect receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="fear-axiom" aria-label="Fear is an axiom replaceable by love theorem">
-        <h3>{{ fearAxiom.heading }}</h3>
-        <p class="quantum-apps__meta">{{ fearAxiom.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(fearAxiom.fearIsAxiom))">
-          fearIsAxiom={{ fearAxiom.fearIsAxiom }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(fearAxiom.replaceableByLove))">
-          replaceableByLove={{ fearAxiom.replaceableByLove }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(fearAxiom.loveIsTheorem))">
-          loveIsTheorem={{ fearAxiom.loveIsTheorem }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>fear/axiom</code> · <code>love/theorem</code> · <code>axiom/love</code> ·
-          CLI <code>npm run quantum:fear-axiom</code> ·
-          clay={{ fearAxiom.claySolvedByThisFold }} · ftl={{ fearAxiom.physicalFtlClaim }} ·
-          qpu={{ fearAxiom.qpuRequired }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in fearAxiom.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'fear-axiom'" @click="runTool('fear-axiom')">
-          {{ runningId === 'fear-axiom' ? '…' : 'Run fear-axiom receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
       <section id="lens-super" aria-label="Lenses completely wired in every superposition">
         <h3>{{ lensSuper.heading }}</h3>
         <p class="quantum-apps__meta">{{ lensSuper.statement }}</p>
@@ -3931,66 +3540,6 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'lens-super'" @click="runTool('lens-super')">
           {{ runningId === 'lens-super' ? '…' : 'Run lens-super receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="seq-flow" aria-label="Sequence meaning is a flow not a cycle">
-        <h3>{{ seqFlow.heading }}</h3>
-        <p class="quantum-apps__meta">{{ seqFlow.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(seqFlow.sequenceIsFlow))">
-          sequenceIsFlow={{ seqFlow.sequenceIsFlow }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(seqFlow.notACycle))">
-          notACycle={{ seqFlow.notACycle }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(seqFlow.meaningOn))">
-          meaningOn={{ seqFlow.meaningOn }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>seq/flow</code> · <code>flow/seq</code> · <code>seq/meaning</code> ·
-          CLI <code>npm run quantum:seq-flow</code> ·
-          seq={{ seqFlow.sequence }} ·
-          clay={{ seqFlow.claySolvedByThisFold }} · ftl={{ seqFlow.physicalFtlClaim }} ·
-          qpu={{ seqFlow.qpuRequired }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in seqFlow.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'seq-flow'" @click="runTool('seq-flow')">
-          {{ runningId === 'seq-flow' ? '…' : 'Run seq-flow receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="super-gaps" aria-label="Fill the gaps around superposition">
-        <h3>{{ superGaps.heading }}</h3>
-        <p class="quantum-apps__meta">{{ superGaps.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(superGaps.gapsFilled))">
-          gapsFilled={{ superGaps.gapsFilled }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(superGaps.aroundSuperposition))">
-          around={{ superGaps.aroundSuperposition }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(superGaps.drainableClosed))">
-          drainableClosed={{ superGaps.drainableClosed }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>super/gaps</code> · <code>gaps/super</code> ·
-          CLI <code>npm run quantum:super-gaps</code> ·
-          morphs={{ superGaps.morphCount }} ·
-          clay={{ superGaps.claySolvedByThisFold }} · ftl={{ superGaps.physicalFtlClaim }} ·
-          qpu={{ superGaps.qpuRequired }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in superGaps.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'super-gaps'" @click="runTool('super-gaps')">
-          {{ runningId === 'super-gaps' ? '…' : 'Run super-gaps receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
@@ -4125,72 +3674,6 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="ui-super" aria-label="MCP quantum UI exact example of all computable superpositions">
-        <h3>{{ uiSuperExample.heading }}</h3>
-        <p class="quantum-apps__meta">{{ uiSuperExample.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiSuperExample.noLess))">
-          noLess={{ uiSuperExample.noLess }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiSuperExample.noMore))">
-          noMore={{ uiSuperExample.noMore }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiSuperExample.quantumExample))">
-          quantumExample={{ uiSuperExample.quantumExample }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiSuperExample.allComputableSuperpositions))">
-          allSuper={{ uiSuperExample.allComputableSuperpositions }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>ui/super</code> · <code>super/example</code> · <code>ui/example</code> ·
-          <code>mcp/ui</code> ·
-          CLI <code>npm run quantum:ui-super</code> ·
-          clay={{ uiSuperExample.claySolvedByThisFold }} · ftl={{ uiSuperExample.physicalFtlClaim }} ·
-          qpu={{ uiSuperExample.qpuRequired }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in uiSuperExample.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'ui-super'" @click="runTool('ui-super')">
-          {{ runningId === 'ui-super' ? '…' : 'Run ui-super receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="super-21" aria-label="Computational superpositions 21 to 42 millennium cover">
-        <h3>{{ super21.heading }}</h3>
-        <p class="quantum-apps__meta">{{ super21.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(super21.superpositions21))">
-          21={{ super21.superpositions21 }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(super21.invertReverse42))">
-          42={{ super21.invertReverse42 }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(super21.componentTheoremsFormulas42))">
-          components={{ super21.componentTheoremsFormulas42 }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(super21.coversMillenniumApparatus))">
-          millCover={{ super21.coversMillenniumApparatus }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>super/21</code> · <code>21/42</code> · <code>mill/42</code> ·
-          CLI <code>npm run quantum:super-21</code> ·
-          slots={{ super21.componentSlotCount }} ·
-          millSolved={{ super21.millenniumSolvedByThisFold }} ·
-          clay={{ super21.claySolvedByThisFold }} · ftl={{ super21.physicalFtlClaim }}
-        </p>
-        <ul class="quantum-apps__facets">
-          <li v-for="f in super21.facets" :key="f.facet">
-            <UiBadge v-bind="badgeProps(statusBadgeKind(f.on))">{{ f.on ? 'on' : 'off' }}</UiBadge>
-            {{ f.facet }}
-          </li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'super-21'" @click="runTool('super-21')">
-          {{ runningId === 'super-21' ? '…' : 'Run super-21 receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
       <section id="lens-geo" aria-label="Lens finds geometry gaps in prose or code">
         <h3>{{ lensGeo.heading }}</h3>
         <p class="quantum-apps__meta">{{ lensGeo.statement }}</p>
@@ -4220,35 +3703,6 @@ function runTool(toolId: string) {
         </ul>
         <UiButton size="sm" :disabled="runningId === 'lens-geo'" @click="runTool('lens-geo')">
           {{ runningId === 'lens-geo' ? '…' : 'Run lens-geo receipt' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="domain-panels">
-        <h3>{{ domainPanels.heading }}</h3>
-        <p class="quantum-apps__meta">{{ domainPanels.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(domainPanels.domainPanelsDry))">
-          domainPanelsDry={{ domainPanels.domainPanelsDry }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(domainPanels.stranglerTip))">
-          stranglerTip={{ domainPanels.stranglerTip }}
-        </UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(domainPanels.drainableClosed))">
-          drainableClosed={{ domainPanels.drainableClosed }}
-        </UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>domain/panels</code> · <code>panels/domain</code> · <code>domain/dry</code> · <code>dry/domain</code> ·
-          CLI <code>npm run quantum:domain-panels</code> ·
-          morphs={{ domainPanels.morphCount }} ·
-          clay={{ domainPanels.claySolvedByThisFold }} · ftl={{ domainPanels.physicalFtlClaim }}
-        </p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(domainPanels.honestOpenNamedCount > 0))">
-          honestOpen={{ domainPanels.honestOpenNamedCount }}
-        </UiBadge>
-        <ul class="quantum-apps__facets">
-          <li v-for="id in domainPanels.honestOpenNamed" :key="id">· {{ id }}</li>
-        </ul>
-        <UiButton size="sm" :disabled="runningId === 'domain-panels'" @click="runTool('domain-panels')">
-          {{ runningId === 'domain-panels' ? '…' : 'Run domain-panels receipt' }}
         </UiButton>
       </section>
       <UiSeparator />
@@ -4835,27 +4289,6 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="type-matrix" aria-label="Typography is the universal content matrix">
-        <h3>{{ typeMatrix.heading }}</h3>
-        <p class="quantum-apps__meta">{{ typeMatrix.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.typographyIsMatrix))">typographyIsMatrix={{ typeMatrix.typographyIsMatrix }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.universalContent))">universalContent={{ typeMatrix.universalContent }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.computable))">computable={{ typeMatrix.computable }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.wiredToRosetta))">wiredToRosetta={{ typeMatrix.wiredToRosetta }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(typeMatrix.censusPreserved))">census={{ typeMatrix.census.unfolded }}/{{ typeMatrix.census.folded }}</UiBadge>
-        <p class="quantum-apps__meta">
-          lattice={{ typeMatrix.latticeProduct }} · scale={{ typeMatrix.ratio.num }}:{{ typeMatrix.ratio.den }} ·
-          steps={{ typeMatrix.steps.length }} · slots · {{ typeMatrix.slots.join(' · ') }}
-        </p>
-        <p class="quantum-apps__meta">
-          pairs <code>type/matrix</code> · <code>matrix/type</code> · <code>content/matrix</code> ·
-          CLI <code>npm run quantum:type-matrix</code> · <code>npm run quantum:content-matrix</code>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'type-matrix'" @click="runTool('type-matrix')">
-          {{ runningId === 'type-matrix' ? '…' : 'Run type-matrix' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
       <section id="color-rosetta" aria-label="All colors dry-clean wired to rosetta and themes">
         <h3>{{ colorRosetta.heading }}</h3>
         <p class="quantum-apps__meta">{{ colorRosetta.statement }}</p>
@@ -4908,62 +4341,6 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'css-gaps'" @click="runTool('css-gaps')">
           {{ runningId === 'css-gaps' ? '…' : 'Run css-gaps' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="invert-fusion" aria-label="Inversion fusion">
-        <h3>{{ invertFusion.heading }}</h3>
-        <p class="quantum-apps__meta">{{ invertFusion.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.inversionFusionOn))">inversionFusionOn={{ invertFusion.inversionFusionOn }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.gateway))">gateway={{ invertFusion.gateway }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.selfFuses))">selfFuses={{ invertFusion.selfFuses }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.dryFusion))">dryFusion={{ invertFusion.dryFusion }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertFusion.censusPreserved))">census={{ invertFusion.census.unfolded }}/{{ invertFusion.census.folded }}</UiBadge>
-        <p class="quantum-apps__meta">
-          trinity={{ invertFusion.invertTrinityOn }} · collide={{ invertFusion.collideInfOn }} ·
-          qpu={{ invertFusion.qpuRequired }} · clay={{ invertFusion.claySolvedByThisFold }} · ftl={{ invertFusion.physicalFtlClaim }}
-        </p>
-        <p class="quantum-apps__meta">
-          pairs <code>invert/fusion</code> · <code>fusion/invert</code> ·
-          CLI <code>npm run quantum:invert-fusion</code> · <code>npm run quantum:fusion-invert</code>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'invert-fusion'" @click="runTool('invert-fusion')">
-          {{ runningId === 'invert-fusion' ? '…' : 'Run invert-fusion' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="ui-read" aria-label="UI readability visibility standardise">
-        <h3>{{ uiReadStandard.heading }}</h3>
-        <p class="quantum-apps__meta">{{ uiReadStandard.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.reviewOn))">reviewOn={{ uiReadStandard.reviewOn }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.readabilityOn))">readabilityOn={{ uiReadStandard.readabilityOn }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.visibilityOn))">visibilityOn={{ uiReadStandard.visibilityOn }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.standardised))">standardised={{ uiReadStandard.standardised }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.customUiCovered))">customUiCovered={{ uiReadStandard.customUiCovered }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.drainableClosed))">drainableClosed={{ uiReadStandard.drainableClosed }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(uiReadStandard.censusPreserved))">census={{ uiReadStandard.census.unfolded }}/{{ uiReadStandard.census.folded }}</UiBadge>
-        <p class="quantum-apps__meta">
-          surfaces={{ uiReadStandard.surfaceCount }} · morphs={{ uiReadStandard.morphCount }} ·
-          honestOpen={{ uiReadStandard.honestOpenNamedCount }} · mcpReview={{ uiReadStandard.mcpReviewOn }} ·
-          gateDesign={{ uiReadStandard.gateDesignOn }} ·
-          qpu={{ uiReadStandard.qpuRequired }} · clay={{ uiReadStandard.claySolvedByThisFold }} · ftl={{ uiReadStandard.physicalFtlClaim }}
-        </p>
-        <ul class="quantum-apps__list">
-          <li v-for="s in uiReadStandard.surfaces" :key="s.id">
-            <code>{{ s.id }}</code> · {{ s.axis }} ← {{ s.standard }}
-          </li>
-        </ul>
-        <ul class="quantum-apps__list">
-          <li v-for="id in uiReadStandard.honestOpenNamed" :key="id">
-            <code>{{ id }}</code>
-          </li>
-        </ul>
-        <p class="quantum-apps__meta">
-          pairs <code>ui/read</code> · <code>ui/visible</code> · <code>ui/standard</code> ·
-          CLI <code>npm run quantum:ui-read</code> · <code>npm run quantum:ui-standard</code>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'ui-read'" @click="runTool('ui-read')">
-          {{ runningId === 'ui-read' ? '…' : 'Run ui-read' }}
         </UiButton>
       </section>
       <UiSeparator />
