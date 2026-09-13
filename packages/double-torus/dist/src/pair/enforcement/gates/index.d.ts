@@ -862,10 +862,6 @@ export declare const PROSE_GAPS_MERGE_MAP: readonly [{
     readonly from: "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations";
     readonly to: "proseScience";
     readonly pair: "prose/science";
-}, {
-    readonly from: "invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill";
-    readonly to: "planTrinity";
-    readonly pair: "plan/cross";
 }];
 /** Method/vision prose directives → EXISTING sealed slots (DRY — the laws already compute; the one new
  * gap, research-portal legal requirements, is NAMED honest-open in autosaveMatrix, not built wet). */
@@ -2019,11 +2015,6 @@ export declare const GATE_ANALYTICS_SLIM_TOOL_FOLDS: readonly [{
     readonly fold: "chatAudit";
     readonly cli: "quantum:chat-audit";
     readonly pair: "chat/audit";
-}, {
-    readonly id: "session-chat";
-    readonly fold: "sessionSentToChatToQuantumise";
-    readonly cli: "quantum:session-chat";
-    readonly pair: "session/chat";
 }];
 /**
  * gateAnalytics — USER LAW: gates improve by converting hardcoded logic to dry analytics,
@@ -2132,17 +2123,6 @@ export declare function gateAnalytics(root?: string): {
         fold: "chatAudit";
         cli: "quantum:chat-audit";
         pair: "chat/audit";
-    } | {
-        cliOn: boolean;
-        slimBootstrap: boolean;
-        coreHits: number;
-        onTrueInFold: number;
-        coreAlgebra: boolean;
-        pairBidirectional: boolean;
-        id: "session-chat";
-        fold: "sessionSentToChatToQuantumise";
-        cli: "quantum:session-chat";
-        pair: "session/chat";
     })[];
     analyticsFacetsOn: boolean;
     honestOpenNamed: string[];
@@ -2486,17 +2466,6 @@ export declare function gateLight(root?: string): {
             fold: "chatAudit";
             cli: "quantum:chat-audit";
             pair: "chat/audit";
-        } | {
-            cliOn: boolean;
-            slimBootstrap: boolean;
-            coreHits: number;
-            onTrueInFold: number;
-            coreAlgebra: boolean;
-            pairBidirectional: boolean;
-            id: "session-chat";
-            fold: "sessionSentToChatToQuantumise";
-            cli: "quantum:session-chat";
-            pair: "session/chat";
         })[];
         analyticsFacetsOn: boolean;
         honestOpenNamed: string[];

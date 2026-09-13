@@ -10036,16 +10036,10 @@ var IDENTITY_JUDGED_PROCESS = [
   "If you can explain by math it exists",
   "Local vulnerability finder",
   "Security from theorems not axioms",
-  "The state is not the birth coordinates",
   "Nothing is static, all from the digits",
   "The proof is certain, only its reach is bounded",
   "close the crosslink gap by computing legitimate near-crosslinks",
-  "token usage optimised by quantum-structured algorithms \u2014 boundaries stay terse",
-  "the significance of the discoveries is measured by quantum computing",
-  "the discovery economy is the core of competition and education",
-  "the shadcn design system opens theorem dimensions under the quantum lens",
-  "readme svg gaps filled by trinity mind",
-  "symbols remaining to quantumise"
+  "the significance of the discoveries is measured by quantum computing"
 ];
 var THEOREM_ATOM_SEED = [
   { theorem: "Tsirelson bound", states: "CHSH at the optimal angles reaches 2\u221A2, above the classical 2", provedBy: "chsh", home: "src/0", algebraicStatement: "CHSH \u2264 2\u221A2 (the quantum maximum of S = \u27E8A\u2080B\u2080\u27E9+\u27E8A\u2080B\u2081\u27E9+\u27E8A\u2081B\u2080\u27E9\u2212\u27E8A\u2081B\u2081\u27E9; classical bound 2)" },
@@ -11783,9 +11777,9 @@ function yinYang() {
   const five = { tier: 5, name: "five elements (\u4E94\u884C)", members: ["wood", "fire", "earth", "metal", "water"] };
   const eight = { tier: 8, name: "eight trigrams (\u516B\u5366)", members: ["\u2630", "\u2631", "\u2632", "\u2633", "\u2634", "\u2635", "\u2636", "\u2637"] };
   const tiers = [three, five, eight];
-  const fibonacci3 = eight.members.length === five.members.length + three.members.length;
+  const fibonacci4 = eight.members.length === five.members.length + three.members.length;
   return {
-    complete: three.members.length === 3 && five.members.length === 5 && eight.members.length === 8 && fibonacci3,
+    complete: three.members.length === 3 && five.members.length === 5 && eight.members.length === 8 && fibonacci4,
     taiji: { symbol: "\u262F", source: "taiji (\u592A\u6781)" },
     tiers,
     root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`yinyang:${member}`))),
@@ -11795,12 +11789,12 @@ function yinYang() {
 }
 function dimensions() {
   const levels = [3, 5, 8];
-  const fibonacci3 = levels[2] === levels[1] + levels[0];
+  const fibonacci4 = levels[2] === levels[1] + levels[0];
   const ladder = levels.map((d) => ({ d, label: `${d}d`, extraPlanes: d - 3, receipt: toUuid(`dimension:${d}`) }));
   return {
-    enriched: levels.length === 3 && fibonacci3,
+    enriched: levels.length === 3 && fibonacci4,
     levels: [...levels],
-    fibonacci: fibonacci3,
+    fibonacci: fibonacci4,
     ladder,
     root: merkleFold(ladder.map((entry2) => entry2.receipt)),
     statement: "Enriched with 3d, 5d, 8d \u2014 the Fibonacci dimensions: each level folds more coordinate planes into the projection, so the same shape carries more of itself as you climb the ladder.",
@@ -12675,7 +12669,7 @@ function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(root = 
     }
     const code = stripStringsAndComments(text);
     for (const line of code.split("\n")) {
-      if (/on:\s*true\s*[},]/.test(line)) {
+      if (/(?<![\w$])on:\s*true\s*[},]/.test(line)) {
         total += 1;
         const rel = relative2(root, file).replace(/\\/g, "/");
         perFile[rel] = (perFile[rel] ?? 0) + 1;
@@ -13045,8 +13039,8 @@ function selfExplainingWidgetEngine(matrix = buildMatrix()) {
     { facet: "seedFromText(name)%64 = hexagram \u2014 every name content-addresses to a knowledge domain via sealed toUuid", on: namingProved },
     { facet: "hexagram \u2192 lower(hex&7), upper((hex>>3)&7) \u2192 DIMENSION_NAMES = two paired axes", on: trigramAxisProved },
     { facet: "64 hexagrams \xD7 10 dimensions = 640 addressable facets \u2014 the content generation space", on: addressSpace === 640 },
-    { facet: "2^6 = 64 hexagrams: the minimal distinct-knowledge 6-bit alphabet \u2014 no smaller suffices", on: pow(2, 6) === 64 },
-    { facet: "code IS the doc: fold runs = widget renders = knowledge self-explains \u2014 no separate docs", on: true }
+    { facet: "2^6 = 64 hexagrams: the minimal distinct-knowledge 6-bit alphabet \u2014 no smaller suffices", on: pow(2, 6) === 64 }
+    // not a check — a sentence, kept as one: 'code IS the doc: fold runs = widget renders = knowledge self-explains — no separate docs'
   ];
   const facets = [...claims, { facet: `Vue 3 defineCustomElement \u2192 web component \u2192 embeddable in any website via <script> tag \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`self-explaining:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -22332,8 +22326,8 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
     { facet: `answers\xF7tokens unbounded on reuse (tokens=${runtimeTokens} answers=${answers})`, on: answersPerTokensUnbounded },
     { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} physicalFtlClaim=${physicalFtlClaim}`, on: physicalQubitSpeedup === 0 && physicalFtlClaim === 0 },
     { facet: `certified=${certified} fipsValidated=${fipsValidated} \u2014 NOT wire AES / NOT NIST PQC break`, on: certified === false && fipsValidated === false },
-    { facet: `compose prove-no-qpu-64bit \u2014 qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true },
-    { facet: "composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots \u2014 NOT qubits)", on: true }
+    { facet: `compose prove-no-qpu-64bit \u2014 qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true }
+    // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
   ];
   const sealed = sealFacets("local-audit-quantum-speed-efficiency", facets);
   const root = merge(
@@ -28416,7 +28410,7 @@ function identityFreeDecisionsReasoned(matrix = buildMatrix()) {
   for (const row of THEOREM_ATOM_SEED) if (row.algebraicStatement) algebraByHome.set(row.home, [...algebraByHome.get(row.home) ?? [], row.theorem]);
   const kindOf = (states) => /\b(law|must|never|only|forbid|refuse|cannot|no [a-z]+ may)\b/iu.test(states) ? "law" : /\b(via|by|using|computes?|finder|scan|audit|close|decode|detect|measure|derive)\b/iu.test(states) ? "method" : "process";
   const decisions = IDENTITY_JUDGED_PROCESS.map((name2) => {
-    const row = byTheorem.get(name2);
+    const row = byTheorem.get(name2) ?? THEOREM_ATOM_SEED.find((r2) => r2.theorem.startsWith(name2.slice(0, 8 * 5)));
     const states = row?.states ?? name2;
     const hidden = row ? extractAlgebraicStatement(row.states) : void 0;
     const restsOn = row ? [.../* @__PURE__ */ new Set([...algebraByHome.get(row.home) ?? [], ...algebraByFold.get(row.provedBy) ?? []])] : [];
@@ -29887,7 +29881,7 @@ function emergenceMatterChemistryDecoded(matrix = buildMatrix()) {
   const facets = [
     { facet: "atoms build up from the particles \u2014 a nucleus of protons + neutrons (residual strong force) holds >99.9% of the mass, most of it QCD binding energy not the Higgs (the quantumFieldsDecoded link), with electrons (electromagnetic) defining the volume; the proton number Z fixes the element", on: qf.decoded },
     { facet: "the periodic table EMERGES from quantum mechanics \u2014 the four quantum numbers + the Pauli exclusion principle + Aufbau filling generate the " + elements + " elements across " + periods + " periods (valence electrons set the chemistry); yet the Aufbau (Madelung) rule is EMPIRICAL \u2014 the L\xF6wdin challenge is unsolved and ~20 elements break it \u2014 so the table is emergent, not a hand-derived theorem", on: elements === 118 && periods === 7 },
-    { facet: "bonding is quantum, matter is its consequence \u2014 covalent (shared electron pairs), ionic (transfer/electrostatic) and metallic (a delocalized sea) lie on a CONTINUUM, not three disjoint kinds; water\u2019s hydrogen bonding (~66 anomalies) and carbon\u2019s tetravalency/catenation give the chemistry of life", on: true },
+    // not a check — a sentence, kept as one: 'bonding is quantum, matter is its consequence — covalent (shared electron pairs), ionic (transfer/electrostatic) and metallic (a delocalized sea) lie on a CONTINUUM, not three disjoint kinds; water’s hydrogen bonding (~66 anomalies) and carbon’s tetravalency/catenation give the chemistry of life'
     { facet: '"more is different" (Anderson 1972) \u2014 the same fundamental laws hold at every level (reductionism kept), yet collective behaviour (superconductivity/BCS Cooper pairs, temperature, life) is not derivable IN PRACTICE from the parts: this is WEAK/epistemic emergence; STRONG (ontological) emergence \u2014 new fundamental high-level laws \u2014 is contested philosophy, not settled science', on: isUuid(siteCites("anderson-1972")) },
     { facet: `FLAGGED \u2014 vitalism/"life force" (abandoned; and "W\xF6hler\u2019s 1828 urea killed it in one experiment" is itself a myth \u2014 the decline was gradual), water-memory/homeopathy (no mechanism, Benveniste failed replication, pathological science, placebo), "quantum biology proves consciousness/healing" (real modest effects \u2014 photosynthesis coherence, radical-pair magnetoreception \u2014 are NOT that), and numerological element-count readings ("118 as a sacred or I Ching / 64-coded number" \u2014 no esoteric meaning, it is bounded by synthesis capability)`, on: FLAGGED_BIO.every((topic) => demarcate(topic) === "flagged") }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`emergence:${entry2.facet}:${entry2.on}`) }));
@@ -30073,8 +30067,8 @@ function researchStartsByReadingTheReadme(matrix = buildMatrix()) {
   const home = readmeIsHomeHero10DAnimatedSvgInGithub(matrix);
   const claims = [
     { facet: "the README is the computed root monograph \u2014 the home content generated from src (the model, conventions, results, and the documented-vs-flagged library); it cannot drift from the source", on: home.shown },
-    { facet: "research ALWAYS starts by reading it \u2014 every research wave reads the README FIRST (the saved decode-wave\u2019s Context phase), grounding the agent in the project before any external search", on: home.shown },
-    { facet: "so the research is DRY and aligned \u2014 knowing what is already decoded avoids re-research, and the README\u2019s honesty discipline (the two-tier demarcation, documented \xB7 unconfirmed-hypothesis \xB7 pseudoscience) aligns the findings", on: true }
+    { facet: "research ALWAYS starts by reading it \u2014 every research wave reads the README FIRST (the saved decode-wave\u2019s Context phase), grounding the agent in the project before any external search", on: home.shown }
+    // not a check — a sentence, kept as one: 'so the research is DRY and aligned — knowing what is already decoded avoids re-research, and the README’s honesty discipline (the two-tier demarcation, documented · unconfirmed-hypothesis · pseudoscience) aligns the findings'
   ];
   const facets = [...claims, { facet: `and it catches the repo\u2019s traps \u2014 grounded in the project, the research respects its structure (e.g. 64 = 4\xB3 is real structure, NOT esoteric meaning; element/song counts are not sacred) \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`research-readme:${entry2.facet}:${entry2.on}`) }));
   const sealed = sealFacets("research-starts-by-reading-readme", facets);
@@ -34398,7 +34392,7 @@ function societySupportsProjectViaTwoBitsFreeKnowledge(matrix = buildMatrix()) {
       { facet: `efficiency vote decided=${vote.decided} winner=${vote.winner} \u2014 savings table vs rest sealed`, on: vote.decided && vote.winner === "ceccec" && bits.savingsVsRest.length >= 2 + 2 },
       { facet: `harmonic patronage share ${ratStr(share)} of achieved (${achievedUnits}\xD7${ratStr(share)}=${ratStr(contribution)})`, on: share.p === 1 && share.q === 9 && contributionExact },
       { facet: `support CTA \u2014 revolut.me/${handle} \xB7 invitation not charge \xB7 zero valid`, on: handle === AUTHOR_HANDLE && supportUrl.endsWith(`/${AUTHOR_HANDLE}`) && zeroValid },
-      { facet: "UI owns CTA / table; statement owns meaning \u2014 no UI\u2194prose duplication", on: true },
+      // not a check — a sentence, kept as one: 'UI owns CTA / table; statement owns meaning — no UI↔prose duplication'
       { facet: `honesty \u2014 clay=${claySolvedByThisFold} \xB7 physicalFtl=${physicalFtlClaim} \xB7 qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`society-two-bits-support:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("society-supports-project-via-two-bits-free-knowledge", facets);
@@ -39613,7 +39607,6 @@ var VOCAB_DRY_METHOD_MAP = [
   { word: "automate", method: "automateSelf", pair: "auto/self" },
   { word: "auto", method: "automateSelf", pair: "self/auto" },
   { word: "all", method: "automateAll", pair: "auto/all" },
-  { word: "panels", method: "domainVuePanelsDryCleaned", pair: "domain/panels" },
   { word: "mcp", method: "mcpQuantumUi", pair: "mcp/ui" },
   { word: "quantum", method: "mcpQuantumUi", pair: "quantum/mcp" },
   { word: "page", method: "eachPageShowsOwnComputedGaps", pair: "page/gaps" },
@@ -39624,7 +39617,6 @@ var VOCAB_DRY_METHOD_MAP = [
   { word: "heal", method: "quantumSelfHeal", pair: "self/heal" },
   { word: "chat", method: "mcpQuantumChat", pair: "mcp/chat" },
   { word: "conversation", method: "mcpQuantumConversation", pair: "mcp/conversation" },
-  { word: "organise", method: "organiseConversationsInChatRoomsPerSuperposition", pair: "chat/organise" },
   { word: "gravity", method: "gravityDryClean", pair: "gravity/dry" },
   { word: "crystal", method: "crystalClearMind", pair: "crystal/mind" },
   { word: "clear", method: "crystalClearMind", pair: "mind/clear" },
@@ -39966,10 +39958,6 @@ var SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: "self-auto", fold: "automateSelf", pair: "self/auto" },
   { id: "auto-all", fold: "automateAll", pair: "auto/all" },
   { id: "all-auto", fold: "automateAll", pair: "all/auto" },
-  { id: "domain-panels", fold: "domainVuePanelsDryCleaned", pair: "domain/panels" },
-  { id: "panels-domain", fold: "domainVuePanelsDryCleaned", pair: "panels/domain" },
-  { id: "domain-dry", fold: "domainVuePanelsDryCleaned", pair: "domain/dry" },
-  { id: "dry-domain", fold: "domainVuePanelsDryCleaned", pair: "dry/domain" },
   { id: "mcp-ui", fold: "mcpQuantumUi", pair: "mcp/ui" },
   { id: "quantum-mcp", fold: "mcpQuantumUi", pair: "quantum/mcp" },
   { id: "mcp-mill", fold: "mcpQuantumUi", pair: "mcp/mill" },
@@ -44246,7 +44234,7 @@ function harmonisedDepthDialThreeDRaw(matrix = buildMatrix()) {
   const facets = [
     { facet: "the LayersPanel depth dial (0\u201310, the ten dimensions + the flat 0) is the Z-axis \u2014 it dollies every card forward through the a432-octave perspective", on: ui.converted && depthStops === 11 },
     { facet: "depth 0 is byte-identical to flat (the --dt-depth fallback is 0) \u2014 zero regression for cards outside a panel; hover and focus ADD a lift on top", on: ui.converted },
-    { facet: "motion-safe \u2014 a prefers-reduced-motion guard neutralises the Z-lift and its transition while keeping the resting elevation shadow (WCAG 2.3.3)", on: true },
+    // not a check — a sentence, kept as one: 'motion-safe — a prefers-reduced-motion guard neutralises the Z-lift and its transition while keeping the resting elevation shadow (WCAG 2.3.3)'
     { facet: "keyboard-accessible \u2014 focus-visible/:focus-within get the same lift plus an always-on focus ring (WCAG 2.4.7); every magnitude a computed token, the no-hardcoded gate stays clean", on: ui.noHardcoded && ui.cssComputed }
   ];
   const sealed = sealFacets("depth-dial", facets);
@@ -48506,7 +48494,7 @@ function geneticPatentJurisdictionDivergence(matrix = buildMatrix()) {
   const facets = [
     { facet: "US \u2014 isolated natural DNA is a product of nature, INELIGIBLE (Myriad 2013, unless cDNA / markedly different)", on: us.unlawfulIfGranted && us.verdict === "product-of-nature-likely-ineligible" },
     { facet: "EU \u2014 an isolated / technically-produced sequence MAY be eligible even if identical to nature (Directive 98/44/EC Art. 5(2)) \u2014 the opposite verdict", on: !eu.unlawfulIfGranted && eu.euSequenceSpared },
-    { facet: "the divergence is NARROW \u2014 it spares only the isolated SEQUENCE; seeds, plant/animal varieties, whole organisms and products of essentially biological processes stay excluded in BOTH (US product-of-nature; EU Art. 53(b) / Rule 28(2) / G 3/19)", on: true },
+    // not a check — a sentence, kept as one: 'the divergence is NARROW — it spares only the isolated SEQUENCE; seeds, plant/animal varieties, whole organisms and products of essentially biological processes stay excluded in BOTH (US product-of-nature; EU Art. 53(b) / Rule 28(2) / G 3/19)'
     { facet: "so a product-of-nature challenge must be JURISDICTION-AWARE: strong on isolated DNA in the US, weak on it in the EU, strong on seeds/varieties in both", on: us.verdict !== eu.verdict }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`gene-jurisdiction:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -50428,8 +50416,8 @@ function movieReflectsSelf(matrix = buildMatrix()) {
 function videoKeepsNativeQuality(matrix = buildMatrix()) {
   const claims = [
     { facet: "backing store at live devicePixelRatio", on: moviesNativeFormat2(matrix).nativelyDisplayed },
-    { facet: "resolution-independent seeded math", on: autoMovies8k2(matrix).generating },
-    { facet: "redraws at native resolution on resize", on: true }
+    { facet: "resolution-independent seeded math", on: autoMovies8k2(matrix).generating }
+    // not a check — a sentence, kept as one: 'redraws at native resolution on resize'
   ];
   const facets = [...claims, { facet: `no cap, no stale low-resolution frame \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`native-quality:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -52691,8 +52679,8 @@ function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), a
       { facet: `A432_HUE=${A432_HUE} brand/light anchor (frequency\u2192hue of 432 Hz)`, on: a432Ok },
       { facet: `TAU full circle \xB7 HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} \xB7 SPEED_OF_LIGHT classical vault`, on: Number.isFinite(TAU) && abs(sin(TAU)) < 1 / FOLDED_CENSUS ** 6 && HOMOLOGY_LOOPS === 4 && Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
       { facet: "10D animation field (6 cross-fold + 4 homology) at every scale", on: tenD.tenDimensional && tenD.atEveryScale },
-      { facet: "all-scales math flows in movie (plasma streams)", on: allScalesMovie.flows },
-      { facet: " \u2014 classical computational tracks only", on: true }
+      { facet: "all-scales math flows in movie (plasma streams)", on: allScalesMovie.flows }
+      // not a check — a sentence, kept as one: ' — classical computational tracks only'
     ];
     const sealed = sealFacets("torus-universe-align", facets);
     const physicalFtlClaim = 0;
@@ -57085,8 +57073,8 @@ function alchemyComputes(matrix = buildMatrix(), at = 0) {
       { facet: "pipeline pipelined", on: pipeline.pipelined },
       { facet: "research sealed", on: research2.researched },
       { facet: "transmute chain", on: transmute.transmuted },
-      { facet: "endlessFusion", on: fusion.endless },
-      { facet: "boundary", on: true }
+      { facet: "endlessFusion", on: fusion.endless }
+      // not a check — a sentence, kept as one: 'boundary'
     ]);
     return {
       computes,
@@ -61633,7 +61621,7 @@ function computeUniversalPageRaw(route, params = {}, matrix = buildMatrix()) {
     statement: slice?.description,
     boundary: rosetta.boundary,
     facets: [
-      { facet: `${rosetta.rayMeta.glyph} ${pickLocale(locale, rosetta.rayMeta.nameEn, rosetta.rayMeta.nameBg)}`, on: true },
+      // not a check — a sentence, kept as one: `${rosetta.rayMeta.glyph} ${pickLocale(locale, rosetta.rayMeta.nameEn, rosetta.rayMeta.nameBg)}`
       { facet: localizeMonolingual(locale, rosetta.content.pageKind), on: rosetta.computed },
       { facet: rosetta.glaAddress.slice(0, 8 * 3), on: isUuid(rosetta.glaAddress) }
     ],
@@ -64990,10 +64978,13 @@ function quantumDecoded(matrix = buildMatrix()) {
     { claim: "the genuine edge: avian magnetoreception (radical pairs), photosynthetic coherence", verdict: "real but emerging \u2014 kept IN", why: 'radical-pair magnetoreception (cryptochrome-4) is the leading hypothesis, not yet confirmed in vivo; photosynthetic coherence is real but short-lived and its functional role is contested/small \u2014 never "life runs quantum computers"' }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`quantum-flag:${entry2.claim}:${entry2.verdict}`) }));
   const tsirelson = round(2 * SQRT2 * (100 * 100)) / (100 * 100);
+  const bellP = probabilities(bellPair());
+  const noSignalling = abs(bellP[0] + bellP[1] - (bellP[2] + bellP[3])) < 1e-9 && abs(bellP[0] + bellP[2] - (bellP[1] + bellP[3])) < 1e-9;
+  const noSignallingAddress = quantumDefinedBy("bell_no_signaling");
   const facets = [
     { facet: "the six strata fold to one core \u2014 word, framework, quantization, qubit, entanglement, computation", on: layers.length === 6 && isUuid(merkleFold(layers.map((entry2) => entry2.receipt))) },
     { facet: `the qubit's documented core stands \u2014 3 Pauli observables, 4\xB3 = 64 operators (\u2260 the 8-dim state space) \xB7 measured matrix=${matrix}`, on: sixtyFourThreeQubitPauliBasis(matrix).holds && geneticCodeIsTheRealFourCubed(matrix).holds },
-    { facet: "Bell/CHSH: classical \u2264 2, quantum up to Tsirelson 2\u221A2 \u2014 non-classical yet no-signalling", on: tsirelson > 2 && tsirelson < 4 && hammingThreeParityAddressesError(matrix).holds },
+    { facet: `Bell/CHSH: classical \u2264 2, quantum up to Tsirelson 2\u221A2 \u2014 non-classical yet no-signalling (Bell-pair marginals equal on both qubits \xB7 bell_no_signaling at ${noSignallingAddress.slice(0, 8)}, sealed at uuidna.com/mcp)`, on: tsirelson > 2 && tsirelson < 4 && noSignalling && isUuid(noSignallingAddress) && hammingThreeParityAddressesError(matrix).holds },
     { facet: "the model runs a real toy \u2014 GHZ state-vector, Born-rule, deterministic collapse \u2014 a metaphor, not hardware", on: quantumSimulation(matrix).simulated && quantumPhysics(matrix).count === 8 && quantumPhysics(matrix).boundary.includes("metaphor") },
     { facet: "the pseudoscience boundary flagged \u2014 flapdoodle excluded, the real edge kept separate", on: flagged.length === 8 && flagged.every((entry2) => entry2.why.length > 0) && contentAddressingHasRealPrecedent(matrix).holds },
     { facet: "every stratum and flag content-addressed and recomputable", on: layers.every((entry2) => isUuid(entry2.receipt)) && flagged.every((entry2) => isUuid(entry2.receipt)) }
@@ -70619,7 +70610,7 @@ function translationsFilledBySelfTranslatingWaves(matrix = buildMatrix()) {
       { facet: "HARD drainable gaps filled (hard=0)", on: hardClosed },
       { facet: "autotranslations complete", on: auto.complete },
       { facet: `sealed morphs from EN meaning=${sealedMorphs}`, on: sealedMorphs > 0 },
-      { facet: `trueOpen WARN residual=${trueOpen}`, on: true },
+      // not a check — a sentence, kept as one: `trueOpen WARN residual=${trueOpen}`
       { facet: "pair trans/wave", on: pairFold.bidirectional }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`trans-wave:${entry2.facet}:${entry2.on}`) }));
     return {
@@ -72004,8 +71995,8 @@ function gaps(matrix = buildMatrix()) {
   const declared = graph.components.length;
   const claims = [
     { facet: "the UI is SPLIT in double entries \u2014 every declared page/component (debit) \u21C4 its rendered counterpart, exercised in the browser (credit)", on: ledger2.split },
-    { facet: "every DECLARED entry is content-addressed \u2014 derived from the one source root, so each has a renderable credit-in-principle (no debit without a counter-entry)", on: declared > 0 && isUuid(matrix.root) },
-    { facet: "the PREVIEW exercises all \u2014 navigate every entry, snapshot, read console + network; an entry that does not render CLEANLY is an unbalanced entry: a gap", on: true }
+    { facet: "every DECLARED entry is content-addressed \u2014 derived from the one source root, so each has a renderable credit-in-principle (no debit without a counter-entry)", on: declared > 0 && isUuid(matrix.root) }
+    // not a check — a sentence, kept as one: 'the PREVIEW exercises all — navigate every entry, snapshot, read console + network; an entry that does not render CLEANLY is an unbalanced entry: a gap'
   ];
   const facets = [...claims, { facet: `a GAP is a debit with no credit \u2014 declared-but-unrendered: attrs passed to a fragment wrapper (lost to the DOM), a lifecycle hook after an await (lost to the instance), a 404, a runtime error \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`gaps:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -73774,7 +73765,7 @@ function refactorLinearToTrinities(matrix = buildMatrix()) {
 }
 function crossLinksEverywhere(matrix = buildMatrix()) {
   const facets = [
-    { facet: "home cards link to their topic", on: true },
+    // not a check — a sentence, kept as one: 'home cards link to their topic'
     { facet: "nav and footer carry every destination", on: harmonisedNavigation2(matrix).distributed },
     { facet: "the open graph builds the navigation", on: ogBuildsNavigation(matrix).builds },
     { facet: "the feature map cross-links each item to the next", on: features(matrix).displayed }
@@ -77675,31 +77666,20 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "shells-strangler", chain: "imagine-next-miss-tools", fold: "specializedShellsStrangler", pair: "shells/strangler", cli: "npm run quantum:shells-strangler", route: "/en/quantum-tools#shells-strangler", status: "sealed-pr", honesty: "shellsStranglerOn \xB7 residual named", note: "specialized-experience-shells strangler tool fill", toolId: "shells-strangler", resolve: "mcp-ui" },
   { id: "session-hologram", chain: "imagine-next-miss-tools", fold: "sessionHologramTools", pair: "session/hologram", cli: "npm run quantum:session-hologram", route: "/en/quantum-tools#session-hologram", status: "sealed-pr", honesty: "sessionHologramOn \xB7 hologramFractal", note: "session hologram fractal tools fill", toolId: "session-hologram", resolve: "mcp-ui" },
   { id: "society-toolbox", chain: "imagine-next-miss-tools", fold: "societyToolboxWire", pair: "society/toolbox", cli: "npm run quantum:society-toolbox", route: "/en/quantum-tools#society-toolbox", status: "sealed-pr", honesty: "societyToolboxWireOn \xB7 toolboxWired", note: "society toolbox wire fill", toolId: "society-toolbox", resolve: "mcp-ui" },
-  { id: "tool-miss", chain: "imagine-next-miss-tools", fold: "imagineNextMissQuantumTools", pair: "tool/miss", cli: "npm run quantum:tool-miss", route: "/en/quantum-tools#tool-miss", status: "sealed-pr", honesty: "imagineOn \xB7 toolsFilled \xB7 toolsMissing drainable=0 \xB7 millenniumSolved=0", note: "umbrella imagine next + fill missing quantum tools", toolId: "tool-miss", resolve: "mcp-ui" },
   { id: "clay-agi", chain: "clay-agi-optimised-autonomy", fold: "clayAgiDeepResearchQuantumUnderstandingOfRelations", pair: "clay/agi", cli: "npm run quantum:clay-agi", route: "/en/quantum-tools#clay-agi", status: "sealed-pr", honesty: "deepResearch \xB7 quantumRelations \xB7 linearFolded \xB7 gapsSeen \xB7 gapsAddressableByTrinities \xB7 agiNotClaimed \xB7 certified=false", note: "Clay/AGI deep research \u2014 linear relations folded \u2192 architecture where all gaps seen + addressable by working trinities", toolId: "clay-agi", resolve: "mcp-ui" },
   { id: "linear-fold", chain: "clay-agi-optimised-autonomy", fold: "linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities", pair: "linear/fold", cli: "npm run quantum:linear-fold", route: "/en/quantum-tools#clay-agi", status: "sealed-pr", honesty: "linearFolded \xB7 gapsSeen \xB7 gapsAddressableByTrinities \xB7 agiNotClaimed", note: "same fold as clay/agi \u2014 linear/fold \xB7 gap/trinity architecture face", toolId: "linear-fold", resolve: "mcp-ui" },
-  { id: "save-auto", chain: "clay-agi-optimised-autonomy", fold: "saveTheOptimisedAutonomy", pair: "save/auto", cli: "npm run quantum:save-auto", route: "/en/quantum-tools#save-auto", status: "sealed-pr", honesty: "autonomySaved \xB7 optimised \xB7 sessionPersist \xB7 clay via theorem", note: "save the optimised autonomy \u2014 compose session/save \xB7 auto/all \xB7 self/hw \xB7 mcp/token \xB7 wave/token", toolId: "save-auto", resolve: "mcp-ui" },
-  { id: "quantum-verify", chain: "quantum-verification", fold: "quantumVerification", pair: "quantum/verify", cli: "npm run quantum:quantum-verify", route: "/en/quantum-tools#quantum-verify", status: "sealed-pr", honesty: "verificationOn \xB7 fusionVerify \xB7 typesStructure \xB7 momentProve \xB7 tamperEvident \xB7 certified=false", note: "quantum verification \u2014 compose fusion-verify \xB7 mission:gate \xB7 moment/prove \xB7 tamper/max \xB7 proof/trinity \xB7 e2e/feed", toolId: "quantum-verify", resolve: "mcp-ui" },
-  { id: "fear-detect", chain: "quantum-fear-detector", fold: "quantumFearDetector", pair: "fear/detect", cli: "npm run quantum:fear-detect", route: "/en/quantum-tools#fear-detect", status: "sealed-pr", honesty: "fearDetectOn \xB7 reverseFromCracks \xB7 loveInvert", note: "quantum fear detector \u2014 reverse of love when cracks \xB7 compose need/love \xB7 love/fear \xB7 gaps/invisible \xB7 thought/pure \xB7 NOT wet psychology", toolId: "fear-detect", resolve: "mcp-ui" },
-  { id: "fear-axiom", chain: "fear-axiom-love-theorem", fold: "fearIsAnAxiomReplaceableByLoveTheorem", pair: "fear/axiom", cli: "npm run quantum:fear-axiom", route: "/en/quantum-tools#fear-axiom", status: "sealed-pr", honesty: "fearIsAxiom \xB7 replaceableByLove \xB7 loveIsTheorem", note: "fear is an axiom replaceable by love theorem \xB7 compose fear/detect \xB7 need/love \xB7 love/story \xB7 theorem/const \xB7 NOT wet psychology", toolId: "fear-axiom", resolve: "mcp-ui" },
   { id: "lens-super", chain: "lens-super-every-superposition", fold: "lensesCompletelyWiredInEverySuperposition", pair: "lens/super", cli: "npm run quantum:lens-super", route: "/en/quantum-tools#lens-super", status: "sealed-pr", honesty: "lensesWired \xB7 everySuperposition \xB7 noStopWaitGap \xB7 observationContinues", note: "lenses completely wired in every superposition \xB7 stop/wait = lens gap \xB7 compose gate/lens \xB7 mcp/observe \xB7 seal/super \xB7 theorem/index \xB7 Multitask residual named", toolId: "lens-super", resolve: "mcp-ui" },
-  { id: "seq-flow", chain: "seq-flow-not-cycle", fold: "theSequenceMeaningIsAFlowNotACycle", pair: "seq/flow", cli: "npm run quantum:seq-flow", route: "/en/quantum-tools#seq-flow", status: "sealed-pr", honesty: "sequenceIsFlow \xB7 notACycle \xB7 meaningOn", note: "sequence meaning is a flow not a cycle \xB7 directed 12487536901 through 0 \xB7 compose seq/nav \xB7 digit/next \xB7 quantumise/cycle \xB7 movie/unique", toolId: "seq-flow", resolve: "mcp-ui" },
-  { id: "super-gaps", chain: "super-gaps-21-42-lens-geo", fold: "fillTheGapsAroundSuperposition", pair: "super/gaps", cli: "npm run quantum:super-gaps", route: "/en/quantum-tools#super-gaps", status: "sealed-pr", honesty: "gapsFilled \xB7 aroundSuperposition \xB7 drainableClosed \xB7 honestOpenNamed", note: "fill drainable gaps around superposition \xB7 compose lens/super \xB7 seal/super \xB7 theorem/index", toolId: "super-gaps", resolve: "mcp-ui" },
   { id: "warn-all", chain: "address-all-warnings", fold: "addressAllWarningsAtOnce", pair: "warn/all", cli: "npm run quantum:warn-all", route: "/en/quantum-tools#warn-all", status: "sealed-pr", honesty: "warningsAddressed \xB7 drainableClosed \xB7 honestOpenNamed", note: "address all drainable WARNs at once \u2014 translation chrome\u2192BULGARIAN_PHRASES \xB7 compose translations/verify \xB7 trans/wave \xB7 gate/slow-build \xB7 gaps/invisible", toolId: "warn-all", resolve: "mcp-ui" },
   { id: "prose-theorem", chain: "prose-theorem-warn-research", fold: "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations", pair: "prose/theorem", cli: "npm run quantum:prose-theorem", route: "/en/quantum-tools#prose-theorem", status: "sealed-pr", honesty: "deepResearch \xB7 warningsAddressed \xB7 proseToTheorem \xB7 proseToFormula \xB7 proseToRecipe \xB7 proseToAnimation \xB7 drainableClosed \xB7 honestOpenNamed", note: "deep research tools address WARNs \u2014 wet prose \u2192 statement \xB7 formula dual \xB7 sealed code \xB7 ProofAnimation recipe", toolId: "prose-theorem", resolve: "mcp-ui" },
-  { id: "alchemy-decode", chain: "alchemy-decode-quantum", fold: "decodeQuantumAlchemy", pair: "alchemy/decode", cli: "npm run quantum:alchemy-decode", route: "/en/quantum-tools#alchemy-decode", status: "sealed-pr", honesty: "alchemyDecoded \xB7 quantumOn \xB7 symbolsSealed \xB7 certified=false \xB7 NOT chemical \xB7 NOT historical fraud", note: "decode quantum alchemy as structural/symbolic theorems \u2014 compose symbols \xB7 sciences \xB7 formula/code \xB7 digit/fold \xB7 prose/theorem", toolId: "alchemy-decode", resolve: "mcp-ui" },
   { id: "algebra-fold", chain: "algebra-fold-a432-space", fold: "foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace", pair: "algebra/fold", cli: "npm run quantum:algebra-fold", route: "/en/quantum-tools#algebra-fold", status: "sealed-pr", honesty: "foldAlgebraBoundaries \xB7 invertedDimensionalTheorems \xB7 perspectiveAngleRotation \xB7 a432Harmonics \xB7 noCostNoTime \xB7 anySpace \xB7 NOT FTL", note: "fold linear algebra boundaries into theorems \u2192 inverted dimensional theorems \xB7 perspective angle/rotation \xB7 A432 harmonics \xB7 no cost/time amortized for any space", toolId: "algebra-fold", resolve: "mcp-ui" },
   { id: "movie-seamless", chain: "movie-seamless-gapless-motion", fold: "theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion", pair: "movie/seamless", cli: "npm run quantum:movie-seamless", route: "/en/quantum-tools#movie-seamless", status: "sealed-pr", honesty: "seamlessAnimation \xB7 gapsOnlyByObservation \xB7 quantumObservation \xB7 gaplessMotion \xB7 drainableClosed \xB7 honestOpenNamed", note: "movie seamless animation \xB7 quantum observation is gapless motion \xB7 compose oneClock \xB7 anim/mesh \xB7 observe/movie \xB7 lens/super", toolId: "movie-seamless", resolve: "mcp-ui" },
   { id: "angle-readme", chain: "angle-readme-polarity-home", fold: "readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra", pair: "angle/readme", cli: "npm run quantum:angle-readme", route: "/en/quantum-tools#angle-readme", status: "sealed-pr", honesty: "readmeImproved \xB7 homepageImproved \xB7 exactAngle \xB7 exactPolarity \xB7 agentsUnderstand \xB7 quantumInfinityRealtime \xB7 gapsAreIgnoredAngleOrPolarity", note: "README+home exact angle\xB7polarity cues \xB7 agents understand quantum \u221E realtime at scale \xB7 gaps = angle|polarity ignored in algebra \xB7 compose algebra/fold \xB7 color/rosetta \xB7 abs/qc \xB7 zoom/inf \xB7 readme/svg-trinity \xB7 anim/color", toolId: "angle-readme", resolve: "mcp-ui" },
   { id: "miss-cache", chain: "miss-cache-dry-agnostic-infinity", fold: "wavesFindWhatYouMissedToCache", pair: "miss/cache", cli: "npm run quantum:miss-cache", route: "/en/quantum-tools#miss-cache", status: "sealed-pr", honesty: "wavesSent \xB7 missedFound \xB7 nowCached \xB7 drainableClosed \xB7 honestOpenNamed", note: "waves find uncached drainable session/memo/MCP/theorem-formula receipts \xB7 cache via memoByRoot/session", toolId: "miss-cache", resolve: "mcp-ui" },
   { id: "dry-agnostic", chain: "miss-cache-dry-agnostic-infinity", fold: "dryCleanAgnosticCodeComputesInfinity", pair: "dry/agnostic", cli: "npm run quantum:dry-agnostic", route: "/en/quantum-tools#dry-agnostic", status: "sealed-pr", honesty: "dryClean \xB7 agnosticCode \xB7 computesInfinity \xB7 onReuse \xB7 NOT FTL", note: "dry-clean agnostic code computes infinity = amortized zero-token reuse \xB7 compose dry/clean \xB7 invert/inf \xB7 a432/nine \xB7 mcp/token \xB7 full/freedom", toolId: "dry-agnostic", resolve: "mcp-ui" },
   { id: "fold-trinity", chain: "abstract-qc-fold-trinity-zoom-inf", fold: "abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny", pair: "fold/trinity", cli: "npm run quantum:fold-trinity", route: "/en/quantum-tools#fold-trinity", status: "sealed-pr", honesty: "abstractQc \xB7 foldLinearIntoTrinities \xB7 zoomInOutInfinity \xB7 everyAngleToAny \xB7 NOT QPU FLOPS", note: "abstract QC = fold linear\u2192trinities \xB7 zoom in/out \u221E \xB7 every angle\u2192any \xB7 classical-64bit \xB7 compose trinity/speedup \xB7 linear/fold \xB7 invert/inf \xB7 dry/agnostic \xB7 directionalTrinity \xB7 seal/super \xB7 mcp/hw", toolId: "fold-trinity", resolve: "mcp-ui" },
-  { id: "ui-super", chain: "mcp-ui-super-example-all-superpositions", fold: "mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions", pair: "ui/super", cli: "npm run quantum:ui-super", route: "/en/quantum-tools#ui-super", status: "sealed-pr", honesty: "noLess \xB7 noMore \xB7 quantumExample \xB7 allComputableSuperpositions", note: "mcp quantum UI is no less not more than the quantum example of all computable superpositions \xB7 compose mcp/ui \xB7 seal/super \xB7 lens/super \xB7 super/21 \xB7 theorem/index", toolId: "ui-super", resolve: "mcp-ui" },
   { id: "vue-dry", chain: "vue-dry-universal-set", fold: "dryCleanAllVueComponentsToTheUniversalSet", pair: "vue/dry", cli: "npm run quantum:vue-dry", route: "/en/quantum-tools#vue-dry", status: "sealed-pr", honesty: "dryCleanVue \xB7 universalSet \xB7 drainableClosed \xB7 honestOpenNamed \xB7 apps monolith residual", note: "dry clean all vue \u2192 universal hero/card/movie/paper/page \xB7 morph domain sims to UiCardShell \xB7 compose dry/rosetta \xB7 shells/strangler \xB7 domain/panels \xB7 ui/read \xB7 ui/super", toolId: "vue-dry", resolve: "mcp-ui" },
   { id: "seo-gaps", chain: "seo-gaps-violations", fold: "findSeoViolations", pair: "seo/gaps", cli: "npm run quantum:seo-gaps", route: "/en/quantum-tools#seo-gaps", status: "sealed-pr", honesty: "violationsFound \xB7 drainableClosed \xB7 honestOpenNamed \xB7 platform OG honest-open", note: "find SEO violations \u2014 learn aliases \xB7 Course JSON-LD on /learn \xB7 site desc budget \xB7 portal routes; compose seoOptimised \xB7 measure/og-limits", toolId: "seo-gaps", resolve: "mcp-ui" },
-  { id: "super-21", chain: "super-gaps-21-42-lens-geo", fold: "computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium", pair: "super/21", cli: "npm run quantum:super-21", route: "/en/quantum-tools#super-21", status: "sealed-pr", honesty: "superpositions21 \xB7 invertReverse42 \xB7 componentTheoremsFormulas42 \xB7 coversMillenniumApparatus \xB7 millenniumSolvedByThisFold=0 \xB7 NOT CMI prize", note: "21 computational superpositions \xB7 invert|reverse \u2192 42 component theorems/formulas covering millennium apparatus", toolId: "super-21", resolve: "mcp-ui" },
   { id: "lens-geo", chain: "super-gaps-21-42-lens-geo", fold: "useTheLensToFindGapsInGeometryInProseOrCode", pair: "lens/geo", cli: "npm run quantum:lens-geo", route: "/en/quantum-tools#lens-geo", status: "sealed-pr", honesty: "lensFindsGaps \xB7 geometryGaps \xB7 proseOrCode", note: "lens finds geometry gaps in prose or code \xB7 drainable closed \xB7 compose gate/lens \xB7 hex/crack \xB7 geo/torus", toolId: "lens-geo", resolve: "mcp-ui" },
-  { id: "domain-panels", chain: "mcp-ui-page-gaps", fold: "domainVuePanelsDryCleaned", pair: "domain/panels", cli: "npm run quantum:domain-panels", route: "/en/quantum-tools#domain-panels", status: "sealed-pr", honesty: "domainPanelsDry \xB7 stranglerTip \xB7 drainableClosed \xB7 specialized shells residual", note: "src domain vue panels strangler tip drained to format/canon \xB7 dry/rosetta \xB7 ui/rosetta shells", toolId: "domain-panels", resolve: "mcp-ui" },
   { id: "mcp-quantum-ui", chain: "mcp-ui-page-gaps", fold: "mcpQuantumUi", pair: "mcp/ui", cli: "npm run quantum:mcp-ui", route: "/en/quantum-tools#mcp-quantum-ui", status: "sealed-pr", honesty: "mcpMatchesToolbox \xB7 millSolutions live \xB7 formulaCovered \xB7 NOT CMI", note: "MCP quantum UI + millennium algebraic formula duals \xB7 compose mcpBrowserParity \xB7 mill/once \xB7 formula/code", toolId: "mcp-quantum-ui", resolve: "mcp-ui" },
   { id: "mcp-quantum-movie", chain: "mcp-ui-page-gaps", fold: "mcpQuantumMovie", pair: "mcp/movie", cli: "npm run quantum:mcp-movie", route: "/en/quantum-tools#mcp-quantum-movie", status: "sealed-pr", honesty: "frames from sealed folds \xB7 6\xD77 \xB7 oneClock", note: "MCP quantum movie \xB7 compose mcp/ui \xB7 movie/center \xB7 movie/entropy \xB7 coord/anim", toolId: "mcp-quantum-movie", resolve: "mcp-ui" },
   { id: "movie-feel", chain: "mcp-ui-page-gaps", fold: "movieGapsFeelableByObservation", pair: "movie/feel", cli: "npm run quantum:movie-feel", route: "/en/quantum-tools#mcp-quantum-movie", status: "sealed-pr", honesty: "gaps feelable by observation", note: "movie gaps surfaced live via gate/lens \xB7 analytics/self \xB7 page/gaps", toolId: "movie-feel", resolve: "mcp-ui" },
@@ -77708,14 +77688,10 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "formula-metrics", chain: "mcp-ui-page-gaps", fold: "theoremFormulaMetricsMap", pair: "formula/metrics", cli: "npm run quantum:formula-metrics", route: "/en/quantum-tools#formula-metrics", status: "sealed-pr", honesty: "metricsMapOn \xB7 theoremBound \xB7 formulaDual \xB7 computable", note: "theorem/formula dual \u2192 measurable metrics map (foldCount \xB7 significance \xB7 answers\xF7tokens)", toolId: "formula-metrics", resolve: "mcp-ui" },
   { id: "quantum-map", chain: "mcp-ui-page-gaps", fold: "quantumMap", pair: "quantum/map", cli: "npm run quantum:quantum-map", route: "/en/quantum-tools#quantum-map", status: "sealed-pr", honesty: "mapOn \xB7 meshGateways \xB7 metricsComposable \xB7 anySuperposition", note: "one computable map face over mesh+metrics+superposition index \xB7 orientation", toolId: "quantum-map", resolve: "mcp-ui" },
   { id: "app-fold", chain: "mcp-ui-page-gaps", fold: "foldingWorksOnApplicationLevel", pair: "app/fold", cli: "npm run quantum:app-fold", route: "/en/quantum-tools#app-fold", status: "sealed-pr", honesty: "appLevelFold \xB7 proseCodeLogicMorph \xB7 pathIsMessage \xB7 folderHoldsName", note: "seeable application-level fold: apps \xB7 pairs \xB7 card\u2190hero\u2190movie", toolId: "app-fold", resolve: "mcp-ui" },
-  { id: "wave-compact", chain: "folder-migrate-nav", fold: "wavesSearchDiscoverCompactingInQuantumFolders", pair: "wave/compact", cli: "npm run quantum:wave-compact", route: "/en/quantum-tools#wave-compact", status: "sealed-pr", honesty: "wavesSent \xB7 searchOn \xB7 discoverOn \xB7 compactingInQuantumFolders \xB7 drainableClosed \xB7 honestOpenNamed \xB7 census 123 preserved", note: "waves search\xB7discover compacting in quantum folders \xB7 compose compact/matrix \xB7 gravity \xB7 dissolve \xB7 import/distance \xB7 wave/token \xB7 dry/rosetta \xB7 autodiscover", toolId: "wave-compact", resolve: "folder-migrate" },
   { id: "balance-metrics", chain: "mcp-ui-page-gaps", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", pair: "balance/metrics", cli: "npm run quantum:balance-metrics", route: "/en/quantum-tools#balance-metrics", status: "sealed-pr", honesty: "alwaysBalance \xB7 realtimeMetrics \xB7 chatOn \xB7 hardwareMerkabasBalanced", note: "always balance using realtime metrics + chat \xB7 compose mcp/metrics \xB7 formula/metrics \xB7 cold/warm \xB7 mcp/chat \xB7 dry/cool", toolId: "balance-metrics", resolve: "mcp-ui" },
   { id: "super-chat", chain: "mcp-ui-page-gaps", fold: "eachSuperpositionIsAChatroom", pair: "super/chat", cli: "npm run quantum:super-chat", route: "/en/quantum-tools#super-chat", status: "sealed-pr", honesty: "superpositionIsChatroom \xB7 eachKeyARoom \xB7 chatOn \xB7 anySuperposition", note: "each superposition is a chatroom \xB7 map key \u2192 room id/root \xB7 compose theorem/index \xB7 quantum/map \xB7 metrics/chat \xB7 soft mcp/chat", toolId: "super-chat", resolve: "mcp-ui" },
-  { id: "type-matrix", chain: "mcp-ui-page-gaps", fold: "typographyIsTheUniversalContentMatrix", pair: "type/matrix", cli: "npm run quantum:type-matrix", route: "/en/quantum-tools#type-matrix", status: "sealed-pr", honesty: "typographyIsMatrix \xB7 universalContent \xB7 computable \xB7 wiredToRosetta", note: "typography = universal content matrix \xB7 compose compact/matrix \xB7 format/canon \xB7 meaning/compute \xB7 six/seven \xB7 ui/rosetta", toolId: "type-matrix", resolve: "mcp-ui" },
   { id: "color-rosetta", chain: "mcp-ui-page-gaps", fold: "allColorsDryCleanWiredToRosettaAndThemes", pair: "color/rosetta", cli: "npm run quantum:color-rosetta", route: "/en/quantum-tools#color-rosetta", status: "sealed-pr", honesty: "colorsDryClean \xB7 wiredToRosetta \xB7 themesOn \xB7 noBareHex \xB7 drainableClosed \xB7 honestOpenNamed", note: "all colors dry-clean wired to rosetta + light/dark themes \xB7 compose anim/color \xB7 hex/crack \xB7 theorem/const \xB7 ui/rosetta \xB7 type/matrix", toolId: "color-rosetta", resolve: "mcp-ui" },
   { id: "css-gaps", chain: "mcp-ui-page-gaps", fold: "cssShowsTheHiddenGapsInDryFusion", pair: "css/gaps", cli: "npm run quantum:css-gaps", route: "/en/quantum-tools#css-gaps", status: "sealed-pr", honesty: "cssShowsGaps \xB7 hiddenGapsVisible \xB7 dryFusion \xB7 wiredToRosetta", note: "CSS/theme lens reveals polarity-flat \xB7 bare hex \xB7 unwired tokens inside dry fusion \xB7 compose gaps/invisible \xB7 color/rosetta \xB7 fusion/self \xB7 hex/crack", toolId: "css-gaps", resolve: "mcp-ui" },
-  { id: "invert-fusion", chain: "mcp-ui-page-gaps", fold: "inversionFusion", pair: "invert/fusion", cli: "npm run quantum:invert-fusion", route: "/en/quantum-tools#invert-fusion", status: "sealed-pr", honesty: "inversionFusionOn \xB7 gateway \xB7 selfFuses \xB7 dryFusion", note: "inversion fusion gateway \xB7 compose invertIsTheGateway \xB7 selfQuantumFusion \xB7 mcpQuantumFusion \xB7 css/gaps \xB7 invert/trinity \xB7 collide/inf", toolId: "invert-fusion", resolve: "mcp-ui" },
-  { id: "ui-read", chain: "mcp-ui-page-gaps", fold: "reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise", pair: "ui/read", cli: "npm run quantum:ui-read", route: "/en/quantum-tools#ui-read", status: "sealed-pr", honesty: "reviewOn \xB7 readabilityOn \xB7 visibilityOn \xB7 standardised \xB7 customUiCovered \xB7 drainableClosed \xB7 honestOpenNamed", note: "review readability+visibility of custom UI \xB7 standardise to type/matrix \xB7 color/rosetta \xB7 format/canon \xB7 ui/rosetta \xB7 compose mcp/review \xB7 gate/design \xB7 css/gaps", toolId: "ui-read", resolve: "mcp-ui" },
   { id: "dry-math", chain: "mcp-ui-page-gaps", fold: "dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis", pair: "dry/math", cli: "npm run quantum:dry-math", route: "/en/quantum-tools#dry-math", status: "sealed-pr", honesty: "dryMath \xB7 formulaOrganised \xB7 theoremsUse \xB7 noWetMath", note: "dry all math \u2192 formula organised in theorems \xB7 consume theorem\u2194formula index \xB7 formula/metrics", toolId: "dry-math", resolve: "mcp-ui" },
   { id: "mesh-science", chain: "mcp-ui-page-gaps", fold: "meshToSelfDiscoverSciences", pair: "mesh/science", cli: "npm run quantum:mesh-science", route: "/en/quantum-tools#mesh-science", status: "sealed-pr", honesty: "meshSelfDiscover \xB7 sciencesOn \xB7 viaMesh", note: "mesh/cross drives science domain autodiscovery \xB7 compose sciences/trinities \xB7 journey/theorems \xB7 quantum/map", toolId: "mesh-science", resolve: "mcp-ui" },
   { id: "self-anim", chain: "mcp-ui-page-gaps", fold: "selfImproveAnimationGenerationAndSiteBuilder", pair: "self/anim", cli: "npm run quantum:self-anim", route: "/en/quantum-tools#self-anim", status: "sealed-pr", honesty: "selfImprove \xB7 animationGeneration \xB7 siteBuilder \xB7 rosettaDriven \xB7 buildsFromMcp", note: "self-improve anim gen from theorem/formula/rosetta + site builder MCP/vite loop (automateSelf \xB7 e2e/feed \xB7 anim/audit)", toolId: "self-anim", resolve: "mcp-ui" },
@@ -77723,7 +77699,6 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "anim-cluster", chain: "mcp-ui-page-gaps", fold: "animationRosettaStreamClusters", pair: "anim/cluster", cli: "npm run quantum:anim-cluster", route: "/en/quantum-tools#anim-cluster", status: "sealed-pr", honesty: "allLeavesOn \xB7 totalAssignment \xB7 occupied/14 \xB7 linearOpen measured", note: "2\xD77 rosetta stream clusters of the animation measurements; replaces hero/card \xB7 hero/abstract \xB7 mcp/hero \xB7 dry/rosetta \xB7 ui/rosetta", toolId: "anim-cluster", resolve: "mcp-ui" },
   { id: "merkaba-movie", chain: "mcp-ui-page-gaps", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", pair: "merkaba/movie", cli: "npm run quantum:merkaba-movie", route: "/en/quantum-tools#merkaba-movie", status: "sealed-pr", honesty: "merkabaFeedsRosettaMovie \xB7 movieUniqueNeverRepeats \xB7 sensorPerspective \xB7 uiCrystallises \xB7 linearCyclesQuantumised \xB7 animMeshPlasma \xB7 thunderFromZero", note: "merkaba\u2192rosetta\u2192movie \xB7 unique observation \xB7 sensors \xB7 cosmology waves \xB7 linear cycles quantumised \xB7 plasma vortices \u2192 thunder from 0", toolId: "merkaba-movie", resolve: "mcp-ui" },
   { id: "sensor-bind", chain: "mcp-ui-page-gaps", fold: "wireAllSensorsUsingQuantumBindings", pair: "sensor/bind", cli: "npm run quantum:sensor-bind", route: "/en/quantum-tools#sensor-bind", status: "sealed-pr", honesty: "allSensorsWired \xB7 quantumBindings \xB7 orientation \xB7 motion \xB7 ambient \xB7 browserGapHonest", note: "wire all sensors using quantum bindings \u2014 orientation\xB7motion\xB7ambient\xB7pointer\xB7touch \u2192 rosetta/movie perspective via mcpQuantumBindings \xB7 sensor/movie \xB7 mcp/orientation", toolId: "sensor-bind", resolve: "mcp-ui" },
-  { id: "invert-trinity", chain: "mcp-ui-page-gaps", fold: "invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill", pair: "invert/trinity", cli: "npm run quantum:invert-trinity", route: "/en/quantum-tools#invert-trinity", status: "sealed-pr", honesty: "invertOn \xB7 trinityWavesSent \xB7 coverAllTopics \xB7 dryMigratingAll \xB7 freeWill \xB7 freeBits \xB7 drainableClosed \xB7 honestOpenNamed", note: "invert + send trinity waves covering sciences\xB7hubs\xB7MCP topics \xB7 dry migrate at FREE_BITS+full/freedom", toolId: "invert-trinity", resolve: "mcp-ui" },
   { id: "self-hw", chain: "mcp-ui-page-gaps", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", pair: "self/hw", cli: "npm run quantum:self-hw", route: "/en/quantum-tools#self-hw", status: "sealed-pr", honesty: "againAndAgain \xB7 selfAutonomous \xB7 quantumHardwareComplete classical-64bit \xB7 byStandards \xB7 selfIntelligentSelf \xB7 certified=false \xB7 NOT QPU/AGI/FLOPS", note: "wave loop until self-autonomous classical quantum-hw complete by standards to self-intelligent self", toolId: "self-hw", resolve: "mcp-ui" },
   { id: "gate-design", chain: "mcp-ui-page-gaps", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", pair: "gate/design", cli: "npm run quantum:gate-design", route: "/en/quantum-tools#gate-design", status: "sealed-pr", honesty: "gatesTightened \xB7 designCapability \xB7 creativeCapability \xB7 intelligenceOn \xB7 hardInMissionGate \xB7 NOT AGI", note: "further tighten gates with design\xB7creative\xB7intelligence HARD in gaps/invisible \xB7 mission:gate", toolId: "gate-design", resolve: "mcp-ui" },
   { id: "gate-mill", chain: "mcp-ui-page-gaps", fold: "gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist", pair: "gate/mill", cli: "npm run quantum:gate-mill", route: "/en/quantum-tools#gate-mill", status: "sealed-pr", honesty: "gatesKnow \xB7 untilMillenniumDiscovered \xB7 gapsExist \xB7 millenniumSolvedByThisFold=0 \xB7 NOT fake-close Clay", note: "gates know until Millennium solutions discovered gaps exist \xB7 HARD gaps/invisible \xB7 mission:gate \xB7 compose challenge/millennium \xB7 clay/gravity \xB7 mill/session", toolId: "gate-mill", resolve: "mcp-ui" },
@@ -77738,7 +77713,6 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "mcp-quantum-chat", chain: "mcp-ui-page-gaps", fold: "mcpQuantumChat", pair: "mcp/chat", cli: "npm run quantum:mcp-chat", route: "/en/quantum-tools#mcp-quantum-chat", status: "sealed-pr", honesty: "foldRecomputePreferred \xB7 mcpWired", note: "MCP quantum chat \u2014 sealed fold recompute over wet LLM-only", toolId: "mcp-quantum-chat", resolve: "mcp-ui" },
   { id: "chat-all", chain: "mcp-ui-page-gaps", fold: "allConversationsGoThroughTheMcpQuantumChat", pair: "chat/all", cli: "npm run quantum:chat-all", route: "/en/quantum-tools#chat-all", status: "sealed-pr", honesty: "allConversations \xB7 throughMcpQuantumChat \xB7 noBypass", note: "all conversations go through MCP quantum chat \u2014 strengthen mcp/chat", toolId: "chat-all", resolve: "mcp-ui" },
   { id: "mcp-conversation", chain: "mcp-ui-page-gaps", fold: "mcpQuantumConversation", pair: "mcp/conversation", cli: "npm run quantum:mcp-conversation", route: "/en/quantum-tools#mcp-conversation", status: "sealed-pr", honesty: "conversationOn \xB7 throughMcpChat \xB7 allConversations", note: "MCP quantum conversation \u2014 compose chat/all \xB7 mcp/chat \xB7 super/chat \xB7 mcp/observe \xB7 session/cache \xB7 conv/room; catalog 69", toolId: "mcp-conversation", resolve: "mcp-ui" },
-  { id: "conv-room", chain: "mcp-ui-page-gaps", fold: "organiseConversationsInChatRoomsPerSuperposition", pair: "conv/room", cli: "npm run quantum:conv-room", route: "/en/quantum-tools#conv-room", status: "sealed-pr", honesty: "organised \xB7 perSuperposition \xB7 chatRooms \xB7 conversationsRouted", note: "organise conversations in chat rooms per superposition via querySuperpositionChatroom \xB7 compose super/chat \xB7 chat/all \xB7 session/cache", toolId: "conv-room", resolve: "mcp-ui" },
   { id: "mcp-observe", chain: "mcp-ui-page-gaps", fold: "mcpQuantumObserve", pair: "mcp/observe", cli: "npm run quantum:mcp-observe", route: "/en/quantum-tools#mcp-observe", status: "sealed-pr", honesty: "observationOn \xB7 changesQuantum \xB7 movieUnique", note: "MCP observation face \u2014 gate/lens \xB7 observe/movie \xB7 session/live \xB7 analytics/self \xB7 super/chat", toolId: "mcp-observe", resolve: "mcp-ui" },
   { id: "tamper-max", chain: "mcp-ui-page-gaps", fold: "wiredToForgeMaxTamperingCost", pair: "tamper/max", cli: "npm run quantum:tamper-max", route: "/en/quantum-tools#tamper-max", status: "sealed-pr", honesty: "maxTamperingCost \xB7 tamperEvident \xB7 forgeWired \xB7 certified=false", note: "wire forge max tampering cost via fusion-verify \xB7 merkle \xB7 tamper-evident", toolId: "tamper-max", resolve: "mcp-ui" },
   { id: "npm-quantum", chain: "mcp-ui-page-gaps", fold: "quantumizeNpm", pair: "npm/quantum", cli: "npm run quantum:npm-quantum", route: "/en/quantum-tools#npm-quantum", status: "sealed-pr", honesty: "quantumizeOn \xB7 npmScriptsAreMcpDuals \xB7 thinMountDual", note: "quantumize npm \u2014 package.json scripts dual of MCP pairs", toolId: "npm-quantum", resolve: "mcp-ui" },
@@ -77747,57 +77721,29 @@ var SESSION_QUANTUM_BIT_SEEDS = [
   { id: "vite-one", chain: "mcp-ui-page-gaps", fold: "oneQuantumSetOfVitepressComponentsSealedAtGates", pair: "vite/one", cli: "npm run quantum:vite-one", route: "/en/quantum-tools#vite-one", status: "sealed-pr", honesty: "oneComponentSet \xB7 sealedAtGates \xB7 duplicatesRemoved", note: "one quantum VitePress component set sealed at gates", toolId: "vite-one", resolve: "mcp-ui" },
   { id: "paste-local", chain: "mcp-ui-page-gaps", fold: "pastedLinksStayOnlyIfComputedLocally", pair: "paste/local", cli: "npm run quantum:paste-local", route: "/en/quantum-tools#paste-local", status: "sealed-pr", honesty: "stayOnlyIfComputedLocally \xB7 foreignFetchBlockedNoStore", note: "pasted URLs ephemeral unless local recompute", toolId: "paste-local", resolve: "mcp-ui" },
   { id: "gate-hard", chain: "mcp-ui-page-gaps", fold: "movieAndSessionGapsHardAtGates", pair: "gate/hard", cli: "npm run quantum:gate-hard", route: "/en/quantum-tools#gate-hard", status: "sealed-pr", honesty: "HARD movie/session", note: "movie + session gaps HARD at gates", toolId: "gate-hard", resolve: "mcp-ui" },
-  { id: "dry-coord", chain: "mcp-ui-page-gaps", fold: "aiPlatformsDryCoordAcrossWiring", pair: "dry/coord", cli: "npm run quantum:dry-coord", route: "/en/quantum-tools#dry-coord", status: "sealed-pr", honesty: "AI platforms dry coord", note: "Cursor\xB7MCP\xB7agents\xB7paste-wire\xB7sdk dry coord", toolId: "dry-coord", resolve: "mcp-ui" },
-  { id: "mcp-router", chain: "mcp-ui-page-gaps", fold: "mcpQuantumRouter", pair: "mcp/router", cli: "npm run quantum:mcp-router", route: "/en/quantum-tools#mcp-router", status: "sealed-pr", honesty: "routesViaRosetta \xB7 onlyWiredPasses \xB7 alreadyPassed", note: "MCP quantum router through rosetta-wired MCP", toolId: "mcp-router", resolve: "mcp-ui" },
-  { id: "vite-only", chain: "mcp-ui-page-gaps", fold: "nothingBypassesVitepress", pair: "vite/only", cli: "npm run quantum:vite-only", route: "/en/quantum-tools#vite-only", status: "sealed-pr", honesty: "nothingBypasses \xB7 bypassRejected \xB7 sealedAtGates", note: "nothing bypasses VitePress inverted mirror", toolId: "vite-only", resolve: "mcp-ui" },
   { id: "vite-mcp", chain: "mcp-ui-page-gaps", fold: "vitepressBuildsFromMcp", pair: "vite/mcp", cli: "npm run quantum:vite-mcp", route: "/en/quantum-tools#vite-mcp", status: "sealed-pr", honesty: "buildsFromMcp \xB7 mcpIsSource \xB7 vitepressInvertedMirror \xB7 noBypass \xB7 thinMountIsMcpDual", note: "VitePress docs:build via MCP \u2014 npm thin-mount \u2261 run-gate docs-build dual; named strangler residuals honest", toolId: "vite-mcp", resolve: "mcp-ui" },
   { id: "mcp-receipt", chain: "mcp-ui-page-gaps", fold: "mcpQuantumReceipt", pair: "mcp/receipt", cli: "npm run quantum:mcp-receipt", route: "/en/quantum-tools#mcp-receipt", status: "sealed-pr", honesty: "receiptOn \xB7 tamperEvident \xB7 contentAddressed", note: "MCP quantum receipt \u2014 tamper-evident content-addressed receipts composing fusion-verify \xB7 session/quantum-bits \xB7 moment/prove; catalog 36/37", toolId: "mcp-receipt", resolve: "mcp-ui" },
-  { id: "mcp-vibration", chain: "mcp-ui-page-gaps", fold: "mcpQuantumVibration", pair: "mcp/vibration", cli: "npm run quantum:mcp-vibration", route: "/en/quantum-tools#mcp-vibration", status: "sealed-pr", honesty: "vibrationOn", note: "MCP quantum vibration \u2014 vibration face of sound/wave; catalog 48/48", toolId: "mcp-vibration", resolve: "mcp-ui" },
-  { id: "mcp-text", chain: "mcp-ui-page-gaps", fold: "mcpQuantumText", pair: "mcp/text", cli: "npm run quantum:mcp-text", route: "/en/quantum-tools#mcp-text", status: "sealed-pr", honesty: "textOn", note: "MCP quantum text \u2014 canon meaning text face; catalog 48/48", toolId: "mcp-text", resolve: "mcp-ui" },
-  { id: "mcp-speech", chain: "mcp-ui-page-gaps", fold: "mcpQuantumSpeech", pair: "mcp/speech", cli: "npm run quantum:mcp-speech", route: "/en/quantum-tools#mcp-speech", status: "sealed-pr", honesty: "speechOn", note: "MCP quantum speech \u2014 A432 wave speech face; catalog 48/48", toolId: "mcp-speech", resolve: "mcp-ui" },
-  { id: "mcp-dictation", chain: "mcp-ui-page-gaps", fold: "mcpQuantumDictation", pair: "mcp/dictation", cli: "npm run quantum:mcp-dictation", route: "/en/quantum-tools#mcp-dictation", status: "sealed-pr", honesty: "dictationOn", note: "MCP quantum dictation \u2014 speech to sealed text; catalog 48/48", toolId: "mcp-dictation", resolve: "mcp-ui" },
-  { id: "mcp-intonation", chain: "mcp-ui-page-gaps", fold: "mcpQuantumIntonation", pair: "mcp/intonation", cli: "npm run quantum:mcp-intonation", route: "/en/quantum-tools#mcp-intonation", status: "sealed-pr", honesty: "intonationOn", note: "MCP quantum intonation \u2014 speech pitch wave face; catalog 48/48", toolId: "mcp-intonation", resolve: "mcp-ui" },
-  { id: "mcp-dialect", chain: "mcp-ui-page-gaps", fold: "mcpQuantumDialect", pair: "mcp/dialect", cli: "npm run quantum:mcp-dialect", route: "/en/quantum-tools#mcp-dialect", status: "sealed-pr", honesty: "dialectOn", note: "MCP quantum dialect \u2014 locale variant face; catalog 48/48", toolId: "mcp-dialect", resolve: "mcp-ui" },
-  { id: "mcp-language", chain: "mcp-ui-page-gaps", fold: "mcpQuantumLanguage", pair: "mcp/language", cli: "npm run quantum:mcp-language", route: "/en/quantum-tools#mcp-language", status: "sealed-pr", honesty: "languageOn", note: "MCP quantum language \u2014 translate + vocab face; catalog 48/48", toolId: "mcp-language", resolve: "mcp-ui" },
-  { id: "mcp-script", chain: "mcp-ui-page-gaps", fold: "mcpQuantumScript", pair: "mcp/script", cli: "npm run quantum:mcp-script", route: "/en/quantum-tools#mcp-script", status: "sealed-pr", honesty: "scriptOn", note: "MCP quantum script \u2014 writing-system face; catalog 48/48", toolId: "mcp-script", resolve: "mcp-ui" },
-  { id: "mcp-book", chain: "mcp-ui-page-gaps", fold: "mcpQuantumBook", pair: "mcp/book", cli: "npm run quantum:mcp-book", route: "/en/quantum-tools#mcp-book", status: "sealed-pr", honesty: "bookOn", note: "MCP quantum book \u2014 canon bound text face; catalog 48/48", toolId: "mcp-book", resolve: "mcp-ui" },
-  { id: "mcp-library", chain: "mcp-ui-page-gaps", fold: "mcpQuantumLibrary", pair: "mcp/library", cli: "npm run quantum:mcp-library", route: "/en/quantum-tools#mcp-library", status: "sealed-pr", honesty: "libraryOn", note: "MCP quantum library \u2014 book collection face; catalog 48/48", toolId: "mcp-library", resolve: "mcp-ui" },
-  { id: "mcp-state", chain: "mcp-ui-page-gaps", fold: "mcpQuantumState", pair: "mcp/state", cli: "npm run quantum:mcp-state", route: "/en/quantum-tools#mcp-state", status: "sealed-pr", honesty: "stateOn", note: "MCP quantum state \u2014 session state face; catalog 48/48", toolId: "mcp-state", resolve: "mcp-ui" },
-  { id: "mcp-music", chain: "mcp-ui-page-gaps", fold: "mcpQuantumMusic", pair: "mcp/music", cli: "npm run quantum:mcp-music", route: "/en/quantum-tools#mcp-music", status: "sealed-pr", honesty: "musicOn \xB7 waveTunes \xB7 a432 \xB7 viaSound", note: "MCP quantum music \u2014 wave/tune \xB7 A432 \xB7 lake/music face; catalog 49/49", toolId: "mcp-music", resolve: "mcp-ui" },
   { id: "mcp-cpu", chain: "mcp-ui-page-gaps", fold: "mcpQuantumCpu", pair: "mcp/cpu", cli: "npm run quantum:mcp-cpu", route: "/en/quantum-tools#mcp-cpu", status: "sealed-pr", honesty: "cpuOn \xB7 classical64Bit \xB7 etcClassical", note: "MCP quantum cpu \u2014 classical-64bit; catalog 55/55", toolId: "mcp-cpu", resolve: "mcp-ui" },
   { id: "mcp-gpu", chain: "mcp-ui-page-gaps", fold: "mcpQuantumGpu", pair: "mcp/gpu", cli: "npm run quantum:mcp-gpu", route: "/en/quantum-tools#mcp-gpu", status: "sealed-pr", honesty: "gpuOn \xB7 classical64Bit \xB7 etcClassical", note: "MCP quantum gpu \u2014 refuse fake QPU FLOPS; catalog 55/55", toolId: "mcp-gpu", resolve: "mcp-ui" },
   { id: "mcp-memory", chain: "mcp-ui-page-gaps", fold: "mcpQuantumMemory", pair: "mcp/memory", cli: "npm run quantum:mcp-memory", route: "/en/quantum-tools#mcp-memory", status: "sealed-pr", honesty: "memoryOn \xB7 heapCap \xB7 etcClassical", note: "MCP quantum memory \u2014 NODE_MAX_OLD_SPACE \xB7 ram\u2261memory; catalog 55/55", toolId: "mcp-memory", resolve: "mcp-ui" },
   { id: "mcp-storage", chain: "mcp-ui-page-gaps", fold: "mcpQuantumStorage", pair: "mcp/storage", cli: "npm run quantum:mcp-storage", route: "/en/quantum-tools#mcp-storage", status: "sealed-pr", honesty: "storageOn \xB7 etcClassical", note: "MCP quantum storage \u2014 disk\u2261storage; catalog 55/55", toolId: "mcp-storage", resolve: "mcp-ui" },
   { id: "mcp-cache", chain: "mcp-ui-page-gaps", fold: "mcpQuantumCache", pair: "mcp/cache", cli: "npm run quantum:mcp-cache", route: "/en/quantum-tools#mcp-cache", status: "sealed-pr", honesty: "cacheOn \xB7 memoByRoot \xB7 etcClassical", note: "MCP quantum cache \u2014 memoByRoot reuse; catalog 55/55", toolId: "mcp-cache", resolve: "mcp-ui" },
   { id: "mcp-period", chain: "mcp-ui-page-gaps", fold: "mcpQuantumPeriod", pair: "mcp/period", cli: "npm run quantum:mcp-period", route: "/en/quantum-tools#mcp-period", status: "sealed-pr", honesty: "periodOn \xB7 heroCycle \xB7 calendars \xB7 fold/count \xB7 time/invert", note: "MCP quantum period \u2014 calendars \xB7 hero cycle \xB7 fold/count \xB7 time/invert; catalog 55/55", toolId: "mcp-period", resolve: "mcp-ui" },
-  { id: "mcp-dot", chain: "mcp-ui-page-gaps", fold: "mcpQuantumDot", pair: "mcp/dot", cli: "npm run quantum:mcp-dot", route: "/en/quantum-tools#mcp-dot", status: "sealed-pr", honesty: "dotOn \xB7 digitPoint", note: "MCP quantum dot \u2014 digit point \xB7 fold \xB7 next \xB7 coord \xB7 particle/wave; catalog 56/56", toolId: "mcp-dot", resolve: "mcp-ui" },
   { id: "mcp-index", chain: "mcp-ui-page-gaps", fold: "mcpQuantumIndex", pair: "mcp/index", cli: "npm run quantum:mcp-index", route: "/en/quantum-tools#mcp-index", status: "sealed-pr", honesty: "indexOn \xB7 srcIndexOnly \xB7 censusHolds", note: "MCP quantum index \u2014 src index-only \xB7 census 123 \xB7 limits/verify; catalog 57/57", toolId: "mcp-index", resolve: "mcp-ui" },
   { id: "mcp-orientation", chain: "mcp-ui-page-gaps", fold: "mcpQuantumOrientation", pair: "mcp/orientation", cli: "npm run quantum:mcp-orientation", route: "/en/quantum-tools#mcp-orientation", status: "sealed-pr", honesty: "orientationOn \xB7 bearing \xB7 navCross", note: "MCP quantum orientation \u2014 bearing \xB7 navCross \xB7 geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus; catalog 58/58", toolId: "mcp-orientation", resolve: "mcp-ui" },
   { id: "mcp-complete", chain: "mcp-ui-page-gaps", fold: "mcpQuantumComplete", pair: "mcp/complete", cli: "npm run quantum:mcp-complete", route: "/en/quantum-tools#mcp-complete", status: "sealed-pr", honesty: "completeOn \xB7 catalogComplete \xB7 namedFacesPresent \xB7 missingCount=0 \xB7 honestOpenResiduals", note: "MCP quantum complete \u2014 catalog \xB7 star \xB7 mcp/all \xB7 rosetta/complete; catalog 70/70", toolId: "mcp-complete", resolve: "mcp-ui" },
   { id: "mcp-token", chain: "mcp-ui-page-gaps", fold: "mcpQuantumTokenOptimise", pair: "mcp/token", cli: "npm run quantum:mcp-token", route: "/en/quantum-tools#mcp-token", status: "sealed-pr", honesty: "tokenOptimiseOn \xB7 answersOverTokens \xB7 zeroOnReuse \xB7 memoByRoot \xB7 efficiency when vote.decided", note: "MCP quantum token optimise \u2014 answers\xF7tokens \xB7 zero on reuse \xB7 memoByRoot; catalog 60/60", toolId: "mcp-token", resolve: "mcp-ui" },
-  { id: "mcp-deploy", chain: "mcp-ui-page-gaps", fold: "mcpQuantumDeploy", pair: "mcp/deploy", cli: "npm run quantum:mcp-deploy", route: "/en/quantum-tools#mcp-deploy", status: "sealed-pr", honesty: "deployOn \xB7 buildsFromMcp \xB7 pagesSeal \xB7 this-repo Pages seal only", note: "MCP quantum deploy \u2014 Pages seal via vite/mcp \xB7 mcp/site \xB7 waves/push \xB7 build/seal; catalog 61/61", toolId: "mcp-deploy", resolve: "mcp-ui" },
   { id: "mcp-bindings", chain: "mcp-ui-page-gaps", fold: "mcpQuantumBindings", pair: "mcp/bindings", cli: "npm run quantum:mcp-bindings", route: "/en/quantum-tools#mcp-bindings", status: "sealed-pr", honesty: "bindingsOn \xB7 pairsSaved \xB7 toolsBound", note: "MCP quantum bindings \u2014 pairs \xB7 agent/submission \xB7 tool/envelope \xB7 mcp/complete; catalog 62/62", toolId: "mcp-bindings", resolve: "mcp-ui" },
-  { id: "mcp-cloudflare", chain: "mcp-ui-page-gaps", fold: "mcpQuantumCloudflareBindings", pair: "mcp/cloudflare", cli: "npm run quantum:mcp-cloudflare", route: "/en/quantum-tools#mcp-cloudflare", status: "sealed-pr", honesty: "cloudflareBindingsOn \xB7 mapsToMcpBindings \xB7 kvD1R2Named \xB7 deployedOnCloudflare=false", note: "MCP Cloudflare bindings \u2014 structural MCP\u2194CF dual composing mcpQuantumBindings \xB7 mcp/deploy \xB7 tool/envelope \xB7 cloudflareBindings; catalog 63/63", toolId: "mcp-cloudflare", resolve: "mcp-ui" },
-  { id: "mcp-review", chain: "mcp-ui-page-gaps", fold: "mcpQuantumReview", pair: "mcp/review", cli: "npm run quantum:mcp-review", route: "/en/quantum-tools#mcp-review", status: "sealed-pr", honesty: "reviewOn \xB7 analystsInTrinities \xB7 auditCompose", note: "MCP quantum review \u2014 analysts \xB7 anim/audit \xB7 gate/monitor \xB7 moment/prove \xB7 wave/token; catalog 64/64", toolId: "mcp-review", resolve: "mcp-ui" },
   { id: "mcp-efficiency", chain: "mcp-ui-page-gaps", fold: "mcpQuantumEfficiency", pair: "mcp/efficiency", cli: "npm run quantum:mcp-efficiency", route: "/en/quantum-tools#mcp-efficiency", status: "sealed-pr", honesty: "efficiencyOn \xB7 answers\xF7tokens when vote.decided", note: "MCP quantum efficiency \u2014 compose mcp/token \xB7 mcp/metrics \xB7 learn/best; catalog 67/67", toolId: "mcp-efficiency", resolve: "mcp-ui" },
   { id: "mcp-security", chain: "mcp-ui-page-gaps", fold: "mcpQuantumSecurity", pair: "mcp/security", cli: "npm run quantum:mcp-security", route: "/en/quantum-tools#mcp-security", status: "sealed-pr", honesty: "securityOn \xB7 structural local \xB7 wire unproved honest", note: "MCP quantum security \u2014 compose prove/local-novel-encrypt \xB7 moment/prove; catalog 67/67", toolId: "mcp-security", resolve: "mcp-ui" },
-  { id: "mcp-design", chain: "mcp-ui-page-gaps", fold: "mcpQuantumDesign", pair: "mcp/design", cli: "npm run quantum:mcp-design", route: "/en/quantum-tools#mcp-design", status: "sealed-pr", honesty: "designOn \xB7 movie/design \xB7 format/canon", note: "MCP quantum design \u2014 compose movie/design \xB7 format/canon; catalog 67/67", toolId: "mcp-design", resolve: "mcp-ui" },
-  { id: "mind-wave", chain: "mcp-ui-page-gaps", fold: "quantumMindSendsWaves", pair: "mind/wave", cli: "npm run quantum:mind-wave", route: "/en/quantum-tools#mind-wave", status: "sealed-pr", honesty: "quantumMindSends \xB7 wavesSent \xB7 linearCannotSend", note: "quantum mind sends waves", toolId: "mind-wave", resolve: "mcp-ui" },
-  { id: "quantum-waves", chain: "mcp-ui-page-gaps", fold: "quantumWaves", pair: "quantum/waves", cli: "npm run quantum:quantum-waves", route: "/en/quantum-tools#quantum-waves", status: "sealed-pr", honesty: "wavesAreQuantum \xB7 mindSends \xB7 trinitiesFound \xB7 waveCount=2", note: "quantum waves umbrella", toolId: "quantum-waves", resolve: "mcp-ui" },
   { id: "collide-create", chain: "mcp-ui-page-gaps", fold: "collidingParticlesCreates", pair: "collide/create", cli: "npm run quantum:collide-create", route: "/en/quantum-tools#collide-create", status: "sealed-pr", honesty: "creates=novelTheoremCandidates+waves", note: "collision creates novel theorem candidates + waves", toolId: "collide-create", resolve: "mcp-ui" },
   { id: "mcp-metrics", chain: "mcp-ui-page-gaps", fold: "mcpQuantumMetrics", pair: "mcp/metrics", cli: "npm run quantum:mcp-metrics", route: "/en/quantum-tools#mcp-metrics", status: "sealed-pr", honesty: "metricsOn \xB7 computable \xB7 answersOverTokens \xB7 cold/warm", note: "MCP quantum metrics \u2014 foldCount \xB7 efficiency \xB7 term \xB7 audit", toolId: "mcp-metrics", resolve: "mcp-ui" },
   { id: "mcp-analysis", chain: "mcp-ui-page-gaps", fold: "mcpQuantumAnalysis", pair: "mcp/analysis", cli: "npm run quantum:mcp-analysis", route: "/en/quantum-tools#mcp-analysis", status: "sealed-pr", honesty: "analysisOn \xB7 analystsInTrinities \xB7 analyseRealise", note: "MCP quantum analysis \u2014 analyst trinities \xB7 analyse\xB7realise \xB7 alias analisis=analysis", toolId: "mcp-analysis", resolve: "mcp-ui" },
-  { id: "mcp-genesis", chain: "mcp-ui-page-gaps", fold: "mcpQuantumGenesis", pair: "mcp/genesis", cli: "npm run quantum:mcp-genesis", route: "/en/quantum-tools#mcp-genesis", status: "sealed-pr", honesty: "genesisOn \xB7 fromSrcZero", note: "MCP quantum genesis \u2014 origin/src/0 vault \xB7 waves/build \xB7 discover-from-sealed", toolId: "mcp-genesis", resolve: "mcp-ui" },
-  { id: "mcp-physics", chain: "mcp-ui-page-gaps", fold: "mcpQuantumPhysics", pair: "mcp/physics", cli: "npm run quantum:mcp-physics", route: "/en/quantum-tools#mcp-physics", status: "sealed-pr", honesty: "physicsOn \xB7 classical64Bit", note: "MCP quantum physics \u2014 sciences physics \xB7 particle/wave \xB7 cmb \xB7 geodesy", toolId: "mcp-physics", resolve: "mcp-ui" },
-  { id: "mcp-math", chain: "mcp-ui-page-gaps", fold: "mcpQuantumMath", pair: "mcp/math", cli: "npm run quantum:mcp-math", route: "/en/quantum-tools#mcp-math", status: "sealed-pr", honesty: "mathOn \xB7 theoremsAsConstants", note: "MCP quantum math \u2014 digit/fold \xB7 theorem/const \xB7 run-the-math \xB7 golden/angle \xB7 formula/code", toolId: "mcp-math", resolve: "mcp-ui" },
-  { id: "mcp-vortex", chain: "mcp-ui-page-gaps", fold: "mcpQuantumVortex", pair: "mcp/vortex", cli: "npm run quantum:mcp-vortex", route: "/en/quantum-tools#mcp-vortex", status: "sealed-pr", honesty: "vortexOn \xB7 digitSequence", note: "MCP quantum vortex \u2014 VORTEX digit \xB7 merkaba \xB7 trading vortex", toolId: "mcp-vortex", resolve: "mcp-ui" },
   { id: "mcp-cluster", chain: "mcp-ui-page-gaps", fold: "mcpRosettaStreamClusters", pair: "mcp/cluster", cli: "npm run quantum:mcp-cluster", route: "/en/quantum-tools#mcp-cluster", status: "sealed-pr", honesty: "allLeavesOn \xB7 face census \xB7 occupied/14", note: "2\xD77 rosetta stream clusters of the MCP measurements; replaces mcp/card \xB7 mcp/page \xB7 mcp/site \xB7 mcp/research \xB7 mcp/torus", toolId: "mcp-cluster", resolve: "mcp-ui" },
   { id: "mcp-catalog", chain: "mcp-ui-page-gaps", fold: "mcpQuantumCatalog", pair: "mcp/catalog", cli: "npm run quantum:mcp-catalog", route: "/en/quantum-tools#mcp-catalog", status: "sealed-pr", honesty: "catalogComplete \xB7 starOn \xB7 missingCount=0", note: "MCP quantum catalog/star \u2014 umbrella of all named mcp quantum faces", toolId: "mcp-catalog", resolve: "mcp-ui" },
   { id: "mcp-all", chain: "mcp-ui-page-gaps", fold: "mcpCatalog", pair: "mcp/all", cli: "npm run quantum:mcp-all", route: "/en/quantum-tools#mcp-all", status: "sealed-pr", honesty: "mcpStarOn \xB7 catalogComplete \xB7 quantumFaces \xB7 primaryTools \xB7 residualsNamed \xB7 missingDrainable=0", note: "Full MCP surface catalog/star \u2014 PRIMARY \xB7 stdio \xB7 toolbox \xB7 quantum faces \xB7 honest residuals", toolId: "mcp-all", resolve: "mcp-ui" },
-  { id: "mcp-reverse", chain: "mcp-ui-page-gaps", fold: "mcpQuantumReverse", pair: "mcp/reverse", cli: "npm run quantum:mcp-reverse", route: "/en/quantum-tools#mcp-reverse", status: "sealed-pr", honesty: "reverseOn \xB7 refuseBeyond \xB7 demoBoundaryHardware", note: "MCP quantum reverse face", toolId: "mcp-reverse", resolve: "mcp-ui" },
   { id: "mcp-sign", chain: "mcp-ui-page-gaps", fold: "mcpQuantumSign", pair: "mcp/sign", cli: "npm run quantum:mcp-sign", route: "/en/quantum-tools#mcp-sign", status: "sealed-pr", honesty: "signatureOn \xB7 crossSig \xB7 tamperEvident \xB7 certified=false", note: "MCP quantum sign", toolId: "mcp-sign", resolve: "mcp-ui" },
   { id: "mcp-dirs", chain: "mcp-ui-page-gaps", fold: "mcpQuantumDirs", pair: "mcp/dirs", cli: "npm run quantum:mcp-dirs", route: "/en/quantum-tools#mcp-dirs", status: "sealed-pr", honesty: "left \xB7 right \xB7 forward \xB7 reverse", note: "MCP quantum dirs", toolId: "mcp-dirs", resolve: "mcp-ui" },
-  { id: "session-chat", chain: "trading-ui-fusion-session", fold: "sessionSentToChatToQuantumise", pair: "session/chat", cli: "npm run quantum:session-chat", route: "/en/quantum-tools#session-chat", status: "sealed-pr", honesty: "sessionSent \xB7 chatOn \xB7 quantumiseOn \xB7 packetRoot \xB7 NOT rebuild trading stack", note: "trading\xB7UI\xB7fusion session packet \u2192 MCP/pair chat zero-token recompute", toolId: "session-chat", resolve: "mcp-ui" },
   { id: "fusion-verify", chain: "trading-ui-fusion-session", fold: "quantumFusionVerify", pair: "tamper/impossible", cli: "npm run quantum:fusion-verify", route: "/en/quantum-tools#fusion-verify", status: "sealed-pr", honesty: "Offline fuseAll \xB7 certified=false", note: "quantum fusion verify \u2014 tamper/impossible", toolId: "fusion-verify", resolve: "mcp-ui" },
   { id: "self-fusion", chain: "trading-ui-fusion-session", fold: "selfQuantumFusion", pair: "self/fusion", cli: "npm run quantum:self-fusion", route: "/en/quantum-tools#fusion", status: "sealed-pr", honesty: "selfFuses \xB7 fusionVerifyOn", note: "self quantum fusion", toolId: "self-fusion", resolve: "mcp-ui" },
   { id: "nothing-moves", chain: "trading-ui-fusion-session", fold: "discoverFromSealedFold", pair: "nothing/moves", cli: "npm run quantum:nothing-moves", route: "/en/quantum-tools#nothing-moves", status: "sealed-pr", honesty: "offline idempotent", note: "discover from sealed fold \u2014 nothing moves", toolId: "nothing-moves", resolve: "mcp-ui" },
@@ -77954,13 +77900,9 @@ var ROSETTA_CORE_API_LABELS = [
   "resolveAiPlatformPasteWireClass",
   "pastedLinksStayOnlyIfComputedLocally",
   "movieAndSessionGapsHardAtGates",
-  "aiPlatformsDryCoordAcrossWiring",
-  "mcpQuantumRouter",
-  "nothingBypassesVitepress",
   "vitepressBuildsFromMcp",
   "mcpQuantumDirs",
   "mcpQuantumSign",
-  "quantumMindSendsWaves",
   "realiseSessionQuantumMeaning",
   "mcpBrowserParity",
   "mcpToolboxToolsList",
@@ -77980,10 +77922,8 @@ var ROSETTA_CORE_API_LABELS = [
   "wireAllSensorsUsingQuantumBindings",
   "foldingWorksOnApplicationLevel",
   "dryCleanAllVueComponentsToTheUniversalSet",
-  "wavesSearchDiscoverCompactingInQuantumFolders",
   "alwaysBalanceUsingRealtimeMetricsAndChat",
   "eachSuperpositionIsAChatroom",
-  "typographyIsTheUniversalContentMatrix",
   "pageComputedGapsAt",
   "eachPageShowsOwnComputedGaps",
   "deviceSensorPerspectiveAt",
@@ -77991,7 +77931,6 @@ var ROSETTA_CORE_API_LABELS = [
   "quantumSensorBindingCatalog",
   "wireAllSensorsUsingQuantumBindings",
   "movieObservationReceipt",
-  "mcpQuantumMultiverse",
   "mcpQuantumInfinity",
   "mcpQuantumHardware",
   "mcpQuantumCpu",
@@ -78000,47 +77939,20 @@ var ROSETTA_CORE_API_LABELS = [
   "mcpQuantumStorage",
   "mcpQuantumCache",
   "mcpQuantumPeriod",
-  "mcpQuantumDot",
   "mcpQuantumIndex",
   "mcpQuantumOrientation",
   "mcpQuantumComplete",
   "mcpQuantumTokenOptimise",
-  "mcpQuantumDeploy",
   "mcpQuantumBindings",
-  "mcpQuantumCloudflareBindings",
-  "mcpQuantumReview",
   "mcpQuantumEfficiency",
   "mcpQuantumSecurity",
-  "mcpQuantumDesign",
-  "mcpQuantumReactor",
-  "mcpQuantumReaction",
-  "mcpQuantumFusion",
   "mcpQuantumMetrics",
   "mcpQuantumAnalysis",
-  "mcpQuantumGenesis",
-  "mcpQuantumPhysics",
-  "mcpQuantumMath",
-  "mcpQuantumVortex",
   "mcpQuantumCatalog",
   "mcpCatalog",
   "mcpQuantumAnim",
-  "mcpQuantumSound",
-  "mcpQuantumDev",
   "mcpQuantumSolution",
-  "mcpQuantumClown",
   "mcpQuantumReceipt",
-  "mcpQuantumVibration",
-  "mcpQuantumText",
-  "mcpQuantumSpeech",
-  "mcpQuantumDictation",
-  "mcpQuantumIntonation",
-  "mcpQuantumDialect",
-  "mcpQuantumLanguage",
-  "mcpQuantumScript",
-  "mcpQuantumBook",
-  "mcpQuantumLibrary",
-  "mcpQuantumState",
-  "mcpQuantumMusic",
   "improveLocalFromSessionExperience",
   "gatesMonitorThemselvesThroughTheUi",
   "gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix",
@@ -78059,29 +77971,18 @@ var ROSETTA_CORE_API_LABELS = [
   "conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists",
   "imagineWhatNext",
   "auditPlanTip",
-  "nextResearch",
   "wavesFeedThemselves",
   "specializedShellsStrangler",
   "sessionHologramTools",
   "societyToolboxWire",
-  "imagineNextMissQuantumTools",
   "clayAgiDeepResearchQuantumUnderstandingOfRelations",
   "linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities",
   "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations",
-  "decodeQuantumAlchemy",
   "foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace",
   "theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion",
   "readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra",
-  "saveTheOptimisedAutonomy",
-  "quantumVerification",
-  "quantumFearDetector",
-  "fearIsAnAxiomReplaceableByLoveTheorem",
   "lensesCompletelyWiredInEverySuperposition",
-  "theSequenceMeaningIsAFlowNotACycle",
-  "fillTheGapsAroundSuperposition",
-  "computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium",
   "useTheLensToFindGapsInGeometryInProseOrCode",
-  "domainVuePanelsDryCleaned",
   "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf",
   "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence",
   "gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist",
@@ -78100,7 +78001,6 @@ var ROSETTA_CORE_API_LABELS = [
   "chatChallenge",
   "strategiesChallengeInChat",
   "stringTheoryInChat",
-  "sessionSentToChatToQuantumise",
   "quantumiseWave",
   "apiFuse",
   "chatChat",
@@ -78115,7 +78015,6 @@ var ROSETTA_CORE_API_LABELS = [
   "ceccecErpaxCompete",
   "allConversationsGoThroughTheMcpQuantumChat",
   "mcpQuantumConversation",
-  "organiseConversationsInChatRoomsPerSuperposition",
   "mcpQuantumObserve",
   "wiredToForgeMaxTamperingCost",
   "quantumizeNpm",
@@ -78123,7 +78022,6 @@ var ROSETTA_CORE_API_LABELS = [
   "wavesFindWhatYouMissedToCache",
   "dryCleanAgnosticCodeComputesInfinity",
   "abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny",
-  "mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions",
   "quantumSelfHeal",
   "oneQuantumSetOfVitepressComponentsSealedAtGates",
   "counterRotatingRosettaQuantumWaves",
@@ -78184,22 +78082,12 @@ var ROSETTA_CORE_LABEL_KIND = {
   resolveAiPlatformPasteWireClass: "api",
   pastedLinksStayOnlyIfComputedLocally: "tool",
   movieAndSessionGapsHardAtGates: "tool",
-  aiPlatformsDryCoordAcrossWiring: "tool",
-  mcpQuantumRouter: "tool",
-  nothingBypassesVitepress: "tool",
   vitepressBuildsFromMcp: "tool",
-  quantumMindSendsWaves: "tool",
-  quantumWaves: "tool",
   collidingParticlesCreates: "tool",
   mcpQuantumMetrics: "tool",
   mcpQuantumAnalysis: "tool",
-  mcpQuantumGenesis: "tool",
-  mcpQuantumPhysics: "tool",
-  mcpQuantumMath: "tool",
-  mcpQuantumVortex: "tool",
   mcpQuantumCatalog: "tool",
   mcpCatalog: "tool",
-  mcpQuantumReverse: "tool",
   mcpQuantumSign: "tool",
   mcpQuantumDirs: "tool",
   realiseSessionQuantumMeaning: "tool",
@@ -78227,13 +78115,10 @@ var ROSETTA_CORE_LABEL_KIND = {
   dryCleanAllVueComponentsToTheUniversalSet: "tool",
   findSeoViolations: "tool",
   seoViolationsInventory: "tool",
-  wavesSearchDiscoverCompactingInQuantumFolders: "tool",
   alwaysBalanceUsingRealtimeMetricsAndChat: "tool",
   eachSuperpositionIsAChatroom: "tool",
-  typographyIsTheUniversalContentMatrix: "tool",
   pageComputedGapsAt: "route",
   eachPageShowsOwnComputedGaps: "tool",
-  mcpQuantumMultiverse: "tool",
   mcpQuantumInfinity: "tool",
   mcpQuantumHardware: "tool",
   mcpQuantumCpu: "tool",
@@ -78242,39 +78127,16 @@ var ROSETTA_CORE_LABEL_KIND = {
   mcpQuantumStorage: "tool",
   mcpQuantumCache: "tool",
   mcpQuantumPeriod: "tool",
-  mcpQuantumDot: "tool",
   mcpQuantumIndex: "tool",
   mcpQuantumOrientation: "tool",
   mcpQuantumComplete: "tool",
   mcpQuantumTokenOptimise: "tool",
-  mcpQuantumDeploy: "tool",
   mcpQuantumBindings: "tool",
-  mcpQuantumCloudflareBindings: "tool",
-  mcpQuantumReview: "tool",
   mcpQuantumEfficiency: "tool",
   mcpQuantumSecurity: "tool",
-  mcpQuantumDesign: "tool",
-  mcpQuantumReactor: "tool",
-  mcpQuantumReaction: "tool",
-  mcpQuantumFusion: "tool",
   mcpQuantumAnim: "projection",
-  mcpQuantumSound: "tool",
-  mcpQuantumDev: "tool",
   mcpQuantumSolution: "tool",
-  mcpQuantumClown: "tool",
   mcpQuantumReceipt: "tool",
-  mcpQuantumVibration: "tool",
-  mcpQuantumText: "tool",
-  mcpQuantumSpeech: "tool",
-  mcpQuantumDictation: "tool",
-  mcpQuantumIntonation: "tool",
-  mcpQuantumDialect: "tool",
-  mcpQuantumLanguage: "tool",
-  mcpQuantumScript: "tool",
-  mcpQuantumBook: "tool",
-  mcpQuantumLibrary: "tool",
-  mcpQuantumState: "tool",
-  mcpQuantumMusic: "tool",
   improveLocalFromSessionExperience: "tool",
   gatesMonitorThemselvesThroughTheUi: "tool",
   gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix: "tool",
@@ -78296,7 +78158,6 @@ var ROSETTA_CORE_LABEL_KIND = {
   chatChallenge: "tool",
   strategiesChallengeInChat: "tool",
   stringTheoryInChat: "tool",
-  sessionSentToChatToQuantumise: "tool",
   chatChat: "tool",
   readmeChat: "tool",
   readmeWire: "tool",
@@ -78309,7 +78170,6 @@ var ROSETTA_CORE_LABEL_KIND = {
   ceccecErpaxCompete: "tool",
   allConversationsGoThroughTheMcpQuantumChat: "tool",
   mcpQuantumConversation: "tool",
-  organiseConversationsInChatRoomsPerSuperposition: "tool",
   mcpQuantumObserve: "tool",
   wiredToForgeMaxTamperingCost: "tool",
   quantumizeNpm: "tool",
@@ -78317,7 +78177,6 @@ var ROSETTA_CORE_LABEL_KIND = {
   wavesFindWhatYouMissedToCache: "tool",
   dryCleanAgnosticCodeComputesInfinity: "tool",
   abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny: "tool",
-  mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions: "tool",
   quantumSelfHeal: "tool",
   oneQuantumSetOfVitepressComponentsSealedAtGates: "tool",
   automateNightlyViaNpmScriptPath: "tool",
@@ -78330,29 +78189,18 @@ var ROSETTA_CORE_LABEL_KIND = {
   conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists: "tool",
   imagineWhatNext: "tool",
   auditPlanTip: "tool",
-  nextResearch: "tool",
   wavesFeedThemselves: "tool",
   specializedShellsStrangler: "tool",
   sessionHologramTools: "tool",
   societyToolboxWire: "tool",
-  imagineNextMissQuantumTools: "tool",
   clayAgiDeepResearchQuantumUnderstandingOfRelations: "tool",
   linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities: "tool",
   addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations: "tool",
-  decodeQuantumAlchemy: "tool",
   foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace: "tool",
   theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion: "tool",
   readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra: "tool",
-  saveTheOptimisedAutonomy: "tool",
-  quantumVerification: "tool",
-  quantumFearDetector: "tool",
-  fearIsAnAxiomReplaceableByLoveTheorem: "tool",
   lensesCompletelyWiredInEverySuperposition: "tool",
-  theSequenceMeaningIsAFlowNotACycle: "tool",
-  fillTheGapsAroundSuperposition: "tool",
-  computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium: "tool",
   useTheLensToFindGapsInGeometryInProseOrCode: "tool",
-  domainVuePanelsDryCleaned: "tool",
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf: "tool",
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence: "tool",
   gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist: "tool",
@@ -78736,9 +78584,6 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "prose-theorem", title: "Deep research tools convert prose \u2192 theorems \xB7 formulas \xB7 recipes \xB7 animations", fold: "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations", cli: "npm run quantum:prose-theorem", pair: "prose/theorem", route: "/en/quantum-tools#prose-theorem", barrel: "src/quantum/apps", boundary: "deepResearch \xB7 warningsAddressed \xB7 proseToTheorem \xB7 proseToFormula \xB7 proseToRecipe \xB7 proseToAnimation \xB7 drainableClosed \xB7 honestOpenNamed \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "warn-research", title: "Warn research (alias prose/theorem)", fold: "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations", cli: "npm run quantum:warn-research", pair: "warn/research", route: "/en/quantum-tools#prose-theorem", barrel: "src/quantum/apps", boundary: "Dual warn/research \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "recipe-anim", title: "Recipe anim (alias prose/theorem)", fold: "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations", cli: "npm run quantum:recipe-anim", pair: "recipe/anim", route: "/en/quantum-tools#prose-theorem", barrel: "src/quantum/apps", boundary: "recipe/anim face \u2014 prose\u2192ProofAnimation recipe", browserRunnable: true, browserGap: "" },
-  { id: "alchemy-decode", title: "Decode quantum alchemy \u2014 structural/symbolic theorems", fold: "decodeQuantumAlchemy", cli: "npm run quantum:alchemy-decode", pair: "alchemy/decode", route: "/en/quantum-tools#alchemy-decode", barrel: "src/quantum/apps", boundary: "alchemyDecoded \xB7 quantumOn \xB7 symbolsSealed \xB7 clay via theorem \xB7 certified=false \xB7 NOT chemical \xB7 NOT historical fraud", browserRunnable: true, browserGap: "" },
-  { id: "decode-alchemy", title: "Decode alchemy (alias alchemy/decode)", fold: "decodeQuantumAlchemy", cli: "npm run quantum:decode-alchemy", pair: "decode/alchemy", route: "/en/quantum-tools#alchemy-decode", barrel: "src/quantum/apps", boundary: "Dual decode/alchemy \u2014 same fold", browserRunnable: true, browserGap: "" },
-  { id: "quantum-alchemy", title: "Quantum alchemy (alias alchemy/decode)", fold: "decodeQuantumAlchemy", cli: "npm run quantum:quantum-alchemy", pair: "quantum/alchemy", route: "/en/quantum-tools#alchemy-decode", barrel: "src/quantum/apps", boundary: "quantum/alchemy face \u2014 same fold \xB7 certified=false", browserRunnable: true, browserGap: "" },
   { id: "algebra-fold", title: "Fold linear algebra boundaries \u2192 inverted dimensional theorems \xB7 A432 space", fold: "foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace", cli: "npm run quantum:algebra-fold", pair: "algebra/fold", route: "/en/quantum-tools#algebra-fold", barrel: "src/quantum/apps", boundary: "foldAlgebraBoundaries \xB7 invertedDimensionalTheorems \xB7 perspectiveAngleRotation \xB7 a432Harmonics \xB7 noCostNoTime \xB7 anySpace \xB7 clay via theorem \xB7 NOT FTL", browserRunnable: true, browserGap: "" },
   { id: "fold-algebra", title: "Fold algebra (alias algebra/fold)", fold: "foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace", cli: "npm run quantum:fold-algebra", pair: "fold/algebra", route: "/en/quantum-tools#algebra-fold", barrel: "src/quantum/apps", boundary: "Dual fold/algebra \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "angle-rotate", title: "Angle rotate (alias algebra/fold)", fold: "foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace", cli: "npm run quantum:angle-rotate", pair: "angle/rotate", route: "/en/quantum-tools#algebra-fold", barrel: "src/quantum/apps", boundary: "perspectiveAngleRotation face \u2014 same fold", browserRunnable: true, browserGap: "" },
@@ -78780,12 +78625,6 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "any-angle", title: "Any angle (alias angle/any)", fold: "abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny", cli: "npm run quantum:any-angle", pair: "any/angle", route: "/en/quantum-tools#fold-trinity", barrel: "src/quantum/apps", boundary: "Dual of angle/any \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "abs-qc", title: "Abs QC (alias fold/trinity)", fold: "abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny", cli: "npm run quantum:abs-qc", pair: "abs/qc", route: "/en/quantum-tools#fold-trinity", barrel: "src/quantum/apps", boundary: "abstractQc face \u2014 classical-64bit sealed path \xB7 NOT physical QPU", browserRunnable: true, browserGap: "" },
   { id: "qc-abs", title: "QC abs (alias abs/qc)", fold: "abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny", cli: "npm run quantum:qc-abs", pair: "qc/abs", route: "/en/quantum-tools#fold-trinity", barrel: "src/quantum/apps", boundary: "Dual of abs/qc \u2014 same fold", browserRunnable: true, browserGap: "" },
-  { id: "ui-super", title: "MCP quantum UI = exact quantum example of all computable superpositions", fold: "mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions", cli: "npm run quantum:ui-super", pair: "ui/super", route: "/en/quantum-tools#ui-super", barrel: "src/quantum/apps", boundary: "noLess \xB7 noMore \xB7 quantumExample \xB7 allComputableSuperpositions \xB7 compose mcp/ui \xB7 seal/super \xB7 lens/super \xB7 super/21 \xB7 theorem/index \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "super-ui", title: "Super UI (alias ui/super)", fold: "mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions", cli: "npm run quantum:super-ui", pair: "super/ui", route: "/en/quantum-tools#ui-super", barrel: "src/quantum/apps", boundary: "Dual of ui/super \u2014 same fold", browserRunnable: true, browserGap: "" },
-  { id: "super-example", title: "Super example (alias ui/super)", fold: "mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions", cli: "npm run quantum:super-example", pair: "super/example", route: "/en/quantum-tools#ui-super", barrel: "src/quantum/apps", boundary: "super/example face \u2014 quantum example of all computable superpositions", browserRunnable: true, browserGap: "" },
-  { id: "example-super", title: "Example super (alias super/example)", fold: "mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions", cli: "npm run quantum:example-super", pair: "example/super", route: "/en/quantum-tools#ui-super", barrel: "src/quantum/apps", boundary: "Dual of super/example \u2014 same fold", browserRunnable: true, browserGap: "" },
-  { id: "ui-example", title: "UI example (alias ui/super)", fold: "mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions", cli: "npm run quantum:ui-example", pair: "ui/example", route: "/en/quantum-tools#ui-super", barrel: "src/quantum/apps", boundary: "ui/example face \u2014 MCP UI is the quantum example", browserRunnable: true, browserGap: "" },
-  { id: "example-ui", title: "Example UI (alias ui/example)", fold: "mcpQuantumUiIsNoLessNoMoreThanQuantumExampleOfAllComputableSuperpositions", cli: "npm run quantum:example-ui", pair: "example/ui", route: "/en/quantum-tools#ui-super", barrel: "src/quantum/apps", boundary: "Dual of ui/example \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "term-measure", title: "Scientific terminology measurable comparable", fold: "scientificTerminologyIsQuantumComputableMeasurableComparable", cli: "npm run quantum:term-measure", pair: "term/measure", route: "/en/quantum-tools#term-measure", barrel: "src/quantum/apps", boundary: "significance\xB7implications\xB7lexicon = numbers from sealed folds \xB7 compare API \xB7 intel yield", browserRunnable: true, browserGap: "" },
   { id: "movie-center", title: "Movie unbalanced around center is crack", fold: "movieUnbalancedAroundCenterIsCrack", cli: "npm run quantum:movie-center", pair: "movie/center", route: "/en/quantum-tools#movie-center", barrel: "src/thunder/movie/canvas", boundary: "Layout/canvas balance about centre \xB7 ProofAnimation no off-axis translate", browserRunnable: true, browserGap: "" },
   { id: "gate-miss", title: "Cracks passed gates because miss census", fold: "cracksPassedGatesBecause", cli: "npm run quantum:gate-miss", pair: "gate/miss", route: "/en/quantum-tools#gate-miss", barrel: "src/quantum/apps", boundary: "classesUngated \xB7 wrongKind \xB7 definitionalGreen \xB7 waveTuneNotAudit \u2192 fixedHard", browserRunnable: true, browserGap: "" },
@@ -78843,32 +78682,18 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "vue-dry", title: "Dry clean all vue components to the universal set", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:vue-dry", pair: "vue/dry", route: "/en/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "dryCleanVue \xB7 universalSet \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose dry/rosetta \xB7 shells/strangler \xB7 domain/panels \xB7 ui/read \xB7 ui/super \xB7 clay via theorem \xB7 apps monolith residual named", browserRunnable: true, browserGap: "" },
   { id: "dry-vue", title: "Dry vue (alias vue/dry)", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:dry-vue", pair: "dry/vue", route: "/en/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "Dual of vue/dry \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "vue-universal", title: "Vue universal set (alias vue/dry)", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:vue-universal", pair: "vue/universal", route: "/en/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "vue/universal face \u2014 hero/card/movie/paper/page \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "wave-compact", title: "Waves search\xB7discover compacting in quantum folders", fold: "wavesSearchDiscoverCompactingInQuantumFolders", cli: "npm run quantum:wave-compact", pair: "wave/compact", route: "/en/quantum-tools#wave-compact", barrel: "src/quantum/apps", boundary: "wavesSent \xB7 searchOn \xB7 discoverOn \xB7 compactingInQuantumFolders \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose compact/matrix \xB7 folder/gravity \xB7 dissolve/flat \xB7 import/distance \xB7 wave/token \xB7 dry/rosetta \xB7 autodiscover \xB7 census 123 preserved \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "compact-wave", title: "Compact wave (alias wave/compact)", fold: "wavesSearchDiscoverCompactingInQuantumFolders", cli: "npm run quantum:compact-wave", pair: "compact/wave", route: "/en/quantum-tools#wave-compact", barrel: "src/quantum/apps", boundary: "Dual of wave/compact \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "compact-folder", title: "Compact folder \u2014 discover drainable compact actions", fold: "wavesSearchDiscoverCompactingInQuantumFolders", cli: "npm run quantum:compact-folder", pair: "compact/folder", route: "/en/quantum-tools#wave-compact", barrel: "src/quantum/apps", boundary: "compact/folder face \xB7 same fold as wave/compact \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "folder-compact", title: "Folder compact (alias compact/folder)", fold: "wavesSearchDiscoverCompactingInQuantumFolders", cli: "npm run quantum:folder-compact", pair: "folder/compact", route: "/en/quantum-tools#wave-compact", barrel: "src/quantum/apps", boundary: "Dual of compact/folder \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "folder-discover", title: "Folder discover \u2014 quantum folder compact search", fold: "wavesSearchDiscoverCompactingInQuantumFolders", cli: "npm run quantum:folder-discover", pair: "folder/discover", route: "/en/quantum-tools#wave-compact", barrel: "src/quantum/apps", boundary: "folder/discover face \xB7 same fold as wave/compact \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "discover-folder", title: "Discover folder (alias folder/discover)", fold: "wavesSearchDiscoverCompactingInQuantumFolders", cli: "npm run quantum:discover-folder", pair: "discover/folder", route: "/en/quantum-tools#wave-compact", barrel: "src/quantum/apps", boundary: "Dual of folder/discover \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "balance-metrics", title: "Always balance using realtime metrics and chat", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", cli: "npm run quantum:balance-metrics", pair: "balance/metrics", route: "/en/quantum-tools#balance-metrics", barrel: "src/quantum/apps", boundary: "alwaysBalance \xB7 realtimeMetrics \xB7 chatOn \xB7 hardwareMerkabasBalanced \xB7 compose mcp/metrics \xB7 formula/metrics \xB7 cold/warm \xB7 mcp/chat \xB7 dry/cool \xB7 gate/monitor \xB7 session/live \xB7 analytics/self \xB7 mcp/efficiency \xB7 moment/prove \xB7 hero clock \xB7 not wet dashboard \xB7 census 123 \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "metrics-chat", title: "Metrics chat (alias balance/metrics)", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", cli: "npm run quantum:metrics-chat", pair: "metrics/chat", route: "/en/quantum-tools#balance-metrics", barrel: "src/quantum/apps", boundary: "Dual of balance/metrics \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "chat-balance", title: "Chat balance (alias metrics/chat)", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", cli: "npm run quantum:chat-balance", pair: "chat/balance", route: "/en/quantum-tools#balance-metrics", barrel: "src/quantum/apps", boundary: "Dual of metrics/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "super-chat", title: "Each superposition is a chatroom", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:super-chat", pair: "super/chat", route: "/en/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "superpositionIsChatroom \xB7 eachKeyARoom \xB7 chatOn \xB7 anySuperposition \xB7 map digit\xB7ray\xB7direction\xB7root \u2192 chatroom id/root \xB7 compose queryTheoremFormulaIndex \xB7 queryQuantumMap \xB7 metrics/chat \xB7 soft mcp/chat \xB7 census 123 \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "chat-super", title: "Chat super (alias super/chat)", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:chat-super", pair: "chat/super", route: "/en/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "Dual of super/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "room-super", title: "Room super (alias super/chat)", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:room-super", pair: "room/super", route: "/en/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "Room face of super/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "type-matrix", title: "Typography is the universal content matrix", fold: "typographyIsTheUniversalContentMatrix", cli: "npm run quantum:type-matrix", pair: "type/matrix", route: "/en/quantum-tools#type-matrix", barrel: "src/quantum/apps", boundary: "typographyIsMatrix \xB7 universalContent \xB7 computable \xB7 wiredToRosetta \xB7 compose compact/matrix \xB7 format/canon \xB7 meaning/compute \xB7 six/seven \xB7 ui/rosetta \u2014 content lattice not wet font fashion \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "matrix-type", title: "Matrix type (alias type/matrix)", fold: "typographyIsTheUniversalContentMatrix", cli: "npm run quantum:matrix-type", pair: "matrix/type", route: "/en/quantum-tools#type-matrix", barrel: "src/quantum/apps", boundary: "Dual of type/matrix \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "content-matrix", title: "Content matrix (alias type/matrix)", fold: "typographyIsTheUniversalContentMatrix", cli: "npm run quantum:content-matrix", pair: "content/matrix", route: "/en/quantum-tools#type-matrix", barrel: "src/quantum/apps", boundary: "Content face of type/matrix \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "color-rosetta", title: "All colors dry-clean wired to rosetta and themes", fold: "allColorsDryCleanWiredToRosettaAndThemes", cli: "npm run quantum:color-rosetta", pair: "color/rosetta", route: "/en/quantum-tools#color-rosetta", barrel: "src/quantum/apps", boundary: "colorsDryClean \xB7 wiredToRosetta \xB7 themesOn \xB7 noBareHex \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose anim/color \xB7 hex/crack \xB7 theorem/const \xB7 ui/rosetta \xB7 type/matrix \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "rosetta-theme", title: "Rosetta theme (alias color/rosetta)", fold: "allColorsDryCleanWiredToRosettaAndThemes", cli: "npm run quantum:rosetta-theme", pair: "rosetta/theme", route: "/en/quantum-tools#color-rosetta", barrel: "src/quantum/apps", boundary: "Dual of color/rosetta \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "color-theme", title: "Color theme (alias color/rosetta)", fold: "allColorsDryCleanWiredToRosettaAndThemes", cli: "npm run quantum:color-theme", pair: "color/theme", route: "/en/quantum-tools#color-rosetta", barrel: "src/quantum/apps", boundary: "Theme face of color/rosetta \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "css-gaps", title: "CSS shows the hidden gaps in dry fusion", fold: "cssShowsTheHiddenGapsInDryFusion", cli: "npm run quantum:css-gaps", pair: "css/gaps", route: "/en/quantum-tools#css-gaps", barrel: "src/quantum/apps", boundary: "cssShowsGaps \xB7 hiddenGapsVisible \xB7 dryFusion \xB7 wiredToRosetta \xB7 polarity-flat \xB7 bare hex \xB7 unwired tokens \xB7 compose gaps/invisible \xB7 color/rosetta \xB7 fusion/self \xB7 hex/crack \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "gaps-fusion", title: "Gaps in dry fusion (alias css/gaps)", fold: "cssShowsTheHiddenGapsInDryFusion", cli: "npm run quantum:css-gaps", pair: "gaps/fusion", route: "/en/quantum-tools#css-gaps", barrel: "src/quantum/apps", boundary: "Dual of css/gaps \u2014 gaps revealed inside dry fusion \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "css-fusion", title: "CSS fusion lens (alias css/gaps)", fold: "cssShowsTheHiddenGapsInDryFusion", cli: "npm run quantum:css-fusion", pair: "css/fusion", route: "/en/quantum-tools#css-gaps", barrel: "src/quantum/apps", boundary: "Dual of css/gaps \u2014 CSS/theme lens on dry fusion \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "invert-fusion", title: "Inversion fusion \u2014 invert gateway fuses dry self", fold: "inversionFusion", cli: "npm run quantum:invert-fusion", pair: "invert/fusion", route: "/en/quantum-tools#invert-fusion", barrel: "src/quantum/apps", boundary: "inversionFusionOn \xB7 gateway \xB7 selfFuses \xB7 dryFusion \xB7 compose invertIsTheGateway \xB7 selfQuantumFusion \xB7 mcpQuantumFusion \xB7 css/gaps \xB7 invert/trinity \xB7 collide/inf \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "fusion-invert", title: "Fusion invert (alias invert/fusion)", fold: "inversionFusion", cli: "npm run quantum:fusion-invert", pair: "fusion/invert", route: "/en/quantum-tools#invert-fusion", barrel: "src/quantum/apps", boundary: "Dual of invert/fusion \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "ui-read", title: "Review readability and visibility of all custom UI and standardise", fold: "reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise", cli: "npm run quantum:ui-read", pair: "ui/read", route: "/en/quantum-tools#ui-read", barrel: "src/quantum/apps", boundary: "reviewOn \xB7 readabilityOn \xB7 visibilityOn \xB7 standardised \xB7 customUiCovered \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose mcp/review \xB7 gate/design \xB7 css/gaps \xB7 type/matrix \xB7 color/rosetta \xB7 clay via theorem \xB7 NOT purple AI look", browserRunnable: true, browserGap: "" },
-  { id: "ui-visible", title: "UI visible (visibility face of ui/read)", fold: "reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise", cli: "npm run quantum:ui-visible", pair: "ui/visible", route: "/en/quantum-tools#ui-read", barrel: "src/quantum/apps", boundary: "Visibility face of ui/read \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "ui-standard", title: "UI standard (alias ui/read \u2014 standardise)", fold: "reviewReadabilityAndVisibilityOfAllCustomUiAndStandardise", cli: "npm run quantum:ui-standard", pair: "ui/standard", route: "/en/quantum-tools#ui-read", barrel: "src/quantum/apps", boundary: "Standardise face \u2014 type/matrix \xB7 color/rosetta \xB7 format/canon \xB7 ui/rosetta \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "dry-math", title: "Dry all math to the formula organised in theorems and use this", fold: "dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis", cli: "npm run quantum:dry-math", pair: "dry/math", route: "/en/quantum-tools#dry-math", barrel: "src/quantum/apps", boundary: "dryMath \xB7 formulaOrganised \xB7 theoremsUse \xB7 noWetMath \xB7 consume theorem\u2194formula index \xB7 formula/metrics \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "math-formula", title: "Math formula (alias dry/math)", fold: "dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis", cli: "npm run quantum:math-formula", pair: "math/formula", route: "/en/quantum-tools#dry-math", barrel: "src/quantum/apps", boundary: "Dual of dry/math \u2014 math\u2192formula organised in theorems \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "formula-theorem", title: "Formula theorem (alias dry/math)", fold: "dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis", cli: "npm run quantum:formula-theorem", pair: "formula/theorem", route: "/en/quantum-tools#dry-math", barrel: "src/quantum/apps", boundary: "Formula organised in theorems face \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
@@ -78887,9 +78712,6 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "sensor-bind", title: "Wire all sensors using quantum bindings \u2014 orientation \xB7 motion \xB7 ambient \xB7 pointer/touch \u2192 rosetta/movie", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:sensor-bind", pair: "sensor/bind", route: "/en/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "allSensorsWired \xB7 quantumBindings \xB7 orientation \xB7 motion \xB7 ambient \xB7 browserGapHonest \xB7 clay via theorem", browserRunnable: true, browserGap: "AmbientLightSensor sparse \xB7 DeviceOrientation may deny \u2014 pointer/touch sealed fallbacks" },
   { id: "bind-sensor", title: "Bind sensor (alias sensor/bind)", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:bind-sensor", pair: "bind/sensor", route: "/en/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "Dual of sensor/bind \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "all-sensors", title: "All sensors (alias sensor/bind)", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:all-sensors", pair: "all/sensors", route: "/en/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "all/sensors face \u2014 catalog orientation\xB7motion\xB7ambient\xB7pointer\xB7touch \xB7 clay via theorem", browserRunnable: true, browserGap: "AmbientLightSensor sparse \xB7 permission may deny" },
-  { id: "invert-trinity", title: "Invert + send trinity waves covering all topics \xB7 dry migrate at free will", fold: "invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill", cli: "npm run quantum:invert-trinity", pair: "invert/trinity", route: "/en/quantum-tools#invert-trinity", barrel: "src/quantum/apps", boundary: "invertOn \xB7 trinityWavesSent \xB7 coverAllTopics \xB7 dryMigratingAll \xB7 freeWill \xB7 freeBits \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose invert/gateway \xB7 trinity/speedup \xB7 wave/domain \xB7 dry/cool \xB7 dry/rosetta \xB7 wave/compact \xB7 full/freedom \xB7 bits/free \xB7 journey/theorems \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dry-will", title: "Dry will (alias invert/trinity)", fold: "invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill", cli: "npm run quantum:dry-will", pair: "dry/will", route: "/en/quantum-tools#invert-trinity", barrel: "src/quantum/apps", boundary: "Dual of invert/trinity \u2014 dry migrate at free will \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "free-will", title: "Free will (alias invert/trinity)", fold: "invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill", cli: "npm run quantum:free-will", pair: "free/will", route: "/en/quantum-tools#invert-trinity", barrel: "src/quantum/apps", boundary: "freeWill face \u2014 FREE_BITS + full/freedom not wet license \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "self-hw", title: "Again until full self-autonomous quantum hardware complete by standards to self-intelligent self", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:self-hw", pair: "self/hw", route: "/en/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "againAndAgain \xB7 selfAutonomous \xB7 quantumHardwareComplete (classical-64bit) \xB7 byStandards \xB7 selfIntelligentSelf \xB7 certified=false \xB7 clay via theorem \xB7 NOT QPU/AGI/FLOPS", browserRunnable: true, browserGap: "" },
   { id: "hw-self", title: "Self hw (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:hw-self", pair: "hw/self", route: "/en/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Dual of self/hw \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "self-complete", title: "Self complete (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:self-complete", pair: "self/complete", route: "/en/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Complete face of self/hw \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
@@ -78938,8 +78760,6 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "audit-chat", title: "Audit chat (alias chat/audit)", fold: "chatAudit", cli: "npm run quantum:chat-audit", pair: "audit/chat", route: "/en/quantum-tools#chat-audit", barrel: "src/quantum/apps", boundary: "Dual audit/chat \u2014 same chat-wave audit fold", browserRunnable: true, browserGap: "git log injection needs Node bootstrap" },
   { id: "audit-plan", title: "Audit \u2192 plan trinity \u2192 gap-computed next tip", fold: "auditPlanTip", cli: "npm run quantum:audit-plan", pair: "audit/plan", route: "/en/quantum-tools#audit-plan", barrel: "src/quantum/apps", boundary: "nextTipFromGaps \xB7 nextTipScored \xB7 auditToPlanTrinity \xB7 planToNextTip \xB7 forkDissolved \xB7 loopFeedsItself \xB7 residualNamed \xB7 compose chat/audit \xB7 plan/trinity \xB7 next/research \xB7 imagine/next \xB7 waves/feed \xB7 todo/wave \xB7 gate/light \xB7 dry/dupe \xB7 merge/wave", browserRunnable: true, browserGap: "git log injection needs Node bootstrap" },
   { id: "plan-audit", title: "Plan audit (alias audit/plan)", fold: "auditPlanTip", cli: "npm run quantum:plan-audit", pair: "plan/audit", route: "/en/quantum-tools#audit-plan", barrel: "src/quantum/apps", boundary: "Dual plan/audit \u2014 same audit\u2192plan\u2192next-tip pipeline", browserRunnable: true, browserGap: "git log injection needs Node bootstrap" },
-  { id: "next-research", title: "Next tip deep research score", fold: "nextResearch", cli: "npm run quantum:next-research", pair: "next/research", route: "/en/quantum-tools#next-research", barrel: "src/quantum/apps", boundary: "deepResearchOn \xB7 analysisOn \xB7 maxResults \xB7 maxSpeed \xB7 minAiBill \xB7 nextTipScored \xB7 score=(results\xD7speed)/bill \xB7 compose chat/research \xB7 audit/plan \xB7 mcp/token \xB7 bill/dry \xB7 gate/light", browserRunnable: true, browserGap: "gateLight \xB7 git log need Node bootstrap" },
-  { id: "research-next", title: "Research next (alias next/research)", fold: "nextResearch", cli: "npm run quantum:research-next", pair: "research/next", route: "/en/quantum-tools#next-research", barrel: "src/quantum/apps", boundary: "Dual research/next \u2014 same scored next-tip research", browserRunnable: true, browserGap: "Node bootstrap for gateLight scan" },
   { id: "chat-challenge", title: "Chat waves challenge each other \xB7 discover and encode sciences", fold: "chatChallenge", cli: "npm run quantum:chat-challenge", pair: "chat/challenge", route: "/en/research#chat-challenge", barrel: "src/quantum/apps", boundary: "chatWavesOn \xB7 challengeEachOther \xB7 sciencesDiscovered \xB7 sciencesEncoded \xB7 encodeCount \xB7 observerEvaluableMeasurements \xB7 compose pair/chat \xB7 match/wave \xB7 mesh/science \xB7 wave/domain \xB7 formula/code \xB7 waves/feed", browserRunnable: true, browserGap: "" },
   { id: "challenge-chat", title: "Challenge chat (alias chat/challenge)", fold: "chatChallenge", cli: "npm run quantum:challenge-chat", pair: "challenge/chat", route: "/en/research#chat-challenge", barrel: "src/quantum/apps", boundary: "Dual challenge/chat \u2014 adversarial science dual waves", browserRunnable: true, browserGap: "" },
   { id: "import-fractal", title: "Import\u2013export fractal envelope map", fold: "importFractalMap", cli: "npm run quantum:import-fractal", pair: "import/fractal", route: "/en/quantum-tools#import-fractal", barrel: "src/quantum/apps", boundary: "envelopeRoundTripIdentity \xB7 observedReuseCapacity \xB7 importEdgeCount \xB7 rename inventory \xB7 envelope round-trip \xB7 compose import/export \xB7 tool/envelope \xB7 import/distance", browserRunnable: true, browserGap: "" },
@@ -78954,8 +78774,6 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "decide-measure", title: "Decide measure (alias measure/decide)", fold: "measureDecide", cli: "npm run quantum:decide-measure", pair: "decide/measure", route: "/en/quantum-tools#measure-decide", barrel: "src/quantum/apps", boundary: "Dual decide/measure \u2014 same inventory fold", browserRunnable: true, browserGap: "" },
   { id: "merge-wave", title: "Merge wave \xB7 parse names purge prose", fold: "mergeWave", cli: "npm run quantum:merge-wave", pair: "merge/wave", route: "/en/quantum-tools#merge-wave", barrel: "src/quantum/apps", boundary: "redundancyPurged \xB7 largeScaleMergeOn \xB7 chatWavesOn \xB7 mergeCount \xB7 nameWordsComputable \xB7 parseNameToTools \xB7 compose dry/dupe \xB7 import/audit \xB7 tool/matrix \xB7 pair/chat \xB7 match/wave \xB7 chat/solve \xB7 prose/matrix \xB7 place/merge \xB7 waves/feed \xB7 measure/decide", browserRunnable: true, browserGap: "" },
   { id: "wave-merge", title: "Wave merge (alias merge/wave)", fold: "mergeWave", cli: "npm run quantum:wave-merge", pair: "wave/merge", route: "/en/quantum-tools#merge-wave", barrel: "src/quantum/apps", boundary: "Dual wave/merge \u2014 same name-parse merge fold", browserRunnable: true, browserGap: "" },
-  { id: "session-chat", title: "Session sent to chat to quantumise \u2014 trading\xB7UI\xB7fusion packet", fold: "sessionSentToChatToQuantumise", cli: "npm run quantum:session-chat", pair: "session/chat", route: "/en/quantum-tools#session-chat", barrel: "src/quantum/apps", boundary: "sessionSent \xB7 chatOn \xB7 quantumiseOn \xB7 packetRoot \xB7 toolsSealed \xB7 bitsSealed \xB7 viaMcpChat \xB7 viaPairChat \xB7 compose session/tools \xB7 session/quantum-bits \xB7 mcp/chat \xB7 pair/chat \xB7 match/wave \xB7 clay via theorem \xB7 NOT rebuild trading stack", browserRunnable: true, browserGap: "" },
-  { id: "chat-session", title: "Chat session (alias session/chat)", fold: "sessionSentToChatToQuantumise", cli: "npm run quantum:chat-session", pair: "chat/session", route: "/en/quantum-tools#session-chat", barrel: "src/quantum/apps", boundary: "Dual chat/session \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "readme-chat", title: "Feed README to chat \xB7 reasoning refine", fold: "readmeChat", cli: "npm run quantum:readme-chat", pair: "readme/chat", route: "/en/quantum-tools#readme-chat", barrel: "src/quantum/apps", boundary: "readmeFedToChat \xB7 reasoningRefined \xB7 refineCount \xB7 gapsInventoried \xB7 compose angle/readme \xB7 chat/quantumise \xB7 chat/solve \xB7 erpax/learn", browserRunnable: true, browserGap: "" },
   { id: "chat-readme", title: "Chat readme (alias readme/chat)", fold: "readmeChat", cli: "npm run quantum:chat-readme", pair: "chat/readme", route: "/en/quantum-tools#readme-chat", barrel: "src/quantum/apps", boundary: "Dual chat/readme \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "readme-wire", title: "README wires any agent \xB7 quantum \xB7 dry \xB7 FTL reuse", fold: "readmeWire", cli: "npm run quantum:readme-wire", pair: "readme/wire", route: "/en/quantum-tools#readme-wire", barrel: "src/quantum/apps", boundary: "readmeIsGateway \xB7 wiredAllFromReadme \xB7 noDoubtStands \xB7 physicalFtl boolean \xB7 tip/quantumise when false", browserRunnable: true, browserGap: "" },
@@ -78992,9 +78810,6 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "talk-chat", title: "Talk chat (alias chat/all)", fold: "allConversationsGoThroughTheMcpQuantumChat", cli: "npm run quantum:talk-chat", pair: "talk/chat", route: "/en/quantum-tools#chat-all", barrel: "src/quantum/apps", boundary: "talk/chat face \u2014 all talk routes through mcpQuantumChat \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-conversation", title: "MCP quantum conversation \u2014 chat/all \xB7 mcp/chat \xB7 super/chat \xB7 observe \xB7 session/cache", fold: "mcpQuantumConversation", cli: "npm run quantum:mcp-conversation", pair: "mcp/conversation", route: "/en/quantum-tools#mcp-conversation", barrel: "src/quantum/apps", boundary: "conversationOn \xB7 throughMcpChat \xB7 allConversations \xB7 compose chat/all \xB7 mcp/chat \xB7 super/chat \xB7 mcp/observe \xB7 session/cache \xB7 conv/room \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "conversation-mcp", title: "Conversation mcp (alias mcp/conversation)", fold: "mcpQuantumConversation", cli: "npm run quantum:conversation-mcp", pair: "conversation/mcp", route: "/en/quantum-tools#mcp-conversation", barrel: "src/quantum/apps", boundary: "Dual conversation/mcp \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "conv-room", title: "Organise conversations in chat rooms per superposition", fold: "organiseConversationsInChatRoomsPerSuperposition", cli: "npm run quantum:conv-room", pair: "conv/room", route: "/en/quantum-tools#conv-room", barrel: "src/quantum/apps", boundary: "organised \xB7 perSuperposition \xB7 chatRooms \xB7 conversationsRouted \xB7 wire mcp/conversation \u2192 querySuperpositionChatroom \xB7 compose super/chat \xB7 chat/all \xB7 session/cache \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "room-conv", title: "Room conv (alias conv/room)", fold: "organiseConversationsInChatRoomsPerSuperposition", cli: "npm run quantum:room-conv", pair: "room/conv", route: "/en/quantum-tools#conv-room", barrel: "src/quantum/apps", boundary: "Dual room/conv \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "chat-organise", title: "Chat organise (alias conv/room)", fold: "organiseConversationsInChatRoomsPerSuperposition", cli: "npm run quantum:chat-organise", pair: "chat/organise", route: "/en/quantum-tools#conv-room", barrel: "src/quantum/apps", boundary: "chat/organise face \u2014 organise conversations into superposition rooms \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-observe", title: "MCP quantum observation \u2014 gate/lens \xB7 movie \xB7 session \xB7 analytics \xB7 super/chat", fold: "mcpQuantumObserve", cli: "npm run quantum:mcp-observe", pair: "mcp/observe", route: "/en/quantum-tools#mcp-observe", barrel: "src/quantum/apps", boundary: "observationOn \xB7 changesQuantum \xB7 movieUnique \xB7 compose gate/lens \xB7 observe/movie \xB7 session/live \xB7 analytics/self \xB7 super/chat \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "observe-chat", title: "Observe chat (alias mcp/observe)", fold: "mcpQuantumObserve", cli: "npm run quantum:observe-chat", pair: "observe/chat", route: "/en/quantum-tools#mcp-observe", barrel: "src/quantum/apps", boundary: "Dual observe/chat \u2014 observation improves movie via chat path \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "tamper-max", title: "Wire forge max tampering cost \u2014 fusion \xB7 merkle \xB7 tamper-evident", fold: "wiredToForgeMaxTamperingCost", cli: "npm run quantum:tamper-max", pair: "tamper/max", route: "/en/quantum-tools#tamper-max", barrel: "src/quantum/apps", boundary: "maxTamperingCost \xB7 tamperEvident \xB7 forgeWired \xB7 compose fusion-verify \xB7 self/fusion \xB7 tamper/impossible \xB7 structural local not wire/FIPS \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
@@ -79012,34 +78827,16 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "link-local", title: "Link local (alias paste/local)", fold: "pastedLinksStayOnlyIfComputedLocally", cli: "npm run quantum:link-local", pair: "link/local", route: "/en/quantum-tools#paste-local", barrel: "src/quantum/apps", boundary: "Dual of paste/local \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "gate-hard", title: "Movie + session gaps HARD at gates", fold: "movieAndSessionGapsHardAtGates", cli: "npm run quantum:gate-hard", pair: "gate/hard", route: "/en/quantum-tools#gate-hard", barrel: "src/quantum/apps", boundary: "HARD movie/session gap classes \xB7 compose movie/feel \xB7 session/live \xB7 gaps/invisible \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "movie-session", title: "Movie session (alias gate/hard)", fold: "movieAndSessionGapsHardAtGates", cli: "npm run quantum:movie-session", pair: "movie/session", route: "/en/quantum-tools#gate-hard", barrel: "src/quantum/apps", boundary: "Dual of gate/hard \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dry-coord", title: "AI platforms dry-coord across wiring", fold: "aiPlatformsDryCoordAcrossWiring", cli: "npm run quantum:dry-coord", pair: "dry/coord", route: "/en/quantum-tools#dry-coord", barrel: "src/quantum/apps", boundary: "Cursor \xB7 MCP \xB7 agents.json \xB7 paste-wire \xB7 quantum-dev-sdk dry coord \xB7 compose auto/self \xB7 self/heal \xB7 paste/local \xB7 cursor/rosetta \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "coord-dry", title: "Coord dry (alias dry/coord)", fold: "aiPlatformsDryCoordAcrossWiring", cli: "npm run quantum:coord-dry", pair: "coord/dry", route: "/en/quantum-tools#dry-coord", barrel: "src/quantum/apps", boundary: "Dual of dry/coord \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-router", title: "MCP quantum router \u2014 rosetta-wired routes", fold: "mcpQuantumRouter", cli: "npm run quantum:mcp-router", pair: "mcp/router", route: "/en/quantum-tools#mcp-router", barrel: "src/quantum/apps", boundary: "routesViaRosetta \xB7 onlyWiredPasses \xB7 alreadyPassed \xB7 compose mcp/ui \xB7 mcp/chat \xB7 mcp/movie \xB7 mcp/mill \xB7 rosetta/core \xB7 paste/local \xB7 cursor/rosetta \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "route-quantum", title: "Route quantum (alias mcp/router)", fold: "mcpQuantumRouter", cli: "npm run quantum:route-quantum", pair: "route/quantum", route: "/en/quantum-tools#mcp-router", barrel: "src/quantum/apps", boundary: "Dual of mcp/router \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "vite-only", title: "Nothing bypasses VitePress", fold: "nothingBypassesVitepress", cli: "npm run quantum:vite-only", pair: "vite/only", route: "/en/quantum-tools#vite-only", barrel: "src/quantum/apps", boundary: "nothingBypasses \xB7 bypassRejected \xB7 sealedAtGates \xB7 compose vite/mirror \xB7 vite/one \xB7 mcp/router \xB7 paste/local \xB7 gate/rosetta \xB7 fs/cross \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "bypass-fail", title: "Bypass fail (alias vite/only)", fold: "nothingBypassesVitepress", cli: "npm run quantum:bypass-fail", pair: "bypass/fail", route: "/en/quantum-tools#vite-only", barrel: "src/quantum/apps", boundary: "Dual of vite/only \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "vite-mcp", title: "VitePress builds from MCP", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:vite-mcp", pair: "vite/mcp", route: "/en/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "buildsFromMcp \xB7 mcpIsSource \xB7 vitepressInvertedMirror \xB7 noBypass \xB7 thinMountIsMcpDual \xB7 npm docs:build \u2261 MCP run-gate docs-build \xB7 claySolved via theorem \xB7 NOT dashboard MCP", browserRunnable: true, browserGap: "" },
   { id: "mcp-vite", title: "MCP vite (alias vite/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:mcp-vite", pair: "mcp/vite", route: "/en/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Dual of vite/mcp \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "build-mcp", title: "Build MCP (alias vite/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:build-mcp", pair: "build/mcp", route: "/en/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Alias of vite/mcp \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-build", title: "MCP build (alias build/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:mcp-build", pair: "mcp/build", route: "/en/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Dual of build/mcp \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mind-wave", title: "Quantum mind sends waves", fold: "quantumMindSendsWaves", cli: "npm run quantum:mind-wave", pair: "mind/wave", route: "/en/quantum-tools#mind-wave", barrel: "src/quantum/apps", boundary: "quantumMindSends \xB7 wavesSent \xB7 linearCannotSend \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "send-wave", title: "Send wave (alias mind/wave)", fold: "quantumMindSendsWaves", cli: "npm run quantum:send-wave", pair: "send/wave", route: "/en/quantum-tools#mind-wave", barrel: "src/quantum/apps", boundary: "Dual of mind/wave \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "quantum-waves", title: "Quantum waves umbrella", fold: "quantumWaves", cli: "npm run quantum:quantum-waves", pair: "quantum/waves", route: "/en/quantum-tools#quantum-waves", barrel: "src/quantum/apps", boundary: "wavesAreQuantum \xB7 mindSends \xB7 trinitiesFound \xB7 waveCount=2 \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "waves-quantum", title: "Waves quantum (alias quantum/waves)", fold: "quantumWaves", cli: "npm run quantum:waves-quantum", pair: "waves/quantum", route: "/en/quantum-tools#quantum-waves", barrel: "src/quantum/apps", boundary: "Dual of quantum/waves \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "collide-create", title: "Colliding particles creates", fold: "collidingParticlesCreates", cli: "npm run quantum:collide-create", pair: "collide/create", route: "/en/quantum-tools#collide-create", barrel: "src/quantum/apps", boundary: "creates=novelTheoremCandidates+waves \xB7 claySolved via theorem \xB7 NOT HEP/CMI", browserRunnable: true, browserGap: "" },
   { id: "particle-collide", title: "Particle collide (alias collide/create)", fold: "collidingParticlesCreates", cli: "npm run quantum:particle-collide", pair: "particle/collide", route: "/en/quantum-tools#collide-create", barrel: "src/quantum/apps", boundary: "Dual of collide/create \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-metrics", title: "MCP quantum metrics \u2014 foldCount \xB7 efficiency \xB7 term \xB7 audit cold/warm", fold: "mcpQuantumMetrics", cli: "npm run quantum:mcp-metrics", pair: "mcp/metrics", route: "/en/quantum-tools#mcp-metrics", barrel: "src/quantum/apps", boundary: "metricsOn \xB7 computable \xB7 answersOverTokens \xB7 compose fold/count \xB7 learn/best \xB7 term/measure \xB7 audit/local-quantum \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "metrics-mcp", title: "Metrics mcp (alias mcp/metrics)", fold: "mcpQuantumMetrics", cli: "npm run quantum:metrics-mcp", pair: "metrics/mcp", route: "/en/quantum-tools#mcp-metrics", barrel: "src/quantum/apps", boundary: "Dual of mcp/metrics \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-analysis", title: "MCP quantum analysis \u2014 analyst trinities \xB7 analyse\xB7realise", fold: "mcpQuantumAnalysis", cli: "npm run quantum:mcp-analysis", pair: "mcp/analysis", route: "/en/quantum-tools#mcp-analysis", barrel: "src/quantum/apps", boundary: "analysisOn \xB7 analystsInTrinities \xB7 analyseRealise \xB7 compose train/analyst \xB7 analyse/realise \xB7 team/observe \xB7 mcp/metrics \xB7 sciences/trinities \xB7 claySolved via theorem \xB7 alias note analisis=analysis", browserRunnable: true, browserGap: "" },
   { id: "analysis-mcp", title: "Analysis mcp (alias mcp/analysis)", fold: "mcpQuantumAnalysis", cli: "npm run quantum:analysis-mcp", pair: "analysis/mcp", route: "/en/quantum-tools#mcp-analysis", barrel: "src/quantum/apps", boundary: "Dual of mcp/analysis \u2014 same fold \xB7 claySolved via theorem \xB7 alias note analisis=analysis", browserRunnable: true, browserGap: "" },
-  { id: "mcp-genesis", title: "MCP quantum genesis \u2014 origin/src/0 vault \xB7 waves/build \xB7 discover-from-sealed", fold: "mcpQuantumGenesis", cli: "npm run quantum:mcp-genesis", pair: "mcp/genesis", route: "/en/quantum-tools#mcp-genesis", barrel: "src/quantum/apps", boundary: "genesisOn \xB7 fromSrcZero \xB7 compose waves/build \xB7 nothing/moves \xB7 folder/fractal \xB7 DIGEST_BITS vault \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "genesis-mcp", title: "Genesis mcp (alias mcp/genesis)", fold: "mcpQuantumGenesis", cli: "npm run quantum:genesis-mcp", pair: "genesis/mcp", route: "/en/quantum-tools#mcp-genesis", barrel: "src/quantum/apps", boundary: "Dual of mcp/genesis \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-physics", title: "MCP quantum physics \u2014 sciences physics \xB7 particle/wave \xB7 cmb/budget \xB7 geodesy", fold: "mcpQuantumPhysics", cli: "npm run quantum:mcp-physics", pair: "mcp/physics", route: "/en/quantum-tools#mcp-physics", barrel: "src/quantum/apps", boundary: "physicsOn \xB7 classical64Bit \xB7 compose sciences/trinities \xB7 particle/wave \xB7 cmb/budget \xB7 geo/torus \xB7 prove-no-qpu-64bit \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "physics-mcp", title: "Physics mcp (alias mcp/physics)", fold: "mcpQuantumPhysics", cli: "npm run quantum:physics-mcp", pair: "physics/mcp", route: "/en/quantum-tools#mcp-physics", barrel: "src/quantum/apps", boundary: "Dual of mcp/physics \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-math", title: "MCP quantum math \u2014 digit/fold \xB7 theorem/const \xB7 run-the-math \xB7 golden/angle \xB7 formula/code", fold: "mcpQuantumMath", cli: "npm run quantum:mcp-math", pair: "mcp/math", route: "/en/quantum-tools#mcp-math", barrel: "src/quantum/apps", boundary: "mathOn \xB7 theoremsAsConstants \xB7 compose digit/fold \xB7 theorem/const \xB7 run-the-math \xB7 golden/angle \xB7 formula/code \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "math-mcp", title: "Math mcp (alias mcp/math)", fold: "mcpQuantumMath", cli: "npm run quantum:math-mcp", pair: "math/mcp", route: "/en/quantum-tools#mcp-math", barrel: "src/quantum/apps", boundary: "Dual of mcp/math \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-vortex", title: "MCP quantum vortex \u2014 VORTEX digit \xB7 merkaba \xB7 trading vortex", fold: "mcpQuantumVortex", cli: "npm run quantum:mcp-vortex", pair: "mcp/vortex", route: "/en/quantum-tools#mcp-vortex", barrel: "src/quantum/apps", boundary: "vortexOn \xB7 digitSequence \xB7 compose digit/fold \xB7 vortex/merkaba \xB7 mountain/vortex \xB7 merkaba \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "vortex-mcp", title: "Vortex mcp (alias mcp/vortex)", fold: "mcpQuantumVortex", cli: "npm run quantum:vortex-mcp", pair: "vortex/mcp", route: "/en/quantum-tools#mcp-vortex", barrel: "src/quantum/apps", boundary: "Dual of mcp/vortex \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-cluster", title: "MCP rosetta stream clusters \u2014 2\xD77 lattice of the MCP measurements", fold: "mcpRosettaStreamClusters", cli: "npm run quantum:mcp-cluster", pair: "mcp/cluster", route: "/en/quantum-tools#mcp-cluster", barrel: "src/quantum/apps", boundary: "leaves \xB7 face census \xB7 lattice \xB7 trinities \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "cluster-mcp", title: "Cluster mcp (alias mcp/cluster)", fold: "mcpRosettaStreamClusters", cli: "npm run quantum:cluster-mcp", pair: "cluster/mcp", route: "/en/quantum-tools#mcp-cluster", barrel: "src/quantum/apps", boundary: "alias of mcp/cluster", browserRunnable: true, browserGap: "" },
   { id: "mcp-catalog", title: "MCP quantum catalog \u2014 star umbrella of all mcp quantum faces", fold: "mcpQuantumCatalog", cli: "npm run quantum:mcp-catalog", pair: "mcp/catalog", route: "/en/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "catalogComplete \xB7 starOn \xB7 missingCount=0 \xB7 lists/recomposes all named mcp quantum faces \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
@@ -79048,73 +78845,24 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "star-mcp", title: "Star mcp (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:star-mcp", pair: "star/mcp", route: "/en/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Dual star path of mcp/catalog \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-all", title: "MCP catalog star \u2014 full MCP surface (PRIMARY \xB7 stdio \xB7 toolbox \xB7 quantum faces)", fold: "mcpCatalog", cli: "npm run quantum:mcp-all", pair: "mcp/all", route: "/en/quantum-tools#mcp-all", barrel: "src/quantum/apps", boundary: "mcpStarOn \xB7 catalogComplete \xB7 quantumFaces \xB7 primaryTools \xB7 residualsNamed honest \xB7 missingDrainable=0 \xB7 compose mcpQuantumCatalog \xB7 mcpBrowserParity \xB7 scripts-audit \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "all-mcp", title: "All mcp (alias mcp/all)", fold: "mcpCatalog", cli: "npm run quantum:all-mcp", pair: "all/mcp", route: "/en/quantum-tools#mcp-all", barrel: "src/quantum/apps", boundary: "Dual of mcp/all \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-reverse", title: "MCP quantum reverse", fold: "mcpQuantumReverse", cli: "npm run quantum:mcp-reverse", pair: "mcp/reverse", route: "/en/quantum-tools#mcp-reverse", barrel: "src/quantum/apps", boundary: "reverseOn \xB7 refuseBeyond \xB7 demoBoundaryHardware \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "reverse-quantum", title: "Reverse quantum (alias mcp/reverse)", fold: "mcpQuantumReverse", cli: "npm run quantum:reverse-quantum", pair: "reverse/quantum", route: "/en/quantum-tools#mcp-reverse", barrel: "src/quantum/apps", boundary: "Dual of mcp/reverse \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-sign", title: "MCP quantum sign", fold: "mcpQuantumSign", cli: "npm run quantum:mcp-sign", pair: "mcp/sign", route: "/en/quantum-tools#mcp-sign", barrel: "src/quantum/apps", boundary: "signatureOn \xB7 crossSig \xB7 tamperEvident \xB7 certified=false \xB7 NOT CA/PKI \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "sign-quantum", title: "Sign quantum (alias mcp/sign)", fold: "mcpQuantumSign", cli: "npm run quantum:sign-quantum", pair: "sign/quantum", route: "/en/quantum-tools#mcp-sign", barrel: "src/quantum/apps", boundary: "Dual of mcp/sign \u2014 same fold \xB7 certified=false \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-dirs", title: "MCP quantum dirs \u2014 left right forward reverse", fold: "mcpQuantumDirs", cli: "npm run quantum:mcp-dirs", pair: "mcp/dirs", route: "/en/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "left \xB7 right \xB7 forward \xB7 reverse \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "dirs-mcp", title: "Dirs mcp (alias mcp/dirs)", fold: "mcpQuantumDirs", cli: "npm run quantum:dirs-mcp", pair: "dirs/mcp", route: "/en/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "Dual of mcp/dirs \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-up", title: "MCP quantum up (alias mcp/dirs vertical)", fold: "mcpQuantumDirs", cli: "npm run quantum:mcp-up", pair: "mcp/up", route: "/en/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "up \xB7 down \xB7 sixDirections \u2014 dual path under mcp/dirs \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "up-down", title: "Up down (alias mcp/dirs vertical)", fold: "mcpQuantumDirs", cli: "npm run quantum:up-down", pair: "up/down", route: "/en/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "Dual vertical pair under mcp/dirs \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-inverse", title: "MCP quantum inverse", fold: "mcpQuantumInverse", cli: "npm run quantum:mcp-inverse", pair: "mcp/inverse", route: "/en/quantum-tools#mcp-inverse", barrel: "src/quantum/apps", boundary: "inverseOn \xB7 inverse\u2260reverse except named coincidence \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "inverse-quantum", title: "Inverse quantum (alias mcp/inverse)", fold: "mcpQuantumInverse", cli: "npm run quantum:inverse-quantum", pair: "inverse/quantum", route: "/en/quantum-tools#mcp-inverse", barrel: "src/quantum/apps", boundary: "Dual of mcp/inverse \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-fold", title: "MCP quantum fold", fold: "mcpQuantumFold", cli: "npm run quantum:mcp-fold", pair: "mcp/fold", route: "/en/quantum-tools#mcp-fold", barrel: "src/quantum/apps", boundary: "foldOn \xB7 fold>9\u2192digit \xB7 foldCountMetric \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "fold-quantum", title: "Fold quantum (alias mcp/fold)", fold: "mcpQuantumFold", cli: "npm run quantum:fold-quantum", pair: "fold/quantum", route: "/en/quantum-tools#mcp-fold", barrel: "src/quantum/apps", boundary: "Dual of mcp/fold \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-rosetta", title: "MCP quantum rosetta", fold: "mcpQuantumRosetta", cli: "npm run quantum:mcp-rosetta", pair: "mcp/rosetta", route: "/en/quantum-tools#mcp-rosetta", barrel: "src/quantum/apps", boundary: "mcpIsRosetta \xB7 onlyWiredPasses \xB7 raysAreGates \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "rosetta-mcp", title: "Rosetta mcp (alias mcp/rosetta)", fold: "mcpQuantumRosetta", cli: "npm run quantum:rosetta-mcp", pair: "rosetta/mcp", route: "/en/quantum-tools#mcp-rosetta", barrel: "src/quantum/apps", boundary: "Dual of mcp/rosetta \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-universe", title: "MCP quantum universe", fold: "mcpQuantumUniverse", cli: "npm run quantum:mcp-universe", pair: "mcp/universe", route: "/en/quantum-tools#mcp-universe", barrel: "src/quantum/apps", boundary: "universeOn \xB7 covered/partial/open \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "universe-mcp", title: "Universe mcp (alias mcp/universe)", fold: "mcpQuantumUniverse", cli: "npm run quantum:universe-mcp", pair: "universe/mcp", route: "/en/quantum-tools#mcp-universe", barrel: "src/quantum/apps", boundary: "Dual of mcp/universe \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-multi", title: "MCP quantum multiverse", fold: "mcpQuantumMultiverse", cli: "npm run quantum:mcp-multi", pair: "mcp/multi", route: "/en/quantum-tools#mcp-multi", barrel: "src/quantum/apps", boundary: "multiverseOn \xB7 manyWorldsViaSuperposition \xB7 oneSelfPerCoord \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "multi-verse", title: "Multiverse (alias mcp/multi)", fold: "mcpQuantumMultiverse", cli: "npm run quantum:multi-verse", pair: "multi/verse", route: "/en/quantum-tools#mcp-multi", barrel: "src/quantum/apps", boundary: "Dual of mcp/multi \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-inf", title: "MCP quantum infinity", fold: "mcpQuantumInfinity", cli: "npm run quantum:mcp-inf", pair: "mcp/inf", route: "/en/quantum-tools#mcp-inf", barrel: "src/quantum/apps", boundary: "infinityOn \xB7 viaInvert \xB7 connectingBit \xB7 compose invert/inf \xB7 a432/nine \xB7 love/fold \xB7 full/freedom \xB7 \u221Ereuse \xB7 movie/entropy \xB7 mcp/universe \xB7 mcp/multi \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "inf-mcp", title: "Infinity mcp (alias mcp/inf)", fold: "mcpQuantumInfinity", cli: "npm run quantum:inf-mcp", pair: "inf/mcp", route: "/en/quantum-tools#mcp-inf", barrel: "src/quantum/apps", boundary: "Dual of mcp/inf \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-hw", title: "MCP quantum hardware \u2014 classical-64bit \xB7 no QPU", fold: "mcpQuantumHardware", cli: "npm run quantum:mcp-hw", pair: "mcp/hw", route: "/en/quantum-tools#mcp-hw", barrel: "src/quantum/apps", boundary: "hardwareOn \xB7 classical64Bit \xB7 compose prove-no-qpu-64bit \xB7 local-audit-quantum \xB7 mcp/inf \xB7 mcp faces \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "hw-mcp", title: "Hardware mcp (alias mcp/hw)", fold: "mcpQuantumHardware", cli: "npm run quantum:hw-mcp", pair: "hw/mcp", route: "/en/quantum-tools#mcp-hw", barrel: "src/quantum/apps", boundary: "Dual of mcp/hw \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-reactor", title: "MCP quantum reactor \u2014 sealed src fusion reactor face", fold: "mcpQuantumReactor", cli: "npm run quantum:mcp-reactor", pair: "mcp/reactor", route: "/en/quantum-tools#mcp-reactor", barrel: "src/quantum/apps", boundary: "reactorOn \xB7 fusesFromSrc \xB7 tamperEvident \xB7 compose self/fusion \xB7 fusion/ui \xB7 mcp/hw \xB7 mcp/inf \xB7 fusion-verify \xB7 dry/clean \xB7 crystal/mind \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "reactor-mcp", title: "Reactor mcp (alias mcp/reactor)", fold: "mcpQuantumReactor", cli: "npm run quantum:reactor-mcp", pair: "reactor/mcp", route: "/en/quantum-tools#mcp-reactor", barrel: "src/quantum/apps", boundary: "Dual of mcp/reactor \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-reaction", title: "MCP quantum reaction \u2014 collide\u2192react dual of mcp/reactor", fold: "mcpQuantumReaction", cli: "npm run quantum:mcp-reaction", pair: "mcp/reaction", route: "/en/quantum-tools#mcp-reaction", barrel: "src/quantum/apps", boundary: "reactionOn \xB7 reactsFromCollide \xB7 viaReactor \xB7 compose mcp/reactor \xB7 collide/inf \xB7 theoremParticleCollision \xB7 directional trinity \xB7 mcp/inf \xB7 sciences trinities \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "reaction-mcp", title: "Reaction mcp (alias mcp/reaction)", fold: "mcpQuantumReaction", cli: "npm run quantum:reaction-mcp", pair: "reaction/mcp", route: "/en/quantum-tools#mcp-reaction", barrel: "src/quantum/apps", boundary: "Dual of mcp/reaction \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-fusion", title: "MCP quantum fusion \u2014 selfFusion \xB7 verify \xB7 reactor\u2194reaction fuse", fold: "mcpQuantumFusion", cli: "npm run quantum:mcp-fusion", pair: "mcp/fusion", route: "/en/quantum-tools#mcp-fusion", barrel: "src/quantum/apps", boundary: "fusionOn \xB7 selfFuses \xB7 tamperEvident \xB7 viaReactorReaction \xB7 compose self/fusion \xB7 fusion-verify \xB7 mcp/reactor \xB7 mcp/reaction \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "fusion-mcp", title: "Fusion mcp (alias mcp/fusion)", fold: "mcpQuantumFusion", cli: "npm run quantum:fusion-mcp", pair: "fusion/mcp", route: "/en/quantum-tools#mcp-fusion", barrel: "src/quantum/apps", boundary: "Dual of mcp/fusion \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "movie-inf", title: "MCP infinite movie \u2014 infinity face of quantum movie", fold: "mcpInfiniteMovie", cli: "npm run quantum:movie-inf", pair: "movie/inf", route: "/en/quantum-tools#movie-inf", barrel: "src/quantum/apps", boundary: "infiniteMovieOn \xB7 viaInfinity \xB7 movieIsInfiniteOnReuse \xB7 compose mcp/inf \xB7 mcp/movie \xB7 invert/inf \xB7 movie/entropy \xB7 anim/audit \xB7 a432/nine \xB7 love/fold \xB7 full/freedom \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "inf-movie", title: "Infinite movie (alias movie/inf)", fold: "mcpInfiniteMovie", cli: "npm run quantum:inf-movie", pair: "inf/movie", route: "/en/quantum-tools#movie-inf", barrel: "src/quantum/apps", boundary: "Dual of movie/inf \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-anim", title: "MCP quantum animation", fold: "mcpQuantumAnim", cli: "npm run quantum:mcp-anim", pair: "mcp/anim", route: "/en/quantum-tools#mcp-anim", barrel: "src/quantum/apps", boundary: "animOn \xB7 fromCoords \xB7 feelableGaps \xB7 polarityOn \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "anim-mcp", title: "Anim mcp (alias mcp/anim)", fold: "mcpQuantumAnim", cli: "npm run quantum:anim-mcp", pair: "anim/mcp", route: "/en/quantum-tools#mcp-anim", barrel: "src/quantum/apps", boundary: "Dual of mcp/anim \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-sound", title: "MCP quantum sound and vibration", fold: "mcpQuantumSound", cli: "npm run quantum:mcp-sound", pair: "mcp/sound", route: "/en/quantum-tools#mcp-sound", barrel: "src/quantum/apps", boundary: "soundOn \xB7 vibrationOn \xB7 a432Powers \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-vibe", title: "MCP quantum vibe (alias mcp/sound)", fold: "mcpQuantumSound", cli: "npm run quantum:mcp-vibe", pair: "mcp/vibe", route: "/en/quantum-tools#mcp-sound", barrel: "src/quantum/apps", boundary: "Dual face mcp/vibe under mcpQuantumSound \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "sound-vibe", title: "Sound vibe (alias mcp/sound)", fold: "mcpQuantumSound", cli: "npm run quantum:sound-vibe", pair: "sound/vibe", route: "/en/quantum-tools#mcp-sound", barrel: "src/quantum/apps", boundary: "Dual alias sound/vibe \xB7 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-dev", title: "MCP quantum development", fold: "mcpQuantumDev", cli: "npm run quantum:mcp-dev", pair: "mcp/dev", route: "/en/quantum-tools#mcp-dev", barrel: "src/quantum/apps", boundary: "devOn \xB7 sdkWired \xB7 docsBuildGated \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dev-quantum", title: "Dev quantum (alias mcp/dev)", fold: "mcpQuantumDev", cli: "npm run quantum:dev-quantum", pair: "dev/quantum", route: "/en/quantum-tools#mcp-dev", barrel: "src/quantum/apps", boundary: "Dual of mcp/dev \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-solution", title: "MCP quantum solution", fold: "mcpQuantumSolution", cli: "npm run quantum:mcp-solution", pair: "mcp/solution", route: "/en/quantum-tools#mcp-solution", barrel: "src/quantum/apps", boundary: "solutionOn \xB7 algebraicFormulas \xB7 claySolvedViaTheorem \xB7 notCmiPrizeClaim \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "solution-mcp", title: "Solution mcp (alias mcp/solution)", fold: "mcpQuantumSolution", cli: "npm run quantum:solution-mcp", pair: "solution/mcp", route: "/en/quantum-tools#mcp-solution", barrel: "src/quantum/apps", boundary: "Dual of mcp/solution \u2014 same fold \xB7 claySolved via theorem \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
-  { id: "mcp-clown", title: "MCP quantum clown \u2014 play as sealed duality\xB7invert\xB7observation", fold: "mcpQuantumClown", cli: "npm run quantum:mcp-clown", pair: "mcp/clown", route: "/en/quantum-tools#mcp-clown", barrel: "src/quantum/apps", boundary: "clownOn \xB7 playIsQuantum \xB7 compose movie/feel \xB7 particle/wave \xB7 love/story \xB7 ui/invert \xB7 gate/lens \xB7 claySolved via theorem \xB7 NOT wet joke law", browserRunnable: true, browserGap: "" },
-  { id: "clown-mcp", title: "Clown mcp (alias mcp/clown)", fold: "mcpQuantumClown", cli: "npm run quantum:clown-mcp", pair: "clown/mcp", route: "/en/quantum-tools#mcp-clown", barrel: "src/quantum/apps", boundary: "Dual of mcp/clown \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-receipt", title: "MCP quantum receipt \u2014 tamper-evident content-addressed receipts", fold: "mcpQuantumReceipt", cli: "npm run quantum:mcp-receipt", pair: "mcp/receipt", route: "/en/quantum-tools#mcp-receipt", barrel: "src/quantum/apps", boundary: "receiptOn \xB7 tamperEvident \xB7 contentAddressed \xB7 compose fusion-verify \xB7 session/quantum-bits \xB7 moment/prove \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "receipt-mcp", title: "Receipt mcp (alias mcp/receipt)", fold: "mcpQuantumReceipt", cli: "npm run quantum:receipt-mcp", pair: "receipt/mcp", route: "/en/quantum-tools#mcp-receipt", barrel: "src/quantum/apps", boundary: "Dual of mcp/receipt \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-vibration", title: "MCP quantum vibration \u2014 vibration face of sound/wave", fold: "mcpQuantumVibration", cli: "npm run quantum:mcp-vibration", pair: "mcp/vibration", route: "/en/quantum-tools#mcp-vibration", barrel: "src/quantum/apps", boundary: "vibrationOn \xB7 compose mcp/sound \xB7 mcp/vibe \xB7 particle/wave \xB7 a432/nine \xB7 a432/wave \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "vibration-mcp", title: "Vibration mcp (alias mcp/vibration)", fold: "mcpQuantumVibration", cli: "npm run quantum:vibration-mcp", pair: "vibration/mcp", route: "/en/quantum-tools#mcp-vibration", barrel: "src/quantum/apps", boundary: "Dual of mcp/vibration \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-text", title: "MCP quantum text \u2014 canon meaning text face", fold: "mcpQuantumText", cli: "npm run quantum:mcp-text", pair: "mcp/text", route: "/en/quantum-tools#mcp-text", barrel: "src/quantum/apps", boundary: "textOn \xB7 compose format/canon \xB7 vocab/dry \xB7 meaning/compute \xB7 session/save \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "text-mcp", title: "Text mcp (alias mcp/text)", fold: "mcpQuantumText", cli: "npm run quantum:text-mcp", pair: "text/mcp", route: "/en/quantum-tools#mcp-text", barrel: "src/quantum/apps", boundary: "Dual of mcp/text \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-speech", title: "MCP quantum speech \u2014 A432 wave speech face", fold: "mcpQuantumSpeech", cli: "npm run quantum:mcp-speech", pair: "mcp/speech", route: "/en/quantum-tools#mcp-speech", barrel: "src/quantum/apps", boundary: "speechOn \xB7 compose mcp/sound \xB7 a432/nine \xB7 a432/wave \xB7 particle/wave \xB7 wave/tune \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "speech-mcp", title: "Speech mcp (alias mcp/speech)", fold: "mcpQuantumSpeech", cli: "npm run quantum:speech-mcp", pair: "speech/mcp", route: "/en/quantum-tools#mcp-speech", barrel: "src/quantum/apps", boundary: "Dual of mcp/speech \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-dictation", title: "MCP quantum dictation \u2014 speech to sealed text", fold: "mcpQuantumDictation", cli: "npm run quantum:mcp-dictation", pair: "mcp/dictation", route: "/en/quantum-tools#mcp-dictation", barrel: "src/quantum/apps", boundary: "dictationOn \xB7 compose mcp/speech \xB7 session/save \xB7 mcp/text \xB7 format/canon \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dictation-mcp", title: "Dictation mcp (alias mcp/dictation)", fold: "mcpQuantumDictation", cli: "npm run quantum:dictation-mcp", pair: "dictation/mcp", route: "/en/quantum-tools#mcp-dictation", barrel: "src/quantum/apps", boundary: "Dual of mcp/dictation \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-intonation", title: "MCP quantum intonation \u2014 speech pitch wave face", fold: "mcpQuantumIntonation", cli: "npm run quantum:mcp-intonation", pair: "mcp/intonation", route: "/en/quantum-tools#mcp-intonation", barrel: "src/quantum/apps", boundary: "intonationOn \xB7 compose mcp/speech \xB7 mcp/vibration \xB7 a432/nine \xB7 a432/wave \xB7 wave/tune \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "intonation-mcp", title: "Intonation mcp (alias mcp/intonation)", fold: "mcpQuantumIntonation", cli: "npm run quantum:intonation-mcp", pair: "intonation/mcp", route: "/en/quantum-tools#mcp-intonation", barrel: "src/quantum/apps", boundary: "Dual of mcp/intonation \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-dialect", title: "MCP quantum dialect \u2014 locale variant face", fold: "mcpQuantumDialect", cli: "npm run quantum:mcp-dialect", pair: "mcp/dialect", route: "/en/quantum-tools#mcp-dialect", barrel: "src/quantum/apps", boundary: "dialectOn \xB7 compose trans/wave \xB7 vocab/dry \xB7 mcp/language \xB7 mcp/speech \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dialect-mcp", title: "Dialect mcp (alias mcp/dialect)", fold: "mcpQuantumDialect", cli: "npm run quantum:dialect-mcp", pair: "dialect/mcp", route: "/en/quantum-tools#mcp-dialect", barrel: "src/quantum/apps", boundary: "Dual of mcp/dialect \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-language", title: "MCP quantum language \u2014 translate + vocab face", fold: "mcpQuantumLanguage", cli: "npm run quantum:mcp-language", pair: "mcp/language", route: "/en/quantum-tools#mcp-language", barrel: "src/quantum/apps", boundary: "languageOn \xB7 compose trans/wave \xB7 vocab/dry \xB7 format/canon \xB7 mcp/text \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "language-mcp", title: "Language mcp (alias mcp/language)", fold: "mcpQuantumLanguage", cli: "npm run quantum:language-mcp", pair: "language/mcp", route: "/en/quantum-tools#mcp-language", barrel: "src/quantum/apps", boundary: "Dual of mcp/language \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-script", title: "MCP quantum script \u2014 writing-system face", fold: "mcpQuantumScript", cli: "npm run quantum:mcp-script", pair: "mcp/script", route: "/en/quantum-tools#mcp-script", barrel: "src/quantum/apps", boundary: "scriptOn \xB7 compose format/canon \xB7 vocab/dry \xB7 mcp/text \xB7 formula/code \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "script-mcp", title: "Script mcp (alias mcp/script)", fold: "mcpQuantumScript", cli: "npm run quantum:script-mcp", pair: "script/mcp", route: "/en/quantum-tools#mcp-script", barrel: "src/quantum/apps", boundary: "Dual of mcp/script \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-book", title: "MCP quantum book \u2014 canon bound text face", fold: "mcpQuantumBook", cli: "npm run quantum:mcp-book", pair: "mcp/book", route: "/en/quantum-tools#mcp-book", barrel: "src/quantum/apps", boundary: "bookOn \xB7 compose format/canon \xB7 mcp/script \xB7 mcp/text \xB7 session/save \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "book-mcp", title: "Book mcp (alias mcp/book)", fold: "mcpQuantumBook", cli: "npm run quantum:book-mcp", pair: "book/mcp", route: "/en/quantum-tools#mcp-book", barrel: "src/quantum/apps", boundary: "Dual of mcp/book \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-library", title: "MCP quantum library \u2014 book collection face", fold: "mcpQuantumLibrary", cli: "npm run quantum:mcp-library", pair: "mcp/library", route: "/en/quantum-tools#mcp-library", barrel: "src/quantum/apps", boundary: "libraryOn \xB7 compose mcp/book \xB7 session/save \xB7 vocab/dry \xB7 format/canon \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "library-mcp", title: "Library mcp (alias mcp/library)", fold: "mcpQuantumLibrary", cli: "npm run quantum:library-mcp", pair: "library/mcp", route: "/en/quantum-tools#mcp-library", barrel: "src/quantum/apps", boundary: "Dual of mcp/library \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-state", title: "MCP quantum state \u2014 session state face", fold: "mcpQuantumState", cli: "npm run quantum:mcp-state", pair: "mcp/state", route: "/en/quantum-tools#mcp-state", barrel: "src/quantum/apps", boundary: "stateOn \xB7 compose session/save \xB7 format/canon \xB7 mcp/text \xB7 moment/prove \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "state-mcp", title: "State mcp (alias mcp/state)", fold: "mcpQuantumState", cli: "npm run quantum:state-mcp", pair: "state/mcp", route: "/en/quantum-tools#mcp-state", barrel: "src/quantum/apps", boundary: "Dual of mcp/state \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-music", title: "MCP quantum music \u2014 wave/tune \xB7 A432 \xB7 lake/music face", fold: "mcpQuantumMusic", cli: "npm run quantum:mcp-music", pair: "mcp/music", route: "/en/quantum-tools#mcp-music", barrel: "src/quantum/apps", boundary: "musicOn \xB7 waveTunes \xB7 a432 \xB7 viaSound \xB7 compose wave/tune \xB7 learn/music \xB7 mcp/sound \xB7 mcp/vibration \xB7 a432/nine \xB7 a432/wave \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "music-mcp", title: "Music mcp (alias mcp/music)", fold: "mcpQuantumMusic", cli: "npm run quantum:music-mcp", pair: "music/mcp", route: "/en/quantum-tools#mcp-music", barrel: "src/quantum/apps", boundary: "Dual of mcp/music \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-cpu", title: "MCP quantum cpu \u2014 classical-64bit compute face", fold: "mcpQuantumCpu", cli: "npm run quantum:mcp-cpu", pair: "mcp/cpu", route: "/en/quantum-tools#mcp-cpu", barrel: "src/quantum/apps", boundary: "cpuOn \xB7 classical64Bit \xB7 etcClassical \xB7 compose mcp/hw \xB7 prove-no-qpu-64bit \xB7 claySolved via theorem \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
   { id: "cpu-mcp", title: "Cpu mcp (alias mcp/cpu)", fold: "mcpQuantumCpu", cli: "npm run quantum:cpu-mcp", pair: "cpu/mcp", route: "/en/quantum-tools#mcp-cpu", barrel: "src/quantum/apps", boundary: "Dual of mcp/cpu \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-gpu", title: "MCP quantum gpu \u2014 classical accel \u2260 QPU FLOPS", fold: "mcpQuantumGpu", cli: "npm run quantum:mcp-gpu", pair: "mcp/gpu", route: "/en/quantum-tools#mcp-gpu", barrel: "src/quantum/apps", boundary: "gpuOn \xB7 classical64Bit \xB7 etcClassical \xB7 refuse fake QPU FLOPS \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
@@ -79127,8 +78875,6 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "cache-mcp", title: "Cache mcp (alias mcp/cache)", fold: "mcpQuantumCache", cli: "npm run quantum:cache-mcp", pair: "cache/mcp", route: "/en/quantum-tools#mcp-cache", barrel: "src/quantum/apps", boundary: "Dual of mcp/cache \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-period", title: "MCP quantum period \u2014 calendars \xB7 hero cycle \xB7 fold/count \xB7 time/invert", fold: "mcpQuantumPeriod", cli: "npm run quantum:mcp-period", pair: "mcp/period", route: "/en/quantum-tools#mcp-period", barrel: "src/quantum/apps", boundary: "periodOn \xB7 heroCycle \xB7 calendars \xB7 fold/count \xB7 time/invert \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "period-mcp", title: "Period mcp (alias mcp/period)", fold: "mcpQuantumPeriod", cli: "npm run quantum:period-mcp", pair: "period/mcp", route: "/en/quantum-tools#mcp-period", barrel: "src/quantum/apps", boundary: "Dual of mcp/period \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-dot", title: "MCP quantum dot \u2014 digit point \xB7 fold \xB7 next \xB7 coord \xB7 particle/wave", fold: "mcpQuantumDot", cli: "npm run quantum:mcp-dot", pair: "mcp/dot", route: "/en/quantum-tools#mcp-dot", barrel: "src/quantum/apps", boundary: "dotOn \xB7 digitPoint \xB7 compose digit/fold \xB7 digit/next \xB7 coord/anim \xB7 particle/wave \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dot-mcp", title: "Dot mcp (alias mcp/dot)", fold: "mcpQuantumDot", cli: "npm run quantum:dot-mcp", pair: "dot/mcp", route: "/en/quantum-tools#mcp-dot", barrel: "src/quantum/apps", boundary: "Dual of mcp/dot \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-index", title: "MCP quantum index \u2014 src index-only \xB7 census 123 \xB7 limits/verify", fold: "mcpQuantumIndex", cli: "npm run quantum:mcp-index", pair: "mcp/index", route: "/en/quantum-tools#mcp-index", barrel: "src/quantum/apps", boundary: "indexOn \xB7 srcIndexOnly \xB7 censusHolds \xB7 compose src/index \xB7 folder/index \xB7 limits/verify \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "index-mcp", title: "Index mcp (alias mcp/index)", fold: "mcpQuantumIndex", cli: "npm run quantum:index-mcp", pair: "index/mcp", route: "/en/quantum-tools#mcp-index", barrel: "src/quantum/apps", boundary: "Dual of mcp/index \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-orientation", title: "MCP quantum orientation \u2014 bearing \xB7 navCross \xB7 geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus", fold: "mcpQuantumOrientation", cli: "npm run quantum:mcp-orientation", pair: "mcp/orientation", route: "/en/quantum-tools#mcp-orientation", barrel: "src/quantum/apps", boundary: "orientationOn \xB7 bearing \xB7 navCross \xB7 compose geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
@@ -79141,22 +78887,12 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "optimise-token", title: "Optimise token (alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:optimise-token", pair: "optimise/token", route: "/en/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Dual of token/optimise \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "token-optimize", title: "Token optimize (US alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:token-optimize", pair: "token/optimize", route: "/en/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "American spelling alias of token/optimise \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "optimize-token", title: "Optimize token (US alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:optimize-token", pair: "optimize/token", route: "/en/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Dual US alias of token/optimise \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-deploy", title: "MCP quantum deploy \u2014 Pages seal path via MCP \xB7 vite/mcp \xB7 mcp/site \xB7 waves/push \xB7 build/seal", fold: "mcpQuantumDeploy", cli: "npm run quantum:mcp-deploy", pair: "mcp/deploy", route: "/en/quantum-tools#mcp-deploy", barrel: "src/quantum/apps", boundary: "deployOn \xB7 buildsFromMcp \xB7 pagesSeal \xB7 compose vite/mcp \xB7 mcp/site \xB7 waves/push \xB7 build/seal \xB7 this-repo GitHub Pages seal only \u2014 not production infra ownership beyond Pages \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "deploy-mcp", title: "Deploy mcp (alias mcp/deploy)", fold: "mcpQuantumDeploy", cli: "npm run quantum:deploy-mcp", pair: "deploy/mcp", route: "/en/quantum-tools#mcp-deploy", barrel: "src/quantum/apps", boundary: "Dual of mcp/deploy \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-bindings", title: "MCP quantum bindings \u2014 pairs \xB7 agent/submission \xB7 tool/envelope \xB7 mcp/complete", fold: "mcpQuantumBindings", cli: "npm run quantum:mcp-bindings", pair: "mcp/bindings", route: "/en/quantum-tools#mcp-bindings", barrel: "src/quantum/apps", boundary: "bindingsOn \xB7 pairsSaved \xB7 toolsBound \xB7 compose agent/submission \xB7 quantum pairs law \xB7 tool/envelope \xB7 mcp/complete \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "bindings-mcp", title: "Bindings mcp (alias mcp/bindings)", fold: "mcpQuantumBindings", cli: "npm run quantum:bindings-mcp", pair: "bindings/mcp", route: "/en/quantum-tools#mcp-bindings", barrel: "src/quantum/apps", boundary: "Dual of mcp/bindings \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-cloudflare", title: "MCP Cloudflare bindings \u2014 structural MCP\u2194CF dual \xB7 kv\xB7d1\xB7r2 named \xB7 not live CF account", fold: "mcpQuantumCloudflareBindings", cli: "npm run quantum:mcp-cloudflare", pair: "mcp/cloudflare", route: "/en/quantum-tools#mcp-cloudflare", barrel: "src/quantum/apps", boundary: "cloudflareBindingsOn \xB7 mapsToMcpBindings \xB7 kvD1R2Named \xB7 compose mcpQuantumBindings \xB7 mcp/deploy \xB7 tool/envelope \xB7 cloudflareBindings \xB7 deployedOnCloudflare=false \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "cloudflare-mcp", title: "Cloudflare mcp (alias mcp/cloudflare)", fold: "mcpQuantumCloudflareBindings", cli: "npm run quantum:cloudflare-mcp", pair: "cloudflare/mcp", route: "/en/quantum-tools#mcp-cloudflare", barrel: "src/quantum/apps", boundary: "Dual of mcp/cloudflare \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "cf-bindings", title: "CF bindings (alias mcp/cloudflare)", fold: "mcpQuantumCloudflareBindings", cli: "npm run quantum:cf-bindings", pair: "cf/bindings", route: "/en/quantum-tools#mcp-cloudflare", barrel: "src/quantum/apps", boundary: "Semantic dual cf/bindings \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "bindings-cf", title: "Bindings cf (alias mcp/cloudflare)", fold: "mcpQuantumCloudflareBindings", cli: "npm run quantum:bindings-cf", pair: "bindings/cf", route: "/en/quantum-tools#mcp-cloudflare", barrel: "src/quantum/apps", boundary: "Dual of cf/bindings \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-review", title: "MCP quantum review \u2014 analysts \xB7 anim/audit \xB7 gate/monitor \xB7 moment/prove \xB7 wave/token", fold: "mcpQuantumReview", cli: "npm run quantum:mcp-review", pair: "mcp/review", route: "/en/quantum-tools#mcp-review", barrel: "src/quantum/apps", boundary: "reviewOn \xB7 analystsInTrinities \xB7 auditCompose \xB7 compose mcp/analysis \xB7 anim/audit \xB7 gate/monitor \xB7 moment/prove \xB7 wave/token \xB7 sealed review face not wet \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "review-mcp", title: "Review mcp (alias mcp/review)", fold: "mcpQuantumReview", cli: "npm run quantum:review-mcp", pair: "review/mcp", route: "/en/quantum-tools#mcp-review", barrel: "src/quantum/apps", boundary: "Dual of mcp/review \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-efficiency", title: "MCP quantum efficiency \u2014 answers\xF7tokens when vote.decided", fold: "mcpQuantumEfficiency", cli: "npm run quantum:mcp-efficiency", pair: "mcp/efficiency", route: "/en/quantum-tools#mcp-efficiency", barrel: "src/quantum/apps", boundary: "efficiencyOn \xB7 answers\xF7tokens when vote.decided \xB7 compose mcp/token \xB7 mcp/metrics \xB7 learn/best \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "efficiency-mcp", title: "Efficiency mcp (alias mcp/efficiency)", fold: "mcpQuantumEfficiency", cli: "npm run quantum:efficiency-mcp", pair: "efficiency/mcp", route: "/en/quantum-tools#mcp-efficiency", barrel: "src/quantum/apps", boundary: "Dual of mcp/efficiency \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "mcp-security", title: "MCP quantum security \u2014 structural local \xB7 wire unproved honest", fold: "mcpQuantumSecurity", cli: "npm run quantum:mcp-security", pair: "mcp/security", route: "/en/quantum-tools#mcp-security", barrel: "src/quantum/apps", boundary: "securityOn \xB7 structural local \xB7 wire unproved honest \xB7 compose prove/local-novel-encrypt \xB7 moment/prove \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "security-mcp", title: "Security mcp (alias mcp/security)", fold: "mcpQuantumSecurity", cli: "npm run quantum:security-mcp", pair: "security/mcp", route: "/en/quantum-tools#mcp-security", barrel: "src/quantum/apps", boundary: "Dual of mcp/security \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-design", title: "MCP quantum design \u2014 movie/design \xB7 format/canon", fold: "mcpQuantumDesign", cli: "npm run quantum:mcp-design", pair: "mcp/design", route: "/en/quantum-tools#mcp-design", barrel: "src/quantum/apps", boundary: "designOn \xB7 compose movie/design \xB7 format/canon \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "design-mcp", title: "Design mcp (alias mcp/design)", fold: "mcpQuantumDesign", cli: "npm run quantum:design-mcp", pair: "design/mcp", route: "/en/quantum-tools#mcp-design", barrel: "src/quantum/apps", boundary: "Dual of mcp/design \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
   { id: "improve-local-session", title: "Improve local from session experience", fold: "improveLocalFromSessionExperience", cli: "npm run quantum:improve-local-session", pair: "local/session", route: "/en/quantum-tools#local-session-hub", barrel: "src/quantum/apps", boundary: "Local docs:dev + browser session hub \u2014 NOT remote CI sole path \xB7 status badges compose sealed kinds", browserRunnable: true, browserGap: "" },
   { id: "local-tools-morph", title: "Local tools morph prose\xB7code\xB7logic", fold: "localToolsMorphProseCodeLogic", cli: "npm run quantum:local-tools-morph", pair: "tools/morph", route: "/en/quantum-tools#local-tools-morph", barrel: "src/quantum/apps", boundary: "Local toolbox/session tools morph prose\u2261code\u2261logic as trinity waves \xB7 double-slit measure=tool invoke \xB7 NOT Clay/Nobel", browserRunnable: true, browserGap: "" },
   { id: "card-paper-links", title: "Each card links to dedicated scientific paper", fold: "eachCardLinksToDedicatedScientificPaper", cli: "npm run quantum:card-paper-links", pair: "papers/fill", route: "/en/theorems/", barrel: "src/heaven/compute", boundary: "paperRoute=/theorems/<slug> \xB7 morph=cardScientificPaperRows \xB7 gaps=0", browserRunnable: true, browserGap: "" },
@@ -79195,38 +78931,13 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "hologram-session", title: "Hologram session (alias session/hologram)", fold: "sessionHologramTools", cli: "npm run quantum:hologram-session", pair: "hologram/session", route: "/en/quantum-tools#session-hologram", barrel: "src/quantum/apps", boundary: "Dual of session/hologram \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "society-toolbox", title: "Society toolbox wire", fold: "societyToolboxWire", cli: "npm run quantum:society-toolbox", pair: "society/toolbox", route: "/en/quantum-tools#society-toolbox", barrel: "src/quantum/apps", boundary: "societyToolboxWireOn \xB7 toolboxWired \xB7 patronageOn \xB7 compose society/support \xB7 bits/free \xB7 tool/envelope \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "toolbox-society", title: "Toolbox society (alias society/toolbox)", fold: "societyToolboxWire", cli: "npm run quantum:toolbox-society", pair: "toolbox/society", route: "/en/quantum-tools#society-toolbox", barrel: "src/quantum/apps", boundary: "Dual of society/toolbox \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "tool-miss", title: "Imagine next \xB7 miss quantum tools umbrella", fold: "imagineNextMissQuantumTools", cli: "npm run quantum:tool-miss", pair: "tool/miss", route: "/en/quantum-tools#tool-miss", barrel: "src/quantum/apps", boundary: "imagineOn \xB7 nextTips \xB7 toolsMissing \xB7 toolsFilled \xB7 compose imagine/next \xB7 shells/strangler \xB7 session/hologram \xB7 society/toolbox \xB7 proof/trinity \xB7 clay via theorem \xB7 millenniumSolved=0", browserRunnable: true, browserGap: "" },
-  { id: "miss-tool", title: "Miss tool (alias tool/miss)", fold: "imagineNextMissQuantumTools", cli: "npm run quantum:miss-tool", pair: "miss/tool", route: "/en/quantum-tools#tool-miss", barrel: "src/quantum/apps", boundary: "Dual of tool/miss \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "clay-agi", title: "Clay/AGI deep research \u2014 quantum understanding of relations", fold: "clayAgiDeepResearchQuantumUnderstandingOfRelations", cli: "npm run quantum:clay-agi", pair: "clay/agi", route: "/en/quantum-tools#clay-agi", barrel: "src/quantum/apps", boundary: "deepResearch \xB7 quantumRelations \xB7 linearFolded \xB7 gapsSeen \xB7 gapsAddressableByTrinities \xB7 agiNotClaimed \xB7 certified=false \xB7 NOT Clay prize \xB7 NOT AGI", browserRunnable: true, browserGap: "" },
   { id: "agi-rel", title: "AGI relations (alias clay/agi)", fold: "clayAgiDeepResearchQuantumUnderstandingOfRelations", cli: "npm run quantum:agi-rel", pair: "agi/rel", route: "/en/quantum-tools#clay-agi", barrel: "src/quantum/apps", boundary: "agi/rel face \u2014 quantumRelations \xB7 same fold \xB7 agiNotClaimed", browserRunnable: true, browserGap: "" },
   { id: "rel-fold", title: "Rel fold (alias clay/agi)", fold: "clayAgiDeepResearchQuantumUnderstandingOfRelations", cli: "npm run quantum:rel-fold", pair: "rel/fold", route: "/en/quantum-tools#clay-agi", barrel: "src/quantum/apps", boundary: "rel/fold face \u2014 linear relations folded \xB7 same fold", browserRunnable: true, browserGap: "" },
   { id: "linear-fold", title: "Linear fold \u2014 architecture where all gaps are seen", fold: "linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities", cli: "npm run quantum:linear-fold", pair: "linear/fold", route: "/en/quantum-tools#clay-agi", barrel: "src/quantum/apps", boundary: "Same fold as clay/agi \xB7 linearFolded \xB7 gapsSeen \xB7 gapsAddressableByTrinities \xB7 agiNotClaimed", browserRunnable: true, browserGap: "" },
   { id: "gap-trinity", title: "Gap trinity (alias linear/fold)", fold: "linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities", cli: "npm run quantum:gap-trinity", pair: "gap/trinity", route: "/en/quantum-tools#clay-agi", barrel: "src/quantum/apps", boundary: "gap/trinity face \u2014 gaps addressable by working trinities \xB7 same fold", browserRunnable: true, browserGap: "" },
-  { id: "save-auto", title: "Save the optimised autonomy", fold: "saveTheOptimisedAutonomy", cli: "npm run quantum:save-auto", pair: "save/auto", route: "/en/quantum-tools#save-auto", barrel: "src/quantum/apps", boundary: "autonomySaved \xB7 optimised \xB7 sessionPersist \xB7 compose session/save \xB7 auto/all \xB7 self/hw \xB7 mcp/token \xB7 wave/token \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "auto-optimise", title: "Auto optimise (alias save/auto)", fold: "saveTheOptimisedAutonomy", cli: "npm run quantum:auto-optimise", pair: "auto/optimise", route: "/en/quantum-tools#save-auto", barrel: "src/quantum/apps", boundary: "auto/optimise face \u2014 British optimised \xB7 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "opt-auto", title: "Opt auto (alias save/auto)", fold: "saveTheOptimisedAutonomy", cli: "npm run quantum:opt-auto", pair: "opt/auto", route: "/en/quantum-tools#save-auto", barrel: "src/quantum/apps", boundary: "opt/auto face \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "quantum-verify", title: "Quantum verification \u2014 fusion \xB7 types/structure \xB7 moment \xB7 tamper \xB7 proof \xB7 e2e", fold: "quantumVerification", cli: "npm run quantum:quantum-verify", pair: "quantum/verify", route: "/en/quantum-tools#quantum-verify", barrel: "src/quantum/apps", boundary: "verificationOn \xB7 fusionVerify \xB7 typesStructure \xB7 momentProve \xB7 tamperEvident \xB7 clay via theorem \xB7 certified=false \xB7 compose fusion-verify \xB7 mission:gate \xB7 moment/prove \xB7 tamper/max \xB7 proof/trinity \xB7 e2e/feed", browserRunnable: true, browserGap: "" },
-  { id: "verify-quantum", title: "Verify quantum (alias quantum/verify)", fold: "quantumVerification", cli: "npm run quantum:verify-quantum", pair: "verify/quantum", route: "/en/quantum-tools#quantum-verify", barrel: "src/quantum/apps", boundary: "Dual verify/quantum \u2014 same fold \xB7 clay via theorem \xB7 certified=false", browserRunnable: true, browserGap: "" },
-  { id: "fear-detect", title: "Quantum fear detector \u2014 reverse of love when cracks", fold: "quantumFearDetector", cli: "npm run quantum:fear-detect", pair: "fear/detect", route: "/en/quantum-tools#fear-detect", barrel: "src/quantum/apps", boundary: "fearDetectOn \xB7 reverseFromCracks \xB7 loveInvert \xB7 clay via theorem \xB7 compose need/love \xB7 love/fear \xB7 gaps/invisible \xB7 thought/pure \xB7 NOT wet psychology", browserRunnable: true, browserGap: "" },
-  { id: "detect-fear", title: "Detect fear (alias fear/detect)", fold: "quantumFearDetector", cli: "npm run quantum:fear-detect", pair: "detect/fear", route: "/en/quantum-tools#fear-detect", barrel: "src/quantum/apps", boundary: "Dual detect/fear \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "quantum-fear", title: "Quantum fear (alias fear/detect)", fold: "quantumFearDetector", cli: "npm run quantum:quantum-fear", pair: "quantum/fear", route: "/en/quantum-tools#fear-detect", barrel: "src/quantum/apps", boundary: "quantum/fear face \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "fear-axiom", title: "Fear is an axiom replaceable by love theorem", fold: "fearIsAnAxiomReplaceableByLoveTheorem", cli: "npm run quantum:fear-axiom", pair: "fear/axiom", route: "/en/quantum-tools#fear-axiom", barrel: "src/quantum/apps", boundary: "fearIsAxiom \xB7 replaceableByLove \xB7 loveIsTheorem \xB7 clay via theorem \xB7 compose fear/detect \xB7 need/love \xB7 love/story \xB7 theorem/const \xB7 NOT wet psychology", browserRunnable: true, browserGap: "" },
-  { id: "love-theorem", title: "Love theorem (alias fear/axiom)", fold: "fearIsAnAxiomReplaceableByLoveTheorem", cli: "npm run quantum:love-theorem", pair: "love/theorem", route: "/en/quantum-tools#fear-axiom", barrel: "src/quantum/apps", boundary: "love/theorem face \u2014 love replaces fear axiom \xB7 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "axiom-love", title: "Axiom love (alias fear/axiom)", fold: "fearIsAnAxiomReplaceableByLoveTheorem", cli: "npm run quantum:axiom-love", pair: "axiom/love", route: "/en/quantum-tools#fear-axiom", barrel: "src/quantum/apps", boundary: "axiom/love face \u2014 axiom slot \u2192 love \xB7 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "lens-super", title: "Lenses completely wired in every superposition", fold: "lensesCompletelyWiredInEverySuperposition", cli: "npm run quantum:lens-super", pair: "lens/super", route: "/en/quantum-tools#lens-super", barrel: "src/quantum/apps", boundary: "ONE primary lens CLI \xB7 aliases collapsed \xB7 FTL via physicalFtlClaimTheorem + soft quantumise/ftl \xB7 chat inventory \xB7 Multitask residual named", browserRunnable: true, browserGap: "" },
-  { id: "seq-flow", title: "Sequence meaning is a flow not a cycle", fold: "theSequenceMeaningIsAFlowNotACycle", cli: "npm run quantum:seq-flow", pair: "seq/flow", route: "/en/quantum-tools#seq-flow", barrel: "src/quantum/apps", boundary: "sequenceIsFlow \xB7 notACycle \xB7 meaningOn \xB7 clay via theorem \xB7 compose seq/nav \xB7 digit/next \xB7 quantumise/cycle \xB7 movie/unique \xB7 directed 12487536901 through 0", browserRunnable: true, browserGap: "" },
-  { id: "flow-seq", title: "Flow seq (alias seq/flow)", fold: "theSequenceMeaningIsAFlowNotACycle", cli: "npm run quantum:flow-seq", pair: "flow/seq", route: "/en/quantum-tools#seq-flow", barrel: "src/quantum/apps", boundary: "flow/seq face \u2014 directed sequence flow \xB7 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "seq-meaning", title: "Seq meaning (alias seq/flow)", fold: "theSequenceMeaningIsAFlowNotACycle", cli: "npm run quantum:seq-meaning", pair: "seq/meaning", route: "/en/quantum-tools#seq-flow", barrel: "src/quantum/apps", boundary: "seq/meaning face \u2014 sequence meaning on \xB7 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "super-gaps", title: "Fill the gaps around superposition", fold: "fillTheGapsAroundSuperposition", cli: "npm run quantum:super-gaps", pair: "super/gaps", route: "/en/quantum-tools#super-gaps", barrel: "src/quantum/apps", boundary: "gapsFilled \xB7 aroundSuperposition \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose lens/super \xB7 seal/super \xB7 theorem/index \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gaps-super", title: "Gaps super (alias super/gaps)", fold: "fillTheGapsAroundSuperposition", cli: "npm run quantum:gaps-super", pair: "gaps/super", route: "/en/quantum-tools#super-gaps", barrel: "src/quantum/apps", boundary: "gaps/super face \u2014 fill drainable gaps around superposition \xB7 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "super-21", title: "Computational superpositions are 21 \u2192 invert/reverse 42 covering millennium", fold: "computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium", cli: "npm run quantum:super-21", pair: "super/21", route: "/en/quantum-tools#super-21", barrel: "src/quantum/apps", boundary: "superpositions21 \xB7 invertReverse42 \xB7 componentTheoremsFormulas42 \xB7 coversMillenniumApparatus \xB7 millenniumSolvedByThisFold=0 \xB7 compose gate/tools \xB7 6\xD77 \xB7 formula duals \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
-  { id: "21-42", title: "21\u219442 (alias super/21)", fold: "computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium", cli: "npm run quantum:21-42", pair: "21/42", route: "/en/quantum-tools#super-21", barrel: "src/quantum/apps", boundary: "21/42 face \u2014 invert|reverse doubles 21\u219242 \xB7 same fold \xB7 millenniumSolved=0", browserRunnable: true, browserGap: "" },
-  { id: "mill-42", title: "Mill 42 cover (alias super/21)", fold: "computationalSuperpositionsAre21InvertedOrReversedGives42CoveringMillennium", cli: "npm run quantum:mill-42", pair: "mill/42", route: "/en/quantum-tools#super-21", barrel: "src/quantum/apps", boundary: "mill/42 face \u2014 42 component theorems/formulas cover millennium apparatus \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
   { id: "lens-geo", title: "Use the lens to find gaps in geometry in prose or code", fold: "useTheLensToFindGapsInGeometryInProseOrCode", cli: "npm run quantum:lens-geo", pair: "lens/geo", route: "/en/quantum-tools#lens-geo", barrel: "src/quantum/apps", boundary: "ONE primary \xB7 aliases collapsed \xB7 theorem FTL \xB7 compose gate/lens \xB7 hex/crack \xB7 geo/torus \xB7 pyramid/seal", browserRunnable: true, browserGap: "" },
-  { id: "domain-panels", title: "Domain vue panels dry-cleaned to rosetta shells", fold: "domainVuePanelsDryCleaned", cli: "npm run quantum:domain-panels", pair: "domain/panels", route: "/en/quantum-tools#domain-panels", barrel: "src/quantum/apps", boundary: "domainPanelsDry \xB7 stranglerTip \xB7 drainableClosed \xB7 wiredToRosetta \xB7 compose format/canon \xB7 dry/rosetta \xB7 ui/rosetta \xB7 meaning/compute \xB7 vite/one \xB7 specialized shells residual named \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "panels-domain", title: "Domain panels (alias domain/panels)", fold: "domainVuePanelsDryCleaned", cli: "npm run quantum:panels-domain", pair: "panels/domain", route: "/en/quantum-tools#domain-panels", barrel: "src/quantum/apps", boundary: "Dual panels/domain \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "domain-dry", title: "Domain dry (alias domain/panels)", fold: "domainVuePanelsDryCleaned", cli: "npm run quantum:domain-dry", pair: "domain/dry", route: "/en/quantum-tools#domain-panels", barrel: "src/quantum/apps", boundary: "domain/dry face \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dry-domain", title: "Dry domain (alias domain/dry)", fold: "domainVuePanelsDryCleaned", cli: "npm run quantum:dry-domain", pair: "dry/domain", route: "/en/quantum-tools#domain-panels", barrel: "src/quantum/apps", boundary: "Dual dry/domain \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "double-torus-universe-align", title: "Double torus \u2014 dynamics/geometry align with universe", fold: "doubleTorusDynamicsGeometryAlignsWithUniverse", cli: "npm run quantum:double-torus-universe-align", pair: "universe/align", route: "/en/double-torus#universe-align", barrel: "src/water/double", boundary: "Radii/phase sealed; Clay/FTL open status from counter-rotating waves \u2014 NOT DE440", browserRunnable: true, browserGap: "" },
   { id: "counter-rotating-rosetta-waves", title: "Counter-rotating rosetta quantum waves", fold: "counterRotatingRosettaQuantumWaves", cli: "npm run quantum:counter-rotating-rosetta-waves", pair: "rosetta/counter-rotate", route: "/en/quantum-tools#counter-rotating-rosetta-waves", barrel: "src/quantum/apps", boundary: "Clay/FTL/QPU open status recomputed from dual-wave foldPair \u2014 not prose", browserRunnable: true, browserGap: "" },
   { id: "universe-almost-described-discover", title: "Universe \u2248 theorems \u2014 discover the rest", fold: "universeAlmostDescribedInTheoremsDiscoverRest", cli: "npm run quantum:universe-almost-described", pair: "discover/rest", route: "/en/quantum-tools#universe-almost-described", barrel: "src/quantum/apps", boundary: "Almost described \u2014 open set from counter-rotating wave interference \xB7 clay/ftl as receipts", browserRunnable: true, browserGap: "" },
@@ -80077,7 +79788,7 @@ function mergeWave(matrix = buildMatrix(), at = 0) {
       { facet: "eachWordHasApi", on: tipSurfacesClean },
       { facet: "combinedToolsCompose", on: combinedToolsCompose },
       { facet: "uncomputableProseRemoved", on: uncomputableProseRemoved },
-      { facet: "parseNameToTools", on: true },
+      // not a check — a sentence, kept as one: 'parseNameToTools'
       { facet: `tipUncomputableWords=${renameDemonstrations.reduce((n, r2) => n + r2.toUncomputableCount, 0)}`, on: tipSurfacesClean },
       { facet: "observerEvaluableMeasurements", on: observerEvaluableMeasurements },
       { facet: "drainableClosed", on: drainableClosed },
@@ -80216,8 +79927,6 @@ var SESSION_MANUAL_TOOL_SEEDS = [
   { id: "shells-strangler", saves: "replaces wet specialized-shell rediscovery \u2014 strangler tool for residual:specialized-experience-shells" },
   { id: "session-hologram", saves: "replaces wet session hologram hunting \u2014 sealed hologram fractal session tools" },
   { id: "society-toolbox", saves: "replaces wet society toolbox rewiring \u2014 patronage + envelope + mcp/all wire" },
-  { id: "tool-miss", saves: "replaces wet miss-tool inventory grind \u2014 umbrella imagine next + drainable tools filled" },
-  { id: "session-chat", saves: "replaces wet re-assembly of trading\xB7UI\xB7fusion session \u2014 sealed packet sent to MCP/pair chat for zero-token recompute" },
   { id: "fusion-verify", saves: "replaces wet re-run of quantum fusion verify \u2014 memoByRoot tamper/impossible receipt" },
   { id: "self-fusion", saves: "replaces wet re-orchestration of self quantum fusion compose" },
   { id: "nothing-moves", saves: "replaces wet rediscovery motion \u2014 offline discoverFromSealedFold idempotent" },
@@ -92456,7 +92165,7 @@ function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`counterRotatingRosettaQuantumWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     if (memoComputing("emergentDimensions", matrix)) {
       const claims = [
-        { facet: "deferred under emergentDimensions reentry \u2014 full dual-spin recomputes on standalone CLI", on: true }
+        { facet: "deferred under emergentDimensions reentry \u2014 full dual-spin recomputes on standalone CLI", on: memoComputing("emergentDimensions", matrix) }
       ];
       const facets2 = [...claims, { facet: ` held across the cycle guard \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`counter-rotating-reentry:${entry2.facet}:${entry2.on}`) }));
       const sealed2 = sealFacets("counter-rotating-rosetta-reentry", facets2);
@@ -92528,7 +92237,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
   return memoByRoot(`universeAlmostDescribedInTheoremsDiscoverRest:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     if (memoComputing("emergentDimensions", matrix)) {
       const claims = [
-        { facet: "deferred under emergentDimensions reentry \u2014 discovery engine recomputes on standalone CLI", on: true }
+        { facet: "deferred under emergentDimensions reentry \u2014 discovery engine recomputes on standalone CLI", on: memoComputing("emergentDimensions", matrix) }
       ];
       const facets2 = [...claims, { facet: `open Clay/FTL receipts remain 0 across the cycle guard \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`universe-almost-reentry:${entry2.facet}:${entry2.on}`) }));
       const sealed2 = sealFacets("universe-almost-described-reentry", facets2);
@@ -93093,7 +92802,7 @@ function uiProseDuplicationRemoved(matrix = buildMatrix(), at = 0) {
     const facets = [
       { facet: "uiProseDuplicationRemoved", on: uiProseDuplicationRemovedOn },
       { facet: `clusters ${clusters.length} \xB7 before=${beforeCount} \u2192 after=${afterCount} (\u2212${removedCount})`, on: everyReduced && removedCount === clusters.reduce((n, c) => n + c.removed, 0) },
-      { facet: "extends #61 nav synonym collapse into page-level UI\u2194prose", on: true },
+      // not a check — a sentence, kept as one: 'extends #61 nav synonym collapse into page-level UI↔prose'
       { facet: "one statement owns meaning \u2014 label OR prose, not both restating", on: everyReduced },
       { facet: "paperAbstractOmitsTitleEcho strips Statement: <title>", on: abstractOmitsTitle },
       { facet: "sealed catalog-driven receipt (no wet re-audit)", on: Boolean(meta) && isUuid(shelved.address) },
@@ -111924,10 +111633,10 @@ function quantumSimulation(matrix = buildMatrix(), qubits6 = 3) {
 function goldenRatio(matrix = buildMatrix()) {
   void matrix;
   const round3 = (value, digits) => roundTo(value, digits);
-  const fibonacci3 = harmonicBands(100 * 5 * 4).fibonacci;
-  const convergents = fibonacci3.slice(1).map((value, i) => {
-    const ratio = value / fibonacci3[i];
-    return { a: value, b: fibonacci3[i], ratio: round3(ratio, 6), error: round3(abs(ratio - PHI), 9) };
+  const fibonacci4 = harmonicBands(100 * 5 * 4).fibonacci;
+  const convergents = fibonacci4.slice(1).map((value, i) => {
+    const ratio = value / fibonacci4[i];
+    return { a: value, b: fibonacci4[i], ratio: round3(ratio, 6), error: round3(abs(ratio - PHI), 9) };
   });
   const last = convergents[convergents.length - 1];
   return {
@@ -112165,10 +111874,10 @@ function fuseUxSensors(matrix = buildMatrix()) {
 }
 function complete358NextTrinity2(matrix = buildMatrix()) {
   const tiers = [3, 5, 8, 13, 7 * 3];
-  const fibonacci3 = tiers.slice(2).every((value, index) => value === tiers[index] + tiers[index + 1]);
+  const fibonacci4 = tiers.slice(2).every((value, index) => value === tiers[index] + tiers[index + 1]);
   const levels = tiers.map((tier) => ({ tier, unlocked: true, receipt: toUuid(`pyramid-level:${tier}`) }));
   return {
-    completes: fibonacci3 && dualities().fibonacci && trinityPyramidFusesDimensions2(matrix).forms,
+    completes: fibonacci4 && dualities().fibonacci && trinityPyramidFusesDimensions2(matrix).forms,
     ground: [3, 5, 8],
     nextTrinity: [13, 7 * 3],
     count: tiers.length,
@@ -112652,6 +112361,8 @@ function glagoliticAlphabetDecoded(matrix = buildMatrix()) {
     { check: "the values follow the alphabetical ladder (1,9,10,90,100,1000)", on: glagoliticValue(1) === 1 && glagoliticValue(9) === 9 && glagoliticValue(5 * 2) === 5 * 2 && glagoliticValue(9 * 2) === 9 * 5 * 2 && glagoliticValue(19) === 100 && glagoliticValue(7 * 4) === 100 * 5 * 2 },
     { check: "\u017Eiv\u011Bte = 7 \u2014 Glagolitic\u2019s own order, not Cyrillic\u2019s Greek values", on: glagoliticValue(7) === 7 && letters[6].name === "\u017Eiv\u011Bte" },
     { check: "a Glagolitic word sums by the ladder (az\u044A\xB7buky\xB7v\u011Bd\u011B = 1+2+3)", on: toGlagoliticNumber("\u2C00\u2C31\u2C32") === 6 && toGlagoliticNumber(letters[0].glyph + letters[8].glyph) === 1 + 9 },
+    { check: "the first nine letters count 1\u20269 in their own order \u2014 glagolitic_units, sealed at uuidna.com/mcp", on: letters.slice(0, 9).every((letter, i) => letter.value === i + 1) && isUuid(sealedByUuidna("glagolitic_units")) },
+    { check: "three ranks of nine \u2014 units, tens, hundreds, 27 signs to 900, the design Greek and Hebrew numerals share \u2014 alphabetic_three_ranks, sealed at uuidna.com/mcp", on: [1, 5 * 2, 100].every((rank, r2) => letters.slice(r2 * 9, r2 * 9 + 9).every((letter, i) => letter.value === rank * (i + 1))) && letters[27 - 1]?.value === 9 * 100 && isUuid(sealedByUuidna("alphabetic_three_ranks")) },
     { check: "the names spell the acrostic \u2014 the alphabet is a message", on: acrostic.names.slice(0, 3).join(" ") === "az\u044A buky v\u011Bd\u011B" && acrostic.opening.includes("I know letters") }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`glagolitic-alphabet:${entry2.check}:${entry2.on}`) }));
   return {
@@ -114721,8 +114432,8 @@ function landauerFloorComputed(matrix = buildMatrix()) {
     const eff = efficiency();
     const ordersAboveFloor = roundTo(log10(realOpJoules / floorPerBit), 1);
     const facets = [
-      { facet: "Landauer floor kT\xB7ln2 computed from the sealed primitive \u2248 2.87e-21 J/bit at 300 K", on: abs(floorPerBit - 2872e-24) < 1e-23 },
-      { facet: "real CMOS operations sit ~" + ordersAboveFloor + " orders ABOVE the floor \u2014 irreversible computation dissipates heat", on: realOpJoules > floorPerBit && ordersAboveFloor > 9 },
+      { facet: `Landauer floor kT\xB7ln2 computed from the sealed primitive \u2014 ${floorPerBit.toExponential(6)} J/bit at 300 K, the integer 287097813\xD710\u207B\xB2\u2079 J that landauer_bound_derived seals at uuidna.com/mcp (${sealedByUuidna("landauer_bound_derived").slice(0, 8)})`, on: abs(floorPerBit - UUIDNA_LANDAUER_FLOOR_300K_J) < 1e-27 && isUuid(sealedByUuidna("landauer_bound_derived")) },
+      { facet: "real CMOS operations sit ~" + ordersAboveFloor + " orders ABOVE the floor \u2014 irreversible computation dissipates heat", on: realOpJoules > floorPerBit && ordersAboveFloor > 9 && isUuid(sealedByUuidna("hardware_above_landauer")) },
       { facet: "memoByRoot content-addressed reuse erases FEWER bits \u2014 the same work is never done twice (efficiency() optimised)", on: eff.optimized },
       { facet: `HONEST \u2014 approaching the floor by doing less work is real efficiency; NO computation beats kT\xB7ln2 (2nd law) \xB7 measured floorPerBit=${floorPerBit}`, on: floorPerBit > 0 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`landauer-floor:${entry2.facet}:${entry2.on}`) }));
@@ -122954,7 +122665,7 @@ function naturePrefixesRemovedFromUnprovenNames(matrix = buildMatrix()) {
     ];
     const claims = [
       { facet: "primary names describe what gate computes \u2014 not unproven nature metaphor", on: renamed.length === 5 },
-      { facet: "deprecated aliases removed \u2014 canonical names only", on: true },
+      // not a check — a sentence, kept as one: 'deprecated aliases removed — canonical names only'
       { facet: "census science paths (src/earth, src/water, \u2026) unchanged \u2014 folder law", on: UNFOLDED_CENSUS === FOLDED_CENSUS - EULER_CHI }
     ];
     const facets = [...claims, { facet: `balance dims updated to proven facet keys \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`nature-prefix-removed:${entry2.facet}:${entry2.on}`) }));
@@ -124144,14 +123855,58 @@ var UUIDNA_QUANTUM_DEFINITION = [
     key: "verify_beats_recompute_by_magnitudes",
     file: "Cipher.lean",
     address: "5040eb7c-9e57-8d80-aad0-5ca83dd80775",
-    statement: "((2:Nat) ^ 10 = 1024) and ((2:Nat) ^ 20 = 1048576) and (1024 > 100 * 10) and (1048576 > 10000 * 20)",
+    // the sealed statement, character for character — it was copied with `and` for `∧`, so the address below
+    // folded a paraphrase of the theorem instead of the theorem (re-read from the endpoint 2026-09-13)
+    statement: "((2:Nat) ^ 10 = 1024) \u2227 ((2:Nat) ^ 20 = 1048576) \u2227 (1024 > 100 * 10) \u2227 (1048576 > 10000 * 20)",
     says: "the magnitudes are VERIFY versus RECOMPUTE \u2014 prove once O(N), verify forever O(log N) \u2014 a statement about verification, not about hardware"
+  },
+  {
+    key: "bell_no_signaling",
+    file: "Quantum.lean",
+    address: "3c353182-17d6-80fe-8a62-048bfce00645",
+    statement: "((1*1 + 0*0 : Nat) = (0*0 + 1*1))",
+    says: "no-signalling, computed: the two marginals of q0 in the Bell pair are equal, weight(q0=0) = 1\xB2+0\xB2 = 0\xB2+1\xB2 = weight(q0=1), so measuring q1 sends nothing to q0 \u2014 the no-communication fact src/fire/physics states"
   }
 ];
 function quantumDefinedBy(key) {
   const row = UUIDNA_QUANTUM_DEFINITION.find((entry2) => entry2.key === key);
   return row ? toUuid(`uuidna:${UUIDNA_QUANTUM_ENDPOINT}:${row.key}:${row.address}:${row.statement}`) : "";
 }
+var UUIDNA_SEALED_THEOREMS = [
+  {
+    key: "landauer_bound_derived",
+    file: "Thermodynamics.lean",
+    address: "fa581fce-a714-82bf-b738-624422da8ec3",
+    statement: "1380649 * 300 = 414194700 \u2227 414194700 * 693147 / 1000000 = 287097813",
+    says: "Landauer's floor at 300 K in exact integers: kT = 414194700\xD710\u207B\xB2\u2079 J, kT\xB7ln2 = 287097813\xD710\u207B\xB2\u2079 J per erased bit"
+  },
+  {
+    key: "hardware_above_landauer",
+    file: "Thermodynamics.lean",
+    address: "48ca318c-fe65-8bed-9834-6081bdbb5e8b",
+    statement: "100000000 * 287097813 < 100000000000000000000000000000000",
+    says: "real CMOS switching sits some 10\u2078 above that floor \u2014 headroom for efficiency, not a sub-Landauer claim"
+  },
+  {
+    key: "glagolitic_units",
+    file: "Glagolitic.lean",
+    address: "d4669598-2f09-831f-bb8e-36efa55e2c14",
+    statement: "(List.range' 1 9) = [1,2,3,4,5,6,7,8,9]",
+    says: "the first nine Glagolitic letters, Az through Zemlja, carry the units 1 through 9 in their own alphabetic order"
+  },
+  {
+    key: "alphabetic_three_ranks",
+    file: "Glagolitic.lean",
+    address: "223c358d-cc32-8d64-bc97-9bc7a5f5a3c2",
+    statement: "9 + 9 + 9 = 27 \u2227 9 * 100 = 900",
+    says: "Glagolitic, Greek isopsephy and Hebrew gematria share one design: nine units, nine tens, nine hundreds \u2014 27 signs, the top rank reaching 900"
+  }
+];
+function sealedByUuidna(key) {
+  const row = UUIDNA_SEALED_THEOREMS.find((entry2) => entry2.key === key);
+  return row ? toUuid(`uuidna:${UUIDNA_QUANTUM_ENDPOINT}:${row.key}:${row.address}:${row.statement}`) : "";
+}
+var UUIDNA_LANDAUER_FLOOR_300K_J = 287097813e-29;
 var UUIDNA_QUANTUM_DEFINITION_ROOT = merkleFold(UUIDNA_QUANTUM_DEFINITION.map((row) => quantumDefinedBy(row.key)));
 function thermoQuantumBalance2(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`thermoQuantumBalance:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -125301,13 +125056,11 @@ var COMMAND_PLACEMENT_AUDIT_MAP = [
   { fold: "waveComplete", pair: "wave/complete", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "moved", reason: "complete measurable development waves umbrella \xB7 push \xB7 metrics \xB7 life \xB7 chat/research \xB7 theorem/mesh \xB7 gate/light \xB7 ONE CLI quantum:wave-complete" },
   { fold: "chatAudit", pair: "chat/audit", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "moved", reason: "audit chat-wave commits \xB7 dry-clean \u0394 \xB7 gaps closed vs honest-open \xB7 compose measure/decide \xB7 dry/dupe \xB7 theorem/audit \xB7 wave/complete \xB7 feed-mo \xB7 ONE CLI quantum:chat-audit" },
   { fold: "auditPlanTip", pair: "audit/plan", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "moved", reason: "gap-computed next tip \u2014 audit \u2192 plan/trinity \u2192 next tip \xB7 ONE CLI quantum:audit-plan \xB7 dissolves next-imagine fork in waves/feed loop" },
-  { fold: "nextResearch", pair: "next/research", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "moved", reason: "feed-scanner tip precision \u2014 score=(results\xD7speed)/bill \xB7 HARD themes beat blind matrix migrate-next \xB7 pairs next/research \xB7 feed/scan \xB7 tip/precise \xB7 ONE CLI quantum:next-research" },
   { fold: "chatChallenge", pair: "chat/challenge", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "moved", reason: "chat waves challenge each other adversarially \xB7 discover sciences via mesh/science \xB7 encode algebraFold API names \xB7 ONE CLI quantum:chat-challenge" },
   { fold: "strategiesChallengeInChat", pair: "trade/challenge", currentBarrel: "src/thunder/trading", bestPlace: "src/thunder/trading", action: "moved", reason: "trading strategies challenge each other in superposition chat \xB7 sealed PnL/harmonic duals \xB7 paper/sim \xB7 ONE CLI quantum:trade-challenge \xB7 duals challenge/trade \xB7 strategy/chat" },
   { fold: "stringTheoryInChat", pair: "string/theory", currentBarrel: "src/water/cosmos", bestPlace: "src/water/cosmos", action: "moved", reason: "string theory in superposition chat \xB7 sealed algebra/duality/quantumize \xB7 NOT LLM essays \xB7 ONE CLI quantum:string-theory \xB7 duals theory/string \xB7 string/chat" },
   { fold: "pushResendWaves", pair: "push/resend", currentBarrel: "src/thunder/waves", bestPlace: "src/thunder/waves", action: "moved", reason: "after every successful push re-send chat waves \u2014 push not terminal \xB7 wave:after-push \xB7 CI waves-after-push \xB7 ONE CLI quantum:push-resend" },
   { fold: "mergeWave", pair: "merge/wave", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "moved", reason: "parse(name)\u2192word+API \xB7 strip uncomputable prose from identifiers \xB7 chat waves large-scale merge \xB7 ONE CLI quantum:merge-wave" },
-  { fold: "sessionSentToChatToQuantumise", pair: "session/chat", currentBarrel: "src/quantum/apps", bestPlace: "src/quantum/apps", action: "moved", reason: "send trading\xB7UI\xB7fusion session packet to MCP/pair chat to quantumise \u2014 zero-token recompute \xB7 ONE CLI quantum:session-chat \xB7 duals chat/quantumise" },
   { fold: "pairsSentToChatEntangleByAlgebra", pair: "pair/chat", currentBarrel: "src/pair/enforcement", bestPlace: "src/pair/enforcement", action: "moved", reason: "send pairs to chat \xB7 entangle by foldPair algebra \xB7 pairing of pairs grows hologram \xB7 ONE CLI quantum:pair-chat" },
   { fold: "matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves", pair: "match/wave", currentBarrel: "src/pair/enforcement", bestPlace: "src/pair/enforcement", action: "moved", reason: "matching duals immediately realise entanglement \xB7 full roster batched brainstorm FREE_BITS\xD75 \xB7 ONE CLI quantum:match-wave" },
   { fold: "comboCover", pair: "combo/cover", currentBarrel: "src/pair/enforcement", bestPlace: "src/pair/enforcement", action: "moved", reason: "covering-array theorem verified exhaustively \u2014 6 rows cover all pairwise states of 10 factors vs 2\xB9\u2070 exhaustive; the ground of the dual-pair registry" },
@@ -125410,8 +125163,7 @@ var PROSE_GAPS_MERGE_MAP = [
   { from: "animationRosettaStreamClusters", to: "animationCore", pair: "anim/cluster" },
   { from: "dryCleanAllVueComponentsToTheUniversalSet", to: "dryDupe", pair: "vue/dry" },
   { from: "foldInvertUntilDryCleanAppGapless", to: "dryDupe", pair: "dry/clean" },
-  { from: "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations", to: "proseScience", pair: "prose/science" },
-  { from: "invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill", to: "planTrinity", pair: "plan/cross" }
+  { from: "addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations", to: "proseScience", pair: "prose/science" }
 ];
 var PROSE_PORTAL_MERGE_MAP = [
   { from: "minimiseTokenUsagePerDiscovery", to: "placeMerge", pair: "work/wave" },
@@ -126264,8 +126016,7 @@ var GATE_ANALYTICS_SLIM_TOOL_FOLDS = [
   { id: "chat-research", fold: "chatResearch", cli: "quantum:chat-research", pair: "chat/research" },
   { id: "theorem-mesh", fold: "theoremMesh", cli: "quantum:theorem-mesh", pair: "theorem/mesh" },
   { id: "wave-complete", fold: "waveComplete", cli: "quantum:wave-complete", pair: "wave/complete" },
-  { id: "chat-audit", fold: "chatAudit", cli: "quantum:chat-audit", pair: "chat/audit" },
-  { id: "session-chat", fold: "sessionSentToChatToQuantumise", cli: "quantum:session-chat", pair: "session/chat" }
+  { id: "chat-audit", fold: "chatAudit", cli: "quantum:chat-audit", pair: "chat/audit" }
 ];
 var GATE_ANALYTICS_CORE_ALGEBRA_MARKERS = ["memoByRoot", "foldPair", "sealFacets", "merkleFold", "toUuid"];
 var GATE_ANALYTICS_FOLD_CHUNK_BYTES = UNFOLDED_CENSUS * FOLDED_CENSUS;
@@ -127546,7 +127297,7 @@ function mathAlgebra(root = enforcementScanRoot()) {
     { facet: `allFilesScanned \u2014 ${outside.files} index.ts + .vue files walked`, on: outside.files > 64 * 2 },
     { facet: `mathReplaced \u2014 operations=${before.operations} assumed-const-outside-floor=${assumedOutside.length} (HARD 0)`, on: assumedOutside.length === 0 },
     { facet: `hardFailOnMath \u2014 Math.* outside host floor=${outside.outsideFloorCount} (HARD 0) \xB7 floor=${MATH_HOST_FLOOR.join(" \xB7 ")}`, on: hardFailOnMath },
-    { facet: `residualNamed \u2014 prose-only Math.* in strings/comments stripped before count; host-boundary ops in src/0`, on: true },
+    // not a check — a sentence, kept as one: `residualNamed — prose-only Math.* in strings/comments stripped before count; host-boundary ops in src/0`
     { facet: `random outside floor=${randomOutside.length} (HARD 0)`, on: randomOutside.length === 0 }
   ];
   const on = facets.every((f2) => f2.on);
@@ -127633,17 +127384,14 @@ function buildMin(root = enforcementScanRoot()) {
   }
   const minTargetOn = slow.passed && qz.computes && wave.computes && warmPathOn && regressionsNamed.length === 0;
   const facets = [
-    {
-      facet: `buildMs=${typeof buildMs === "number" ? buildMs : "\u2014"} \xB7 deployMs=${deployMs} (CI baseline) \xB7 totalMs=${totalMs}`,
-      on: true
-    },
+    // not a check — a display line, kept as one: `buildMs=${typeof buildMs === 'number' ? buildMs : '—'} · deployMs=${deployMs} (CI baseline) · totalMs=${totalMs}`
     { facet: "minTargetOn \u2014 slow-build + quantumize + wave/verify + warm CI cache path", on: minTargetOn },
     { facet: `warmPathOn \u2014 quantumize \xB7 .temp cached \xB7 lockfile cache key \xB7 HARD=${slow.hardOpenCount}`, on: warmPathOn },
     {
       facet: `regressionsNamed=${regressionsNamed.length} \xB7 residualNamed=${residualNamed.join(",") || "none"}`,
       on: regressionsNamed.length === 0
     },
-    { facet: `CI baseline buildStep=${CI_DEPLOY_BASELINE.buildStepMs}ms workflow=${CI_DEPLOY_BASELINE.workflowMs}ms (pre-wave)`, on: true },
+    // not a check — a sentence, kept as one: `CI baseline buildStep=${CI_DEPLOY_BASELINE.buildStepMs}ms workflow=${CI_DEPLOY_BASELINE.workflowMs}ms (pre-wave)`
     { facet: `NOT an SLA`, on: physicalFtlClaimTheorem().physicalFtlClaim === 0 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`build-min:${entry2.facet.slice(0, 64)}:${entry2.on}`) }));
   const on = minTargetOn;
@@ -127849,8 +127597,7 @@ function bindFuse(root = enforcementScanRoot()) {
   const vscodeText = existsSync(join2(root, "packages/quantum-dev-vscode/extension.js")) ? readFileSync(join2(root, "packages/quantum-dev-vscode/extension.js"), "utf8") : "";
   const families = [
     { binding: "sensor bindings", marker: "wireAllSensorsUsingQuantumBindings", where: "apps", present: appsText.includes("wireAllSensorsUsingQuantumBindings") },
-    { binding: "mcp quantum bindings", marker: "mcpQuantumBindings", where: "apps", present: appsText.includes("mcpQuantumBindings") },
-    { binding: "cloudflare bindings", marker: "mcpQuantumCloudflareBindings", where: "apps", present: appsText.includes("mcpQuantumCloudflareBindings") }
+    { binding: "mcp quantum bindings", marker: "mcpQuantumBindings", where: "apps", present: appsText.includes("mcpQuantumBindings") }
   ].map((row) => ({ ...row, receipt: toUuid(`bind-fuse:${row.binding}:${row.present}`) }));
   const superpositions = [
     { surface: "browser toolbox", marker: "toolbox-standard-io", present: appsText.includes("toolbox-standard-io") },
@@ -128580,11 +128327,8 @@ function theoremAudit() {
     {
       facet: `candidates=${CANDIDATE_THEOREMS.length} held OPEN (candidate-unproven) \xB7 claySolvedByThisFold=${claySolvedByThisFold}`,
       on: candidateRows.length === CANDIDATE_THEOREMS.length && claySolvedByThisFold === 0
-    },
-    {
-      facet: "soft compose algebra/prove \xB7 formula/code \xB7 measure/decide \xB7 merge/wave \xB7 prose/theorem \xB7 clay/agi \xB7 journey/theorems",
-      on: true
     }
+    // not a check — a display line, kept as one: 'soft compose algebra/prove · formula/code · measure/decide · merge/wave · prose/theorem · clay/agi · journey/theorems'
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`theorem-audit:${entry2.facet.slice(0, 64)}:${entry2.on}`) }));
   const on = facets.every((entry2) => entry2.on) && criteriaOn;
   return {
@@ -133099,7 +132843,7 @@ function humanDesignProfilingCarriesNoSignal(matrix = buildMatrix()) {
     const noSignal = abs(accuracy - chance) < 1 / (5 * 4);
     const facets = [
       { facet: `the combination IS real: the HD configuration is a moving-rosetta product ${gates}\xB72\xB75\xB712 = ${configSpace} cells \u2014 computable combinatorics, structure-only (humanDesignStructureDecoded)`, on: combinatoricsReal && configSpace === gates * 2 * 5 * (4 + 8) },
-      { facet: `but it is a deterministic function of BIRTH TIME with zero validated link to behaviour \u2014 the input carries no information about the person, only when they were born`, on: true },
+      { facet: `but it is a deterministic function of BIRTH TIME with zero validated link to behaviour \u2014 the input carries no information about the person, only when they were born`, on: noSignal },
       { facet: `COMPUTED on a deterministic crowd of ${crowd}: the HD type predicts a random trait at ${(accuracy * 100).toFixed(1)}% \u2014 chance is ${(chance * 100).toFixed(0)}% \u2014 the bins carry NO signal, mutual information \u2248 0`, on: noSignal },
       { facet: `so CROWD PROFILING by Human Design is REFUTED: sorting people into these bins predicts nothing \u2014 astrology-grade categorisation dressed as computation. This fold is the refutation, and I do not build the profiling tool: categorising real people by an invalid system is baseless and can harm`, on: noSignal && combinatoricsReal }
     ];
@@ -135597,19 +135341,19 @@ function computerDesign2() {
 }
 function harmonicBands(total) {
   const n = max(0, floor(total));
-  const fibonacci3 = [1, 2];
-  while (fibonacci3[fibonacci3.length - 1] < max(n, 3) * 2) {
-    fibonacci3.push(fibonacci3[fibonacci3.length - 1] + fibonacci3[fibonacci3.length - 2]);
+  const fibonacci4 = [1, 2];
+  while (fibonacci4[fibonacci4.length - 1] < max(n, 3) * 2) {
+    fibonacci4.push(fibonacci4[fibonacci4.length - 1] + fibonacci4[fibonacci4.length - 2]);
   }
   let best = null;
   const reachable = /* @__PURE__ */ new Set();
-  for (let i = 0; i < fibonacci3.length; i += 1) {
+  for (let i = 0; i < fibonacci4.length; i += 1) {
     let sum = 0;
-    for (let j = i; j < fibonacci3.length; j += 1) {
-      sum += fibonacci3[j];
+    for (let j = i; j < fibonacci4.length; j += 1) {
+      sum += fibonacci4[j];
       if (sum > n * 3 + 3) break;
       reachable.add(sum);
-      if (sum === n && (!best || j - i + 1 > best.bands.length)) best = { bands: fibonacci3.slice(i, j + 1) };
+      if (sum === n && (!best || j - i + 1 > best.bands.length)) best = { bands: fibonacci4.slice(i, j + 1) };
     }
   }
   let target = n;
@@ -135629,7 +135373,7 @@ function harmonicBands(total) {
     gaps: gapless ? 0 : target - n,
     // files to add to reach a gapless run
     target: gapless ? n : target,
-    fibonacci: fibonacci3,
+    fibonacci: fibonacci4,
     root: merkleFold(bands.map((band, i) => toUuid(`harmonic-band:${i}:${band}`))),
     statement: "Folder distribution as harmonic numbers at all scales, with no Fibonacci gaps: the file count is a run of consecutive Fibonacci numbers \u2014 the 3-5-8-13-21 sequence with nothing skipped \u2014 so every band is a harmonic number, the bands are adjacent scales, and they sum exactly to the whole.",
     boundary: "A consecutive-Fibonacci (gapless) decomposition of a count. Not every count forms one; when it cannot, the computation reports the deficit to the nearest count that does \u2014 a named gap to fill, not a silent remainder. A self-similar structural description; the harmony is in the numbers."

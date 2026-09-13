@@ -571,3 +571,16 @@ export declare function leanPagePaths(root?: string): {
     };
 }[];
 export declare function leanPageBySlug(slug: string, root?: string): LeanPageRow | null;
+/**
+ * LEAN_SEALED_REGISTRY — registry rows (THEOREM_ATOM_SEED, src/4/6) and the kernel theorems that decide them.
+ * A row is SEALED when its statement is checked by the Lean kernel, not by a TypeScript string: every theorem
+ * below is `by decide` over a finite carrier and depends on NO axiom (#print axioms, 2026-09-13).
+ * scope 'instances' = a general law decided at finite instances; its universal claim stays open.
+ * Checked by scripts/verify/lean-registry.ts (verify:lean-registry, in verify:all).
+ */
+export declare const LEAN_SEALED_REGISTRY: readonly {
+    readonly theorem: string;
+    readonly leanFile: string;
+    readonly theorems: readonly string[];
+    readonly scope: 'exact' | 'instances';
+}[];

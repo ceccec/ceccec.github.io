@@ -127,6 +127,14 @@ export declare function verifyBeatsRecomputeMeasured(): {
 export declare function theExactSimulatorMatchesTheDefinition(): {
     computes: boolean;
     exactOutcomes: string[];
+    bellParity: {
+        even: string;
+        odd: string;
+    };
+    productParity: {
+        even: string;
+        odd: string;
+    };
     scale: number;
     floatProbability: number;
     driftSize: number;

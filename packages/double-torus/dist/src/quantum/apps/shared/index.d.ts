@@ -110,12 +110,6 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly toolId: "mcp-observe";
     readonly dualToolId: "observe-chat";
 }, {
-    readonly fold: "mcpQuantumRouter";
-    readonly pair: "mcp/router";
-    readonly dual: "route/quantum";
-    readonly toolId: "mcp-router";
-    readonly dualToolId: "route-quantum";
-}, {
     readonly fold: "mcpQuantumMetrics";
     readonly pair: "mcp/metrics";
     readonly dual: "metrics/mcp";
@@ -127,30 +121,6 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly dual: "analysis/mcp";
     readonly toolId: "mcp-analysis";
     readonly dualToolId: "analysis-mcp";
-}, {
-    readonly fold: "mcpQuantumGenesis";
-    readonly pair: "mcp/genesis";
-    readonly dual: "genesis/mcp";
-    readonly toolId: "mcp-genesis";
-    readonly dualToolId: "genesis-mcp";
-}, {
-    readonly fold: "mcpQuantumPhysics";
-    readonly pair: "mcp/physics";
-    readonly dual: "physics/mcp";
-    readonly toolId: "mcp-physics";
-    readonly dualToolId: "physics-mcp";
-}, {
-    readonly fold: "mcpQuantumMath";
-    readonly pair: "mcp/math";
-    readonly dual: "math/mcp";
-    readonly toolId: "mcp-math";
-    readonly dualToolId: "math-mcp";
-}, {
-    readonly fold: "mcpQuantumVortex";
-    readonly pair: "mcp/vortex";
-    readonly dual: "vortex/mcp";
-    readonly toolId: "mcp-vortex";
-    readonly dualToolId: "vortex-mcp";
 }, {
     readonly fold: "mcpQuantumCatalog";
     readonly pair: "mcp/catalog";
@@ -164,12 +134,6 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly toolId: "mcp-cluster";
     readonly dualToolId: "cluster-mcp";
 }, {
-    readonly fold: "mcpQuantumReverse";
-    readonly pair: "mcp/reverse";
-    readonly dual: "reverse/quantum";
-    readonly toolId: "mcp-reverse";
-    readonly dualToolId: "reverse-quantum";
-}, {
     readonly fold: "mcpQuantumSign";
     readonly pair: "mcp/sign";
     readonly dual: "sign/quantum";
@@ -181,36 +145,6 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly dual: "dirs/mcp";
     readonly toolId: "mcp-dirs";
     readonly dualToolId: "dirs-mcp";
-}, {
-    readonly fold: "mcpQuantumInverse";
-    readonly pair: "mcp/inverse";
-    readonly dual: "inverse/quantum";
-    readonly toolId: "mcp-inverse";
-    readonly dualToolId: "inverse-quantum";
-}, {
-    readonly fold: "mcpQuantumFold";
-    readonly pair: "mcp/fold";
-    readonly dual: "fold/quantum";
-    readonly toolId: "mcp-fold";
-    readonly dualToolId: "fold-quantum";
-}, {
-    readonly fold: "mcpQuantumRosetta";
-    readonly pair: "mcp/rosetta";
-    readonly dual: "rosetta/mcp";
-    readonly toolId: "mcp-rosetta";
-    readonly dualToolId: "rosetta-mcp";
-}, {
-    readonly fold: "mcpQuantumUniverse";
-    readonly pair: "mcp/universe";
-    readonly dual: "universe/mcp";
-    readonly toolId: "mcp-universe";
-    readonly dualToolId: "universe-mcp";
-}, {
-    readonly fold: "mcpQuantumMultiverse";
-    readonly pair: "mcp/multi";
-    readonly dual: "multi/verse";
-    readonly toolId: "mcp-multi";
-    readonly dualToolId: "multi-verse";
 }, {
     readonly fold: "mcpQuantumInfinity";
     readonly pair: "mcp/inf";
@@ -224,41 +158,11 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly toolId: "mcp-hw";
     readonly dualToolId: "hw-mcp";
 }, {
-    readonly fold: "mcpQuantumReactor";
-    readonly pair: "mcp/reactor";
-    readonly dual: "reactor/mcp";
-    readonly toolId: "mcp-reactor";
-    readonly dualToolId: "reactor-mcp";
-}, {
-    readonly fold: "mcpQuantumReaction";
-    readonly pair: "mcp/reaction";
-    readonly dual: "reaction/mcp";
-    readonly toolId: "mcp-reaction";
-    readonly dualToolId: "reaction-mcp";
-}, {
-    readonly fold: "mcpQuantumFusion";
-    readonly pair: "mcp/fusion";
-    readonly dual: "fusion/mcp";
-    readonly toolId: "mcp-fusion";
-    readonly dualToolId: "fusion-mcp";
-}, {
     readonly fold: "mcpQuantumAnim";
     readonly pair: "mcp/anim";
     readonly dual: "anim/mcp";
     readonly toolId: "mcp-anim";
     readonly dualToolId: "anim-mcp";
-}, {
-    readonly fold: "mcpQuantumSound";
-    readonly pair: "mcp/sound";
-    readonly dual: "sound/vibe";
-    readonly toolId: "mcp-sound";
-    readonly dualToolId: "sound-vibe";
-}, {
-    readonly fold: "mcpQuantumDev";
-    readonly pair: "mcp/dev";
-    readonly dual: "dev/quantum";
-    readonly toolId: "mcp-dev";
-    readonly dualToolId: "dev-quantum";
 }, {
     readonly fold: "mcpQuantumSolution";
     readonly pair: "mcp/solution";
@@ -266,89 +170,11 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly toolId: "mcp-solution";
     readonly dualToolId: "solution-mcp";
 }, {
-    readonly fold: "mcpQuantumClown";
-    readonly pair: "mcp/clown";
-    readonly dual: "clown/mcp";
-    readonly toolId: "mcp-clown";
-    readonly dualToolId: "clown-mcp";
-}, {
     readonly fold: "mcpQuantumReceipt";
     readonly pair: "mcp/receipt";
     readonly dual: "receipt/mcp";
     readonly toolId: "mcp-receipt";
     readonly dualToolId: "receipt-mcp";
-}, {
-    readonly fold: "mcpQuantumVibration";
-    readonly pair: "mcp/vibration";
-    readonly dual: "vibration/mcp";
-    readonly toolId: "mcp-vibration";
-    readonly dualToolId: "vibration-mcp";
-}, {
-    readonly fold: "mcpQuantumText";
-    readonly pair: "mcp/text";
-    readonly dual: "text/mcp";
-    readonly toolId: "mcp-text";
-    readonly dualToolId: "text-mcp";
-}, {
-    readonly fold: "mcpQuantumSpeech";
-    readonly pair: "mcp/speech";
-    readonly dual: "speech/mcp";
-    readonly toolId: "mcp-speech";
-    readonly dualToolId: "speech-mcp";
-}, {
-    readonly fold: "mcpQuantumDictation";
-    readonly pair: "mcp/dictation";
-    readonly dual: "dictation/mcp";
-    readonly toolId: "mcp-dictation";
-    readonly dualToolId: "dictation-mcp";
-}, {
-    readonly fold: "mcpQuantumIntonation";
-    readonly pair: "mcp/intonation";
-    readonly dual: "intonation/mcp";
-    readonly toolId: "mcp-intonation";
-    readonly dualToolId: "intonation-mcp";
-}, {
-    readonly fold: "mcpQuantumDialect";
-    readonly pair: "mcp/dialect";
-    readonly dual: "dialect/mcp";
-    readonly toolId: "mcp-dialect";
-    readonly dualToolId: "dialect-mcp";
-}, {
-    readonly fold: "mcpQuantumLanguage";
-    readonly pair: "mcp/language";
-    readonly dual: "language/mcp";
-    readonly toolId: "mcp-language";
-    readonly dualToolId: "language-mcp";
-}, {
-    readonly fold: "mcpQuantumScript";
-    readonly pair: "mcp/script";
-    readonly dual: "script/mcp";
-    readonly toolId: "mcp-script";
-    readonly dualToolId: "script-mcp";
-}, {
-    readonly fold: "mcpQuantumBook";
-    readonly pair: "mcp/book";
-    readonly dual: "book/mcp";
-    readonly toolId: "mcp-book";
-    readonly dualToolId: "book-mcp";
-}, {
-    readonly fold: "mcpQuantumLibrary";
-    readonly pair: "mcp/library";
-    readonly dual: "library/mcp";
-    readonly toolId: "mcp-library";
-    readonly dualToolId: "library-mcp";
-}, {
-    readonly fold: "mcpQuantumState";
-    readonly pair: "mcp/state";
-    readonly dual: "state/mcp";
-    readonly toolId: "mcp-state";
-    readonly dualToolId: "state-mcp";
-}, {
-    readonly fold: "mcpQuantumMusic";
-    readonly pair: "mcp/music";
-    readonly dual: "music/mcp";
-    readonly toolId: "mcp-music";
-    readonly dualToolId: "music-mcp";
 }, {
     readonly fold: "mcpQuantumCpu";
     readonly pair: "mcp/cpu";
@@ -386,12 +212,6 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly toolId: "mcp-period";
     readonly dualToolId: "period-mcp";
 }, {
-    readonly fold: "mcpQuantumDot";
-    readonly pair: "mcp/dot";
-    readonly dual: "dot/mcp";
-    readonly toolId: "mcp-dot";
-    readonly dualToolId: "dot-mcp";
-}, {
     readonly fold: "mcpQuantumIndex";
     readonly pair: "mcp/index";
     readonly dual: "index/mcp";
@@ -416,29 +236,11 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly toolId: "mcp-token";
     readonly dualToolId: "token-mcp";
 }, {
-    readonly fold: "mcpQuantumDeploy";
-    readonly pair: "mcp/deploy";
-    readonly dual: "deploy/mcp";
-    readonly toolId: "mcp-deploy";
-    readonly dualToolId: "deploy-mcp";
-}, {
     readonly fold: "mcpQuantumBindings";
     readonly pair: "mcp/bindings";
     readonly dual: "bindings/mcp";
     readonly toolId: "mcp-bindings";
     readonly dualToolId: "bindings-mcp";
-}, {
-    readonly fold: "mcpQuantumCloudflareBindings";
-    readonly pair: "mcp/cloudflare";
-    readonly dual: "cloudflare/mcp";
-    readonly toolId: "mcp-cloudflare";
-    readonly dualToolId: "cloudflare-mcp";
-}, {
-    readonly fold: "mcpQuantumReview";
-    readonly pair: "mcp/review";
-    readonly dual: "review/mcp";
-    readonly toolId: "mcp-review";
-    readonly dualToolId: "review-mcp";
 }, {
     readonly fold: "mcpQuantumEfficiency";
     readonly pair: "mcp/efficiency";
@@ -451,12 +253,6 @@ export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly dual: "security/mcp";
     readonly toolId: "mcp-security";
     readonly dualToolId: "security-mcp";
-}, {
-    readonly fold: "mcpQuantumDesign";
-    readonly pair: "mcp/design";
-    readonly dual: "design/mcp";
-    readonly toolId: "mcp-design";
-    readonly dualToolId: "design-mcp";
 }, {
     readonly fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill";
     readonly pair: "mcp/fill";

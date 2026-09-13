@@ -54345,11 +54345,51 @@ export declare const UUIDNA_QUANTUM_DEFINITION: readonly [{
     readonly key: "verify_beats_recompute_by_magnitudes";
     readonly file: "Cipher.lean";
     readonly address: "5040eb7c-9e57-8d80-aad0-5ca83dd80775";
-    readonly statement: "((2:Nat) ^ 10 = 1024) and ((2:Nat) ^ 20 = 1048576) and (1024 > 100 * 10) and (1048576 > 10000 * 20)";
+    readonly statement: "((2:Nat) ^ 10 = 1024) ∧ ((2:Nat) ^ 20 = 1048576) ∧ (1024 > 100 * 10) ∧ (1048576 > 10000 * 20)";
     readonly says: "the magnitudes are VERIFY versus RECOMPUTE — prove once O(N), verify forever O(log N) — a statement about verification, not about hardware";
+}, {
+    readonly key: "bell_no_signaling";
+    readonly file: "Quantum.lean";
+    readonly address: "3c353182-17d6-80fe-8a62-048bfce00645";
+    readonly statement: "((1*1 + 0*0 : Nat) = (0*0 + 1*1))";
+    readonly says: "no-signalling, computed: the two marginals of q0 in the Bell pair are equal, weight(q0=0) = 1²+0² = 0²+1² = weight(q0=1), so measuring q1 sends nothing to q0 — the no-communication fact src/fire/physics states";
 }];
 /** The definition COMPUTES: each sealed theorem folds to the address a claim stands on. */
 export declare function quantumDefinedBy(key: string): string;
+/**
+ * uuidna.com/mcp's sealed theorems BEYOND the quantum definition — the same fold, the same rule: each row read from
+ * the endpoint (uuidna_theorems, 2026-09-14), address and statement exactly as served, and a claim here stands on
+ * the address it folds. Streamed in because a fold of this site states the same fact with a number typed by hand.
+ */
+export declare const UUIDNA_SEALED_THEOREMS: readonly [{
+    readonly key: "landauer_bound_derived";
+    readonly file: "Thermodynamics.lean";
+    readonly address: "fa581fce-a714-82bf-b738-624422da8ec3";
+    readonly statement: "1380649 * 300 = 414194700 ∧ 414194700 * 693147 / 1000000 = 287097813";
+    readonly says: "Landauer's floor at 300 K in exact integers: kT = 414194700×10⁻²⁹ J, kT·ln2 = 287097813×10⁻²⁹ J per erased bit";
+}, {
+    readonly key: "hardware_above_landauer";
+    readonly file: "Thermodynamics.lean";
+    readonly address: "48ca318c-fe65-8bed-9834-6081bdbb5e8b";
+    readonly statement: "100000000 * 287097813 < 100000000000000000000000000000000";
+    readonly says: "real CMOS switching sits some 10⁸ above that floor — headroom for efficiency, not a sub-Landauer claim";
+}, {
+    readonly key: "glagolitic_units";
+    readonly file: "Glagolitic.lean";
+    readonly address: "d4669598-2f09-831f-bb8e-36efa55e2c14";
+    readonly statement: "(List.range' 1 9) = [1,2,3,4,5,6,7,8,9]";
+    readonly says: "the first nine Glagolitic letters, Az through Zemlja, carry the units 1 through 9 in their own alphabetic order";
+}, {
+    readonly key: "alphabetic_three_ranks";
+    readonly file: "Glagolitic.lean";
+    readonly address: "223c358d-cc32-8d64-bc97-9bc7a5f5a3c2";
+    readonly statement: "9 + 9 + 9 = 27 ∧ 9 * 100 = 900";
+    readonly says: "Glagolitic, Greek isopsephy and Hebrew gematria share one design: nine units, nine tens, nine hundreds — 27 signs, the top rank reaching 900";
+}];
+/** A sealed uuidna theorem folded to the address a claim here stands on — '' when the key is not in the mirror. */
+export declare function sealedByUuidna(key: string): string;
+/** landauer_bound_derived's floor, in joules per erased bit at 300 K — the kernel's integer, not a typed decimal. */
+export declare const UUIDNA_LANDAUER_FLOOR_300K_J = 2.87097813e-21;
 /** The whole definition folded to one root — change any statement and this moves. */
 export declare const UUIDNA_QUANTUM_DEFINITION_ROOT: string;
 export declare function thermoQuantumBalance(matrix?: MindMatrix, at?: number): {

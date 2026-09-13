@@ -89,6 +89,19 @@ export declare function servedRouteFamilies(matrix?: MindMatrix): {
  *  fixed point at seven scales. Every line is the fold's own statement (the discovered numbers), no
  *  characterisation typed. README + home, one generator. */
 export declare function clayMillenniumLecturesMarkdownSection(matrix?: MindMatrix, linkBase?: string): string[];
+/** THE ONE ABSTRACT (user, 2026-09-14: "dry clean readme and use in all publications"). README.md, CITATION.cff and
+ *  the npm package README carry this paragraph, written by the readme sync on every commit — no publication authors its
+ *  own. CITATION.cff had drifted to "11 files" and a 1,329-row ledger while the README said 20 and 731; now every count
+ *  is read at write time, and the scope line the 2026-08-20 audit fixed is part of the same sentence everywhere. */
+export declare function publicationAbstract(matrix?: MindMatrix): {
+    text: string;
+    root: string;
+};
+/** Every file that publishes the abstract besides README.md. The readme sync splices publicationAbstract() into each. */
+export declare const PUBLICATION_ABSTRACT_SURFACES: readonly ["CITATION.cff", "packages/double-torus/README.md"];
+/** The file with its abstract replaced: the folded `abstract: >-` block of a .cff, or the marked block under a markdown
+ *  title (inserted after the first paragraph break the first time). Anything the splice cannot place is returned as is. */
+export declare function withPublicationAbstract(path: string, text: string, abstract: string): string;
 export declare function readmeMarkdown(matrix?: MindMatrix): string;
 /** The VitePress home body — the SAME theorem monograph, projected for the site: computed frontmatter
  *  (the abstract as description, siteConfig keywords), page-route links instead of source permalinks.

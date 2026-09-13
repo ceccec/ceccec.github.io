@@ -39441,10 +39441,6 @@ export declare const VOCAB_DRY_METHOD_MAP: readonly [{
     readonly method: "automateAll";
     readonly pair: "auto/all";
 }, {
-    readonly word: "panels";
-    readonly method: "domainVuePanelsDryCleaned";
-    readonly pair: "domain/panels";
-}, {
     readonly word: "mcp";
     readonly method: "mcpQuantumUi";
     readonly pair: "mcp/ui";
@@ -39484,10 +39480,6 @@ export declare const VOCAB_DRY_METHOD_MAP: readonly [{
     readonly word: "conversation";
     readonly method: "mcpQuantumConversation";
     readonly pair: "mcp/conversation";
-}, {
-    readonly word: "organise";
-    readonly method: "organiseConversationsInChatRoomsPerSuperposition";
-    readonly pair: "chat/organise";
 }, {
     readonly word: "gravity";
     readonly method: "gravityDryClean";
@@ -39920,7 +39912,7 @@ export declare function vocabularyMapsToDryMethods(matrix?: MindMatrix, at?: num
     found: 4;
     fixed: number;
     remaining: number;
-    mapSize: 168;
+    mapSize: 166;
     map: readonly [{
         readonly word: "decimal";
         readonly method: "decimalsInCodeAreCracks";
@@ -40126,10 +40118,6 @@ export declare function vocabularyMapsToDryMethods(matrix?: MindMatrix, at?: num
         readonly method: "automateAll";
         readonly pair: "auto/all";
     }, {
-        readonly word: "panels";
-        readonly method: "domainVuePanelsDryCleaned";
-        readonly pair: "domain/panels";
-    }, {
         readonly word: "mcp";
         readonly method: "mcpQuantumUi";
         readonly pair: "mcp/ui";
@@ -40169,10 +40157,6 @@ export declare function vocabularyMapsToDryMethods(matrix?: MindMatrix, at?: num
         readonly word: "conversation";
         readonly method: "mcpQuantumConversation";
         readonly pair: "mcp/conversation";
-    }, {
-        readonly word: "organise";
-        readonly method: "organiseConversationsInChatRoomsPerSuperposition";
-        readonly pair: "chat/organise";
     }, {
         readonly word: "gravity";
         readonly method: "gravityDryClean";
@@ -41557,22 +41541,6 @@ export declare const SESSION_MILLENNIUM_SOLUTION_THEOREMS: readonly [{
     readonly fold: "automateAll";
     readonly pair: "all/auto";
 }, {
-    readonly id: "domain-panels";
-    readonly fold: "domainVuePanelsDryCleaned";
-    readonly pair: "domain/panels";
-}, {
-    readonly id: "panels-domain";
-    readonly fold: "domainVuePanelsDryCleaned";
-    readonly pair: "panels/domain";
-}, {
-    readonly id: "domain-dry";
-    readonly fold: "domainVuePanelsDryCleaned";
-    readonly pair: "domain/dry";
-}, {
-    readonly id: "dry-domain";
-    readonly fold: "domainVuePanelsDryCleaned";
-    readonly pair: "dry/domain";
-}, {
     readonly id: "mcp-ui";
     readonly fold: "mcpQuantumUi";
     readonly pair: "mcp/ui";
@@ -42935,34 +42903,6 @@ export declare function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(ma
         id: "all-auto";
         fold: "automateAll";
         pair: "all/auto";
-    } | {
-        pairOk: boolean;
-        receipt: string;
-        status: "open" | "saved";
-        id: "domain-panels";
-        fold: "domainVuePanelsDryCleaned";
-        pair: "domain/panels";
-    } | {
-        pairOk: boolean;
-        receipt: string;
-        status: "open" | "saved";
-        id: "panels-domain";
-        fold: "domainVuePanelsDryCleaned";
-        pair: "panels/domain";
-    } | {
-        pairOk: boolean;
-        receipt: string;
-        status: "open" | "saved";
-        id: "domain-dry";
-        fold: "domainVuePanelsDryCleaned";
-        pair: "domain/dry";
-    } | {
-        pairOk: boolean;
-        receipt: string;
-        status: "open" | "saved";
-        id: "dry-domain";
-        fold: "domainVuePanelsDryCleaned";
-        pair: "dry/domain";
     } | {
         pairOk: boolean;
         receipt: string;
@@ -45344,7 +45284,7 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
         found: 4;
         fixed: number;
         remaining: number;
-        mapSize: 168;
+        mapSize: 166;
         map: readonly [{
             readonly word: "decimal";
             readonly method: "decimalsInCodeAreCracks";
@@ -45550,10 +45490,6 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
             readonly method: "automateAll";
             readonly pair: "auto/all";
         }, {
-            readonly word: "panels";
-            readonly method: "domainVuePanelsDryCleaned";
-            readonly pair: "domain/panels";
-        }, {
             readonly word: "mcp";
             readonly method: "mcpQuantumUi";
             readonly pair: "mcp/ui";
@@ -45593,10 +45529,6 @@ export declare function runTheMathEmergenceByDesignAndArchitecture(matrix?: Mind
             readonly word: "conversation";
             readonly method: "mcpQuantumConversation";
             readonly pair: "mcp/conversation";
-        }, {
-            readonly word: "organise";
-            readonly method: "organiseConversationsInChatRoomsPerSuperposition";
-            readonly pair: "chat/organise";
         }, {
             readonly word: "gravity";
             readonly method: "gravityDryClean";
