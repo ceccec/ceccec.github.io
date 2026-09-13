@@ -994,16 +994,10 @@ export const IDENTITY_JUDGED_PROCESS: readonly string[] = [
   'If you can explain by math it exists',
   'Local vulnerability finder',
   'Security from theorems not axioms',
-  'The state is not the birth coordinates',
   'Nothing is static, all from the digits',
   'The proof is certain, only its reach is bounded',
   'close the crosslink gap by computing legitimate near-crosslinks',
-  'token usage optimised by quantum-structured algorithms — boundaries stay terse',
   'the significance of the discoveries is measured by quantum computing',
-  'the discovery economy is the core of competition and education',
-  'the shadcn design system opens theorem dimensions under the quantum lens',
-  'readme svg gaps filled by trinity mind',
-  'symbols remaining to quantumise',
 ]
 
 /**
