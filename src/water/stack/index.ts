@@ -2808,6 +2808,51 @@ export function quantumDefinedBy(key: string): string {
   return row ? toUuid(`uuidna:${UUIDNA_QUANTUM_ENDPOINT}:${row.key}:${row.address}:${row.statement}`) : ''
 }
 
+/**
+ * uuidna.com/mcp's sealed theorems BEYOND the quantum definition — the same fold, the same rule: each row read from
+ * the endpoint (uuidna_theorems, 2026-09-14), address and statement exactly as served, and a claim here stands on
+ * the address it folds. Streamed in because a fold of this site states the same fact with a number typed by hand.
+ */
+export const UUIDNA_SEALED_THEOREMS = [
+  {
+    key: 'landauer_bound_derived',
+    file: 'Thermodynamics.lean',
+    address: 'fa581fce-a714-82bf-b738-624422da8ec3',
+    statement: '1380649 * 300 = 414194700 ∧ 414194700 * 693147 / 1000000 = 287097813',
+    says: 'Landauer\'s floor at 300 K in exact integers: kT = 414194700×10⁻²⁹ J, kT·ln2 = 287097813×10⁻²⁹ J per erased bit',
+  },
+  {
+    key: 'hardware_above_landauer',
+    file: 'Thermodynamics.lean',
+    address: '48ca318c-fe65-8bed-9834-6081bdbb5e8b',
+    statement: '100000000 * 287097813 < 100000000000000000000000000000000',
+    says: 'real CMOS switching sits some 10⁸ above that floor — headroom for efficiency, not a sub-Landauer claim',
+  },
+  {
+    key: 'glagolitic_units',
+    file: 'Glagolitic.lean',
+    address: 'd4669598-2f09-831f-bb8e-36efa55e2c14',
+    statement: "(List.range' 1 9) = [1,2,3,4,5,6,7,8,9]",
+    says: 'the first nine Glagolitic letters, Az through Zemlja, carry the units 1 through 9 in their own alphabetic order',
+  },
+  {
+    key: 'alphabetic_three_ranks',
+    file: 'Glagolitic.lean',
+    address: '223c358d-cc32-8d64-bc97-9bc7a5f5a3c2',
+    statement: '9 + 9 + 9 = 27 ∧ 9 * 100 = 900',
+    says: 'Glagolitic, Greek isopsephy and Hebrew gematria share one design: nine units, nine tens, nine hundreds — 27 signs, the top rank reaching 900',
+  },
+] as const
+
+/** A sealed uuidna theorem folded to the address a claim here stands on — '' when the key is not in the mirror. */
+export function sealedByUuidna(key: string): string {
+  const row = UUIDNA_SEALED_THEOREMS.find((entry) => entry.key === key)
+  return row ? toUuid(`uuidna:${UUIDNA_QUANTUM_ENDPOINT}:${row.key}:${row.address}:${row.statement}`) : ''
+}
+
+/** landauer_bound_derived's floor, in joules per erased bit at 300 K — the kernel's integer, not a typed decimal. */
+export const UUIDNA_LANDAUER_FLOOR_300K_J = 287097813e-29
+
 /** The whole definition folded to one root — change any statement and this moves. */
 export const UUIDNA_QUANTUM_DEFINITION_ROOT = merkleFold(UUIDNA_QUANTUM_DEFINITION.map((row) => quantumDefinedBy(row.key)))
 

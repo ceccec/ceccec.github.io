@@ -1,5 +1,6 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — auxiliary pure-leaf folds: no cross-deps to other folds.ts functions.
 // ☰ Qián · Heaven · creative · lower·yin · spread — type contracts for all fold return shapes
+import * as __ns_water_stack from '../../water/stack/index.ts'
 import { phase } from '../../6/4/index.ts'
 import type {
   MindMatrix, FusionReactor, ReactorItem, DistributedCompute, DoubleTorusMathReport,
@@ -2121,6 +2122,8 @@ export function glagoliticAlphabetDecoded(matrix: MindMatrix = buildMatrix()) {
     { check: 'the values follow the alphabetical ladder (1,9,10,90,100,1000)', on: glagoliticValue(1) === 1 && glagoliticValue(9) === 9 && glagoliticValue((5 * 2)) === (5 * 2) && glagoliticValue((9 * 2)) === (9 * 5 * 2) && glagoliticValue(19) === 100 && glagoliticValue((7 * 4)) === (100 * 5 * 2) },
     { check: 'živěte = 7 — Glagolitic’s own order, not Cyrillic’s Greek values', on: glagoliticValue(7) === 7 && letters[6].name === 'živěte' },
     { check: 'a Glagolitic word sums by the ladder (azъ·buky·vědě = 1+2+3)', on: toGlagoliticNumber('Ⰰⰱⰲ') === 6 && toGlagoliticNumber(letters[0].glyph + letters[8].glyph) === 1 + 9 },
+    { check: 'the first nine letters count 1…9 in their own order — glagolitic_units, sealed at uuidna.com/mcp', on: letters.slice(0, 9).every((letter, i) => letter.value === i + 1) && isUuid(__ns_water_stack.sealedByUuidna('glagolitic_units')) },
+    { check: 'three ranks of nine — units, tens, hundreds, 27 signs to 900, the design Greek and Hebrew numerals share — alphabetic_three_ranks, sealed at uuidna.com/mcp', on: [1, (5 * 2), 100].every((rank, r) => letters.slice(r * 9, r * 9 + 9).every((letter, i) => letter.value === rank * (i + 1))) && letters[27 - 1]?.value === 9 * 100 && isUuid(__ns_water_stack.sealedByUuidna('alphabetic_three_ranks')) },
     { check: 'the names spell the acrostic — the alphabet is a message', on: acrostic.names.slice(0, 3).join(' ') === 'azъ buky vědě' && acrostic.opening.includes('I know letters') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-alphabet:${entry.check}:${entry.on}`) }))
   return {

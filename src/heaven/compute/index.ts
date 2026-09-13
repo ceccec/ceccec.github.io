@@ -1016,8 +1016,8 @@ export function landauerFloorComputed(matrix: MindMatrix = buildMatrix()) {
     const eff = __ns_quantum_science.efficiency() // the standard + deep optimisations (reuse erases fewer bits)
     const ordersAboveFloor = roundTo(log10(realOpJoules / floorPerBit), 1)
     const facets = [
-      { facet: 'Landauer floor kT·ln2 computed from the sealed primitive ≈ 2.87e-21 J/bit at 300 K', on: abs(floorPerBit - 2.872e-21) < 1e-23 },
-      { facet: 'real CMOS operations sit ~' + ordersAboveFloor + ' orders ABOVE the floor — irreversible computation dissipates heat', on: realOpJoules > floorPerBit && ordersAboveFloor > 9 },
+      { facet: `Landauer floor kT·ln2 computed from the sealed primitive — ${floorPerBit.toExponential(6)} J/bit at 300 K, the integer 287097813×10⁻²⁹ J that landauer_bound_derived seals at uuidna.com/mcp (${__ns_water_stack.sealedByUuidna('landauer_bound_derived').slice(0, 8)})`, on: abs(floorPerBit - __ns_water_stack.UUIDNA_LANDAUER_FLOOR_300K_J) < 1e-27 && isUuid(__ns_water_stack.sealedByUuidna('landauer_bound_derived')) },
+      { facet: 'real CMOS operations sit ~' + ordersAboveFloor + ' orders ABOVE the floor — irreversible computation dissipates heat', on: realOpJoules > floorPerBit && ordersAboveFloor > 9 && isUuid(__ns_water_stack.sealedByUuidna('hardware_above_landauer')) },
       { facet: 'memoByRoot content-addressed reuse erases FEWER bits — the same work is never done twice (efficiency() optimised)', on: eff.optimized },
       { facet: `HONEST — approaching the floor by doing less work is real efficiency; NO computation beats kT·ln2 (2nd law) · measured floorPerBit=${floorPerBit}`, on: floorPerBit > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`landauer-floor:${entry.facet}:${entry.on}`) }))
