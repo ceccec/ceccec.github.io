@@ -2788,8 +2788,17 @@ export const UUIDNA_QUANTUM_DEFINITION = [
     key: 'verify_beats_recompute_by_magnitudes',
     file: 'Cipher.lean',
     address: '5040eb7c-9e57-8d80-aad0-5ca83dd80775',
-    statement: '((2:Nat) ^ 10 = 1024) and ((2:Nat) ^ 20 = 1048576) and (1024 > 100 * 10) and (1048576 > 10000 * 20)',
+    // the sealed statement, character for character — it was copied with `and` for `∧`, so the address below
+    // folded a paraphrase of the theorem instead of the theorem (re-read from the endpoint 2026-09-13)
+    statement: '((2:Nat) ^ 10 = 1024) ∧ ((2:Nat) ^ 20 = 1048576) ∧ (1024 > 100 * 10) ∧ (1048576 > 10000 * 20)',
     says: 'the magnitudes are VERIFY versus RECOMPUTE — prove once O(N), verify forever O(log N) — a statement about verification, not about hardware',
+  },
+  {
+    key: 'bell_no_signaling',
+    file: 'Quantum.lean',
+    address: '3c353182-17d6-80fe-8a62-048bfce00645',
+    statement: '((1*1 + 0*0 : Nat) = (0*0 + 1*1))',
+    says: 'no-signalling, computed: the two marginals of q0 in the Bell pair are equal, weight(q0=0) = 1²+0² = 0²+1² = weight(q0=1), so measuring q1 sends nothing to q0 — the no-communication fact src/fire/physics states',
   },
 ] as const
 

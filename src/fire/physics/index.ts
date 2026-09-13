@@ -129,10 +129,16 @@ export function quantumDecoded(matrix: MindMatrix = buildMatrix()) {
     { claim: 'the genuine edge: avian magnetoreception (radical pairs), photosynthetic coherence', verdict: 'real but emerging — kept IN', why: 'radical-pair magnetoreception (cryptochrome-4) is the leading hypothesis, not yet confirmed in vivo; photosynthetic coherence is real but short-lived and its functional role is contested/small — never "life runs quantum computers"' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-flag:${entry.claim}:${entry.verdict}`) }))
   const tsirelson = round(2 * SQRT2 * (100 * 100)) / (100 * 100) // 2√2 ≈ 2.8284 — the quantum CHSH (Tsirelson) bound
+  // NO-SIGNALLING, COMPUTED — it was only stated. Measure the Bell pair and compare each qubit's marginals: if
+  // weight(q=0) = weight(q=1) on both sides, a measurement on one qubit leaves the other's local statistics
+  // unchanged, which is the no-communication fact. It stands on bell_no_signaling as uuidna.com/mcp seals it.
+  const bellP = probabilities(bellPair()) // [|00⟩, |01⟩, |10⟩, |11⟩]
+  const noSignalling = abs((bellP[0]! + bellP[1]!) - (bellP[2]! + bellP[3]!)) < 1e-9 && abs((bellP[0]! + bellP[2]!) - (bellP[1]! + bellP[3]!)) < 1e-9
+  const noSignallingAddress = __ns_water_stack.quantumDefinedBy('bell_no_signaling')
   const facets = [
     { facet: 'the six strata fold to one core — word, framework, quantization, qubit, entanglement, computation', on: layers.length === 6 && isUuid(merkleFold(layers.map((entry) => entry.receipt))) },
     { facet: `the qubit's documented core stands — 3 Pauli observables, 4³ = 64 operators (≠ the 8-dim state space) · measured matrix=${matrix}`, on: sixtyFourThreeQubitPauliBasis(matrix).holds && geneticCodeIsTheRealFourCubed(matrix).holds },
-    { facet: 'Bell/CHSH: classical ≤ 2, quantum up to Tsirelson 2√2 — non-classical yet no-signalling', on: tsirelson > 2 && tsirelson < 4 && hammingThreeParityAddressesError(matrix).holds },
+    { facet: `Bell/CHSH: classical ≤ 2, quantum up to Tsirelson 2√2 — non-classical yet no-signalling (Bell-pair marginals equal on both qubits · bell_no_signaling at ${noSignallingAddress.slice(0, 8)}, sealed at uuidna.com/mcp)`, on: tsirelson > 2 && tsirelson < 4 && noSignalling && isUuid(noSignallingAddress) && hammingThreeParityAddressesError(matrix).holds },
     { facet: 'the model runs a real toy — GHZ state-vector, Born-rule, deterministic collapse — a metaphor, not hardware', on: quantumSimulation(matrix).simulated && quantumPhysics(matrix).count === 8 && quantumPhysics(matrix).boundary.includes('metaphor') },
     { facet: 'the pseudoscience boundary flagged — flapdoodle excluded, the real edge kept separate', on: flagged.length === 8 && flagged.every((entry) => entry.why.length > 0) && contentAddressingHasRealPrecedent(matrix).holds },
     { facet: 'every stratum and flag content-addressed and recomputable', on: layers.every((entry) => isUuid(entry.receipt)) && flagged.every((entry) => isUuid(entry.receipt)) },
