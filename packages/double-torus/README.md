@@ -177,13 +177,14 @@ The build fails unless all **49** completely-quantum contract exports are presen
 
 **CC BY-NC-ND 4.0** © ceccec — see [LICENSE](./LICENSE).
 
-> **License change in 1.4.1.** Version 1.4.0 was published under the **MIT**
-> license. Starting with 1.4.1 this package is licensed under
+> **License change in 1.5.0.** Version 1.4.0 was published under the **MIT**
+> license. Starting with 1.5.0 this package is licensed under
 > **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International**,
 > which does not permit commercial use or the distribution of modified versions.
+> (1.4.1 carried the change first but was never published.)
 >
-> Because 1.4.1 is a patch release, a `^1.4.0` or `~1.4.0` range will resolve to
-> it automatically. If you rely on the MIT terms, pin `1.4.0` exactly:
+> A `^1.4.0` range will resolve to 1.5.0 automatically; a `~1.4.0` range will
+> not. If you rely on the MIT terms, pin `1.4.0` exactly:
 >
 > ```json
 > { "dependencies": { "@ceccec/double-torus": "1.4.0" } }
