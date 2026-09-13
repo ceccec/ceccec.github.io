@@ -10,6 +10,7 @@
 
 import { ratchet } from './status.ts'
 import { identityFreeDecisionsReasoned } from '../../src/mountain/seals/index.ts'
+import { LEAN_SEALED_REGISTRY } from '../../src/pair/formal/proofs/index.ts'
 
 export function assertDecisionsReasoned(): void {
   const r = identityFreeDecisionsReasoned()
@@ -17,4 +18,11 @@ export function assertDecisionsReasoned(): void {
   for (const d of r.decisions) if (d.verdict !== 'reasoned') console.log(`  ${d.verdict.padEnd(10)} ${d.kind.padEnd(7)} ${d.name.slice(0, 70)}${d.hiddenAlgebra ? ` ⇐ ${d.hiddenAlgebra.slice(0, 60)}` : ''}`)
   console.log(ratchet('decisions.refuted', r.refuted.length, { evidence: () => r.decisions.filter((d) => d.verdict === 'refuted').map((d) => `${d.name} ⇐ ${d.hiddenAlgebra}`) }))
   console.log(ratchet('decisions.unanchored', r.unanchored.length, { evidence: () => r.unanchored }))
+  // A REASONED DECISION IS KERNEL-BACKED only when something it rests on is a registry row the Lean kernel
+  // decided (LEAN_SEALED_REGISTRY, checked by verify:lean-registry). Resting on a TypeScript algebraicStatement
+  // is folder gravity the kernel never saw — "intelligent decisions come from lean concepts" (user, 2026-09-13).
+  // This counts the reasoned decisions not yet backed that way; sealing registry rows is the only way it falls.
+  const sealed = new Set(LEAN_SEALED_REGISTRY.map((link) => link.theorem))
+  const unsealed = r.decisions.filter((d) => d.verdict === 'reasoned' && !d.restsOn.some((t) => sealed.has(t)))
+  console.log(ratchet('decisions.unsealed', unsealed.length, { evidence: () => unsealed.map((d) => `${d.name} ⇐ rests only on unsealed rows (${d.restsOn.length})`) }))
 }

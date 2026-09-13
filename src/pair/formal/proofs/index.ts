@@ -1362,3 +1362,18 @@ export function leanPagePaths(root?: string): { params: { slug: string; title: s
 export function leanPageBySlug(slug: string, root?: string): LeanPageRow | null {
   return leanPageRows(root).find((row) => row.slug === slug) ?? null
 }
+
+/**
+ * LEAN_SEALED_REGISTRY — registry rows (THEOREM_ATOM_SEED, src/4/6) and the kernel theorems that decide them.
+ * A row is SEALED when its statement is checked by the Lean kernel, not by a TypeScript string: every theorem
+ * below is `by decide` over a finite carrier and depends on NO axiom (#print axioms, 2026-09-13).
+ * scope 'instances' = a general law decided at finite instances; its universal claim stays open.
+ * Checked by scripts/verify/lean-registry.ts (verify:lean-registry, in verify:all).
+ */
+export const LEAN_SEALED_REGISTRY: readonly { readonly theorem: string; readonly leanFile: string; readonly theorems: readonly string[]; readonly scope: 'exact' | 'instances' }[] = [
+  { theorem: "Graeco-Latin at 3,4,5 never 2", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["graeco_latin_none_of_order_two", "graeco_latin_order_three", "graeco_latin_order_four", "graeco_latin_order_five"], scope: 'exact' },
+  { theorem: "the Sothic cycle meshes the Egyptian civil year exactly — 1461 civil = 1460 Julian", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["sothic_cycle_meshes", "sothic_cycle_days"], scope: 'exact' },
+  { theorem: "collective transitivity fails (social choice)", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["condorcet_profiles_are_216", "condorcet_six_cycle"], scope: 'exact' },
+  { theorem: "van der Waerden W(2,3) = 9", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["vdw_nine_forces", "vdw_eight_escapes"], scope: 'exact' },
+  { theorem: "Kummer carry theorem", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["kummer_instances"], scope: 'instances' },
+] as const
