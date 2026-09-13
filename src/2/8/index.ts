@@ -692,6 +692,9 @@ export function verifyBeatsRecomputeMeasured() {
 // a Gaussian integer (re, im ∈ ℤ) beside a scale k meaning "divide by √2^k". Every Clifford gate maps that
 // lattice to itself: X and CNOT permute, Z and S negate or rotate by i, and H is the only one that scales —
 // it adds one to k and takes (a, b) to (a+b, a−b). No irrational is ever stored, so nothing can drift.
+// The endpoint now also returns the parity AFTER H on every qubit — computational-basis parity cannot tell an
+// entangled state from a classical mixture, the Hadamard basis can separate a pure aligned state from that
+// mixture. H is Clifford, so that reading stays on the lattice and is reproduced here as exact fractions too.
 export function theExactSimulatorMatchesTheDefinition() {
   type Amp = { re: number; im: number }
   type Exact = { amps: Amp[]; k: number } // amplitude / √2^k
@@ -727,6 +730,22 @@ export function theExactSimulatorMatchesTheDefinition() {
   const bell = cnotExact(hadamard(zero(2), 0, 2), 0, 1)
   const exactOutcomes = [0, 3].map((i) => probExact(bell, i))
   const matchesEndpoint = exactOutcomes.every((p) => p === '1/2')
+  // parity after H on every qubit — the weight of even- and odd-popcount basis states, reduced exactly
+  const parityAfterH = (st: Exact, n: number): { even: string; odd: string } => {
+    let s = st
+    for (let q = 0; q < n; q += 1) s = hadamard(s, q, n)
+    const popOdd = (i: number): boolean => { let c = 0; for (let x = i; x > 0; x >>= 1) c += x & 1; return c % 2 === 1 }
+    const weight = (odd: boolean) => s.amps.reduce((acc, a, i) => (popOdd(i) === odd ? acc + a.re * a.re + a.im * a.im : acc), 0)
+    const den = 2 ** s.k
+    const frac = (num: number): string => { if (num === 0) return '0'; const g = gcd2(num, den); return den / g === 1 ? `${num / g}` : `${num / g}/${den / g}` }
+    return { even: frac(weight(false)), odd: frac(weight(true)) }
+  }
+  const bellParity = parityAfterH(bell, 2)
+  const parityMatchesEndpoint = bellParity.even === '1' && bellParity.odd === '0' // uuidna.com/mcp: hadamard even "1", odd "0"
+  // |++⟩ is a PRODUCT state — zero entanglement — and it concentrates on one parity class just the same
+  const plusPlus = hadamard(hadamard(zero(2), 0, 2), 1, 2)
+  const productParity = parityAfterH(plusPlus, 2)
+  const productAlsoConcentrates = productParity.even === '1' && productParity.odd === '0'
   const noIrrationalStored = bell.amps.every((a) => Number.isInteger(a.re) && Number.isInteger(a.im))
   // the float path, for the comparison the definition invites
   const floatBell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1)
@@ -736,18 +755,20 @@ export function theExactSimulatorMatchesTheDefinition() {
   const limits = computedLimits([
     { facet: `CLIFFORD ONLY — H, X, Z, S and CNOT keep the Gaussian-integer lattice closed, and those are the gates this exactness covers. A general rotation R(θ) leaves ℤ[i] for any θ that is not a multiple of π/2, so the float path remains the only route for the phase-estimation and VQE folds above`, on: noIrrationalStored },
     { facet: `2^k GROWS WITH EVERY HADAMARD — this Bell state carries k = ${bell.k}, and k rises by one per H, so the denominator doubles each time. Exactness costs an integer that grows linearly in H-count, which is cheap, and it does NOT change the 2^n amplitude count, which is the exponential the definition names`, on: bell.k >= 1 },
+    { facet: `PARITY CONCENTRATION IS NOT AN ENTANGLEMENT WITNESS — the product state |++⟩, zero entanglement, concentrates the same way after H (even ${productParity.even}, odd ${productParity.odd}); the reading separates a pure state aligned with the basis from the equal mixture of its outcomes, as the endpoint's own boundary says, and nothing more`, on: productAlsoConcentrates },
     { facet: `${bell.amps.length} AMPLITUDES FOR ${2} QUBITS — the same exponential as the float path, unchanged. Removing the drift removes drift; it buys no speedup and the definition at uuidna.com/mcp says so in the same sentence it defines the representation`, on: bell.amps.length === 2 ** 2 },
   ])
   const facets = [
     { facet: `THE ENDPOINT'S ANSWER, REPRODUCED EXACTLY — uuidna.com/mcp returns Bell outcomes 1/2 and 1/2; this returns ${exactOutcomes.join(' and ')}, as reduced fractions computed from Gaussian integers over √2^${bell.k}`, on: matchesEndpoint },
     { facet: `THE FLOAT PATH DRIFTS BY ${driftSize.toExponential(1)} ON THE SAME CIRCUIT — probabilities()[0] is ${floatP[0]}, and 1/√2 · 1/√2 === 1/2 is ${SQRT1_2 * SQRT1_2 === 1 / 2}. The drift is structural: 1/√2 has no finite binary representation, so no tolerance removes it and every EPS in this file is an accommodation of it`, on: floatDrifts },
+    { facet: `THE ENDPOINT'S PARITY, REPRODUCED EXACTLY — after H on both qubits the Bell state is even with weight ${bellParity.even} and odd with ${bellParity.odd}, computed from Gaussian integers over √2^${bell.k + 2}; uuidna.com/mcp returns even 1 · odd 0 for the same reading`, on: parityMatchesEndpoint },
     { facet: `NO IRRATIONAL IS EVER STORED — all ${bell.amps.length} amplitudes are Gaussian integers (re, im ∈ ℤ) beside one scale k = ${bell.k}; the √2 lives in the denominator's exponent and never in a number, which is what "no decimal drift" means as an implementation rather than an aspiration`, on: noIrrationalStored },
   ]
   return {
     computes: facets.every((entry) => entry.on) && limits.every((limit) => limit.on),
-    exactOutcomes, scale: bell.k, floatProbability: floatP[0], driftSize, limits, facets,
+    exactOutcomes, bellParity, productParity, scale: bell.k, floatProbability: floatP[0], driftSize, limits, facets,
     root: merkleFold(facets.map((entry) => toUuid(`exact-sim:${entry.facet}:${entry.on}`))),
-    statement: `The exact simulator matches the definition — ${facets.filter((e) => e.on).length}/${facets.length}: uuidna.com/mcp defines quantum here as Gaussian-integer amplitudes over √(2^scale) with no floats and no decimal drift, and returns Bell outcomes 1/2, 1/2. This reproduces them exactly from integers, where the corpus's float path returns ${floatP[0]}. Clifford gates only; the exponential 2^n amplitude count is unchanged and no speedup follows.`,
+    statement: `The exact simulator matches the definition — ${facets.filter((e) => e.on).length}/${facets.length}: uuidna.com/mcp defines quantum here as Gaussian-integer amplitudes over √(2^scale) with no floats and no decimal drift, and returns Bell outcomes 1/2, 1/2 and, after H on every qubit, parity even 1 · odd 0. This reproduces both exactly from integers, where the corpus's float path returns ${floatP[0]}. Clifford gates only; the exponential 2^n amplitude count is unchanged and no speedup follows.`,
     boundary: earned(`COMPUTED: the Bell circuit on a Gaussian-integer lattice with a scale exponent, its outcomes reduced to exact fractions, and the float path's drift on the identical circuit — refutable by recomputing either:`, facets, limits) }
 }
 
