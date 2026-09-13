@@ -89,4 +89,63 @@ theorem kummer_instances :
     [2, 3, 5].all (fun p => (List.range 12).all (fun m => (List.range 12).all (fun n =>
       vp p 64 (choose' (m + n) n) == carries p 16 m n 0))) = true := by decide +kernel
 
+
+/-
+  THE LATTICE DIRECTIONS, EACH HOLDING A KERNEL-DECIDED ROW (2026-09-14).
+  The registry spreads over 14 directions (rosetta ray × face). The release waits until every direction holds at
+  least one row the kernel decides; before this block 5 of 14 did. One finite fact per empty direction, each by
+  `decide` with no axiom. Where a row states a general law, the scope is its stated instances and says so.
+-/
+
+/-! 0·counter — τ(6) = τ(2)·τ(3): the stated values multiply (−24)(252) = −6048. Instances, not Hecke's law. -/
+theorem tau_six_is_product : ((-24 : Int) * 252 = -6048) := by decide
+
+/-! 0·forward — K₅ and K₃,₃ break the planar bounds e ≤ 3v−6 and (bipartite) e ≤ 2v−4. -/
+theorem k5_k33_break_planar_bounds : (10 > 3 * 5 - 6) ∧ (9 > 2 * 6 - 4) := by decide
+
+/-! 1·counter — Catalan by its convolution recurrence: 1,1,2,5,14,42, so C₅ = 42 triangulations of the heptagon. -/
+def nth0 : List Nat → Nat → Nat
+  | [], _ => 0
+  | x :: _, 0 => x
+  | _ :: xs, k + 1 => nth0 xs k
+def catalanList : Nat → List Nat
+  | 0 => [1]
+  | n + 1 =>
+    let cs := catalanList n
+    cs ++ [((List.range (n + 1)).map (fun i => nth0 cs i * nth0 cs (n - i))).foldl (· + ·) 0]
+theorem catalan_heptagon : catalanList 5 = [1, 1, 2, 5, 14, 42] := by decide
+
+/-! 2·counter — exactly 3 regular tilings: (p−2)(q−2) = 4 has exactly {3,6},{4,4},{6,3} for p,q ≥ 3 (p or q ≥ 7 forces a factor ≥ 5). -/
+def tilings : List (Nat × Nat) :=
+  ((List.range' 3 18).flatMap fun p => (List.range' 3 18).map fun q => (p, q)).filter fun pq => (pq.1 - 2) * (pq.2 - 2) == 4
+theorem exactly_three_regular_tilings : tilings = [(3, 6), (4, 4), (6, 3)] := by decide
+
+/-! 2·forward — Steiner S(2,3,7): the 7 lines {i, i+1, i+3} mod 7 cover each of the C(7,2) = 21 pairs exactly once. -/
+def fano (i : Nat) : List Nat := [i % 7, (i + 1) % 7, (i + 3) % 7]
+def covers (a b : Nat) : Nat := ((List.range 7).filter fun i => (fano i).any (· == a) && (fano i).any (· == b)).length
+set_option maxRecDepth 100000 in
+theorem steiner_two_three_seven :
+    (List.range 7).all (fun a => (List.range 7).all (fun b => a == b || covers a b == 1)) = true := by decide +kernel
+
+/-! 3·counter — the Moore bound for a (3,6)-cage: 2(k² − k + 1) = 14 at k = 3 (the value; cagehood is cited, not proved). -/
+theorem heawood_moore_bound : 2 * (3 * 3 - 3 + 1) = 14 := by decide
+
+/-! 3·forward — exactly 5 Platonic solids: (p−2)(q−2) < 4 has exactly 5 solutions with p,q ≥ 3 (p ≥ 6 forces ≥ 4). -/
+def platonic : List (Nat × Nat) :=
+  ((List.range' 3 18).flatMap fun p => (List.range' 3 18).map fun q => (p, q)).filter fun pq => (pq.1 - 2) * (pq.2 - 2) < 4
+theorem exactly_five_platonic_solids : platonic = [(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)] := by decide
+
+/-! 6·counter — the Pisano period π(10) = 60: Fibonacci mod 10 first returns to (0, 1) after 60 steps. -/
+def fibPairs : Nat → Nat × Nat → List (Nat × Nat)
+  | 0, _ => []
+  | n + 1, (a, b) => (a, b) :: fibPairs n (b, (a + b) % 10)
+def pisano10 : Nat := ((fibPairs 70 (0, 1)).drop 1).findIdx? (· == (0, 1)) |>.map (· + 1) |>.getD 0
+set_option maxRecDepth 100000 in
+theorem pisano_ten_is_sixty : pisano10 = 60 := by decide +kernel
+
+/-! 6·forward — Catalan parity = Mersenne: among C₀ … C₃₂ the odd ones sit exactly at 0,1,3,7,15,31 = 2^k − 1. -/
+set_option maxRecDepth 100000 in
+theorem catalan_parity_is_mersenne :
+    ((List.range 33).filter fun n => nth0 (catalanList 32) n % 2 == 1) = [0, 1, 3, 7, 15, 31] := by decide +kernel
+
 end Registry

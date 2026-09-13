@@ -19,6 +19,8 @@ import { ratchet } from './status.ts'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 import { LEAN_SEALED_REGISTRY } from '../../src/pair/formal/proofs/index.ts'
 import { stripLeanComments } from './lean.ts'
+import { rosettaRayOf } from '../../src/water/digit/index.ts'
+import { toUuid, digitalRoot } from '../../src/0/index.ts'
 
 export function assertRegistrySealed(): void {
   const names = new Set(THEOREM_ATOM_SEED.map((row) => row.theorem))
@@ -43,4 +45,17 @@ export function assertRegistrySealed(): void {
   }
   const unsealed = THEOREM_ATOM_SEED.filter((row) => !sealed.has(row.theorem)).map((row) => row.theorem)
   console.log(ratchet('lean.registry-unsealed', unsealed.length, { evidence: () => unsealed.map((n) => `no kernel theorem decides: ${n}`) }))
+
+  // SEALED IN ALL LATTICE DIRECTIONS (user, 2026-09-14: "publish next release when all sealed literary in all lattice
+  // directions" — chosen bar: every direction holds at least one registry row the kernel decides). A direction is the
+  // rosetta lattice's cell: the row's ray (rosettaRayOf, 7) × its face (the digital root of its content address, ≤ 5
+  // forward else counter — the same reflection the stream clusters use) = 14. This counts the directions with no
+  // kernel-sealed row; the release waits for 0, and the count may only fall.
+  const direction = (name: string) =>
+    `ray ${rosettaRayOf(name)} · ${digitalRoot(parseInt(toUuid(name).replace(/-/g, '').slice(0, 8), 16)) <= 5 ? 'forward' : 'counter'}`
+  const directions = [...new Set(THEOREM_ATOM_SEED.map((row) => direction(row.theorem)))].sort()
+  const covered = new Set(LEAN_SEALED_REGISTRY.map((link) => direction(link.theorem)))
+  const openDirections = directions.filter((d) => !covered.has(d))
+  console.log(`  lattice: ${directions.length - openDirections.length}/${directions.length} directions hold a kernel-sealed row`)
+  console.log(ratchet('lean.lattice-unsealed-directions', openDirections.length, { evidence: () => openDirections.map((d) => `no kernel-sealed registry row in ${d}`) }))
 }

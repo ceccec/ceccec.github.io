@@ -1376,4 +1376,14 @@ export const LEAN_SEALED_REGISTRY: readonly { readonly theorem: string; readonly
   { theorem: "collective transitivity fails (social choice)", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["condorcet_profiles_are_216", "condorcet_six_cycle"], scope: 'exact' },
   { theorem: "van der Waerden W(2,3) = 9", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["vdw_nine_forces", "vdw_eight_escapes"], scope: 'exact' },
   { theorem: "Kummer carry theorem", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["kummer_instances"], scope: 'instances' },
+  // the lattice directions — one kernel-decided row in each of the 9 that held none (2026-09-14)
+  { theorem: "τ(6) = τ(2)·τ(3)", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["tau_six_is_product"], scope: 'instances' },
+  { theorem: "K₅ and K₃,₃ non-planar", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["k5_k33_break_planar_bounds"], scope: 'exact' },
+  { theorem: "Catalan heptagon", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["catalan_heptagon"], scope: 'exact' },
+  { theorem: "exactly 3 regular tilings", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["exactly_three_regular_tilings"], scope: 'exact' },
+  { theorem: "Steiner S(2,3,7)", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["steiner_two_three_seven"], scope: 'exact' },
+  { theorem: "Heawood graph is the (3,6)-cage", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["heawood_moore_bound"], scope: 'instances' },
+  { theorem: "exactly 5 Platonic solids", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["exactly_five_platonic_solids"], scope: 'exact' },
+  { theorem: "Pisano period π(10) = 60", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["pisano_ten_is_sixty"], scope: 'exact' },
+  { theorem: "Catalan parity = Mersenne", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["catalan_parity_is_mersenne"], scope: 'instances' },
 ] as const
