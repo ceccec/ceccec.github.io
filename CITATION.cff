@@ -18,7 +18,7 @@ authors:
     affiliation: Independent Research
 
 type: software
-date-released: "2026-09-12"
+date-released: "2026-09-14"
 
 identifiers:
   - type: doi
@@ -28,7 +28,7 @@ identifiers:
       "Quantum Proofs of the Clay Millennium Problems v1.0", reflects claims
       withdrawn after audit on 2026-08-20 — see the abstract above. Cited for
       priority and attribution, not for its title.
-version: "1.4.0"
+version: "1.5.0"
 repository-code: "https://github.com/ceccec/ceccec.github.io"
 url: "https://ceccec.psg.bg"
 repository-artifact: "https://github.com/ceccec/ceccec.github.io/releases/tag/v1.2.0"
