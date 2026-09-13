@@ -901,7 +901,7 @@ function computeUniversalPageRaw(
           statement: slice?.description,
           boundary: rosetta.boundary,
           facets: [
-            { facet: `${rosetta.rayMeta.glyph} ${pickLocale(locale, rosetta.rayMeta.nameEn, rosetta.rayMeta.nameBg)}`, on: true },
+            // not a check — a sentence, kept as one: `${rosetta.rayMeta.glyph} ${pickLocale(locale, rosetta.rayMeta.nameEn, rosetta.rayMeta.nameBg)}`
             { facet: localizeMonolingual(locale, rosetta.content.pageKind), on: rosetta.computed },
             { facet: rosetta.glaAddress.slice(0, (8 * 3)), on: isUuid(rosetta.glaAddress) },
           ],

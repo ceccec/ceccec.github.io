@@ -387,7 +387,7 @@ export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = bu
       { facet: 'HARD drainable gaps filled (hard=0)', on: hardClosed },
       { facet: 'autotranslations complete', on: auto.complete },
       { facet: `sealed morphs from EN meaning=${sealedMorphs}`, on: sealedMorphs > 0 },
-      { facet: `trueOpen WARN residual=${trueOpen}`, on: true },
+      // not a check — a sentence, kept as one: `trueOpen WARN residual=${trueOpen}`
       { facet: 'pair trans/wave', on: pairFold.bidirectional },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trans-wave:${entry.facet}:${entry.on}`) }))
     return {
@@ -2281,7 +2281,7 @@ export function gaps(matrix: MindMatrix = buildMatrix()) {
   const claims = [
     { facet: 'the UI is SPLIT in double entries — every declared page/component (debit) ⇄ its rendered counterpart, exercised in the browser (credit)', on: ledger.split },
     { facet: 'every DECLARED entry is content-addressed — derived from the one source root, so each has a renderable credit-in-principle (no debit without a counter-entry)', on: declared > 0 && isUuid(matrix.root) },
-    { facet: 'the PREVIEW exercises all — navigate every entry, snapshot, read console + network; an entry that does not render CLEANLY is an unbalanced entry: a gap', on: true },
+    // not a check — a sentence, kept as one: 'the PREVIEW exercises all — navigate every entry, snapshot, read console + network; an entry that does not render CLEANLY is an unbalanced entry: a gap'
   ]
   // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
   // not asserted beside it. Before this it read `on: true` and bounded nothing at all.

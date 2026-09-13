@@ -2264,7 +2264,7 @@ export function alchemyComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'research sealed', on: research.researched },
       { facet: 'transmute chain', on: transmute.transmuted },
       { facet: 'endlessFusion', on: fusion.endless },
-      { facet: 'boundary', on: true },
+      // not a check — a sentence, kept as one: 'boundary'
     ])
     return {
       computes,

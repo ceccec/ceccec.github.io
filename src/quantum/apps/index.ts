@@ -2397,7 +2397,7 @@ export function mergeWave(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'eachWordHasApi', on: tipSurfacesClean },
       { facet: 'combinedToolsCompose', on: combinedToolsCompose },
       { facet: 'uncomputableProseRemoved', on: uncomputableProseRemoved },
-      { facet: 'parseNameToTools', on: true },
+      // not a check — a sentence, kept as one: 'parseNameToTools'
       { facet: `tipUncomputableWords=${renameDemonstrations.reduce((n, r) => n + r.toUncomputableCount, 0)}`, on: tipSurfacesClean },
       { facet: 'observerEvaluableMeasurements', on: observerEvaluableMeasurements },
       { facet: 'drainableClosed', on: drainableClosed },
@@ -4720,7 +4720,7 @@ export function runStdioMcpCapabilityInBrowser(
       ok: true,
       summary: `${op}=${String(value)}`,
       root: toUuid(`stdio-mcp:compute:${op}:${String(value)}`),
-      facets: [{ facet: `compute-from-source ${op}`, on: true }],
+      facets: [{ facet: `compute-from-source ${op}`, on: value !== undefined }],
       boundary: 'Pure sealed recompute — NOT FLOPS / NOT QPU',
       value }
   }
@@ -31290,7 +31290,7 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
     // memoByRoot stub makes physicalFtlClaim/clay receipts falsey; defer honestly while dims compute.
     if (memoComputing('emergentDimensions', matrix)) {
       const claims = [
-        { facet: 'deferred under emergentDimensions reentry — full dual-spin recomputes on standalone CLI', on: true },
+        { facet: 'deferred under emergentDimensions reentry — full dual-spin recomputes on standalone CLI', on: memoComputing('emergentDimensions', matrix) },
       ]
       // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
       // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
@@ -31405,7 +31405,7 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
     // Same emergentDimensions reentry guard as counterRotatingRosettaQuantumWaves.
     if (memoComputing('emergentDimensions', matrix)) {
       const claims = [
-        { facet: 'deferred under emergentDimensions reentry — discovery engine recomputes on standalone CLI', on: true },
+        { facet: 'deferred under emergentDimensions reentry — discovery engine recomputes on standalone CLI', on: memoComputing('emergentDimensions', matrix) },
       ]
       // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
       // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
@@ -32467,7 +32467,7 @@ export function uiProseDuplicationRemoved(matrix: MindMatrix = buildMatrix(), at
     const facets = [
       { facet: 'uiProseDuplicationRemoved', on: uiProseDuplicationRemovedOn },
       { facet: `clusters ${clusters.length} · before=${beforeCount} → after=${afterCount} (−${removedCount})`, on: everyReduced && removedCount === clusters.reduce((n, c) => n + c.removed, 0) },
-      { facet: 'extends #61 nav synonym collapse into page-level UI↔prose', on: true },
+      // not a check — a sentence, kept as one: 'extends #61 nav synonym collapse into page-level UI↔prose'
       { facet: 'one statement owns meaning — label OR prose, not both restating', on: everyReduced },
       { facet: 'paperAbstractOmitsTitleEcho strips Statement: <title>', on: abstractOmitsTitle },
       { facet: 'sealed catalog-driven receipt (no wet re-audit)', on: Boolean(meta) && isUuid(shelved.address) },

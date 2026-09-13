@@ -40,7 +40,7 @@ export function videoKeepsNativeQuality(matrix: MindMatrix = buildMatrix()) {
   const claims = [
     { facet: 'backing store at live devicePixelRatio', on: moviesNativeFormat(matrix).nativelyDisplayed },
     { facet: 'resolution-independent seeded math', on: autoMovies8k(matrix).generating },
-    { facet: 'redraws at native resolution on resize', on: true },
+    // not a check — a sentence, kept as one: 'redraws at native resolution on resize'
   ]
   // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
   // not asserted beside it. Before this it read `on: true` and bounded nothing at all.

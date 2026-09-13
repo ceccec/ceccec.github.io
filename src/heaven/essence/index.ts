@@ -1298,7 +1298,7 @@ export function refactorLinearToTrinities(matrix: MindMatrix = buildMatrix()) {
 // Wherever a thing is named, there is a way to reach it.
 export function crossLinksEverywhere(matrix: MindMatrix = buildMatrix()) {
   const facets = [
-    { facet: 'home cards link to their topic', on: true },
+    // not a check — a sentence, kept as one: 'home cards link to their topic'
     { facet: 'nav and footer carry every destination', on: harmonisedNavigation(matrix).distributed },
     { facet: 'the open graph builds the navigation', on: ogBuildsNavigation(matrix).builds },
     { facet: 'the feature map cross-links each item to the next', on: features(matrix).displayed },

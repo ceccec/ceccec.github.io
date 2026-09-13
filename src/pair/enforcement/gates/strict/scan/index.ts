@@ -946,7 +946,7 @@ export function mathAlgebra(root: string = enforcementScanRoot()) {
     { facet: `allFilesScanned — ${outside.files} index.ts + .vue files walked`, on: outside.files > (64 * 2) },
     { facet: `mathReplaced — operations=${before.operations} assumed-const-outside-floor=${assumedOutside.length} (HARD 0)`, on: assumedOutside.length === 0 },
     { facet: `hardFailOnMath — Math.* outside host floor=${outside.outsideFloorCount} (HARD 0) · floor=${MATH_HOST_FLOOR.join(' · ')}`, on: hardFailOnMath },
-    { facet: `residualNamed — prose-only Math.* in strings/comments stripped before count; host-boundary ops in src/0`, on: true },
+    // not a check — a sentence, kept as one: `residualNamed — prose-only Math.* in strings/comments stripped before count; host-boundary ops in src/0`
     { facet: `random outside floor=${randomOutside.length} (HARD 0)`, on: randomOutside.length === 0 },
   ]
   const on = facets.every((f) => f.on)
@@ -1350,17 +1350,14 @@ export function buildMin(root: string = enforcementScanRoot()) {
     warmPathOn &&
     regressionsNamed.length === 0
   const facets = [
-    {
-      facet: `buildMs=${typeof buildMs === 'number' ? buildMs : '—'} · deployMs=${deployMs} (CI baseline) · totalMs=${totalMs}`,
-      on: true,
-    },
+    // not a check — a display line, kept as one: `buildMs=${typeof buildMs === 'number' ? buildMs : '—'} · deployMs=${deployMs} (CI baseline) · totalMs=${totalMs}`
     { facet: 'minTargetOn — slow-build + quantumize + wave/verify + warm CI cache path', on: minTargetOn },
     { facet: `warmPathOn — quantumize · .temp cached · lockfile cache key · HARD=${slow.hardOpenCount}`, on: warmPathOn },
     {
       facet: `regressionsNamed=${regressionsNamed.length} · residualNamed=${residualNamed.join(',') || 'none'}`,
       on: regressionsNamed.length === 0,
     },
-    { facet: `CI baseline buildStep=${CI_DEPLOY_BASELINE.buildStepMs}ms workflow=${CI_DEPLOY_BASELINE.workflowMs}ms (pre-wave)`, on: true },
+    // not a check — a sentence, kept as one: `CI baseline buildStep=${CI_DEPLOY_BASELINE.buildStepMs}ms workflow=${CI_DEPLOY_BASELINE.workflowMs}ms (pre-wave)`
     { facet: `NOT an SLA`, on: physicalFtlClaimTheorem().physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`build-min:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = minTargetOn
@@ -6971,10 +6968,7 @@ export function theoremAudit() {
       facet: `candidates=${CANDIDATE_THEOREMS.length} held OPEN (candidate-unproven) · claySolvedByThisFold=${claySolvedByThisFold}`,
       on: candidateRows.length === CANDIDATE_THEOREMS.length && claySolvedByThisFold === 0,
     },
-    {
-      facet: 'soft compose algebra/prove · formula/code · measure/decide · merge/wave · prose/theorem · clay/agi · journey/theorems',
-      on: true,
-    },
+    // not a check — a display line, kept as one: 'soft compose algebra/prove · formula/code · measure/decide · merge/wave · prose/theorem · clay/agi · journey/theorems'
   ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on) && criteriaOn
   return {

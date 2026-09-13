@@ -826,7 +826,7 @@ export function naturePrefixesRemovedFromUnprovenNames(matrix: MindMatrix = buil
     ] as const
     const claims = [
       { facet: 'primary names describe what gate computes — not unproven nature metaphor', on: renamed.length === 5 },
-      { facet: 'deprecated aliases removed — canonical names only', on: true },
+      // not a check — a sentence, kept as one: 'deprecated aliases removed — canonical names only'
       { facet: 'census science paths (src/earth, src/water, …) unchanged — folder law', on: UNFOLDED_CENSUS === FOLDED_CENSUS - EULER_CHI },
     ]
     // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,

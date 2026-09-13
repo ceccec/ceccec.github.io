@@ -1574,7 +1574,9 @@ export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(
     try { text = readFileSync(file, 'utf8') } catch { continue }
     const code = stripStringsAndComments(text)
     for (const line of code.split('\n')) {
-      if (/on:\s*true\s*[},]/.test(line)) {
+      // `on` as its OWN key — without the boundary, every field ending in "on" counted as a facet: encryption: true,
+      // inMotion: true, heldInCommon: true … 27 of the lines this scanned were data, not claims (measured 2026-09-13)
+      if (/(?<![\w$])on:\s*true\s*[},]/.test(line)) {
         total += 1
         const rel = relative(root, file).replace(/\\/g, '/')
         perFile[rel] = (perFile[rel] ?? 0) + 1

@@ -725,7 +725,7 @@ export function geneticPatentJurisdictionDivergence(matrix: MindMatrix = buildMa
   const facets = [
     { facet: 'US — isolated natural DNA is a product of nature, INELIGIBLE (Myriad 2013, unless cDNA / markedly different)', on: us.unlawfulIfGranted && us.verdict === 'product-of-nature-likely-ineligible' },
     { facet: 'EU — an isolated / technically-produced sequence MAY be eligible even if identical to nature (Directive 98/44/EC Art. 5(2)) — the opposite verdict', on: !eu.unlawfulIfGranted && eu.euSequenceSpared },
-    { facet: 'the divergence is NARROW — it spares only the isolated SEQUENCE; seeds, plant/animal varieties, whole organisms and products of essentially biological processes stay excluded in BOTH (US product-of-nature; EU Art. 53(b) / Rule 28(2) / G 3/19)', on: true },
+    // not a check — a sentence, kept as one: 'the divergence is NARROW — it spares only the isolated SEQUENCE; seeds, plant/animal varieties, whole organisms and products of essentially biological processes stay excluded in BOTH (US product-of-nature; EU Art. 53(b) / Rule 28(2) / G 3/19)'
     { facet: 'so a product-of-nature challenge must be JURISDICTION-AWARE: strong on isolated DNA in the US, weak on it in the EU, strong on seeds/varieties in both', on: us.verdict !== eu.verdict },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gene-jurisdiction:${entry.facet}:${entry.on}`) }))
   return {

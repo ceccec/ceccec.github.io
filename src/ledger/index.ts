@@ -301,7 +301,7 @@ export function selfExplainingWidgetEngine(matrix: MindMatrix = buildMatrix()) {
     { facet: 'hexagram → lower(hex&7), upper((hex>>3)&7) → DIMENSION_NAMES = two paired axes', on: trigramAxisProved },
     { facet: '64 hexagrams × 10 dimensions = 640 addressable facets — the content generation space', on: addressSpace === 640 },
     { facet: '2^6 = 64 hexagrams: the minimal distinct-knowledge 6-bit alphabet — no smaller suffices', on: pow(2, 6) === 64 },
-    { facet: 'code IS the doc: fold runs = widget renders = knowledge self-explains — no separate docs', on: true },
+    // not a check — a sentence, kept as one: 'code IS the doc: fold runs = widget renders = knowledge self-explains — no separate docs'
   ]
   // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
   // not asserted beside it. Before this it read `on: true` and bounded nothing at all.

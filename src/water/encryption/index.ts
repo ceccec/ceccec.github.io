@@ -1936,7 +1936,7 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} physicalFtlClaim=${physicalFtlClaim}`, on: physicalQubitSpeedup === 0 && physicalFtlClaim === 0 },
     { facet: `certified=${certified} fipsValidated=${fipsValidated} — NOT wire AES / NOT NIST PQC break`, on: certified === false && fipsValidated === false },
     { facet: `compose prove-no-qpu-64bit — qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true },
-    { facet: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)', on: true },
+    // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
   ]
   const sealed = sealFacets('local-audit-quantum-speed-efficiency', facets)
   const root = merge(

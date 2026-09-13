@@ -2417,7 +2417,7 @@ export function humanDesignProfilingCarriesNoSignal(matrix: MindMatrix = buildMa
     const noSignal = abs(accuracy - chance) < 1 / (5 * 4) // within 5% of chance — predicts nothing
     const facets = [
       { facet: `the combination IS real: the HD configuration is a moving-rosetta product ${gates}·2·5·12 = ${configSpace} cells — computable combinatorics, structure-only (humanDesignStructureDecoded)`, on: combinatoricsReal && configSpace === gates * 2 * 5 * (4 + 8) },
-      { facet: `but it is a deterministic function of BIRTH TIME with zero validated link to behaviour — the input carries no information about the person, only when they were born`, on: true },
+      { facet: `but it is a deterministic function of BIRTH TIME with zero validated link to behaviour — the input carries no information about the person, only when they were born`, on: noSignal },
       { facet: `COMPUTED on a deterministic crowd of ${crowd}: the HD type predicts a random trait at ${(accuracy * 100).toFixed(1)}% — chance is ${(chance * 100).toFixed(0)}% — the bins carry NO signal, mutual information ≈ 0`, on: noSignal },
       { facet: `so CROWD PROFILING by Human Design is REFUTED: sorting people into these bins predicts nothing — astrology-grade categorisation dressed as computation. This fold is the refutation, and I do not build the profiling tool: categorising real people by an invalid system is baseless and can harm`, on: noSignal && combinatoricsReal },
     ]

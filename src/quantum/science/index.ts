@@ -1256,7 +1256,7 @@ export function theStateIsNotTheBirthCoordinates(matrix: MindMatrix = buildMatri
     const microstateDimsLog10 = 2 * 8 + (8 + 4) // ~10^28: ~10^27 particles × 6 phase coords, order of magnitude
     const projectionIsLossy = microstateDimsLog10 > birthCoordinates && birthCoordinates < 5
     const facets = [
-      { facet: `GRANT the premise: IF a human were a finite rosetta (a low-dimensional cyclic structure), the state would follow from coordinates — Laplace's demon is coherent, and taken seriously`, on: true },
+      // not a check — a sentence, kept as one: `GRANT the premise: IF a human were a finite rosetta (a low-dimensional cyclic structure), the state would follow from coordinates — Laplace's demon is coherent, and taken seriously`
       { facet: `but CHAOS breaks it: the deterministic logistic map (r = 4) sends a 10⁻⁹ difference to ${divergence.toFixed(3)} (O(1)) in ${steps} steps — determinism does NOT give predictability from coarse coordinates`, on: chaosBreaksCoarseState },
       { facet: `and QUANTUM denies the premise: Heisenberg forbids a sharp state at a point (Δx·Δp ≥ ħ/2 = ${heisenbergFloor.toExponential(1)} > 0), and the Born rule is indeterministic — "the state at a coordinate" fails at the base`, on: noSharpState },
       { facet: `and the birth timestamp is a LOSSY PROJECTION: ${birthCoordinates} coordinates vs a ~10^${microstateDimsLog10} phase-space microstate over the whole causal past — I(traits; birth) ≈ 0 (measured), so the data-processing inequality bounds any recovery even granting determinism. The state is not the coordinates; the refutation survives`, on: projectionIsLossy },

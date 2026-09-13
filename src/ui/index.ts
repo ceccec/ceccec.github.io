@@ -460,7 +460,7 @@ function harmonisedDepthDialThreeDRaw(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the LayersPanel depth dial (0–10, the ten dimensions + the flat 0) is the Z-axis — it dollies every card forward through the a432-octave perspective', on: ui.converted && depthStops === 11 },
     { facet: 'depth 0 is byte-identical to flat (the --dt-depth fallback is 0) — zero regression for cards outside a panel; hover and focus ADD a lift on top', on: ui.converted },
-    { facet: 'motion-safe — a prefers-reduced-motion guard neutralises the Z-lift and its transition while keeping the resting elevation shadow (WCAG 2.3.3)', on: true },
+    // not a check — a sentence, kept as one: 'motion-safe — a prefers-reduced-motion guard neutralises the Z-lift and its transition while keeping the resting elevation shadow (WCAG 2.3.3)'
     { facet: 'keyboard-accessible — focus-visible/:focus-within get the same lift plus an always-on focus ring (WCAG 2.4.7); every magnitude a computed token, the no-hardcoded gate stays clean', on: ui.noHardcoded && ui.cssComputed },
   ]
   const sealed = sealFacets('depth-dial', facets)

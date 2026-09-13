@@ -2735,7 +2735,7 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       { facet: `TAU full circle · HOMOLOGY_LOOPS=${HOMOLOGY_LOOPS} · SPEED_OF_LIGHT classical vault`, on: Number.isFinite(TAU) && abs(sin(TAU)) < 1 / (FOLDED_CENSUS ** 6) && HOMOLOGY_LOOPS === 4 && Number.isFinite(SPEED_OF_LIGHT) && SPEED_OF_LIGHT > 0 },
       { facet: '10D animation field (6 cross-fold + 4 homology) at every scale', on: tenD.tenDimensional && tenD.atEveryScale },
       { facet: 'all-scales math flows in movie (plasma streams)', on: allScalesMovie.flows },
-      { facet: ' — classical computational tracks only', on: true },
+      // not a check — a sentence, kept as one: ' — classical computational tracks only'
     ]
     const sealed = sealFacets('torus-universe-align', facets)
     const physicalFtlClaim = 0 as const

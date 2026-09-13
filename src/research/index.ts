@@ -1653,7 +1653,7 @@ export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix
       { facet: `efficiency vote decided=${vote.decided} winner=${vote.winner} — savings table vs rest sealed`, on: vote.decided && vote.winner === 'ceccec' && bits.savingsVsRest.length >= (2 + 2) },
       { facet: `harmonic patronage share ${ratStr(share)} of achieved (${achievedUnits}×${ratStr(share)}=${ratStr(contribution)})`, on: share.p === 1 && share.q === 9 && contributionExact },
       { facet: `support CTA — revolut.me/${handle} · invitation not charge · zero valid`, on: handle === AUTHOR_HANDLE && supportUrl.endsWith(`/${AUTHOR_HANDLE}`) && zeroValid },
-      { facet: 'UI owns CTA / table; statement owns meaning — no UI↔prose duplication', on: true },
+      // not a check — a sentence, kept as one: 'UI owns CTA / table; statement owns meaning — no UI↔prose duplication'
       { facet: `honesty — clay=${claySolvedByThisFold} · physicalFtl=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`society-two-bits-support:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('society-supports-project-via-two-bits-free-knowledge', facets)
