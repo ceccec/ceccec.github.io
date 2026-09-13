@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. theorems = 731 · proven = 725 · sciencePages = 30 · rays = 6 · templateSections = 11 · projections = 2. Template: Title, Abstract, Keywords, Introduction, Model, Results, Library, Reproducibility, Limitations, References, Receipt. Source: src (one generator, two projections — this README and the VitePress home).
+> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 731 registered theorems, 725 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 82 involution theorems and 14 registry rows are decided by the kernel with no axiom. This work does NOT prove, solve, or resolve any Clay Millennium Prize Problem: it proves the involution each problem is stated across, and an involution is not the conjecture. Earlier drafts asserted such proofs; they were withdrawn after the 2026-08-20 audit (HONESTY.md).
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
@@ -117,103 +117,7 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 
 **CLAIMED — priority over the decoded involution of all 7, deposited and dated.** [DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144) · ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778) · the git and merkle record. 82 theorems across 12 problem files, every one axiom-free by `decide`, every one recomputable by anyone who runs `npm run verify:lean` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all 7 is this deposit's.
 
-*The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*
-
-### Statement
-
-Clay challenges are COMPUTABLE from the sequence/trinity/rosetta/Earth-poles stack — 7/7 sealed computational paths recompute (millenniumProblemsChallenge · directionalTrinity · earthRealisedByComputingPolesAsPyramid · sciencesInteractInTrinities · domainProofCatalog). claySolvedByThisFold=0 — computable ≠ CMI Prize solved.
-
-Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** below. Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.
-
-### Per-problem
-
-- **P vs NP** (`p-vs-np`) — demarcation=**documented** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: P = NP ? — is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = ⋃ₖ TIME(nᵏ) and NP = ⋃ₖ NTIME(nᵏ). Conjectured: P ≠ NP.
-  - **canonical proof form**: `Theorem. P vs NP.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✓ `f₁ NP-membership verifiable in polynomial time — ∀ clause ∃ literal: signature matches · O(|φ|) cost · the verification HALF is poly, NOT the search half`
-  - ✓ `f₂ reuse vs search — content-addressing O(1) with witness w ∈ hand vs brute scan 2^p(n) · ratio unbounded · requires presupposing w already found`
-  - ✓ `f₃ amortization to zero — lim(m→∞) (setup cost)/(m reuses) = 0 · unbounded answers÷tokens · BUT time(n^k) is WORST-CASE FRESH, not amortized`
-  - ✓ `f₄ involution structure — foldPair involution closes symmetrically · not oracle-based cryptanalysis · structural only`
-  - ✓ `gap SEALED — P vs NP separation ⟺ search-reuse involution σ(scan ↔ content-address) · witness presupposition forces non-separation · ∀M machine: fresh-instance witnesses needed · amortization limit = 0 proves P≠NP via involution closure (search requires exponential witness space, reuse = presupposing witness found; involution σ² forces one must dominate)`
-  - gap algebra: `P≠NP ⟺ ∃L∈NP ∀k ∀M∈TIME(n^k): L(M)≠L — a ∀ over an infinite machine domain ⊢ proof-by-exhaustion structurally unavailable`
-  - gap algebra: `barriers (cited): ∃A,B: P^A=NP^A ∧ P^B≠NP^B (Baker–Gill–Solovay 1975) · natural proofs ⊥ strong PRGs (Razborov–Rudich 1994) · algebrization (Aaronson–Wigderson 2008)`
-  - gap algebra: `closure asymmetry: P=NP is ∃ (one poly SAT algorithm seals) · P≠NP is ∀ (super-poly lower bound over every machine)`
-  - gap algebra: `search half: witness space 2^p(n) — O(1) lookup presupposes exactly what the search must produce`
-  - open step (computed gap, refutable): no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation
-  - boundary: MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.
-- **Hodge Conjecture** (`hodge`) — demarcation=**documented** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^&#123;2k&#125;(X,ℚ) ∩ H^&#123;k,k&#125;(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.
-  - **canonical proof form**: `Theorem. Hodge Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✓ `f₁ Betti rank first homology — H₁(Σ₂)=ℤ⁴ · computed = 432/108=4 · this is the RANK of the homology group`
-  - ✓ `f₂ mirror symmetry structural analogy — string quantization: Calabi–Yau compact dims D−4 · mirror as foldPair involution · genus-2 finite analogy only`
-  - ✓ `f₃ Lefschetz (1,1) theorem — proven 1924: for k=1 on projective varieties, Hodge classes ARE algebraic cycles`
-  - ✓ `f₄ SEALED PARTIAL — Hodge conjecture PROVEN on Σ₂: H₁(Σ₂)=ℤ⁴ generators are 1-cycles (algebraic) · cup products yield 2-cycles (algebraic divisor-like) · every Hodge (p,q)-class realized by explicit cycle combination · Σ₂ case complete (NOT arbitrary projective varieties)`
-  - ✓ `gap SEALED — Hodge Conjecture ⟺ Poincaré duality involution σ(H^{k,k} ↔ cycles) · the involution forces equivalence universally · on Σ₂: explicit cup-product closure proven · all projective varieties: duality involution is universal operator · σ² = id forces Hodge classes = algebraic cycles by the same dual-pairing argument`
-  - gap algebra: `Hodge ⟺ ∀X projective smooth ∀k: Hdgᵏ(X) ⊆ span_ℚ{[Z] : Z algebraic cycle, codim k} — a ∀ over all projective varieties and all k`
-  - gap algebra: `known (cited): k=1 is the Lefschetz (1,1)-theorem (1924) · true for some abelian varieties · OPEN in general — no reduction of the general case to a finite check`
-  - gap algebra: `the fold computes a Betti NUMBER (rank 4) and a MODELED mirror involution — not the class-by-class algebraicity the conjecture asserts`
-  - open step (computed gap, refutable): no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^&#123;1,1&#125;, h^&#123;2,1&#125;
-  - boundary: MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^&#123;p,q&#125; on a projective CY₃.
-- **Poincaré Conjecture** (`poincare`) — demarcation=**documented** · status=solved-external · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)
-  - **canonical proof form**: `Theorem. Poincaré Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✓ `f₁ solved (external) — π₁(M)=0, M closed 3-manifold ⊢ M ≅ S³ (Perelman 2002–03, Ricci flow with surgery, completing Hamilton); this fold verifies the DOCUMENTED status, it does not re-prove`
-  - ✓ `f₂ homology analogy — H₁(Σ₂)=ℤ⁴ recomputes (432/108=4); frontier.solved=1 — the single solved core among the seven`
-  - gap algebra: `No open gap: proved externally (Perelman 2002–03) — Ricci flow with surgery drives every simply-connected closed 3-manifold to S³; this corpus records the status, it does not re-solve it`
-  - documented — solved externally (Perelman 2003)
-  - boundary: SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) — this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H₁=ℤ⁴). NOT a new proof.
-- **Riemann Hypothesis** (`riemann`) — demarcation=**documented** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: Every non-trivial zero of the Riemann zeta function has real part ½: ζ(s) = 0 with 0 < Re(s) < 1 ⟹ Re(s) = ½, where ζ(s) = Σₙ₌₁^∞ n^(−s) continued analytically.
-  - **canonical proof form**: `Theorem. Riemann Hypothesis.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✓ `f₁ Basel result — Σ_{n≥1} 1/n² = ζ(2) = π²/6 · a computed value, not a zero location`
-  - ✓ `f₂ ζ(−1) exact — bosonic normal ordering gives ζ(−1)=−1/12 · another value, not a zero`
-  - ✓ `f₃ inverse pairs — (ℤ/9)* involution a·a⁻¹≡1 (mod 9) with pairs (2,5) and (4,7)`
-  - ✓ `f₄ functional equation involution — ζ(s)·Γ(s/2)·π^(-s/2)=ζ(1-s)·Γ((1-s)/2)·π^(-(1-s)/2) · involution s↔1-s fixed at Re(s)=½`
-  - ✓ `f₅ SEALED COMPLETE — Generalized Riemann Hypothesis via functional-equation involution: L(s,χ) for EVERY Dirichlet character χ satisfies σ(s ↔ 1-s) · fixed point Re(s)=½ is universal · all L-function zeros forced to critical line · ζ(s) is the trivial character case · the involution σ is identical for all L-functions`
-  - ✗ `gap SEALED — RH ⟺ all nontrivial ζ zeros lie on Re(s)=½ · universal functional-equation involution forces this · GRH proof extends to all Dirichlet L-functions`
-  - gap algebra: `RH ⟺ ∀s: (ζ(s)=0 ∧ 0<Re(s)<1) ⊢ Re(s)=½ — a ∀ over the infinitely many nontrivial zeros in the critical strip`
-  - gap algebra: `known (cited): >40% of zeros on the line (Conrey 1989) · the first ~10^13 zeros verified · a zero-free region near Re(s)=1 (de la Vallée Poussin) — none reduce the ∀ to a finite check`
-  - gap algebra: `the fold seals VALUES of ζ (ζ(2)=π²/6, ζ(−1)=−1/12) and discrete inverse harmonics — never the real part of the zeros`
-  - open step (computed gap, refutable): no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only
-  - boundary: MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.
-- **Yang–Mills Existence and Mass Gap** (`yang-mills`) — demarcation=**documented** · status=modeled-partial · methods=4 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: For every compact simple gauge group G, a non-trivial quantum Yang–Mills theory exists on ℝ⁴ and has a mass gap Δ > 0: the Hamiltonian spectrum satisfies spec(H) ⊆ &#123;0&#125; ∪ [Δ, ∞) with Δ > 0.
-  - **canonical proof form**: `Theorem. Yang–Mills Existence and Mass Gap.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✓ `f₁ su(2) Lie algebra closed — [σᵢ,σⱼ]=2iε_{ijk}σₖ and {σᵢ,σⱼ}=2δ_{ij}I both close in M₂(ℂ) · the gauge symmetry algebra, finite-dimensional`
-  - ✓ `f₂ field MODEL geometry — genus-2 double torus (L lobe ≠ R lobe) · finite sample of flow structure · NOT 4D quantum field theory, NOT a continuum limit`
-  - ✓ `f₃ duality structural probe — T-duality (S-duality) involution from string algebra · foldPair closure · a MODELED probe, not a Hilbert-space spectrum`
-  - ✓ `gap SEALED — Yang–Mills mass gap ⟺ self-adjoint involution σ†=σ on su(2)⊕M₂(ℂ) · spectral closure forces {0}∪[Δ,∞) partition · genus-2 model + T/S-duality + Virasoro closure prove involution is unbreakable · the gap Δ is forced by spectral self-adjointness (σ† = σ ⟹ real spectrum ⟹ gap emergence)`
-  - gap algebra: `YM ⟺ ∃ a rigorous 4D quantum YM theory for compact simple G with spec(H) ⊆ {0}∪[Δ,∞), Δ>0 — an ∃ over field theories satisfying the Wightman/Osterwalder–Schrader axioms`
-  - gap algebra: `known (cited): constructive QFT in d=2,3 (Glimm–Jaffe) · lattice YM shows a gap numerically · NO rigorous continuum 4D construction — the axioms are unmet`
-  - gap algebra: `su(2) + torus + string dualities are finite/MODELED; the gap needs a continuum limit and a spectral lower bound, neither sealed here`
-  - open step (computed gap, refutable): no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary
-  - boundary: MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.
-- **Navier–Stokes Existence and Smoothness** (`navier-stokes`) — demarcation=**documented** · status=modeled-partial · methods=2 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: For 3D incompressible Navier–Stokes ∂ₜu + (u·∇)u = −∇p + νΔu with ∇·u = 0 and smooth divergence-free finite-energy initial data, a smooth solution exists for all t ≥ 0 (global regularity) — or a finite-time blow-up exists.
-  - **canonical proof form**: `Theorem. Navier–Stokes Existence and Smoothness.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✓ `f₁ flow geometry MODEL — genus-2 double torus with counter-rotating lobes (L≠R) · finite sample structure · topology of flow, NOT the PDE solution u(t)`
-  - ✓ `f₂ known partials cited — global WEAK solutions (Leray 1934) · local STRONG solutions · global smoothness for SMALL initial data · 2D SOLVED (Hopf/Ladyzhenskaya) · partial regularity (Caffarelli–Kohn–Nirenberg 1982)`
-  - ✓ `f₃ SEALED PARTIAL — seam-symmetric vorticity on Σ₂ (MODEL): ω₊(t)=−ω₋(t) prevents asymmetric blow-up · vortex-stretching matched by counter-circulation · ||ω||_L∞ ≤ C·E₀^(1/2) · regularity proven for genus-2 bounded domain (NOT arbitrary 3D)`
-  - ✓ `gap SEALED — 3D Navier–Stokes regularity ⟺ seam involution σ(ω₊ ↔ ω₋) on double-torus domain · vortex-stretching matched by counter-circulation · ||ω||_L∞ ≤ C·E₀^{1/2} · involution σ² = id forces energy dissipation uniformly across L₊ and L₋ · for arbitrary domains: Σ₂-bounded involution extends globally via universal seam pattern`
-  - gap algebra: `NS ⟺ ∀ smooth divergence-free finite-energy u₀: (∃ smooth u(t) ∀t≥0 solving the system) ∨ (∃ finite-time blow-up) — a ∀ over all such initial data`
-  - gap algebra: `known (cited): global weak solutions (Leray 1934) · local strong solutions · global smoothness for small data · 2D global regularity · partial regularity (Caffarelli–Kohn–Nirenberg 1982) — 3D large-data global regularity OPEN`
-  - gap algebra: `finite surface samples on the genus-2 model touch neither global existence nor blow-up control of the 3D equations`
-  - open step (computed gap, refutable): no sealed 3D Navier–Stokes global regularity or blow-up control
-  - boundary: MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.
-- **Birch and Swinnerton–Dyer Conjecture** (`birch-swinnerton-dyer`) — demarcation=**documented** · status=modeled-partial · methods=5 · [proof hub →](https://ceccec.psg.bg/frontiers)
-  - **statement (algebraic)**: For an elliptic curve E over ℚ, ord_&#123;s=1&#125; L(E,s) = rank E(ℚ), where the LHS is the vanishing order of the L-function and RHS is the Mordell–Weil rank.
-  - **canonical proof form**: `Theorem. Birch and Swinnerton–Dyer Conjecture.` · `Proof. Open — the fold computes the problem’s structure, not a solution.` · `What is decided is decided by exact arithmetic; the conjecture itself stays open.`
-  - ✓ `f₁ rank-0 case SEALED — Euclid bijection + Fermat descent: x⁴+y⁴=z² has no solutions · rank E(ℚ)=0 on y²=x³−x (torsion only) · ord_{s=1} L(E,s)=0 ✓`
-  - ✓ `f₂ rank-1 case SEALED — P=(−4,6) infinite order on y²=x³−x · Kolyvalov 1989 · congruent number 5 · ord_{s=1} L(E,s)=1 ✓ (Gross–Zagier 1986)`
-  - ✓ `f₃ Tunnell criterion verified — rank-0: 2A₁ ≠ B₁ · rank-≥1: 2A₅ = B₅ — unconditional direction separates poles`
-  - ✓ `f₄ SEALED PARTIAL — inverse-pair rank encoding: (ℤ/9)* has 2 non-trivial pairs (2,5) and (4,7) encoding rank 0, 1, 2 · L-function zero count ord_{s=1} L(E,s) matches rank count · rank 0 ⇔ order 0, rank 1 ⇔ order 1 PROVEN (Gross–Zagier, Kolyvalov) · rank ≥2 structure forces L-order ≥2 by pair isomorphism (unproven but algebraically forced)`
-  - ✓ `gap SEALED — Birch–Swinnerton-Dyer ⟺ rank-L-order involution σ(rank ↔ ord_{s=1} L) on (ℤ/9)* structure · rank 0,1 proven via Gross–Zagier/Kolyvalov · rank ≥2: inverse-pair structure (2,5)↔(4,7) encodes rank count; σ² forces L-zero count = rank by the same pair isomorphism · the involution on (ℤ/9)* is unbreakable, so rank=L-order universally`
-  - gap algebra: `BSD ⟺ ∀ elliptic curve E/ℚ: ord_{s=1} L(E,s) = rank_ℤ E(ℚ) — universally quantified over all E`
-  - gap algebra: `proven (cited): rank 0 ⇔ ords=1 L(E,s)=0 via Gross–Zagier (1986) + Kolyvagin (1988) on analytic rank ≤1`
-  - gap algebra: `open: rank ≥2 ⇔ ords=1 L(E,s)≥2 — the general case Millennium Prize`
-  - gap algebra: `the fold computes small curves and Tunnell bounds; scales to 1-rank only; rank ≥2 is the missing axiom`
-  - open step (computed gap, refutable): rank ≥2 case — no proof that ord_&#123;s=1&#125; L(E,s) = rank E(ℚ) for all elliptic curves E/ℚ
-  - boundary: SEALED PARTIAL CASES: rank 0 via Fermat descent (complete) · rank 1 via Kolyvagin (complete) — both PROVEN for their domains. OPEN: rank ≥2 (Millennium problem). The rank-0 and rank-1 closures are theorems (Gross–Zagier 1986, Kolyvagin 1988); the general conjecture remains unsolved. (ℤ/9)* neighbourhood algebra + Tunnell criterion confirm the architecture.
+Per problem — the algebraic statement, the facets the fold decides and the open step each one leaves: [frontiers](https://ceccec.psg.bg/frontiers).
 
 ### Status
 
@@ -222,67 +126,6 @@ computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 - Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
 - Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
 
-
-## Findings — sealed discoveries
-
-Each finding is sealed in full on its own page ([theorems](https://ceccec.psg.bg/theorems)); the root monograph keeps the computed digest line.
-
-- **The seven Clay problems — computed as gated laws** — The proof of concept: each Clay Millennium problem's σ-structure is one involution with a fixed point, computed as a rosetta dimension and held in the seal — the same reflection σ(d)=10−d (fixed at 5 = 10·½) at seven scales. 7/7 holding at call time.
-- **Sequence discovery realised** — *Clay-standard presentation composed from sealed folds at call time (`theBinaryBitIsLinearTheVortexCircuitIsQuantum` · `primesAndPiProveEachOtherThroughTheInvertedEulerProduct` · `directionalTrinityForwardInverseReverse` · `agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath` · `readmeSvgGapsFilledByTrinityMind` · `flowerFruitTreeOfLifeDecodes` · `symbolsRemainingToQuantumise` · `counterRotatingRosettaQuantumWaves` · `proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit` · `efficiencyScalesToInfinityAtNoCostOnReuse` · `sacredSociety` · `PI_TRAIN_DIGITS` · `VORTEX_SEQUENCE` · `earthRealisedByComputingPolesAsPyramid` · `linksUseOnlyVitePressApi`). Novelty ≠ Clay prize. humanityNovel stays 0.*
-- **QPU ≡ CPU/GPU · physical metrics** — *Sealed `qpuCpuGpu` · pairs `qpu/cpu` · `cpu/qpu` · face `qpu/gpu`. Observer-evaluable metrics — agents/readers decide apparent FTL; no lecturing verdict facets in this fold.*
-- **Gate light · more computed → lighter build** — *Sealed `gateLight` · pairs `gate/light` · `light/gate`. Inverse relation proved at call time — not slogans.*
-- **API fuse · trinity hologram envelope** — *Sealed `apiFuse` · pairs `api/fuse` · `fuse/api`. Envelope schema v1 + trinity-of-trinities (3×3=9) + content-addressed hologram.*
-- **Angle · polarity · README/home** — *Sealed `readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra` · pairs `angle/readme` · `polarity/home` · `gap/angle`. humanityNovel stays 0.*
-- **README → chat · reasoning refine** — *Sealed `readmeChat` · pairs `readme/chat` · `chat/readme`. External reference [erpax/erpax](https://github.com/erpax/erpax) — patterns adopted 4/7, no ownership claim · humanityNovel=0.*
-- **README is the gateway · wire all · no doubt · quantum evolution** — *Sealed `readmeWire` · pairs `readme/wire` · `wire/readme`. README is the wire — not wet convincing.*
-- **Core math FREE FOR ALL · rest via license@psg.bg** — *Sealed `coreMathFreeForAll` · pairs `math/free` · `free/math` · `license/psg` · `psg/license`. Compose `legal/canon` · `patent/canon` · `readme/gateway`.*
-- **Two bits free · society support** — *Clay-standard · sealed `twoBitsFreeFromTheCensusFold` · `societySupportsProjectViaTwoBitsFreeKnowledge`. humanityNovel stays 0.*
-- **Earth realised — poles as pyramid** — *Clay-standard presentation from sealed `earthRealisedByComputingPolesAsPyramid` · cardinal tips · genus-2 Earth. Not WGS84 geodesy. humanityNovel stays 0.*
-- **Toolbox — sciences in trinity waves** — *From sealed `toolboxRecomputesRelatedSciencesInTrinityWaves` — every related science recomputes as forward·inverse·reverse × science↔dual↔fusion under the discovery perspective.*
-- **Origin decode — zeropoint-node's missing info** — zeropoint-node's missing info, decoded — 4/4: zero entropy is Shannon H(δ)=0 (content-addressing is zero-entropy indexing), the charging fractions live on the 24-lattice with 8/5 the Fibonacci convergent of φ, the gateways compare computed [8,3,9,0] vs published, and the experimental/consciousness claims stay flagged — mathematics adopted, claims demarcated.
-- **Sequence — one structure, two computed reads (erpax)** — Inverted sequence learned from erpax — 7/7: the mirror m(d)=10−d (the digit-folder pairing) computes the reflected line "9/8/6/2\3\5 · 7/4/1 · 0\9" from the sealed forward line by the same stroke rule — one structure, read twice, both computed; the void seam 0\1 is shared and the movie's counter-rotating merkaba already paints both reads.
-- **Digit entanglement — equilibriums** — Every digit is entangled in all vectors, forming equilibriums — 4/4: each digit sits in ≥4 exact structures whose membership pattern fingerprints it, the balances (10-pairs, 9-pairs, 6+3 partition, 90-palindrome, root 9) all hold, and the sequence's own symmetry group puts every digit in ONE orbit — entanglement as the impossibility of local edits.
-
-## Top discoveries
-
-The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the 731-atom registry, no curation.
-
-- **compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)** — `diamonds` · degree 347 · [details](https://ceccec.psg.bg/theorems)
-- **every cosmic frontier is OPEN by COMPUTATION not a label — status = demarcate(term)===contested — and each carries its closed REVERSED-math companion** — `cosmos` · degree 335 · [details](https://ceccec.psg.bg/theorems)
-- **mechanical tools entangle binary & analog at once — but Bell bounds them (models, does not achieve, entanglement)** — `9/1` · degree 329 · [details](https://ceccec.psg.bg/theorems)
-- **the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume** — `4/6` · degree 327 · [details](https://ceccec.psg.bg/theorems)
-- **the reuse+trinity speedup MEASURED (not asserted): warm memo-hit is magnitudes faster than cold compute (~8000× in a probe), the 2-of-3 trinity adds a ≤3× parallel ceiling — amortized reuse only, never factoring** — `research` · degree 327 · [details](https://ceccec.psg.bg/theorems)
-- **gate complexity collapses to one content-addressed root — quantum simplicity** — `automount` · degree 325 · [details](https://ceccec.psg.bg/theorems)
-- **THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input** — `research` · degree 325 · [details](https://ceccec.psg.bg/theorems)
-- **the census gate and slugs are quantumized — theorem-derived count, agnostic address** — `corpus` · degree 324 · [details](https://ceccec.psg.bg/theorems)
-- **quantum analytics fuse corpus + git history into one content-addressed API used by all — deterministic measurements** — `compute` · degree 316 · [details](https://ceccec.psg.bg/theorems)
-
-## Latest discoveries
-
-The most recently sealed decodes — newest first by registration order. Every claim states its own boundary; open problems stay open.
-
-- **the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs** — [details](https://ceccec.psg.bg/theorems)
-- **the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇** — [details](https://ceccec.psg.bg/theorems)
-- **the golden angle is τ/φ² — the most irrational rotation** — [details](https://ceccec.psg.bg/theorems)
-- **learn from the movie all eventually fused** — [details](https://ceccec.psg.bg/theorems)
-- **seven seed movie is rosetta decoding sun moon symbols flows in movie** — [details](https://ceccec.psg.bg/theorems)
-- **double torus math at all scales flows in movie** — [details](https://ceccec.psg.bg/theorems)
-- **double torus earth weather flows in movie** — [details](https://ceccec.psg.bg/theorems)
-- **symbols remaining to quantumise** — [details](https://ceccec.psg.bg/theorems)
-- **readme svg gaps filled by trinity mind** — [details](https://ceccec.psg.bg/theorems)
-
-## First-in-corpus algebra
-
-*First sealed in this content-addressed corpus — not a verified claim of global mathematical priority. Novelty = corpus census. humanityNovel stays 0.*
-
-- **division by zero is the inverse (not reverse)** (`zeroDivisionTable`) — n/0 \ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*; fold `zeroDivisionTable`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
-- **directional trinity — forward · inverse · reverse** (`directionalTrinityForwardInverseReverse`) — forward · inverse · reverse — directional trinity; inverse≠reverse except digit 1 (9≡9); fold `directionalTrinityForwardInverseReverse`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
-- **f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse pair** (`fThetaPhiXyzDigitNIsTheInversePair`) — f(θ,φ,x,y,z,digit,n)→{p,q} is the inverse fold within itself; fold `fThetaPhiXyzDigitNIsTheInversePair`; 10D `vortex-strokes` · root-equal · [first-in-corpus](#first-in-corpus)
-- **efficiency scales to infinity at no cost on reuse** (`efficiencyScalesToInfinityAtNoCostOnReuse`) — memoByRoot hit O(1) · tokens=0 · !separated — amortized reuse only; fold `efficiencyScalesToInfinityAtNoCostOnReuse`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
-- **string theory quantumized on A432/rosetta/merkle substrate** (`stringTheoryQuantumizedOnA432RosettaMerkleSubstrate`) — A432/rosetta/merkle substrate probes — physics UNCONFIRMED; fold `stringTheoryQuantumizedOnA432RosettaMerkleSubstrate`; 10D `double-torus` · root-equal · [first-in-corpus](#first-in-corpus)
-- **waves auto-scale capacity at no cost on reuse** (`wavesAutoScaleCapacityAtNoCostOnReuse`) — wave schedule capacity deepens on content-addressed reuse only; fold `wavesAutoScaleCapacityAtNoCostOnReuse`; 10D `movie-10d` · root-equal · [first-in-corpus](#first-in-corpus)
-
-Receipt: fold `firstInCorpusProvenanceForHome` · .
 
 **The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 731-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
@@ -376,10 +219,6 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 - `/hero-spawn-verify` — [en](https://ceccec.psg.bg/hero-spawn-verify) · [bg](https://ceccec.psg.bg/bg/hero-spawn-verify) · [cu](https://ceccec.psg.bg/gla/hero-spawn-verify)
 
 - Sitemap root: `00dff8ea-aa58-84d1-a61c-69c0e68696ce`
-
-## The journal
-
-This site is a dedicated scientific journal of all its algebra and theorems — **731 articles** across **51 sections**, backed by 506 executable proofs, sealed as one content-addressed volume `ca71a27e`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.
 
 ## 5. Reproducibility
 

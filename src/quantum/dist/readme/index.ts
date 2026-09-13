@@ -8,9 +8,9 @@
 import { ROSETTA_AREAS } from '../../../pair/enforcement/gates/computational/index.ts'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pair/enforcement/gates/index.ts'
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../3/7/index.ts'
-import { THEOREM_ATOM_SEED, latestDiscoveries, riemannCriticalLineIsTheInvolutionFixedPoint, siteIsScientificJournalOfAllAlgebraAndTheorems, topDiscoveries } from '../../../4/6/index.ts'
+import { THEOREM_ATOM_SEED, riemannCriticalLineIsTheInvolutionFixedPoint } from '../../../4/6/index.ts'
 import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3/index.ts'
-import { leanInvolutionCorpus } from '../../../pair/formal/proofs/index.ts'
+import { LEAN_SEALED_REGISTRY, leanInvolutionCorpus } from '../../../pair/formal/proofs/index.ts'
 import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos/index.ts'
 import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1/index.ts'
 import { portalChat, portalRecall } from '../../../heaven/compute/index.ts'
@@ -37,18 +37,17 @@ import {
   toolboxRecomputesRelatedSciencesInTrinityWaves,
   twoBitsFreeFromTheCensusFold,
   societySupportsProjectViaTwoBitsFreeKnowledge,
-  domainProofPagePaths, zeropointNodeReferenceLine, zeropointNodeMissingInfoLine, publicationTimelineMeasured, clayGraphOverAlgebraicMonographs, CLAY_ORDER } from '../../../research/index.ts'
-import { invertedSequenceLearnedFromErpax, everyDigitIsEntangledInAllVectorsFormingEquilibriums, sequenceScientificDescription } from '../../../mountain/vortex/index.ts'
+  domainProofPagePaths, zeropointNodeReferenceLine, publicationTimelineMeasured, clayGraphOverAlgebraicMonographs, CLAY_ORDER } from '../../../research/index.ts'
+import { sequenceScientificDescription } from '../../../mountain/vortex/index.ts'
 import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../thunder/waves/index.ts'
 import { theoremPagePaths } from '../../../wind/routes/corpus/index.ts'
-import { counterRotatingRosettaQuantumWaves, anglePolarityReadmeHomeMarkdownSection, readmeChatMarkdownSection, readmeWireMarkdownSection, mathFreeMarkdownSection } from '../../apps/index.ts'
+import { counterRotatingRosettaQuantumWaves } from '../../apps/index.ts'
 import {
   buildMatrix,
   conceptCommands,
   foldedCensus,
   harmonicCountsProvenByMath,
   everyBitMostEfficientAlgorithmProvenByMath,
-  firstInCorpusProvenanceMarkdownSection,
   foldNameReceipt,
   monographAsScientificPaper,
   monographTemplate,
@@ -62,13 +61,6 @@ import {
 import { isUuid, max, merkleFold, merge, memoByRoot, round, roundTo, sealFacets, toUuid, VORTEX_SEQUENCE, sequenceBitBudget, equilibrium360, dimensionalBit, clayReflection, decodeVortexOperations } from '../../../0/index.ts'
 import { primeCountUpTo, nthPrimeAt } from '../../../7/3/index.ts'
 import { quantumComputerHonestClaim } from '../../science/index.ts'
-
-/** Escape the curly braces that VitePress's markdown-it reads as a trailing attribute block ({.class}/{#id}/
- *  {key=val}). Computed math prose like the Hodge gap "…h^{1,1}, h^{2,1}" or "Σ_{d|n}" otherwise emits a bogus
- *  `<li 2,1="">`, and Vue hydration then throws `InvalidCharacterError: Invalid qualified name: '2,1'` on
- *  setAttribute. Apply to RAW computed prose interpolated into markdown; formulas inside `code spans` are
- *  already immune. The braces render as literal { } — correct for the math they carry. */
-const mdSafeText = (s: string): string => s.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;')
 
 /** The README signature check, as a typed src fold: the committed README.md must equal the src-computed
  *  readmeMarkdown() (the README is computed from src — do not hand-edit). The commit shell reads the file
@@ -505,24 +497,6 @@ export function clayChallengesComputableMarkdownSection(
   // are EN-canonical (not per-locale) — so from the home we link to the LOCALIZED clay proof hub (exists in every
   // locale), not the canonical theorem page (which would dead-link under /bg/theorems). Both are the next view.
   const proofHub = href('/frontiers')
-  const pathLines = c.paths.flatMap((p) => [
-    `- **${p.name}** (\`${p.id}\`) — demarcation=**${p.demarcation}** · status=${p.status} · methods=${p.challengeMethods} · [proof hub →](${proofHub})`,
-    // THE PROBLEM'S OWN ALGEBRAIC STATEMENT (user: "i cannot see the algebraic formulas") — the precise mathematical
-    // conjecture, shown FIRST and per-problem, so the real formula is visible (RH: Re(s)=½ · BSD: ord L(E,s)=rank …).
-    p.algebraicStatement ? `  - **statement (algebraic)**: ${mdSafeText(p.algebraicStatement)}` : '',
-    // CANONICAL PROOF FORM (user): the proof-path FORMULAS — the same theoremFormulaCodeDual the theorem pages and the
-    // registry render, so frontend and backend are one representation (methods are secondary, on the theorem page).
-    `  - **canonical proof form**: ${p.formula.map((fm) => '`' + fm + '`').join(' · ')}`,
-    // THE FACETS, AS THE FOLD ARGUES THEM (user: "why does the page not look like the report?") — each fᵢ is the real
-    // identity the fold decides, with its live verdict; the gap algebra states the quantifier shape + cited barriers.
-    // Rendered only when the sealed row supplies them (incremental fill, same law as algebraicStatement).
-    ...p.facetAlgebra.map((fa) => `  - ${fa.on ? '✓' : '✗'} \`${fa.f}\``),
-    ...p.gapAlgebra.map((g) => `  - gap algebra: \`${g}\``),
-    p.gap
-      ? `  - open step (computed gap, refutable): ${mdSafeText(p.gap)}`
-      : '  - documented — solved externally (Perelman 2003)',
-    p.boundary ? `  - boundary: ${mdSafeText(p.boundary)}` : '',
-  ].filter((line) => line !== ''))
   return [
     '## Clay Millennium problems — the proof of concept',
     '',
@@ -579,17 +553,11 @@ export function clayChallengesComputableMarkdownSection(
         '',
       ]
     })(),
-        '*The epistemic status is `demarcate(term)` from the zero-cycle registry — the same metric every theorem gets — refutable by moving the term. Each problem’s open step is its named **gap** below.*',
-    '',
-    '### Statement',
-    '',
-    c.statement,
-    '',
-    'Each problem below shows its **statement (algebraic)** — the precise mathematical conjecture itself (Riemann: all non-trivial ζ zeros have Re(s)=½ · BSD: ord₍ₛ₌₁₎ L(E,s)=rank E(ℚ) · Navier–Stokes: the 3D incompressible PDE · …) — separate from the **canonical proof form** (the sealed `theoremFormulaCodeDual` computational path the theorem pages and registry render, one representation across frontend and backend). The algebraic statement is what the conjecture ASSERTS; whether this corpus proves it is answered by status + the named **gap** below. Full formulas and proving source are on each problem’s theorem page (`/theorems/<slug>` — Formulas + Code) and in `theorem-sources.json`. Nothing is hidden.',
-    '',
-    '### Per-problem',
-    '',
-    ...pathLines,
+    // DRY-CLEANED (user, 2026-09-14: "dry clean readme and use in all publications"). The per-problem dump —
+    // statement, canonical form, facet verdicts, gap algebra, boundary — restated the proof hub line for line, and
+    // its "gap SEALED ✓" rows read as solutions beside an abstract that says this work solves none. The monograph
+    // keeps what the Lean kernel checks; each problem's full row lives once, on the hub.
+    `Per problem — the algebraic statement, the facets the fold decides and the open step each one leaves: [frontiers](${proofHub}).`,
     '',
     '### Status',
     '',
@@ -740,8 +708,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
   const { labels } = math
   return [
     // SCIENTIFIC-PAPER ORDER (user: "restructure readme and homepage"): §1 Introduction → §2 Model → §3 Results (the
-    // Clay challenges + the sealed discoveries are Results FINDINGS, no longer pre-Introduction) → §4 Sitemap →
-    // §5 Reproducibility (with the journal / computational peer-review) → §6 Limitations → References → Receipt.
+    // Clay challenges, then the lens roster) → §4 Sitemap → §5 Reproducibility → §6 Limitations → References → Receipt.
     // Shared by home + README (sameSections gate keeps both identical).
     '## 1. Introduction',
     '',
@@ -854,55 +821,9 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     // The Clay Millennium challenges — the headline computed result, now a Results FINDING (not pre-Introduction).
     ...clayChallengesComputableMarkdownSection(matrix, linkBase),
     '',
-    // FINDINGS DIGEST (user, 2026-07-28: "review and improve readme to speedup removing useless prose and
-    // uncomputed statements"): each sealed discovery already lives IN FULL on its own theorem page — the root
-    // monograph keeps ONE computed line per finding (the section's own heading + its opening computed line),
-    // never the restated narrative. Same generator, so home and README shrink together; every line stays a
-    // join of computed outputs — nothing here is authored twice.
-    '## Findings — sealed discoveries',
-    '',
-    `Each finding is sealed in full on its own page ([theorems](${vitePressCompatibleHref('/theorems', linkBase)})); the root monograph keeps the computed digest line.`,
-    '',
-    ...[
-      clayMillenniumLecturesMarkdownSection(matrix, linkBase),
-      sequenceDiscoveryMarkdownSection(matrix, linkBase),
-      qpuCpuGpuMarkdownSection(matrix, linkBase),
-      gateLightMarkdownSection(matrix, linkBase),
-      apiFuseMarkdownSection(matrix, linkBase),
-      anglePolarityReadmeHomeMarkdownSection(matrix, linkBase),
-      readmeChatMarkdownSection(matrix, linkBase),
-      readmeWireMarkdownSection(matrix, linkBase),
-      mathFreeMarkdownSection(matrix, linkBase),
-      twoBitsFreeSocietySupportMarkdownSection(matrix, linkBase),
-      earthPolesPyramidMarkdownSection(matrix, linkBase),
-      toolboxSciencesTrinityWavesMarkdownSection(matrix, linkBase),
-    ].flatMap((section) => {
-      const heading = section.find((line) => line.startsWith('## '))
-      const first = section.find((line) => line.trim().length > 0 && !line.startsWith('#'))
-      return heading && first ? [`- **${heading.replace(/^## /, '')}** — ${first.trim()}`] : []
-    }),
-    // The origin decode (user, 2026-07-28: "improve readme and homepage with what is missing from zeropoint-node"):
-    // zero entropy as Shannon, the 24-lattice charging fractions, gateways computed-vs-published, experiments flagged.
-    zeropointNodeMissingInfoLine(),
-    // The sequence completed (erpax: one structure, two computed reads; the commutator is the unit shift) and the
-    // digit entanglement (every digit in all vectors, one orbit) — both statements computed by their folds.
-    `- **Sequence — one structure, two computed reads (erpax)** — ${invertedSequenceLearnedFromErpax(matrix).statement}`,
-    `- **Digit entanglement — equilibriums** — ${everyDigitIsEntangledInAllVectorsFormingEquilibriums(matrix).statement}`,
-    '',
-    '## Top discoveries',
-    '',
-    `The most CENTRAL decodes — ranked by theorem-graph degree (how many other atoms each connects to), computed from the ${THEOREM_ATOM_SEED.length}-atom registry, no curation.`,
-    '',
-    ...topDiscoveries(9).map((entry) => `- **${entry.theorem}** — \`${entry.domain}\` · degree ${entry.degree} · [details](${linkBase}/theorems)`),
-    '',
-    '## Latest discoveries',
-    '',
-    `The most recently sealed decodes — newest first by registration order. Every claim states its own boundary; open problems stay open.`,
-    '',
-    ...latestDiscoveries(9).map((entry) => `- **${entry.theorem}** — [details](${linkBase}/theorems)`),
-    '',
-    // First-in-corpus novel algebra — derived from sealed fold (home + README stay in sync).
-    ...firstInCorpusProvenanceMarkdownSection(),
+    // DRY-CLEANED (user, 2026-09-14): the findings digest, the top and latest discoveries and the first-in-corpus
+    // inventory were four rosters of what /theorems already serves — slogans beside counts ("README is the wire"),
+    // a registry sorted twice, ranked prose. Every one still computes on its own page; the monograph links there once.
     `**The theorem-science lens** — ${lens.visibleCount}/${lens.pageCount} curated pages pass (${lens.hidden.length} removed from VitePress completely — data preserved in the catalog), presented beside the ${lens.theoremCount}-theorem registry and its corpus surfaces (${lens.corpusRoutes.join(' · ')}). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.`,
     '',
     // Each presented result is a lens survivor and links out — to the SOURCE CODE that proves it in the
@@ -931,11 +852,8 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     `- Sitemap root: \`${sitemap.root}\``,
     '',
-    // The journal — computational peer-review, placed with reproducibility (what re-execution does and does not verify).
-    '## The journal',
-    '',
-    ((journal) => `This site is a dedicated scientific journal of all its algebra and theorems — **${journal.articleCount} articles** across **${journal.sectionCount} sections**, backed by ${journal.distinctProofs} executable proofs, sealed as one content-addressed volume \`${journal.volumeId.slice(0, 2 * 4)}\`. Peer review is COMPUTATIONAL: every proof re-runs each wave, and the same corpus recomputes the same volume id. Precisely, that re-execution verifies internal consistency and **reproducibility** and demarcate-signs each article — which is **not** empirical validation and **not** external peer review (no independent referees). A DOI is a persistent *identifier*, not a review — orthogonal to refereeing and mintable by archiving, so its absence is not the limit. The corpus cites empirically-established results but refereess none of them against nature.`)(siteIsScientificJournalOfAllAlgebraAndTheorems()),
-    '',
+    // The journal paragraph is gone (2026-09-14): it counted 506 executable proofs two sections after the
+    // introduction counted 725 — two readings of one registry in one document. The introduction's count stands.
     '## 5. Reproducibility',
     '',
     '```sh',
@@ -982,17 +900,61 @@ function paperTopNav(sections: readonly string[], mode: 'github' | 'vitepress' =
   return `**Sections.** ${nav.map((h) => `[${strip(h)}](#${anchor(h)})`).join(' · ')}`
 }
 
+/** THE ONE ABSTRACT (user, 2026-09-14: "dry clean readme and use in all publications"). README.md, CITATION.cff and
+ *  the npm package README carry this paragraph, written by the readme sync on every commit — no publication authors its
+ *  own. CITATION.cff had drifted to "11 files" and a 1,329-row ledger while the README said 20 and 731; now every count
+ *  is read at write time, and the scope line the 2026-08-20 audit fixed is part of the same sentence everywhere. */
+export function publicationAbstract(matrix: MindMatrix = buildMatrix()) {
+  const { description } = siteConfig(matrix)
+  const theorems = THEOREM_ATOM_SEED.length
+  const pending = THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length
+  const lean = leanInvolutionCorpus()
+  const text =
+    `${description} ${theorems} registered theorems, ${theorems - pending} of them carrying an executable proof. ` +
+    `${lean.files} Lean 4 proof files compile in plain Lean with no Mathlib and no \`sorry\`; ${lean.involutionTheorems} involution theorems and ` +
+    `${LEAN_SEALED_REGISTRY.length} registry rows are decided by the kernel with no axiom. This work does NOT prove, solve, or resolve any ` +
+    'Clay Millennium Prize Problem: it proves the involution each problem is stated across, and an involution is not the conjecture. ' +
+    'Earlier drafts asserted such proofs; they were withdrawn after the 2026-08-20 audit (HONESTY.md).'
+  return { text, root: toUuid(`publication-abstract:${text}`) }
+}
+
+/** Every file that publishes the abstract besides README.md. The readme sync splices publicationAbstract() into each. */
+export const PUBLICATION_ABSTRACT_SURFACES = ['CITATION.cff', 'packages/double-torus/README.md'] as const
+const ABSTRACT_OPEN = '<!-- publication-abstract: written by the readme sync from publicationAbstract() in src/quantum/dist/readme — do not edit -->'
+const ABSTRACT_CLOSE = '<!-- /publication-abstract -->'
+
+/** The file with its abstract replaced: the folded `abstract: >-` block of a .cff, or the marked block under a markdown
+ *  title (inserted after the first paragraph break the first time). Anything the splice cannot place is returned as is. */
+export function withPublicationAbstract(path: string, text: string, abstract: string): string {
+  if (path.endsWith('.cff')) {
+    const open = text.indexOf('\nabstract: >-\n')
+    const close = text.indexOf('\n\nauthors:', open)
+    if (open < 0 || close < 0) return text
+    const lines: string[] = []
+    for (const word of abstract.split(' ')) {
+      const last = lines.length - 1
+      if (last >= 0 && lines[last]!.length + 1 + word.length <= 64 + 16) lines[last] += ` ${word}`
+      else lines.push(word)
+    }
+    return `${text.slice(0, open)}\nabstract: >-\n${lines.map((line) => `  ${line}`).join('\n')}${text.slice(close)}`
+  }
+  const block = `${ABSTRACT_OPEN}\n> **Abstract.** ${abstract}\n${ABSTRACT_CLOSE}`
+  const a = text.indexOf(ABSTRACT_OPEN)
+  const b = text.indexOf(ABSTRACT_CLOSE)
+  if (a >= 0 && b > a) return `${text.slice(0, a)}${block}${text.slice(b + ABSTRACT_CLOSE.length)}`
+  const brk = text.indexOf('\n\n')
+  return brk < 0 ? text : `${text.slice(0, brk)}\n\n${block}${text.slice(brk)}`
+}
+
 export function readmeMarkdown(matrix: MindMatrix = buildMatrix()) {
   const core = theoremMonographCore(matrix)
-  const { config, template, lens } = core
+  const { config } = core
   const sections = theoremSections(core, (entry) => `[source](${githubPermalink(entry.source)})`, matrix, CANONICAL_HOST)
   return [
     `# ${config.title} — the root monograph`,
     '',
-    // ABSTRACT COMPUTED, NOT CHARACTERISED (user, 2026-07-28: the abstract kept judgement and expectations) —
-    // the sentence is the JOIN of the config description with counted fields and the template's own section
-    // names; every clause after the description is a number or a name, so no adjective can survive an edit.
-    `> **Abstract.** ${config.description} ${renderComputedMetrics({ theorems: lens.theoremCount, proven: lens.theoremCount - THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length, sciencePages: lens.visibleCount, rays: lens.rays.length, templateSections: template.sections.length, projections: 2 }, false)}. Template: ${template.sections.join(', ')}. Source: src (one generator, two projections — this README and the VitePress home).`,
+    // THE ONE ABSTRACT — the same paragraph CITATION.cff and the npm README carry (publicationAbstract).
+    `> **Abstract.** ${publicationAbstract(matrix).text}`,
     '',
     `**Keywords.** ${config.keywords.join(', ')}.`,
     '',
@@ -1080,8 +1042,8 @@ export function readme(matrix: MindMatrix = buildMatrix()) {
     { facet: 'SEO is cost-free advertisement — the README is the indexed root monograph and the home is its served twin: complete, canonically referenced, computed at zero token cost, so organic reach costs nothing', on: sourceLinks === lens.visibleCount && md.length > 0 },
     // GATES the markdown-attr-brace crash CLASS, not just the one fix: VitePress markdown reads a trailing {…}
     // as an attribute block, so a computed line ending in a math brace — a Hodge number h^{2,1}, a set {1,2,3} —
-    // emits <li 2,1=""> and Vue hydration throws InvalidCharacterError. mdSafeText escapes { } in raw computed
-    // prose; this facet REFUTES any regression — no generated line may end in a literal `}` (escaped braces end
+    // emits <li 2,1=""> and Vue hydration throws InvalidCharacterError. The Clay rows that carried such
+    // braces now live on /frontiers; this facet REFUTES any regression — no generated line may end in a literal `}` (escaped braces end
     // in `;`, code spans in `` ` ``, so only an unescaped trailing brace flips it false and fails the build).
     { facet: 'no trailing attr-brace — no generated markdown line ends in a literal } (else VitePress reads the trailing {…} as an attribute and Vue hydration crashes: InvalidCharacterError on <li 2,1="">)', on: [md, home].every((doc) => doc.split('\n').every((line) => !line.replace(/\s+$/, '').endsWith('}'))) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme:${entry.facet}:${entry.on}`) }))

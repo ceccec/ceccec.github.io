@@ -464,12 +464,31 @@ export async function runSyncReadmeExit(root: string, _argv: readonly string[] =
   const dist = (await importQuantumBundle('src/quantum/dist/index.ts', root)) as {
     readmeMarkdown: () => string
     readmeSignatureValid: (committed: string) => { valid: boolean; computedSig?: string; committedSig?: string }
+    publicationAbstract: () => { text: string }
+    withPublicationAbstract: (path: string, text: string, abstract: string) => string
+    PUBLICATION_ABSTRACT_SURFACES: readonly string[]
   }
   const md = dist.readmeMarkdown()
   writeFileSync(join(root, 'README.md'), md)
   const sig = dist.readmeSignatureValid(readFileSync(join(root, 'README.md'), 'utf8'))
   process.stdout.write(
     `${sig.valid ? '✓' : '✗'} readme sync — computed=${sig.computedSig ?? '?'} committed=${sig.committedSig ?? '?'}\n`,
+  )
+  // THE ONE ABSTRACT IN EVERY PUBLICATION (user, 2026-09-14: "dry clean readme and use in all publications").
+  // CITATION.cff and the npm README take the README's abstract from the same bundle on every commit; a surface the
+  // splice cannot place fails the sync instead of shipping its own paragraph.
+  const abstract = dist.publicationAbstract().text
+  const flat = (text: string) => text.replace(/\s+/g, ' ')
+  const surfaces = dist.PUBLICATION_ABSTRACT_SURFACES.map((rel) => {
+    const before = readFileSync(join(root, rel), 'utf8')
+    const after = dist.withPublicationAbstract(rel, before, abstract)
+    if (after !== before) writeFileSync(join(root, rel), after)
+    return { rel, placed: flat(after).includes(flat(abstract)), changed: after !== before }
+  })
+  const unplaced = surfaces.filter((s) => !s.placed).map((s) => s.rel)
+  const rewritten = surfaces.filter((s) => s.changed).map((s) => s.rel)
+  process.stdout.write(
+    `${unplaced.length ? '✗' : '✓'} publications — one abstract in README.md · ${surfaces.map((s) => s.rel).join(' · ')}${unplaced.length ? ` (NOT placed: ${unplaced.join(', ')})` : rewritten.length ? ` (rewritten: ${rewritten.join(', ')})` : ' (unchanged)'}\n`,
   )
   // THE SVGS ARE GENERATED TOO, AND NOTHING REGENERATED THEM. hero.svg said "754 theorems" for forty days after the
   // source computed 745, because README had a sync gate and the two SVGs emitted from the same folds did not — an
@@ -494,7 +513,7 @@ export async function runSyncReadmeExit(root: string, _argv: readonly string[] =
   process.stdout.write(
     `${svg === 0 ? '✓' : '✗'} svg sync — hero.svg · public/icon.svg emitted from the bundle${drifted.length ? ` (regenerated: ${drifted.join(', ')})` : ' (unchanged)'}\n`,
   )
-  return sig.valid && svg === 0 ? 0 : 1
+  return sig.valid && svg === 0 && unplaced.length === 0 ? 0 : 1
 }
 
 export async function runPrecommitRosettaExit(root: string): Promise<number> {
@@ -518,7 +537,7 @@ export async function runPrecommitRosettaExit(root: string): Promise<number> {
   // Sync + re-stage in-process so staged README matches the gate's bundle (avoids dist/strip-types drift).
   const sync = await runSyncReadmeExit(root)
   if (sync !== 0) return sync
-  const add = spawnSync('git', ['add', '--', 'README.md', 'hero.svg', 'public/icon.svg'], { cwd: root, encoding: 'utf8' })
+  const add = spawnSync('git', ['add', '--', 'README.md', 'hero.svg', 'public/icon.svg', 'CITATION.cff', 'packages/double-torus/README.md'], { cwd: root, encoding: 'utf8' })
   if (add.status !== 0) {
     process.stderr.write(`✗ commit blocked — git add README.md failed: ${add.stderr || add.stdout}\n`)
     return 1

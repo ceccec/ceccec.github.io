@@ -1,39 +1,15 @@
 cff-version: 1.2.0
 title: "Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed Verification"
 abstract: >-
-  A dependency-free, zero-egress computational kernel for deterministic quantum
-  circuit simulation and content-addressed verification.
-
-  Measured results, reproduced by execution on 2026-08-20: Grover's algorithm
-  passes 4/4 tests with 94.5–99.9% success probability on databases of size
-  8, 16 and 32, at a measured 4.00×–8.00× speedup over classical linear search;
-  Shor's algorithm returns 4/4 correct factorizations (15, 21, 33, 77) via
-  genuine order-finding, though it runs SLOWER than classical trial division
-  (0.15×–0.34×) and is offered as a correctness result only. The kernel is
-  2,131 lines with zero imports and zero network calls. The geometry is a
-  genus-2 double torus, Euler characteristic χ = −2. A sealed ledger of 1,329
-  entries includes 82 machine-checked involution theorems, against which claims
-  are adjudicated by citation.
-
-  This work does NOT prove, solve, or resolve any Clay Millennium Prize Problem.
-  Earlier drafts asserted such proofs; they were withdrawn after audit and the
-  reasoning is recorded in HONESTY.md. No production readiness score,
-  certification grade, or coverage percentage is claimed.
-
-  The Lean sources DO compile, as of 2026-09-01: 11 files in plain Lean 4 core,
-  with no Mathlib and no `sorry`, checked by `npm run verify:lean`. They prove the
-  corpus's own arithmetic (the census 123 = SUM F(7..10) = F(12) - F(8), the digit
-  reflection r(d) = 10 - d, rank H1 = 2 - chi) and, for each Millennium problem,
-  the INVOLUTION the problem is stated across: s -> 1-s for Riemann, whose unique
-  fixed point is the critical line; conjugation (p,q) -> (q,p) for Hodge, fixed
-  exactly on the diagonal (k,k); the Hodge star on 2-forms in four dimensions,
-  splitting Lambda^2 into 3+3; complementation C -> co-C for P vs NP; time reversal
-  for Navier-Stokes, which viscosity alone breaks; and s -> 2-s for BSD, whose
-  fixed point is the central point s = 1. Each of those files ALSO machine-checks
-  that this corpus's registry of sealed Millennium cores is empty. An involution is
-  not a conjecture: proving the symmetry is not proving the statement.
-
-  Full audit with commands, outputs and receipts: RELEASE-AUDIT-uuidna.md
+  The double-torus vortex algebra of the sequence 12487536901, with the Clay
+  Millennium problems as proof of concept. Every claim recomputes from src/0. 731
+  registered theorems, 725 of them carrying an executable proof. 20 Lean 4 proof
+  files compile in plain Lean with no Mathlib and no `sorry`; 82 involution
+  theorems and 14 registry rows are decided by the kernel with no axiom. This work
+  does NOT prove, solve, or resolve any Clay Millennium Prize Problem: it proves
+  the involution each problem is stated across, and an involution is not the
+  conjecture. Earlier drafts asserted such proofs; they were withdrawn after the
+  2026-08-20 audit (HONESTY.md).
 
 authors:
   - family-names: Rouschev
