@@ -908,7 +908,9 @@ export function identityFreeDecisionsReasoned(matrix: MindMatrix = buildMatrix()
       : /\b(via|by|using|computes?|finder|scan|audit|close|decode|detect|measure|derive)\b/iu.test(states) ? 'method'
       : 'process'
   const decisions: IdentityFreeDecision[] = IDENTITY_JUDGED_PROCESS.map((name) => {
-    const row = byTheorem.get(name)
+    // resolve a judged name the way the gate that excludes it does (src/pair/enforcement/gates: the row whose theorem
+    // starts with the name's first 8·5 characters) — an exact lookup here read 6 recorded names as naming no row at all
+    const row = byTheorem.get(name) ?? THEOREM_ATOM_SEED.find((r) => r.theorem.startsWith(name.slice(0, 8 * 5)))
     const states = row?.states ?? name
     // refuted only when the extractor LIFTS an identity (a leading clause asserting a relation) — a digit in prose is not algebra
     const hidden = row ? extractAlgebraicStatement(row.states) : undefined
