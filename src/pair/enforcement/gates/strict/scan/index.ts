@@ -1874,7 +1874,6 @@ export function bindFuse(root: string = enforcementScanRoot()) {
   const families = [
     { binding: 'sensor bindings', marker: 'wireAllSensorsUsingQuantumBindings', where: 'apps', present: appsText.includes('wireAllSensorsUsingQuantumBindings') },
     { binding: 'mcp quantum bindings', marker: 'mcpQuantumBindings', where: 'apps', present: appsText.includes('mcpQuantumBindings') },
-    { binding: 'cloudflare bindings', marker: 'mcpQuantumCloudflareBindings', where: 'apps', present: appsText.includes('mcpQuantumCloudflareBindings') },
   ].map((row) => ({ ...row, receipt: toUuid(`bind-fuse:${row.binding}:${row.present}`) }))
   const superpositions = [
     { surface: 'browser toolbox', marker: 'toolbox-standard-io', present: appsText.includes('toolbox-standard-io') },
@@ -1984,7 +1983,6 @@ export function costTheorem(root: string = enforcementScanRoot()) {
   const ledger = [
     { binding: 'no-key public APIs (USGS · Open-Meteo · OpenAlex · World Bank)', cost: 'fetch latency + bytes · price 0', theorem: 'torusData — dimensionless adapter ratios, units demarcated', marker: 'export function torusData', source: sources.features },
     { binding: 'browser sensors', cost: 'user permission + sampling work', theorem: 'wireAllSensorsUsingQuantumBindings — sensors enter only through quantum bindings', marker: 'wireAllSensorsUsingQuantumBindings', source: sources.apps },
-    { binding: 'cloudflare deploy bindings', cost: 'deploy/runtime quota', theorem: 'mcpQuantumCloudflareBindings — the deploy face sealed in the catalog', marker: 'mcpQuantumCloudflareBindings', source: sources.apps },
     { binding: 'npm dependency @ceccec/double-torus', cost: 'install bytes + supply-chain exposure', theorem: 'quantumDoubleTorus — the genus-2 machine the whole architecture rides', marker: 'quantumDoubleTorus', source: sources.topology },
     { binding: 'the full site build', cost: 'wall-ms (≈68 s per landing)', theorem: 'the enforcement trinity seal + slow-build ratchet (closed 15/15)', marker: 'slow-build', source: sources.weave },
     { binding: 'LLM tokens at runtime', cost: 'ZERO by law', theorem: 'the zero-token law — the null binding: the bound IS the theorem', marker: 'zero tokens', source: sources.ui },

@@ -48,7 +48,6 @@ import {
   animationRosettaStreamClusters,
   foldingWorksOnApplicationLevel,
   dryCleanAllVueComponentsToTheUniversalSet,
-  wavesSearchDiscoverCompactingInQuantumFolders,
   importFractalMap,
   measureDecide,
   importAudit,
@@ -63,7 +62,6 @@ import {
   everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions,
   wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero,
   wireAllSensorsUsingQuantumBindings,
-  invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill,
   againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf,
   furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence,
   gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist,
@@ -125,7 +123,6 @@ import {
   theChatIsTheFusionReactorFusingAllApisInPlasmaRays,
   allConversationsGoThroughTheMcpQuantumChat,
   mcpQuantumConversation,
-  organiseConversationsInChatRoomsPerSuperposition,
   mcpQuantumObserve,
   wiredToForgeMaxTamperingCost,
   quantumizeNpm,
@@ -1161,7 +1158,6 @@ const animCluster = computed(() => animationRosettaStreamClusters())
 const appFold = computed(() => foldingWorksOnApplicationLevel())
 const vueDryUniversal = computed(() => dryCleanAllVueComponentsToTheUniversalSet())
 const seoGapsReport = computed(() => findSeoViolations())
-const waveCompact = computed(() => wavesSearchDiscoverCompactingInQuantumFolders())
 const importFractalPanel = computed(() => importFractalMap())
 const measureDecidePanel = computed(() => measureDecide())
 const importAuditPanel = computed(() => importAudit())
@@ -1176,7 +1172,6 @@ const selfAnimSite = computed(() => selfImproveAnimationGenerationAndSiteBuilder
 const formulaAnimSeal = computed(() => everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions())
 const merkabaMovieSeal = computed(() => wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero())
 const sensorBindSeal = computed(() => wireAllSensorsUsingQuantumBindings())
-const invertTrinity = computed(() => invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill())
 const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
 const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
 const gateMillGapsExist = computed(() => gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist())
@@ -1190,7 +1185,6 @@ const pageTrinity = computed(() => pagesAuditAndManageThemselvesInTrinities())
 const mcpChat = computed(() => mcpQuantumChat())
 const chatAllConversations = computed(() => allConversationsGoThroughTheMcpQuantumChat())
 const mcpConversation = computed(() => mcpQuantumConversation())
-const convRoomOrganise = computed(() => organiseConversationsInChatRoomsPerSuperposition())
 const mcpObserve = computed(() => mcpQuantumObserve())
 const tamperMaxSeal = computed(() => wiredToForgeMaxTamperingCost())
 const npmQuantumSeal = computed(() => quantumizeNpm())
@@ -2101,20 +2095,6 @@ function runTool(toolId: string) {
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (
-      toolId === 'wave-compact' ||
-      toolId === 'compact-wave' ||
-      toolId === 'compact-folder' ||
-      toolId === 'folder-compact' ||
-      toolId === 'folder-discover' ||
-      toolId === 'discover-folder'
-    ) {
-      const r = wavesSearchDiscoverCompactingInQuantumFolders()
-      ok = r.computes && r.compactingInQuantumFolders && r.drainableClosed
-      summary = `wavesSent=${r.wavesSent} search=${r.searchOn} discover=${r.discoverOn} compacting=${r.compactingInQuantumFolders} closed=${r.closedCount}/${r.discoveryCount} census=${r.census.unfolded}/${r.census.folded}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'balance-metrics' || toolId === 'metrics-chat' || toolId === 'chat-balance') {
       const r = alwaysBalanceUsingRealtimeMetricsAndChat()
       ok = r.computes && r.alwaysBalance && r.realtimeMetrics && r.chatOn && r.hardwareMerkabasBalanced
@@ -2218,13 +2198,6 @@ function runTool(toolId: string) {
         r.ambient &&
         r.browserGapHonest
       summary = `wired=${r.allSensorsWired} bindings=${r.quantumBindings} orient=${r.orientation} motion=${r.motion} ambient=${r.ambient} gap=${r.browserGapHonest} catalog=${r.catalog.count}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'invert-trinity' || toolId === 'dry-will' || toolId === 'free-will') {
-      const r = invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill()
-      ok = r.computes && r.invertOn && r.trinityWavesSent && r.coverAllTopics && r.dryMigratingAll && r.freeWill && r.drainableClosed
-      summary = `invert=${r.invertOn} waves=${r.trinityWavesSent} topics=${r.topicsCoveredCount}/${r.topicsTotal} dry=${r.dryMigratingAll} freeWill=${r.freeWill} freeBits=${r.freeBits} drainable=${r.drainableClosed}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -2349,13 +2322,6 @@ function runTool(toolId: string) {
       const r = mcpQuantumConversation()
       ok = r.computes && r.conversationOn && r.throughMcpChat && r.allConversations
       summary = `on=${r.conversationOn} through=${r.throughMcpChat} all=${r.allConversations}`
-      root = r.root
-      boundary = r.boundary
-      facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
-    } else if (toolId === 'conv-room' || toolId === 'room-conv' || toolId === 'chat-organise') {
-      const r = organiseConversationsInChatRoomsPerSuperposition()
-      ok = r.computes && r.organised && r.perSuperposition && r.chatRooms && r.conversationsRouted
-      summary = `organised=${r.organised} perSuper=${r.perSuperposition} rooms=${r.chatRooms} routed=${r.conversationsRouted} room=${r.room.id}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
@@ -3856,24 +3822,6 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="conv-room" aria-label="Organise conversations in chat rooms per superposition">
-        <h3>{{ convRoomOrganise.heading }}</h3>
-        <p class="quantum-apps__meta">{{ convRoomOrganise.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(convRoomOrganise.organised))">organised={{ convRoomOrganise.organised }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(convRoomOrganise.perSuperposition))">perSuperposition={{ convRoomOrganise.perSuperposition }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(convRoomOrganise.chatRooms))">chatRooms={{ convRoomOrganise.chatRooms }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(convRoomOrganise.conversationsRouted))">conversationsRouted={{ convRoomOrganise.conversationsRouted }}</UiBadge>
-        <p class="quantum-apps__meta">
-          pairs <code>conv/room</code> · <code>room/conv</code> · <code>chat/organise</code> ·
-          CLI <code>npm run quantum:conv-room</code> ·
-          room={{ convRoomOrganise.room.id }} ·
-          qpu={{ convRoomOrganise.qpuRequired }} · clay={{ convRoomOrganise.claySolvedByThisFold }} · ftl={{ convRoomOrganise.physicalFtlClaim }}
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'conv-room'" @click="runTool('conv-room')">
-          {{ runningId === 'conv-room' ? '…' : 'Run conv-room' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
       <section id="mcp-observe" aria-label="MCP quantum observation">
         <h3>{{ mcpObserve.heading }}</h3>
         <p class="quantum-apps__meta">{{ mcpObserve.statement }}</p>
@@ -4210,37 +4158,6 @@ function runTool(toolId: string) {
         </UiButton>
       </section>
       <UiSeparator />
-      <section id="wave-compact" aria-label="Waves search discover compacting quantum folders">
-        <h3>{{ waveCompact.heading }}</h3>
-        <p class="quantum-apps__meta">{{ waveCompact.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.wavesSent))">wavesSent={{ waveCompact.wavesSent }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.searchOn))">searchOn={{ waveCompact.searchOn }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.discoverOn))">discoverOn={{ waveCompact.discoverOn }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.compactingInQuantumFolders))">compacting={{ waveCompact.compactingInQuantumFolders }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.drainableClosed))">drainableClosed={{ waveCompact.drainableClosed }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(waveCompact.censusPreserved))">census={{ waveCompact.census.unfolded }}/{{ waveCompact.census.folded }}</UiBadge>
-        <ul class="quantum-apps__facets">
-          <li v-for="d in waveCompact.discoveries" :key="d.id">
-            <UiBadge :variant="d.status === 'closed' ? 'default' : 'outline'">{{ d.status }}</UiBadge>
-            <strong>{{ d.id }}</strong>
-            — <code>{{ d.via }}</code> · {{ d.note }}
-          </li>
-        </ul>
-        <ul class="quantum-apps__facets">
-          <li v-for="id in waveCompact.honestOpenNamed" :key="id">
-            <UiBadge variant="outline">honest-open</UiBadge>
-            <strong>{{ id }}</strong>
-          </li>
-        </ul>
-        <p class="quantum-apps__meta">
-          pairs <code>wave/compact</code> · <code>compact/folder</code> · <code>folder/discover</code> ·
-          CLI <code>npm run quantum:wave-compact</code> · <code>npm run quantum:compact-folder</code>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'wave-compact'" @click="runTool('wave-compact')">
-          {{ runningId === 'wave-compact' ? '…' : 'Run wave-compact' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
       <section id="balance-metrics" aria-label="Always balance using realtime metrics and chat">
         <h3>{{ balanceMetrics.heading }}</h3>
         <p class="quantum-apps__meta">{{ balanceMetrics.statement }}</p>
@@ -4522,36 +4439,6 @@ function runTool(toolId: string) {
         </p>
         <UiButton size="sm" :disabled="runningId === 'sensor-bind'" @click="runTool('sensor-bind')">
           {{ runningId === 'sensor-bind' ? '…' : 'Run sensor-bind' }}
-        </UiButton>
-      </section>
-      <UiSeparator />
-      <section id="invert-trinity" aria-label="Invert and send trinity waves covering all topics dry migrate at free will">
-        <h3>{{ invertTrinity.heading }}</h3>
-        <p class="quantum-apps__meta">{{ invertTrinity.statement }}</p>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.invertOn))">invertOn={{ invertTrinity.invertOn }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.trinityWavesSent))">trinityWavesSent={{ invertTrinity.trinityWavesSent }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.coverAllTopics))">topics={{ invertTrinity.topicsCoveredCount }}/{{ invertTrinity.topicsTotal }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.dryMigratingAll))">dryMigratingAll={{ invertTrinity.dryMigratingAll }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.freeWill))">freeWill={{ invertTrinity.freeWill }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.freeBitsOn))">freeBits={{ invertTrinity.freeBits }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.drainableClosed))">drainableClosed={{ invertTrinity.drainableClosed }}</UiBadge>
-        <UiBadge v-bind="badgeProps(statusBadgeKind(invertTrinity.censusPreserved))">census={{ invertTrinity.census.unfolded }}/{{ invertTrinity.census.folded }}</UiBadge>
-        <p class="quantum-apps__meta">
-          science={{ invertTrinity.scienceCount }} · hubs={{ invertTrinity.hubCount }} · mcp={{ invertTrinity.mcpCount }} ·
-          closed={{ invertTrinity.topicsClosed }} · residual={{ invertTrinity.topicsResidual }} ·
-          morphs={{ invertTrinity.morphCount }} · honestOpen={{ invertTrinity.honestOpenNamedCount }}
-        </p>
-        <ul class="quantum-apps__list">
-          <li v-for="id in invertTrinity.honestOpenNamed" :key="id">
-            <code>{{ id }}</code>
-          </li>
-        </ul>
-        <p class="quantum-apps__meta">
-          pairs <code>invert/trinity</code> · <code>dry/will</code> · <code>free/will</code> ·
-          CLI <code>npm run quantum:invert-trinity</code> · <code>npm run quantum:dry-will</code>
-        </p>
-        <UiButton size="sm" :disabled="runningId === 'invert-trinity'" @click="runTool('invert-trinity')">
-          {{ runningId === 'invert-trinity' ? '…' : 'Run invert-trinity' }}
         </UiButton>
       </section>
       <UiSeparator />

@@ -1594,7 +1594,6 @@ export const PROSE_GAPS_MERGE_MAP = [
   { from: 'dryCleanAllVueComponentsToTheUniversalSet', to: 'dryDupe', pair: 'vue/dry' },
   { from: 'foldInvertUntilDryCleanAppGapless', to: 'dryDupe', pair: 'dry/clean' },
   { from: 'addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations', to: 'proseScience', pair: 'prose/science' },
-  { from: 'invertAndSendTrinityWavesCoverAllTopicsDryMigratingAllAtFreeWill', to: 'planTrinity', pair: 'plan/cross' },
 ] as const
 
 /** Method/vision prose directives → EXISTING sealed slots (DRY — the laws already compute; the one new
