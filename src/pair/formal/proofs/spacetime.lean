@@ -100,4 +100,12 @@ theorem the_light_cone_is_carried_to_itself :
     ∀ e ∈ lightlike, ∀ b ∈ boosts,
       interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0 := by decide
 
+/-- THE BOOST IS UNDONE BY THE REVERSE BOOST. Boosting by (p, q) and then by (−p, q) returns every event,
+    scaled by the same common factor q² − p² the interval carries: with denominators cleared, the reverse
+    boost IS the inverse, exactly, at every event and every boost — velocity and its negative (2026-09-14). -/
+theorem the_reverse_boost_undoes_the_boost :
+    ∀ e ∈ events, ∀ b ∈ boosts,
+      boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧
+      boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2 := by decide
+
 end Spacetime

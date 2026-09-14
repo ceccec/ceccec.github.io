@@ -1051,8 +1051,8 @@
       "id": "spacetime",
       "title": "Machine-checked involution structure of spacetime (Lean 4, axiom-free)",
       "file": "spacetime.lean",
-      "theoremCount": 7,
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of spacetime: 7 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Light is the fixed point — ∀ v ∈ sample, same (add light v) light = true\n• Light is fixed from either side — ∀ v ∈ sample, same (add v light) light = true\n• Rest is the identity — ∀ v ∈ sample, same (add rest v) v = true\n• Composition is symmetric — ∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true\n• Below c composes to below c — ∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den\n• The boost preserves the interval — ∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2\n• The light cone is carried to itself — ∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0",
+      "theoremCount": 8,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of spacetime: 8 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Light is the fixed point — ∀ v ∈ sample, same (add light v) light = true\n• Light is fixed from either side — ∀ v ∈ sample, same (add v light) light = true\n• Rest is the identity — ∀ v ∈ sample, same (add rest v) v = true\n• Composition is symmetric — ∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true\n• Below c composes to below c — ∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den\n• The boost preserves the interval — ∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2\n• The light cone is carried to itself — ∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0\n• The reverse boost undoes the boost — ∀ e ∈ events, ∀ b ∈ boosts, boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧ boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2",
       "theorems": [
         {
           "title": "Light is the fixed point",
@@ -1088,6 +1088,11 @@
           "title": "The light cone is carried to itself",
           "proposition": "∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0",
           "page": "https://ceccec.github.io/lean/spacetime-the-light-cone-is-carried-to-itself"
+        },
+        {
+          "title": "The reverse boost undoes the boost",
+          "proposition": "∀ e ∈ events, ∀ b ∈ boosts, boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧ boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2",
+          "page": "https://ceccec.github.io/lean/spacetime-the-reverse-boost-undoes-the-boost"
         }
       ],
       "priorArt": {
@@ -1156,6 +1161,11 @@
         },
         {
           "identifier": "https://ceccec.github.io/lean/spacetime-the-light-cone-is-carried-to-itself",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-the-reverse-boost-undoes-the-boost",
           "relation": "isDocumentedBy",
           "scheme": "url"
         }

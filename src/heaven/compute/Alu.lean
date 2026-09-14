@@ -96,6 +96,15 @@ def enc : Pole → V
 
 def isPole (v : V) : Bool := poles.any (fun p => enc p == v)
 
+/-- Decoding a state back to the pole it encodes: the first pole whose encoding it is. -/
+def dec (v : V) : Option Pole := poles.find? (fun p => enc p == v)
+
+/-- enc and dec are INVERSE on the poles: decoding an encoded pole returns that pole, so no two poles share
+    an encoding, and the decoded pole re-encodes to the same state (2026-09-14). -/
+theorem dec_undoes_enc :
+    (poles.all (fun p => dec (enc p) == some p)
+      && poles.all (fun p => (dec (enc p)).map enc == some (enc p))) = true := by decide
+
 def cliffordOps : List (BitVec 3) := [opI, opX, opY, opZ, opH, opS]
 
 /-! ## Theorems — every one decided by computation, none rests on an axiom -/

@@ -7,8 +7,14 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 134,
+  "count": 135,
   "statements": [
+    {
+      "statementUuid": "25cc1fd7-cc7d-8553-a73f-60a47a17adfa",
+      "file": "src/heaven/compute/Alu.lean",
+      "name": "dec_undoes_enc",
+      "statement": "(poles.all (fun p => dec (enc p) == some p)\n      && poles.all (fun p => (dec (enc p)).map enc == some (enc p))) = true"
+    },
     {
       "statementUuid": "aadcc9a4-b79e-8b79-b505-0bd9886ad547",
       "file": "src/heaven/compute/Alu.lean",
@@ -340,10 +346,10 @@
       "statement": "∀ e ∈ events, ∀ b ∈ boosts,\n      interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2)\n        = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2"
     },
     {
-      "statementUuid": "3eff8de7-e298-8f01-b8d7-f9ce704b3e8f",
+      "statementUuid": "5dc40d56-81a5-89b7-8292-4dc6c5c61233",
       "file": "src/pair/formal/proofs/spacetime.lean",
-      "name": "the_light_cone_is_carried_to_itself",
-      "statement": "∀ e ∈ lightlike, ∀ b ∈ boosts,\n      interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0"
+      "name": "the_reverse_boost_undoes_the_boost",
+      "statement": "∀ e ∈ events, ∀ b ∈ boosts,\n      boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧\n      boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2"
     },
     {
       "statementUuid": "624a4c8d-9ec5-8064-8c95-066f88fdb89b",
