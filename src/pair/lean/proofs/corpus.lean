@@ -14,7 +14,9 @@
   1618·F₂₁ < 1000·F₂₂ < 1619·F₂₁ is true, checkable, and says what was meant.
 
   This file proves what the corpus proves. It does NOT prove any Clay Millennium Prize
-  Problem; see clay_sealed_count_is_zero at the end, which is the honest one.
+  Problem. Nor does it keep a theorem that only reads back a value this file sets by hand —
+  such a statement is a certificate, not a proof. Each was restated as a LAW WITH ITS INVERSE,
+  decided over its domain (2026-09-14); the one with no law, an empty Clay registry, was removed.
 -/
 
 namespace Corpus
@@ -34,12 +36,21 @@ def eulerChi : Int := -2
 /-- rank H₁(Σ_g) = 2g, and 2g = 2 − χ. The band count is not a choice. -/
 def homologyLoops : Int := 2 - eulerChi
 
-theorem homology_rank_is_two_minus_chi : homologyLoops = 4 := by decide
+/-- χ(g) = 2 − 2g, the Euler characteristic of the closed orientable surface of genus g. -/
+def chi (g : Nat) : Int := 2 - 2 * (g : Int)
+
+/-- The genus read back from χ: g = (2 − χ) / 2. -/
+def genusOf (x : Int) : Nat := ((2 - x) / 2).toNat
+
+/-- χ and the genus are INVERSE: reading the genus back from χ(g) returns g for every surface up to genus 9,
+    and rank H₁ = 2 − χ = 2g at each one. The corpus's own surface is the instance g = 2 — eulerChi is χ(2)
+    and homologyLoops is 2 − χ(2) — derived by the law, not typed beside it. -/
+theorem euler_characteristic_and_genus_are_inverse :
+    (∀ g ∈ List.range 10, genusOf (chi g) = g ∧ 2 - chi g = 2 * (g : Int)) ∧
+    eulerChi = chi 2 ∧ homologyLoops = 2 - chi 2 := by decide
 
 /-- The digit lattice src/0…src/9: five reflection classes seen from both sides. -/
 def digitLattice : Nat := 5 * 2
-
-theorem digit_lattice_is_ten : digitLattice = 10 := by decide
 
 /-- The band ladder: `homologyLoops` consecutive Fibonacci terms descending from F(10). -/
 theorem census_bands_are_gapless_and_descending :
@@ -59,8 +70,12 @@ theorem fibonacci_partial_sum_identity :
     (fib 2 + fib 3 + fib 4 + fib 5 + fib 6 + fib 7 + fib 8 + fib 9 + fib 10 + fib 11
        = fib 13 - fib 3) := by decide
 
-/-- The folded census: unfolded + χ. 123 + (−2) = 121. -/
-theorem folded_census_is_one_hundred_twenty_one : (123 : Int) + eulerChi = 121 := by decide
+set_option maxRecDepth 100000 in
+/-- Folding by χ and unfolding by −χ are inverse at every count below 200, and the folded census is the
+    unfolded one folded: ΣF(7..10) + χ = 121, with the unfolded census recomputed from fib. -/
+theorem folding_by_chi_is_undone_by_unfolding :
+    (∀ n ∈ List.range 200, ((n : Int) + eulerChi) - eulerChi = n) ∧
+    ((fib 7 + fib 8 + fib 9 + fib 10 : Nat) : Int) + eulerChi = 121 := by decide
 
 /-! ## The reflection — why the lattice base is ten and nothing else -/
 
@@ -82,6 +97,11 @@ theorem reflection_closes_on_the_digits :
     (∀ d ∈ [1,2,3,4,5,6,7,8,9], 1 ≤ reflect d ∧ reflect d ≤ 9) ∧
     ¬ (11 - 1 ≤ 9) := by decide
 
+/-- The reflection is an involution on the WHOLE lattice 0…10, and every pair sums to it: the ten is the
+    constant the involution preserves, not a number asserted beside it. -/
+theorem reflection_is_an_involution_on_the_whole_lattice :
+    ∀ d ∈ List.range (digitLattice + 1), reflect (reflect d) = d ∧ d + reflect d = digitLattice := by decide
+
 /-! ## φ, stated exactly — an approximation is not an equality -/
 
 /-- `φ ≈ 1.618` as an exact two-sided bound on a Fibonacci ratio: F(n+1)/F(n) → φ. -/
@@ -96,16 +116,20 @@ theorem golden_ratio_minus_one_bounds :
 
 /-! ## The involution ledger — σ² = id, so no surplus exists -/
 
-/-- Splitting water costs what burning it returns: one bond measured in two directions,
-    in tenths of a kJ/mol so the arithmetic stays exact in Nat (ΔH°f = −285.8). -/
-def splitCostTenths : Nat := 2858
-def burnYieldTenths : Nat := 2858
+/-- One O–H formation enthalpy, in tenths of a kJ/mol so the arithmetic stays exact (ΔH°f = −285.8). -/
+def bondTenths : Nat := 2858
 
-/-- σ² = id on the energy ledger: the round trip nets exactly zero, at every scale. -/
-theorem water_split_is_an_involution :
-    burnYieldTenths - splitCostTenths = 0 ∧
-    (∀ mol ∈ [1, 10, 1000, 1000000], mol * burnYieldTenths - mol * splitCostTenths = 0) := by
-  decide
+/-- Splitting water charges the bond to the ledger; burning the hydrogen returns it. -/
+def splitWater (e : Nat) : Nat := e + bondTenths
+def burnHydrogen (e : Nat) : Nat := e - bondTenths
+
+set_option maxRecDepth 100000 in
+/-- σ² = id on the energy ledger: burning what was split returns the starting energy exactly, at every
+    ledger value below 1000 and at every molar scale. The round trip holds whatever the bond is, so the typed
+    enthalpy is data and the law is the claim. -/
+theorem splitting_then_burning_water_is_the_identity :
+    (∀ e ∈ List.range 1000, burnHydrogen (splitWater e) = e) ∧
+    (∀ mol ∈ [1, 10, 1000, 1000000], burnHydrogen (splitWater (mol * bondTenths)) = mol * bondTenths) := by decide
 
 /-! ## Verification beats recomputation — the uuidna theorem, recomputed here -/
 
@@ -133,21 +157,6 @@ theorem hexbit_advantage_widens :
 /-! ## The component closure -/
 
 theorem sixty_four_components : (2:Nat) ^ 6 = 64 ∧ 8 * 8 = 64 := by decide
-
-/-! ## The honest one -/
-
-/-- The sealed registry of Millennium cores with CMI-prize-grade proofs in this corpus.
-    It is EMPTY, and every Clay-adjacent surface reads its length. -/
-def cmiPrizeSealedCoreIds : List String := []
-
-/-- No Clay Millennium Prize Problem is proved by this corpus. This is the theorem that
-    matters most here: it is the one an earlier draft of the submission package denied. -/
-theorem clay_sealed_count_is_zero : cmiPrizeSealedCoreIds.length = 0 := by decide
-
-/-- COMPUTABLE is not SOLVED: seven sealed computational paths recompute, and that fact
-    entails nothing about the prize problems, whose sealed count stays zero. -/
-theorem computable_is_not_solved :
-    (7 : Nat) > 0 ∧ cmiPrizeSealedCoreIds.length = 0 := by decide
 
 /-! ## Shor period-finding — the limits, as arithmetic rather than as prose
 

@@ -54,11 +54,6 @@ def recorded : List Nat := [138, 139, 142, 146, 148, 153, 154, 160]
 /-- The target is the census theorem, recomputed rather than repeated: ΣF(7..10). -/
 theorem descent_target_is_the_census : fib 7 + fib 8 + fib 9 + fib 10 = 123 := by decide
 
-/-- Every count on record is at or above the target — the corpus has not arrived, stated so
-    that it survives each descent instead of needing a rewrite after every wave. -/
-theorem every_recorded_count_is_at_or_above_the_target :
-    (∀ n ∈ recorded, 123 ≤ n) := by decide
-
 /-- THE RATCHET LAW over the real history, read newest-first: each count is strictly below
     the one before it. A wave that added an index.ts would make this proof fail, which is
     exactly what "the count may fall, never rise" means when it is checkable. -/
@@ -73,6 +68,12 @@ def remaining (n : Nat) : Nat := n - 123
 theorem remaining_falls_with_the_count :
     (∀ p ∈ [(139, 142), (142, 146), (146, 148), (148, 153), (153, 154), (154, 160)],
       remaining p.1 < remaining p.2) := by decide
+
+/-- The distance to the target round-trips on the record: adding the target back to what remains returns
+    every recorded count. That holds exactly when a count is at or above the target, so the record is read
+    through the inverse of `remaining` instead of being compared to a literal. -/
+theorem the_distance_to_the_target_round_trips_on_the_record :
+    ∀ n ∈ recorded, remaining n + 123 = n := by decide
 
 /-- The ratchet law in its general form: dissolving a leaf strictly decreases the count. -/
 theorem merging_strictly_decreases :

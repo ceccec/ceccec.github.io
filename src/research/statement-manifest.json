@@ -7,8 +7,44 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 105,
+  "count": 134,
   "statements": [
+    {
+      "statementUuid": "aadcc9a4-b79e-8b79-b505-0bd9886ad547",
+      "file": "src/heaven/compute/Alu.lean",
+      "name": "clifford_keeps_poles",
+      "statement": "cliffordOps.all (fun o => poles.all (fun p => isPole (step o (enc p)))) = true"
+    },
+    {
+      "statementUuid": "43a1a5e0-3cc1-8803-bf5d-4dc4e9d8089b",
+      "file": "src/heaven/compute/Alu.lean",
+      "name": "t_leaves_poles",
+      "statement": "poles.any (fun p => !(isPole (step opT (enc p)))) = true"
+    },
+    {
+      "statementUuid": "a9c67a7d-a6d1-8a87-8402-71a1bf68a5e2",
+      "file": "src/heaven/compute/Alu.lean",
+      "name": "involutions",
+      "statement": "([opX, opY, opZ, opH].all (fun o => poles.all (fun p => step o (step o (enc p)) == enc p))\n      && poles.all (fun p => step opS (step opS (step opS (step opS (enc p)))) == enc p)) = true"
+    },
+    {
+      "statementUuid": "61aa1fdc-b93b-8946-8054-1793350c4f9e",
+      "file": "src/heaven/compute/Alu.lean",
+      "name": "born_rule_on_poles",
+      "statement": "(init == enc .pz\n      && poles.all (fun p => let n"
+    },
+    {
+      "statementUuid": "59ea0123-c7ee-878e-99da-d46f051df8da",
+      "file": "src/heaven/compute/Alu.lean",
+      "name": "c_is_floor_of_2pow14_over_sqrt2",
+      "statement": "2 * C * C ≤ 2 ^ 28 ∧ 2 ^ 28 < 2 * (C + 1) * (C + 1)"
+    },
+    {
+      "statementUuid": "af4f1d7c-232d-8954-8d10-50aef5a536c7",
+      "file": "src/heaven/compute/Alu.lean",
+      "name": "hardware_t_is_tFloor_on_poles",
+      "statement": "poles.all (fun p =>\n      let v"
+    },
     {
       "statementUuid": "07b6d2c8-c011-84ef-98f1-e2a09f45d568",
       "file": "src/pair/formal/proofs/bsd.lean",
@@ -484,6 +520,12 @@
       "statement": "1618 * fib 21 < 1000 * fib 22 ∧ 1000 * fib 22 < 1619 * fib 21"
     },
     {
+      "statementUuid": "cbc5b51b-36e3-840e-9644-c59531ea8515",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "euler_characteristic_and_genus_are_inverse",
+      "statement": "(∀ g ∈ List.range 10, genusOf (chi g) = g ∧ 2 - chi g = 2 * (g : Int)) ∧\n    eulerChi = chi 2 ∧ homologyLoops = 2 - chi 2"
+    },
+    {
       "statementUuid": "276e3d28-9992-8e5a-aab0-f77de28bccfb",
       "file": "src/pair/lean/proofs/corpus.lean",
       "name": "census_bands_are_gapless_and_descending",
@@ -502,10 +544,10 @@
       "statement": "(fib 1 + fib 2 + fib 3 + fib 4 + fib 5 = fib 7 - fib 2) ∧\n    (fib 3 + fib 4 + fib 5 + fib 6 + fib 7 + fib 8 = fib 10 - fib 4) ∧\n    (fib 7 + fib 8 + fib 9 + fib 10 = fib 12 - fib 8) ∧\n    (fib 2 + fib 3 + fib 4 + fib 5 + fib 6 + fib 7 + fib 8 + fib 9 + fib 10 + fib 11\n       = fib 13 - fib 3)"
     },
     {
-      "statementUuid": "7eb22235-73ce-898a-ad7b-0b774e1aec8d",
+      "statementUuid": "2cf438ff-f38e-8f1d-ae69-70857ffaf9ec",
       "file": "src/pair/lean/proofs/corpus.lean",
-      "name": "folded_census_is_one_hundred_twenty_one",
-      "statement": "(123 : Int) + eulerChi = 121"
+      "name": "folding_by_chi_is_undone_by_unfolding",
+      "statement": "(∀ n ∈ List.range 200, ((n : Int) + eulerChi) - eulerChi = n) ∧\n    ((fib 7 + fib 8 + fib 9 + fib 10 : Nat) : Int) + eulerChi = 121"
     },
     {
       "statementUuid": "685a40e9-9ab8-84f1-872d-f5728ea5677e",
@@ -526,6 +568,12 @@
       "statement": "(∀ d ∈ [1,2,3,4,5,6,7,8,9], 1 ≤ reflect d ∧ reflect d ≤ 9) ∧\n    ¬ (11 - 1 ≤ 9)"
     },
     {
+      "statementUuid": "f7180a99-7054-81af-9ccb-ea1bc4f98800",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "reflection_is_an_involution_on_the_whole_lattice",
+      "statement": "∀ d ∈ List.range (digitLattice + 1), reflect (reflect d) = d ∧ d + reflect d = digitLattice"
+    },
+    {
       "statementUuid": "d6878b44-9ba7-81be-8f92-c495016af765",
       "file": "src/pair/lean/proofs/corpus.lean",
       "name": "golden_ratio_bounds",
@@ -538,10 +586,10 @@
       "statement": "618 * fib 21 < 1000 * fib 20 ∧ 1000 * fib 20 < 619 * fib 21"
     },
     {
-      "statementUuid": "05c69110-212f-83c0-8391-625ffdca2b34",
+      "statementUuid": "07377677-7a66-84c4-a08c-80ca2e2d1e42",
       "file": "src/pair/lean/proofs/corpus.lean",
-      "name": "water_split_is_an_involution",
-      "statement": "burnYieldTenths - splitCostTenths = 0 ∧\n    (∀ mol ∈ [1, 10, 1000, 1000000], mol * burnYieldTenths - mol * splitCostTenths = 0)"
+      "name": "splitting_then_burning_water_is_the_identity",
+      "statement": "(∀ e ∈ List.range 1000, burnHydrogen (splitWater e) = e) ∧\n    (∀ mol ∈ [1, 10, 1000, 1000000], burnHydrogen (splitWater (mol * bondTenths)) = mol * bondTenths)"
     },
     {
       "statementUuid": "ec28cc28-6324-878c-b582-f41b7592506f",
@@ -550,22 +598,46 @@
       "statement": "((2:Nat) ^ 10 = 1024) ∧ ((2:Nat) ^ 20 = 1048576) ∧\n    (1024 > 100 * 10) ∧ (1048576 > 10000 * 20)"
     },
     {
+      "statementUuid": "cacef75b-4ebc-8494-b5f3-599fe997fffa",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "hexbit_receipt_beats_rebuild",
+      "statement": "((2:Nat) ^ 1 - 1 = 1) ∧ ((2:Nat) ^ 6 - 1 = 63) ∧ ((2:Nat) ^ 10 - 1 = 1023) ∧\n    ((2:Nat) ^ 1 - 1 = 1) ∧ (63 > 6) ∧ (1023 > 10) ∧\n    (63 > 10 * 6) ∧ (1023 > 100 * 10)"
+    },
+    {
+      "statementUuid": "6d901adf-9775-8c36-8d49-75f66b6c2299",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "hexbit_advantage_widens",
+      "statement": "(63 * 1 > 1 * 6) ∧ (1023 * 6 > 63 * 10)"
+    },
+    {
       "statementUuid": "6f7d22bf-2388-8eab-90a1-b35303c5695d",
       "file": "src/pair/lean/proofs/corpus.lean",
       "name": "sixty_four_components",
       "statement": "(2:Nat) ^ 6 = 64 ∧ 8 * 8 = 64"
     },
     {
-      "statementUuid": "7e2deba6-4756-8f7c-9580-c12a349f75fa",
+      "statementUuid": "7482e332-f7c0-850c-bf9e-abc63e5cb3fd",
       "file": "src/pair/lean/proofs/corpus.lean",
-      "name": "clay_sealed_count_is_zero",
-      "statement": "cmiPrizeSealedCoreIds.length = 0"
+      "name": "shor_state_vectors_unchanged",
+      "statement": "(2:Nat) ^ (8 + 4) = 4096 ∧ (2:Nat) ^ (10 + 5) = 32768 ∧ (2:Nat) ^ (12 + 6) = 262144"
     },
     {
-      "statementUuid": "76d6fa04-3a01-87af-9dbb-14616b2c655c",
+      "statementUuid": "d9d1c5e2-5ea1-8c28-8f7a-6fa9d47e9493",
       "file": "src/pair/lean/proofs/corpus.lean",
-      "name": "computable_is_not_solved",
-      "statement": "(7 : Nat) > 0 ∧ cmiPrizeSealedCoreIds.length = 0"
+      "name": "shor_vector_dwarfs_the_number",
+      "statement": "4096 > 15 * 100 ∧ 32768 > 21 * 100 ∧ 262144 > 35 * 100"
+    },
+    {
+      "statementUuid": "90919915-096c-85ef-8050-6ec883110034",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "shor_rsa_gap_is_between_exponents",
+      "statement": "3 * 2048 = 6144 ∧ 6144 > 6 * 10"
+    },
+    {
+      "statementUuid": "f7041394-3e0b-8acf-8381-b7df2c5450fd",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "shor_zero_skipping_divides_by_the_work_register",
+      "statement": "64 * (4096 * 4096) = 1073741824 ∧ 4096 * 4096 = 16777216 ∧\n    1073741824 / 16777216 = 64"
     },
     {
       "statementUuid": "8bb8e79d-f913-86a0-b12e-6e5d25d28857",
@@ -604,6 +676,108 @@
       "statement": "eq (add ⟨9,25⟩ ⟨16,25⟩) ⟨1,1⟩"
     },
     {
+      "statementUuid": "0fd6e6f3-d049-8b4c-a9cf-90db53ba8f58",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "sothic_cycle_meshes",
+      "statement": "1461 * 365 * 4 = 1460 * 1461"
+    },
+    {
+      "statementUuid": "4636f66f-934f-8cc0-901d-5d368b890c31",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "sothic_cycle_days",
+      "statement": "1461 * 365 = 533265"
+    },
+    {
+      "statementUuid": "688e3feb-d35c-841c-9dc4-13f037808dfd",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "vdw_nine_forces",
+      "statement": "(List.range 512).all (fun c => monoAP c 9) = true"
+    },
+    {
+      "statementUuid": "b1c09b7d-889c-865e-88fc-6e4b9727a42d",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "vdw_eight_escapes",
+      "statement": "(List.range 256).any (fun c => !monoAP c 8) = true"
+    },
+    {
+      "statementUuid": "f6a98f88-318a-853e-89ae-306874f9e82c",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "condorcet_profiles_are_216",
+      "statement": "profiles.length = 216"
+    },
+    {
+      "statementUuid": "9b6da581-2a83-847c-b397-1b90dc3f3070",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "condorcet_six_cycle",
+      "statement": "(profiles.filter cyclesABC).length = 6"
+    },
+    {
+      "statementUuid": "cfaab651-3375-8e75-8f28-00413f1737cb",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "graeco_latin_none_of_order_two",
+      "statement": "order2.all (fun a => order2.all (fun b => !(latin 2 a && latin 2 b && orthogonal 2 a b))) = true"
+    },
+    {
+      "statementUuid": "ac25e6a9-1704-888b-867b-3c2ccd5d9230",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "graeco_latin_order_three",
+      "statement": "(latin 3 a3 && latin 3 b3 && orthogonal 3 a3 b3) = true"
+    },
+    {
+      "statementUuid": "362ba919-447f-8ba6-9810-40c2dfeb118b",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "tau_six_is_product",
+      "statement": "((-24 : Int) * 252 = -6048)"
+    },
+    {
+      "statementUuid": "fec4e510-915b-8058-8d92-7077a205aa76",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "k5_k33_break_planar_bounds",
+      "statement": "(10 > 3 * 5 - 6) ∧ (9 > 2 * 6 - 4)"
+    },
+    {
+      "statementUuid": "974d952c-af43-8a2f-b110-0da03e81a35d",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "catalan_heptagon",
+      "statement": "catalanList 5 = [1, 1, 2, 5, 14, 42]"
+    },
+    {
+      "statementUuid": "cb2edb0b-d5d9-8630-bba5-9727540158b8",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "exactly_three_regular_tilings",
+      "statement": "tilings = [(3, 6), (4, 4), (6, 3)]"
+    },
+    {
+      "statementUuid": "6e88d76b-e77c-8ae0-bcf7-a16f6d3b1159",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "steiner_two_three_seven",
+      "statement": "(List.range 7).all (fun a => (List.range 7).all (fun b => a == b || covers a b == 1)) = true"
+    },
+    {
+      "statementUuid": "db6f4d8d-a8fa-8e12-aa76-1857620aa0f6",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "heawood_moore_bound",
+      "statement": "2 * (3 * 3 - 3 + 1) = 14"
+    },
+    {
+      "statementUuid": "794245d8-4765-82eb-9925-26c3dd8a5962",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "exactly_five_platonic_solids",
+      "statement": "platonic = [(3, 3), (3, 4), (3, 5), (4, 3), (5, 3)]"
+    },
+    {
+      "statementUuid": "59c1ff47-9733-8ebd-bc7e-924b009e9fd6",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "pisano_ten_is_sixty",
+      "statement": "pisano10 = 60"
+    },
+    {
+      "statementUuid": "2a784c1d-8a47-818c-8ac2-da4c15d378c4",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "catalan_parity_is_mersenne",
+      "statement": "((List.range 33).filter fun n => nth0 (catalanList 32) n % 2 == 1) = [0, 1, 3, 7, 15, 31]"
+    },
+    {
       "statementUuid": "c0416950-a856-84df-a91a-cfb77ea7cd5c",
       "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
       "name": "first_descent_is_six",
@@ -616,16 +790,16 @@
       "statement": "fib 7 + fib 8 + fib 9 + fib 10 = 123"
     },
     {
-      "statementUuid": "7a57bdfc-8432-8ec4-8600-ea93a1854b93",
-      "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
-      "name": "every_recorded_count_is_at_or_above_the_target",
-      "statement": "(∀ n ∈ recorded, 123 ≤ n)"
-    },
-    {
       "statementUuid": "fab03aaf-c4f8-8f5c-9ccb-d615d00e28ef",
       "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
       "name": "the_descent_is_strictly_monotone",
       "statement": "(∀ p ∈ [(139, 142), (142, 146), (146, 148), (148, 153), (153, 154), (154, 160)],\n      p.1 < p.2)"
+    },
+    {
+      "statementUuid": "a5e6cd22-00ff-8b1a-83a7-9c328db8779b",
+      "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
+      "name": "the_distance_to_the_target_round_trips_on_the_record",
+      "statement": "∀ n ∈ recorded, remaining n + 123 = n"
     },
     {
       "statementUuid": "a36b0dc0-e600-8d9c-b8a3-62b085ad254a",

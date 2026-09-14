@@ -237,7 +237,7 @@ export function assertLeanCompiles(): void {
   const cheats: string[] = []
   for (const r of results) {
     // EVERY PROOFS DIRECTORY, NOT ONE. This read `pair/formal/proofs/` alone, so corpus.lean — the file
-    // that carries the census, the reflection and the honest clay_sealed_count_is_zero — had its axiom
+    // that carries the census and the reflection — had its axiom
     // dependencies NEVER MEASURED. It compiled green, which says nothing about what it leans on: a proof
     // can compile and still rest on Classical.choice, or on sorryAx, which would make green a lie. Asked
     // for the first time, it answers 18/18 with no axiom. Not measuring it was not evidence.

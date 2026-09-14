@@ -1,8 +1,8 @@
 {
   "metadata": {
     "upload_type": "software",
-    "title": "Machine-checked involution theorems in Lean 4 — 75 theorems, axiom accounting, 3 candidate originals",
-    "description": "<p><strong>A machine-checked corpus of 75 theorems in Lean 4, across 11 files, compiling with no Mathlib and no <code>sorry</code>.</strong></p>\n<p><strong>This deposit proves no Clay Millennium Prize Problem.</strong> The corpus contains a theorem saying so, <code>Corpus.clay_sealed_count_is_zero</code>, which computes that its registry of prize-grade proofs is empty; a companion theorem, <code>Corpus.computable_is_not_solved</code>, states that recomputing a path entails nothing about a prize problem. An earlier version of this record claimed the opposite. It was wrong, and this version exists to correct it.</p>\n<p><strong>What is actually established.</strong> Of the 75 theorems, machine verification reports that the great majority depend on NO axiom at all — they are decided by computation in the kernel, so the proof is the computation and nothing is assumed — and the remainder depend on <code>propext</code> alone, which is one of Lean&rsquo;s three foundational axioms and is what its own core arithmetic reasons through. None depends on <code>Classical.choice</code>, and none on <code>sorryAx</code>. That accounting is re-derived on every run by asking the kernel with <code>#print axioms</code>, never by restating it.</p>\n<p><strong>Priority is claimed over 3 results</strong>, each with a prior-art search on record that returned nothing:</p><ul>\n<li><strong>Closure is one hundred sixty two</strong> (<code>three.lean</code>)</li>\n<li><strong>The closure is eighty one orbits</strong> (<code>three.lean</code>)</li>\n<li><strong>Reflection complements the address</strong> (<code>three.lean</code>)</li>\n</ul><p>The remaining 72 are FORMALISATIONS of known results and each carries its citation. Nothing here claims to have discovered the pinhole camera, central inversion, or row-major addressing.</p>\n<p><strong>A DOI dates an expression; it does not establish novelty.</strong> What is claimed above is the expression, dated by this deposit.</p>",
+    "title": "Machine-checked involution theorems in Lean 4 — 81 theorems, axiom accounting, 3 candidate originals",
+    "description": "<p><strong>A machine-checked corpus of 81 theorems in Lean 4, across 12 files, compiling with no Mathlib and no <code>sorry</code>.</strong></p>\n<p><strong>This deposit proves no Clay Millennium Prize Problem.</strong> An earlier version of this record claimed the opposite. It was wrong: the claim was withdrawn after the repository's audit of 2026-08-20 (HONESTY.md), and this version exists to correct it. Recomputing a path entails nothing about a prize problem.</p>\n<p><strong>What is actually established.</strong> Of the 81 theorems, machine verification reports that the great majority depend on NO axiom at all — they are decided by computation in the kernel, so the proof is the computation and nothing is assumed — and the remainder depend on <code>propext</code> alone, which is one of Lean&rsquo;s three foundational axioms and is what its own core arithmetic reasons through. None depends on <code>Classical.choice</code>, and none on <code>sorryAx</code>. That accounting is re-derived on every run by asking the kernel with <code>#print axioms</code>, never by restating it.</p>\n<p><strong>Priority is claimed over 3 results</strong>, each with a prior-art search on record that returned nothing:</p><ul>\n<li><strong>Closure is one hundred sixty two</strong> (<code>three.lean</code>)</li>\n<li><strong>The closure is eighty one orbits</strong> (<code>three.lean</code>)</li>\n<li><strong>Reflection complements the address</strong> (<code>three.lean</code>)</li>\n</ul><p>The remaining 78 are FORMALISATIONS of known results and each carries its citation. Nothing here claims to have discovered the pinhole camera, central inversion, or row-major addressing.</p>\n<p><strong>A DOI dates an expression; it does not establish novelty.</strong> What is claimed above is the expression, dated by this deposit.</p>",
     "creators": [
       {
         "name": "Rouschev, Tsvetan",
@@ -40,6 +40,11 @@
       },
       {
         "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/coin.lean",
+        "relation": "isDerivedFrom",
+        "scheme": "url"
+      },
+      {
+        "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/decidability.lean",
         "relation": "isDerivedFrom",
         "scheme": "url"
       },
@@ -89,6 +94,6 @@
         "scheme": "url"
       }
     ],
-    "notes": "This deposit CORRECTS the record at 10.5281/zenodo.21787144, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false and is refuted by a theorem inside the corpus itself (Corpus.clay_sealed_count_is_zero), and the repository has recorded the paper as withdrawn since 2026-08-20. Publish this as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under concept 10.5281/zenodo.21787143, which resolves to a different work and whose version chain is shared by three unrelated projects."
+    "notes": "This deposit CORRECTS the record at 10.5281/zenodo.21787144, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false: the repository's audit withdrew it on 2026-08-20 and has recorded the paper as withdrawn since. Publish this as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under concept 10.5281/zenodo.21787143, which resolves to a different work and whose version chain is shared by three unrelated projects."
   }
 }

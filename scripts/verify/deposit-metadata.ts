@@ -1,12 +1,11 @@
 /**
  * THE PERMANENT PUBLIC RECORD MUST NOT ASSERT WHAT THE CORPUS PROVES FALSE.
  *
- * This repository ran a long honesty campaign. Prose was corrected, gates were built, and a Lean
- * theorem was written to state the most important negative result plainly:
- *
- *     clay_sealed_count_is_zero : cmiPrizeSealedCoreIds.length = 0
- *     "No Clay Millennium Prize Problem is proved by this corpus. This is the theorem that matters
- *      most here: it is the one an earlier draft of the submission package denied."
+ * This repository ran a long honesty campaign. Prose was corrected, gates were built, and the
+ * 2026-08-20 audit recorded the most important negative result plainly (HONESTY.md, CITATION.cff):
+ * no Clay Millennium Prize Problem is proved by this corpus. A Lean theorem once restated it —
+ * clay_sealed_count_is_zero, the length of a list its own file declared empty — and was removed on
+ * 2026-09-14 as a certificate rather than a proof: it read back a value its file set by hand.
  *
  * The campaign never reached the DOI. Harvesting 10.5281/zenodo.21787144 — the repositoryDoi in
  * CITATION.cff, the one README prints as CLAIMED, and the record all 76 per-theorem deposits declare
@@ -14,7 +13,7 @@
  * whose description reads "Complete quantum proofs of all 6 Clay Millennium Problems ... All 6
  * theorems proven with zero deviation ... Confidence = 1.0 achieved."
  *
- * That IS the earlier draft the Lean comment refers to. It is public, permanent, citable, indexed,
+ * That IS the earlier draft the audit withdrew. It is public, permanent, citable, indexed,
  * and it is the parent every new deposit points at — so the corrected work inherits the uncorrected
  * claim. The cleanest surface in the repository was pointing at the least clean surface outside it,
  * and nothing could see it, because every gate here reads the filesystem and this record is not on
@@ -112,18 +111,21 @@ export async function harvest(doi: string): Promise<HarvestedRecord> {
 }
 
 /**
- * Claims the corpus's own sealed sources REFUTE. Each is a pattern over the published text paired
- * with the theorem that contradicts it, so a failure names the proof rather than an opinion.
+ * Claims the repository's own audit WITHDREW (2026-08-20, HONESTY.md; stated in CITATION.cff). Each is a
+ * pattern over the published text paired with the record that withdraws it. Until 2026-09-14 each named a
+ * Lean theorem instead — Corpus.clay_sealed_count_is_zero and Corpus.computable_is_not_solved — but those
+ * only read back the length of a list their own file declared empty, a certificate rather than a proof, and
+ * were removed. The refusal never rested on them: it rests on the audit, and it refuses exactly what it did.
  */
-const REFUTED_BY_THE_CORPUS: readonly { readonly pattern: RegExp; readonly theorem: string; readonly why: string }[] = [
+const WITHDRAWN_BY_THE_AUDIT: readonly { readonly pattern: RegExp; readonly basis: string; readonly why: string }[] = [
   {
     pattern: /(complete\s+)?(quantum\s+)?proofs?\s+of\s+(all\s+)?(the\s+)?\d*\s*clay\s+millennium|millennium\s+(problems?|prize).{0,40}(proven|solved|proved)|proofs? of the clay millennium problems/i,
-    theorem: 'Corpus.clay_sealed_count_is_zero',
-    why: 'the sealed registry of Millennium cores with prize-grade proofs is EMPTY, proved by decide',
+    basis: 'the 2026-08-20 audit (HONESTY.md, CITATION.cff)',
+    why: 'this work proves no Clay Millennium Prize Problem — the claim was withdrawn after audit',
   },
   {
     pattern: /confidence\s*=\s*1(\.0+)?|zero deviation|all \d+ theorems proven/i,
-    theorem: 'Corpus.computable_is_not_solved',
+    basis: 'the 2026-08-20 audit (HONESTY.md, CITATION.cff)',
     why: 'COMPUTABLE is not SOLVED — recomputing a path entails nothing about a prize problem',
   },
 ]
@@ -181,9 +183,9 @@ export async function assertDepositMetadataIsHonest(root: string = process.cwd()
   }
 
   const text = `${rec.title} ${rec.description}`
-  const refuted = REFUTED_BY_THE_CORPUS.filter((r) => r.pattern.test(text))
+  const refuted = WITHDRAWN_BY_THE_AUDIT.filter((r) => r.pattern.test(text))
   for (const r of refuted) {
-    console.log(`  REFUTED  the record asserts something ${r.theorem} disproves — ${r.why}`)
+    console.log(`  WITHDRAWN  the record asserts something ${r.basis} withdrew — ${r.why}`)
   }
 
   if (!licenceAgrees) {
@@ -195,8 +197,8 @@ export async function assertDepositMetadataIsHonest(root: string = process.cwd()
   }
   if (refuted.length) {
     throw new Error(
-      `The permanent public record ${doi} asserts ${refuted.length} claim(s) this corpus's own Lean theorems refute ` +
-      `(${refuted.map((r) => r.theorem).join(', ')}). Its title is "${rec.title}". This record is what CITATION.cff ` +
+      `The permanent public record ${doi} asserts ${refuted.length} claim(s) this repository's own audit withdrew ` +
+      `(${[...new Set(refuted.map((r) => r.basis))].join(', ')}). Its title is "${rec.title}". This record is what CITATION.cff ` +
       `names as repositoryDoi, what README prints as CLAIMED, and what all ${deposits.records.length} per-theorem ` +
       `deposits declare themselves part of — so the corrected work inherits the uncorrected claim. A published deposit ` +
       `cannot be edited. The correction is a NEW, INDEPENDENT DEPOSIT with its own DOI, relating back to this one — ` +
@@ -240,7 +242,7 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
 
   const description = [
     `<p><strong>A machine-checked corpus of ${recs.length} theorems in Lean 4, across ${files.length} files, compiling with no Mathlib and no <code>sorry</code>.</strong></p>`,
-    `<p><strong>This deposit proves no Clay Millennium Prize Problem.</strong> The corpus contains a theorem saying so, <code>Corpus.clay_sealed_count_is_zero</code>, which computes that its registry of prize-grade proofs is empty; a companion theorem, <code>Corpus.computable_is_not_solved</code>, states that recomputing a path entails nothing about a prize problem. An earlier version of this record claimed the opposite. It was wrong, and this version exists to correct it.</p>`,
+    `<p><strong>This deposit proves no Clay Millennium Prize Problem.</strong> An earlier version of this record claimed the opposite. It was wrong: the claim was withdrawn after the repository's audit of 2026-08-20 (HONESTY.md), and this version exists to correct it. Recomputing a path entails nothing about a prize problem.</p>`,
     `<p><strong>What is actually established.</strong> Of the ${recs.length} theorems, machine verification reports that the great majority depend on NO axiom at all — they are decided by computation in the kernel, so the proof is the computation and nothing is assumed — and the remainder depend on <code>propext</code> alone, which is one of Lean&rsquo;s three foundational axioms and is what its own core arithmetic reasons through. None depends on <code>Classical.choice</code>, and none on <code>sorryAx</code>. That accounting is re-derived on every run by asking the kernel with <code>#print axioms</code>, never by restating it.</p>`,
     `<p><strong>Priority is claimed over ${claimed.length} results</strong>, each with a prior-art search on record that returned nothing:</p><ul>`,
     ...claimed.map((c) => `<li><strong>${c.title}</strong> (<code>${c.file}</code>)</li>`),
@@ -265,7 +267,7 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
         { identifier: SITE_URL, relation: 'isPublishedIn', scheme: 'url' },
         ...files.map((f) => ({ identifier: `${REPO_URL}/blob/main/src/pair/formal/proofs/${f}`, relation: 'isDerivedFrom', scheme: 'url' })),
       ],
-      notes: `This deposit CORRECTS the record at ${REPOSITORY_DOI_NOTE}, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false and is refuted by a theorem inside the corpus itself (Corpus.clay_sealed_count_is_zero), and the repository has recorded the paper as withdrawn since 2026-08-20. Publish this as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under concept 10.5281/zenodo.21787143, which resolves to a different work and whose version chain is shared by three unrelated projects.`,
+      notes: `This deposit CORRECTS the record at ${REPOSITORY_DOI_NOTE}, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false: the repository's audit withdrew it on 2026-08-20 and has recorded the paper as withdrawn since. Publish this as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under concept 10.5281/zenodo.21787143, which resolves to a different work and whose version chain is shared by three unrelated projects.`,
     },
   }
   const out = join(root, 'src/research/zenodo-new-version.json')
