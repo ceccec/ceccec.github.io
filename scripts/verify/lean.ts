@@ -105,7 +105,7 @@ function leanFiles(root: string): string[] {
  * rest on Classical.choice or, worse, sorryAx, which `#print axioms` would surface and a plain
  * compile would not.
  */
-export function axiomFreedom(file: string, root: string = process.cwd()): { total: number; axiomFree: number; propextOnly: number; dependent: string[] } {
+export function axiomFreedom(file: string, root: string = process.cwd()): { total: number; axiomFree: number; standardOnly: number; standardUse: Record<string, number>; dependent: string[] } {
   const text = readFileSync(file, 'utf8')
   const via = leanCommand(file, root)
   // DIGITS ARE PART OF A NAMESPACE. This read [A-Za-z.]+, so `namespace Wave57` parsed as `Wave`, every
@@ -115,7 +115,7 @@ export function axiomFreedom(file: string, root: string = process.cwd()): { tota
   // one line higher up by a character class.
   const ns = (text.match(/^namespace\s+([A-Za-z0-9_.]+)/m) ?? [])[1] ?? ''
   const names = [...text.matchAll(/^theorem\s+([A-Za-z0-9_]+)/gm)].map((m) => m[1]!)
-  if (!names.length) return { total: 0, axiomFree: 0, propextOnly: 0, dependent: [] }
+  if (!names.length) return { total: 0, axiomFree: 0, standardOnly: 0, standardUse: {}, dependent: [] }
   const probe = `${text}\n${names.map((n) => `#print axioms ${ns ? ns + '.' : ''}${n}`).join('\n')}\n`
   // THE PROBE GETS ITS OWN DIRECTORY. This wrote into .vitepress/cache, which VitePress owns and
   // wipes: a docs:build running beside verify:all deleted the directory between two probes and the
@@ -151,12 +151,19 @@ export function axiomFreedom(file: string, root: string = process.cwd()): { tota
   // Int.sub_self both depend on it, measured, not assumed. Averaging the two into one figure would
   // either bar the corpus from ever stating a general theorem or quietly weaken a claim it makes
   // loudly. propext is one of Lean's three foundational axioms and says nothing about involutions.
-  // Classical.choice and sorryAx are different animals and still fail below.
-  const propextOnly = deps.filter((m) => m[2]!.split(',').every((a) => a.trim() === 'propext')).length
+  // Quot.sound joins it (2026-09-14): core's integer DIVISION lemmas rest on it — Int.mul_ediv_cancel_left,
+  // measured — so reading the genus back from χ(g) at every g, or undoing a boost for all integers, carries
+  // [propext, Quot.sound]. Both are foundational and neither is classical. Classical.choice and sorryAx are
+  // different animals and still fail below.
+  const STANDARD = ['propext', 'Quot.sound']
+  const axiomsOf = (m: RegExpMatchArray) => m[2]!.split(',').map((a) => a.trim()).filter(Boolean)
+  const standard = deps.filter((m) => axiomsOf(m).every((a) => STANDARD.includes(a)))
+  const standardUse: Record<string, number> = {}
+  for (const m of standard) for (const a of axiomsOf(m)) standardUse[a] = (standardUse[a] ?? 0) + 1
   const dependent = deps
     .filter((m) => /sorryAx|Classical\.choice/.test(m[2]!))
     .map((m) => `${m[1]} (${m[2]})`)
-  return { total: names.length, axiomFree, propextOnly, dependent }
+  return { total: names.length, axiomFree, standardOnly: standard.length, standardUse, dependent }
 }
 
 export function compileLean(root: string = process.cwd()): LeanResult[] {
@@ -245,12 +252,12 @@ export function assertLeanCompiles(): void {
     const a = axiomFreedom(join(process.cwd(), r.file))
     totalThm += a.total
     totalFree += a.axiomFree
-    totalPropext += a.propextOnly
+    totalPropext += a.standardOnly
     if (a.dependent.length) cheats.push(`${r.file}: ${a.dependent.join(', ')}`)
-    console.log(`  axioms ${r.file.replace('src/pair/formal/proofs/', '')}: ${a.axiomFree}/${a.total} prove themselves (0 axioms)${a.propextOnly ? `, ${a.propextOnly} general (propext only)` : ''}`)
+    console.log(`  axioms ${r.file.replace('src/pair/formal/proofs/', '')}: ${a.axiomFree}/${a.total} prove themselves (0 axioms)${a.standardOnly ? `, ${a.standardOnly} general (standard axioms: ${Object.keys(a.standardUse).join(', ')})` : ''}`)
   }
-  console.log(`involution proofs: ${totalFree}/${totalThm} decided by computation with NO axiom · ${totalPropext} general, depending on propext alone`)
+  console.log(`involution proofs: ${totalFree}/${totalThm} decided by computation with NO axiom · ${totalPropext} general, proved for every value on the standard axioms propext and Quot.sound`)
   if (cheats.length) throw new Error(`Lean theorem(s) depend on sorryAx or Classical.choice: ${cheats.join(' · ')}`)
   const unaccounted = totalThm - totalFree - totalPropext
-  if (unaccounted > 0) throw new Error(`${unaccounted} formal-proof theorem(s) depend on something other than propext — every proof here is either decided by computation or reasons through Lean's core arithmetic, and nothing else is allowed`)
+  if (unaccounted > 0) throw new Error(`${unaccounted} formal-proof theorem(s) depend on something other than propext and Quot.sound — every proof here is either decided by computation or reasons through Lean's core arithmetic, and nothing else is allowed`)
 }

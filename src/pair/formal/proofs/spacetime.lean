@@ -108,4 +108,22 @@ theorem the_reverse_boost_undoes_the_boost :
       boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧
       boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2 := by decide
 
+/-- …and for EVERY event and EVERY boost, proved rather than decided: the theorem above checks eight events under
+    five boosts; this holds for all integers p, q, t, x at once. Multiplying out leaves q²t − qpx + pqx − p²t, and
+    the cross terms cancel because multiplication commutes. A proof, not an exhaustion — it rests on the standard
+    axioms propext and Quot.sound that core's integer lemmas carry. -/
+theorem the_reverse_boost_undoes_every_boost : ∀ p q t x : Int,
+    boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧
+    boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x := by
+  intro p q t x
+  unfold boostT boostX
+  have h1 : q * (p * x) = p * (q * x) := Int.mul_left_comm q p x
+  have h2 : q * (p * t) = p * (q * t) := Int.mul_left_comm q p t
+  have h3 : q * (q * t) = q * q * t := (Int.mul_assoc q q t).symm
+  have h4 : p * (p * t) = p * p * t := (Int.mul_assoc p p t).symm
+  have h5 : q * (q * x) = q * q * x := (Int.mul_assoc q q x).symm
+  have h6 : p * (p * x) = p * p * x := (Int.mul_assoc p p x).symm
+  simp only [Int.mul_sub, Int.sub_mul, Int.neg_mul]
+  constructor <;> omega
+
 end Spacetime

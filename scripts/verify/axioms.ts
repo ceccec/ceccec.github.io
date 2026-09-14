@@ -2,10 +2,11 @@
  * THE AXIOM INDEX — everything this corpus rests on that it did not derive, named and accounted for.
  *
  * "The theorems are axiom-free" is true of the Lean proofs in one exact sense and false in every looser
- * one, and the difference is what this index exists to hold. 47 of the 51 Lean theorems depend on NO
- * axiom because `decide` reduces a finite proposition to a Boolean computation and invokes no lemma.
- * The other four are general theorems and cost propext, because reasoning over Int uses Lean's core
- * arithmetic and every one of those lemmas costs it. And the corpus rests on a second, larger set that
+ * one, and the difference is what this index exists to hold. Most Lean theorems depend on NO axiom because
+ * `decide` reduces a finite proposition to a Boolean computation and invokes no lemma. The general theorems —
+ * proved for every value, not decided over a finite domain — cost propext, because reasoning over Int uses
+ * Lean's core arithmetic and every one of those lemmas costs it; those that divide integers also cost
+ * Quot.sound. verify:lean prints the counts per file on every run, so none is typed here. And the corpus rests on a second, larger set that
  * has nothing to do with Lean: chosen constants, external standards, and measured data.
  *
  * AN AXIOM IS NOT A HOLE IF IT IS ACCOUNTED FOR. That is the whole claim, and the accounting is what
@@ -58,7 +59,7 @@ export const FOUNDATIONAL: readonly AxiomEntry[] = [
     name: 'Quot.sound',
     kind: 'foundational',
     statement: 'Quotient soundness: elements of one equivalence class are equal — congruence is raised to equality.',
-    explainedBy: 'Introduced by quotient types and by tactics built on them; `omega` costs it, which is why the general involution proofs are hand-rewritten with core lemmas instead and cost propext alone.',
+    explainedBy: 'Introduced by quotient types and by what is built on them — `omega`, and core\'s integer DIVISION lemmas (Int.mul_ediv_cancel_left, measured). Since 2026-09-14 two general theorems carry it and are allowed to: reading the genus back from χ(g) at every genus (corpus.lean) and undoing every boost over all integers (spacetime.lean). It is foundational and not classical, so verify:lean admits it beside propext; Classical.choice and sorryAx still fail.',
     research: 'Theorem Proving in Lean 4: the axiom underlying quotient types, and one of the three the Lean foundation admits.',
   },
   {
@@ -115,7 +116,7 @@ export function axiomsInUse(root: string = process.cwd()): Map<string, number> {
   }
   for (const rel of walk('src')) {
     const a = axiomFreedom(join(root, rel), root)
-    if (a.propextOnly) out.set('propext', (out.get('propext') ?? 0) + a.propextOnly)
+    for (const [axiom, n] of Object.entries(a.standardUse)) out.set(axiom, (out.get(axiom) ?? 0) + n)
     for (const d of a.dependent) {
       for (const name of ['Classical.choice', 'sorryAx', 'Quot.sound']) if (d.includes(name)) out.set(name, (out.get(name) ?? 0) + 1)
     }
@@ -181,7 +182,7 @@ export function assertAxiomIndex(): void {
  * claim that those theorems are axiom-free — it is the absence of a placement, and the difference is the
  * one this repository keeps having to relearn. An axiom the index has not named yet cannot be found by
  * looking for the names it has. The Lean side is where axiom-freedom is actually decided, and it says so
- * per theorem: 109/113 depend on nothing, 4 on propext alone.
+ * per theorem, and prints the split — decided with no axiom, or general on propext and Quot.sound — on every run.
  *
  * PERTURBED WITH A NON-AXIOM, DELIBERATELY. Adding TAU as a fifth artefact places 109 theorems and drops
  * unplaced to 615, and restoring correctly throws. That proves the mechanism responds — and TAU is exactly

@@ -49,6 +49,15 @@ theorem euler_characteristic_and_genus_are_inverse :
     (∀ g ∈ List.range 10, genusOf (chi g) = g ∧ 2 - chi g = 2 * (g : Int)) ∧
     eulerChi = chi 2 ∧ homologyLoops = 2 - chi 2 := by decide
 
+/-- …and at EVERY genus, proved rather than decided: the theorem above checks the first ten surfaces; this reads
+    the genus back from χ(g) for all of them at once. A proof, not an exhaustion — it rests on the standard axioms
+    propext and Quot.sound that core's integer lemmas carry, and the axiom probe reports it as general. -/
+theorem the_genus_reads_back_from_chi_at_every_genus : ∀ g : Nat, genusOf (chi g) = g := by
+  intro g
+  unfold genusOf chi
+  rw [show (2 : Int) - (2 - 2 * (g : Int)) = 2 * (g : Int) by omega, Int.mul_ediv_cancel_left _ (by decide)]
+  rfl
+
 /-- The digit lattice src/0…src/9: five reflection classes seen from both sides. -/
 def digitLattice : Nat := 5 * 2
 

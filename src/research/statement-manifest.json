@@ -7,7 +7,7 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 135,
+  "count": 137,
   "statements": [
     {
       "statementUuid": "25cc1fd7-cc7d-8553-a73f-60a47a17adfa",
@@ -352,6 +352,12 @@
       "statement": "∀ e ∈ events, ∀ b ∈ boosts,\n      boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧\n      boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2"
     },
     {
+      "statementUuid": "91788741-802a-8ff9-b2f5-8662103d96ce",
+      "file": "src/pair/formal/proofs/spacetime.lean",
+      "name": "the_reverse_boost_undoes_every_boost",
+      "statement": "∀ p q t x : Int,\n    boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧\n    boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x"
+    },
+    {
       "statementUuid": "624a4c8d-9ec5-8064-8c95-066f88fdb89b",
       "file": "src/pair/formal/proofs/three.lean",
       "name": "closure_is_one_hundred_sixty_two",
@@ -530,6 +536,12 @@
       "file": "src/pair/lean/proofs/corpus.lean",
       "name": "euler_characteristic_and_genus_are_inverse",
       "statement": "(∀ g ∈ List.range 10, genusOf (chi g) = g ∧ 2 - chi g = 2 * (g : Int)) ∧\n    eulerChi = chi 2 ∧ homologyLoops = 2 - chi 2"
+    },
+    {
+      "statementUuid": "57b11a90-1605-8b49-9349-5c70912940c2",
+      "file": "src/pair/lean/proofs/corpus.lean",
+      "name": "the_genus_reads_back_from_chi_at_every_genus",
+      "statement": "∀ g : Nat, genusOf (chi g) = g"
     },
     {
       "statementUuid": "276e3d28-9992-8e5a-aab0-f77de28bccfb",
