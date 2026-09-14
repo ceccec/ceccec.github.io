@@ -617,7 +617,7 @@ export function servedRouteFamilies(matrix: MindMatrix = buildMatrix()) {
   const proofs = domainProofPagePaths(matrix).length
   const families = [
     { family: 'monographs', label: 'monograph landing + index pages', index: '/', count: monographs, enumerated: true },
-    { family: 'theorems', label: 'theorem papers', index: '/theorems', count: theorems, enumerated: false },
+    { family: 'theorems', label: 'theorem papers — the registered theorems plus the card papers outside the registry', index: '/theorems', count: theorems, enumerated: false },
     { family: 'proofs', label: 'domain proofs (Millennium + science)', index: '/proofs', count: proofs, enumerated: false },
   ] as const
   return { families, total: monographs + theorems + proofs }

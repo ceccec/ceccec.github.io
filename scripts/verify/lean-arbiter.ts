@@ -215,7 +215,7 @@ export function assertLeanArbitrates(): void {
     if (off.length) {
       throw new Error(`${off.length} constant(s) disagree with the kernel — Lean decides:\n  ${off.join('\n  ')}`)
     }
-    console.log(`  ${PROBES.length}/${PROBES.length} TypeScript constants agree with the theorem that pins them`)
+    console.log(`  ${PROBES.length}/${PROBES.length} TypeScript constants agree with the Lean definition the kernel evaluates for them`)
     // 432 IS NOT A CENSUS QUANTITY. Stated here so the gate carries the category, not just the count.
     console.log(`  no theorem pins 108 or 432 — 4 × FOLDED_CENSUS = ${4 * FOLDED_CENSUS}, and 432 is HOMOLOGY_LOOPS × A432_FOLDED, an axiom times a theorem`)
 

@@ -183,7 +183,7 @@ computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 The complete served surface, wired from ONE source (`servedRouteFamilies`) so the human sitemap here and the crawler `sitemap.xml` count the same pages: **815 pages** across 3 families — 31 monographs · 754 theorems · 30 proofs. Only COMPLETE, non-duplicate families are listed: the empty model cards (0) and the compute-only `papers/[id]` catch-all (0 SSG — the placements resolve on demand and duplicate the theorem papers) are excluded; their index routes are monographs below.
 
 - **31 monograph landing + index pages** (`/`) — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed:
-- **754 theorem papers** — index `/theorems`; every page enumerated in the one `sitemap.xml`.
+- **754 theorem papers — the registered theorems plus the card papers outside the registry** — index `/theorems`; every page enumerated in the one `sitemap.xml`.
 - **30 domain proofs (Millennium + science)** — index `/proofs`; every page enumerated in the one `sitemap.xml`.
 
 - `/` — [en](https://ceccec.psg.bg/) · [bg](https://ceccec.psg.bg/bg/) · [cu](https://ceccec.psg.bg/gla/)

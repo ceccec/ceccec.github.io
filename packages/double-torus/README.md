@@ -47,7 +47,7 @@ console.log(fuseAll(matrix).wave)
 // A single proof bundle anyone can recompute.
 console.log(proofBundle(matrix).bundleRoot)
 
-// There are 94 concept commands; each is also published as an MCP tool.
+// Every concept command is also published as an MCP tool; the count is computed, never typed.
 console.log(conceptCommands.length)
 ```
 
