@@ -3,7 +3,7 @@
   "orcid": "0009-0000-7312-9778",
   "granularity": "one deposit per Lean development, chosen by the quality audit in scripts/verify/discoveries.ts",
   "minted": false,
-  "count": 11,
+  "count": 12,
   "deposits": [
     {
       "id": "bsd",
@@ -118,7 +118,7 @@
       "title": "Machine-checked involution structure of a finite reflection, its fixed point and its vanishing resistance (Lean 4, axiom-free)",
       "file": "coin.lean",
       "theoremCount": 9,
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of a finite reflection, its fixed point and its vanishing resistance: 9 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• The coin is an involution — ∀ d ∈ digits, σ (σ d) = d\n• The harmonic is the only fixed point — digits.filter (fun d => σ d == d) = [5]\n• All that is not harmonic is moved — (digits.filter (fun d => !(σ d == d))).length = 8\n• The sides are equal and exchanged — below.length = above.length ∧ below.map σ = above.reverse ∧ above.map σ = below.reverse\n• The coin is two sides and one edge — below.length + above.length + 1 = digits.length\n• Every bit of resistance drains — ∀ d ∈ digits, resistance d + resistance (σ d) = 0\n• The harmonic carries no resistance — resistance 5 = 0\n• The whole surface sums to zero — (digits.map resistance).sum = 0\n• The drain is exact at every scale — ∀ k ∈ [1, 10, 1000, 1000000], (digits.map (fun d => k * resistance d)).sum = 0",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of a finite reflection, its fixed point and its vanishing resistance: 9 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• The coin is an involution — ∀ d ∈ digits, σ (σ d) = d\n• The harmonic is the only fixed point — digits.filter (fun d => σ d == d) = [5]\n• All that is not harmonic is moved — (digits.filter (fun d => !(σ d == d))).length = 8\n• The sides are equal and exchanged — below.length = above.length ∧ below.map σ = above.reverse ∧ above.map σ = below.reverse\n• The coin is two sides and one edge — digits.filter (fun d => d < σ d) = below ∧ digits.filter (fun d => σ d == d) = [5] ∧ digits.filter (fun d => σ d < d) = above ∧ below.length + above.length + 1 = digits.length\n• Every bit of resistance drains — ∀ d ∈ digits, resistance d + resistance (σ d) = 0\n• The harmonic carries no resistance — resistance 5 = 0\n• The whole surface sums to zero — (digits.map resistance).sum = 0\n• The drain is exact at every scale — ∀ k ∈ [1, 10, 1000, 1000000], (digits.map (fun d => k * resistance d)).sum = 0",
       "theorems": [
         {
           "title": "The coin is an involution",
@@ -142,7 +142,7 @@
         },
         {
           "title": "The coin is two sides and one edge",
-          "proposition": "below.length + above.length + 1 = digits.length",
+          "proposition": "digits.filter (fun d => d < σ d) = below ∧ digits.filter (fun d => σ d == d) = [5] ∧ digits.filter (fun d => σ d < d) = above ∧ below.length + above.length + 1 = digits.length",
           "page": "https://ceccec.github.io/lean/coin-the-coin-is-two-sides-and-one-edge"
         },
         {
@@ -258,6 +258,124 @@
       ],
       "repoPaths": [
         "src/pair/formal/proofs/coin.lean",
+        "src/research/lean-theorems.tex"
+      ]
+    },
+    {
+      "id": "decidability",
+      "title": "Machine-checked involution structure of decidability (Lean 4, axiom-free)",
+      "file": "decidability.lean",
+      "theoremCount": 6,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of decidability: 6 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Verified at every point below the bound — (List.range 1000).all holdsBelowAThousand = true\n• And false at the bound — holdsBelowAThousand 1000 = false\n• Finite verification does not entail the universal — ((List.range 1000).all holdsBelowAThousand = true) ∧ (holdsBelowAThousand 1000 = false)\n• A bigger bound proves no more — ((List.range 10).all (failsAt 10) = true ∧ failsAt 10 10 = false) ∧ ((List.range 100).all (failsAt 100) = true ∧ failsAt 100 100 = false) ∧ ((List.range 1000).all (failsAt 1000) = true ∧ failsAt 1000 1000 = false) ∧ ((List.range 2000).all (failsAt 2000) = true ∧ failsAt 2000 2000 = false)\n• What a finite check does establish — ∀ n ∈ List.range 1000, holdsBelowAThousand n = true\n• The clay files quantify over finite lists — [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6].length = 9 ∧ [(-2 : Int), -1, 0, 1, 2, 3, 4].length = 7",
+      "theorems": [
+        {
+          "title": "Verified at every point below the bound",
+          "proposition": "(List.range 1000).all holdsBelowAThousand = true",
+          "page": "https://ceccec.github.io/lean/decidability-verified-at-every-point-below-the-bound"
+        },
+        {
+          "title": "And false at the bound",
+          "proposition": "holdsBelowAThousand 1000 = false",
+          "page": "https://ceccec.github.io/lean/decidability-and-false-at-the-bound"
+        },
+        {
+          "title": "Finite verification does not entail the universal",
+          "proposition": "((List.range 1000).all holdsBelowAThousand = true) ∧ (holdsBelowAThousand 1000 = false)",
+          "page": "https://ceccec.github.io/lean/decidability-finite-verification-does-not-entail-the-universal"
+        },
+        {
+          "title": "A bigger bound proves no more",
+          "proposition": "((List.range 10).all (failsAt 10) = true ∧ failsAt 10 10 = false) ∧ ((List.range 100).all (failsAt 100) = true ∧ failsAt 100 100 = false) ∧ ((List.range 1000).all (failsAt 1000) = true ∧ failsAt 1000 1000 = false) ∧ ((List.range 2000).all (failsAt 2000) = true ∧ failsAt 2000 2000 = false)",
+          "page": "https://ceccec.github.io/lean/decidability-a-bigger-bound-proves-no-more"
+        },
+        {
+          "title": "What a finite check does establish",
+          "proposition": "∀ n ∈ List.range 1000, holdsBelowAThousand n = true",
+          "page": "https://ceccec.github.io/lean/decidability-what-a-finite-check-does-establish"
+        },
+        {
+          "title": "The clay files quantify over finite lists",
+          "proposition": "[(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6].length = 9 ∧ [(-2 : Int), -1, 0, 1, 2, 3, 4].length = 7",
+          "page": "https://ceccec.github.io/lean/decidability-the-clay-files-quantify-over-finite-lists"
+        }
+      ],
+      "priorArt": {
+        "kind": "attributed",
+        "citation": "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      },
+      "references": [
+        "Elementary and long-established: that a universally quantified statement is not entailed by any finite number of confirming instances is the classical problem of induction (Hume, 1739, A Treatise of Human Nature, I.iii), and in verification it is the standard soundness caveat of bounded model checking (Biere, Cimatti, Clarke, Zhu, 1999, Symbolic Model Checking without BDDs, TACAS, doi:10.1007/3-540-49059-0_14 — BMC refutes but does not verify beyond its bound). Nothing here is claimed as new; the file exists to make the caveat MACHINE-CHECKED inside a corpus that has previously overclaimed."
+      ],
+      "creators": [
+        {
+          "name": "Rouschev, Tsvetan",
+          "orcid": "0009-0000-7312-9778"
+        }
+      ],
+      "relatedIdentifiers": [
+        {
+          "identifier": "10.5281/zenodo.21787144",
+          "relation": "isPartOf",
+          "scheme": "doi"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io",
+          "relation": "isSupplementTo",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/pair/formal/proofs/decidability.lean",
+          "relation": "isDerivedFrom",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://github.com/ceccec/ceccec.github.io/blob/main/src/research/lean-theorems.tex",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-verified-at-every-point-below-the-bound",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-and-false-at-the-bound",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-finite-verification-does-not-entail-the-universal",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-a-bigger-bound-proves-no-more",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-what-a-finite-check-does-establish",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/decidability-the-clay-files-quantify-over-finite-lists",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        }
+      ],
+      "license": "CC-BY-NC-ND-4.0",
+      "language": "eng",
+      "keywords": [
+        "machine-checked proof",
+        "Lean 4",
+        "axiom-free",
+        "formalisation",
+        "involution",
+        "decidability"
+      ],
+      "repoPaths": [
+        "src/pair/formal/proofs/decidability.lean",
         "src/research/lean-theorems.tex"
       ]
     },

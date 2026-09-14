@@ -59,8 +59,14 @@ theorem the_sides_are_equal_and_exchanged :
     below.map σ = above.reverse ∧
     above.map σ = below.reverse := by decide
 
-/-- The surface is exactly the two sides and the edge: 4 + 4 + 1. -/
+/-- The surface is exactly the two sides and the edge, and σ itself sorts it: the digits it carries
+    upward are `below`, the one it leaves in place is the edge, the digits it carries downward are
+    `above` — so the sides are computed from the map rather than typed beside it, and 4 + 4 + 1 is
+    what the sorting leaves. (Was the count alone, which read the two typed lists back, 2026-09-14.) -/
 theorem the_coin_is_two_sides_and_one_edge :
+    digits.filter (fun d => d < σ d) = below ∧
+    digits.filter (fun d => σ d == d) = [5] ∧
+    digits.filter (fun d => σ d < d) = above ∧
     below.length + above.length + 1 = digits.length := by decide
 
 /-- RESISTANCE is the signed distance a digit is carried: what the map has to overcome to move it.

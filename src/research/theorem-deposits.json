@@ -816,8 +816,8 @@
       "id": "coin--the_coin_is_two_sides_and_one_edge",
       "title": "The coin is two sides and one edge",
       "file": "coin.lean",
-      "proposition": "below.length + above.length + 1 = digits.length",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe surface is exactly the two sides and the edge: 4 + 4 + 1.",
+      "proposition": "digits.filter (fun d => d < σ d) = below ∧ digits.filter (fun d => σ d == d) = [5] ∧ digits.filter (fun d => σ d < d) = above ∧ below.length + above.length + 1 = digits.length",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe surface is exactly the two sides and the edge, and σ itself sorts it: the digits it carries upward are `below`, the one it leaves in place is the edge, the digits it carries downward are `above` — so the sides are computed from the map rather than typed beside it, and 4 + 4 + 1 is what the sorting leaves. (Was the count alone, which read the two typed lists back, 2026-09-14.)",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
@@ -890,7 +890,7 @@
       ],
       "landingPage": "https://ceccec.github.io/lean/coin-the-coin-is-two-sides-and-one-edge",
       "landingPageBuilt": ".vitepress/dist/lean/coin-the-coin-is-two-sides-and-one-edge.html",
-      "contentAddress": "f4ac56591222b8b2252c6cd0aa3f1f71",
+      "contentAddress": "09923817aaa10f8357430a76d0969483",
       "occurrences": [
         {
           "repo": "https://github.com/ceccec/ceccec.github.io",

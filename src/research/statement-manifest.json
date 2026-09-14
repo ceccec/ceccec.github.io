@@ -34,10 +34,10 @@
       "statement": "(init == enc .pz\n      && poles.all (fun p => let n"
     },
     {
-      "statementUuid": "59ea0123-c7ee-878e-99da-d46f051df8da",
+      "statementUuid": "d6cbfc89-2686-8420-9e0d-8ec4f124b0d7",
       "file": "src/heaven/compute/Alu.lean",
       "name": "c_is_floor_of_2pow14_over_sqrt2",
-      "statement": "2 * C * C ≤ 2 ^ 28 ∧ 2 ^ 28 < 2 * (C + 1) * (C + 1)"
+      "statement": "2 * C * C ≤ 2 ^ 28 ∧ 2 ^ 28 < 2 * (C + 1) * (C + 1) ∧\n    ((List.range 65).map (fun (k : Nat) => (k : Int) * 512)).all (fun d =>\n      2 * tFloor (tFloor d) ≤ d && d ≤ 2 * tFloor (tFloor d) + 8) = true"
     },
     {
       "statementUuid": "af4f1d7c-232d-8954-8d10-50aef5a536c7",
@@ -94,10 +94,10 @@
       "statement": "below.length = above.length ∧\n    below.map σ = above.reverse ∧\n    above.map σ = below.reverse"
     },
     {
-      "statementUuid": "c95d0bbd-b238-82af-8a63-ffd274051f77",
+      "statementUuid": "490f4372-4d0d-81cf-b3e8-7fa3338bcb72",
       "file": "src/pair/formal/proofs/coin.lean",
       "name": "the_coin_is_two_sides_and_one_edge",
-      "statement": "below.length + above.length + 1 = digits.length"
+      "statement": "digits.filter (fun d => d < σ d) = below ∧\n    digits.filter (fun d => σ d == d) = [5] ∧\n    digits.filter (fun d => σ d < d) = above ∧\n    below.length + above.length + 1 = digits.length"
     },
     {
       "statementUuid": "74fc364f-adcc-8c0b-988b-01e111dedcf9",

@@ -120,10 +120,6 @@ theorem born_rule_on_poles :
       && poles.all (fun p => let n := p0Numerator (enc p); n == 0#16 || n == ONE || n == 2 * ONE)
       && p0Numerator init == 2 * ONE) = true := by decide
 
-/-- C is exactly ⌊2¹⁴/√2⌋: 2·C² ≤ 2²⁸ < 2·(C+1)². No real number is needed to say so. -/
-theorem c_is_floor_of_2pow14_over_sqrt2 :
-    2 * C * C ≤ 2 ^ 28 ∧ 2 ^ 28 < 2 * (C + 1) * (C + 1) := by decide
-
 /-- The integer T rotation: (C · d) / 2¹⁴, floor division. -/
 def tFloor (d : Int) : Int := (C * d) / 2 ^ 14
 
@@ -140,6 +136,15 @@ theorem t_floor_bound (d : Int) :
   · have h := Int.lt_ediv_add_one_mul_self (C * d) (show (0 : Int) < 2 ^ 14 by decide)
     rw [Int.add_mul, Int.one_mul, Int.mul_comm (C * d / 2 ^ 14) (2 ^ 14)] at h
     exact h
+
+/-- C is exactly ⌊2¹⁴/√2⌋: 2·C² ≤ 2²⁸ < 2·(C+1)², squaring bracketing the root it undoes. No real number
+    is needed to say so. And the bracket is a LAW, not a reading of one constant: scaling by C twice is
+    scaling by one half, so T applied twice halves every value on the unit range 0…2·2¹⁴, never above d/2
+    and never more than 8 units below it — the constant as an instance of what it does (2026-09-14). -/
+theorem c_is_floor_of_2pow14_over_sqrt2 :
+    2 * C * C ≤ 2 ^ 28 ∧ 2 ^ 28 < 2 * (C + 1) * (C + 1) ∧
+    ((List.range 65).map (fun (k : Nat) => (k : Int) * 512)).all (fun d =>
+      2 * tFloor (tFloor d) ≤ d && d ≤ 2 * tFloor (tFloor d) + 8) = true := by decide
 
 /-- The 32-bit hardware path computes exactly tFloor on the poles (no overflow: |d| ≤ 2·ONE). -/
 theorem hardware_t_is_tFloor_on_poles :
