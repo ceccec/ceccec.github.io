@@ -35,21 +35,17 @@ async function loadCli(): Promise<Record<string, unknown>> {
   const dir = join(root, '.vitepress', 'cache', 'quantum-esbuild')
   const bundle = join(dir, `${safe}.mjs`)
   const keyFile = join(dir, `${safe}.key`)
-
-  if (existsSync(bundle) && existsSync(keyFile) && readFileSync(keyFile, 'utf8') === merkle) {
+  const inputsFile = join(dir, `${safe}.inputs.json`) // key = what esbuild built FROM, not only src/**/*.ts (2026-09-14)
+  const inputsDigest = (inputs: readonly string[]): string => inputs.reduce((h, rel) => h.update(rel).update(existsSync(join(root, rel)) ? readFileSync(join(root, rel)) : '\0missing'), createHash('sha256')).digest('hex')
+  if (existsSync(bundle) && existsSync(keyFile) && existsSync(inputsFile) && readFileSync(keyFile, 'utf8') === `${merkle}:${inputsDigest(JSON.parse(readFileSync(inputsFile, 'utf8')) as string[])}`) {
     return (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
   }
-
-  const built = await require('esbuild').build({
-    entryPoints: [join(root, cliRel)],
-    bundle: true,
-    format: 'esm',
-    write: false,
-    platform: 'node',
-    logLevel: 'silent' })
+  const built = await require('esbuild').build({ entryPoints: [join(root, cliRel)], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent', metafile: true })
+  const inputs = Object.keys(built.metafile.inputs as Record<string, unknown>).map((p) => relative(root, join(process.cwd(), p))).sort()
   mkdirSync(dir, { recursive: true })
   writeFileSync(bundle, built.outputFiles[0].text)
-  writeFileSync(keyFile, merkle)
+  writeFileSync(inputsFile, JSON.stringify(inputs))
+  writeFileSync(keyFile, `${merkle}:${inputsDigest(inputs)}`)
   return (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
 }
 

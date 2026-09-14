@@ -211,7 +211,22 @@ export function srcContentMerkle(root: string): string {
 function cachePaths(root: string, entryRel: string) {
   const safe = entryRel.replace(/[/\\]/g, '--')
   const dir = join(root, '.vitepress', 'cache', 'quantum-esbuild')
-  return { dir, bundle: join(dir, `${safe}.mjs`), key: join(dir, `${safe}.key`) }
+  return { dir, bundle: join(dir, `${safe}.mjs`), key: join(dir, `${safe}.key`), inputs: join(dir, `${safe}.inputs.json`) }
+}
+
+/** THE FILES A BUNDLE WAS BUILT FROM, as esbuild's own metafile lists them — the entry, everything it imports,
+ *  wherever it lives. The key used to be srcContentMerkle alone, which hashes src/ and .vitepress/ and never
+ *  scripts/: an edited gate under scripts/verify/ kept running its OLD bundle, and a verify:discoveries fix
+ *  printed the pre-fix output three times before anyone noticed (2026-09-14). The documented workaround was to
+ *  rm -rf the cache by hand ("stale-bundle-clear"). Hashing the bundle's actual inputs makes the key exact. */
+function bundleInputsDigest(root: string, inputs: readonly string[]): string {
+  const hash = createHash('sha256')
+  for (const rel of inputs) {
+    const file = join(root, rel)
+    hash.update(rel)
+    hash.update(existsSync(file) ? readFileSync(file) : '\0missing')
+  }
+  return hash.digest('hex')
 }
 
 export async function importQuantumBundle(entryRel: string, root: string): Promise<Record<string, unknown>> {
@@ -221,18 +236,23 @@ export async function importQuantumBundle(entryRel: string, root: string): Promi
   if (hit) return hit
   const entry = join(root, entryRel)
   if (!existsSync(entry)) throw new Error(`bundle entry missing: ${entryRel}`)
-  const { dir, bundle, key: keyFile } = cachePaths(root, entryRel)
-  if (existsSync(bundle) && existsSync(keyFile) && readFileSync(keyFile, 'utf8') === merkle) {
-    const mod = (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
-    memory.set(key, mod)
-    return mod
+  const { dir, bundle, key: keyFile, inputs: inputsFile } = cachePaths(root, entryRel)
+  if (existsSync(bundle) && existsSync(keyFile) && existsSync(inputsFile)) {
+    const inputs = JSON.parse(readFileSync(inputsFile, 'utf8')) as string[]
+    if (readFileSync(keyFile, 'utf8') === `${merkle}:${bundleInputsDigest(root, inputs)}`) {
+      const mod = (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
+      memory.set(key, mod)
+      return mod
+    }
   }
   const esbuild = nodeRequire()('esbuild') as typeof import('esbuild')
-  const built = await esbuild.build({ entryPoints: [entry], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent' })
+  const built = await esbuild.build({ entryPoints: [entry], bundle: true, format: 'esm', write: false, platform: 'node', logLevel: 'silent', metafile: true })
   const text = built.outputFiles[0].text
+  const inputs = Object.keys(built.metafile.inputs).map((p) => relative(root, join(process.cwd(), p))).sort()
   mkdirSync(dir, { recursive: true })
   writeFileSync(bundle, text)
-  writeFileSync(keyFile, merkle)
+  writeFileSync(inputsFile, JSON.stringify(inputs))
+  writeFileSync(keyFile, `${merkle}:${bundleInputsDigest(root, inputs)}`)
   const mod = (await import(/* @vite-ignore */ pathToFileURL(bundle).href)) as Record<string, unknown>
   memory.set(key, mod)
   return mod
