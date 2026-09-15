@@ -9467,7 +9467,7 @@ const LOCAL_SESSION_NEXT_AFTER_PASTE = [
 ] as const
 
 const LOCAL_SESSION_DOCS_DEV_FAST_PATH = [
-  'nvm use 24 && npm ci', 'npm run docs:dev', 'open http://localhost:5173/en/quantum-tools#local-session-hub',
+  'nvm use 24 && npm ci', 'npm run docs:dev', 'open http://localhost:5173/quantum-tools#local-session-hub',
   'npm run quantum:auto-wire-paste', 'npm run quantum:improve-local-session', 'npm run quantum:local-tools-morph', 'npm run quantum:card-paper-links', 'npm run quantum:mcp-browser-parity',
   'npm run quantum:upgrade-local', 'npm run mission:gate',
 ] as const
@@ -25775,7 +25775,7 @@ export function chatResearch(
     const perplexityLane = parsed.prompt.length > 0 ? chatThroughPerplexity(parsed.prompt, null, undefined, matrix) : null
     const ceccecInPrompt = /ceccec|psg\.bg|quantum-tools/i.test(parsed.prompt)
     const ceccecWire = ceccecInPrompt
-      ? autoWireAnyAiModelFromPastedLink(`${CECCEC_SITE_ORIGIN}/en/quantum-tools`, matrix, at)
+      ? autoWireAnyAiModelFromPastedLink(`${CECCEC_SITE_ORIGIN}/quantum-tools`, matrix, at)
       : null
     const packet = {
       researchUrl,
