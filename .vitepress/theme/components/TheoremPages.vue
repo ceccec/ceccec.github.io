@@ -10,6 +10,7 @@ import { useRoute, withBase } from 'vitepress'
 import { theoremPageBySlug, theoremPageRows, type TheoremPageRow } from '../../render'
 import type { ProofAnimationSpec } from '../../render'
 import ProofAnimation from './ProofAnimation.vue'
+import derivedWitnesses from '../../data/proof-witnesses.json'
 import TheoremFigure from './TheoremFigure.vue'
 import PageComputedGaps from './PageComputedGaps.vue'
 import { theoremFigure } from '../../render'
@@ -27,7 +28,18 @@ const rows = computed<TheoremPageRow[]>(() => {
   const one = slugFromRoute.value ? theoremPageBySlug(slugFromRoute.value) : null
   return one ? [one] : theoremPageRows()
 })
-const specOf = (row: TheoremPageRow) => row.spec as ProofAnimationSpec | undefined
+// A theorem with no hand-written witness is drawn from its own proof's numbers when the derivation found them
+// (scripts/verify/witnesses.ts writes the file; nothing in it is written by hand).
+const DERIVED = derivedWitnesses as Record<string, ProofAnimationSpec['witness']>
+const merged = new Map<string, ProofAnimationSpec | undefined>()
+const specOf = (row: TheoremPageRow): ProofAnimationSpec | undefined => {
+  if (merged.has(row.theorem)) return merged.get(row.theorem)
+  const spec = row.spec as ProofAnimationSpec | undefined
+  const witness = spec && !spec.witness ? DERIVED[row.theorem] : undefined
+  const out = spec && witness ? { ...spec, witness } : spec
+  merged.set(row.theorem, out)
+  return out
+}
 
 // The source of the proof machine itself (user law: every card page exposes how all is achieved).
 // Brace-matched into theorem-sources.json each cross wave; fetched once, shared by every paper.

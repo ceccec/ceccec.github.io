@@ -182,7 +182,11 @@ export function assertMovieMeasuresWhatItShows(): void {
   const failing = anim.specs.filter((spec) => spec.witness && !spec.witness.holds).map((spec) => spec.theorem)
   if (failing.length) throw new Error(`${failing.length} theorem witness(es) no longer hold: ${failing.join(' · ')}`)
   if (!anim.everyWitnessNamesARow) throw new Error('a theorem witness names no registry row — it would never be drawn')
-  console.log(`  theorem animations: ${anim.witnessed} drawn from their own proof, ${anim.drawnFromATemplate.length} from a template`)
-  console.log(ratchet('movie.theorems-drawn-from-a-template', anim.drawnFromATemplate.length, { evidence: () => anim.drawnFromATemplate.map((t) => `no witness: ${t}`) }))
+  // and the witnesses derived from each proof's own numbers (scripts/verify/witnesses.ts; verify:witnesses keeps the file fresh)
+  const derivedFile = join(ROOT, '.vitepress/data/proof-witnesses.json')
+  const derived = new Set(Object.keys(JSON.parse(readFileSync(derivedFile, 'utf8')) as Record<string, unknown>))
+  const templated = anim.drawnFromATemplate.filter((t) => !derived.has(t))
+  console.log(`  theorem animations: ${anim.witnessed} hand-written + ${derived.size} derived from their proof's numbers, ${templated.length} from a template`)
+  console.log(ratchet('movie.theorems-drawn-from-a-template', templated.length, { evidence: () => templated.map((t) => `no witness: ${t}`) }))
   for (const s of joins) console.log(`  ${s.file}:${s.line}  ${s.text}`)
 }

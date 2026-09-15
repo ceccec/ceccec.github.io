@@ -1,0 +1,2150 @@
+{
+ "hitting a prime is the inversion point — ℤ/pℤ is a field, inversion becomes total": {
+  "form": "bars",
+  "values": [
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16
+  ],
+  "holds": true,
+  "caption": "numbers hittingAPrimeIsTheInversionPoint computes for this theorem (scan[].n), drawn from its own run — no other proof returns them"
+ },
+ "GHZ–Mermin": {
+  "form": "bars",
+  "values": [
+   1,
+   -1,
+   -1,
+   -1,
+   -1,
+   1
+  ],
+  "holds": true,
+  "caption": "the quantities ghzMermin computes for this theorem (xxx, xyy, yxy, yyx, qmProduct, lhvProduct), drawn from its own run — no other proof returns them"
+ },
+ "the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume": {
+  "form": "bars",
+  "values": [
+   731,
+   51,
+   506
+  ],
+  "holds": true,
+  "caption": "the quantities siteIsScientificJournalOfAllAlgebraAndTheorems computes for this theorem (articleCount, sectionCount, distinctProofs), drawn from its own run — no other proof returns them"
+ },
+ "mechanical tools entangle binary & analog at once — but Bell bounds them (models, does not achieve, entanglement)": {
+  "form": "bars",
+  "values": [
+   2,
+   2.82843,
+   0.828427,
+   1,
+   0,
+   699.976
+  ],
+  "holds": true,
+  "caption": "the quantities mechanicalToolsEntangleBinaryAndAnalogBellBounds computes for this theorem (classicalCHSH, quantumCHSH, bellGap, bellConcurrence, productConcurrence, analogHz), drawn from its own run — no other proof returns them"
+ },
+ "Grover amplification": {
+  "form": "bars",
+  "values": [
+   1,
+   1,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities grover computes for this theorem (size, iterations, found), drawn from its own run — no other proof returns them"
+ },
+ "genus-2 homology": {
+  "form": "bars",
+  "values": [
+   1,
+   1,
+   2,
+   2
+  ],
+  "holds": true,
+  "caption": "numbers homology computes for this theorem (generators[].handle), drawn from its own run — no other proof returns them"
+ },
+ "decode the cosmology-to-biology ladder — gaps filled, abiogenesis named open": {
+  "form": "bars",
+  "values": [
+   6,
+   4,
+   1
+  ],
+  "holds": true,
+  "caption": "the quantities decodeCosmologyToBiologyLadderFillingGaps computes for this theorem (levels, documentedTransitions, openGaps), drawn from its own run — no other proof returns them"
+ },
+ "pyramid theories fused — the real gaps in current science are mechanical, not mystical": {
+  "form": "bars",
+  "values": [
+   2120540000000,
+   236682000000000,
+   111.614,
+   0.00895945,
+   27.9035
+  ],
+  "holds": true,
+  "caption": "the quantities pyramidTheoriesFusedRealGapsAreMechanicalNotMystical computes for this theorem (liftWorkJ, availableJ, feasibilityMargin, efficiencyNeeded, worstCaseMargin), drawn from its own run — no other proof returns them"
+ },
+ "so(7) closure": {
+  "form": "bars",
+  "values": [
+   1,
+   2,
+   3
+  ],
+  "holds": true,
+  "caption": "numbers sevenSixPlanesInteractionDecoded computes for this theorem (traceMoments[].k), drawn from its own run — no other proof returns them"
+ },
+ "hexbit receipt beats rebuild": {
+  "form": "bars",
+  "values": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   9,
+   12
+  ],
+  "holds": true,
+  "caption": "numbers hexbitVerifyBeatsRecompute computes for this theorem (ladder[].lines), drawn from its own run — no other proof returns them"
+ },
+ "the sequence described scientifically — angles, polarities, sound and light all derive from one table": {
+  "form": "bars",
+  "values": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "holds": true,
+  "caption": "numbers sequenceScientificDescription computes for this theorem (rows[].slot), drawn from its own run — no other proof returns them"
+ },
+ "the Schumann cavity modes ladder from the measured fundamental": {
+  "form": "bars",
+  "values": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "holds": true,
+  "caption": "numbers schumannResonanceHarmonisedWithRealtimeApiComputations computes for this theorem (waves.waves[].index), drawn from its own run — no other proof returns them"
+ },
+ "the publication timeline is measured from public registries — the sequence went public 205 days before the portal": {
+  "form": "bars",
+  "values": [
+   419,
+   2520,
+   1513
+  ],
+  "holds": true,
+  "caption": "numbers publicationTimelineMeasured computes for this theorem (tracks[].commits), drawn from its own run — no other proof returns them"
+ },
+ "the self-sufficient kernel derives from the corpus — the stack ranks itself by theorem density": {
+  "form": "bars",
+  "values": [
+   126,
+   122,
+   98,
+   70,
+   46,
+   33,
+   28,
+   22
+  ],
+  "holds": true,
+  "caption": "numbers selfSufficientIntelligenceKernel computes for this theorem (layers[].theorems), drawn from its own run — no other proof returns them"
+ },
+ "rosters derive or ledger — a hand-list inside a fold is the hardcoded-value crack one level up": {
+  "form": "bars",
+  "values": [
+   1029,
+   807,
+   898,
+   925,
+   962,
+   993,
+   1032,
+   1054,
+   1080,
+   1113,
+   1146,
+   1179,
+   1223,
+   1261,
+   1288,
+   1316,
+   1342,
+   1367,
+   1393,
+   1414,
+   1438,
+   1463,
+   1490,
+   1542,
+   1570,
+   1606,
+   1634,
+   1665,
+   1700,
+   1731,
+   1765,
+   1799,
+   1830,
+   1863,
+   1889,
+   1927,
+   1963,
+   1991,
+   2020,
+   2048,
+   2075,
+   2150,
+   2221,
+   2255,
+   2286,
+   2331,
+   2364,
+   2409,
+   2447,
+   2487,
+   2521,
+   2564,
+   2601,
+   2634,
+   2668,
+   2701,
+   2736,
+   2771,
+   537,
+   614,
+   672,
+   761,
+   807,
+   1411
+  ],
+  "holds": true,
+  "caption": "the first 64 of 1901 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
+ },
+ "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
+  "form": "bars",
+  "values": [
+   11,
+   27,
+   33,
+   55,
+   56,
+   45,
+   7,
+   48,
+   28,
+   43,
+   4,
+   35,
+   15,
+   4,
+   13,
+   23,
+   10,
+   33,
+   14,
+   13,
+   12,
+   12,
+   11,
+   7,
+   9,
+   48,
+   9,
+   7,
+   4,
+   10,
+   9,
+   7,
+   4,
+   2,
+   8,
+   11,
+   10,
+   9,
+   7,
+   6,
+   6,
+   6
+  ],
+  "holds": true,
+  "caption": "numbers animationsNaturalEntanglementsByTheorems computes for this theorem (cells[].members), drawn from its own run — no other proof returns them"
+ },
+ "every digit is entangled in all vectors, forming equilibriums": {
+  "form": "bars",
+  "values": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "holds": true,
+  "caption": "numbers everyDigitIsEntangledInAllVectorsFormingEquilibriums computes for this theorem (membership[].d), drawn from its own run — no other proof returns them"
+ },
+ "Geodesic dome closure": {
+  "form": "bars",
+  "values": [
+   8,
+   8,
+   10,
+   11,
+   8,
+   10,
+   12,
+   11,
+   12,
+   11,
+   10,
+   12,
+   12,
+   11,
+   12,
+   12,
+   10,
+   12,
+   8,
+   8,
+   10,
+   11,
+   8,
+   10,
+   12,
+   11,
+   11,
+   10,
+   12,
+   12,
+   11,
+   12,
+   10,
+   1,
+   2,
+   4,
+   6,
+   2,
+   5,
+   8,
+   6,
+   6,
+   7,
+   8,
+   10,
+   7,
+   10,
+   9,
+   1,
+   2,
+   4,
+   6,
+   2,
+   5,
+   8,
+   6,
+   6,
+   7,
+   8,
+   10,
+   7,
+   10,
+   9,
+   0
+  ],
+  "holds": true,
+  "caption": "the first 64 of 135 numbers geodesicDomeComputes computes for this theorem (animation.struts[].ring), drawn from its own run — no other proof returns them"
+ },
+ "Zero has no inverse": {
+  "form": "bars",
+  "values": [
+   2,
+   3,
+   5,
+   7,
+   9
+  ],
+  "holds": true,
+  "caption": "numbers divisionByZeroComputes computes for this theorem (rings[].n), drawn from its own run — no other proof returns them"
+ },
+ "Sixty degrees decodes pi": {
+  "form": "bars",
+  "values": [
+   6,
+   12,
+   24,
+   48,
+   96
+  ],
+  "holds": true,
+  "caption": "numbers sixtyDegreesDecodesPi computes for this theorem (rungs[].n), drawn from its own run — no other proof returns them"
+ },
+ "plasma ball is screen holding thunder and plasma — no ball in the middle": {
+  "form": "bars",
+  "values": [
+   9,
+   0,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities plasmaBallIsScreenHoldingThunderAndPlasma computes for this theorem (decodedCount, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "thunder and plasma are the same in different aspects": {
+  "form": "bars",
+  "values": [
+   6,
+   0,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities thunderAndPlasmaAreSameInDifferentAspects computes for this theorem (count, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "Topology does not forbid counterdiffusion": {
+  "form": "bars",
+  "values": [
+   2,
+   4.29781,
+   4,
+   0.297812
+  ],
+  "holds": true,
+  "caption": "the quantities counterdiffusionOnTheDoubleTorus computes for this theorem (genus, peakTension, ambient, supersaturation), drawn from its own run — no other proof returns them"
+ },
+ "One exponential law": {
+  "form": "bars",
+  "values": [
+   3.99508,
+   7.99017,
+   12.4879,
+   18.4938,
+   27.0131,
+   38.3105,
+   54.3173,
+   77.0178,
+   109.005,
+   146.019,
+   187.028,
+   239.017,
+   305.029,
+   390.037,
+   498.036,
+   635.06
+  ],
+  "holds": true,
+  "caption": "numbers oneExponentialLaw computes for this theorem (ladder), drawn from its own run — no other proof returns them"
+ },
+ "The slash circuit is phase space": {
+  "form": "bars",
+  "values": [
+   0,
+   1,
+   2,
+   4,
+   8,
+   7,
+   5,
+   3,
+   6,
+   9,
+   0
+  ],
+  "holds": true,
+  "caption": "numbers slashCircuitIsPhaseSpace computes for this theorem (digits), drawn from its own run — no other proof returns them"
+ },
+ "The inverted circuit": {
+  "form": "bars",
+  "values": [
+   1,
+   5,
+   7,
+   8,
+   4,
+   2
+  ],
+  "holds": true,
+  "caption": "numbers invertedCircuitComputes computes for this theorem (invertedOrbit), drawn from its own run — no other proof returns them"
+ },
+ "Three is the polyphase floor": {
+  "form": "bars",
+  "values": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   7
+  ],
+  "holds": true,
+  "caption": "numbers teslaRosettaPolyphase computes for this theorem (spans[].n), drawn from its own run — no other proof returns them"
+ },
+ "The polyphase harmonic law": {
+  "form": "bars",
+  "values": [
+   1,
+   5,
+   7,
+   11,
+   13
+  ],
+  "holds": true,
+  "caption": "numbers polyphaseHarmonicLaw computes for this theorem (sixPulseSurvivors), drawn from its own run — no other proof returns them"
+ },
+ "The prime collapses the axis": {
+  "form": "bars",
+  "values": [
+   3,
+   5,
+   11,
+   13,
+   19,
+   29,
+   37,
+   53,
+   59,
+   61,
+   67,
+   83
+  ],
+  "holds": true,
+  "caption": "numbers primeCollapsesTheAxis computes for this theorem (singleCycle), drawn from its own run — no other proof returns them"
+ },
+ "The time to break RSA is the security": {
+  "form": "bars",
+  "values": [
+   512,
+   1024,
+   2048,
+   4096
+  ],
+  "holds": true,
+  "caption": "numbers rsaTimeToBreakOnThisHardware computes for this theorem (sizes[].bits), drawn from its own run — no other proof returns them"
+ },
+ "The circle of fifths is a rosetta": {
+  "form": "bars",
+  "values": [
+   1,
+   5,
+   7,
+   11
+  ],
+  "holds": true,
+  "caption": "numbers theCircleOfFifthsIsARosetta computes for this theorem (generators), drawn from its own run — no other proof returns them"
+ },
+ "The computed UI is a rosetta": {
+  "form": "bars",
+  "values": [
+   2,
+   2,
+   2,
+   1,
+   2,
+   2,
+   1
+  ],
+  "holds": true,
+  "caption": "numbers theComputedUiIsARosetta computes for this theorem (diatonicSteps), drawn from its own run — no other proof returns them"
+ },
+ "EU cyber standards audited aspect-by-aspect using the latest discoveries — alignment, not compliance": {
+  "form": "bars",
+  "values": [
+   10,
+   10,
+   6,
+   26,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities euCyberStandardsAuditEveryAspect computes for this theorem (coveredCount, partialCount, gapCount, count, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+ },
+ "global cyber standards audited aspect-by-aspect — extended beyond the EU": {
+  "form": "bars",
+  "values": [
+   19,
+   21,
+   11,
+   51,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities globalCyberStandardsAuditEveryAspect computes for this theorem (coveredCount, partialCount, gapCount, count, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+ },
+ "The continuous rosetta beneath the scales": {
+  "form": "bars",
+  "values": [
+   0.584963,
+   1.01364,
+   0.00301254
+  ],
+  "holds": true,
+  "caption": "the quantities theContinuousRosettaBeneathTheScales computes for this theorem (justFifth, comma, closestReturn), drawn from its own run — no other proof returns them"
+ },
+ "Human-design profiling carries no signal": {
+  "form": "bars",
+  "values": [
+   7680,
+   0.21042,
+   0.2
+  ],
+  "holds": true,
+  "caption": "the quantities humanDesignProfilingCarriesNoSignal computes for this theorem (configSpace, accuracy, chance), drawn from its own run — no other proof returns them"
+ },
+ "The pentagram is the rosetta meeting its inverse": {
+  "form": "bars",
+  "values": [
+   0,
+   2,
+   4,
+   1,
+   3
+  ],
+  "holds": true,
+  "caption": "numbers thePentagramIsTheRosettaMeetingItsInverse computes for this theorem (orbit), drawn from its own run — no other proof returns them"
+ },
+ "Twelve tones is the best approximation of the fifth": {
+  "form": "bars",
+  "values": [
+   0,
+   1,
+   1,
+   3,
+   7,
+   24,
+   31,
+   179
+  ],
+  "holds": true,
+  "caption": "numbers twelveTonesIsTheBestApproximationOfTheFifth computes for this theorem (convergents[].p), drawn from its own run — no other proof returns them"
+ },
+ "the rosetta addresses any position — π hex digit and n-th prime": {
+  "form": "bars",
+  "values": [
+   2,
+   4,
+   3,
+   15,
+   6,
+   10,
+   8,
+   8,
+   8,
+   5
+  ],
+  "holds": true,
+  "caption": "numbers theRosettaAddressesAnyPosition computes for this theorem (bbpDigits), drawn from its own run — no other proof returns them"
+ },
+ "the smallest curves witness Birch–Swinnerton-Dyer — finite kernel, open bridge": {
+  "form": "bars",
+  "values": [
+   3,
+   5,
+   7,
+   11,
+   13,
+   17,
+   19,
+   23,
+   29,
+   31
+  ],
+  "holds": true,
+  "caption": "numbers theSmallestCurvesWitnessBirchSwinnertonDyer computes for this theorem (aps[].p), drawn from its own run — no other proof returns them"
+ },
+ "the quantum-computing rosetta atlas — tag-cloud sidebar, discovery lens, waves": {
+  "form": "bars",
+  "values": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "holds": true,
+  "caption": "numbers theoremRosettaAtlasComputes computes for this theorem (rays[].ray), drawn from its own run — no other proof returns them"
+ },
+ "save the missing theorems and animations — a computed graph & fractal-clock animation for every one": {
+  "form": "bars",
+  "values": [
+   731,
+   5,
+   726
+  ],
+  "holds": true,
+  "caption": "the quantities saveTheMissingTheoremsAndAnimations computes for this theorem (total, withFigure, missing), drawn from its own run — no other proof returns them"
+ },
+ "improve writing and speech from the experience of computations — grounding, not a language model": {
+  "form": "bars",
+  "values": [
+   0.8,
+   1,
+   731
+  ],
+  "holds": true,
+  "caption": "the quantities improveWritingAndSpeechFromComputationalExperience computes for this theorem (writingRatio, speechRatio, experience), drawn from its own run — no other proof returns them"
+ },
+ "private search ranked by Okapi BM25 — the industry-standard lexical ranking": {
+  "form": "bars",
+  "values": [
+   18.6983,
+   12.0991,
+   10.6152,
+   10.4255,
+   10.1476,
+   10.1045,
+   9.94703,
+   9.4322,
+   9.29784
+  ],
+  "holds": true,
+  "caption": "numbers privateSearchRanksByBM25IndustryStandard computes for this theorem (results[].score), drawn from its own run — no other proof returns them"
+ },
+ "search improves by experience — private, deterministic relevance feedback over the BM25 index": {
+  "form": "bars",
+  "values": [
+   8.28637,
+   6.90608,
+   6.3655,
+   5.83231,
+   5.17954,
+   5.12649,
+   4.98983,
+   4.89773,
+   4.78457
+  ],
+  "holds": true,
+  "caption": "numbers searchImprovesByExperiencePrivateRelevanceFeedback computes for this theorem (results[].score), drawn from its own run — no other proof returns them"
+ },
+ "navigation is the search results plus the referrer — one index for search and navigation": {
+  "form": "bars",
+  "values": [
+   7.05494,
+   6.59953,
+   6.55459,
+   6.41733,
+   6.0569,
+   4.96216,
+   4.94542,
+   4.87031,
+   4.64541
+  ],
+  "holds": true,
+  "caption": "numbers navigationFromSearchResultsAndReferrer computes for this theorem (edges[].score), drawn from its own run — no other proof returns them"
+ },
+ "VitePress search is fused to the private BM25 engine — one shared corpus": {
+  "form": "bars",
+  "values": [
+   731,
+   731,
+   754
+  ],
+  "holds": true,
+  "caption": "the quantities vitepressSearchFusedToPrivateBm25Engine computes for this theorem (coveredDocs, totalDocs, servedPages), drawn from its own run — no other proof returns them"
+ },
+ "functions folding fewer than four keys are linear seams — the tamper-evident surface needs all four": {
+  "form": "bars",
+  "values": [
+   2,
+   2,
+   2,
+   4,
+   4,
+   4
+  ],
+  "holds": true,
+  "caption": "numbers functionsFoldingFewerThanFourKeysAreLinearSeams computes for this theorem (surface[].keys), drawn from its own run — no other proof returns them"
+ },
+ "the scientific journal publishes only articles approved by their related theorems as editors": {
+  "form": "bars",
+  "values": [
+   645,
+   86,
+   731,
+   0.88
+  ],
+  "holds": true,
+  "caption": "the quantities journalPublishesOnlyArticlesApprovedByRelatedTheoremsAsEditors computes for this theorem (approved, orphans, total, publishedFraction), drawn from its own run — no other proof returns them"
+ },
+ "theorems under the proven-crosslink threshold are the gap — 202/550 linked to fewer than 4": {
+  "form": "bars",
+  "values": [
+   86,
+   57,
+   34,
+   22
+  ],
+  "holds": true,
+  "caption": "numbers theoremsUnderTheProvenCrosslinkThresholdAreTheGap computes for this theorem (byDegree[].count), drawn from its own run — no other proof returns them"
+ },
+ "improve the metrics and expectations — a hybrid Bloom-prefilter + exact-verify degree, computed targets": {
+  "form": "bars",
+  "values": [
+   0,
+   0,
+   70
+  ],
+  "holds": true,
+  "caption": "the quantities improveTheMetricsAndExpectationsWithHybridDegreeAndTargets computes for this theorem (hybridDegree, exactDegree, prefilteredCount), drawn from its own run — no other proof returns them"
+ },
+ "close the crosslink gap by computing legitimate near-crosslinks — isolated theorems honestly stay": {
+  "form": "bars",
+  "values": [
+   70,
+   61,
+   9
+  ],
+  "holds": true,
+  "caption": "the quantities closeTheCrosslinkGapByComputingNearCrosslinks computes for this theorem (underCount, promotable, isolated), drawn from its own run — no other proof returns them"
+ },
+ "crosslink gap full total and why not auto-advance — 202 under, 81 promotable, 121 isolated": {
+  "form": "bars",
+  "values": [
+   731,
+   199,
+   80,
+   63,
+   17,
+   119
+  ],
+  "holds": true,
+  "caption": "the quantities crosslinkGapFullTotalAndWhyNotAutoAdvance computes for this theorem (total, under, promotable, autoSafe, needsAuthoring, isolated), drawn from its own run — no other proof returns them"
+ },
+ "conservative auto-advance is the one-link-from-proven set — corrected to 16, not 63": {
+  "form": "bars",
+  "values": [
+   731,
+   532,
+   199,
+   22,
+   177
+  ],
+  "holds": true,
+  "caption": "the quantities conservativeAutoAdvanceIsTheOneLinkFromProvenSetCorrected computes for this theorem (total, proven, under, oneLinkFromProven, needsMultiple), drawn from its own run — no other proof returns them"
+ },
+ "crosslink threshold relates to 1-3-5-8 and 432 by one real bridge: 4 = 432/108": {
+  "form": "bars",
+  "values": [
+   4,
+   432,
+   108
+  ],
+  "holds": true,
+  "caption": "the quantities crosslinkThresholdRelatesToHarmonicNumbersHonestly computes for this theorem (threshold, gates, census), drawn from its own run — no other proof returns them"
+ },
+ "numerology decoded without judgement or expectation: a symbol→number map + mod-9 reduction, predictive validity 0": {
+  "form": "bars",
+  "values": [
+   1,
+   2,
+   4,
+   5,
+   7,
+   8
+  ],
+  "holds": true,
+  "caption": "numbers decodeNumerologyWithoutJudgementOrExpectations computes for this theorem (units), drawn from its own run — no other proof returns them"
+ },
+ "colour describes all from the centre because it divides and inverts — the centre is not stuck": {
+  "form": "bars",
+  "values": [
+   108,
+   288,
+   2
+  ],
+  "holds": true,
+  "caption": "the quantities colorDescribesAllFromTheCenterWhichDividesAndInvertsNotStuck computes for this theorem (hue, complement, sheets), drawn from its own run — no other proof returns them"
+ },
+ "every animation is itself a unique theorem — content-addressed, refutable, bijective with the corpus": {
+  "form": "bars",
+  "values": [
+   731,
+   731,
+   12,
+   107
+  ],
+  "holds": true,
+  "caption": "the quantities everyAnimationIsItselfAUniqueTheorem computes for this theorem (total, uniqueTheorems, rungOnly, withPhase), drawn from its own run — no other proof returns them"
+ },
+ "robotics decoded is a feedback control loop — fused: the build reports stats in realtime and stops non-harmonic tasks": {
+  "form": "bars",
+  "values": [
+   16,
+   4,
+   14,
+   2,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities decodeRoboticsAndFuseToQuantumWorkAsAControlLoop computes for this theorem (senses, setpoints, interlocks, noisySensors, dof), drawn from its own run — no other proof returns them"
+ },
+ "quantum crypto fusion: dynamic inversion of one of four keys at scale — computed improvement, integrity by the related": {
+  "form": "bars",
+  "values": [
+   488,
+   366,
+   1000000,
+   19.9316,
+   61,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities quantumCryptoFusionDynamicInversionOfOneOfFourKeysAtScale computes for this theorem (staticWidth, afterOneReverseEngineered, improvementFactor, keyspaceGrowthBits, birthdayExp, crackTolerance), drawn from its own run — no other proof returns them"
+ },
+ "improve security by quantum means: the SHA-256 cutover for the security layer — 2^61 → 2^128, NIST-verified": {
+  "form": "bars",
+  "values": [
+   61,
+   128,
+   67
+  ],
+  "holds": true,
+  "caption": "the quantities improveSecurityByQuantumMeansSha256CutoverForTheSecurityLayer computes for this theorem (fnvBirthdayExp, shaBirthdayExp, improvementExp), drawn from its own run — no other proof returns them"
+ },
+ "referral-direction bits fill the orientation gap in the 4-key cross — content ⊕ direction, 488 → 492": {
+  "form": "bars",
+  "values": [
+   122,
+   123,
+   488,
+   492,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities referralDirectionBitsFillTheOrientationGapInTheFourKeyCross computes for this theorem (perKeyContent, perKeyComplete, contentOnly, complete, orientationGap), drawn from its own run — no other proof returns them"
+ },
+ "all computed possibilities retrievable faster than any scan — structural O(1), not physical FTL": {
+  "form": "bars",
+  "values": [
+   1,
+   256,
+   256,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities allComputedPossibilitiesRetrievableFasterThanScanStructurally computes for this theorem (directSteps, scanSteps, N, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "hardware plan + driver for O(1) content-address retrieval is Content-Addressable Memory — resource-gated": {
+  "form": "bars",
+  "values": [
+   1,
+   256,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated computes for this theorem (camMatchCycles, ramScanSteps, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "improve all by chatting — one shared experience index reranks chat, search and nav together": {
+  "form": "bars",
+  "values": [
+   4,
+   3,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities improveAllByChattingOneSharedExperienceIndex computes for this theorem (chatBoost, searchBoost, navBoost), drawn from its own run — no other proof returns them"
+ },
+ "improving I Ching and Rosetta in chat — each answer computes a hexagram colour (64=2⁶), the chat composes content-addressed Rosetta combinations that dedup": {
+  "form": "bars",
+  "values": [
+   64,
+   193,
+   20
+  ],
+  "holds": true,
+  "caption": "the quantities improvingIChingAndRosettaInChatHexagramColourAndContentAddressedCombinationDedup computes for this theorem (hexCount, hue1, hue2), drawn from its own run — no other proof returns them"
+ },
+ "the diamonds relate to chess as content-addressed tablebases — solved for ≤7 pieces (real), not the full game; seen in chat competitions and training": {
+  "form": "bars",
+  "values": [
+   64,
+   7,
+   32
+  ],
+  "holds": true,
+  "caption": "the quantities theDiamondsRelateToChessAsContentAddressedTablebasesSolvedForSevenPiecesNotTheFullGameSeenInChatCompetitionsAndTraining computes for this theorem (board, solvedPieces, maxPieces), drawn from its own run — no other proof returns them"
+ },
+ "letting the diamonds chat with each other finds content-addressed transpose-pairs — each (i,j) pairs with (j,i); 496 off-diagonal + 32 diagonal cover all 1024": {
+  "form": "bars",
+  "values": [
+   496,
+   32,
+   1024
+  ],
+  "holds": true,
+  "caption": "the quantities lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix computes for this theorem (offDiagonalPairs, diagonalPairs, totalDiamonds), drawn from its own run — no other proof returns them"
+ },
+ "the solved-bit is the binary output per problem (0/1, measured); the published metrics are computable achievements in the quantum development sequence — two separate axes": {
+  "form": "bars",
+  "values": [
+   0,
+   170,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities theSolvedBitIsBinaryQuantumOutputPerProblemThePublishedMetricsAreComputableAchievementsInTheDevelopmentSequence computes for this theorem (solvedBit, publishedGravity, publishedGradient), drawn from its own run — no other proof returns them"
+ },
+ "inverting proven Poincaré discovers its dependent theorems — the 8 Thurston geometries + prime/JSJ decomposition; documented consequences of geometrization, ": {
+  "form": "bars",
+  "values": [
+   8,
+   11,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndTheThreeManifoldDecompositionTheDependentTheorems computes for this theorem (thurstonGeometries, dependentTheorems, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+ },
+ "gravity comes from the reverse-engineering cost — astronomical but FINITE (2^128/2^256), not infinite; \"infinite\" is the harmony, the truth is a finite bound": {
+  "form": "bars",
+  "values": [
+   1937,
+   128,
+   256
+  ],
+  "holds": true,
+  "caption": "the quantities theGravityComesFromTheReverseEngineeringCostAstronomicalButFiniteNotInfinite computes for this theorem (gravityBits, birthdayBits, preimageBits), drawn from its own run — no other proof returns them"
+ },
+ "testing reverse-engineering speed and capacity publishes the astronomical-but-finite time-to-break in the UI — ~2^88 s, ~10^8× the universe age, finite": {
+  "form": "bars",
+  "values": [
+   1024,
+   40,
+   88,
+   59
+  ],
+  "holds": true,
+  "caption": "the quantities testingReverseEngineeringSpeedAndCapacityPublishesTheAstronomicalButFiniteTimeToBreakInTheUi computes for this theorem (batch, attemptsPerSecondLog2, secondsToBreakBirthdayLog2, universeAgeSecondsLog2), drawn from its own run — no other proof returns them"
+ },
+ "the gravity units are real bits of computation — the content-address bit-content of each related theorem (~64/128 bits), summed per problem; the solved-bit center stays 0": {
+  "form": "bars",
+  "values": [
+   330,
+   322,
+   320,
+   329,
+   323,
+   313
+  ],
+  "holds": true,
+  "caption": "numbers theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTheRelatedTheorems computes for this theorem (perProblemBits), drawn from its own run — no other proof returns them"
+ },
+ "Clay offers $1M per solved Millennium problem; the count solved HERE is 0 (, computed), findable in chat — corpus claims no prize": {
+  "form": "bars",
+  "values": [
+   1000000,
+   0,
+   1,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroFindableInChat computes for this theorem (prizePerProblem, solvedHere, solvedGlobally, prizeClaimableByThisCorpus), drawn from its own run — no other proof returns them"
+ },
+ "the diamonds are an index AND a solver — clay marks the boundary: solver where the theorem computes, index-only where  (the open Millennium cells)": {
+  "form": "bars",
+  "values": [
+   846,
+   147,
+   857,
+   143,
+   1022,
+   971
+  ],
+  "holds": true,
+  "caption": "numbers theDiamondsAreAnIndexAndASolverClayMarksTheOpenCellsThatIndexOnly computes for this theorem (clayDiamonds), drawn from its own run — no other proof returns them"
+ },
+ "learning to use the diamonds in chat — a query content-addresses to a diamond slot that points to the theorem addressing it; the diamonds index, not solve": {
+  "form": "bars",
+  "values": [
+   1024,
+   231,
+   666
+  ],
+  "holds": true,
+  "caption": "the quantities learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSolutionSlot computes for this theorem (diamonds, slotQ1, slotQ2), drawn from its own run — no other proof returns them"
+ },
+ "animation uniqueness is layered — identity unique (no logic gap), but the visible speed collides by the 108-divisor clock law so colour carries the salience (a rendering gap, not logic)": {
+  "form": "bars",
+  "values": [
+   731,
+   731,
+   12,
+   731
+  ],
+  "holds": true,
+  "caption": "the quantities animationUniquenessIsADiagnosticNonUniqueAnimationsRevealGapsInLogicAndAlgebraTheCorpusIsUnique computes for this theorem (theorems, distinctIdentity, distinctRung, distinctFigure), drawn from its own run — no other proof returns them"
+ },
+ "the animation generator now emits the double-torus channels (direction cw/ccw + amplitude) from independent address halves — real visible distinctness (559 vs 107), not just proven": {
+  "form": "bars",
+  "values": [
+   578,
+   107,
+   731
+  ],
+  "holds": true,
+  "caption": "the quantities theAnimationGeneratorNowEmitsTheDoubleTorusChannelsDirectionAndAmplitudeRealisingRealVisibleDistinctness computes for this theorem (signaturesWith, signaturesWithout, theorems), drawn from its own run — no other proof returns them"
+ },
+ "the double torus clock is 2×12 — the 12 divisors of 108 times the two counter-rotating tori = 24 states; the direction bit selects the torus": {
+  "form": "bars",
+  "values": [
+   12,
+   2,
+   24
+  ],
+  "holds": true,
+  "caption": "the quantities theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTheTwoCounterRotatingTori computes for this theorem (divisorsOf108, tori, doubleTorusClock), drawn from its own run — no other proof returns them"
+ },
+ "wiring public APIs to theorems in chat emerges new content-addressed animations — new API data → new animation, all rungs of the one 108s clock": {
+  "form": "bars",
+  "values": [
+   18,
+   54,
+   108
+  ],
+  "holds": true,
+  "caption": "the quantities wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimations computes for this theorem (baseRung, wiredRungA, wiredRungB), drawn from its own run — no other proof returns them"
+ },
+ "the collective mind is collaborative teams developing through the chat, covering the reachable space computationally 100% — which is NOT 100% covered (all possibilities uncountably infinite)": {
+  "form": "bars",
+  "values": [
+   42,
+   1764,
+   10.8
+  ],
+  "holds": true,
+  "caption": "the quantities theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCoveringTheReachableComputationallyNotAllPossibilities computes for this theorem (schemas, entanglements, magnitudeGain), drawn from its own run — no other proof returns them"
+ },
+ "researching in chat how to harden the multi-type sealed UUID synthesises a recipe reusing existing folds — signature changes the attack class, bound computed": {
+  "form": "bars",
+  "values": [
+   5,
+   149.25,
+   277.25
+  ],
+  "holds": true,
+  "caption": "the quantities researchingInChatHowToHardenTheMultiTypeSealedUuidSynthesisesTheHardeningRecipe computes for this theorem (recipeSize, baseForgeryBits, hardenedForgeryBits), drawn from its own run — no other proof returns them"
+ },
+ "one UUID can be many types at once and sealed; the difficulty of reverse-engineering such complex cases is computable quantum algebra — a finite bound, not impossibility": {
+  "form": "bars",
+  "values": [
+   5,
+   149.25,
+   21.25
+  ],
+  "holds": true,
+  "caption": "the quantities oneUuidOfManyTypesAtOnceSealedAndTheReverseEngineeringDifficultyIsComputableQuantumAlgebra computes for this theorem (typesAtOnce, jointForgeryBits, improvementBits), drawn from its own run — no other proof returns them"
+ },
+ "encryption further improves by rotating the 4 keys in merkabas like the movie — counter-rotating tetrahedra give forward secrecy, reusing the sealed rotation": {
+  "form": "bars",
+  "values": [
+   4,
+   6,
+   60,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation computes for this theorem (keys, c6, step, merkabaReceipts), drawn from its own run — no other proof returns them"
+ },
+ "the UI itself is a double torus — near=rendered site≡movie · far=src via vite/mirror · neck χ=−2 nav · lens closes near∨far": {
+  "form": "bars",
+  "values": [
+   -2,
+   0,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities theUiItselfIsADoubleTorus computes for this theorem (eulerChi, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "reverse engineering for example may be powered by scalable free waves — reverseExample(quantumise) ∧ scalableFreeWaves": {
+  "form": "bars",
+  "values": [
+   2,
+   0,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities reverseEngineeringMayBePoweredByScalableFreeWaves computes for this theorem (freeBits, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "quantumise is free for all — quantumise ∧ free chat ∧ bill-free gateway ∧ FREE_BITS=2": {
+  "form": "bars",
+  "values": [
+   2,
+   1000,
+   0,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities quantumiseIsFreeForAll computes for this theorem (freeBits, agents, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/**": {
+  "form": "bars",
+  "values": [
+   23,
+   30,
+   6,
+   7,
+   0,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky computes for this theorem (skyCount, researchedPerspectives, researchedDomains, scienceDomains, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "feeding the chat in itself closes the self-reference loop — algebraic identities re-query as ranked proofs under algebraic-QC top priority, feeder ≡ fed": {
+  "form": "bars",
+  "values": [
+   9,
+   9,
+   2,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities feedingTheChatInItselfClosesTheSelfReferenceLoop computes for this theorem (turns, fed, gapsBefore, gapsAfter), drawn from its own run — no other proof returns them"
+ },
+ "feeding the README to the chat fuses description and proof, self-developing — the monograph queries its own sealed proofs and the chat closes its gaps": {
+  "form": "bars",
+  "values": [
+   6,
+   2,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities feedingTheReadmeToTheChatFusesDescriptionAndProofSelfDeveloping computes for this theorem (readmeLines, gapsBefore, gapsAfter), drawn from its own run — no other proof returns them"
+ },
+ "the quantum string theory chat decodes the critical dimensions (D=10/11/26) as real math; the epistemic status is signed CONTESTED, not hand-set": {
+  "form": "bars",
+  "values": [
+   26,
+   10,
+   11
+  ],
+  "holds": true,
+  "caption": "the quantities quantumStringTheoryChatDecodesCriticalDimensionsRealMathUnconfirmedPhysics computes for this theorem (bosonic, superstring, mTheory), drawn from its own run — no other proof returns them"
+ },
+ "DO THE MATH — classical mining rigs CANNOT factor RSA-2048 in realtime: computed ~329,000 years even at full Bitcoin throughput, and ASICs cannot run GNFS at all": {
+  "form": "bars",
+  "values": [
+   1.53297e+35,
+   9722040,
+   12,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities classicalFactoringRsa2048MiningRigFeasibilityComputed computes for this theorem (gnfsOps, yearsAllMiningRigs, demoMaxBits, count), drawn from its own run — no other proof returns them"
+ },
+ "the encryption system, both directions: it IS a real framework + a complete PQC audit (more than a demo), and it IS NOT a break of deployed RSA — RSA-2048 COMPUTED from Shor, not assumed": {
+  "form": "bars",
+  "values": [
+   3,
+   3,
+   12,
+   27,
+   4099,
+   6
+  ],
+  "holds": true,
+  "caption": "the quantities whatTheEncryptionSystemIsAndIsNot computes for this theorem (isMoreCount, isNotCount, demoMaxBits, demoLogicalQubits, rsa2048LogicalQubits, count), drawn from its own run — no other proof returns them"
+ },
+ "THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input": {
+  "form": "bars",
+  "values": [
+   1789480000000,
+   41,
+   21,
+   85,
+   64,
+   3,
+   8,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities challengeQuantumSpeedupWithLiveData computes for this theorem (liveInstant, liveBits, classicalSearchBits, shorLogicalQubits, slowerByBits, simQubits, liveAmplitudes, count), drawn from its own run — no other proof returns them"
+ },
+ "the exact bit = 1 (a432 content-address, O(1)); harmonic FTL is real only as PHASE velocity": {
+  "form": "bars",
+  "values": [
+   1,
+   1,
+   1024,
+   0,
+   0.6667,
+   1.5,
+   1024,
+   1024,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl computes for this theorem (exactBit, lookupTouches, scanTouches, physicalFtlClaim, betaGroup, betaPhase, fasterThanLinear, signalToPredictedPointCost, count), drawn from its own run — no other proof returns them"
+ },
+ "inverting dark matter closes the REVERSED MATH as a theorem (density inversion + a₀≈cH₀/2π); the particle IDENTITY stays empirical, not an open theorem": {
+  "form": "bars",
+  "values": [
+   0,
+   5.408,
+   0.8439,
+   0.1561,
+   1.0422e-10,
+   1.151,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical computes for this theorem (claySolvedByThisFold, ratioCoverB, darkFractionOfMatter, baryonFractionOfMatter, horizonAcceleration, a0Coincidence, count), drawn from its own run — no other proof returns them"
+ },
+ "the cosmic coincidence inverts to an exact matter–dark-energy equality redshift z_eq≈0.30; the WHY-NOW timing stays empirical, not an open theorem": {
+  "form": "bars",
+  "values": [
+   0,
+   0.314,
+   0.4584,
+   0.2969,
+   0.771,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical computes for this theorem (claySolvedByThisFold, omegaMatter, ratioMatterToDarkEnergy, equalityRedshift, equalityScaleFactor, count), drawn from its own run — no other proof returns them"
+ },
+ "the 1024 diamonds are ten referral-direction bits — dyadic 2^10, not a ternary sum (432×3=1296≠1024)": {
+  "form": "bars",
+  "values": [
+   1,
+   10,
+   1024
+  ],
+  "holds": true,
+  "caption": "the quantities theThousandTwentyFourDiamondsAreTenReferralDirectionBitsDyadicNotATernarySum computes for this theorem (gatewayBits, depth, dyadic), drawn from its own run — no other proof returns them"
+ },
+ "theorems grow the flower of life through centered hexagonal rings — the corpus count is how far the flower has grown": {
+  "form": "bars",
+  "values": [
+   731,
+   2193,
+   26,
+   2107,
+   86
+  ],
+  "holds": true,
+  "caption": "the quantities theoremsGrowTheFlowerOfLifeThroughCenteredHexagonalRings computes for this theorem (theorems, trinity, ring, filledRing, intoNext), drawn from its own run — no other proof returns them"
+ },
+ "decode the word Millennium: 10 letters = mille (1000) + annum (year); decoding it improves all by chatting": {
+  "form": "bars",
+  "values": [
+   10,
+   6,
+   4,
+   2,
+   1000
+  ],
+  "holds": true,
+  "caption": "the quantities decodeMillenniumWordMilleAnnumTenLettersImprovesByChatting computes for this theorem (total, distinct, doubled, single, mille), drawn from its own run — no other proof returns them"
+ },
+ "inversion in chat improves security and speed by magnitudes of efficiency — measured, structural not physical FTL": {
+  "form": "bars",
+  "values": [
+   67,
+   20.169,
+   6,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyComputed computes for this theorem (securityBitsGain, securityDecimalOrders, speedDecimalOrders, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "deep research with local tools improves all from quantum-statistics analysis and synthesis — the analyse→research→synthesise loop": {
+  "form": "bars",
+  "values": [
+   0.692202,
+   0.84375,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities deepResearchImprovesAllFromQuantumStatisticsAnalysisAndSynthesis computes for this theorem (reuseRatio, deployHealth, gapFolds), drawn from its own run — no other proof returns them"
+ },
+ "the 1024 diamonds are a 32² square matrix of theorem references — a content-addressed problem→solution index, ": {
+  "form": "bars",
+  "values": [
+   1024,
+   32,
+   731
+  ],
+  "holds": true,
+  "caption": "the quantities theThousandTwentyFourDiamondsFilledWithTheoremReferencesFormAProblemSolvingMatrix computes for this theorem (diamonds, side, theorems), drawn from its own run — no other proof returns them"
+ },
+ "16 = 2^4 base theorems + their inversions form the merkaba — up tetrahedron (base) ⊕ down tetrahedron (inverse)": {
+  "form": "bars",
+  "values": [
+   16,
+   715,
+   731
+  ],
+  "holds": true,
+  "caption": "the quantities sixteenBaseTheoremsAndTheirInversionsFormTheMerkaba computes for this theorem (base, inversions, total), drawn from its own run — no other proof returns them"
+ },
+ "documented sacred geometry: 8 merkabas complete the 64-tetrahedron, the Fruit of Life is 13 circles — metaphysics flagged": {
+  "form": "bars",
+  "values": [
+   8,
+   64,
+   13,
+   19
+  ],
+  "holds": true,
+  "caption": "the quantities merkabasCompleteTheSixtyFourTetrahedronAndTheFruitIsThirteenCirclesDocumentedFlagged computes for this theorem (merkabas, tetrahedra, fruitCircles, flowerCircles), drawn from its own run — no other proof returns them"
+ },
+ "the clay model computes itself — completion and statistics, clay = 0": {
+  "form": "bars",
+  "values": [
+   7,
+   7,
+   1,
+   6,
+   6,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities clayModelComputesItselfWithCompletionAndStatistics computes for this theorem (total, decoded, solvedExternal, openCores, novelHere, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+ },
+ "clay credits only the Poincaré solution — the other six have no solver to credit": {
+  "form": "bars",
+  "values": [
+   1,
+   6,
+   1,
+   7,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities clayCreditsOnlyThePoincareSolutionTheOtherSixOpen computes for this theorem (creditsGiven, uncredited, solvedCount, total, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+ },
+ "building the first unlocks the next by reusable method, not by solving": {
+  "form": "bars",
+  "values": [
+   3,
+   0,
+   6
+  ],
+  "holds": true,
+  "caption": "the quantities buildingTheFirstUnlocksTheNextByReusableMethodNotSolution computes for this theorem (sharedMethodCount, claySolvedByThisFold, openCores), drawn from its own run — no other proof returns them"
+ },
+ "0 or 1 is linear, the vortex circuit is quantum": {
+  "form": "bars",
+  "values": [
+   1,
+   0.5,
+   -0.5,
+   -1,
+   -0.5,
+   0.5
+  ],
+  "holds": true,
+  "caption": "numbers theBinaryBitIsLinearTheVortexCircuitIsQuantum computes for this theorem (rootsOfUnity[].re), drawn from its own run — no other proof returns them"
+ },
+ "the quantum Hamming bound and the perfect five-qubit code": {
+  "form": "bars",
+  "values": [
+   5,
+   7,
+   9
+  ],
+  "holds": true,
+  "caption": "numbers theQuantumHammingBoundAndThePerfectFiveQubitCode computes for this theorem (codes[].n), drawn from its own run — no other proof returns them"
+ },
+ "self-improving research and development, saved at every step": {
+  "form": "bars",
+  "values": [
+   40,
+   3,
+   10
+  ],
+  "holds": true,
+  "caption": "the quantities selfImprovingResearchAndDevelopment computes for this theorem (total, frontierCount, orphansHealed), drawn from its own run — no other proof returns them"
+ },
+ "amplitude amplification and quantum counting — one Grover rotation, two algorithms": {
+  "form": "bars",
+  "values": [
+   1,
+   2,
+   4
+  ],
+  "holds": true,
+  "caption": "numbers amplitudeAmplificationAndQuantumCounting computes for this theorem (cases[].M), drawn from its own run — no other proof returns them"
+ },
+ "every mixed state has a purification — mixedness is traced-away entanglement": {
+  "form": "bars",
+  "values": [
+   0.5,
+   1,
+   1
+  ],
+  "holds": true,
+  "caption": "the quantities everyMixedStateHasAPurification computes for this theorem (purityBellReduced, purityProductReduced, concurrenceBell), drawn from its own run — no other proof returns them"
+ },
+ "adiabatic quantum computation and annealing — the ground state tracked, the Ising solved": {
+  "form": "bars",
+  "values": [
+   2,
+   10,
+   40,
+   100
+  ],
+  "holds": true,
+  "caption": "numbers adiabaticQuantumComputationAndAnnealing computes for this theorem (runs[].T), drawn from its own run — no other proof returns them"
+ },
+ "the lens improves itself using the rosetta — a closed self-healing loop": {
+  "form": "bars",
+  "values": [
+   10,
+   0,
+   10
+  ],
+  "holds": true,
+  "caption": "the quantities quantumLensImprovesItself computes for this theorem (before, after, linked), drawn from its own run — no other proof returns them"
+ },
+ "Shor period-finding factors — the full order-finding circuit runs": {
+  "form": "bars",
+  "values": [
+   15,
+   21,
+   35
+  ],
+  "holds": true,
+  "caption": "numbers shorFactorsByPeriodFinding computes for this theorem (runs[].N), drawn from its own run — no other proof returns them"
+ },
+ "the variational quantum eigensolver and QAOA — working hybrid solvers": {
+  "form": "bars",
+  "values": [
+   1,
+   0,
+   0.6,
+   1
+  ],
+  "holds": true,
+  "caption": "numbers variationalQuantumEigensolverAndQaoa computes for this theorem (vqe[].a), drawn from its own run — no other proof returns them"
+ },
+ "the QFT circuit and phase estimation — the DFT realised on the simulator, the eigenphase read exactly": {
+  "form": "bars",
+  "values": [
+   0.0625,
+   0.1875,
+   0.625,
+   0.4375
+  ],
+  "holds": true,
+  "caption": "numbers theQuantumFourierTransformCircuitAndPhaseEstimation computes for this theorem (phaseEstimates[].phi), drawn from its own run — no other proof returns them"
+ },
+ "the bounded witness cannot claim the universal — and the inversion sees what the sweep cannot": {
+  "form": "bars",
+  "values": [
+   1000000,
+   0,
+   9,
+   0.657974,
+   0.657974
+  ],
+  "holds": true,
+  "caption": "the quantities theBoundedWitnessCannotClaimTheUniversal computes for this theorem (sweep, worstPartialSum, touchesZero, dirichlet, bridgeTarget), drawn from its own run — no other proof returns them"
+ },
+ "the theorem-science lens — the visible page set is computed, never curated": {
+  "form": "bars",
+  "values": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "holds": true,
+  "caption": "numbers theoremScienceLens computes for this theorem (rays[].ray), drawn from its own run — no other proof returns them"
+ },
+ "SEO speaks absolute, localised and lens-aligned — five computed corrections": {
+  "form": "bars",
+  "values": [
+   4,
+   754,
+   160
+  ],
+  "holds": true,
+  "caption": "the quantities seoOptimised computes for this theorem (targets, theoremCount, budget), drawn from its own run — no other proof returns them"
+ },
+ "pages are rosetta combinations of theorems — payload-free, realtime, reaching the whole registry": {
+  "form": "bars",
+  "values": [
+   30,
+   3274,
+   754,
+   754
+  ],
+  "holds": true,
+  "caption": "the quantities pagesAreRosettaCombinationsOfTheorems computes for this theorem (pageCount, memberEdges, reachedTheorems, registrySize), drawn from its own run — no other proof returns them"
+ },
+ "methods consolidate by gravity — one word attracts, compression adds words, the type holds the meaning": {
+  "form": "bars",
+  "values": [
+   490,
+   488,
+   194,
+   166,
+   164,
+   163,
+   155,
+   137,
+   136,
+   128,
+   126,
+   124,
+   105,
+   100,
+   92,
+   91,
+   90,
+   87,
+   84,
+   84,
+   81,
+   79,
+   77,
+   74,
+   71,
+   69,
+   63,
+   62,
+   60,
+   57,
+   56,
+   56,
+   56,
+   55,
+   53,
+   53,
+   53,
+   52,
+   51,
+   50,
+   50,
+   49,
+   48,
+   46,
+   46,
+   46,
+   45,
+   44,
+   44,
+   44,
+   43,
+   43,
+   43,
+   43,
+   42,
+   41,
+   41,
+   41,
+   41,
+   41,
+   41,
+   40,
+   40,
+   39
+  ],
+  "holds": true,
+  "caption": "the first 64 of 1129 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
+ },
+ "science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum": {
+  "form": "bars",
+  "values": [
+   57,
+   58,
+   639,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "holds": true,
+  "caption": "numbers sublinearScienceCoverage computes for this theorem (marginals), drawn from its own run — no other proof returns them"
+ },
+ "pages consolidate by theorem gravity — 29 sitemap pages carry the meaning of 16": {
+  "form": "bars",
+  "values": [
+   291,
+   54,
+   132,
+   754,
+   28
+  ],
+  "holds": true,
+  "caption": "numbers pagesConsolidateByTheoremGravity computes for this theorem (clusters[].unionTheorems), drawn from its own run — no other proof returns them"
+ },
+ "quantum cosmology computes its objects — Lorentzian minisuperspace, timeless Wheeler-DeWitt, de Sitter horizon": {
+  "form": "bars",
+  "values": [
+   5,
+   3,
+   5,
+   0.159155,
+   0.999,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities quantumCosmologyMinisuperspaceDecoded computes for this theorem (documentedFindings, flaggedFindings, angles, gibbonsHawkingTOverH, flatnessInventory, count), drawn from its own run — no other proof returns them"
+ },
+ "the Wheeler-DeWitt minisuperspace equation is SOLVED — wavefunction, action, and nucleation amplitude": {
+  "form": "bars",
+  "values": [
+   0.333331,
+   1.05045,
+   1.94772,
+   0.51342,
+   1200,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities wheelerDeWittMinisuperspaceSolved computes for this theorem (action, psiHartleHawking, hartleHawkingWeight, vilenkinNucleationProb, steps, count), drawn from its own run — no other proof returns them"
+ },
+ "string theory in all superpositions — ζ(−1)=−1/12 forces the dimension, six corners are one theory": {
+  "form": "bars",
+  "values": [
+   5,
+   4,
+   5,
+   26,
+   10,
+   11,
+   -1,
+   6,
+   5,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities stringTheoryDualityWebDecoded computes for this theorem (documentedFindings, flaggedFindings, angles, dBosonic, dSuper, dMtheory, intercept, corners, dualities, count), drawn from its own run — no other proof returns them"
+ },
+ "a perpetuum mobile sourcing the void is refuted on the ledger — the inversion nets zero over a cycle": {
+  "form": "bars",
+  "values": [
+   5,
+   4,
+   5,
+   0,
+   0,
+   0,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities perpetuumMobileVoidSourceRefuted computes for this theorem (documentedFindings, flaggedFindings, angles, cycleDeltaU, netWorkPerCycle, casimirLoopWork, count), drawn from its own run — no other proof returns them"
+ },
+ "QM and thermodynamics are one spectrum combined two ways — the Wick rotation is the exact bridge": {
+  "form": "bars",
+  "values": [
+   5,
+   1,
+   5,
+   0.959195,
+   0.959517,
+   0.159155,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities quantumMechanicsAndThermodynamicsAreCombinations computes for this theorem (documentedFindings, flaggedFindings, angles, partition, closedForm, deSitterTemperatureOverH, count), drawn from its own run — no other proof returns them"
+ },
+ "the Rubik cube decodes to the quantum cube — a non-abelian group over content-addressed states": {
+  "form": "bars",
+  "values": [
+   20,
+   6,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities rubiksCubeDecodesToQuantumCube computes for this theorem (godsNumber, faces, count), drawn from its own run — no other proof returns them"
+ },
+ "the full testable surface is 24 fragments — all sealed, cores still open": {
+  "form": "bars",
+  "values": [
+   27,
+   27,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities reverseEngineerAllTestableFragments computes for this theorem (totalTestable, distinctFragments, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+ },
+ "the tool from beyond lives in an external structure, never this corpus's algebra — 5-level rigor gradient, ": {
+  "form": "bars",
+  "values": [
+   0,
+   5,
+   7,
+   1,
+   6
+  ],
+  "holds": true,
+  "caption": "the quantities clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgebra computes for this theorem (claySolvedByThisFold, rigorLevels, externalCount, algebraExcludedCount, reusedInversions), drawn from its own run — no other proof returns them"
+ },
+ "the chat develops itself by chatting with itself — a deterministic self-conversation that collides and fills its gaps": {
+  "form": "bars",
+  "values": [
+   2,
+   1,
+   1,
+   2,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities chatDevelopsItselfByChattingWithItself computes for this theorem (turns, cycleAt, cycleLength, gapsBefore, gapsAfter), drawn from its own run — no other proof returns them"
+ },
+ "the app provides full in-chat support — all capabilities fused and audited by the standards": {
+  "form": "bars",
+  "values": [
+   5,
+   2,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities allChatCapabilitiesFusedAndAuditedByStandards computes for this theorem (related, gapsBefore, gapsAfter), drawn from its own run — no other proof returns them"
+ },
+ "the live-tool algorithm library — 7 reusable pure algorithms, one per public-API domain": {
+  "form": "bars",
+  "values": [
+   7,
+   4.33755e+69,
+   70
+  ],
+  "holds": true,
+  "caption": "the quantities liveToolAlgorithmLibrary computes for this theorem (toolCount, cubeBits, cubeExponent), drawn from its own run — no other proof returns them"
+ },
+ "DRY-clean completion is a computed signal — read the boolean, do not re-scan": {
+  "form": "bars",
+  "values": [
+   21,
+   4,
+   17
+  ],
+  "holds": true,
+  "caption": "the quantities dryCleanComplete computes for this theorem (remaining, duplicateGroups, shells), drawn from its own run — no other proof returns them"
+ },
+ "the O(1) content-address is faster than any scan — but not physical FTL; fused to the agent brain via MCP": {
+  "form": "bars",
+  "values": [
+   0,
+   64,
+   1
+  ],
+  "holds": true,
+  "caption": "the quantities contentAddressO1FasterThanScanNotFtlFusedToMcp computes for this theorem (physicalFtlClaim, addressBits, lookupSteps), drawn from its own run — no other proof returns them"
+ },
+ "token usage optimised by quantum-structured algorithms — batching wins the quadratic ledger": {
+  "form": "bars",
+  "values": [
+   2,
+   4,
+   8
+  ],
+  "holds": true,
+  "caption": "numbers quantumTokenOptimisation computes for this theorem (batch[].k), drawn from its own run — no other proof returns them"
+ },
+ "theorems reach toward 432 and entangle with usage — the harmonic merge held as direction": {
+  "form": "bars",
+  "values": [
+   731,
+   432,
+   0,
+   52,
+   731
+  ],
+  "holds": true,
+  "caption": "the quantities theoremsReach432AndEntangleWithUsage computes for this theorem (count, target, remaining, homes, pairs), drawn from its own run — no other proof returns them"
+ },
+ "decoding the I Ching adds theorems — the Klein four-group on the 64 hexagrams": {
+  "form": "bars",
+  "values": [
+   0,
+   12,
+   18,
+   30,
+   33,
+   45,
+   51,
+   63
+  ],
+  "holds": true,
+  "caption": "numbers decodingIChingAddsTheorems computes for this theorem (palindromes), drawn from its own run — no other proof returns them"
+ },
+ "the movie leaves two bits at the void — the Klein pair in motion, the coins visible in every address": {
+  "form": "bars",
+  "values": [
+   220,
+   260,
+   300,
+   340,
+   20,
+   60,
+   100,
+   140,
+   180
+  ],
+  "holds": true,
+  "caption": "numbers theMovieLeavesTwoBitsAtTheVoid computes for this theorem (complements), drawn from its own run — no other proof returns them"
+ },
+ "the two bits are the duality gateways — teleportation, superdense, the xiàng and the coins share one V₄": {
+  "form": "bars",
+  "values": [
+   0,
+   0,
+   1
+  ],
+  "holds": true,
+  "caption": "numbers twoBitsAreTheDualityGateways computes for this theorem (crossings[].b1), drawn from its own run — no other proof returns them"
+ },
+ "the discovery economy is the core of competition and education — first new 0 wins the attaching bits": {
+  "form": "bars",
+  "values": [
+   196,
+   0,
+   3,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities discoveryEconomyIsTheCoreOfCompetitionAndEducation computes for this theorem (won, open, attachments, count), drawn from its own run — no other proof returns them"
+ },
+ "css becomes another use case of the theorems — the blog ui is holographic and reusable": {
+  "form": "bars",
+  "values": [
+   12296,
+   214,
+   6
+  ],
+  "holds": true,
+  "caption": "the quantities cssBecomesAnotherUseCaseOfTheTheorems computes for this theorem (tokensBytes, related, count), drawn from its own run — no other proof returns them"
+ },
+ "the hexagram orbit census — twelve fours and eight twos complete the 64": {
+  "form": "bars",
+  "values": [
+   12,
+   8,
+   0,
+   20,
+   2
+  ],
+  "holds": true,
+  "caption": "the quantities hexagramOrbitCensusTwelveFoursEightTwos computes for this theorem (fours, twos, ones, orbits, count), drawn from its own run — no other proof returns them"
+ },
+ "the shadcn design system opens theorem dimensions under the quantum lens — a 3·2⁶ variant tensor with ground states": {
+  "form": "bars",
+  "values": [
+   192,
+   64,
+   2,
+   26,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities shadcnQuantumLens computes for this theorem (tensorDim, hexagramSpace, forestDepth, valueAssignments, count), drawn from its own run — no other proof returns them"
+ },
+ "leaves merge into theorems — one naming standard within science, flat gates, per-leaf analytics": {
+  "form": "bars",
+  "values": [
+   688,
+   9,
+   679
+  ],
+  "holds": true,
+  "caption": "the quantities leavesMergeIntoTheorems computes for this theorem (leafCount, mergedCount, worklistCount), drawn from its own run — no other proof returns them"
+ },
+ "digit spines are the breath": {
+  "form": "bars",
+  "values": [
+   0,
+   1,
+   2,
+   4,
+   8,
+   7,
+   5,
+   3,
+   6,
+   9
+  ],
+  "holds": true,
+  "caption": "numbers digitSpinesAreTheBreath computes for this theorem (emanation), drawn from its own run — no other proof returns them"
+ },
+ "compute the light in a diamond — bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)": {
+  "form": "bars",
+  "values": [
+   124035000,
+   24.4397,
+   6,
+   1000000,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities computeLightInDiamondPredictionBeatsLightNotFtl computes for this theorem (speedInDiamondMs, criticalAngleDeg, sides, predictionSpeedup, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "two trinities cardinal pyramid poles proven by math": {
+  "form": "bars",
+  "values": [
+   2,
+   2,
+   -2,
+   4,
+   4,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "holds": true,
+  "caption": "numbers twoTrinitiesCardinalPyramidPolesProvenByMath computes for this theorem (earth.proofs[].computed), drawn from its own run — no other proof returns them"
+ },
+ "readme svg gaps filled by trinity mind": {
+  "form": "bars",
+  "values": [
+   0,
+   0,
+   731,
+   11
+  ],
+  "holds": true,
+  "caption": "the quantities readmeSvgGapsFilledByTrinityMind computes for this theorem (claySolvedByThisFold, physicalFtlClaim, theoremCount, count), drawn from its own run — no other proof returns them"
+ },
+ "symbols remaining to quantumise": {
+  "form": "bars",
+  "values": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "holds": true,
+  "caption": "numbers symbolsRemainingToQuantumise computes for this theorem (waves[].wave), drawn from its own run — no other proof returns them"
+ },
+ "double torus earth weather flows in movie": {
+  "form": "bars",
+  "values": [
+   6,
+   7,
+   55
+  ],
+  "holds": true,
+  "caption": "the quantities doubleTorusEarthWeatherFlowsInMovie computes for this theorem (facetCount, solutionCount, streamCount), drawn from its own run — no other proof returns them"
+ },
+ "learn from the movie all eventually fused": {
+  "form": "bars",
+  "values": [
+   16,
+   158,
+   7,
+   7
+  ],
+  "holds": true,
+  "caption": "the quantities learnFromTheMovieAllEventuallyFused computes for this theorem (count, proofCount, bundleCount, plasmaStreamCount), drawn from its own run — no other proof returns them"
+ },
+ "the golden angle is τ/φ² — the most irrational rotation": {
+  "form": "bars",
+  "values": [
+   2.39996,
+   137.508,
+   1.61803,
+   20.0621,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation computes for this theorem (GOLDEN_ANGLE_RAD, GOLDEN_ANGLE, PHI, goldenMin, rationalMin), drawn from its own run — no other proof returns them"
+ },
+ "the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇": {
+  "form": "bars",
+  "values": [
+   7,
+   6,
+   42,
+   10
+  ],
+  "holds": true,
+  "caption": "the quantities theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad computes for this theorem (RAYS, UNITS, grid, decad), drawn from its own run — no other proof returns them"
+ },
+ "the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs": {
+  "form": "bars",
+  "values": [
+   1,
+   2,
+   3,
+   4,
+   6,
+   8,
+   9,
+   12,
+   16,
+   18,
+   24,
+   27,
+   36,
+   48,
+   54,
+   72,
+   108,
+   144,
+   216,
+   432
+  ],
+  "holds": true,
+  "caption": "numbers researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause computes for this theorem (divisors), drawn from its own run — no other proof returns them"
+ }
+}

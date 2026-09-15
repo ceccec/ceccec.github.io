@@ -72,6 +72,13 @@ for f in $(grep -E '^scripts/.*\.ts$' <<<"$changed"); do
   fi
   echo "✓ $f bundles"
 done
+# The theorem witnesses are derived from the proofs in src/ (scripts/verify/witnesses.ts) — regenerated whenever src changes.
+if grep -qE '^src/' <<<"$changed"; then
+  npm run -s witnesses > "$LOGS/witnesses.log" 2>&1 || { echo "✗ npm run witnesses — the last lines of $LOGS/witnesses.log:"; tail -25 "$LOGS/witnesses.log"; exit 1; }
+  echo "✓ $(grep -E '^witnesses:' "$LOGS/witnesses.log" | tail -1)"
+  changed=$(printf '%s\n%s\n' "$changed" .vitepress/data/proof-witnesses.json | sort -u)
+  ADD+=(.vitepress/data/proof-witnesses.json) # derived — staged with the change it was derived from, tracked or not
+fi
 # Generated files are regenerated from their sources first, so their gates judge the tree being landed: MANIFEST.md
 # is written from package.json (manifest:check refuses a drifted one and names this command).
 if grep -qxF package.json <<<"$changed"; then
