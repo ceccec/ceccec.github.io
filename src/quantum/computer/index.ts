@@ -196,7 +196,7 @@ export function cpuComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
 }
 
 export function gpuDriverProbe(at = 0, matrix: MindMatrix = buildMatrix()): GpuDriverProbeReceipt {
-  const paint = __ns_up_plasma_ball.realtimeComputationsMoviePaint(at, '/en/', matrix)
+  const paint = __ns_up_plasma_ball.realtimeComputationsMoviePaint(at, '/', matrix)
   const paintReentry = (paint as { __memoReentry?: boolean }).__memoReentry === true
   const channelCount = paintReentry ? GPU_PAINT_CHANNEL_FLOOR : paint.channels.length
   const runtime = driverRuntime()

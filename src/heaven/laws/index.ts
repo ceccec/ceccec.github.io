@@ -955,7 +955,7 @@ export function theAutomaticNamingServiceDescribesTheoremsFromComputationNotPred
     const slugOk = describe('quantumRadar', sample, 'slug') === 'quantum-radar' && describe('quantumRadar', sample, 'title') === 'Quantum Radar'
     // 3 — variety of formats per path: each format distinct and non-empty; each route resolves to a format
     const distinctFormats = new Set(formats.map((f) => describe(names[0]!, sample, f))).size === formats.length
-    const perPath = formatForPath('/en/theorems/x') === 'summary' && formatForPath('/agents.json') === 'json' && formatForPath('/') === 'sentence'
+    const perPath = formatForPath('/theorems/x') === 'summary' && formatForPath('/agents.json') === 'json' && formatForPath('/') === 'sentence'
     // 4 — writing as computation: pure, zero-token (anchor to the cost theorem)
     const pureZeroToken = typeof describe === 'function' && derivedNotPredefined && deterministic
     const facets = [
@@ -2685,7 +2685,7 @@ export function answerMoSavePost(matrix: MindMatrix = buildMatrix(), at = 0) {
       askUrl: MATHOVERFLOW_ASK_URL,
       pair: 'answer/mo' as const,
       cli: 'npm run quantum:answer-mo',
-      route: '/en/quantum-tools#answer-mo',
+      route: '/quantum-tools#answer-mo',
       root: merkleFold([sealed.root, lane.root]),
       statement: `answerMoSavePost — saveFirst=${saveFirst ? 1 : 0} posted=${posted ? 1 : 0} lane=${lane.computes ? 1 : 0}.`,
       boundary: 'MO unanswered+bounty drafts saved in src first; SE MCP read-only; post only when computes.',
@@ -2714,7 +2714,7 @@ export function learnMonge(matrix: MindMatrix = buildMatrix(), at = 0) {
       moUrl,
       pair: 'monge/learn' as const,
       cli: 'npm run quantum:monge-learn',
-      route: '/en/quantum-tools#monge-learn',
+      route: '/quantum-tools#monge-learn',
       root: sealed.root,
       statement: `learnMonge — moRef=${moRef ? 1 : 0} pair=${pairOk ? 1 : 0}.`,
       boundary: 'Structural decode MO q243943 — Brianchon+Monge-external sealed; NOT ownership.',
@@ -2742,7 +2742,7 @@ export function learnHomothety(matrix: MindMatrix = buildMatrix(), at = 0) {
       dilateTheorem,
       pair: 'learn/homothety' as const,
       cli: 'npm run quantum:learn-homothety',
-      route: '/en/quantum-tools#learn-homothety',
+      route: '/quantum-tools#learn-homothety',
       root: sealed.root,
       statement: `learnHomothety — pair=${pairOk ? 1 : 0} dilate=1.`,
       boundary: 'Homothety decode from sealed dilate command.',
@@ -2770,7 +2770,7 @@ export function brianchonHex(matrix: MindMatrix = buildMatrix(), at = 0) {
       theorem,
       pair: 'brianchon/hex' as const,
       cli: 'npm run quantum:brianchon-hex',
-      route: '/en/quantum-tools#brianchon-hex',
+      route: '/quantum-tools#brianchon-hex',
       root: sealed.root,
       statement: `brianchonHex — pair=${pairOk ? 1 : 0}.`,
       boundary: 'Structural geometry theorem — NOT historical fraud.',
@@ -2798,7 +2798,7 @@ export function geogebraChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       materialsUrl,
       pair: 'geo/chat' as const,
       cli: 'npm run quantum:geo-chat',
-      route: '/en/quantum-tools#geo-chat',
+      route: '/quantum-tools#geo-chat',
       root: sealed.root,
       statement: `geogebraChat — handoff=1 pair=${pairOk ? 1 : 0}.`,
       boundary: 'URL handoff + phrase routing — no .ggb embed.',
@@ -2848,7 +2848,7 @@ export function researchTags(matrix: MindMatrix = buildMatrix(), at = 0) {
       filterUrl: `${MATHOVERFLOW_SITE}/tags`,
       pair: 'research/tags' as const,
       cli: 'npm run quantum:research-tags',
-      route: '/en/quantum-tools#research-tags',
+      route: '/quantum-tools#research-tags',
       root: merkleFold([sealed.root, lane.root]),
       statement: `researchTags — tags=${tags.length} lane=${lane.computes ? 1 : 0}.`,
       boundary: 'Popular-tag receipt + draft→tag inventory — no post claim.',
@@ -2881,7 +2881,7 @@ export function stackExchangeChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       roomUrl,
       pair: 'se/chat' as const,
       cli: 'npm run quantum:se-chat',
-      route: '/en/quantum-tools#se-chat',
+      route: '/quantum-tools#se-chat',
       root: sealed.root,
       statement: `stackExchangeChat — handoff=1 pair=${pairOk ? 1 : 0}.`,
       boundary: 'SE chat rooms sealed — read-only handoff.',
@@ -2915,7 +2915,7 @@ export function feedMoDraftsToChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       se,
       pair: 'mo/chat' as const,
       cli: 'npm run quantum:feed-mo',
-      route: '/en/quantum-tools#feed-mo',
+      route: '/quantum-tools#feed-mo',
       root: merkleFold([sealed.root, answer.root, tags.root, se.root]),
       statement: `feedMoDraftsToChat — answer=${answer.computes ? 1 : 0} tags=${tags.computes ? 1 : 0} se=${se.computes ? 1 : 0}.`,
       boundary: 'Sealed MO drafts → chat handoffs — auth residuals honest-open.',

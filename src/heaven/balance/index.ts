@@ -479,7 +479,7 @@ function emergentDimensionsRaw(matrix: MindMatrix = buildMatrix()) {
     { d: 'plasma.ball.computes', on: plasmaBallComputes(matrix).computes },
     { d: 'screensaver.movie.computes', on: screensaverMovieComputes(matrix).computes },
     { d: 'client.movie.paint.path.sealed', on: clientMoviePaintPathSealed('/', matrix).sealed },
-    { d: 'client.hero.paint.path.sealed', on: clientHeroPaintPathSealed('/en/', matrix).sealed },
+    { d: 'client.hero.paint.path.sealed', on: clientHeroPaintPathSealed('/', matrix).sealed },
     { d: 'client.work.bounded.pure.math', on: clientWorkBoundedByPureMath('/', matrix).bounded },
     { d: 'static.is.eventual.gap.in.movie.fusion', on: staticIsEventualGapInMovieFusion(matrix).fused },
     { d: 'double.torus.earth.weather.flows.in.movie', on: doubleTorusEarthWeatherFlowsInMovie(matrix).flows },

@@ -1571,7 +1571,7 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
   const r = min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
   // Field identity for rosettaPerspectiveFold — same hue/p/t as the shared hero clock frame.
   const field: AnimationField = {
-    route: '/en/#yinyang',
+    route: '/#yinyang',
     at: 0,
     t: frame.t,
     p: frame.p,
@@ -1587,7 +1587,7 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
     cssWidth: frame.cssWidth,
     scroll: 0,
     root: toUuid(`taiji-field:${frame.hue}:${floor(frame.p * (5 * 2 * 100))}`),
-    observationRoot: movieObservationReceipt('/en/#yinyang', floor(frame.hue), 0),
+    observationRoot: movieObservationReceipt('/#yinyang', floor(frame.hue), 0),
   }
   const ray = VORTEX_SEQUENCE[floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length]! % 7
   const view = rosettaPerspectiveFold(ray, field)
@@ -2350,7 +2350,7 @@ export function oneClockProcessLaw(matrix: MindMatrix = buildMatrix()) {
 }
 
 /** Gate: sharedHeroAt + drawHeroMovieFrame path completes under simulated browser — catches transparent canvas regressions. */
-export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = buildMatrix()) {
+export function clientHeroPaintPathSealed(path = '/', matrix: MindMatrix = buildMatrix()) {
   const plasma = clientMoviePaintPathSealed(path, matrix)
   let heroOk = false
   let streamCount = 0
@@ -2422,7 +2422,7 @@ export function clientHeroPaintPathSealed(path = '/en/', matrix: MindMatrix = bu
  * (a homeostasis/feedback model) and the white/black-hole identification is a topological analogy — not a
  * biological or physical death claim. Reuses bothEarthsAreOneWhiteBlackHoleThroatProvenByMath verbatim.
  */
-export function lifeDeathDoubleTorusFusedInMovie(path = '/en/', matrix: MindMatrix = buildMatrix()) {
+export function lifeDeathDoubleTorusFusedInMovie(path = '/', matrix: MindMatrix = buildMatrix()) {
   const throat = bothEarthsAreOneWhiteBlackHoleThroatProvenByMath(0, matrix)
   let inflowAlpha = 0
   let paintError = ''
@@ -2485,7 +2485,7 @@ export function lifeDeathDoubleTorusFusedInMovie(path = '/en/', matrix: MindMatr
 const DEV_HERO_MOVIE_PAINT_BUDGET_MS = 15_000
 
 /** Dev-only SLA — client hero paint path (simulated browser) must seal within budget ms. */
-export function devHeroMoviePaintWithinBudgetMs(maxMs = DEV_HERO_MOVIE_PAINT_BUDGET_MS, path = '/en/', matrix: MindMatrix = buildMatrix()) {
+export function devHeroMoviePaintWithinBudgetMs(maxMs = DEV_HERO_MOVIE_PAINT_BUDGET_MS, path = '/', matrix: MindMatrix = buildMatrix()) {
   const started = Date.now()
   const paint = clientHeroPaintPathSealed(path, matrix)
   const elapsedMs = Date.now() - started

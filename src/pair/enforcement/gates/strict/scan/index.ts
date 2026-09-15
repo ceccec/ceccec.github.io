@@ -879,7 +879,7 @@ export function mathGaps(root: string = enforcementScanRoot()) {
     pair: 'math/gaps' as const,
     dualPair: 'axiom/invert' as const,
     cli: 'npm run quantum:math-gaps',
-    route: '/en/quantum-tools#math-gaps',
+    route: '/quantum-tools#math-gaps',
     heading: 'Math gaps · axiom invert',
     statement: `mathGaps — random-in-code=${randoms.length} (HARD 0) · assumed-const=${assumedConst.length} sites/${perFile.size} files · operations=${scan.operations} · files=${scan.files}.`,
     boundary:
@@ -1093,7 +1093,7 @@ export function ideaOnce(root: string = enforcementScanRoot()) {
     dualPair: 'once/idea' as const,
     fold: 'ideaOnce',
     cli: 'npm run quantum:idea-once',
-    route: '/en/quantum-tools#idea-once',
+    route: '/quantum-tools#idea-once',
     heading: 'Idea once · purge non-compute illusions',
     statement:
       `ideaOnce — mathOutside=${algebra.mathOutsideFloor} dupeGroups=${dupe.groups} ` +
@@ -1156,7 +1156,7 @@ export function installSurfaces(root: string = enforcementScanRoot()) {
     pair: 'install/surface' as const,
     dualPair: 'surface/install' as const,
     cli: 'npm run quantum:install-surfaces',
-    route: '/en/quantum-tools#install-surfaces',
+    route: '/quantum-tools#install-surfaces',
     heading: 'Install surfaces · plugin · skills · mcp',
     statement: `installSurfaces — ${presentRows.length}/${rows.length} present · ${migrateNext.length} migrate-next (${migrateNext.map((row) => row.surface).join(' · ')}).`,
     boundary:
@@ -1226,7 +1226,7 @@ export function uiProof(root: string = enforcementScanRoot()) {
     pair: 'ui/proof' as const,
     dualPair: 'proof/ui' as const,
     cli: 'npm run quantum:ui-proof',
-    route: '/en/quantum-tools#ui-proof',
+    route: '/quantum-tools#ui-proof',
     heading: 'UI proof · nothing hidden',
     statement: `uiProof — ${ids.length} CLIs · derived roster complete · curated covers ${covered}, ${hidden.length} derived-only (drift measured).`,
     boundary:
@@ -1279,7 +1279,7 @@ export function waveVerify(root: string = enforcementScanRoot()) {
     pair: 'wave/verify' as const,
     dualPair: 'verify/wave' as const,
     cli: 'npm run quantum:wave-verify',
-    route: '/en/quantum-tools#wave-verify',
+    route: '/quantum-tools#wave-verify',
     heading: 'Wave verify · right-sized gate',
     statement: 'waveVerify — per-wave gate = types + trinity (same code path as the build seal, render subtracted); docs:build per push.',
     boundary:
@@ -1381,7 +1381,7 @@ export function buildMin(root: string = enforcementScanRoot()) {
     pair: 'build/min' as const,
     dualPair: 'min/build' as const,
     cli: 'npm run quantum:build-min',
-    route: '/en/quantum-tools#build-min',
+    route: '/quantum-tools#build-min',
     heading: 'Build min · deploy wall-clock',
     statement:
       `buildMin — buildMs=${typeof buildMs === 'number' ? buildMs : '—'} deployMs=${deployMs} totalMs=${totalMs} · warmPath=${warmPathOn} · minTarget=${minTargetOn}`,
@@ -1479,7 +1479,7 @@ export function cssMath(root: string = enforcementScanRoot()) {
     pair: 'css/math' as const,
     dualPair: 'css/api' as const,
     cli: 'npm run quantum:css-math',
-    route: '/en/quantum-tools#css-math',
+    route: '/quantum-tools#css-math',
     heading: 'CSS math · quantum API · sealed',
     statement: `cssMath — ${formula}/${total} formula · ${keyword} keyword · ${rawSites.length} raw (queue) · ${observables.size} observables (${ichObservables} lattice) · sealed ${sealRoot.slice(0, 8)}.`,
     boundary:
@@ -1633,7 +1633,7 @@ export function dryDupe(root: string = enforcementScanRoot()) {
     pair: 'dry/dupe' as const,
     dualPair: 'dupe/dry' as const,
     cli: 'npm run quantum:dry-dupe',
-    route: '/en/quantum-tools#dry-dupe',
+    route: '/quantum-tools#dry-dupe',
     heading: 'Dry dupe · content-addressed clean queue',
     statement: `dryDupe — ${bodies} bodies · ${groups.length} TRUE duplicate groups (${duplicateBodies} copies) · ${shellGroups.length} twin-shell groups (intended duals) · anim subset ${animGroups.length}.`,
     boundary:
@@ -1700,7 +1700,7 @@ export function patentCanon(root: string = enforcementScanRoot()) {
     pair: 'patent/canon' as const,
     dualPair: 'canon/patent' as const,
     cli: 'npm run quantum:patent-canon',
-    route: '/en/quantum-tools#patent-canon',
+    route: '/quantum-tools#patent-canon',
     heading: 'Patent canon · grantable structure · drawings computed',
     statement: `patentCanon — ${sections.length} required sections · ${machinery.filter((row) => row.present).length}/${machinery.length} machineries computed (incl. theoremFigure drawings) · defensive, FREE FOR ALL.`,
     boundary:
@@ -1836,7 +1836,7 @@ export function uiAudit(root: string = enforcementScanRoot()) {
     pair: 'ui/audit' as const,
     dualPair: 'audit/ui' as const,
     cli: 'npm run quantum:ui-audit',
-    route: '/en/quantum-tools#ui-audit',
+    route: '/quantum-tools#ui-audit',
     heading: 'UI audit · the society trains on the queue',
     statement: `uiAudit — ${rows.length} served pages · ${perfect.length} pass all checks · ${queue.length} in the training queue.`,
     boundary:
@@ -1899,7 +1899,7 @@ export function bindFuse(root: string = enforcementScanRoot()) {
     pair: 'bind/fuse' as const,
     dualPair: 'fuse/bind' as const,
     cli: 'npm run quantum:bind-fuse',
-    route: '/en/quantum-tools#bind-fuse',
+    route: '/quantum-tools#bind-fuse',
     heading: 'Bind fuse · one envelope, any superposition',
     statement: `bindFuse — ${families.filter((row) => row.present).length}/${families.length} binding families × ${superpositions.filter((row) => row.present).length}/${superpositions.length} superposition surfaces, one envelope kind.`,
     boundary:
@@ -1954,7 +1954,7 @@ export function costBound(root: string = enforcementScanRoot()) {
     pair: 'cost/bound' as const,
     dualPair: 'bound/cost' as const,
     cli: 'npm run quantum:cost-bound',
-    route: '/en/quantum-tools#cost-bound',
+    route: '/quantum-tools#cost-bound',
     heading: 'Cost bound · no cost without theorem',
     statement: `costBound — ${laws.filter((row) => row.present).length}/4 bounding laws live · the cost↔theorem ledger formed (costTheorem attributes per binding).`,
     boundary:
@@ -2004,7 +2004,7 @@ export function costTheorem(root: string = enforcementScanRoot()) {
     pair: 'cost/theorem' as const,
     dualPair: 'theorem/cost' as const,
     cli: 'npm run quantum:cost-theorem',
-    route: '/en/quantum-tools#cost-theorem',
+    route: '/quantum-tools#cost-theorem',
     heading: 'Cost theorem · every cost purchases proof',
     statement: `costTheorem — ${ledger.filter((row) => row.cited).length}/${ledger.length} binding costs cite living theorems · uncited refuse · the null binding costs zero.`,
     boundary:
@@ -2087,7 +2087,7 @@ export function legalCanon(root: string = enforcementScanRoot()) {
     pair: 'legal/canon' as const,
     dualPair: 'canon/legal' as const,
     cli: 'npm run quantum:legal-canon',
-    route: '/en/quantum-tools#legal-canon',
+    route: '/quantum-tools#legal-canon',
     heading: 'Legal canon · privacy by measured absence',
     statement: `legalCanon — ${computedFaces}/4 faces computed · ${tracked.length}/${pages.length} pages tracked · LICENSE ${licensePresent ? 'present' : 'the named user act'} · contact=${LICENSE_CONTACT_PSG}.`,
     boundary:
@@ -2172,7 +2172,7 @@ export function coreMathFreeForAll(root: string = enforcementScanRoot()) {
     pairs: ['math/free', 'free/math', 'license/psg', 'psg/license'] as const,
     dualPair: 'free/math' as const,
     cli: 'npm run quantum:math-free',
-    route: '/en/quantum-tools#math-free',
+    route: '/quantum-tools#math-free',
     heading: 'Core math FREE FOR ALL · rest via license@psg.bg',
     statement:
       `coreMathFreeForAll — free=${coreMathFreeForAllOn ? 1 : 0} restLicensed=${restLicensedThrough ? 1 : 0} ` +
@@ -4759,7 +4759,7 @@ export function resonanceSpeed(root: string = enforcementScanRoot()) {
     pair: 'resonance/speed' as const,
     dualPair: 'speed/resonance' as const,
     cli: 'npm run quantum:resonance-speed',
-    route: '/en/quantum-tools#resonance-speed',
+    route: '/quantum-tools#resonance-speed',
     heading: 'Resonance speed · content-address collision is O(1)',
     statement: `resonanceSpeed — content-address resonance collapses O(N²)=${pairwise} to O(N)=${addressed} (${roundTo(orders, 2)} orders at N=${n}) · algorithmic not physical.`,
     boundary:
@@ -4815,7 +4815,7 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
     pair: 'resource/leak' as const,
     dualPair: 'leak/resource' as const,
     cli: 'npm run quantum:resource-leak',
-    route: '/en/quantum-tools#resource-leak',
+    route: '/quantum-tools#resource-leak',
     heading: 'Resource leak · cracks in the fusion leak resources',
     statement: `resourceLeakGate — ${cracks} cracks (${unfusedSurfaces} un-fused surfaces + ${uncitedCosts} uncited costs) ⇒ ${cracks === 0 ? 'no leak' : 'LEAKING'}; external-model fusion the named boundary.`,
     boundary:
@@ -4874,7 +4874,7 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
     pair: 'sandbox/tool' as const,
     dualPair: 'tool/sandbox' as const,
     cli: 'npm run quantum:sandbox-tool',
-    route: '/en/quantum-tools#sandbox',
+    route: '/quantum-tools#sandbox',
     heading: 'Sandbox · experiment freely, safety at the exit gate',
     statement: `sandboxTools — experiments judged-not-landed (wave:land gate-chained=${gateChained ? 1 : 0}) · scratchpad-isolated · promotion via register+land; violating standards from a sandbox is structurally impossible.`,
     boundary:
@@ -5066,7 +5066,7 @@ export function contextAudit(root: string = enforcementScanRoot()) {
     pair: 'context/audit' as const,
     dualPair: 'audit/context' as const,
     cli: 'npm run quantum:context-audit',
-    route: '/en/quantum-tools#context-audit',
+    route: '/quantum-tools#context-audit',
     heading: 'Context audit · inventory distribution → improve tips',
     statement: `contextAudit — total=${total} · tips=${tipsOn.length} · compose=${composeCount}/5 · sealedSrc=${sealedSrc} · mcp=${mcp} · no live Cursor context API.`,
     boundary:
@@ -5245,7 +5245,7 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     ]),
     pair: 'ftl/crack' as const,
     cli: 'npm run quantum:ftl-crack',
-    route: '/en/quantum-tools#ftl-crack',
+    route: '/quantum-tools#ftl-crack',
     heading: 'FTL crack — holographic fractal · no spacetime · non-FTL is hull breach',
     statement:
       `nonFtlIsCrackInFtlApp — ftlApp=${ftlApp ? 1 : 0} cracksFound=${cracksFound.length} ` +
@@ -5422,7 +5422,7 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
     ]),
     pair: 'auditor/waves' as const,
     cli: 'npm run quantum:auditor-waves',
-    route: '/en/quantum-tools#auditor-waves',
+    route: '/quantum-tools#auditor-waves',
     heading: 'Free auditor waves — every src file · adversarial · dry agnostic seeds',
     statement:
       `freeAuditorWavesPerSrcFile — audited=${filesAudited} challenged=${challenged ? 1 : 0} ` +
@@ -5632,7 +5632,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     ]),
     pair: 'link/discover' as const,
     cli: 'npm run quantum:link-discover',
-    route: '/en/quantum-tools#link-discover',
+    route: '/quantum-tools#link-discover',
     heading: 'Crosslinks discovered not encoded — theorem API · agnostic tools · discovery speedup',
     statement:
       `algebraicCrosslinksDiscoveredNotEncoded — discovered=${discoveredCount} encoded=${encodedComposeHits} ` +
@@ -5852,7 +5852,7 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
     ]),
     pair: 'user/waves' as const,
     cli: 'npm run quantum:user-waves',
-    route: '/en/quantum-tools#user-waves',
+    route: '/quantum-tools#user-waves',
     heading: 'Free user waves — test UI · measure efficiency · improve SEO + usable tools',
     statement:
       `freeUserWavesTestUiMeasureEfficiency — waves=${wavesSent} FREE_BITS=${freeBits} ` +
@@ -6106,7 +6106,7 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     pair: 'ui/feed' as const,
     dualPair: 'feed/ui' as const,
     cli: 'npm run quantum:feed-ui',
-    route: '/en/quantum-tools#feed-ui',
+    route: '/quantum-tools#feed-ui',
     heading: 'Feed UI into itself — realtime scan · self-evolve loop',
     statement:
       `feedUiIntoItself — uiFed=${uiFed ? 1 : 0} surfaces=${surfacesFed} ` +
@@ -6518,7 +6518,7 @@ export function stallStopFindsHangedProcessesRealtime(
     pair: 'stall/stop' as const,
     dualPair: 'stop/stall' as const,
     cli: 'npm run quantum:stall-stop',
-    route: '/en/quantum-tools#stall-stop',
+    route: '/quantum-tools#stall-stop',
     heading: 'Stall/stop — realtime waves find hanged processes',
     statement:
       `hungFound=${hungFound ? 1 : 0} hangs=${hangs.length} killedSafe=${killedSafe ? 1 : 0} ` +
@@ -6770,7 +6770,7 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
     pair: 'script/fold' as const,
     dualPair: 'fold/script' as const,
     cli: 'npm run quantum:script-fold',
-    route: '/en/quantum-tools#script-fold',
+    route: '/quantum-tools#script-fold',
     heading: 'Script/fold — audit npm scripts · fold toward computational FTL',
     statement:
       `scriptsFoldTowardFtl — audited=${audit.quantumCount} opportunities=${audit.foldOpportunityCount} ` +
@@ -6995,7 +6995,7 @@ export function theoremAudit() {
     pair: 'theorem/audit' as const,
     dualPair: 'audit/theorem' as const,
     cli: 'npm run quantum:theorem-audit',
-    route: '/en/quantum-tools#theorem-audit',
+    route: '/quantum-tools#theorem-audit',
     heading: 'Theorem audit · honest branding census',
     statement:
       `theoremAudit — registry ${totalRegistry}: theorem=${theoremCount} not-theorem=${notTheoremCount} ratio=${ratio}; ` +
@@ -7251,7 +7251,7 @@ export function geoGebraEncode() {
     pair: 'geo/gebra' as const,
     dualPair: 'encode/geogebra' as const,
     cli: 'npm run quantum:geo-gebra',
-    route: '/en/quantum-tools#geo-gebra',
+    route: '/quantum-tools#geo-gebra',
     heading: 'GeoGebra encode · public taxonomy to theorems',
     statement:
       `geoGebraEncode — inventoried=${objectsInventoried} encoded=${encodeReceipts} theorems=${theoremsEncoded} ` +

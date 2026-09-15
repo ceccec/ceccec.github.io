@@ -840,7 +840,7 @@ export async function runEncryptionReverseVerifyGuardedExit(_root: string, _argv
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
  * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · max-bits/crypto · prove/local-magnitudes-iso · iso/pqc-catalog · poles/cross-pqc · audit/standards
- * Route: /en/encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #secp256k1-prime · #quantum-standards-audit)
+ * Route: /encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #secp256k1-prime · #quantum-standards-audit)
  */
 export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`encryptionPanelComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -954,7 +954,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       oneTbitPair: 'prove/1tbit-encrypt',
       maxBitsPair: 'max-bits/crypto',
       localMagnitudesPair: 'prove/local-magnitudes-iso',
-      route: '/en/encryption',
+      route: '/encryption',
       teaching: tools.teaching,
       demoFactors: reverse.demoFactors,
       workerCap: reverse.workerCap,
@@ -1208,7 +1208,7 @@ function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
     root: merge(root, sealed.root),
     pair: 'reverse/local-timed',
     cli: 'npm run quantum:local-reverse-timed',
-    route: '/en/encryption#local-reverse-timed',
+    route: '/encryption#local-reverse-timed',
     statement: `Production browser reverse timed (sealed-catalog): generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} ops/s=${roundTo(aggregateOpsPerSec, 3)} · N=${rows.map((r) => r.N).join(',')}.`,
     boundary: 'PRODUCTION BROWSER TOOL WALL-CLOCK — sealed-catalog SEALED_CATALOG_RSA_MODULI. Production RSA break refused. Bitcoin/mainnet refused. NOT AES wire reverse time. NOT an SLA.' }
 }
@@ -1431,7 +1431,7 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix: MindMatrix) {
     root,
     pair: 'reverse/timed-vs-standards',
     cli: 'npm run quantum:local-reverse-timed-vs-standards',
-    route: '/en/encryption#local-reverse-timed-vs-standards',
+    route: '/encryption#local-reverse-timed-vs-standards',
     statement: `Production browser reverse vs standards — reverseMs=${roundTo(timed.reverseMs, 3)} ops/s=${roundTo(timed.aggregateOpsPerSec, 3)} catalogMaxBits=${demoMaxBits}; compared to AES-128/256 + ML-KEM cats; breaksNistPqc=false certified=false · production RSA break refused.`,
     boundary: 'HONEST COMPARISON RECEIPT. Production browser reverse wall-clock (sealed-catalog moduli) vs estimated classical 2^bits work at measured ops/s. sealed-catalog ≠ AES-128/256 wire. NOT FIPS/ISO certified. Does NOT break NIST PQC (ML-KEM/ML-DSA/SLH-DSA). Production RSA break / Bitcoin refused.' }
 }
@@ -1710,7 +1710,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     root,
     pair: 'prove/local-novel-encrypt',
     cli: 'npm run quantum:prove-local-novel-encrypt',
-    route: '/en/encryption#prove-local-novel-encrypt',
+    route: '/encryption#prove-local-novel-encrypt',
     siblingMagnitudesPair: 'prove/local-magnitudes-iso',
     statement: `proveLocalNovelEncryptionSecurity · localSecurityProved=${localSecurityProved} · overallWireClaimProved=${overallWireClaimProved} · strongerThanNistPqc=${strongerThanNistPqc} · certified=${certified} · claySolvedByThisFold=${claySolvedByThisFold}`,
     boundary: `securityModel=${securityModel} · wireProofStatus=${wireProofStatus} · sibling=${'prove/local-magnitudes-iso'}` }
@@ -1798,7 +1798,7 @@ export function agentAssumeNothingMathProvesInTheMoment(matrix: MindMatrix = bui
       root: merge(reverse.root, merge(novel.root, merge(vote.root, merge(pairFold.merged, sealed.root)))),
       pair: pairId,
       cli: 'npm run quantum:moment-prove',
-      route: '/en/encryption#moment-prove',
+      route: '/encryption#moment-prove',
       statement: `moment/prove · computes=${sealed.ok} · recomputeMatch=${reverse.recomputeMatch} · localSecurityProved=${novel.localSecurityProved} · vote.decided=${vote.decided}`,
       boundary: `pair=${pairId} · certified=${false} · qpuRequired=${false}` }
   })
@@ -1834,7 +1834,7 @@ export type LocalAuditFacetTiming = {
 /**
  * Run the local security/audit suite with memoByRoot reuse receipts.
  * Pair: audit/local-quantum · CLI npm run quantum:local-audit-quantum
- * Route: /en/encryption#local-audit-quantum
+ * Route: /encryption#local-audit-quantum
  *
  * Composes proveLocalNovelEncryptionSecurity + localEncryptionReverseTimedVsStandards +
  * quantumStandardsAuditSuite through memoized roots; reports cold vs warm ms, memo hits,
@@ -1981,7 +1981,7 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     root,
     pair: 'audit/local-quantum',
     cli: 'npm run quantum:local-audit-quantum',
-    route: '/en/encryption#local-audit-quantum',
+    route: '/encryption#local-audit-quantum',
     statement:
       `Local audit quantum speed/efficiency — coldMs=${roundTo(suiteColdMs, 3)} warmMs=${roundTo(suiteWarmMs, 3)} ` +
       `speedup=${roundTo(suiteSpeedup, 3)}× memoHit=${suiteMemoHit} facetHits=${facetMemoHitCount}/${facetTimings.length} ` +
@@ -2297,7 +2297,7 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
 /**
  * Crypto toolkit measured BEYOND demo RSA — PQC catalogs, Shor/ECC map, hash taxonomy, directional trinity.
  * Structural/demo ops with timed receipts; NOT production KEM/DSA impl; NOT FIPS/ISO certified.
- * Pair: measure/crypto-beyond · CLI npm run quantum:crypto-beyond-measure · route /en/encryption#crypto-beyond-rsa
+ * Pair: measure/crypto-beyond · CLI npm run quantum:crypto-beyond-measure · route /encryption#crypto-beyond-rsa
  */
 export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix()) {
   const t0 = measureNowMs()
@@ -2379,7 +2379,7 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     count: sealed.count,
     facets: sealed.facets,
     root: merge(root, sealed.root),
-    route: '/en/encryption#crypto-beyond-rsa',
+    route: '/encryption#crypto-beyond-rsa',
     pair: 'measure/crypto-beyond',
     cli: 'npm run quantum:crypto-beyond-measure',
     statement: `Crypto beyond RSA measured — catalogMs=${roundTo(catalogMs, 3)} familyMs=${roundTo(familyMs, 3)} shorMapMs=${roundTo(shorMapMs, 3)} taxonomyMs=${roundTo(taxonomyMs, 3)} migrateMs=${roundTo(migrateMs, 3)} trinityMs=${roundTo(trinityMs, 3)} rsaGen=${roundTo(rsa.generateMs, 3)} rsaRev=${roundTo(rsa.reverseMs, 3)}; ECC Shor-breaks=${eccShorBreaks}; FIPS rows=${fipsCount}.`,
@@ -2542,31 +2542,31 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
 
     const kemOpen = migrate.openCount >= 2 && migrate.steps.some((s) => s.id === 'kem' && !s.done)
     const audits: QuantumAuditRow[] = [
-      auditRow({ id: 'pqc-nist-fips', standardOrDimension: 'NIST FIPS 203/204/205', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.filter((s) => s.id.startsWith('FIPS 20')).length === 3, root: catalog.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Alignment audit — NOT FIPS validation' }),
-      auditRow({ id: 'iso-18033-amd2', standardOrDimension: 'ISO/IEC 18033-2 Amd 2:2026', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.some((s) => s.id.includes('Amd 2:2026')), root: catalog.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'ISO publication status snapshot 2026-07 — NOT ISO certified' }),
-      auditRow({ id: 'iso-14888-sig', standardOrDimension: 'ISO/IEC 14888 signatures (PQC uptake)', auditExport: 'isoAlignedHashSignatureTaxonomy', reverseOrInverse: 'neither', on: taxonomy.computes, coverage: 'partial', root: taxonomy.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: '14888-4:2024 stateful HBS covered in taxonomy; ML-DSA/SLH ISO parts still aligning — PARTIAL' }),
-      auditRow({ id: 'iso-11770-km', standardOrDimension: 'ISO/IEC 11770 key management (hybrid KEM)', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes, coverage: 'partial', root: migrate.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Structural KM checklist only — NOT ISO 11770 conformance' }),
-      auditRow({ id: 'iso-19790-modules', standardOrDimension: 'ISO/IEC 19790 crypto modules', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.some((s) => s.id === 'ISO/IEC 19790'), coverage: 'gap', root: catalog.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Catalog names the standard — module evaluation requires accredited lab (unclosable here)' }),
-      auditRow({ id: 'iso-hash-sig-taxonomy', standardOrDimension: 'ISO/IEC 10118 · 14888 · FIPS 205', auditExport: 'isoAlignedHashSignatureTaxonomy', reverseOrInverse: 'neither', on: taxonomy.computes, root: taxonomy.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Taxonomy mapping audit — not an evaluated signature module' }),
-      auditRow({ id: 'pqc-migration', standardOrDimension: 'NIST IR 8547 migration', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done), coverage: kemOpen ? 'partial' : 'covered', root: migrate.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Checklist audit — OPEN KEM/sig items are honest PARTIAL (no Web Crypto PQC yet)' }),
-      auditRow({ id: 'pqc-family-selector', standardOrDimension: 'PQC algorithm families (NIST+ISO)', auditExport: 'pqcAlgorithmFamilySelector', reverseOrInverse: 'neither', on: family.computes && family.families.length === 5 && family.everyParamSourced && family.pkMonotone, coverage: 'covered', root: family.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Standardized FIPS 203/204/205 parameter sets — public-key + ciphertext/signature bytes and NIST categories, monotone-verified. No keygen (Web Crypto lacks PQC; hand-rolled lattice crypto unsafe). Not FIPS validated.' }),
-      auditRow({ id: 'shor-break-map', standardOrDimension: 'Shor PKC break map', auditExport: 'shorBreaksWhichPublicKey', reverseOrInverse: 'neither', on: shorMap.computes && shorMap.brokenCount === 4, root: shorMap.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Educational taxonomy — not live cryptanalysis' }),
-      auditRow({ id: 'pqc-necessity', standardOrDimension: 'PQC necessity theorem (Shor→PQC)', auditExport: 'pqcNecessityFromShorCompose', reverseOrInverse: 'both', on: necessity.computes && !necessity.certified && necessity.claySolvedByThisFold === 0, root: necessity.root, route: '/en/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'MODELED composition — not Clay progress, not certified' }),
-      auditRow({ id: 'forward-pqc-catalog', standardOrDimension: 'Forward — PQC replace catalog (NIST+ISO)', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'forward', on: catalog.computes && catalog.count >= (8 * 2), root: catalog.root, route: '/en/encryption#iso-pqc-catalog', browserRunnable: true, browserGap: '', boundary: 'Forward direction = named PQC migrate targets — MODELED alignment' }),
-      auditRow({ id: 'reverse-demo-rsa', standardOrDimension: 'Production browser reverse (sealed-catalog allowlist)', auditExport: 'encryptionReverseVerify', reverseOrInverse: 'reverse', on: reverse.verified && demo.computes && productionRefused, root: reverse.root, route: '/en/encryption', browserRunnable: true, browserGap: '', boundary: 'Production browser tool · sealed-catalog moduli — production RSA break refused; never Bitcoin' }),
-      auditRow({ id: 'inverse-digit-zero', standardOrDimension: 'Digit-zero inverse (n⁻¹ mod 9)', auditExport: 'zeroDivisionTable', reverseOrInverse: 'inverse', on: zeroInv.holds && mod9Ok && reverseNeInverseDigits, root: zeroInv.root, route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Inverse = multiplicative mod 9; reverse field = additive complement — must differ' }),
-      auditRow({ id: 'inverse-f-pq', standardOrDimension: 'f→{p,q} inverse pair', auditExport: 'fThetaPhiXyzDigitNIsTheInversePair', reverseOrInverse: 'inverse', on: fInv.computes, root: fInv.root, route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Inverse fold within itself — NOT RSA crack' }),
-      auditRow({ id: 'inverse-ratInv', standardOrDimension: 'Rational inverse ratInv', auditExport: 'ratInv', reverseOrInverse: 'inverse', on: ratRoundTrip, root: toUuid(`audit-ratInv:${r.p}/${r.q}:${rInv.p}/${rInv.q}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'ratInv(p/q)=q/p involution — educational arithmetic' }),
-      auditRow({ id: 'reverse-ne-inverse', standardOrDimension: 'reverse ≠ inverse honesty', auditExport: 'inverseIsNotReverse', reverseOrInverse: 'both', on: invNeRev.computes && reverseNeInverseDigits, root: toUuid(`audit-rev-ne-inv:${invNeRev.computes}:${reverseNeInverseDigits}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Cross-check: pitch inverse ≠ time reverse; digit inverse ≠ additive reverse' }),
-      auditRow({ id: 'directional-trinity', standardOrDimension: 'Directional trinity forward·inverse·reverse', auditExport: 'directionalTrinityForwardInverseReverse', reverseOrInverse: 'both', on: dirTrinity.computes && dirTrinity.digits.length === DIMENSIONS, root: dirTrinity.root, route: '/en/quantum-tools#directional-trinity', browserRunnable: true, browserGap: '', boundary: 'Compose sealed digit trinity — inverse≠reverse; named coincidence digit 1 only' }),
-      auditRow({ id: 'content-address', standardOrDimension: 'Content-address / merkle integrity', auditExport: 'toUuid·merkleFold', reverseOrInverse: 'neither', on: contentAddressOk, root: merkleProbe, route: '/en/encryption', browserRunnable: true, browserGap: '', boundary: 'Integrity Shor-safe — authenticity still needs PQC migrate' }),
-      auditRow({ id: 'a432', standardOrDimension: 'A432 brand spine', auditExport: 'A432_HUE·frequencyToLight', reverseOrInverse: 'neither', on: a432Ok, root: toUuid(`audit-a432:${A432_HUE}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Derived hue from 432 Hz — not a healing claim' }),
-      auditRow({ id: 'census-123', standardOrDimension: 'Census-123 / folded-121 / a432 gates-432', auditExport: 'UNFOLDED_CENSUS·FOLDED_CENSUS·DIMENSION_GATES', reverseOrInverse: 'neither', on: censusOk, root: toUuid(`audit-census:${UNFOLDED_CENSUS}:${FOLDED_CENSUS}:${DIMENSION_GATES}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Constant identity audit — limits:verify is the enforcement twin' }),
-      auditRow({ id: 'animation-10d', standardOrDimension: 'Animation field 10D names', auditExport: 'DIMENSIONS·DIMENSION_NAMES', reverseOrInverse: 'neither', on: dimsOk, root: toUuid(`audit-10d:${DIMENSIONS}:${DIMENSION_NAMES.join('.')}`), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Model dimensions (6 cross-fold + 4 homology) — not spacetime claim' }),
-      auditRow({ id: 'millennium-probes', standardOrDimension: 'Millennium challenge probes', auditExport: 'millenniumProblemsChallenge ( honesty)', reverseOrInverse: 'neither', on: millClaySolvedByThisFold === 0, root: millRoot, route: '/en/millennium-challenge', browserRunnable: true, browserGap: '', boundary: 'MODELED CHALLENGE honesty — ' }),
-      auditRow({ id: 'rosetta-rays', standardOrDimension: 'Rosetta ray addressing', auditExport: 'rosettaShelve(tool) via catalog ids', reverseOrInverse: 'neither', on: ['pqc-nist-fips', 'reverse-demo-rsa', 'inverse-digit-zero'].every((id) => isUuid(toUuid(`rosetta-audit-probe:${id}`))), root: toUuid('audit-rosetta:probe'), route: '/en/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Probe that audit ids content-address; full shelve lives in quantumCliToolsCatalog' }),
-      auditRow({ id: 'fips-lab-validation', standardOrDimension: 'FIPS CMVP / accredited validation', auditExport: 'handoff:external-lab', reverseOrInverse: 'neither', on: true, coverage: 'gap', root: toUuid('audit-fips-lab:gap'), route: '/en/encryption#iso-pqc-gap-fill', browserRunnable: true, browserGap: '', boundary: 'Unclosable without accredited FIPS lab — named GAP handoff' }),
-      auditRow({ id: 'iso-certification-lab', standardOrDimension: 'ISO certification / Common Criteria eval', auditExport: 'handoff:external-lab', reverseOrInverse: 'neither', on: true, coverage: 'gap', root: toUuid('audit-iso-lab:gap'), route: '/en/encryption#iso-pqc-gap-fill', browserRunnable: true, browserGap: '', boundary: 'Unclosable without accredited ISO/CC lab — named GAP handoff' }),
+      auditRow({ id: 'pqc-nist-fips', standardOrDimension: 'NIST FIPS 203/204/205', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.filter((s) => s.id.startsWith('FIPS 20')).length === 3, root: catalog.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Alignment audit — NOT FIPS validation' }),
+      auditRow({ id: 'iso-18033-amd2', standardOrDimension: 'ISO/IEC 18033-2 Amd 2:2026', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.some((s) => s.id.includes('Amd 2:2026')), root: catalog.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'ISO publication status snapshot 2026-07 — NOT ISO certified' }),
+      auditRow({ id: 'iso-14888-sig', standardOrDimension: 'ISO/IEC 14888 signatures (PQC uptake)', auditExport: 'isoAlignedHashSignatureTaxonomy', reverseOrInverse: 'neither', on: taxonomy.computes, coverage: 'partial', root: taxonomy.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: '14888-4:2024 stateful HBS covered in taxonomy; ML-DSA/SLH ISO parts still aligning — PARTIAL' }),
+      auditRow({ id: 'iso-11770-km', standardOrDimension: 'ISO/IEC 11770 key management (hybrid KEM)', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes, coverage: 'partial', root: migrate.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Structural KM checklist only — NOT ISO 11770 conformance' }),
+      auditRow({ id: 'iso-19790-modules', standardOrDimension: 'ISO/IEC 19790 crypto modules', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'neither', on: catalog.computes && catalog.standards.some((s) => s.id === 'ISO/IEC 19790'), coverage: 'gap', root: catalog.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Catalog names the standard — module evaluation requires accredited lab (unclosable here)' }),
+      auditRow({ id: 'iso-hash-sig-taxonomy', standardOrDimension: 'ISO/IEC 10118 · 14888 · FIPS 205', auditExport: 'isoAlignedHashSignatureTaxonomy', reverseOrInverse: 'neither', on: taxonomy.computes, root: taxonomy.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Taxonomy mapping audit — not an evaluated signature module' }),
+      auditRow({ id: 'pqc-migration', standardOrDimension: 'NIST IR 8547 migration', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done), coverage: kemOpen ? 'partial' : 'covered', root: migrate.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Checklist audit — OPEN KEM/sig items are honest PARTIAL (no Web Crypto PQC yet)' }),
+      auditRow({ id: 'pqc-family-selector', standardOrDimension: 'PQC algorithm families (NIST+ISO)', auditExport: 'pqcAlgorithmFamilySelector', reverseOrInverse: 'neither', on: family.computes && family.families.length === 5 && family.everyParamSourced && family.pkMonotone, coverage: 'covered', root: family.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Standardized FIPS 203/204/205 parameter sets — public-key + ciphertext/signature bytes and NIST categories, monotone-verified. No keygen (Web Crypto lacks PQC; hand-rolled lattice crypto unsafe). Not FIPS validated.' }),
+      auditRow({ id: 'shor-break-map', standardOrDimension: 'Shor PKC break map', auditExport: 'shorBreaksWhichPublicKey', reverseOrInverse: 'neither', on: shorMap.computes && shorMap.brokenCount === 4, root: shorMap.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Educational taxonomy — not live cryptanalysis' }),
+      auditRow({ id: 'pqc-necessity', standardOrDimension: 'PQC necessity theorem (Shor→PQC)', auditExport: 'pqcNecessityFromShorCompose', reverseOrInverse: 'both', on: necessity.computes && !necessity.certified && necessity.claySolvedByThisFold === 0, root: necessity.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'MODELED composition — not Clay progress, not certified' }),
+      auditRow({ id: 'forward-pqc-catalog', standardOrDimension: 'Forward — PQC replace catalog (NIST+ISO)', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'forward', on: catalog.computes && catalog.count >= (8 * 2), root: catalog.root, route: '/encryption#iso-pqc-catalog', browserRunnable: true, browserGap: '', boundary: 'Forward direction = named PQC migrate targets — MODELED alignment' }),
+      auditRow({ id: 'reverse-demo-rsa', standardOrDimension: 'Production browser reverse (sealed-catalog allowlist)', auditExport: 'encryptionReverseVerify', reverseOrInverse: 'reverse', on: reverse.verified && demo.computes && productionRefused, root: reverse.root, route: '/encryption', browserRunnable: true, browserGap: '', boundary: 'Production browser tool · sealed-catalog moduli — production RSA break refused; never Bitcoin' }),
+      auditRow({ id: 'inverse-digit-zero', standardOrDimension: 'Digit-zero inverse (n⁻¹ mod 9)', auditExport: 'zeroDivisionTable', reverseOrInverse: 'inverse', on: zeroInv.holds && mod9Ok && reverseNeInverseDigits, root: zeroInv.root, route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Inverse = multiplicative mod 9; reverse field = additive complement — must differ' }),
+      auditRow({ id: 'inverse-f-pq', standardOrDimension: 'f→{p,q} inverse pair', auditExport: 'fThetaPhiXyzDigitNIsTheInversePair', reverseOrInverse: 'inverse', on: fInv.computes, root: fInv.root, route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Inverse fold within itself — NOT RSA crack' }),
+      auditRow({ id: 'inverse-ratInv', standardOrDimension: 'Rational inverse ratInv', auditExport: 'ratInv', reverseOrInverse: 'inverse', on: ratRoundTrip, root: toUuid(`audit-ratInv:${r.p}/${r.q}:${rInv.p}/${rInv.q}`), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'ratInv(p/q)=q/p involution — educational arithmetic' }),
+      auditRow({ id: 'reverse-ne-inverse', standardOrDimension: 'reverse ≠ inverse honesty', auditExport: 'inverseIsNotReverse', reverseOrInverse: 'both', on: invNeRev.computes && reverseNeInverseDigits, root: toUuid(`audit-rev-ne-inv:${invNeRev.computes}:${reverseNeInverseDigits}`), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Cross-check: pitch inverse ≠ time reverse; digit inverse ≠ additive reverse' }),
+      auditRow({ id: 'directional-trinity', standardOrDimension: 'Directional trinity forward·inverse·reverse', auditExport: 'directionalTrinityForwardInverseReverse', reverseOrInverse: 'both', on: dirTrinity.computes && dirTrinity.digits.length === DIMENSIONS, root: dirTrinity.root, route: '/quantum-tools#directional-trinity', browserRunnable: true, browserGap: '', boundary: 'Compose sealed digit trinity — inverse≠reverse; named coincidence digit 1 only' }),
+      auditRow({ id: 'content-address', standardOrDimension: 'Content-address / merkle integrity', auditExport: 'toUuid·merkleFold', reverseOrInverse: 'neither', on: contentAddressOk, root: merkleProbe, route: '/encryption', browserRunnable: true, browserGap: '', boundary: 'Integrity Shor-safe — authenticity still needs PQC migrate' }),
+      auditRow({ id: 'a432', standardOrDimension: 'A432 brand spine', auditExport: 'A432_HUE·frequencyToLight', reverseOrInverse: 'neither', on: a432Ok, root: toUuid(`audit-a432:${A432_HUE}`), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Derived hue from 432 Hz — not a healing claim' }),
+      auditRow({ id: 'census-123', standardOrDimension: 'Census-123 / folded-121 / a432 gates-432', auditExport: 'UNFOLDED_CENSUS·FOLDED_CENSUS·DIMENSION_GATES', reverseOrInverse: 'neither', on: censusOk, root: toUuid(`audit-census:${UNFOLDED_CENSUS}:${FOLDED_CENSUS}:${DIMENSION_GATES}`), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Constant identity audit — limits:verify is the enforcement twin' }),
+      auditRow({ id: 'animation-10d', standardOrDimension: 'Animation field 10D names', auditExport: 'DIMENSIONS·DIMENSION_NAMES', reverseOrInverse: 'neither', on: dimsOk, root: toUuid(`audit-10d:${DIMENSIONS}:${DIMENSION_NAMES.join('.')}`), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Model dimensions (6 cross-fold + 4 homology) — not spacetime claim' }),
+      auditRow({ id: 'millennium-probes', standardOrDimension: 'Millennium challenge probes', auditExport: 'millenniumProblemsChallenge ( honesty)', reverseOrInverse: 'neither', on: millClaySolvedByThisFold === 0, root: millRoot, route: '/millennium-challenge', browserRunnable: true, browserGap: '', boundary: 'MODELED CHALLENGE honesty — ' }),
+      auditRow({ id: 'rosetta-rays', standardOrDimension: 'Rosetta ray addressing', auditExport: 'rosettaShelve(tool) via catalog ids', reverseOrInverse: 'neither', on: ['pqc-nist-fips', 'reverse-demo-rsa', 'inverse-digit-zero'].every((id) => isUuid(toUuid(`rosetta-audit-probe:${id}`))), root: toUuid('audit-rosetta:probe'), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Probe that audit ids content-address; full shelve lives in quantumCliToolsCatalog' }),
+      auditRow({ id: 'fips-lab-validation', standardOrDimension: 'FIPS CMVP / accredited validation', auditExport: 'handoff:external-lab', reverseOrInverse: 'neither', on: true, coverage: 'gap', root: toUuid('audit-fips-lab:gap'), route: '/encryption#iso-pqc-gap-fill', browserRunnable: true, browserGap: '', boundary: 'Unclosable without accredited FIPS lab — named GAP handoff' }),
+      auditRow({ id: 'iso-certification-lab', standardOrDimension: 'ISO certification / Common Criteria eval', auditExport: 'handoff:external-lab', reverseOrInverse: 'neither', on: true, coverage: 'gap', root: toUuid('audit-iso-lab:gap'), route: '/encryption#iso-pqc-gap-fill', browserRunnable: true, browserGap: '', boundary: 'Unclosable without accredited ISO/CC lab — named GAP handoff' }),
     ]
 
     const gaps = audits.filter((a) => a.coverage === 'gap')
@@ -2610,7 +2610,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...audits.map((a) => a.receipt), dimensions.root])),
-      route: '/en/encryption#quantum-standards-audit',
+      route: '/encryption#quantum-standards-audit',
       pair: 'audit/standards',
       cli: 'npm run quantum:standards-audit',
       statement: `Quantum standards audit suite — covered=${passes.length} partial=${partials.length} gap=${gaps.length} of ${audits.length}: ISO/NIST PQC, forward·inverse·reverse, lab gaps named, 10D.`,
@@ -2645,7 +2645,7 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
     const row = (standard: string, ref: string, aspect: string, evidence: string, coverage: 'covered' | 'partial' | 'gap', on: boolean): EuAspect & { id: string; route: string; browserRunnable: boolean; receipt: string } => ({
       standard, ref, aspect, evidence, coverage, on,
       id: `eu:${standard}:${ref}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-      route: '/en/encryption#eu-cyber-audit',
+      route: '/encryption#eu-cyber-audit',
       browserRunnable: true,
       receipt: toUuid(`eu-aspect:${standard}:${ref}:${aspect}:${coverage}:${on}`),
     })
@@ -2709,7 +2709,7 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((entry) => entry.receipt)])),
-      route: '/en/encryption#eu-cyber-audit',
+      route: '/encryption#eu-cyber-audit',
       pair: 'audit/eu-standards',
       cli: 'npm run quantum:eu-cyber-audit',
       statement: facets.map((entry) => entry.facet).join(' · '),
@@ -2744,7 +2744,7 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
     const row = (standard: string, ref: string, aspect: string, evidence: string, coverage: 'covered' | 'partial' | 'gap', on: boolean) => ({
       standard, ref, aspect, evidence, coverage, on,
       id: `beyond:${standard}:${ref}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-      route: '/en/encryption#eu-cyber-audit',
+      route: '/encryption#eu-cyber-audit',
       browserRunnable: true,
       receipt: toUuid(`beyond-aspect:${standard}:${ref}:${aspect}:${coverage}:${on}`),
     })
@@ -2810,7 +2810,7 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(eu.root, merkleFold([sealed.root, ...beyond.map((entry) => entry.receipt)])),
-      route: '/en/encryption#eu-cyber-audit',
+      route: '/encryption#eu-cyber-audit',
       pair: 'audit/global-standards',
       cli: 'npm run quantum:global-cyber-audit',
       statement: facets.map((entry) => entry.facet).join(' · '),
@@ -2963,7 +2963,7 @@ export type OneTbitModelReceipt = {
 
 /**
  * Prove (or refute) “1 Tbit realtime encryption” at call time under named models.
- * Pair: prove/1tbit-encrypt · CLI npm run quantum:prove-1tbit-encrypt · route /en/encryption#prove-1tbit
+ * Pair: prove/1tbit-encrypt · CLI npm run quantum:prove-1tbit-encrypt · route /encryption#prove-1tbit
  *
  * Models:
  * - wire-crypto — AES-256-GCM wire throughput. No sealed bench → measured=0, proved=false (refused as SLA).
@@ -3086,7 +3086,7 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
     count: sealed.count,
     facets: sealed.facets,
     root: merge(matrix.root, merge(sealed.root, merge(extentCold.root, tools.root))),
-    route: '/en/encryption#prove-1tbit',
+    route: '/encryption#prove-1tbit',
     pair: 'prove/1tbit-encrypt',
     cli: 'npm run quantum:prove-1tbit-encrypt',
     statement: `1 Tbit/s claim receipt — wire-crypto proved=${anyWireProved} (measured=${roundTo(wire.measuredBitsPerSec, 3)}); demo-toy measured=${roundTo(demo.measuredBitsPerSec, 3)} proved=${demo.provedAtCallTime}; amortized-reuse-memo measured=${roundTo(amortized.measuredBitsPerSec, 3)} proved=${anyAmortProved}; production/Bitcoin refused. Catalog row prove-1tbit-encrypt uses ceccec.tool.envelope@1 via standardToolboxIoCatalog.`,
@@ -3147,7 +3147,7 @@ function magnitudesRatio(localMetric: number, isoMetric: number): { ratio: numbe
 /**
  * Prove (or refute) "local encryption is magnitudes stronger than ISO in all directions".
  * Pair: prove/local-magnitudes-iso · CLI npm run quantum:prove-local-magnitudes-iso
- * Route: /en/encryption#prove-local-magnitudes-iso
+ * Route: /encryption#prove-local-magnitudes-iso
  *
  * Composes PR #22 localEncryptionReverseTimedVsStandards timing/standards metrics + directional trinity
  * + local novel structural gates + amortized holographic extent (same family as proveOneTbit).
@@ -3330,7 +3330,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
     root,
     pair: 'prove/local-magnitudes-iso',
     cli: 'npm run quantum:prove-local-magnitudes-iso',
-    route: '/en/encryption#prove-local-magnitudes-iso',
+    route: '/encryption#prove-local-magnitudes-iso',
     statement:
       `Local vs ISO magnitudes receipt — overallWireClaimProved=${overallWireClaimProved} (${wireProofStatus}); ` +
       `wire ratio=${roundTo(wireEval.ratio, 6)} (demoMaxBits=${wireLocal} / classical=${wireIsoBits}); ` +
@@ -3415,7 +3415,7 @@ export function isoPqcHandoffForScienceTrinities(matrix: MindMatrix = buildMatri
       auditRoot: audit.root,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, catalog.root, audit.root, necessity.root])),
-      route: '/en/encryption#quantum-standards-audit',
+      route: '/encryption#quantum-standards-audit',
       pair: 'iso/pqc-catalog',
       cli: 'npm run quantum:standards-audit',
       statement:
@@ -3498,7 +3498,7 @@ export function isoRequiresPostQuantumSecurity(matrix: MindMatrix = buildMatrix(
       root: merge(matrix.root, sealed.root),
       pair: 'iso/requires-pqc',
       cli: 'npm run quantum:iso-pqc-gap-fill',
-      route: '/en/encryption#iso-requires-pqc',
+      route: '/encryption#iso-requires-pqc',
       statement: `ISO require PQC? ${isoRequiresPostQuantumSecurity} — universalMandate=${universalMandate} migrationGuidance=${migrationGuidance} nistAlignedIsoWork=${nistAlignedIsoWork} isoOfficialStandard=${isoOfficialStandard}.`,
       boundary:
         'HONEST POLICY/STANDARDS RECEIPT (researchDate 2026-07). Not legal advice. This repo is MODELED alignment — NOT the official ISO PQC standard (isoOfficialStandard=false). NOT ISO certified / NOT FIPS validated.' }
@@ -3658,7 +3658,7 @@ export function isoPqcRequirementsGapFillAllQuantumDirections(matrix: MindMatrix
       ),
       pair: 'iso/pqc-gap-fill',
       cli: 'npm run quantum:iso-pqc-gap-fill',
-      route: '/en/encryption#iso-pqc-gap-fill',
+      route: '/encryption#iso-pqc-gap-fill',
       statement: `ISO/NIST PQC gap-fill all quantum directions — covered=${covered.length} partial=${partial.length} gap=${gaps.length} (lab=${labGaps.length} unclosable); isoRequiresPQC=${answer.isoRequiresPostQuantumSecurity}; isoOfficialStandard=false.`,
       boundary:
         'MODELED gap-fill toward ISO/NIST PQC requirements/guidance. NOT the official ISO PQC standard. NOT ISO certified / NOT FIPS validated. Lab gaps stay open with handoff. Production/Bitcoin reverse refused.' }
@@ -3723,7 +3723,7 @@ export function runIsoPqcRequirementsGapFillExit(_root: string, _argv: readonly 
 
 /**
  * Maximum honest bit widths for encrypt · decrypt · inverse · reverse — quantum-wave receipt.
- * Pair: max-bits/crypto · CLI npm run quantum:max-bits-crypto · route /en/encryption#max-bits-crypto
+ * Pair: max-bits/crypto · CLI npm run quantum:max-bits-crypto · route /encryption#max-bits-crypto
  *
  * Composes encryptDecryptQuantumTools · encryptionReverseVerify · localEncryptionReverseTimedVsStandards ·
  * directionalTrinityForwardInverseReverse · proveOneTbitRealtimeEncryptionClaim · refuse / worker caps.
@@ -3860,7 +3860,7 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
       root,
       pair: 'max-bits/crypto',
       cli: 'npm run quantum:max-bits-crypto',
-      route: '/en/encryption#max-bits-crypto',
+      route: '/encryption#max-bits-crypto',
       statement:
         `Maximum bit widths from hardware — enc=${encryptMaxBits} dec=${decryptMaxBits} inv=${inverseMaxBits} ` +
         `revClaim=${reverseMaxBits} hwWord=${hardwareReverseCapacityBits} demoSample=${demoSampleCeilingBits} ` +
@@ -3962,7 +3962,7 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
       root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, refuse.root, hw.receipt, pairFold.merged])),
       pair: 'bits/hardware' as const,
       cli: 'npm run quantum:bits-hardware',
-      route: '/en/encryption#bits-hardware',
+      route: '/encryption#bits-hardware',
       statement:
         `maxBitsHardwareBoundaryAgree — remaining=${remaining} hwWord=${hw.hardwareReverseCapacityBits} ` +
         `revClaim=${hw.reverseClaimBits} demoSample=${hw.demoSampleCeilingBits} cpus=${hw.cpuCount} .`,
@@ -3997,7 +3997,7 @@ export function runMaxBitsHardwareBoundaryAgreeExit(_root = '', _argv: readonly 
  * Geometric cross = N↔S × E↔W from Earth poles-as-pyramid; tip signatures + sealed
  * certificate *structures* for PQC tooling — NOT CA/PKI, NOT FIPS/ISO certification.
  *
- * Pair: poles/cross-pqc · CLI npm run quantum:poles-cross-pqc · route /en/encryption#poles-cross-pqc
+ * Pair: poles/cross-pqc · CLI npm run quantum:poles-cross-pqc · route /encryption#poles-cross-pqc
  * Composes merkaba · bothEarths · FoL→Fruit · sixtyDegree(60→90) · universalNavigationalCross ·
  * earthRealisedByComputingPolesAsPyramid · isoNistPqcStandardsCatalog · directionalTrinity.
  *
@@ -4262,7 +4262,7 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       root,
       pair: 'poles/cross-pqc' as const,
       cli: 'npm run quantum:poles-cross-pqc',
-      route: '/en/encryption#poles-cross-pqc',
+      route: '/encryption#poles-cross-pqc',
       statement:
         `Poles form the cross signatures for post-quantum encryption including certificates — ` +
         `${facets.filter((f) => f.on).length}/${facets.length}: cross is intrinsic to merkaba∩rosetta ` +
@@ -4402,7 +4402,7 @@ export function secp256k1PrimeConstructionTerms(): readonly {
  * Seal · invert · decode secp256k1 field prime p via directional trinity math.
  *
  * Pair: secp256k1/invert-decode · CLI npm run quantum:secp256k1-prime-invert-decode
- * Route: /en/encryption#secp256k1-prime · /proofs/secp256k1-field-prime
+ * Route: /encryption#secp256k1-prime · /proofs/secp256k1-field-prime
  *
  * Invert = (1) construction as signed Σ±2^e  (2) mod-p inverse of sample units
  * Decode = binary/power-of-two subtraction chain + hex/decimal + ECC facet map
@@ -4498,7 +4498,7 @@ export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMat
       root,
       pair: 'secp256k1/invert-decode' as const,
       cli: 'npm run quantum:secp256k1-prime-invert-decode',
-      route: '/en/encryption#secp256k1-prime',
+      route: '/encryption#secp256k1-prime',
       proofRoute: '/proofs/secp256k1-field-prime',
       statement:
         `secp256k1 field prime p sealed+inverted+decoded — hex=${hex} bits=${bitLength} ` +
@@ -4679,7 +4679,7 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, reverseVerify.root, decodeRefuse.root, ...paths.map((p) => p.receipt)])),
       pair: 'refuse/rosetta' as const,
       cli: 'npm run quantum:production-rsa-refuse-rosetta',
-      route: '/en/encryption#production-rsa-refuse-rosetta',
+      route: '/encryption#production-rsa-refuse-rosetta',
       statement:
         `Production RSA refuse completes quantum via rosetta — paths=${paths.length} wired=${paths.filter((p) => p.wired).length} ` +
         `incompleteOpen=${incompleteOpen} refuseBeyond=${maxBits.refuseBeyond} ceiling=${SEALED_CATALOG_RSA_BIT_CEILING} certified=false.`,
@@ -4756,25 +4756,25 @@ export type CryptoComparisonMeshEdge = {
 
 /** Single sealed catalog — comparison edges/nodes. Do not wet-copy into UI/MCP/proofs. */
 export const CRYPTO_COMPARISON_MESH_NODES: readonly CryptoComparisonMeshNode[] = [
-  { id: 'sealed-catalog-rsa-measure', title: 'Production browser reverse — generate+reverse measured', fold: 'demoRsaGenerateAndReverseMeasured', pair: 'measure/catalog-rsa', cli: 'npm run quantum:sealed-catalog-rsa-measure', route: '/en/encryption#sealed-catalog-rsa-measure', proofRoute: '', kind: 'measure', boundary: 'Production browser tool · wall-clock ms on SEALED_CATALOG_RSA_MODULI — production RSA break refused / NOT Bitcoin / NOT an SLA', inPanel: true, toolId: 'sealed-catalog-rsa-measure' },
-  { id: 'local-reverse-timed', title: 'Production browser reverse timed', fold: 'localEncryptionReverseTimed', pair: 'reverse/local-timed', cli: 'npm run quantum:local-reverse-timed', route: '/en/encryption#local-reverse-timed', proofRoute: '', kind: 'measure', boundary: 'Production browser tool · per-modulus generateMs/reverseMs/bits/ops/s — SEALED_CATALOG_RSA_MODULI · production RSA break refused', inPanel: false, toolId: 'local-reverse-timed' },
-  { id: 'local-reverse-timed-vs-standards', title: 'Production browser reverse timed vs ISO/NIST', fold: 'localEncryptionReverseTimedVsStandards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', route: '/en/encryption#local-reverse-timed-vs-standards', proofRoute: '/proofs/encryption-honesty', kind: 'comparison', boundary: 'Production browser reverse vs AES-128/256 · ML-KEM classical bits — certified=false; does NOT break NIST PQC · refuseBeyond production RSA', inPanel: true, toolId: 'local-reverse-timed-vs-standards' },
-  { id: 'prove-local-novel-encrypt', title: 'Prove local novel-encryption security', fold: 'proveLocalNovelEncryptionSecurity', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', route: '/en/encryption#prove-local-novel-encrypt', proofRoute: '', kind: 'novel', boundary: 'overallWireClaimProved=false proof-of-falsehood · strongerThanNistPqc=false · handoff to prove/local-magnitudes-iso · certified=false', inPanel: true, toolId: 'prove-local-novel-encrypt' },
-  { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/en/encryption#local-audit-quantum', proofRoute: '', kind: 'audit', boundary: 'memoByRoot cold/warm · answers÷tokens · compose no-QPU/64bit honesty · NOT physical qubit FLOPS · certified=false · production reverse refused', inPanel: true, toolId: 'local-audit-quantum' },
-  { id: 'crypto-beyond-measure', title: 'Crypto toolkit beyond RSA measured', fold: 'cryptoToolkitBeyondRsaMeasured', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', route: '/en/encryption#crypto-beyond-rsa', proofRoute: '', kind: 'toolkit', boundary: 'Timed PQC catalogs + Shor/ECC map + hash taxonomy + directional trinity — NOT FIPS/ISO certified / NOT production KEM', inPanel: true, toolId: 'crypto-beyond-measure' },
-  { id: 'prove-1tbit-encrypt', title: 'Prove 1 Tbit/s realtime encryption claim', fold: 'proveOneTbitRealtimeEncryptionClaim', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', route: '/en/encryption#prove-1tbit', proofRoute: '', kind: 'measure', boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo may prove extent÷memo — NOT wire AES-GCM / NOT FIPS', inPanel: true, toolId: 'prove-1tbit-encrypt' },
-  { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', fold: 'maximumBitsEncryptDecryptInverseReverse', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', route: '/en/encryption#max-bits-crypto', proofRoute: '', kind: 'ceiling', boundary: 'enc/dec=256 AES theorem · inv=4 digit · revClaim=min(catalog,hwWord) · sealed-catalog sample ≠ hw ceiling · refuseBeyond · certified=false', inPanel: true, toolId: 'max-bits-crypto' },
-  { id: 'bits-hardware', title: 'Max-bits boundary from hardware capabilities', fold: 'maxBitsHardwareBoundaryAgree', pair: 'bits/hardware', cli: 'npm run quantum:bits-hardware', route: '/en/encryption#bits-hardware', proofRoute: '', kind: 'ceiling', boundary: 'HARD: claimed max-bits ≡ f(cpus·workers·heap·word) ∩ refuseBeyond ∩ theorem constants · catalog≠hwCeiling', inPanel: true, toolId: 'bits-hardware' },
-  { id: 'prove-local-magnitudes-iso', title: 'Prove local vs ISO magnitudes all directions', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', route: '/en/encryption#prove-local-magnitudes-iso', proofRoute: '/proofs/encryption-honesty', kind: 'comparison', boundary: 'wire-crypto-security-bits proof-of-falsehood (sealed-catalog<<ML-KEM); structural/amort may prove >=100x non-wire only · certified=false · NOT ISO certified', inPanel: true, toolId: 'prove-local-magnitudes-iso' },
-  { id: 'encryption-reverse-verify', title: 'Encryption reverse verify (production browser tool)', fold: 'encryptionReverseVerify', pair: 'reverse/encryption-verify', cli: 'npm run quantum:encryption-reverse-verify', route: '/en/encryption', proofRoute: '', kind: 'toolkit', boundary: 'Production browser reverse tool · sealed-catalog moduli — production RSA break refused', inPanel: false, toolId: 'encryption-reverse-verify' },
-  { id: 'production-rsa-refuse-rosetta', title: 'Production RSA refuse completes quantum via rosetta', fold: 'productionRsaRefuseCompletesQuantumViaRosetta', pair: 'refuse/rosetta', cli: 'npm run quantum:production-rsa-refuse-rosetta', route: '/en/encryption#production-rsa-refuse-rosetta', proofRoute: '', kind: 'refuse', boundary: 'Sealed refuse receipts · incompleteOpen=0 · refuseBeyond stays · NOT production RSA break · certified=false', inPanel: false, toolId: 'production-rsa-refuse-rosetta' },
-  { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', route: '/en/encryption#iso-pqc-catalog', proofRoute: '/proofs/encryption-honesty', kind: 'catalog', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', inPanel: true, toolId: 'iso-pqc-catalog' },
-  { id: 'poles-cross-pqc', title: 'Poles → cross signatures → PQC certificate structures', fold: 'polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates', pair: 'poles/cross-pqc', cli: 'npm run quantum:poles-cross-pqc', route: '/en/encryption#poles-cross-pqc', proofRoute: '', kind: 'toolkit', boundary: 'Cross ∈ merkaba∩rosetta · 60→90 · all-dir · sealed cert structures — NOT CA/PKI · certified=false', inPanel: true, toolId: 'poles-cross-pqc' },
-  { id: 'secp256k1-prime-invert-decode', title: 'secp256k1 field prime — seal · invert · decode', fold: 'secp256k1FieldPrimeInvertAndDecode', pair: 'secp256k1/invert-decode', cli: 'npm run quantum:secp256k1-prime-invert-decode', route: '/en/encryption#secp256k1-prime', proofRoute: '/proofs/secp256k1-field-prime', kind: 'catalog', boundary: 'Known SECG p from powers of two · construction invert + mod-p units · NOT Bitcoin ownership · certified=false', inPanel: true, toolId: 'secp256k1-prime-invert-decode' },
-  { id: 'iso-pqc-gap-fill', title: 'ISO/NIST PQC gap-fill all quantum directions', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', pair: 'iso/pqc-gap-fill', cli: 'npm run quantum:iso-pqc-gap-fill', route: '/en/encryption#iso-pqc-gap-fill', proofRoute: '/proofs/encryption-honesty', kind: 'audit', boundary: 'covered|partial|gap toward ISO/NIST needs — isoOfficialStandard=false · certified=false · lab gaps unclosable', inPanel: false, toolId: 'iso-pqc-gap-fill' },
-  { id: 'standards-audit', title: 'Quantum standards audit (forward·inverse·reverse·10D)', fold: 'quantumStandardsAuditSuite', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', route: '/en/encryption#quantum-standards-audit', proofRoute: '/proofs/encryption-honesty', kind: 'audit', boundary: 'Alignment audit ≠ certification — covered|partial|gap · production browser reverse + digit/f/ratInv inverse + directional trinity', inPanel: true, toolId: 'standards-audit' },
-  { id: 'encryption-honesty', title: 'Encryption honesty — wire ≠ ISO · sealed-catalog reverse · PQC alignment', fold: 'quantumStandardsAuditSuite', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', route: '/en/encryption#quantum-standards-audit', proofRoute: '/proofs/encryption-honesty', kind: 'proof', boundary: 'Structural/sealed-catalog receipts may hold; wire/FIPS/ISO claims stay false where sealed · production RSA break refused · certified=false', inPanel: false, toolId: 'standards-audit' },
-  { id: 'secp256k1-field-prime', title: 'secp256k1 field prime — seal · invert · decode (proof)', fold: 'secp256k1FieldPrimeInvertAndDecode', pair: 'secp256k1/invert-decode', cli: 'npm run quantum:secp256k1-prime-invert-decode', route: '/en/encryption#secp256k1-prime', proofRoute: '/proofs/secp256k1-field-prime', kind: 'proof', boundary: 'Structure of known SECG prime — NOT Bitcoin ownership · certified=false', inPanel: false, toolId: 'secp256k1-prime-invert-decode' },
+  { id: 'sealed-catalog-rsa-measure', title: 'Production browser reverse — generate+reverse measured', fold: 'demoRsaGenerateAndReverseMeasured', pair: 'measure/catalog-rsa', cli: 'npm run quantum:sealed-catalog-rsa-measure', route: '/encryption#sealed-catalog-rsa-measure', proofRoute: '', kind: 'measure', boundary: 'Production browser tool · wall-clock ms on SEALED_CATALOG_RSA_MODULI — production RSA break refused / NOT Bitcoin / NOT an SLA', inPanel: true, toolId: 'sealed-catalog-rsa-measure' },
+  { id: 'local-reverse-timed', title: 'Production browser reverse timed', fold: 'localEncryptionReverseTimed', pair: 'reverse/local-timed', cli: 'npm run quantum:local-reverse-timed', route: '/encryption#local-reverse-timed', proofRoute: '', kind: 'measure', boundary: 'Production browser tool · per-modulus generateMs/reverseMs/bits/ops/s — SEALED_CATALOG_RSA_MODULI · production RSA break refused', inPanel: false, toolId: 'local-reverse-timed' },
+  { id: 'local-reverse-timed-vs-standards', title: 'Production browser reverse timed vs ISO/NIST', fold: 'localEncryptionReverseTimedVsStandards', pair: 'reverse/timed-vs-standards', cli: 'npm run quantum:local-reverse-timed-vs-standards', route: '/encryption#local-reverse-timed-vs-standards', proofRoute: '/proofs/encryption-honesty', kind: 'comparison', boundary: 'Production browser reverse vs AES-128/256 · ML-KEM classical bits — certified=false; does NOT break NIST PQC · refuseBeyond production RSA', inPanel: true, toolId: 'local-reverse-timed-vs-standards' },
+  { id: 'prove-local-novel-encrypt', title: 'Prove local novel-encryption security', fold: 'proveLocalNovelEncryptionSecurity', pair: 'prove/local-novel-encrypt', cli: 'npm run quantum:prove-local-novel-encrypt', route: '/encryption#prove-local-novel-encrypt', proofRoute: '', kind: 'novel', boundary: 'overallWireClaimProved=false proof-of-falsehood · strongerThanNistPqc=false · handoff to prove/local-magnitudes-iso · certified=false', inPanel: true, toolId: 'prove-local-novel-encrypt' },
+  { id: 'local-audit-quantum', title: 'Local audit quantum speed & efficiency', fold: 'localAuditQuantumSpeedEfficiency', pair: 'audit/local-quantum', cli: 'npm run quantum:local-audit-quantum', route: '/encryption#local-audit-quantum', proofRoute: '', kind: 'audit', boundary: 'memoByRoot cold/warm · answers÷tokens · compose no-QPU/64bit honesty · NOT physical qubit FLOPS · certified=false · production reverse refused', inPanel: true, toolId: 'local-audit-quantum' },
+  { id: 'crypto-beyond-measure', title: 'Crypto toolkit beyond RSA measured', fold: 'cryptoToolkitBeyondRsaMeasured', pair: 'measure/crypto-beyond', cli: 'npm run quantum:crypto-beyond-measure', route: '/encryption#crypto-beyond-rsa', proofRoute: '', kind: 'toolkit', boundary: 'Timed PQC catalogs + Shor/ECC map + hash taxonomy + directional trinity — NOT FIPS/ISO certified / NOT production KEM', inPanel: true, toolId: 'crypto-beyond-measure' },
+  { id: 'prove-1tbit-encrypt', title: 'Prove 1 Tbit/s realtime encryption claim', fold: 'proveOneTbitRealtimeEncryptionClaim', pair: 'prove/1tbit-encrypt', cli: 'npm run quantum:prove-1tbit-encrypt', route: '/encryption#prove-1tbit', proofRoute: '', kind: 'measure', boundary: 'wire-crypto NOT proved (no AES bench); amortized-reuse-memo may prove extent÷memo — NOT wire AES-GCM / NOT FIPS', inPanel: true, toolId: 'prove-1tbit-encrypt' },
+  { id: 'max-bits-crypto', title: 'Maximum bits encrypt/decrypt/inverse/reverse', fold: 'maximumBitsEncryptDecryptInverseReverse', pair: 'max-bits/crypto', cli: 'npm run quantum:max-bits-crypto', route: '/encryption#max-bits-crypto', proofRoute: '', kind: 'ceiling', boundary: 'enc/dec=256 AES theorem · inv=4 digit · revClaim=min(catalog,hwWord) · sealed-catalog sample ≠ hw ceiling · refuseBeyond · certified=false', inPanel: true, toolId: 'max-bits-crypto' },
+  { id: 'bits-hardware', title: 'Max-bits boundary from hardware capabilities', fold: 'maxBitsHardwareBoundaryAgree', pair: 'bits/hardware', cli: 'npm run quantum:bits-hardware', route: '/encryption#bits-hardware', proofRoute: '', kind: 'ceiling', boundary: 'HARD: claimed max-bits ≡ f(cpus·workers·heap·word) ∩ refuseBeyond ∩ theorem constants · catalog≠hwCeiling', inPanel: true, toolId: 'bits-hardware' },
+  { id: 'prove-local-magnitudes-iso', title: 'Prove local vs ISO magnitudes all directions', fold: 'proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections', pair: 'prove/local-magnitudes-iso', cli: 'npm run quantum:prove-local-magnitudes-iso', route: '/encryption#prove-local-magnitudes-iso', proofRoute: '/proofs/encryption-honesty', kind: 'comparison', boundary: 'wire-crypto-security-bits proof-of-falsehood (sealed-catalog<<ML-KEM); structural/amort may prove >=100x non-wire only · certified=false · NOT ISO certified', inPanel: true, toolId: 'prove-local-magnitudes-iso' },
+  { id: 'encryption-reverse-verify', title: 'Encryption reverse verify (production browser tool)', fold: 'encryptionReverseVerify', pair: 'reverse/encryption-verify', cli: 'npm run quantum:encryption-reverse-verify', route: '/encryption', proofRoute: '', kind: 'toolkit', boundary: 'Production browser reverse tool · sealed-catalog moduli — production RSA break refused', inPanel: false, toolId: 'encryption-reverse-verify' },
+  { id: 'production-rsa-refuse-rosetta', title: 'Production RSA refuse completes quantum via rosetta', fold: 'productionRsaRefuseCompletesQuantumViaRosetta', pair: 'refuse/rosetta', cli: 'npm run quantum:production-rsa-refuse-rosetta', route: '/encryption#production-rsa-refuse-rosetta', proofRoute: '', kind: 'refuse', boundary: 'Sealed refuse receipts · incompleteOpen=0 · refuseBeyond stays · NOT production RSA break · certified=false', inPanel: false, toolId: 'production-rsa-refuse-rosetta' },
+  { id: 'iso-pqc-catalog', title: 'ISO/NIST PQC standards catalog', fold: 'isoNistPqcStandardsCatalog', pair: 'iso/pqc-catalog', cli: 'npm run quantum:iso-pqc-catalog', route: '/encryption#iso-pqc-catalog', proofRoute: '/proofs/encryption-honesty', kind: 'catalog', boundary: 'MODELED alignment catalog — NOT ISO certified / NOT FIPS validated', inPanel: true, toolId: 'iso-pqc-catalog' },
+  { id: 'poles-cross-pqc', title: 'Poles → cross signatures → PQC certificate structures', fold: 'polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates', pair: 'poles/cross-pqc', cli: 'npm run quantum:poles-cross-pqc', route: '/encryption#poles-cross-pqc', proofRoute: '', kind: 'toolkit', boundary: 'Cross ∈ merkaba∩rosetta · 60→90 · all-dir · sealed cert structures — NOT CA/PKI · certified=false', inPanel: true, toolId: 'poles-cross-pqc' },
+  { id: 'secp256k1-prime-invert-decode', title: 'secp256k1 field prime — seal · invert · decode', fold: 'secp256k1FieldPrimeInvertAndDecode', pair: 'secp256k1/invert-decode', cli: 'npm run quantum:secp256k1-prime-invert-decode', route: '/encryption#secp256k1-prime', proofRoute: '/proofs/secp256k1-field-prime', kind: 'catalog', boundary: 'Known SECG p from powers of two · construction invert + mod-p units · NOT Bitcoin ownership · certified=false', inPanel: true, toolId: 'secp256k1-prime-invert-decode' },
+  { id: 'iso-pqc-gap-fill', title: 'ISO/NIST PQC gap-fill all quantum directions', fold: 'isoPqcRequirementsGapFillAllQuantumDirections', pair: 'iso/pqc-gap-fill', cli: 'npm run quantum:iso-pqc-gap-fill', route: '/encryption#iso-pqc-gap-fill', proofRoute: '/proofs/encryption-honesty', kind: 'audit', boundary: 'covered|partial|gap toward ISO/NIST needs — isoOfficialStandard=false · certified=false · lab gaps unclosable', inPanel: false, toolId: 'iso-pqc-gap-fill' },
+  { id: 'standards-audit', title: 'Quantum standards audit (forward·inverse·reverse·10D)', fold: 'quantumStandardsAuditSuite', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', route: '/encryption#quantum-standards-audit', proofRoute: '/proofs/encryption-honesty', kind: 'audit', boundary: 'Alignment audit ≠ certification — covered|partial|gap · production browser reverse + digit/f/ratInv inverse + directional trinity', inPanel: true, toolId: 'standards-audit' },
+  { id: 'encryption-honesty', title: 'Encryption honesty — wire ≠ ISO · sealed-catalog reverse · PQC alignment', fold: 'quantumStandardsAuditSuite', pair: 'audit/standards', cli: 'npm run quantum:standards-audit', route: '/encryption#quantum-standards-audit', proofRoute: '/proofs/encryption-honesty', kind: 'proof', boundary: 'Structural/sealed-catalog receipts may hold; wire/FIPS/ISO claims stay false where sealed · production RSA break refused · certified=false', inPanel: false, toolId: 'standards-audit' },
+  { id: 'secp256k1-field-prime', title: 'secp256k1 field prime — seal · invert · decode (proof)', fold: 'secp256k1FieldPrimeInvertAndDecode', pair: 'secp256k1/invert-decode', cli: 'npm run quantum:secp256k1-prime-invert-decode', route: '/encryption#secp256k1-prime', proofRoute: '/proofs/secp256k1-field-prime', kind: 'proof', boundary: 'Structure of known SECG prime — NOT Bitcoin ownership · certified=false', inPanel: false, toolId: 'secp256k1-prime-invert-decode' },
 ] as const
 
 /** Comparison edges — one sealed relation per edge id. */
@@ -4902,7 +4902,7 @@ export function cryptoComparisonMesh(matrix: MindMatrix = buildMatrix()) {
       root,
       pair: 'crypto/comparison-mesh' as const,
       cli: 'npm run quantum:crypto-comparison-mesh-dry',
-      route: '/en/encryption#crypto-comparison-mesh',
+      route: '/encryption#crypto-comparison-mesh',
       statement: `Crypto comparison mesh — nodes=${CRYPTO_COMPARISON_MESH_NODES.length} edges=${CRYPTO_COMPARISON_MESH_EDGES.length} panel=${panelCount} proofs=${proofCount} comparisons=${comparisonCount}.`,
       boundary:
         'SINGLE SEALED SOURCE for crypto comparison nodes/edges. UI/CLI/MCP/toolbox/proofs recompute from CRYPTO_COMPARISON_MESH_*. ' +
@@ -4955,7 +4955,7 @@ export function cryptoComparisonMeshIsDry(matrix: MindMatrix = buildMatrix()) {
       root: merge(mesh.root, sealed.root),
       pair: 'crypto/comparison-mesh' as const,
       cli: 'npm run quantum:crypto-comparison-mesh-dry',
-      route: '/en/encryption#crypto-comparison-mesh',
+      route: '/encryption#crypto-comparison-mesh',
       statement: `cryptoComparisonMeshIsDry=${cryptoComparisonMeshIsDryOn} — single sealed mesh source · panel=${panelSections.length} tools=${toolSeeds.length}.`,
       boundary: mesh.boundary }
   })
@@ -5041,7 +5041,7 @@ export function productionBrowserToolsAreNotDemos(matrix: MindMatrix = buildMatr
       pair: 'tool/honest' as const,
       dual: 'demo/lie' as const,
       cli: 'npm run quantum:tool-honest',
-      route: '/en/encryption#tool-honest',
+      route: '/encryption#tool-honest',
       statement:
         `productionBrowserToolsAreNotDemos — misleadingDemoLabelRemoved=${misleadingDemoLabelRemoved} productionBrowserTools=${productionBrowserTools} refuseBeyondStays=${refuseBeyondStaysForKeyBreakClaims}.`,
       boundary:
@@ -5067,7 +5067,7 @@ export function runProductionBrowserToolsAreNotDemosExit(_root: string, _argv: r
 export const runToolHonestExit = runProductionBrowserToolsAreNotDemosExit
 export const runDemoLieExit = runProductionBrowserToolsAreNotDemosExit
 
-/** Chat intent phrases → /en/ssltest · pair ssl/test (functionality class: stack→receipt; quantumise ≠ mirror). */
+/** Chat intent phrases → /ssltest · pair ssl/test (functionality class: stack→receipt; quantumise ≠ mirror). */
 export const SSL_TEST_CHAT_PHRASES = [
   'ssl test',
   'ssltest',
@@ -5137,7 +5137,7 @@ function sslTestQuantumCoverage(covered: number, partial: number, gap: number, t
  * SSL test UI complete — quantumise stack→receipt (functionality class), not Qualys/ssllabs mirror.
  * Sealed recompute · rosetta/merkaba poles-cross · forward·inverse·reverse trinity · tool/honest.
  * Warm-reuse at computational FTL (memoByRoot cold/warm) · facet quantumiseAtFtlSpeed.
- * Pairs: ssl/test · test/ssl · soft quantumise/ftl · CLI npm run quantum:ssl-test · route /en/ssltest
+ * Pairs: ssl/test · test/ssl · soft quantumise/ftl · CLI npm run quantum:ssl-test · route /ssltest
  */
 export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel = '') {
   const hostKey = normalizeSslTestHostLabel(hostLabel).host || 'sealed'
@@ -5252,7 +5252,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         coverage: httpsOnlyPolicySealed ? 'covered' : 'gap',
         direction: 'forward',
         on: httpsOnlyPolicySealed,
-        route: '/en/encryption',
+        route: '/encryption',
         receipt: egress.root,
         note: egress.boundary.slice(0, 2 * 108),
       },
@@ -5262,7 +5262,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         coverage: honest.computes ? 'covered' : 'gap',
         direction: 'neither',
         on: honest.computes && honest.productionBrowserTools,
-        route: '/en/encryption#tool-honest',
+        route: '/encryption#tool-honest',
         receipt: honest.root,
         note: honest.boundary,
       },
@@ -5272,7 +5272,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         coverage: audit.gapCount > 0 ? 'partial' : 'covered',
         direction: 'both',
         on: audit.computes,
-        route: '/en/encryption#quantum-standards-audit',
+        route: '/encryption#quantum-standards-audit',
         receipt: audit.root,
         note: `covered=${audit.passCount} partial=${audit.partialCount} gap=${audit.gapCount}`,
       },
@@ -5282,7 +5282,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         coverage: trinity.computes ? 'covered' : 'gap',
         direction: 'both',
         on: forwardOn && inverseOn && reverseOn,
-        route: '/en/quantum-tools#directional-trinity',
+        route: '/quantum-tools#directional-trinity',
         receipt: trinity.root,
         note: 'inverse≠reverse except named coincidence',
       },
@@ -5292,7 +5292,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         coverage: poles.computes ? 'covered' : 'gap',
         direction: 'forward',
         on: poles.computes && poles.crossIsPartOfMerkabaRosetta && poles.certified === false,
-        route: '/en/encryption#poles-cross-pqc',
+        route: '/encryption#poles-cross-pqc',
         receipt: poles.root,
         note: 'Structural envelopes — NOT CA/PKI · NOT live cert chain',
       },
@@ -5302,7 +5302,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         coverage: novel.localSecurityProved && novel.overallWireClaimProved === false ? 'covered' : 'partial',
         direction: 'reverse',
         on: novel.localSecurityProved && novel.overallWireClaimProved === false,
-        route: '/en/encryption#prove-local-novel-encrypt',
+        route: '/encryption#prove-local-novel-encrypt',
         receipt: novel.root,
         note: 'wire unproved honest · production RSA break refused',
       },
@@ -5312,7 +5312,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         coverage: cyber.computes ? 'partial' : 'gap',
         direction: 'neither',
         on: cyber.computes,
-        route: '/en/encryption#eu-cyber-audit',
+        route: '/encryption#eu-cyber-audit',
         receipt: cyber.root,
         note: 'Checklist compose — accredited certs remain external gaps',
       },
@@ -5322,7 +5322,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
         coverage: 'gap',
         direction: 'neither',
         on: true,
-        route: '/en/ssltest#research-until',
+        route: '/ssltest#research-until',
         receipt: toUuid('ssltest:live-remote-tls:gap'),
         note: liveRemoteScanResidual,
       },
@@ -5431,7 +5431,7 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
       pair: 'ssl/test' as const,
       dual: 'test/ssl' as const,
       cli: 'npm run quantum:ssl-test',
-      route: '/en/ssltest',
+      route: '/ssltest',
       statement:
         `sslTestUiComplete — quantumGrade=${quantumGrade.coverage}·digit=${quantumGrade.digit}` +
         ` quantumiseAtFtlSpeed=${quantumiseAtFtlSpeed} speedup=${roundTo(aggregateSpeedup, 3)}×` +

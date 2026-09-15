@@ -1291,7 +1291,7 @@ const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦∣]|\bm
  * verbatim extraction second, undefined when neither exists. Every consumer (paper form, chat hits, wave atoms)
  * reads identities through this chain, so an upgrade to the extractor upgrades all surfaces at once. */
 /** servedRoute — the LOCALE LAW as a function (measured 2026-07-28 on both origins: `/quantum-tools` 200,
- * `/bg/quantum-tools` 200, `/en/quantum-tools` 404). English is served at the ROOT; only `/bg/` carries a
+ * `/bg/quantum-tools` 200, `/quantum-tools` 404). English is served at the ROOT; only `/bg/` carries a
  * prefix. Any emitted link passes through here, so a surface cannot publish a route the site does not serve. */
 export function servedRoute(path: string): string {
   return path.replace(/^\/en\//, '/')

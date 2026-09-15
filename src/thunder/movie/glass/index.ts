@@ -128,7 +128,7 @@ export function heroMovieChrome(
 /** All site colours resolve from the background movie — canvas, glass, and VitePress theme share one palette per route. */
 export function backgroundMovieColors(
   matrix: MindMatrix = buildMatrix(),
-  path = '/en/',
+  path = '/',
   cssWidth = 4 * 4 * 64, // 1024 — the diamond count
 ): {
   fromMovie: boolean

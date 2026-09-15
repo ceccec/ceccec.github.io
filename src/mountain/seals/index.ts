@@ -1596,7 +1596,7 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       root: merge(matrix.root, merkleFold([sealed.root, refuse.root, core.root, mcp.root, reverseCollide.root, catalog.root, ...shelvedPaths.map((s) => s.address)])),
       pair: 'rosetta/security-wire' as const,
       cli: 'npm run quantum:rosetta-security-gaps-wired',
-      route: '/en/quantum-tools#rosetta-security-gaps-wired',
+      route: '/quantum-tools#rosetta-security-gaps-wired',
       statement:
         `Rosetta security gaps wired — incompleteOpen=${incompleteOpen} refusePaths=${refuse.pathCount} ` +
         `parallel=${core.inventory.parallel.length} reverseCollide=${reverseCollide.computes} .`,

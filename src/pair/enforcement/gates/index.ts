@@ -487,7 +487,7 @@ export function importPathShowsDistanceInMigrationMatrix(root: string = enforcem
     computes,
     pair: IMPORT_DISTANCE_COMMAND_PAIR.pair,
     cli: 'npm run quantum:import-path-distance',
-    route: '/en/quantum-tools#import-path-distance',
+    route: '/quantum-tools#import-path-distance',
     anchor: 'import-path-distance',
     edgeCount,
     meanTreeHop,
@@ -746,7 +746,7 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
     census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, indexCount: united.computational.indexCount },
     pair: FOLDER_GRAVITY_COMMAND_PAIR.pair,
     cli: 'npm run quantum:folder-gravity',
-    route: '/en/quantum-tools#folder-gravity',
+    route: '/quantum-tools#folder-gravity',
     anchor: 'folder-gravity',
     facets,
     root: merkleFold([
@@ -869,7 +869,7 @@ export function gravityDryClean(root: string = enforcementScanRoot(), facts?: En
     pair: GRAVITY_DRY_COMMAND_PAIR.pair,
     pairs: [GRAVITY_DRY_COMMAND_PAIR.pair, DRY_CLEAN_COMMAND_PAIR.pair] as const,
     cli: 'npm run quantum:gravity-dry',
-    route: '/en/quantum-tools#fusion',
+    route: '/quantum-tools#fusion',
     anchor: 'gravity-dry',
     statement:
       `gravityDryClean — pullsToSrc=${gravityPullsToSrc ? 1 : 0} dryCleanOn=${dryCleanOn ? 1 : 0} ` +
@@ -969,7 +969,7 @@ export function srcFoldersOnlyIndexMayExist(root: string = enforcementScanRoot()
     pair: SRC_INDEX_COMMAND_PAIR.pair,
     pairs: [SRC_INDEX_COMMAND_PAIR.pair, FOLDER_INDEX_COMMAND_PAIR.pair] as const,
     cli: 'npm run quantum:src-index',
-    route: '/en/quantum-tools#fusion',
+    route: '/quantum-tools#fusion',
     statement:
       `srcFoldersOnlyIndex — onlyIndex=${onlyIndex ? 1 : 0} offenders=${codeOffenders.length} ` +
       `census=${united.computational.indexCount}/${FOLDED_CENSUS} residualNonCode=${residualNonCode.length}.`,
@@ -1080,7 +1080,7 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
     pair: SIZE_FREE_COMMAND_PAIR.pair,
     pairs: [SIZE_FREE_COMMAND_PAIR.pair, GRAVITY_GATE_COMMAND_PAIR.pair] as const,
     cli: 'npm run quantum:size-free',
-    route: '/en/quantum-tools#fusion',
+    route: '/quantum-tools#fusion',
     statement:
       `sizeFree — noByteLimit=${noByteSizeLimitWhenGravityAtGates ? 1 : 0} gravityAtGates=${gravityPullsAtGates ? 1 : 0} ` +
       `censusCountLaw=${censusCountLaw ? 1 : 0} byteHard=${byteSizeHard ? 1 : 0}.`,
@@ -1212,7 +1212,7 @@ export function codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix(root: 
     keptLocalPackages,
     pair: COMPACT_TYPES_CONSTANTS_COMMAND_PAIR.pair,
     cli: 'npm run quantum:compact-types-constants',
-    route: '/en/quantum-tools#compact-types-constants',
+    route: '/quantum-tools#compact-types-constants',
     anchor: 'compact-types-constants',
     facets,
     root: merkleFold([
@@ -1294,7 +1294,7 @@ export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
     computes: allOn && pairs.paired,
     pair: 'trinity/speedup' as const,
     cli: 'npm run quantum:trinity-speedup',
-    route: '/en/quantum-tools',
+    route: '/quantum-tools',
     facets,
     root: merkleFold([
       pairs.root,
@@ -1997,7 +1997,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     fold: 'readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra',
     pair: 'angle/readme',
     cli: 'npm run quantum:angle-readme',
-    route: '/en/quantum-tools#angle-readme',
+    route: '/quantum-tools#angle-readme',
     from: 'src/quantum/apps',
     to: 'src/quantum/apps',
     status: 'moved',
@@ -2009,7 +2009,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     fold: 'allColorsDryCleanWiredToRosettaAndThemes',
     pair: 'color/rosetta',
     cli: 'npm run quantum:color-rosetta',
-    route: '/en/quantum-tools#color-rosetta',
+    route: '/quantum-tools#color-rosetta',
     from: 'src/quantum/apps',
     to: 'src/quantum/apps',
     status: 'moved',
@@ -2021,7 +2021,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     fold: 'cssShowsTheHiddenGapsInDryFusion',
     pair: 'css/gaps',
     cli: 'npm run quantum:css-gaps',
-    route: '/en/quantum-tools#css-gaps',
+    route: '/quantum-tools#css-gaps',
     from: 'src/quantum/apps',
     to: 'src/quantum/apps',
     status: 'moved',
@@ -2033,7 +2033,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     fold: 'cryptoRelatedSurfacesAreDry',
     pair: 'crypto/comparison-mesh',
     cli: 'npm run quantum:crypto-comparison-mesh-dry',
-    route: '/en/quantum-encryption#crypto-comparison-mesh',
+    route: '/quantum-encryption#crypto-comparison-mesh',
     from: 'src/quantum/apps',
     to: 'src/quantum/apps',
     status: 'moved',
@@ -2045,7 +2045,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     fold: 'cryptoComparisonMeshIsDry',
     pair: 'crypto/comparison-mesh',
     cli: 'npm run quantum:crypto-comparison-mesh',
-    route: '/en/quantum-encryption#crypto-comparison-mesh',
+    route: '/quantum-encryption#crypto-comparison-mesh',
     from: 'src/water/encryption',
     to: 'src/water/encryption',
     status: 'moved',
@@ -2057,7 +2057,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     fold: 'invisibleGapsCaughtByGates',
     pair: 'gaps/invisible',
     cli: 'npm run quantum:gaps-invisible',
-    route: '/en/quantum-tools#gaps-invisible',
+    route: '/quantum-tools#gaps-invisible',
     from: 'src/quantum/apps',
     to: 'src/pair/enforcement/gates/strict/scan',
     status: 'moved',
@@ -2069,7 +2069,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     fold: 'rosettaSecurityGapsWired',
     pair: 'rosetta/security-wire',
     cli: 'npm run quantum:rosetta-security-gaps-wired',
-    route: '/en/quantum-tools#rosetta-security-gaps-wired',
+    route: '/quantum-tools#rosetta-security-gaps-wired',
     from: 'src/quantum/apps',
     to: 'src/mountain/seals',
     status: 'migrate-next',
@@ -2081,7 +2081,7 @@ export const MANUAL_MIGRATE_WAVE_TOOLS: readonly ManualMigrateWaveTool[] = [
     fold: 'dryCleanAllVueComponentsToTheUniversalSet',
     pair: 'vue/dry',
     cli: 'npm run quantum:vue-dry',
-    route: '/en/quantum-tools#vue-dry',
+    route: '/quantum-tools#vue-dry',
     from: 'src/quantum/apps',
     to: 'src/quantum/apps',
     status: 'residual',
@@ -2143,7 +2143,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     migrateTools.length === 1 &&
     movedTools.length === (5 + 1) &&
     residualTools.length === 1 &&
-    tools.every((t) => t.cli.startsWith('npm run quantum:') && t.pair.includes('/') && t.route.startsWith('/en/'))
+    tools.every((t) => t.cli.startsWith('npm run quantum:') && t.pair.includes('/') && t.route.startsWith('/'))
   const bitsCombinable =
     tools.every((t) => t.rosettaKind === 'tool' && t.id.length > 0 && t.fold.length > 0) &&
     softCmdPair('session', 'tools') &&
@@ -2283,7 +2283,7 @@ export function placeMerge(root: string = enforcementScanRoot(), facts?: Enforce
     pairs: ['place/merge', 'fold/merge', 'cmd/place', 'manual/quantum', 'place/audit', 'dry/full', 'work/wave', 'dry/quantumize'] as const,
     dualPair: 'fold/merge' as const,
     cli: 'npm run quantum:place-merge',
-    route: '/en/quantum-tools#place-merge',
+    route: '/quantum-tools#place-merge',
     heading: 'Place merge · fold merge · cmd place · manual quantum',
     statement:
       `placeMerge — placementAudited=${placementAudited ? 1 : 0} tools=${tools.length} migrate-next=${migrateTools.length} ` +
@@ -2374,7 +2374,7 @@ export function proseScience() {
     pair: 'prose/science' as const,
     dualPair: 'science/prose' as const,
     cli: 'npm run quantum:prose-science',
-    route: '/en/quantum-tools#prose-science',
+    route: '/quantum-tools#prose-science',
     heading: 'Prose science · open prose addressed',
     statement: `proseScience — ${assigned.length}/${rows.length} residual prose folds addressed across ${fieldsTouched.length} sciences · ${unaddressed.length} unaddressed measured.`,
     boundary:
@@ -2528,7 +2528,7 @@ export function proseMethodsCollapseToMatrix(root: string = enforcementScanRoot(
     pairs: ['prose/matrix', 'fold/merge', 'name/shrink'] as const,
     dualPair: 'name/shrink' as const,
     cli: 'npm run quantum:prose-matrix',
-    route: '/en/quantum-tools#prose-matrix',
+    route: '/quantum-tools#prose-matrix',
     heading: 'Prose matrix · fold merge · name shrink',
     statement:
       `proseMethodsCollapseToMatrix — proseAudited=${proseAudited ? 1 : 0} clustersMerged=${clustersMerged ? 1 : 0} ` +
@@ -2615,7 +2615,7 @@ export function autosaveMatrix() {
     pair: 'autosave/matrix' as const,
     dualPair: 'manual/autosave' as const,
     cli: 'npm run quantum:autosave-matrix',
-    route: '/en/quantum-tools#autosave-matrix',
+    route: '/quantum-tools#autosave-matrix',
     heading: 'Autosave matrix · manual autosave',
     statement: `autosaveMatrix — targets=${targets.length} unsaved=${unsaved.length} mergeRows=${mergeRows.length} · every prose directive holds a matrix row.`,
     boundary:
@@ -2672,7 +2672,7 @@ export function violationTools() {
     pair: 'violation/tool' as const,
     dualPair: 'tool/violation' as const,
     cli: 'npm run quantum:violation-tools',
-    route: '/en/quantum-tools#violation-tools',
+    route: '/quantum-tools#violation-tools',
     heading: 'Violation tools · imagined, computed, sealed',
     statement: `violationTools — ${rows.length} caught classes, ${rows.filter((row) => row.sealed).length} sealed by local tools; imagined → computed → never again.`,
     boundary:
@@ -2734,7 +2734,7 @@ export function manualGauge(root: string = enforcementScanRoot()) {
     pair: 'manual/gap' as const,
     dualPair: 'gap/manual' as const,
     cli: 'npm run quantum:manual-gauge',
-    route: '/en/quantum-tools#manual-gauge',
+    route: '/quantum-tools#manual-gauge',
     heading: 'Manual gauge · gaps in magnitudes',
     statement: `manualGauge — manual=${manual} rows · derived=${derived} · gap=${magnitude.toFixed(2)} orders.`,
     boundary:
@@ -2939,7 +2939,7 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     pair: 'gate/analytics' as const,
     dualPair: 'analytics/gate' as const,
     cli: 'npm run quantum:gate-analytics',
-    route: '/en/quantum-tools#gate-analytics',
+    route: '/quantum-tools#gate-analytics',
     heading: 'Gate analytics · slim tools · core algebra',
     statement:
       `gateAnalytics — onTrueDebt=${hardcodedOnTrueDebt} allowlists=${handListAllowlistResidual} ` +
@@ -3106,7 +3106,7 @@ export function gateLight(root: string = enforcementScanRoot()) {
     pair: 'gate/light' as const,
     dualPair: 'light/gate' as const,
     cli: 'npm run quantum:gate-light',
-    route: '/en/quantum-tools#gate-light',
+    route: '/quantum-tools#gate-light',
     heading: 'Gate light · more computed → lighter build',
     statement:
       `gateLight — coverage=${roundTo(computeCoverage, 4)} gateCost=${gateCost} buildNorm=${roundTo(buildNorm, 3)} ` +
@@ -3232,7 +3232,7 @@ export function measureImportExportCoreSprawl(root: string = enforcementScanRoot
     ]),
     pair: 'import/audit' as const,
     cli: 'npm run quantum:import-audit',
-    route: '/en/quantum-tools#import-audit',
+    route: '/quantum-tools#import-audit',
   }
 }
 
@@ -3277,7 +3277,7 @@ export function measureJudgmentClaimsInventory(root: string = enforcementScanRoo
     ]),
     pair: 'measure/decide' as const,
     cli: 'npm run quantum:measure-decide',
-    route: '/en/quantum-tools#measure-decide',
+    route: '/quantum-tools#measure-decide',
   }
 }
 
@@ -3540,7 +3540,7 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
     dualPair: 'matrix/tool' as const,
     pairs: ['tool/matrix', 'matrix/tool'] as const,
     cli: 'npm run quantum:tool-matrix',
-    route: '/en/quantum-tools#tool-matrix',
+    route: '/quantum-tools#tool-matrix',
     heading: 'Tool/matrix — fit the matrix or refuse',
     statement:
       `toolsFitTheMatrixOrRefuse — matrixFit=${matrixFit ? 1 : 0} incompleteRefused=${incompleteRefused ? 1 : 0} ` +
@@ -3605,7 +3605,7 @@ export function warnFix() {
     pair: 'warn/fix' as const,
     dualPair: 'fix/warn' as const,
     cli: 'npm run quantum:warn-fix',
-    route: '/en/quantum-tools#warn-fix',
+    route: '/quantum-tools#warn-fix',
     heading: 'Warn fix · derivation heals, suppression never',
     statement: `warnFix — ${derivable.length} derivable WARN streams (correctors named) · ${rows.length - derivable.length} advisory · suppression forbidden.`,
     boundary:
@@ -3707,7 +3707,7 @@ export function claimAudit() {
     pair: 'claim/audit' as const,
     dualPair: 'audit/claim' as const,
     cli: 'npm run quantum:claim-audit',
-    route: '/en/quantum-tools#claim-audit',
+    route: '/quantum-tools#claim-audit',
     heading: 'Claim audit · the inverse completes itself',
     statement: `claimAudit — ${claims.length} discoveries claimed-in-rosetta/unclaimed-toward-prizes · round-trip identity ✓ · tamper refutes ✓ · anchors standard-validated.`,
     boundary:
@@ -3819,7 +3819,7 @@ export function queueNext(root: string = enforcementScanRoot()) {
     pair: 'queue/next' as const,
     dualPair: 'next/queue' as const,
     cli: 'npm run quantum:next',
-    route: '/en/quantum-tools#queue-next',
+    route: '/quantum-tools#queue-next',
     heading: 'Queue next · the keystroke retired',
     statement: `queueNext — NEXT: ${next.wave} (score ${next.score}); ${scored.length} rows totally ordered by derived arithmetic.`,
     boundary:
@@ -3879,7 +3879,7 @@ export function wordSpeed() {
     pair: 'word/speed' as const,
     dualPair: 'speed/word' as const,
     cli: 'npm run quantum:word-speed',
-    route: '/en/quantum-tools#word-speed',
+    route: '/quantum-tools#word-speed',
     heading: 'Word speed · the shrink is scale-invariant',
     statement: `wordSpeed — ${mergeRows.length} names solved · ${roundTo(ratio, 2)}× source-layer speedup, scale-invariant · address layer fixed-width (never the bottleneck).`,
     boundary:
@@ -4133,7 +4133,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     pairs: ['plan/trinity', 'trinity/plan', 'plan/cross'] as const,
     dualPair: 'trinity/plan' as const,
     cli: 'npm run quantum:plan-trinity',
-    route: '/en/quantum-tools#plan-trinity',
+    route: '/quantum-tools#plan-trinity',
     statement:
       `planTrinity — plansInTrinities=${plansInTrinities ? 1 : 0} crossFoldWeave=${crossFoldWeave ? 1 : 0} ` +
       `matrixNext=${matrixNext.id} (${matrixNext.pair}) proseRejected=${prosePlanRejected ? 1 : 0} ` +
@@ -4226,7 +4226,7 @@ export function trinitySpeedStack(root: string = enforcementScanRoot()) {
     pair: 'trinity/speed' as const,
     dualPair: 'speed/trinity' as const,
     cli: 'npm run quantum:trinity-speed',
-    route: '/en/quantum-tools#trinity-speed',
+    route: '/quantum-tools#trinity-speed',
     heading: 'Trinity speed stack · magnitudes add per mechanism wired',
     statement: `trinitySpeedStack — chat wired · O(1) shard coordination · stacked ${roundTo(stackOrders, 2)} orders (collision ${roundTo(collisionOrders, 2)} + link ${roundTo(membershipOrders, 2)}) over N=${n}, growing with N.`,
     boundary:
@@ -4277,7 +4277,7 @@ export function reasoningEdge() {
     pair: 'reasoning/edge' as const,
     dualPair: 'edge/reasoning' as const,
     cli: 'npm run quantum:reasoning-edge',
-    route: '/en/quantum-tools#reasoning-edge',
+    route: '/quantum-tools#reasoning-edge',
     heading: 'Reasoning edge · computation beats reasoning where a tool exists',
     statement: `reasoningEdge — ${savedStrategies} winning strategies saved (reasoning failure-modes → gates); bounded win computes, "beat any model on any task" FLAGGED.`,
     boundary:
@@ -4333,7 +4333,7 @@ export function overclaimComputes(root: string = enforcementScanRoot()) {
     pair: 'overclaim/compute' as const,
     dualPair: 'compute/overclaim' as const,
     cli: 'npm run quantum:overclaim-computes',
-    route: '/en/quantum-tools#overclaim-computes',
+    route: '/quantum-tools#overclaim-computes',
     heading: 'Overclaim computes · the boundary is a theorem, not a flag',
     statement: `overclaimComputes — claim = ${claimedExtent} counted tool-covered wins; overclaim = "any task", refuted by cardinality (finite < unbounded), computed not flagged.`,
     boundary:
@@ -4384,7 +4384,7 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
     pair: 'revolution/approach' as const,
     dualPair: 'approach/revolution' as const,
     cli: 'npm run quantum:revolution-approach',
-    route: '/en/quantum-tools#revolution-approach',
+    route: '/quantum-tools#revolution-approach',
     heading: 'Revolutionary approach · grand ideas held by computed boundaries',
     statement: `revolutionaryApproach — ${revolutionaryClaims} revolutionary claims admitted, each held by a computed boundary (not prose); the revolution is the method.`,
     boundary:
@@ -4437,7 +4437,7 @@ export function orientationCheck(root: string = enforcementScanRoot()) {
     pair: 'orientation/check' as const,
     dualPair: 'check/orientation' as const,
     cli: 'npm run quantum:orientation-check',
-    route: '/en/quantum-tools#orientation-check',
+    route: '/quantum-tools#orientation-check',
     heading: 'Orientation check · disorientation is an un-used tool',
     statement: `orientationCheck — ${signals.filter((row) => row.present).length}/${signals.length} disorientation signals each map to a live orienting tool; the remedy is the tool, not thought.`,
     boundary:
@@ -4508,7 +4508,7 @@ export function reactivityMagnitude() {
     pair: 'reactivity/magnitude' as const,
     dualPair: 'magnitude/reactivity' as const,
     cli: 'npm run quantum:reactivity-magnitude',
-    route: '/en/quantum-tools#reactivity-magnitude',
+    route: '/quantum-tools#reactivity-magnitude',
     heading: 'Reactivity magnitude · react to the delta in O(frontier)',
     statement: `reactivityMagnitude — ${n} nodes · avg frontier ${roundTo(avgFrontier, 1)} · react-to-delta O(frontier) vs re-derive O(N): ${roundTo(orders, 2)} orders, growing with sparsity.`,
     boundary:
@@ -4677,7 +4677,7 @@ export function feedGatesIndexToChat(root: string = enforcementScanRoot()) {
     pair: GATES_CHAT_COMMAND_PAIR.pair,
     pairs: [GATES_CHAT_COMMAND_PAIR.pair, 'chat/gates'] as const,
     cli: 'npm run quantum:feed-gates',
-    route: '/en/quantum-tools#mcp-quantum-chat',
+    route: '/quantum-tools#mcp-quantum-chat',
     anchor: 'feed-gates',
     heading: 'Gates index → chat · improve inventory',
     statement,

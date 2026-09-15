@@ -150,7 +150,7 @@ const waveLabel = (provedBy: string) =>
     <header class="theorems-panel__head">
       <h2 id="open-frontiers">{{ t('Open frontiers') }}</h2>
       <p class="theorems-panel__provenance">
-        <a href="/en/quantum-tools#frontier-neighbour">{{ t('frontier neighbour graph') }}</a>
+        <a href="/quantum-tools#frontier-neighbour">{{ t('frontier neighbour graph') }}</a>
         · {{ t('neighbours from algebraic entanglement') }}
       </p>
     </header>

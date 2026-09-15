@@ -433,7 +433,7 @@ export function zeitwerkPort(slug = 'automount') {
 }
 
 function parseHarmonicRequest(path: string) {
-  const locale = path.startsWith('/bg/') || path === '/bg' ? 'bg' : path.startsWith('/en/') || path === '/en' ? 'en' : 'gla'
+  const locale = path.startsWith('/bg/') || path === '/bg' ? 'bg' : path.startsWith('/') || path === '/en' ? 'en' : 'gla'
   const stripped = path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/^\//, '')
   return { locale, segments: stripped.split('/').filter(Boolean), path: stripped }
 }
@@ -486,8 +486,8 @@ export function catchAllComputesDecodedDestination() {
   const servedSet = new Set(staticPages().map((page) => page.slug))
   // (A) crafted URL requests through the full resolver — where does each land?
   const urlTrials = [
-    { url: '/en/quantum-encryption', expect: 'encryption', why: 'overclaim prefix stripped by computation → served word' },
-    { url: '/en/encryption', expect: 'encryption', why: 'served slug is its own canonical (identity)' },
+    { url: '/quantum-encryption', expect: 'encryption', why: 'overclaim prefix stripped by computation → served word' },
+    { url: '/encryption', expect: 'encryption', why: 'served slug is its own canonical (identity)' },
     { url: '/bg/quantum-tools', expect: 'quantum-tools', why: 'served brand slug preserved — tools is not served, no false strip' },
     { url: '/academy', expect: ROUTE_ALIASES['academy'] ?? 'academy', why: 'irreducible semantic alias resolves via the seed' },
     { url: '/en/no-such-page-zz', expect: 'no-such-page-zz', why: 'unknown slug passes through untouched (→ 404)' },

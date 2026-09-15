@@ -969,7 +969,7 @@ export function fusionReactorPartsDeepResearched(matrix: MindMatrix = buildMatri
     { facet: 'seven documented parts + one emerging — peer-reviewed milestones sealed per part', on: documented.length === 7 && parts.filter((p) => p.band === 'emerging').length === 1 },
     { facet: 'legend flagged — cold fusion, imminent power, vacuum free energy, fringe cosmology excluded', on: FLAGGED.length === 4 && FLAGGED.every((entry) => entry.why.length > 0) },
     { facet: 'each part maps to dry plasma — content-addressed seeds, 128-bit containment, tier caps', on: containment.contained && tiers.proven && seeds.count === parts.length },
-    { facet: 'client path stays O(1) — reactor parts are SSR gate folds, not browser O(reactor) loops', on: typeof window === 'undefined' || fusionReactorPartsDryPlasmaStreams('/en/', matrix).length <= tiers.seedBundles + 1 },
+    { facet: 'client path stays O(1) — reactor parts are SSR gate folds, not browser O(reactor) loops', on: typeof window === 'undefined' || fusionReactorPartsDryPlasmaStreams('/', matrix).length <= tiers.seedBundles + 1 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fusion-reactor-deep:${entry.facet}:${entry.on}`) }))
   return {
     researched: facets.every((entry) => entry.on),
@@ -2042,7 +2042,7 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
       root: merkleFold([w1.root, w2.root, fusion.root, movie.root, sealed.root, toUuid(`honest-rev-w3:${holds}`)]),
       cli: 'npm run quantum:honest-revolution-w3',
       pair: 'tamper/impossible',
-      route: '/en/quantum-tools#honest-revolution-w3',
+      route: '/quantum-tools#honest-revolution-w3',
       surfaces: { fusion: '/quantum-fusion.json', agents: '/agents.json' },
       statement: holds
         ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine classical-64bit.'

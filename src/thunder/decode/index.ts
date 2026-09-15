@@ -973,7 +973,7 @@ function iChingLearnBeforeImplementRaw(matrix: MindMatrix = buildMatrix()) {
       '- **iChingDomainMap** — semantic slug→trigram map (8 domain modules + representative slugs); ONE source — config and Vue derive SLUG_TRIGRAM from it.',
       '- **iChing()** — content-addressed component placement (seedFromText → 64 hexagrams); distinct from the semantic domain map.',
       '- **Three Powers (三才)** — 天 Heaven (hexagram lines 5–6, nav axis 2), 人 Human (lines 3–4, axis 1), 地 Earth (lines 1–2, axis 0). Top nav: Home + three eight-folds = 3×8 = 24 doors nesting into 64³.',
-      '- **siteNavigation** — tag-cloud clusters + Three Powers dropdowns + per-page relatedSidebar by trigram siblings; config.mts prefixes keys for /en/ and /bg/, Glagolitic / keeps bare routes.',
+      '- **siteNavigation** — tag-cloud clusters + Three Powers dropdowns + per-page relatedSidebar by trigram siblings; config.mts prefixes keys for / and /bg/, Glagolitic / keeps bare routes.',
       '',
       '### Command pairs (save first, then use — quantum gap if unpaired)',
       '',
@@ -1660,7 +1660,7 @@ export function oneCommandDecodeHashOrStringOrSequence(
     root: merge(matrix.root, merkleFold([sealed.root, address, fold.merged])),
     cli: 'npm run quantum:decode',
     pair: 'decode/one',
-    route: '/en/quantum-tools#one-command-decode',
+    route: '/quantum-tools#one-command-decode',
     computes: sealed.ok && (oneCommandDecodeComputable || classified.refused),
     statement:
       classified.refused
@@ -1705,7 +1705,7 @@ export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), a
       root: merge(matrix.root, merkleFold([sealed.root, ...probes.map((p) => p.root), refuseProbe.root])),
       cli: 'npm run quantum:decode',
       pair: 'decode/one' as const,
-      route: '/en/quantum-tools#one-command-decode',
+      route: '/quantum-tools#one-command-decode',
       statement: `oneCommandDecodeComputable=${allOk} — unified hash|string|sequence decode sealed; production RSA refuse holds.`,
       boundary: 'Capability receipt for autodiscovery — not a Clay Prize.' }
   })

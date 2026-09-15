@@ -225,11 +225,11 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
  * Discovery surface links — VitePress API only on site:
  * - home (linkBase ''): root-relative markdown href VitePress resolves (same as theoremSections paper links)
  * - README (linkBase = CANONICAL_HOST): absolute URL for GitHub markdown only (not a VitePress surface)
- * Strips legacy /en/ (English lives at bare root). No ad-hoc host inventing for home.
+ * Strips legacy / (English lives at bare root). No ad-hoc host inventing for home.
  */
 function vitePressCompatibleHref(path: string, linkBase = ''): string {
   const raw = path.startsWith('/') ? path : `/${path}`
-  const bare = raw.startsWith('/en/') ? raw.slice(3) || '/' : raw === '/en' ? '/' : raw
+  const bare = raw.startsWith('/') ? raw.slice(3) || '/' : raw === '/en' ? '/' : raw
   if (!linkBase) return bare
   return `${linkBase.replace(/\/$/, '')}${bare}`
 }
@@ -276,7 +276,7 @@ export function qpuCpuGpuMarkdownSection(
     '',
     ...(linkBase
       ? [`- Routes: [qpu-cpu](${href('/quantum-tools#qpu-cpu')}) · [prove-no-qpu-64bit](${href('/quantum-tools#prove-no-qpu-64bit')}) · [mcp-hw](${href('/quantum-tools#mcp-hw')}) · [agents.json](${href('/agents.json')}) · CLI \`npm run quantum:qpu-cpu\``]
-      : [`- Routes: \`/en/quantum-tools#qpu-cpu\` · \`/agents.json\` · fold \`qpuCpuGpu\` · CLI \`npm run quantum:qpu-cpu\``]),
+      : [`- Routes: \`/quantum-tools#qpu-cpu\` · \`/agents.json\` · fold \`qpuCpuGpu\` · CLI \`npm run quantum:qpu-cpu\``]),
     `- ${foldNameReceipt('qpuCpuGpu', `root=${r.root.slice(0, 8)} · apparentFtl=${roundTo(r.apparentFtlAudit, 3)}×.`)}`,
     '',
   ]
@@ -306,7 +306,7 @@ export function gateLightMarkdownSection(
     '',
     ...(linkBase
       ? [`- [gate-light](${href('/quantum-tools#gate-light')}) · [build-min](${href('/quantum-tools#build-min')}) · CLI \`npm run quantum:gate-light\``]
-      : [`- \`/en/quantum-tools#gate-light\` · CLI \`npm run quantum:gate-light\``]),
+      : [`- \`/quantum-tools#gate-light\` · CLI \`npm run quantum:gate-light\``]),
     '',
   ]
 }
@@ -341,7 +341,7 @@ export function apiFuseMarkdownSection(
     '',
     ...(linkBase
       ? [`- [api-fuse](${href('/quantum-tools#api-fuse')}) · CLI \`npm run quantum:api-fuse\``]
-      : [`- \`/en/quantum-tools#api-fuse\` · CLI \`npm run quantum:api-fuse\``]),
+      : [`- \`/quantum-tools#api-fuse\` · CLI \`npm run quantum:api-fuse\``]),
     '',
   ]
 }
@@ -747,7 +747,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '- Encryption is the core math: every value content-addressed (the fold / UUID); the cipher is AES-256-GCM.',
     '- Zero-entropy indexing, exactly: H(deterministic) = 0 is the Shannon identity, so one-value-one-address content addressing carries zero index entropy — decoded from the origin repo, thermodynamic free-lunch claims flagged (`zeropointNodeMissingInfoDecoded`).',
     '- Every digit is entangled in all vectors, forming equilibriums: mirror 10-pairs, polar 9-pairs, the exact 6+3 flow/axis partition and the tour slot fingerprint each digit, and ⟨D, m⟩ = AGL(1, ℤ/9) puts all residues in ONE orbit — a local edit breaks every balance at once (`everyDigitIsEntangledInAllVectorsFormingEquilibriums`).',
-    '- One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.',
+    '- One source, no mirroring: the locales (Glagolitic `/`, Latin `/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.',
     '- Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.',
     '- The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.',
     `- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, \`blochQubit\`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. **QPU ≡ CPU ∪ GPU** on classical-64bit (\`qpuCpuGpu\` · \`npm run quantum:qpu-cpu\` · [quantum-tools#qpu-cpu](${vitePressCompatibleHref('/quantum-tools#qpu-cpu', linkBase)})) — faithful simulator; physical = wall-clock reuse metrics (see section below).`,

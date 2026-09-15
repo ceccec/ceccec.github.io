@@ -336,17 +336,17 @@ export type MovieQuantumGapSurface = {
 
 /** Theme/movie mounts — closed when on ONE hero clock or explicitly non-loop (idle timer / SMIL). */
 const MOVIE_CLOCK_SURFACE_ATTESTATION: readonly Omit<MovieQuantumGapSurface, 'receipt'>[] = [
-  { id: 'BackgroundMovie', surface: '.vitepress/theme/components/BackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'page hero rides useVisibleMovieCanvas → subscribeHeroClock + harmonizeField', route: '/en/' },
-  { id: 'HeroBackgroundLayer', surface: '.vitepress/theme/components/HeroBackgroundLayer.vue', driver: 'idle-timer', kind: 'layout', closed: true, criterion: 'immersive/screensaver idle setTimeout — not an animation loop (oneClockProcessLaw boundary)', route: '/en/' },
-  { id: 'CardBackgroundMovie', surface: '.vitepress/theme/components/CardBackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'card plasma on hero clock + harmonizeField (same always-on path as page movie)', route: '/en/' },
-  { id: 'LinkedHeroCard', surface: '.vitepress/theme/components/LinkedHeroCard.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'UiCardShell → CardBackgroundMovie; heroPreviewForRoute seeds hue/seed', route: '/en/' },
-  { id: 'DoubleTorusExperience', surface: '.vitepress/theme/components/DoubleTorusExperience.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'drawHeroMovieFrame(sharedHeroAt) + harmonizeField on hero clock', route: '/en/' },
-  { id: 'LivingTorus', surface: '.vitepress/theme/components/LivingTorus.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'drawLivingTorusFrame on useVisibleMovieCanvas → one hero clock', route: '/en/' },
+  { id: 'BackgroundMovie', surface: '.vitepress/theme/components/BackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'page hero rides useVisibleMovieCanvas → subscribeHeroClock + harmonizeField', route: '/' },
+  { id: 'HeroBackgroundLayer', surface: '.vitepress/theme/components/HeroBackgroundLayer.vue', driver: 'idle-timer', kind: 'layout', closed: true, criterion: 'immersive/screensaver idle setTimeout — not an animation loop (oneClockProcessLaw boundary)', route: '/' },
+  { id: 'CardBackgroundMovie', surface: '.vitepress/theme/components/CardBackgroundMovie.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'card plasma on hero clock + harmonizeField (same always-on path as page movie)', route: '/' },
+  { id: 'LinkedHeroCard', surface: '.vitepress/theme/components/LinkedHeroCard.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'UiCardShell → CardBackgroundMovie; heroPreviewForRoute seeds hue/seed', route: '/' },
+  { id: 'DoubleTorusExperience', surface: '.vitepress/theme/components/DoubleTorusExperience.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'drawHeroMovieFrame(sharedHeroAt) + harmonizeField on hero clock', route: '/' },
+  { id: 'LivingTorus', surface: '.vitepress/theme/components/LivingTorus.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'drawLivingTorusFrame on useVisibleMovieCanvas → one hero clock', route: '/' },
   { id: 'HumanDesignBodyGraph', surface: '.vitepress/theme/components/HumanDesignBodyGraph.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'body-graph paint on useVisibleMovieCanvas → one hero clock', route: '/en/quantum/os' },
-  { id: 'ProofAnimation', surface: '.vitepress/theme/components/ProofAnimation.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'theorem glyph canvases on subscribeHeroClock — private rAF retired', route: '/en/quantum-tools' },
-  { id: 'ModelCardPages', surface: '.vitepress/theme/components/ModelCardPages.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'uuidHero SVG proof on subscribeHeroClock — createAnimationEngine second loop retired', route: '/en/' },
-  { id: 'useSharedHero', surface: '.vitepress/lib/movie-canvas.ts', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'useSharedHero wraps sharedHeroAt on one hero clock (hero/shared-realtime)', route: '/en/' },
-  { id: 'ui-skeleton-pulse', surface: 'src/render/ui/style.css', driver: 'smil-css', kind: 'smil-compete', closed: true, criterion: 'CSS @keyframes skeleton pulse is chrome, not field phase — does not own a second rAF', route: '/en/' },
+  { id: 'ProofAnimation', surface: '.vitepress/theme/components/ProofAnimation.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'theorem glyph canvases on subscribeHeroClock — private rAF retired', route: '/quantum-tools' },
+  { id: 'ModelCardPages', surface: '.vitepress/theme/components/ModelCardPages.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'uuidHero SVG proof on subscribeHeroClock — createAnimationEngine second loop retired', route: '/' },
+  { id: 'useSharedHero', surface: '.vitepress/lib/movie-canvas.ts', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'useSharedHero wraps sharedHeroAt on one hero clock (hero/shared-realtime)', route: '/' },
+  { id: 'ui-skeleton-pulse', surface: 'src/render/ui/style.css', driver: 'smil-css', kind: 'smil-compete', closed: true, criterion: 'CSS @keyframes skeleton pulse is chrome, not field phase — does not own a second rAF', route: '/' },
 ] as const
 
 /** Read movie painter sources — node/SSR only; '' in browser (no node:fs in client bundle). */
@@ -544,7 +544,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       kind: 'layout',
       closed: endless.endless,
       criterion: 'global layout slot + per-page seed — endlessBackgroundMovie.endless',
-      route: '/en/',
+      route: '/',
       receipt: toUuid(`movie-gap:endless:${endless.endless}`) })
     surfaces.push({
       id: 'staticIsEventualGapInMovieFusion',
@@ -553,7 +553,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       kind: 'static-fusion',
       closed: staticFusion.fused,
       criterion: 'hero/icon/manifest/theme recompute from plasma — legacy hex = gap',
-      route: '/en/',
+      route: '/',
       receipt: toUuid(`movie-gap:static-fusion:${staticFusion.fused}`) })
     surfaces.push({
       id: 'movieAllElementsAreTheorems',
@@ -562,7 +562,7 @@ export function movieQuantumGapsInventory(matrix: MindMatrix = buildMatrix(), at
       kind: 'static-fusion',
       closed: allTheorems.allElementsAreTheorems && allTheorems.centerIsVortexNotBoundary,
       criterion: 'every paint element binds a theorem — centre is vortex throat not wet boundary circle',
-      route: '/en/',
+      route: '/',
       receipt: toUuid(`movie-gap:all-theorems:${allTheorems.allElementsAreTheorems}`) })
     const privateRafOpen = surfaces.some((s) => !s.closed && (s.kind === 'private-raf' || s.driver === 'private-raf'))
     const multiClockOpen = surfaces.some((s) => !s.closed && s.kind === 'multi-clock')
@@ -670,7 +670,7 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
       root: merkleFold([sealed.root, theorems.root, pairFold.merged, ...layers.map((l) => l.receipt)]),
       pair: 'movie/center' as const,
       cli: 'npm run quantum:movie-center',
-      route: '/en/quantum-tools#movie-center',
+      route: '/quantum-tools#movie-center',
       statement:
         `movieUnbalancedAroundCenterIsCrack · found=${found} fixed=${fixed} remaining=${remaining}`,
       boundary: 'Layout/canvas balance about centre. Vortex≠ball.',
