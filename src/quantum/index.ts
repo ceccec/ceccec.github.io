@@ -11,7 +11,7 @@
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
 import { phase } from '../6/4/index.ts'
 import { dims, dimWalk } from './mountain/dimensions/index.ts'
-import { vortexStrokeKinds } from '../mountain/vortex/index.ts'
+import { vortexStrokeKinds, twoBySevenPoints } from '../mountain/vortex/index.ts'
 import { perspective, rotate3, branch } from './wind/geometry/index.ts'
 import { drawFlower, drawCalendars } from './wind/geometry/index.ts'
 import { drawBursts, type Burst } from './fire/experiments/index.ts'
@@ -639,6 +639,36 @@ export function cardFieldScroll(rectTopCss: number, cardH: number, winH: number)
   return cardH / 2 - (winH / 2 - rectTopCss)
 }
 
+// THE 2×7 FOLDS INTO THE 1+6 AND BACK. Fourteen spoke ends — the seven rosetta rays, a life end and a death end each —
+// travel in pairs onto seven seats: the centre and the six digits of the doubling orbit, whose six steps then read as a
+// hexagon. twoBySevenFoldsIntoOnePlusSix (src/mountain/vortex) counts the same points this draws. Three raster calls a
+// frame: one path of spokes, one hexagon, one path of seats — so the scene costs almost nothing it did not replace.
+let morphOrbit: readonly number[] | null = null
+function drawTwoBySevenMorph(ctx: CanvasRenderingContext2D, cx: number, cy: number, R: number, p: number, hue: number, dark: boolean): void {
+  const orbit = (morphOrbit ??= [...new Set((vortexKinds ??= vortexStrokeKinds()).filter((k) => k.kind === 'orbit').flatMap((k) => [k.from, k.to]))])
+  const m = (1 - cos(p * TAU * 2)) / 2 // 0 = the 2×7, 1 = the 1+6 — twice around the hero cycle
+  const spin = p * TAU
+  const pts = twoBySevenPoints(m, orbit)
+  const paint = movieCanvasPolarity(dark)
+  const X = (q: { x: number; y: number }) => cx + (q.x * cos(spin) - q.y * sin(spin)) * R
+  const Y = (q: { x: number; y: number }) => cy + (q.x * sin(spin) + q.y * cos(spin)) * R
+  ctx.lineWidth = 1
+  ctx.strokeStyle = paint(hue, (1 / 5) * (1 - m) + (1 / (5 * 4)), { L: 5 / 8 })
+  ctx.beginPath()
+  for (let i = 0; i + 1 < pts.length; i += 2) { ctx.moveTo(X(pts[i]!), Y(pts[i]!)); ctx.lineTo(X(pts[i + 1]!), Y(pts[i + 1]!)) }
+  ctx.stroke()
+  const seats = pts.filter((q) => q.end === 'death' && q.ray > 0)
+  ctx.strokeStyle = paint((hue + (9 * 5 * 4)) % 360, (1 / 4) * m, { L: 3 / 4 })
+  ctx.beginPath()
+  seats.forEach((q, i) => (i === 0 ? ctx.moveTo(X(q), Y(q)) : ctx.lineTo(X(q), Y(q))))
+  ctx.closePath()
+  ctx.stroke()
+  ctx.fillStyle = paint(hue, (1 / 4) + (1 / 4) * m, { L: (9 + 2) / 16 })
+  ctx.beginPath()
+  for (const q of pts) { ctx.moveTo(X(q) + 2, Y(q)); ctx.arc(X(q), Y(q), 2, 0, TAU) }
+  ctx.fill()
+}
+
 /** Holographic hero movie = quantum plasma ball — one frame, one centre void, one phase clock. */
 function paintHolographicPlasmaHeroMovie(
   ctx: CanvasRenderingContext2D,
@@ -664,6 +694,8 @@ function paintHolographicPlasmaHeroMovie(
   }
   // The fused force substrate first — the one analog field every other layer composes onto.
   drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers, scene.palette.dark)
+  // The 2×7 folding into the 1+6 and back, on the same clock — twoBySevenFoldsIntoOnePlusSix counts these points.
+  drawTwoBySevenMorph(ctx, cx, cy, min(w, h) * (9 / (5 * 5 * 2)), scene.p, hueShift, scene.palette.dark)
   drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length)
   // The DEATH counter-flow — the inward (contraction/decay) torus spiralling into the SAME throat the
   // life rays radiate out of. Drawn behind the hero + plasma ball so it reads as the in-flow that bounds
@@ -1001,7 +1033,17 @@ const FIELD_LAYER_DOMAINS: readonly { readonly trigram: string; readonly force: 
  * Each layer keys to a trigram (domain), a rosetta ray (perspective), and a force/topology role.
  * All derive from the field's content-address + A432 hue — no per-layer hand-tuning.
  */
+// The eight layer addresses depend only on the field's root, and the painters asked for them sixty times a second.
+// Computed once per root and remembered — the same strings, bounded so a changing root cannot grow the memory.
+const FIELD_LAYER_ROOTS = new Map<string, readonly string[]>()
 export function fieldLayers(field: AnimationField): readonly FieldLayer[] {
+  let roots = FIELD_LAYER_ROOTS.get(field.root)
+  if (!roots) {
+    roots = FIELD_LAYER_DOMAINS.map((domain, i) => toUuid(`field-layer:${field.root}:${domain.trigram}:${i % 7}`))
+    if (FIELD_LAYER_ROOTS.size >= (4 * 64)) FIELD_LAYER_ROOTS.clear()
+    FIELD_LAYER_ROOTS.set(field.root, roots)
+  }
+  const known = roots
   return FIELD_LAYER_DOMAINS.map((domain, i) => {
     const ray = i % 7
     return {
@@ -1009,7 +1051,7 @@ export function fieldLayers(field: AnimationField): readonly FieldLayer[] {
       ray,
       force: domain.force,
       hue: (field.hue + (ray * 360) / 7) % 360,
-      root: toUuid(`field-layer:${field.root}:${domain.trigram}:${ray}`) }
+      root: known[i]! }
   })
 }
 

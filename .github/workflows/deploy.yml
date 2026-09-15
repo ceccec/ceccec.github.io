@@ -73,6 +73,11 @@ jobs:
       # the live site keeps its last honest version. It reads the committed floors, so it can only hold or tighten.
       - name: The movie proves only what could fail (verify:movie)
         run: npm run -s verify:movie
+      # ALL ANIMATED, NO EXTRA POWER: one animation clock, and a hero frame may not grow its draw calls — a new scene
+      # pays for its strokes by saving them elsewhere. Counted in node against a recording context, so no runner's
+      # speed can move the floor.
+      - name: All animated, no extra power (verify:power)
+        run: npm run -s verify:power
       - name: Build with VitePress
         run: pnpm run docs:build
         env:

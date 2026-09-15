@@ -2,10 +2,10 @@
 import type { MindMatrix } from '../../types/index.ts'
 import { earned, frequencyToLight, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7/index.ts'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute/index.ts'
-import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev } from '../../0/index.ts'
+import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev, max, min, round } from '../../0/index.ts'
 import { merkaba } from '../geometry/index.ts'
 import { merkabaComputes, merkabasInDoubleTorus } from '../topology/index.ts'
-import { TAU } from '../../3/7/index.ts'
+import { TAU, ROSETTA_SEVEN } from '../../3/7/index.ts'
 export { survive, admixToward, injectError, markovStep, markovEvolve, stationary, chsh, residueVector, realign, phaseDrift, slip, inductionStep, inductionEvolve, pmixStep, pmixEvolve, congruence, type Edge } from '../../0/index.ts'
 export { hopfieldStore, hopfieldEnergy, hopfieldRecall, bumpStep, bumpEvolve } from '../../8/2/index.ts'
 export { merkaba, bothEarthsRotateWithinEachOther, type BothEarthsMerkabaRotation, type BothEarthsRotationShell } from '../geometry/index.ts'
@@ -128,6 +128,56 @@ export function vortexStrokeKinds(matrix: MindMatrix = buildMatrix()) {
       : axis.has(from) && axis.has(to) ? 'axis' as const
       : from === 0 ? 'void' as const : 'join' as const
     return { from, to, kind }
+  })
+}
+
+/**
+ * THE 2×7 FOLDS INTO THE 1+6 AND BACK — the author: "if all fused properly they will be rotating in 2x7 morphing to 1+6
+ * and vice versa". The seven rosetta rays each carry a life end (radius 1) and a death end (radius 1/2): fourteen ends,
+ * the 2×7. As m runs from 0 to 1 each end travels straight to its ray's seat — ray 0 to the centre, rays 1…6 to the six
+ * digits of the doubling orbit around a hexagon — so at m = 1 the fourteen are seven, the 1+6, and running m back
+ * unfolds them. The painter (drawTwoBySevenMorph) and the fold below read these same points.
+ */
+export function twoBySevenPoints(m: number, orbit: readonly number[], rays: number = ROSETTA_SEVEN) {
+  const t = max(0, min(1, m))
+  const out: { ray: number; end: 'life' | 'death'; digit: number; x: number; y: number }[] = []
+  for (let r = 0; r < rays; r += 1) {
+    const a = (r / rays) * TAU - TAU / 4
+    const b = ((r - 1) / max(1, orbit.length)) * TAU - TAU / 4
+    const seat = r === 0 ? { x: 0, y: 0, digit: 0 } : { x: cos(b) * (3 / 4), y: sin(b) * (3 / 4), digit: orbit[r - 1] ?? -1 }
+    for (const [end, rad] of [['life', 1], ['death', 1 / 2]] as const) {
+      const x0 = cos(a) * rad
+      const y0 = sin(a) * rad
+      out.push({ ray: r, end, digit: seat.digit, x: x0 + (seat.x - x0) * t, y: y0 + (seat.y - y0) * t })
+    }
+  }
+  return out
+}
+
+export function twoBySevenFoldsIntoOnePlusSix(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('twoBySevenFoldsIntoOnePlusSix', matrix, () => {
+    const orbit = vortexMath(matrix).doubling
+    const key = (q: { x: number; y: number }) => `${round(q.x * 1e6)},${round(q.y * 1e6)}`
+    const distinct = (m: number) => new Set(twoBySevenPoints(m, orbit).map(key)).size
+    const folded = twoBySevenPoints(1, orbit)
+    const perSeat = new Map<string, number>()
+    for (const q of folded) perSeat.set(key(q), (perSeat.get(key(q)) ?? 0) + 1)
+    const seatDigits = [...new Set(folded.filter((q) => q.ray > 0).map((q) => q.digit))].sort((a, b) => a - b).join(',')
+    const orbitDigits = [...orbit].sort((a, b) => a - b).join(',')
+    const { computes, facets, root } = computesGate('two-by-seven-folds-into-one-plus-six', [
+      { facet: `the 2×7 — at m = 0 the ${ROSETTA_SEVEN} rays hold ${distinct(0)} distinct ends, a life end and a death end each`, on: distinct(0) === 2 * ROSETTA_SEVEN },
+      { facet: `the 1+6 — at m = 1 the ends sit on ${distinct(1)} seats: the centre and the ${orbit.length} digits of the doubling orbit`, on: distinct(1) === 1 + orbit.length && orbit.length === ROSETTA_SEVEN - 1 },
+      { facet: 'each seat receives exactly two ends — the pairs fold, nothing is lost and nothing is made', on: perSeat.size === ROSETTA_SEVEN && [...perSeat.values()].every((n) => n === 2) },
+      { facet: `the six seats are vortexMath's doubling orbit [${orbit.join(',')}], read and never typed`, on: seatDigits === orbitDigits },
+      { facet: 'midway (m = 1/2) the ends are still fourteen — the morph passes through no coincidence', on: distinct(1 / 2) === 2 * ROSETTA_SEVEN },
+    ])
+    return {
+      computes,
+      facets,
+      root,
+      statement: `The 2×7 folds into the 1+6 and back: ${ROSETTA_SEVEN} rays × a life end and a death end = ${2 * ROSETTA_SEVEN} ends, travelling in pairs onto ${1 + orbit.length} seats — the centre and the doubling orbit [${orbit.join(',')}], whose six steps then read as a hexagon.`,
+      boundary: 'COUNTED: the fourteen ends, the seven seats, two ends per seat and the orbit digits are computed from the same points the painter draws. DESIGN: the path each end takes (a straight line to its seat) and the pairing of ray 0 with the centre are a choice of drawing, not a law; the count at each end of the morph is what is claimed.',
+    }
   })
 }
 

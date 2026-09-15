@@ -84,6 +84,11 @@ export function useHeroClock(onTick?: (at: number) => void) {
   let off: (() => void) | null = null
 
   onMounted(() => {
+    // REDUCED MOTION IS A STILL FRAME, NOT A SLOWER MOVIE. Measured in headless Chrome: under prefers-reduced-motion
+    // the canvas stayed on the 60/s clock and repainted a gradient whose hue drifted — a tenth of a core for one
+    // picture that was not even still. Painting on mount, resize, theme and visibility already happens in
+    // useVisibleMovieCanvas; the clock is simply never joined.
+    if (prefersReducedMotion()) return
     off = subscribeHeroClock((time) => {
       at.value = time
       onTick?.(time)
