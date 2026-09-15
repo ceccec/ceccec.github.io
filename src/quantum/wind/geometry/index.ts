@@ -101,6 +101,43 @@ export function branch(
   branch(ctx, x2, y2, len * d.shrink, angle + d.spread, depth - 1, d, hue, dark)
 }
 
+/**
+ * THE SAME FRACTAL, COLLECTED INSTEAD OF DRAWN. branch strokes every segment on its own — one raster call and one
+ * colour string per segment, which made the hero's arms most of the movie's two thousand seven hundred draw calls a
+ * frame. Every segment at one depth of one arm has the same colour and width (they depend on the arm, the hue and the
+ * depth only), so the segments are gathered by depth here and strokeBranchLevels draws each depth as one path.
+ */
+export function branchSegments(levels: number[][], x: number, y: number, len: number, angle: number, depth: number, d: Dims): void {
+  if (depth <= 0 || len < 3) return
+  const x2 = x + cos(angle) * len
+  const y2 = y + sin(angle) * len
+  if (!levels[depth]) levels[depth] = []
+  levels[depth]!.push(x, y, x2, y2)
+  branchSegments(levels, x2, y2, len * d.shrink, angle - d.spread, depth - 1, d)
+  branchSegments(levels, x2, y2, len * d.shrink, angle + d.spread, depth - 1, d)
+}
+
+/**
+ * Stroke collected levels in branch's own colours and widths, deepest (the trunk) first as branch drew it. Not
+ * pixel-identical, and said so: where two segments of one path meet, their semi-transparent ends composite once
+ * instead of twice, and crossings between subtrees blend in depth order rather than tree order.
+ */
+export function strokeBranchLevels(ctx: CanvasRenderingContext2D, levels: readonly (readonly number[] | undefined)[], d: Dims, hue: number, dark = true): void {
+  const paint = movieCanvasPolarity(dark)
+  for (let depth = levels.length - 1; depth > 0; depth -= 1) {
+    const seg = levels[depth]
+    if (!seg || seg.length === 0) continue
+    ctx.strokeStyle = paint((hue + d.hueShift + depth * (7 * 4)) % 360, d.depthFade + depth * (1 / (5 * 2)), { L: 7 / 8 })
+    ctx.lineWidth = max((1 / 2), depth * (3 / 5))
+    ctx.beginPath()
+    for (let i = 0; i + 3 < seg.length; i += 4) {
+      ctx.moveTo(seg[i]!, seg[i + 1]!)
+      ctx.lineTo(seg[i + 2]!, seg[i + 3]!)
+    }
+    ctx.stroke()
+  }
+}
+
 const FOL_ARMS: readonly { r: number; w: number }[] = [
   { r: (1 / 2), w: (7 / (5 * 2)) }, { r: (7 / (5 * 5)), w: -(8 / 5) }, { r: (3 / (5 * 4)), w: 2 * (FIBONACCI[5]! / (2 * 5)) }, { r: (2 / (5 * 5)), w: -(3 * (FIBONACCI[5]! / (2 * 5))) }, // arm speeds = multiples of the 13/10 fib decade
 ]

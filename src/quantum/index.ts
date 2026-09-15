@@ -12,7 +12,7 @@
 import { phase } from '../6/4/index.ts'
 import { dims, dimWalk } from './mountain/dimensions/index.ts'
 import { vortexStrokeKinds, twoBySevenPoints } from '../mountain/vortex/index.ts'
-import { perspective, rotate3, branch } from './wind/geometry/index.ts'
+import { perspective, rotate3, branch, branchSegments, strokeBranchLevels } from './wind/geometry/index.ts'
 import { drawFlower, drawCalendars } from './wind/geometry/index.ts'
 import { drawBursts, type Burst } from './fire/experiments/index.ts'
 import { folderLaw } from '../earth/architecture/index.ts'
@@ -195,12 +195,16 @@ export function drawHero(
     // each arm is a nested SCALE: it reads the ten dimensions golden-shifted by its scale index, so every arm
     // is the same figure self-similarly offset — the animation is ten-dimensional at every scale, not just one.
     const ds = dims(scene.p, a)
+    // Both directions of an arm share its colours, so the whole arm is gathered and stroked once per depth — a
+    // handful of raster calls where branch made one per segment (see branchSegments).
+    const levels: number[][] = []
     for (const dir of [1, -1]) {
       const v = rotate3(cos(base), sin(base), 0, rXY * dir, rYZ * dir, rZX * dir)
       const persp = perspective(v.Z)
       const angle = atan2(v.Y, v.X)
-      branch(ctx, cx, cy, baseLen * persp * (1 - 9 / (5 * 5 * 2) + (9 / (5 * 5)) * ds.breath), angle, depth, ds, scene.hue, scene.palette.dark)
+      branchSegments(levels, cx, cy, baseLen * persp * (1 - 9 / (5 * 5 * 2) + (9 / (5 * 5)) * ds.breath), angle, depth, ds)
     }
+    strokeBranchLevels(ctx, levels, ds, scene.hue, scene.palette.dark)
   }
   // merge all related: the page's tags orbit the centre on a counter-rotating ring (the merkaba), each joined to the core.
   const n = scene.tags.length
