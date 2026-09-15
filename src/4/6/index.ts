@@ -3851,7 +3851,7 @@ export function theoremFractions() {
       pair: 'theorem/fraction' as const,
       dualPair: 'fraction/theorem' as const,
       cli: 'npm run quantum:theorem-fractions',
-      route: '/quantum-tools#theorem-fractions',
+      route: '/en/quantum-tools#theorem-fractions',
       heading: 'Theorem fractions · the 432 lattice · inversion without fixed point',
       statement: `theoremFractions — 432 = 2^4·3^3 · ${fractions.length} respected fractions · involution fixed-point-free · bits 0b${bitsForm} (tz=v₂) · ${population} theorems partitioned.`,
       boundary:
@@ -3919,7 +3919,7 @@ export function theoremSpeed() {
       pair: 'theorem/speed' as const,
       dualPair: 'speed/theorem' as const,
       cli: 'npm run quantum:theorem-speed',
-      route: '/quantum-tools#theorem-speed',
+      route: '/en/quantum-tools#theorem-speed',
       heading: 'Theorem speed · the registry re-addressed in one pass',
       statement: `theoremSpeed — ${rows.length} theorems refactored in one pass · fixed-width addresses · ${roundTo(ratio, 2)}× reference ratio · 432-banded.`,
       boundary:
@@ -4011,7 +4011,7 @@ export function clayProbe() {
       pair: 'clay/probe' as const,
       dualPair: 'probe/clay' as const,
       cli: 'npm run quantum:clay-probe',
-      route: '/quantum-tools#clay-probe',
+      route: '/en/quantum-tools#clay-probe',
       heading: 'Clay probe · the zeros compute · the distance stays named',
       statement: `clayProbe — 4 nontrivial zeros localized on the critical line (max err ${roundTo(max(...located.map((row) => row.error)), 6)}) · RH OPEN by theorem.`,
       boundary:
@@ -4077,7 +4077,7 @@ export function animationFoldTheorems() {
       pair: 'anim/fold' as const,
       dualPair: 'fold/anim' as const,
       cli: 'npm run quantum:anim-fold',
-      route: '/quantum-tools#anim-fold',
+      route: '/en/quantum-tools#anim-fold',
       heading: 'Animation fold · the theorems prove themselves by content-address',
       statement: `animationFoldTheorems — ${total} theorems · ${distinct} distinct animations · ${foldable} foldable (zero collisions ⇒ provably independent) · ${harmonicGap} over the 432 seal is growth.`,
       boundary:
@@ -4140,7 +4140,7 @@ function buildLinkProofReport(n: number, pathLen: number, rootValid: boolean) {
     pair: 'link/proof' as const,
     dualPair: 'proof/link' as const,
     cli: 'npm run quantum:link-proof',
-    route: '/quantum-tools#link-proof',
+    route: '/en/quantum-tools#link-proof',
     heading: 'Link proof · membership by O(log N) path',
     statement: `linkProof — ${n} statements, inclusion path ${pathLen}=⌈log₂N⌉ · verify-by-link O(log N) vs O(N) re-scan (${roundTo(orders, 2)} orders) · membership not content.`,
     boundary:
@@ -4193,7 +4193,7 @@ export function unsolvedEngine() {
       pair: 'unsolved/engine' as const,
       dualPair: 'engine/unsolved' as const,
       cli: 'npm run quantum:unsolved-engine',
-      route: '/quantum-tools#unsolved-engine',
+      route: '/en/quantum-tools#unsolved-engine',
       heading: 'Unsolved engine · the open set is the fuel',
       statement: `unsolvedEngine — ${openRaces} open races + ${boundedWitness} bounded-witness classes drive the toolmaking is the engine, not the limit.`,
       boundary:
@@ -4255,7 +4255,7 @@ export function riemannZeroCount() {
       pair: 'zero/count' as const,
       dualPair: 'count/zero' as const,
       cli: 'npm run quantum:zero-count',
-      route: '/quantum-tools#zero-count',
+      route: '/en/quantum-tools#zero-count',
       heading: 'Riemann zero count · completeness up to T',
       statement: `riemannZeroCount — N(${t})=${roundTo(analytic, 3)}≈${round(analytic)} matches ${localizedBelowT} localized zeros: complete below T, RH OPEN.`,
       boundary:
@@ -4333,7 +4333,7 @@ export function riemannZeroScan() {
       pair: 'zero/scan' as const,
       dualPair: 'scan/zero' as const,
       cli: 'npm run quantum:zero-scan',
-      route: '/quantum-tools#zero-scan',
+      route: '/en/quantum-tools#zero-scan',
       heading: 'Riemann zero scan · 29 zeros, completeness, S(T)',
       statement: `riemannZeroScan — ${found} zeros localized on the line to T=${tMax}, count matches N(T), S(T)=${sOfT}; RH OPEN.`,
       boundary:
@@ -4438,7 +4438,7 @@ export function superpositionCompleteness() {
       pair: 'superposition/complete' as const,
       dualPair: 'complete/superposition' as const,
       cli: 'npm run quantum:superposition-complete',
-      route: '/quantum-tools#superposition-complete',
+      route: '/en/quantum-tools#superposition-complete',
       heading: 'Superposition completeness · 432 is capacity, not a completeness count',
       statement: `superpositionCompleteness — the claim "exactly 432 compute ALL superpositions" is FALSE by cardinality (2^n unbounded continuum); registry ${registry} independent; 432 = capacity not completeness.`,
       boundary:

@@ -1197,7 +1197,7 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
       root: merkleFold([ich.root, yy.root, ic.root, flowerFruit.root, tree.root, cube.root, home.root, hdW7.root, torus.root, sealed.root]),
       cli: 'npm run quantum:symbols-remaining-verify',
       pair: 'symbols/quantumise',
-      route: '/#yinyang',
+      route: '/en/#yinyang',
       statement:
         `Symbols remaining to quantumise — inventory ${inventory.length}: sealed ${sealedNow.length} (incl. Glagolitic SMIL · torus-knots), partial ${partial.length}, missing ${missing.length}. Emitters recompute via memoByRoot; wetStatic=false.`,
       boundary:

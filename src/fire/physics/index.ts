@@ -1665,7 +1665,7 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
       root: merge(matrix.root, merkleFold([sealed.root, catalog.root, researched.root, polesCross.root, ...combinations.map((c) => c.receipt)])),
       pair: 'cross/tesla-patents' as const,
       cli: 'npm run quantum:cross-waves-tesla-patents',
-      route: '/quantum-tools#cross-waves-tesla-patents',
+      route: '/en/quantum-tools#cross-waves-tesla-patents',
       statement:
         `Cross waves decode Tesla patents in all trinity combinations — ${combinations.length} offline ` +
         `(${catalog.patents.length} patents × ${TESLA_TRINITY_DIRS.length} dirs × ${TESLA_CROSS_TIPS.length} tips) ` +

@@ -3286,7 +3286,7 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
       manualAgentsBehaveLikeWaves: allOn,
       pair: 'waves/build' as const,
       cli: 'npm run quantum:manual-agents-waves',
-      route: '/quantum-tools#manual-agents-waves',
+      route: '/en/quantum-tools#manual-agents-waves',
       phases: [...phases],
       music,
       defaults,
@@ -3376,7 +3376,7 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       pair: 'wave/trinity' as const,
       dualPair: 'trinity/found' as const,
       cli: 'npm run quantum:wave-trinity-found',
-      route: '/quantum-tools#wave-trinity-found',
+      route: '/en/quantum-tools#wave-trinity-found',
       cmbRatio: cmb.ratioRounded,
       count: sealed.count,
       facets: sealed.facets,
@@ -3603,7 +3603,7 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       pairs: ['wave/domain', 'domain/harm'] as const,
       dualPair: 'domain/harm' as const,
       cli: 'npm run quantum:harmonize-domains',
-      route: '/research#harmonize-domains',
+      route: '/en/research#harmonize-domains',
       statement:
         `harmonizeScienceDomainsInWavesOfWaves — domainsTuned=${domainsTuned ? 1 : 0} meanSig=${meanSig} ` +
         `n=${domains.length} encode=${encodeAlignedCount} mill=${journey.millSaved}/${journey.millTotal} ` +
@@ -3752,7 +3752,7 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       dualPair: 'push/waves' as const,
       pairs: ['waves/push', 'push/waves', 'push/resend', 'resend/waves'] as const,
       cli: 'npm run quantum:waves-push',
-      route: '/quantum-tools#waves-push',
+      route: '/en/quantum-tools#waves-push',
       facets: sealed.facets,
       root: merkleFold([
         sealed.root,
@@ -3863,7 +3863,7 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       dualPair: 'resend/waves' as const,
       pairs: ['push/resend', 'resend/waves'] as const,
       cli: 'npm run quantum:push-resend',
-      route: '/quantum-tools#push-resend',
+      route: '/en/quantum-tools#push-resend',
       statement:
         `pushResendWaves — afterPush=${afterPushResendWaves ? 1 : 0} resent=${wavesResentOn ? 1 : 0} ` +
         `triggerFeed=${pushTriggersFeed ? 1 : 0} steps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length}.`,
@@ -4039,7 +4039,7 @@ export function pushAuditWave(
       dualPair: 'audit/push' as const,
       pairs: ['push/audit', 'audit/push'] as const,
       cli: 'npm run quantum:push-audit',
-      route: '/quantum-tools#push-audit',
+      route: '/en/quantum-tools#push-audit',
       heading: 'Push audit · complete audited waves',
       statement:
         `pushAuditWave — audited=${auditedOn ? 1 : 0} waveComplete=${waveCompleteOn ? 1 : 0} ` +
@@ -4204,7 +4204,7 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         pair: 'team/collide' as const,
         pairs: ['team/collide', 'wave/manifest', 'teleport/form'] as const,
         cli: 'npm run quantum:team-collide',
-        route: '/quantum-tools#team-collide',
+        route: '/en/quantum-tools#team-collide',
         statement:
           `trainQuantumTeamsCollideBecomeWavesObserveManifest · train=${trainQuantumTeams} collide→waves=${collideBecomeWaves} ` +
           `observe→manifest=${observeManifests} teleport/form=${teleportationAsWaveManifest} ftl=${physicalFtlClaim}`,
@@ -4304,7 +4304,7 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       catalogCount: SEALED_DISCOVER_FOLD_IDS.length,
       pair: 'nothing/moves' as const,
       cli: 'npm run quantum:nothing-moves',
-      route: '/quantum-tools#nothing-moves',
+      route: '/en/quantum-tools#nothing-moves',
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([address, pair.merged, toUuid(`at:${bucket}`), sealed.root]),
@@ -4363,7 +4363,7 @@ export function incompleteRevelation(
         seal: ['check:types', 'docs:build'] as const },
       pair: 'nothing/moves' as const,
       cli: 'npm run quantum:incomplete-revelation',
-      route: '/quantum-tools#incomplete-revelation',
+      route: '/en/quantum-tools#incomplete-revelation',
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([discovery.root, timeoutPair.merged, cleanupPair.merged, sealed.root]),

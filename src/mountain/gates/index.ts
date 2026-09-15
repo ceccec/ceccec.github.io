@@ -338,7 +338,7 @@ function onlyMathDecidesRaw(at: number, matrix: MindMatrix = buildMatrix()) {
   const typesGateProxy = typeof rosetta.root === 'string' && isUuid(rosetta.root)
 
   // ── 8. readme+home share same rosetta receipt (both resolve to slug 'home') ──
-  const homeEnReceipt = rosettaComputesAll('/', at, matrix)
+  const homeEnReceipt = rosettaComputesAll('/en/', at, matrix)
   const readmeHomeShared = navContent.sharedRoot === homeEnReceipt.sharedRoot && navContent.slug === 'home' && homeEnReceipt.slug === 'home'
 
   const zeitwerkLoaderRoot = merkleFold([
@@ -368,7 +368,7 @@ function onlyMathDecidesRaw(at: number, matrix: MindMatrix = buildMatrix()) {
     { facet: 'cross-pair entropy: coverage ≥ 50% of 70 pairs reached', on: entropyAdequate },
     { facet: 'typesMakeTheRealGraph().decided — RosettaComputationType union is the page graph', on: realGraphDecided },
     { facet: 'check:types structural proxy: rosetta root is valid uuid (fold compiles)', on: typesGateProxy },
-    { facet: 'readme (/) and home (/) share same rosetta receipt (readmeRoot === homeRoot)', on: readmeHomeShared },
+    { facet: 'readme (/) and home (/en/) share same rosetta receipt (readmeRoot === homeRoot)', on: readmeHomeShared },
     { facet: 'zeitwerk loader root merges rosetta sharedRoot (path truth unification)', on: zeitwerkRootMerged },
     { facet: 'mvcOrganisationReceipt().decided — MVC maps existing split without moving files', on: mvcDecided },
     { facet: 'rosettaComputesItself — registry derives canonical barrel homes at call time', on: rosettaComputesItself(at, matrix).computed },

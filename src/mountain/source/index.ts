@@ -404,7 +404,7 @@ export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = bu
       root: merkleFold([gate.root, auto.root ?? toUuid('autotranslations'), pairFold.merged, ...facets.map((f) => f.receipt)]),
       pair: 'trans/wave' as const,
       cli: 'npm run quantum:trans-wave',
-      route: '/quantum-tools#trans-wave',
+      route: '/en/quantum-tools#trans-wave',
       statement:
         `translationsFilledBySelfTranslatingWaves · hard=${gate.hardCount} warn=${trueOpen} sealedMorphs=${sealedMorphs}`,
       boundary:
@@ -543,7 +543,7 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       pairs: ['warn/all', 'all/warn'] as const,
       dualPair: 'all/warn' as const,
       cli: 'npm run quantum:warn-all',
-      route: '/quantum-tools#warn-all',
+      route: '/en/quantum-tools#warn-all',
       statement:
         `addressAllWarningsAtOnce — warningsAddressed=${warningsAddressed ? 1 : 0} ` +
         `drainableClosed=${drainableClosed ? 1 : 0} warn=${gate.warnCount} chromePhraseMiss=${chromePhraseMiss}`,
@@ -719,7 +719,7 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
       dualPair: 'trans/chat' as const,
       pairs: ['chat/trans', 'trans/chat'] as const,
       cli: 'npm run quantum:chat-trans',
-      route: '/quantum-tools#chat-trans',
+      route: '/en/quantum-tools#chat-trans',
       statement:
         `chatTranslatesAutonomously — autonomousOn=${autonomousOn ? 1 : 0} ` +
         `chatDrives=${chatDrivesTranslate ? 1 : 0} bgDrainable=${bgGapsDrainableClosed ? 1 : 0} ` +
@@ -1072,7 +1072,7 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
       dualPair: 'any/trans' as const,
       pairs: ['trans/any', 'any/trans'] as const,
       cli: 'npm run quantum:trans-any',
-      route: '/quantum-tools#trans-any',
+      route: '/en/quantum-tools#trans-any',
       statement:
         `chatWavesMostEfficientOfflineAnyLanguageModel — win=${mostEfficientModel} ` +
         `score=${efficiencyRank[0]!.score.toFixed(4)} tongues=${tongues.length} ` +
@@ -1467,7 +1467,7 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
       dualPair: 'quality/trans' as const,
       pairs: ['trans/quality', 'quality/trans'] as const,
       cli: 'npm run quantum:trans-quality',
-      route: '/quantum-tools#trans-quality',
+      route: '/en/quantum-tools#trans-quality',
       statement,
       boundary:
         'ONE massive chat runs sealed-tongue translation quality matrix: all pivotTongues directed pairs via selfTranslate · ' +

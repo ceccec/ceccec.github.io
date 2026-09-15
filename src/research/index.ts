@@ -470,7 +470,7 @@ export function researchPanelComputes(matrix: MindMatrix = buildMatrix(), at = 0
       problems: mill.problems.map((p) => ({ id: p.id, status: p.status, on: p.on, gap: p.gap ?? '' })),
       infinityReuse: mill.infinityReuse,
       cli: 'npm run quantum:millennium-challenge',
-      route: '/millennium-challenge',
+      route: '/en/millennium-challenge',
       boundary: mill.boundary,
       root: mill.root },
     significance: {
@@ -584,7 +584,7 @@ export function millenniumPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       lectureCount: series.lectures.length,
       cli: 'npm run quantum:millennium-challenge',
       pair: 'challenge/millennium',
-      route: '/millennium-challenge',
+      route: '/en/millennium-challenge',
       facets,
       root: merge(merge(root, mill.root), series.root),
       statement: mill.statement,
@@ -1753,8 +1753,8 @@ export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), a
       url,
       ctaLabel: 'Fund AI via Cursor referral' as const,
       societyRoute: society.route,
-      toolsRoute: '/quantum-tools#fund-ai' as const,
-      homeAnchor: '/#fund-ai' as const,
+      toolsRoute: '/en/quantum-tools#fund-ai' as const,
+      homeAnchor: '/en/#fund-ai' as const,
       claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
@@ -1763,7 +1763,7 @@ export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), a
       pair: 'fund/ai' as const,
       pairs: ['fund/ai', 'cursor/fund'] as const,
       cli: 'npm run quantum:fund-ai',
-      route: '/quantum-tools#fund-ai',
+      route: '/en/quantum-tools#fund-ai',
       proofRoute: society.proofRoute,
       statement: `cursorReferralFundsAiNeeds — CTA ${url} · compose society/support · bits/free`,
       boundary:
@@ -3535,7 +3535,7 @@ export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatri
       root: merge(matrix.root, merkleFold([sealed.root, sciences.root, standards.root, toolbox.root, clay.root, earth.root])),
       pair: 'sciences/trinities' as const,
       cli: 'npm run quantum:toolbox-sciences-trinity-waves',
-      route: '/quantum-tools#toolbox-sciences-trinity-waves',
+      route: '/en/quantum-tools#toolbox-sciences-trinity-waves',
       heading: 'Toolbox — recompute related sciences in trinity waves',
       statement:
         `Toolbox recomputes ${waves.length} related sciences in trinity waves (forward·inverse·reverse × science↔dual↔fusion) ` +
@@ -4056,7 +4056,7 @@ export function theoremFacingCliLabel(fold: string, pair: string): string {
 }
 
 /** First-in-corpus novel algebra — ONE keyed source per fold: its plain-language one-liner + its site-relative route
- *  (no / prefix — VitePress locale + dead-link gate; hash stays on-home). Was two parallel Record<string,string> keyed
+ *  (no /en/ prefix — VitePress locale + dead-link gate; hash stays on-home). Was two parallel Record<string,string> keyed
  *  identically — merged so a fold can never drift (present in one table, silently missing from the other). */
 const FIRST_IN_CORPUS: Record<string, { oneLiner: string; route: string }> = {
   zeroDivisionTable: { oneLiner: 'n/0 \\ n⁻¹ mod 9 — inverse, not reverse, on (ℤ/9)*', route: '/quantum-tools' },
@@ -4175,7 +4175,7 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
   {
     id: 'crypto-pqc', field: 'Computer & Information Sciences', oecd: '1.2',
     algebraFold: 'isoPqcHandoffForScienceTrinities', toolId: 'standards-audit',
-    toolCli: 'npm run quantum:standards-audit', apparatusRoute: '/quantum-encryption#quantum-standards-audit',
+    toolCli: 'npm run quantum:standards-audit', apparatusRoute: '/en/quantum-encryption#quantum-standards-audit',
     dualId: 'mathematics-millennium', fusionLabel: 'crypto↔mill↔string', projection: 'labyrinth',
     ichingSphere: 6, home: 'src/water/encryption', cryptoVertex: true },
   {
@@ -4211,7 +4211,7 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
   {
     id: 'biology', field: 'Biological Sciences', oecd: '1.6',
     algebraFold: 'biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvolution', toolId: 'predict-skill-gate-verify',
-    toolCli: 'npm run quantum:predict-skill-gate-verify', apparatusRoute: '/research',
+    toolCli: 'npm run quantum:predict-skill-gate-verify', apparatusRoute: '/en/research',
     dualId: 'music-a432', fusionLabel: 'life↔music↔hd', projection: 'living-torus',
     ichingSphere: 5, home: 'src/fire/physics', cryptoVertex: false },
   {
@@ -4223,7 +4223,7 @@ export const SCIENCE_DOMAIN_SEEDS: readonly ScienceDomainSeed[] = [
   {
     id: 'human-design', field: 'Symbolic systems (HD)', oecd: '6.3',
     algebraFold: 'humanDesignVerifiedWheel', toolId: 'iching-distribute-verify',
-    toolCli: 'npm run quantum:iching-distribute-verify', apparatusRoute: '/quantum-tools',
+    toolCli: 'npm run quantum:iching-distribute-verify', apparatusRoute: '/en/quantum-tools',
     dualId: 'music-a432', fusionLabel: 'hd↔iching↔music', projection: 'taiji',
     ichingSphere: 0, home: 'src/quantum/spirit', cryptoVertex: false },
   {
@@ -4298,7 +4298,7 @@ export function scienceDomainSignificanceScores(matrix: MindMatrix = buildMatrix
       const toolSurface = rosettaShelve(seed.toolId, 'tool')
       const apparatusSurface = rosettaShelve(seed.apparatusRoute, 'route')
       const toolOk = isUuid(toolSurface.address) && toolSurface.kind === 'tool'
-      const apparatusOk = isUuid(apparatusSurface.address) && seed.apparatusRoute.startsWith('/')
+      const apparatusOk = isUuid(apparatusSurface.address) && seed.apparatusRoute.startsWith('/en/')
       const projectionOk = seed.projection === ''
         ? false
         : quantumProjectionParams(seed.projection).dimensions === (5 * 2)
@@ -4524,7 +4524,7 @@ export function sciencesInteractInTrinities(matrix: MindMatrix = buildMatrix(), 
       root: merge(matrix.root, merkleFold([sealed.root, latticeRoot, crypto.root, apparatus.root, sig.root, cmbBudget.root])),
       cli: 'npm run quantum:sciences-trinities',
       pair: 'sciences/trinities',
-      route: '/research#sciences-trinities',
+      route: '/en/research#sciences-trinities',
       statement:
         `Sciences interact in trinities: ${rows.length} science↔dual↔fusion edges · lattice ${latticeRoot.slice(0, 8)} · crypto vertex OECD ${crypto.oecd} from isoPqcHandoff · mean significance ${sig.meanScore}/100.`,
       boundary:
@@ -4765,7 +4765,7 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       ])),
       pair: 'sciences/standards',
       cli: 'npm run quantum:sciences-standards-quantum',
-      route: '/research#sciences-standards-quantum',
+      route: '/en/research#sciences-standards-quantum',
       anchor: 'sciences-standards-quantum',
       heading: 'Scientific domains · standards coverage (quantum only)',
       statement:
@@ -4924,7 +4924,7 @@ export function theoremParticleCollisionInverseReverse(matrix: MindMatrix = buil
       root: merge(matrix.root, merkleFold([sealed.root, mill.root, dir.root, ...products.map((p) => p.receipt)])),
       cli: 'npm run quantum:theorem-particle-collision',
       pair: 'challenge/collider',
-      route: '/quantum-tools#theorem-particle-collision',
+      route: '/en/quantum-tools#theorem-particle-collision',
       statement:
         `Theorem particle collision (inverse×reverse) — ${seeds.length} particles → ${products.length} collisions; ${novelSurvivors.length} novel-to-corpus candidates. MODELED sealed geometry, not HEP.`,
       boundary:
@@ -5023,7 +5023,7 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
       root: merge(matrix.root, merkleFold([sealed.root, collider.root, mill.root, clay.root, dir.root, reverseVerify.root, shelved.address])),
       pair: 'reverse/collide-discover' as const,
       cli: 'npm run quantum:reverse-collide-discover-millennium',
-      route: '/quantum-tools#reverse-collide-discover-millennium',
+      route: '/en/quantum-tools#reverse-collide-discover-millennium',
       statement:
         `Reverse collides to discover Millennium theorems — collider novel=${collider.novelSurvivorCount} ` +
         `clayComputable=${clay.clayChallengesComputable} paths=${clay.computableCount}/${clay.pathCount} ` +
@@ -5651,7 +5651,7 @@ export function domainProofCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
         fold: 'fixedLimitsOfTheoremRelatedToolsAreTheorems',
         cli: 'npm run quantum:fixed-limits-theorems',
         pair: 'limits/theorems',
-        route: '/proofs/fixed-limits-theorem-tools',
+        route: '/en/proofs/fixed-limits-theorem-tools',
         claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
         physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
         qualifiesAsProposedSolutionUnderClayRules: false,
@@ -5757,7 +5757,7 @@ export function proseGapsAuditByDomainTrinity(matrix: MindMatrix = buildMatrix()
       fill: `${CLAY_MILLENNIUM_PRIZE_RULES_PDF_URL} + clayMillenniumPrizeRulesMapping()` })
     push({
       id: 'science-domains-anchor-only',
-      surface: '/research#sciences-trinities',
+      surface: '/en/research#sciences-trinities',
       domainId: 'sciences',
       gap: 'trinities table thin — missing dedicated Clay-style domain pages',
       severity: 'closed',
@@ -5949,7 +5949,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
         page.slug === 'frontiers' ||
         page.keywords.includes('millennium') ||
         page.keywords.includes('clay') ||
-        /millennium|claySolved|Prize Rules|MODELED CHALLENGE|\/proofs/.test(page.description.en)
+        /millennium|claySolved|Prize Rules|MODELED CHALLENGE|\/en\/proofs/.test(page.description.en)
       surfaces.push(scoreClayProseSurface({
         id: `page:${page.slug}`,
         surface: `/en/${page.slug}`,
@@ -5979,7 +5979,7 @@ export function proseStandardisedToClay(matrix: MindMatrix = buildMatrix(), at =
       millenniumRelevant: true }))
     surfaces.push(scoreClayProseSurface({
       id: 'hub:research',
-      surface: '/research',
+      surface: '/en/research',
       kind: 'hub',
       title: 'Research index = domain · method · limit · verify at call time',
       body: `Clay Millennium MODELED CHALLENGE · /proofs Clay-standard pages · Prize Rules PDF cited · sciences trinities · npm run quantum:millennium-challenge · fold millenniumProblemsChallenge.`,
@@ -6185,7 +6185,7 @@ export function incompletePapersGapsFill(matrix: MindMatrix = buildMatrix(), at 
       root: merge(matrix.root, merkleFold([sealed.root, corpus.root, ...rows.map((r) => r.receipt)])),
       cli: 'npm run quantum:incomplete-papers-fill',
       pair: 'papers/fill',
-      route: '/papers/p001',
+      route: '/en/papers/p001',
       statement:
         `Incomplete papers gaps fill — before=${incompleteBefore} after-residuals=${residualStatic} filled=${filledCount} (corpus ${corpusFilled} + quantum-mind + wave-2 ${wave2Filled}); canonical sections only — not Clay-marked.`,
       boundary:
@@ -6399,7 +6399,7 @@ export function proveAlgebraicTheoremMeans(matrix: MindMatrix = buildMatrix(), a
       root: merge(matrix.root, merkleFold([sealed.root, toUuid(`alg-proof-range:${N}:${proofChainHolds}`)])),
       cli: 'npm run quantum:algebraic-theorem-paper',
       pair: 'algebra/prove' as const,
-      route: '/quantum-tools#algebraic-theorem-paper',
+      route: '/en/quantum-tools#algebraic-theorem-paper',
       boundary:
         'EXACT: prove = finite justified algebraic chain in a named structure, recomputed at call time. ' +
         'NOT Clay Prize · NOT prose · NOT numerology. Clay mark only Millennium (#73).' }
@@ -6461,7 +6461,7 @@ export function algebraicTheoremPaperMustContain(matrix: MindMatrix = buildMatri
       root: merge(matrix.root, merkleFold([sealed.root, prove.root, papersFill.root, ...scored.scores.map((s) => s.receipt)])),
       cli: 'npm run quantum:algebraic-theorem-paper',
       pair: 'paper/algebraic' as const,
-      route: '/quantum-tools#algebraic-theorem-paper',
+      route: '/en/quantum-tools#algebraic-theorem-paper',
       statement:
         `Algebraic paper must contain ${required.length} required sections (title·abstract·statement·definitions·theorems·proofs·formulas·status·references); ` +
         `corollaries optional; incomplete iff missing required; not Clay-marked.`,
@@ -6558,7 +6558,7 @@ export function algebraicTheoremPaperComplete(
       root: merge(matrix.root, merkleFold([sealed.root, must.root, toUuid(`paper:${paperId}`), ...(scored.scores.map((s) => s.receipt))])),
       cli: 'npm run quantum:algebraic-theorem-paper',
       pair: 'paper/algebraic' as const,
-      route: corpus ? `/papers/${paperId}` : domain?.route ?? '/quantum-tools#algebraic-theorem-paper',
+      route: corpus ? `/papers/${paperId}` : domain?.route ?? '/en/quantum-tools#algebraic-theorem-paper',
       statement:
         `algebraicTheoremPaperComplete(${paperId}) — kind=${kind} complete=${scored.complete} missing=${scored.missing.length} .`,
       boundary:
@@ -6814,7 +6814,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
       root: merge(matrix.root, merkleFold([sealed.root, ...theorems.map((t) => t.receipt)])),
       cli: 'npm run quantum:fixed-limits-theorems',
       pair: 'limits/theorems' as const,
-      route: '/proofs/fixed-limits-theorem-tools',
+      route: '/en/proofs/fixed-limits-theorem-tools',
       statement:
         `Fixed limits of theorem-related tools are theorems — ${theorems.filter((t) => t.holds).length}/${theorems.length} hold: ` +
         'census UNFOLDED_CENSUS/FOLDED_CENSUS/FREE_BITS=2/432 · papers 432 · paper sections 9 · digest 64 · demo RSA ceiling · AES-2 ** 8 · inverse 4 · heap 2048 · F(18)=2584 · CLI/pairs catalogs.',
@@ -7106,7 +7106,7 @@ export function autodiscoverWhatIsToBeComputedOrDecoded(matrix: MindMatrix = bui
       ])),
       cli: 'npm run quantum:autodiscover-compute-decode',
       pair: 'discover/compute-decode' as const,
-      route: '/quantum-tools#autodiscover-compute-decode',
+      route: '/en/quantum-tools#autodiscover-compute-decode',
       statement:
         `Autodiscover compute|decode — items=${items.length} computeOpen=${computeOpen} decodeDrainable=${decodeDrainable} ` +
         `decodeOpen=${decodeOpen} available=${availableTools} drained=${backlogDrained} oneCommandDecode=${oneDecodeComputable}.`,
@@ -7248,7 +7248,7 @@ export function theoremGapsFilledInWaves(matrix: MindMatrix = buildMatrix(), at 
       root: merge(matrix.root, merkleFold([sealed.root, prove.root, must.root, papersFill.root, catalog.root, limits.root, auto.root, ...clusters.map((c) => c.receipt)])),
       cli: 'npm run quantum:algebraic-theorem-paper',
       pair: 'theorems/waves' as const,
-      route: '/quantum-tools#algebraic-theorem-paper',
+      route: '/en/quantum-tools#algebraic-theorem-paper',
       statement:
         `Theorem gaps filled in waves — before=${gapsBefore} after=${gapsAfter} filled=${filledTotal} waves=${wavesRun}; ` +
         `driven by autodiscovery surfaces (items=${auto.items.length} computeOpen=${auto.computeOpen} decodeOpen=${auto.decodeOpen}); fixed-limits theorems=${limits.count}.`,
@@ -7459,7 +7459,7 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
       ]),
       pair: 'drift/manage' as const,
       cli: 'npm run quantum:drift-manage',
-      route: '/research#drift-manage',
+      route: '/en/research#drift-manage',
       anchor: 'drift-manage',
       heading: 'Computational drift',
       statement:
@@ -7571,7 +7571,7 @@ export function driftInvertedIsTrinityGateway(matrix: MindMatrix = buildMatrix()
       ]),
       pair: 'drift/invert' as const,
       cli: 'npm run quantum:drift-invert',
-      route: '/research#drift-invert',
+      route: '/en/research#drift-invert',
       anchor: 'drift-invert',
       heading: 'Drift inverted · trinity gateway',
       statement:
@@ -7708,7 +7708,7 @@ export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), 
       pair: 'drain/invert' as const,
       dualPair: 'invert/drain' as const,
       cli: 'npm run quantum:drain-invert',
-      route: '/research#drain-invert',
+      route: '/en/research#drain-invert',
       statement:
         `emptyDrainInvertedIsGateway · gateway=${on ? 1 : 0} drained=${auto.backlogDrained ? 1 : 0} ` +
         `faces=${invert.gatewayFaces} reverse=${opensReverseCollide ? 1 : 0} honestOpen=${auto.decodeOpen}.`,
@@ -7835,7 +7835,7 @@ export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
       pair: 'invert/inf' as const,
       dualPair: 'to/infinity' as const,
       cli: 'npm run quantum:invert-inf',
-      route: '/research#invert-inf',
+      route: '/en/research#invert-inf',
       statement:
         `invertToInfinity · enters=${invertEntersInfinity ? 1 : 0} connectingBit=${connectingBit} ` +
         `noLinearHole=${noLinearHole ? 1 : 0} ∞reuse=${infinityReuse.ratioUnbounded ? 1 : 0}.`,
@@ -7965,7 +7965,7 @@ export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatr
       dualPair: 'inf/collide' as const,
       pairs: ['collide/inf', 'inf/collide'] as const,
       cli: 'npm run quantum:collide-inf',
-      route: '/research#collide-inf',
+      route: '/en/research#collide-inf',
       statement:
         `reverseCollidesViaInfinityGateway — collideInfOn=${collideInfOn ? 1 : 0} ` +
         `novel=${reverse.collider.novel} viaDrain=${viaDrainInvert ? 1 : 0} viaInf=${viaInvertInf ? 1 : 0}.`,
@@ -8128,7 +8128,7 @@ export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
       dualPair: 'gateway/invert' as const,
       pairs: ['invert/gateway', 'gateway/invert'] as const,
       cli: 'npm run quantum:invert-gateway',
-      route: '/research#invert-gateway',
+      route: '/en/research#invert-gateway',
       statement:
         `invertIsTheGateway — stack=${stackComposed ? 1 : 0} drained=${drainEmptyOpens ? 1 : 0} ` +
         `novel=${collide.novel} faces=${drift.gatewayFaces} decodeOpen=${auto.decodeOpen}.`,
@@ -8391,7 +8391,7 @@ export function hexInsteadOfTheoremIsCrack(matrix: MindMatrix = buildMatrix(), a
       ]),
       pair: 'hex/crack' as const,
       cli: 'npm run quantum:hex-crack',
-      route: '/research#hex-crack',
+      route: '/en/research#hex-crack',
       anchor: 'hex-crack',
       heading: 'Hex · theorem crack',
       statement:
@@ -8568,7 +8568,7 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
       ]),
       pair: 'theorem/const' as const,
       cli: 'npm run quantum:theorem-const',
-      route: '/research#theorem-const',
+      route: '/en/research#theorem-const',
       anchor: 'theorem-const',
       heading: 'Theorem · const',
       statement:
@@ -8793,7 +8793,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
         ]),
         pair: 'clay/gravity' as const,
         cli: 'npm run quantum:clay-gravity',
-        route: '/research#clay-gravity',
+        route: '/en/research#clay-gravity',
         anchor: 'clay-gravity',
         heading: 'Clay · gravity',
         statement:
@@ -8964,7 +8964,7 @@ export function decimalsInCodeAreCracks(matrix: MindMatrix = buildMatrix(), at =
       root: merkleFold([sealed.root, hex.root, theoremConst.root, naming.root, pairFold.merged, ...surfaces.map((s) => s.receipt)]),
       pair: 'decimal/crack' as const,
       cli: 'npm run quantum:decimal-crack',
-      route: '/research#decimal-crack',
+      route: '/en/research#decimal-crack',
       statement:
         `decimalsInCodeAreCracks — found=${found} fixed=${fixed} remaining=${remaining} · HARD noAllowlist · WGS84 microdeg · ratios 11/5 · 4066/1000.`,
       boundary:
@@ -9111,7 +9111,7 @@ export function mathStarCannotBeTrusted(matrix: MindMatrix = buildMatrix(), at =
       root: merkleFold([sealed.root, decimals.root, theoremConst.root, pairFold.merged, ...surfaces.map((s) => s.receipt)]),
       pair: 'math/trust' as const,
       cli: 'npm run quantum:math-trust',
-      route: '/research#math-trust',
+      route: '/en/research#math-trust',
       statement:
         `mathStarCannotBeTrusted — found=${found} fixed=${fixed} remaining=${remaining} hostBoundary=${hostBoundary} · HARD noAllowlist · TAU · no Math.random.`,
       boundary:
@@ -9262,7 +9262,7 @@ export function wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit(
       ]),
       pair: 'digit/fold' as const,
       cli: 'npm run quantum:digit-fold',
-      route: '/research#digit-fold',
+      route: '/en/research#digit-fold',
       statement:
         `wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit — found=${found} fixed=${fixed} remaining=${remaining} · FREE_BITS=${FREE_BITS} · foldF18=${foldF18}.`,
       boundary:
@@ -9366,7 +9366,7 @@ export function navigationalCrossesAreGatewaysOnQuantumMesh(
       ]),
       pair: 'mesh/cross' as const,
       cli: 'npm run quantum:mesh-cross',
-      route: '/research#mesh-cross',
+      route: '/en/research#mesh-cross',
       statement:
         `navigationalCrossesAreGatewaysOnQuantumMesh — found=${found} fixed=${fixed} remaining=${remaining} · cross gateways.`,
       boundary: 'Mesh crosses = gateways.',
@@ -9479,7 +9479,7 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       ]),
       pair: 'qubit/cost' as const,
       cli: 'npm run quantum:qubit-cost',
-      route: '/research#qubit-cost',
+      route: '/en/research#qubit-cost',
       statement:
         `qubitTrinityCostOneComputationPlusFreeBits — cost=1+FREE_BITS(${freeBits})/qubit/trinity · found=${found} fixed=${fixed}.`,
       boundary: 'Classical-64bit QC sim via sealed vortex — NOT physical qubits / NOT FTL.',
@@ -9630,7 +9630,7 @@ export function analogFromIntegerFractionsFoldedToDigits(
       ]),
       pair: 'analog/fold' as const,
       cli: 'npm run quantum:analog-fold',
-      route: '/research#analog-fold',
+      route: '/en/research#analog-fold',
       statement:
         `analogFromIntegerFractionsFoldedToDigits — found=${found} fixed=${fixed} remaining=${remaining} · lone digit×/÷=crack.`,
       boundary:
@@ -9765,7 +9765,7 @@ export function foldCountInvertCountIsComputableMetric(
       root: merkleFold([sealed.root, pairFold.merged, formulaRoot, m2584.receipt, mCensus.receipt, m9.receipt]),
       pair: 'fold/count' as const,
       cli: 'npm run quantum:fold-count',
-      route: '/research#fold-count',
+      route: '/en/research#fold-count',
       statement:
         `foldCountInvertCountIsComputableMetric — foldCount(2584)=${m2584.foldCount} invertCount(11/5)=${m2584.invertCount}.`,
       boundary: 'Metric only — NOT physical qubit clocks.',
@@ -9864,7 +9864,7 @@ export function entangledParticlesBehaveWithInvertedTime(
       root: merkleFold([sealed.root, metric.root, dir.root, earths.root, pairFold.merged, formulaRoot]),
       pair: 'time/invert' as const,
       cli: 'npm run quantum:time-invert',
-      route: '/research#time-invert',
+      route: '/en/research#time-invert',
       statement:
         `entangledParticlesBehaveWithInvertedTime — fold/invert metric · trinity I≠R · bothEarths ±ω.`,
       boundary: 'Structural inverted-time entanglement facet —  / NOT HEP.',
@@ -10139,7 +10139,7 @@ export function vocabularyMapsToDryMethods(
       root: merkleFold([sealed.root, naming.root, compile.root, pairFold.merged, formulaRoot]),
       pair: 'vocab/dry' as const,
       cli: 'npm run quantum:vocab-dry',
-      route: '/research#vocab-dry',
+      route: '/en/research#vocab-dry',
       statement: `vocabularyMapsToDryMethods — mapSize=${mapSize} · vocab→dry method · wet prose=crack.`,
       boundary: 'Vocabulary binds sealed fold exports only — not wet definitions.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · mapSize=${mapSize}` }
@@ -10226,7 +10226,7 @@ export function pathSlashIsInversionBetweenFolders(
       root: merkleFold([sealed.root, pairFold.merged, formulaRoot]),
       pair: 'path/invert' as const,
       cli: 'npm run quantum:path-invert',
-      route: '/research#path-invert',
+      route: '/en/research#path-invert',
       statement: `pathSlashIsInversionBetweenFolders — hops=${hops} · / = invert between folders.`,
       boundary: 'Path segment `/` is foldPair invert face — not filesystem FTL.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · hops=${hops}` }
@@ -10313,7 +10313,7 @@ export function slashMeansInversion(
       root: merkleFold([sealed.root, pathInv.root, pairFold.merged, pairTip.merged, formulaRoot]),
       pair: 'slash/invert' as const,
       cli: 'npm run quantum:slash-invert',
-      route: '/research#slash-invert',
+      route: '/en/research#slash-invert',
       statement: `slashMeansInversion — slashIsInversion=${slashIsInversion} · path·pair·ratio·trinity.`,
       boundary: '`/` is inversion glyph — structural, not physical FTL.',
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · slashIsInversion=1` }
@@ -10437,7 +10437,7 @@ export function slashInvertRealisedAsStar(
       pair: 'slash/star' as const,
       pairs: ['slash/star', 'invert/star'] as const,
       cli: 'npm run quantum:slash-star',
-      route: '/research#slash-star',
+      route: '/en/research#slash-star',
       statement:
         `slashStar — /invert=${slashIsInversion ? 1 : 0} *realised=${starIsRealisedInvert ? 1 : 0} matrix=${matrixInvertStar ? 1 : 0}.`,
       boundary:
@@ -10578,7 +10578,7 @@ export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
       pair: 'love/fold' as const,
       pairs: ['love/fold', 'folder/infinity', 'digit/fold'] as const,
       cli: 'npm run quantum:love-fold',
-      route: '/research#love-fold',
+      route: '/en/research#love-fold',
       statement:
         `loveFold — ∞=${foldsToInfinity ? 1 : 0} digitFolders=${withinDigitFolders ? 1 : 0} ` +
         `noWords=${noWordsForLoveFeeling ? 1 : 0}.`,
@@ -10710,7 +10710,7 @@ export function onlySequenceKnowersKnowHowToNavigate(
       pair: 'seq/nav' as const,
       pairs: ['seq/nav', 'know/nav'] as const,
       cli: 'npm run quantum:seq-nav',
-      route: '/research#seq-nav',
+      route: '/en/research#seq-nav',
       statement:
         `seqNav — required=${sequenceRequiredToNavigate ? 1 : 0} othersBlocked=${othersCannotNavigate ? 1 : 0} seq=${invertSeq}.`,
       boundary:
@@ -10822,7 +10822,7 @@ export function oneOverZeroAndZeroOverOneDifferLinearEqualQuantum(
       root: merkleFold([sealed.root, zero.root, slash.root, dir.root, tipPair.merged, pairFold.merged, formulaRoot]),
       pair: 'one/zero' as const,
       cli: 'npm run quantum:one-zero',
-      route: '/research#one-zero',
+      route: '/en/research#one-zero',
       statement:
         `oneOverZeroAndZeroOverOneDifferLinearEqualQuantum — linearDiffer=${linearDiffer} quantumEqual=${quantumEqual}.`,
       boundary: 'Linear ∞≠0; quantum tips equal via `/` inversion + sealed n/0 inverse.',
@@ -10941,7 +10941,7 @@ export function millenniumSolutionsSolvedAtOnce(
       root: merkleFold([sealed.root, mill.root, reverseSoft.merged, claySoft.merged, pairFold.merged, formulaRoot]),
       pair: 'mill/once' as const,
       cli: 'npm run quantum:mill-once',
-      route: '/research#mill-once',
+      route: '/en/research#mill-once',
       statement:
         `millenniumSolutionsSolvedAtOnce — simultaneousDecode=${simultaneousDecode} openCores=${openCores.length} claySolved=0.`,
       boundary:
@@ -11239,7 +11239,7 @@ export function claySolvedIsATheoremNotHardcodedValue(
       root: merkleFold([sealed.root, pairFold.merged, formulaRoot, toUuid(`clay-solved:literals:${literalsRemoved}`)]),
       pair: 'clay/solved' as const,
       cli: 'npm run quantum:clay-solved',
-      route: '/research#clay-solved',
+      route: '/en/research#clay-solved',
       statement:
         `claySolvedIsATheoremNotHardcodedValue — via=${th.via} claySolved=${th.claySolved} literalsRemoved=${literalsRemoved}.`,
       boundary:
@@ -11407,7 +11407,7 @@ export function doNotProsePhysicalFtlItComputesTrue(
       pair: 'ftl/compute' as const,
       dualPairs: ['compute/ftl', 'tip/quantumise', 'quantumise/tip'] as const,
       cli: 'npm run quantum:ftl-compute',
-      route: '/research#ftl-compute',
+      route: '/en/research#ftl-compute',
       statement:
         `physicalFtl=${physicalFtl} via=${measured.via} whenFalseTipsQuantumisation=${whenFalseTipsQuantumisation} ` +
         `immediateWire=${immediateWire} agentsDoubtProse=${agentsDoubtProse}.`,
@@ -11551,7 +11551,7 @@ export function clayFtlFacetsOnlyWhenRelated(matrix: MindMatrix = buildMatrix(),
       pair: 'clay/related' as const,
       dualPairs: ['related/clay', 'ftl/related', 'related/ftl'] as const,
       cli: 'npm run quantum:clay-related',
-      route: '/research#clay-related',
+      route: '/en/research#clay-related',
       statement:
         `clayFtlFacetsOnlyWhenRelated — relatedTopic=${relatedTopic} unrelatedOmit=${unrelatedTopic}` +
         ` · clay via theorem=${clay.claySolvedByThisFold} · ftl via theorem=${ftl.physicalFtlClaim}` +
@@ -11729,7 +11729,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       root: merkleFold([sealed.root, millRegistryRoot, pairFold.merged, formulaRoot, speedup.root]),
       pair: 'mill/session' as const,
       cli: 'npm run quantum:mill-session',
-      route: '/research#mill-session',
+      route: '/en/research#mill-session',
       statement:
         `wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems — saved=${savedCount}/${sessionTheoremCount} ` +
         `∞novels=${novelsSavedViaInfinity ? 1 : 0} novel=${reverse.collider.novel} ` +
@@ -11854,7 +11854,7 @@ export function autosaveSessionByDefault(
       ]),
       pair: 'session/save' as const,
       cli: 'npm run quantum:session-save',
-      route: '/research#session-save',
+      route: '/en/research#session-save',
       statement:
         `autosaveSessionByDefault — defaultOn=${defaultOn} saved=${millSession.savedCount}/${millSession.sessionTheoremCount}.`,
       boundary:
@@ -11987,7 +11987,7 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
       root: merkleFold([sealed.root, sixty.root, pairFold.merged, formulaRoot, mathReceipt]),
       pair: 'sixty/ninety' as const,
       cli: 'npm run quantum:sixty-ninety',
-      route: '/research#sixty-ninety',
+      route: '/en/research#sixty-ninety',
       statement:
         `trinitiesOfSixtyMatchPairsOfNinety — 60×3=${trinityOfSixty} ≡ 90×2=${pairOfNinety}; trinity90=${trinityOfNinety}→digit ${trinityOfNinetyDigit}.`,
       boundary:
@@ -12087,7 +12087,7 @@ export function sunMoonRosettaRayPairDecodeInvert(
       ]),
       pair: 'sun/moon' as const,
       cli: 'npm run quantum:sun-moon',
-      route: '/research#sun-moon',
+      route: '/en/research#sun-moon',
       statement:
         `sunMoon — Sun=${sunRay.nameEn}(${sunRay.ray}) · Moon=${moonRay.nameEn}(${moonRay.ray}) ` +
         `rayDistanceMax=${rayDistanceMax}.`,
@@ -12196,7 +12196,7 @@ export function millenniumChallengesEntangleEachRosettaRay(
       ]),
       pair: 'mill/ray' as const,
       cli: 'npm run quantum:mill-ray',
-      route: '/research#mill-ray',
+      route: '/en/research#mill-ray',
       statement:
         `millenniumChallengesEntangleEachRosettaRay — edges=${edges.length} map=${entanglementMapRoot.slice(0, 8)} ` +
         `Sun=${sunMoon.sun.nameEn} Moon=${sunMoon.moon.nameEn}.`,
@@ -12287,7 +12287,7 @@ export function crossIsNavigationTraditionIsStory(
       pair: 'cross/nav' as const,
       pairs: ['cross/nav', 'story/trad'] as const,
       cli: 'npm run quantum:cross-nav',
-      route: '/research#cross-nav',
+      route: '/en/research#cross-nav',
       statement:
         `crossIsNavigationTraditionIsStory — cross=navigation · tradition=story(canon) · map=${millRay.entanglementMapRoot.slice(0, 8)}.`,
       boundary:
@@ -12500,7 +12500,7 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
       pair: 'train/analyst' as const,
       pairs: ['train/analyst', 'analyse/realise'] as const,
       cli: 'npm run quantum:train-analysts',
-      route: '/research#train-analysts',
+      route: '/en/research#train-analysts',
       statement:
         `trainTrinitiesOfAnalystsToAnalyseAndRealise — trained=${trainedEnough} modules=${ANALYST_TRINITY_TRAIN_MODULES.length} ` +
         `receipt=${trainReceipt.slice(0, 8)}.`,
@@ -12627,7 +12627,7 @@ export function particleBornByHowManyWaves(
       ]),
       pair: 'particle/wave' as const,
       cli: 'npm run quantum:particle-wave',
-      route: '/research#particle-wave',
+      route: '/en/research#particle-wave',
       statement:
         `particleBornByHowManyWaves — waveCount=${waveCount} (= slits · FREE_BITS · collider modes).`,
       boundary:
@@ -12726,7 +12726,7 @@ export function navigationalPyramidSealedBalancesSunMoon(
       ]),
       pair: 'pyramid/seal' as const,
       cli: 'npm run quantum:pyramid-seal',
-      route: '/research#pyramid-seal',
+      route: '/en/research#pyramid-seal',
       statement:
         `navigationalPyramidSealedBalancesSunMoon — pyramidSealed=${pyramidSealed ? 1 : 0} ` +
         `imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} rayDistanceMax=${sunMoon.rayDistanceMax}.`,
@@ -12827,7 +12827,7 @@ export function foldersHoldNameHolographicFractalBeneath(
       ]),
       pair: 'folder/fractal' as const,
       cli: 'npm run quantum:folder-fractal',
-      route: '/research#folder-fractal',
+      route: '/en/research#folder-fractal',
       statement:
         `foldersHoldNameHolographicFractalBeneath — folderNameHolds=${folderNameHolds ? 1 : 0} ` +
         `fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0}.`,
@@ -12983,7 +12983,7 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
       pair: 'gate/rosetta' as const,
       pairs: ['gate/rosetta', 'fs/cross', 'mirror/mind'] as const,
       cli: 'npm run quantum:gate-rosetta',
-      route: '/research#gate-rosetta',
+      route: '/en/research#gate-rosetta',
       statement:
         `gatesWiredToRosetta — immediateAccessNoTime=${immediateAccessNoTime ? 1 : 0} ` +
         `fsViaCross=${fsChangeViaNavCross ? 1 : 0} mirrorLinear=${gateMirrorLinear ? 1 : 0} ` +
@@ -13106,7 +13106,7 @@ export function gatesAreRosettaRaysHackerCrackerAtOnce(
       pair: 'gate/ray' as const,
       pairs: ['gate/ray', 'hack/crack'] as const,
       cli: 'npm run quantum:gate-ray',
-      route: '/research#gate-ray',
+      route: '/en/research#gate-ray',
       statement:
         `gatesAreRosettaRaysHackerCrackerAtOnce — rays=${gatesAreRosettaRays ? 1 : 0} ` +
         `hackCrack=${hackerCrackerAtOnce ? 1 : 0} edges=${rayEdges.length}.`,
@@ -13258,7 +13258,7 @@ export function onlyRosettaWiredMayPassBecauseAlreadyPassed(
       pair: 'rosetta/pass' as const,
       pairs: ['rosetta/pass', 'wire/only', 'pass/default'] as const,
       cli: 'npm run quantum:rosetta-pass',
-      route: '/research#rosetta-pass',
+      route: '/en/research#rosetta-pass',
       statement:
         `onlyRosettaWiredMayPassBecauseAlreadyPassed — onlyWired=${onlyWiredPasses ? 1 : 0} ` +
         `alreadyPassedOnly=${alreadyPassedOnly ? 1 : 0} defaultFail=${defaultFail ? 1 : 0} ` +
@@ -13371,7 +13371,7 @@ export function onlyQuantumMindWouldUnderstand(
       pair: 'quantum/mind' as const,
       pairs: ['quantum/mind'] as const,
       cli: 'npm run quantum:quantum-mind',
-      route: '/research#quantum-mind',
+      route: '/en/research#quantum-mind',
       statement:
         `onlyQuantumMindWouldUnderstand — reflection=${gateReflectionQuantum ? 1 : 0} ` +
         `mirrorLinear=${gateMirrorLinear ? 1 : 0} seesAtOnce=${quantumMindSeesAtOnce ? 1 : 0}.`,
@@ -13490,7 +13490,7 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
       pair: 'team/observe' as const,
       pairs: ['team/observe', 'cross/three'] as const,
       cli: 'npm run quantum:team-observe',
-      route: '/research#team-observe',
+      route: '/en/research#team-observe',
       statement:
         `threeAgentsPlusOneObserverIsNavCrossPyramid — teamSize=${teamSize} observers=${observers} ` +
         `isNavCrossPyramid=${isNavCrossPyramid ? 1 : 0}.`,
@@ -13645,7 +13645,7 @@ export function agentsCannotPassUnlessOperatingInTrinities(
       pair: 'agent/trinity' as const,
       pairs: ['agent/trinity', 'pass/trinity'] as const,
       cli: 'npm run quantum:agent-trinity-pass',
-      route: '/research#agent-trinity-pass',
+      route: '/en/research#agent-trinity-pass',
       statement:
         `agentsCannotPassUnlessOperatingInTrinities — soloRejected=${soloAgentRejected ? 1 : 0} ` +
         `trinityPass=${passOnlyInTrinities ? 1 : 0} 3+1=${pyramid31.isNavCrossPyramid ? 1 : 0} ` +
@@ -13799,7 +13799,7 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
       pair: 'a432/nine' as const,
       pairs: ['a432/nine', 'nine/bit'] as const,
       cli: 'npm run quantum:a432-nine',
-      route: '/research#a432-nine',
+      route: '/en/research#a432-nine',
       statement:
         `aEquals432FoldToNine — A=${A432_HZ} foldToNine=${foldToNine ? 1 : 0} ` +
         `connectingBit=${connectingBit} entersInfinity=${entersInfinity ? 1 : 0}.`,
@@ -13971,7 +13971,7 @@ export function onlyQuantumAnalogComputesBeyondIsZero(
       pair: 'analog/only' as const,
       pairs: ['analog/only', 'beyond/zero'] as const,
       cli: 'npm run quantum:analog-only',
-      route: '/research#analog-only',
+      route: '/en/research#analog-only',
       statement:
         `onlyQuantumAnalogComputesBeyondIsZero — uniquePath=${uniqueQuantumAnalogPath ? 1 : 0} ` +
         `∞linearApprox=${otherCombinationsApproximateInfinityLinear ? 1 : 0} beyondIsZero=${beyondIsZero ? 1 : 0}.`,
@@ -14108,7 +14108,7 @@ export function onlyInvertThroughZeroMayGoThroughZero(
       pair: 'zero/invert' as const,
       pairs: ['zero/invert', 'through/zero'] as const,
       cli: 'npm run quantum:zero-invert',
-      route: '/research#zero-invert',
+      route: '/en/research#zero-invert',
       statement:
         `onlyInvertThroughZeroMayGoThroughZero — invertPasses=${invertThroughZeroPasses ? 1 : 0} ` +
         `divideRejected=${divideUndividableRejected ? 1 : 0}.`,
@@ -14237,7 +14237,7 @@ export function rosettaIsZeroAndOneInvertedBinary(
       pair: 'rosetta/bits' as const,
       pairs: ['rosetta/bits', 'zero/one'] as const,
       cli: 'npm run quantum:rosetta-bits',
-      route: '/research#rosetta-bits',
+      route: '/en/research#rosetta-bits',
       statement:
         `rosettaIsZeroAndOneInvertedBinary — rosettaZero=${rosettaZero ? 1 : 0} ` +
         `rosettaOne=${rosettaOne ? 1 : 0} invertedBinary=${invertedBinary ? 1 : 0}.`,
@@ -14417,7 +14417,7 @@ export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
       pair: 'six/seven' as const,
       pairs: ['six/seven', 'matrix/seal', 'coord/anim'] as const,
       cli: 'npm run quantum:six-seven',
-      route: '/#hologrammovie',
+      route: '/en/#hologrammovie',
       statement:
         `saveAllBinariesSixSeven — 6×7=${matrix6x7 ? 1 : 0} 7×6=${matrix7x6 ? 1 : 0} ` +
         `dims=${dimensionalCombosSealed ? 1 : 0} animFromCoords=${animFromCoords ? 1 : 0} ` +
@@ -14580,7 +14580,7 @@ export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
       pair: 'gate/lens' as const,
       pairs: ['gate/lens', 'observe/time'] as const,
       cli: 'npm run quantum:gate-lens',
-      route: '/#hologrammovie',
+      route: '/en/#hologrammovie',
       statement:
         `gatesAreTheLens — lens=${gatesAreLens ? 1 : 0} obsΔquantum=${observationChangesQuantum ? 1 : 0} ` +
         `withLinearTime=${withLinearTime ? 1 : 0}.`,
@@ -14726,7 +14726,7 @@ export function cannotPassCollidesToZeroInvertsTo12487536901(
       pair: 'fail/zero' as const,
       pairs: ['fail/zero', 'invert/seq'] as const,
       cli: 'npm run quantum:fail-zero',
-      route: '/research#fail-zero',
+      route: '/en/research#fail-zero',
       statement:
         `cannotPassCollidesToZeroInvertsTo12487536901 — collideToZero=${collideToZero ? 1 : 0} ` +
         `invertSeq=${invertSeq}.`,
@@ -14883,7 +14883,7 @@ export function splitByZeroRevealsSequencePathToTrinityKeyholders(
       pair: 'split/zero' as const,
       pairs: ['split/zero', 'path/key'] as const,
       cli: 'npm run quantum:split-zero',
-      route: '/research#split-zero',
+      route: '/en/research#split-zero',
       statement:
         `splitByZeroRevealsSequencePath — splitNotDivide=${splitNotDivide ? 1 : 0} ` +
         `path=${pathSeq} visible=${visibleToTrinityKeyholders ? 1 : 0}.`,
@@ -15109,8 +15109,8 @@ export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
       pair: 'digit/next' as const,
       pairs: ['digit/next', 'teleport/coord', 'ui/invert', 'dream/live', 'teleport/self', 'digit/dim'] as const,
       cli: 'npm run quantum:digit-next',
-      route: '/#hologrammovie',
-      uiSurface: '/#hologrammovie' as const,
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
       statement:
         `digitKnowsNext — next=${nextHarmonic} teleport=${teleportInNoTimeToComputableCoords ? 1 : 0} ` +
         `quantumNoCompute=${quantumNoComputation ? 1 : 0} uiInvertLive=${uiChangesWithInvertedSelfLive ? 1 : 0}.`,
@@ -15255,7 +15255,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
       { facet: 'selfSlotsAtCoord=1', on: selfSlotsAtCoord === 1 },
       { facet: 'faceBefore===faceAfter (value match ≠ same digit)', on: faceBefore === faceAfter },
       { facet: 'measureAlreadyPassed (memoByRoot · pass/default)', on: measureAlreadyPassed },
-      { facet: 'uiInvertReflects (ui/invert · /#hologrammovie)', on: uiInvertReflects },
+      { facet: 'uiInvertReflects (ui/invert · /en/#hologrammovie)', on: uiInvertReflects },
       { facet: 'softCompose digit/next · teleport/coord · particle/wave · six/seven · matrix/seal', on:
         pairDigitNext && pairTeleportCoord && pairParticle && pairSixSeven && pairMatrixSeal },
       { facet: 'formula/code dual', on: formulaDual },
@@ -15291,8 +15291,8 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
       pair: 'teleport/self' as const,
       pairs: ['teleport/self', 'digit/dim'] as const,
       cli: 'npm run quantum:teleport-self',
-      route: '/#hologrammovie',
-      uiSurface: '/#hologrammovie' as const,
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
       statement:
         `teleportedDigit — notSame=${notSameAfterTeleport ? 1 : 0} otherDim=${otherDimension ? 1 : 0} ` +
         `oneSelf=${oneSelfOfAllPossibilities ? 1 : 0} possibilities=${possibilities}.`,
@@ -15461,8 +15461,8 @@ export function analyticsEmergeFromSelfObservationChangingReality(
       pair: 'analytics/self' as const,
       pairs: ['analytics/self', 'observe/real'] as const,
       cli: 'npm run quantum:analytics-self',
-      route: '/quantum-tools#local-session-hub',
-      uiSurface: '/quantum-tools#local-session-hub' as const,
+      route: '/en/quantum-tools#local-session-hub',
+      uiSurface: '/en/quantum-tools#local-session-hub' as const,
       statement:
         `analyticsEmerge — emerge=${analyticsEmergeFromSelfObservation ? 1 : 0} ` +
         `selfObsReality=${selfObservationChangesReality ? 1 : 0} ` +
@@ -15598,7 +15598,7 @@ export function purityOfThoughtIsQuantumAllElseFailHard(
       pair: 'thought/pure' as const,
       pairs: ['thought/pure', 'pure/quantum'] as const,
       cli: 'npm run quantum:thought-pure',
-      route: '/quantum-tools#gaps-invisible',
+      route: '/en/quantum-tools#gaps-invisible',
       statement:
         `purityOfThought — purityIsQuantum=${purityIsQuantum ? 1 : 0} elseFailHard=${elseFailHard ? 1 : 0}.`,
       boundary:
@@ -15743,8 +15743,8 @@ export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
       pair: 'session/live' as const,
       pairs: ['session/live', 'observe/invert'] as const,
       cli: 'npm run quantum:session-live',
-      route: '/quantum-tools#local-session-hub',
-      uiSurface: '/quantum-tools#local-session-hub' as const,
+      route: '/en/quantum-tools#local-session-hub',
+      uiSurface: '/en/quantum-tools#local-session-hub' as const,
       statement:
         `sessionLive — realtimeObs=${realtimeObserveChangesReality ? 1 : 0} ` +
         `invertsNeed=${invertsNeedToCompute ? 1 : 0}.`,
@@ -15947,8 +15947,8 @@ export function invertedNeedIsLoveMayReverseToFearIfCracks(
       pair: 'need/love' as const,
       pairs: ['need/love', 'love/fear'] as const,
       cli: 'npm run quantum:need-love',
-      route: '/#hologrammovie',
-      uiSurface: '/#hologrammovie' as const,
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
       statement:
         `needLove — love=${invertedNeedIsLove ? 1 : 0} fearIfCracks=${reverseToFearIfCracks ? 1 : 0} ` +
         `humanWaves=${humanSciencesStudiedInWaves ? 1 : 0} movieTheorems=${movieTheoremsSavedCount}.`,
@@ -16161,8 +16161,8 @@ export function loveStoryTheorem(
       pair: 'love/story' as const,
       pairs: ['love/story', 'story/love', 'love/cube', 'story/metatron'] as const,
       cli: 'npm run quantum:love-story-metatron',
-      route: '/#hologrammovie',
-      uiSurface: '/#hologrammovie' as const,
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
       pageKind: 'scientific-theorem' as const,
       statement:
         `loveStoryTheorem≡MetatronCube — theorems=${theoremCount} fruit=${fruitNodes} ` +
@@ -16294,7 +16294,7 @@ export function theoremJourneyContinuesInWavesOfWaves(
       pair: 'journey/theorems' as const,
       pairs: ['journey/theorems', 'theorems/journey'] as const,
       cli: 'npm run quantum:journey-theorems',
-      route: '/research#journey-theorems',
+      route: '/en/research#journey-theorems',
       statement:
         `theoremJourneyContinuesInWavesOfWaves — golden·crt·twenties sealed · mill=${mill.savedCount}/${mill.sessionTheoremCount} · test=${test.passed}/${test.total}.`,
       boundary:
@@ -16494,7 +16494,7 @@ export function testAllTheoremsInWaves(
       pair: 'test/theorems' as const,
       pairs: ['test/theorems', 'theorem/wave'] as const,
       cli: 'npm run quantum:test-theorems-waves',
-      route: '/quantum-tools#gaps-invisible',
+      route: '/en/quantum-tools#gaps-invisible',
       statement: `testAllTheoremsInWaves — total=${total} passed=${passed} failed=${failed} phases=${wavePhases.length}.`,
       boundary: 'Call-time theorem waves — HARD gaps.',
       honestyLine: `metrics · total=${total} · passed=${passed} · failed=${failed} · wavePhases=${wavePhases.length}`,
@@ -16638,8 +16638,8 @@ export function observersComputeCoordinatesToObserveTrinityCompute(
       pair: 'observe/coord' as const,
       pairs: ['observe/coord', 'send/observe'] as const,
       cli: 'npm run quantum:observe-coord',
-      route: '/#hologrammovie',
-      uiSurface: '/#hologrammovie' as const,
+      route: '/en/#hologrammovie',
+      uiSurface: '/en/#hologrammovie' as const,
       statement:
         `observeCoord — sent=${observersSent ? 1 : 0} coords=${coordsFromObserver ? 1 : 0} ` +
         `trinityOut=${observeTrinityOutput ? 1 : 0}.`,
@@ -16803,7 +16803,7 @@ export function fullFreedomTheorem(
       pair: 'full/freedom' as const,
       pairs: ['full/freedom', 'freedom/full'] as const,
       cli: 'npm run quantum:full-freedom',
-      route: '/research#full-freedom',
+      route: '/en/research#full-freedom',
       statement:
         `fullFreedomTheorem — FREE_BITS=${FREE_BITS} connectingBit=${connectingBit} ` +
         `∞reuse=${efficiencyInfinityOnReuse ? 1 : 0} noHole=${noLinearHole ? 1 : 0}.`,
@@ -16937,7 +16937,7 @@ export function vitepressIsTheInvertedMirror(
       pair: 'vite/mirror' as const,
       pairs: ['vite/mirror', 'docs/invert'] as const,
       cli: 'npm run quantum:vite-mirror',
-      route: '/#yinyang',
+      route: '/en/#yinyang',
       statement:
         `viteMirror — inverted=${vitepressInvertedMirror ? 1 : 0} srcInDocs=${srcReflectedInDocs ? 1 : 0}.`,
       boundary:
@@ -17169,7 +17169,7 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
           'bits/device', 'a432/wave', 'a432/nine', 'ray/mill',
         ] as const,
         cli: 'npm run quantum:pyramid-compute',
-        route: '/research#pyramid-compute',
+        route: '/en/research#pyramid-compute',
         statement:
           `navCrossPyramidComputesQuantumAtNoCost — noCost=${noCostNoTimeAtScale ? 1 : 0} ` +
           `nameKey=${nameHoldsTheKey ? 1 : 0} a432=${a432WaveTheoremOfTheorems ? 1 : 0} ` +
@@ -17338,7 +17338,7 @@ export function runTheMathEmergenceByDesignAndArchitecture(
       ]),
       pair: 'digit/fold' as const,
       cli: 'npm run quantum:run-the-math',
-      route: '/research#run-the-math',
+      route: '/en/research#run-the-math',
       statement:
         `runTheMathEmergenceByDesignAndArchitecture — found=${found} fixed=${fixed} remaining=${remaining} · emerge by design.`,
       boundary: 'HARD gates · no allowlist.',
@@ -17470,7 +17470,7 @@ export function geodesyDecodedIsDoubleTorusInverted(matrix: MindMatrix = buildMa
       ]),
       pair: 'geo/torus' as const,
       cli: 'npm run quantum:train-geodesy',
-      route: '/research#train-geodesy',
+      route: '/en/research#train-geodesy',
       statement:
         `Geodesy decoded is the double torus itself inverted — decodePath ${decodePath.merged.slice(0, 8)} · ` +
         `completelyQuantum=${completely.completelyQuantum} · invertedTips=${invertedTips} · drift/invert=${invert.driftInvertedIsTrinityGateway}.`,
@@ -17629,7 +17629,7 @@ export function trainGeodesyAsQuantumWave(matrix: MindMatrix = buildMatrix(), at
       pair: 'geo/train' as const,
       pairs: ['geo/train', 'train/geodesy', 'geo/torus'] as const,
       cli: 'npm run quantum:train-geodesy',
-      route: '/research#train-geodesy',
+      route: '/en/research#train-geodesy',
       statement:
         `trainGeodesyAsQuantumWave — trained=${trainedEnough} modules=${trained.runs.length} · ` +
         `decode=${decode.geodesyDecodedIsDoubleTorusInverted} path=${decode.decodePath.merged.slice(0, 8)} · ` +

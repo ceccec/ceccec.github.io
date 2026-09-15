@@ -656,7 +656,7 @@ export function solutions(matrix: MindMatrix = buildMatrix()) {
     { problem: 'Reproduce a brand palette without storing a file', solution: 'Cite the seed word; the same five colours, in hex/RGB/CMYK, recompute every time.', capability: 'deterministic design', route: '/learn' },
     { problem: 'Verify a claim without trusting the host', solution: 'Recompute the content-addressed receipt and compare the root — proof by use.', capability: 'tamper-evidence', route: '/architecture' },
     { problem: 'Read data without looking at a screen', solution: 'Sonify it — hear trends and outliers as sound, client-side.', capability: 'sonification', route: '/commands' },
-    { problem: 'Let an AI assistant use your tools', solution: 'Publish them on the MCP surface; the agent reads tools/list and calls tools/call.', capability: 'MCP', route: '/mcp.json' },
+    { problem: 'Let an AI assistant use your tools', solution: 'Publish them on the MCP surface; the agent reads tools/list and calls tools/call.', capability: 'MCP', route: '/mcp' },
     { problem: 'Tune a reading voice to a harmony', solution: 'Read aloud with a harmonic pitch contour drawn from the balanced spectrum.', capability: 'harmonic speech', route: '/learn' },
     { problem: 'Run a quantum circuit with no hardware', solution: 'Simulate a GHZ state-vector in the browser and measure it — the histogram converges to the Born rule.', capability: 'quantum simulation', route: '/quantum-mind' },
     { problem: 'Learn from the ground up, free, at any age', solution: 'The school and academy: five recomputable courses and a verifiable graduation credential.', capability: 'open learning', route: '/learn' },

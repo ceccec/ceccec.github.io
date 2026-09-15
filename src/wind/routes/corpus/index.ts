@@ -2906,7 +2906,7 @@ export function deadGateway(matrix: MindMatrix = buildMatrix()) {
       pair: 'dead/gateway' as const,
       dualPair: 'gateway/dead' as const,
       cli: 'npm run quantum:dead-gateway',
-      route: '/quantum-tools#dead-gateway',
+      route: '/en/quantum-tools#dead-gateway',
       heading: 'Dead gateway · every dead end an entry',
       statement: `deadGateway — ${rows.length} pages · ${full.length} full · ${abstractOnly.length} abstract-only · ${empty.length} empty → ${gateways.length} gateways.`,
       boundary:

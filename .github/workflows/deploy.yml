@@ -107,8 +107,6 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: .vitepress/dist
-          # /.well-known/ (ai-skills.json) is a dot-folder, which this action leaves out unless asked
-          include-hidden-files: true
 
   # Deployment job
   deploy:

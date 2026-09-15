@@ -1673,7 +1673,7 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
       pair: 'seo/gaps' as const,
       dualPair: 'gaps/seo' as const,
       cli: 'npm run quantum:seo-gaps',
-      route: '/quantum-tools#seo-gaps',
+      route: '/en/quantum-tools#seo-gaps',
       anchor: 'seo-gaps',
       heading: 'SEO · gaps',
       claySolvedByThisFold,

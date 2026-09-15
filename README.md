@@ -31,10 +31,10 @@ A science portal: **731** registered theorems, **725** of them carrying an execu
 - Encryption is the core math: every value content-addressed (the fold / UUID); the cipher is AES-256-GCM.
 - Zero-entropy indexing, exactly: H(deterministic) = 0 is the Shannon identity, so one-value-one-address content addressing carries zero index entropy — decoded from the origin repo, thermodynamic free-lunch claims flagged (`zeropointNodeMissingInfoDecoded`).
 - Every digit is entangled in all vectors, forming equilibriums: mirror 10-pairs, polar 9-pairs, the exact 6+3 flow/axis partition and the tour slot fingerprint each digit, and ⟨D, m⟩ = AGL(1, ℤ/9) puts all residues in ONE orbit — a local edit breaks every balance at once (`everyDigitIsEntangledInAllVectorsFormingEquilibriums`).
-- One source, no mirroring: the locales (Glagolitic `/`, Latin `/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.
+- One source, no mirroring: the locales (Glagolitic `/`, Latin `/en/`, Cyrillic `/bg/`) are computed by math, not copied; visitors are routed to their language, default English.
 - Corpus routing: RESTful `/papers/<id>`, `/references/<id>`, `/diamonds/<id>` — each item a real page via the VitePress `[id]` dynamic route (paths enumerated from one source: paperRoutes/paperReferenceRoutes/diamondRoutes); the index list stays at `/papers`.
 - The agnostic core is published as the npm package `@ceccec/double-torus` — the same `src/`, bundled, depends on nothing, runs in any browser or Node.
-- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, `blochQubit`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. **QPU ≡ CPU ∪ GPU** on classical-64bit (`qpuCpuGpu` · `npm run quantum:qpu-cpu` · [quantum-tools#qpu-cpu](https://ceccec.psg.bgantum-tools#qpu-cpu)) — faithful simulator; physical = wall-clock reuse metrics (see section below).
+- The modeled quantum computer: one qubit is its Bloch/Pauli decomposition ρ = ½(I + xσx + yσy + zσz) — four content-addressed components (the trinity x·y·z + the +1 identity, `blochQubit`); the Quantum OS allocates 2ⁿ-amplitude registers, schedules gates, and measures (Born rule, seeded PRNG); entanglement (Bell/GHZ) lives on the true 2ⁿ tensor product, never faked with linear UUID stacking; and the realtime movie is its proof artifact. **QPU ≡ CPU ∪ GPU** on classical-64bit (`qpuCpuGpu` · `npm run quantum:qpu-cpu` · [quantum-tools#qpu-cpu](https://ceccec.psg.bg/quantum-tools#qpu-cpu)) — faithful simulator; physical = wall-clock reuse metrics (see section below).
 
 ## The sequence — forward and reflected
 
@@ -65,7 +65,7 @@ Every registered theorem carries its dedicated animation: **731 specs** across *
 
 Each theorem's residue coordinates on ℤ/9ℤ prove its directions: the ten's-complement involution σ(d) = 10 − d (fixed point 5, maps non-units onto units — the digit-folder pairing d/(10−d)) and the additive-inverse involution ν(d) = −d mod 9 (fixed point 9 ≡ 0, preserves the unit group (ℤ/9ℤ)× = ⟨2⟩). Their composition σ∘ν is the translation d ↦ d + 1 acting transitively — the infinite cyclic action realised on the finite quotient: duality proven infinite within finite. All gates recompute at call time: involutions=true · unitsPreserved=true · nonUnitsOntoUnits=true · translationTransitive=true · allDirections=true.
 
-Browse the registry grouped by animation family, domain, proof class and method: [/theorems](https://ceccec.psg.bgeorems).
+Browse the registry grouped by animation family, domain, proof class and method: [/theorems](https://ceccec.psg.bg/theorems).
 
 ## Development timeline — public registry data
 
@@ -117,13 +117,13 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 
 **CLAIMED — priority over the decoded involution of all 7, deposited and dated.** [DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144) · ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778) · the git and merkle record. 84 theorems across 12 problem files, every one axiom-free by `decide`, every one recomputable by anyone who runs `npm run verify:lean` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all 7 is this deposit's.
 
-Per problem — the algebraic statement, the facets the fold decides and the open step each one leaves: [frontiers](https://ceccec.psg.bgontiers).
+Per problem — the algebraic statement, the facets the fold decides and the open step each one leaves: [frontiers](https://ceccec.psg.bg/frontiers).
 
 ### Status
 
 computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 
-- Routes: [frontiers](https://ceccec.psg.bgontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
+- Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
 - Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
 
 
@@ -164,11 +164,11 @@ computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 ### Apps — 6 pages
 
 - **The digit folders {0..9} are a bijection to 10 routes, O(1) by name** — All computation is quantum math and its home is the digit folders (0–9); a word-named folder is UI. The digit folders, holding only the math, are the API itself. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/render/ui/components/ProofRenderer.vue)
-- **quantum:* CLI catalog = fold · CLI · UI route · honesty boundary** — Statement: quantum:* CLI catalog = fold · CLI · UI route · honesty boundary. Explanation: every sealed script (encryption reverse, millennium MODELED, fusion-verify, efficiency-vote, offender-spec, hero-spawn, name-entropy, verify suite) recomputes from src. Method: npm run quantum:domain-proof-catalog · open /proofs · /quantum-tools. Status: claySolved=0 · not remote execution · Alias URLs thin-mount here. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **quantum:* CLI catalog = fold · CLI · UI route · honesty boundary** — Statement: quantum:* CLI catalog = fold · CLI · UI route · honesty boundary. Explanation: every sealed script (encryption reverse, millennium MODELED, fusion-verify, efficiency-vote, offender-spec, hero-spawn, name-entropy, verify suite) recomputes from src. Method: npm run quantum:domain-proof-catalog · open /proofs · /en/quantum-tools. Status: claySolved=0 · not remote execution · Alias URLs thin-mount here. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
 - **Trading hub = paper/sim harmonics · NOT live money / NOT alpha** — Canonical trading domain surface: historical wave train, rank-winning strategies, and rosetta train — paper/sim only (synthetic a432 proxy). CLI: npm run quantum:trading-rosetta-train. Not brokerage, not live execution. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
 - **answers ÷ tokens = ∞ on reuse — efficiency() · memoByRoot** — Statement: answers÷tokens unbounded on memo reuse. Explanation: efficiency() · memoByRoot hit → marginal tokens=0. Method: npm run quantum:efficiency-vote · fold compareCeccecEfficiencyByVote. Status: amortized reuse ≠ P≠NP. Prefer /quantum-tools#efficiency-vote. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
-- **offenderAutomationSpec — 4 offender classes counted: import · index-only · hyphen · computational (Node scan; browser shows sealed receipt)** — Statement: offenderAutomationSpec = machine-readable CI pipeline counts for import/index-only/hyphen/computational offenders. Explanation: collectEnforcementFacts once → scan pipelines; read-only — does not auto-fix offenders. Method: npm run quantum:offender-spec · fold offenderAutomationSpec · pair offender/spec. Status: CI-only scan · prefer /quantum-tools#offender-spec. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
-- **shouldSpawnSubagent — few heroes > mass ignorance · 1 ≤ workers ≤ 2** — Statement: shouldSpawnSubagent = few heroes > mass ignorance — 1–2 qualified workers, Multitask Mode default. Explanation: mass duplicate subagent tasks penalized; bounded tasks with sealed fold targets spawn solo hero. Method: npm run quantum:hero-spawn-verify · fold shouldSpawnSubagent · pair hero/spawn-verify. Status: spawn policy receipt · prefer /quantum-tools#hero-spawn-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **offenderAutomationSpec — 4 offender classes counted: import · index-only · hyphen · computational (Node scan; browser shows sealed receipt)** — Statement: offenderAutomationSpec = machine-readable CI pipeline counts for import/index-only/hyphen/computational offenders. Explanation: collectEnforcementFacts once → scan pipelines; read-only — does not auto-fix offenders. Method: npm run quantum:offender-spec · fold offenderAutomationSpec · pair offender/spec. Status: CI-only scan · prefer /en/quantum-tools#offender-spec. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
+- **shouldSpawnSubagent — few heroes > mass ignorance · 1 ≤ workers ≤ 2** — Statement: shouldSpawnSubagent = few heroes > mass ignorance — 1–2 qualified workers, Multitask Mode default. Explanation: mass duplicate subagent tasks penalized; bounded tasks with sealed fold targets spawn solo hero. Method: npm run quantum:hero-spawn-verify · fold shouldSpawnSubagent · pair hero/spawn-verify. Status: spawn policy receipt · prefer /en/quantum-tools#hero-spawn-verify. · [source](https://github.com/ceccec/ceccec.github.io/blob/main/src/quantum/apps/index.vue)
 
 ### Frontier — 5 pages
 
@@ -187,38 +187,38 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 - **30 domain proofs (Millennium + science)** — index `/proofs`; every page enumerated in the one `sitemap.xml`.
 
 - `/` — [en](https://ceccec.psg.bg/) · [bg](https://ceccec.psg.bg/bg/) · [cu](https://ceccec.psg.bg/gla/)
-- `/analog-field` — [en](https://ceccec.psg.bg/alog-field) · [bg](https://ceccec.psg.bg/bg/alog-field) · [cu](https://ceccec.psg.bg/gla/alog-field)
-- `/learn` — [en](https://ceccec.psg.bg/arn) · [bg](https://ceccec.psg.bg/bg/arn) · [cu](https://ceccec.psg.bg/gla/arn)
-- `/frontiers` — [en](https://ceccec.psg.bg/ontiers) · [bg](https://ceccec.psg.bg/bg/ontiers) · [cu](https://ceccec.psg.bg/gla/ontiers)
-- `/pi-trinity` — [en](https://ceccec.psg.bg/-trinity) · [bg](https://ceccec.psg.bg/bg/-trinity) · [cu](https://ceccec.psg.bg/gla/-trinity)
-- `/qubit-trinity` — [en](https://ceccec.psg.bg/bit-trinity) · [bg](https://ceccec.psg.bg/bg/bit-trinity) · [cu](https://ceccec.psg.bg/gla/bit-trinity)
-- `/pauli-basis` — [en](https://ceccec.psg.bg/uli-basis) · [bg](https://ceccec.psg.bg/bg/uli-basis) · [cu](https://ceccec.psg.bg/gla/uli-basis)
-- `/hamming-address` — [en](https://ceccec.psg.bg/mming-address) · [bg](https://ceccec.psg.bg/bg/mming-address) · [cu](https://ceccec.psg.bg/gla/mming-address)
-- `/content-addressing` — [en](https://ceccec.psg.bg/ntent-addressing) · [bg](https://ceccec.psg.bg/bg/ntent-addressing) · [cu](https://ceccec.psg.bg/gla/ntent-addressing)
-- `/genetic-code` — [en](https://ceccec.psg.bg/netic-code) · [bg](https://ceccec.psg.bg/bg/netic-code) · [cu](https://ceccec.psg.bg/gla/netic-code)
-- `/three-not-one` — [en](https://ceccec.psg.bg/ree-not-one) · [bg](https://ceccec.psg.bg/bg/ree-not-one) · [cu](https://ceccec.psg.bg/gla/ree-not-one)
-- `/hexagram-colour` — [en](https://ceccec.psg.bg/xagram-colour) · [bg](https://ceccec.psg.bg/bg/xagram-colour) · [cu](https://ceccec.psg.bg/gla/xagram-colour)
-- `/sixty-four` — [en](https://ceccec.psg.bg/xty-four) · [bg](https://ceccec.psg.bg/bg/xty-four) · [cu](https://ceccec.psg.bg/gla/xty-four)
-- `/rgb-cmyk` — [en](https://ceccec.psg.bg/b-cmyk) · [bg](https://ceccec.psg.bg/bg/b-cmyk) · [cu](https://ceccec.psg.bg/gla/b-cmyk)
-- `/trinity-rgb` — [en](https://ceccec.psg.bg/inity-rgb) · [bg](https://ceccec.psg.bg/bg/inity-rgb) · [cu](https://ceccec.psg.bg/gla/inity-rgb)
-- `/proven-or-purged` — [en](https://ceccec.psg.bg/oven-or-purged) · [bg](https://ceccec.psg.bg/bg/oven-or-purged) · [cu](https://ceccec.psg.bg/gla/oven-or-purged)
-- `/kernel-zero` — [en](https://ceccec.psg.bg/rnel-zero) · [bg](https://ceccec.psg.bg/bg/rnel-zero) · [cu](https://ceccec.psg.bg/gla/rnel-zero)
-- `/vortex` — [en](https://ceccec.psg.bg/rtex) · [bg](https://ceccec.psg.bg/bg/rtex) · [cu](https://ceccec.psg.bg/gla/rtex)
-- `/zero-division` — [en](https://ceccec.psg.bg/ro-division) · [bg](https://ceccec.psg.bg/bg/ro-division) · [cu](https://ceccec.psg.bg/gla/ro-division)
-- `/digit-folders` — [en](https://ceccec.psg.bg/git-folders) · [bg](https://ceccec.psg.bg/bg/git-folders) · [cu](https://ceccec.psg.bg/gla/git-folders)
-- `/dot-cube` — [en](https://ceccec.psg.bg/t-cube) · [bg](https://ceccec.psg.bg/bg/t-cube) · [cu](https://ceccec.psg.bg/gla/t-cube)
-- `/seven-star-rosetta` — [en](https://ceccec.psg.bg/ven-star-rosetta) · [bg](https://ceccec.psg.bg/bg/ven-star-rosetta) · [cu](https://ceccec.psg.bg/gla/ven-star-rosetta)
-- `/encryption` — [en](https://ceccec.psg.bg/cryption) · [bg](https://ceccec.psg.bg/bg/cryption) · [cu](https://ceccec.psg.bg/gla/cryption)
-- `/ssltest` — [en](https://ceccec.psg.bg/ltest) · [bg](https://ceccec.psg.bg/bg/ltest) · [cu](https://ceccec.psg.bg/gla/ltest)
-- `/quantum-tools` — [en](https://ceccec.psg.bg/antum-tools) · [bg](https://ceccec.psg.bg/bg/antum-tools) · [cu](https://ceccec.psg.bg/gla/antum-tools)
-- `/quantum-trading-hub` — [en](https://ceccec.psg.bg/antum-trading-hub) · [bg](https://ceccec.psg.bg/bg/antum-trading-hub) · [cu](https://ceccec.psg.bg/gla/antum-trading-hub)
-- `/research` — [en](https://ceccec.psg.bg/search) · [bg](https://ceccec.psg.bg/bg/search) · [cu](https://ceccec.psg.bg/gla/search)
-- `/society-merkaba` — [en](https://ceccec.psg.bg/ciety-merkaba) · [bg](https://ceccec.psg.bg/bg/ciety-merkaba) · [cu](https://ceccec.psg.bg/gla/ciety-merkaba)
-- `/efficiency-vote` — [en](https://ceccec.psg.bg/ficiency-vote) · [bg](https://ceccec.psg.bg/bg/ficiency-vote) · [cu](https://ceccec.psg.bg/gla/ficiency-vote)
-- `/offender-spec` — [en](https://ceccec.psg.bg/fender-spec) · [bg](https://ceccec.psg.bg/bg/fender-spec) · [cu](https://ceccec.psg.bg/gla/fender-spec)
-- `/hero-spawn-verify` — [en](https://ceccec.psg.bg/ro-spawn-verify) · [bg](https://ceccec.psg.bg/bg/ro-spawn-verify) · [cu](https://ceccec.psg.bg/gla/ro-spawn-verify)
+- `/analog-field` — [en](https://ceccec.psg.bg/analog-field) · [bg](https://ceccec.psg.bg/bg/analog-field) · [cu](https://ceccec.psg.bg/gla/analog-field)
+- `/learn` — [en](https://ceccec.psg.bg/learn) · [bg](https://ceccec.psg.bg/bg/learn) · [cu](https://ceccec.psg.bg/gla/learn)
+- `/frontiers` — [en](https://ceccec.psg.bg/frontiers) · [bg](https://ceccec.psg.bg/bg/frontiers) · [cu](https://ceccec.psg.bg/gla/frontiers)
+- `/pi-trinity` — [en](https://ceccec.psg.bg/pi-trinity) · [bg](https://ceccec.psg.bg/bg/pi-trinity) · [cu](https://ceccec.psg.bg/gla/pi-trinity)
+- `/qubit-trinity` — [en](https://ceccec.psg.bg/qubit-trinity) · [bg](https://ceccec.psg.bg/bg/qubit-trinity) · [cu](https://ceccec.psg.bg/gla/qubit-trinity)
+- `/pauli-basis` — [en](https://ceccec.psg.bg/pauli-basis) · [bg](https://ceccec.psg.bg/bg/pauli-basis) · [cu](https://ceccec.psg.bg/gla/pauli-basis)
+- `/hamming-address` — [en](https://ceccec.psg.bg/hamming-address) · [bg](https://ceccec.psg.bg/bg/hamming-address) · [cu](https://ceccec.psg.bg/gla/hamming-address)
+- `/content-addressing` — [en](https://ceccec.psg.bg/content-addressing) · [bg](https://ceccec.psg.bg/bg/content-addressing) · [cu](https://ceccec.psg.bg/gla/content-addressing)
+- `/genetic-code` — [en](https://ceccec.psg.bg/genetic-code) · [bg](https://ceccec.psg.bg/bg/genetic-code) · [cu](https://ceccec.psg.bg/gla/genetic-code)
+- `/three-not-one` — [en](https://ceccec.psg.bg/three-not-one) · [bg](https://ceccec.psg.bg/bg/three-not-one) · [cu](https://ceccec.psg.bg/gla/three-not-one)
+- `/hexagram-colour` — [en](https://ceccec.psg.bg/hexagram-colour) · [bg](https://ceccec.psg.bg/bg/hexagram-colour) · [cu](https://ceccec.psg.bg/gla/hexagram-colour)
+- `/sixty-four` — [en](https://ceccec.psg.bg/sixty-four) · [bg](https://ceccec.psg.bg/bg/sixty-four) · [cu](https://ceccec.psg.bg/gla/sixty-four)
+- `/rgb-cmyk` — [en](https://ceccec.psg.bg/rgb-cmyk) · [bg](https://ceccec.psg.bg/bg/rgb-cmyk) · [cu](https://ceccec.psg.bg/gla/rgb-cmyk)
+- `/trinity-rgb` — [en](https://ceccec.psg.bg/trinity-rgb) · [bg](https://ceccec.psg.bg/bg/trinity-rgb) · [cu](https://ceccec.psg.bg/gla/trinity-rgb)
+- `/proven-or-purged` — [en](https://ceccec.psg.bg/proven-or-purged) · [bg](https://ceccec.psg.bg/bg/proven-or-purged) · [cu](https://ceccec.psg.bg/gla/proven-or-purged)
+- `/kernel-zero` — [en](https://ceccec.psg.bg/kernel-zero) · [bg](https://ceccec.psg.bg/bg/kernel-zero) · [cu](https://ceccec.psg.bg/gla/kernel-zero)
+- `/vortex` — [en](https://ceccec.psg.bg/vortex) · [bg](https://ceccec.psg.bg/bg/vortex) · [cu](https://ceccec.psg.bg/gla/vortex)
+- `/zero-division` — [en](https://ceccec.psg.bg/zero-division) · [bg](https://ceccec.psg.bg/bg/zero-division) · [cu](https://ceccec.psg.bg/gla/zero-division)
+- `/digit-folders` — [en](https://ceccec.psg.bg/digit-folders) · [bg](https://ceccec.psg.bg/bg/digit-folders) · [cu](https://ceccec.psg.bg/gla/digit-folders)
+- `/dot-cube` — [en](https://ceccec.psg.bg/dot-cube) · [bg](https://ceccec.psg.bg/bg/dot-cube) · [cu](https://ceccec.psg.bg/gla/dot-cube)
+- `/seven-star-rosetta` — [en](https://ceccec.psg.bg/seven-star-rosetta) · [bg](https://ceccec.psg.bg/bg/seven-star-rosetta) · [cu](https://ceccec.psg.bg/gla/seven-star-rosetta)
+- `/encryption` — [en](https://ceccec.psg.bg/encryption) · [bg](https://ceccec.psg.bg/bg/encryption) · [cu](https://ceccec.psg.bg/gla/encryption)
+- `/ssltest` — [en](https://ceccec.psg.bg/ssltest) · [bg](https://ceccec.psg.bg/bg/ssltest) · [cu](https://ceccec.psg.bg/gla/ssltest)
+- `/quantum-tools` — [en](https://ceccec.psg.bg/quantum-tools) · [bg](https://ceccec.psg.bg/bg/quantum-tools) · [cu](https://ceccec.psg.bg/gla/quantum-tools)
+- `/quantum-trading-hub` — [en](https://ceccec.psg.bg/quantum-trading-hub) · [bg](https://ceccec.psg.bg/bg/quantum-trading-hub) · [cu](https://ceccec.psg.bg/gla/quantum-trading-hub)
+- `/research` — [en](https://ceccec.psg.bg/research) · [bg](https://ceccec.psg.bg/bg/research) · [cu](https://ceccec.psg.bg/gla/research)
+- `/society-merkaba` — [en](https://ceccec.psg.bg/society-merkaba) · [bg](https://ceccec.psg.bg/bg/society-merkaba) · [cu](https://ceccec.psg.bg/gla/society-merkaba)
+- `/efficiency-vote` — [en](https://ceccec.psg.bg/efficiency-vote) · [bg](https://ceccec.psg.bg/bg/efficiency-vote) · [cu](https://ceccec.psg.bg/gla/efficiency-vote)
+- `/offender-spec` — [en](https://ceccec.psg.bg/offender-spec) · [bg](https://ceccec.psg.bg/bg/offender-spec) · [cu](https://ceccec.psg.bg/gla/offender-spec)
+- `/hero-spawn-verify` — [en](https://ceccec.psg.bg/hero-spawn-verify) · [bg](https://ceccec.psg.bg/bg/hero-spawn-verify) · [cu](https://ceccec.psg.bg/gla/hero-spawn-verify)
 
-- Sitemap root: `e7b2d246-42d0-8651-acde-6e9036e28e02`
+- Sitemap root: `00dff8ea-aa58-84d1-a61c-69c0e68696ce`
 
 ## 5. Reproducibility
 
@@ -228,7 +228,7 @@ npm run check:types  # the src/ core type-checks clean against tsconfig.json (ts
 npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
-The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`58c31a74`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
+The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`2145d23b`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
 
 ## 6. Limitations
 
@@ -238,7 +238,7 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `e7b2d246-42d0-8651-acde-6e9036e28e02`. The monograph-index root: `c689ddf8-4931-8a38-acd2-cbadbe0e4362`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `00dff8ea-aa58-84d1-a61c-69c0e68696ce`. The monograph-index root: `c689ddf8-4931-8a38-acd2-cbadbe0e4362`.
 - Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
 - Prior work / origin: [ceccec/zeropoint-node](https://github.com/ceccec/zeropoint-node) — the predecessor repo of the vortex sequence (same closed cycle, verified by computation in `zeropointNodeOriginDecoded`); its 60°/A432/integer-ratio mathematics is sealed here, its zero-point free-energy and consciousness-OS claims are demarcated flagged (½ħω is real, extraction is not).
 

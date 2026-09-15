@@ -39,7 +39,7 @@ export function vitepressDevServerBind() {
   }
 }
 
-/** Pre-bundle hero paint deps on dev start — first / navigation must not wait on cold transform. */
+/** Pre-bundle hero paint deps on dev start — first /en/ navigation must not wait on cold transform. */
 export function vitepressDevOptimizeDeps() {
   return {
     include: [

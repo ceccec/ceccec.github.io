@@ -134,7 +134,7 @@ export function intuitiveSearch(query = '', matrix: MindMatrix = buildMatrix()) 
   const candidates = [
     ...path(matrix).stations.map((station) => ({ kind: 'page', label: station.station, route: station.route, text: `${station.station} ${station.why}`, hook: `cd ${station.route}` })),
     ...mcpCodebase(matrix).subsystems.map((entry) => ({ kind: 'model', label: entry.name, route: '/quantum-mind', text: `${entry.name} ${entry.purpose}`, hook: `cat ${entry.name}` })),
-    ...skillAtoms(matrix).skills.map((entry) => ({ kind: 'skill', label: entry.skill, route: '/mcp.json', text: `${entry.skill} ${entry.fn} ${entry.does}`, hook: `cat ${entry.fn}` })),
+    ...skillAtoms(matrix).skills.map((entry) => ({ kind: 'skill', label: entry.skill, route: '/mcp', text: `${entry.skill} ${entry.fn} ${entry.does}`, hook: `cat ${entry.fn}` })),
     ...conceptCommands.map((command) => ({ kind: 'command', label: command.name, route: '/commands', text: `${command.name} ${command.description}`, hook: `run ${command.name}` })),
   ]
   const results = candidates

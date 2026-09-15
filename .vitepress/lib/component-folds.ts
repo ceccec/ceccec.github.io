@@ -320,7 +320,7 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
       boundary: fold.boundary,
       facets: fold.tools.slice(0, (6 * 2)).map((tool) => ({ facet: tool.name, on: true })),
       crosslinks: [
-        { text: 'MCP page', link: '/mcp.json', kind: 'topic' },
+        { text: 'MCP page', link: '/mcp', kind: 'topic' },
         { text: 'mcp.json', link: '/mcp.json', kind: 'detail' },
       ],
       ok: fold.tools.length > 0,

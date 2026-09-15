@@ -22,7 +22,7 @@ export function plainLanguage() {
     { term: 'Seal', plain: 'Proof the whole thing still adds up: recompute it and compare.', route: '/architecture' },
     { term: 'Palette & melody', plain: 'Type a word and get the same colours and tune every time, shareable by citing the word.', route: '/learn' },
     { term: 'Sonification', plain: 'Hear data as sound — to catch what the eye misses, or to use without a screen.', route: '/commands' },
-    { term: 'MCP', plain: 'A way for AI assistants to call these tools directly.', route: '/mcp.json' },
+    { term: 'MCP', plain: 'A way for AI assistants to call these tools directly.', route: '/mcp' },
     { term: 'Academy', plain: 'Five short courses; finish them and you earn a credential you can prove.', route: '/learn' },
     { term: 'Offline & free', plain: 'It all runs on your device — no account, nothing sent anywhere.', route: '/boundaries' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`plain:${entry.term}`) }))

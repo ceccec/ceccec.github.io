@@ -1351,7 +1351,7 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
       pair: 'frontier/quantum' as const,
       dualPair: 'hardware/wave' as const,
       cli: 'npm run quantum:frontier-quantum',
-      route: '/frontiers#frontier-quantum',
+      route: '/en/frontiers#frontier-quantum',
       heading: 'Frontier quantum · hardware wave',
       statement:
         `frontierQuantum — SIMULATES=${simulates}/6 SENSES=${senses}/6 DATA=${data}/6 · oscillation maxDrift=${maxDrift.toExponential(1)} on 1 qubit · ` +
@@ -1460,7 +1460,7 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
       pair: 'fractal/compute' as const,
       dualPair: 'pattern/axiom' as const,
       cli: 'npm run quantum:fractal-compute',
-      route: '/quantum-tools#fractal-compute',
+      route: '/en/quantum-tools#fractal-compute',
       heading: 'Fractal compute · pattern axiom · algebra realtime',
       statement:
         `fractalCompute — periods ${periods.map((entry) => `${entry.base}:${entry.period}`).join(' ')} · peak n=${peak.n} · ` +
@@ -1533,7 +1533,7 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       pair: 'fractal/map' as const,
       dualPair: 'frontier/fold' as const,
       cli: 'npm run quantum:fractal-map',
-      route: '/frontiers#fractal-map',
+      route: '/en/frontiers#fractal-map',
       heading: 'Fractal map · frontier fold',
       statement:
         `fractalMap — ${rows.length}/6 frontiers folded through the law: ` +
@@ -2457,7 +2457,7 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       pairs: ['string/theory', 'theory/string', 'string/chat', 'chat/string'] as const,
       dualPair: 'theory/string' as const,
       cli: 'npm run quantum:string-theory',
-      route: '/quantum-tools#string-theory',
+      route: '/en/quantum-tools#string-theory',
       heading: 'String · theory in chat',
       statement:
         `stringTheoryInChat — inChat=${stringInChat ? 1 : 0} duality=${dualityChatOn ? 1 : 0} ` +
@@ -3585,7 +3585,7 @@ export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
       pair: 'science/pyramid' as const,
       dualPair: 'pyramid/science' as const,
       cli: 'npm run quantum:science-pyramid',
-      route: '/quantum-tools#science-pyramid',
+      route: '/en/quantum-tools#science-pyramid',
       heading: 'Science pyramid · biology inverts to chemistry, physics, algebra',
       statement: `sciencePyramid — bio→chem→phys→algebra reduction ladder; algebra base witnessed (4³=${geneticCode} · su(2) dim ${su2Dim}); strong reductionism FLAGGED.`,
       boundary:

@@ -2001,7 +2001,7 @@ export function rosettaDecodesUrlPath(path: string, matrix: MindMatrix = buildMa
   const RAY_COUNT = ROSETTA_RAYS.length // 7 = |Im(𝕆)| = 2³−1, derived from the rays table — not a hardcoded literal
   const STATION_COUNT = 2 + 8 // 10 = the pi-train decad (octonion critical dimension 2+8 = vortex+trinity+origin 6+3+1) — derived, not a bare 10
 
-  const locale = path.startsWith('/bg/') || path === '/bg' ? 'bg' : path.startsWith('/') || path === '/en' ? 'en' : 'gla'
+  const locale = path.startsWith('/bg/') || path === '/bg' ? 'bg' : path.startsWith('/en/') || path === '/en' ? 'en' : 'gla'
   const stripped = path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/^\//, '')
   const slug = stripped.split('/').pop() || 'home'
   const ray = rosettaRayOf(slug)

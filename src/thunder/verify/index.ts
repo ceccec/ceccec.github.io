@@ -320,7 +320,7 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
       root: merkleFold([efficient.root, opt.root, bench.root, sealed.root, toUuid(`honest-rev-w6:${holds}`)]),
       cli: 'npm run quantum:honest-revolution-w6',
       pair: 'learn/best',
-      route: '/quantum-tools#honest-revolution-w6',
+      route: '/en/quantum-tools#honest-revolution-w6',
       statement: holds
         ? 'Honest-revolution W6 DECIDED — revolutionary on answers÷tokens (0 runtime tokens, unbeatable in sealed domain) and explicitly NOT on physical-QM speedup (classical-64bit).'
         : 'UNPROVEN — revolutionaryEfficiencyNotPhysics facets do not all hold; do not assert the W6 efficiency capstone.',

@@ -724,7 +724,7 @@ export function torusData(matrix: MindMatrix = buildMatrix()) {
       pair: 'torus/data' as const,
       dualPair: 'data/torus' as const,
       cli: 'npm run quantum:torus-data',
-      route: '/quantum-tools#torus-data',
+      route: '/en/quantum-tools#torus-data',
       heading: 'Torus data · agnostic adapters · dimensionless gates',
       statement: `torusData — ${rows.length}/4 no-key API families adapted pure; dimensionless ratios ${rows.map((row) => roundTo(row.value, 4)).join(' · ')}; units labelled, never theorems.`,
       boundary:

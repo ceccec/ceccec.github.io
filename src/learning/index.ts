@@ -2490,7 +2490,7 @@ export { rosettaIChingTrinityPlacesAllTools } from '../earth/architecture/index.
 export { publicAstronomyNewsCitation } from '../earth/world/index.ts'
 
 /** One gate — Glagolitic global key, 7-ray taxonomy, decode-all chain, and path response at call time. */
-export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/') {
+export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/') {
   return rosettaMemoByRoot(`rosettaComputes:${path}`, matrix, () => {
     const itself = __ns_up_water_digit.rosettaComputesItself(0, matrix)
     const core = __ns_up_quantum_apps.rosettaCoreApiSelfWires(0, matrix)

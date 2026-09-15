@@ -13,6 +13,7 @@ const wire = computed(() => realtimeWiring(route.path))
 
 const seedParts = computed(() => ['trinity-gateways', wire.value.here] as const)
 
+const link = (slug: string) => localize(slug ? `/${slug}` : '/')
 
 const gatewaysLabel = computed(() => pick('Trinity gateways', 'Троични портали'))
 const relatedLabel = computed(() => pick('Related by shared tags', 'Свързани по общи тагове'))
@@ -33,15 +34,15 @@ const navAria = computed(() => pick('Trinity gateways', 'Троични порт
       <p class="trinity-gateways__heading">{{ gatewaysLabel }}</p>
       <ul class="trinity-gateways__list">
         <li v-for="gateway in wire.gateways" :key="gateway.slug">
-          <!-- a gateway's slug is derived from the route and the realm; no page exists at it, so it is a label, not a link -->
-          <span
+          <a
             class="trinity-gateways__link"
+            :href="link(gateway.slug)"
             :style="{ '--gateway-hue': gateway.hue }"
           >
             <span class="trinity-gateways__glyph">{{ gateway.glyph }}</span>
             <span class="trinity-gateways__realm">{{ gateway.realm }}</span>
             <span class="trinity-gateways__title">{{ pick(gateway.titleEn, gateway.titleBg) }}</span>
-          </span>
+          </a>
         </li>
       </ul>
 

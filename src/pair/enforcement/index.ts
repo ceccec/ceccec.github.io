@@ -1830,7 +1830,7 @@ export function comboCover() {
     pair: 'combo/cover' as const,
     dualPair: 'cover/combo' as const,
     cli: 'npm run quantum:combo-cover',
-    route: '/quantum-tools#combo-cover',
+    route: '/en/quantum-tools#combo-cover',
     heading: 'Combo cover · pairs beat the product',
     statement: `comboCover — ${rows} rows · ${factors.length} factors · ${covered}/${needed} pair-patterns · exhaustive ${exhaustive} (${ratio.toFixed(1)}×) · full coverage verified.`,
     boundary:
@@ -2052,7 +2052,7 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
       dualPair: 'chat/pair' as const,
       pairs: ['pair/chat', 'chat/pair'] as const,
       cli: 'npm run quantum:pair-chat',
-      route: '/quantum-tools#pair-chat',
+      route: '/en/quantum-tools#pair-chat',
       statement:
         `pairsSentToChatEntangleByAlgebra — sent=${pairsSent} chatTips=${tipsPresent.length} ` +
         `entangled=${entangled.length} hologramGrows=${hologramGrows ? 1 : 0} ` +
@@ -2339,7 +2339,7 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         dualPair: 'wave/match' as const,
         pairs: ['match/wave', 'wave/match'] as const,
         cli: 'npm run quantum:match-wave',
-        route: '/quantum-tools#match-wave',
+        route: '/en/quantum-tools#match-wave',
         statement:
           `matchingPairsImmediatelyRealise… — matches=${matches.length} ` +
           `immediate=${immediatelyRealise ? 1 : 0} batches=${batches.length} fullRoster=${fullRosterOn ? 1 : 0} ` +
