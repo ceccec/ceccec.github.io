@@ -1,6 +1,6 @@
 // ☶ Gèn · Mountain — vortex / math: 1-2-4-8-7-5 lattice, paint tiers (dissolved src/math compose mount).
 import type { MindMatrix } from '../../types/index.ts'
-import { earned, frequencyToLight, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7/index.ts'
+import { earned, fibonacci, frequencyToLight, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7/index.ts'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute/index.ts'
 import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev, max, min, round } from '../../0/index.ts'
 import { merkaba } from '../geometry/index.ts'
@@ -131,6 +131,28 @@ export function theTenComplementFixesExactlyFive() {
     fixed,
     pairs,
     computes: fixed.length === 1 && pairs.length * 2 + fixed.length === digits.length && digits.every((d) => reflect(reflect(d)) === d),
+  }
+}
+
+/**
+ * THE PISANO WHEEL ON THE NINE, with Cassini's sign on every step. The Fibonacci recurrence read mod 9 returns to its start
+ * (0, 1) after a period found by walking it, never typed; the wheel visits the digital roots of F(1)…F(period), and step n
+ * carries the sign Cassini's identity gives it, F(n−1)·F(n+1) − F(n)² = (−1)ⁿ — both checked on the Fibonacci numbers
+ * themselves, so the walk the painter draws and the numbers it stands for cannot drift apart.
+ */
+export function pisanoWheelOnTheNine() {
+  const nine = 3 * 3
+  const residues: number[] = []
+  let [a, b] = [0, 1]
+  do { [a, b] = [b, (a + b) % nine]; residues.push(a) } while (!(a === 0 && b === 1))
+  const period = residues.length
+  const walk = residues.map((_, i) => digitalRoot(fibonacci(i + 1)))
+  const cassini = walk.map((_, i) => fibonacci(i) * fibonacci(i + 2) - fibonacci(i + 1) ** 2)
+  return {
+    period,
+    walk,
+    cassini,
+    computes: walk.every((d, i) => d % nine === residues[i]) && cassini.every((c, i) => c === (-1) ** (i + 1)),
   }
 }
 

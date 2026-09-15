@@ -11,7 +11,7 @@
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
 import { phase } from '../6/4/index.ts'
 import { dims, dimWalk } from './mountain/dimensions/index.ts'
-import { vortexStrokeKinds, twoBySevenPoints, theTenComplementFixesExactlyFive } from '../mountain/vortex/index.ts'
+import { vortexStrokeKinds, twoBySevenPoints, theTenComplementFixesExactlyFive, pisanoWheelOnTheNine } from '../mountain/vortex/index.ts'
 import { cellHomology } from '../mountain/geometry/index.ts'
 import { perspective, rotate3, branch, branchSegments, strokeBranchLevels } from './wind/geometry/index.ts'
 import { drawFlower, drawCalendars } from './wind/geometry/index.ts'
@@ -1957,6 +1957,7 @@ let vortexKinds: ReturnType<typeof vortexStrokeKinds> | null = null
 // the reflection's fixed points and the genus-2 homology, computed on first paint and read by the painters below
 let tenComplement: ReturnType<typeof theTenComplementFixesExactlyFive> | null = null
 let homologyOnce: ReturnType<typeof cellHomology> | null = null
+let pisanoOnce: ReturnType<typeof pisanoWheelOnTheNine> | null = null
 
 /**
  * Vortex strokes — the genesis realisation as a movie: 1\2\4\8/7/5/3\6\9/0\1. The ten-digit tour
@@ -1993,13 +1994,31 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   const runner = frame.reduce ? 0 : frame.p * tourSize
 
   // Zero-point reflection: the ten's-complement chords (n, 10−n) breathing through the middle —
-  // the division-by-zero reading names reflection, so the chords pass THROUGH the centre region.
-  for (const [a, b] of [[9, 1], [8, 2], [7, 3], [6, 4]] as const) {
-    const ia = tour.indexOf(a)
-    const ib = tour.indexOf(b)
-    ctx.strokeStyle = paint((frame.hue + (100 * 3)) % 360, (2 / (5 * 5)) + (1 / (5 * 2)) * pulse, { L: 5 / 8 })
-    ctx.lineWidth = 1
-    ctx.beginPath(); ctx.moveTo(xAt(ia), yAt(ia)); ctx.lineTo(xAt(ib), yAt(ib)); ctx.stroke()
+  // the division-by-zero reading names reflection, so the chords pass THROUGH the centre region. The pairs are the ones
+  // theTenComplementFixesExactlyFive computes, and they share one style, so they are one path: one stroke, not four.
+  ctx.strokeStyle = paint((frame.hue + (100 * 3)) % 360, (2 / (5 * 5)) + (1 / (5 * 2)) * pulse, { L: 5 / 8 })
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  for (const [a, b] of (tenComplement ??= theTenComplementFixesExactlyFive()).pairs) {
+    ctx.moveTo(xAt(tour.indexOf(a)), yAt(tour.indexOf(a))); ctx.lineTo(xAt(tour.indexOf(b)), yAt(tour.indexOf(b)))
+  }
+  ctx.stroke()
+
+  // The Pisano wheel beneath them: the digital roots of the Fibonacci numbers walked round the same tour until the
+  // recurrence repeats (pisanoWheelOnTheNine finds the period), each step in the colour of its Cassini sign — the +1 steps
+  // one path, the −1 steps the other. The two strokes are paid for by the three the chords above no longer spend.
+  const pisano = (pisanoOnce ??= pisanoWheelOnTheNine())
+  ctx.lineWidth = (4 / 5)
+  for (const sign of [1, -1] as const) {
+    ctx.strokeStyle = paint(sign > 0 ? frame.hue : (frame.hue + (9 * 5 * 4)) % 360, (1 / (5 * 2)) + (1 / (5 * 4)) * pulse, { L: 5 / 8 })
+    ctx.beginPath()
+    pisano.walk.forEach((d, i) => {
+      const j = tour.indexOf(d)
+      const k = tour.indexOf(pisano.walk[(i + 1) % pisano.period]!)
+      if (pisano.cassini[i] !== sign || j < 0 || k < 0) return
+      ctx.moveTo(xAt(j), yAt(j)); ctx.lineTo(xAt(k), yAt(k))
+    })
+    ctx.stroke()
   }
 
   // The stroke cycle: chord per step, coloured by its angle (ascent = base hue, descent = the pole);

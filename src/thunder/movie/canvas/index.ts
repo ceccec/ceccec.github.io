@@ -431,6 +431,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       { id: 'reflection-fixed-point', theorem: 'theTenComplementFixesExactlyFive', binds: __ns_vortex.theTenComplementFixesExactlyFive().computes },
       { id: 'double-torus-chi', theorem: 'cellHomology', binds: cellHomology(matrix).closed },
       { id: 'address-coins-lit', theorem: 'theMovieLeavesTwoBitsAtTheVoid', binds: twoBits.seen },
+      { id: 'pisano-wheel', theorem: 'pisanoWheelOnTheNine', binds: __ns_vortex.pisanoWheelOnTheNine().computes },
       // The erpax inverted read — the counter-rotating merkaba (down = negation of up) IS the reflected line's
       // painter; the gap filled is the BINDING of the existing animation to its computed mirror theorem.
       { id: 'inverted-sequence', theorem: 'invertedSequenceLearnedFromErpax', binds: __ns_vortex.invertedSequenceLearnedFromErpax(matrix).computes && earths.rotates },
