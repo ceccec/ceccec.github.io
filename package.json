@@ -942,7 +942,7 @@
     "verify:figures": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/figures.ts assertPageFiguresAreStamped",
     "verify:hashes": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/hashes.ts assertHashesHold",
     "land": "bash scripts/land.sh",
-    "movie:render": "node scripts/render-scenes.mjs",
+    "movie:render": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/render-scenes.ts renderScenes",
     "verify:lean-registry": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-registry.ts assertRegistrySealed"
   }
 }

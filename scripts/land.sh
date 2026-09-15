@@ -53,7 +53,9 @@ changed=$( { git diff --name-only HEAD; for p in ${ADD[@]+"${ADD[@]}"}; do echo 
 [ -n "$changed" ] || { echo "land: nothing to land"; exit 0; }
 untracked=$(git ls-files --others --exclude-standard | grep -vxF -f <(printf '%s\n' ${ADD[@]+"${ADD[@]}"} "") || true)
 [ -n "$untracked" ] && { echo "land: untracked and NOT landed (pass --add to include):"; printf '  %s\n' $untracked; }
-gates=(check:types verify:structure verify:imports verify:paths verify:side-effects verify:barrel verify:comments)
+# enforcement:trinity always: the Pages build runs it inside docs:build, so a finding it makes would otherwise surface
+# only after the push, as a red deploy (it did: a .mjs under scripts/ passed every gate here and failed the build)
+gates=(check:types verify:structure verify:imports verify:paths verify:side-effects verify:barrel verify:comments enforcement:trinity)
 grep -qE '^src/(quantum|thunder/movie|mountain|fire)/|^\.vitepress/lib/movie' <<<"$changed" && gates+=(verify:movie verify:power)
 grep -qE '\.lean$|^src/pair/formal/proofs/' <<<"$changed" && gates+=(verify:lean verify:lean-latex verify:lean-registry verify:lean-arbiter)
 grep -qxF package.json <<<"$changed" && gates+=(manifest:check)
