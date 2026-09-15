@@ -41,6 +41,73 @@ function ring(n: number, r: number, cx: number, cy: number, offset = 0) {
   })
 }
 
+type Witness = NonNullable<ProofAnimationSpec['witness']>
+// THE PROOF'S OWN OBJECT — when the spec carries a witness, this draws its data and nothing else: the bars, the walk,
+// the grid or the graph the theorem's computation produced, revealed in order as the phase turns.
+function drawWitness(ctx: CanvasRenderingContext2D, s: number, c: number, w: Witness, phase: number,
+  stroke: (alpha: number, dh?: number) => void, fill: (alpha: number, dh?: number) => void) {
+  const f = ((phase / TAU) % 1 + 1) % 1
+  const pad = s / (2 * 5)
+  if (w.form === 'bars') {
+    const vals = w.values ?? []
+    const n = Math.max(1, vals.length)
+    const top = Math.max(1, ...vals.map(Math.abs), ...(w.against ?? []).map(Math.abs))
+    const signed = vals.some((v) => v < 0)
+    const base = signed ? c : s - pad
+    const scale = (signed ? c - pad : s - 2 * pad) / top
+    const bw = (s - 2 * pad) / n
+    const shown = Math.floor(f * (n + 1))
+    vals.forEach((v, i) => {
+      const marked = w.marks?.includes(i) ?? false
+      fill(i < shown ? (marked ? 1 : 3 / 5) : 1 / 6, marked ? 4 * 5 * 9 : v < 0 ? 360 / 3 : 0)
+      const h = Math.abs(v) * scale
+      ctx.fillRect(pad + i * bw + bw * (3 / (4 * 5)), v >= 0 ? base - h : base, bw * (7 / (2 * 5)), Math.max(1, h))
+    })
+    if (w.against) {
+      stroke(1)
+      ctx.beginPath()
+      w.against.forEach((v, i) => { const x = pad + i * bw + bw / 2, y = base - v * scale; if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y) })
+      ctx.stroke()
+    }
+    if (signed) { stroke(1 / 4); ctx.beginPath(); ctx.moveTo(pad, c); ctx.lineTo(s - pad, c); ctx.stroke() }
+  } else if (w.form === 'walk') {
+    const m = w.modulus ?? 9, steps = w.values ?? []
+    const pts = ring(m, c * (4 / 5), c, c, -TAU / 4)
+    for (let i = 0; i < m; i += 1) { fill(1 / 3); ctx.beginPath(); ctx.arc(...pts[i]!, s / (8 * 5), 0, TAU); ctx.fill() }
+    const shown = Math.max(1, Math.floor(f * steps.length))
+    stroke(3 / 5)
+    ctx.beginPath()
+    steps.slice(0, shown).forEach((r, i) => { const p = pts[r % m]!; if (i) ctx.lineTo(...p); else ctx.moveTo(...p) })
+    ctx.stroke()
+    fill(1, 4 * 5 * 9); ctx.beginPath(); ctx.arc(...pts[steps[shown - 1]! % m]!, s / (4 * 6), 0, TAU); ctx.fill()
+  } else if (w.form === 'grid') {
+    const rows = w.cells ?? []
+    const cols = Math.max(1, ...rows.map((r) => r.length))
+    const size = Math.min((s - 2 * pad) / cols, (s - 2 * pad) / Math.max(1, rows.length))
+    const x0 = c - (size * cols) / 2, y0 = c - (size * rows.length) / 2
+    const classes = Math.max(1, ...rows.flat()) + 1
+    const shown = Math.floor(f * (classes + 1))
+    rows.forEach((row, i) => row.forEach((k, j) => {
+      if (k < 0) return
+      fill(k < shown ? 4 / 5 : 1 / 8, (k * 360) / classes)
+      ctx.fillRect(x0 + j * size + 1, y0 + i * size + 1, size - 2, size - 2)
+    }))
+  } else {
+    const frames = w.frames ?? []
+    if (!frames.length) return
+    const current = Math.floor(f * frames.length) % frames.length
+    const at = (x: number, y: number) => [c + x * c * (4 / 5), c + y * c * (4 / 5)] as const
+    const strokeSegs = (segs: readonly (readonly [number, number, number, number])[]) => {
+      ctx.beginPath()
+      for (const [x1, y1, x2, y2] of segs) { ctx.moveTo(...at(x1, y1)); ctx.lineTo(...at(x2, y2)) }
+      ctx.stroke()
+    }
+    if (w.together) { stroke(1 / 5); strokeSegs(frames.flat()) }
+    stroke(1, w.together ? 4 * 5 * 9 : 0)
+    strokeSegs(frames[current]!)
+  }
+}
+
 function draw(t: number) {
   const canvas = el.value
   const ctx = canvas?.getContext('2d')
@@ -276,8 +343,10 @@ function draw(t: number) {
   // its own ring points at 1/φ² scale, half-light, the children counter-touring at φ⁻¹ of the tour.
   // Part contains whole (hologram), φ-recursive (fractal), superposed on the touring many-center (the
   // quantum folding). Children capped at the vortex six so the sieve's 100 points stay one frame's work.
+  if (props.spec.witness) drawWitness(ctx, s, c, props.spec.witness, phase, stroke, fill)
+  else {
   paint()
-  const children = Math.min(many, 6)
+  const children = Math.min(props.spec.points, 6) // the spec's own points, capped at six (`many` was never declared: it threw every frame)
   const ringR = c * (3 / 4)
   for (let v = 0; v < children; v += 1) {
     const a = (v / children) * TAU + tour * (PHI ** -1)
@@ -288,6 +357,7 @@ function draw(t: number) {
     ctx.globalAlpha = 1 / 2
     paint()
     ctx.restore()
+  }
   }
 
   // THE DIRECTION FRAME (user law: animations prove the theorem in all its directions) — the
@@ -331,7 +401,7 @@ onBeforeUnmount(() => { offClock?.(); offClock = null; io?.disconnect() })
 </script>
 
 <template>
-  <canvas ref="el" class="proof-anim" role="img" :aria-label="`${spec.kind} animation of: ${spec.theorem}`" :style="{ width: `${size ?? 4 * 7}px`, height: `${size ?? 4 * 7}px` }" :title="spec.kind" />
+  <canvas ref="el" class="proof-anim" role="img" :aria-label="spec.witness ? `${spec.theorem}: ${spec.witness.caption}` : `${spec.kind} animation of: ${spec.theorem}`" :style="{ width: `${size ?? 4 * 7}px`, height: `${size ?? 4 * 7}px` }" :title="spec.kind" />
 </template>
 
 <style scoped>

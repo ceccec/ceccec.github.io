@@ -25,6 +25,7 @@ import { ratchet } from './status.ts'
 import { VORTEX_SEQUENCE } from '../../src/0/index.ts'
 import { theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge } from '../../src/quantum/dynamics/index.ts'
 import { vortexStrokeKinds } from '../../src/mountain/vortex/index.ts'
+import { proofAnimations } from '../../src/thunder/waves/index.ts'
 
 const ROOT = process.cwd()
 
@@ -173,5 +174,15 @@ export function assertMovieMeasuresWhatItShows(): void {
   for (const s of cannot) byShape.set(s.shape, (byShape.get(s.shape) ?? 0) + 1)
   for (const [shape, n] of [...byShape].sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(3)}  ${shape}`)
   console.log(ratchet('movie.orbit-joins-the-axis', joins.length, { evidence: list(joins) }))
+
+  // THE THEOREM ANIMATIONS DRAW THEIR OWN PROOFS. A theorem with a witness is drawn from the data its proof computes,
+  // and that data must still prove the claim; a theorem without one falls back to a title-keyword template (731
+  // theorems shared 19). The count drawn from a template may only fall.
+  const anim = proofAnimations()
+  const failing = anim.specs.filter((spec) => spec.witness && !spec.witness.holds).map((spec) => spec.theorem)
+  if (failing.length) throw new Error(`${failing.length} theorem witness(es) no longer hold: ${failing.join(' · ')}`)
+  if (!anim.everyWitnessNamesARow) throw new Error('a theorem witness names no registry row — it would never be drawn')
+  console.log(`  theorem animations: ${anim.witnessed} drawn from their own proof, ${anim.drawnFromATemplate.length} from a template`)
+  console.log(ratchet('movie.theorems-drawn-from-a-template', anim.drawnFromATemplate.length, { evidence: () => anim.drawnFromATemplate.map((t) => `no witness: ${t}`) }))
   for (const s of joins) console.log(`  ${s.file}:${s.line}  ${s.text}`)
 }

@@ -1,5 +1,5 @@
 // ☳ Zhèn · Thunder — the wave method: how agents achieve waves (decode → fold as dimensions → enforce → seal), optimization waves, the wave cohorts and coordination. Barrel-routed; folds.ts back-imports the gate folds.
-import { A432_FOLDED, FIBONACCI_CENSUS_BANDS, computedLimits } from '../../3/7/index.ts'
+import { A432_FOLDED, FIBONACCI_CENSUS_BANDS, computedLimits , fibonacci } from '../../3/7/index.ts'
 import { spawnSync } from 'node:child_process'
 import { phase } from '../../6/4/index.ts'
 import { chsh } from '../../mountain/vortex/index.ts'
@@ -2070,6 +2070,8 @@ export type ProofAnimationSpec = {
   // the seed into the animation's own phase offset, so the uniqueness is visible, not just data.
   readonly seed: number
   readonly coords: ProofAnimationCoords
+  // The proof's own object, when the theorem has one: the renderer draws this data instead of the family template.
+  readonly witness?: ProofWitness
 }
 /** THE FOLDS OF ZERO GENERATE THE DIGITS (user law) — folding is a mirror, and two mirrors at
  *  angle θ generate the dihedral group D_{180/θ}: the 0 folded at θ degrees becomes the
@@ -2197,6 +2199,260 @@ const CONTENT_ANIMATION_FAMILIES: readonly (readonly [readonly string[], ProofAn
   [['crosslink', 'theorem', 'axioms'], 'tree', 7, 3],
   [['compute', 'algebra', 'corpus', 'code', 'audit', 'dry', 'fold', 'gate', 'deploy', 'release', 'reuse', 'kernel', 'metric', 'skill', 'patent', 'page', 'economy', 'css', 'hardware', 'library', 'portal', 'attribution', 'honest', 'complete', 'wisdom', 'discovery', 'tool', 'scan', 'referral', 'roster', 'crack', 'barrier', 'boundar', 'profiling', 'signal', 'coordinates', 'intelligence', 'math', 'consistency', 'proof', 'collision', 'cleanup', 'impossibilit', 'protected-ref', 'auto-advance', 'reverse-engineering', 'reusable method'], 'vortex', 9, 4],
 ]
+// ── WITNESS ANIMATIONS — the picture is the proof's own object. The family table below picks a template by
+// title keyword, and 731 theorems shared 19 templates: the Cassini identity and Taxicab 1729 drew the same 24-point
+// spiral, told apart only by a hash-seeded phase. A witness is the data the theorem's own computation produces — the
+// same arithmetic the Lean kernel decides for these rows — and it re-checks its claim on that data (`holds`). Four
+// forms draw any of them: signed bars (with a series they must match), a walk round a residue wheel, a class grid,
+// and graph parts shown in turn. A theorem with no witness still falls back to its family template, and
+// verify:movie ratchets that count down.
+export type ProofWitness = {
+  readonly form: 'bars' | 'walk' | 'grid' | 'graph'
+  readonly caption: string // what the picture shows, in one sentence
+  readonly holds: boolean // the theorem's claim, recomputed on this very data
+  readonly values?: readonly number[] // bars: signed heights · walk: the residues visited
+  readonly against?: readonly number[] // bars: a second series the bars must meet
+  readonly marks?: readonly number[] // bars: the indices the theorem singles out
+  readonly modulus?: number // walk: the wheel's size
+  readonly cells?: readonly (readonly number[])[] // grid: a class per cell, −1 for none
+  readonly frames?: readonly (readonly (readonly [number, number, number, number])[])[] // graph: segments in [−1, 1]², one part per frame
+  readonly together?: boolean // graph: every part shown faint beneath the current one
+}
+const wRing = (n: number): (readonly [number, number])[] => Array.from({ length: n }, (_, i) => [cos((i / n) * TAU - TAU / 4), sin((i / n) * TAU - TAU / 4)] as const)
+const wSeg = (p: readonly (readonly [number, number])[], a: number, b: number) => [p[a]![0], p[a]![1], p[b]![0], p[b]![1]] as const
+const wPascal = (rows: number): number[][] => {
+  const out: number[][] = [[1]]
+  for (let i = 1; i < rows; i += 1) out.push(Array.from({ length: i + 1 }, (_, j) => (out[i - 1]![j - 1] ?? 0) + (out[i - 1]![j] ?? 0)))
+  return out
+}
+const wProperDivisors = (n: number) => Array.from({ length: n - 1 }, (_, i) => i + 1).filter((d) => n % d === 0)
+const wSum = (xs: readonly number[]) => xs.reduce((a, b) => a + b, 0)
+const wBit = (c: number, i: number) => (c >> (i - 1)) & 1
+// the L-shaped strips of a square: cell (i, j) belongs to the first boundary max(i, j) falls under
+const wGnomons = (bounds: readonly number[]) => {
+  const n = bounds[bounds.length - 1]!
+  return Array.from({ length: n }, (_, i) => Array.from({ length: n }, (_, j) => bounds.findIndex((b) => max(i, j) < b)))
+}
+const wCount = (cells: readonly (readonly number[])[], k: number) => cells.flat().filter((v) => v === k).length
+// q regular p-gons meeting at one vertex — the vertex figure; they close to a full turn only for a tiling
+const wFan = (p: number, q: number) => {
+  const side = 2 / 5
+  const interior = (TAU / 2) * (p - 2) / p
+  const segs: (readonly [number, number, number, number])[] = []
+  for (let k = 0; k < q; k += 1) {
+    let x = 0, y = 0, a = k * interior
+    for (let e = 0; e < p; e += 1) {
+      const nx = x + side * cos(a), ny = y + side * sin(a)
+      segs.push([x, y, nx, ny] as const)
+      x = nx; y = ny; a += TAU / p
+    }
+  }
+  return segs
+}
+const wMonoAP = (c: number, n: number) => {
+  for (let a = 1; a <= n; a += 1) for (let d = 1; a + 2 * d <= n; d += 1) if (wBit(c, a) === wBit(c, a + d) && wBit(c, a) === wBit(c, a + 2 * d)) return true
+  return false
+}
+const wMonoSum = (c: number, n: number) => {
+  for (let x = 1; x <= n; x += 1) for (let y = x; x + y <= n; y += 1) if (wBit(c, x) === wBit(c, y) && wBit(c, y) === wBit(c, x + y)) return true
+  return false
+}
+const wMcNugget = (n: number) => {
+  const [six, nine, twenty] = [6, 9, 4 * 5]
+  for (let c = 0; twenty * c <= n; c += 1) for (let b = 0; twenty * c + nine * b <= n; b += 1) if ((n - twenty * c - nine * b) % six === 0) return true
+  return false
+}
+const wTriangulations = (i: number, j: number): (readonly [number, number])[][] => {
+  if (j - i < 2) return [[]]
+  const out: (readonly [number, number])[][] = []
+  for (let k = i + 1; k < j; k += 1) for (const left of wTriangulations(i, k)) for (const right of wTriangulations(k, j)) {
+    out.push([...left, ...right, ...(k - i > 1 ? [[i, k] as const] : []), ...(j - k > 1 ? [[k, j] as const] : [])])
+  }
+  return out
+}
+const wGirth = (n: number, adj: readonly (readonly number[])[]) => {
+  let best = Infinity
+  for (let s = 0; s < n; s += 1) {
+    const dist = Array(n).fill(-1), from = Array(n).fill(-1), queue = [s]
+    dist[s] = 0
+    for (let q = 0; q < queue.length; q += 1) {
+      const u = queue[q]!
+      for (const v of adj[u]!) {
+        if (dist[v] < 0) { dist[v] = dist[u] + 1; from[v] = u; queue.push(v) }
+        else if (from[u] !== v) best = min(best, dist[u] + dist[v] + 1)
+      }
+    }
+  }
+  return best
+}
+// every magnitude below is derived from the canonical set or read off the computation itself — the display sizes are
+// chosen canonical, and a theorem's own numbers are rebuilt from their parts (1729 = 9³ + 10³, 641 = 5·2⁷ + 1)
+const W_TEN = 2 * 5
+const THEOREM_WITNESSES: Readonly<Record<string, () => ProofWitness>> = {
+  'Cassini Fibonacci identity': () => {
+    const values = Array.from({ length: 16 }, (_, i) => fibonacci(i) * fibonacci(i + 2) - fibonacci(i + 1) ** 2)
+    return { form: 'bars', values, holds: values.every((v, i) => v === (-1) ** (i + 1)), caption: 'F(n−1)·F(n+1) − F(n)² for n = 1…16: exactly ±1, flipping sign at every step — the Fibonacci matrix has determinant −1' }
+  },
+  'Lucas–Fibonacci identities': () => {
+    const lucas = (n: number) => (n === 0 ? 2 : fibonacci(n - 1) + fibonacci(n + 1))
+    const values = Array.from({ length: 16 }, (_, n) => lucas(n) ** 2 - 5 * fibonacci(n) ** 2)
+    return { form: 'bars', values, holds: values.every((v, n) => v === 4 * (-1) ** n), caption: 'L(n)² − 5F(n)² for n = 0…15: exactly ±4, four times Cassini, with L(n) = F(n−1) + F(n+1)' }
+  },
+  'Fibonacci partial sum F_{n+2}−1': () => {
+    const values = Array.from({ length: 9 }, (_, i) => wSum(Array.from({ length: i + 1 }, (_, k) => fibonacci(k + 1))))
+    const against = values.map((_, i) => fibonacci(i + 3) - 1)
+    return { form: 'bars', values, against, holds: values.every((v, i) => v === against[i]), caption: 'F(1) + … + F(n) as bars, F(n+2) − 1 as the line through their tops — they meet at every n' }
+  },
+  'Pisano period π(10) = 60': () => {
+    const values: number[] = [0]
+    let [a, b] = [0, 1]
+    do { [a, b] = [b, (a + b) % W_TEN]; values.push(a) } while (!(a === 0 && b === 1))
+    return { form: 'walk', modulus: W_TEN, values, holds: values.length - 1 === 6 * W_TEN, caption: `the last digit of F(n), walked round the ten digits until (0, 1) returns: ${values.length - 1} steps` }
+  },
+  'power-sum closed forms': () => {
+    const cells = wGnomons([1, 2, 3, 4, 5, 6])
+    return { form: 'grid', cells, holds: [0, 1, 2, 3, 4, 5].every((k) => wCount(cells, k) === 2 * k + 1), caption: 'the 6 × 6 square cut into L-shaped strips of 1, 3, 5, 7, 9, 11 cells — the odd numbers sum to a square' }
+  },
+  'Nicomachus sum of cubes is a square': () => {
+    const cells = wGnomons([1, 2, 3, 4].map((k) => (k * (k + 1)) / 2))
+    return { form: 'grid', cells, holds: [0, 1, 2, 3].every((k) => wCount(cells, k) === (k + 1) ** 3), caption: 'the square of side 1 + 2 + 3 + 4 = 10 cut into L-shaped strips of 1, 8, 27, 64 cells — the cubes fill the square of the triangular number' }
+  },
+  'reflected Gray code single-bit': () => {
+    const code = (i: number) => i ^ (i >> 1)
+    const cells = Array.from({ length: 16 }, (_, i) => [3, 2, 1, 0].map((b) => (code(i) >> b) & 1))
+    const oneBit = cells.every((row, i) => row.filter((v, j) => v !== cells[(i + 1) % 16]![j]).length === 1)
+    return { form: 'grid', cells, holds: oneBit && new Set(cells.map((r) => r.join(''))).size === 16, caption: 'the sixteen 4-bit Gray codes as rows: every row differs from the next — the last from the first too — in exactly one bit' }
+  },
+  'hockey-stick identity': () => {
+    const rows = wPascal(9), r = 2, n = 7
+    const cells = rows.map((row, i) => Array.from({ length: 9 }, (_, j) => (j > i ? -1 : j === r && i <= n && i >= r ? 1 : i === n + 1 && j === r + 1 ? 2 : 0)))
+    const handle = wSum(rows.slice(r, n + 1).map((row) => row[r]!))
+    return { form: 'grid', cells, holds: handle === rows[n + 1]![r + 1], caption: `Pascal's triangle: the column C(2,2) … C(7,2) sums to ${handle} = C(8,3), the entry below the end of the stick` }
+  },
+  'Vandermonde binomial identity': () => {
+    const rows = wPascal(W_TEN), m = 5, n = 4, p = 4
+    const values = Array.from({ length: p + 1 }, (_, k) => (rows[m]![k] ?? 0) * (rows[n]![p - k] ?? 0))
+    return { form: 'bars', values, holds: wSum(values) === rows[m + n]![p], caption: `choosing 4 from 5 + 4 split by how many come from the 5: the products C(5,k)·C(4,4−k) sum to ${wSum(values)} = C(9,4)` }
+  },
+  'amicable pair 220 and 284': () => {
+    const [x, y] = [216 + 4, 216 + 64 + 4]
+    const a = wProperDivisors(x), b = wProperDivisors(y)
+    const smallest = Array.from({ length: x - 1 }, (_, i) => i + 1).every((u) => { const v = wSum(wProperDivisors(u)); return v === u || wSum(wProperDivisors(v)) !== u })
+    return { form: 'bars', values: [...a, ...b.map((d) => -d)], holds: wSum(a) === y && wSum(b) === x && smallest, caption: 'the proper divisors of 220 (up) sum to 284, those of 284 (down) sum to 220 — and no smaller pair does this' }
+  },
+  'four 3-digit Armstrong numbers': () => {
+    const armstrong = (n: number) => floor(n / 100) ** 3 + (floor(n / W_TEN) % W_TEN) ** 3 + (n % W_TEN) ** 3 === n
+    const side = 5 * 6
+    const cells = Array.from({ length: side }, (_, i) => Array.from({ length: side }, (_, j) => (armstrong(100 + side * i + j) ? 1 : 0)))
+    const found = Array.from({ length: 9 * 100 }, (_, i) => 100 + i).filter(armstrong)
+    return { form: 'grid', cells, holds: found.join() === '153,370,371,407', caption: 'all 900 three-digit numbers, lit where the sum of the cubes of the digits is the number: 153, 370, 371, 407' }
+  },
+  'Taxicab(2) = 1729': () => {
+    const top = 2 * 6, taxicab = 9 ** 3 + W_TEN ** 3
+    const sums = new Map<number, number>()
+    for (let x = 1; x <= top; x += 1) for (let y = x; y <= top; y += 1) sums.set(x ** 3 + y ** 3, (sums.get(x ** 3 + y ** 3) ?? 0) + 1)
+    const cells = Array.from({ length: top }, (_, i) => Array.from({ length: top }, (_, j) => (j < i ? -1 : (i + 1) ** 3 + (j + 1) ** 3 === taxicab ? 1 : 0)))
+    const twice = [...sums].filter(([, c]) => c > 1).map(([v]) => v)
+    return { form: 'grid', cells, holds: twice.length === 1 && twice[0] === taxicab && taxicab === 1 + top ** 3, caption: 'every a³ + b³ with 1 ≤ a ≤ b ≤ 12; the only value reached twice is 1729 = 1³ + 12³ = 9³ + 10³' }
+  },
+  'Frobenius number of (6,9,20) is 43': () => {
+    const cells = Array.from({ length: W_TEN }, (_, i) => Array.from({ length: 6 }, (_, j) => (wMcNugget(6 * i + j) ? 1 : 0)))
+    const gaps = cells.flat().map((v, n) => (v ? -1 : n)).filter((n) => n >= 0)
+    return { form: 'grid', cells, holds: gaps[gaps.length - 1] === 6 * 7 + 1 && cells.slice(8).every((row) => row.every((v) => v === 1)), caption: '0 … 59 in rows of six, lit where 6a + 9b + 20c reaches it: 43 is the last gap, and from 44 a full row carries every row below it' }
+  },
+  'Euler polynomial n²+n+41 primes then breaks at 41²': () => {
+    const base = 5 * 8 + 1
+    const values = Array.from({ length: base }, (_, n) => n * n + n + base)
+    const marks = values.map((v, n) => (tkIsPrime(v) ? -1 : n)).filter((n) => n >= 0)
+    return { form: 'bars', values, marks, holds: marks.length === 1 && marks[0] === base - 1 && values[base - 1] === base * base, caption: 'n² + n + 41 for n = 0 … 40: prime at every bar until the marked last, 40² + 40 + 41 = 41²' }
+  },
+  'Fermat number F₅ is composite': () => {
+    const fermat = Array.from({ length: 6 }, (_, k) => 2 ** (2 ** k) + 1)
+    const values = fermat.map((f) => Math.log2(f))
+    const euler = 5 * 2 ** 7 + 1 // Euler's divisor, of the form k·2⁷ + 1 he searched
+    return { form: 'bars', values, marks: [5], holds: fermat.slice(0, 5).every((f) => tkIsPrime(f)) && fermat[5]! % euler === 0, caption: 'the Fermat numbers 2^(2^k) + 1 on a log scale: 3, 5, 17, 257, 65537 are prime, and the marked F₅ = 641 × 6700417' }
+  },
+  'Schur number S(2) = 4': () => {
+    const c = Array.from({ length: 16 }, (_, i) => i).find((x) => !wMonoSum(x, 4)) ?? -1
+    const forced = Array.from({ length: 2 ** 5 }, (_, i) => i).every((x) => wMonoSum(x, 5))
+    return { form: 'grid', cells: [[1, 2, 3, 4].map((i) => wBit(c, i))], holds: c >= 0 && forced, caption: '1, 2, 3, 4 coloured so that no x + y = z sits in one colour — and all 32 colourings of 1 … 5 fail' }
+  },
+  'van der Waerden W(2,3) = 9': () => {
+    const c = Array.from({ length: 2 ** 8 }, (_, i) => i).find((x) => !wMonoAP(x, 8)) ?? -1
+    const forced = Array.from({ length: 2 ** 9 }, (_, i) => i).every((x) => wMonoAP(x, 9))
+    return { form: 'grid', cells: [Array.from({ length: 8 }, (_, i) => wBit(c, i + 1))], holds: c >= 0 && forced, caption: '1 … 8 coloured with no three-term progression in one colour — and all 512 colourings of 1 … 9 have one' }
+  },
+  'Catalan parity = Mersenne': () => {
+    let cat = BigInt(1)
+    const values: number[] = []
+    for (let n = 0; n <= 2 ** 5; n += 1) { values.push(Number(cat % BigInt(2))); cat = (cat * BigInt(2 * (2 * n + 1))) / BigInt(n + 2) }
+    const odd = values.map((v, n) => (v ? n : -1)).filter((n) => n >= 0)
+    return { form: 'bars', values, marks: odd, holds: odd.join() === '0,1,3,7,15,31', caption: 'the parity of C₀ … C₃₂: the odd Catalan numbers sit exactly at 2^k − 1' }
+  },
+  'Kummer carry theorem': () => {
+    const row = wPascal(16 + 1)[16]!
+    const v2 = (x: number) => { let k = 0; while (x % 2 === 0) { x /= 2; k += 1 } return k }
+    const carries = (a: number, b: number) => { let c = 0, k = 0; while (a || b || c) { c = ((a & 1) + (b & 1) + c) >> 1; k += c; a >>= 1; b >>= 1 } return k }
+    const values = row.map(v2), against = row.map((_, k) => carries(k, 16 - k))
+    return { form: 'bars', values, against, holds: values.every((v, k) => v === against[k]), caption: 'the power of 2 in C(16,k) as bars, the carries when adding k and 16 − k in binary as the line — equal at every k' }
+  },
+  'Graeco-Latin at 3,4,5 never 2': () => {
+    const cells = Array.from({ length: 5 }, (_, i) => Array.from({ length: 5 }, (_, j) => ((i + j) % 5) * 5 + ((2 * i + j) % 5)))
+    const two = [[[0, 1], [1, 0]], [[1, 0], [0, 1]]]
+    const noneOfTwo = two.every((a) => two.every((b) => new Set([0, 1].flatMap((i) => [0, 1].map((j) => `${a[i]![j]}${b[i]![j]}`))).size < 4))
+    return { form: 'grid', cells, holds: new Set(cells.flat()).size === 5 * 5 && noneOfTwo, caption: 'two orthogonal Latin squares of order 5 overlaid: all 25 ordered pairs appear once — and no two squares of order 2 do this' }
+  },
+  'the Sothic cycle meshes the Egyptian civil year exactly — 1461 civil = 1460 Julian': () => {
+    const civil = 360 + 5, cycle = 4 * civil
+    const years = [...Array.from({ length: 16 - 1 }, (_, i) => 100 * i), cycle]
+    const values = years.map((y) => floor(y / 4))
+    return { form: 'bars', values, marks: [values.length - 1], holds: values[values.length - 1] === civil && (cycle + 1) * civil * 4 === cycle * (cycle + 1), caption: 'the civil year slips a quarter day a year against the Julian: the slip in days every century, meeting a full 365 after 1460 years' }
+  },
+  'collective transitivity fails (social choice)': () => {
+    const profile = [[0, 1, 2], [1, 2, 0], [2, 0, 1]]
+    const prefers = (x: number, y: number) => profile.filter((r) => r.indexOf(x) < r.indexOf(y)).length >= 2
+    return { form: 'grid', cells: profile, holds: prefers(0, 1) && prefers(1, 2) && prefers(2, 0), caption: 'three voters (rows) rank three candidates (colours): a majority prefers A to B, B to C, and C to A' }
+  },
+  'τ(6) = τ(2)·τ(3)': () => {
+    const cells = [[1, 3], [2, 6]]
+    return { form: 'grid', cells, holds: wProperDivisors(6).length + 1 === (wProperDivisors(2).length + 1) * (wProperDivisors(3).length + 1) && cells.flat().every((d) => 6 % d === 0), caption: 'the divisors of 6 as a 2 × 2 table, {1, 2} × {1, 3}: τ(6) = τ(2)·τ(3) = 4' }
+  },
+  'K₅ and K₃,₃ non-planar': () => {
+    const p = wRing(5), edges: (readonly [number, number, number, number])[] = []
+    for (let i = 0; i < 5; i += 1) for (let j = i + 1; j < 5; j += 1) edges.push(wSeg(p, i, j))
+    return { form: 'graph', frames: edges.map((e) => [e]), together: true, holds: edges.length > 3 * 5 - 6 && 3 * 3 > 2 * 6 - 4, caption: 'K₅ drawn edge by edge: 10 edges, one more than the 3·5 − 6 = 9 any planar graph on 5 vertices allows' }
+  },
+  'Catalan heptagon': () => {
+    const p = wRing(7), all = wTriangulations(0, 6)
+    const sides = Array.from({ length: 7 }, (_, i) => wSeg(p, i, (i + 1) % 7))
+    return { form: 'graph', frames: all.map((t) => [...sides, ...t.map(([a, b]) => wSeg(p, a, b))]), holds: all.length === wPascal(W_TEN + 1)[W_TEN]![5]! / 6, caption: `every triangulation of the heptagon in turn — ${all.length} of them, the Catalan number C₅` }
+  },
+  'exactly 3 regular tilings': () => {
+    const found: [number, number][] = []
+    for (let p = 3; p <= 2 * 6; p += 1) for (let q = 3; q <= 2 * 6; q += 1) if ((p - 2) * (q - 2) === 4) found.push([p, q])
+    return { form: 'graph', frames: found.map(([p, q]) => wFan(p, q)), holds: found.length === 3, caption: 'q regular p-gons around one vertex, for every (p, q) that closes to exactly a full turn: triangles, squares, hexagons' }
+  },
+  'exactly 5 Platonic solids': () => {
+    const found: [number, number][] = []
+    for (let p = 3; p <= 2 * 6; p += 1) for (let q = 3; q <= 2 * 6; q += 1) if ((p - 2) * (q - 2) < 4) found.push([p, q])
+    return { form: 'graph', frames: found.map(([p, q]) => wFan(p, q)), holds: found.length === 5, caption: 'the vertex figure of each Platonic solid — q faces meeting with a gap left over, the angle the solid folds up through' }
+  },
+  'Steiner S(2,3,7)': () => {
+    const p = wRing(7), lines = fanoLines().map((l) => [...l])
+    const pairs = new Map<string, number>()
+    for (const l of lines) for (let i = 0; i < 3; i += 1) for (let j = i + 1; j < 3; j += 1) { const k = [l[i]!, l[j]!].sort().join(); pairs.set(k, (pairs.get(k) ?? 0) + 1) }
+    return { form: 'graph', frames: lines.map((l) => [wSeg(p, l[0]!, l[1]!), wSeg(p, l[1]!, l[2]!), wSeg(p, l[2]!, l[0]!)]), together: true, holds: pairs.size === 3 * 7 && [...pairs.values()].every((c) => c === 1), caption: 'the seven lines of the Fano plane, one at a time: every pair of the 7 points lies on exactly one line' }
+  },
+  'Heawood graph is the (3,6)-cage': () => {
+    const n = 2 * 7, p = wRing(n)
+    const adj = Array.from({ length: n }, (_, i) => [(i + 1) % n, (i + n - 1) % n, i % 2 === 0 ? (i + 5) % n : (i + n - 5) % n])
+    const edges = adj.flatMap((vs, i) => vs.filter((j) => j > i).map((j) => wSeg(p, i, j)))
+    return { form: 'graph', frames: edges.map((e) => [e]), together: true, holds: adj.every((vs) => new Set(vs).size === 3) && wGirth(n, adj) === 6 && n === 2 * (1 + 2 + 4), caption: 'the Heawood graph: 14 vertices, each of degree 3, no cycle shorter than 6 — the fewest vertices the Moore bound allows' }
+  },
+}
+const witnessOf = (title: string): ProofWitness | undefined => THEOREM_WITNESSES[title]?.()
+export const THEOREM_WITNESS_NAMES: readonly string[] = Object.keys(THEOREM_WITNESSES)
+
 const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'hueDigit' | 'seed' | 'coords'> => {
   const t = theorem.toLowerCase()
   const hit = CONTENT_ANIMATION_FAMILIES.find(([keys]) => keys.some((k) => t.includes(k)))
@@ -2211,7 +2467,8 @@ const contentSpecOf = (theorem: string): Omit<ProofAnimationSpec, 'theorem' | 'h
  *  animates identically, and any change to statement or proving fold changes the animation. */
 export function specForContent(title: string, proofKey?: string): ProofAnimationSpec {
   const hueDigit = contentDigitOf(title)
-  return { theorem: title, ...contentSpecOf(title), hueDigit, seed: seedFromText(proofKey ?? title), coords: proofAnimationCoords(hueDigit) }
+  const witness = witnessOf(title)
+  return { theorem: title, ...contentSpecOf(title), hueDigit, seed: seedFromText(proofKey ?? title), coords: proofAnimationCoords(hueDigit), ...(witness ? { witness } : {}) }
 }
 
 export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
@@ -2258,6 +2515,11 @@ export function proofAnimations(matrix: MindMatrix = buildMatrix()) {
     const allDirectionsProved = coordinatesTotal && tensComplementInvolution && additiveInverseInvolution && negationPreservesUnits && complementMapsNonUnitsToUnits && dualityInfiniteWithinFinite
     return {
       animated: specs.length === registry.count && kinds.length >= 6,
+      // measured, not seeded: how many theorems are drawn from their own proof's object, and whether each still holds
+      witnessed: specs.filter((entry) => entry.witness).length,
+      drawnFromATemplate: specs.filter((entry) => !entry.witness).map((entry) => entry.theorem),
+      everyWitnessHolds: specs.every((entry) => !entry.witness || entry.witness.holds),
+      everyWitnessNamesARow: THEOREM_WITNESS_NAMES.every((name) => registryTitles.has(name)),
       uniqueAnimationsMatchUniqueTheorems: signatureCount === identityCount,
       everyAnimationConfirmsItsProof,
       noOtherAnimationAllowed,

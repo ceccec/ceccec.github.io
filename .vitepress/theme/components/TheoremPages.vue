@@ -62,7 +62,8 @@ const paperLine = (line: string): { label: string; body: string } => {
 
       <figure class="theorem-paper__figure theorem-paper__hero">
         <ProofAnimation v-if="specOf(row)" :spec="specOf(row)!" :size="2 * 9 * 5 * 4" />
-        <figcaption v-if="specOf(row)">
+        <figcaption v-if="specOf(row)?.witness">{{ specOf(row)!.witness!.caption }}</figcaption>
+        <figcaption v-else-if="specOf(row)">
           {{ specOf(row)!.kind }}
           · φ⁻{{ specOf(row)!.ratePhi }}
           · hue {{ specOf(row)!.hueDigit }}
