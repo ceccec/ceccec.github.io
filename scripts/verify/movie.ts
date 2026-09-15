@@ -24,6 +24,7 @@ import { join } from 'node:path'
 import { ratchet } from './status.ts'
 import { VORTEX_SEQUENCE } from '../../src/0/index.ts'
 import { theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge } from '../../src/quantum/dynamics/index.ts'
+import { vortexStrokeKinds } from '../../src/mountain/vortex/index.ts'
 
 const ROOT = process.cwd()
 
@@ -72,8 +73,6 @@ const SHAPES: { shape: string; re: RegExp }[] = [
   { shape: 'a minted address checked for being an address', re: /isUuid\(\s*(?:toUuid|merkleFold)\(/g },
   // a facet written as a literal
   { shape: 'a facet written as a literal', re: /\bon:\s*(?:true|false)\s*(?=[,}\n]|$)/g },
-  // a boolean constant standing where a measurement should
-  { shape: 'a boolean constant', re: /^\s*const\s+[A-Za-z_$][\w$]*\s*=\s*(?:true|false)\s*$/g },
 ]
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -84,6 +83,7 @@ export function movieCannotFail(root: string = ROOT): MovieSite[] {
     const lines = codeLines(readFileSync(file, 'utf8'))
     // a name compared with the very expression it was assigned — `const c = h / 2` … `c === h / 2`
     const assigned = new Map<string, string>()
+    const flags: string[] = []
     lines.forEach((code, i) => {
       const at = { file: file.replace(`${root}/`, ''), line: i + 1 }
       for (const { shape, re } of SHAPES) {
@@ -98,6 +98,13 @@ export function movieCannotFail(root: string = ROOT): MovieSite[] {
         const m = code.match(re)
         if (m) found.push({ ...at, shape: 'a name compared with the expression it was assigned', text: m[0].trim().slice(0, 80) })
       }
+      // a boolean constant is configuration until it is STATED AS A CLAIM — the value of a returned property
+      for (const name of flags) {
+        const m = code.match(new RegExp(`(?<![\\w$.])[A-Za-z_$][\\w$]*:\\s*[^,}]*(?<![\\w$.])${escape(name)}(?![\\w$(.:])`))
+        if (m) found.push({ ...at, shape: 'a boolean constant stated as a claim', text: m[0].trim().slice(0, 80) })
+      }
+      const flag = code.match(/^\s*const\s+([A-Za-z_$][\w$]*)\s*=\s*(?:true|false)\s*$/)
+      if (flag) flags.push(flag[1]!)
       const decl = code.match(/^\s*const\s+([A-Za-z_$][\w$]*)\s*=\s*([^=;][^;]*?)\s*;?\s*$/)
       if (decl && !/^(?:true|false|-?\d+)$/.test(decl[2]!)) assigned.set(decl[1]!, decl[2]!)
     })
@@ -117,12 +124,28 @@ export function movieOrbitJoinsTheAxis(root: string = ROOT): MovieSite[] {
   const seq = VORTEX_SEQUENCE.map((d) => d % 9)
   const crossings = seq.filter((d, i) => i > 0 && inOrbit.has(seq[i - 1]!) && onAxis.has(d)).length
   if (crossings === 0) return []
-  const painters = [...movieFiles(root), ...walk(join(root, 'src/quantum'), (p) => p.endsWith('index.ts'))]
   const found: MovieSite[] = []
+  // The classifier the painters read must itself mark every orbit→axis step as a seam — checked here, not trusted.
+  const orbitDigits = new Set(orbit)
+  const axisDigits = new Set(axis)
+  for (const k of vortexStrokeKinds()) {
+    if (orbitDigits.has(k.from) && axisDigits.has(k.to) && k.kind !== 'join') {
+      found.push({ file: 'src/mountain/vortex/index.ts', line: 0, shape: 'vortexStrokeKinds leaves an orbit→axis step unmarked', text: `${k.from}→${k.to} is '${k.kind}'` })
+    }
+  }
+  // A painter that spreads the sequence into a tour and never consults the classifier draws the seams as strokes.
+  const painters = [...movieFiles(root), ...walk(join(root, 'src/quantum'), (p) => p.endsWith('index.ts'))]
   for (const file of painters) {
-    codeLines(readFileSync(file, 'utf8')).forEach((code, i) => {
+    const lines = codeLines(readFileSync(file, 'utf8'))
+    lines.forEach((code, i) => {
       const m = code.match(/\[\s*\.\.\.VORTEX_SEQUENCE\b[^\]]*\]/)
-      if (m) found.push({ file: file.replace(`${root}/`, ''), line: i + 1, shape: `a tour stepping from the orbit onto the axis (${crossings} crossing(s) in the sequence)`, text: m[0] })
+      if (!m) return
+      let a = i
+      while (a > 0 && !/^(?:export\s+)?(?:async\s+)?function\s/.test(lines[a]!)) a--
+      let b = i
+      while (b < lines.length - 1 && lines[b] !== '}') b++
+      if (lines.slice(a, b + 1).join('\n').includes('vortexStrokeKinds')) return
+      found.push({ file: file.replace(`${root}/`, ''), line: i + 1, shape: `a tour stepping from the orbit onto the axis (${crossings} crossing(s) in the sequence), with no seam marked`, text: m[0] })
     })
   }
   return found

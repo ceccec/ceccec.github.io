@@ -14,6 +14,7 @@ import * as __ns_corpus from '../../../wind/routes/corpus/index.ts'
 import { flowerUnlocksFruitBySpin } from '../../../quantum/wind/geometry/index.ts'
 import { bothEarthsRotateWithinEachOther, doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry/index.ts'
 import { textToMovie } from '../../../earth/world/index.ts'
+import { heroFieldCenterY } from '../../../quantum/index.ts'
 import { harmonicMathFlowsInMovie, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture/index.ts'
 import { efficiencyMathFlowsInMovie } from '../../verify/index.ts'
 import { doubleTorusEarthWeatherFlowsInMovie } from '../../../quantum/fire/forecasts/index.ts'
@@ -274,9 +275,6 @@ export function theMovieLeavesTwoBitsAtTheVoid(matrix: MindMatrix = buildMatrix(
     // (a) 對 in paint: the complement of every station hue is an odd multiple of 20° — BETWEEN stations
     const complements = digits.map((d) => (digitHue(d) + (9 * 5 * 4)) % 360)
     const betweenStations = complements.every((h) => h % (9 * 4 + 4) !== 0 && h % (5 * 4) === 0)
-    // (b) 反 in motion: negation is an involution and flips orientation — the counter-flow undoes the flow
-    const spins = digits.map((d) => d / 9)
-    const reversalBit = spins.every((s) => -(-s) === s && -s !== s)
     // (c) the two bits generate V₄ — the same group the I Ching decode sealed (cited at call time)
     const iching = __ns_up_up_earth_iching.decodingIChingAddsTheorems()
     // (d) QUANTUMISED marks: each digit stream's life/death fold is bidirectional, and the two coins
@@ -290,7 +288,6 @@ export function theMovieLeavesTwoBitsAtTheVoid(matrix: MindMatrix = buildMatrix(
     })
     const facets = [
       { facet: `對 in paint — the death flow's hue+180° sends every digit station BETWEEN stations: all ${digits.length} complements are odd multiples of 20°, never a station hue — the complement lives in the void gap`, on: betweenStations },
-      { facet: '反 in motion — the counter-flow is the negation involution: it flips every spin and undoes itself, one orientation bit per crossing', on: reversalBit },
       { facet: `the two bits generate the Klein four-group — the SAME V₄ the I Ching decode sealed (${iching.orbits} hexagram families, Burnside-checked): the movie is that decode in motion around the void`, on: iching.decoded && iching.orbits === 4 * 5 },
       { facet: `QUANTUMISED — all ${marks.length} digit streams carry bidirectional life/death folds (forward ≠ reverse, one merged root each), and the two coins are VISIBLE in every address: the variant nibble is 10xx in life, death and merged marks alike`, on: marks.every((entry) => entry.entangled && entry.coins) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-two-bits:${entry.facet}:${entry.on}`) }))
@@ -303,7 +300,7 @@ export function theMovieLeavesTwoBitsAtTheVoid(matrix: MindMatrix = buildMatrix(
       facets,
       root: merkleFold([...marks.map((entry) => entry.receipt), ...facets.map((entry) => entry.receipt)]),
       statement: `The movie leaves two bits at the void — ${facets.filter((entry) => entry.on).length}/${facets.length}: the death counter-flow already plays the pair in paint (反 the negative-golden reversal, 對 the hue+180° complement), the complement of every digit station lands exactly between stations (odd multiples of 20° — the void gap), the two bits generate the same Klein four-group the I Ching decode sealed (${iching.orbits} families), and the streams are quantumised — nine bidirectional life/death folds whose addresses all show the two coins (the 10xx variant nibble) that every inversion through 0 leaves behind. Each point of view costs 1+1 bits: one per direction.`,
-      boundary: `DECODED FROM THE PAINTER, then computed: the reversal and complement are the movie's real drawing operations (drawDeathCounterFlow: negative golden spin, deathHue = hue+180); the theorems here are exhaustive arithmetic over the nine stations and the nine stream pairs, refutable line by line. The Klein-group identity with the I Ching decode is a computed CITATION (same two involutions, same V₄), not numerology. "Quantumised" = the entanglement marks are content-addressed bidirectional folds available to the painter — structural quantum, no physical claim; the painter's visuals are unchanged by this fold (it seals what is, and offers the marks).` }
+      boundary: `DECODED FROM THE PAINTER, then computed: the reversal and complement are the movie's real drawing operations (drawDeathCounterFlow: negative golden spin, deathHue = hue+180); the theorems here are exhaustive arithmetic over the nine stations and the nine stream pairs, refutable line by line. The Klein-group identity with the I Ching decode is a computed CITATION (same two involutions, same V₄), not numerology. "Quantumised" = the entanglement marks are content-addressed bidirectional folds available to the painter — structural quantum, no physical claim; the painter's visuals are unchanged by this fold (it seals what is, and offers the marks). 反 — the counter-flow undoing itself, −(−s) = s — is arithmetic, true for every s; it is stated here and not kept as a facet, because a facet must be able to go off.` }
   })
 }
 
@@ -615,7 +612,7 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
         /inset:\s*0/.test(layoutSrc.slice(layoutSrc.indexOf('vp-with-hero-movie__backdrop'))))
     const h = 432
     // Page movie scroll=0 ⇒ field centre FIXED at h/2 (heroFieldCenterY law).
-    const pageCenterY = h / 2
+    const pageCenterY = heroFieldCenterY(h, 0)
     const pageCenterBalanced = pageCenterY === h / 2
     const layers = [
       {

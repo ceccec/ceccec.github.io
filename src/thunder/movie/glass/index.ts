@@ -115,7 +115,7 @@ export function heroMovieChrome(
   const cssVars = backgroundMovieColorVars(matrix, cssWidth, path, endless)
   const root = merkleFold([palette.root, toUuid(`hero-chrome:${path}:${cssVars['--vp-hero-bg-shell']}`)])
   return {
-    visible: endless,
+    visible: Boolean(cssVars['--vp-hero-bg-shell']),
     cssVars,
     palette,
     root,
@@ -152,7 +152,7 @@ export function backgroundMovieColors(
   ]
   const fromMovie = keys.every((key) => Boolean(cssVars[key]))
   return {
-    fromMovie: fromMovie && endless,
+    fromMovie,
     path,
     palette,
     cssVars,

@@ -11,6 +11,7 @@
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
 import { phase } from '../6/4/index.ts'
 import { dims, dimWalk } from './mountain/dimensions/index.ts'
+import { vortexStrokeKinds } from '../mountain/vortex/index.ts'
 import { perspective, rotate3, branch } from './wind/geometry/index.ts'
 import { drawFlower, drawCalendars } from './wind/geometry/index.ts'
 import { drawBursts, type Burst } from './fire/experiments/index.ts'
@@ -1901,6 +1902,9 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
   }
 }
 
+// the stroke kinds are computed on the first paint, not at import — the painter reads the classifier, never a copy
+let vortexKinds: ReturnType<typeof vortexStrokeKinds> | null = null
+
 /**
  * Vortex strokes — the genesis realisation as a movie: 1\2\4\8/7/5/3\6\9/0\1. The ten-digit tour
  * (every digit once, the void included) laid on a slowly turning wheel; a runner traces the cycle,
@@ -1919,11 +1923,11 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   const R = min(w, h) * (2 / 5)
   // Counts from the sealed params, never re-declared: segments = the gateway reversals, forms = the tour.
   const { segments: gatewayCount, forms: tourSize } = quantumProjectionParams('vortex-strokes')
-  const tour = [...VORTEX_SEQUENCE, 0]
-  const steps = tour.map((d, i) => {
-    const to = tour[(i + 1) % tour.length]!
-    return { from: d, to, up: to > d } // the stroke IS the sign of the step: \ ascent, / descent
-  })
+  // The written cycle, read against the doubling law: vortexStrokeKinds marks the two seams (5→3, 9→0) where the tour
+  // leaves the orbit — erpax's `·` — so they are drawn broken, never as doubling strokes.
+  const kinds = (vortexKinds ??= vortexStrokeKinds())
+  const tour = kinds.map((k) => k.from)
+  const steps = kinds.map((k) => ({ from: k.from, to: k.to, up: k.to > k.from, join: k.kind === 'join' })) // the stroke IS the sign of the step
   const gateways = steps
     .map((s, i) => ({ i, digit: s.from, turn: steps[(i - 1 + steps.length) % steps.length]!.up !== s.up }))
     .filter((v) => v.turn)
@@ -1952,9 +1956,11 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
     const wake = frame.reduce ? 1 : max(0, 1 - (((runner - i) % tourSize) + tourSize) % tourSize / (tourSize * (3 / 5)))
     const hue = s.up ? frame.hue : (frame.hue + (9 * 5 * 4)) % 360
     ctx.strokeStyle = paint(hue, (9 / (5 * 5 * 2)) + (3 / 5) * wake, { L: s.up ? 11 / 16 : 9 / 16 })
-    ctx.lineWidth = 1 + (8 / 5) * wake
+    ctx.setLineDash(s.join ? [3, 5] : []) // a seam is not a doubling step: drawn broken and thin
+    ctx.lineWidth = s.join ? 1 : 1 + (8 / 5) * wake
     ctx.beginPath(); ctx.moveTo(xAt(i), yAt(i)); ctx.lineTo(xAt(i + 1), yAt(i + 1)); ctx.stroke()
   }
+  ctx.setLineDash([])
 
   // Tour nodes: a dot per digit, sized by pulse; the void (0) rendered hollow — presence without magnitude.
   for (let i = 0; i < tour.length; i += 1) {

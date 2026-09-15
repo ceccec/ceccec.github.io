@@ -109,6 +109,28 @@ export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
   })
 }
 
+/**
+ * THE WRITTEN CYCLE READ AGAINST THE DOUBLING LAW. vortexStrokeGateways walks 1\2\4\8/7/5/3\6\9/0\1 as one tour;
+ * erpax writes the same cycle with its seams showing — 1\2\4\8/7/5 · 3\6\9 · 0\1 — because doubling never leaves
+ * the units and the axis is reached only by reflection (theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge).
+ * Each step is classified from vortexMath's own doubling orbit and cross: 'orbit' inside 1-2-4-8-7-5, 'axis' inside
+ * 3-6-9, 'void' out of 0, and 'join' at the two seams (5→3, 9→0) — the `·` a painter draws as a break, never as a
+ * doubling stroke.
+ */
+export function vortexStrokeKinds(matrix: MindMatrix = buildMatrix()) {
+  const vm = vortexMath(matrix)
+  const orbit = new Set(vm.doubling)
+  const axis = new Set(vm.cross.filter((d) => d !== 0))
+  const tour = [...VORTEX_SEQUENCE, 0]
+  return tour.map((from, i) => {
+    const to = tour[(i + 1) % tour.length]!
+    const kind = orbit.has(from) && orbit.has(to) ? 'orbit' as const
+      : axis.has(from) && axis.has(to) ? 'axis' as const
+      : from === 0 ? 'void' as const : 'join' as const
+    return { from, to, kind }
+  })
+}
+
 /** invertedSequenceLearnedFromErpax — learn the erpax inverted sequence (user, 2026-07-28: "learn from
  * https://github.com/erpax/erpax inverted sequence to fill the gaps in theorems and animations especially the
  * movie"). erpax publishes ONE structure read twice — forward `1\2\4\8/7/5 · 3\6\9 · 0\1`, reflected
