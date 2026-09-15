@@ -1384,6 +1384,7 @@ export const LEAN_SEALED_REGISTRY: readonly { readonly theorem: string; readonly
   { theorem: "Steiner S(2,3,7)", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["steiner_two_three_seven"], scope: 'exact' },
   { theorem: "Heawood graph is the (3,6)-cage", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["heawood_moore_bound"], scope: 'instances' },
   { theorem: "exactly 5 Platonic solids", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["exactly_five_platonic_solids"], scope: 'exact' },
-  { theorem: "Pisano period π(10) = 60", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["pisano_ten_is_sixty"], scope: 'exact' },
+  { theorem: "Pisano period π(10) = 60", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["pisano_ten_is_sixty", "pisano_nine_is_twenty_four", "pisano_reads_sixty_at_ten", "pisano_is_even_from_three_to_fifty"], scope: 'exact' },
+  { theorem: "Cassini Fibonacci identity", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["cassini_step_negates", "cassini_for_every_n"], scope: 'exact' },
   { theorem: "Catalan parity = Mersenne", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["catalan_parity_is_mersenne"], scope: 'instances' },
 ] as const

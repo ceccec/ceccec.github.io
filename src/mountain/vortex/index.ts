@@ -138,7 +138,9 @@ export function theTenComplementFixesExactlyFive() {
  * THE PISANO WHEEL ON THE NINE, with Cassini's sign on every step. The Fibonacci recurrence read mod 9 returns to its start
  * (0, 1) after a period found by walking it, never typed; the wheel visits the digital roots of F(1)…F(period), and step n
  * carries the sign Cassini's identity gives it, F(n−1)·F(n+1) − F(n)² = (−1)ⁿ — both checked on the Fibonacci numbers
- * themselves, so the walk the painter draws and the numbers it stands for cannot drift apart.
+ * themselves, so the walk the painter draws and the numbers it stands for cannot drift apart. The kernel holds both beyond
+ * this check: Registry.pisano_nine_is_twenty_four decides the period, and Registry.cassini_for_every_n proves the sign for
+ * every n (src/pair/lean/proofs/registry.lean).
  */
 export function pisanoWheelOnTheNine() {
   const nine = 3 * 3

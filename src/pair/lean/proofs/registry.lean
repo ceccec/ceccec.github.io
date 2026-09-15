@@ -143,6 +143,43 @@ def pisano10 : Nat := ((fibPairs 70 (0, 1)).drop 1).findIdx? (· == (0, 1)) |>.m
 set_option maxRecDepth 100000 in
 theorem pisano_ten_is_sixty : pisano10 = 60 := by decide +kernel
 
+/-! 6·counter, reflected — the same walk for any modulus. On the nine the vortex turns on, π(9) = 24: the wheel the movie
+    draws under the vortex strokes (pisanoWheelOnTheNine, src/mountain/vortex). 7m steps bound the walk, since π(m) ≤ 6m.
+    It re-reads π(10) = 60, and decides the row's own words: π(m) is nonzero and even for every m from 3 to 50. -/
+def fibPairsMod (m : Nat) : Nat → Nat × Nat → List (Nat × Nat)
+  | 0, _ => []
+  | n + 1, (a, b) => (a, b) :: fibPairsMod m n (b, (a + b) % m)
+def pisano (m : Nat) : Nat := ((fibPairsMod m (7 * m) (0, 1)).drop 1).findIdx? (· == (0, 1)) |>.map (· + 1) |>.getD 0
+set_option maxRecDepth 100000 in
+theorem pisano_nine_is_twenty_four : pisano 9 = 24 := by decide +kernel
+set_option maxRecDepth 100000 in
+theorem pisano_reads_sixty_at_ten : pisano 10 = pisano10 := by decide +kernel
+set_option maxRecDepth 200000 in
+theorem pisano_is_even_from_three_to_fifty :
+    (List.range 48).all (fun i => pisano (i + 3) != 0 && pisano (i + 3) % 2 == 0) = true := by decide +kernel
+
+/-! Cassini's identity for EVERY n, not to a bound: F(n)·F(n+2) − F(n+1)² = (−1)^(n+1) over the integers. The registry
+    row checked it to n = 40; the kernel proves it for all n, because each step negates it. Reflected into linear
+    algebra: one step is the Fibonacci matrix Q = [[1, 1], [1, 0]], Cassini's left side is det(Qⁿ⁺¹), and det Q = −1 —
+    every step reverses orientation, so the sign alternates forever. -/
+def fibInt : Nat → Int
+  | 0 => 0
+  | 1 => 1
+  | n + 2 => fibInt n + fibInt (n + 1)
+theorem cassini_step_negates (n : Nat) :
+    fibInt (n + 1) * fibInt (n + 3) - fibInt (n + 2) * fibInt (n + 2)
+      = -(fibInt n * fibInt (n + 2) - fibInt (n + 1) * fibInt (n + 1)) := by
+  have h2 : fibInt (n + 2) = fibInt n + fibInt (n + 1) := rfl
+  have h3 : fibInt (n + 3) = fibInt (n + 1) + fibInt (n + 2) := rfl
+  rw [h3, h2]
+  simp only [Int.mul_add, Int.add_mul, Int.mul_comm (fibInt (n + 1)) (fibInt n)]
+  omega
+theorem cassini_for_every_n (n : Nat) :
+    fibInt n * fibInt (n + 2) - fibInt (n + 1) * fibInt (n + 1) = (-1) ^ (n + 1) := by
+  induction n with
+  | zero => decide
+  | succ k ih => rw [cassini_step_negates, ih, Int.pow_succ]; omega
+
 /-! 6·forward — Catalan parity = Mersenne: among C₀ … C₃₂ the odd ones sit exactly at 0,1,3,7,15,31 = 2^k − 1. -/
 set_option maxRecDepth 100000 in
 theorem catalan_parity_is_mersenne :
