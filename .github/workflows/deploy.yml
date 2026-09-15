@@ -67,6 +67,12 @@ jobs:
             vitepress-warm-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      # THE MOVIE PROVES ONLY WHERE WHAT IT SHOWS COULD HAVE COME OUT FALSE. verify:movie is a ratchet in verify:all,
+      # but nothing ran verify:all on a push, so a scene could gain a flag that cannot fail — or draw the doubling
+      # orbit into the 3-6-9 axis again — and ship. Here it runs before the build: a regression stops the deploy and
+      # the live site keeps its last honest version. It reads the committed floors, so it can only hold or tighten.
+      - name: The movie proves only what could fail (verify:movie)
+        run: npm run -s verify:movie
       - name: Build with VitePress
         run: pnpm run docs:build
         env:
