@@ -26,7 +26,9 @@ if (!existsSync(entry)) {
 }
 
 // Clean dist so a stale bundle (e.g. one referencing since-deleted components) can never linger.
-rmSync(outDir, { recursive: true, force: true })
+// --kernel builds only the kernel entry into the existing dist/ (see buildKernel below) and leaves the full bundle alone.
+const KERNEL_ONLY = process.argv.includes('--kernel')
+if (!KERNEL_ONLY) rmSync(outDir, { recursive: true, force: true })
 mkdirSync(outDir, { recursive: true })
 
 // Self-contained Node built-in stubs. A few pure constants the core uses (the census/rosetta limits in
@@ -83,7 +85,54 @@ const selfContainedNodeStubs = {
   },
 }
 
-// 1. JS — bundle the whole src/ graph into one self-contained ESM file.
+// THE KERNEL, AS ITS OWN ENTRY — @ceccec/double-torus/kernel. Importing one function from the full bundle pulled in about
+// a megabyte (`import { toUuid }`, bundled and minified: 1,013,073 bytes), because the single bundle carries module-level
+// work no bundler can drop. src/0 — the void/origin kernel: toUuid, merkleFold, foldPair and the rest — is self-contained,
+// so it ships beside the full bundle: the same code the kernel package on GitHub Packages carries, and the same toUuid
+// import costs about six kilobytes through it (6,499 bytes measured, the same address). Same stubs, same target.
+async function buildKernel() {
+  const kernelEntry = join(repoRoot, 'src', '0', 'index.ts')
+  await build({
+    entryPoints: [kernelEntry],
+    outfile: join(outDir, 'kernel.js'),
+    bundle: true,
+    format: 'esm',
+    platform: 'neutral',
+    target: 'es2021',
+    legalComments: 'none',
+    plugins: [selfContainedNodeStubs],
+    banner: { js: '// @ceccec/double-torus/kernel — src/0 bundled on its own. Do not edit by hand.' },
+  })
+  const kernelTypes = join(outDir, 'kernel-types')
+  rmSync(kernelTypes, { recursive: true, force: true })
+  ts.createProgram([kernelEntry], {
+    declaration: true,
+    emitDeclarationOnly: true,
+    outDir: kernelTypes,
+    rootDir: join(repoRoot, 'src', '0'),
+    module: ts.ModuleKind.ESNext,
+    target: ts.ScriptTarget.ES2021,
+    moduleResolution: ts.ModuleResolutionKind.Bundler,
+    allowImportingTsExtensions: true,
+    rewriteRelativeImportExtensions: true,
+    strict: false,
+    skipLibCheck: true,
+    noCheck: true,
+    types: [],
+  }).emit()
+  if (!existsSync(join(kernelTypes, 'index.d.ts'))) {
+    console.error('Build failed: the kernel declarations (dist/kernel-types/index.d.ts) were not emitted.')
+    process.exit(1)
+  }
+  writeFileSync(join(outDir, 'kernel.d.ts'), "// @ceccec/double-torus/kernel — types entry.\nexport * from './kernel-types/index.js'\n")
+  const kbytes = readFileSync(join(outDir, 'kernel.js')).length
+  console.log(`Built @ceccec/double-torus/kernel -> dist/kernel.js (${(kbytes / 1024).toFixed(0)} KB) + dist/kernel.d.ts`)
+}
+if (KERNEL_ONLY) {
+  await buildKernel()
+  process.exit(0)
+}
+
 await build({
   entryPoints: [entry],
   outfile: join(outDir, 'index.js'),
@@ -238,3 +287,6 @@ if (exportNames.has('drawDoubleTorusEarthHingeFrame')) {
 const bytes = readFileSync(join(outDir, 'index.js')).length
 console.log(`Built @ceccec/double-torus -> dist/index.js (${(bytes / 1024).toFixed(0)} KB, self-contained) + dist/index.d.ts`)
 console.log(`Completely quantum contract: ${contract.length}/${contract.length} analyse/dynamics/geometry/movie-clock/palette/TAU/proof exports present.`)
+
+// the kernel entry rides every full build too
+await buildKernel()

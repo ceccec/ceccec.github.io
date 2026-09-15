@@ -22,6 +22,18 @@ library is exactly what the site runs.
 npm install @ceccec/double-torus
 ```
 
+Only need the kernel — content addresses, folds, the merkle tree? Import it on its own:
+
+```ts
+import { toUuid, merkleFold } from '@ceccec/double-torus/kernel'
+
+const a = toUuid('hello') // the same input gives the same address, for anyone, with no key
+console.log(a, merkleFold([a, toUuid('world')]))
+```
+
+The kernel entry costs a few kilobytes in a bundle; the full entry below carries the whole model and its animations.
+Both are ES modules (`import`; `require` works on Node 22.12 or later).
+
 ## Use
 
 ```ts
