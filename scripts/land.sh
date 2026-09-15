@@ -62,6 +62,16 @@ grep -qxF package.json <<<"$changed" && gates+=(manifest:check)
 grep -qE '^\.vitepress/|^src/ui/' <<<"$changed" && gates+=(docs:build)
 gates+=(${EXTRA[@]+"${EXTRA[@]}"})
 mkdir -p "$LOGS"
+rm -f "$LOGS"/*.log # a log left by an earlier landing must not be reported as this one's (it re-printed a tightened ratchet)
+# Every changed tool under scripts/ is bundled the way the bootstrap will bundle it — check:types does not cover
+# scripts/, so an import of a name its module does not export surfaced only when that gate finally ran.
+for f in $(grep -E '^scripts/.*\.ts$' <<<"$changed"); do
+  [ -f "$f" ] || continue
+  if ! node -e "require('esbuild').build({ entryPoints: [process.argv[1]], bundle: true, write: false, platform: 'node', format: 'esm', logLevel: 'silent' }).catch((e) => { console.log(e.message); process.exit(1) })" "$f" > "$LOGS/bundle.log" 2>&1; then
+    echo "✗ $f does not bundle:"; head -8 "$LOGS/bundle.log"; exit 1
+  fi
+  echo "✓ $f bundles"
+done
 # Generated files are regenerated from their sources first, so their gates judge the tree being landed: MANIFEST.md
 # is written from package.json (manifest:check refuses a drifted one and names this command).
 if grep -qxF package.json <<<"$changed"; then
