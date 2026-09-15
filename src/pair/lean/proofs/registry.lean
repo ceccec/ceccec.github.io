@@ -185,4 +185,177 @@ set_option maxRecDepth 100000 in
 theorem catalan_parity_is_mersenne :
     ((List.range 33).filter fun n => nth0 (catalanList 32) n % 2 == 1) = [0, 1, 3, 7, 15, 31] := by decide +kernel
 
+/-! ## Fourteen rows sealed in one wave. Where a row checked a law to a bound, the kernel proves it for EVERY n; where the
+    row's content is a finite fact, the kernel decides exactly that fact. -/
+
+/-! Fibonacci partial sums for every n: Σ_{k=1}^n F(k) = F(n+2) − 1 (the row checked n ≤ 80). -/
+def fibSum : Nat → Int
+  | 0 => 0
+  | n + 1 => fibSum n + fibInt (n + 1)
+theorem fibonacci_partial_sum_for_every_n (n : Nat) : fibSum n = fibInt (n + 2) - 1 := by
+  induction n with
+  | zero => decide
+  | succ k ih =>
+    show fibSum k + fibInt (k + 1) = fibInt (k + 3) - 1
+    have h : fibInt (k + 3) = fibInt (k + 1) + fibInt (k + 2) := rfl
+    rw [ih, h]; omega
+
+/-! The Lucas companion for every n: L(n) = F(n−1) + F(n+1), and L(n)² − 5F(n)² = 4(−1)ⁿ — which is four times Cassini's
+    identity, so it inherits Cassini's reason: the Fibonacci matrix has determinant −1 (the row checked n ≤ 80). -/
+def lucInt : Nat → Int
+  | 0 => 2
+  | 1 => 1
+  | n + 2 => lucInt n + lucInt (n + 1)
+theorem lucas_is_the_sum_of_the_fibonacci_neighbours (n : Nat) :
+    lucInt (n + 1) = fibInt n + fibInt (n + 2) ∧ lucInt (n + 2) = fibInt (n + 1) + fibInt (n + 3) := by
+  induction n with
+  | zero => exact ⟨by decide, by decide⟩
+  | succ k ih =>
+    refine ⟨ih.2, ?_⟩
+    show lucInt (k + 3) = fibInt (k + 2) + fibInt (k + 4)
+    have hl : lucInt (k + 3) = lucInt (k + 1) + lucInt (k + 2) := rfl
+    have h2 : fibInt (k + 2) = fibInt k + fibInt (k + 1) := rfl
+    have h3 : fibInt (k + 3) = fibInt (k + 1) + fibInt (k + 2) := rfl
+    have h4 : fibInt (k + 4) = fibInt (k + 2) + fibInt (k + 3) := rfl
+    rw [hl, ih.1, ih.2, h4, h3]; omega
+theorem lucas_fibonacci_identity_for_every_n (n : Nat) :
+    lucInt n * lucInt n - 5 * (fibInt n * fibInt n) = 4 * (-1) ^ n := by
+  cases n with
+  | zero => decide
+  | succ n =>
+    rw [(lucas_is_the_sum_of_the_fibonacci_neighbours n).1]
+    have h2 : fibInt (n + 2) = fibInt n + fibInt (n + 1) := rfl
+    have c := cassini_for_every_n n
+    rw [h2] at c ⊢
+    simp only [Int.mul_add, Int.add_mul, Int.mul_comm (fibInt (n + 1)) (fibInt n)] at c ⊢
+    omega
+
+/-! The power-sum closed forms for every n — triangular, square, pyramidal (the row checked n ≤ 1000) — and Nicomachus:
+    the sum of the first n cubes is the square of the n-th triangular number (the row checked n ≤ 100). Each by induction:
+    expand, sort the products, and the rest is linear. -/
+def sumTo (f : Nat → Nat) : Nat → Nat
+  | 0 => 0
+  | n + 1 => sumTo f n + f (n + 1)
+theorem triangular_closed_form_for_every_n (n : Nat) : 2 * sumTo (fun k => k) n = n * (n + 1) := by
+  induction n with
+  | zero => rfl
+  | succ k ih =>
+    show 2 * (sumTo (fun k => k) k + (k + 1)) = (k + 1) * (k + 1 + 1)
+    rw [Nat.mul_add, ih]
+    simp only [Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.one_mul]
+    omega
+theorem odd_sum_is_a_square_for_every_n (n : Nat) : sumTo (fun k => 2 * k - 1) n = n * n := by
+  induction n with
+  | zero => rfl
+  | succ k ih =>
+    show sumTo (fun k => 2 * k - 1) k + (2 * (k + 1) - 1) = (k + 1) * (k + 1)
+    rw [ih]
+    simp only [Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.one_mul]
+    omega
+theorem pyramidal_closed_form_for_every_n (n : Nat) :
+    6 * sumTo (fun k => k * k) n = n * (n + 1) * (2 * n + 1) := by
+  induction n with
+  | zero => rfl
+  | succ k ih =>
+    show 6 * (sumTo (fun k => k * k) k + (k + 1) * (k + 1)) = (k + 1) * (k + 1 + 1) * (2 * (k + 1) + 1)
+    rw [Nat.mul_add, ih]
+    simp only [Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.one_mul, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]
+    simp only [← Nat.mul_assoc]
+    omega
+theorem nicomachus_for_every_n (n : Nat) :
+    4 * sumTo (fun k => k * k * k) n = (n * (n + 1)) * (n * (n + 1)) := by
+  induction n with
+  | zero => rfl
+  | succ k ih =>
+    show 4 * (sumTo (fun k => k * k * k) k + (k + 1) * (k + 1) * (k + 1)) = ((k + 1) * (k + 1 + 1)) * ((k + 1) * (k + 1 + 1))
+    rw [Nat.mul_add, ih]
+    simp only [Nat.mul_add, Nat.add_mul, Nat.mul_one, Nat.one_mul, Nat.mul_assoc, Nat.mul_comm, Nat.mul_left_comm]
+    simp only [← Nat.mul_assoc]
+    omega
+
+/-! The reflected Gray code g(i) = i XOR (i >> 1), for every width n ≤ 12: each code fits the width, the prefix-XOR undoes
+    it (so it is a permutation), and consecutive codes — the last back to the first included — differ in exactly one bit. -/
+def gray (i : Nat) : Nat := i ^^^ (i >>> 1)
+def popcount : Nat → Nat → Nat
+  | 0, _ => 0
+  | f + 1, x => x % 2 + popcount f (x / 2)
+def grayInv : Nat → Nat → Nat
+  | 0, _ => 0
+  | f + 1, g => g ^^^ grayInv f (g >>> 1)
+set_option maxRecDepth 100000 in
+theorem gray_code_is_a_one_bit_cycle_to_twelve :
+    (List.range 12).all (fun j => (List.range (2 ^ (j + 1))).all (fun i =>
+      gray i < 2 ^ (j + 1) && grayInv 13 (gray i) == i &&
+      popcount 13 (gray i ^^^ gray ((i + 1) % 2 ^ (j + 1))) == 1)) = true := by decide +kernel
+
+/-! Two binomial identities over their rows' ranges — the hockey stick Σ_{i=r}^{n} C(i,r) = C(n+1,r+1) (r ≤ 10, n ≤ 20) and
+    Vandermonde's convolution Σ_k C(m,k)C(n,p−k) = C(m+n,p) (m, n ≤ 12, every p). C is computed multiplicatively,
+    C(a,i+1) = C(a,i)·(a−i)/(i+1), exact at every step and zero past a. -/
+def cb (a b : Nat) : Nat := (List.range b).foldl (fun c i => c * (a - i) / (i + 1)) 1
+set_option maxRecDepth 100000 in
+theorem hockey_stick_to_twenty :
+    (List.range 11).all (fun r => (List.range 21).all (fun n => decide (n < r) ||
+      ((List.range (n + 1)).foldl (fun s i => if i ≥ r then s + cb i r else s) 0 == cb (n + 1) (r + 1)))) = true := by
+  decide +kernel
+set_option maxRecDepth 100000 in
+theorem vandermonde_convolution_to_twelve :
+    (List.range 13).all (fun m => (List.range 13).all (fun n => (List.range (m + n + 1)).all (fun p =>
+      (List.range (p + 1)).foldl (fun s k => s + cb m k * cb n (p - k)) 0 == cb (m + n) p))) = true := by
+  decide +kernel
+
+/-! Five finite facts of number theory, each decided whole: the smallest amicable pair, the four three-digit Armstrong
+    numbers, the taxicab number, Euler's prime-generating run, and Euler's factor of F₅. -/
+def aliquot (n : Nat) : Nat := (List.range n).foldl (fun s d => if d > 0 && n % d == 0 then s + d else s) 0
+set_option maxRecDepth 100000 in
+theorem amicable_220_284_is_the_smallest :
+    aliquot 220 = 284 ∧ aliquot 284 = 220 ∧
+    (List.range 220).all (fun a => aliquot a == a || aliquot (aliquot a) != a) = true := by decide +kernel
+def cubeDigits (n : Nat) : Nat := (n / 100) ^ 3 + (n / 10 % 10) ^ 3 + (n % 10) ^ 3
+theorem the_three_digit_armstrong_numbers_are_four :
+    ((List.range 900).map (· + 100)).filter (fun n => cubeDigits n == n) = [153, 370, 371, 407] := by decide +kernel
+def cubeSums : List Nat := (List.range 12).flatMap fun a => ((List.range 12).filter (a ≤ ·)).map fun b => (a + 1) ^ 3 + (b + 1) ^ 3
+set_option maxRecDepth 100000 in
+theorem taxicab_two_is_1729 :
+    (cubeSums.filter (· == 1729)).length = 2 ∧
+    (List.range 1729).all (fun n => (cubeSums.filter (· == n)).length < 2) = true := by decide +kernel
+def isPrimeB (n : Nat) : Bool := n ≥ 2 && (List.range n).all (fun d => d < 2 || d * d > n || n % d != 0)
+set_option maxRecDepth 100000 in
+theorem euler_polynomial_is_prime_to_39_then_41_squared :
+    (List.range 40).all (fun n => isPrimeB (n * n + n + 41)) = true ∧ 40 * 40 + 40 + 41 = 41 * 41 := by decide +kernel
+set_option maxRecDepth 100000 in
+theorem fermat_five_is_composite :
+    (List.range 5).all (fun k => isPrimeB (2 ^ (2 ^ k) + 1)) = true ∧ 2 ^ (2 ^ 5) + 1 = 641 * 6700417 := by decide +kernel
+
+/-! The Frobenius number of (6, 9, 20) is 43 — for EVERY n, not a window: 43 has no representation, and every n ≥ 44 has
+    one, because the six from 44 to 49 do and adding a 6 carries each to the next six (the row checked the window). -/
+def McNugget (n : Nat) : Prop := ∃ a b c : Nat, 6 * a + 9 * b + 20 * c = n
+theorem frobenius_six_nine_twenty_misses_43 : ¬ McNugget 43 := by
+  intro ⟨a, b, c, h⟩; omega
+theorem frobenius_six_nine_twenty_reaches_every_n_from_44 (n : Nat) (h : 44 ≤ n) : McNugget n := by
+  have step : ∀ k, ∀ i, i < 6 → McNugget (44 + 6 * k + i) := by
+    intro k
+    induction k with
+    | zero =>
+      intro i hi
+      match i, hi with
+      | 0, _ => exact ⟨4, 0, 1, rfl⟩
+      | 1, _ => exact ⟨0, 5, 0, rfl⟩
+      | 2, _ => exact ⟨1, 0, 2, rfl⟩
+      | 3, _ => exact ⟨0, 3, 1, rfl⟩
+      | 4, _ => exact ⟨8, 0, 0, rfl⟩
+      | 5, _ => exact ⟨0, 1, 2, rfl⟩
+    | succ k ih =>
+      intro i hi
+      obtain ⟨a, b, c, e⟩ := ih i hi
+      exact ⟨a + 1, b, c, by omega⟩
+  have e : n = 44 + 6 * ((n - 44) / 6) + (n - 44) % 6 := by omega
+  rw [e]; exact step _ _ (Nat.mod_lt _ (by decide))
+
+/-! Schur's S(2) = 4: some 2-colouring of 1…4 has no monochromatic x + y = z, and every 2-colouring of 1…5 has one. -/
+def monoSum (c n : Nat) : Bool :=
+  (List.range n).any fun x => (List.range n).any fun y =>
+    x ≤ y && x + y + 2 ≤ n && col c (x + 1) == col c (y + 1) && col c (y + 1) == col c (x + y + 2)
+theorem schur_two_is_four :
+    (List.range 16).any (fun c => !monoSum c 4) = true ∧ (List.range 32).all (fun c => monoSum c 5) = true := by decide +kernel
+
 end Registry
