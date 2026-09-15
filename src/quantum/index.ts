@@ -11,7 +11,8 @@
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
 import { phase } from '../6/4/index.ts'
 import { dims, dimWalk } from './mountain/dimensions/index.ts'
-import { vortexStrokeKinds, twoBySevenPoints } from '../mountain/vortex/index.ts'
+import { vortexStrokeKinds, twoBySevenPoints, theTenComplementFixesExactlyFive } from '../mountain/vortex/index.ts'
+import { cellHomology } from '../mountain/geometry/index.ts'
 import { perspective, rotate3, branch, branchSegments, strokeBranchLevels } from './wind/geometry/index.ts'
 import { drawFlower, drawCalendars } from './wind/geometry/index.ts'
 import { drawBursts, type Burst } from './fire/experiments/index.ts'
@@ -561,7 +562,10 @@ function drawWiredUuidStreams(
       ctx.font = `${fontSize}px "SF Mono", "Cascadia Code", "Fira Code", monospace`
       ctx.shadowColor = scene.palette.canvas.streamGlow(streamHue, alpha)
       ctx.shadowBlur = glow
-      ctx.fillStyle = scene.palette.canvas.streamFill(streamHue, alpha, nearVoid)
+      // The two coins, lit where they sit: in every content address the version nibble (hex 12) is 8 and the variant
+      // nibble (hex 16) is 8, 9, a or b — the stamp's fixed bits. Same draw call, other light: no extra power.
+      const coin = Boolean(wired) && (charIdx === (6 * 2) || charIdx === 16)
+      ctx.fillStyle = scene.palette.canvas.streamFill(coin ? (streamHue + (9 * 5 * 4)) % 360 : streamHue, alpha, nearVoid || coin)
       ctx.fillText(ch, px, py)
     }
   }
@@ -1950,6 +1954,9 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
 
 // the stroke kinds are computed on the first paint, not at import — the painter reads the classifier, never a copy
 let vortexKinds: ReturnType<typeof vortexStrokeKinds> | null = null
+// the reflection's fixed points and the genus-2 homology, computed on first paint and read by the painters below
+let tenComplement: ReturnType<typeof theTenComplementFixesExactlyFive> | null = null
+let homologyOnce: ReturnType<typeof cellHomology> | null = null
 
 /**
  * Vortex strokes — the genesis realisation as a movie: 1\2\4\8/7/5/3\6\9/0\1. The ten-digit tour
@@ -2021,6 +2028,21 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
       ctx.fillStyle = paint(hue, (9 / (5 * 4)) + (7 / (5 * 4)) * pulse, { L: 5 / 8 })
       ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, TAU); ctx.fill()
     }
+  }
+
+  // The reflection's one fixed point: 10 − d leaves exactly the digits theTenComplementFixesExactlyFive returns where they
+  // are, and the chords above are the pairs it swaps — so the still digit is ringed twice, the centre of the exchange.
+  for (const d of (tenComplement ??= theTenComplementFixesExactlyFive()).fixed) {
+    const i = tour.indexOf(d)
+    if (i < 0) continue
+    const rr = max(2, R * (1 / (5 * 4)))
+    ctx.strokeStyle = paint((frame.hue + (9 * 5 * 4)) % 360, (3 / 5), { L: 7 / 8 })
+    ctx.lineWidth = (6 / 5)
+    ctx.beginPath()
+    ctx.arc(xAt(i), yAt(i), rr, 0, TAU)
+    ctx.moveTo(xAt(i) + rr * (3 / 2), yAt(i))
+    ctx.arc(xAt(i), yAt(i), rr * (3 / 2), 0, TAU)
+    ctx.stroke()
   }
 
   // The gateways: the four computed reversal vertices flare as the runner passes them on the wheel.
@@ -2104,6 +2126,15 @@ function drawDoubleTorusProjection(ctx: CanvasRenderingContext2D, w: number, h: 
     ctx.fillStyle = paint((frame.hue + (9 * 5 * 2)) % 360, (1 / 4) + (3 / 5) * fade, { L: 13 / 16 })
     ctx.beginPath(); ctx.arc(x, y, max(1, r * (1 / (5 * 4))) * ((3 / 5) + (2 / 5) * fade), 0, TAU); ctx.fill()
   }
+
+  // χ counted, not typed: cellHomology computes the Euler characteristic from the genus-2 chain complex (one vertex, four
+  // edges, one face), and the genus the two handles above draw reads back from it as (2 − χ) / 2.
+  const homology = (homologyOnce ??= cellHomology())
+  ctx.fillStyle = paint(frame.hue, (7 / 8), { L: 7 / 8 })
+  ctx.font = `${max(9, round(r * (1 / 5)))}px ui-monospace, monospace`
+  ctx.textAlign = 'center'
+  ctx.textBaseline = 'middle'
+  ctx.fillText(`χ = ${homology.euler} · genus ${(2 - homology.euler) / 2}`, cx, cy + r * squash + r * (2 / 5))
 }
 
 /** Torus field — fallback projection: a quasiperiodic genus-2 point field, the shared default view. */

@@ -117,6 +117,23 @@ export function vortexStrokeGateways(matrix: MindMatrix = buildMatrix()) {
  * 3-6-9, 'void' out of 0, and 'join' at the two seams (5→3, 9→0) — the `·` a painter draws as a break, never as a
  * doubling stroke.
  */
+/**
+ * THE REFLECTION'S ONE FIXED POINT, computed for the painters that mark it. r(d) = 10 − d on the digits 1…9: the digits it
+ * leaves where they are, and the pairs it swaps. The vortex-strokes painter draws the pairs as chords and rings exactly the
+ * fixed points returned here, and the movie binds that ring to this fold — so the mark is where the arithmetic puts it.
+ */
+export function theTenComplementFixesExactlyFive() {
+  const digits = Array.from({ length: 9 }, (_, i) => i + 1)
+  const reflect = (d: number) => (5 * 2) - d
+  const fixed = digits.filter((d) => reflect(d) === d)
+  const pairs = digits.filter((d) => d < reflect(d)).map((d) => [d, reflect(d)] as const)
+  return {
+    fixed,
+    pairs,
+    computes: fixed.length === 1 && pairs.length * 2 + fixed.length === digits.length && digits.every((d) => reflect(reflect(d)) === d),
+  }
+}
+
 export function vortexStrokeKinds(matrix: MindMatrix = buildMatrix()) {
   const vm = vortexMath(matrix)
   const orbit = new Set(vm.doubling)

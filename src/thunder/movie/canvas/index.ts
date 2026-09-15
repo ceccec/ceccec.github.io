@@ -12,7 +12,7 @@ import * as __ns_decode from '../../decode/index.ts'
 import * as __ns_vortex from '../../../mountain/vortex/index.ts'
 import * as __ns_corpus from '../../../wind/routes/corpus/index.ts'
 import { flowerUnlocksFruitBySpin } from '../../../quantum/wind/geometry/index.ts'
-import { bothEarthsRotateWithinEachOther, doubleTorusMathAtAllScalesFlowsInMovie } from '../../../mountain/geometry/index.ts'
+import { bothEarthsRotateWithinEachOther, doubleTorusMathAtAllScalesFlowsInMovie, cellHomology } from '../../../mountain/geometry/index.ts'
 import { textToMovie } from '../../../earth/world/index.ts'
 import { heroFieldCenterY } from '../../../quantum/index.ts'
 import { harmonicMathFlowsInMovie, rosettaIChingTrinityPlacesAllTools } from '../../../earth/architecture/index.ts'
@@ -428,6 +428,9 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       { id: 'calendars-vortex-markers', theorem: 'coupledCalendarTori', binds: calendars.decoded && calendarsNoRing },
       { id: 'vortex-strokes', theorem: 'vortexStrokeGateways', binds: strokes.computes && VORTEX_SEQUENCE.length === 9 },
       { id: 'two-by-seven-morph', theorem: 'twoBySevenFoldsIntoOnePlusSix', binds: __ns_vortex.twoBySevenFoldsIntoOnePlusSix(matrix).computes },
+      { id: 'reflection-fixed-point', theorem: 'theTenComplementFixesExactlyFive', binds: __ns_vortex.theTenComplementFixesExactlyFive().computes },
+      { id: 'double-torus-chi', theorem: 'cellHomology', binds: cellHomology(matrix).closed },
+      { id: 'address-coins-lit', theorem: 'theMovieLeavesTwoBitsAtTheVoid', binds: twoBits.seen },
       // The erpax inverted read — the counter-rotating merkaba (down = negation of up) IS the reflected line's
       // painter; the gap filled is the BINDING of the existing animation to its computed mirror theorem.
       { id: 'inverted-sequence', theorem: 'invertedSequenceLearnedFromErpax', binds: __ns_vortex.invertedSequenceLearnedFromErpax(matrix).computes && earths.rotates },
