@@ -2376,16 +2376,16 @@ function runTool(toolId: string) {
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'mcp-browser-parity') {
       const r = mcpBrowserParity()
-      const census = runStdioMcpCapabilityInBrowser('census-status')
-      const list = runStdioMcpCapabilityInBrowser('list-capabilities')
+      const census = runStdioMcpCapabilityInBrowser('census_status')
+      const list = runStdioMcpCapabilityInBrowser('list_capabilities')
       ok = r.computes && census.ok && list.ok
       summary = `mcpTools=${r.mcpToolCount} matchToolbox=${r.mcpMatchesToolbox} matchCatalog=${r.mcpMatchesCatalog} browser=${r.browserReadyCount} residual=${r.residualCount} allInBrowser=${r.allAchievableInBrowser} · stdio census=${census.ok} list=${list.ok}`
       root = r.root
       boundary = r.boundary
       facets = [
         ...r.facets.map((f) => ({ facet: f.facet, on: f.on })),
-        { facet: 'stdio census-status browser', on: census.ok },
-        { facet: 'stdio list-capabilities browser', on: list.ok },
+        { facet: 'stdio census_status browser', on: census.ok },
+        { facet: 'stdio list_capabilities browser', on: list.ok },
       ]
     } else if (toolId === 'mcp-commands-scripts-gaps-audit') {
       const r = mcpCommandsScriptsGapsAudit()

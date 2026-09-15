@@ -30,15 +30,15 @@ await runGate(MCP_CANONICAL_BUILD_GATE, [], { env: { [DOCS_BUILD_ALLOW_ENV]: '1'
 // or: await runDocsBuild({ env: { [DOCS_BUILD_ALLOW_ENV]: '1' } })
 ```
 
-`npm run docs:build` is the **thin dual** of MCP `run-gate docs-build` (same bootstrap `docs:build-seal`) — not a parallel wet bypass (`vitepressBuildsFromMcp`).
+`npm run docs:build` is the **thin dual** of MCP `run_gate docs-build` (same bootstrap `docs:build-seal`) — not a parallel wet bypass (`vitepressBuildsFromMcp`).
 
 ## Stdio MCP — 7 tools
 
-`list-capabilities` · `census-status` · `compute-from-source` · `fold-report` · `run-gate` · `run-wave` · `run-export`
+`list_capabilities` · `census_status` · `compute_from_source` · `fold_report` · `run_gate` · `run_wave` · `run_export`
 
-- `list-capabilities` = browserAchievable meta matrix (complements `tools/list`, not a synonym dump)
-- `run-gate` names: check-types · limits-verify · mission-gate · verify-structure · **docs-build** (canonical VitePress seal) · enforcement-trinity · limits-seal · rosetta-batch
-- Protocol `run-wave` kinds → `runManualAgentsBehaveLikeWavesExit` (not four× `mission:gate`)
+- `list_capabilities` = browserAchievable meta matrix (complements `tools/list`, not a synonym dump)
+- `run_gate` names: check-types · limits-verify · mission-gate · verify-structure · **docs-build** (canonical VitePress seal) · enforcement-trinity · limits-seal · rosetta-batch
+- Protocol `run_wave` kinds → `runManualAgentsBehaveLikeWavesExit` (not four× `mission:gate`)
 - `docs-build` / wave `rebuild` require `QUANTUM_DEV_ALLOW_DOCS_BUILD=1`
 - Fold: `vitepressBuildsFromMcp` · pairs `vite/mcp` · `mcp/vite` · `build/mcp` · `mcp/build` · `npm run quantum:vite-mcp`
 - Automations: `npm run quantum:automate-nightly` (trinity/speedup → mission:gate) — local stdio is IDE-only

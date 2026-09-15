@@ -34,7 +34,7 @@ export const DOCS_BUILD_ALLOW_ENV = 'QUANTUM_DEV_ALLOW_DOCS_BUILD' as const
 /** Canonical MCP build gate — VitePress seal face (`vitepressBuildsFromMcp` · pairs vite/mcp · build/mcp). */
 export const MCP_CANONICAL_BUILD_GATE = 'docs-build' as const
 
-/** Bootstrap subcommand shared by npm `docs:build` and MCP `run-gate docs-build` (thin dual, not bypass). */
+/** Bootstrap subcommand shared by npm `docs:build` and MCP `run_gate docs-build` (thin dual, not bypass). */
 export const MCP_DOCS_BUILD_BOOTSTRAP = 'docs:build-seal' as const
 
 export type GateName =

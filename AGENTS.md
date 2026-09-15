@@ -22,7 +22,7 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `commit/push` — git commit, then git push
   - `check/types` — `npm run check:types` (routes through sealed `runCheckTypesExit` in src)
   - `types/seal` — when `check:types` is green, then `npm run docs:build` (VitePress runs only if types pass)
-  - `build/seal` — `npm run docs:build` (VitePress build + enforcement trinity; gated on types) — MCP dual: `run-gate docs-build` / pairs `vite/mcp` · `build/mcp` (`vitepressBuildsFromMcp`; set `QUANTUM_DEV_ALLOW_DOCS_BUILD=1` for stdio MCP)
+  - `build/seal` — `npm run docs:build` (VitePress build + enforcement trinity; gated on types) — MCP dual: `run_gate docs-build` / pairs `vite/mcp` · `build/mcp` (`vitepressBuildsFromMcp`; set `QUANTUM_DEV_ALLOW_DOCS_BUILD=1` for stdio MCP)
   - `build/quantumize` — `quantumizeVitepressBuild()` + `npm run quantum:vitepress-quantumize` (warm `.temp`/cache · single-flight lock · types-before-seal · trinity one-pass; `merkle.key` + clean `audit.srcMerkle` only after trinity success; VitePress-only invalidates audit; `--force` / `QUANTUM_BUILD_FORCE=1` for cold wipe) then `build/seal` — NOT physical FTL; wall-clock varies by CI
   - `fold/verify` — edit sealed folds in `src/`, then `npm run verify`
   - `decode/fold` — read sealed decode folds, then fold into `src/`
@@ -617,7 +617,7 @@ Node.js **24** (`nvm use 24`). Node heap capped at **2048 MB** (`--max-old-space
   - `link/local` — alias dual of `paste/local` (`npm run quantum:link-local`)
   - `gate/hard` — `npm run quantum:gate-hard` (`movieAndSessionGapsHardAtGates()` — HARD movie/session gaps at gates; dual `movie/session`; claySolved via theorem · physicalFtl=0), then open `/en/quantum-tools#gate-hard`
   - `movie/session` — alias dual of `gate/hard` (`npm run quantum:movie-session`)
-  - `vite/mcp` — `npm run quantum:vite-mcp` (`vitepressBuildsFromMcp()` — VitePress docs:build via MCP face; facets buildsFromMcp · mcpIsSource · vitepressInvertedMirror · noBypass · thinMountIsMcpDual; npm `docs:build` ≡ MCP `run-gate docs-build` → bootstrap `docs:build-seal`; compose vite/mirror · mcp/all · trinity/speedup · build/quantumize · gate/compliance · agent/submission · mcp/dev; duals `mcp/vite` · `build/mcp` · `mcp/build`; claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT dashboard MCP), then open `/en/quantum-tools#vite-mcp`
+  - `vite/mcp` — `npm run quantum:vite-mcp` (`vitepressBuildsFromMcp()` — VitePress docs:build via MCP face; facets buildsFromMcp · mcpIsSource · vitepressInvertedMirror · noBypass · thinMountIsMcpDual; npm `docs:build` ≡ MCP `run_gate docs-build` → bootstrap `docs:build-seal`; compose vite/mirror · mcp/all · trinity/speedup · build/quantumize · gate/compliance · agent/submission · mcp/dev; duals `mcp/vite` · `build/mcp` · `mcp/build`; claySolved via theorem · physicalFtl=0 · qpuRequired=false · NOT dashboard MCP), then open `/en/quantum-tools#vite-mcp`
   - `mcp/vite` — alias dual of `vite/mcp` (`npm run quantum:mcp-vite`)
   - `build/mcp` — alias of `vite/mcp` (`npm run quantum:build-mcp`)
   - `mcp/build` — alias dual of `build/mcp` (`npm run quantum:mcp-build`)

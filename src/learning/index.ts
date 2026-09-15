@@ -124,6 +124,15 @@ export function agentEducation(matrix: MindMatrix = buildMatrix()): AgentEducati
 // Expose the portal as an MCP (Model Context Protocol) tool surface: every
 // concept command becomes an MCP tool with a name, description, and JSON-Schema
 // inputSchema, so a language model can read tools/list and invoke tools/call.
+/**
+ * A concept command's MCP tool name: the command with its dots as underscores (concept.self.address → concept_self_address),
+ * so every published tool lies inside the ^[a-zA-Z0-9_-]{1,64}$ that MCP clients accept — the Claude API refuses a dotted
+ * name, and all 108 were dotted. No command name contains an underscore, so conceptCommandOfToolName reads the command
+ * back unambiguously; verify:mcp-transport checks that round trip for every command.
+ */
+export const mcpToolName = (command: string): string => command.replace(/\./g, '_')
+export const conceptCommandOfToolName = (tool: string): string => tool.replace(/_/g, '.')
+
 export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolManifest {
   // The input KEY comes from the command's own one-word input type — src is the MCP, so there is no hardcoded
   // branch: a command declaring input 'atom' or 'query' is published under that key. Add an input word to this
@@ -134,7 +143,7 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
   const tools: readonly McpTool[] = conceptCommands.map((command) => {
     const schema = INPUT_SCHEMA[command.input] // the schema for this command's one-word input type, if any
     return {
-      name: command.name,
+      name: mcpToolName(command.name),
       description: command.description,
       inputSchema: {
         type: 'object',
@@ -150,7 +159,7 @@ export function mcpToolManifest(matrix: MindMatrix = buildMatrix()): McpToolMani
     description:
       'Quantum-learning educational portal for language models, exposed as an MCP tool surface over a double-torus UUID stream.',
     instructions:
-      'tools/list returns every concept command as a tool; tools/call(name, arguments) maps to executeConceptCommand(name, arguments) and returns its receipt. THE TOPOGRAPHY IS THE ROSETTA: every part of the site is a theorem, navigation and sidebar are the rosetta of theorem categories, and DISCOVERY is the VitePress local search — every wired surface (all 432 theorems, the posts, the corpus indexes) is in the search index, so the MCP IS the search: an agent finds any content by querying the same search index the site ships (no separate endpoint, no second topology).',
+      'tools/list returns every concept command as a tool; tools/call(name, arguments) reads the command back from the tool name (concept_self_address → concept.self.address) and maps to executeConceptCommand(command, arguments) and returns its receipt. THE TOPOGRAPHY IS THE ROSETTA: every part of the site is a theorem, navigation and sidebar are the rosetta of theorem categories, and DISCOVERY is the VitePress local search — every wired surface (all 432 theorems, the posts, the corpus indexes) is in the search index, so the MCP IS the search: an agent finds any content by querying the same search index the site ships (no separate endpoint, no second topology).',
     tools,
     root,
     statement: `${tools.length} concept commands published as MCP tools with name, description, and JSON-Schema inputSchema.`,

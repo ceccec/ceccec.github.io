@@ -23,7 +23,7 @@ import { dualTorusTrinities, hexagramIsHexColorDuality, sacredGeometry, sacredGe
 import { DIMENSIONS, DIMENSION_NAMES, dims } from '../../quantum/mountain/dimensions/index.ts'
 import { bulgarianHeritageEightfold, energyFlowThunderGraphFromGps, magneticDeclinationAtSite, preciousMetalsThunderGraphFromGps } from '../../earth/world/index.ts'
 import { SINGLE_WORD_METHODS, conceptCommands } from '../../heaven/atoms/index.ts'
-import { mcpToolManifest, skillAtoms } from '../../learning/index.ts'
+import { mcpToolManifest, skillAtoms, conceptCommandOfToolName } from '../../learning/index.ts'
 import { colorRootsAtA432HeartBalances, schumannPhaseAt } from '../../music/index.ts'
 import { vortexPaintTiers } from '../../mountain/vortex/index.ts'
 import { SHADCN_PRIMITIVE_NAMES } from '../../widgets/index.ts'
@@ -713,7 +713,7 @@ export function fuseDedupeSplitReconstruction(matrix: MindMatrix = buildMatrix()
   const slug = (name: string) => SINGLE_WORD_METHODS[name] ?? name.toLowerCase().replace(/[^a-z]/g, '')
   const cmd = new Set(conceptCommands.map((command) => slug(command.name)))
   const skill = new Set(skillAtoms(matrix).skills.map((entry) => entry.fn.toLowerCase().replace(/[^a-z]/g, '')))
-  const tool = new Set(mcpToolManifest(matrix).tools.map((entry) => slug(entry.name)))
+  const tool = new Set(mcpToolManifest(matrix).tools.map((entry) => slug(conceptCommandOfToolName(entry.name))))
   const distinctCapabilities = new Set([...cmd, ...skill, ...tool]).size // tool ⊆ cmd, so deduped
   const distinct = iChing(matrix).count + distinctCapabilities // the distinct folders, DRY
   const raw = iChingFusionCompletesAll(matrix).units // 492 raw placements (components + capability placements)

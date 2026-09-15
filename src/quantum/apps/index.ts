@@ -1083,7 +1083,7 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'link-local', title: 'Link local (alias paste/local)', fold: 'pastedLinksStayOnlyIfComputedLocally', cli: 'npm run quantum:link-local', pair: 'link/local', route: '/en/quantum-tools#paste-local', barrel: 'src/quantum/apps', boundary: 'Dual of paste/local — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'gate-hard', title: 'Movie + session gaps HARD at gates', fold: 'movieAndSessionGapsHardAtGates', cli: 'npm run quantum:gate-hard', pair: 'gate/hard', route: '/en/quantum-tools#gate-hard', barrel: 'src/quantum/apps', boundary: 'HARD movie/session gap classes · compose movie/feel · session/live · gaps/invisible · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'movie-session', title: 'Movie session (alias gate/hard)', fold: 'movieAndSessionGapsHardAtGates', cli: 'npm run quantum:movie-session', pair: 'movie/session', route: '/en/quantum-tools#gate-hard', barrel: 'src/quantum/apps', boundary: 'Dual of gate/hard — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
-  { id: 'vite-mcp', title: 'VitePress builds from MCP', fold: 'vitepressBuildsFromMcp', cli: 'npm run quantum:vite-mcp', pair: 'vite/mcp', route: '/en/quantum-tools#vite-mcp', barrel: 'src/quantum/apps', boundary: 'buildsFromMcp · mcpIsSource · vitepressInvertedMirror · noBypass · thinMountIsMcpDual · npm docs:build ≡ MCP run-gate docs-build · claySolved via theorem · NOT dashboard MCP', browserRunnable: true, browserGap: '' },
+  { id: 'vite-mcp', title: 'VitePress builds from MCP', fold: 'vitepressBuildsFromMcp', cli: 'npm run quantum:vite-mcp', pair: 'vite/mcp', route: '/en/quantum-tools#vite-mcp', barrel: 'src/quantum/apps', boundary: 'buildsFromMcp · mcpIsSource · vitepressInvertedMirror · noBypass · thinMountIsMcpDual · npm docs:build ≡ MCP run_gate docs-build · claySolved via theorem · NOT dashboard MCP', browserRunnable: true, browserGap: '' },
   { id: 'mcp-vite', title: 'MCP vite (alias vite/mcp)', fold: 'vitepressBuildsFromMcp', cli: 'npm run quantum:mcp-vite', pair: 'mcp/vite', route: '/en/quantum-tools#vite-mcp', barrel: 'src/quantum/apps', boundary: 'Dual of vite/mcp — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'build-mcp', title: 'Build MCP (alias vite/mcp)', fold: 'vitepressBuildsFromMcp', cli: 'npm run quantum:build-mcp', pair: 'build/mcp', route: '/en/quantum-tools#vite-mcp', barrel: 'src/quantum/apps', boundary: 'Alias of vite/mcp — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
   { id: 'mcp-build', title: 'MCP build (alias build/mcp)', fold: 'vitepressBuildsFromMcp', cli: 'npm run quantum:mcp-build', pair: 'mcp/build', route: '/en/quantum-tools#vite-mcp', barrel: 'src/quantum/apps', boundary: 'Dual of build/mcp — same fold · claySolved via theorem', browserRunnable: true, browserGap: '' },
@@ -4695,7 +4695,7 @@ export function runStdioMcpCapabilityInBrowser(
       facets: [{ facet: `browser gap — ${seed.browserGap}`, on: false }],
       boundary: seed.stranglerPlan }
   }
-  if (capabilityId === 'census-status') {
+  if (capabilityId === 'census_status') {
     const foldedOk = FOLDED_CENSUS === UNFOLDED_CENSUS + EULER_CHI
     const gatesOk = DIMENSION_GATES === HOMOLOGY_LOOPS * A432_FOLDED
     const ok = foldedOk && gatesOk
@@ -4710,7 +4710,7 @@ export function runStdioMcpCapabilityInBrowser(
       boundary: 'Constants from sealed src/3/7 — limits:verify audits the live census',
       value: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, gates: DIMENSION_GATES, ok } }
   }
-  if (capabilityId === 'compute-from-source') {
+  if (capabilityId === 'compute_from_source') {
     const op = args.op ?? 'a432-hue'
     const value =
       op === 'to-uuid' ? toUuid(args.seed ?? 'ceccec')
@@ -4720,11 +4720,11 @@ export function runStdioMcpCapabilityInBrowser(
       ok: true,
       summary: `${op}=${String(value)}`,
       root: toUuid(`stdio-mcp:compute:${op}:${String(value)}`),
-      facets: [{ facet: `compute-from-source ${op}`, on: value !== undefined }],
+      facets: [{ facet: `compute_from_source ${op}`, on: value !== undefined }],
       boundary: 'Pure sealed recompute — NOT FLOPS / NOT QPU',
       value }
   }
-  if (capabilityId === 'list-capabilities') {
+  if (capabilityId === 'list_capabilities') {
     const caps = STDIO_MCP_CAPABILITY_SEEDS.map((row) => ({
       name: row.id,
       browserAchievable: row.browserAchievable,
@@ -4733,11 +4733,11 @@ export function runStdioMcpCapabilityInBrowser(
       ok: caps.length === STDIO_MCP_CAPABILITY_SEEDS.length,
       summary: `stdio=${caps.length} · browser=${caps.filter((c) => c.browserAchievable).length}`,
       root: toUuid(`stdio-mcp:list:${caps.length}`),
-      facets: [{ facet: `list-capabilities ${caps.length}`, on: caps.length === STDIO_MCP_CAPABILITY_SEEDS.length }],
+      facets: [{ facet: `list_capabilities ${caps.length}`, on: caps.length === STDIO_MCP_CAPABILITY_SEEDS.length }],
       boundary: 'Stdio MCP capability census (hand-rolled JSON-RPC server)',
       value: caps }
   }
-  // fold-report — summarize catalog row when present
+  // fold_report — summarize catalog row when present
   const catalog = quantumCliToolsCatalog()
   const foldName = args.fold ?? args.name ?? 'mcpBrowserParity'
   const row = catalog.tools.find((tool) => tool.fold === foldName || tool.id === foldName)
@@ -4745,10 +4745,10 @@ export function runStdioMcpCapabilityInBrowser(
     ok: Boolean(row),
     summary: row
       ? `${row.id} · browser=${row.browserRunnable} · ${row.cli}`
-      : `fold ${foldName} not in quantumCliToolsCatalog — use Node fold-report`,
+      : `fold ${foldName} not in quantumCliToolsCatalog — use Node fold_report`,
     root: row?.receipt ?? toUuid(`stdio-mcp:fold-miss:${foldName}`),
     facets: [{ facet: 'catalog fold present', on: Boolean(row) }],
-    boundary: row?.boundary ?? 'Unknown fold — Node bootstrap fold-report residual',
+    boundary: row?.boundary ?? 'Unknown fold — Node bootstrap fold_report residual',
     value: row ?? null }
 }
 
@@ -4960,14 +4960,14 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
   {
     id: 'stdio-wave-mission-gate-synonyms',
     kind: 'useless' as const,
-    names: ['run-wave:decode', 'run-wave:design', 'run-wave:tune', 'run-wave:verify'],
-    detail: 'Stdio run-wave protocol kinds all spawned mission:gate (no distinct receipt)',
+    names: ['run_wave:decode', 'run_wave:design', 'run_wave:tune', 'run_wave:verify'],
+    detail: 'Stdio run_wave protocol kinds all spawned mission:gate (no distinct receipt)',
     status: 'closed' as const,
     fix: 'WAVE_TO_BOOTSTRAP → runManualAgentsBehaveLikeWavesExit for protocol waves' },
   {
-    id: 'list-capabilities-vs-tools-list',
+    id: 'list_capabilities-vs-tools-list',
     kind: 'useless' as const,
-    names: ['list-capabilities', 'tools/list'],
+    names: ['list_capabilities', 'tools/list'],
     detail: 'Meta tool looked like a tools/list synonym',
     status: 'kept-intentional' as const,
     fix: 'description = browserAchievable matrix (complements tools/list; not name dump)' },
@@ -4981,10 +4981,10 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
   {
     id: 'stdio-run-gate-schema-incomplete',
     kind: 'gap' as const,
-    names: ['run-gate', 'limits-seal', 'rosetta-batch'],
+    names: ['run_gate', 'limits-seal', 'rosetta-batch'],
     detail: 'GateName included limits-seal|rosetta-batch but tools/list schema omitted them',
     status: 'closed' as const,
-    fix: 'TOOL_DEFS run-gate description lists all GateName values' },
+    fix: 'TOOL_DEFS run_gate description lists all GateName values' },
   {
     id: 'mcp-commands-scripts-audit-missing',
     kind: 'gap' as const,
@@ -5003,7 +5003,7 @@ const MCP_COMMANDS_SCRIPTS_AUDIT_SEEDS = [
     id: 'trading-scripts-outside-primary-mcp',
     kind: 'gap' as const,
     names: ['trading:offline', 'trading:live', 'trading:train'],
-    detail: 'REFUSE PRIMARY inflate — trading:* stay npm/bootstrap exits; invoke via stdio run-export / npm scripts',
+    detail: 'REFUSE PRIMARY inflate — trading:* stay npm/bootstrap exits; invoke via stdio run_export / npm scripts',
     status: 'kept-intentional' as const,
     fix: 'honest residual facet: not every trading script is a toolbox envelope; PRIMARY stays #toolbox-standard-io' },
   {
@@ -5807,7 +5807,7 @@ export function runMovieAndSessionGapsHardAtGatesExit(_root = '', _argv: readonl
 
 /**
  * USER LAW tip: VitePress builds from MCP — docs:build is the MCP build face.
- * npm `docs:build` thin-mount ≡ MCP stdio `run-gate docs-build` → bootstrap `docs:build-seal` (same argv dual, not a parallel wet path).
+ * npm `docs:build` thin-mount ≡ MCP stdio `run_gate docs-build` → bootstrap `docs:build-seal` (same argv dual, not a parallel wet path).
  * Facets: buildsFromMcp · mcpIsSource · vitepressInvertedMirror · noBypass · thinMountIsMcpDual · stranglerShipped · moveAllComplete=0 (honest residuals).
  * Compose: vite/mirror · mcp/all · trinity/speedup · build/quantumize · gate/compliance · agent/submission · mcp/dev · vite/only.
  * Pairs: vite/mcp · mcp/vite · build/mcp · mcp/build · CLI npm run quantum:vite-mcp
@@ -5827,7 +5827,7 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
       soft('tool', 'envelope') &&
       soft('mcp', 'browser-parity') &&
       soft('sdk', 'wire')
-    /** Same bootstrap argv: npm docs:build → docs:build-seal ≡ MCP run-gate docs-build. */
+    /** Same bootstrap argv: npm docs:build → docs:build-seal ≡ MCP run_gate docs-build. */
     const thinMountIsMcpDual = soft('build', 'seal') && soft('mcp', 'dev') && soft('sdk', 'wire')
     const buildsFromMcp =
       soft('vite', 'mcp') &&
@@ -5946,13 +5946,13 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
       mcpBuildAllowEnv: 'QUANTUM_DEV_ALLOW_DOCS_BUILD' as const,
       bootstrapSubcommand: 'docs:build-seal' as const,
       invokeViaMcp:
-        'QUANTUM_DEV_ALLOW_DOCS_BUILD=1 → MCP tools/call run-gate {name:"docs-build"} · or npm run docs:build (thin dual)',
+        'QUANTUM_DEV_ALLOW_DOCS_BUILD=1 → MCP tools/call run_gate {name:"docs-build"} · or npm run docs:build (thin dual)',
       statement:
         `vitepressBuildsFromMcp — buildsFromMcp=${buildsFromMcp ? 1 : 0} mcpIsSource=${mcpIsSource ? 1 : 0} ` +
         `noBypass=${noBypass ? 1 : 0} thinMountIsMcpDual=${thinMountIsMcpDual ? 1 : 0} ` +
         `moveAllComplete=${moveAllComplete ? 1 : 0} residuals=${residualsNamed.length} qpuRequired=0.`,
       boundary:
-        'VitePress docs:build via MCP — npm docs:build thin-mount ≡ stdio run-gate docs-build → bootstrap docs:build-seal. ' +
+        'VitePress docs:build via MCP — npm docs:build thin-mount ≡ stdio run_gate docs-build → bootstrap docs:build-seal. ' +
         'mcp.json / toolbox catalog remain source of truth for tools·pairs·faces at materialize. ' +
         'Named strangler residuals — do not fake moveAllComplete. clay via theorem · NOT dashboard MCP.',
       honestyLine:
@@ -12560,7 +12560,7 @@ export const OPTIMISED_LOCAL_PACKAGE_SURFACE = [
 
 /** Stdio MCP tool ids — must match packages/quantum-dev-sdk + STDIO_MCP_CAPABILITY_SEEDS (ROSETTA_SEVEN). */
 export const OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS = [
-  'list-capabilities', 'census-status', 'compute-from-source', 'fold-report', 'run-gate', 'run-wave', 'run-export',
+  'list_capabilities', 'census_status', 'compute_from_source', 'fold_report', 'run_gate', 'run_wave', 'run_export',
 ] as const
 
 /** Nightly Automations recipe — npm-script path (#48); docs:build flag-gated only. */
@@ -12576,7 +12576,7 @@ export const AUTOMATE_NIGHTLY_DOCS_BUILD_STEP = 'QUANTUM_DEV_ALLOW_DOCS_BUILD=1 
 /**
  * Automate nightly via npm-script path — unpark /automate without dashboard MCP.
  * Pair: automate/nightly · CLI npm run quantum:automate-nightly · route #automate-nightly
- * Composes trinity/speedup + mission:gate + upgrade/local verify · quantum-dev-sdk Channel 1 (bootstrap/run-gate).
+ * Composes trinity/speedup + mission:gate + upgrade/local verify · quantum-dev-sdk Channel 1 (bootstrap/run_gate).
  * HONEST: dashboard MCP registration refused (local stdio IDE-only); docs:build optional via QUANTUM_DEV_ALLOW_DOCS_BUILD.
  */
 export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix(), at = 0) {
@@ -12589,8 +12589,8 @@ export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix
     const upgradeTool = catalog.tools.find((tool) => tool.id === 'upgrade-local-skills-commands-tools')
     const trinityTool = catalog.tools.find((tool) => tool.id === 'trinity-speedup')
     const sdkPkg = OPTIMISED_LOCAL_PACKAGE_SURFACE.find((p) => p.id === '@ceccec/quantum-dev-sdk')
-    const runGateCap = STDIO_MCP_CAPABILITY_SEEDS.find((s) => s.id === 'run-gate')
-    const runExportCap = STDIO_MCP_CAPABILITY_SEEDS.find((s) => s.id === 'run-export')
+    const runGateCap = STDIO_MCP_CAPABILITY_SEEDS.find((s) => s.id === 'run_gate')
+    const runExportCap = STDIO_MCP_CAPABILITY_SEEDS.find((s) => s.id === 'run_export')
     const missionGate = MISSION_COMMANDS.find((m) => m.npm === 'mission:gate')
     const recipeStepsOk = AUTOMATE_NIGHTLY_RECIPE_STEPS.length === 3
       && AUTOMATE_NIGHTLY_RECIPE_STEPS[0] === 'npm run quantum:trinity-speedup'
@@ -12608,8 +12608,8 @@ export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix
       && AUTOMATE_NIGHTLY_RECIPE_STEPS.includes('npm run quantum:upgrade-local')
     const channel1Sdk = Boolean(sdkPkg)
       && sdkPkg!.cli.includes('quantum-dev-sdk')
-      && OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.includes('run-gate')
-      && OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.includes('run-export')
+      && OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.includes('run_gate')
+      && OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS.includes('run_export')
       && Boolean(runGateCap) && runGateCap!.fold === 'runGate'
       && Boolean(runExportCap) && runExportCap!.fold === 'runExport'
     const docsBuildNotRequiredForNightly = Boolean(sdkPkg)
@@ -12630,7 +12630,7 @@ export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix
       { facet: 'automateNightlyShipped', on: automateNightlyShipped },
       { facet: 'npm script path in recipe — trinity-speedup · mission:gate · upgrade-local', on: recipeStepsOk && noDocsBuildInDefault },
       { facet: 'composes trinity/speedup + mission:gate', on: composesTrinityMission },
-      { facet: 'quantum-dev-sdk Channel 1 — bootstrap · run-gate · run-export stdio names', on: channel1Sdk },
+      { facet: 'quantum-dev-sdk Channel 1 — bootstrap · run_gate · run_export stdio names', on: channel1Sdk },
       { facet: 'QUANTUM_DEV_ALLOW_DOCS_BUILD not required for nightly (docs:build optional/refused by default)', on: docsBuildNotRequiredForNightly },
       { facet: 'dashboard MCP not required — npm-script Automations path', on: dashboardMcpNotRequired },
       { facet: 'composes upgrade-local verify receipt in recipe', on: composesUpgradeVerify },
@@ -12662,7 +12662,7 @@ export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix
       anchor: 'automate-nightly',
       heading: 'Automate nightly — npm-script path',
       honestyLine:
-        'Cursor Automations / cron → npm trinity/speedup · mission:gate · upgrade-local verify. quantum-dev-sdk Channel 1 (bootstrap/run-gate). Dashboard MCP refused — local stdio IDE-only. docs:build flag-gated only.',
+        'Cursor Automations / cron → npm trinity/speedup · mission:gate · upgrade-local verify. quantum-dev-sdk Channel 1 (bootstrap/run_gate). Dashboard MCP refused — local stdio IDE-only. docs:build flag-gated only.',
       statement: `Automate nightly — shipped=${automateNightlyShipped} steps=${AUTOMATE_NIGHTLY_RECIPE_STEPS.length} trinity=${trinity.computes} mcpParity=${mcpParity.computes}.`,
       boundary:
         'npm-script Automations path for /automate nightly — NOT dashboard MCP registration for local stdio. Default nightly excludes docs:build (QUANTUM_DEV_ALLOW_DOCS_BUILD=1 optional).' }
@@ -19037,7 +19037,7 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
       'domain-panels:strangler-tip-closed',
       'ci:gravity-dry',
       'ci:trinity-speedup',
-      'stdio:run-gate',
+      'stdio:run_gate',
       'conceptTools:legacy-dual',
       'trading:scripts-outside-primary',
     ] as const

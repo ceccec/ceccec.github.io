@@ -6,13 +6,13 @@
 import { DOCS_BUILD_ALLOW_ENV, MCP_CANONICAL_BUILD_GATE, MCP_DOCS_BUILD_BOOTSTRAP } from './bootstrap.ts'
 
 export const QUANTUM_DEV_STDIO_TOOL_IDS = [
-  'list-capabilities',
-  'census-status',
-  'compute-from-source',
-  'fold-report',
-  'run-gate',
-  'run-wave',
-  'run-export',
+  'list_capabilities',
+  'census_status',
+  'compute_from_source',
+  'fold_report',
+  'run_gate',
+  'run_wave',
+  'run_export',
 ] as const
 
 /**
@@ -58,7 +58,7 @@ export function censusStatus() {
     folded: unfolded + EULER_CHI,
     gates: HOMOLOGY_LOOPS * A432_FOLDED,
     ok: gapless && closedForm === unfolded && CENSUS_BANDS.length === HOMOLOGY_LOOPS,
-    note: 'recomputed from the Fibonacci band ladder, not copied; gates are the a432 axiom (4 × 108), NOT the census fold. Live file census via run-gate limits-verify',
+    note: 'recomputed from the Fibonacci band ladder, not copied; gates are the a432 axiom (4 × 108), NOT the census fold. Live file census via run_gate limits-verify',
   }
 }
 
@@ -84,15 +84,15 @@ export function listStdioCapabilities() {
       name,
       kind: 'stdio-mcp' as const,
       browserAchievable:
-        name === 'list-capabilities' || name === 'census-status' || name === 'compute-from-source' || name === 'fold-report',
+        name === 'list_capabilities' || name === 'census_status' || name === 'compute_from_source' || name === 'fold_report',
       description:
-        name === 'list-capabilities'
+        name === 'list_capabilities'
           ? 'Meta browserAchievable matrix (complements tools/list)'
-          : name === 'run-gate'
+          : name === 'run_gate'
             ? `Gates incl. canonical VitePress ${MCP_CANONICAL_BUILD_GATE} → ${MCP_DOCS_BUILD_BOOTSTRAP} (vite/mcp)`
             : name,
       browserGap:
-        name === 'run-gate' || name === 'run-wave' || name === 'run-export'
+        name === 'run_gate' || name === 'run_wave' || name === 'run_export'
           ? 'Node bootstrap spawn — CI/local only'
           : '',
     })),

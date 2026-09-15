@@ -55,20 +55,22 @@ function respondError(id: string | number | null | undefined, message: string) {
   send({ jsonrpc: '2.0', id: id ?? null, error: { code: -32000, message } })
 }
 
+// Tool names follow MCP's common form: snake_case, inside the ^[a-zA-Z0-9_-]{1,64}$ every client accepts (the Claude
+// API refuses anything else). verify:mcp-transport holds every served name to ^[a-z][a-z0-9_]{0,63}$.
 const TOOL_DEFS = [
   {
-    name: 'list-capabilities',
+    name: 'list_capabilities',
     description:
       'Meta: browserAchievable matrix for the 7 stdio tools (complements tools/list — not a synonym of tools/list names)',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
-    name: 'census-status',
+    name: 'census_status',
     description: 'Census constants recomputed from the Fibonacci band ladder, plus the a432 gate count (not a live limits:verify audit)',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
-    name: 'compute-from-source',
+    name: 'compute_from_source',
     description: 'Pure compute: a432-hue | to-uuid | rosetta-ray',
     inputSchema: {
       type: 'object',
@@ -81,7 +83,7 @@ const TOOL_DEFS = [
     },
   },
   {
-    name: 'fold-report',
+    name: 'fold_report',
     description: 'Bootstrap fold <name> — sealed export report via CLI',
     inputSchema: {
       type: 'object',
@@ -90,7 +92,7 @@ const TOOL_DEFS = [
     },
   },
   {
-    name: 'run-gate',
+    name: 'run_gate',
     description: `Run bootstrap gate. Canonical VitePress build = ${MCP_CANONICAL_BUILD_GATE} → ${MCP_DOCS_BUILD_BOOTSTRAP} (pair vite/mcp · npm docs:build thin dual). Requires ${DOCS_BUILD_ALLOW_ENV}=1`,
     inputSchema: {
       type: 'object',
@@ -106,7 +108,7 @@ const TOOL_DEFS = [
     },
   },
   {
-    name: 'run-wave',
+    name: 'run_wave',
     description: `ceccec-build-waves kind via bootstrap (rebuild→${MCP_CANONICAL_BUILD_GATE}/${MCP_DOCS_BUILD_BOOTSTRAP} needs ${DOCS_BUILD_ALLOW_ENV}=1)`,
     inputSchema: {
       type: 'object',
@@ -121,7 +123,7 @@ const TOOL_DEFS = [
     },
   },
   {
-    name: 'run-export',
+    name: 'run_export',
     description: 'Bootstrap run <entryRel> <exportName> [argv…]',
     inputSchema: {
       type: 'object',
@@ -136,10 +138,12 @@ const TOOL_DEFS = [
   },
 ] as const
 
-async function callTool(name: string, args: Record<string, unknown>) {
-  if (name === 'list-capabilities') return listStdioCapabilities()
-  if (name === 'census-status') return censusStatus()
-  if (name === 'compute-from-source') {
+async function callTool(requested: string, args: Record<string, unknown>) {
+  // the kebab-case names this server listed before snake_case (census-status, run-gate, …) are still answered, unlisted
+  const name = requested.replace(/-/g, '_')
+  if (name === 'list_capabilities') return listStdioCapabilities()
+  if (name === 'census_status') return censusStatus()
+  if (name === 'compute_from_source') {
     const op = String(args.op ?? 'a432-hue')
     const seed = args.seed != null ? String(args.seed) : 'ceccec'
     const label = args.name != null ? String(args.name) : 'rosettaCoreApi'
@@ -160,14 +164,14 @@ async function callTool(name: string, args: Record<string, unknown>) {
       return { ok: result.ok, exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr }
     }
   }
-  if (name === 'fold-report') {
+  if (name === 'fold_report') {
     const fold = String(args.fold ?? args.name ?? '')
     if (!fold) return { ok: false, error: 'fold required' }
     return foldReport(fold)
   }
-  if (name === 'run-gate') return runGate(String(args.name ?? '') as GateName)
-  if (name === 'run-wave') return runWave(String(args.kind ?? '') as WaveKind)
-  if (name === 'run-export') {
+  if (name === 'run_gate') return runGate(String(args.name ?? '') as GateName)
+  if (name === 'run_wave') return runWave(String(args.kind ?? '') as WaveKind)
+  if (name === 'run_export') {
     const entryRel = String(args.entryRel ?? '')
     const exportName = String(args.exportName ?? '')
     const argv = Array.isArray(args.argv) ? args.argv.map(String) : []
@@ -186,7 +190,7 @@ async function handle(msg: JsonRpc) {
       serverInfo: {
         name: 'quantum-dev',
         version: '0.1.0',
-        description: `7 tools · ${QUANTUM_DEV_STDIO_TOOL_IDS.join(', ')} · ${MCP_CANONICAL_BUILD_GATE} via run-gate · ${DOCS_BUILD_ALLOW_ENV}=1 · vite/mcp`,
+        description: `7 tools · ${QUANTUM_DEV_STDIO_TOOL_IDS.join(', ')} · ${MCP_CANONICAL_BUILD_GATE} via run_gate · ${DOCS_BUILD_ALLOW_ENV}=1 · vite/mcp`,
       },
     })
     return

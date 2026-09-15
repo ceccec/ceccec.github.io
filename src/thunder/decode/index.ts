@@ -11,7 +11,7 @@ import { iChingDomainMap, threeEightFoldsTopNav } from '../../heaven/balance/ind
 import { commandsSavedInQuantumPairs, commandsRegistry } from '../commands/index.ts'
 import { BAGUA, iChing } from '../../heaven/core/index.ts'
 import { glagoliticHomeFromEnglish } from '../../fire/li/index.ts'
-import { mcpToolManifest } from '../../learning/index.ts'
+import { mcpToolManifest, mcpToolName } from '../../learning/index.ts'
 import { digitDualityPairsEncodeAllDomains } from '../../water/digit/index.ts'
 import { merkabasInDoubleTorus, fuse64SealsMerkaba64Tetrahedra } from '../../mountain/topology/index.ts'
 import { bulgarianHeritageEightfold } from '../../earth/world/index.ts'
@@ -1003,7 +1003,7 @@ export function iChingCapabilitiesSaved(matrix: MindMatrix = buildMatrix()) {
     { facet: 'five I Ching folds saved as skill atoms', on: skillFns.every((fn) => savedSkills.some((s) => s.fn === fn)) },
     { facet: 'the place/generate commands are in the command registry', on: commandNames.every((n) => conceptCommands.some((c) => c.name === n)) },
     { facet: 'each command has a single-word method token', on: commandNames.every((n) => /^[a-z]+$/.test(SINGLE_WORD_METHODS[n] ?? '')) },
-    { facet: 'each command is published as an MCP tool', on: commandNames.every((n) => tools.some((t) => t.name === n)) },
+    { facet: 'each command is published as an MCP tool', on: commandNames.every((n) => tools.some((t) => t.name === mcpToolName(n))) },
     { facet: 'the commands are saved as one order-sensitive quantum pair — place/generate', on: pairs.some((p) => p.command === 'place/generate' && p.paired) },
     { facet: 'learn/build pair saved — read I Ching model before implementing', on: pairs.some((p) => p.command === 'learn/build' && p.paired) },
     { facet: 'iChingLearnBeforeImplement protocol fold holds', on: iChingLearnBeforeImplement(matrix).learned },

@@ -14,7 +14,7 @@ import { addressed, covers } from '../../5/5/index.ts'
 import { methodNameFromFolderTail } from '../../9/1/index.ts'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2/index.ts'
 import { piTrainDiamonds, pureDiamonds, selfBuild, streamSelfComplete } from '../../fire/diamonds/index.ts'
-import { agentEducation, mcpToolManifest, monographPaths, skillAtoms, monographs } from '../../learning/index.ts'
+import { agentEducation, mcpToolManifest, monographPaths, skillAtoms, monographs, conceptCommandOfToolName } from '../../learning/index.ts'
 import { atomInclusionProof } from '../../ledger/index.ts'
 import { harmonicBands } from '../../quantum/icons/index.ts'
 import { developmentWaves, redistributeFoldersDryWaves } from '../../thunder/waves/index.ts'
@@ -1517,7 +1517,8 @@ export function everyToolSkillCommandIsItsFolder(matrix: MindMatrix = buildMatri
     return { kind: 'skill', name: entry.skill, folder, lawful: word.test(folder), receipt: toUuid(`folder:skill:${folder}`) }
   })
   const tools = mcpToolManifest(matrix).tools.map((tool) => {
-    const folder = SINGLE_WORD_METHODS[tool.name] ?? slug(tool.name)
+    const command = conceptCommandOfToolName(tool.name)
+    const folder = SINGLE_WORD_METHODS[command] ?? slug(command)
     return { kind: 'tool', name: tool.name, folder, lawful: word.test(folder), receipt: toUuid(`folder:tool:${folder}`) }
   })
   const all = [...commands, ...skills, ...tools]

@@ -14,6 +14,16 @@
  */
 
 import { spawnSync } from 'node:child_process'
+import { conceptCommands } from '../../src/heaven/atoms/index.ts'
+import { mcpToolManifest, mcpToolName, conceptCommandOfToolName } from '../../src/learning/index.ts'
+
+/**
+ * THE NAMES ARE MCP'S COMMON FORM. A client registers a tool only under ^[a-zA-Z0-9_-]{1,64}$ — the Claude API refuses
+ * anything else — and the servers here all name their tools in snake_case. The concept manifest published every one of
+ * its 108 tools with dots (concept.self.address), which no such client could register, and quantum-dev alone used
+ * kebab-case. So every name served over stdio, and every name the manifest publishes, must match this.
+ */
+const TOOL_NAME = /^[a-z][a-z0-9_]{0,63}$/
 
 const SERVER = 'packages/quantum-dev-sdk/bin/mcp.ts'
 
@@ -62,12 +72,33 @@ export function assertMcpTransport(): void {
     cwd: process.cwd(), encoding: 'utf8', timeout: 300_000,
     input: [
       { jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'verify', version: '0' } } },
-      { jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: 'census-status', arguments: {} } },
+      { jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: 'census_status', arguments: {} } },
     ].map((m) => JSON.stringify(m)).join('\n') + '\n',
   })
   const reply = (run.stdout ?? '').split('\n').filter(Boolean).map((l) => JSON.parse(l)).find((m: any) => m.id === 2)
   const census = JSON.parse(reply?.result?.content?.[0]?.text ?? '{}')
-  console.log(`  census-status served unfolded=${census.unfolded} folded=${census.folded} gates=${census.gates} ok=${census.ok}`)
+  console.log(`  census_status served unfolded=${census.unfolded} folded=${census.folded} gates=${census.gates} ok=${census.ok}`)
   if (!census.ok) throw new Error('the server reports its own census as not ok')
+
+  const served = h.tools.filter((name) => !TOOL_NAME.test(name))
+  if (served.length) throw new Error(`${served.length} served tool name(s) outside ${TOOL_NAME}: ${served.join(', ')}`)
+  const published = mcpToolManifest().tools.map((tool) => tool.name)
+  const unlawful = published.filter((name) => !TOOL_NAME.test(name))
+  if (unlawful.length) throw new Error(`${unlawful.length} manifest tool name(s) outside ${TOOL_NAME}, e.g. ${unlawful.slice(0, 3).join(', ')}`)
+  const lost = conceptCommands.filter((command) => conceptCommandOfToolName(mcpToolName(command.name)) !== command.name)
+  if (lost.length) throw new Error(`${lost.length} concept command(s) do not survive the tool-name round trip: ${lost.map((c) => c.name).join(', ')}`)
+  if (new Set(published).size !== published.length) throw new Error('two concept commands publish the same tool name')
+  console.log(`  names: ${h.tools.length} served + ${published.length} published, all in ${TOOL_NAME}; every command reads back from its tool name`)
+
+  // the kebab-case names served before snake_case are still answered, unlisted
+  const legacy = spawnSync('node', ['--experimental-strip-types', SERVER], {
+    cwd: process.cwd(), encoding: 'utf8', timeout: 300_000,
+    input: [
+      { jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'verify', version: '0' } } },
+      { jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: 'census-status', arguments: {} } },
+    ].map((m) => JSON.stringify(m)).join('\n') + '\n',
+  })
+  const old = (legacy.stdout ?? '').split('\n').filter(Boolean).map((l) => JSON.parse(l)).find((m: any) => m.id === 2)
+  if (!JSON.parse(old?.result?.content?.[0]?.text ?? '{}').ok) throw new Error('the kebab-case name census-status is no longer answered')
   return
 }
