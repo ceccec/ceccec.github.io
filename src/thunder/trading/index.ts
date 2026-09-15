@@ -777,7 +777,7 @@ export function rankWinningStrategies(matrix: MindMatrix = buildMatrix(), at = 0
       root: merge(hist.root, merkleFold([sealed.root, ...ranked.map((r) => r.receipt)])),
       cli: 'npm run trading:train-waves',
       pair: 'cycle/winning',
-      route: '/en/quantum-trading-hub',
+      route: '/quantum-trading-hub',
       statement: `rankWinningStrategies: top=${ranked[0]!.strategy} ray=${ranked[0]!.ray} — PnL+harmonic via rosettaShelve.`,
       boundary: 'Ranking over sealed synthetic backtests. Harmonic score is structural (vortex·ray), NOT a market oracle. NOT live money.' }
   })
@@ -849,7 +849,7 @@ export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(
       root: merge(core.root, merkleFold([sealed.root, ...rayRuns.map((r) => r.receipt)])),
       cli: 'npm run trading:train-waves',
       pair: 'train/waves',
-      route: '/en/quantum-trading-hub',
+      route: '/quantum-trading-hub',
       statement:
         `historicalTrainWavesViaRosetta: ${rayRuns.length} rays · short/long harmonic windows · top=${top.strategy}@ray${top.ray} — offline a432 proxy.`,
       boundary:
@@ -884,7 +884,7 @@ export function tradingStrategiesImproveViaRosetta(matrix: MindMatrix = buildMat
       root: merge(matrix.root, merkleFold([sealed.root, hist.root, ranked.root, winGate.root, honesty.root])),
       cli: 'npm run quantum:trading-rosetta-train',
       pair: 'train/waves',
-      route: '/en/quantum-trading-hub',
+      route: '/quantum-trading-hub',
       statement:
         `Strategies improve via rosetta: top=${ranked.topStrategy} · histRays=${hist.waveCount} · trainedEnough=${winGate.trainedEnough} · paper=${honesty.paperSimOnly}.`,
       boundary: honesty.boundary }
@@ -1116,7 +1116,7 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
       pairs: ['trade/challenge', 'challenge/trade', 'strategy/chat', 'chat/strategy'] as const,
       dualPair: 'challenge/trade' as const,
       cli: 'npm run quantum:trade-challenge',
-      route: '/en/quantum-trading-hub#trade-challenge',
+      route: '/quantum-trading-hub#trade-challenge',
       heading: 'Trade · challenge in chat',
       statement:
         `strategiesChallengeInChat — strategiesInChat=${strategiesInChat ? 1 : 0} ` +

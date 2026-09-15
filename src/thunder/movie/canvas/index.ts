@@ -343,7 +343,7 @@ const MOVIE_CLOCK_SURFACE_ATTESTATION: readonly Omit<MovieQuantumGapSurface, 're
   { id: 'DoubleTorusExperience', surface: '.vitepress/theme/components/DoubleTorusExperience.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'drawHeroMovieFrame(sharedHeroAt) + harmonizeField on hero clock', route: '/en/' },
   { id: 'LivingTorus', surface: '.vitepress/theme/components/LivingTorus.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'drawLivingTorusFrame on useVisibleMovieCanvas → one hero clock', route: '/en/' },
   { id: 'HumanDesignBodyGraph', surface: '.vitepress/theme/components/HumanDesignBodyGraph.vue', driver: 'useVisibleMovieCanvas', kind: 'layout', closed: true, criterion: 'body-graph paint on useVisibleMovieCanvas → one hero clock', route: '/en/quantum/os' },
-  { id: 'ProofAnimation', surface: '.vitepress/theme/components/ProofAnimation.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'theorem glyph canvases on subscribeHeroClock — private rAF retired', route: '/en/quantum-tools' },
+  { id: 'ProofAnimation', surface: '.vitepress/theme/components/ProofAnimation.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'theorem glyph canvases on subscribeHeroClock — private rAF retired', route: '/quantum-tools' },
   { id: 'ModelCardPages', surface: '.vitepress/theme/components/ModelCardPages.vue', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'uuidHero SVG proof on subscribeHeroClock — createAnimationEngine second loop retired', route: '/en/' },
   { id: 'useSharedHero', surface: '.vitepress/lib/movie-canvas.ts', driver: 'subscribeHeroClock', kind: 'layout', closed: true, criterion: 'useSharedHero wraps sharedHeroAt on one hero clock (hero/shared-realtime)', route: '/en/' },
   { id: 'ui-skeleton-pulse', surface: 'src/render/ui/style.css', driver: 'smil-css', kind: 'smil-compete', closed: true, criterion: 'CSS @keyframes skeleton pulse is chrome, not field phase — does not own a second rAF', route: '/en/' },
@@ -670,7 +670,7 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
       root: merkleFold([sealed.root, theorems.root, pairFold.merged, ...layers.map((l) => l.receipt)]),
       pair: 'movie/center' as const,
       cli: 'npm run quantum:movie-center',
-      route: '/en/quantum-tools#movie-center',
+      route: '/quantum-tools#movie-center',
       statement:
         `movieUnbalancedAroundCenterIsCrack · found=${found} fixed=${fixed} remaining=${remaining}`,
       boundary: 'Layout/canvas balance about centre. Vortex≠ball.',

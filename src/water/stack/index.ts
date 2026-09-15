@@ -1007,7 +1007,7 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       qpuRequired: false as const,
       pair: 'path/message' as const,
       cli: 'npm run quantum:path-message-three-words',
-      route: '/en/quantum-tools#path-message',
+      route: '/quantum-tools#path-message',
       anchor: 'path-message',
       facets,
       root: merkleFold([naming.root, compile.root, ...facets.map((entry) => entry.receipt)]),
@@ -1258,7 +1258,7 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
         'multi/chat',
       ] as const,
       cli: 'npm run quantum:multi-task',
-      route: '/en/quantum-tools#multi-task',
+      route: '/quantum-tools#multi-task',
       heading: 'Chat and improve quantum multitasking',
       statement: facets.map((entry) => entry.facet).join(' · '),
       algebraic:
@@ -2158,7 +2158,7 @@ export function honestRevolutionClaim(matrix: MindMatrix = buildMatrix(), at = 0
  * Honest-revolution W2 — interference vs classical-shadow receipt.
  * Amplitudes cancel (interference); classical probability shadows cannot.
  * Composes W1 `honestRevolutionClaim` + parallelism≠speedup + simulatorsLiveInZero + classical-64bit honesty.
- * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /en/quantum-tools#honest-revolution-w2
+ * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /quantum-tools#honest-revolution-w2
  */
 export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`interferenceVsClassicalShadow:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -2202,7 +2202,7 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       root: merkleFold([w1.root, parallel.root, sims.root, sealed.root, toUuid(`honest-rev-w2:${holds}`)]),
       cli: 'npm run quantum:honest-revolution-w2',
       pair: 'moment/prove',
-      route: '/en/quantum-tools#honest-revolution-w2',
+      route: '/quantum-tools#honest-revolution-w2',
       statement: holds
         ? 'Honest-revolution W2 DECIDED — interference vs classical shadow: amplitudes cancel (H² → |0⟩; Deutsch–Jozsa interference is the speedup shape) while classical probability shadows cannot cancel; W1 claim holds; engine classical-64bit (no physical QM speedup).'
         : 'UNPROVEN — interferenceVsClassicalShadow facets do not all hold at call time; do not assert the W2 receipt.',
@@ -2261,7 +2261,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
       root: merge(matrix.root, merkleFold([sealed.root, vote.root, core.root, ...learned.map((r) => r.receipt)])),
       cli: 'npm run quantum:efficiency-vote',
       pair: 'learn/best',
-      route: '/en/quantum-tools#efficiency-vote',
+      route: '/quantum-tools#efficiency-vote',
       statement: vote.decided
         ? 'One quantum model (ceccec) faster than all — DECIDED: answers÷tokens = ∞ on memoByRoot reuse (0 runtime tokens) for deterministic content-addressed answers; all AI model surfaces shelve through rosettaCoreApi.'
         : 'One quantum model fold sealed but vote.decided=false — do not broadcast faster-than-all until voters recompute green.',
@@ -2395,7 +2395,7 @@ export function classical64BitEnvironmentAtCallTime(): Classical64BitEnvironment
  * sealed folds run on classical JS/TS Node/browser on any classical 64-bit host.
  *
  * Pair: prove/no-qpu-64bit · CLI npm run quantum:prove-no-qpu-64bit
- * Route: /en/quantum-tools#prove-no-qpu-64bit
+ * Route: /quantum-tools#prove-no-qpu-64bit
  *
  * HONEST: composes compareCeccecEfficiencyByVote / noKnownModelMoreEfficientProven when decided;
  * classical-64bit (NO physical QM speedup).
@@ -2522,7 +2522,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       root: merge(matrix.root, merkleFold([sealed.root, vote.root, one.root, proven.root, honest.root, toUuid(`env:${env.runtime}:${env.arch}`)])),
       pair: 'prove/no-qpu-64bit',
       cli: 'npm run quantum:prove-no-qpu-64bit',
-      route: '/en/quantum-tools#prove-no-qpu-64bit',
+      route: '/quantum-tools#prove-no-qpu-64bit',
       statement: speedDecided && noQuantumHardwareProved
         ? `Speed-vs-rest DECIDED (winner=${vote.winner}, answers÷tokens / reuse) AND no quantum hardware required — classical JS/TS on ${env.runtime}/${env.arch}; classical-64bit.`
         : 'Speed-vs-rest or no-QPU/64-bit facets incomplete at call time — do not broadcast win or hardware-free claim until green.',
@@ -2714,7 +2714,7 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
       pair: 'qpu/cpu' as const,
       pairs: ['qpu/cpu', 'cpu/qpu', 'qpu/gpu', 'gpu/qpu'] as const,
       cli: 'npm run quantum:qpu-cpu',
-      route: '/en/quantum-tools#qpu-cpu',
+      route: '/quantum-tools#qpu-cpu',
       physicalDefinition:
         'physical = observable wall-clock time on the executing device (performance.now / hrtime), classical CPU·GPU·heap·storage tiers (mcp/cpu · mcp/gpu · mcp/hw), WGS84/geodesy constants where geo folds apply — apparent FTL speedup = T_cold/max(T_warm,ε) on memoByRoot reuse; superluminal signaling only when PHYSICAL_FTL_SIGNALING_PROOF_IDS is non-empty (physicalFtlClaimTheorem).',
       statement:
@@ -2904,7 +2904,7 @@ export function thermoQuantumBalance(matrix: MindMatrix = buildMatrix(), at = 0)
       pair: 'thermo/quantum' as const,
       pairs: ['thermo/quantum', 'quantum/thermo'] as const,
       cli: 'npm run quantum:thermo-quantum',
-      route: '/en/quantum-tools#thermo-quantum',
+      route: '/quantum-tools#thermo-quantum',
       statement: `thermoQuantumBalance — speedTemp=${roundTo(speedTempBalance, 3)} heatProxy=${heatProxy.toExponential(2)} J memoReuse=${roundTo(memoReuse, 3)}.`,
       boundary: 'Landauer kT·ln2 floor + memo reuse heat proxy — measurements at call time; NOT sub-Landauer claim · NOT device thermometry.',
     }
@@ -3012,7 +3012,7 @@ export function cpuGpuSelfBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
       pair: 'cpu/gpu' as const,
       pairs: ['cpu/gpu', 'gpu/cpu'] as const,
       cli: 'npm run quantum:cpu-gpu',
-      route: '/en/quantum-tools#cpu-gpu',
+      route: '/quantum-tools#cpu-gpu',
       statement: `cpuGpuSelfBalance — balanceIndex=${roundTo(balanceIndex, 4)} cpuShare=${roundTo(cpuShare, 3)} gpuShare=${roundTo(gpuShare, 3)}.`,
       boundary: 'Dynamic CPU/GPU weights from load·heat·memo·buildMs·queue·merkaba at call time — NOT physical scheduler.',
     }
@@ -3102,7 +3102,7 @@ export function oneClockApi(matrix: MindMatrix = buildMatrix(), at = 0) {
       pair: 'clock/one' as const,
       pairs: ['clock/one', 'one/clock'] as const,
       cli: 'npm run quantum:clock-one',
-      route: '/en/quantum-tools#clock-one',
+      route: '/quantum-tools#clock-one',
       statement: `oneClockApi — cycleMs=${HERO_CYCLE_MS} derived=${clockDerived} periodic=${phasePeriodic} bound=${boundCount}/${bindings.length}.`,
       boundary: 'One census-derived clock for hero·movie·balance·period; wall-clock residuals named for CI/measurement only.',
     }
@@ -3324,7 +3324,7 @@ export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
       pair: 'api/fuse' as const,
       dualPair: 'fuse/api' as const,
       cli: 'npm run quantum:api-fuse',
-      route: '/en/quantum-tools#api-fuse',
+      route: '/quantum-tools#api-fuse',
       heading: 'API fuse · trinity hologram envelope',
       statement:
         `apiFuse — envelope=${envelopeAfter}/${toolTotal} trinity³=${trinitiesOfTrinitiesOn ? 1 : 0} ` +
@@ -3480,7 +3480,7 @@ export function directionalTrinityForwardInverseReverse(matrix: MindMatrix = bui
       root: merge(matrix.root, merkleFold([sealed.root, zero.root, folders.root, fInv.root, pairTrinity])),
       cli: 'npm run quantum:directional-trinity',
       pair: 'forward/inverse/reverse',
-      route: '/en/quantum-tools#directional-trinity',
+      route: '/quantum-tools#directional-trinity',
       statement:
         'Directional trinity of computations: FORWARD (doubling unfold · harmonic altitude) · INVERSE (n⁻¹ mod 9 · ratInv · f→{p,q} · fold-within) · REVERSE (10−d folder complement · foldPair order dual) — inverse≠reverse except named coincidences (digit 1: forward-harmonic 9 = reverse 9).',
       boundary:

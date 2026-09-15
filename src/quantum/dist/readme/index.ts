@@ -276,7 +276,7 @@ export function qpuCpuGpuMarkdownSection(
     '',
     ...(linkBase
       ? [`- Routes: [qpu-cpu](${href('/quantum-tools#qpu-cpu')}) · [prove-no-qpu-64bit](${href('/quantum-tools#prove-no-qpu-64bit')}) · [mcp-hw](${href('/quantum-tools#mcp-hw')}) · [agents.json](${href('/agents.json')}) · CLI \`npm run quantum:qpu-cpu\``]
-      : [`- Routes: \`/en/quantum-tools#qpu-cpu\` · \`/agents.json\` · fold \`qpuCpuGpu\` · CLI \`npm run quantum:qpu-cpu\``]),
+      : [`- Routes: \`/quantum-tools#qpu-cpu\` · \`/agents.json\` · fold \`qpuCpuGpu\` · CLI \`npm run quantum:qpu-cpu\``]),
     `- ${foldNameReceipt('qpuCpuGpu', `root=${r.root.slice(0, 8)} · apparentFtl=${roundTo(r.apparentFtlAudit, 3)}×.`)}`,
     '',
   ]
@@ -306,7 +306,7 @@ export function gateLightMarkdownSection(
     '',
     ...(linkBase
       ? [`- [gate-light](${href('/quantum-tools#gate-light')}) · [build-min](${href('/quantum-tools#build-min')}) · CLI \`npm run quantum:gate-light\``]
-      : [`- \`/en/quantum-tools#gate-light\` · CLI \`npm run quantum:gate-light\``]),
+      : [`- \`/quantum-tools#gate-light\` · CLI \`npm run quantum:gate-light\``]),
     '',
   ]
 }
@@ -341,7 +341,7 @@ export function apiFuseMarkdownSection(
     '',
     ...(linkBase
       ? [`- [api-fuse](${href('/quantum-tools#api-fuse')}) · CLI \`npm run quantum:api-fuse\``]
-      : [`- \`/en/quantum-tools#api-fuse\` · CLI \`npm run quantum:api-fuse\``]),
+      : [`- \`/quantum-tools#api-fuse\` · CLI \`npm run quantum:api-fuse\``]),
     '',
   ]
 }

@@ -1660,7 +1660,7 @@ export function oneCommandDecodeHashOrStringOrSequence(
     root: merge(matrix.root, merkleFold([sealed.root, address, fold.merged])),
     cli: 'npm run quantum:decode',
     pair: 'decode/one',
-    route: '/en/quantum-tools#one-command-decode',
+    route: '/quantum-tools#one-command-decode',
     computes: sealed.ok && (oneCommandDecodeComputable || classified.refused),
     statement:
       classified.refused
@@ -1705,7 +1705,7 @@ export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), a
       root: merge(matrix.root, merkleFold([sealed.root, ...probes.map((p) => p.root), refuseProbe.root])),
       cli: 'npm run quantum:decode',
       pair: 'decode/one' as const,
-      route: '/en/quantum-tools#one-command-decode',
+      route: '/quantum-tools#one-command-decode',
       statement: `oneCommandDecodeComputable=${allOk} — unified hash|string|sequence decode sealed; production RSA refuse holds.`,
       boundary: 'Capability receipt for autodiscovery — not a Clay Prize.' }
   })

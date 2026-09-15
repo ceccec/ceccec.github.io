@@ -155,8 +155,8 @@ recompute()
         </ul>
         <p class="ssltest__meta">
           pair <code>{{ report.pair }}</code> · dual <code>{{ report.dual }}</code> ·
-          <a href="/en/quantum-tools">quantum-tools chat</a> ·
-          <a href="/en/research">research</a>
+          <a href="/quantum-tools">quantum-tools chat</a> ·
+          <a href="/research">research</a>
         </p>
       </section>
 
@@ -167,10 +167,10 @@ recompute()
         <p class="ssltest__boundary">{{ report.liveRemoteScanResidual }}</p>
         <p class="ssltest__boundary">{{ report.boundary }}</p>
         <p class="ssltest__meta">
-          <a href="/en/encryption">encryption kit</a> ·
-          <a href="/en/encryption#tool-honest">tool/honest</a> ·
-          <a href="/en/quantum-tools#live-both">live/both</a> ·
-          <a href="/en/quantum-tools#claim-self">claim/self</a>
+          <a href="/encryption">encryption kit</a> ·
+          <a href="/encryption#tool-honest">tool/honest</a> ·
+          <a href="/quantum-tools#live-both">live/both</a> ·
+          <a href="/quantum-tools#claim-self">claim/self</a>
         </p>
       </section>
 

@@ -1571,7 +1571,7 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
   const r = min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
   // Field identity for rosettaPerspectiveFold — same hue/p/t as the shared hero clock frame.
   const field: AnimationField = {
-    route: '/en/#yinyang',
+    route: '/#yinyang',
     at: 0,
     t: frame.t,
     p: frame.p,
@@ -1587,7 +1587,7 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
     cssWidth: frame.cssWidth,
     scroll: 0,
     root: toUuid(`taiji-field:${frame.hue}:${floor(frame.p * (5 * 2 * 100))}`),
-    observationRoot: movieObservationReceipt('/en/#yinyang', floor(frame.hue), 0),
+    observationRoot: movieObservationReceipt('/#yinyang', floor(frame.hue), 0),
   }
   const ray = VORTEX_SEQUENCE[floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length]! % 7
   const view = rosettaPerspectiveFold(ray, field)

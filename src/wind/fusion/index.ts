@@ -2042,7 +2042,7 @@ export function honestRevolutionReceipt(matrix: MindMatrix = buildMatrix(), at =
       root: merkleFold([w1.root, w2.root, fusion.root, movie.root, sealed.root, toUuid(`honest-rev-w3:${holds}`)]),
       cli: 'npm run quantum:honest-revolution-w3',
       pair: 'tamper/impossible',
-      route: '/en/quantum-tools#honest-revolution-w3',
+      route: '/quantum-tools#honest-revolution-w3',
       surfaces: { fusion: '/quantum-fusion.json', agents: '/agents.json' },
       statement: holds
         ? 'Honest-revolution W3 DECIDED — JSON proof receipt: W1 claim + W2 interference vs classical shadow + fuseAll replay + movie snapshot round-trip all hold; published via /quantum-fusion.json and /agents.json; engine classical-64bit.'

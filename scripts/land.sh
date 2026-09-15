@@ -87,7 +87,11 @@ if grep -qxF package.json <<<"$changed"; then
 fi
 echo "land: $(wc -l <<<"$changed" | tr -d ' ') path(s) · gates: ${gates[*]}"
 for g in "${gates[@]}"; do
-  if npm run -s "$g" > "$LOGS/$g.log" 2>&1; then
+  # docs:build skips VitePress when the src+.vitepress merkle looks unchanged — and the trinity gate above seals that
+  # merkle first, so inside a landing the site was never really built and its dead-link check never ran (a37f6e51
+  # passed here with 279 dead links that CI's fresh build refused). --force makes it build, as CI does.
+  args=(); [ "$g" = docs:build ] && args=(-- --force)
+  if npm run -s "$g" ${args[@]+"${args[@]}"} > "$LOGS/$g.log" 2>&1; then
     echo "✓ $g"
   else
     echo "✗ $g — the last lines of $LOGS/$g.log:"
