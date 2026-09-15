@@ -96,6 +96,10 @@ jobs:
           ")"
           echo "dist-tag: ${DIST_TAG} — derived from npm view versions, never npm's implicit latest"
 
+          # THE PUBLISHED package.json IS WHAT A USER DOWNLOADS. The repo's own carries hundreds of scripts — measured at
+          # half the tarball, larger than the kernel's code — and none of them runs for someone who installed the kernel.
+          # Removed from this checkout's copy only, after the build and before the pack; the repo file is untouched.
+          npm pkg delete scripts devDependencies
           npm publish --tag "${DIST_TAG}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
