@@ -1168,14 +1168,21 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
   readonly involutionFiles: number
   readonly involutionTheorems: number
   readonly byProblem: readonly { readonly file: string; readonly theorems: number }[]
+  // Where the numbers came from: counted off the .lean sources here, read from the block sealed at build,
+  // or neither — a caller that cannot tell these apart cannot tell a corpus from a zero.
+  readonly source: 'counted' | 'sealed' | 'absent'
 } {
-  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [] as const }
+  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [] as const, source: 'absent' as const }
   const fs = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
     : undefined
   const path = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
     : undefined
+  // NOT SEALED INTO THIS FILE. A seal is literals, and a literal here is a crack: the counts would have to be
+  // written into the source as 84, 20, 18 — the very shape this corpus refuses, and the ledger that could record
+  // them lives in a protected digit folder. The browser meets the corpus through .vitepress/data/lean-corpus.json,
+  // derived from these same sources at build and read by LeanTheoremPages.vue. Here, absence is reported as absence.
   if (!fs || !path) return empty
   try {
     const src = path.join(root, 'src')
@@ -1197,6 +1204,7 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
       involutionFiles: byProblem.length,
       involutionTheorems: byProblem.reduce((n, f) => n + f.theorems, 0),
       byProblem,
+      source: 'counted' as const,
     }
   } catch {
     return empty

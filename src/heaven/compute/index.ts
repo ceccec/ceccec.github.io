@@ -1087,13 +1087,17 @@ export function aluRtlMeasured(root: string = typeof process !== 'undefined' && 
   const T_TOLERANCE_UNITS = 1 + 2 * abs(C / ONE - 1 / sqrt(2)) * ONE // one unit of floor + the constant's error over |d| ≤ 2·ONE — the t_floor_bound
   const poles: Record<string, readonly [number, number, number]> = {
     '+x': [1, 0, 0], '-x': [-1, 0, 0], '+y': [0, 1, 0], '-y': [0, -1, 0], '+z': [0, 0, 1], '-z': [0, 0, -1] }
-  const absent = { measured: false, rows: 0, agreeing: 0, disagreeing: [] as string[], verilogModule: false, verilogLines: 0, theorems: 0, root: toUuid('alu-rtl:not-measured') }
+  const absent = { measured: false, rows: 0, agreeing: 0, disagreeing: [] as string[], verilogModule: false, verilogLines: 0, theorems: 0, root: toUuid('alu-rtl:not-measured'), source: 'absent' as const }
   const fs = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
     : undefined
   const path = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
     : undefined
+  // NOT SEALED, AND THAT IS THE POINT. The lean corpus is a fact ABOUT sources and seals honestly; this is the
+  // result of PERFORMING a comparison — every alu-trace.csv row run through blochGate here. Sealing it would
+  // carry `measured: true` into a browser that compared nothing, which is the assert-vs-measure defect wearing
+  // the cure's name. A comparison that cannot happen is reported absent.
   if (!fs || !path) return absent
   try {
     const pkg = path.join(root, 'src', 'heaven', 'compute')
@@ -1128,7 +1132,8 @@ export function aluRtlMeasured(root: string = typeof process !== 'undefined' && 
       verilogModule,
       verilogLines: sv.split('\n').length,
       theorems,
-      root: merkleFold([toUuid(`alu-rtl:${verilogModule}:${theorems}:${rows.length - disagreeing.length}/${rows.length}`), ...rows.map((r) => r.receipt)]) }
+      root: merkleFold([toUuid(`alu-rtl:${verilogModule}:${theorems}:${rows.length - disagreeing.length}/${rows.length}`), ...rows.map((r) => r.receipt)]),
+      source: 'measured' as const }
   } catch {
     return absent
   }

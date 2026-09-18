@@ -37,13 +37,25 @@ export function findGuards(root: string = process.cwd()): Guard[] {
   const found: Guard[] = []
   for (const file of sources(root)) {
     const rel = relative(root, file).replace(/\\/g, '/')
-    readFileSync(file, 'utf8').split('\n').forEach((line, i) => {
+    const text = readFileSync(file, 'utf8')
+    text.split('\n').forEach((line, i) => {
       const browser = line.match(/typeof window !== 'undefined'\)\s*return\s+(.+?)\s*$/)
       if (browser && /^(\[\]|null|undefined|0|''|""|false|\{\})/.test(browser[1]!)) {
         found.push({ file: rel, line: i + 1, kind: 'browser-degrades', text: line.trim().slice(0, 120) })
       }
+      // Only a return of LESS counts: an empty list, a literal, a not-measured report. Returning the same
+      // measurement sealed at build (SEALED_…) is the fix, not the defect — UNLESS the sealed value claims its
+      // own measurement. A block carrying `measured: true` into a browser says a comparison happened there;
+      // nothing compared anything, and the seal has laundered an assertion into the shape of a cure. That is
+      // the defect this gate exists for, so a seal is accepted only while it asserts no measurement of its own.
       const noFs = line.match(/if \(!(fs|path|fs \|\| !path)\)\s*return\s+(.+?)\s*$/)
-      if (noFs) found.push({ file: rel, line: i + 1, kind: 'no-filesystem-empty', text: line.trim().slice(0, 120) })
+      if (noFs) {
+        const sealed = noFs[2]!.match(/SEALED_[A-Z0-9_]+/)
+        const claimsMeasured = sealed
+          ? new RegExp(`const ${sealed[0]} = \\{[\\s\\S]*?\\n\\s*\\}`).exec(text)?.[0]?.includes('"measured": true') ?? false
+          : false
+        if (!sealed || claimsMeasured) found.push({ file: rel, line: i + 1, kind: 'no-filesystem-empty', text: line.trim().slice(0, 120) })
+      }
     })
   }
   return found
