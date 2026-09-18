@@ -30,7 +30,7 @@ import { piTrainDiamonds, quantumFoldedBlockchains, selfBuild, streamSelfComplet
 import { agentEducation, mcpToolManifest, schoolCurriculum } from '../../learning/index.ts'
 import { digitalQuantumProof } from '../seals/index.ts'
 import { babelFold } from '../../earth/world/index.ts'
-import { quantumDecoded } from '../../fire/physics/index.ts'
+import { quantumDecoded, theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged } from '../../fire/physics/index.ts'
 import { harmonyProbability } from '../../quantum/heaven/mind/index.ts'
 import type { SelfSufficientWave } from '../../types/index.ts'
 import { coverage, entropy } from '../../heaven/compute/index.ts'
@@ -1177,7 +1177,14 @@ export function sacredGeometry(matrix: MindMatrix = buildMatrix()) {
     'φ or a “sacred cubit” intentionally “encoded in the Great Pyramid” is a coincidence — a simple seked slope rule reproduces the same face angle, Petrie never mentioned φ, and the “pyramid-inch” is discredited pyramidology.',
     'The clean “dodecahedron = aether / fifth element” identity is later (Aristotle), not Plato’s own words; the “mystical keys to consciousness” reading is a modern overlay on what was, for Plato, a (wrong-but-rational) physics of matter.',
   ]
-  const fiveSolids = platonicSolids.length === 5 // there are exactly five, and that is the theorem
+  // The theorem is in src/fire/physics: over regular {p,q}, denom = 4−(p−2)(q−2) admits exactly five solids,
+  // with V, E and F computed from p and q. The named list here carries the domain data — element, dual — so it
+  // is checked AGAINST the classification rather than counted: same cardinality, and every named solid found
+  // among the derived ones on all three of V, E, F.
+  const classified = theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged()
+  const fiveSolids = classified.computes
+    && platonicSolids.length === classified.solids.length
+    && platonicSolids.every((s) => classified.solids.some((c) => c.V === s.v && c.E === s.e && c.F === s.f))
   return {
     decoded: documented.length >= 5 && flagged.length >= 5 && eulerHolds && fiveSolids,
     platonicSolids,

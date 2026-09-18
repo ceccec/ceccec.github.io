@@ -830,7 +830,8 @@ export function claySolvedTheorem(): {
     cmiPrizeConditionsMetBySealedMath: claySolved > 0 }
 }
 
-/** Call-time alias — prefer over bare `0 as const`. */
+/** Call-time alias — prefer over bare `0 as const`. Passed by REFERENCE as `solvedByFold` below, which is why
+ *  it stays where its FTL twin went: a function handed to a caller is used, even though no call site names it. */
 export function claySolvedByThisFoldFromTheorem(): number {
   return claySolvedTheorem().claySolvedByThisFold
 }
@@ -860,11 +861,6 @@ export function physicalFtlClaimTheorem(): {
     via: 'physicalFtlClaimTheorem',
     recomputed: true,
     physicalSuperluminalSignalingProvedBySealedMath: physicalFtlClaim > 0 }
-}
-
-/** Call-time alias — prefer over bare `physicalFtlClaim: 0 as const`. */
-export function physicalFtlClaimFromTheorem(): number {
-  return physicalFtlClaimTheorem().physicalFtlClaim
 }
 
 /**
