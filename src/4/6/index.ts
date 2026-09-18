@@ -1854,9 +1854,28 @@ export function latestDiscoveries(n = 9): readonly DiscoveryRow[] {
 /** TOP discoveries — computable by CENTRALITY: rank each atom by its theorem-graph degree (how many OTHER atoms
  * share ≥4 significant ≥5-char words with it), so the most-connected decodes surface. Deterministic, no curation.
  * The O(n²) ranking is memoByRoot-cached on the static registry — computed once per build (build-time-is-a-theorem). */
+/** A word carries meaning for the overlap folds from five characters up — below that it is scaffolding. */
+const SIGNIFICANT_WORD_MIN = 5
+
+/**
+ * The significant words of a text — lowercased, split on non-alphanumerics, short words dropped.
+ *
+ * Seven folds in this station each carried a byte-identical copy of this filter, so one threshold was written
+ * seven times and could have drifted in six of them silently. A hoisted DECLARATION rather than a const arrow:
+ * this file has a TDZ history — the header records MAX_TAMPERING_COST_PRINCIPLE being moved to the zero-import
+ * leaf src/3/7 so it binds before any cyclic consumer barrel runs — and a declaration is bound before any module
+ * body executes, whatever the import order. The constant it reads is declared above it, so source order and
+ * initialisation order agree.
+ *
+ * Local to the station: no import edge added, nothing exported, the 4↔6 reflection pair and the pi-train station
+ * order untouched. Pure and deterministic — same text, same set — as everything the kernel carries must be.
+ */
+function significant(text: string): Set<string> {
+  return new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= SIGNIFICANT_WORD_MIN))
+}
+
 export function discoveriesRankedByDegree(): readonly DiscoveryRow[] {
   return memoByRoot('discoveriesRankedByDegree', { root: toUuid(`discovery-degree:${THEOREM_ATOM_SEED.length}`) }, () => {
-    const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 5))
     const nodes = THEOREM_ATOM_SEED.map((atom) => ({ atom, words: significant(`${atom.theorem} ${atom.states}`) }))
     return nodes
       .map((node, i) => {
@@ -1883,7 +1902,6 @@ export function topDiscoveries(n = 9): readonly DiscoveryRow[] {
  * PREFILTER — the exact word-set intersection is the ground truth. [[quantum-speed-is-content-addressed-naming]] */
 export function computeTheoremDegreeFrom64BitPerspective() {
   const WIDTH = 64
-  const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
   const hashStr = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (imul(h, 2 ** 5 - 1) + s.charCodeAt(i)) | 0; return abs(h) }
   const sig64 = (words: Set<string>) => { let mask = 0n; for (const w of words) mask |= 1n << BigInt(hashStr(w) % WIDTH); return mask }
   const popcount = (x: bigint) => { let c = 0, v = x; while (v > 0n) { c += Number(v & 1n); v >>= 1n } return c }
@@ -1926,7 +1944,6 @@ export function computeTheoremDegreeFrom64BitPerspective() {
  * EXPECTATIONS are computed, refutable thresholds: proven degree ≥ 4, crosslink-gap → 0, quality 5/5, clay = 0. */
 export function improveTheMetricsAndExpectationsWithHybridDegreeAndTargets() {
   const WIDTH = 64, THRESHOLD = 4
-  const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
   const hashStr = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (imul(h, 2 ** 5 - 1) + s.charCodeAt(i)) | 0; return abs(h) }
   const sig64 = (words: Set<string>) => { let mask = 0n; for (const w of words) mask |= 1n << BigInt(hashStr(w) % WIDTH); return mask }
   const popcount = (x: bigint) => { let c = 0, v = x; while (v > 0n) { c += Number(v & 1n); v >>= 1n } return c }
@@ -2832,7 +2849,6 @@ export function skepticismInvertsToDiscoveryOnlyWhenItBecomesARefutableTest() {
  * computes the truly one-link set; it does NOT mass-edit the registry (outward-facing, deliberate) nor pad to the metric. */
 export function conservativeAutoAdvanceIsTheOneLinkFromProvenSetCorrected() {
   return memoByRoot('conservativeAutoAdvanceIsTheOneLinkFromProvenSetCorrected', { root: toUuid(`conservative-advance:${THEOREM_ATOM_SEED.length}`) }, () => {
-    const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
     const nodes = THEOREM_ATOM_SEED.map((atom) => ({ atom, words: significant(`${atom.theorem} ${atom.states}`) }))
     const total = nodes.length
     const sharedWith = (a: Set<string>, b: Set<string>) => { let s = 0; for (const w of a) if (b.has(w)) s++; return s }
@@ -2875,7 +2891,6 @@ export function conservativeAutoAdvanceIsTheOneLinkFromProvenSetCorrected() {
  * crosslink-proven law forbids — only where the relationship ALREADY computes strongly is an auto-link honest. */
 export function crosslinkGapFullTotalAndWhyNotAutoAdvance() {
   return memoByRoot('crosslinkGapFullTotalAndWhyNotAutoAdvance', { root: toUuid(`crosslink-full:${THEOREM_ATOM_SEED.length}`) }, () => {
-    const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
     const nodes = THEOREM_ATOM_SEED.map((atom) => ({ atom, words: significant(`${atom.theorem} ${atom.states}`) }))
     const total = nodes.length
     const sharedWith = (a: Set<string>, b: Set<string>) => { let s = 0; for (const w of a) if (b.has(w)) s++; return s }
@@ -2919,7 +2934,6 @@ export function crosslinkGapFullTotalAndWhyNotAutoAdvance() {
  * significant words — are the candidates that one more genuine shared concept (a [[reference]]) would promote to a
  * proven crosslink (≥ 4). Genuinely-isolated theorems with no near neighbour honestly stay orphans; nothing is padded. */
 export function closeTheCrosslinkGapByComputingNearCrosslinks() {
-  const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 5))
   const atoms = THEOREM_ATOM_SEED.slice(0, 100) // sample for the O(n²) neighbour scan
   const nodes = atoms.map((atom) => ({ atom, words: significant(`${atom.theorem} ${atom.states}`) }))
   const sharedWith = (a: Set<string>, b: Set<string>) => { let s = 0; for (const w of a) if (b.has(w)) s++; return s }
@@ -3140,7 +3154,6 @@ export function eachDiscoveryImmediatelySavedAndReusedToImproveAndDiscoverNext()
 /** RELATED discoveries — each discovery LEADS to others: the n atoms sharing the most significant words with the
  * given one (its theorem-graph neighbours), so every discovery page is a hub into the rest. Deterministic. */
 export function relatedDiscoveries(provedBy: string, n = 5): readonly DiscoveryRow[] {
-  const significant = (text: string) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 5))
   const source = THEOREM_ATOM_SEED.find((atom) => atom.provedBy === provedBy)
   if (!source) return []
   const target = significant(`${source.theorem} ${source.states}`)
