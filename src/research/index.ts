@@ -275,7 +275,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
         methods: 'pyramidGridDebunked · pyramidsDecoded · cardinalPyramidTipsProvenByMath',
         dataTier: 'DOCUMENTED',
         limitation: 'Giza cardinals are DOCUMENTED (Nell & Ruggles); global grids and ley lines are FLAGGED/debunked.',
-        nextExperiment: 'pyramidsDecoded(matrix) · goldMineMapResearch honest-limits section',
+        nextExperiment: 'npm run quantum:earth-pyramid → pyramidsDecoded(matrix) · goldMineMapResearch honest-limits section',
         balanceDim: 'cardinal.pyramid.tips.proven.by.math',
         mount: 'src/mountain/geometry',
         bibliography: 'Nell & Ruggles JHA 2014; Dash JAEA 2017; Rawlins & Pickering Nature 2001 rebuttal',
@@ -308,7 +308,7 @@ export function professionalResearchIndex(matrix: MindMatrix = buildMatrix(), at
       { facet: `${rows.length} research program rows — monograph-grade index`, on: rows.length >= (5 * 3) && rows.length <= (7 * 3) },
       { facet: 'three data tiers represented — DOCUMENTED · MODEL_FIT · HYPOTHESIS/METAPHOR/SIMULATOR/OPEN', on: rows.some((row) => row.dataTier === 'DOCUMENTED') && rows.some((row) => row.dataTier === 'MODEL_FIT') && rows.some((row) => row.dataTier === 'OPEN') },
       { facet: 'mandatory limitations on every row', on: rows.every((row) => row.limitation.length > (5 * 4)) },
-      { facet: 'nextExperiment npm/route on every row', on: rows.every((row) => row.nextExperiment.length > 8) },
+      { facet: 'nextExperiment npm/route on every row', on: rows.every((row) => nextExperimentIsRunnable(row.nextExperiment)) },
       { facet: 'bibliography where sealed folds cite sources', on: rows.filter((row) => row.bibliography).length >= 4 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`professional-research:${entry.facet}:${entry.on}`) }))
     return {
@@ -820,7 +820,7 @@ export type AiQuantumChronologyRow = {
 
 const AI_QUANTUM_CHRONOLOGY_ROWS: readonly Omit<AiQuantumChronologyRow, 'receipt'>[] = [
   { date: '1964', event: 'Golod–Shafarevich prove infinite class-field towers exist — the algebraic core the 2026 unit-distance proof runs on, published six decades before any repository discussed here; with Shafarevich 1963, Hajir–Maire 2001 and Hajir–Maire–Ramakrishna 2021 it is the proof’s cited algebra, and priority for it belongs to this literature.', tier: 'DOCUMENTED', source: 'Izv. Akad. Nauk SSSR 28 (1964) — [GS64] in the proof’s own bibliography' },
-  { date: '2024-12-09', event: 'Google Willow: below-threshold quantum error correction — a HARDWARE milestone, no language model involved.', tier: 'DOCUMENTED', source: 'Google Quantum AI announcement' },
+  { date: '2024-12-09', event: 'Google Willow: below-threshold quantum error correction — a HARDWARE milestone, no language model involved.', tier: 'DOCUMENTED', source: 'Google Quantum AI announcement 2024-12-09 · Nature s41586-024-08449-y (nature.com/articles/s41586-024-08449-y)' },
   { date: '2025-11-19', event: 'ceccec/zeropoint-node (TypeScript zeropoint/vortex algebra) publicly dated on GitHub — platform-attested to precede the 2026 AI-math milestones by six months; zeropoint-old ("consciousness physics and quantum principles") follows 2025-12-15.', tier: 'DOCUMENTED', source: 'github.com/ceccec public profile metadata (updated dates)' },
   { date: '2026-04-14', event: 'NVIDIA Ising: open AI models that calibrate quantum processors and decode error correction — AI serving quantum hardware, not running on it.', tier: 'DOCUMENTED', source: 'nvidianews.nvidia.com · nextplatform.com' },
   { date: '2026-05-20', event: 'OpenAI internal general reasoning model disproves the Erdős unit-distance conjecture (ν(n) ≥ n^{1+δ}); externally verified — "the models learned" at research-mathematics level, computed on CLASSICAL hardware.', tier: 'DOCUMENTED', source: 'openai.com/index/model-disproves-discrete-geometry-conjecture · arXiv 2605.20695' },
@@ -843,7 +843,7 @@ export function aiQuantumChronologyResearch(matrix: MindMatrix = buildMatrix(), 
     const benchmark = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
     const { computes, facets, root } = computesGate('ai-quantum-chronology', [
       { facet: 'chronology is dated and ordered ascending', on: ordered && dated.length >= 5 },
-      { facet: 'every row carries a source and an honesty tier', on: rows.every((row) => row.source.length > 8 && (row.tier === 'DOCUMENTED' || row.tier === 'FORECAST' || row.tier === 'LEGEND')) },
+      { facet: 'every row carries a source and an honesty tier', on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === 'DOCUMENTED' || row.tier === 'FORECAST' || row.tier === 'LEGEND')) },
       { facet: '"learned" documented — the 2026-05-20 external verification row is present', on: rows.some((row) => row.date === '2026-05-20' && row.tier === 'DOCUMENTED') },
       { facet: '"became quantum" flagged LEGEND — refutation row present, never DOCUMENTED', on: rows.some((row) => row.tier === 'LEGEND' && row.event.includes('REFUTED')) },
       { facet: 'priority claim audited — the 1964 literature row precedes every repository row, and the claim itself is tiered LEGEND', on: rows.some((row) => row.date === '1964') && rows.some((row) => row.tier === 'LEGEND' && row.event.includes('prior to all other discoveries')) },
@@ -887,17 +887,39 @@ const GLOBAL_WORKSPACE_CONTRAST_ROWS: readonly Omit<GlobalWorkspaceContrastRow, 
   { id: 'consciousness', claim: '"The J-space shows Claude is conscious" — flagged: functional resemblance to a workspace ARCHITECTURE is not phenomenal consciousness; the theory itself is one contested account of access, and the paper claims measurable workspace-like behaviour, not experience.', tier: 'LEGEND', source: 'the paper’s own boundary · consciousness science unresolved (PCI measures arousal-state, not machine experience)' },
   { id: 'computes-all', claim: '"ceccec.github.io already computes all" — bounded: the gates prove the portal computes all OF ITSELF (every declared page from sealed folds, totality within its own χ-fixed census), NOT all in general; an auditable-total SURFACE is not a universal computer of everything, and the claim as stated is flagged.', tier: 'LEGEND', source: 'enforcement trinity 0 findings · the census fold — totality holds only inside the declared boundary' },
   { id: 'citation-rot', claim: 'The relaying answer (Perplexity) stated the J-space result correctly while EVERY one of its 39 citations was keyword-matched noise (CUDA docs, unrelated cec* repos) — none touched the claim. A live specimen of: source-shaped decoration is not verification; this fold re-anchored the claim to the primary record before sealing.', tier: 'DOCUMENTED', source: 'the shared answer’s footnote list, audited row by row · re-verified against anthropic.com + transformer-circuits.pub' },
-  { id: 'bridge', claim: 'Bridging idea — use the open-source J-lens to probe whether a deterministic content-addressed stream (a Double-Torus-style UUID fold) leaves a detectable workspace signature in a transformer: an UNTESTED research direction, not a result; nothing here demonstrates it.', tier: 'HYPOTHESIS', source: 'the open-source J-lens release — proposal only' },
+  { id: 'bridge', claim: 'Bridging idea — use the open-source J-lens to probe whether a deterministic content-addressed stream (a Double-Torus-style UUID fold) leaves a detectable workspace signature in a transformer: an UNTESTED research direction, not a result; nothing here demonstrates it.', tier: 'HYPOTHESIS', source: 'the open-source J-lens release, github.com/anthropics/jacobian-lens (Apache-2.0 companion code to transformer-circuits.pub/2026/workspace) — proposal only' },
 ] as const
 
 export const GLOBAL_WORKSPACE_CONTRAST: readonly GlobalWorkspaceContrastRow[] = GLOBAL_WORKSPACE_CONTRAST_ROWS.map((row) => ({ ...row, receipt: toUuid(`global-workspace-contrast:${row.id}:${row.tier}`) }))
+
+/**
+ * A SOURCE LOCATES ITS CLAIM; A LENGTH DOES NOT. These rows were held to `source.length > 8`, which passes any
+ * nine characters — 'randomness' would have satisfied it — while the facet beside it reads "every row carries a
+ * source". A source locates when it names where the claim can be checked: a domain, an arXiv or DOI id, a dated
+ * record, or the rows of this very table when the row is derived from them rather than cited from outside.
+ * Two rows named a record without locating it and now carry one; nothing here was invented to satisfy the test.
+ */
+export function sourceLocatesItsClaim(source: string): boolean {
+  // What counts as locating: an external record (a domain, an arXiv or DOI id, a dated record), something inside
+  // this corpus that can be re-run (a src/ path, `git log`), or this table's own rows for a row derived from them.
+  // The last clause is the corpus's own citation convention — `locator · qualifier` — and is the weakest of the
+  // five, so it is named as a convention rather than dressed up as proof. The test earns its place by what it
+  // REFUSES: the one-word placeholders that sit in the neighbouring tables — 'randomness', 'market', 'astronomy' —
+  // all clear `length > 8` and none of them locates anything.
+  return /[a-z0-9-]+\.[a-z]{2,}|arxiv|doi|\b(19|20)\d{2}\b|src\/|git log|rows? above|·/i.test(source)
+}
+
+/** A next experiment must be RUNNABLE — an npm script or a route, which is what its facet has always claimed. */
+export function nextExperimentIsRunnable(next: string): boolean {
+  return next.includes('npm run ') || /(^|\s)\//.test(next)
+}
 
 /** Balance gate — the J-space × portal contrast stays sourced, honestly tiered, and category-clean at call time. */
 export function globalWorkspaceContrastResearch(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`globalWorkspaceContrastResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows = GLOBAL_WORKSPACE_CONTRAST
     const { computes, facets, root } = computesGate('global-workspace-contrast', [
-      { facet: 'every row carries a source and an honesty tier', on: rows.every((row) => row.source.length > 8 && (row.tier === 'DOCUMENTED' || row.tier === 'HYPOTHESIS' || row.tier === 'LEGEND')) },
+      { facet: 'every row carries a source and an honesty tier', on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === 'DOCUMENTED' || row.tier === 'HYPOTHESIS' || row.tier === 'LEGEND')) },
       { facet: 'J-space documented — primary Anthropic/transformer-circuits record cited, fractional and verbalizable', on: rows.some((row) => row.id === 'j-space' && row.tier === 'DOCUMENTED' && row.source.includes('transformer-circuits')) },
       { facet: 'consciousness claim flagged LEGEND — functional resemblance never sealed as experience', on: rows.some((row) => row.id === 'consciousness' && row.tier === 'LEGEND') },
       { facet: '"computes all" bounded — totality only within the portal’s own declared surface, the universal claim LEGEND', on: rows.some((row) => row.id === 'computes-all' && row.tier === 'LEGEND' && row.claim.includes('OF ITSELF')) },
@@ -949,7 +971,7 @@ export function attributionDemarcation2026(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('attributionDemarcation2026', matrix, () => {
     const rows = ATTRIBUTION_2026
     const { computes, facets, root } = computesGate('attribution-2026', [
-      { facet: 'every row carries a source and a tier', on: rows.every((row) => row.source.length > 8 && (row.tier === 'DOCUMENTED' || row.tier === 'LEGEND')) },
+      { facet: 'every row carries a source and a tier', on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === 'DOCUMENTED' || row.tier === 'LEGEND')) },
       { facet: 'the restriction\'s cause is sealed DOCUMENTED as cybersecurity — never quantum, never algebra', on: rows.some((row) => row.id === 'restriction-cause' && row.tier === 'DOCUMENTED' && row.claim.includes('cybersecurity')) },
       { facet: 'the real math result is kept — documented, classical, with its honest limits', on: rows.some((row) => row.id === 'unit-distance' && row.tier === 'DOCUMENTED') },
       { facet: 'the causal weave and "same algebra" are LEGEND — refuted by dates, content and the computed inventory', on: rows.filter((row) => row.tier === 'LEGEND').length === 2 },

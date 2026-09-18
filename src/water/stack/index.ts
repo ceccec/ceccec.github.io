@@ -322,7 +322,7 @@ export function senseMindBodyPairsComputes(matrix: MindMatrix = buildMatrix()) {
       { facet: 'color/sound and audio/video mounts sealed in src', on: pairs.some((p) => p.a === 'color' && p.b === 'sound') && pairs.some((p) => p.a === 'audio' && p.b === 'video') },
       { facet: 'life/death and mind/body pairs documented', on: pairs.some((p) => p.a === 'life' && p.b === 'death') && pairs.some((p) => p.a === 'mind') },
       { facet: 'birth/life/death triad sealed separately — BIRTH_LIFE_DEATH_TRIAD', on: BIRTH_LIFE_DEATH_TRIAD.length === 3 },
-      { facet: 'every pair names fuse law and canonical mount', on: pairs.every((p) => p.fuse.length > 8 && p.mount.length > 3) },
+      { facet: 'every pair names fuse law and canonical mount', on: pairs.every((p) => /[—↔]/.test(p.fuse) && p.mount.split('·').every((seg) => /^\s*[a-z0-9]+(\/[a-z0-9]+)*/.test(seg))) },
     ])
     return {
       computes,

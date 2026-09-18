@@ -73,6 +73,17 @@ export function findCaps(root: string = process.cwd()): { file: string; caps: nu
     if (!/^\s*\{ facet:/m.test(text)) continue
     const sites: string[] = []
     text.split('\n').forEach((line, i) => {
+      // A BOUND THAT DECIDES WHAT IS PRINTED DECIDES NOTHING. `unit.length > 100 ? `${unit.slice(0, 100)}…`` picks an
+      // ellipsis; `if (rows.length > 12) { …write('+N more') }` picks how much of a list to show. Neither is a claim a
+      // facet leans on — string truncation was already excluded here for that reason, but the LIST form was not, so
+      // printing decisions were counted as chosen bounds. The match must fall INSIDE the write call's own arguments:
+      // a line that prints and then returns a bound still carries a real bound, and one did.
+      const printsAt = (at: number) => [...line.matchAll(/(?:process\.stdout\.write|console\.log)\s*\(/g)]
+        .some((w) => at > w.index!)
+      const truncatesForDisplay = (at: number) => {
+        const recv = line.slice(0, at).match(/([A-Za-z_$][\w$.]*)$/)?.[1]
+        return recv !== undefined && new RegExp(`\\?[^:]*${recv.replace(/[.$]/g, '\\$&')}\\.slice\\(0,`).test(line)
+      }
       // THE BOUND IS THE WHOLE ARITHMETIC, NOT ITS FIRST NUMBER. `bm25Slugs.length > 3 * 100` is a bound of three
       // hundred; reading it as `> 3` named the site wrongly in every report this gate printed, so a cap of 300 read
       // as one of the smallest in the corpus. Products and sums of literals are folded here and the site is named
@@ -90,7 +101,7 @@ export function findCaps(root: string = process.cwd()): { file: string; caps: nu
         // A CAP IS A CHOSEN BOUND, so it starts at two. `x.length === 0`, `> 0`, `!== 0` and `< 2` ask whether a thing
         // is empty or a singleton — structural questions with no number to derive — and counting them took the measure
         // from 2429 to 2941 while adding nothing a wave could fix.
-        if (bound >= 2) sites.push(`${relative(root, file).replace(/\\/g, '/')}:${i + 1}  .length ${m[1]} ${written}`)
+        if (bound >= 2 && !printsAt(m.index!) && !truncatesForDisplay(m.index!)) sites.push(`${relative(root, file).replace(/\\/g, '/')}:${i + 1}  .length ${m[1]} ${written}`)
       }
     })
     if (sites.length) out.push({ file: relative(root, file).replace(/\\/g, '/'), caps: sites.length, sites })

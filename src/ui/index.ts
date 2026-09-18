@@ -2334,7 +2334,7 @@ export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
     // 2 — MATCHES I CHING: the 7 rays + Home = 8 bāguà trigrams, a bijection (2³), each ray a distinct trigram
     const distinctTrigrams = new Set(rays.map((r) => r.trigram)).size === 7 && BAGUA.length === 2 ** 3 && !rays.some((r) => r.trigram === BAGUA[0])
     // 3 — NO REGEX CRACK, NO CATCH-ALL, NO EMPTY POLE: rays are ROSETTA_RAYS (computed), every door non-empty, all 7 rays present
-    const everyDoorPopulated = doors.every((dr) => dr.rays.length > 0) && rays.length === 7 // vs the old empty-Axioms / 36-in-default
+    const everyDoorPopulated = doors.every((dr) => dr.rays.length > 0) && rays.length === ROSETTA_RAYS.length // vs the old empty-Axioms / 36-in-default
     // 4 — AGNOSTIC: the structure is computed from the rosetta tables (rays, hues, hubs) + the trigram map — path-independent
     const agnostic = rays.every((r) => r.trigram === BAGUA[r.ray + 1] && r.door === floor(r.hue / band) && r.name.length > 0)
     const facets = [
