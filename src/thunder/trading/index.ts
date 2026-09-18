@@ -531,9 +531,13 @@ export function runTradingDashboardDevExit(_root: string, _argv: readonly string
   process.stdout.write('dashboard: open /en/quantum-trading-dashboard with npm run docs:dev\n'); return 0
 }
 /** npm run trading:learn — skill atoms + realtime source catalogue for retail curriculum. */
+/** The retail learn path wants a BREADTH of public sources, not one feed. The floor is named here and read by
+ *  the three folds that each used to spell it out: two CLI exits and the curriculum facet. One decision, once. */
+const MIN_PUBLIC_SOURCES = 6
+
 export function runTradingLearnExit(_root: string, _argv: readonly string[] = []): number {
   const skills = skillAtoms(); const sources = realtimeSources()
-  process.stdout.write(`learn skills=${skills.count} sources=${sources.length}\n`); return skills.count > 0 && sources.length >= 6 ? 0 : 1
+  process.stdout.write(`learn skills=${skills.count} sources=${sources.length}\n`); return skills.count > 0 && sources.length >= MIN_PUBLIC_SOURCES ? 0 : 1
 }
 /** npm run trading:learn-risk — vol-target sizing + inverse-vol cap as risk teaching proxy. */
 export function runTradingLearnRiskExit(_root: string, _argv: readonly string[] = []): number {
@@ -565,7 +569,7 @@ export function runRealtimeTradingTestExit(_root: string, _argv: readonly string
   const flip = prices[prices.length - 1]! > prices[0]! ? 'up' : 'down'
   const sources = realtimeSources()
   process.stdout.write(`realtime-test waves=${waves.waves.length} flip=${flip} spectral=${run.n} sources=${sources.length}\n`)
-  return waves.waves.length > 0 && run.n > (16 * 2) && sources.length >= 6 ? 0 : 1
+  return waves.waves.length > 0 && run.n > (16 * 2) && sources.length >= MIN_PUBLIC_SOURCES ? 0 : 1
 }
 
 // ── The weather-calendar trading composition — backlog item 'weather-calendar-trading' filled: the
@@ -622,8 +626,8 @@ export function getTradingCurriculum(matrix: MindMatrix = buildMatrix()) {
     const facets = [
       { facet: `curriculum lists ${rows.length} sealed strategies`, on: rows.length === STRATEGIES.length },
       { facet: 'each strategy shelved via rosettaShelve(tool)', on: rows.every((r) => r.ray === rosettaRayOf(`strategy:${r.id}`) && isUuid(r.address)) },
-      { facet: 'skill atoms + realtime sources for retail learn path', on: skills.count > 0 && sources.length >= 6 },
-      { facet: `the curriculum is ${rows.length} sealed strategies shelved as tools over ${sources.length} public sources, not one of which takes a secret key — a reading list, and nothing in it can reach a broker`, on: rows.length === STRATEGIES.length && sources.length >= 6 && sources.every((s) => s.key === 'none' || s.key.startsWith('permission')) },
+      { facet: 'skill atoms + realtime sources for retail learn path', on: skills.count > 0 && sources.length >= MIN_PUBLIC_SOURCES },
+      { facet: `the curriculum is ${rows.length} sealed strategies shelved as tools over ${sources.length} public sources, not one of which takes a secret key — a reading list, and nothing in it can reach a broker`, on: rows.length === STRATEGIES.length && sources.length >= MIN_PUBLIC_SOURCES && sources.every((s) => s.key === 'none' || s.key.startsWith('permission')) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trading-curriculum:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('get-trading-curriculum', facets)
     return {

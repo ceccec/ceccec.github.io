@@ -32377,7 +32377,11 @@ export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildM
           home: sample.home,
           proofClass: sample.proofClass })
       : null
-    const everyHasFormulas = rows.length > 0 && rows.every((r) => r.formulas.length >= 3 && r.formulaSource.includes(r.provedBy))
+    // A row is covered when it carries the formula dual — stated once here and counted once, where four
+    // recomputations of the same filter previously restated the bound for the label, the metric and two lines of prose.
+    const hasFormulaDual = (r: { readonly formulas: readonly unknown[] }) => r.formulas.length >= 3
+    const formulasCoveredCount = rows.filter(hasFormulaDual).length
+    const everyHasFormulas = rows.length > 0 && rows.every((r) => hasFormulaDual(r) && r.formulaSource.includes(r.provedBy))
     const dualMatches = dual != null && sample != null
       && sample.formulas.length === dual.formulas.length
       && sample.formulaSource === dual.formulaSource
@@ -32399,7 +32403,7 @@ export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildM
       meta!.fold === 'algebraicFormulasAreDualOfSealedCode'
     const facets = [
       { facet: 'algebraicFormulasAreDualOfSealedCode', on: algebraicFormulasAreDualOfSealedCodeOn },
-      { facet: `theorem rows with formulas=${rows.filter((r) => r.formulas.length >= 3).length}/${rows.length}`, on: everyHasFormulas },
+      { facet: `theorem rows with formulas=${formulasCoveredCount}/${rows.length}`, on: everyHasFormulas },
       { facet: 'sample dual ≡ theoremFormulaCodeDual', on: dualMatches },
       { facet: 'SCIENCE_PAPER_SECTION_LABELS.formulas sealed', on: paperHasFormulas },
       { facet: 'composes format/canon · section/dry', on: format.computes && format.noNamedExplanation },
@@ -32410,7 +32414,7 @@ export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildM
       computes: sealed.ok && algebraicFormulasAreDualOfSealedCodeOn,
       algebraicFormulasAreDualOfSealedCode: algebraicFormulasAreDualOfSealedCodeOn,
       theoremCount: rows.length,
-      formulasCovered: rows.filter((r) => r.formulas.length >= 3).length,
+      formulasCovered: formulasCoveredCount,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merkleFold([sealed.root, format.root, pairFold.merged, toUuid(`thm-count:${rows.length}`)]),
@@ -32420,9 +32424,9 @@ export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildM
       anchor: 'formula-code',
       heading: 'Formula · code',
       statement:
-        `algebraicFormulasAreDualOfSealedCode · theorems=${rows.length} covered=${rows.filter((r) => r.formulas.length >= 3).length}`,
+        `algebraicFormulasAreDualOfSealedCode · theorems=${rows.length} covered=${formulasCoveredCount}`,
       boundary: 'Formulas ↔ code dual. Wet prose-only proof path refused.',
-      honestyLine: `metrics · theorems=${rows.length} · covered=${rows.filter((r) => r.formulas.length >= 3).length}` }
+      honestyLine: `metrics · theorems=${rows.length} · covered=${formulasCoveredCount}` }
   })
 }
 

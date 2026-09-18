@@ -72,6 +72,14 @@ export function findCaps(root: string = process.cwd()): { file: string; caps: nu
     const text = readFileSync(file, 'utf8')
     if (!/^\s*\{ facet:/m.test(text)) continue
     const sites: string[] = []
+    // A NAMED BOUND IS STILL A BOUND. `sources.length >= MIN_PUBLIC_SOURCES` is one chosen number wearing a name,
+    // and this gate used to see only literals — so collapsing four copies of `>= 6` into one named constant dropped
+    // the count by four while removing three decisions. That is how a measure starts rewarding the appearance of
+    // work. Same-file numeric constants are resolved here, so naming a threshold makes it legible, not invisible.
+    const named = new Map<string, number>()
+    for (const d of text.matchAll(/^(?:export\s+)?const\s+([A-Za-z_$][\w$]*)\s*(?::\s*number)?\s*=\s*(-?[0-9][0-9_]*)\s*$/gm)) {
+      named.set(d[1]!, Number(d[2]!.replace(/_/g, '')))
+    }
     text.split('\n').forEach((line, i) => {
       // A BOUND THAT DECIDES WHAT IS PRINTED DECIDES NOTHING. `unit.length > 100 ? `${unit.slice(0, 100)}…`` picks an
       // ellipsis; `if (rows.length > 12) { …write('+N more') }` picks how much of a list to show. Neither is a claim a
@@ -88,8 +96,13 @@ export function findCaps(root: string = process.cwd()): { file: string; caps: nu
       // hundred; reading it as `> 3` named the site wrongly in every report this gate printed, so a cap of 300 read
       // as one of the smallest in the corpus. Products and sums of literals are folded here and the site is named
       // with what was actually written.
-      for (const m of line.matchAll(/\.length\s*(>=|>|===|!==|<=|<)\s*([0-9][0-9_]*(?:\s*[*+\-/]\s*[0-9][0-9_]*)*)/g)) {
+      for (const m of line.matchAll(/\.length\s*(>=|>|===|!==|<=|<)\s*([0-9][0-9_]*(?:\s*[*+\-/]\s*[0-9][0-9_]*)*|[A-Za-z_$][\w$]*)/g)) {
         const written = m[2]!.replace(/\s+/g, ' ').trim()
+        if (named.has(written) && !/^[0-9]/.test(written)) {
+          if (named.get(written)! >= 2 && !printsAt(m.index!)) sites.push(`${relative(root, file).replace(/\\/g, '/')}:${i + 1}  .length ${m[1]} ${written} (= ${named.get(written)})`)
+          continue
+        }
+        if (!/^[0-9]/.test(written)) continue
         const bound = written.split(/\s*[*+\-/]\s*/).length === 1
           ? Number(written.replace(/_/g, ''))
           : written.split(/\s*([*+\-/])\s*/).reduce<{ acc: number; op: string }>(
