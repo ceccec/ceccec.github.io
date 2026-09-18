@@ -61,8 +61,17 @@ export function findClaimGaps(root: string = process.cwd()): ClaimGap[] {
         if (!m) return
         const label = m[2]!, on = m[3]!
         const plain = label.replace(/\$\{[^}]*\}/g, '')
+        // A LABEL SPELLS A SPECIFICATION ONLY WHEN IT NAMES SOMETHING THE FILE CAN REFERENCE. `… reduces to
+        // LINKED-routes-root === GENERATED-routes-root` reads like code and is prose: GENERATED is emphasis, not
+        // an identifier, and the comparison IS made — by `oneRoot`, one line above. The rule fired on it because
+        // it assumed every capitalised word in a label is a name. It now requires the right-hand side to be
+        // declared or imported in the same file, which is what separates ROSETTA_RAYS (a constant the fold holds)
+        // from GENERATED (a word the sentence stresses).
         const spelled = SPELLED.exec(plain)
-        if (spelled && !on.includes(spelled[2]!)) {
+        const rhs = spelled?.[2]?.replace(/\.length$/, '')
+        const nameable = rhs !== undefined
+          && new RegExp(`(?:const|let|function|type)\\s+${rhs}\\b|import[^\\n]*\\b${rhs}\\b`).test(text)
+        if (spelled && nameable && !on.includes(spelled[2]!)) {
           out.push({ file: rel, line: i + 1, rule: 'spelled-comparison', label: label.slice(0, 120), on: on.slice(0, 100) })
         }
         // The ceiling may be named in the LABEL rather than reached by the code — "the FNV toUuid is WEAK (2^61),
