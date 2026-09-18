@@ -8636,7 +8636,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
         unlockedRayIndex >= 0 &&
         unlockedRayIndex < ROSETTA_RAYS.length &&
         beyondRays.length === ROSETTA_RAYS.length - 1
-      const restFromBeyond = beyondRays.length === 6 && beyondRays.every((r) => r.domain.length > 0)
+      const restFromBeyond = beyondRays.length === ROSETTA_RAYS.length - 1 && beyondRays.every((r) => r.domain.length > 0)
 
       // Clay ≡ gravity of the rosetta: census free-bits χ-gravity + folder gravity + Clay apparatus pull.
       const clayIsGravityRosetta =

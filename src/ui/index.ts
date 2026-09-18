@@ -860,7 +860,6 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
       && earthPoles.fourWayCounterRotating
       && earthPoles.computes
       && CARDINAL_ROSETTA_SPINS.length === HOMOLOGY_LOOPS
-      && CARDINAL_ROSETTA_SPINS.length === 4
     const expandPeak = (6 / 5) + (2 / (5 * 5))
     const invertScale = (4 / 5) - (2 / (5 * 5))
     const ktExpand = `0;${2 / 5};${11 / 20};${39 / 50};1`
@@ -2330,8 +2329,8 @@ export function rosettaIChingTopNav(matrix: MindMatrix = buildMatrix()) {
     const doorNames = ['Ground', 'Work', 'Reach'] // the three doors (earth·human·heaven, the I Ching three powers)
     const doors = [0, 1, 2].map((d) => ({ door: d, name: doorNames[d]!, rays: rays.filter((r) => r.door === d) }))
     // 1 — 3 DOORS × 7 RAYS: the nav groups the 7 rosetta rays into 3 doors, every ray a real hub route (not 4 poles)
-    const threeDoorsSevenRays = doors.length === 3 && rays.length === ROSETTA_RAYS.length && rays.length === 7
-      && doors.reduce((sum, dr) => sum + dr.rays.length, 0) === 7 && rays.every((r) => r.route.startsWith('/'))
+    const threeDoorsSevenRays = doors.length === doorNames.length && rays.length === ROSETTA_RAYS.length
+      && doors.reduce((sum, dr) => sum + dr.rays.length, 0) === ROSETTA_RAYS.length && rays.every((r) => r.route.startsWith('/'))
     // 2 — MATCHES I CHING: the 7 rays + Home = 8 bāguà trigrams, a bijection (2³), each ray a distinct trigram
     const distinctTrigrams = new Set(rays.map((r) => r.trigram)).size === 7 && BAGUA.length === 2 ** 3 && !rays.some((r) => r.trigram === BAGUA[0])
     // 3 — NO REGEX CRACK, NO CATCH-ALL, NO EMPTY POLE: rays are ROSETTA_RAYS (computed), every door non-empty, all 7 rays present

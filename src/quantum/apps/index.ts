@@ -1512,9 +1512,9 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
     const allRoundTrip = roundTrips.every((row) => row.ok)
     const allHaveIo = envelopes.every(
       (envelope) =>
-        envelope.input.fields.length >= 2 &&
-        envelope.config.fields.length >= 4 &&
-        envelope.output.fields.length >= 4 &&
+        envelope.input.fields.length >= STANDARD_TOOL_INPUT_FIELDS.length &&
+        envelope.config.fields.length >= STANDARD_TOOL_CONFIG_FIELDS.length &&
+        envelope.output.fields.length === STANDARD_TOOL_OUTPUT_FIELDS.length &&
         envelope.import.kind === STANDARD_TOOL_ENVELOPE_KIND &&
         envelope.export.kind === STANDARD_TOOL_ENVELOPE_KIND &&
         isUuid(envelope.root),
@@ -1528,7 +1528,7 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
         envelope.config.fields.some((field) => field.name === 'experiment' && field.required),
     )
     const missingBefore = total
-    const filledConfig = envelopes.filter((envelope) => envelope.config.fields.length >= 4).length
+    const filledConfig = envelopes.filter((envelope) => envelope.config.fields.length >= STANDARD_TOOL_CONFIG_FIELDS.length).length
     const meta = envelopes.find((envelope) => envelope.id === 'toolbox-standard-io')
     const prove1tbit = envelopes.find((envelope) => envelope.id === 'prove-1tbit-encrypt')
     const localRevStd = envelopes.find((envelope) => envelope.id === 'local-reverse-timed-vs-standards')
@@ -3640,8 +3640,8 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
         const sciTri = toolbox.envelopes.find((e) => e.id === 'sciences-trinities')
         return Boolean(
           sciStd && sciTri &&
-          sciStd.input.fields.length >= 2 && sciTri.input.fields.length >= 2 &&
-          sciStd.config.fields.length >= 4 && sciTri.config.fields.length >= 4 &&
+          sciStd.input.fields.length >= STANDARD_TOOL_INPUT_FIELDS.length && sciTri.input.fields.length >= STANDARD_TOOL_INPUT_FIELDS.length &&
+          sciStd.config.fields.length >= STANDARD_TOOL_CONFIG_FIELDS.length && sciTri.config.fields.length >= STANDARD_TOOL_CONFIG_FIELDS.length &&
           standards.toolCatalogCompose.count === standards.domains.length &&
           standards.toolCatalogCompose.configReadyCount === standards.domains.length,
         )
@@ -4070,7 +4070,7 @@ export function slowProcessIsQuantumGap(matrix: MindMatrix = buildMatrix(), at =
     // Composes standardToolboxIoCatalog (Wave 2 dry-clean) — NOT wall-clock build timing (sibling owns slow-build gates).
     const toolbox = standardToolboxIoCatalog(matrix, at)
     for (const envelope of toolbox.envelopes.filter((entry) => entry.scienceFacing)) {
-      const hasInput = envelope.input.fields.length >= 2
+      const hasInput = envelope.input.fields.length >= STANDARD_TOOL_INPUT_FIELDS.length
       const hasRequiredConfig =
         envelope.config.fields.some((field) => field.name === 'certified' && field.required) &&
         envelope.config.fields.some((field) => field.name === 'experiment' && field.required)
