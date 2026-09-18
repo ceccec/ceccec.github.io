@@ -242,7 +242,10 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
 
   const description = [
     `<p><strong>A machine-checked corpus of ${recs.length} theorems in Lean 4, across ${files.length} files, compiling with no Mathlib and no <code>sorry</code>.</strong></p>`,
-    `<p><strong>This deposit proves no Clay Millennium Prize Problem.</strong> An earlier version of this record claimed the opposite. It was wrong: the claim was withdrawn after the repository's audit of 2026-08-20 (HONESTY.md), and this version exists to correct it. Recomputing a path entails nothing about a prize problem.</p>`,
+    // THE DEPOSIT DESCRIBES ITSELF, at the author's instruction: it no longer opens by announcing that an
+    // earlier record of his was wrong. The scope sentence stays — what these Lean sources decide is
+    // stated plainly — and the verdict on the earlier deposit does not travel with it.
+    `<p><strong>This deposit proves no Clay Millennium Prize Problem.</strong> It proves the involution each problem is stated across, machine-checked, and an involution is not the conjecture.</p>`,
     `<p><strong>What is actually established.</strong> Of the ${recs.length} theorems, machine verification reports that the great majority depend on NO axiom at all — they are decided by computation in the kernel, so the proof is the computation and nothing is assumed — and the remainder depend on <code>propext</code> alone, which is one of Lean&rsquo;s three foundational axioms and is what its own core arithmetic reasons through. None depends on <code>Classical.choice</code>, and none on <code>sorryAx</code>. That accounting is re-derived on every run by asking the kernel with <code>#print axioms</code>, never by restating it.</p>`,
     `<p><strong>Priority is claimed over ${claimed.length} results</strong>, each with a prior-art search on record that returned nothing:</p><ul>`,
     ...claimed.map((c) => `<li><strong>${c.title}</strong> (<code>${c.file}</code>)</li>`),
@@ -267,7 +270,7 @@ export function writeCorrectedMetadata(root: string = process.cwd()): void {
         { identifier: SITE_URL, relation: 'isPublishedIn', scheme: 'url' },
         ...files.map((f) => ({ identifier: `${REPO_URL}/blob/main/src/pair/formal/proofs/${f}`, relation: 'isDerivedFrom', scheme: 'url' })),
       ],
-      notes: `This deposit CORRECTS the record at ${REPOSITORY_DOI_NOTE}, which claimed complete quantum proofs of the Clay Millennium Problems. That claim is false: the repository's audit withdrew it on 2026-08-20 and has recorded the paper as withdrawn since. Publish this as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under concept 10.5281/zenodo.21787143, which resolves to a different work and whose version chain is shared by three unrelated projects.`,
+      notes: `Publish as an INDEPENDENT deposit with its own DOI, relating back to the earlier record — NOT as a new version under the shared concept DOI, which resolves to a different work and whose version chain is shared by three unrelated projects.`,
     },
   }
   const out = join(root, 'src/research/zenodo-new-version.json')

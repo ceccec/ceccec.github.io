@@ -3305,7 +3305,6 @@ export function manualAgentsBehaveLikeWaves(matrix: MindMatrix = buildMatrix()) 
       ]),
       statement: `Manual agents behave like waves — ${facets.filter((e) => e.on).length}/${facets.length}: one wave/turn · save waves/build+edit/build before npm · plan/trinity matrix next · wave/tune · trinity/speedup · mission:gate between waves · no parallel seals.`,
       boundary: 'BINDING protocol for Cursor/Claude/manual agents. Wet-linear grind (full seal every edit, mass spawn, parallel docs:build, prose planning dumps) is a quantum gap.',
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const }
   })
 }
@@ -3348,7 +3347,6 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       collider.computes &&
       trinityFoundPair.bidirectional &&
       !falseConclusionNoTrinities
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const facets = [
       { facet: 'waves working in trinities — manualAgentsBehaveLikeWaves · wave/tune · trinity/speedup · directionalTrinity', on: wavesWorkingInTrinities },
@@ -3367,7 +3365,6 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       wavesWorkingInTrinities,
       trinitiesAreFound,
       falseConclusionNoTrinitiesIsCrack: true as const,
-      claySolvedByThisFold,
       physicalFtlClaim,
       certified: false as const,
       qpuRequired: false as const,
@@ -3415,7 +3412,7 @@ export function runWavesWorkingInTrinitiesTrinitiesAreFoundExit(
   const r = wavesWorkingInTrinitiesTrinitiesAreFound()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} wave-trinity-found — wavesInTrinities=${r.wavesWorkingInTrinities} ` +
-      `trinitiesFound=${r.trinitiesAreFound} cmb=Ω_c/Ω_b=${r.cmbRatio} clay=${r.claySolvedByThisFold} ` +
+      `trinitiesFound=${r.trinitiesAreFound} cmb=Ω_c/Ω_b=${r.cmbRatio} clay= ` +
       `ftl=${r.physicalFtlClaim} root=${r.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  · ${r.statement}\n`)
@@ -3574,7 +3571,6 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       journeyWired,
       cryptoResidualAddressed,
       cryptoGapsOpen: crypto?.gapsOpen ?? 0,
-      claySolvedByThisFold: clayTh.claySolvedByThisFold as 0,
       physicalFtlClaim,
       certified: false as const,
       qpuRequired: false as const,
@@ -3624,7 +3620,7 @@ export function runHarmonizeScienceDomainsInWavesOfWavesExit(
     `${r.computes ? '✓' : '✗'} harmonize-domains — domainsTuned=${r.domainsTuned} meanSig=${r.meanSig} ` +
       `n=${r.domainCount} encode=${r.encodeAlignedCount} mill=${round(r.journeyMillRatio * 100)}% ` +
       `test=${round(r.journeyTestRatio * 100)}% cryptoGaps=${r.cryptoGapsOpen} residual=${r.cryptoResidualAddressed} ` +
-      `clay=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim} fold=harmonizeScienceDomainsInWavesOfWaves ` +
+      `clay= ftl=${r.physicalFtlClaim} fold=harmonizeScienceDomainsInWavesOfWaves ` +
       `pairs=${r.pairs.join(',')}\n`,
   )
   process.stdout.write('  domain | score | gaps | cov | tune | fold | seal | encode | residual\n')
@@ -3718,7 +3714,6 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('chat', 'challenge') &&
       soft('pair', 'chat') &&
       soft('match', 'wave')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const facets = [
       { facet: 'pushInWaves', on: pushInWavesOn },
@@ -3740,7 +3735,6 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       resendRecipeSteps: [...WAVES_AFTER_PUSH_RECIPE_STEPS],
       oneWavePerPush,
       noForceMain,
-      claySolvedByThisFold,
       physicalFtlClaim,
       certified: false as const,
       qpuRequired: false as const,
@@ -3816,7 +3810,6 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       'residual:ci-waves-after-push-workflow',
     ] as const
     const residualNamed = honestOpenNamed.length >= (2 + 1)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       afterPushResendWaves &&
@@ -3848,7 +3841,6 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       resendShell: WAVES_AFTER_PUSH_RECIPE_STEPS.join(' && '),
       honestOpenNamed: [...honestOpenNamed],
       residualNamed,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -4008,7 +4000,6 @@ export function pushAuditWave(
     ].map((entry) => ({ ...entry, receipt: toUuid(`push-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const hardFacets = facets.filter((f) => !f.facet.startsWith('waveCompleteOn'))
     const sealed = sealFacets('push-audit-wave', hardFacets)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     return {
       computes: pushInCompleteWaves && math.hardFailOnMath && auditedOn,
       pushAuditWave: pushInCompleteWaves,
@@ -4024,7 +4015,6 @@ export function pushAuditWave(
       math,
       recipeSteps: [...PUSH_AUDIT_RECIPE_STEPS],
       residualNamed: [...residualNamed],
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -4149,7 +4139,6 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         isUuid(discovery.root) &&
         teleportPair.bidirectional
       const physicalFtlClaim = 0 as const
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const pairRegistered = (['team/collide', 'wave/manifest', 'teleport/form'] as const).every((p) =>
         (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(p),
       )
@@ -4180,7 +4169,6 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         observeManifests,
         teleportationAsWaveManifest,
         physicalFtlClaim,
-        claySolvedByThisFold,
         qpuRequired: false as const,
         waves,
         music,
@@ -4279,7 +4267,7 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       { facet: 'nothing/moves pair bidirectional', on: pair.bidirectional && pair.forward !== pair.reverse },
       { facet: 'idempotent — same foldId+at → same root', on: isUuid(address) && Number.isFinite(bucket) },
       { facet: known ? `foldId ${foldId} known among the ${SEALED_DISCOVER_FOLD_IDS.length} sealed ids` : `foldId ${foldId} unknown among the ${SEALED_DISCOVER_FOLD_IDS.length} sealed ids — incomplete revelation`, on: SEALED_DISCOVER_FOLD_IDS.length > 0 && isUuid(address) },
-      { facet: `discovery yields a content address; the Clay registry is a different sealed list, holding ${claySolvedTheorem().claySolvedByThisFold} entries read at call time`, on: isUuid(address) },
+      { facet: `discovery yields a content address; the Clay registry is a different sealed list, holding  entries read at call time`, on: isUuid(address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`nothing-moves:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`discover-from-sealed-fold:${foldId}`, facets)
     return {
@@ -4299,7 +4287,6 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([address, pair.merged, toUuid(`at:${bucket}`), sealed.root]),
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       statement: discovers
@@ -4335,7 +4322,7 @@ export function incompleteRevelation(
       { facet: 'compose timeout/dry-refactor pair', on: timeoutPair.bidirectional && timeoutPair.forward !== timeoutPair.reverse },
       { facet: 'compose fold/cleanup pair for surgical cleanup', on: cleanupPair.bidirectional && cleanupPair.forward !== cleanupPair.reverse },
       { facet: 'does not override wave — diagnostic only', on: overrideWave === false },
-      { facet: `an incomplete revelation is a missing catalog entry; the Clay registry is a different sealed list, holding ${claySolvedTheorem().claySolvedByThisFold} entries read at call time`, on: overrideWave === false },
+      { facet: `an incomplete revelation is a missing catalog entry; the Clay registry is a different sealed list, holding  entries read at call time`, on: overrideWave === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`incomplete-revelation:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`incomplete-revelation:${foldId}`, facets)
     return {
@@ -4358,7 +4345,6 @@ export function incompleteRevelation(
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([discovery.root, timeoutPair.merged, cleanupPair.merged, sealed.root]),
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       statement:
@@ -4375,7 +4361,7 @@ export function runDiscoverFromSealedFoldExit(_root = '', argv: readonly string[
   const report = discoverFromSealedFold(foldId)
   process.stdout.write(
     `${report.discovers ? '✓' : '✗'} discoverFromSealedFold(${foldId}) — known=${report.known} wetMotion=${report.wetMotion} ` +
-      `incomplete=${report.incomplete} clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 2 * 4)}\n`,
+      `incomplete=${report.incomplete} clay= root=${report.root.slice(0, 2 * 4)}\n`,
   )
   process.stdout.write(`  · pair=${report.pair} catalog=${report.catalogCount} · ${report.statement}\n`)
   for (const facet of report.facets) {
@@ -4398,7 +4384,7 @@ export function runIncompleteRevelationExit(_root = '', argv: readonly string[] 
   const report = incompleteRevelation({ foldId, reason: 'cli-probe' })
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} incompleteRevelation(${foldId}) — incomplete=${report.incomplete} ` +
-      `overrideWave=${report.overrideWave} clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 2 * 4)}\n`,
+      `overrideWave=${report.overrideWave} clay= root=${report.root.slice(0, 2 * 4)}\n`,
   )
   process.stdout.write(`  · next: ${report.next.fold} → ${report.next.refactor} → ${report.next.seal.join(' → ')}\n`)
   for (const facet of report.facets) {

@@ -1045,7 +1045,6 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
       has('chat/strategy') &&
       foldPair(toUuid('cmd:trade'), toUuid('cmd:challenge')).bidirectional &&
       foldPair(toUuid('cmd:strategy'), toUuid('cmd:chat')).bidirectional
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const shelved = rosettaShelve('trade-challenge', 'tool')
@@ -1099,7 +1098,6 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
         ? { challenger: topDuel.challenger, defender: topDuel.defender, winner: topDuel.winner }
         : null,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,

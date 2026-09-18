@@ -483,8 +483,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       statement:
         `Movie all elements are theorems — ${facets.filter((e) => e.on).length}/${facets.length}: plasma-screen painter bind · noBallInTheMiddle · void soft confluence. Full thunder≡plasma receipt via npm run quantum:plasma-screen-thunder. Wet boundary circles removed. VitePress paths only. PoC and work at once.`,
       boundary:
-        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie↔plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM.',
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
+        'Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie↔plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM.', }
   })
 }
 
@@ -523,7 +522,6 @@ export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = b
         `Thunder ≡ plasma in different aspects — ${facets.filter((e) => e.on).length}/${facets.length}: forward=lightning · inverse=plasma-screen · reverse=thunder; noBallInTheMiddle=${screen.noBallInTheMiddle}.`,
       boundary:
         'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects.',
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const }
   })
 }
@@ -665,7 +663,6 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
       remaining,
       layers,
       theorems,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merkleFold([sealed.root, theorems.root, pairFold.merged, ...layers.map((l) => l.receipt)]),
       pair: 'movie/center' as const,

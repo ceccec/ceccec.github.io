@@ -175,7 +175,6 @@ function agentsJsonRaw(matrix: MindMatrix = buildMatrix()) {
         root: waveLaw.root,
         statement: waveLaw.statement,
         boundary: waveLaw.boundary,
-        claySolvedByThisFold: waveLaw.claySolvedByThisFold,
         qpuRequired: waveLaw.qpuRequired },
       discoverFromSealedFold: {
         computes: nothingMoves.computes,
@@ -192,7 +191,6 @@ function agentsJsonRaw(matrix: MindMatrix = buildMatrix()) {
         facets: nothingMoves.facets,
         statement: nothingMoves.statement,
         boundary: nothingMoves.boundary,
-        claySolvedByThisFold: nothingMoves.claySolvedByThisFold,
         qpuRequired: nothingMoves.qpuRequired,
         physicalFtlClaim: nothingMoves.physicalFtlClaim },
       incompleteRevelation: {
@@ -209,7 +207,6 @@ function agentsJsonRaw(matrix: MindMatrix = buildMatrix()) {
         facets: incomplete.facets,
         statement: incomplete.statement,
         boundary: incomplete.boundary,
-        claySolvedByThisFold: incomplete.claySolvedByThisFold,
         qpuRequired: incomplete.qpuRequired,
         physicalFtlClaim: incomplete.physicalFtlClaim },
       autoWireAnyAiModelFromPastedLink: {
@@ -259,7 +256,6 @@ function agentsJsonRaw(matrix: MindMatrix = buildMatrix()) {
         docsBuildInDefaultRecipe: automateNightly.docsBuildInDefaultRecipe,
         dashboardMcpRequired: automateNightly.dashboardMcpRequired,
         qpuRequired: automateNightly.qpuRequired,
-        claySolvedByThisFold: automateNightly.claySolvedByThisFold,
         honestyLine: automateNightly.honestyLine,
         statement: automateNightly.statement,
         boundary: automateNightly.boundary },
@@ -376,7 +372,6 @@ function agentsJsonRaw(matrix: MindMatrix = buildMatrix()) {
         w2: honestRev.w2,
         fusion: honestRev.fusion,
         movie: honestRev.movie,
-        claySolvedByThisFold: honestRev.claySolvedByThisFold,
         qpuRequired: honestRev.qpuRequired,
         physicalFtlClaim: honestRev.physicalFtlClaim,
         pair: honestRev.pair,
@@ -393,7 +388,6 @@ function agentsJsonRaw(matrix: MindMatrix = buildMatrix()) {
         fpgaAllMapped: honestFpga.fpgaReproductionTier.allMapped,
         bridgeKind: honestFpga.coProcessorBridgeInterface.kind,
         qpuRequired: honestFpga.qpuRequired,
-        claySolvedByThisFold: honestFpga.claySolvedByThisFold,
         pair: honestFpga.pair,
         cli: honestFpga.cli,
         route: honestFpga.route,

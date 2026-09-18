@@ -1003,7 +1003,6 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
       spawnTitles,
       naming,
       compile,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       pair: 'path/message' as const,
       cli: 'npm run quantum:path-message-three-words',
@@ -1026,7 +1025,7 @@ export function runPathMeansMessageFitsInThreeWordsExit(_root = '', _argv: reado
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} path-message — pathMeans=${report.pathMeansMessageFitsInThreeWords} ` +
       `agentMessage≤3=${report.agentMessageAtMostThreeWords} max=${report.maxWords} ` +
-      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+      `clay= root=${report.root.slice(0, 8)}\n`,
   )
   for (const sample of report.pathSamples) {
     process.stdout.write(`  path ${sample.path} → "${sample.message}" (${sample.wordCount}w) ${sample.fits ? '✓' : '✗'}\n`)
@@ -1206,7 +1205,6 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
     const pairMultiTask = foldPair(toUuid('cmd:multi'), toUuid('cmd:task'))
     const pairTaskQuantum = foldPair(toUuid('cmd:task'), toUuid('cmd:quantum'))
     const pairChatMulti = foldPair(toUuid('cmd:chat'), toUuid('cmd:multi'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const computes =
@@ -1241,7 +1239,6 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
       teamObserveSoft,
       heroWorkers: hero.workers,
       massRefused: mass.spawn === false,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets,
@@ -2194,7 +2191,6 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       ampProbs,
       shadow,
       visibilityContrast: { amplitudesCancel: ampCancel, probabilitiesCannot: shadowNoCancel },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       facets: sealed.facets,
@@ -2255,7 +2251,6 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
       vote,
       core,
       learned,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, vote.root, core.root, ...learned.map((r) => r.receipt)])),
       cli: 'npm run quantum:efficiency-vote',
@@ -2418,7 +2413,6 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
     const classical64BitAddress = quantumDefinedBy('n_qubit_dimension')
     const runsOnClassical64Bit = isUuid(classical64BitAddress)
     const architectureRequirement = env.architectureRequirement
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const isoCertified = false as const
     const physicalQmSpeedupClaimed = false as const
 
@@ -2512,7 +2506,6 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       benchVerdict: bench.verdict,
       physicalQmSpeedupClaimed,
       isoCertified,
-      claySolvedByThisFold,
       vote,
       one,
       proven,
@@ -3430,7 +3423,6 @@ export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
       catalog,
       importFractal,
       residualNamed: [...residualNamed],
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -3596,7 +3588,6 @@ export function directionalTrinityForwardInverseReverse(matrix: MindMatrix = bui
       foldPair: { forward: pair.forward, reverse: pair.reverse, merged: pair.merged, bidirectional: pair.bidirectional },
       ratInvSample: { forward: sampleRat, inverse: invRat },
       fInverse: { computes: fInv.computes, root: fInv.root },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, zero.root, folders.root, fInv.root, pairTrinity])),
       cli: 'npm run quantum:directional-trinity',

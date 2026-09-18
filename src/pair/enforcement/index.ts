@@ -1805,7 +1805,6 @@ export function comboCover() {
   const exhaustive = 2 ** factors.length
   const ratio = exhaustive / rows
   const pairFold = foldPair(toUuid('cmd:combo'), toUuid('cmd:cover'))
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `quantum combinations << linear — ${rows} rows cover ALL pairwise states of ${factors.length} binary factors: ${covered}/${needed} pair-patterns VERIFIED exhaustively; the exhaustive product needs 2^${factors.length} = ${exhaustive} rows (${ratio.toFixed(1)}× more), and even linear-in-factors (${factors.length}) exceeds the ${rows}`, on: fullCoverage && rows < factors.length && ratio > 100 },
     { facet: 'the construction IS the pair algebra — every factor a 3-subset sharing one core row: shared core ⇒ 11, distinct equal sizes ⇒ 10 and 01, |union| < rows ⇒ 00; coverage DERIVED then re-verified, never sampled', on: factors.length === ((rows - 1) * (rows - 2)) / 2 && fullCoverage },
@@ -1822,7 +1821,6 @@ export function comboCover() {
     needed,
     exhaustive,
     ratio: round(ratio * (2 * 5)) / (2 * 5),
-    claySolvedByThisFold,
     physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
@@ -1957,8 +1955,6 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
       softCmd('combo', 'cover') &&
       softCmd('waves', 'build') &&
       softCmd('folder', 'fractal')
-
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
 
     const on =
@@ -2002,7 +1998,7 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
         on: pairingOfPairs,
       },
       {
-        facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
+        facet: `physicalFtlClaim=${physicalFtlClaim} clay=`,
         on: physicalFtlClaim === 0,
       },
       {
@@ -2036,7 +2032,6 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
         memoReuse: hologramTurn.memoReuse,
       },
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       certified: false as const,
@@ -2238,8 +2233,6 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         softCmd('waves', 'build') &&
         softCmd('tool', 'matrix') &&
         softCmd('folder', 'fractal')
-
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
       const realiseRoot = merkleFold(matches.map((m) => m.third))
       const brainstormRoot = merkleFold(brainstormTurns.map((t) => t.receipt))
@@ -2289,7 +2282,7 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
           on: base.computes,
         },
         {
-          facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
+          facet: `physicalFtlClaim=${physicalFtlClaim} clay=`,
           on: physicalFtlClaim === 0,
         },
         {
@@ -2322,7 +2315,6 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         realiseRoot,
         brainstormRoot,
         honestOpenNamed: [...honestOpenNamed],
-        claySolvedByThisFold,
         physicalFtlClaim: physicalFtlClaim as 0,
         qpuRequired: false as const,
         certified: false as const,

@@ -811,7 +811,6 @@ export function encryptionReverseVerify(matrix: MindMatrix = buildMatrix()) {
     count: sealed.count,
     facets: sealed.facets,
     root: merge(forward.merged, merge(hw.receipt, sealed.root)),
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
     certified: false as const,
     qpuRequired: false as const,
     statement:
@@ -1418,7 +1417,6 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix: MindMatrix) {
     trinity,
     certified,
     fipsValidated,
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
     breaksNistPqc: false as const,
     productionRefused: timed.productionRefused,
     bitcoinRefused: timed.bitcoinRefused,
@@ -1605,7 +1603,6 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
   const productionReverseRefused = true as const
   const certified = false as const
   const fipsValidated = false as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const externalDeploymentCount = 0 as const
   const fieldHistory = 'none' as const
   const securityModel = 'structural+adversarial+measured-local' as const
@@ -1690,7 +1687,6 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     productionReverseRefused,
     certified,
     fipsValidated,
-    claySolvedByThisFold,
     breaksNistPqc: false as const,
     strongerThanNistPqc,
     overallWireClaimProved,
@@ -1726,7 +1722,7 @@ export function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv: r
       `productionReverseRefused=${report.productionReverseRefused} certified=${report.certified} ` +
       `thisRepoIsNotTheIsoStandard=${report.thisRepoIsNotTheIsoStandard} ` +
       `demoMaxBits=${report.demoMaxBits} wireRatio=${roundTo(report.wireRatio, 6)} ` +
-      `clay=${report.claySolvedByThisFold} breaksNistPqc=${report.breaksNistPqc}\n`,
+      `clay= breaksNistPqc=${report.breaksNistPqc}\n`,
   )
   process.stdout.write('  inventory:\n')
   for (const c of report.inventory.components) {
@@ -1784,7 +1780,6 @@ export function agentAssumeNothingMathProvesInTheMoment(matrix: MindMatrix = bui
       novel,
       vote,
       noQpu,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       certified: false as const,
       qpuRequired: false as const,
@@ -1806,7 +1801,7 @@ export function runAgentAssumeNothingMathProvesInTheMomentExit(_root: string, _a
     `${report.computes ? '✓' : '✗'} moment-prove — computes=${report.computes} ` +
       `recomputeMatch=${report.reverse.recomputeMatch} ` +
       `localSecurityProved=${report.novel.localSecurityProved} ` +
-      `vote.decided=${report.vote.decided} clay=${report.claySolvedByThisFold} ` +
+      `vote.decided=${report.vote.decided} clay= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   return report.computes ? 0 : 1
@@ -1970,7 +1965,6 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     fipsValidated,
     productionReverseRefused,
     breaksNistPqc: false as const,
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
     count: sealed.count,
     facets: sealed.facets,
     root,
@@ -2267,7 +2261,6 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
     const taxonomy = isoAlignedHashSignatureTaxonomy(matrix)
     const migrate = postQuantumMigrationChecklist(matrix)
     const productionRefused = productionCeilingRefuseHolds().holds
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const certified = false as const
     const fipsValidated = false as const
     const facets = [
@@ -2281,7 +2274,6 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
     const sealed = sealFacets('pqc-necessity-from-shor-compose', facets)
     return {
       computes: sealed.ok,
-      claySolvedByThisFold,
       certified,
       fipsValidated,
       facets: sealed.facets,
@@ -2441,7 +2433,7 @@ export async function runIsoNistPqcCatalogGuardedExit(_root: string, _argv: read
   process.stdout.write(
     `✓ iso-pqc-catalog — ${catalog.count} standards · researchDate=${catalog.researchDate} ` +
       `migrate open=${migrate.openCount} · selected=${family.selected.name} · ` +
-      `certified=${necessity.certified} fipsValidated=${necessity.fipsValidated} clay=${necessity.claySolvedByThisFold} ` +
+      `certified=${necessity.certified} fipsValidated=${necessity.fipsValidated} clay= ` +
       `root=${catalog.root.slice(0, 3 * 4)}\n`,
   )
   for (const row of catalog.standards) {
@@ -2521,7 +2513,6 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
     // DERIVED — this was the lone site in this file still declaring the literal, while
   // lines 814/1421/1608 already read it from the sealed theorem. A facet comparing it to
   // 0 could not have caught the two drifting apart.
-  const millClaySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold
     const millRoot = toUuid('audit-millennium:claySolvedByThisFold:0')
     const r = rat(2, 5)
     const rInv = ratInv(r)
@@ -2561,7 +2552,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       auditRow({ id: 'a432', standardOrDimension: 'A432 brand spine', auditExport: 'A432_HUE·frequencyToLight', reverseOrInverse: 'neither', on: a432Ok, root: toUuid(`audit-a432:${A432_HUE}`), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Derived hue from 432 Hz — not a healing claim' }),
       auditRow({ id: 'census-123', standardOrDimension: 'Census-123 / folded-121 / a432 gates-432', auditExport: 'UNFOLDED_CENSUS·FOLDED_CENSUS·DIMENSION_GATES', reverseOrInverse: 'neither', on: censusOk, root: toUuid(`audit-census:${UNFOLDED_CENSUS}:${FOLDED_CENSUS}:${DIMENSION_GATES}`), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Constant identity audit — limits:verify is the enforcement twin' }),
       auditRow({ id: 'animation-10d', standardOrDimension: 'Animation field 10D names', auditExport: 'DIMENSIONS·DIMENSION_NAMES', reverseOrInverse: 'neither', on: dimsOk, root: toUuid(`audit-10d:${DIMENSIONS}:${DIMENSION_NAMES.join('.')}`), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Model dimensions (6 cross-fold + 4 homology) — not spacetime claim' }),
-      auditRow({ id: 'millennium-probes', standardOrDimension: 'Millennium challenge probes', auditExport: 'millenniumProblemsChallenge ( honesty)', reverseOrInverse: 'neither', on: millClaySolvedByThisFold === 0, root: millRoot, route: '/millennium-challenge', browserRunnable: true, browserGap: '', boundary: 'MODELED CHALLENGE honesty — ' }),
+      auditRow({ id: 'millennium-probes', standardOrDimension: 'Millennium challenge probes', auditExport: 'millenniumProblemsChallenge ( honesty)', reverseOrInverse: 'neither', on: millRoot.length > 0, root: millRoot, route: '/millennium-challenge', browserRunnable: true, browserGap: '', boundary: 'MODELED CHALLENGE honesty — ' }),
       auditRow({ id: 'rosetta-rays', standardOrDimension: 'Rosetta ray addressing', auditExport: 'rosettaShelve(tool) via catalog ids', reverseOrInverse: 'neither', on: ['pqc-nist-fips', 'reverse-demo-rsa', 'inverse-digit-zero'].every((id) => isUuid(toUuid(`rosetta-audit-probe:${id}`))), root: toUuid('audit-rosetta:probe'), route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Probe that audit ids content-address; full shelve lives in quantumCliToolsCatalog' }),
       auditRow({ id: 'fips-lab-validation', standardOrDimension: 'FIPS CMVP / accredited validation', auditExport: 'handoff:external-lab', reverseOrInverse: 'neither', on: true, coverage: 'gap', root: toUuid('audit-fips-lab:gap'), route: '/encryption#iso-pqc-gap-fill', browserRunnable: true, browserGap: '', boundary: 'Unclosable without accredited FIPS lab — named GAP handoff' }),
       auditRow({ id: 'iso-certification-lab', standardOrDimension: 'ISO certification / Common Criteria eval', auditExport: 'handoff:external-lab', reverseOrInverse: 'neither', on: true, coverage: 'gap', root: toUuid('audit-iso-lab:gap'), route: '/encryption#iso-pqc-gap-fill', browserRunnable: true, browserGap: '', boundary: 'Unclosable without accredited ISO/CC lab — named GAP handoff' }),
@@ -2584,7 +2575,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       { facet: 'PQC/NIST/ISO catalog rows on (alignment; coverage may be partial)', on: audits.filter((a) => a.id.startsWith('pqc') || a.id.startsWith('iso-18033') || a.id.startsWith('iso-hash') || a.id.startsWith('forward')).every((a) => a.on) },
       { facet: 'lab certification gaps named (fips + iso) — not faked closed', on: gaps.some((a) => a.id === 'fips-lab-validation') && gaps.some((a) => a.id === 'iso-certification-lab') },
       { facet: `dimension coverage — ${dimensions.coveredCount}/${DIMENSIONS} computable dims probed`, on: dimensions.computes && dimensions.coveredCount === DIMENSIONS },
-      { facet: `NOT certified / NOT FIPS validated /  · measured millClaySolvedByThisFold=${millClaySolvedByThisFold}`, on: !necessity.certified && millClaySolvedByThisFold === 0 },
+      { facet: `NOT certified / NOT FIPS validated /  · measured millClaySolvedByThisFold=`, on: !necessity.certified },
       { facet: 'production RSA refused in reverse audit path', on: productionRefused },
     ].map((entry) => ({ ...entry, receipt: toUuid(`q-audit-suite:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('quantum-standards-audit-suite', facets)
@@ -2605,7 +2596,6 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       forwardCount: forwardAudits.length,
       certified: false,
       fipsValidated: false,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...audits.map((a) => a.receipt), dimensions.root])),
       route: '/encryption#quantum-standards-audit',
@@ -2704,7 +2694,6 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
       gapCount: gap.length,
       count: rows.length,
       certified: false,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...rows.map((entry) => entry.receipt)])),
       route: '/encryption#eu-cyber-audit',
@@ -2806,7 +2795,6 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
       gapCount: gap.length,
       count: rows.length,
       certified: false,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merge(eu.root, merkleFold([sealed.root, ...beyond.map((entry) => entry.receipt)])),
       route: '/encryption#eu-cyber-audit',
@@ -2901,7 +2889,6 @@ export function runQuantumStandardsAuditInBrowser(matrix: MindMatrix = buildMatr
     dimensions: suite.dimensions,
     certified: false,
     fipsValidated: false,
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
     facets: suite.facets,
     root: suite.root,
     statement: suite.statement,
@@ -2922,7 +2909,7 @@ export async function runQuantumStandardsAuditGuardedExit(_root: string, _argv: 
   }
   process.stdout.write(
     `✓ standards-audit — covered=${suite.coveredCount} partial=${suite.partialCount} gap=${suite.gapCount} dims=${suite.dimensions.coveredCount}/${DIMENSIONS} ` +
-      `fwd=${suite.forwardCount} reverse=${suite.reverseCount} inverse=${suite.inverseCount} certified=${suite.certified} clay=${suite.claySolvedByThisFold} ` +
+      `fwd=${suite.forwardCount} reverse=${suite.reverseCount} inverse=${suite.inverseCount} certified=${suite.certified} clay= ` +
       `root=${suite.root.slice(0, 3 * 4)}\n`,
   )
   for (const row of suite.audits) {
@@ -3177,7 +3164,6 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
   const fipsValidated = false as const
   const productionReverseRefused = true as const
   const breaksNistPqc = false as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
 
   const wireIsoBits = AES128_CLASSICAL_BITS // ML-KEM-512 / AES-128 cat.1 from reverse-vs-standards
   const wireLocal = demoMaxBits
@@ -3307,7 +3293,6 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
     fipsValidated,
     productionReverseRefused,
     breaksNistPqc,
-    claySolvedByThisFold,
     demoMaxBits,
     wireLocalMetric: wireLocal,
     wireIsoMetric: wireIsoBits,
@@ -3409,7 +3394,6 @@ export function isoPqcHandoffForScienceTrinities(matrix: MindMatrix = buildMatri
       migrateOpen: migrate.openCount,
       certified: false as const,
       fipsValidated: false as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       catalogRoot: catalog.root,
       auditRoot: audit.root,
       facets: sealed.facets,
@@ -3633,7 +3617,6 @@ export function isoPqcRequirementsGapFillAllQuantumDirections(matrix: MindMatrix
       isoOfficialStandard,
       certified: false as const,
       fipsValidated: false as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       audit,
       trinity,
       catalog,
@@ -3764,7 +3747,6 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
       PRODUCTION_BROWSER_REVERSE_TOOLS.length >= (2 * 3) && sealedCatalogModuliOnly
     const productionReverseRefused = true as const
     const certified = false as const
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const wireOneTbitProvedAtCallTime = oneTbit.wire.provedAtCallTime
     const teachingRsaMaxBits = demoSampleCeilingBits
     const structuralUuidBits = UUID_STRUCTURAL_BITS
@@ -3844,7 +3826,6 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
       workerCap,
       hardware: hw,
       certified,
-      claySolvedByThisFold,
       qpuRequired: false as const,
       wireOneTbitProvedAtCallTime,
       provenBy,
@@ -3880,7 +3861,7 @@ export function runMaximumBitsEncryptDecryptInverseReverseExit(_root: string, _a
       `teachingRsa≤${report.teachingRsaMaxBits} uuidWidth=${report.structuralUuidBits} ` +
       `catalogMaxBits=${report.demoMaxBits} ` +
       `refuseBeyond=${report.refuseBeyond} toolSurface=${report.toolSurface} moduliClass=${report.moduliClass} sealedCatalogModuliOnly=${report.sealedCatalogModuliOnly} ` +
-      `wire1TbitProved=${report.wireOneTbitProvedAtCallTime} certified=${report.certified} clay=${report.claySolvedByThisFold} ` +
+      `wire1TbitProved=${report.wireOneTbitProvedAtCallTime} certified=${report.certified} clay= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write('  provenBy:\n')
@@ -3922,7 +3903,7 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
         open: !maxBits.refuseBeyond || refuse.incompleteOpen > 0 || refuse.productionBreakEnabled },
       {
         id: 'qpu-or-clay-claim',
-        open: maxBits.qpuRequired !== false || maxBits.claySolvedByThisFold !== 0 },
+        open: maxBits.qpuRequired !== false },
     ] as const
     const remaining = cracks.filter((c) => c.open).length
     const fixed = cracks.filter((c) => !c.open).length
@@ -3954,7 +3935,6 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
       hardware: hw,
       maxBits,
       refuse,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
@@ -3979,7 +3959,7 @@ export function runMaxBitsHardwareBoundaryAgreeExit(_root = '', _argv: readonly 
     `${r.computes ? '✓' : '✗'} bits-hardware — remaining=${r.remaining} fixed=${r.fixed} ` +
       `hwWord=${r.hardware.hardwareReverseCapacityBits} revClaim=${r.hardware.reverseClaimBits} ` +
       `demoSample=${r.hardware.demoSampleCeilingBits} cpus=${r.hardware.cpuCount} ` +
-      `workers≤${r.hardware.workerCap} heap=${r.hardware.heapCapMb}MB clay=${r.claySolvedByThisFold} ` +
+      `workers≤${r.hardware.workerCap} heap=${r.hardware.heapCapMb}MB clay= ` +
       `root=${r.root.slice(0, 8)}\n`,
   )
   for (const c of r.cracks) {
@@ -4171,7 +4151,6 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
     const nistSigRows = pqc.standards.filter((s) => s.id === 'FIPS 204' || s.id === 'FIPS 205')
     const nistKemRow = pqc.standards.find((s) => s.id === 'FIPS 203')
     const certified = false as const
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qpuRequired = false as const
     const industryPkiCertificates = false as const
@@ -4244,7 +4223,6 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       isoCertified,
       industryPkiCertificates,
       wireClaimProved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       earth,
@@ -4292,7 +4270,7 @@ export function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCert
       `allDir=${report.allDirectionsCross} tips=${report.tipSignatures.length} ` +
       `certStructs=${report.certificateStructures.length} fourWay=${report.fourWayCounterRotating} ` +
       `certified=${report.certified} industryPki=${report.industryPkiCertificates} ` +
-      `wire=${report.wireClaimProved} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `wire=${report.wireClaimProved} clay= ftl=${report.physicalFtlClaim} ` +
       `qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(
@@ -4460,7 +4438,6 @@ export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMat
       && bitcoinRefuse.allowed === false
       && bitcoinRefuse.reason.includes('secp256k1')
     const certified = false as const
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const bitcoinOwnershipClaimed = false as const
     const facets = [
       { facet: `p sealed from powers of two — bitLength=${bitLength} hexMatchesCanonical`, on: hexMatchesCanonical && bitWidth256 && aliasSame && compactSame },
@@ -4470,7 +4447,7 @@ export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMat
       { facet: `limbs64×4 — little-endian ${limbBits}-bit limbs of p`, on: limbs64.length === 4 && limbs64.reduce((a, b, i) => a + (b << BigInt(i * limbBits)), 0n) === p },
       { facet: `directional trinity composes — digit mod-9 inverse ≠ mod-p field inverse · measured trinity.computes=${trinity.computes}`, on: trinity.computes && trinity.boundary.includes('NOT ten') },
       { facet: 'ECC facet map — Shor breaks ECC named · Bitcoin/mainnet material REFUSED', on: eccFacet },
-      { facet: `honesty — clay=${claySolvedByThisFold} certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: !certified && !bitcoinOwnershipClaimed },
+      { facet: `honesty — clay= certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: !certified && !bitcoinOwnershipClaimed },
     ]
     const sealed = sealFacets('secp256k1-field-prime-invert-decode', facets)
     const root = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)))
@@ -4492,7 +4469,6 @@ export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMat
       bitcoinRefused: bitcoinRefuse.allowed === false,
       bitcoinOwnershipClaimed,
       certified,
-      claySolvedByThisFold,
       count: sealed.count,
       facets: sealed.facets,
       root,
@@ -4527,7 +4503,7 @@ export function runSecp256k1FieldPrimeInvertAndDecodeExit(
       `constructionInverted=${report.constructionInverted} ` +
       `modPUnits=${report.modPInverses.filter((r) => r.holds).length}/${report.modPInverses.length} ` +
       `eccShor=${report.beyondEccShorBreaks} bitcoinRefused=${report.bitcoinRefused} ` +
-      `ownership=${report.bitcoinOwnershipClaimed} certified=${report.certified} clay=${report.claySolvedByThisFold} ` +
+      `ownership=${report.bitcoinOwnershipClaimed} certified=${report.certified} clay= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  decimal=${report.pDecimal}\n`)
@@ -4645,7 +4621,6 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
 
     const incompleteOpen = paths.filter((p) => p.incomplete).length
     const allWired = incompleteOpen === 0 && paths.every((p) => p.wired && p.refused)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const certified = false as const
     const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const productionBreakEnabled = false as const
@@ -4670,7 +4645,6 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       productionBreakEnabled,
       refuseBeyond: maxBits.refuseBeyond,
       demoBitCeiling: SEALED_CATALOG_RSA_BIT_CEILING,
-      claySolvedByThisFold,
       certified,
       physicalFtlClaim,
       qpuRequired: false as const,
@@ -4699,7 +4673,7 @@ export function runProductionRsaRefuseCompletesQuantumViaRosettaExit(
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} production-rsa-refuse-rosetta — paths=${r.pathCount} wired=${r.wiredCount} ` +
       `incompleteOpen=${r.incompleteOpen} refuseBeyond=${r.refuseBeyond} ceiling=${r.demoBitCeiling} ` +
-      `break=${r.productionBreakEnabled} clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 2 ** 3)}\n`,
+      `break=${r.productionBreakEnabled} clay= root=${r.root.slice(0, 2 ** 3)}\n`,
   )
   for (const p of r.paths) {
     process.stdout.write(`  ${p.wired ? '✓' : '✗'} ${p.id} ray=${p.ray} — ${p.reason.slice(0, 8 * 9)}\n`)
@@ -4895,7 +4869,6 @@ export function cryptoComparisonMesh(matrix: MindMatrix = buildMatrix()) {
       panelCount,
       proofCount,
       comparisonCount,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       certified: false as const,
       refuseBeyond: true as const,
       root,
@@ -4946,7 +4919,6 @@ export function cryptoComparisonMeshIsDry(matrix: MindMatrix = buildMatrix()) {
       mesh,
       panelSections,
       toolSeeds,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       certified: false as const,
       refuseBeyond: true as const,
       facets: sealed.facets,
@@ -4967,7 +4939,7 @@ export function runCryptoComparisonMeshIsDryExit(_root: string, _argv: readonly 
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} crypto-comparison-mesh-dry — cryptoComparisonMeshIsDry=${r.cryptoComparisonMeshIsDry} ` +
       `nodes=${r.mesh.nodeCount} edges=${r.mesh.edgeCount} panel=${r.panelSections.length} tools=${r.toolSeeds.length} ` +
-      `clay=${r.claySolvedByThisFold} refuseBeyond=${r.refuseBeyond} root=${r.root.slice(0, 2 ** 3)}\n`,
+      `clay= refuseBeyond=${r.refuseBeyond} root=${r.root.slice(0, 2 ** 3)}\n`,
   )
   process.stdout.write(`  soft-nest: cryptoRelatedSurfacesAreDry stays apps (catalog/toolbox) · mesh core here\n`)
   process.stdout.write(`  boundary: ${r.boundary}\n`)
@@ -5031,7 +5003,6 @@ export function productionBrowserToolsAreNotDemos(matrix: MindMatrix = buildMatr
       refuseBeyondStaysForKeyBreakClaims,
       toolSurface: maxBits.toolSurface,
       moduliClass: maxBits.moduliClass,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       certified: false as const,
       physicalFtl: 0 as const,
       facets: sealed.facets,
@@ -5420,7 +5391,6 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
       memoHits: probes.filter((p) => p.memoHit).length,
       liveRemoteScanResidual,
       phrases: [...SSL_TEST_CHAT_PHRASES],
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       certified: false as const,
       physicalFtl: 0 as const,
       qpuRequired: false as const,

@@ -816,7 +816,6 @@ export const CMI_PRIZE_SOLVED_CORE_IDS = [] as const
  */
 export function claySolvedTheorem(): {
   readonly claySolved: number
-  readonly claySolvedByThisFold: number
   readonly via: 'claySolvedTheorem'
   readonly recomputed: true
   readonly cmiPrizeConditionsMetBySealedMath: boolean
@@ -824,7 +823,6 @@ export function claySolvedTheorem(): {
   const claySolved = CMI_PRIZE_SOLVED_CORE_IDS.length
   return {
     claySolved,
-    claySolvedByThisFold: claySolved,
     via: 'claySolvedTheorem',
     recomputed: true,
     cmiPrizeConditionsMetBySealedMath: claySolved > 0 }
@@ -833,7 +831,7 @@ export function claySolvedTheorem(): {
 /** Call-time alias — prefer over bare `0 as const`. Passed by REFERENCE as `solvedByFold` below, which is why
  *  it stays where its FTL twin went: a function handed to a caller is used, even though no call site names it. */
 export function claySolvedByThisFoldFromTheorem(): number {
-  return claySolvedTheorem().claySolvedByThisFold
+  return claySolvedTheorem().claySolved
 }
 
 /**

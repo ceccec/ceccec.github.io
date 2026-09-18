@@ -1457,8 +1457,6 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       rings.decoded &&
       lcm(260, 365) === 18_980 &&
       lcm(10, 12) === 60
-
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const claims = [
       { facet: 'inventory — Maya · Chinese sexagenary · Egyptian/Sothic · Metonic/Hebrew · Babylonian · Julian/Gregorian structural · 819-count · hero/A432 · Vedic mod-9 (sealed only)', on: calendars.length === 9 },
@@ -1490,7 +1488,6 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
     return {
       computes: sealed.ok && allHold && coupled.decoded && rings.decoded,
       decoded: sealed.ok && allHold,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       calendars,
@@ -1517,7 +1514,7 @@ export function runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeEx
   const r = ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} ancient-calendars-algebra — maps=${r.count} decoded=${r.decoded} ` +
-      `clay=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim} qpu=${r.qpuRequired} ` +
+      `clay= ftl=${r.physicalFtlClaim} qpu=${r.qpuRequired} ` +
       `route=${r.route} root=${r.root.slice(0, 8)}\n`,
   )
   return r.computes && r.physicalFtlClaim === 0 ? 0 : 1
@@ -1542,7 +1539,6 @@ export type OneCommandDecodeResult = {
   readonly refused: boolean
   readonly refuseReason: string
   readonly oneCommandDecodeComputable: boolean
-  readonly claySolvedByThisFold: 0
   readonly qpuRequired: false
   readonly physicalFtlClaim: 0
   readonly facets: readonly { readonly facet: string; readonly on: boolean; readonly receipt: string }[]
@@ -1630,7 +1626,6 @@ export function oneCommandDecodeHashOrStringOrSequence(
     fold.forward !== fold.reverse &&
     dr >= 1 &&
     dr <= 9
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: 'oneCommandDecodeComputable — sealed path recomputes for hash|string|sequence|uuid|digit', on: oneCommandDecodeComputable || classified.refused },
     { facet: `kind=${classified.kind} classified from input shape`, on: classified.kind.length > 0 },
@@ -1652,7 +1647,6 @@ export function oneCommandDecodeHashOrStringOrSequence(
     refused: classified.refused,
     refuseReason: classified.refuseReason,
     oneCommandDecodeComputable,
-    claySolvedByThisFold,
     qpuRequired: false as const,
     physicalFtlClaim: 0 as const,
     facets: sealed.facets,
@@ -1684,7 +1678,6 @@ export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), a
     // Safe-integer odd modulus above demo ceiling — refuseBeyond honesty
     const overCeil = 2 ** DEMO_RSA_BIT_CEILING * 3 + 1
     const refuseProbe = oneCommandDecodeHashOrStringOrSequence(String(overCeil), matrix)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: 'oneCommandDecodeComputable=true on hash·string·sequence·uuid·digit probes', on: allOk },
       { facet: 'production-shaped integer refused (DEMO_RSA ceiling honesty)', on: refuseProbe.refused && refuseProbe.computes },
@@ -1694,7 +1687,6 @@ export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), a
     return {
       computes: sealed.ok && allOk && refuseProbe.refused,
       oneCommandDecodeComputable: allOk,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       probes: probes.map((p) => ({ kind: p.kind, computable: p.oneCommandDecodeComputable, root: p.root })),
@@ -1718,7 +1710,7 @@ export function runOneCommandDecodeExit(_root: string, argv: readonly string[] =
   process.stdout.write(
     `${r.computes && gate.oneCommandDecodeComputable ? '✓' : '✗'} quantum:decode — kind=${r.kind} ` +
       `computable=${r.oneCommandDecodeComputable} refused=${r.refused} dr=${r.digitalRoot} ` +
-      `vortex=${r.onVortexSequence} address=${r.address.slice(0, 8)} clay=${r.claySolvedByThisFold}\n`,
+      `vortex=${r.onVortexSequence} address=${r.address.slice(0, 8)} clay=\n`,
   )
   if (r.refused) process.stdout.write(`  refuse: ${r.refuseReason}\n`)
   else {
@@ -2885,7 +2877,6 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
       phenomena: phenomena.theoremRoutes,
       decodedCount: phenomena.theoremRoutes.length,
       srcReadable,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const,
       facets,
       root: merkleFold([
@@ -2913,7 +2904,7 @@ export function runPlasmaBallIsScreenHoldingThunderAndPlasmaExit(_root = '', _ar
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} plasma-screen-thunder — screen=${report.plasmaBallIsScreenHoldingThunderAndPlasma} ` +
       `noBall=${report.noBallInTheMiddle} thunder≡plasma=${report.thunderPlasmaSameDifferentAspects} ` +
-      `phenomena=${report.decodedCount} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `phenomena=${report.decodedCount} clay= ftl=${report.physicalFtlClaim} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)

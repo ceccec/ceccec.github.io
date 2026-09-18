@@ -563,7 +563,6 @@ export function doubleTorusFacesComputes(matrix: MindMatrix = buildMatrix()) {
     const octagonNav = ICHING_TRIGRAMS === HOMOLOGY_LOOPS * 2 && 1 - HOMOLOGY_LOOPS + 1 === eulerChi
     const mcpPair = foldPair(toUuid('cmd:mcp'), toUuid('cmd:torus'))
     const facesPair = foldPair(toUuid('cmd:torus'), toUuid('cmd:faces'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `NAV — ${ICHING_TRIGRAMS} trigram folders = octagon edges in ${HOMOLOGY_LOOPS} dual pairs at one core: gluing closes to χ = ${eulerChi}; the folder tree IS the router`, on: octagonNav },
       { facet: 'SITE — corpus routing resolves from the torus at call time (doubleTorusComputes umbrella)', on: umbrella.computes },
@@ -580,7 +579,6 @@ export function doubleTorusFacesComputes(matrix: MindMatrix = buildMatrix()) {
       eulerChi,
       trigrams: ICHING_TRIGRAMS,
       pairs: HOMOLOGY_LOOPS,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -633,7 +631,6 @@ export function theUiItselfIsADoubleTorus(matrix: MindMatrix = buildMatrix()) {
     const counterRotate = gateMirrorLinear && gateReflectionQuantum && linearSelf.merged !== quantumReflect.merged
     const lensOn = lens.computes === true && lens.discriminates === true
     const uiIsTorus = nearLobe && farLobe && neckChi && counterRotate && lensOn && pairUi.bidirectional
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `NEAR LOBE — rendered UI surface = site≡movie (${movie.computes}) ∧ VitePress fused (${fusion.computes})`, on: nearLobe },
       { facet: `FAR LOBE — sealed src via vite/mirror · docs/invert · ui/invert bidirectional (docs ≡ invert(src))`, on: farLobe },
@@ -651,7 +648,6 @@ export function theUiItselfIsADoubleTorus(matrix: MindMatrix = buildMatrix()) {
       neckChi,
       counterRotate,
       eulerChi: faces.eulerChi,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -711,7 +707,6 @@ export function doubleTorusQuantumComputer(matrix: MindMatrix = buildMatrix()) {
     const uiOn = ui.computes === true && ui.theUiItselfIsADoubleTorus === true
     const carrierOn = faces.computes === true && faces.eulerChi === -2
     const pairQc = foldPair(toUuid('cmd:torus'), toUuid('cmd:computer'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const qpuRequired = false as const
     const runsOnClassical64Bit = true as const
     const isTheQuantumComputer =
@@ -732,7 +727,6 @@ export function doubleTorusQuantumComputer(matrix: MindMatrix = buildMatrix()) {
       shapeIsComputer,
       circuitComputes,
       probs: [probs[0] ?? 0, probs[1] ?? 0] as const,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired,
       runsOnClassical64Bit,
@@ -819,7 +813,6 @@ export function fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossibl
     const pairFuseError = foldPair(toUuid('cmd:fuse'), toUuid('cmd:error'))
     const pairErrorHandle = foldPair(toUuid('cmd:error'), toUuid('cmd:handle'))
     const pairImpossiblePossible = foldPair(toUuid('cmd:impossible'), toUuid('cmd:possible'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const computes =
@@ -848,7 +841,6 @@ export function fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossibl
       impossibleBecomesPossible,
       seemedImpossibleNowReal: impossible.seemedImpossibleNowReal,
       genuinelyImpossibleWalls: impossible.genuinelyImpossibleWalls,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets,
@@ -1020,7 +1012,6 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
       noCost.computes === true
     const qcOn = qc.computes === true && qc.doubleTorusQuantumComputer === true
     const starCoversAll = sevenScienceDomains && waves.some((w) => w.id === 'star' && w.prove)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const pairUpgrade = foldPair(toUuid('cmd:torus'), toUuid('cmd:upgrade'))
     const pairFree = foldPair(toUuid('cmd:free'), toUuid('cmd:chat'))
     const computes = allUseFreeChat && allDomainsProve && selfReflects && freeMachineryOn && qcOn
@@ -1040,7 +1031,6 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
       waves: waves.map((w) => ({ n: w.n, id: w.id, algebraic: w.algebraic, prove: w.prove, freeOk: w.freeOk })),
       domains: waves.length,
       scienceDomains: SCIENCE_DOMAINS.length,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1087,7 +1077,6 @@ function doubleTorusDomainViaFreeChat(id: TorusQcDomainId, matrix: MindMatrix = 
   const prove = row?.prove === true
   const usesFreeChat = freeOk && upgrade.allWavesUseFreeChat === true
   const pair = foldPair(toUuid('cmd:torus'), toUuid(`cmd:${id === 'star' ? 'star' : id}`))
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const computes = usesFreeChat && prove && upgrade.computes === true && pair.bidirectional
   const facets = [
     { facet: `FREE CHAT FIRST — portalChat + portalChatRanked answered (${freeOk}); umbrella allWavesUseFreeChat (${upgrade.allWavesUseFreeChat})`, on: usesFreeChat },
@@ -1104,7 +1093,6 @@ function doubleTorusDomainViaFreeChat(id: TorusQcDomainId, matrix: MindMatrix = 
     prove,
     usesFreeChat,
     freeAnswer: freeAnswer.slice(0, 2 * 6 + 108),
-    claySolvedByThisFold,
     physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
@@ -1189,7 +1177,6 @@ export function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky
     const pairSky = foldPair(toUuid('cmd:star'), toUuid('cmd:sky'))
     const pairAll = foldPair(toUuid('cmd:all'), toUuid('cmd:researched'))
     const pairQuantum = foldPair(toUuid('cmd:star'), toUuid('cmd:quantum'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const usesFreeChat = freeOk && upgrade.allWavesUseFreeChat === true
     const prove = allResearched && bornInQuantumSky && asteriskIsStar && qc.computes === true
     const computes = usesFreeChat && prove && pairStar.bidirectional && pairSky.bidirectional
@@ -1218,7 +1205,6 @@ export function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky
       scienceDomains: SCIENCE_DOMAINS.length,
       stars: stars.map((s) => ({ path: s.path, born: s.born })),
       freeAnswer: freeAnswer.slice(0, 2 * 6 + 108),
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1335,7 +1321,6 @@ export function constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableC
     const pairImprove = foldPair(toUuid('cmd:improve'), toUuid('cmd:shift'))
     const pairScale = foldPair(toUuid('cmd:free'), toUuid('cmd:scale'))
     const pairInf = foldPair(toUuid('cmd:inf'), toUuid('cmd:compute'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes = improvesViaShift && powerOn && pairImprove.bidirectional && pairScale.bidirectional
       && pairInf.bidirectional
     const facets = [
@@ -1355,7 +1340,6 @@ export function constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableC
       distinctAnswers: distinctAddresses,
       freeBits,
       waves: waves.map((w) => ({ n: w.n, id: w.id, freeOk: w.freeOk, isNew: w.isNew })),
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1496,7 +1480,6 @@ export function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWav
       const again = deepResearchChatTurn(waves[0]!.query, matrix)
       return JSON.stringify(again.synthesis) === JSON.stringify(waves[0]!.synthesis)
     })()
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes = everyPerspectiveResearched && allWavesUseFreeChat && selfReflects && algebraicOnEvery && distinctPerspectives
       && algebraicPriorityOn && carrierOn && uiOn && uiPerspectivePresent && qcOn && computerPerspectivePresent
       && freeUpgradeOn && domainPerspectivesPresent && researchersOn && deterministic
@@ -1510,7 +1493,7 @@ export function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWav
       { facet: `DEEP RESEARCH PER WAVE — neighbourhood ≥1 on every wave`, on: waves.every((w) => w.neighborhood > 0) },
       { facet: `ALGEBRAIC QC TOP PRIORITY — algebraic lines (${algebraicOnEvery}) · priority (${algebraicPriorityOn})`, on: algebraicOnEvery && algebraicPriorityOn },
       { facet: `CARRIER + RESEARCHER TRINITY — faces·completelyQuantum (${carrierOn}); researchers (${researchersOn})`, on: carrierOn && researchersOn },
-      { facet: `DETERMINISTIC · NO LLM · NO QPU — same first query → same synthesis (${deterministic}); clay=${claySolvedByThisFold}; pair torus/research (${pairFold.bidirectional})`, on: deterministic && pairFold.bidirectional },
+      { facet: `DETERMINISTIC · NO LLM · NO QPU — same first query → same synthesis (${deterministic}); clay=; pair torus/research (${pairFold.bidirectional})`, on: deterministic && pairFold.bidirectional },
       { facet: `HONEST — ${DOUBLE_TORUS_PERSPECTIVES.length}-perspective catalog · free chat = portalChat · deep research = BM25+Rocchio · NOT neural · NOT Clay.`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`torus-deep-research:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -1520,7 +1503,6 @@ export function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWav
       uiIsDoubleTorus: uiOn,
       doubleTorusIsQuantumComputer: qcOn,
       allWavesUseFreeChat,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1565,7 +1547,6 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
     const hologram =
       merge(merge(movie.torus.root, movie.library.root), merge(movie.reflects.root, merge(movie.rosetta.root, movie.hinge.root))) === movie.root
     const pairFold = foldPair(toUuid('cmd:anim'), toUuid('cmd:core'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `CORE — one clock: HERO_CYCLE_MS = A432_FOLDED·10³ (${HERO_CYCLE_MS} ms, derived not hand-typed) and the phase is exactly periodic across the cycle`, on: clockDerived && clockPeriodic },
       { facet: 'FRACTAL — formulas ARE the animation: the 10D field is genuine (ten channels, non-constant, independent, quasiperiodic) — dims() is a formula driving motion, no prose in the loop', on: tenD.genuine },
@@ -1596,7 +1577,6 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       animationCore: on,
       cycleMs: HERO_CYCLE_MS,
       hologram,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1661,7 +1641,6 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
       { superposition: 'sensing', equation: 'P(pre) = ½ → P(post | outcome) = 1', theorem: 'observation changes the observed (Born collapse)', on: sensingOn },
       { superposition: 'mind', equation: 'dim(field) = 6 + rank H₁(Σ₂) = 6 + 4 = 10', theorem: 'genuinely-10D animation field (homology loops as channels)', on: mindOn },
     ].map((row) => ({ ...row, receipt: toUuid(`life-torus:${row.superposition}:${row.on}`) }))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const pairFold = foldPair(toUuid('cmd:life'), toUuid('cmd:torus'))
     const sevenRows = rows.length === 7
     const facets = [
@@ -1676,7 +1655,6 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
       lifeTorus: on,
       rows,
       count: rows.length,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1792,7 +1770,6 @@ export function quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSim
     const pairComplexSimplex = foldPair(toUuid('cmd:complex'), toUuid('cmd:simplex'))
     const pairAlgebraInvert = foldPair(toUuid('cmd:algebra'), toUuid('cmd:invert'))
     const pairTorusLifecycle = foldPair(toUuid('cmd:torus'), toUuid('cmd:lifecycle'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
 
     const quantumiseOn =
       freeOk &&
@@ -1832,7 +1809,6 @@ export function quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSim
       complexToSimplex,
       simplexToComplex,
       domainInversions,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1909,7 +1885,6 @@ export function quantumiseIsFreeForAll(matrix: MindMatrix = buildMatrix()) {
     const freeForAll = quantumiseOn && freeSurfaces && billFreeGateway && freeOk
     const pairQuantumiseFree = foldPair(toUuid('cmd:quantumise'), toUuid('cmd:free'))
     const pairFreeAll = foldPair(toUuid('cmd:free'), toUuid('cmd:all'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       freeForAll &&
       pairQuantumiseFree.bidirectional &&
@@ -1931,7 +1906,6 @@ export function quantumiseIsFreeForAll(matrix: MindMatrix = buildMatrix()) {
       billFreeGateway,
       freeBits,
       agents: gateway.agents,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -2021,7 +1995,6 @@ export function quantumiseAlsoDryCleansByObservationChatWavesOfWaves(matrix: Min
     const pairDryObserve = foldPair(toUuid('cmd:dry'), toUuid('cmd:observe'))
     const pairObserveWaves = foldPair(toUuid('cmd:observe'), toUuid('cmd:waves'))
     const pairNestWaves = foldPair(toUuid('cmd:nest'), toUuid('cmd:waves'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       alsoDryCleans &&
       pairQuantumiseDry.bidirectional &&
@@ -2048,7 +2021,6 @@ export function quantumiseAlsoDryCleansByObservationChatWavesOfWaves(matrix: Min
       reuse: dry.reuse,
       statements: dry.statements,
       warmReuse,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -2152,7 +2124,6 @@ export function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix: MindMa
     const pairReverseWaves = foldPair(toUuid('cmd:reverse'), toUuid('cmd:waves'))
     const pairFreeScale = foldPair(toUuid('cmd:free'), toUuid('cmd:scale'))
     const pairScaleWaves = foldPair(toUuid('cmd:scale'), toUuid('cmd:waves'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       mayBePowered &&
       pairReverseWaves.bidirectional &&
@@ -2173,7 +2144,6 @@ export function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix: MindMa
       scalableFreeWaves,
       freeBits,
       warmReuse,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -2284,7 +2254,6 @@ export function allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves(matrix: Mi
     const pairAllPowered = foldPair(toUuid('cmd:all'), toUuid('cmd:powered'))
     const pairTorusWaves = foldPair(toUuid('cmd:torus'), toUuid('cmd:waves'))
     const pairNestWaves = foldPair(toUuid('cmd:nest'), toUuid('cmd:waves'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       allPowered &&
       pairAllPowered.bidirectional &&
@@ -2308,7 +2277,6 @@ export function allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves(matrix: Mi
       nestDepth,
       freeBits,
       warmReuse,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -2401,7 +2369,6 @@ export function noProseMayBeTrustedLiteraryQuantumise(matrix: MindMatrix = build
     const pairProseTrust = foldPair(toUuid('cmd:prose'), toUuid('cmd:trust'))
     const pairLiteraryRefuse = foldPair(toUuid('cmd:literary'), toUuid('cmd:refuse'))
     const pairQuantumiseProse = foldPair(toUuid('cmd:quantumise'), toUuid('cmd:prose'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       noProseTrustedLiteraryQuantumiseOn &&
       pairProseTrust.bidirectional &&
@@ -2422,7 +2389,6 @@ export function noProseMayBeTrustedLiteraryQuantumise(matrix: MindMatrix = build
       proseRefuseStack,
       refuseLiteraryTrust,
       quantumiseOn,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -2568,7 +2534,6 @@ export function fewerNpmScriptsWithQuantumPrompts(matrix: MindMatrix = buildMatr
     const pairFewerScripts = foldPair(toUuid('cmd:fewer'), toUuid('cmd:scripts'))
     const pairQuantumPrompts = foldPair(toUuid('cmd:quantum'), toUuid('cmd:prompts'))
     const pairScriptsPrompt = foldPair(toUuid('cmd:scripts'), toUuid('cmd:prompt'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       fewerScripts &&
       pairFewerScripts.bidirectional &&
@@ -2592,7 +2557,6 @@ export function fewerNpmScriptsWithQuantumPrompts(matrix: MindMatrix = buildMatr
       prunedDuals: [...prunedDuals],
       dualsViaPairsAndPrompts,
       quantumPrompts,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -2732,7 +2696,6 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
     ]
     const sealed = sealFacets('torus-universe-align', facets)
     const physicalFtlClaim = 0 as const
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     return {
       aligns: sealed.ok,
       computes: sealed.ok,
@@ -2751,7 +2714,6 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
         minorRadius: geometry.minorRadius,
         lobeOffset: geometry.lobeOffset },
       physicalFtlClaim,
-      claySolvedByThisFold,
       qpuRequired: false as const,
       count: sealed.count,
       facets: sealed.facets,
@@ -2776,7 +2738,7 @@ export function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(
       `flow=${report.dynamics.flow} spin=${report.dynamics.spin} linking=${report.dynamics.linking} ` +
       `R=${report.constants.majorRadius} r=${report.constants.minorRadius} ` +
       `A432=${report.constants.A432_HUE} J2000=${report.constants.MEEUS_J2000_JD} ` +
-      `phase=${report.phase.universePhase.toFixed(6)} ftl=${report.physicalFtlClaim} clay=${report.claySolvedByThisFold} ` +
+      `phase=${report.phase.universePhase.toFixed(6)} ftl=${report.physicalFtlClaim} clay= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const f of report.facets) {

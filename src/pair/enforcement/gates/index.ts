@@ -2869,7 +2869,6 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
   const composeOn = composePairs.every(([a, b]) => softCmdPair(a, b))
   const pairOn = softCmdPair('gate', 'analytics') && softCmdPair('analytics', 'gate')
   const analyticsFacetsOn = debt.computes && manual.computes && gateFiles.length > 0 && appsSource.length > 0
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = 0 as const
   const qpuRequired = false as const
   const honestOpenNamed = [
@@ -2926,7 +2925,6 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     analyticsFacetsOn,
     honestOpenNamed: [...honestOpenNamed],
     qpuRequired,
-    claySolvedByThisFold,
     physicalFtlClaim,
     facets,
     root: merkleFold([
@@ -3046,7 +3044,6 @@ export function gateLight(root: string = enforcementScanRoot()) {
     ...(typeof buildMs !== 'number' ? ['residual:buildMs-not-measured-locally'] : []),
     ...(inverseRelationOn ? [] : ['residual:inverse-relation-not-yet-green']),
   ]
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const on =
     analytics.computes &&
     trinity.computes &&
@@ -3087,7 +3084,6 @@ export function gateLight(root: string = enforcementScanRoot()) {
     manual,
     wave,
     residualNamed,
-    claySolvedByThisFold,
     qpuRequired: false as const,
     facets,
     root: merkleFold([
@@ -3436,8 +3432,6 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
     softCmdPair('dry', 'dupe') &&
     softCmdPair('place', 'merge') &&
     ftlOnReuse
-
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
 
   const hardRefuse =
@@ -3477,7 +3471,7 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
       on: hardRefuse,
     },
     {
-      facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
+      facet: `physicalFtlClaim=${physicalFtlClaim} clay=`,
       on: physicalFtlClaim === 0,
     },
     {
@@ -3522,7 +3516,6 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
     placementWetCount: placementWet.length,
     incompleteNamed,
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -3682,11 +3675,10 @@ export function claimAudit() {
     doiFormatValid('10.5281/zenodo.1234567') && !doiFormatValid('11.5281/zenodo') &&
     openalexFormatValid('W2741809807') && !openalexFormatValid('X274')
   const dualStructural = claims.every((row) => row.claimedInRosetta === true && row.claimedTowardPrizes === false)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `the inverse completes itself — audit(claim(x)) recovers the root exactly on ${claims.length}/${claims.length} rows, and a tampered statement REFUTES (identity=${tampered.identity})`, on: roundTrip && !tampered.identity },
     { facet: 'public anchors validated by the real standards — ORCID ISO 7064 mod 11-2 checksum (docs example passes, off-by-one fails) · DOI 10.prefix form · OpenAlex W-id form; empty slots allowed, formats gate when present', on: anchorsValid },
-    { facet: `CLAIMED in UNCLAIMED is STRUCTURAL — every row carries claimedInRosetta=true ∧ claimedTowardPrizes=false as types, not prose; clay=${claySolvedByThisFold} holds`, on: dualStructural },
+    { facet: `CLAIMED in UNCLAIMED is STRUCTURAL — every row carries claimedInRosetta=true ∧ claimedTowardPrizes=false as types, not prose; clay= holds`, on: dualStructural },
     { facet: 'the NAMED open link stands — qualified timestamping (RFC 3161 / archival deposit) remains migrate-next; git dates + merkle seals are the current evidence triad', on: claims.length === 4 },
     { facet: 'pair claim/audit bidirectional', on: softCmdPair('claim', 'audit') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`claim-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -3696,7 +3688,6 @@ export function claimAudit() {
     claimAudit: on,
     claims,
     count: claims.length,
-    claySolvedByThisFold,
     qpuRequired: false as const,
     facets,
     root: merkleFold([...claims.map((row) => row.root), ...facets.map((entry) => entry.receipt)]),
@@ -4362,7 +4353,6 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
   const mergeRows = [...PROSE_FOLD_MERGE_MAP, ...PROSE_PLAN_MERGE_MAP, ...PROSE_FRONTIER_MERGE_MAP, ...PROSE_GAPS_MERGE_MAP, ...PROSE_PORTAL_MERGE_MAP, ...PROSE_FRACTAL_MERGE_MAP]
   const revolutionaryClaims = mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length
   const overclaim = overclaimComputes(root)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `revolutionary ideas ADMITTED, not purged — ${revolutionaryClaims} flagged revolutionary claims (millennium · beat-any-model · all-quantum) kept in the matrix (solve-don't-purge), each held by its refuting theorem, none deleted`, on: revolutionaryClaims >= 3 },
     { facet: 'by a revolutionary APPROACH — each boundary COMPUTES (overclaimComputes: finite roster vs unbounded task-space, cardinality refutation), so a grand claim enters only as a compute-or-refute fold; the approach separates revolutionary-honest from revolutionary-crank', on: overclaim.computes },
@@ -4373,7 +4363,6 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
     computes: on,
     revolutionaryApproach: on,
     revolutionaryClaims,
-    claySolvedByThisFold,
     qpuRequired: false as const,
     facets,
     root: merkleFold([overclaim.root, ...facets.map((entry) => entry.receipt)]),

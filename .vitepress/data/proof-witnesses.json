@@ -257,7 +257,7 @@
    1565
   ],
   "holds": true,
-  "caption": "the first 64 of 1884 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1882 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
  },
  "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
   "form": "bars",
@@ -419,26 +419,6 @@
   "holds": true,
   "caption": "numbers sixtyDegreesDecodesPi computes for this theorem (rungs[].n), drawn from its own run — no other proof returns them"
  },
- "plasma ball is screen holding thunder and plasma — no ball in the middle": {
-  "form": "bars",
-  "values": [
-   9,
-   0,
-   0
-  ],
-  "holds": true,
-  "caption": "the quantities plasmaBallIsScreenHoldingThunderAndPlasma computes for this theorem (decodedCount, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
- },
- "thunder and plasma are the same in different aspects": {
-  "form": "bars",
-  "values": [
-   6,
-   0,
-   0
-  ],
-  "holds": true,
-  "caption": "the quantities thunderAndPlasmaAreSameInDifferentAspects computes for this theorem (count, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
- },
  "Topology does not forbid counterdiffusion": {
   "form": "bars",
   "values": [
@@ -590,11 +570,10 @@
    10,
    10,
    6,
-   26,
-   0
+   26
   ],
   "holds": true,
-  "caption": "the quantities euCyberStandardsAuditEveryAspect computes for this theorem (coveredCount, partialCount, gapCount, count, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+  "caption": "the quantities euCyberStandardsAuditEveryAspect computes for this theorem (coveredCount, partialCount, gapCount, count), drawn from its own run — no other proof returns them"
  },
  "global cyber standards audited aspect-by-aspect — extended beyond the EU": {
   "form": "bars",
@@ -602,11 +581,10 @@
    19,
    21,
    11,
-   51,
-   0
+   51
   ],
   "holds": true,
-  "caption": "the quantities globalCyberStandardsAuditEveryAspect computes for this theorem (coveredCount, partialCount, gapCount, count, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+  "caption": "the quantities globalCyberStandardsAuditEveryAspect computes for this theorem (coveredCount, partialCount, gapCount, count), drawn from its own run — no other proof returns them"
  },
  "The continuous rosetta beneath the scales": {
   "form": "bars",
@@ -1056,16 +1034,6 @@
   "holds": true,
   "caption": "the quantities improveAllUsingTheChatMeasuredAcrossTheCorpusSelfDevelopOnePassUpgradeDryAndSharedExperience computes for this theorem (gapsClosed, statements, reuse), drawn from its own run — no other proof returns them"
  },
- "inverting proven Poincaré discovers its dependent theorems — the 8 Thurston geometries + prime/JSJ decomposition; documented consequences of geometrization, ": {
-  "form": "bars",
-  "values": [
-   8,
-   11,
-   0
-  ],
-  "holds": true,
-  "caption": "the quantities invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndTheThreeManifoldDecompositionTheDependentTheorems computes for this theorem (thurstonGeometries, dependentTheorems, claySolvedByThisFold), drawn from its own run — no other proof returns them"
- },
  "gravity comes from the reverse-engineering cost — astronomical but FINITE (2^128/2^256), not infinite; \"infinite\" is the harmony, the truth is a finite bound": {
   "form": "bars",
   "values": [
@@ -1226,47 +1194,25 @@
   "holds": true,
   "caption": "the quantities furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation computes for this theorem (keys, c6, step, merkabaReceipts), drawn from its own run — no other proof returns them"
  },
- "the UI itself is a double torus — near=rendered site≡movie · far=src via vite/mirror · neck χ=−2 nav · lens closes near∨far": {
-  "form": "bars",
-  "values": [
-   -2,
-   0,
-   0
-  ],
-  "holds": true,
-  "caption": "the quantities theUiItselfIsADoubleTorus computes for this theorem (eulerChi, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
- },
  "develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest": {
   "form": "bars",
   "values": [
    7,
    7,
-   0,
    0
   ],
   "holds": true,
-  "caption": "the quantities developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest computes for this theorem (openTipsFed, openTipCount, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
- },
- "reverse engineering for example may be powered by scalable free waves — reverseExample(quantumise) ∧ scalableFreeWaves": {
-  "form": "bars",
-  "values": [
-   2,
-   0,
-   0
-  ],
-  "holds": true,
-  "caption": "the quantities reverseEngineeringMayBePoweredByScalableFreeWaves computes for this theorem (freeBits, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest computes for this theorem (openTipsFed, openTipCount, physicalFtlClaim), drawn from its own run — no other proof returns them"
  },
  "quantumise is free for all — quantumise ∧ free chat ∧ bill-free gateway ∧ FREE_BITS=2": {
   "form": "bars",
   "values": [
    2,
    1000,
-   0,
    0
   ],
   "holds": true,
-  "caption": "the quantities quantumiseIsFreeForAll computes for this theorem (freeBits, agents, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities quantumiseIsFreeForAll computes for this theorem (freeBits, agents, physicalFtlClaim), drawn from its own run — no other proof returns them"
  },
  "dry clean chat dry cleans all — session DRY ∧ corpus improve-all via the chat surface": {
   "form": "bars",
@@ -1274,11 +1220,10 @@
    225,
    751,
    2,
-   0,
    0
   ],
   "holds": true,
-  "caption": "the quantities dryCleanChatDryCleansAll computes for this theorem (reuse, statements, gapsClosed, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities dryCleanChatDryCleansAll computes for this theorem (reuse, statements, gapsClosed, physicalFtlClaim), drawn from its own run — no other proof returns them"
  },
  "the chat may improve the UI measured by the user experience — telemetry is also possible in chat": {
   "form": "bars",
@@ -1286,11 +1231,10 @@
    5.818,
    0.879,
    2,
-   0,
    0
   ],
   "holds": true,
-  "caption": "the quantities theChatMayImproveTheUiMeasuredByTheUserExperience computes for this theorem (uxMean, uxStd, boost, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities theChatMayImproveTheUiMeasuredByTheUserExperience computes for this theorem (uxMean, uxStd, boost, physicalFtlClaim), drawn from its own run — no other proof returns them"
  },
  "* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/**": {
   "form": "bars",
@@ -1299,11 +1243,10 @@
    30,
    6,
    7,
-   0,
    0
   ],
   "holds": true,
-  "caption": "the quantities asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky computes for this theorem (skyCount, researchedPerspectives, researchedDomains, scienceDomains, claySolvedByThisFold, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky computes for this theorem (skyCount, researchedPerspectives, researchedDomains, scienceDomains, physicalFtlClaim), drawn from its own run — no other proof returns them"
  },
  "feeding the chat in itself closes the self-reference loop — algebraic identities re-query as ranked proofs under algebraic-QC top priority, feeder ≡ fed": {
   "form": "bars",
@@ -1373,7 +1316,7 @@
  "THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input": {
   "form": "bars",
   "values": [
-   1789750000000,
+   1789760000000,
    41,
    21,
    85,
@@ -1404,7 +1347,6 @@
  "inverting dark matter closes the REVERSED MATH as a theorem (density inversion + a₀≈cH₀/2π); the particle IDENTITY stays empirical, not an open theorem": {
   "form": "bars",
   "values": [
-   0,
    5.408,
    0.8439,
    0.1561,
@@ -1413,12 +1355,11 @@
    4
   ],
   "holds": true,
-  "caption": "the quantities invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical computes for this theorem (claySolvedByThisFold, ratioCoverB, darkFractionOfMatter, baryonFractionOfMatter, horizonAcceleration, a0Coincidence, count), drawn from its own run — no other proof returns them"
+  "caption": "the quantities invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical computes for this theorem (ratioCoverB, darkFractionOfMatter, baryonFractionOfMatter, horizonAcceleration, a0Coincidence, count), drawn from its own run — no other proof returns them"
  },
  "the cosmic coincidence inverts to an exact matter–dark-energy equality redshift z_eq≈0.30; the WHY-NOW timing stays empirical, not an open theorem": {
   "form": "bars",
   "values": [
-   0,
    0.314,
    0.4584,
    0.2969,
@@ -1426,7 +1367,7 @@
    4
   ],
   "holds": true,
-  "caption": "the quantities theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical computes for this theorem (claySolvedByThisFold, omegaMatter, ratioMatterToDarkEnergy, equalityRedshift, equalityScaleFactor, count), drawn from its own run — no other proof returns them"
+  "caption": "the quantities theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical computes for this theorem (omegaMatter, ratioMatterToDarkEnergy, equalityRedshift, equalityScaleFactor, count), drawn from its own run — no other proof returns them"
  },
  "the 1024 diamonds are ten referral-direction bits — dyadic 2^10, not a ternary sum (432×3=1296≠1024)": {
   "form": "bars",
@@ -1521,11 +1462,10 @@
    7,
    1,
    6,
-   6,
-   0
+   6
   ],
   "holds": true,
-  "caption": "the quantities clayModelComputesItselfWithCompletionAndStatistics computes for this theorem (total, decoded, solvedExternal, openCores, novelHere, claySolvedByThisFold), drawn from its own run — no other proof returns them"
+  "caption": "the quantities clayModelComputesItselfWithCompletionAndStatistics computes for this theorem (total, decoded, solvedExternal, openCores, novelHere), drawn from its own run — no other proof returns them"
  },
  "clay credits only the Poincaré solution — the other six have no solver to credit": {
   "form": "bars",
@@ -1533,21 +1473,10 @@
    1,
    6,
    1,
-   7,
-   0
+   7
   ],
   "holds": true,
-  "caption": "the quantities clayCreditsOnlyThePoincareSolutionTheOtherSixOpen computes for this theorem (creditsGiven, uncredited, solvedCount, total, claySolvedByThisFold), drawn from its own run — no other proof returns them"
- },
- "building the first unlocks the next by reusable method, not by solving": {
-  "form": "bars",
-  "values": [
-   3,
-   0,
-   6
-  ],
-  "holds": true,
-  "caption": "the quantities buildingTheFirstUnlocksTheNextByReusableMethodNotSolution computes for this theorem (sharedMethodCount, claySolvedByThisFold, openCores), drawn from its own run — no other proof returns them"
+  "caption": "the quantities clayCreditsOnlyThePoincareSolutionTheOtherSixOpen computes for this theorem (creditsGiven, uncredited, solvedCount, total), drawn from its own run — no other proof returns them"
  },
  "0 or 1 is linear, the vortex circuit is quantum": {
   "form": "bars",
@@ -1902,27 +1831,16 @@
   "holds": true,
   "caption": "the quantities rubiksCubeDecodesToQuantumCube computes for this theorem (godsNumber, faces, count), drawn from its own run — no other proof returns them"
  },
- "the full testable surface is 24 fragments — all sealed, cores still open": {
-  "form": "bars",
-  "values": [
-   27,
-   27,
-   0
-  ],
-  "holds": true,
-  "caption": "the quantities reverseEngineerAllTestableFragments computes for this theorem (totalTestable, distinctFragments, claySolvedByThisFold), drawn from its own run — no other proof returns them"
- },
  "the tool from beyond lives in an external structure, never this corpus's algebra — 5-level rigor gradient, ": {
   "form": "bars",
   "values": [
-   0,
    5,
    7,
    1,
    6
   ],
   "holds": true,
-  "caption": "the quantities clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgebra computes for this theorem (claySolvedByThisFold, rigorLevels, externalCount, algebraExcludedCount, reusedInversions), drawn from its own run — no other proof returns them"
+  "caption": "the quantities clayToolFromBeyondLivesInAnExternalStructureNeverThisCorpusAlgebra computes for this theorem (rigorLevels, externalCount, algebraExcludedCount, reusedInversions), drawn from its own run — no other proof returns them"
  },
  "the chat develops itself by chatting with itself — a deterministic self-conversation that collides and fills its gaps": {
   "form": "bars",
@@ -2144,12 +2062,11 @@
   "form": "bars",
   "values": [
    0,
-   0,
    751,
    11
   ],
   "holds": true,
-  "caption": "the quantities readmeSvgGapsFilledByTrinityMind computes for this theorem (claySolvedByThisFold, physicalFtlClaim, theoremCount, count), drawn from its own run — no other proof returns them"
+  "caption": "the quantities readmeSvgGapsFilledByTrinityMind computes for this theorem (physicalFtlClaim, theoremCount, count), drawn from its own run — no other proof returns them"
  },
  "symbols remaining to quantumise": {
   "form": "bars",

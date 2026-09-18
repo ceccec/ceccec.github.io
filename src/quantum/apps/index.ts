@@ -2838,7 +2838,6 @@ export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatri
         particleCount: collider.particleCount,
         productCount: collider.productCount,
         novelSurvivorCount: collider.novelSurvivorCount,
-        claySolvedByThisFold: collider.claySolvedByThisFold,
         root: collider.root },
       theorems: {
         novelCount: novelty.novelCount,
@@ -2926,7 +2925,6 @@ export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix 
     const meta = catalog.tools.find((tool) => tool.id === 'e2e-development-feed')
     const alias = catalog.tools.find((tool) => tool.id === 'feed-dev')
     const shelved = rosettaShelve('e2e-development-feed', 'tool')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const browserGap = E2E_DEV_FEED_PLAYWRIGHT_GAP
@@ -3012,7 +3010,6 @@ export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix 
       entryCount: entries.length,
       feedPath: '/development-feed.json' as const,
       feedRoot,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       browserGap,
@@ -3025,7 +3022,7 @@ export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix 
       anchor: 'e2e-development-feed',
       heading: 'E2E quantum tests → development feed',
       honestyLine:
-        `Offline quantum e2e → /development-feed.json · sealed=${sealedCount}/${quantumEntries.length} · Playwright residual named · clay=${claySolvedByThisFold} · physicalFtl=${physicalFtlClaim} · qpuRequired=${qpuRequired}`,
+        `Offline quantum e2e → /development-feed.json · sealed=${sealedCount}/${quantumEntries.length} · Playwright residual named · clay= · physicalFtl=${physicalFtlClaim} · qpuRequired=${qpuRequired}`,
       statement:
         `e2eQuantumTestsRecordOutputAsDevelopmentFeed — e2eOn=${e2eOn} quantumTests=${quantumTests} recordsOutput=${recordsOutput} developmentFeed=${developmentFeed} entries=${entries.length} sealed=${sealedCount}/${quantumEntries.length}.`,
       boundary:
@@ -3058,7 +3055,6 @@ export function developmentFeedJson(matrix: MindMatrix = buildMatrix(), at = 0):
       facets: report.facets,
       root: report.root,
       feedRoot: report.feedRoot,
-      claySolvedByThisFold: report.claySolvedByThisFold,
       physicalFtlClaim: report.physicalFtlClaim,
       qpuRequired: report.qpuRequired,
       browserGap: report.browserGap,
@@ -3125,7 +3121,6 @@ export type SessionQuantumBit = {
   readonly honesty: string
   readonly note: string
   readonly qpuRequired: false
-  readonly claySolvedByThisFold: 0
   readonly certified: false
   readonly physicalQubit: false
 }
@@ -3140,7 +3135,6 @@ export type QuantumBitCombination = {
   readonly envelopePayloadRoot: string
   readonly root: string
   readonly qpuRequired: false
-  readonly claySolvedByThisFold: 0
   readonly certified: false
   readonly physicalQubit: false
   readonly statement: string
@@ -3231,7 +3225,6 @@ export function combineQuantumBits(
       envelopePayloadRoot,
       root: merkleFold([productRoot, envelopePayloadRoot, toUuid(`combine-op:${op}`), ...roots]),
       qpuRequired: false as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       certified: false as const,
       physicalQubit: false as const,
       statement: `combineQuantumBits(${op}) — ${bits.length} bits → product=${productRoot.slice(0, 8)} · products=${products.length}.`,
@@ -3350,7 +3343,6 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
         honesty: seed.honesty,
         note: seed.note,
         qpuRequired: false as const,
-        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
         certified: false as const,
         physicalQubit: false as const }
     })
@@ -3393,7 +3385,6 @@ export function sessionManualWorkAsQuantumBits(matrix: MindMatrix = buildMatrix(
       exportPayloadRoot: exportBit.payloadRoot,
       importRoundTrip: importBit.roundTrip,
       qpuRequired: false as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       certified: false as const,
       physicalQubit: false as const,
       facets: sealed.facets,
@@ -3481,8 +3472,6 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
     const autoWire = autoWireAnyAiModelFromPastedLink('https://ceccec.github.io/', matrix, at)
     const meta = catalogForGate.tools.find((t) => t.id === 'realise-session-meaning')
     const shelved = rosettaShelve('realise-session-meaning', 'tool')
-
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const certified = false as const
     const qpuRequired = noQpu.qpuRequired
     const wireEqualsIsoStrength = experiments.localVsIso.overallWireClaimProved
@@ -3598,7 +3587,6 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
     ]
 
     const refuses = {
-      claySolvedByThisFold,
       certified,
       qpuRequired,
       wireEqualsIsoStrength,
@@ -3624,7 +3612,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       { facet: 'composes sciencesInteractInTrinities + millennium ', on: sciences.computes },
       { facet: `qpuRequired=${qpuRequired} · classical-64bit (prove/no-qpu tip)`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'wire≠ISO strength · strongerThanNistPqc=false · isoOfficialStandard=false', on: wireEqualsIsoStrength === false && strongerThanNistPqc === false && isoOfficialStandard === false },
-      { facet: `clay=${claySolvedByThisFold} · certified=${certified} · physicalFtl=${physicalFtlClaim}`, on: honestyOk },
+      { facet: `clay= · certified=${certified} · physicalFtl=${physicalFtlClaim}`, on: honestyOk },
       { facet: 'rosetta complete + toolbox envelopes + movie gaps named', on: rosetta.computes && toolbox.computes && movieGaps.computes },
       { facet: 'sciences-standards + sciences-trinities envelopes expose input+config (Wave2 #31 compose; no nav/theme rewrite)', on: (() => {
         const sciStd = toolbox.envelopes.find((e) => e.id === 'sciences-standards-quantum')
@@ -3673,7 +3661,6 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
         architectureRequirement: noQpu.architectureRequirement,
         tracksClassicalNoSpeedup: noQpu.tracksClassicalNoSpeedup,
         root: noQpu.root },
-      claySolvedByThisFold,
       certified,
       qpuRequired,
       physicalFtlClaim,
@@ -3713,7 +3700,7 @@ export function runRealiseSessionQuantumMeaningExit(_root = '', _argv: readonly 
     )
   }
   process.stdout.write(
-    `  refuses: clay=${report.refuses.claySolvedByThisFold} certified=${report.refuses.certified} ` +
+    `  refuses: clay= certified=${report.refuses.certified} ` +
       `qpuRequired=${report.refuses.qpuRequired} wire=ISO=${report.refuses.wireEqualsIsoStrength} ` +
       `strongerNist=${report.refuses.strongerThanNistPqc} ftl=${report.refuses.physicalFtlClaim}\n`,
   )
@@ -4500,7 +4487,6 @@ export function millenniumChallengeHandoffFromRosettaComplete(
       computes: sealed.ok,
       rosettaReady: handoff.rosettaReady,
       millenniumSolvedByThisFold,
-      claySolvedByThisFold: mill.claySolvedByThisFold,
       millRoot: mill.root,
       handoffRoot: handoff.root,
       facets: sealed.facets,
@@ -5104,7 +5090,6 @@ export function mcpCommandsScriptsGapsAudit(matrix: MindMatrix = buildMatrix(), 
       keptCount,
       openCount,
       qpuRequired,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       rows,
       overlaps,
       useless,
@@ -5651,7 +5636,6 @@ export function pastedLinksStayOnlyIfComputedLocally(matrix: MindMatrix = buildM
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'paste-local')
     const metaDual = catalog.tools.find((t) => t.id === 'link-local')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       stayOnlyIfComputedLocally &&
@@ -5686,7 +5670,6 @@ export function pastedLinksStayOnlyIfComputedLocally(matrix: MindMatrix = buildM
       foreignFetchBlockedNoStore,
       wireClassMayExist,
       wetPasteWithoutLocalIsHard,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -5742,7 +5725,6 @@ export function movieAndSessionGapsHardAtGates(matrix: MindMatrix = buildMatrix(
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'gate-hard')
     const metaDual = catalog.tools.find((t) => t.id === 'movie-session')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       hardMovieSessionOn &&
@@ -5766,7 +5748,6 @@ export function movieAndSessionGapsHardAtGates(matrix: MindMatrix = buildMatrix(
       computes: sealed.ok && on,
       movieAndSessionGapsHardAtGates: on,
       hardMovieSession: hardMovieSessionOn,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -5859,7 +5840,6 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
     const metaDual = catalog.tools.find((t) => t.id === 'mcp-vite')
     const metaBuild = catalog.tools.find((t) => t.id === 'build-mcp')
     const metaBuildDual = catalog.tools.find((t) => t.id === 'mcp-build')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const toolsOn =
@@ -5911,7 +5891,6 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
       moveAllComplete,
       residualsNamed: [...residualsNamed],
       residualsNamedCount: residualsNamed.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -5988,7 +5967,6 @@ export function collidingParticlesCreates(matrix: MindMatrix = buildMatrix(), at
     const pairParticle = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('particle/collide')
     const foldCreate = foldPair(toUuid('cmd:collide'), toUuid('cmd:create'))
     const foldParticle = foldPair(toUuid('cmd:particle'), toUuid('cmd:collide'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       creates === 'novelTheoremCandidates+waves' &&
@@ -6016,7 +5994,6 @@ export function collidingParticlesCreates(matrix: MindMatrix = buildMatrix(), at
       creates,
       novelSurvivorCount: collider.novelSurvivorCount,
       waveCount: particle.waveCount,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6095,7 +6072,6 @@ export function mcpQuantumMetrics(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-metrics')
     const metaDual = catalog.tools.find((t) => t.id === 'metrics-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       metricsOn &&
@@ -6136,7 +6112,6 @@ export function mcpQuantumMetrics(matrix: MindMatrix = buildMatrix(), at = 0) {
       foldCountRemaining: foldCount.remaining,
       termCount: term.termCount,
       voteDecided: vote.decided,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6242,7 +6217,6 @@ export function mcpQuantumAnalysis(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-analysis')
     const metaDual = catalog.tools.find((t) => t.id === 'analysis-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       analysisOn &&
@@ -6280,7 +6254,6 @@ export function mcpQuantumAnalysis(matrix: MindMatrix = buildMatrix(), at = 0) {
       analyseRealise,
       moduleCount: analysts.moduleCount,
       teamSize: teamObs.teamSize,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6377,7 +6350,6 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const starOn = catalogComplete && starPairs && starTools
     const meta = catalog.tools.find((t) => t.id === 'mcp-catalog')
     const metaDual = catalog.tools.find((t) => t.id === 'catalog-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       catalogComplete &&
@@ -6407,7 +6379,6 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       faceCount,
       presentCount,
       faces,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6515,7 +6486,6 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       meta!.fold === 'mcpCatalog' &&
       Boolean(metaDual) &&
       metaDual!.fold === 'mcpCatalog'
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const catalogComplete =
       quantumFaces &&
@@ -6563,7 +6533,6 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       quantumPresentCount: quantum.presentCount,
       primaryToolCount: mcpList.count,
       stdioCount: STDIO_MCP_CAPABILITY_SEEDS.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6654,7 +6623,6 @@ export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-sign')
     const metaDual = catalog.tools.find((t) => t.id === 'sign-quantum')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       signatureOn &&
@@ -6689,7 +6657,6 @@ export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
       crossSig: crossSigOn,
       tamperEvident,
       certified,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6761,7 +6728,6 @@ export function mcpQuantumDirs(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-dirs')
     const metaDual = catalog.tools.find((t) => t.id === 'dirs-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       dirsOn &&
@@ -6809,7 +6775,6 @@ export function mcpQuantumDirs(matrix: MindMatrix = buildMatrix(), at = 0) {
       up: upOnFixed,
       down: downOn,
       sixDirections,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6879,7 +6844,6 @@ export function mcpQuantumInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-inf')
     const metaDual = catalog.tools.find((t) => t.id === 'inf-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       infinityOn &&
@@ -6910,7 +6874,6 @@ export function mcpQuantumInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
       viaInvert,
       connectingBit,
       connectingBitOk,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -6989,7 +6952,6 @@ export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-hw')
     const metaDual = catalog.tools.find((t) => t.id === 'hw-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       hardwareOn &&
@@ -7020,7 +6982,6 @@ export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
       qpuRequired: false as const,
       runsOnClassical64Bit: true as const,
       quantumHardwareRequired: false as const,
-      claySolvedByThisFold,
       physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
@@ -7107,7 +7068,6 @@ export function mcpInfiniteMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'movie-inf')
     const metaDual = catalog.tools.find((t) => t.id === 'inf-movie')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       infiniteMovieOn &&
@@ -7139,7 +7099,6 @@ export function mcpInfiniteMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
       movieIsInfiniteOnReuse,
       connectingBit,
       connectingBitOk,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -7203,7 +7162,6 @@ export function mcpQuantumAnim(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-anim')
     const metaDual = catalog.tools.find((t) => t.id === 'anim-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       animOn &&
@@ -7236,7 +7194,6 @@ export function mcpQuantumAnim(matrix: MindMatrix = buildMatrix(), at = 0) {
       fromCoords,
       feelableGaps,
       polarityOn,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -7282,7 +7239,6 @@ export function mcpQuantumSolution(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('mill', 'once') &&
       soft('mcp', 'universe')
     const algebraicFormulas = solutionOn && soft('formula', 'code')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const notCmiPrizeClaim = true
     const pairS = has('mcp/solution')
     const pairD = has('solution/mcp')
@@ -7320,7 +7276,6 @@ export function mcpQuantumSolution(matrix: MindMatrix = buildMatrix(), at = 0) {
       solutionOn,
       algebraicFormulas,
       notCmiPrizeClaim,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -7393,7 +7348,6 @@ export function mcpRosettaStreamClusters(matrix: MindMatrix = buildMatrix(), at 
     const occupied = clusters.filter((c) => c.members.length > 0).length
     const trinityCount = clusters.reduce((sum, c) => sum + c.trinities.length, 0)
     const census = mcpQuantumCatalog(matrix, at)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const facets = [
@@ -7406,7 +7360,7 @@ export function mcpRosettaStreamClusters(matrix: MindMatrix = buildMatrix(), at 
     const computes = facets.every((f) => f.on)
     return {
       computes, heading: 'MCP rosetta stream clusters — 2×7 lattice', allLeavesOn, totalAssignment, occupied, trinityCount, leaves, clusters, facets,
-      faceCount: census.faceCount, presentCount: census.presentCount, claySolvedByThisFold, physicalFtlClaim, qpuRequired,
+      faceCount: census.faceCount, presentCount: census.presentCount, physicalFtlClaim, qpuRequired,
       root: merkleFold([...leaves.map((l) => l.root), ...clusters.map((c) => toUuid(`mcp-cluster:${c.ray}:${c.face}:${c.members.join(',')}`))]),
       statement: `MCP rosetta stream clusters — ${leaves.length} leaves on ${clusters.length} clusters (${occupied} occupied, ${trinityCount} trinities) · allLeavesOn=${allLeavesOn} · faces ${census.presentCount}/${census.faceCount}.`,
       boundary: 'Replaces five pass-through MCP folds; the MCP measurements themselves are unchanged. mcp-browser-parity is a leaf and was red on main before this wave (84 Node-only rows) — reported, not hidden. Not a QPU.' }
@@ -7460,7 +7414,6 @@ export function mcpQuantumReceipt(matrix: MindMatrix = buildMatrix(), at = 0) {
     const meta = tools.tools.find((t) => t.id === 'mcp-receipt')
     const metaDual = tools.tools.find((t) => t.id === 'receipt-mcp')
     const catalog = mcpQuantumCatalog(matrix, at)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -7496,7 +7449,6 @@ export function mcpQuantumReceipt(matrix: MindMatrix = buildMatrix(), at = 0) {
       receiptOn,
       tamperEvident: tamperOn,
       contentAddressed,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -7588,7 +7540,6 @@ function sealClassicalMcpHwFace(
   const catalog = quantumCliToolsCatalog(matrix, at)
   const meta = catalog.tools.find((t) => t.id === toolId)
   const metaDual = catalog.tools.find((t) => t.id === dualToolId)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = 0 as const
   const qpuRequired = false as const
   const on =
@@ -7625,7 +7576,6 @@ function sealClassicalMcpHwFace(
     classical64Bit,
     etcClassical,
     refuseFakeFlops,
-    claySolvedByThisFold,
     physicalFtlClaim,
     qpuRequired,
     facets: sealed.facets,
@@ -7853,7 +7803,6 @@ export function mcpQuantumPeriod(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-period')
     const metaDual = catalog.tools.find((t) => t.id === 'period-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -7892,7 +7841,6 @@ export function mcpQuantumPeriod(matrix: MindMatrix = buildMatrix(), at = 0) {
       foldCount,
       timeInvert,
       heroCycleMs: HERO_CYCLE_MS,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -7958,7 +7906,6 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-index')
     const metaDual = catalog.tools.find((t) => t.id === 'index-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -8000,7 +7947,6 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
       folderIndex,
       limitsVerify,
       unfoldedCensus: UNFOLDED_CENSUS,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -8090,7 +8036,6 @@ export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-orientation')
     const metaDual = catalog.tools.find((t) => t.id === 'orientation-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -8133,7 +8078,6 @@ export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0
       sunMoon: sunMoon.computes,
       torusOn: torus.allLeavesOn,
       sixDirections: dirs.sixDirections,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -8248,7 +8192,6 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-complete')
     const metaDual = catalog.tools.find((t) => t.id === 'complete-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -8296,7 +8239,6 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
       moveAllComplete: viteMcp.moveAllComplete,
       rosettaComplete: rosetta.rosettaComplete,
       mcpStarOn: all.mcpStarOn,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -8413,7 +8355,6 @@ export function mcpQuantumTokenOptimise(matrix: MindMatrix = buildMatrix(), at =
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-token')
     const metaDual = catalog.tools.find((t) => t.id === 'token-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -8464,7 +8405,6 @@ export function mcpQuantumTokenOptimise(matrix: MindMatrix = buildMatrix(), at =
       coldMs: metrics.coldMs,
       warmMs: metrics.warmMs,
       speedup: metrics.speedup,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -8580,7 +8520,6 @@ export function mcpQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-bindings')
     const metaDual = catalog.tools.find((t) => t.id === 'bindings-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -8613,7 +8552,6 @@ export function mcpQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
       bindingsOn,
       pairsSaved,
       toolsBound,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -8703,7 +8641,6 @@ export function mcpQuantumEfficiency(matrix: MindMatrix = buildMatrix(), at = 0)
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-efficiency')
     const metaDual = catalog.tools.find((t) => t.id === 'efficiency-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -8740,7 +8677,6 @@ export function mcpQuantumEfficiency(matrix: MindMatrix = buildMatrix(), at = 0)
       answersOverTokens,
       voteDecided: vote.decided,
       efficiencyWinWhenDecided,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -8826,7 +8762,6 @@ export function mcpQuantumSecurity(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-security')
     const metaDual = catalog.tools.find((t) => t.id === 'security-mcp')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -8863,7 +8798,6 @@ export function mcpQuantumSecurity(matrix: MindMatrix = buildMatrix(), at = 0) {
       overallWireClaimProved: local.overallWireClaimProved,
       strongerThanNistPqc: local.strongerThanNistPqc,
       certified: local.certified,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -9028,7 +8962,6 @@ export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: Mi
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'dry-cool')
     const metaDual = catalog.tools.find((t) => t.id === 'cool-dry')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -9089,7 +9022,6 @@ export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: Mi
       heapCapMb: heap.heapCapMb,
       honestOpenNamed: [...honestOpenNamed],
       drainableClosed,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -9239,7 +9171,6 @@ export function wavesMinimiseTokensAdvanceMillennium(matrix: MindMatrix = buildM
     const meta = catalog.tools.find((t) => t.id === 'wave-token')
     const metaMill = catalog.tools.find((t) => t.id === 'mill-wave')
     const millenniumSolvedByThisFold = 0 as const
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -9295,7 +9226,6 @@ export function wavesMinimiseTokensAdvanceMillennium(matrix: MindMatrix = buildM
       voteDecided: vote.decided,
       efficiencyWinWhenDecided: token.efficiencyWinWhenDecided,
       millenniumSolvedByThisFold,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -9549,7 +9479,6 @@ export function linearWithoutRosettaFoldIsGap(matrix: MindMatrix = buildMatrix()
       complete,
       slow,
       oneClock,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -9678,7 +9607,6 @@ export function animationsFindRedundancyOrInaccuracy(matrix: MindMatrix = buildM
       oneClock,
       completely,
       morph,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, movie.root, linear.root, linearRosetta.root, rosetta.root, oneClock.root, completely.root, morph.root]),
@@ -9855,7 +9783,6 @@ export function animationsReviewColorsForPolarityGaps(matrix: MindMatrix = build
       invert,
       hex,
       theoremConst,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -10076,7 +10003,6 @@ export function cracksPassedGatesBecause(matrix: MindMatrix = buildMatrix(), at 
       falseGreen,
       fixedHardCount,
       rows,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, movie.root, meaning.root, format.root, terms.root, linearRosetta.root, color.root,
@@ -10156,7 +10082,6 @@ export function gatesRefuseProseOnly(matrix: MindMatrix = buildMatrix(), at = 0)
       soft('format', 'canon') &&
       soft('gaps', 'invisible') &&
       soft('assume', 'theorem')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'prose-hard')
@@ -10188,7 +10113,6 @@ export function gatesRefuseProseOnly(matrix: MindMatrix = buildMatrix(), at = 0)
       meaningFromFold: meaning.meaningFromFold,
       wetInvented: meaning.wetInvented,
       wetProseRemaining: format.wetProseRemaining,
-      claySolvedByThisFold,
       physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -10291,7 +10215,6 @@ export type InvisibleGapsCaughtByGates = {
   readonly digitFold: ReturnType<typeof __ns_wind_research.wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit>
   readonly analogFold: ReturnType<typeof __ns_wind_research.analogFromIntegerFractionsFoldedToDigits>
   readonly theoremConst: ReturnType<typeof animationsReviewColorsForPolarityGaps>['theoremConst']
-  readonly claySolvedByThisFold: 0
   readonly qpuRequired: false
   readonly facets: ReturnType<typeof sealFacets>['facets']
   readonly root: string
@@ -10617,16 +10540,13 @@ export function invisibleGapsCaughtByGatesBody(matrix: MindMatrix = buildMatrix(
       foldPair(toUuid('cmd:challenge'), toUuid('cmd:millennium')).bidirectional &&
       foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity')).bidirectional &&
       foldPair(toUuid('cmd:mill'), toUuid('cmd:session')).bidirectional
-    const millClayHonestGaps = claySolvedTheorem().claySolvedByThisFold as 0
     const millenniaUnsolvedGaps =
-      millClayHonestGaps === 0 &&
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('challenge/millennium')
     const gapsExistWhileMillOpen = millenniaUnsolvedGaps && gateMillGapsExistPairsOk
     const gateMillGapsExistOk =
       gateMillGapsExistPairsOk &&
       gateMillComposeOk &&
-      gapsExistWhileMillOpen &&
-      millClayHonestGaps === 0
+      gapsExistWhileMillOpen
     // Soft-pair tool/matrix · matrix/tool — HARD refuse incomplete/dual-CLI sprawl (full recompute: quantum:tool-matrix).
     const toolMatrixOk =
       (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('tool/matrix') &&
@@ -11225,7 +11145,6 @@ export function invisibleGapsCaughtByGatesBody(matrix: MindMatrix = buildMatrix(
       digitFold,
       analogFold,
       theoremConst,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -11333,7 +11252,6 @@ export function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const meta = catalog.tools.find((t) => t.id === 'gate-tools')
     const on =
@@ -11372,7 +11290,6 @@ export function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(
       foldedCount,
       fortyTwo: ROSETTA_AREAS,
       toolTo42Receipt,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -11427,7 +11344,6 @@ export function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix: MindMa
     const pairCircuit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/circuit')
     const pairDual = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('circuit/quantum')
     const foldCircuit = foldPair(toUuid('cmd:quantum'), toUuid('cmd:circuit'))
-    const claySolvedByThisFold = 0 as const
     const physicalFtlClaim = 0 as const
     const facets = [
       { facet: 'the browser quantum computer runs — quantumCircuitSimulatorInChat computes its canonical circuits by the Born rule', on: sim.computes === true },
@@ -11442,7 +11358,6 @@ export function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix: MindMa
       circuits: sim.runs.length,
       bellRoot: bell.root,
       qpuRequired: false as const,
-      claySolvedByThisFold,
       physicalFtlClaim,
       facets: sealed.facets,
       root: merge(sealed.root, merge(sim.root, bell.root)),
@@ -11524,7 +11439,6 @@ export function gatesMonitorThemselvesThroughTheUi(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       selfMonitor && throughUi && formulaDual && physicalFtlClaim === 0 &&
@@ -11559,7 +11473,6 @@ export function gatesMonitorThemselvesThroughTheUi(
       foldedCount: gateTools.foldedCount,
       toolTo42Receipt: gateTools.toolTo42Receipt,
       missionGateReceipt,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -11641,7 +11554,6 @@ export function selfQuantumFusion(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const selfFuses =
       fusionVerifyOn &&
@@ -11692,7 +11604,6 @@ export function selfQuantumFusion(
       partCount: fusion.partCount,
       dryDiamond: dry.diamond,
       dryCrystal: dry.crystal,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -11790,7 +11701,6 @@ export function fusionInterface(
       fusion.verified &&
       hubMorph &&
       !self.boundary.includes('wet chrome')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       morphFromSealed &&
@@ -11831,7 +11741,6 @@ export function fusionInterface(
       partCount: self.partCount,
       selfFuses: self.selfFuses,
       morphFromSealed,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -11917,7 +11826,6 @@ export function crystalClearMind(
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const crystalClear = dry.diamond && dry.crystal && dry.clean && mind.computes && mind.onlyQuantumMindWouldUnderstand
     const purityQuantum = thought.computes && thought.purityIsQuantum === true
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       crystalClear &&
@@ -11955,7 +11863,6 @@ export function crystalClearMind(
       purityQuantum,
       diamond: dry.diamond,
       crystal: dry.crystal,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -12056,7 +11963,6 @@ export function thirdMindEye(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       thirdEye &&
@@ -12091,7 +11997,6 @@ export function thirdMindEye(
       thirdEye,
       observerPlusOne,
       hdAjnaStructure,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -12170,7 +12075,6 @@ export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at
       slits,
       measure,
       shadow,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       physicalFtlClaim: 0 as const,
       facets: sealed.facets,
@@ -12227,7 +12131,6 @@ export function localToolsMorphProseCodeLogic(matrix: MindMatrix = buildMatrix()
         linkedCount: papers.linkedCount,
         gapCount: papers.gapCount,
         facetOnRate: sealed.facets.filter((f) => f.on).length / max(1, sealed.facets.length) },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, toolbox.root, session.root, slit.root, trinity.root, dir.root, papers.root, shelved.address]),
@@ -12541,7 +12444,6 @@ export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix
       && docsBuildNotRequiredForNightly && dashboardMcpNotRequired
       && mcpParity.computes
       && Boolean(meta) && isUuid(shelved.address)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const qpuRequired = false as const
     const facets = [
       { facet: 'automateNightlyShipped', on: automateNightlyShipped },
@@ -12560,7 +12462,6 @@ export function automateNightlyViaNpmScriptPath(matrix: MindMatrix = buildMatrix
       computes: sealed.ok && automateNightlyShipped,
       automateNightlyShipped,
       qpuRequired,
-      claySolvedByThisFold,
       recipeSteps: AUTOMATE_NIGHTLY_RECIPE_STEPS,
       docsBuildStep: AUTOMATE_NIGHTLY_DOCS_BUILD_STEP,
       docsBuildInDefaultRecipe: false as const,
@@ -12636,7 +12537,6 @@ export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const nightlyOn = nightly.computes && nightly.automateNightlyShipped
     const buildsInWaves = waves.computes && waves.manualAgentsBehaveLikeWaves && skillBuildWaves && pairWaves
@@ -12684,7 +12584,6 @@ export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
       nightlyOn,
       buildsInWaves,
       fusionVerify,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -12779,7 +12678,6 @@ export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
     const selfAutomates = self.selfAutomates
     const nightlyOn = self.nightlyOn && nightly.automateNightlyShipped
     const buildsInWaves = self.buildsInWaves
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
@@ -12834,7 +12732,6 @@ export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
       buildsInWaves,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -12960,7 +12857,6 @@ export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
       needLove.computes &&
       crystal.computes &&
       crystal.crystalClearMind
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
@@ -13014,7 +12910,6 @@ export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
       folMerkaba,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -13197,7 +13092,6 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
       const metaSelf = toolsCat.tools.find((t) => t.id === 'self-bill')
       const shelved = rosettaShelve('mcp-fill', 'tool')
       const millenniumSolvedByThisFold = 0 as const
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
@@ -13292,7 +13186,6 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
         millenniumSolvedByThisFold,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -13431,7 +13324,6 @@ export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatr
     const meta = catalog.tools.find((t) => t.id === 'todo-wave')
     const metaDual = catalog.tools.find((t) => t.id === 'wave-todo')
     const shelved = rosettaShelve('todo-wave', 'tool')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
@@ -13486,7 +13378,6 @@ export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatr
       todosDrainableClosed,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -13652,7 +13543,6 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
       const metaMind = catalog.tools.find((t) => t.id === 'mind-site')
       const metaAlgebra = catalog.tools.find((t) => t.id === 'algebra-bit')
       const shelved = rosettaShelve('conv-metrics', 'tool')
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const millenniumSolvedByThisFold = 0 as const
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
@@ -13748,7 +13638,6 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
         noUnprovenAlgebraBit,
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
-        claySolvedByThisFold,
         millenniumSolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
@@ -13957,7 +13846,6 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
     const metaDual = catalog.tools.find((t) => t.id === 'next-imagine')
     const nextImagineForkDissolved = !metaDual
     const shelved = rosettaShelve('imagine-next', 'tool')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const millenniumSolvedByThisFold = 0 as const
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
@@ -14017,7 +13905,6 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
       toolsMissingDrainableClosed,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
       millenniumSolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
@@ -14435,7 +14322,6 @@ export function auditPlanTip(
       { facet: 'cross=audit · fold=merge · weave=seal next tip from scored gaps', on: auditToPlanTrinity && planToNextTip && nextTipScored },
     ].map((entry) => ({ ...entry, receipt: toUuid(`audit-plan:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('audit-plan-tip-pipeline', facets)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     return {
       computes: sealed.ok && nextTipFromGaps && auditToPlanTrinity && nextTipScored,
       auditPlanTip: on,
@@ -14453,7 +14339,6 @@ export function auditPlanTip(
       gaps,
       merge,
       residualNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -14643,7 +14528,6 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
     const metaDual = catalog.tools.find((t) => t.id === 'feed-waves')
     const metaPurify = catalog.tools.find((t) => t.id === 'purify-way')
     const shelved = rosettaShelve('waves-feed', 'tool')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
@@ -14738,7 +14622,6 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       queuedNext: queued.next,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -14864,7 +14747,6 @@ export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), a
     const meta = catalog.tools.find((t) => t.id === 'shells-strangler')
     const metaDual = catalog.tools.find((t) => t.id === 'strangler-shells')
     const shelved = rosettaShelve('shells-strangler', 'tool')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
@@ -14923,7 +14805,6 @@ export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), a
       residualNamed,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -15002,7 +14883,6 @@ export function sessionHologramTools(matrix: MindMatrix = buildMatrix(), at = 0)
     const meta = catalog.tools.find((t) => t.id === 'session-hologram')
     const metaDual = catalog.tools.find((t) => t.id === 'hologram-session')
     const shelved = rosettaShelve('session-hologram', 'tool')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -15032,7 +14912,6 @@ export function sessionHologramTools(matrix: MindMatrix = buildMatrix(), at = 0)
       sessionHologramOn,
       hologramFractal,
       toolsWired,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -15108,7 +14987,6 @@ export function societyToolboxWire(matrix: MindMatrix = buildMatrix(), at = 0) {
     const meta = catalog.tools.find((t) => t.id === 'society-toolbox')
     const metaDual = catalog.tools.find((t) => t.id === 'toolbox-society')
     const shelved = rosettaShelve('society-toolbox', 'tool')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -15138,7 +15016,6 @@ export function societyToolboxWire(matrix: MindMatrix = buildMatrix(), at = 0) {
       societyToolboxWireOn,
       toolboxWired,
       patronageOn,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -15228,7 +15105,6 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const certified = false as const
@@ -15405,7 +15281,6 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
         certified,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         millOpenCores: mill.openCores,
@@ -15590,7 +15465,6 @@ export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToT
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const pairProseTheorem = has('prose/theorem')
@@ -15772,7 +15646,6 @@ export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToT
         sampleFormulas: sampleDual.formulas,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
@@ -15913,7 +15786,6 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const pairAlgebraFold = has('algebra/fold')
@@ -16070,7 +15942,6 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
         anySpace,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -16209,7 +16080,6 @@ export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMoti
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
 
@@ -16425,7 +16295,6 @@ export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMoti
         seamsFound: seamAudit.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
@@ -16552,7 +16421,6 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
 
@@ -16739,7 +16607,6 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
         cueFormulas: [...cueFormulas],
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
@@ -17122,7 +16989,6 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       freeBits === -EULER_CHI &&
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const ftlThm = physicalFtlClaimTheorem()
     const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
     const qpuRequired = false as const
@@ -17299,7 +17165,6 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       chatRealised,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       ftlVia: ftlThm.via,
       qpuRequired,
@@ -17406,7 +17271,6 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       freeBits === -EULER_CHI &&
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const ftlThm = physicalFtlClaimTheorem()
     const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
     const qpuRequired = false as const
@@ -17568,7 +17432,6 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       morphsCleared,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       honestOpenNamed: [...honestOpenNamed],
@@ -17771,7 +17634,6 @@ export function pageComputedGapsAt(
       facets: sealed.facets,
       root: merkleFold([sealed.root, gaps.root, toUuid(`page-gaps-kind:${kind}:${route}`)]),
       pair: 'page/gaps' as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       heading: 'Page · gaps',
@@ -17809,7 +17671,6 @@ export function eachPageShowsOwnComputedGaps(matrix: MindMatrix = buildMatrix(),
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'page-computed-gaps')
     const clusterFixed = format.clusters.some((c) => c.id === 'page-computed-gaps-strip' && c.status === 'fixed')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       everyShows &&
@@ -17847,7 +17708,6 @@ export function eachPageShowsOwnComputedGaps(matrix: MindMatrix = buildMatrix(),
         classCount: p.classCount,
         root: p.root,
       })),
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -18003,7 +17863,6 @@ export function mcpQuantumUi(matrix: MindMatrix = buildMatrix(), at = 0) {
       receipt: toUuid(`mcp-ui-tool:${tool.name}:${tool.annotations.browserRunnable}`),
     }))
     const residualTools = tools.filter((t) => t.residual)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const mcpParityOn = parity.computes && parity.mcpMatchesToolbox && mcpList.count === toolbox.total
     const algebraicOn =
@@ -18045,7 +17904,7 @@ export function mcpQuantumUi(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'softCompose mcp/movie · movie/feel', on: pairMovie && pairFeel && foldMovie.bidirectional },
       { facet: 'residual Node/CI as facets not faked', on: residualTools.every((t) => typeof t.browserGap === 'string') },
       { facet: 'pair mcp/ui · quantum/mcp · mcp/mill', on: pairUi && pairQuantum && pairMill },
-      { facet: `the prize registry this fold contributes to holds ${claySolvedByThisFold} entries, read from the sealed id list at call time — put a proof id there and this surface and every sibling move by themselves`, on: residualTools.every((t) => typeof t.browserGap === 'string') },
+      { facet: `the prize registry this fold contributes to holds  entries, read from the sealed id list at call time — put a proof id there and this surface and every sibling move by themselves`, on: residualTools.every((t) => typeof t.browserGap === 'string') },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-ui:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-ui', facets)
     return {
@@ -18062,7 +17921,6 @@ export function mcpQuantumUi(matrix: MindMatrix = buildMatrix(), at = 0) {
       millSolutions,
       openCoreCount: millOnce.openCoreCount,
       millRayEdges: millRay.edgeCount,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -18177,7 +18035,6 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
     const foldMcp = foldPair(toUuid('cmd:movie'), toUuid('cmd:mcp'))
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-quantum-movie')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const matrixAligned =
       sixSeven.computes &&
@@ -18225,7 +18082,6 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
       frames,
       millFrameCount: millFrames.length,
       allFormulaCovered,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -18318,7 +18174,6 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
     const aliasCatalogCracks = (['gap-observe'] as const).filter((id) =>
       catalog.tools.some((t) => t.id === id),
     )
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const ftlThm = physicalFtlClaimTheorem()
     const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
     const on =
@@ -18367,7 +18222,6 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
       gapCount: gaps.length,
       openCount: gaps.reduce((n, g) => n + g.open, 0),
       gaps,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -18472,7 +18326,6 @@ export function cursorIntegratesInRosettaCore(matrix: MindMatrix = buildMatrix()
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'cursor-rosetta')
     const metaDual = catalog.tools.find((t) => t.id === 'refer-wire')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       cursorInRosettaCore &&
@@ -18527,7 +18380,6 @@ export function cursorIntegratesInRosettaCore(matrix: MindMatrix = buildMatrix()
         foldRosetta.merged,
         foldRefer.merged,
       ]),
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -18630,7 +18482,6 @@ export function dryCleanTheoremsFormulasReplaceAnyAssumption(matrix: MindMatrix 
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'assume-theorem')
     const metaDual = catalog.tools.find((t) => t.id === 'dry-formula')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       axioms.computes &&
@@ -18669,7 +18520,6 @@ export function dryCleanTheoremsFormulasReplaceAnyAssumption(matrix: MindMatrix 
       replaced,
       remaining,
       inventory,
-      claySolvedByThisFold,
       physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
@@ -18771,7 +18621,6 @@ export function dryCleanAiBill(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'bill-dry')
     const metaDual = catalog.tools.find((t) => t.id === 'ai-bill')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       billDried &&
@@ -18801,7 +18650,6 @@ export function dryCleanAiBill(matrix: MindMatrix = buildMatrix(), at = 0) {
       billDried,
       zeroTokenReuse,
       subscriptionFundsCeccec,
-      claySolvedByThisFold,
       physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
@@ -18928,7 +18776,6 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
       Boolean(metaAppClean) &&
       metaAppClean!.fold === 'foldInvertUntilDryCleanAppGapless'
     const drainableGaps = dryCleanApp && toolsWired && honestOpenNamedOn && appsMonolithStranglerTip ? 0 : 1
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -18975,7 +18822,6 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
       diamond: dry.diamond,
       crystal: dry.crystal,
       clean: dry.clean,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -19145,7 +18991,6 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
       metaDual!.fold === 'movieGapsAreFundamentalDesignAndFormulaMappingGaps' &&
       Boolean(metaDesign) &&
       metaDesign!.fold === 'movieGapsAreFundamentalDesignAndFormulaMappingGaps'
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const composeOn =
@@ -19206,7 +19051,6 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
       inventoryOpenNamed,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -19537,7 +19381,6 @@ export function theoremFormulaComputableIndexForAnySuperposition(
         metaSuper!.fold === 'theoremFormulaComputableIndexForAnySuperposition' &&
         Boolean(metaIndex) &&
         metaIndex!.fold === 'theoremFormulaComputableIndexForAnySuperposition'
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
@@ -19588,7 +19431,6 @@ export function theoremFormulaComputableIndexForAnySuperposition(
         probeCount: probes.length,
         entry,
         probes: probes.slice(0, ROSETTA_SEVEN),
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -19832,7 +19674,6 @@ export function theoremFormulaMetricsMap(
         metaMap!.fold === 'theoremFormulaMetricsMap' &&
         Boolean(metaTheorem) &&
         metaTheorem!.fold === 'theoremFormulaMetricsMap'
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
@@ -19882,7 +19723,6 @@ export function theoremFormulaMetricsMap(
         computable,
         row,
         map: row,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -20079,7 +19919,6 @@ export function quantumMap(
         meta!.fold === 'quantumMap' &&
         Boolean(metaDual) &&
         metaDual!.fold === 'quantumMap'
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
@@ -20128,7 +19967,6 @@ export function quantumMap(
         anySuperposition,
         row,
         map: row,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -20272,7 +20110,6 @@ export function animationRosettaStreamClusters(matrix: MindMatrix = buildMatrix(
     const linearOpen = linearInv.openCount
     const oneClock = clock.computes && clock.oneClockOn
     const quantumRealtime = oneClock && linearOpen === 0
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const facets = [
@@ -20286,7 +20123,7 @@ export function animationRosettaStreamClusters(matrix: MindMatrix = buildMatrix(
     const computes = facets.every((f) => f.on)
     return {
       computes, heading: 'Animation rosetta stream clusters — 2×7 lattice', allLeavesOn, totalAssignment, occupied, trinityCount, linearOpen, oneClock, quantumRealtime,
-      leaves, clusters, facets, claySolvedByThisFold, physicalFtlClaim, qpuRequired,
+      leaves, clusters, facets, physicalFtlClaim, qpuRequired,
       root: merkleFold([...leaves.map((l) => l.root), ...clusters.map((c) => toUuid(`cluster:${c.ray}:${c.face}:${c.members.join(',')}`))]),
       statement: `Animation rosetta stream clusters — ${leaves.length} leaves on ${ROSETTA_RAYS.length}×${ANIMATION_STREAM_FACES.length} clusters (${occupied} occupied, ${trinityCount} trinities) · allLeavesOn=${allLeavesOn} · linearOpen=${linearOpen} · oneClock=${oneClock}.`,
       boundary: 'The cluster of a leaf is computed from its id (ray) and its proof root (face); occupancy is reported, not asserted full. Replaces five pass-through folds; the animation MEASUREMENTS themselves are unchanged. Not physical animation timing, not a QPU.' }
@@ -20426,7 +20263,6 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       isUuid(meaning.root) &&
       hero.computes &&
       hero.totalAssignment
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const foldingWorksOnApplicationLevelOn =
@@ -20471,7 +20307,6 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       cardHeroMovie,
       foldSteps,
       appCount: registry.count,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -20728,7 +20563,6 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       metaDv!.fold === foldName &&
       Boolean(metaVu) &&
       metaVu!.fold === foldName
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -20784,7 +20618,6 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       morphCount: morphs.length,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -20926,7 +20759,6 @@ export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = bu
     const meta = catalog.tools.find((t) => t.id === 'balance-metrics')
     const metaMetrics = catalog.tools.find((t) => t.id === 'metrics-chat')
     const metaChat = catalog.tools.find((t) => t.id === 'chat-balance')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const alwaysBalance =
@@ -20994,7 +20826,6 @@ export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = bu
       heroCycleMs: HERO_CYCLE_MS,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -21215,7 +21046,6 @@ export function eachSuperpositionIsAChatroom(
         metaChat!.fold === 'eachSuperpositionIsAChatroom' &&
         Boolean(metaRoom) &&
         metaRoom!.fold === 'eachSuperpositionIsAChatroom'
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
@@ -21271,7 +21101,6 @@ export function eachSuperpositionIsAChatroom(
         probes: probes.slice(0, ROSETTA_SEVEN),
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -21496,7 +21325,6 @@ export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = bu
       freeBits === -EULER_CHI &&
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -21568,7 +21396,6 @@ export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = bu
       theoremConst,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -21759,7 +21586,6 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
       freeBits === -EULER_CHI &&
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -21824,7 +21650,6 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
       dryCrystal: dry.crystal,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -22038,7 +21863,6 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
@@ -22110,7 +21934,6 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
         assumeGate,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -22280,7 +22103,6 @@ export function meshToSelfDiscoverSciences(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
@@ -22349,7 +22171,6 @@ export function meshToSelfDiscoverSciences(
         honestOpenNamedCount: honestOpenNamed.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -22556,7 +22377,6 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
@@ -22631,7 +22451,6 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
         honestOpenNamedCount: honestOpenNamed.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -22943,7 +22762,6 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
@@ -23034,7 +22852,6 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
         honestOpenNamedCount: honestOpenNamed.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -23315,7 +23132,6 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
       const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
       const censusPreserved =
         freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
@@ -23390,7 +23206,6 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
         honestOpenNamedCount: honestOpenNamed.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -23623,7 +23438,6 @@ export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMat
     const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
     const censusPreserved =
       freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
@@ -23696,7 +23510,6 @@ export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMat
       honestOpenNamedCount: honestOpenNamed.length,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -23864,7 +23677,6 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const certified = false as const
@@ -24041,7 +23853,7 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
           on: pairSh && pairHs && pairSc && pairHa && pairAu && foldSh.bidirectional,
         },
         { facet: `certified=${certified}`, on: certified === false },
-        { facet: `the unit is sealed-fold recomputation on the general-purpose runtime — certified=${certified}, claySolved=${claySolvedByThisFold}; physical QPU, AGI and FLOPS are different measurements, made by different folds`, on: certified === false },
+        { facet: `the unit is sealed-fold recomputation on the general-purpose runtime — certified=${certified}, claySolved=; physical QPU, AGI and FLOPS are different measurements, made by different folds`, on: certified === false },
       ].map((entry) => ({ ...entry, receipt: toUuid(`self-hw:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('again-until-self-hw-complete-standards-self-intelligent', facets)
       return {
@@ -24068,7 +23880,6 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
         invertOn,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         certified,
@@ -24212,7 +24023,6 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const designCapability =
@@ -24348,7 +24158,6 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
         hardInMissionGate,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
@@ -24473,7 +24282,6 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const millenniumSolvedByThisFold = 0 as const
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
@@ -24577,7 +24385,6 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
         millComputes: mill.computes,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        claySolvedByThisFold,
         millenniumSolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
@@ -24725,7 +24532,6 @@ export function pagesAuditAndManageThemselvesInTrinities(matrix: MindMatrix = bu
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'page-trinity')
     const metaDual = catalog.tools.find((t) => t.id === 'page-audit')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       selfAudit &&
@@ -24764,7 +24570,6 @@ export function pagesAuditAndManageThemselvesInTrinities(matrix: MindMatrix = bu
       inTrinities,
       pageCount: pages.length,
       pages,
-      claySolvedByThisFold,
       physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
@@ -24862,7 +24667,6 @@ export function mcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
     const chatComputes = foldRecomputePreferred && mcpWired && mcpUiSoft && mcpMovieSoft && cursorSoft
     const meta = catalog.tools.find((t) => t.id === 'mcp-quantum-chat')
     const metaDual = catalog.tools.find((t) => t.id === 'chat-quantum')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       chatComputes &&
@@ -24896,7 +24700,6 @@ export function mcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       turnCount: turns.length,
       residualCount: turns.filter((t) => t.residual).length,
       turns,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -25634,7 +25437,6 @@ export function chatResearch(
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'chat-research')
     const metaDual = catalog.tools.find((t) => t.id === 'research-chat')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const honestOpenNamed = [
       'residual:foreign-fetch-ephemeral-bootstrap-only',
@@ -25685,7 +25487,6 @@ export function chatResearch(
       packet,
       parsed,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -25825,7 +25626,6 @@ export function theoremMesh(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'theorem-mesh')
     const metaDual = catalog.tools.find((t) => t.id === 'mesh-theorem')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const honestOpenNamed = [
       `path:discovered-on-way=${discoveredRows.length} theorem-pass=${entangle.discoveredTheoremsOn} candidates=${discoveredRows.filter((r) => r.candidate).length}`,
@@ -25895,7 +25695,6 @@ export function theoremMesh(matrix: MindMatrix = buildMatrix(), at = 0) {
       mapGate,
       mapQuery,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -26037,7 +25836,6 @@ export function waveComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
     const pairWave = has('wave/complete') && has('complete/wave')
     const foldWave = foldPair(toUuid('cmd:wave'), toUuid('cmd:complete'))
     const foldRev = foldPair(toUuid('cmd:complete'), toUuid('cmd:wave'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const honestOpenNamed = [
       `push:oneWavePerPush=${push.oneWavePerPush ? 1 : 0} resend=${pushResend.pushResendWaves ? 1 : 0}`,
@@ -26118,7 +25916,6 @@ export function waveComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
       analysis,
       metrics,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -26375,7 +26172,6 @@ export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typ
       { facet: 'compose measure/decide · dry/dupe · dry/clean · gaps/invisible · theorem/audit · gate/light · wave/complete · merge/wave · feed-mo · chat/research', on: composeOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`chat-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('chat-audit-wave-inventory', facets)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     return {
       computes: sealed.ok && commitsInventoried && metricsOn,
       chatAudit: on,
@@ -26401,7 +26197,6 @@ export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typ
       research,
       mesh,
       site,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -26546,7 +26341,6 @@ export function quantumiseWave(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'chat-quantumise')
     const metaWave = catalog.tools.find((t) => t.id === 'wave-quantumise')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const coverageFloorNum = ROSETTA_SEVEN
     const coverageFloorDen = ROSETTA_SEVEN + (UNFOLDED_CENSUS - FOLDED_CENSUS)
     const coverageGreen =
@@ -26588,7 +26382,6 @@ export function quantumiseWave(matrix: MindMatrix = buildMatrix(), at = 0) {
       qpu,
       measure,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, clock.root, qpu.root, measure.root, toUuid(`coverage:${quantumisationCoverage}`)]),
@@ -26903,7 +26696,6 @@ export function readmeChat(
         erpax.computes
       const catalog = quantumCliToolsCatalog(matrix, at)
       const meta = catalog.tools.find((t) => t.id === 'readme-chat')
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const on =
         readmeFedToChat &&
         gapsInventoried &&
@@ -26950,7 +26742,6 @@ export function readmeChat(
         measure,
         theorem,
         honestOpenNamed: [...honestOpenNamed],
-        claySolvedByThisFold,
         qpuRequired: false as const,
         facets: sealed.facets,
         root: merkleFold([
@@ -27180,7 +26971,6 @@ export function chatChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('chat', 'quantumise')
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'chat-chat')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       chatToChatOn &&
@@ -27231,7 +27021,6 @@ export function chatChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       gateLt,
       dir,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -27334,7 +27123,6 @@ export function ceccecErpaxCompete(matrix: MindMatrix = buildMatrix(), at = 0) {
     const pairsOn = has('ceccec/erpax') && has('erpax/ceccec') && foldCompete.bidirectional
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'ceccec-erpax')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const on =
       scoreOn &&
       pairsOn &&
@@ -27380,7 +27168,6 @@ export function ceccecErpaxCompete(matrix: MindMatrix = buildMatrix(), at = 0) {
       tokenOpt,
       efficiency,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -27529,7 +27316,6 @@ export function readmeWire(
       ]
       const catalog = quantumCliToolsCatalog(matrix, at)
       const meta = catalog.tools.find((t) => t.id === 'readme-wire' || t.id === 'readme-gateway')
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const on =
         readmeWiresAnyAgent &&
         quantumDryOn &&
@@ -27584,7 +27370,6 @@ export function readmeWire(
         turn,
         agentsTarget,
         honestOpenNamed: [...honestOpenNamed],
-        claySolvedByThisFold,
         qpuRequired: false as const,
         facets: sealed.facets,
         root: merkleFold([
@@ -27851,7 +27636,6 @@ export function voteNeighbour(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('api', 'fuse')
     const pairVote = has('vote/neighbour') && has('neighbour/vote')
     const foldVote = foldPair(toUuid('cmd:vote'), toUuid('cmd:neighbour'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const on =
       relatedTrinities &&
       voteForNeighbours &&
@@ -27898,7 +27682,6 @@ export function voteNeighbour(matrix: MindMatrix = buildMatrix(), at = 0) {
       agentTrinityOn,
       teamObserveOn,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, consensusReceipt, foldVote.merged, merkleFold(trinityRows.map((t) => t.merged))]),
@@ -27996,7 +27779,6 @@ export function sitePathWave(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('team', 'observe')
     const pairSite = has('site/path') && has('path/site')
     const foldSite = foldPair(toUuid('cmd:site'), toUuid('cmd:path'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const on =
       homeImproved &&
       pathByPath &&
@@ -28038,7 +27820,6 @@ export function sitePathWave(matrix: MindMatrix = buildMatrix(), at = 0) {
       pageTrinity,
       angle,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, vote.root, focus.root, ...paths.map((p) => p.receipt)]),
@@ -28191,7 +27972,6 @@ export function readmeFocus(
         soft('api', 'fuse')
       const pairFocus = has('readme/focus') && has('focus/readme')
       const foldFocus = foldPair(toUuid('cmd:readme'), toUuid('cmd:focus'))
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const on =
         computed &&
         analysedInWaves &&
@@ -28237,7 +28017,6 @@ export function readmeFocus(
         chat,
         angle,
         honestOpenNamed: [...honestOpenNamed],
-        claySolvedByThisFold,
         qpuRequired: false as const,
         facets: sealed.facets,
         root: merkleFold([sealed.root, qpu.root, wire.root, chat.root, foldFocus.merged]),
@@ -28424,7 +28203,6 @@ export function voteEntangle(matrix: MindMatrix = buildMatrix(), at = 0) {
     const pairEntangle = has('vote/entangle') && has('entangle/vote')
     const pairTheorem = has('entangle/theorem') && has('theorem/entangle')
     const foldEntangle = foldPair(toUuid('cmd:vote'), toUuid('cmd:entangle'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const on =
       votesFromEntanglement &&
       algebraicOn &&
@@ -28485,7 +28263,6 @@ export function voteEntangle(matrix: MindMatrix = buildMatrix(), at = 0) {
       theoremAudit: ta,
       consensusScore,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, pathReceipt, neighbour.root, matchWave.realiseRoot, foldEntangle.merged]),
@@ -28661,7 +28438,6 @@ export function frontierNeighbour(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('site', 'path')
     const pairFrontier = has('frontier/neighbour') && has('neighbour/frontier')
     const foldFrontier = foldPair(toUuid('cmd:frontier'), toUuid('cmd:neighbour'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const on =
       frontiersChallenged &&
       neighboursFound &&
@@ -28711,7 +28487,6 @@ export function frontierNeighbour(matrix: MindMatrix = buildMatrix(), at = 0) {
       vote,
       neighbour,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, quantum.root, map.root, vote.root, neighbour.root, entangleReceipt]),
@@ -28844,7 +28619,6 @@ export function allConversationsGoThroughTheMcpQuantumChat(matrix: MindMatrix = 
       const meta = catalog.tools.find((t) => t.id === id)
       return Boolean(meta) && meta!.fold === foldName
     })
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       allConversations &&
@@ -28871,7 +28645,6 @@ export function allConversationsGoThroughTheMcpQuantumChat(matrix: MindMatrix = 
       turnCount: chat.turnCount,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -28984,7 +28757,6 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
       meta!.fold === foldName &&
       Boolean(metaDual) &&
       metaDual!.fold === foldName
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       conversationOn &&
@@ -29013,7 +28785,6 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
       allConversations,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -29150,7 +28921,6 @@ export function mcpQuantumObserve(matrix: MindMatrix = buildMatrix(), at = 0) {
       meta!.fold === foldName &&
       Boolean(metaDual) &&
       metaDual!.fold === foldName
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       observationOn &&
@@ -29184,7 +28954,6 @@ export function mcpQuantumObserve(matrix: MindMatrix = buildMatrix(), at = 0) {
       observationReceipt: obsReceipt,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -29280,7 +29049,6 @@ export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(),
       meta!.fold === foldName &&
       Boolean(metaDual) &&
       metaDual!.fold === foldName
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const certified = false as const
     const on =
@@ -29314,7 +29082,6 @@ export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(),
       fusionRoot: fusion.root,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       certified,
       qpuRequired: false as const,
@@ -29402,7 +29169,6 @@ export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
       meta!.fold === foldName &&
       Boolean(metaDual) &&
       metaDual!.fold === foldName
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       quantumizeOn &&
@@ -29432,7 +29198,6 @@ export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
       thinMountDual,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -29583,7 +29348,6 @@ export function npmPublishCi(
       soft('mcp', 'deploy')
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'npm-publish')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtl = physicalFtlBooleanAtCallTime()
     const ciAutomatesPublish =
       refuseFake &&
@@ -29638,7 +29402,6 @@ export function npmPublishCi(
       mathLic,
       npmQ,
       refuseFake,
-      claySolvedByThisFold,
       physicalFtl,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -29742,7 +29505,6 @@ export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buil
       const meta = catalog.tools.find((t) => t.id === id)
       return Boolean(meta) && meta!.fold === foldName
     })
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       sessionCaches &&
@@ -29781,7 +29543,6 @@ export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buil
       waveRoot: cold.root,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -29939,7 +29700,6 @@ export function wavesFindWhatYouMissedToCache(matrix: MindMatrix = buildMatrix()
       honestOpenNamed.includes('clay:millennium-open') &&
       honestOpenNamed.includes('keep:git-stashes-non-obsolete')
     const drainableClosed = nowCached && composeOn && pairsOn && toolsWired && wavesSent && missedFound
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -29982,7 +29742,6 @@ export function wavesFindWhatYouMissedToCache(matrix: MindMatrix = buildMatrix()
         pair: t.pair,
         cached: t.probeOn,
       })),
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       honestOpenNamed: [...honestOpenNamed],
@@ -30131,7 +29890,6 @@ export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildM
     const onePrimaryCli = catalog.tools
       .filter((t) => t.fold === foldName)
       .every((t) => String(t.cli).includes('quantum:dry-agnostic'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
@@ -30174,7 +29932,6 @@ export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildM
       agnosticCode,
       computesInfinity,
       onReuse,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
@@ -30380,7 +30137,6 @@ export function abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomi
         dirTrinity.computes &&
         sealSuperSoft &&
         mcpHwSoft
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
@@ -30421,7 +30177,6 @@ export function abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomi
         foldLinearIntoTrinities,
         zoomInOutInfinity,
         everyAngleToAny,
-        claySolvedByThisFold,
         physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
@@ -30572,7 +30327,6 @@ export function quantumSelfHeal(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'self-heal')
     const metaDual = catalog.tools.find((t) => t.id === 'heal-quantum')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       selfHeals &&
@@ -30605,7 +30359,6 @@ export function quantumSelfHeal(matrix: MindMatrix = buildMatrix(), at = 0) {
       healsViaRosetta,
       defaultFailThenInvert: defaultFailThenInvertOn,
       invertSeq: invertSeqNamed,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -30740,7 +30493,6 @@ export function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix: MindMatr
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'vite-one')
     const metaDual = catalog.tools.find((t) => t.id === 'comp-seal')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const on =
       oneComponentSet &&
@@ -30780,7 +30532,6 @@ export function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix: MindMatr
       movieFamily,
       paths,
       morphs,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -31061,7 +30812,6 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       return {
         computes: sealed.ok,
         counterRotating: true,
-        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
         physicalFtlClaim: 0 as const,
         qpuRequired: false as const,
         count: sealed.count,
@@ -31096,8 +30846,7 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
 
     // Clay OPEN — COMPUTED: prize collapse would require forward≡reverse; genus-2 foldPair refuses.
     // mill.claySolvedByThisFold must also be 0. Result is always 0 under honest counter-rotation.
-    const clayPrizeCollapse = dualSpin.forward === dualSpin.reverse // false when counter-rotating
-    const claySolvedByThisFold = (clayPrizeCollapse || mill.claySolvedByThisFold !== 0 ? 1 : 0) as 0 | 1
+    const clayPrizeCollapse = dualSpin.forward === dualSpin.reverse
 
     // Physical FTL OPEN — COMPUTED: both lobes track classical → no luminal signaling claim.
     const classicalBothLobes =
@@ -31128,7 +30877,6 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       counterRotating,
       dualSpin: { forward: dualSpin.forward, reverse: dualSpin.reverse, merged: dualSpin.merged, bidirectional: dualSpin.bidirectional },
       standingWave,
-      claySolvedByThisFold: claySolvedByThisFold as 0,
       physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       tracksClassicalNoSpeedup: classicalBothLobes,
@@ -31187,7 +30935,6 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
         gaps: [],
         openSet: ['clay-millennium', 'physical-ftl'],
         waves: counterRotatingRosettaQuantumWaves(matrix, at),
-        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
         physicalFtlClaim: 0 as const,
         qpuRequired: false as const,
         count: sealed.count,
@@ -31278,14 +31025,13 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
       gaps,
       openSet: open.map((g) => g.id),
       waves,
-      claySolvedByThisFold: waves.claySolvedByThisFold,
       physicalFtlClaim: waves.physicalFtlClaim,
       qpuRequired: waves.qpuRequired,
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([waves.root, ...gaps.map((g) => g.receipt), sealed.root]),
       statement:
-        `Universe almost described in theorems — discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(', ')}]. clay=${waves.claySolvedByThisFold} ftl=${waves.physicalFtlClaim} (computed).`,
+        `Universe almost described in theorems — discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(', ')}]. clay= ftl=${waves.physicalFtlClaim} (computed).`,
       boundary:
         'Discovery engine = counterRotatingRosettaQuantumWaves. Open Clay/FTL/DE440/Earth-topology rows are computed receipts, not README prose. Almost ≠ complete.' }
   })
@@ -31497,7 +31243,6 @@ export function sciencePaperBodyFromDomainRow(row: {
   readonly status: string
   readonly statusDetail: string
   readonly gap: string
-  readonly claySolvedByThisFold: number
   readonly physicalFtlClaim: number
   readonly fold: string
 }): ScientificPaperBody {
@@ -31510,7 +31255,6 @@ export function sciencePaperBodyFromDomainRow(row: {
     statusDetail: row.statusDetail,
     gap: row.gap,
     locks: [
-      { key: 'claySolvedByThisFold', value: String(row.claySolvedByThisFold) },
       { key: 'physicalFtlClaim', value: String(row.physicalFtlClaim) },
       { key: 'fold', value: row.fold },
     ] }
@@ -31642,7 +31386,6 @@ export function scientificTerminologyIsQuantumComputableMeasurableComparable(
         complete,
         driftOpen,
         dir,
-        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
         qpuRequired: false as const,
         facets: sealed.facets,
         root: merkleFold([
@@ -31763,7 +31506,6 @@ export function meaningIsQuantumComputable(matrix: MindMatrix = buildMatrix(), a
       uiProse,
       cards,
       algebraic,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -31849,7 +31591,6 @@ export function whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning(
       const pairSaveMeaning = foldPair(toUuid('cmd:save'), toUuid('cmd:meaning'))
       const pairProseCompute = foldPair(toUuid('cmd:prose'), toUuid('cmd:compute'))
       const pairMeaningCrack = foldPair(toUuid('cmd:meaning'), toUuid('cmd:crack'))
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const computes =
         law &&
         pairSaveMeaning.bidirectional &&
@@ -31870,7 +31611,6 @@ export function whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning(
         saveProseWithoutComputeIsCrack,
         meaningMustCompute,
         proseAloneInsufficient,
-        claySolvedByThisFold,
         physicalFtlClaim: 0 as const,
         qpuRequired: false as const,
         facets,
@@ -31994,7 +31734,6 @@ export function redundantExplanationSectionsDryCleaned(matrix: MindMatrix = buil
       redundantExplanationSectionsDryCleaned: redundantExplanationSectionsDryCleanedOn,
       namedExplanationSectionIsCrack: namedCrack,
       labels: SCIENCE_PAPER_SECTION_LABELS,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, format.root, pairFold.merged]),
@@ -32084,7 +31823,6 @@ export function scientificPageFormatCanonised(matrix: MindMatrix = buildMatrix()
       wetProseRemaining,
       redundancyRemoved,
       noNamedExplanation,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, algebraic.root, uiProse.root, pairFold.merged, ...clusters.map((c) => c.receipt)]),
@@ -32174,7 +31912,6 @@ export function algebraicFormulasAreDualOfSealedCode(matrix: MindMatrix = buildM
       algebraicFormulasAreDualOfSealedCode: algebraicFormulasAreDualOfSealedCodeOn,
       theoremCount: rows.length,
       formulasCovered: formulasCoveredCount,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets: sealed.facets,
       root: merkleFold([sealed.root, format.root, pairFold.merged, toUuid(`thm-count:${rows.length}`)]),
       pair: 'formula/code' as const,
@@ -32246,7 +31983,6 @@ export function uiProseDuplicationRemoved(matrix: MindMatrix = buildMatrix(), at
       removedCount,
       clusterCount: clusters.length,
       clusters,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, shelved.address, ...clusters.map((c) => c.receipt)]),
@@ -32378,7 +32114,6 @@ export function cryptoRelatedSurfacesAreDry(matrix: MindMatrix = buildMatrix(), 
       toolSeedCount: toolSeeds.length,
       residuals,
       refuseBeyond: true as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       certified: false as const,
       facets: sealed.facets,
       root: merge(meshDry.root, merge(catalog.root, merge(toolbox.root, merge(mcpList.root, merge(panel.root, merge(refuse.root, sealed.root)))))),
@@ -32446,7 +32181,6 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
       && polesCross.crossIsPartOfMerkabaRosetta
       && polesCross.flowerFruit.holds
       && mk.counterRotating
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const certified = false as const
 
@@ -32491,7 +32225,6 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
         combinationCount: tesla.combinationCount,
         root: tesla.root },
       certified,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -32555,8 +32288,7 @@ export function quantumiseIsAtFtlSpeed(matrix: MindMatrix = buildMatrix(), at = 
     const computes = sealed.ok && quantumiseAtFtlSpeed
     return {
       computes, quantumiseAtFtlSpeed, quantumiseNotMirror, speedup: ssl.speedup, sslSpeedup: ssl.speedup,
-      sslColdMs: ssl.coldMs, sslWarmMs: ssl.warmMs, suiteSpeedup: ssl.speedup,
-      claySolvedByThisFold: 0 as const, certified: false as const, physicalFtl: 0 as const, qpuRequired: false as const,
+      sslColdMs: ssl.coldMs, sslWarmMs: ssl.warmMs, suiteSpeedup: ssl.speedup, certified: false as const, physicalFtl: 0 as const, qpuRequired: false as const,
       facets: sealed.facets, root: merge(sealed.root, ssl.root), pair: 'quantumise/ftl' as const, dual: 'ftl/quantumise' as const,
       cli: 'npm run quantum:quantumise-ftl', route: '/ssltest#quantumise-ftl',
       statement: `quantumiseIsAtFtlSpeed — on=${quantumiseAtFtlSpeed} ssl=${roundTo(ssl.speedup, 3)}× notMirror=${quantumiseNotMirror}`,

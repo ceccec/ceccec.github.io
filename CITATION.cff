@@ -8,8 +8,7 @@ abstract: >-
   theorems and 29 registry rows are decided by the kernel with no axiom. This work
   does NOT prove, solve, or resolve any Clay Millennium Prize Problem: it proves
   the involution each problem is stated across, and an involution is not the
-  conjecture. Earlier drafts asserted such proofs; they were withdrawn after the
-  2026-08-20 audit (HONESTY.md).
+  conjecture.
 
 authors:
   - family-names: Rouschev

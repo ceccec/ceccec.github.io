@@ -599,8 +599,7 @@ export function naturalPhenomenaDecoded(matrix: MindMatrix = buildMatrix()) {
       statement:
         `Natural phenomena decoded — plasma-em family ${plasmaFamily.length}: lightning/thunder (same event, EM↔acoustic aspects), aurora, solar wind, flame, St Elmo's, sprites, solar corona SOLVED; ball lightning OPEN + screen-misread for the painter; Taos hum DISPUTED. Clay-style route /proofs/plasma-thunder-phenomena.`,
       boundary:
-        'Honest science catalog + theorem registry bindings. SOLVED = standard documented physics. Ball lightning mechanism remains OPEN; "screen-misread" is the painter/geometry decode (no centre sphere ornament), not a claim the reports are illusions. Flame is partial ionisation — same family, not tokamak-equivalent. No paranormal explanations.',
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
+        'Honest science catalog + theorem registry bindings. SOLVED = standard documented physics. Ball lightning mechanism remains OPEN; "screen-misread" is the painter/geometry decode (no centre sphere ornament), not a claim the reports are illusions. Flame is partial ionisation — same family, not tokamak-equivalent. No paranormal explanations.', }
   })
 }
 
@@ -1629,7 +1628,6 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
     )
 
     const expectedCount = catalog.patents.length * TESLA_TRINITY_DIRS.length * TESLA_CROSS_TIPS.length
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const certified = false as const
     const legalOwnershipClaimed = false as const
@@ -1662,7 +1660,6 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
       certified,
       legalOwnershipClaimed,
       fakeUsptoGrants,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -1693,7 +1690,7 @@ export function runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} cross-waves-tesla-patents — patents=${report.patentCount} ` +
       `combos=${report.combinationCount} certified=${report.certified} legal=${report.legalOwnershipClaimed} ` +
-      `clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} root=${report.root.slice(0, 8)}\n`,
+      `clay= ftl=${report.physicalFtlClaim} root=${report.root.slice(0, 8)}\n`,
   )
   for (const p of report.patents) {
     process.stdout.write(`  · ${p.no} — ${p.title} (${p.granted})\n`)

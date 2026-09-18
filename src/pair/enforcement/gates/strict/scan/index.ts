@@ -4796,7 +4796,6 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
   const unfusedSurfaces = bind.superpositions.filter((surface) => !surface.present).length
   const uncitedCosts = cost.ledger.filter((row) => !row.cited).length
   const cracks = unfusedSurfaces + uncitedCosts
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `NO CRACKS, NO LEAK — ${bind.superpositions.length} surfaces all fused (${unfusedSurfaces} un-fused) + ${cost.ledger.length} costs all theorem-bound (${uncitedCosts} uncited) = ${cracks} cracks: each crack would leak (re-derivation · un-bounded spend · silo drift)`, on: cracks === 0 && bind.computes && cost.computes },
     { facet: 'PRIORITISATION computes — every cost cites the theorem it purchases (resources to proven need) and every surface derives from the one source (no re-reasoning); efficiency is the routing, not a wish', on: cost.computes && bind.computes },
@@ -4809,7 +4808,6 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
     cracks,
     unfusedSurfaces,
     uncitedCosts,
-    claySolvedByThisFold,
     physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
@@ -4857,7 +4855,6 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
   const gateChained = land.includes('wave:verify') && land.includes('&&') && land.indexOf('git commit') > land.indexOf('wave:verify')
   const verifyGates = verify.includes('check:types') && verify.includes('enforcement:trinity')
   const gitignored = existsSync(join(root, '.gitignore'))
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `JUDGED, NOT LANDED — wave:land chains autosave → wave:verify (check:types + trinity) → commit with && , so an unproven experiment ABORTS before it can reach main: violating standards from a sandbox is structurally impossible · measured gateChained=${gateChained} · verifyGates=${verifyGates}`, on: gateChained && verifyGates },
     { facet: 'ISOLATION — experiments live in the session scratchpad, git-ignored and outside src; a probe that fails never appears in git status, never lands, leaves the standards untouched', on: gitignored },
@@ -4868,7 +4865,6 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
     computes: on,
     sandboxTools: on,
     gateChained,
-    claySolvedByThisFold,
     physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
@@ -5028,7 +5024,6 @@ export function contextAudit(root: string = enforcementScanRoot()) {
   ]
   const tipsOn = improveTips.filter((row) => row.on)
   const noLiveCursorContextApi = true
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     {
       facet: `auditsOn — ${buckets.length} inventory buckets recomputed (rules=${rules} · skills=${skills} · mcp=${mcp} · chat=${chatScripts} · sealedSrc=${sealedSrc} · transcriptsMount=${transcriptsMounted})`,
@@ -5059,7 +5054,6 @@ export function contextAudit(root: string = enforcementScanRoot()) {
     total,
     compose,
     noLiveCursorContextApi,
-    claySolvedByThisFold,
     physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     certified: false as const,
@@ -5197,7 +5191,6 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     'keep:git-stashes-non-obsolete',
     'ci-wall-clock-variance',
   ] as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: 'ftlApp — primary quantumise/ftl · lens-super · mcp-chat · hologram compose sealed', on: ftlApp },
     { facet: 'nonFtlIsCrack — zero remaining lens/chat/FTL alias CLI duals', on: nonFtlIsCrack },
@@ -5234,7 +5227,6 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     hologramScriptsOn: [...hologramScriptsOn],
     compose,
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     ftlVia: ftlThm.via,
     qpuRequired: false as const,
@@ -5377,7 +5369,6 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
     'physical-ftl-claim-stays-0',
     'not-all-monoliths-redistributed-this-wave',
   ] as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     { facet: `filesAudited=${filesAudited} — free auditor wave per src/**/index.ts`, on: filesAudited > 0 },
@@ -5411,7 +5402,6 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
       .sort((a, b) => b.lines - a.lines)
       .slice(0, 8)
       .map((p) => ({ file: p.file, lines: p.lines })),
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -5569,7 +5559,6 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     {
@@ -5620,7 +5609,6 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     envelopeOn,
     dryAgnosticOn,
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -5786,7 +5774,6 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     {
@@ -5838,7 +5825,6 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
     composeCount,
     noLiveCrowdPanel,
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -6031,7 +6017,6 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     {
@@ -6094,7 +6079,6 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     noLiveCrowd,
     circularFeedRiskNamed,
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -6423,7 +6407,6 @@ export function stallStopFindsHangedProcessesRealtime(
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
 
   const facets = [
@@ -6505,7 +6488,6 @@ export function stallStopFindsHangedProcessesRealtime(
     docsDevProtected,
     dualCliCrack,
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -6703,7 +6685,6 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
 
   const facets = [
@@ -6752,7 +6733,6 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
     composeCount,
     dualCliCrack,
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -6935,7 +6915,6 @@ export function theoremAudit() {
     .filter((row) => row.kind === 'not-theorem')
     .slice(0, 8)
     .map((row) => ({ title: row.title.slice(0, 64), reason: row.reason, provedBy: row.provedBy }))
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const criteriaOn =
     totalRegistry > 0 &&
     theoremCount + notTheoremCount === totalRegistry &&
@@ -6980,7 +6959,6 @@ export function theoremAudit() {
     reasonTally,
     sampleNotTheorems,
     rows: registryRows,
-    claySolvedByThisFold,
     qpuRequired: false as const,
     facets,
     root: merkleFold([
@@ -7183,7 +7161,6 @@ export function geoGebraEncode() {
   const waveEncodeOn = encodeReceiptsΔ > 0 && coverageAfter > coverageBefore
   const drainableClosed = encodeReceipts === GEOGEBRA_ENCODE_CATALOG.length && animationsEncoded === encodeReceipts
   const goldenOk = abs(GOLDEN_ANGLE * PHI * PHI - 360) < 1e-6
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const residualNamed = [
     `residual:geogebra-full-command-surface≈${GEOGEBRA_COMMAND_SURFACE_ESTIMATE} (Scripting_Commands + input-bar; ${encodeReceipts} encoded this wave)`,
     'residual:geogebra-proprietary-installers-web-services-not-embedded',
@@ -7235,7 +7212,6 @@ export function geoGebraEncode() {
     catalog: classified,
     sampleEncodings,
     residualNamed,
-    claySolvedByThisFold,
     qpuRequired: false as const,
     facets,
     root: merkleFold([

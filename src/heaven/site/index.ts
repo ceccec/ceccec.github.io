@@ -633,7 +633,6 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       computes: sealed.ok && filledOk && softAngleReadme,
       filledGaps: filled,
       intentionalOpen,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       theoremCount: home.theoremCount,
@@ -652,7 +651,7 @@ export function runReadmeSvgGapsFilledByTrinityMindExit(_root = '', _argv: reado
   const report = readmeSvgGapsFilledByTrinityMind()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} readme-svg-trinity-mind — filled=${report.filled} ` +
-      `theorems=${report.theoremCount} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `theorems=${report.theoremCount} clay= ftl=${report.physicalFtlClaim} ` +
       `open=${report.intentionalOpen.length} root=${report.root.slice(0, 8)}\n`,
   )
   for (const row of report.filledGaps) process.stdout.write(`  ${row.on ? '✓' : '✗'} filled: ${row.gap}\n`)
@@ -1189,7 +1188,6 @@ export function symbolsRemainingToQuantumise(matrix: MindMatrix = buildMatrix())
         { wave: 5, name: 'emit-om-futhark-alchemy', done: /data-symbol="om-aum"/.test(om) && futharkMarks === (3 * 8) },
         { wave: 6, name: 'emit-glagolitic-smil-torus-knots', done: partial.length === 0 && glagoliticLetters === GLAGOLITIC_LETTERS.length && knotMarks === 3 && torus.alive },
       ],
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       count: sealed.count,
@@ -1210,7 +1208,7 @@ export function runSymbolsRemainingQuantumiseExit(_root = '', _argv: readonly st
   const report = symbolsRemainingToQuantumise()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} symbols-remaining — sealed=${report.sealedCount} partial=${report.partialCount} ` +
-      `missing=${report.missingCount} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `missing=${report.missingCount} clay= ftl=${report.physicalFtlClaim} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const row of report.inventory) {

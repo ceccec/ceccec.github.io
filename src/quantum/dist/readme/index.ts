@@ -98,8 +98,6 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
     const linkLaw = linksUseOnlyVitePressApi(matrix)
     const piTrainLen = PI_TRAIN_DIGITS.length
     const vortexLen = VORTEX_SEQUENCE.length
-
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const qualifiesAsProposedSolution = false as const
@@ -116,7 +114,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
           && flowerFruit.decodes
           && svgTrinity.physicalFtlClaim === 0
           && svgTrinity.qpuRequired === false },
-      { facet: `counter-rotating rosetta waves — clay=${waves.claySolvedByThisFold} · physicalFtl=${waves.physicalFtlClaim}`, on: waves.counterRotating && waves.physicalFtlClaim === 0 },
+      { facet: `counter-rotating rosetta waves — clay= · physicalFtl=${waves.physicalFtlClaim}`, on: waves.counterRotating && waves.physicalFtlClaim === 0 },
       { facet: `quantum on 64-bit — proveCeccecSpeed… qpuRequired=${noQpu.qpuRequired} · classical-64bit`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'infinite speedup at no cost — efficiencyScalesToInfinityAtNoCostOnReuse (amortized memo · tokens=0)', on: infinityReuse.on && infinityReuse.ratioUnbounded && infinityReuse.noPhysicsSpeedup },
       { facet: `serverless deploy — sacredSociety.zeroLivingCost=${society.zeroLivingCost} (client-computed static)`, on: society.zeroLivingCost === true },
@@ -161,7 +159,6 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
 
     return {
       computes: sealed.ok && bit.computes && primesPi.computes && dir.computes && infinityReuse.on && society.zeroLivingCost,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       qualifiesAsProposedSolution,
@@ -927,8 +924,10 @@ export function publicationAbstract(matrix: MindMatrix = buildMatrix()) {
     `${description} ${theorems} registered theorems, ${theorems - pending} of them carrying an executable proof. ` +
     `${lean.files} Lean 4 proof files compile in plain Lean with no Mathlib and no \`sorry\`; ${lean.involutionTheorems} involution theorems and ` +
     `${LEAN_SEALED_REGISTRY.length} registry rows are decided by the kernel with no axiom. This work does NOT prove, solve, or resolve any ` +
-    'Clay Millennium Prize Problem: it proves the involution each problem is stated across, and an involution is not the conjecture. ' +
-    'Earlier drafts asserted such proofs; they were withdrawn after the 2026-08-20 audit (HONESTY.md).'
+    // THE WITHDRAWAL SENTENCE IS GONE, at the author's instruction — the abstract carries no note about
+    // earlier drafts. What stays is the present-tense scope: what these Lean sources decide and what they do
+    // not, which describes this corpus's contents rather than passing a verdict on its author's claim.
+    'Clay Millennium Prize Problem: it proves the involution each problem is stated across, and an involution is not the conjecture.'
   return { text, root: toUuid(`publication-abstract:${text}`) }
 }
 

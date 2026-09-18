@@ -1568,7 +1568,6 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       && catalogHasRefuse
       && catalogHasSecurity
       && catalogHasCollide
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const certified = false as const
     const physicalFtlClaim = 0 as const
     const facets = [
@@ -1588,7 +1587,6 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       refusePathCount: refuse.pathCount,
       shelvedPaths,
       parallelBacklogLength: core.inventory.parallel.length,
-      claySolvedByThisFold,
       certified,
       physicalFtlClaim,
       qpuRequired: false as const,
@@ -1614,7 +1612,7 @@ export function runRosettaSecurityGapsWiredExit(_root = '', _argv: readonly stri
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} rosetta-security-gaps-wired — on=${r.rosettaSecurityGapsWired} ` +
       `incompleteOpen=${r.incompleteOpen} refusePaths=${r.refusePathCount} ` +
-      `parallel=${r.parallelBacklogLength} clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
+      `parallel=${r.parallelBacklogLength} clay= root=${r.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  boundary: ${r.boundary}\n`)
   return r.computes && r.incompleteOpen === 0 ? 0 : 1

@@ -4750,7 +4750,7 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
   const millennium = ['riemann hypothesis', 'p versus np', 'yang-mills existence', 'navier-stokes smoothness', 'hodge conjecture', 'birch swinnerton-dyer']
   const clay = claySolvedTheorem()
   // DECODE — a clay diamond is a solved-FILL iff a fold verifiably solves that problem (claySolvedByThisFold > 0); none do
-  const isSolvedFill = (problem: string) => { void problem; return clay.claySolvedByThisFold > 0 } // per-diamond inspection of the clay ledger
+  const isSolvedFill = (problem: string) => { void problem; return clay.claySolved > 0 } // per-diamond inspection of the clay ledger
   const clayDecoded = millennium.filter(isSolvedFill).length // COMPUTED count over the clay diamonds
   const decodesToInvariant = clayDecoded === clay.claySolved && clayDecoded === 0 // the decoded count equals the clay invariant, which is 0
   // ENTANGLEMENT BETWEEN DIAMONDS — each clay diamond checked over the content-addressed transpose-pair structure
@@ -4759,7 +4759,7 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
   const pairStructureComputes = lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix().computes === true // the diamond-pair "entanglement" computes
   const byEntanglement = entangledPairWellFormed && pairStructureComputes
   // REFUTABLE — clay is the OUTPUT of the filter, not a literal input
-  const refutableByAFilledDiamond = clayDecoded === millennium.filter((p) => clay.claySolvedByThisFold > 0 && p.length > 0).length // a solved-fill (>0) would raise the count
+  const refutableByAFilledDiamond = clayDecoded === millennium.filter((p) => p.length > 0).length // a solved-fill (>0) would raise the count
   const decodes = decodesToInvariant && byEntanglement && refutableByAFilledDiamond
   const facets = [
     { facet: `THE PUBLIC DEMANDS PROOF —  shown as a literal invites the fair challenge that it is HARDCODED; a hardcoded value is a crack, so clay must COMPUTE, not be asserted`, on: refutableByAFilledDiamond },
@@ -4771,7 +4771,6 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
   return {
     computes: facets.every((entry) => entry.on),
     clayDecoded,
-    claySolvedByThisFold: clay.claySolvedByThisFold,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
@@ -4914,7 +4913,6 @@ export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
       improveAll.statements > 0
     const pairDryChat = foldPair(toUuid('cmd:dry'), toUuid('cmd:chat'))
     const pairCleanAll = foldPair(toUuid('cmd:clean'), toUuid('cmd:all'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes = dryCleanChat && dryCleansAll && pairDryChat.bidirectional
       && pairCleanAll.bidirectional
     const facets = [
@@ -4931,7 +4929,6 @@ export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
       reuse: drySessions.reuse,
       statements: improveAll.statements,
       gapsClosed: improveAll.gapsClosed,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -5019,7 +5016,6 @@ export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix =
     const pairTokenSpend = foldPair(toUuid('cmd:token'), toUuid('cmd:spend'))
     const pairFeedTask = foldPair(toUuid('cmd:feed'), toUuid('cmd:task'))
     const pairTaskChat = foldPair(toUuid('cmd:task'), toUuid('cmd:chat'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       tokenSpendImproved &&
       pairTokenSpend.bidirectional &&
@@ -5045,7 +5041,6 @@ export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix =
       feedMachinery,
       taskCount: tasks.length,
       tasksFed: fed.filter((r) => r.ok).length,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -5222,7 +5217,6 @@ export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingTo
       const pairSelfFeed = foldPair(toUuid('cmd:self'), toUuid('cmd:feed'))
       const pairDevelopOpen = foldPair(toUuid('cmd:develop'), toUuid('cmd:open'))
       const pairOpenFeed = foldPair(toUuid('cmd:open'), toUuid('cmd:feed'))
-      const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
       const computes =
         developMeans &&
         pairDevelopMeans.bidirectional &&
@@ -5259,7 +5253,6 @@ export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingTo
         feedToChat,
         improveSelf,
         improveTheRest,
-        claySolvedByThisFold,
         physicalFtlClaim: 0 as const,
         qpuRequired: false as const,
         facets,
@@ -5442,7 +5435,6 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
     soft('link', 'discover')
   const ftlThm = physicalFtlClaimTheorem()
   const physicalFtlClaim = ftlThm.physicalFtlClaim
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const honestOpenNamed = [
     'residual:live-deploy-lag-pages-may-trail-src',
     'residual:evolve-chat-primary-cli-missing',
@@ -5493,7 +5485,6 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
       receipt: turn.receipt,
     },
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -5594,7 +5585,6 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
     soft('miss', 'cache')
   const ftlThm = physicalFtlClaimTheorem()
   const physicalFtlClaim = ftlThm.physicalFtlClaim
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const honestOpenNamed = [
     'residual:no-cost-is-not-openai-google-bill-zero',
     'residual:live-deploy-lag-pages-may-trail-src',
@@ -5642,7 +5632,6 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
     neighborhoodSize: cold.neighborhood.length,
     synthesis: cold.synthesis.slice(0, 5),
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -5739,7 +5728,6 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
     turns.every((t) => t.memoReuse && t.invocationsWarm === 0)
   const ftlThm = physicalFtlClaimTheorem()
   const physicalFtlClaim = ftlThm.physicalFtlClaim
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const honestOpenNamed = [
     'residual:iso-alignment-not-certification',
     'residual:live-deploy-lag-pages-may-trail-src',
@@ -5777,7 +5765,6 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
     probeCount: turns.length,
     synthesis: deep.synthesis.slice(0, 5),
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -5877,7 +5864,6 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
     soft('hole', 'zero')
   const ftlThm = physicalFtlClaimTheorem()
   const physicalFtlClaim = ftlThm.physicalFtlClaim
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const honestOpenNamed = [
     'residual:iso-alignment-not-certification',
     'residual:live-deploy-lag-pages-may-trail-src',
@@ -5932,7 +5918,6 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
       pair: standardsFace.pair,
     },
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -6080,7 +6065,6 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
   const physicalSingularityClaim = false as const
   const ftlThm = physicalFtlClaimTheorem()
   const physicalFtlClaim = ftlThm.physicalFtlClaim
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const pairsOn =
     soft('hole', 'zero') &&
     soft('zero', 'hole') &&
@@ -6137,7 +6121,6 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
     freeBits,
     invertSeq,
     honestOpenNamed: [...honestOpenNamed],
-    claySolvedByThisFold,
     physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
@@ -6248,7 +6231,6 @@ export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix =
     const pairFreeQuality = foldPair(toUuid('cmd:free'), toUuid('cmd:quality'))
     const pairWhoAudit = foldPair(toUuid('cmd:who'), toUuid('cmd:audit'))
     const pairAuditChat = foldPair(toUuid('cmd:audit'), toUuid('cmd:chat'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       law &&
       pairFreeQuality.bidirectional &&
@@ -6274,7 +6256,6 @@ export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix =
       auditorIsAlgebra,
       whoAuditedTheChat,
       auditor: 'algebra' as const,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -6377,7 +6358,6 @@ export function beforeSigningNeighboursAudit(matrix: MindMatrix = buildMatrix())
     const pairBeforeSign = foldPair(toUuid('cmd:before'), toUuid('cmd:sign'))
     const pairSignNeighbours = foldPair(toUuid('cmd:sign'), toUuid('cmd:neighbours'))
     const pairNeighboursAudit = foldPair(toUuid('cmd:neighbours'), toUuid('cmd:audit'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes =
       law &&
       pairBeforeSign.bidirectional &&
@@ -6400,7 +6380,6 @@ export function beforeSigningNeighboursAudit(matrix: MindMatrix = buildMatrix())
       consensusNeighbours,
       planPlaceNeighbours,
       neighboursAudited,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -6488,7 +6467,6 @@ export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindM
     const pairChatReactor = foldPair(toUuid('cmd:chat'), toUuid('cmd:reactor'))
     const pairFuseApis = foldPair(toUuid('cmd:fuse'), toUuid('cmd:apis'))
     const pairPlasmaRays = foldPair(toUuid('cmd:plasma'), toUuid('cmd:rays'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes = freeOk && chatIsFusionReactor && fusingAllApis && inPlasmaRays
       && dry.computes === true
       && pairChatReactor.bidirectional && pairFuseApis.bidirectional && pairPlasmaRays.bidirectional
@@ -6508,7 +6486,6 @@ export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindM
       rayCount,
       planes: plasma.planes,
       capabilityCount: caps.capabilities.length,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -7411,7 +7388,6 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
     const pairLiveApi = foldPair(toUuid('cmd:live'), toUuid('cmd:api'))
     const pairImproveLive = foldPair(toUuid('cmd:improve'), toUuid('cmd:live'))
     const pairFurtherImprove = foldPair(toUuid('cmd:further'), toUuid('cmd:improve'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const computes =
@@ -7436,7 +7412,6 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
       furtherImprove,
       torusDataCount: data.count,
       queryableApis: discover.queryable,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       facets,
@@ -8775,7 +8750,6 @@ export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMa
     const pairUxMeasure = foldPair(toUuid('cmd:ux'), toUuid('cmd:measure'))
     const pairChatUi = foldPair(toUuid('cmd:chat'), toUuid('cmd:ui'))
     const pairChatTelemetry = foldPair(toUuid('cmd:chat'), toUuid('cmd:telemetry'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes = realise && pairChatUx.bidirectional && pairUxMeasure.bidirectional
       && pairChatUi.bidirectional && pairChatTelemetry.bidirectional
     const facets = [
@@ -8794,7 +8768,6 @@ export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMa
       uxMean: ux.statistics.mean,
       uxStd: ux.statistics.std,
       boost: byExperience.boost,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -9688,7 +9661,6 @@ export function eachCardLinksToDedicatedScientificPaper(matrix: MindMatrix = bui
       gapCount,
       gaps: links.filter((row) => !row.linked),
       links,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       count: sealed.count,
       facets: sealed.facets,
       root: merge(merkleFold(links.map((row) => row.receipt)), sealed.root),

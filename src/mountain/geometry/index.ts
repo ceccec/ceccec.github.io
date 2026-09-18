@@ -601,8 +601,7 @@ export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatri
         `Double-torus geometry aligns with sealed universe constants — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: ring/tube/lobe atom, R/r, H₁=${HOMOLOGY_LOOPS}, χ=−2, TAU·c·φ lattice, all-scales proofs.`,
       boundary:
         'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c.',
-      physicalFtlClaim: 0 as const,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0 }
+      physicalFtlClaim: 0 as const, }
   })
 }
 
@@ -2029,7 +2028,6 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
     const two = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
     const mk = merkaba(matrix)
     const earths = bothEarthsRotateWithinEachOther(0, matrix)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const navigationImplemented = false as const
@@ -2116,7 +2114,6 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
     return {
       computes: sealed.ok && coreSeven && wgs84PhysicalHonest && navigationForecastResidualNamed,
       realised: sealed.ok && earth.realised && polesAsPyramid,
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       poles,
@@ -2174,7 +2171,7 @@ export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv:
   const report = earthRealisedByComputingPolesAsPyramid()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} earth-pyramid — pair=${report.pair} realised=${report.realised} ` +
-      `fourWay=${report.fourWayCounterRotating} clay=${report.claySolvedByThisFold} ` +
+      `fourWay=${report.fourWayCounterRotating} clay= ` +
       `ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
   )
   for (const p of report.poles) {

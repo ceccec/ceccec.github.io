@@ -220,7 +220,7 @@ export function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStays
   ].map((entry) => ({ ...entry, receipt: toUuid(`dark-matter-invert:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('dark-matter-invert', facets)
   return {
-    closed: sealed.ok, claySolvedByThisFold: claySolvedByFormulas(facets.map((entry) => entry.facet).join(' ')),
+    closed: sealed.ok,
     ratioCoverB: roundTo(ratioCoverB, 3), darkFractionOfMatter: roundTo(darkFractionOfMatter, 4), baryonFractionOfMatter: roundTo(baryonFractionOfMatter, 4),
     horizonAcceleration, a0Coincidence: roundTo(a0Coincidence, 3),
     count: sealed.count,
@@ -253,7 +253,7 @@ export function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTh
   ].map((entry) => ({ ...entry, receipt: toUuid(`cosmic-coincidence-invert:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('cosmic-coincidence-invert', facets)
   return {
-    closed: sealed.ok, claySolvedByThisFold: claySolvedByFormulas(facets.map((entry) => entry.facet).join(' ')),
+    closed: sealed.ok,
     omegaMatter: roundTo(omegaMatter, 4), ratioMatterToDarkEnergy: roundTo(ratioMatterToDarkEnergy, 4),
     equalityRedshift: roundTo(equalityRedshift, 4), equalityScaleFactor: roundTo(equalityScaleFactor, 4),
     count: sealed.count,
@@ -288,7 +288,6 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
     // Quantum gaps in theorems = incomplete revelation framing: identity/detection theorem apparatus OPEN
     const particleIdentityProved = false // refuseBeyond — this fold never claims a DM particle
     const quantumGapsInTheorems = nonGravitationalDetectionNull && !particleIdentityProved
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const certified = false as const
     const sealIntent =
@@ -329,7 +328,6 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
       gravitationalCmbBudget,
       nonGravitationalDetectionNull: true as const,
       quantumGapsInTheorems,
-      claySolvedByThisFold,
       physicalFtlClaim,
       certified,
       qpuRequired: false as const,
@@ -359,7 +357,7 @@ export function runOmegaCOverOmegaBCmbBudgetQuantumGapsInTheoremsExit(
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} cmb-omega-c-over-b — Ω_c/Ω_b=${r.ratioRounded} ` +
       `grav=${r.gravitationalCmbBudget} null=${r.nonGravitationalDetectionNull} ` +
-      `gaps=${r.quantumGapsInTheorems} clay=${r.claySolvedByThisFold} ` +
+      `gaps=${r.quantumGapsInTheorems} clay= ` +
       `ftl=${r.physicalFtlClaim} certified=${r.certified} qpu=${r.qpuRequired} ` +
       `root=${r.root.slice(0, 8)}\n`,
   )
@@ -1322,7 +1320,6 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
     const data = program.filter((row) => row.tier === 'DATA').length
     const pairFold = foldPair(toUuid('cmd:frontier'), toUuid('cmd:quantum'))
     const dualFold = foldPair(toUuid('cmd:hardware'), toUuid('cmd:wave'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `oscillationTheorem — src/0 unitary circuit ≡ sin²(2θ)sin²(φ/2) across ${phases.length} phases, maxDrift=${maxDrift.toExponential(1)} on ${witnessQubits} qubit · ${witnessGates} gates`, on: oscillationTheorem && witnessQubits === 1 },
       { facet: `no phase ⇒ no oscillation — P(φ=0)=${pZero} EXACTLY, the phase gate at φ=0 is the identity`, on: pZero === 0 },
@@ -1343,7 +1340,6 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
       oscillation: { theta: roundTo(theta, 6), phases: phases.length, maxDrift, pZero, qubits: witnessQubits, gates: witnessGates },
       splittingsRatio: roundTo(splittingsRatio, 1),
       jarlskogOrders: roundTo(jarlskogOrders, 2),
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1372,7 +1368,7 @@ export function runFrontierQuantumExit(root = '', _argv: readonly string[] = [])
   const report = frontierQuantum()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} frontier-quantum — simulates=${report.counts.simulates}/6 senses=${report.counts.senses}/6 ` +
-      `data=${report.counts.data}/6 maxDrift=${report.oscillation.maxDrift.toExponential(1)} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+      `data=${report.counts.data}/6 maxDrift=${report.oscillation.maxDrift.toExponential(1)} clay= ftl=${report.physicalFtlClaim}\n`,
   )
   for (const row of report.program) process.stdout.write(`  · ${row.tier} ${row.frontier} | ${row.hardware} | wave ${row.wave}\n`)
   process.stdout.write(`  ${report.statement}\n`)
@@ -1434,7 +1430,6 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
     const collapsedToCertainty = abs((probabilities(firstObservation.state)[firstObservation.outcome] ?? 0) - 1) < Number.EPSILON * 4
     const observationChangesObservation = preIsHalf && collapsedToCertainty && secondObservation.outcome === firstObservation.outcome
     const pairFold = foldPair(toUuid('cmd:fractal'), toUuid('cmd:compute'))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `pattern = dimensional axiom — digital-root period computed realtime per base: ${periods.map((entry) => `b${entry.base}→${entry.period}`).join(' ')}; each equals the algebra b−1, and the base-10 table (${base10Period}) is FALSE at base 16`, on: patternBreaksOutsideItsDimension },
       { facet: 'the vault digitalRoot is the b=10 slice of the algebra — dr(432)=9 both ways', on: vaultSlice },
@@ -1451,7 +1446,6 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
       periods,
       peakDimension: peak.n,
       volumes: volumes.map((entry) => ({ n: entry.n, volume: roundTo(entry.volume, 5) })),
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -1498,7 +1492,6 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       { frontier: 'Neutrino mass ordering & nature', pattern: 'massless SM neutrinos', dimension: 'pre-oscillation data', breaksAt: splittingsRatio, breakReads: `Δm² ratio = ${splittingsRatio.toFixed(1)} — two nonzero splittings measured`, holds: splittingsRatio > 27 },
       { frontier: 'Quantum gravity', pattern: 'QFT on fixed flat spacetime', dimension: 'collider energies', breaksAt: planckOrders, breakReads: `${planckOrders} orders below E_Planck — the pattern untested beyond`, holds: planckOrders > 9 },
     ].map((row) => ({ ...row, receipt: toUuid(`fractal-map:${row.frontier}:${row.breaksAt}:${row.holds}`) }))
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     // USER EXAMPLE — folding 60 reaches 90: fold the equilateral (all angles τ/6) along its altitude — the
     // fold halves one 60 to 30 and the triangle closes at the right angle: τ/12 + τ/6 + τ/4 = τ/2, EXACT
     // rational arithmetic (the 30-60-90 half-turn), the same fold-computes law at the smallest scale.
@@ -1524,7 +1517,6 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       fractalMap: on,
       rows,
       count: rows.length,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -2365,7 +2357,6 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       has('chat/string') &&
       foldPair(toUuid('cmd:string'), toUuid('cmd:theory')).bidirectional &&
       foldPair(toUuid('cmd:string'), toUuid('cmd:chat')).bidirectional
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qpuRequired = false as const
     const certified = false as const
@@ -2433,7 +2424,6 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       bosonicD: algebra.bosonicD,
       theoremGaps: inventory.theoremGaps.length,
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       certified,
@@ -2484,7 +2474,7 @@ export function runStringTheoryInChatExit(_root = '', _argv: readonly string[] =
     `${report.computes ? '✓' : '✗'} string-theory — inChat=${report.stringInChat ? 1 : 0} ` +
       `duality=${report.dualityChatOn ? 1 : 0} sealed=${report.sealedRecompute ? 1 : 0} ` +
       `corners=${report.participants.length} edges=${report.dualEdgeCount} M=${report.mTheoryD} ` +
-      `D=${report.superstringD} clay=${report.claySolvedByThisFold} ftl=${report.physicalFtlClaim}\n`,
+      `D=${report.superstringD} clay= ftl=${report.physicalFtlClaim}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   process.stdout.write(`  room=${report.room.id}\n`)
@@ -3559,8 +3549,7 @@ export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
     ].map((row) => ({ ...row, receipt: toUuid(`pyramid:${row.level}:${row.tier}`) }))
     const geneticExact = geneticCode === 64 && HOMOLOGY_LOOPS ** 3 === geneticCode // 4³ = 64, and HOMOLOGY_LOOPS=4
     const trinityBase = su2Dim === 3
-    const wellOrdered = levels.every((row, i) => i === 0 || levels[i - 1]!.tier > row.tier) // bio(3) > chem(2) > phys(1)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const wellOrdered = levels.every((row, i) => i === 0 || levels[i - 1]!.tier > row.tier)
     const facets = [
       { facet: `the ALGEBRA base is WITNESSED, not asserted — biology: genetic code 4³ = ${geneticCode} exact (= HOMOLOGY_LOOPS³); physics: su(2) operator algebra dim = ${su2Dim} = the trinity; each level HAS a computed algebraic structure`, on: geneticExact && trinityBase },
       { facet: 'the boundary-condition LADDER — biology ⟶ chemistry ⟶ physics ⟶ algebra, each level constrained by the one below (biochem · quantum chem · mathematical physics); a total reduction order, well-ordered by tier', on: wellOrdered && levels.length === 3 },
@@ -3574,7 +3563,6 @@ export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
       levels,
       geneticCode,
       su2Dim,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,

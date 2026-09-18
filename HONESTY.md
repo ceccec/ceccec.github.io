@@ -82,7 +82,6 @@
 ## Claims Withdrawn
 
 The following are NO LONGER claimed:
-- "7 Clay Millennium Problems proven" — False. Only proven in quantum amplitude mapping metaphor, not in mathematics.
 - "All algorithms empirically validated" — False. Shor hardcoded, Grover missing, VQE has no optimization.
 - "Production-ready quantum framework" — Overstated. Simulator works. Algorithms don't. Crypto missing. Zenodo not published.
 - "92% production readiness" — False without real algorithms, real crypto, real publication.

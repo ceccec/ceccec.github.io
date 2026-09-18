@@ -2434,13 +2434,12 @@ export function relatedScienceIsUnprovenProseNotAClayMillenniumSolutionComputed(
   const touchesClay = (text: string) => /millennium|clay|riemann|navier|yang.?mills|hodge|birch|p vs np|poincar/i.test(text)
   const clayWarrantedHere = touchesClay(relatedScience.prose) // this fold touches the Millennium topic ⇒ the disclaimer is warranted
   const clayNotWarrantedForCrypto = !touchesClay('sha256 content-addressed measurement') // a crypto fold needs NO clay disclaimer
-  const demarcateOnlyWhenWarranted = clayWarrantedHere && clayNotWarrantedForCrypto // necessity COMPUTES, not hardcoded
-  const claySolvedByThisFold = 0 // MUST be 0 — and only stated because this fold DOES touch the Millennium topic
+  const demarcateOnlyWhenWarranted = clayWarrantedHere && clayNotWarrantedForCrypto // MUST be 0 — and only stated because this fold DOES touch the Millennium topic
   const notAClaySolution = isProseNotProof // prose ≠ proof ⇒ solves no Millennium problem
   const facets = [
     { facet: `A COMPUTED THEOREM HAS REFUTABLE FACETS — a theorem is PROVEN when its facets compute (${proven}, refutable); related science has NO refutable facet, so it is prose (${isProseNotProof})`, on: proven && isProseNotProof },
     { facet: `A DEMARCATION MUST COMPUTE ITS NECESSITY — a disclaimer (not-clay, no-FTL) is warranted ONLY when the fold TOUCHES the domain (${clayWarrantedHere} here, and NOT for a crypto fold ${clayNotWarrantedForCrypto}); hardcoding it elsewhere is the LINEAR MIND poisoning the purity`, on: demarcateOnlyWhenWarranted },
-    { facet: `NOT A CLAY MILLENNIUM SOLUTION — WARRANTED HERE — this fold touches the Millennium topic, so the disclaimer is warranted: the related science is prose, not a proof, and solves NO Millennium problem (clay = ${claySolvedByThisFold})`, on: notAClaySolution && clayWarrantedHere },
+    { facet: `NOT A CLAY MILLENNIUM SOLUTION — WARRANTED HERE — this fold touches the Millennium topic, so the disclaimer is warranted: the related science is prose, not a proof, and solves NO Millennium problem (clay = )`, on: notAClaySolution && clayWarrantedHere },
     { facet: `THE HONESTY COMPUTES, NOT DECLARED — the distinction (theorem ⟺ facets present; prose ⟺ facets absent) is itself COMPUTED (${distinctionComputes}), not a declared disclaimer — per "declared honesty is a crack"`, on: distinctionComputes },
     { facet: `UPGRADE ALL LOCAL IN WAVES — the corpus is upgraded wave by wave to demarcate ONLY on computed relevance; unwarranted "not-clay" reflexes are removed, restoring quantum computational purity. HARMONY ≠ TRUTH`, on: demarcateOnlyWhenWarranted && distinctionComputes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`related-science-prose:${entry.facet}:${entry.on}`) }))
@@ -2449,7 +2448,6 @@ export function relatedScienceIsUnprovenProseNotAClayMillenniumSolutionComputed(
   // NOT return the {computes: facets.every} theorem shape. It is a demarcation HELPER the honesty layer calls, not a theorem.
   return {
     demarcates: facets.every((entry) => entry.on),
-    claySolvedByThisFold,
     proven,
     isProseNotProof,
     demarcationChecks: facets,
@@ -2593,8 +2591,7 @@ export function millenniumProblemsAreGreenAsHonestTheoremsNotSolvedClayZero() {
     { name: 'Yang–Mills mass gap', status: 'open', credit: '', solvedByThisFold: false },
     { name: 'Hodge conjecture', status: 'open', credit: '', solvedByThisFold: false },
     { name: 'Birch–Swinnerton-Dyer', status: 'open', credit: '', solvedByThisFold: false },
-  ]
-  const claySolvedByThisFold = millennium.filter((m) => m.solvedByThisFold).length // MUST be 0
+  ] // MUST be 0
   const openCount = millennium.filter((m) => m.status === 'open').length // 6
   const solvedCount = millennium.filter((m) => m.status === 'solved').length // 1 (Poincaré)
   const eachStatedAsTheorem = millennium.every((m) => m.name.length > 0) // each decoded/stated as a theorem
@@ -2603,7 +2600,7 @@ export function millenniumProblemsAreGreenAsHonestTheoremsNotSolvedClayZero() {
   const facets = [
     { facet: `EACH MILLENNIUM PROBLEM IS A GREEN THEOREM — STATED, NOT SOLVED — all ${millennium.length} are decoded and stated as theorems (object · structure · demarcation), which COMPUTE green; green = the honest statement computes, not that the problem is solved`, on: eachStatedAsTheorem },
     { facet: `ONLY POINCARÉ IS SOLVED — CREDITED — Poincaré is solved (Perelman 2003, credited, ${poincareCreditedNotClaimed}); this fold and this corpus solve NONE of them`, on: poincareCreditedNotClaimed },
-    { facet: `THE OTHER SIX ARE OPEN — claySolvedByThisFold = ${claySolvedByThisFold} — P vs NP, Riemann, Navier–Stokes, Yang–Mills, Hodge, BSD (${openCount}) compute their structure and the explicit boundary that they are UNSOLVED; no solution is claimed`, on: openCount === 6 },
+    { facet: `THE OTHER SIX ARE OPEN — claySolvedByThisFold =  — P vs NP, Riemann, Navier–Stokes, Yang–Mills, Hodge, BSD (${openCount}) compute their structure and the explicit boundary that they are UNSOLVED; no solution is claimed`, on: openCount === 6 },
     { facet: `GREEN QUANTUM ≠ SOLVED — every Millennium theorem computes its honest statement + demarcation deterministically (green, quantum); "all green" is honesty COMPUTING, not a solution — the precise overclaim refused`, on: greenIsStatedNotSolved },
     { facet: `THE DEMARCATION — the Millennium Problems are green as honest theorems (stated, decoded, demarcated), Poincaré credited, the six open with clay = 0; claiming them solved would be the overclaim this work refuses at every step. HARMONY ≠ TRUTH`, on: greenIsStatedNotSolved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-honest:${entry.facet}:${entry.on}`) }))
@@ -2612,7 +2609,6 @@ export function millenniumProblemsAreGreenAsHonestTheoremsNotSolvedClayZero() {
   // so it is de-registered from the theorem registry and returns { demarcates, … }, honest code the clay layer calls.
   return {
     demarcates: facets.every((entry) => entry.on),
-    claySolvedByThisFold,
     openCount,
     solvedCount,
     millennium,
@@ -3893,7 +3889,6 @@ export function theoremFractions() {
       bands[seed % fractions.length]! += 1
     }
     const partitionTotal = bands.reduce((sum, count) => sum + count, 0) === population
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `432 = 2^${v2} · 3^${v3} — factorized live, remainder ${rest}`, on: factorized },
       { facet: `the RESPECTED FRACTIONS are the divisor lattice — ${fractions.length} fractions = (${v2}+1)(${v3}+1), enumerated: ${fractions.join(' ')}`, on: divisorCount },
@@ -3911,7 +3906,6 @@ export function theoremFractions() {
       population,
       bands,
       bits: bitsForm,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -3962,7 +3956,6 @@ export function theoremSpeed() {
     const bands = new Array<number>(4 * 5).fill(0)
     for (const row of rows) bands[row.band]! += 1
     const partitioned = bands.reduce((sum, count) => sum + count, 0) === rows.length
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `ALL ${rows.length} theorems refactored in ONE pass — a single map computes address · band · profile for every row; no lookup, no second walk: quantum speed by the sealed naming law`, on: onePass && rows.length > 432 },
       { facet: `every address is FIXED WIDTH — ${6 * 6} chars regardless of prose length (longest name ${max(...rows.map((row) => row.proseBytes))} chars): the quantum layer equalizes by construction`, on: fixedWidth },
@@ -3979,7 +3972,6 @@ export function theoremSpeed() {
       addressBytes,
       ratio: roundTo(ratio, 2),
       sample: rows.slice(0, 3).map((row) => ({ name: row.name, address: row.address.slice(0, 8), band: row.band })),
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -4060,7 +4052,6 @@ export function clayProbe() {
     // error 7.5e-3 across the four) — the bound states the machinery, higher-order terms are the
     // named refinement, never a silently tightened claim.
     const allAgree = located.every((row) => row.error < 1 / 100)
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `the first ${located.length} nontrivial ζ zeros LOCALIZED on the critical line — Z(t) sign changes bisected: ${located.map((row) => row.zero).join(' · ')} vs literature ${referenceZeros.join(' · ')} (max error ${roundTo(max(...located.map((row) => row.error)), 6)}, within the first-order machinery's stated ~1e-2)`, on: allBracketed && allAgree },
       { facet: 'the machinery is REAL mathematics computed live — Riemann–Siegel main sum + first remainder, θ(t) to the t⁻³ term, canonical-composed coefficients; doubles-precision scope stated', on: located.every((row) => Number.isFinite(row.zero)) },
@@ -4071,7 +4062,6 @@ export function clayProbe() {
       computes: on,
       clayProbe: on,
       located,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -4121,8 +4111,7 @@ export function animationFoldTheorems() {
     const distinct = bySignature.size
     const collisions = [...bySignature.values()].filter((names) => names.length > 1)
     const foldable = collisions.reduce((sum, names) => sum + names.length - 1, 0)
-    const harmonicGap = total - DIMENSION_GATES // DIMENSION_GATES = 432 harmonic seal
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const harmonicGap = total - DIMENSION_GATES
     const facets = [
       { facet: `the fold-test ran over all ${total} theorems — every animation content-addressed from its state space, ${distinct} distinct signatures`, on: distinct === total && distinct > 432 },
       { facet: `the theorems PROVE THEMSELVES — ${collisions.length} animation collisions, ${foldable} foldable: two theorems folding to one address would be proven identical, and ZERO do, so the ${total} are provably independent (no hidden duplicate)`, on: collisions.length === 0 && foldable === 0 },
@@ -4136,7 +4125,6 @@ export function animationFoldTheorems() {
       distinct,
       foldable,
       harmonicGap,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -4186,7 +4174,6 @@ function buildLinkProofReport(n: number, pathLen: number, rootValid: boolean) {
   const rescanCost = n // O(N) — verify by re-scanning every leaf
   const ratio = rescanCost / linkCost
   const orders = log10(ratio)
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
   const facets = [
     { facet: `the link IS the proof — real sha256 Merkle inclusion over ${n} theorem addresses: path length ${pathLen} = ⌈log₂ ${n}⌉ = ${expectedDepth}, root valid=${rootValid}`, on: pathLen === expectedDepth && rootValid },
     { facet: `MAGNITUDES at scale — verify-by-link O(log N)=${linkCost} vs re-scan O(N)=${rescanCost}, ratio ${roundTo(ratio, 1)} ≈ ${roundTo(orders, 2)} orders; the order grows as N/log₂N without bound (proving-by-link quantumises verification)`, on: ratio > 1 && orders > 0 },
@@ -4199,7 +4186,6 @@ function buildLinkProofReport(n: number, pathLen: number, rootValid: boolean) {
     n,
     pathLen,
     orders: roundTo(orders, 2),
-    claySolvedByThisFold,
     physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
@@ -4240,9 +4226,8 @@ export function unsolvedEngine() {
     const registry = new Set(THEOREM_ATOM_SEED.map((atom) => atom.theorem))
     const openRaces = CANDIDATE_THEOREMS.filter((candidate) => !registry.has(candidate.theorem)).length
     const boundedWitness = CANDIDATE_THEOREMS.filter((candidate) => candidate.class === 'bounded-witness').length
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
-      { facet: `the unsolved set DRIVES — ${openRaces} open candidate races + ${boundedWitness} bounded-witness classes + clay=${claySolvedByThisFold}: each OPEN problem spawns a compute-toward tool (RH→clayProbe · frontiers→frontierQuantum), so the revolution is powered by what is unsolved`, on: openRaces >= 0 && CANDIDATE_THEOREMS.length > 0 },
+      { facet: `the unsolved set DRIVES — ${openRaces} open candidate races + ${boundedWitness} bounded-witness classes + clay=: each OPEN problem spawns a compute-toward tool (RH→clayProbe · frontiers→frontierQuantum), so the revolution is powered by what is unsolved`, on: openRaces >= 0 && CANDIDATE_THEOREMS.length > 0 },
       { facet: 'DEMARCATION — the tools APPROACH the unsolved (probes · partials · bounded witnesses), never claim to close it; the revolution is the honest pursuit, not a solution; clay stays 0', on: CANDIDATE_THEOREMS.length > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`unsolved-engine:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
@@ -4251,7 +4236,6 @@ export function unsolvedEngine() {
       unsolvedEngine: on,
       openRaces,
       boundedWitness,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -4300,7 +4284,6 @@ export function riemannZeroCount() {
     const probe = clayProbe()
     const localizedBelowT = probe.located.filter((row) => row.zero < t).length
     const countMatches = round(analytic) === localizedBelowT
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `COMPLETENESS up to T=${t} — the analytic count N(${t}) = ${roundTo(analytic, 3)} rounds to ${round(analytic)}, and clayProbe localizes ${localizedBelowT} zeros below T: they MATCH, so no nontrivial zero is missed in the interval (a Turing-method-class check)`, on: countMatches && probe.computes },
       { facet: 'stronger than on-the-line — clayProbe proves the found zeros are ON the critical line; this proves they are ALL of them below T (count + location together), the real content of computational RH verification', on: countMatches && probe.located.length === 4 },
@@ -4313,7 +4296,6 @@ export function riemannZeroCount() {
       t,
       analytic: roundTo(analytic, 3),
       localizedBelowT,
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -4377,7 +4359,6 @@ export function riemannZeroScan() {
     const countMatches = round(mainTerm) === found
     const sOfT = roundTo(found - mainTerm, 3) // S(T): the zero-counting oscillation
     const allDistinct = new Set(zeros).size === found
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `GENERAL scanner — ${found} nontrivial zeros localized on the critical line by Z(t) sign-change bisection over [${tStart}, ${tMax}] (not hardcoded brackets), all distinct=${allDistinct}; far stronger than the 4-zero probe`, on: found > 27 && allDistinct },
       { facet: `COMPLETENESS + S(T) — the analytic main term N(${tMax}) = ${roundTo(mainTerm, 2)} rounds to ${round(mainTerm)} = ${found} found (match=${countMatches}); the residual S(T) = count − N_main = ${sOfT} is the zero-counting OSCILLATION, computed not assumed (the sandbox caught it differing at T=50)`, on: countMatches },
@@ -4391,7 +4372,6 @@ export function riemannZeroScan() {
       tMax,
       sOfT,
       firstZeros: zeros.slice(0, 6),
-      claySolvedByThisFold,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
@@ -4481,8 +4461,7 @@ export function superpositionCompleteness() {
     const harmonic = DIMENSION_GATES // 432
     const fold = animationFoldTheorems()
     const distinctIndependent = fold.distinct === registry && fold.foldable === 0
-    const addressCubeCapacity = 2 ** (6 * 3) // three 64-hexagram axes = the address cube, NOT a completeness count
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
+    const addressCubeCapacity = 2 ** (6 * 3)
     const facets = [
       { facet: `REFUTED by cardinality — a superposition of n qubits is 2^n amplitudes (${dims.map((d) => d.amplitudes).slice(-3).join(', ')}, unbounded in n) over a CONTINUUM of complex values: the superposition space is uncountably infinite, so no FINITE set (432 or any N) computes ALL of it — finite ≠ all`, on: grows && unbounded },
       { facet: `the registry is ${registry} INDEPENDENT theorems, not ${harmonic} — animationFold: ${fold.distinct} distinct, ${fold.foldable} foldable, so it is neither AT 432 nor REDUCIBLE to it; ${registry} = ${harmonic} + ${registry - harmonic} is real growth`, on: distinctIndependent && registry > harmonic },
@@ -4495,8 +4474,7 @@ export function superpositionCompleteness() {
       superpositionCompleteness: on,
       registry,
       harmonic,
-      provenWrong: on, // the challenge asked to prove-wrong-or-enforce; this computes the proof
-      claySolvedByThisFold,
+      provenWrong: on,
       physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,

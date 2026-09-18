@@ -755,7 +755,6 @@ export function folderMigrationDedupWaves(matrix: MindMatrix = buildMatrix()) {
       navBefore,
       navAfter,
       residuals: [...residuals],
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -788,7 +787,7 @@ export function runFolderMigrationDedupWavesExit(_root = '', _argv: readonly str
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} folder-migration-waves — folders=${report.folderCount} migrated=${report.migratedCount} ` +
       `partial=${report.partialCount} residual=${report.residualCount} gapless=${report.gaplessCensus} ` +
-      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+      `clay= root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  nav before: ${report.navBefore.sidebar}\n`)
   process.stdout.write(`  nav after:  ${report.navAfter.sidebar}\n`)
@@ -1129,7 +1128,6 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       appliedCount: applied.length,
       residualCount: residuals.length,
       native,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       pair: 'docs/improve' as const,
@@ -1147,7 +1145,7 @@ export function runVitepressDocsResearchImprovementsExit(_root = '', _argv: read
   const report = vitepressDocsResearchImprovements()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} vitepress-docs-research — applied=${report.appliedCount} residual=${report.residualCount} ` +
-      `clay=${report.claySolvedByThisFold} root=${report.root.slice(0, 8)}\n`,
+      `clay= root=${report.root.slice(0, 8)}\n`,
   )
   for (const url of report.researched) process.stdout.write(`  · researched ${url}\n`)
   for (const g of report.gaps) process.stdout.write(`  · ${g.status.padEnd(8)} ${g.id} — ${g.detail}\n`)

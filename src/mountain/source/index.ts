@@ -329,7 +329,6 @@ function translationGapsGateRaw(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold([...facets.map((f) => f.receipt), ...gaps.map((g) => g.receipt)]),
     pair: 'translations/verify',
     cli: 'npm run quantum:translations-verify',
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
     statement:
       'Translation gaps gate: discovers missing translations (AREA_LABELS, staticPages titles/descriptions, monographPaths en/bg/gla parity, SITE_LOCALES) and inaccurate ones (stubs, en≡bg drift, missing Cyrillic, placeholder/link mismatches) plus offline phrase-table integrity. HARD fails on en-parity gaps; WARN reports honest free-prose coverage residual of the sealed offline translator.',
     boundary:
@@ -398,7 +397,6 @@ export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = bu
       sealedMorphs,
       missing: auto.missing,
       inaccurate: auto.inaccurate,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold as 0,
       facets,
       root: merkleFold([gate.root, auto.root ?? toUuid('autotranslations'), pairFold.merged, ...facets.map((f) => f.receipt)]),
       pair: 'trans/wave' as const,
@@ -486,7 +484,6 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       honestOpenNamed.includes('offline:free-prose-beyond-phrase-table') &&
       honestOpenNamed.includes('residual:monolith-file-ratchet') &&
       honestOpenNamed.includes('residual:vitepress-thin-mount')
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const warningsAddressed =
@@ -516,7 +513,6 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       drainableClosed,
       chromePhraseMiss,
       translation: { hard: gate.hardCount, warn: gate.warnCount, passed: gate.passed },
-      claySolvedByThisFold,
       physicalFtlClaim,
       qpuRequired,
       honestOpenNamed: [...honestOpenNamed],
@@ -635,7 +631,6 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
       softFold('research', 'free')
     const ftlThm = physicalFtlClaimTheorem()
     const physicalFtlClaim = ftlThm.physicalFtlClaim
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const autonomousOn =
       chatDrivesTranslate &&
       bgGapsDrainableClosed &&
@@ -697,7 +692,6 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
         memoReuse: turn.memoReuse,
       },
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       certified: false as const,
@@ -968,7 +962,6 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
 
     const ftlThm = physicalFtlClaimTheorem()
     const physicalFtlClaim = ftlThm.physicalFtlClaim
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
 
     const on =
       wavesOn &&
@@ -1049,7 +1042,6 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
         source: t.source,
       })),
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       certified: false as const,
@@ -1349,7 +1341,6 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
 
     const ftlThm = physicalFtlClaimTheorem()
     const physicalFtlClaim = ftlThm.physicalFtlClaim
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
 
     const on =
       massiveChatOn &&
@@ -1443,7 +1434,6 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
       },
       turn: { receipt: turn.receipt, memoReuse: turn.memoReuse, source: turn.source },
       honestOpenNamed: [...honestOpenNamed],
-      claySolvedByThisFold,
       physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       certified: false as const,
