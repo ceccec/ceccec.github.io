@@ -5,7 +5,11 @@
 // the proposition, what proves it, what it does NOT claim, and where the source is — in that order.
 import { computed } from 'vue'
 import { useRoute, withBase } from 'vitepress'
-import { leanPageBySlug, leanPageRows, type LeanPageRow } from '../../render'
+import { type LeanPageRow } from '../../render'
+// The rows are derived from the .lean sources at build (scripts/verify/lean-corpus.ts): leanPageRows reads them through
+// node:fs, which a browser does not have, so calling it here left every /lean page blank on client-side navigation.
+import leanCorpus from '../../data/lean-corpus.json'
+const ALL = leanCorpus as LeanPageRow[]
 
 const REPO = 'https://github.com/ceccec/ceccec.github.io/blob/main'
 const DOI = '10.5281/zenodo.21787144'
@@ -14,10 +18,10 @@ const ORCID = '0009-0000-7312-9778'
 const route = useRoute()
 const slug = computed(() => route.path.replace(/\/(en|bg)\//, '/').match(/\/lean\/([a-z0-9-]+)/)?.[1] ?? null)
 const rows = computed<LeanPageRow[]>(() => {
-  const one = slug.value ? leanPageBySlug(slug.value) : null
-  return one ? [one] : [...leanPageRows()]
+  const one = slug.value ? ALL.find((row) => row.slug === slug.value) ?? null : null
+  return one ? [one] : [...ALL]
 })
-const siblings = (row: LeanPageRow) => leanPageRows().filter((r) => r.file === row.file && r.slug !== row.slug)
+const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && r.slug !== row.slug)
 </script>
 
 <template>

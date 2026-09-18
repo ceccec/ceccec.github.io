@@ -79,6 +79,13 @@ if grep -qE '^src/' <<<"$changed"; then
   changed=$(printf '%s\n%s\n' "$changed" .vitepress/data/proof-witnesses.json | sort -u)
   ADD+=(.vitepress/data/proof-witnesses.json) # derived — staged with the change it was derived from, tracked or not
 fi
+# The kernel theorems the /lean pages read are derived from the .lean sources — regenerated when those change.
+if grep -qE '\.lean$|^src/pair/formal/proofs/' <<<"$changed"; then
+  npm run -s lean-corpus > "$LOGS/lean-corpus.log" 2>&1 || { echo "✗ npm run lean-corpus — the last lines of $LOGS/lean-corpus.log:"; tail -20 "$LOGS/lean-corpus.log"; exit 1; }
+  echo "✓ $(grep -E '^lean-corpus:' "$LOGS/lean-corpus.log" | tail -1)"
+  changed=$(printf '%s\n%s\n' "$changed" .vitepress/data/lean-corpus.json | sort -u)
+  ADD+=(.vitepress/data/lean-corpus.json)
+fi
 # Generated files are regenerated from their sources first, so their gates judge the tree being landed: MANIFEST.md
 # is written from package.json (manifest:check refuses a drifted one and names this command).
 if grep -qxF package.json <<<"$changed"; then
