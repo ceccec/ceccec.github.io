@@ -40,7 +40,26 @@
 // All the math — and, through src/0, the animation engine (createAnimationEngine, type AnimationEngine),
 // the fold (fold, asVortex, asTorus, asMerkaba, asMerkle, asTrace) and its presentations, plus the ten
 // animation dimensions (dims, DIMENSIONS, DIMENSION_NAMES):
-export * from '../../../src/quantum/heaven/mind/index.ts'
+// CURATED, NOT WILDCARD. This line used to read `export * from mind`, and that one statement produced 3,194
+// public names — the whole site's internals, SEO counters and navigation totals included — out of a package
+// describing itself as an agnostic computational core. Membership was an accident of what the barrel reached,
+// which is how addressEntropyBits (core) fell out while SEO_VIOLATIONS_DRAINABLE (not) stayed in.
+//
+// Measured before cutting: of everything the package has ever DECLARED as its API — build.mjs's 49-name
+// contract and the README's 8 documented imports — exactly twenty were reachable only through this wildcard.
+// The rest are named explicitly below, or come from the kernel. Nothing anywhere imports this package (no
+// dependents on the registry, none in the sibling repositories, none in this one), so the cut breaks nothing
+// that exists; it is made now because it is cheapest before 1.6.0 is published rather than after.
+export {
+  allMathSaved, areaPairs, bothEarthsRotateWithinEachOther, buildMatrix, completeDoubleTorus,
+  conceptCommands, dims, doubleTorus3D, doubleTorusIsCompletelyQuantum, doubleTorusMathAtAllScalesProofs,
+  dualTorusTrinities, executeConceptCommand, fuseAll, merkaba, proofBundle,
+  tenDimensionalAnimation, torusUuid, vortexComputes, vortexMath,
+  // sharedHeroAt is already exported below, from the movie-clock block
+} from '../../../src/quantum/heaven/mind/index.ts'
+
+// The kernel entry's whole surface — src/0, the same module /kernel publishes, already curated and coherent.
+export * from '../../../src/0/index.ts'
 
 // Vetted crypto (content-addressed) — the SHA-256 layer, Ed25519 signing, and the append-only transparency
 // log structure live in the void/origin src/0. The mind barrel consumes them internally but does NOT
