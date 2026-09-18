@@ -117,8 +117,6 @@ export function reportAnimationAudit() {
   }
 }
 
-export const animationAuditDefault = { auditAnimations, reportAnimationAudit }
-
 
 // ───── module: chatQuantumInvolution ─────
 // Chat Interface: Interactive Quantum Involution Exploration
@@ -424,15 +422,6 @@ function handleExploreBoundary(theorems: string[]): ChatResponse {
   }
 }
 
-export const chatQuantumInvolutionDefault = {
-  handleChatQuery,
-  handleShowInvolution,
-  handleRelateTheorems,
-  handleFindByInvolution,
-  handleProveConjecture,
-  handleExploreBoundary,
-}
-
 
 // ───── module: computedResearchRows ─────
 // Computed Research Rows: Generate 462 research metadata items from theorem algebra
@@ -616,12 +605,6 @@ export function consolidationStats(): ConsolidationStats {
   }
 }
 
-export const computedResearchRowsDefault = {
-  computeResearchRow,
-  generateAllResearchRows,
-  consolidationStats,
-}
-
 
 // ───── module: demarcationClosure ─────
 // Demarcation closure fold: scan ALL 828 theorems, apply computed demarcate(), seal status
@@ -750,12 +733,6 @@ export function demarcationGapValidator(theoremRegistry: Map<string, Demarcation
   }
 }
 
-export const demarcationClosureDefault = {
-  CLAY_PROVEN_THEOREMS,
-  demarcationClosureScan,
-  demarcationGapValidator,
-}
-
 
 // ───── module: demarcationComputed ─────
 // Computed demarcation: scan theorem content to auto-classify status
@@ -869,8 +846,6 @@ export function demarcate(theoremId: string, theoremSource: string): TheoremSign
   }
 }
 
-export const demarcationComputedDefault = { demarcate, computeTheoremStatus, recomputeDemarcationRegistry }
-
 
 // ───── module: demarcationGateWire ─────
 // Wire demarcation validation into mission:gate
@@ -979,8 +954,6 @@ export function runDemarcationGateExit(): number {
   return validation.passed ? 0 : 1
 }
 
-export const demarcationGateWireDefault = { buildTheoremRegistry, runDemarcationGateExit }
-
 
 // ───── module: demarcationVerification ─────
 // Verification gate: run computed demarcation on all theorems
@@ -1021,8 +994,6 @@ export function reportDemarcationVerification(theoremRegistry: Map<string, Demar
 
   return gate.passed ? 0 : 1
 }
-
-export const demarcationVerificationDefault = { demarcationVerificationGate, reportDemarcationVerification }
 
 
 // ───── module: formalProofBridge ─────
@@ -1339,15 +1310,6 @@ export const RIEMANN_PROOF_PATH: ProofHierarchy[] = [
   ),
 ]
 
-export const formalProofBridgeDefault = {
-  HONEST_REASSESSMENT,
-  updateDemarcationToHonest,
-  FORMAL_INVOLUTION_DEFINITION,
-  ESCAPE_PATH_IMPOSSIBILITY,
-  LEAN_PROOF_STUB,
-  RIEMANN_PROOF_PATH,
-}
-
 
 // ───── module: ftlSpeedup ─────
 interface GateConfig {
@@ -1615,17 +1577,6 @@ export async function runQuantumGateWithFTL(files: string[]): Promise<{
     executionTimeMs,
     cacheHitRate,
   }
-}
-
-export const ftlSpeedupDefault = {
-  cachedGateVerify,
-  generateSecurityFingerprint,
-  verifySecurityIntegrity,
-  filterViolationsByConfidence,
-  computeComplianceScore,
-  runQuantumGateWithFTL,
-  loadGateConfig,
-  computeFromAxioms,
 }
 
 
@@ -1909,13 +1860,6 @@ export function runHonestDemarcationGate(theorems: HonestTheorem[]): {
   }
 }
 
-export const honestDemarcationDefault = {
-  CLAY_THEOREMS_HONEST,
-  validateHonestDemarcation,
-  runHonestDemarcationGate,
-  downgradeToHonestStatus,
-}
-
 
 // ───── module: predictiveCrackDetection ─────
 // Predictive Crack Detection: Avoid errors before they happen
@@ -1976,9 +1920,6 @@ export function predictCracksFromSequencePatterns(): PredictedCrack[] {
   // Non-Fibonacci literals → likely hardcoded constants
   // Generate Fibonacci sequence up to gate threshold depth
   const fibonacciDepth = ceil(harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz) * 100) // Derived from gate, not hardcoded
-  const fibonacciLines = new Set(
-    Array.from({ length: fibonacciDepth }, (_, i) => fibonacci(i))
-  )
 
   predictions.push({
     type: 'hardcodedValue',
@@ -2135,12 +2076,6 @@ export function computeFTLPredictiveState(
   }
 }
 
-export const predictiveCrackDetectionDefault = {
-  predictCracksFromSequencePatterns,
-  scanForPredictedCracks,
-  computeFTLPredictiveState,
-}
-
 
 // ───── module: redundancyDetector ─────
 // Redundancy detector: find duplicate algebraic statements (same animation = redundant theorem)
@@ -2218,8 +2153,6 @@ export function redundancyDemarcation() {
     proof: 'Content-addressed algebraic statements grouped by identity; identical statements = identical animations = redundant theorems',
   }
 }
-
-export const redundancyDetectorDefault = { detectRedundantTheorems, redundancyDemarcation }
 
 
 // ───── module: sessionWaveComplete ─────
@@ -2338,8 +2271,6 @@ export const SESSION_WAVE_REPORT = {
   },
 }
 
-export const sessionWaveCompleteDefault = SESSION_WAVE_REPORT
-
 
 // ───── module: speedupDemarcated ─────
 // Speedup claims: THEORETICAL, not measured
@@ -2399,8 +2330,6 @@ export function speedupDemarcation(): SpeedupClaim {
     demarcation: 'open',
   }
 }
-
-export const speedupDemarcatedDefault = { speedupDemarcation }
 
 
 // ───── module: theoremRegistryUpdate ─────
@@ -2900,17 +2829,6 @@ export function applyInvolutionAwareDemarcation(
   }
 }
 
-export const theoremRegistryUpdateDefault = {
-  applyHonestDemarcation,
-  applyInvolutionAwareDemarcation,
-  upgradeTheoremRegistry,
-  validateHonestRegistry,
-  registryStatistics,
-  collectiveConfidenceFromInvolutionClosure,
-  UPGRADE_MAPPING,
-  THEOREM_INVOLUTION_PAIRS,
-}
-
 
 // ───── module: wave17ProseConsolidation ─────
 // Wave 17: Consolidate non-computational prose into quantum computation layer
@@ -3011,7 +2929,6 @@ export function consolidationAudit(): ProseConsolidationPlan {
   const facetsPerLevel = 7 // proof, application, inverse, boundary, history, ethics, open-questions
   const totalComputed = fieldCount * levelsPerField * facetsPerLevel // 7 × 6 × 7 = 294
   // Consolidation ratio: sourceCount / totalComputed ≈ 15 (emergent from theorem algebra)
-  const consolidationRatioEstimate = fieldCount + levelsPerField + facetsPerLevel // 7+6+7 = 20, cap at theorem coverage
   const sourceCount = totalComputed * fieldCount // 7 × 294 = 2058 (all descriptions per field, computed)
 
   return {
@@ -3040,9 +2957,3 @@ export const PHYSICS_DESCRIPTIONS_COMPUTED = {
   flagged_boundary: 'Known to fail in certain edge cases; see demarcation() for details.',
 } as const
 
-export const wave17ProseConsolidationDefault = {
-  consolidationAudit,
-  describeTheoremByDomain,
-  mapDomainToField,
-  PHYSICS_DESCRIPTIONS_COMPUTED,
-}

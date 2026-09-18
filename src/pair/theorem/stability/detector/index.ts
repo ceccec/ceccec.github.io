@@ -27,15 +27,6 @@ export interface TheoremQuantumState {
 /**
  * RIEMANN QUANTUM STATE
  */
-export const riemann_quantum_state: TheoremQuantumState = {
-  name: 'Riemann Hypothesis',
-  canonical_state: 'All zeros on critical line Re(s)=1/2',
-  off_canonical_state: 'At least one zero off critical line',
-  alpha: cos((TAU / 2) / 8), // √(2+√2)/2 ≈ 0.924 (higher probability)
-  beta: sin((TAU / 2) / 8), // √(2-√2)/2 ≈ 0.383 (lower probability)
-  coherence: 0, // Computed
-  decoherence_rate: 0, // Computed
-}
 
 /**
  * Compute coherence from amplitudes

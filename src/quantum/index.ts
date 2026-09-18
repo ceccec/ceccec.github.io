@@ -4863,7 +4863,6 @@ export function phaseDampingNoiseModel(T2_us: number = 50, T1_us: number = 100, 
  */
 export function thermalNoiseModel(temperatureK: number = 0.020, omegaGHz: number = 5.0): QuantumNoiseModel {
   const k_B = 8.617e-5 // eV/K
-  const h_bar = 6.582e-16 // eV·s
   const omega = omegaGHz * 1e9 * 1e-9 // GHz to energy units (simplified)
 
   // Thermal population: n = 1 / (1 + exp(hbar*omega / (k_B*T)))

@@ -132,13 +132,6 @@ export const VITEPRESS_COMPONENT_SET = [
 ] as const
 
 /** Parallel families morph → one sealed surface (duplicatesRemoved census). */
-export const VITEPRESS_COMPONENT_DUP_MORPHS = [
-  { before: 'inline-paper-sections', after: 'ScientificPaperBody', status: 'removed' as const },
-  { before: 'global-only-gaps-panel', after: 'PageComputedGaps', status: 'removed' as const },
-  { before: 'parallel-wet-page-prose', after: 'ScientificPageCanon', status: 'removed' as const },
-  { before: 'second-ui-stack', after: 'ui/*', status: 'removed' as const },
-  { before: 'parallel-movie-stacks', after: 'HeroBackgroundLayer+BackgroundMovie+CardBackgroundMovie', status: 'removed' as const },
-] as const
 
 export type VitePressComponentName = (typeof VITEPRESS_COMPONENT_SET)[number]
 export type VitePressOneQuantumComponentId = (typeof VITEPRESS_ONE_QUANTUM_COMPONENT_CATALOG)[number]['id']

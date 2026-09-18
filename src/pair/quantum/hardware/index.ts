@@ -319,14 +319,6 @@ A theorem is proven when its quantum superposition remains coherent under all pe
   return report
 }
 
-export const hardwareComparisonDefault = {
-  runSimulatedTheorems,
-  simulateHardwareMeasurements,
-  analyzeZeroDeviation,
-  verifyTheoremsAgainstHardware,
-  generateFullReport,
-}
-
 
 // ───── module: ibmQiskitExecutor ─────
 // Wave 32: Quantum Hardware Execution on IBM Qiskit
@@ -671,15 +663,6 @@ export const wave_32_milestones = {
   `,
 }
 
-export const ibmQiskitExecutorDefault = {
-  qiskit_setup,
-  theorem_quantum_circuit,
-  hardware_execution,
-  zero_deviation_analysis,
-  ionq_alternative,
-  theorem_proof_by_hardware,
-  wave_32_milestones,
-}
 
 // ── MERGED FROM src/pair/quantum/verification (census descent). Proof detection joins the hardware fold it is about, the only sibling with an index.
 // Quantum Verification Module — Wave 33: execute detector, check sequence self-consistency.
@@ -911,7 +894,3 @@ Re-examine the deviating theorems.
   }
 }
 
-export const detectorExecutionDefault = {
-  executeDetector,
-  checkSequenceSelfConsistency,
-}

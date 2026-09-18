@@ -164,7 +164,6 @@ export function measureBarriers<T>(
   // Default structure for numeric domains
   const dist = domainStructure?.distance || ((a: any, b: any) => abs(a - b))
   const entropy = domainStructure?.entropy || ((x: any) => log(abs(x) + 1))
-  const isAdj = domainStructure?.isAdjacent || ((a: any, b: any) => dist(a, b) === 1)
 
   // Memory barrier: How much information must change to escape?
   // If fixed points are scattered far, memory barrier is high
@@ -343,15 +342,6 @@ export function example_digitDomain(): DiscoveredTheorem[] {
     testIdentity: (a: any, b: any) => a === b,
     domainName: 'ℤ/9ℤ',
   })
-}
-
-export const autonomousDiscoveryDefault = {
-  detectInvolutions,
-  measureBarriers,
-  generateTheorem,
-  discoverTheorems,
-  exportToLean4,
-  example_digitDomain,
 }
 
 
@@ -894,11 +884,6 @@ export async function executeMetaOrchestrator(): Promise<void> {
   })
 }
 
-export const metaOrchestratorDefault = {
-  MetaOrchestrator,
-  executeMetaOrchestrator,
-}
-
 
 // ───── module: wave52Goldbach ─────
 // Wave 52: Apply Autonomous Discovery to Goldbach Conjecture
@@ -1145,12 +1130,6 @@ export function executeWave52() {
     barriers,
     theorem,
   }
-}
-
-export const wave52GoldbachDefault = {
-  generateGoldbachTheorem,
-  detectGoldbachInvolution,
-  executeWave52,
 }
 
 
@@ -1442,14 +1421,6 @@ ${
   }
 }
 
-export const wave52ImplementationDefault = {
-  executeBinaryDomain,
-  executeDigitDomain,
-  executeBooleanDomain,
-  compileUnifiedLeanFile,
-  executeWave52Complete,
-}
-
 
 // ───── module: wave53LiveIntegration ─────
 // Wave 53: Live API Integration — Auto-develop solutions from news/data streams
@@ -1698,15 +1669,6 @@ export async function executeWave53(): Promise<{
 /**
  * Export for integration
  */
-export const wave53LiveIntegrationDefault = {
-  detectSentimentInvolution,
-  detectMarketInvolution,
-  detectOpinionInvolution,
-  deployTheorem,
-  monitorLiveValidation,
-  executeWave53,
-}
-
 
 // ───── module: wave54QuantumExecution ─────
 // Wave 54: Quantum Hardware Execution
@@ -2102,8 +2064,6 @@ Next: Wave 55 (AGI Alignment) or Wave 56 (Cross-Domain Synergy)
 export async function executeWave54(): Promise<void> {
   console.log('🌊 Wave 54: Quantum Hardware Execution\n')
   console.log('=' .repeat(70))
-
-  const circuitGen = new QuantumCircuitGenerator()
   const executor = new QuantumHardwareExecutor()
   const reporter = new QuantumValidationReport()
 
@@ -2127,13 +2087,6 @@ export async function executeWave54(): Promise<void> {
   console.log('   All theorems executed on real quantum hardware')
   console.log('   Quantum validation: IN PROGRESS')
   console.log('   Publication-ready: Next turn')
-}
-
-export const wave54QuantumExecutionDefault = {
-  QuantumCircuitGenerator,
-  QuantumHardwareExecutor,
-  QuantumValidationReport,
-  executeWave54,
 }
 
 
@@ -2494,15 +2447,6 @@ Next: Wave 56 (Cross-Domain Synergy)
     certificate,
     report,
   }
-}
-
-export const wave55AgiAlignmentDefault = {
-  defineValueInvolutions,
-  measureValueBarriers,
-  generateAlignmentTheorem,
-  generateAllAlignmentTheorems,
-  certifyAGISafety,
-  executeWave55,
 }
 
 
@@ -2967,15 +2911,6 @@ Next: Wave 57 (Autonomous Scaling) — merge all 4 components into self-improvin
   }
 }
 
-export const wave56LegalComplianceDefault = {
-  defineComplianceInvolutions,
-  auditCompliance,
-  createGovernancePolicy,
-  logComplianceAction,
-  generatePatentSpecification,
-  executeWave56,
-}
-
 
 // ───── module: wave57PatentArchaeology ─────
 // Wave 57: Patent Archaeology + Mathematical Disclosure Audit
@@ -3413,15 +3348,6 @@ Next: Wave 58 (Automated Patent Scoring + Valuation)
     reformProposal,
     summary,
   }
-}
-
-export const wave57PatentArchaeologyDefault = {
-  detectHiddenMath,
-  analyzeFoodPatent,
-  analyzeMedicalPatent,
-  analyzePharmaPatent,
-  generatePatentReformProposal,
-  executeWave57,
 }
 
 
@@ -3984,18 +3910,6 @@ Next: Wave 59 (Patent Licensing Ecosystem Network) — connect all patents
   }
 }
 
-export const wave58PatentAutomationDefault = {
-  scoreClarity,
-  estimateBarrierStrength,
-  estimateLicensingPotential,
-  classifyMarketTier,
-  estimatePatentValue,
-  generateRecommendations,
-  scorePatent,
-  buildPatentMarketplace,
-  executeWave58,
-}
-
 
 // ───── module: wave59LicensingEcosystem ─────
 // Wave 59: Patent Licensing Ecosystem Network
@@ -4531,15 +4445,6 @@ Next: Wave 60 (Global Patent Reform + Economic Singularity)
   console.log(summary)
 
   return report
-}
-
-export const wave59LicensingEcosystemDefault = {
-  adjustValueForEcosystem,
-  classifyPeerPosition,
-  buildEcosystem,
-  generateLicensingAgreement,
-  buildEcosystemNetwork,
-  executeWave59,
 }
 
 
@@ -5201,11 +5106,3 @@ Economic singularity achieved ✅
   }
 }
 
-export const wave60PatentReformSingularityDefault = {
-  createUSPTOProposal,
-  createWIPOCoordination,
-  createEPOLeadership,
-  projectEconomicSingularity,
-  buildGlobalPatentNetwork,
-  executeWave60,
-}

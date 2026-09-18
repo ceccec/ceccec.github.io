@@ -62,17 +62,6 @@ export function ratSquare(r: Rational): Rational {
   return ratMul(r, r)
 }
 
-export const rationalDefault = {
-  rational,
-  ratAdd,
-  ratSub,
-  ratMul,
-  ratDiv,
-  ratEq,
-  ratSquare,
-  ratToString,
-}
-
 
 // ───── module: symbolic ─────
 // Wave 34b: Exact Symbolic Expressions
@@ -193,19 +182,6 @@ export function symEq(a: SymbolicExpr, b: SymbolicExpr): boolean {
   }
 
   return false
-}
-
-export const symbolicDefault = {
-  sym,
-  symRat,
-  symSqrt,
-  symAdd,
-  symSub,
-  symMul,
-  symExp,
-  symSquare,
-  symToLatex,
-  symEq,
 }
 
 
@@ -536,10 +512,6 @@ export const all_alphas_derived = {
   bsd_alpha,
 }
 
-export const alphaDerivationDefault = {
-  all_alphas_derived,
-}
-
 
 // ───── module: exactTheorems ─────
 // Wave 40: Exact Theorem Definitions
@@ -735,17 +707,6 @@ export function theoremToLatex(theorem: ExactTheoremState): string {
   `
 }
 
-export const exactTheoremsDefault = {
-  riemann_exact,
-  p_vs_np_exact,
-  navier_stokes_exact,
-  yang_mills_exact,
-  hodge_exact,
-  bsd_exact,
-  all_theorems_exact,
-  theoremToLatex,
-}
-
 
 // ───── module: formalProof ─────
 // Wave 34d: Formal Zero-Deviation Proof
@@ -868,6 +829,13 @@ export interface ZeroDeviationProof {
 }
 
 export function proveZeroDeviation(theorem: ExactTheoremState): ZeroDeviationProof {
+  // BOTH OF THESE WERE CALLED AND THROWN AWAY, and `qed: true` was typed beneath them — the proof asserted
+  // while the only two things that could have refuted it were discarded. They are read now.
+  //
+  // AND WHAT THAT BUYS IS NAMED, because one of the two is itself an assertion: `equality` is computed
+  // (symEq over the two symbolic expressions), while `escape_possible` is a typed `false` in the fold that
+  // returns it. So qed now stands on one computation and one assertion, which is one more than it stood on;
+  // the remaining gap is the escape proof, whose conclusion is prose and whose boolean is a literal.
   const measurement_def = measurementProbabilityIsAlphaSquared(theorem)
   const escape_proof = escapeImpossibilityProof(theorem)
 
@@ -888,7 +856,7 @@ export function proveZeroDeviation(theorem: ExactTheoremState): ZeroDeviationPro
       '8. Deviation = |measured - theoretical| = 0',
     ],
 
-    qed: true, // Proof is complete (Q.E.D.)
+    qed: measurement_def.equality && !escape_proof.escape_possible,
   }
 }
 
@@ -943,9 +911,3 @@ CONCLUSION:
   })
 }
 
-export const formalProofDefault = {
-  measurementProbabilityIsAlphaSquared,
-  escapeImpossibilityProof,
-  proveZeroDeviation,
-  proveAllTheoremsZeroDeviation,
-}

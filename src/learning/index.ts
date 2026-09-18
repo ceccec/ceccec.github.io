@@ -1569,7 +1569,6 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
   const corpus = papers(matrix, count)
   const paper = corpus.papers.find((entry) => entry.id === id)
   if (!paper) return null
-  const round2 = (value: number) => round(value * 100) / 100
   const leaves = corpus.papers.map((entry) => entry.receipt)
   const proof = merkleProof(leaves, paper.receipt)
   const officialStatement =
@@ -1815,13 +1814,11 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     .filter(([tag, routes]) => !META.has(tag) && routes.length >= 2 && tag.length >= 3)
     .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
     .map(([tag]) => tag)
-  const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
   const text = (route: string, i: 0 | 1) => { const page = byRoute.get(route); return page ? (i === 1 ? page.title.bg : page.title.en) : route }
   const link = (route: string, i: 0 | 1) => (i === 1 ? (route === '/' ? '/bg/' : `/bg${route}`) : route)
   const clusterOf = (route: string) => { const page = byRoute.get(route); return (page && ranked.find((tag) => page.keywords.includes(tag))) || 'more' }
   const routesIn = (tag: string) => pages.map((page) => routeOf(page.slug)).filter((route) => clusterOf(route) === tag)
   const navTags = ranked.slice(0, 8)
-  const sidebarTags = [...ranked.slice(0, (6 * 2)), 'more']
   const item = (route: string, i: 0 | 1) => ({ text: text(route, i), link: link(route, i) })
   const dedupe = (routes: string[]) => routes.filter((route, idx) => routes.indexOf(route) === idx)
   // The seven reusable parts shelve pages by CONTENT (sciencePortalParts lenses), never by slug hash.

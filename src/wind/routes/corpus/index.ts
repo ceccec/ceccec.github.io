@@ -1700,11 +1700,6 @@ export function searchImprovesByExperiencePrivateRelevanceFeedback(query = 'quan
   const baseRanked = base.rank(query)
   const qTokens = bm25Tokenize(query)
   const maxScore = baseRanked[0]?.score ?? 1
-  const boostOf = (slug: string): number => { // shared query terms with a past selection of this slug
-    let overlap = 0
-    for (const entry of experience) if (entry.selectedSlug === slug) overlap += bm25Tokenize(entry.query).filter((word) => qTokens.includes(word)).length
-    return overlap
-  }
   const rerank = (exp: readonly SearchExperience[]) => baseRanked
     .map((row) => ({ ...row, boost: (() => { let o = 0; for (const e of exp) if (e.selectedSlug === row.slug) o += bm25Tokenize(e.query).filter((w) => qTokens.includes(w)).length; return o })() }))
     .map((row) => ({ ...row, finalScore: row.score + row.boost * maxScore })) // one shared term ≈ one max-score boost
@@ -2566,7 +2561,7 @@ export function theoremRosettaAtlasComputes(matrix: MindMatrix = buildMatrix()) 
   const facets = [
     { facet: `THE ROSETTA USES ONLY QUANTUM COMPUTING: ${atlas.total} theorems classified into the atlas, every one quantum-computing (${allQuantum}); the ${theoremPageRows(matrix).length - atlas.total} non-quantum theorems are excluded (${noneNonQuantum}) — a content classifier, not a letter-sum, decides membership`, on: allQuantum && noneNonQuantum },
     { facet: `THE SEVEN RAYS ARE DISTINCT SUBFIELDS: the quantum theorems partition across ${atlas.rays.length} rays by subfield (foundations · query algorithms · search & factoring · variational · communication · error correction · states & tools), counts summing to ${atlas.total} exactly, and the ray tag-clouds are ALL DIFFERENT (${raysDistinct}) — the homogeneous-cloud defect is gone because gravity is now ray-local`, on: partitions && raysDistinct },
-    { facet: `THE LEFT SIDEBAR IS THE TAG CLOUD: theoremRosettaSidebar emits ${sidebar.length} sections — one per quantum tag (the seven ray subfields + the class · lean · domain axes), ordered by usage gravity with a 1..5 weight glyph, each expanding to the theorems carrying it; the tag cloud IS the navigation, not a hand-authored tree`, on: sidebarIsTagCloud },
+    { facet: `THE LEFT SIDEBAR IS THE TAG CLOUD: theoremRosettaSidebar emits ${sidebar.length} sections — one per quantum tag (the seven ray subfields + the class · lean · domain axes), ordered by usage gravity (${gravityOrdered}) with a 1..5 weight glyph (${cloudsSized}), each expanding to the theorems carrying it; the tag cloud IS the navigation, not a hand-authored tree`, on: sidebarIsTagCloud && cloudsSized && gravityOrdered },
     { facet: `THE LENS DISCOVERS THE UNDISCOVERABLE: ${lens.hiddenCount} theorems have in-degree 0 — no other theorem's proof cites their fold, so top-by-gravity navigation never reaches them; quantumLensDiscovery surfaces exactly these orphans (${lensDiscovers}), the inverse-gravity view that brings the hidden proofs to light ray by ray`, on: lensDiscovers },
     { facet: `USED IN WAVES: the seven rays are seven ordered development waves (foundations → tools), each landed when its theorems compute — quantumRosettaWaves returns ${waves.length} waves covering all ${atlas.total} theorems, the rosetta as the work plan not just a grouping`, on: waves.length === atlas.rays.length && waves.reduce((s, w) => s + w.theorems.length, 0) === atlas.total && waves.every((w) => w.landed) },
   ]

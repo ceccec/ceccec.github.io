@@ -3131,7 +3131,6 @@ export function theChatContinuesDeeperAndWiderRecursiveDepthTimesNeighbourhoodBr
  * node), and a VERIFY mind confirms each discovered node is a registered, computing theorem — refuting any hallucination.
  * Bounded depth + frontier + a visited set, so it terminates deterministically. Local, zero-egress, no LLM. [[deep-research-recursive-waves]] [[discovery-dual-mind-merkaba-waves]] */
 export function deepResearchRecursiveDualMindResearchVerify(matrix: MindMatrix = buildMatrix()) {
-  const registeredSlugs = new Set(privateSearchRanksByBM25IndustryStandard('quantum').results.concat(privateSearchRanksByBM25IndustryStandard('crypto').results).map((r) => r.slug))
   // RESEARCH mind — bounded BFS over the crosslink graph
   const research = (start: string, depth: number) => {
     const visited = new Map<string, string>()
@@ -4840,7 +4839,6 @@ export function learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSo
   const slotPointsToTheorem = q1.theorem.length > 0 && q2.theorem.length > 0 // the diamond names the theorem that addresses the problem
   const distinctProblemsDistinctSlots = q1.slot !== q2.slot // different problems → different diamonds
   const o1NotScan = diamondIndex('quantum encryption forward secrecy merkaba') === q1.slot // content-addressed, reproducible, no scan
-  const indexesNotSolves = slotPointsToTheorem // it POINTS to the theorem, it does not solve the problem
   const usable = isSquareIndex && routesToSlot && slotPointsToTheorem && distinctProblemsDistinctSlots && o1NotScan
   const facets = [
     { facet: `THE DIAMONDS ARE A 32² CONTENT-ADDRESSED INDEX — ${diamonds} = ${side}² = 4⁵ slots (${isSquareIndex}), each holding a theorem reference — the problem→solution matrix`, on: isSquareIndex },

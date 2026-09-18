@@ -621,7 +621,6 @@ export async function synthesizeProofs(): Promise<SynthesisReport> {
   const frontier = portal.query({ status: 'frontier' })
   const patterns = explorer.discoverPatterns()
   const gaps = explorer.identifyGaps()
-  const nextCandidate = explorer.predictNext()
 
   // Map theorems to involution-based proof strategies
   const proofStrategies: ProofStrategy[] = sealed.theorems.slice(0, 5).map((t, i) => ({

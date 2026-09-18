@@ -140,7 +140,12 @@ export function findUntriedClaims(root: string = process.cwd()): { published: nu
       if (!e.name.endsWith('.ts')) continue
       const text = readFileSync(p, 'utf8')
       const rel = relative(root, p).replace(/\\/g, '/')
-      const folds = [...text.matchAll(/^export (?:async )?function ([A-Za-z_$][\w$]*)/gm)].map((m) => ({ at: m.index!, name: m[1]! }))
+      // A DATA TABLE IS NOT A FOLD SPEAKING. `export const MILLENNIUM_VORTEX = [{ … statement: '…' }]` mirrors
+      // another record's Lean statements char for char, and the uuidna mirror above it does the same; reading
+      // those as claims this corpus publishes counted nine sealed theorems as unbacked prose. Both kinds of
+      // export are collected, and a `statement:` whose nearest one is a const belongs to the table, not a fold.
+      const folds = [...text.matchAll(/^export (?:async )?(function|const) ([A-Za-z_$][\w$]*)/gm)]
+        .map((m) => ({ at: m.index!, kind: m[1]!, name: m[2]! }))
       for (const m of text.matchAll(/\b(?:statement|boundary):\s*/g)) {
         const value = valueAt(text, m.index! + m[0].length)
         if (value === null || value.trim().length < 20) continue
@@ -148,7 +153,8 @@ export function findUntriedClaims(root: string = process.cwd()): { published: nu
         if (REFUSES.test(value)) { refused += 1; continue }
         let i = folds.length - 1
         while (i >= 0 && folds[i]!.at > m.index!) i -= 1
-        if (i < 0) continue // published outside any fold — a constant, not a fold's claim
+        if (i < 0) continue // published before any export — not a fold's claim
+        if (folds[i]!.kind === 'const') { published -= 1; continue } // a mirrored or tabulated statement
         const body = text.slice(folds[i]!.at, folds[i + 1]?.at ?? text.length)
         // A FACET THAT CAN FAIL: an `on:` whose value is not a hardcoded literal.
         // The closers must ALL come off. Stripping one `}` or `,` left `on: true }]` — a facet array written

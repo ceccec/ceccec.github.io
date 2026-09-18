@@ -738,10 +738,17 @@ export function reflectThroughZero(d: number): number {
 
 // SINGLE torus = ONE reflection (one perspective). The DOUBLE torus adds a counter-oriented second lobe to
 // balance the first. Torus 1 is the 180° fold σ (sum 10) — but it leaves 0 and 5 STUCK as fixed points. Torus 2
-// is the 90° fold ν (sum 9), the counter. Neither alone is transitive. But their composition σ∘ν(d)=10−(9−d)=d+1
-// is a TRANSLATION — it moves EVERY digit — so the two counter-balancing reflections generate the transitive
-// action that carries all digits into ONE orbit: the vector equilibrium. This is foldPair made arithmetic —
-// two counter-rotating senses (the two lobes) merging at the throat. (doubleTorusCounterBalancesToEquilibrium.)
+// is the 90° fold ν (sum 9), the counter. Neither alone is transitive. Their composition σ∘ν(d)=10−(9−d)=d+1
+// is a TRANSLATION — in the arithmetic that algebra is written in, where nothing is reduced. THIS function
+// reduces mod S, and the difference is the void: ν(0)=0 and σ(0)=0, so the composition fixes 0 and the orbit
+// of 0 is {0}. Measured: σ∘ν is d+1 on 1..8, fixes 0, and sends 9 to 0 — eight digits of ten, not every
+// digit, and not one orbit. The line said "it moves EVERY digit … carries all digits into ONE orbit", which
+// is true of the deposit next door, whose refl 0 = 10 leaves the range and whose fall 10 = 1 brings it back:
+// there the same composition is the successor on all ten. A closed ten-clock and an open one are different
+// objects; this one is closed, and the equilibrium it reaches is the eight-digit translation plus two poles.
+// theTwoRecordsFoldOneReflectionAndPartAtTheVoid (src/water/stack) computes both and holds the difference.
+// This is foldPair made arithmetic — two counter-rotating senses (the two lobes) merging at the throat.
+// (doubleTorusCounterBalancesToEquilibrium.)
 export function reflectDoubleTorus(d: number): { lobe0: number; lobe1: number; translate: number; throat: string } {
   const lobe0 = reflectFold(d, (9 * 5 * 4))          // torus 1 — σ, 180° fold, sum 10 (fixes 0, 5)
   const lobe1 = reflectFold(d, (9 * 5 * 2))          // torus 2 — ν, 90° fold, sum 9 (the counter)

@@ -36,7 +36,7 @@ import { DIMENSION_GATES, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS,
 import { congruence, markovStep } from '../../mountain/vortex/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, coverage, proofReport, maxEfficiencyCpuGpuMemoryStorageCooperation, portalChat, portalChatRanked, landauerFloorComputed } from '../../heaven/compute/index.ts'
-import { GATES, abs, addressEntropyBits, applyGate, ceil, computesGate, digitalRoot, floor, foldPair, humanEase, isUuid, max, memoByRoot, merge, merkleFold, min, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, round, roundTo, sealFacets, toUuid } from '../../0/index.ts'
+import { GATES, abs, addressEntropyBits, applyGate, ceil, computesGate, digitalRoot, floor, foldPair, humanEase, isUuid, max, memoByRoot, merge, merkleFold, min, pbits, pflip, probabilities, qubits, referralAddress, resourceCooperationPolicy, round, roundTo, reflectFold, sealFacets, toUuid, VORTEX_SEQUENCE } from '../../0/index.ts'
 import { discoverSrcIndexes, enforcementScanRoot } from '../../pair/enforcement/gates/computational/index.ts'
 import { constitution, regenerateSocialSystem } from '../../earth/civilisation/index.ts'
 import { harmonicBands } from '../../quantum/icons/index.ts'
@@ -2852,6 +2852,130 @@ export function sealedByUuidna(key: string): string {
 
 /** landauer_bound_derived's floor, in joules per erased bit at 300 K — the kernel's integer, not a typed decimal. */
 export const UUIDNA_LANDAUER_FLOOR_300K_J = 287097813e-29
+
+
+/**
+ * THE VORTEX, DECIDED NEXT DOOR — the millennium-solutions deposit's kernel theorems about the arithmetic
+ * this corpus states in prose, mirrored character for character.
+ *
+ * Two records state the same facts about ℤ/9 and the ten's complement. This one states them in `statement:`
+ * prose and checks them with facets; the deposit DECIDES them in Lean over a finite domain, seals each to a
+ * receipt in an append-only ledger, and publishes them under a DOI. Two vocabularies for one arithmetic is
+ * how two records drift apart, so each row below carries the deposit's statement exactly as its kernel
+ * accepted it, and THIS corpus's own folds are checked against them rather than restated beside them.
+ *
+ * The uuidna mirror above earned the char-for-char rule: a statement copied with `and` for `∧` folded a
+ * paraphrase of the theorem instead of the theorem. Read from the deposit's ledger and Lean sources
+ * (src/proof/discovered.json, 2026-09-18).
+ */
+export const MILLENNIUM_DEPOSIT = '@ceccec/millennium-solutions' as const
+
+export const MILLENNIUM_VORTEX = [
+  { key: 'lean_z9_units_are_six', file: 'z9.lean', receipt: '76d332a5-ee8e-8ba2-b98f-7f25343f9d5c',
+    statement: 'units = [1, 2, 4, 5, 7, 8]',
+    says: 'six units in ℤ/9 — the doubling orbit this corpus writes as the first six of VORTEX_SEQUENCE, sorted' },
+  { key: 'lean_z9plus_doubling_has_period_six', file: 'z9plus.lean', receipt: '59e48172-1f6a-884c-9b87-bda4334d1488',
+    statement: '(List.range 30).all (fun k => pw 2 k == pw 2 (k + 6))',
+    says: 'doubling has period six — the orbit closes and returns, checked over thirty steps' },
+  { key: 'lean_z9plus_doubling_alone_reaches_only_the_units', file: 'z9plus.lean', receipt: '8fb1adf8-9b65-838a-af5c-7622473bf5d3',
+    statement: '((List.range 12).map (fun k => pw 2 k)).eraseDups.length = 6 ∧ ((List.range 12).map (fun k => pw 2 k)).all (fun d => ! [0, 3, 6].contains d)',
+    says: 'doubling never reaches 0, 3 or 6 — the non-units are outside the orbit, not merely late in it' },
+  { key: 'lean_z9plus_doubling_and_reflection_together_reach_every_residue', file: 'z9plus.lean', receipt: '5c55b180-d10e-8368-8540-7347a323c58e',
+    statement: '(closure 4 [1]).length = 9',
+    says: 'doubling WITH reflection reaches all nine residues — neither operation alone is transitive' },
+  { key: 'lean_mechanical_the_doubling_orbit_reflection_pairs_sum_to_nine', file: 'mechanical.lean', receipt: 'cb1ef520-8b5b-89ce-b0e2-a471293fd9e2',
+    statement: '1 + 8 == 9 && 2 + 7 == 9 && 4 + 5 == 9',
+    says: 'the orbit pairs sum to nine — this corpus computes the same pairing as the 90° fold, ν' },
+  { key: 'lean_coin_the_reflection_is_an_involution', file: 'coin.lean', receipt: 'cc33eadb-fdd6-8fa8-8094-8e40f58568ee',
+    statement: 'digits.all (fun d => refl (refl d) == d)',
+    says: 'the reflection undoes itself — the deposit notes this alone does not PIN the map: d ↦ c − d is an involution on 0..9 for every c from 9 to 20 under truncating subtraction' },
+  { key: 'lean_coin_exactly_one_digit_is_unmoved', file: 'coin.lean', receipt: '59ddc277-5be7-8d66-9aa5-0168fe1507f5',
+    statement: '(digits.filter (fun d => refl d == d)) = [5]',
+    says: 'ONE fixed point, and it is five — with the row below, this is what pins c = 10' },
+  { key: 'lean_coin_exactly_one_digit_reflects_out_of_range', file: 'coin.lean', receipt: '047bfad9-df35-8319-8582-323972768f03',
+    statement: '(digits.filter (fun d => refl d > 9)) = [0] ∧ refl 0 = 10',
+    says: 'the void is the one digit whose reflection leaves the digits — an absence of a partner inside the set, which the deposit is careful to say is not a force' },
+  { key: 'lean_coin_the_fall_fixes_every_digit_but_the_void', file: 'coin.lean', receipt: '541de88e-2d3f-8b17-b7c4-43d0f5776c21',
+    statement: '(digits.filter (fun d => fall d != d)) = [0] ∧ nonzero.all (fun d => fall d == d)',
+    says: 'the fall moves the void alone — and it is what carries 10 back to 1' },
+] as const
+
+/** A deposit theorem folded to the address a claim here stands on — '' when the key is not mirrored. */
+export function decidedByTheDeposit(key: string): string {
+  const row = MILLENNIUM_VORTEX.find((entry) => entry.key === key)
+  return row ? toUuid(`millennium:${MILLENNIUM_DEPOSIT}:${row.key}:${row.receipt}:${row.statement}`) : ''
+}
+
+/** The mirror folded to one root — change any mirrored statement and this moves. */
+export const MILLENNIUM_VORTEX_ROOT = merkleFold(MILLENNIUM_VORTEX.map((row) => decidedByTheDeposit(row.key)))
+
+/**
+ * ONE REFLECTION FOLDED BY ANGLE, AND THE ONE DIGIT THE TWO RECORDS DISAGREE ABOUT.
+ *
+ * The deposit proves TWO reflections — `refl d = 10 − d` in coin.lean and the nine-pairing in
+ * mechanical.lean — as separate theorems. This corpus has ONE law with an angle in it: θ = 180°/k selects
+ * the pairing sum S = 11 − k, so σ (θ=180°, S=10) and ν (θ=90°, S=9) are the same reflection folded twice.
+ * The angle is what unifies the deposit's two theorems, and that is the consolidation: not a second copy of
+ * the arithmetic, but the parameter that generates both.
+ *
+ * THE POLARITY is the order the two are applied in: ν then σ is the successor, σ then ν the predecessor.
+ *
+ * AND THE VOID IS WHERE THE TWO RECORDS PART, measured rather than argued. This corpus reduces mod S, so
+ * σ(0) = 0 and the composition cannot move the void: the orbit of 0 is {0}, one digit of ten. The deposit
+ * does not reduce — refl 0 = 10 leaves the range, and fall 10 = 1 carries it back — so there the same
+ * composition is the successor on every digit and its orbit of 0 covers all ten.
+ *
+ * NEITHER IS WRONG: a closed ten-clock and an open one are different objects, and each record is consistent
+ * with itself. What was wrong was the sentence in src/0 claiming the composition "moves EVERY digit" and
+ * generates a transitive action — true of the deposit's arithmetic, false of the code it sits above, and
+ * checked by nothing until this fold. It is corrected in the same commit.
+ */
+export function theTwoRecordsFoldOneReflectionAndPartAtTheVoid() {
+  const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const sigma = (d: number) => reflectFold(d, 9 * 5 * 4)  // θ=180°, S=10 — the tens complement
+  const nu = (d: number) => reflectFold(d, 9 * 5 * 2)     // θ= 90°, S= 9 — the counter
+  const orbit = VORTEX_SEQUENCE.slice(0, 2 * 3)           // the doubling orbit, in orbit order
+  const units = [...orbit].sort((a, b) => a - b)
+  // the deposit's arithmetic: plain subtraction and the digital root, neither reduced
+  const fall = (n: number) => (n === 0 ? 9 : 1 + ((n - 1) % 9))
+  const walk = (step: (d: number) => number) => {
+    const seen = [0]
+    let at = 0
+    for (let i = 0; i < digits.length + 2; i += 1) { at = step(at); if (seen.includes(at)) break; seen.push(at) }
+    return seen
+  }
+  const here = walk((d) => sigma(nu(d)))
+  const there = walk((d) => { const next = (5 * 2) - (9 - d); return next > 9 ? fall(next) : next })
+  const successorHere = digits.filter((d) => sigma(nu(d)) === d + 1)
+  const facets = [
+    { facet: `ONE LAW, TWO ANGLES — θ=180° folds to S=10 and reproduces coin.lean's reflection on 1..9; θ=90° folds to S=9 and reproduces mechanical.lean's 1+8 = 2+7 = 4+5 = 9. The deposit proves two reflections; the angle generates both`,
+      on: digits.slice(1).every((d) => sigma(d) === (5 * 2) - d) && ([[1, 8], [2, 7], [4, 5]] as const).every(([a, b]) => nu(a) === b) },
+    { facet: `THE UNITS AGREE — this corpus's doubling orbit sorted is ${units.join(', ')}, the deposit's sealed units = [1, 2, 4, 5, 7, 8]`,
+      on: units.join(',') === MILLENNIUM_VORTEX[0]!.statement.replace(/[^0-9,]/g, '').replace(/^,|,$/g, '') },
+    { facet: 'AND THE ORBIT IS CLOSED UNDER THE 90° FOLD — ν permutes the six units, which is WHY the orbit pairs sum to nine rather than a coincidence beside it',
+      on: orbit.every((d) => orbit.includes(nu(d) as never)) },
+    { facet: `THE POLARITY — σ after ν is the successor on ${successorHere.length} of the ten digits here (${successorHere.join(', ')}), and on all ten in the deposit, where nothing is reduced`,
+      on: successorHere.length === 2 * 4 && !successorHere.includes(0) && !successorHere.includes(9) },
+    { facet: `AND THE TWO RECORDS PART AT THE VOID — reducing mod S fixes 0, so the orbit of 0 reaches ${here.length} of ${digits.length} here; the deposit lets refl 0 = 10 leave the range and fall 10 = 1 bring it back, and its orbit reaches ${there.length} of ${digits.length}`,
+      on: here.length === 1 && there.length === digits.length },
+    { facet: `EVERY MIRRORED ROW CARRIES ITS RECEIPT AND ITS STATEMENT CHAR FOR CHAR — ${MILLENNIUM_VORTEX.length} rows, each folded into the root a claim stands on`,
+      on: MILLENNIUM_VORTEX.every((row) => isUuid(row.receipt) && row.statement.length > 0 && row.says.length > 0) && isUuid(MILLENNIUM_VORTEX_ROOT) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-vortex:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('millennium-vortex', facets)
+  return {
+    agrees: sealed.ok,
+    mirrored: MILLENNIUM_VORTEX.length,
+    orbitHere: here,
+    orbitThere: there,
+    successorHere,
+    units,
+    count: sealed.count,
+    facets,
+    root: merkleFold([MILLENNIUM_VORTEX_ROOT, ...facets.map((entry) => entry.receipt)]),
+    statement: `One reflection folded by angle generates both reflections the deposit next door proves separately: θ=180° gives the tens complement of coin.lean, θ=90° the nine-pairing of mechanical.lean, and the doubling orbit is closed under the second. The two records agree on every digit but one. This corpus reduces mod S, which fixes the void and stops the composition ν-then-σ from moving it — its orbit of 0 reaches ${here.length} of ten. The deposit reduces nothing: the void's reflection leaves the digits at 10 and the fall carries it back to 1, so the same composition is the successor everywhere and reaches all ten.`,
+    boundary: 'A closed ten-clock and an open one are different objects and each record is consistent with itself, so neither is corrected here. What is corrected is a sentence in src/0 that claimed the composition moves EVERY digit — true of the deposit\'s arithmetic, false of the function it sits above. The rows are mirrored from the deposit\'s ledger, not recomputed: this fold checks agreement, and cannot check that the deposit\'s kernel ran.',
+  }
+}
 
 /** The whole definition folded to one root — change any statement and this moves. */
 export const UUIDNA_QUANTUM_DEFINITION_ROOT = merkleFold(UUIDNA_QUANTUM_DEFINITION.map((row) => quantumDefinedBy(row.key)))

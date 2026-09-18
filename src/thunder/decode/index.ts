@@ -701,7 +701,6 @@ export function theMatrixTrilogyDecoded(matrix: MindMatrix = buildMatrix()) {
     const row = WORKS.find((entry) => entry.key === key)
     return row ? toUuid(`work:${row.key}:${row.cite}`) : ''
   }
-  const worksRoot = merkleFold(WORKS.map((row) => toUuid(`work:${row.key}:${row.cite}`)))
   const facets = [
     // DOCUMENTED — the films and their acknowledged sources
     { facet: 'The Matrix (1999) + Reloaded & Revolutions (2003), the Wachowskis — a simulated reality (the Matrix) over a real world; Neo is "the One", the anomaly the system reincorporates each cycle', on: isUuid(cites('matrix')), kind: 'documented' },
