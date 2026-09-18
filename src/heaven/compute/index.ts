@@ -2975,7 +2975,9 @@ export function chatFusesAllCapabilitiesIntoOneUnifiedContentAddressedTurn(matri
   const query = 'quantum crypto fusion four keys faster than light'
   const turn = unifiedChatTurn(query, matrix)
   const hasRanked = String(turn.answer).length > 0 && String(turn.source).length > 0
-  const hasResearch = Array.isArray(turn.research) && turn.research.length >= 3 // deep neighbourhood
+  // deepResearchChatTurn pads its synthesis with single-fold terms when fewer than three are shared, so a length bar
+  // holds by construction. sharedThemeSize is what it measures: the terms two or more folds agree on — the theme.
+  const hasResearch = Array.isArray(turn.research) && turn.research.length > 0 && deepResearchChatTurn(query, matrix).sharedThemeSize > 0
   const hasVoice = String(turn.speak).length > 0 // TTS
   const hasVideo = typeof turn.animation?.rung === 'number' && 108 % turn.animation.rung === 0 // south-pole animation
   const hasCrypto = turn.address.length > 0 && turn.digest.length > 0 // content-address + tamper-evidence
@@ -8170,9 +8172,14 @@ export function siteAuditsItselfThroughChatForUsabilityAndAccessibilityBounded(m
   const all = [...a11y, ...usability]
   const automatableCount = all.filter((c) => c.automatable).length
   const manualCount = all.filter((c) => !c.automatable).length
-  const chatDrives = deepResearchChatTurn('usability accessibility ui audit contrast aria', matrix).synthesis.length >= 3
+  // the same padding applies here — a synthesis of five is guaranteed; a SHARED theme is not
+  const chatDrives = deepResearchChatTurn('usability accessibility ui audit contrast aria', matrix).sharedThemeSize > 0
   const automatableAudited = automatableCount >= manualCount // the automatable subset is the audit's scope
-  const manualFlagged = manualCount >= 3 // keyboard, screen-reader, cognitive — flagged for human testing
+  // Named, not counted: keyboard/focus, screen-reader and cognitive load are the criteria WCAG cannot automate, and
+  // the boundary promises they are flagged rather than faked. This goes off if one is dropped or marked automatable;
+  // a count of three could not tell the difference.
+  const needsHuman = ['keyboard', 'screen-reader', 'cognitive']
+  const manualFlagged = needsHuman.every((name) => all.some((c) => c.check.toLowerCase().includes(name) && !c.automatable))
   const selfAudits = chatDrives && automatableAudited && manualFlagged
   const facets = [
     { facet: `THE SITE AUDITS ITSELF VIA CHAT — the chat (deep research) surfaces the a11y/ui folds and drives the self-audit (${chatDrives}); the site checks its OWN pages, deterministic, local`, on: chatDrives },

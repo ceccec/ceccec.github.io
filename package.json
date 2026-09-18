@@ -945,6 +945,7 @@
     "movie:render": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/render-scenes.ts renderScenes",
     "witnesses": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/witnesses.ts writeProofWitnesses",
     "verify:witnesses": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/witnesses.ts assertProofWitnessesFresh",
+    "verify:guards": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/guards.ts assertGuardsAndCaps",
     "verify:lean-registry": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-registry.ts assertRegistrySealed"
   }
 }

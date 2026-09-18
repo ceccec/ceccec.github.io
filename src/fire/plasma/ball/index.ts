@@ -68,7 +68,9 @@ function componentPagesForWiring(matrix = buildMatrix()) {
   }
 }
 export function allPagesForPlasmaWiring(matrix = buildMatrix()) {
-  if (typeof window !== 'undefined') return []
+  // No browser guard: staticPages() and componentPagesForWiring() are pure data with no filesystem use, and
+  // returning [] here emptied the related paths exactly where they are PRESENTED — the wiring computed nothing
+  // in the browser while the page claimed a computed navigation graph.
   return memoByRoot('allPagesForPlasmaWiring', matrix, () => [...staticPages(), ...componentPagesForWiring(matrix)])
 }
 

@@ -2352,7 +2352,9 @@ export function consistencyIsNecessaryNotSufficient() {
 export function ifYouCanExplainByMathItExists() {
   // sense 1 — mathematical existence: every registered theorem is a consistent structure that EXISTS
   const mathObjects = THEOREM_ATOM_SEED.filter((atom) => atom.provedBy.length > 0)
-  const platonismHolds = mathObjects.length > 3 * 100 // the registry IS existence-by-consistency, embodied
+  // EVERY registered theorem, not a bar someone chose: the claim is that each one is a consistent structure that
+  // exists, so the test is that no row lacks a prover. `> 300` held at 400 too — it bound nothing and could not go off.
+  const platonismHolds = mathObjects.length === THEOREM_ATOM_SEED.length && mathObjects.length > 0
   // sense 2 — the MUH: is mathematical existence the SAME as physical existence?
   const muh = {
     claim: 'every consistent mathematical structure is a physically real universe (Tegmark 2008)',

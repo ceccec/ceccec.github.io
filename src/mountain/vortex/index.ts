@@ -2,7 +2,7 @@
 import type { MindMatrix } from '../../types/index.ts'
 import { earned, fibonacci, frequencyToLight, rat, ratEq, ratInv, type Rational, vortexHarmonicRatios } from '../../3/7/index.ts'
 import { buildMatrix, oneMathManyPresentations } from '../../heaven/compute/index.ts'
-import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev, max, min, round } from '../../0/index.ts'
+import { VORTEX_SEQUENCE, abs, asMerkaba, computesGate, cos, digitalRoot, doubleTorusSurface, fold, foldPair, foldVortex, isUuid, memoByRoot, merge, merkleFold, sealFacets, sin, toUuid, trunc, vortexNext, vortexPrev, max, min, round , modUnits, gcd } from '../../0/index.ts'
 import { merkaba } from '../geometry/index.ts'
 import { merkabaComputes, merkabasInDoubleTorus } from '../topology/index.ts'
 import { TAU, ROSETTA_SEVEN } from '../../3/7/index.ts'
@@ -156,6 +156,67 @@ export function pisanoWheelOnTheNine() {
     cassini,
     computes: walk.every((d, i) => d % nine === residues[i]) && cassini.every((c, i) => c === (-1) ** (i + 1)),
   }
+}
+
+/**
+ * ℤ/m DEFINES ITS OWN LAWS — every quantity here is computed from the modulus, and no law is guarded into vacuity: each
+ * states the domain it holds on. On ODD m the doubling map is a unit, so ⟨2⟩ is an orbit inside (ℤ/m)ˣ whose length
+ * divides the unit count (Lagrange); on EVEN m the fact is that 2 is no unit at all, stated rather than skipped. The
+ * reflection d ↦ m − d is an involution on every modulus, its pairs and fixed points partitioning ℤ/m, and the Fibonacci
+ * walk returns with a period that is even beyond m = 2. ℤ/9 recomputes the sealed VORTEX_SEQUENCE from the modulus alone.
+ * The same five are decided by the kernel, with no axiom, in src/pair/lean/proofs/registry.lean.
+ */
+export function vortexLawsOf(m: number) {
+  const digits = Array.from({ length: m }, (_, d) => d)
+  const units = modUnits(m) // (ℤ/m)ˣ — the d with gcd(d, m) = 1
+  const doublingIsAUnit = gcd(2, m) === 1
+  const orbit: number[] = [] // ⟨2⟩ acting on 1, on the moduli where the doubling map is invertible
+  if (doublingIsAUnit) { let x = 1 % m; do { orbit.push(x); x = (x * 2) % m } while (x !== 1 % m && orbit.length <= m) }
+  const reflect = (d: number) => (m - d) % m
+  const fixed = digits.filter((d) => reflect(d) === d)
+  const pairs = digits.filter((d) => d < reflect(d)).map((d) => [d, reflect(d)] as const)
+  let [a, b, period] = [0, 1 % m, 0]
+  do { [a, b] = [b, (a + b) % m]; period += 1 } while (!(a === 0 && b === 1 % m) && period <= 6 * m + 1)
+  const laws = doublingIsAUnit
+    ? [
+      { law: 'the doubling orbit lies inside the units', holds: orbit.every((d) => units.includes(d)) },
+      { law: 'the order of 2 divides the number of units — Lagrange on (ℤ/m)ˣ', holds: units.length % orbit.length === 0 },
+    ]
+    : [{ law: '2 is no unit here, so the doubling map is not invertible and ⟨2⟩ is no orbit', holds: !units.includes(2) && orbit.length === 0 }]
+  laws.push(
+    { law: 'the reflection d ↦ m − d is an involution whose pairs and fixed points partition ℤ/m', holds: digits.every((d) => reflect(reflect(d)) === d) && pairs.length * 2 + fixed.length === m },
+    { law: 'the Fibonacci walk returns, and its period is even beyond m = 2', holds: period > 0 && period <= 6 * m && (m <= 2 || period % 2 === 0) },
+  )
+  return { m, units, orbit, pairs, fixed, period, doublingIsAUnit, laws, holds: laws.every((entry) => entry.holds) }
+}
+
+/** Every ℤ/m states its laws and they hold — the range is the vortex squared (its nine digits), and ℤ/9's orbit IS the
+ *  unit half of the sealed sequence, recomputed here from the modulus. */
+export function theZModulesDefineTheirOwnLaws(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theZModulesDefineTheirOwnLaws', matrix, () => {
+    const upTo = VORTEX_SEQUENCE.length ** 2 // the vortex squared — the range comes from the sequence, not from here
+    const modules = Array.from({ length: upTo - 1 }, (_, i) => vortexLawsOf(i + 2))
+    const odd = modules.filter((entry) => entry.doublingIsAUnit)
+    const even = modules.filter((entry) => !entry.doublingIsAUnit)
+    const nine = vortexLawsOf(VORTEX_SEQUENCE.length)
+    const sealedUnitHalf = (VORTEX_SEQUENCE as readonly number[]).filter((d) => gcd(d, VORTEX_SEQUENCE.length) === 1)
+    const facets = [
+      { facet: `⟨2⟩ lies inside the units on all ${odd.length} moduli where 2 is a unit, and its order divides the unit count — Lagrange`, on: odd.length > 0 && odd.every((entry) => entry.laws[0]!.holds && entry.laws[1]!.holds) },
+      { facet: `on the ${even.length} moduli where 2 is no unit there is no doubling orbit — stated, not skipped`, on: even.length > 0 && even.every((entry) => entry.laws[0]!.holds) },
+      { facet: `the reflection is an involution whose pairs and fixed points partition ℤ/m, for every modulus to ${upTo}`, on: modules.every((entry) => entry.laws[entry.laws.length - 2]!.holds) },
+      { facet: `the Fibonacci walk returns with an even period beyond m = 2, for every modulus to ${upTo}`, on: modules.every((entry) => entry.laws[entry.laws.length - 1]!.holds) },
+      { facet: `ℤ/9 RECOMPUTES THE SEALED VORTEX — its doubling orbit is ${nine.orbit.join('·')}, the unit half of VORTEX_SEQUENCE, derived from the modulus alone`, on: nine.orbit.join() === sealedUnitHalf.join() },
+      { facet: `ℤ/9's reflection fixes one residue and pairs the rest into ${nine.pairs.length}, and its Fibonacci period is ${nine.period}`, on: nine.fixed.length === 1 && nine.pairs.length * 2 + nine.fixed.length === VORTEX_SEQUENCE.length },
+    ]
+    return {
+      computes: facets.every((entry) => entry.on),
+      upTo,
+      modules: modules.map((entry) => ({ m: entry.m, units: entry.units.length, order: entry.orbit.length, period: entry.period, fixed: entry.fixed.length })),
+      facets,
+      root: merkleFold(modules.map((entry) => toUuid(`z-laws:${entry.m}:${entry.units.length}:${entry.orbit.length}:${entry.period}`))),
+      statement: `ℤ/m defines its own laws: for every modulus to ${upTo} the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold — ${facets.filter((entry) => entry.on).length}/${facets.length}; ℤ/9 recomputes the sealed vortex sequence.`,
+      boundary: 'HONEST: finite checks over the moduli in range, and the same five statements are decided by the Lean kernel with no axiom (registry.lean). The general theorems behind them — Lagrange, the parity of the Pisano period — are cited, not reproved here.' }
+  })
 }
 
 export function vortexStrokeKinds(matrix: MindMatrix = buildMatrix()) {

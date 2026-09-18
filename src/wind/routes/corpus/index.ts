@@ -39,7 +39,8 @@ export const CORPUS_GRID_PAGE_SIZE = CLIENT_WORK_TIERS[0] * NAV358_TOTAL // 48 =
 const META_TAGS = new Set(['component', 'proof'])
 
 function pagesForTagClusters(): StaticPage[] {
-  if (typeof window !== 'undefined') return [...staticPages()]
+  // No browser branch: allPagesForPlasmaWiring computes everywhere now, so the clusters are drawn from the whole
+  // page set in the browser too — this returned the static half to work around the guard that used to empty it.
   return allPagesForPlasmaWiring()
 }
 

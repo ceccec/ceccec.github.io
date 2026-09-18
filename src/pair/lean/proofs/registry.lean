@@ -358,4 +358,35 @@ def monoSum (c n : Nat) : Bool :=
 theorem schur_two_is_four :
     (List.range 16).any (fun c => !monoSum c 4) = true ∧ (List.range 32).all (fun c => monoSum c 5) = true := by decide +kernel
 
+/-! ## ℤ/m DEFINES ITS OWN LAWS — decided, with the domain stated instead of a guard. On the odd moduli 2 is a unit, so
+    ⟨2⟩ is an orbit inside (ℤ/m)ˣ whose length divides the unit count; on the even ones 2 is provably no unit. The
+    reflection is an involution partitioning ℤ/m, the Fibonacci walk returns with an even period beyond 2, and ℤ/9's
+    orbit IS the sealed vortex sequence. The same five are computed in src/mountain/vortex (vortexLawsOf). -/
+def zUnits (m : Nat) : List Nat := (List.range m).filter (fun d => Nat.gcd d m == 1)
+def zOrbit (m : Nat) : Nat → Nat → List Nat
+  | 0, _ => []
+  | f + 1, x => x :: (if (x * 2) % m == 1 % m then [] else zOrbit m f ((x * 2) % m))
+def zReflect (m d : Nat) : Nat := (m - d) % m
+def oddModuli : List Nat := (List.range 23).map (fun i => 2 * i + 3)
+def evenModuli : List Nat := (List.range 23).map (fun i => 2 * i + 2)
+set_option maxRecDepth 100000 in
+theorem z_doubling_orbit_lies_in_the_units_on_odd_moduli :
+    oddModuli.all (fun m => (zOrbit m m 1).all (fun d => (zUnits m).contains d)) = true := by decide +kernel
+set_option maxRecDepth 100000 in
+theorem z_order_of_two_divides_the_unit_count_on_odd_moduli :
+    oddModuli.all (fun m => (zUnits m).length % (zOrbit m m 1).length == 0) = true := by decide +kernel
+set_option maxRecDepth 100000 in
+theorem z_two_is_no_unit_on_even_moduli : evenModuli.all (fun m => !((zUnits m).contains 2)) = true := by decide +kernel
+set_option maxRecDepth 100000 in
+theorem z_reflection_is_an_involution_and_partitions :
+    (List.range 46).all (fun i =>
+      (List.range (i + 2)).all (fun d => zReflect (i + 2) (zReflect (i + 2) d) == d)
+      && ((List.range (i + 2)).filter (fun d => d < zReflect (i + 2) d)).length * 2
+         + ((List.range (i + 2)).filter (fun d => zReflect (i + 2) d == d)).length == i + 2) = true := by decide +kernel
+set_option maxRecDepth 200000 in
+theorem z_fibonacci_period_returns_and_is_even_beyond_two :
+    (List.range 46).all (fun i => pisano (i + 2) != 0) = true
+    ∧ (List.range 45).all (fun i => pisano (i + 3) % 2 == 0) = true := ⟨by decide +kernel, by decide +kernel⟩
+theorem z_nine_orbit_is_the_vortex_sequence : zOrbit 9 9 1 = [1, 2, 4, 8, 7, 5] := by decide +kernel
+
 end Registry

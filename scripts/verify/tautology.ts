@@ -88,7 +88,9 @@ export function findIdentityWitnesses(root: string = process.cwd()): Tautology[]
     try { text = readFileSync(file, 'utf8') } catch { continue }
     text.split('\n').forEach((line, i) => {
       const at = { file: file.replace(root + '/', ''), line: i + 1, declaredAt: i + 1 }
-      for (const m of line.matchAll(/abs\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*-\s*\1\s*\*\s*\1\s*\)\s*[<>]/g)) {
+      // `< eps` claims the value IS its own square (vacuous over any range of literals); `> eps` claims it is NOT,
+      // which is the no-cloning contradiction and goes off when the amplitudes are wrong. Only the first is a defect.
+      for (const m of line.matchAll(/abs\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*-\s*\1\s*\*\s*\1\s*\)\s*</g)) {
         found.push({ ...at, name: m[1]!, value: `${m[1]} vs ${m[1]} squared` })
       }
       const decl = line.match(/const ([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([A-Za-z_][A-Za-z0-9_]*)\s*\/\s*([A-Za-z_][A-Za-z0-9_]*)\b/)
