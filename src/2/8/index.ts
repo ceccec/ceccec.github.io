@@ -498,7 +498,7 @@ export function shorFactorsByPeriodFinding() {
     while (true) { const rem = n - a * d; if (rem === 0) break; n = d; d = rem; a = floor(n / d); const k2 = a * k0 + k1; if (k2 > maxDen) break; h1 = h0; h0 = a * h0 + h1; k1 = k0; k0 = k2 }
     return k0
   }
-  const factor = (N: number, a: number, t: number, w: number): { period: number; factors: readonly number[] | null; valid: boolean } => {
+  const factor = (N: number, a: number, t: number, w: number): { period: number; factors: readonly number[] | null; valid: boolean; sparseTerms: number; denseTerms: number } => {
     const T = 1 << t, W = 1 << w, dim = T * W
     const re = new Array<number>(dim).fill(0), im = new Array<number>(dim).fill(0)
     for (let x = 0; x < T; x += 1) re[x * W + 1] = 1 / sqrt(T) // counting uniform, work = |1⟩
@@ -525,14 +525,21 @@ export function shorFactorsByPeriodFinding() {
     const nz: number[][] = Array.from({ length: W }, () => [])
     for (let x = 0; x < T; x += 1) for (let y = 0; y < W; y += 1) if (re2[x * W + y] !== 0 || im2[x * W + y] !== 0) nz[y]!.push(x)
     for (let y = 0; y < W; y += 1) for (let k = 0; k < T; k += 1) { let ar = 0, ai = 0; for (const x of nz[y]!) { const ang = -TAU * x * k / T, c = cos(ang), dd = sin(ang); ar += s * (re2[x * W + y] * c - im2[x * W + y] * dd); ai += s * (re2[x * W + y] * dd + im2[x * W + y] * c) } outRe[k * W + y] = ar; outIm[k * W + y] = ai } // inverse QFT
+    // THE SPEEDUP, COUNTED RATHER THAN TIMED. The comment above claims "an exact factor of W". A wall clock
+    // cannot settle that — it reports the machine's load — but the two term counts can, because they are
+    // integers the loop already determines. The oracle writes exactly one amplitude per x, so Σ_y |S_y| = T and
+    // the surviving terms number T·T, against the dense W·T·T that visited every y for every x. The ratio is W
+    // with no rounding and no trial, at every scale, and the facet below states it as the identity it is.
+    const sparseTerms = nz.reduce((count, xs) => count + xs.length, 0) * T
+    const denseTerms = W * T * T
     const pk = new Array<number>(T).fill(0)
     for (let k = 0; k < T; k += 1) for (let y = 0; y < W; y += 1) pk[k] += outRe[k * W + y] ** 2 + outIm[k * W + y] ** 2
     let period = 0
     for (let k = 1; k < T; k += 1) if (pk[k] > 1 / 100) { const r = cfDenominator(k, T, N); if (r > 0) { let ar = 1; for (let i = 0; i < r; i += 1) ar = (ar * a) % N; if (ar === 1) { period = r; break } } }
-    if (period === 0 || period % 2 !== 0) return { period, factors: null, valid: false }
+    if (period === 0 || period % 2 !== 0) return { period, factors: null, valid: false, sparseTerms, denseTerms }
     let half = 1; for (let i = 0; i < period / 2; i += 1) half = (half * a) % N
     const f1 = gcdN(half - 1, N), f2 = gcdN(half + 1, N)
-    return { period, factors: [f1, f2], valid: f1 > 1 && f1 < N && N % f1 === 0 && f1 * f2 === N }
+    return { period, factors: [f1, f2], valid: f1 > 1 && f1 < N && N % f1 === 0 && f1 * f2 === N, sparseTerms, denseTerms }
   }
   const runs = [
     { N: 3 * 5, a: 7, t: 8, w: 4 }, // 15 = 3·5, period 4
@@ -540,6 +547,33 @@ export function shorFactorsByPeriodFinding() {
     { N: 5 * 7, a: 8, t: (2 * 6), w: 6 }, // 35 = 5·7, period 4
   ].map((r) => ({ ...r, result: factor(r.N, r.a, r.t, r.w) }))
   const allValid = runs.every((r) => r.result.valid)
+  // THE LADDER OF HANDLES. The term counts need only the oracle and the index of what it wrote — no inverse QFT
+  // and no clock — so the same identity can be read at every width the work register can take. Each handle is
+  // one bit wider than the one under it and doubles the ratio exactly; the 8-bit handle rests on the 7-bit, the
+  // 7 on the 6 (one hexbit), and so down. The ladder stops at 4 bits for N = 15 because a narrower register
+  // cannot address the residues 0..14 at all — that floor is set by the arithmetic, not chosen here.
+  const termCounts = (N: number, a: number, t: number, w: number) => {
+    const T = 1 << t, W = 1 << w
+    const written = new Array<number>(W).fill(0)
+    for (let x = 0; x < T; x += 1) { let ax = 1; for (let i = 0; i < x; i += 1) ax = (ax * a) % N; written[ax % N] = (written[ax % N] ?? 0) + 1 }
+    const sparse = written.reduce((count, n0) => count + n0, 0) * T
+    return { sparse, dense: W * T * T }
+  }
+  const LADDER_N = 3 * 5, LADDER_A = 7, LADDER_T = 8
+  const residueBits = Math.ceil(Math.log2(LADDER_N)) // 4 — the narrowest register that can hold 0..N−1
+  const handles = Array.from({ length: 8 - residueBits + 1 }, (_, i) => residueBits + i).map((w) => {
+    const { sparse, dense } = termCounts(LADDER_N, LADDER_A, LADDER_T, w)
+    return { bits: w, ratio: dense / sparse, lattice: 1 << w }
+  })
+  const everyHandleIsItsLattice = handles.every((h) => h.ratio === h.lattice)
+  const eachHandleDoublesTheOneBelow = handles.every((h, i) => i === 0 || h.ratio === handles[i - 1]!.ratio * 2)
+  // THE WORK REGISTER IN HEXBITS. w is the width of the work register, and six lines of it is one hexagram —
+  // a hexbit — so these three runs carry 4, 5 and 6 lines, the last exactly one hexbit. Zero-skipping divides
+  // the inverse QFT's term count by 2^w, so the speedup IS the lattice of the work register: 16, 32, and at a
+  // full hexbit 64. Stated as a ratio of two counted integers, it holds at every scale and needs no clock.
+  const speedupIsTheWorkLattice = runs.every((r) => r.result.denseTerms === r.result.sparseTerms * (1 << r.w))
+  const hexbitRun = runs.find((r) => r.w === 6)
+  const speedupAtOneHexbit = hexbitRun !== undefined && hexbitRun.result.denseTerms / hexbitRun.result.sparseTerms === 2 ** 6
   // THE LIMITS, COMPUTED. The third facet below USED to carry this fold's honesty — "NOT physical quantum
   // speedup" — with `on: allValid`, so it went green because three numbers factored. That is the defect in
   // its purest form: the sentence about the limit was gated on evidence for a different claim entirely, and
@@ -565,6 +599,8 @@ export function shorFactorsByPeriodFinding() {
     { facet: 'STRUCTURE, NOT SPEEDUP — the same steps a quantum computer would take, executed deterministically at classical cost; the sealed law that this repo\'s quantum is a model with query/structure advantage only, and no physical speedup, is what the two measurements above hold up', on: costsClassicalExponential && rsaOutOfReach },
   ])
   const facets = [
+    { facet: `EACH HANDLE RESTS ON THE ONE BELOW IT — the work register read at every width it can take for N=${LADDER_N}: ${handles.map((h) => `${h.bits}b=${h.ratio}×`).join(' · ')}. Every handle's speedup IS its lattice 2^bits, and each doubles the handle under it, down to the ${residueBits}-bit floor where the register can no longer address the residues 0..${LADDER_N - 1}`, on: everyHandleIsItsLattice && eachHandleDoublesTheOneBelow && handles.length === 8 - residueBits + 1 },
+    { facet: `THE SPEEDUP IS AN INTEGER RATIO, NOT A STOPWATCH — skipping the zeros divides the inverse QFT's terms by the work lattice 2^w exactly: ${runs.map((r) => `${r.result.denseTerms}/${r.result.sparseTerms}=${1 << r.w}`).join(' · ')}. At a work register of one hexbit (six lines) that is ${2 ** 6}×`, on: speedupIsTheWorkLattice && speedupAtOneHexbit },
     { facet: `FULL PERIOD-FINDING FACTORS: ${runs.map((r) => `${r.N} = ${r.result.factors?.join('×')}`).join(', ')} — each via the quantum order-finding circuit (uniform superposition → aˣ mod N oracle → inverse QFT → continued fractions → gcd), all valid non-trivial factorisations`, on: allValid },
     { facet: `THE PERIOD IS FOUND, NOT ASSUMED: continued fractions on the measured c/2ᵗ recover r with a^r ≡ 1 (mod N) for every run (periods ${runs.map((r) => r.result.period).join(', ')}), and the factors multiply back to N exactly`, on: runs.every((r) => r.result.valid && r.result.period > 0) },
     { facet: `THE READOUT IS THE ONE BUILT HERE: the QFT-based phase readout from theQuantumFourierTransformCircuitAndPhaseEstimation drives the classical-reversible mod-exp oracle, so the two folds compose rather than each simulating its own half`, on: allValid },

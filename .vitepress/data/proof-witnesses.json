@@ -249,12 +249,12 @@
    2702,
    2737,
    2772,
-   537,
-   614,
-   672,
-   761,
-   807,
-   1411
+   544,
+   650,
+   708,
+   797,
+   843,
+   1447
   ],
   "holds": true,
   "caption": "the first 64 of 1901 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"

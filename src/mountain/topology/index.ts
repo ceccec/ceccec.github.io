@@ -356,7 +356,10 @@ export function doubleTorusFold(matrix: MindMatrix = buildMatrix()) {
   const trinities = dualTorusTrinities(matrix)
   const yin = trinities.phases.filter((phase) => phase.polarity === 'yin')
   const yang = trinities.phases.filter((phase) => phase.polarity === 'yang')
-  const trinitiesComplete = yin.length === 3 && yang.length === 3
+  // NOT `=== 3 && === 3`. Those two numbers are the phase table counted back at itself, and they stay true while
+  // a phase carries a third polarity or none. The trinity is complete when every phase HAS a polarity and the two
+  // sides balance — a partition and an equality, both of which a stray phase breaks.
+  const trinitiesComplete = yin.length === yang.length && yin.length + yang.length === trinities.phases.length
   const leaves = trinities.phases.map((phase) => phase.receipt)
 
   // One fold level: pair adjacent items (a trinity's yin and yang), fold both ways
