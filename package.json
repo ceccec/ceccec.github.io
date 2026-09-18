@@ -950,6 +950,7 @@
     "verify:lean-corpus": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-corpus.ts assertLeanCorpusFresh",
     "verify:lean-registry": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-registry.ts assertRegistrySealed",
     "fold-bounds": "node --experimental-strip-types scripts/verify/fold-bounds.ts",
-    "verify:claims": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/claims.ts assertClaimsMatchEvidence"
+    "verify:claims": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/claims.ts assertClaimsMatchEvidence",
+    "verify:cross": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/cross.ts assertTheoremsAreCrossed"
   }
 }

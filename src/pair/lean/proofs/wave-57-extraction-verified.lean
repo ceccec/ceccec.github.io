@@ -56,18 +56,23 @@ theorem descent_target_is_the_census : fib 7 + fib 8 + fib 9 + fib 10 = 123 := b
 
 /-- THE RATCHET LAW over the real history, read newest-first: each count is strictly below
     the one before it. A wave that added an index.ts would make this proof fail, which is
-    exactly what "the count may fall, never rise" means when it is checkable. -/
+    exactly what "the count may fall, never rise" means when it is checkable.
+
+    The pairs are DERIVED from `recorded` — `recorded.zip recorded.tail` is the consecutive
+    pairing — because they used to be typed out a second time and that second copy rotted:
+    the corpus descended to 138, the record above followed, and this list did not. It went on
+    proving a true fact about a history that had stopped being the whole history, which is the
+    exact failure the comment on `recorded` describes, committed one definition further down.
+    A record read twice is a record that can disagree with itself. -/
 theorem the_descent_is_strictly_monotone :
-    (∀ p ∈ [(139, 142), (142, 146), (146, 148), (148, 153), (153, 154), (154, 160)],
-      p.1 < p.2) := by decide
+    (∀ p ∈ recorded.zip recorded.tail, p.1 < p.2) := by decide
 
 /-- The distance still to fall, as a subtraction the kernel performs rather than a number a
     sentence remembers — and it shrinks with every wave, which is the claim worth making. -/
 def remaining (n : Nat) : Nat := n - 123
 
 theorem remaining_falls_with_the_count :
-    (∀ p ∈ [(139, 142), (142, 146), (146, 148), (148, 153), (153, 154), (154, 160)],
-      remaining p.1 < remaining p.2) := by decide
+    (∀ p ∈ recorded.zip recorded.tail, remaining p.1 < remaining p.2) := by decide
 
 /-- The distance to the target round-trips on the record: adding the target back to what remains returns
     every recorded count. That holds exactly when a count is at or above the target, so the record is read
