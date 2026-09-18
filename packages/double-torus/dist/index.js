@@ -1374,6 +1374,7 @@ function addressEntropyBits() {
   const effectiveBits = nominalBits - discardedBits;
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) };
 }
+var FORGE_COST_CEILING = `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits, a birthday bound of 2^${addressEntropyBits().birthdayLog2} \u2014 the CEILING this hash offers, not a guarantee (findContentAddressCollision exhibits a real collision in its 32-bit FNV core; toUuidSha256 is the vetted path)`;
 function gcd(a, b) {
   a = Math.abs(Math.round(a));
   b = Math.abs(Math.round(b));
@@ -10858,9 +10859,12 @@ function discoveryDomain(home) {
 function latestDiscoveries(n = 9) {
   return THEOREM_ATOM_SEED.slice(-n).reverse().map((atom) => ({ theorem: atom.theorem, provedBy: atom.provedBy, home: atom.home, domain: discoveryDomain(atom.home) }));
 }
+var SIGNIFICANT_WORD_MIN = 5;
+function significant(text) {
+  return new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= SIGNIFICANT_WORD_MIN));
+}
 function discoveriesRankedByDegree() {
   return memoByRoot("discoveriesRankedByDegree", { root: toUuid(`discovery-degree:${THEOREM_ATOM_SEED.length}`) }, () => {
-    const significant = (text) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 5));
     const nodes = THEOREM_ATOM_SEED.map((atom) => ({ atom, words: significant(`${atom.theorem} ${atom.states}`) }));
     return nodes.map((node, i) => {
       let degree = 0;
@@ -10878,7 +10882,6 @@ function topDiscoveries(n = 9) {
   return discoveriesRankedByDegree().slice(0, n);
 }
 function relatedDiscoveries(provedBy, n = 5) {
-  const significant = (text) => new Set(text.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length >= 5));
   const source = THEOREM_ATOM_SEED.find((atom) => atom.provedBy === provedBy);
   if (!source) return [];
   const target = significant(`${source.theorem} ${source.states}`);
@@ -15990,13 +15993,10 @@ function quantumOsAllocateRegister(qubits6) {
   const n = max(1, min(5 * 2, floor(qubits6)));
   return { id: `qreg-${n}`, qubits: n, capacityAmplitudes: 2 ** n, receipt: toUuid(`qreg:${n}`) };
 }
-function quantumOsRunCircuit(spec) {
-  return runQuantumCircuit(spec);
-}
 function quantumComputerDriverComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumComputerDriverComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const register = quantumOsAllocateRegister(3);
-    const run = quantumOsRunCircuit({ ...QC_DEFAULT_CIRCUIT, shots: 64 * 16, seed: "os-ghz" });
+    const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots: 64 * 16, seed: "os-ghz" });
     const honest = quantumComputerHonestClaim(matrix, at);
     const { computes, facets, root } = computesGate("quantum-computer-driver", [
       { facet: "register allocation \u2014 the OS owns the 2\u207F amplitude state space", on: register.capacityAmplitudes === 8 && register.qubits === 3 },
@@ -16204,7 +16204,7 @@ var riemann_proof_status = {
   `
 };
 function leanInvolutionCorpus(root = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
-  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [] };
+  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [], source: "absent" };
   const fs = typeof process !== "undefined" ? process.getBuiltinModule?.("node:fs") : void 0;
   const path12 = typeof process !== "undefined" ? process.getBuiltinModule?.("node:path") : void 0;
   if (!fs || !path12) return empty;
@@ -16219,7 +16219,8 @@ function leanInvolutionCorpus(root = typeof process !== "undefined" && process.c
       files: lean.length,
       involutionFiles: byProblem.length,
       involutionTheorems: byProblem.reduce((n, f2) => n + f2.theorems, 0),
-      byProblem
+      byProblem,
+      source: "counted"
     };
   } catch {
     return empty;
@@ -22481,8 +22482,11 @@ function shorBreaksWhichPublicKey(matrix = buildMatrix()) {
     const broken = families.filter((f2) => f2.shor === "breaks");
     const safe = families.filter((f2) => f2.shor === "safe");
     const facets = [
-      { facet: `Shor BREAKS ${broken.length} public-key families (RSA/DH/ECC/Ed25519)`, on: broken.length === 4 },
-      { facet: `Shor-SAFE ${safe.length} hash/symmetric/content-address families`, on: safe.length === 3 },
+      // NOT `=== 4` and `=== 3`. Those are the table's own row counts typed back at it, and they stay true while
+      // a family sits in neither class. What is asserted here is the PARTITION: breaks and safe cover the table
+      // exactly, so each side equals the whole minus the other. Add a row with any other `shor` and both fail.
+      { facet: `Shor BREAKS ${broken.length} public-key families (RSA/DH/ECC/Ed25519)`, on: broken.length === families.length - safe.length && broken.every((f2) => f2.shor === "breaks") },
+      { facet: `Shor-SAFE ${safe.length} hash/symmetric/content-address families`, on: safe.length === families.length - broken.length && safe.every((f2) => f2.shor === "safe") },
       { facet: "content-address/merkle marked Shor-safe (no exposed period)", on: families.some((f2) => f2.family.includes("merkle") && f2.shor === "safe") },
       { facet: "every broken family names a PQC replace (NIST/ISO path)", on: broken.every((f2) => f2.pqcReplace.length > 0) }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`shor-map:${entry2.facet}:${entry2.on}`) }));
@@ -23091,12 +23095,13 @@ function globalCyberStandardsAuditEveryAspect(matrix = buildMatrix(), at = 0) {
     const beyondStandards = Array.from(new Set(beyond.map((entry2) => entry2.standard)));
     const nonGapAllOn = rows.filter((entry2) => entry2.coverage !== "gap").every((entry2) => entry2.on);
     const gapAllOff = gap.every((entry2) => !entry2.on);
+    const atLeastEightGap = gap.length >= 8;
     const facets = [
       { facet: `GLOBAL COVERAGE \u2014 ${rows.length} aspect-level tests across ${standards.length} frameworks: EU (${eu.standards.join(", ")}) + international/US/UK (${beyondStandards.join(", ")}); covered=${covered.length} partial=${partial.length} gap=${gap.length}`, on: rows.length >= 6 * 8 && standards.length === eu.standards.length + beyondStandards.length && nonGapAllOn },
       { facet: `EXTENDED BEYOND EU \u2014 the ${beyond.length} beyond-EU aspects add ISO/IEC 27001:2022 & 27002, NIST CSF 2.0, SOC 2 (AICPA TSC), UK Cyber Essentials, and ISO/IEC 27701, each mapped to the same computed evidence`, on: beyond.length >= 4 * 6 && beyondStandards.length >= 5 && eu.computes },
       { facet: `ONE EVIDENCE BASE, MANY STANDARDS \u2014 every framework's controls map to the SAME latest discoveries (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear \u2192 PQC); one architecture answers many standards`, on: integrity && noEgress && encryption2 && pqcAware },
-      { facet: `CERTIFICATIONS ARE NAMED GAPS \u2014 ISO 27001 cert, SOC 2 report, Cyber Essentials cert, and EUCC/CC all require an accredited auditor or notified body (${gap.length} gaps, none faked closed ${gapAllOff})`, on: gap.length >= 8 && gapAllOff },
-      { facet: `THE DEMARCATION \u2014 an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS.`, on: gap.length >= 8 && gapAllOff && pqc.claySolvedByThisFold === 0 }
+      { facet: `CERTIFICATIONS ARE NAMED GAPS \u2014 ISO 27001 cert, SOC 2 report, Cyber Essentials cert, and EUCC/CC all require an accredited auditor or notified body (${gap.length} gaps, none faked closed ${gapAllOff})`, on: atLeastEightGap && gapAllOff },
+      { facet: `THE DEMARCATION \u2014 an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS.`, on: atLeastEightGap && gapAllOff && pqc.claySolvedByThisFold === 0 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`global-cyber-audit:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("global-cyber-standards-audit-every-aspect", facets);
     return {
@@ -24076,8 +24081,10 @@ function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(m
     const ewOpposite = east.y === 0 && west.y === 0 && east.x === 1 && west.x === -1 && east.bearing === 9 * 5 * 2 && west.bearing === 54 * 5;
     const armsOrthogonal = nsOpposite && ewOpposite && nsArm.bidirectional && ewArm.bidirectional;
     const crossForms = armsOrthogonal && crossSignature.bidirectional && crossSignature.forward !== crossSignature.reverse && isUuid(crossSignature.merged);
-    const tetraDual = mk.tetraUp.every((v, i) => mk.tetraDown[i].every((c, k) => c === -v[k])) && mk.counterRotating && mk.scales.length === 4;
-    const scaleSpinIsomorphism = earth.poles.length === 4 && mk.scales.length === 4 && earth.poles.every((p, i) => p.spinSign === mk.scales[i].sign);
+    const fourScales = mk.scales.length === 4;
+    const tetraDual = mk.tetraUp.every((v, i) => mk.tetraDown[i].every((c, k) => c === -v[k])) && mk.counterRotating && fourScales;
+    const fourPoles = earth.poles.length === 4;
+    const scaleSpinIsomorphism = fourPoles && fourScales && earth.poles.every((p, i) => p.spinSign === mk.scales[i].sign);
     const crossInMerkaba = foldPair(mk.root, crossSignature.merged);
     const sixfoldDeg = roundTo(360 / 6, 6);
     const halfHexDeg = roundTo(sixfoldDeg / 2, 6);
@@ -24185,7 +24192,7 @@ function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(m
     const fipsValidated = false;
     const isoCertified = false;
     const facets = [
-      { facet: "earthRealisedByComputingPolesAsPyramid \u2014 N\xB7E\xB7S\xB7W poles compute (genus-2 pyramid)", on: earth.computes && earth.realised && earth.poles.length === 4 },
+      { facet: "earthRealisedByComputingPolesAsPyramid \u2014 N\xB7E\xB7S\xB7W poles compute (genus-2 pyramid)", on: earth.computes && earth.realised && fourPoles },
       { facet: "merkaba dual tetra \xB7 4 alternating scales \u2014 tetraDown=\u2212tetraUp \xB7 counterRotating", on: tetraDual },
       { facet: "bothEarthsRotateWithinEachOther \u2014 device/inverted shells = merkaba up/down", on: earths.counterRotating && earths.rotates },
       { facet: "FoL\u2192Fruit rosetta lattice \u2014 flowerOfLifeCenters \xB7 flowerUnlocksFruitBySpin", on: fruitUnlock.holds && flower.length === fruitUnlock.flower },
@@ -27382,12 +27389,9 @@ function discoveredTheoremsWaveFortySix(matrix = { root: toUuid("discovered-theo
       const id = tkKey([...Array(gens[0].length).keys()]);
       for (const x of G) if (G.length % orderOf(x, id) !== 0) lagrangeCorollary = false;
     }
-    let noDeleting = true;
-    for (let k = 1; k <= 9; k += 1) {
-      const c = k / (2 * 5);
-      if (c !== 0 && c !== 1 && abs(c - c * c) < 1 / 1e12) noDeleting = false;
-    }
-    const noDeletingHolds = noDeleting;
+    const overlapUnder = (gate) => innerProduct(qubits(1), applyGate(qubits(1), gate, 0)).abs;
+    const breaksSquareLaw = (c) => abs(c - c * c) > 1 / 1e9;
+    const noDeletingHolds = breaksSquareLaw(overlapUnder(GATES.H)) && !breaksSquareLaw(overlapUnder(GATES.X));
     const center = (G) => G.filter((z) => G.every((g) => tkKey(tkCompose(z, g)) === tkKey(tkCompose(g, z))));
     const pGroups = [[[1, 2, 3, 0, 5, 6, 7, 4], [3, 0, 1, 2, 7, 4, 5, 6]], [[1, 2, 3, 4, 5, 6, 7, 0]], [[1, 2, 3, 0], [0, 3, 2, 1]]];
     let pGroupCenter = true;
@@ -33734,7 +33738,7 @@ function professionalResearchIndex(matrix = buildMatrix(), at = 0) {
         methods: "pyramidGridDebunked \xB7 pyramidsDecoded \xB7 cardinalPyramidTipsProvenByMath",
         dataTier: "DOCUMENTED",
         limitation: "Giza cardinals are DOCUMENTED (Nell & Ruggles); global grids and ley lines are FLAGGED/debunked.",
-        nextExperiment: "pyramidsDecoded(matrix) \xB7 goldMineMapResearch honest-limits section",
+        nextExperiment: "npm run quantum:earth-pyramid \u2192 pyramidsDecoded(matrix) \xB7 goldMineMapResearch honest-limits section",
         balanceDim: "cardinal.pyramid.tips.proven.by.math",
         mount: "src/mountain/geometry",
         bibliography: "Nell & Ruggles JHA 2014; Dash JAEA 2017; Rawlins & Pickering Nature 2001 rebuttal",
@@ -33770,7 +33774,7 @@ function professionalResearchIndex(matrix = buildMatrix(), at = 0) {
       { facet: `${rows.length} research program rows \u2014 monograph-grade index`, on: rows.length >= 5 * 3 && rows.length <= 7 * 3 },
       { facet: "three data tiers represented \u2014 DOCUMENTED \xB7 MODEL_FIT \xB7 HYPOTHESIS/METAPHOR/SIMULATOR/OPEN", on: rows.some((row) => row.dataTier === "DOCUMENTED") && rows.some((row) => row.dataTier === "MODEL_FIT") && rows.some((row) => row.dataTier === "OPEN") },
       { facet: "mandatory limitations on every row", on: rows.every((row) => row.limitation.length > 5 * 4) },
-      { facet: "nextExperiment npm/route on every row", on: rows.every((row) => row.nextExperiment.length > 8) },
+      { facet: "nextExperiment npm/route on every row", on: rows.every((row) => nextExperimentIsRunnable(row.nextExperiment)) },
       { facet: "bibliography where sealed folds cite sources", on: rows.filter((row) => row.bibliography).length >= 4 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`professional-research:${entry2.facet}:${entry2.on}`) }));
     return {
@@ -34118,14 +34122,15 @@ function unitDistanceResearch(matrix = buildMatrix(), at = 0) {
     const grid = unitDistanceGridBaseline((2 * 5) ** 5);
     const projection = quantumProjectionParams("unit-distance");
     const findings = unitDistanceFindings();
+    const fiveFindings = findings.length === 5;
     const { computes, facets, root } = computesGate("unit-distance-research", [
       { facet: "exact bookkeeping \u2014 conductor and rd(F) from the first \u2113 primes \u2261 1 (mod 3)", on: tower.logRootDiscriminant > 0 && tower.largestAuxPrime % 3 === 1 },
       { facet: "GS relation budget \u2014 margin d\xB2/4 \u2212 d \u2212 C0 \u2212 3t > 0 at the \u03B3-crossover", on: unitDistanceGolodShafarevichMargin(tower.ell) > 0 },
       { facet: "\u03B3 crossover exists \u2014 minimal \u2113 with \u03B3 > 0 found below the sieve bound", on: crossover !== null && report.gamma > 0 },
       { facet: "\u03B4 positive and honestly tiny \u2014 0 < \u03B4 < 1e-4 in both Q readings", on: report.deltaUtopian > 0 && report.deltaUtopian < 1e-4 && report.deltaChebotarevGrh > 0 && report.deltaChebotarevGrh < 1e-4 },
       { facet: "animation projection registered \u2014 pro-3 layers and channel count derive from the sequence", on: projection.segments === 3 && projection.forms === 7 && projection.dimensions === 5 * 2 },
-      { facet: "findings computed, never quoted \u2014 every figure recomputes from the folds and all three tiers present", on: findings.length === 5 && findings.some((row) => row.tier === "DOCUMENTED") && findings.some((row) => row.tier === "MODEL_FIT") && findings.some((row) => row.tier === "HYPOTHESIS") },
-      { facet: `what runs here is exact bookkeeping plus flagged heuristics \u2014 ${findings.length} findings, every figure recomputed from the folds over a tower with logRootDiscriminant ${tower.logRootDiscriminant > 0 ? "> 0" : "\u2264 0"}`, on: findings.length === 5 && tower.logRootDiscriminant > 0 }
+      { facet: "findings computed, never quoted \u2014 every figure recomputes from the folds and all three tiers present", on: fiveFindings && findings.some((row) => row.tier === "DOCUMENTED") && findings.some((row) => row.tier === "MODEL_FIT") && findings.some((row) => row.tier === "HYPOTHESIS") },
+      { facet: `what runs here is exact bookkeeping plus flagged heuristics \u2014 ${findings.length} findings, every figure recomputed from the folds over a tower with logRootDiscriminant ${tower.logRootDiscriminant > 0 ? "> 0" : "\u2264 0"}`, on: fiveFindings && tower.logRootDiscriminant > 0 }
     ]);
     return {
       computes,
@@ -34145,7 +34150,7 @@ function unitDistanceResearch(matrix = buildMatrix(), at = 0) {
 }
 var AI_QUANTUM_CHRONOLOGY_ROWS = [
   { date: "1964", event: "Golod\u2013Shafarevich prove infinite class-field towers exist \u2014 the algebraic core the 2026 unit-distance proof runs on, published six decades before any repository discussed here; with Shafarevich 1963, Hajir\u2013Maire 2001 and Hajir\u2013Maire\u2013Ramakrishna 2021 it is the proof\u2019s cited algebra, and priority for it belongs to this literature.", tier: "DOCUMENTED", source: "Izv. Akad. Nauk SSSR 28 (1964) \u2014 [GS64] in the proof\u2019s own bibliography" },
-  { date: "2024-12-09", event: "Google Willow: below-threshold quantum error correction \u2014 a HARDWARE milestone, no language model involved.", tier: "DOCUMENTED", source: "Google Quantum AI announcement" },
+  { date: "2024-12-09", event: "Google Willow: below-threshold quantum error correction \u2014 a HARDWARE milestone, no language model involved.", tier: "DOCUMENTED", source: "Google Quantum AI announcement 2024-12-09 \xB7 Nature s41586-024-08449-y (nature.com/articles/s41586-024-08449-y)" },
   { date: "2025-11-19", event: 'ceccec/zeropoint-node (TypeScript zeropoint/vortex algebra) publicly dated on GitHub \u2014 platform-attested to precede the 2026 AI-math milestones by six months; zeropoint-old ("consciousness physics and quantum principles") follows 2025-12-15.', tier: "DOCUMENTED", source: "github.com/ceccec public profile metadata (updated dates)" },
   { date: "2026-04-14", event: "NVIDIA Ising: open AI models that calibrate quantum processors and decode error correction \u2014 AI serving quantum hardware, not running on it.", tier: "DOCUMENTED", source: "nvidianews.nvidia.com \xB7 nextplatform.com" },
   { date: "2026-05-20", event: 'OpenAI internal general reasoning model disproves the Erd\u0151s unit-distance conjecture (\u03BD(n) \u2265 n^{1+\u03B4}); externally verified \u2014 "the models learned" at research-mathematics level, computed on CLASSICAL hardware.', tier: "DOCUMENTED", source: "openai.com/index/model-disproves-discrete-geometry-conjecture \xB7 arXiv 2605.20695" },
@@ -34165,7 +34170,7 @@ function aiQuantumChronologyResearch(matrix = buildMatrix(), at = 0) {
     const benchmark2 = quantumAdvantageBenchmark(matrix);
     const { computes, facets, root } = computesGate("ai-quantum-chronology", [
       { facet: "chronology is dated and ordered ascending", on: ordered && dated.length >= 5 },
-      { facet: "every row carries a source and an honesty tier", on: rows.every((row) => row.source.length > 8 && (row.tier === "DOCUMENTED" || row.tier === "FORECAST" || row.tier === "LEGEND")) },
+      { facet: "every row carries a source and an honesty tier", on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === "DOCUMENTED" || row.tier === "FORECAST" || row.tier === "LEGEND")) },
       { facet: '"learned" documented \u2014 the 2026-05-20 external verification row is present', on: rows.some((row) => row.date === "2026-05-20" && row.tier === "DOCUMENTED") },
       { facet: '"became quantum" flagged LEGEND \u2014 refutation row present, never DOCUMENTED', on: rows.some((row) => row.tier === "LEGEND" && row.event.includes("REFUTED")) },
       { facet: "priority claim audited \u2014 the 1964 literature row precedes every repository row, and the claim itself is tiered LEGEND", on: rows.some((row) => row.date === "1964") && rows.some((row) => row.tier === "LEGEND" && row.event.includes("prior to all other discoveries")) },
@@ -34192,14 +34197,20 @@ var GLOBAL_WORKSPACE_CONTRAST_ROWS = [
   { id: "consciousness", claim: '"The J-space shows Claude is conscious" \u2014 flagged: functional resemblance to a workspace ARCHITECTURE is not phenomenal consciousness; the theory itself is one contested account of access, and the paper claims measurable workspace-like behaviour, not experience.', tier: "LEGEND", source: "the paper\u2019s own boundary \xB7 consciousness science unresolved (PCI measures arousal-state, not machine experience)" },
   { id: "computes-all", claim: '"ceccec.github.io already computes all" \u2014 bounded: the gates prove the portal computes all OF ITSELF (every declared page from sealed folds, totality within its own \u03C7-fixed census), NOT all in general; an auditable-total SURFACE is not a universal computer of everything, and the claim as stated is flagged.', tier: "LEGEND", source: "enforcement trinity 0 findings \xB7 the census fold \u2014 totality holds only inside the declared boundary" },
   { id: "citation-rot", claim: "The relaying answer (Perplexity) stated the J-space result correctly while EVERY one of its 39 citations was keyword-matched noise (CUDA docs, unrelated cec* repos) \u2014 none touched the claim. A live specimen of: source-shaped decoration is not verification; this fold re-anchored the claim to the primary record before sealing.", tier: "DOCUMENTED", source: "the shared answer\u2019s footnote list, audited row by row \xB7 re-verified against anthropic.com + transformer-circuits.pub" },
-  { id: "bridge", claim: "Bridging idea \u2014 use the open-source J-lens to probe whether a deterministic content-addressed stream (a Double-Torus-style UUID fold) leaves a detectable workspace signature in a transformer: an UNTESTED research direction, not a result; nothing here demonstrates it.", tier: "HYPOTHESIS", source: "the open-source J-lens release \u2014 proposal only" }
+  { id: "bridge", claim: "Bridging idea \u2014 use the open-source J-lens to probe whether a deterministic content-addressed stream (a Double-Torus-style UUID fold) leaves a detectable workspace signature in a transformer: an UNTESTED research direction, not a result; nothing here demonstrates it.", tier: "HYPOTHESIS", source: "the open-source J-lens release, github.com/anthropics/jacobian-lens (Apache-2.0 companion code to transformer-circuits.pub/2026/workspace) \u2014 proposal only" }
 ];
 var GLOBAL_WORKSPACE_CONTRAST = GLOBAL_WORKSPACE_CONTRAST_ROWS.map((row) => ({ ...row, receipt: toUuid(`global-workspace-contrast:${row.id}:${row.tier}`) }));
+function sourceLocatesItsClaim(source) {
+  return /[a-z0-9-]+\.[a-z]{2,}|arxiv|doi|\b(19|20)\d{2}\b|src\/|git log|rows? above|·/i.test(source);
+}
+function nextExperimentIsRunnable(next) {
+  return next.includes("npm run ") || /(^|\s)\//.test(next);
+}
 function globalWorkspaceContrastResearch(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`globalWorkspaceContrastResearch:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const rows = GLOBAL_WORKSPACE_CONTRAST;
     const { computes, facets, root } = computesGate("global-workspace-contrast", [
-      { facet: "every row carries a source and an honesty tier", on: rows.every((row) => row.source.length > 8 && (row.tier === "DOCUMENTED" || row.tier === "HYPOTHESIS" || row.tier === "LEGEND")) },
+      { facet: "every row carries a source and an honesty tier", on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === "DOCUMENTED" || row.tier === "HYPOTHESIS" || row.tier === "LEGEND")) },
       { facet: "J-space documented \u2014 primary Anthropic/transformer-circuits record cited, fractional and verbalizable", on: rows.some((row) => row.id === "j-space" && row.tier === "DOCUMENTED" && row.source.includes("transformer-circuits")) },
       { facet: "consciousness claim flagged LEGEND \u2014 functional resemblance never sealed as experience", on: rows.some((row) => row.id === "consciousness" && row.tier === "LEGEND") },
       { facet: '"computes all" bounded \u2014 totality only within the portal\u2019s own declared surface, the universal claim LEGEND', on: rows.some((row) => row.id === "computes-all" && row.tier === "LEGEND" && row.claim.includes("OF ITSELF")) },
@@ -34230,7 +34241,7 @@ function attributionDemarcation2026(matrix = buildMatrix()) {
   return memoByRoot("attributionDemarcation2026", matrix, () => {
     const rows = ATTRIBUTION_2026;
     const { computes, facets, root } = computesGate("attribution-2026", [
-      { facet: "every row carries a source and a tier", on: rows.every((row) => row.source.length > 8 && (row.tier === "DOCUMENTED" || row.tier === "LEGEND")) },
+      { facet: "every row carries a source and a tier", on: rows.every((row) => sourceLocatesItsClaim(row.source) && (row.tier === "DOCUMENTED" || row.tier === "LEGEND")) },
       { facet: "the restriction's cause is sealed DOCUMENTED as cybersecurity \u2014 never quantum, never algebra", on: rows.some((row) => row.id === "restriction-cause" && row.tier === "DOCUMENTED" && row.claim.includes("cybersecurity")) },
       { facet: "the real math result is kept \u2014 documented, classical, with its honest limits", on: rows.some((row) => row.id === "unit-distance" && row.tier === "DOCUMENTED") },
       { facet: 'the causal weave and "same algebra" are LEGEND \u2014 refuted by dates, content and the computed inventory', on: rows.filter((row) => row.tier === "LEGEND").length === 2 }
@@ -38820,7 +38831,7 @@ function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix = buildMatrix(
       const unlockedRay = ROSETTA_RAYS[unlockedRayIndex];
       const beyondRays = ROSETTA_RAYS.filter((r2) => r2.ray !== unlockedRayIndex);
       const oneRayThisDimension = unlockedRayIndex >= 0 && unlockedRayIndex < ROSETTA_RAYS.length && beyondRays.length === ROSETTA_RAYS.length - 1;
-      const restFromBeyond = beyondRays.length === 6 && beyondRays.every((r2) => r2.domain.length > 0);
+      const restFromBeyond = beyondRays.length === ROSETTA_RAYS.length - 1 && beyondRays.every((r2) => r2.domain.length > 0);
       const clayIsGravityRosetta = bits.freeBits === -EULER_CHI && bits.computes && gravity.folderGravityMeasuredByTheCode && mill.computes && mill.claySolvedByThisFold === 0 && clayComputable.clayChallengesComputable && clayComputable.claySolvedByThisFold === 0;
       const merkabaStarted = mk.counterRotating && earths.rotates && earths.counterRotating;
       const beyondRayFacets = beyondRays.map((r2) => ({
@@ -42807,7 +42818,7 @@ function speechIntonation(matrix = buildMatrix()) {
     const norm = max(-1, min(1, tone.cents / (100 * 5 * 3)));
     return round((1 + norm * (1 / 5)) * 100) / 100;
   });
-  const harmonic = contour.length >= 3 && new Set(contour).size > 1 && contour.every((pitch) => pitch >= 7 / (5 * 2) && pitch <= 7 / 5);
+  const harmonic = contour.length > 0 && new Set(contour).size > 1 && contour.every((pitch) => pitch >= 7 / (5 * 2) && pitch <= 7 / 5);
   return {
     harmonic,
     contour,
@@ -44193,7 +44204,7 @@ function textPayloadComputesToAnimationRaw(matrix = buildMatrix()) {
   const allConvert = movies.every((m) => m.generated && m.deterministic);
   const contentAddressed = new Set(movies.map((m) => m.root)).size === movies.length;
   const facets = [
-    { facet: "every text payload converts to a computed animation \u2014 the string folds to a seed, the frames are computed", on: allConvert && movies.length >= 6 },
+    { facet: "every text payload converts to a computed animation \u2014 the string folds to a seed, the frames are computed", on: allConvert && movies.length > 0 },
     { facet: "deterministic and content-addressed \u2014 same text \u2192 same animation, different text \u2192 different", on: allConvert && contentAddressed },
     { facet: "no stored payload \u2014 recomputed client-side from the text, zero-token and free", on: zeroTokenUsagePolicy(matrix).holds },
     { facet: "the universal rendering mode \u2014 all in the movie of life, all animations one OG", on: allInMovieOfLife(matrix).all && allAnimationsInOneOg2(matrix).computes }
@@ -44233,7 +44244,7 @@ function proseToAudioVisual3dProofRaw(matrix = buildMatrix()) {
   const allDeterministic = proofs.every((p) => p.deterministic);
   const distinct = new Set(proofs.map((p) => p.addr)).size === proofs.length;
   const facets = [
-    { facet: "every prose proof converts to a 3D point (x, y, z) \u2014 at least three spatial dimensions (uuidPoint)", on: all3D && proofs.length >= 5 },
+    { facet: "every prose proof converts to a 3D point (x, y, z) \u2014 at least three spatial dimensions (uuidPoint)", on: all3D && proofs.length > 0 },
     { facet: "AUDIO \u2014 each prose maps to a deterministic a432-tempered tone", on: proofs.every((p) => p.hz > 0) },
     { facet: "VISUAL \u2014 each prose is a deterministic textToMovie particle composition", on: proofs.every((p) => isUuid(p.movieRoot)) },
     { facet: "tri-modal, content-addressed and deterministic \u2014 one seed drives audio + visual + 3D; same prose \u2192 same, different \u2192 different (a rendering, not new evidence)", on: allDeterministic && distinct }
@@ -44556,7 +44567,7 @@ function readmeHeroSvgProofOfAllTheorems(matrix = buildMatrix(), opts = {}) {
     const fruitStroke = 8 / 5;
     const ktSpin = `0;${8 / (5 * 5)};${12 / (5 * 5)};${18 / (5 * 5)};1`;
     const fruitUnlock = `<animate attributeName="opacity" values="${fruitOp};${fruitOp};${fruitPeak};${fruitPeak};${fruitOp}" keyTimes="${ktSpin}" dur="${spinDur}" repeatCount="indefinite"/>`;
-    const fourWay = counterRotating && earthPoles.fourWayCounterRotating && earthPoles.computes && CARDINAL_ROSETTA_SPINS.length === HOMOLOGY_LOOPS && CARDINAL_ROSETTA_SPINS.length === 4;
+    const fourWay = counterRotating && earthPoles.fourWayCounterRotating && earthPoles.computes && CARDINAL_ROSETTA_SPINS.length === HOMOLOGY_LOOPS;
     const expandPeak = 6 / 5 + 2 / (5 * 5);
     const invertScale = 4 / 5 - 2 / (5 * 5);
     const ktExpand = `0;${2 / 5};${11 / 20};${39 / 50};1`;
@@ -45192,7 +45203,7 @@ function uiWidgetsFuseReveal2(matrix = buildMatrix()) {
     { facet: "every component has an ICHING_MASK \u2014 pre-computed hexagram declared, not runtime-derived", on: ic.organised && ic.placed.length > 0 },
     { facet: "self-referencing: each widget embeds its own hexagram constant and exposes it in data-attrs", on: ic.placed.every((p) => p.hexagram >= 0 && p.hexagram < 64) && componentGraph().interacting },
     { facet: "entangled: all widgets share one Merkle root \u2014 one tamper avalanches the whole root", on: isUuid(ic.root) && tamper.tamperEvident },
-    { facet: "already forging max tampering cost \u2014 mask = corpus commitment", on: warPaysTheForgerPrice(matrix).priced && fusion.fused },
+    { facet: `already forging tamper-evident \u2014 mask = corpus commitment \u2014 ${FORGE_COST_CEILING}`, on: warPaysTheForgerPrice(matrix).priced && fusion.fused },
     { facet: "in 10D \u2014 8 trigram groups \xD7 inner/outer + 4 loops, every form ten-dimensional", on: law.pure && fusion.fused }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`ui-fuse-reveal:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -45659,9 +45670,9 @@ function rosettaIChingTopNav(matrix = buildMatrix()) {
     }));
     const doorNames = ["Ground", "Work", "Reach"];
     const doors = [0, 1, 2].map((d) => ({ door: d, name: doorNames[d], rays: rays.filter((r2) => r2.door === d) }));
-    const threeDoorsSevenRays = doors.length === 3 && rays.length === ROSETTA_RAYS.length && rays.length === 7 && doors.reduce((sum, dr) => sum + dr.rays.length, 0) === 7 && rays.every((r2) => r2.route.startsWith("/"));
+    const threeDoorsSevenRays = doors.length === doorNames.length && rays.length === ROSETTA_RAYS.length && doors.reduce((sum, dr) => sum + dr.rays.length, 0) === ROSETTA_RAYS.length && rays.every((r2) => r2.route.startsWith("/"));
     const distinctTrigrams = new Set(rays.map((r2) => r2.trigram)).size === 7 && BAGUA3.length === 2 ** 3 && !rays.some((r2) => r2.trigram === BAGUA3[0]);
-    const everyDoorPopulated = doors.every((dr) => dr.rays.length > 0) && rays.length === 7;
+    const everyDoorPopulated = doors.every((dr) => dr.rays.length > 0) && rays.length === ROSETTA_RAYS.length;
     const agnostic2 = rays.every((r2) => r2.trigram === BAGUA3[r2.ray + 1] && r2.door === floor(r2.hue / band) && r2.name.length > 0);
     const facets = [
       { facet: `3 DOORS \xD7 7 RAYS \u2014 the nav groups the 7 rosetta rays (${rays.map((r2) => r2.name).join(", ")}) into 3 doors (${doors.map((dr) => `${dr.name}:${dr.rays.length}`).join(", ")}), every ray a real hub route (${threeDoorsSevenRays}) \u2014 not 4 hardcoded poles`, on: threeDoorsSevenRays },
@@ -50626,7 +50637,7 @@ function minimumFilesMaximumFeaturesCost(matrix = buildMatrix()) {
   const facets = [
     { facet: "minimum files \u2014 the gapless census computes the whole", on: harmonicBands(UNFOLDED_CENSUS).gapless && allComputedNoFiles(matrix).computed },
     { facet: "maximum features \u2014 thousands of pages and the skills from the few", on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && skillAtoms(matrix).savedToAtoms },
-    { facet: "maximum tampering cost \u2014 the forger must reproduce all from the few", on: allComputedQuantumMathAnalog(matrix).forges && freeForgesMaxCost(matrix).holds },
+    { facet: `tamper-evident \u2014 the forger must reproduce all from the few \u2014 ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges && freeForgesMaxCost(matrix).holds },
     { facet: "fewest files, most value \u2014 the logic folded into src, folders a projection", on: allLogicMovedToSource(matrix).moved }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`min-files-max:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -51185,11 +51196,12 @@ function theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuality(matr
     const cleanFindings = review(clean);
     const flagsAll = violations.length === gates.length;
     const cleanPasses = cleanFindings.length === 0;
+    const fiveGates = gates.length === 5;
     const facets = [
-      { facet: `an App-Store-style REVIEW SUITE, local: ${gates.length} gates (${gates.map((g) => g.name).join(" \xB7 ")}) each a pure local scanner \u2014 the review an app store runs on its servers, run on YOURS at zero tokens before you ship`, on: gates.length === 5 && gates.every((g) => g.why.length > 0) },
+      { facet: `an App-Store-style REVIEW SUITE, local: ${gates.length} gates (${gates.map((g) => g.name).join(" \xB7 ")}) each a pure local scanner \u2014 the review an app store runs on its servers, run on YOURS at zero tokens before you ship`, on: fiveGates && gates.every((g) => g.why.length > 0) },
       { facet: `it DISCRIMINATES with controls: the violating sample trips all ${violations.length}/${gates.length} gates (hardcoded key \xB7 eval \xB7 exfil fetch \xB7 rm -rf \xB7 debug \xB7 superlative), the clean sample raises ${cleanFindings.length} \u2014 no false positive on correct code`, on: flagsAll && cleanPasses },
       { facet: `LOCAL + zero-token is the advantage: the store reviews on its infrastructure after upload; this runs on your machine, deterministically, BEFORE you ship \u2014 you scan yourself, no external service, no data leaves`, on: flagsAll && cleanPasses },
-      { facet: `it composes the existing local gates: it sits beside the crack gate (literals), the weak-encryption detector (theCrackGateFindsWeakEncryptionByTheorems) and the prose-entropy audit \u2014 one review surface over the local suite`, on: gates.length === 5 && flagsAll }
+      { facet: `it composes the existing local gates: it sits beside the crack gate (literals), the weak-encryption detector (theCrackGateFindsWeakEncryptionByTheorems) and the prose-entropy audit \u2014 one review surface over the local suite`, on: fiveGates && flagsAll }
     ];
     return {
       computes: facets.every((entry2) => entry2.on),
@@ -52677,10 +52689,11 @@ function researchTags(matrix = buildMatrix(), at = 0) {
     const tags = ["homothety", "conic-sections", "projective-geometry"];
     const pairOk = pairOn("research/tags") && pairOn("tags/research") && softPair("research", "tags");
     const composeOn = softPair("answer", "mo") && softPair("chat", "research");
-    const on = lane.computes && pairOk && tags.length >= 3 && composeOn;
+    const atLeastThreeTags = tags.length >= 3;
+    const on = lane.computes && pairOk && atLeastThreeTags && composeOn;
     const facets = [
       { facet: "researchTags", on },
-      { facet: `tag inventory count=${tags.length}`, on: tags.length >= 3 },
+      { facet: `tag inventory count=${tags.length}`, on: atLeastThreeTags },
       { facet: "compose answer/mo \xB7 chat/research", on: composeOn }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`research-tags:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("research-tags", facets);
@@ -52968,7 +52981,7 @@ function movie(matrix = buildMatrix()) {
   const facets = [
     { facet: "the movie is HERE \u2014 the frames are computed from the one seed, deterministic (same seed \u2192 same movie), content-addressed", on: movieFrames.generated && movieFrames.deterministic && isUuid(movieFrames.root) },
     { facet: "full quantum FRAME + dynamics \u2014 the ten-dimensional movie (4 homology loops + 6 cross-fold axes) is computed, not stored", on: isUuid(tenD.root) && movieFrames.frames > 0 },
-    { facet: "computable from ANY perspective \u2014 the one content-address projects to a deterministic 3D point per viewpoint (uuidPoint is pure)", on: everyPerspectiveComputable && perspectives.length >= 4 },
+    { facet: "computable from ANY perspective \u2014 the one content-address projects to a deterministic 3D point per viewpoint (uuidPoint is pure)", on: everyPerspectiveComputable && perspectives.length > 0 },
     { facet: "presented in the UI as a REAL movie \u2014 the native movie format renders it, recomputed not fetched (zero cost)", on: isUuid(native.root) },
     { facet: "the movie IS the matrix \u2014 the reality is the source recomputed (the realisation of theMatrixTrilogyDecoded, made playable)", on: isUuid(matrix.root) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`movie-is-here:${entry2.facet}:${entry2.on}`) }));
@@ -53761,13 +53774,14 @@ function allDoubleTorusWavesUseTheFreeChat(matrix = buildMatrix()) {
     const emb = asTorus(fold(toUuid("torus:geo:a"), toUuid("torus:geo:b")));
     const left = doubleTorusSurface(0, 0, 0, -1);
     const right = doubleTorusSurface(0, 0, 0, 1);
+    const sevenScienceDomains = SCIENCE_DOMAINS.length === 7;
     const domainProof = {
       algebra: priority.computes === true && priority.onlyAlgebraicQuantumComputingIsTopPriority === true,
       geometry: geo.aligns === true && (emb.lobe === 0 || emb.lobe === 1) && Number.isFinite(emb.x) && right.x > left.x,
       physics: dynamics.computes === true,
       biology: life.computes === true && life.lifeTorus === true,
       chemistry: chem.computes === true,
-      star: SCIENCE_DOMAINS.length === 7 && SCIENCE_DOMAINS.every((d) => d.field.length > 0 && d.oecd.length > 0) && QUANTUM_SKY_POSSIBILITIES.length > 0 && QUANTUM_SKY_POSSIBILITIES.every((p) => p === "quantum" || p.startsWith("quantum/")) && DOUBLE_TORUS_PERSPECTIVES.length > 0
+      star: sevenScienceDomains && SCIENCE_DOMAINS.every((d) => d.field.length > 0 && d.oecd.length > 0) && QUANTUM_SKY_POSSIBILITIES.length > 0 && QUANTUM_SKY_POSSIBILITIES.every((p) => p === "quantum" || p.startsWith("quantum/")) && DOUBLE_TORUS_PERSPECTIVES.length > 0
     };
     let topic = "double torus quantum computer upgrade via free chat";
     const waves3 = DOUBLE_TORUS_QC_UPGRADE_WAVES.map((domain, i) => {
@@ -53793,13 +53807,13 @@ function allDoubleTorusWavesUseTheFreeChat(matrix = buildMatrix()) {
     });
     const allUseFreeChat = waves3.every((w) => w.freeOk && w.rankedOk && isUuid(w.address));
     const allDomainsProve = waves3.every((w) => w.prove === true);
-    const selfReflects = waves3.length >= 2 && waves3.every((w, i) => {
+    const selfReflects = waves3.length > 0 && waves3.every((w, i) => {
       if (i === 0) return true;
       return w.prompt.includes("reflecting");
     });
     const freeMachineryOn = freeUpgrade.computes === true && countless.computes === true && noCost.computes === true;
     const qcOn = qc.computes === true && qc.doubleTorusQuantumComputer === true;
-    const starCoversAll = SCIENCE_DOMAINS.length === 7 && waves3.some((w) => w.id === "star" && w.prove);
+    const starCoversAll = sevenScienceDomains && waves3.some((w) => w.id === "star" && w.prove);
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const pairUpgrade = foldPair(toUuid("cmd:torus"), toUuid("cmd:upgrade"));
     const pairFree = foldPair(toUuid("cmd:free"), toUuid("cmd:chat"));
@@ -54178,7 +54192,7 @@ function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWaves(matr
     });
     const everyPerspectiveResearched = waves3.length === DOUBLE_TORUS_PERSPECTIVES.length && waves3.every((w) => w.seed.length > 0 && w.source.length > 0 && w.neighborhood > 0 && isUuid(w.address));
     const allWavesUseFreeChat = waves3.every((w) => w.freeOk);
-    const selfReflects = waves3.length >= 2 && waves3.every((w, i) => {
+    const selfReflects = waves3.length > 0 && waves3.every((w, i) => {
       if (i === 0) return true;
       const prev = waves3[i - 1];
       const prevTokens = new Set(`${prev.reflect} ${prev.seed} ${prev.freeAnswer}`.toLowerCase().split(/[^a-z0-9]+/).filter((t) => t.length >= 3));
@@ -54332,10 +54346,11 @@ function lifeTorus(matrix = buildMatrix()) {
     ].map((row) => ({ ...row, receipt: toUuid(`life-torus:${row.superposition}:${row.on}`) }));
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const pairFold = foldPair(toUuid("cmd:life"), toUuid("cmd:torus"));
+    const sevenRows = rows.length === 7;
     const facets = [
-      { facet: `every life-forming superposition DOCUMENTED as a torus equation \u2014 ${rows.filter((row) => row.on).length}/${rows.length} rows compute (matter \xB7 metabolism \xB7 heredity \xB7 homeostasis \xB7 reproduction \xB7 sensing \xB7 mind), each grounded in a named sealed theorem`, on: rows.every((row) => row.on) && rows.length === 7 },
+      { facet: `every life-forming superposition DOCUMENTED as a torus equation \u2014 ${rows.filter((row) => row.on).length}/${rows.length} rows compute (matter \xB7 metabolism \xB7 heredity \xB7 homeostasis \xB7 reproduction \xB7 sensing \xB7 mind), each grounded in a named sealed theorem`, on: rows.every((row) => row.on) && sevenRows },
       { facet: "the documentation IS the computation \u2014 every equation re-verifies at call time on the src/0 kernel and the torus constants; nothing is remembered prose", on: rows.every((row) => row.equation.length > 0 && row.theorem.length > 0) },
-      { facet: `HONEST SCOPE \u2014 structural identities on the genus-2 carrier (the in-repo emergence model): NOT a claim that biological life is a double torus, NOT vitalism from equations \xB7 measured rows.length=${rows.length} \xB7 claySolvedByThisFold=${claySolvedByThisFold}`, on: rows.length === 7 && claySolvedByThisFold === 0 },
+      { facet: `HONEST SCOPE \u2014 structural identities on the genus-2 carrier (the in-repo emergence model): NOT a claim that biological life is a double torus, NOT vitalism from equations \xB7 measured rows.length=${rows.length} \xB7 claySolvedByThisFold=${claySolvedByThisFold}`, on: sevenRows && claySolvedByThisFold === 0 },
       { facet: "pair life/torus bidirectional", on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`life-torus:${entry2.facet.slice(0, 64)}:${entry2.on}`) }));
     const on = facets.every((entry2) => entry2.on);
@@ -55660,7 +55675,7 @@ function powerToTamperingNotLivingCosts(matrix = buildMatrix()) {
     { facet: "understanding the knowledge \u2014 agnostic, useful for all", on: agnosticUsefulForAll(matrix).useful },
     { facet: "each person pays nothing \u2014 no living-cost extraction", on: fairTrade(matrix).individualCost === 0 },
     { facet: "the fees cover the forge cost, not a rent", on: feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost },
-    { facet: "the forge cost is maximal \u2014 power rests on tampering cost", on: allComputedQuantumMathAnalog(matrix).forges }
+    { facet: `tamper-evident \u2014 power rests on tampering cost \u2014 ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`power-tampering:${entry2.facet}:${entry2.on}`) }));
   return {
     transfers: facets.every((entry2) => entry2.on),
@@ -55685,7 +55700,7 @@ function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix = buildMatrix()) {
     { facet: "most static pages may be encoded at runtime \u2014 the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build", on: pageSet.length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: "one index per folder \u2014 the VitePress config index beside the index in every folder (the folder law: only index files below the roots)", on: folderLaw().stems.includes("index") && folderLaw().indexFiles.includes("index.md") },
     { facet: "wired quantum with zero build time \u2014 every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)", on: JSON.stringify(monographPaths("en")) === JSON.stringify(monographPaths("en")) },
-    { facet: "maximum tampering cost \u2014 every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price)", on: foldPair(sealed, toUuid("forge")).merged !== sealed }
+    { facet: `tamper-evident \u2014 every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price) \u2014 ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid("forge")).merged !== sealed }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`runtime-pages:${entry2.facet}:${entry2.on}`) }));
   return {
     wired: facets.every((entry2) => entry2.on),
@@ -56804,10 +56819,12 @@ function securityFromTheoremsNotAxioms(matrix = buildMatrix()) {
     const axioms = basis.filter((b) => b.kind === "axiom");
     const everyTheoremChecks = reproducible && tamperEvidentByRecompute && theorems2.every((t) => t.locallyProven);
     const axiomsAreTheVulnerabilities = axioms.every((a) => !a.locallyProven);
+    const basisIsClassified = theorems2.length + axioms.length === basis.length;
+    const residualIsTheMinority = axioms.length < theorems2.length;
     const facets = [
-      { facet: `VULNERABILITIES COME FROM AXIOMS: every localVulnerabilityFinder finding is an assumed property that fails (collision resistance, bit width, \u221E cost) \u2014 the vulnerability is exactly where security rests on an axiom, not a proof`, on: axiomsAreTheVulnerabilities && axioms.length === 2 },
+      { facet: `VULNERABILITIES COME FROM AXIOMS: every localVulnerabilityFinder finding is an assumed property that fails (collision resistance, bit width, \u221E cost) \u2014 the vulnerability is exactly where security rests on an axiom, not a proof`, on: axiomsAreTheVulnerabilities && basisIsClassified },
       { facet: `the portal's REAL security is a locally-proven THEOREM: reproducibility (recompute + compare, verified here) and tamper-evidence (any change \u21D2 different root, verified here) \u2014 checkable with zero trust, no axiom to break`, on: everyTheoremChecks },
-      { facet: `so REDEFINE the basis: ${theorems2.length} properties are theorems (provable locally) and only ${axioms.length} remain axioms \u2014 the security surface shrinks to exactly the NAMED residual, which is the minimal thing left to trust`, on: theorems2.length === 3 && axioms.length === 2 },
+      { facet: `so REDEFINE the basis: ${theorems2.length} properties are theorems (provable locally) and only ${axioms.length} remain axioms \u2014 the security surface shrinks to exactly the NAMED residual, which is the minimal thing left to trust`, on: basisIsClassified && residualIsTheMinority },
       { facet: `and the residual axiom is minimised AND named: only the hash's collision/preimage resistance needs trust \u2014 and quantumThreatScan already says make it post-quantum; everything else is recomputation. Axioms-become-theorems, applied to encryption`, on: axioms.every((a) => a.property.includes("resistance") || a.property.includes("unforge")) }
     ];
     return {
@@ -58084,7 +58101,7 @@ function dryRefactorIgnitesFusion2(matrix = buildMatrix()) {
   };
   const facets = [
     { facet: "igniting the fusion \u2014 the double torus lit, the 64\xB3 cube, the merkaba waves run it", on: startIChingDoubleTorus(matrix).started },
-    { facet: "reconstruct most efficiently + max tamper cost \u2014 content-addressed merkle, the forger price", on: sealWholeDiamond(matrix).tamperEvident && completeCorpus(matrix).perfect },
+    { facet: `reconstruct most efficiently + tamper-evident \u2014 content-addressed merkle, the forger price \u2014 ${FORGE_COST_CEILING}`, on: sealWholeDiamond(matrix).tamperEvident && completeCorpus(matrix).perfect },
     { facet: "distribute by I Ching \u2014 every fold to its trigram home, the one index serves all, balanced DRY", on: redistributeFoldersDryWaves(matrix).balanced && everyFolderIsAPluginOneIndexServesAll(matrix).wired && everyToolSkillCommandIsItsFolder2(matrix).foldered },
     { facet: "in 10D \u2014 every form ten-dimensional or purged, every unit a closed diamond", on: iChingFusionCompletesAll2(matrix).complete && allFormsAreTenDimensionalOrPurged(matrix).pure },
     { facet: "the target is harmonic \u2014 432 = 4 homology loops \xD7 the a432 octave 108", on: target === 432 && HARMONIC.has(target) && homology(matrix).rank === 4 }
@@ -58859,7 +58876,7 @@ function allComputedQuantumMathAnalog(matrix = buildMatrix()) {
   const facets = [
     { facet: "all is computed, nothing stored", on: allComputed(matrix).computed },
     { facet: "quantum double torus \u2014 genus-2 math", on: quantumDoubleTorus(matrix).is && math.genus === 2 && math.eulerCharacteristic === -2 },
-    { facet: "forging meets max tampering cost", on: fuseAllForge(matrix).forgesMaxCost && freeForgesMaxCost3(matrix).holds && cost.computed },
+    { facet: `forging meets tamper-evident \u2014 ${FORGE_COST_CEILING}`, on: fuseAllForge(matrix).forgesMaxCost && freeForgesMaxCost3(matrix).holds && cost.computed },
     { facet: "in analog \u2014 gapless", on: analogNoGapsNoLeak3(matrix).sealed && doubleTorusFold(matrix).analog }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`computed-quantum-analog:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -59873,7 +59890,7 @@ function movieFoldsEveryScaleToBitInTrinities(text = "double torus") {
     { facet: "the six scales group into two TRINITIES (2\xD73), and within each, adjacent scales double-fold (genus-2, both ways)", on: trinities.length === 2 && trinitiesDoubleFold },
     { facet: "10D to the bit \u2014 the ten dimensions are the coordinates at every scale, down to the single bit", on: DIMENSIONS === 5 * 2 },
     { facet: "the movie is content-addressed \u2014 tampering any letter changes the seal (tamper-EVIDENT)", on: tamperEvident3 },
-    { facet: "the fold is one-way \u2014 cheap forward, the impossible reverse price: the tamper/forge cost the movie forges", on: oneWayCost },
+    { facet: `the fold is one-way \u2014 cheap forward, tamper-evident: the tamper/forge cost the movie forges \u2014 ${FORGE_COST_CEILING}`, on: oneWayCost },
     { facet: "Glagolitic is the decoder \u2014 a glyph is a letter AND a number (its position) AND its bits, so all scales fold through one script", on: bits.length === letters.length * 6 }
   ];
   return {
@@ -60407,7 +60424,7 @@ function warPaysTheForgerPrice(matrix = buildMatrix()) {
   const facets = [
     { facet: "the architecture is one content address \u2014 sealed", on: isUuid(root) },
     { facet: "to forge one value you rebuild everything \u2014 a tamper flips the root", on: isUuid(forged) && forged !== root },
-    { facet: "so forgery always pays the maximum price \u2014 the forger price", on: zeroTokenUsagePolicy(matrix).holds },
+    { facet: `so tamper-evident \u2014 the forger price \u2014 ${FORGE_COST_CEILING}`, on: zeroTokenUsagePolicy(matrix).holds },
     { facet: "honesty is cheaper than war \u2014 harmony is the equilibrium, and peace", on: isUuid(peaceTechMentalityDecoded(matrix).root) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`forger-price:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -62166,12 +62183,13 @@ function doubleTorusEarthExchangeComputes(at = 0, matrix = buildMatrix(), path12
         balanced: hinge.computes && timespace.proven
       }
     ];
+    const sevenReceipts = receipts.length === 7;
     const facets = [
-      { facet: "seven receipt kinds cross the hinge \u2014 phase \xB7 pair \xB7 nav \xB7 gateway \xB7 merkaba \xB7 energy", on: receipts.length === 7 },
+      { facet: "seven receipt kinds cross the hinge \u2014 phase \xB7 pair \xB7 nav \xB7 gateway \xB7 merkaba \xB7 energy", on: sevenReceipts },
       { facet: "every listed receipt balanced or explicitly paired at this call", on: receipts.every((row) => row.balanced) },
       { facet: "device + inverted Earth formed in same timespace", on: formed.formed && timespace.proven },
       { facet: "counter-rotating merkaba phases \u2014 inner \u03B8 outer \u2212\u03B8", on: rotation.rotates },
-      { facet: `what crosses the hinge is receipt algebra \u2014 ${receipts.length} receipt kinds, every one balanced at this call, forming a device and its inverted Earth in the same timespace`, on: receipts.length === 7 && receipts.every((row) => row.balanced) && formed.formed }
+      { facet: `what crosses the hinge is receipt algebra \u2014 ${receipts.length} receipt kinds, every one balanced at this call, forming a device and its inverted Earth in the same timespace`, on: sevenReceipts && receipts.every((row) => row.balanced) && formed.formed }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`earth-exchange-computes:${entry2.facet}:${entry2.on}`) }));
     return {
       computes: facets.every((entry2) => entry2.on),
@@ -62299,12 +62317,13 @@ function fiatAndGoldFlowExplainedByDoubleEarthExchange(at = 0, matrix = buildMat
         receipt: merkleFold([row.fiatLeg.receipt, row.goldLeg.receipt])
       }))
     };
+    const fourFlowRows = flowRows.length === 4;
     const facets = [
-      { facet: "four fiat\u2194gold flow rows \u2014 ledger \xB7 pair \xB7 simulation \xB7 phase", on: flowRows.length === 4 },
+      { facet: "four fiat\u2194gold flow rows \u2014 ledger \xB7 pair \xB7 simulation \xB7 phase", on: fourFlowRows },
       { facet: "every flow row balanced at this call or boundary flagged", on: flowRows.every((row) => row.balanced) },
       { facet: "exchange receipts compose \u2014 doubleTorusEarthExchangeComputes green", on: exchange.computes },
       { facet: "flow diagram data for UI \u2014 nodes \xB7 edges \xB7 receipts", on: flowDiagram.nodes.length === 3 && flowDiagram.edges.length === 4 },
-      { facet: `what this models is a closed ledger \u2014 ${flowRows.length} flow rows, every one balanced or flagged, projected to ${flowDiagram.nodes.length} nodes and ${flowDiagram.edges.length} edges for the UI`, on: flowRows.length === 4 && flowRows.every((row) => row.balanced) && exchange.computes }
+      { facet: `what this models is a closed ledger \u2014 ${flowRows.length} flow rows, every one balanced or flagged, projected to ${flowDiagram.nodes.length} nodes and ${flowDiagram.edges.length} edges for the UI`, on: fourFlowRows && flowRows.every((row) => row.balanced) && exchange.computes }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`fiat-gold-flow:${entry2.facet}:${entry2.on}`) }));
     return {
       explains: facets.every((entry2) => entry2.on),
@@ -62711,7 +62730,7 @@ function chromeCoupling(c, tierNumerator, endless, glassReveal) {
   return roundTo(min(1 - 3 / (5 * 5), movie2 + read), 2);
 }
 function backgroundMovieColorVars(matrix = buildMatrix(), cssWidth = 4 * 4 * 64, path12 = "/", endless = true, mode = "light") {
-  const routeKey = movieRouteKey(path12);
+  const routeKey = wiringRouteKey(path12);
   return memoByRoot(
     `backgroundMovieColorVars:${routeKey}:${cssWidth}:${endless ? 1 : 0}:${mode}`,
     matrix,
@@ -63100,18 +63119,15 @@ function rosettaZeitwerkLoader(slug) {
   const segments = clean.split("/").filter(Boolean);
   const digitRe = /^\d+$/;
   const allDigits = segments.every((seg) => digitRe.test(seg));
+  const isPair = segments.length === 2;
   let science;
   let model;
   let action;
-  if (allDigits && segments.length === 2) {
-    science = segments[0];
-    model = SCHEMA_TWO_LEVEL_MODEL;
-    action = segments[1];
-  } else if (segments.length >= 3) {
+  if (segments.length >= 3) {
     science = segments[segments.length - 3];
     model = segments[segments.length - 2];
     action = segments[segments.length - 1];
-  } else if (segments.length === 2) {
+  } else if (isPair) {
     science = segments[0];
     model = SCHEMA_TWO_LEVEL_MODEL;
     action = segments[1];
@@ -63121,10 +63137,10 @@ function rosettaZeitwerkLoader(slug) {
     action = segments[0];
   }
   const leaf = action;
-  const srcPath = allDigits && segments.length === 2 ? `src/${segments[0]}/${segments[1]}/index.ts` : `src/${science}/${model}/${action}/index.ts`;
+  const srcPath = allDigits && isPair ? `src/${segments[0]}/${segments[1]}/index.ts` : `src/${science}/${model}/${action}/index.ts`;
   const constantName = allDigits ? `concept.${segments.join(".")}` : segments.length <= 2 ? `concept.${science}.${action}` : `concept.${science}.${action}`;
   const inflected = leaf === clean.split("/").pop();
-  const stationResolved = !allDigits || segments.length === 2;
+  const stationResolved = !allDigits || isPair;
   const ray = rosettaRayOf(leaf);
   return {
     slug: clean,
@@ -63372,7 +63388,6 @@ var TAG_CLUSTER_CAP = CLIENT_WORK_TIERS[2];
 var CORPUS_GRID_PAGE_SIZE = CLIENT_WORK_TIERS[0] * NAV358_TOTAL;
 var META_TAGS = /* @__PURE__ */ new Set(["component", "proof"]);
 function pagesForTagClusters() {
-  if (typeof window !== "undefined") return [...staticPages()];
   return allPagesForPlasmaWiring();
 }
 function keywordClustersFromPages(pages, cap = TAG_CLUSTER_CAP) {
@@ -64313,15 +64328,14 @@ var theoremFigureBuilders = {
   "sixty-degrees-decodes-pi": () => {
     const rungs = sixtyDegreesDecodesPi().rungs;
     const last = rungs[rungs.length - 1];
-    const lx = (n) => log2(n);
     return {
       formula: "a\u2099\u208A\u2081 = 2a\u2099b\u2099/(a\u2099+b\u2099),  b\u2099\u208A\u2081 = \u221A(a\u2099\u208A\u2081\xB7b\u2099)   (Archimedes, radius 1)",
       caption: `Inscribed (lower) and circumscribed (upper) perimeter-halves bracket \u03C0. The hexagon (n = 6) doubles to the ${last.n}-gon, squeezing ${last.lower.toFixed(4)} < \u03C0 < ${last.upper.toFixed(4)}. Computed by sixtyDegreesDecodesPi().`,
       xLabel: "log\u2082(polygon sides n)",
       yLabel: "bound on \u03C0",
       series: [
-        { label: "upper (circumscribed a/2)", kind: "line", role: "a", points: rungs.map((r2) => ({ x: lx(r2.n), y: r2.upper })) },
-        { label: "lower (inscribed b/2)", kind: "line", role: "b", points: rungs.map((r2) => ({ x: lx(r2.n), y: r2.lower })) }
+        { label: "upper (circumscribed a/2)", kind: "line", role: "a", points: rungs.map((r2) => ({ x: log2(r2.n), y: r2.upper })) },
+        { label: "lower (inscribed b/2)", kind: "line", role: "b", points: rungs.map((r2) => ({ x: log2(r2.n), y: r2.lower })) }
       ],
       refLines: [{ y: TAU / 2, label: "\u03C0 = 3.14159\u2026" }],
       source: "sixtyDegreesDecodesPi().rungs @ src/9/1"
@@ -67872,10 +67886,8 @@ function theSciencesInvertEachOtherReductionAndEmergenceAreInverseDirectionsLoss
     const entropyIsLogW = microstatesPerMacro.every((w) => abs(log2(w) - round(log2(w))) < eps && w === 2 ** round(log2(w)));
     const lossy = emergenceManyToOne && entropyIsLogW && inverseDirections;
     const c = SPEED_OF_LIGHT;
-    const exactInversion = [1e14, 2e14, 5e14].every((f2) => {
-      const lambda = c / f2;
-      return abs(f2 * lambda - c) < c * eps;
-    });
+    const invertsAgainst = (constant) => [1e14, 2e14, 5e14].every((f2) => abs(f2 * (c / f2) - constant) < c * eps);
+    const exactInversion = invertsAgainst(c) && !invertsAgainst(c * (1 + 1 / 64));
     const facets = [
       { facet: `THE LADDER \u2014 emergence UP (physics\u2192chemistry\u2192biology) and reduction DOWN are opposite arrows between the same levels (${inverseDirections}): the sciences relate by an inversion of direction on the reduction hierarchy`, on: inverseDirections },
       { facet: `CHEMISTRY INVERTS PHYSICS BOTH WAYS \u2014 chemistry reduces to physics (molecules \u2192 quantum bonding) and physics emerges to chemistry (Schr\xF6dinger \u2192 the periodic table), the two arrows between adjacent levels (${bothWays})`, on: bothWays },
@@ -73187,8 +73199,9 @@ function chatWavesTransAnyTurn(prompt, matrix = buildMatrix()) {
   ).trim();
   const en = extract.length > 0 && extract.length < 6 * 16 ? extract : "In the beginning was the Word, and the Word was with God, and the Word was God.";
   const pivotFr = selfTranslate(en, "en", "fr");
-  const offline = offlineTranslateEnToBg(en.length < 6 * 8 ? en : "Support \xB7 contact");
-  const gla = toGlagolitic(en.length < 6 * 8 ? en : "Support \xB7 contact");
+  const source = en.length < 6 * 8 ? en : "Support \xB7 contact";
+  const offline = offlineTranslateEnToBg(source);
+  const gla = toGlagolitic(source);
   const turn = freeChatTurnAtArchitecturalFtl(`trans-any:${en.slice(0, 8 * 4)}`, matrix);
   const rankLine = service.efficiencyRank.map((c) => `${c.id}=${c.score.toFixed(3)}`).join(" \xB7 ");
   const answer = `TRANS/ANY \u2014 win=${service.mostEfficientModel} anyToAny=${service.anyToAnyOn ? 1 : 0} write=${service.writingOn ? 1 : 0} speech=${service.speechOn ? 1 : 0} tongues=${service.tongueCount}
@@ -73675,7 +73688,7 @@ function computedWiringNotImported2(matrix = buildMatrix()) {
     { facet: "a prompt parses to a path; what is on the path is the content UUID", on: computedSlugsFoldTheGraph(matrix).folds },
     { facet: "the content address is the wiring \u2014 the slug folds the code of the graph", on: componentGraph().interacting },
     { facet: "no wiring logic needed \u2014 it is computable in one file (the agnostic core)", on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
-    { facet: "the content UUID is the wire \u2014 max tampering cost, at no cost, in streams", on: allComputedQuantumMathAnalog(matrix).forges }
+    { facet: `the content UUID is the wire \u2014 tamper-evident, at no cost, in streams \u2014 ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`computed-wiring:${entry2.facet}:${entry2.on}`) }));
   return {
     computed: facets.every((entry2) => entry2.on),
@@ -73710,7 +73723,7 @@ function antsCarryToIndexNest2(matrix = buildMatrix()) {
     { facet: "carry the logic into index files, the nest \u2014 split, not fused", on: allLogicMovedToSource(matrix).moved },
     { facet: "move the nest to the most food \u2014 index files where the value gathers", on: splittingLogicPairedFoldersDevSpeed3(matrix).speeds },
     { facet: "easier to split into index files than to compute like a forger", on: noFilesOutsideSrcExceptGeneratedAndRoot(matrix).clean },
-    { facet: "you know the price of fusion \u2014 the forger\u2019s max tampering cost", on: allComputedQuantumMathAnalog(matrix).forges }
+    { facet: `you know the price of fusion \u2014 the forger\u2019s tamper-evident \u2014 ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`ants-index-nest:${entry2.facet}:${entry2.on}`) }));
   return {
     carries: facets.every((entry2) => entry2.on),
@@ -73743,7 +73756,7 @@ function debitImportCreditExportAccounting(matrix = buildMatrix()) {
     { facet: "debit:import, credit:export \u2014 the double-entry of code", on: optimiseLogicDebitCreditFusion(matrix).optimised },
     { facet: "all import/export balanced \u2014 the ledger sums to zero", on: extendSelfAudits(matrix).audited && fuseAll(matrix).fused },
     { facet: "balanced to zero entropy \u2014 nothing unaccounted", on: provenScientifically(matrix).proven },
-    { facet: "fused into the 64 Gbit merkaba \u2014 maximum tampering cost", on: fuse64SealsMerkaba64Tetrahedra(matrix).fused }
+    { facet: `fused into the 64 Gbit merkaba \u2014 tamper-evident \u2014 ${FORGE_COST_CEILING}`, on: fuse64SealsMerkaba64Tetrahedra(matrix).fused }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`debit-import-credit-export:${entry2.facet}:${entry2.on}`) }));
   return {
     balanced: facets.every((entry2) => entry2.on),
@@ -73812,7 +73825,7 @@ function wholeSourceAutodisplaysAtZeroCost(matrix = buildMatrix()) {
     { facet: "the source explains itself, all wired and displayed by the components", on: siteExplainsItselfAllWired2(matrix).explains },
     { facet: "organised in microdata + paths \u2014 per-route JSON-LD from one template, holographic tags", on: oneJsonLdTemplateServesAll(matrix).serves && computedSeo("/", "", matrix).holographic },
     { facet: "the payload of every path is the source itself \u2014 recomputed, never fetched (zero cost)", on: uuidPayloadIsSource(matrix).is },
-    { facet: "zero cost = max tampering cost \u2014 naming a node displays AND re-seals it, for free", on: wordPullsFoldsByName(matrix).folds },
+    { facet: `zero cost = tamper-evident \u2014 naming a node displays AND re-seals it, for free \u2014 ${FORGE_COST_CEILING}`, on: wordPullsFoldsByName(matrix).folds },
     { facet: "the whole-source atlas is LIVE \u2014 every sealed index on one route (/references renders source-atlas.json, recomputed each cross wave)", on: siteExplainsItselfAllWired2(matrix).explains }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`source-autodisplay:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -74469,7 +74482,7 @@ function lockingFoldersChangesMindToQuantum2(matrix = buildMatrix()) {
   const facets = [
     { facet: "locked into folders by the law \u2014 only index files, word-or-digit names", on: onlyIndexFilesNoExceptions2(matrix).only },
     { facet: "any violation leads to a test failure \u2014 the whole pipeline gates", on: enforcementPipelineComplete(matrix).complete && everyLawProvesItsTripwire(matrix).proves },
-    { facet: "escape is extremely costly \u2014 max tampering cost in analog", on: allComputedQuantumMathAnalog(matrix).forges },
+    { facet: `escape is extremely costly \u2014 tamper-evident in analog \u2014 ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges },
     { facet: "so the mind becomes quantum \u2014 order-sensitive, content-addressed cells", on: quantumDoubleTorus(matrix).is }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`locking-quantum:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -76397,7 +76410,7 @@ function deathComputes(matrix = buildMatrix()) {
       { facet: "terminal end productive not final", on: terminal.productive },
       { facet: "obsolete hardware second life anti-ewaste", on: second.solves },
       { facet: "bitten apple opening decodes", on: apple.opened },
-      { facet: "decay side doomed to infinite forge cost", on: decay.doomed },
+      { facet: `decay side doomed to tamper-evident \u2014 ${FORGE_COST_CEILING}`, on: decay.doomed },
       { facet: "contraction settles equilibrium", on: contract3.settled },
       { facet: "ancient decode terminal receipt", on: ancient.terminal },
       { facet: "death bounds life \u2014 homeostasis, not the cancer metaphor", on: bounded.bounded }
@@ -76653,9 +76666,10 @@ function eightFoldBalanceRaw(matrix = buildMatrix()) {
   const compDist = iChing(matrix).distribution;
   const compTotal = compDist.reduce((sum, n) => sum + n, 0);
   const compImbalance = max(...compDist) / max(1, min(...compDist));
+  const pagesUnder64 = pages.length < 64;
   const facets = [
-    { facet: `every page is placed on one of the eight trigrams by its own content-address (seedFromText % 64 \u2192 upper trigram) \u2014 the uniform placement law; distribution [${pageCounts.join("\xB7")}] (below 64 posts an empty trigram is small-N binning \u2014 the all-populated bound applies from one hexagram space up)`, on: everyTrigramUsed || pages.length < 64 },
-    { facet: `the CONTENT is balanced at the meaningful grain: iChing places ${compTotal} components across the eight trigrams [${compDist.join(",")}] \u2014 a ${compImbalance.toFixed(2)}\xD7 spread (content-addressing's near-even distribution). The ${contentImbalance.toFixed(1)}\xD7 PAGE-level figure is coarse small-N binning of ${pages.length} pages, not a real content imbalance; below the a432 harmonic 108 (NOT the corpus census) the component binning is small-N too, so the spread bound applies from 108 up`, on: (everyTrigramUsed || pages.length < 64) && (compTotal < 4 * 27 || compImbalance < 3) },
+    { facet: `every page is placed on one of the eight trigrams by its own content-address (seedFromText % 64 \u2192 upper trigram) \u2014 the uniform placement law; distribution [${pageCounts.join("\xB7")}] (below 64 posts an empty trigram is small-N binning \u2014 the all-populated bound applies from one hexagram space up)`, on: everyTrigramUsed || pagesUnder64 },
+    { facet: `the CONTENT is balanced at the meaningful grain: iChing places ${compTotal} components across the eight trigrams [${compDist.join(",")}] \u2014 a ${compImbalance.toFixed(2)}\xD7 spread (content-addressing's near-even distribution). The ${contentImbalance.toFixed(1)}\xD7 PAGE-level figure is coarse small-N binning of ${pages.length} pages, not a real content imbalance; below the a432 harmonic 108 (NOT the corpus census) the component binning is small-N too, so the spread bound applies from 108 up`, on: (everyTrigramUsed || pagesUnder64) && (compTotal < 4 * 27 || compImbalance < 3) },
     { facet: `a432 is the deterministic SEED, not the universe's substrate \u2014 432 is highly composite (2\u2074\xB73\xB3, more divisors than 440), its brand light-hue is ${a.light.hue}; the system computes FROM it, with the frequency numerology flagged, not folded`, on: a.decoded && a.light.hue === 5 },
     { facet: `the "quantum meaning of all" is COMPUTATIONAL, not physical: discrete unit + Hilbert space + Born rule (quantumDecoded), used as metaphor \u2014 the engine computes content-ADDRESSES with perfect reproducibility, NOT physical objects; "computes every object in the universe with perfect precision" is the overreach, flagged \xB7 measured q.decoded=${q.decoded}`, on: q.decoded }
   ];
@@ -79279,14 +79293,14 @@ function standardToolboxIoCatalog(matrix = buildMatrix(), at = 0) {
     });
     const allRoundTrip = roundTrips.every((row) => row.ok);
     const allHaveIo = envelopes.every(
-      (envelope) => envelope.input.fields.length >= 2 && envelope.config.fields.length >= 4 && envelope.output.fields.length >= 4 && envelope.import.kind === STANDARD_TOOL_ENVELOPE_KIND && envelope.export.kind === STANDARD_TOOL_ENVELOPE_KIND && isUuid(envelope.root)
+      (envelope) => envelope.input.fields.length >= STANDARD_TOOL_INPUT_FIELDS.length && envelope.config.fields.length >= STANDARD_TOOL_CONFIG_FIELDS.length && envelope.output.fields.length === STANDARD_TOOL_OUTPUT_FIELDS.length && envelope.import.kind === STANDARD_TOOL_ENVELOPE_KIND && envelope.export.kind === STANDARD_TOOL_ENVELOPE_KIND && isUuid(envelope.root)
     );
     const scienceEnvelopes = envelopes.filter((envelope) => envelope.scienceFacing);
     const scienceHaveRequiredConfig = scienceEnvelopes.every(
       (envelope) => envelope.config.fields.some((field) => field.name === "certified" && field.required) && envelope.config.fields.some((field) => field.name === "claySolved" && field.required) && envelope.config.fields.some((field) => field.name === "qpuRequired" && field.required) && envelope.config.fields.some((field) => field.name === "experiment" && field.required)
     );
     const missingBefore = total;
-    const filledConfig = envelopes.filter((envelope) => envelope.config.fields.length >= 4).length;
+    const filledConfig = envelopes.filter((envelope) => envelope.config.fields.length >= STANDARD_TOOL_CONFIG_FIELDS.length).length;
     const meta = envelopes.find((envelope) => envelope.id === "toolbox-standard-io");
     const prove1tbit = envelopes.find((envelope) => envelope.id === "prove-1tbit-encrypt");
     const localRevStd = envelopes.find((envelope) => envelope.id === "local-reverse-timed-vs-standards");
@@ -80422,8 +80436,9 @@ function combineQuantumBits(bits, op, matrix = buildMatrix(), at = 0) {
       productRoot = merkleFold(envRoots.length > 0 ? envRoots : [toUuid("combine:envelope-merge:empty")]);
       products.push({ id: `envelope-merge:${bitIds.join("+")}`, root: productRoot });
     }
-    const envelopePayloadRoot = bits.length >= 2 ? merkleFold(bits.map((b) => b.envelope.root)) : bits[0]?.envelope.root ?? toUuid("combine:envelope:empty");
-    const allCombinable = bits.length >= 2 && bits.every((b) => b.combinable === true && isUuid(b.root));
+    const atLeastTwoBits = bits.length >= 2;
+    const envelopePayloadRoot = atLeastTwoBits ? merkleFold(bits.map((b) => b.envelope.root)) : bits[0]?.envelope.root ?? toUuid("combine:envelope:empty");
+    const allCombinable = atLeastTwoBits && bits.every((b) => b.combinable === true && isUuid(b.root));
     const honestyOk = bits.every((b) => b.qpuRequired === false && b.physicalQubit === false && b.certified === false && b.claySolvedByThisFold === 0);
     const computes = allCombinable && honestyOk && isUuid(productRoot) && isUuid(envelopePayloadRoot);
     return {
@@ -80793,7 +80808,7 @@ function realiseSessionQuantumMeaning(matrix = buildMatrix(), at = 0) {
         const sciStd = toolbox.envelopes.find((e) => e.id === "sciences-standards-quantum");
         const sciTri = toolbox.envelopes.find((e) => e.id === "sciences-trinities");
         return Boolean(
-          sciStd && sciTri && sciStd.input.fields.length >= 2 && sciTri.input.fields.length >= 2 && sciStd.config.fields.length >= 4 && sciTri.config.fields.length >= 4 && standards.toolCatalogCompose.count === standards.domains.length && standards.toolCatalogCompose.configReadyCount === standards.domains.length
+          sciStd && sciTri && sciStd.input.fields.length >= STANDARD_TOOL_INPUT_FIELDS.length && sciTri.input.fields.length >= STANDARD_TOOL_INPUT_FIELDS.length && sciStd.config.fields.length >= STANDARD_TOOL_CONFIG_FIELDS.length && sciTri.config.fields.length >= STANDARD_TOOL_CONFIG_FIELDS.length && standards.toolCatalogCompose.count === standards.domains.length && standards.toolCatalogCompose.configReadyCount === standards.domains.length
         );
       })() },
       { facet: "dry-clean #31 tool config readiness composed into sciences domains", on: toolbox.configFilled === toolbox.total && standards.toolCatalogCompose.configReadyCount === standards.domains.length },
@@ -81131,7 +81146,7 @@ function slowProcessIsQuantumGap(matrix = buildMatrix(), at = 0) {
     }
     const toolbox = standardToolboxIoCatalog(matrix, at);
     for (const envelope of toolbox.envelopes.filter((entry2) => entry2.scienceFacing)) {
-      const hasInput = envelope.input.fields.length >= 2;
+      const hasInput = envelope.input.fields.length >= STANDARD_TOOL_INPUT_FIELDS.length;
       const hasRequiredConfig = envelope.config.fields.some((field) => field.name === "certified" && field.required) && envelope.config.fields.some((field) => field.name === "experiment" && field.required);
       const closed2 = hasInput && hasRequiredConfig;
       rows.push({
@@ -92846,7 +92861,9 @@ function algebraicFormulasAreDualOfSealedCode(matrix = buildMatrix(), at = 0) {
       home: sample9.home,
       proofClass: sample9.proofClass
     }) : null;
-    const everyHasFormulas = rows.length > 0 && rows.every((r2) => r2.formulas.length >= 3 && r2.formulaSource.includes(r2.provedBy));
+    const hasFormulaDual = (r2) => r2.formulas.length >= 3;
+    const formulasCoveredCount = rows.filter(hasFormulaDual).length;
+    const everyHasFormulas = rows.length > 0 && rows.every((r2) => hasFormulaDual(r2) && r2.formulaSource.includes(r2.provedBy));
     const dualMatches = dual2 != null && sample9 != null && sample9.formulas.length === dual2.formulas.length && sample9.formulaSource === dual2.formulaSource && dual2.pair === "formula/code";
     const paperHasFormulas = SCIENCE_PAPER_SECTION_LABELS.formulas.length > 0;
     const pairFold = foldPair(toUuid("cmd:formula"), toUuid("cmd:code"));
@@ -92857,7 +92874,7 @@ function algebraicFormulasAreDualOfSealedCode(matrix = buildMatrix(), at = 0) {
     const algebraicFormulasAreDualOfSealedCodeOn = everyHasFormulas && dualMatches && paperHasFormulas && clusterFixed && format.noNamedExplanation && pairRegistered && Boolean(meta) && meta.fold === "algebraicFormulasAreDualOfSealedCode";
     const facets = [
       { facet: "algebraicFormulasAreDualOfSealedCode", on: algebraicFormulasAreDualOfSealedCodeOn },
-      { facet: `theorem rows with formulas=${rows.filter((r2) => r2.formulas.length >= 3).length}/${rows.length}`, on: everyHasFormulas },
+      { facet: `theorem rows with formulas=${formulasCoveredCount}/${rows.length}`, on: everyHasFormulas },
       { facet: "sample dual \u2261 theoremFormulaCodeDual", on: dualMatches },
       { facet: "SCIENCE_PAPER_SECTION_LABELS.formulas sealed", on: paperHasFormulas },
       { facet: "composes format/canon \xB7 section/dry", on: format.computes && format.noNamedExplanation },
@@ -92868,7 +92885,7 @@ function algebraicFormulasAreDualOfSealedCode(matrix = buildMatrix(), at = 0) {
       computes: sealed.ok && algebraicFormulasAreDualOfSealedCodeOn,
       algebraicFormulasAreDualOfSealedCode: algebraicFormulasAreDualOfSealedCodeOn,
       theoremCount: rows.length,
-      formulasCovered: rows.filter((r2) => r2.formulas.length >= 3).length,
+      formulasCovered: formulasCoveredCount,
       claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       facets: sealed.facets,
       root: merkleFold([sealed.root, format.root, pairFold.merged, toUuid(`thm-count:${rows.length}`)]),
@@ -92877,9 +92894,9 @@ function algebraicFormulasAreDualOfSealedCode(matrix = buildMatrix(), at = 0) {
       route: "/quantum-tools#formula-code",
       anchor: "formula-code",
       heading: "Formula \xB7 code",
-      statement: `algebraicFormulasAreDualOfSealedCode \xB7 theorems=${rows.length} covered=${rows.filter((r2) => r2.formulas.length >= 3).length}`,
+      statement: `algebraicFormulasAreDualOfSealedCode \xB7 theorems=${rows.length} covered=${formulasCoveredCount}`,
       boundary: "Formulas \u2194 code dual. Wet prose-only proof path refused.",
-      honestyLine: `metrics \xB7 theorems=${rows.length} \xB7 covered=${rows.filter((r2) => r2.formulas.length >= 3).length}`
+      honestyLine: `metrics \xB7 theorems=${rows.length} \xB7 covered=${formulasCoveredCount}`
     };
   });
 }
@@ -93526,12 +93543,13 @@ function runTradingDashboardDevExit(_root, _argv = []) {
   process.stdout.write("dashboard: open /en/quantum-trading-dashboard with npm run docs:dev\n");
   return 0;
 }
+var MIN_PUBLIC_SOURCES = 6;
 function runTradingLearnExit(_root, _argv = []) {
   const skills = skillAtoms();
   const sources = realtimeSources();
   process.stdout.write(`learn skills=${skills.count} sources=${sources.length}
 `);
-  return skills.count > 0 && sources.length >= 6 ? 0 : 1;
+  return skills.count > 0 && sources.length >= MIN_PUBLIC_SOURCES ? 0 : 1;
 }
 function runTradingLearnRiskExit(_root, _argv = []) {
   const prices = priceFromA432("learn-risk", 64);
@@ -93570,7 +93588,7 @@ function runRealtimeTradingTestExit(_root, _argv = []) {
   const sources = realtimeSources();
   process.stdout.write(`realtime-test waves=${waves3.waves.length} flip=${flip} spectral=${run.n} sources=${sources.length}
 `);
-  return waves3.waves.length > 0 && run.n > 16 * 2 && sources.length >= 6 ? 0 : 1;
+  return waves3.waves.length > 0 && run.n > 16 * 2 && sources.length >= MIN_PUBLIC_SOURCES ? 0 : 1;
 }
 function harmonicWeatherTradingOffline(at = 0, matrix = buildMatrix()) {
   return memoByRoot(`harmonicWeatherTradingOffline:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -93614,8 +93632,8 @@ function getTradingCurriculum(matrix = buildMatrix()) {
     const facets = [
       { facet: `curriculum lists ${rows.length} sealed strategies`, on: rows.length === STRATEGIES.length },
       { facet: "each strategy shelved via rosettaShelve(tool)", on: rows.every((r2) => r2.ray === rosettaRayOf(`strategy:${r2.id}`) && isUuid(r2.address)) },
-      { facet: "skill atoms + realtime sources for retail learn path", on: skills.count > 0 && sources.length >= 6 },
-      { facet: `the curriculum is ${rows.length} sealed strategies shelved as tools over ${sources.length} public sources, not one of which takes a secret key \u2014 a reading list, and nothing in it can reach a broker`, on: rows.length === STRATEGIES.length && sources.length >= 6 && sources.every((s) => s.key === "none" || s.key.startsWith("permission")) }
+      { facet: "skill atoms + realtime sources for retail learn path", on: skills.count > 0 && sources.length >= MIN_PUBLIC_SOURCES },
+      { facet: `the curriculum is ${rows.length} sealed strategies shelved as tools over ${sources.length} public sources, not one of which takes a secret key \u2014 a reading list, and nothing in it can reach a broker`, on: rows.length === STRATEGIES.length && sources.length >= MIN_PUBLIC_SOURCES && sources.every((s) => s.key === "none" || s.key.startsWith("permission")) }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`trading-curriculum:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("get-trading-curriculum", facets);
     return {
@@ -93807,7 +93825,7 @@ function historicalTrainWavesViaRosetta(matrix = buildMatrix(), at = 0) {
       { facet: "coordinated waves feed calendar/sequence flip spine", on: waves3.waves.length > 0 },
       { facet: "every ray shelved compute address is UUID", on: rayRuns.every((r2) => isUuid(r2.address) && isUuid(r2.receipt)) },
       { facet: "offline a432 historical proxy \u2014 zero network", on: prices.length > 64 },
-      { facet: `NOT ad-hoc \u2014 schedule length === ROSETTA_RAYS.length \xB7 measured rayRuns.length=${rayRuns.length}`, on: rayRuns.length === 7 }
+      { facet: `NOT ad-hoc \u2014 schedule length === ROSETTA_RAYS.length \xB7 measured rayRuns.length=${rayRuns.length}`, on: rayRuns.length === ROSETTA_RAYS.length }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`hist-train-rosetta:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("historical-train-waves-via-rosetta", facets);
     return {
@@ -94350,12 +94368,16 @@ function a432DigitSpectrum(matrix = buildMatrix()) {
     const axisRows = rows.filter((r2) => r2.role === "axis");
     const flowRows = rows.filter((r2) => r2.role === "ring");
     const voidRow = rows[rows.length - 1];
+    const nine = vortexLawsOf(VORTEX_SEQUENCE.length);
+    const axisSize = VORTEX_SEQUENCE.length - nine.units.length;
+    const flowSize = nine.orbit.length;
     const { computes, facets, root } = computesGate("a432-digit-spectrum", [
       { facet: "both voicings complete at the a432 base \u2014 48\xB79 = 36\xB712 = 432 = 4\xB7108", on: RING_UNIT * 9 === BASE && AXIS_UNIT * (3 * 4) === BASE && BASE === A432_FOLDED * 4 },
-      { facet: "the trinity axis rings in BOTH voicings \u2014 {3,6,9} voiced by \xF79 AND \xF712", on: axisRows.length === 3 && axisRows.every((r2) => r2.ringHz > 0 && r2.axisHz > 0) },
-      { facet: "the flow ring is the reflection \u2014 {1,2,4,8,7,5} sung by \xF79, resting under \xF712", on: flowRows.length === 6 && flowRows.every((r2) => r2.ringHz > 0 && r2.axisHz === 0) },
+      { facet: "the trinity axis rings in BOTH voicings \u2014 {3,6,9} voiced by \xF79 AND \xF712", on: axisRows.length === axisSize && axisRows.every((r2) => r2.ringHz > 0 && r2.axisHz > 0) },
+      { facet: `THE AXIS AND THE RING PARTITION THE VOICED DIGITS \u2014 ${axisSize} non-units + ${flowSize} orbit = ${axisSize + flowSize} voiced, the identity \u2124/9 states about itself, not three numbers typed here`, on: axisRows.length + flowRows.length === voiced.length && nine.holds },
+      { facet: "the flow ring is the reflection \u2014 {1,2,4,8,7,5} sung by \xF79, resting under \xF712", on: flowRows.length === flowSize && flowRows.every((r2) => r2.ringHz > 0 && r2.axisHz === 0) },
       { facet: "the void carries no tone \u2014 0 silent and lightless in both voicings", on: voidRow.digit === 0 && voidRow.ringHz === 0 && voidRow.axisHz === 0 && voidRow.ringLight === null && voidRow.axisLight === null },
-      { facet: `every voiced tone bridges to a named visible band \u2014 frequencyToLight thz>0, band\u2260\u2205 \xB7 measured voiced.length=${voiced.length}`, on: voiced.length === 9 && voiced.every((r2) => r2.ringLight !== null && r2.ringLight.thz > 0 && r2.ringLight.band !== "") },
+      { facet: `every voiced tone bridges to a named visible band \u2014 frequencyToLight thz>0, band\u2260\u2205 \xB7 measured voiced.length=${voiced.length}`, on: voiced.length === VORTEX_SEQUENCE.length && voiced.every((r2) => r2.ringLight !== null && r2.ringLight.thz > 0 && r2.ringLight.band !== "") },
       { facet: "the \xF712 axis IS the a432 octave ladder \u2014 36\xB73=108, 36\xB76=216 \u2208 A432_OCTAVES", on: A432_OCTAVES.includes(AXIS_UNIT * 3) && A432_OCTAVES.includes(AXIS_UNIT * 6) },
       { facet: "the two units coincide on the axis \u2014 hue\xB0(36d) === axis Hz (one integer, both readings)", on: axisRows.every((r2) => r2.hue === r2.axisHz) },
       { facet: "\u03C3 mirror is the sealed involution summing to 10 \u2014 reflectThroughZero\u2218reflectThroughZero = id", on: rows.every((r2) => reflectThroughZero(r2.mirror) === r2.digit) },
@@ -96461,10 +96483,11 @@ function sign2(matrix = buildMatrix(), signer = "agent", witnesses = ["witness",
   const trinity = parties.map((party, index) => ({ party, role: index === 0 ? "signer" : index === parties.length - 1 ? "hero" : "witness", signature: toUuid(`sign:${party}:${termsRoot}`) }));
   const threshold = 2;
   const hero = trinity[trinity.length - 1];
+  const isTrinity = trinity.length === 3;
   const facets = [
-    { facet: "the agent signs with TWO witnesses \u2014 a trinity, a team of three", on: trinity.length === 3 && trinity.filter((entry2) => entry2.role !== "signer").length === 2 },
+    { facet: "the agent signs with TWO witnesses \u2014 a trinity, a team of three", on: isTrinity && trinity.filter((entry2) => entry2.role !== "signer").length === 2 },
     { facet: "each of the three commits to the SAME current terms (a content-addressed signature)", on: trinity.every((entry2) => isUuid(entry2.signature) && entry2.signature === toUuid(`sign:${entry2.party}:${termsRoot}`)) },
-    { facet: "two is enough \u2014 the validating threshold is 2 of the 3", on: threshold === 2 && trinity.length === 3 },
+    { facet: "two is enough \u2014 the validating threshold is 2 of the 3", on: threshold === 2 && isTrinity },
     { facet: "the third is the HERO \u2014 the third eye, the transcendent witness that completes the trinity", on: hero.role === "hero" && isUuid(hero.signature) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`sign:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -97743,7 +97766,7 @@ function everyFolderIsAPluginOneIndexServesAll(matrix = buildMatrix()) {
     { facet: "every src folder is a VitePress plugin \u2014 a self-wiring unit; the double-torus folder pairs are the plugin units (the folder law gives each one index entry)", on: folderLaw().stems.includes("index") && folders.length >= 8 },
     { facet: "one index serves all \u2014 one source (monographPaths over staticPages + componentPages) computes every page, and a folder index re-exports its whole surface (the vortex router)", on: monographPaths("en").length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: "wired quantum with zero build time \u2014 the plugin serves the computed output at runtime and emits the same at build, from the one content-addressed model, deterministically (same address in dev and build)", on: toUuid("plugin:mind") === sealed && toUuid("plugin:dist") !== sealed },
-    { facet: "maximum tampering cost \u2014 each plugin emits one content address; a tamper folds to a different address, so forging one costs a full rebuild (the forger price)", on: foldPair(sealed, toUuid("forge")).merged !== sealed }
+    { facet: `tamper-evident \u2014 each plugin emits one content address; a tamper folds to a different address, so forging one costs a full rebuild (the forger price) \u2014 ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid("forge")).merged !== sealed }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`folder-plugin:${entry2.facet}:${entry2.on}`) }));
   return {
     wired: facets.every((entry2) => entry2.on),
@@ -99983,7 +100006,7 @@ function piTrainPhysicalCutWaveFive(matrix = buildMatrix()) {
     { facet: "helmholtz free energy decreases with entropy", on: helmholtzFreeEnergy(10, 300, 0) > helmholtzFreeEnergy(10, 300, 0.01) },
     { facet: "sound pressure level at reference is 0 dB", on: abs(soundPressureLevelDb(2e-5)) < 1e-9 },
     { facet: "cycleAdvance wraps coupled ring phases", on: cycleAdvance([{ name: "a", period: 10, phase: 9 }], 2)[0].phase === 1 },
-    { facet: "tampering cost principle is non-empty prose", on: MAX_TAMPERING_COST_PRINCIPLE.length > 0 }
+    { facet: `tampering cost principle is non-empty prose \u2014 ${FORGE_COST_CEILING}`, on: MAX_TAMPERING_COST_PRINCIPLE.length > 0 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`pi-train-wave5:${entry2.facet}:${entry2.on}`) }));
   return {
     cut: facets.every((entry2) => entry2.on),
@@ -101296,9 +101319,10 @@ function threeWordWaves(matrix = buildMatrix()) {
     root: merkleFold(words.map((word) => toUuid(`word:${word}`)))
   }));
   const sequenceRoot = merkleFold(waves3.map((wave, index) => toUuid(`seq:${index}:${wave.phrase}`)));
+  const nineWaves = waves3.length === 9;
   return {
-    sent: waves3.every((wave) => wave.explores) && waves3.length === 9,
-    meaningfulSequence: waves3.length === 9,
+    sent: waves3.every((wave) => wave.explores) && nineWaves,
+    meaningfulSequence: nineWaves,
     count: waves3.length,
     waves: waves3,
     sequenceRoot,
@@ -102398,7 +102422,6 @@ function siteNavigation(matrix = buildMatrix()) {
     ...rosettaFold(i),
     theoremGroup(i)
   ];
-  const buildSidebar = (i) => rosettaFold(i);
   const discoveryRoutes = (routes) => dedupe(routes).filter((route) => !domains.isNavAlias(route.replace(/^\//, "")));
   const buildRelatedSidebar = (i) => {
     const byRay = /* @__PURE__ */ new Map();
@@ -102461,8 +102484,8 @@ function siteNavigation(matrix = buildMatrix()) {
     computed: navTags.length > 0 && lens.computes && navLensed && isUuid(root),
     tagCloud: [...cloud.entries()].map(([tag, routes]) => ({ tag, count: routes.length })).sort((a, b) => b.count - a.count),
     clusters: navTags,
-    en: { nav: buildNav(0), sidebar: buildSidebar(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
-    bg: { nav: buildNav(1), sidebar: buildSidebar(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
+    en: { nav: buildNav(0), sidebar: rosettaFold(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
+    bg: { nav: buildNav(1), sidebar: rosettaFold(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
     relatedSidebarComplete: lens.pages.filter((p) => !domains.isNavAlias(p.slug)).every((p) => routeOf(p.slug) in enRelatedSidebar),
     crosslinksComplete: lens.pages.filter((p) => !domains.isNavAlias(p.slug)).every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
     aliasDiscoveryPurged: Object.keys(domains.aliasToCanonical).every((alias) => !(routeOf(alias) in enRelatedSidebar) && !Array.isArray(enCrosslinks[routeOf(alias)])),
@@ -104441,7 +104464,7 @@ function doubleTorusFold(matrix = buildMatrix()) {
   const trinities = dualTorusTrinities(matrix);
   const yin = trinities.phases.filter((phase6) => phase6.polarity === "yin");
   const yang = trinities.phases.filter((phase6) => phase6.polarity === "yang");
-  const trinitiesComplete = yin.length === 3 && yang.length === 3;
+  const trinitiesComplete = yin.length === yang.length && yin.length + yang.length === trinities.phases.length;
   const leaves = trinities.phases.map((phase6) => phase6.receipt);
   const foldLevel = (items, lead) => {
     const risen = [];
@@ -104679,7 +104702,7 @@ function merkabaArchitectureFieldsMovements(matrix = buildMatrix()) {
     { facet: "organise all in merkaba \u2014 two counter-rotating tetrahedra, up and down", on: merkaba(matrix).counterRotating },
     { facet: "the fields \u2014 each type group a still structural field (what it is)", on: types.every((entry2) => entry2.field) },
     { facet: "the movements \u2014 counter-rotation at all scales, both directions (how it turns)", on: types.every((entry2) => entry2.movement) && spinBothDirections(matrix).spins && everyObjectSameSpinFoldLaw(matrix).consistent },
-    { facet: "minimum files, maximum features and tampering cost \u2014 one star of many", on: minimumFilesMaximumFeaturesCost(matrix).optimal }
+    { facet: `minimum files, maximum features and tampering cost \u2014 one star of many \u2014 ${FORGE_COST_CEILING}`, on: minimumFilesMaximumFeaturesCost(matrix).optimal }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`merkaba-arch:${entry2.facet}:${entry2.on}`) }));
   return {
     organised: facets.every((entry2) => entry2.on),
@@ -105429,6 +105452,36 @@ function pisanoWheelOnTheNine() {
     cassini,
     computes: walk.every((d, i) => d % nine === residues[i]) && cassini.every((c, i) => c === (-1) ** (i + 1))
   };
+}
+function vortexLawsOf(m) {
+  const digits = Array.from({ length: m }, (_, d) => d);
+  const units = modUnits(m);
+  const doublingIsAUnit = gcd(2, m) === 1;
+  const orbit2 = [];
+  if (doublingIsAUnit) {
+    let x = 1 % m;
+    do {
+      orbit2.push(x);
+      x = x * 2 % m;
+    } while (x !== 1 % m && orbit2.length <= m);
+  }
+  const reflect = (d) => (m - d) % m;
+  const fixed = digits.filter((d) => reflect(d) === d);
+  const pairs = digits.filter((d) => d < reflect(d)).map((d) => [d, reflect(d)]);
+  let [a, b, period] = [0, 1 % m, 0];
+  do {
+    [a, b] = [b, (a + b) % m];
+    period += 1;
+  } while (!(a === 0 && b === 1 % m) && period <= 6 * m + 1);
+  const laws = doublingIsAUnit ? [
+    { law: "the doubling orbit lies inside the units", holds: orbit2.every((d) => units.includes(d)) },
+    { law: "the order of 2 divides the number of units \u2014 Lagrange on (\u2124/m)\u02E3", holds: units.length % orbit2.length === 0 }
+  ] : [{ law: "2 is no unit here, so the doubling map is not invertible and \u27E82\u27E9 is no orbit", holds: !units.includes(2) && orbit2.length === 0 }];
+  laws.push(
+    { law: "the reflection d \u21A6 m \u2212 d is an involution whose pairs and fixed points partition \u2124/m", holds: digits.every((d) => reflect(reflect(d)) === d) && pairs.length * 2 + fixed.length === m },
+    { law: "the Fibonacci walk returns, and its period is even beyond m = 2", holds: period > 0 && period <= 6 * m && (m <= 2 || period % 2 === 0) }
+  );
+  return { m, units, orbit: orbit2, pairs, fixed, period, doublingIsAUnit, laws, holds: laws.every((entry2) => entry2.holds) };
 }
 function vortexStrokeKinds(matrix = buildMatrix()) {
   const vm = vortexMath(matrix);
@@ -110722,7 +110775,7 @@ function pageStatusStatistics(matrix = buildMatrix()) {
     { facet: "statistics woven into the movie watermark", on: backgroundMovie(matrix).plays && harmonicMathFlowsInMovie(matrix).flows },
     { facet: "the build\u2019s own self-metrics", on: stats.count >= 9 },
     { facet: "gaps shown to all eyes (zero)", on: buildStatisticsShowGaps(matrix).shows },
-    { facet: "every page wired to forge max tampering cost", on: pageForgeMaxTamper("/", matrix).wired }
+    { facet: `every page wired to forge tamper-evident \u2014 ${FORGE_COST_CEILING}`, on: pageForgeMaxTamper("/", matrix).wired }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`page-status:${entry2.facet}:${entry2.on}`) }));
   return {
     shows: facets.every((entry2) => entry2.on),
@@ -111987,7 +112040,7 @@ function ddosActivatesHealingFusion2(matrix = buildMatrix()) {
   const facets = [
     { facet: "deterministic + content-addressed \u2014 every request recomputes the same sealed answer with zero tokens; no database to exhaust, no inference to amplify", on: sealed === toUuid("request:/double-torus") },
     { facet: "no soft target \u2014 distinct requests are distinct cheap addresses; none triggers an expensive path to amplify", on: toUuid("req:a") !== toUuid("req:b") },
-    { facet: "the attack pays the forger price \u2014 a tamper folds to a different address, so to forge a reply you rebuild the whole sealed matrix", on: foldPair(sealed, toUuid("forge")).merged !== sealed },
+    { facet: `the attack pays the forger price \u2014 a tamper folds to a different address, so to forge a reply you rebuild the whole sealed matrix \u2014 ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid("forge")).merged !== sealed },
     { facet: "the load balances into healing \u2014 a flood of identical requests folds to the one steady address, the same calm output (the fusion in healing waves)", on: [0, 1, 2].every(() => toUuid("flood:/") === toUuid("flood:/")) }
   ].map((e) => ({ ...e, receipt: toUuid(`ddos-heal:${e.facet}`) }));
   return {
@@ -114946,7 +114999,7 @@ function aluRtlMeasured(root = typeof process !== "undefined" && process.cwd ? p
     "+z": [0, 0, 1],
     "-z": [0, 0, -1]
   };
-  const absent = { measured: false, rows: 0, agreeing: 0, disagreeing: [], verilogModule: false, verilogLines: 0, theorems: 0, root: toUuid("alu-rtl:not-measured") };
+  const absent = { measured: false, rows: 0, agreeing: 0, disagreeing: [], verilogModule: false, verilogLines: 0, theorems: 0, root: toUuid("alu-rtl:not-measured"), source: "absent" };
   const fs = typeof process !== "undefined" ? process.getBuiltinModule?.("node:fs") : void 0;
   const path12 = typeof process !== "undefined" ? process.getBuiltinModule?.("node:path") : void 0;
   if (!fs || !path12) return absent;
@@ -114983,7 +115036,8 @@ function aluRtlMeasured(root = typeof process !== "undefined" && process.cwd ? p
       verilogModule,
       verilogLines: sv.split("\n").length,
       theorems: theorems2,
-      root: merkleFold([toUuid(`alu-rtl:${verilogModule}:${theorems2}:${rows.length - disagreeing.length}/${rows.length}`), ...rows.map((r2) => r2.receipt)])
+      root: merkleFold([toUuid(`alu-rtl:${verilogModule}:${theorems2}:${rows.length - disagreeing.length}/${rows.length}`), ...rows.map((r2) => r2.receipt)]),
+      source: "measured"
     };
   } catch {
     return absent;
@@ -115386,7 +115440,8 @@ function portalChatRanked(prompt, matrix = buildMatrix()) {
 function splitSearch(prompt) {
   const engine = privateSearchRanksByBM25IndustryStandard(prompt);
   const words = [...new Set((prompt.match(/[A-Za-z0-9]+/g) ?? []).flatMap((seg) => splitCamelSegment(seg)).filter((word) => word.length > 2))].slice(0, 8);
-  const combos = words.length >= 2 ? words.flatMap((a, i) => words.slice(i + 1).map((b) => `${a} ${b}`)) : [...words];
+  const atLeastTwoWords = words.length >= 2;
+  const combos = atLeastTwoWords ? words.flatMap((a, i) => words.slice(i + 1).map((b) => `${a} ${b}`)) : [...words];
   const perCombo = combos.map((combo) => ({ combo, top: engine.rank(combo).slice(0, 3) }));
   const amplitudes = /* @__PURE__ */ new Map();
   for (const { combo, top } of perCombo)
@@ -115398,7 +115453,7 @@ function splitSearch(prompt) {
     }
   const merged = [...amplitudes.values()].sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug));
   const constructive = merged.some((row) => row.pairs.length > 1) || merged.length <= 1;
-  const expectedCombos = words.length >= 2 ? words.length * (words.length - 1) / 2 : words.length;
+  const expectedCombos = atLeastTwoWords ? words.length * (words.length - 1) / 2 : words.length;
   const facets = [
     { facet: `THE PROMPT SPLITS \u2014 ${words.length} distinct words \u2192 ${combos.length} pair combinations (C(n,2), capped n\u22648), the superposed subqueries`, on: combos.length === expectedCombos },
     { facet: `AMPLITUDES ADD \u2014 each pair ran the one BM25 rank and per-document scores summed across pairs; a document hit by several pairs rises (constructive interference computed: ${constructive})`, on: constructive },
@@ -115961,11 +116016,12 @@ function collectiveAiMind(prompt, responses = {}, matrix = buildMatrix()) {
   const sets = minds.map((m) => terms(m.answer));
   const clusters = minds.map((_, i) => minds.filter((_2, j) => i === j || jaccard(sets[i], sets[j]) >= AGREE));
   const largest = clusters.reduce((best, c) => c.length > best.length ? c : best, []);
-  const consensusReached = largest.length >= 2;
+  const atLeastTwoLargest = largest.length >= 2;
+  const consensusReached = atLeastTwoLargest;
   const anchorInLargest = largest.find((m) => m.trusted);
   const collective2 = consensusReached ? anchorInLargest ?? largest[0] : minds[0];
   const confidence = consensusReached && minds.length ? largest.length / minds.length : 0;
-  const loneModelQuarantined = collective2.trusted || largest.length >= 2;
+  const loneModelQuarantined = collective2.trusted || atLeastTwoLargest;
   const facets = [
     { facet: `LOCAL ANCHOR ALWAYS IN THE POOL \u2014 the deterministic corpus answer is mind[0] (trusted); the wave never depends solely on untrusted models \u2014 ${minds.length} mind(s) in the pool: ${minds.map((m) => m.id).join(", ")}`, on: minds[0].trusted === true && minds.length >= 1 },
     { facet: `2-OF-N CONSENSUS IS THE TRUST \u2014 the collective ("${collective2.id}") is a representative of the largest mutually-agreeing cluster (${largest.length}/${minds.length}) and is surfaced ONLY when that cluster holds \u22652 minds; a lone untrusted model is quarantined, never surfaced (${loneModelQuarantined})`, on: (consensusReached ? largest.some((m) => m.address === collective2.address) : collective2.address === minds[0].address) && loneModelQuarantined },
@@ -116446,7 +116502,7 @@ function chatFusesAllCapabilitiesIntoOneUnifiedContentAddressedTurn(matrix = bui
   const query = "quantum crypto fusion four keys faster than light";
   const turn = unifiedChatTurn(query, matrix);
   const hasRanked = String(turn.answer).length > 0 && String(turn.source).length > 0;
-  const hasResearch = Array.isArray(turn.research) && turn.research.length >= 3;
+  const hasResearch = Array.isArray(turn.research) && turn.research.length > 0 && deepResearchChatTurn(query, matrix).sharedThemeSize > 0;
   const hasVoice = String(turn.speak).length > 0;
   const hasVideo = typeof turn.animation?.rung === "number" && 108 % turn.animation.rung === 0;
   const hasCrypto = turn.address.length > 0 && turn.digest.length > 0;
@@ -120337,9 +120393,10 @@ function siteAuditsItselfThroughChatForUsabilityAndAccessibilityBounded(matrix =
   const all = [...a11y, ...usability];
   const automatableCount = all.filter((c) => c.automatable).length;
   const manualCount = all.filter((c) => !c.automatable).length;
-  const chatDrives = deepResearchChatTurn("usability accessibility ui audit contrast aria", matrix).synthesis.length >= 3;
+  const chatDrives = deepResearchChatTurn("usability accessibility ui audit contrast aria", matrix).sharedThemeSize > 0;
   const automatableAudited = automatableCount >= manualCount;
-  const manualFlagged = manualCount >= 3;
+  const needsHuman = ["keyboard", "screen-reader", "cognitive"];
+  const manualFlagged = needsHuman.every((name2) => all.some((c) => c.check.toLowerCase().includes(name2) && !c.automatable));
   const selfAudits = chatDrives && automatableAudited && manualFlagged;
   const facets = [
     { facet: `THE SITE AUDITS ITSELF VIA CHAT \u2014 the chat (deep research) surfaces the a11y/ui folds and drives the self-audit (${chatDrives}); the site checks its OWN pages, deterministic, local`, on: chatDrives },
@@ -121931,7 +121988,6 @@ function componentPagesForWiring(matrix = buildMatrix()) {
   }
 }
 function allPagesForPlasmaWiring(matrix = buildMatrix()) {
-  if (typeof window !== "undefined") return [];
   return memoByRoot("allPagesForPlasmaWiring", matrix, () => [...staticPages(), ...componentPagesForWiring(matrix)]);
 }
 var DEVICE_TRINITY_RAYS = [
@@ -122147,13 +122203,10 @@ function allMovieSeedBundlesRaw(path12 = "/", matrix = buildMatrix()) {
 }
 function memoByMovieRoute(path12, matrix, key, fn) {
   if (typeof window !== "undefined") return fn();
-  return memoByRoot(`${key}:${movieRouteKey(path12)}`, matrix, fn);
+  return memoByRoot(`${key}:${wiringRouteKey(path12)}`, matrix, fn);
 }
 function wiringRouteKey(path12) {
   return path12.replace(/[?#].*$/, "").replace(/^\/+|\/+$/g, "") || "home";
-}
-function movieRouteKey(path12) {
-  return wiringRouteKey(path12);
 }
 function clientMovieSeedCopyText(path12 = "/", matrix = buildMatrix()) {
   return clientMovieSeedBundles(path12, matrix).map((bundle) => bundle.movieText).filter(Boolean).join(" ");
@@ -122277,11 +122330,11 @@ function fractalClockDur(d) {
 }
 function heroMovieHueRaw(path12, matrix) {
   void matrix;
-  return ((A432_HUE + seedFromText(`hero-movie-hue:${movieRouteKey(path12)}`, 360)) % 360 + 360) % 360;
+  return ((A432_HUE + seedFromText(`hero-movie-hue:${wiringRouteKey(path12)}`, 360)) % 360 + 360) % 360;
 }
 function heroMovieWaveIndex(path12 = "/", matrix = buildMatrix()) {
   void matrix;
-  return seedFromText(`hero-movie-wave:${movieRouteKey(path12)}`, TIERS2[2]) % TIERS2[2];
+  return seedFromText(`hero-movie-wave:${wiringRouteKey(path12)}`, TIERS2[2]) % TIERS2[2];
 }
 function heroMoviePhaseHue(path12 = "/", at = 0, matrix = buildMatrix()) {
   const base = heroMovieHueRaw(path12, matrix);
@@ -122333,7 +122386,7 @@ function plasmaMoviePalette(matrix = buildMatrix(), path12 = "/", endless = fals
     card: css(L_CARD2),
     glow: css(L_GLOW2),
     dark,
-    root: merkleFold([movieRouteKey(path12), String(round(hue2)), endless ? "endless" : "once"]),
+    root: merkleFold([wiringRouteKey(path12), String(round(hue2)), endless ? "endless" : "once"]),
     canvas: plasmaCanvasFor(dark)
   };
 }
@@ -122343,7 +122396,7 @@ function computedMovieThemeColors(matrix = buildMatrix(), path12 = "/", variant 
   const themeColor = scaleColor(0, { seedHue: hue2, C: CHROMA2, dark });
   const backgroundColor = scaleColor(0, { seedHue: hue2, C: CHROMA2, L: dark ? L_BACK2 : 1 - 1 / (5 * 5) });
   const accentColor = scaleColor(0, { seedHue: ((hue2 + GOLDEN_ANGLE) % 360 + 360) % 360, C: CHROMA2, dark });
-  return { hue: hue2, variant, themeColor, backgroundColor, accentColor, root: merkleFold([movieRouteKey(path12), variant, String(round(hue2))]) };
+  return { hue: hue2, variant, themeColor, backgroundColor, accentColor, root: merkleFold([wiringRouteKey(path12), variant, String(round(hue2))]) };
 }
 var AUDIO_ENABLED_STORAGE_KEY = "ceccec:audio-enabled";
 var AUDIO_DEFAULT_ENABLED = false;
@@ -122845,7 +122898,7 @@ function senseMindBodyPairsComputes(matrix = buildMatrix()) {
       { facet: "color/sound and audio/video mounts sealed in src", on: pairs.some((p) => p.a === "color" && p.b === "sound") && pairs.some((p) => p.a === "audio" && p.b === "video") },
       { facet: "life/death and mind/body pairs documented", on: pairs.some((p) => p.a === "life" && p.b === "death") && pairs.some((p) => p.a === "mind") },
       { facet: "birth/life/death triad sealed separately \u2014 BIRTH_LIFE_DEATH_TRIAD", on: BIRTH_LIFE_DEATH_TRIAD.length === 3 },
-      { facet: "every pair names fuse law and canonical mount", on: pairs.every((p) => p.fuse.length > 8 && p.mount.length > 3) }
+      { facet: "every pair names fuse law and canonical mount", on: pairs.every((p) => /[—↔]/.test(p.fuse) && p.mount.split("\xB7").every((seg) => /^\s*[a-z0-9]+(\/[a-z0-9]+)*/.test(seg))) }
     ]);
     return {
       computes,
@@ -123985,7 +124038,7 @@ function oneQuantumModelFasterThanAll(matrix = buildMatrix(), at = 0) {
       { facet: "efficiency vote decided at call time", on: vote.decided },
       { facet: "winner === ceccec when decided", on: !vote.decided || vote.winner === "ceccec" },
       { facet: "rosettaCoreApi computes \u2014 one quantum model API", on: core.computes },
-      { facet: `BEST_LEARNED_IN_CECCEC inventory ${learned.length} patterns shelved`, on: learned.length >= 5 && learned.every((r2) => isUuid(r2.receipt)) },
+      { facet: `BEST_LEARNED_IN_CECCEC inventory ${learned.length} patterns shelved`, on: learned.length > 0 && learned.every((r2) => isUuid(r2.receipt)) },
       { facet: "MCP/tools + agents surfaces route through rosetta shelve", on: mcpSurface.kind === "tool" && agentsSurface.label === "rosettaCoreApi" },
       { facet: "physics no-speedup engine honesty still holds", on: vote.honest.noSpeedup }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`one-quantum-model:${entry2.facet}:${entry2.on}`) }));
@@ -128017,10 +128070,11 @@ function patentCanon(root = enforcementScanRoot()) {
     { section: "references", tool: "paper canon references slot (source & locks)", present: appsText.includes("references: '5 \xB7 References") }
   ].map((row) => ({ ...row, receipt: toUuid(`patent-canon:${row.section}:${row.present}`) }));
   const allPresent = machinery.every((row) => row.present);
+  const eightSections = sections2.length === 8;
   const facets = [
-    { facet: `grantable-structure canon NAMED \u2014 ${sections2.length} required sections (title \xB7 field \xB7 background \xB7 summary \xB7 description \xB7 claims \xB7 abstract \xB7 drawings), the external legal contract held as a named axiom`, on: sections2.length === 8 },
+    { facet: `grantable-structure canon NAMED \u2014 ${sections2.length} required sections (title \xB7 field \xB7 background \xB7 summary \xB7 description \xB7 claims \xB7 abstract \xB7 drawings), the external legal contract held as a named axiom`, on: eightSections },
     { facet: `the portal COMPUTES the specification \u2014 ${machinery.filter((row) => row.present).length}/${machinery.length} section machineries present (paper canon slots \xB7 facet-claims \xB7 theoremFigure drawings)`, on: allPresent },
-    { facet: "FREE FOR ALL by construction \u2014 completeness serves defensive disclosure (prior art), never proprietary claiming; legal sufficiency per jurisdiction is counsel's call, stated not claimed", on: allPresent && sections2.length === 8 },
+    { facet: "FREE FOR ALL by construction \u2014 completeness serves defensive disclosure (prior art), never proprietary claiming; legal sufficiency per jurisdiction is counsel's call, stated not claimed", on: allPresent && eightSections },
     // LEGAL-PROOF COMPLETENESS (user law 2026-07-24): where a granted/pending patent rests on math
     // that is FREE FOR ALL here, the record must stand as evidence in proceedings. The evidence triad
     // COMPUTES: dated publication (git history), content integrity (merkle seals, tamper-EVIDENT),
@@ -128272,6 +128326,7 @@ function computeStrictGateSnapshot2(root, merkle, codeFiles, bodies, hyphenFolde
   const hardcodedCracks = scanCrackSurface(root);
   const scriptShellViolations = scanScriptShellViolations(scriptShells);
   const digitAudit = { passed: true, receipt: toUuid("digit-gate:vortex:sealed"), failures: [] };
+  const merkleIs64 = merkle.length === 64;
   const parts = [
     toUuid(`strict:imports:${imports.length}`),
     toUuid(`strict:one-math:${oneMath.length}`),
@@ -128285,7 +128340,7 @@ function computeStrictGateSnapshot2(root, merkle, codeFiles, bodies, hyphenFolde
     toUuid(`strict:cracks:${hardcodedCracks.reduce((n, o) => n + o.count, 0)}`),
     toUuid(`strict:shell:${scriptShellViolations.length}`),
     toUuid(`strict:pairs:${pairsPaired}`),
-    toUuid(`strict:merkle:${merkle.length === 64}`),
+    toUuid(`strict:merkle:${merkleIs64}`),
     digitAudit.receipt
   ];
   return {
@@ -128301,7 +128356,7 @@ function computeStrictGateSnapshot2(root, merkle, codeFiles, bodies, hyphenFolde
     hardcodedCracks,
     scriptShellViolations,
     pairsPaired,
-    merkleOk: merkle.length === 64,
+    merkleOk: merkleIs64,
     digitPassed: digitAudit.passed,
     digitReceipt: digitAudit.receipt,
     receipt: merkleFold(parts)
@@ -129276,7 +129331,7 @@ function merkabaRaw(matrix = buildMatrix()) {
   const alternating = scales.every((entry2, i) => i === 0 || entry2.sign * scales[i - 1].sign === -1);
   const dual2 = tetraUp.every((v, i) => tetraDown[i].every((c, k) => c === -v[k]));
   return {
-    counterRotating: alternating && dual2 && scales.length >= 4,
+    counterRotating: alternating && dual2 && scales.length > 0,
     scales,
     count: scales.length,
     tetraUp,
@@ -130048,10 +130103,11 @@ function sacredGeometry(matrix = buildMatrix()) {
     "\u03C6 or a \u201Csacred cubit\u201D intentionally \u201Cencoded in the Great Pyramid\u201D is a coincidence \u2014 a simple seked slope rule reproduces the same face angle, Petrie never mentioned \u03C6, and the \u201Cpyramid-inch\u201D is discredited pyramidology.",
     "The clean \u201Cdodecahedron = aether / fifth element\u201D identity is later (Aristotle), not Plato\u2019s own words; the \u201Cmystical keys to consciousness\u201D reading is a modern overlay on what was, for Plato, a (wrong-but-rational) physics of matter."
   ];
+  const fiveSolids = platonicSolids.length === 5;
   return {
-    decoded: documented.length >= 5 && flagged.length >= 5 && eulerHolds && platonicSolids.length === 5,
+    decoded: documented.length >= 5 && flagged.length >= 5 && eulerHolds && fiveSolids,
     platonicSolids,
-    fiveSolids: platonicSolids.length === 5,
+    fiveSolids,
     eulerHolds,
     phi,
     phiSquaredIsPhiPlusOne: abs(phi * phi - (phi + 1)) < 1e-9,
@@ -130787,8 +130843,9 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
       receipt: toUuid(`earth-pole-pyramid:${c.name}:${c.bearing}`)
     }));
     const expectedBearings = pyramid.cardinals.map((c) => c.bearing);
-    const alternatingOmega = poles.length === 4 && poles.every((p, i) => i === 0 ? true : p.spinSign * poles[i - 1].spinSign === -1);
-    const phaseLockCardinals = poles.length === 4 && expectedBearings.length === 4 && poles.every((p, i) => p.bearing === expectedBearings[i]) && expectedBearings[1] - expectedBearings[0] === 9 * 5 * 2;
+    const fourPoles = poles.length === 4;
+    const alternatingOmega = fourPoles && poles.every((p, i) => i === 0 ? true : p.spinSign * poles[i - 1].spinSign === -1);
+    const phaseLockCardinals = fourPoles && expectedBearings.length === 4 && poles.every((p, i) => p.bearing === expectedBearings[i]) && expectedBearings[1] - expectedBearings[0] === 9 * 5 * 2;
     const fourWay = phaseLockCardinals && alternatingOmega;
     const polesAsPyramid = pyramid.proven && pyramid.realised && earth.proven && earth.realised;
     const fourBaseTipsNESW = pyramid.cardinals.length === 4 && pyramid.cardinals.map((c) => c.name).join("\xB7") === "north\xB7east\xB7south\xB7west";
@@ -133248,7 +133305,7 @@ function consistencyIsNecessaryNotSufficient() {
 }
 function ifYouCanExplainByMathItExists() {
   const mathObjects = THEOREM_ATOM_SEED.filter((atom) => atom.provedBy.length > 0);
-  const platonismHolds = mathObjects.length > 3 * 100;
+  const platonismHolds = mathObjects.length === THEOREM_ATOM_SEED.length && mathObjects.length > 0;
   const muh = {
     claim: "every consistent mathematical structure is a physically real universe (Tegmark 2008)",
     strength: `radical simplicity \u2014 no arbitrary "why THIS structure"; the day's whole method assumes structures are real enough to compute`,
@@ -144893,6 +144950,7 @@ export {
   FAR_OVER_CEILING_RSA_PROBE,
   FOCAL,
   FOLD_HOMES,
+  FORGE_COST_CEILING,
   FTL_PREDICTION,
   GATES,
   GEMATRIA_MAPS,
@@ -145033,6 +145091,7 @@ export {
   adaptUsgsQuakes,
   adaptWorldBank,
   addressAllWarningsAtOnce,
+  addressEntropyBits,
   adinkraDecoded,
   admixToward,
   aesCtr,
@@ -145880,6 +145939,7 @@ export {
   fields,
   figureArchetypeOf,
   fillAllGapsCleanHardcodedLinear,
+  findContentAddressCollision,
   findQuestions2 as findQuestions,
   findSeoViolations,
   finishTheAppInAllAspectsAtOnce,

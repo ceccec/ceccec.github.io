@@ -504,6 +504,7 @@ export declare function leanInvolutionCorpus(root?: string): {
         readonly file: string;
         readonly theorems: number;
     }[];
+    readonly source: 'counted' | 'sealed' | 'absent';
 };
 /**
  * THE MACHINE-CHECKED THEOREMS, IN LATEX.

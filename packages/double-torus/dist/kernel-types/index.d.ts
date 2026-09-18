@@ -1081,6 +1081,17 @@ export declare function addressEntropyBits(): {
     effectiveBits: number;
     birthdayLog2: number;
 };
+/**
+ * THE ONE SENTENCE A COST CLAIM MAY LEAN ON.
+ *
+ * "Maximum tampering cost" is a defined term here — MAX_TAMPERING_COST_PRINCIPLE claims it only when measured
+ * coverage closes at 1 and reciprocal entropy is 0 — and facets across the corpus were using it loosely, as a
+ * synonym for "content-addressed". Tamper-EVIDENCE is not tamper-RESISTANCE: that a change flips the address is
+ * what a hash does on its quietest day, while what a forgery COSTS is bounded by how hard the same address is to
+ * hit twice. This states that bound once, computed from the address's own entropy budget, so no facet has to
+ * restate it and none has to overstate it.
+ */
+export declare const FORGE_COST_CEILING: string;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function gcd(a: number, b: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */

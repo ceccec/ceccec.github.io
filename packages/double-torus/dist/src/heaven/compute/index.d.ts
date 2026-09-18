@@ -447,6 +447,17 @@ export declare function aluRtlMeasured(root?: string): {
     verilogLines: number;
     theorems: number;
     root: string;
+    source: "absent";
+} | {
+    measured: boolean;
+    rows: number;
+    agreeing: number;
+    disagreeing: string[];
+    verilogModule: boolean;
+    verilogLines: number;
+    theorems: number;
+    root: string;
+    source: "measured";
 };
 /**
  * hardwareSpecFromInvariants — the quantum model designs the hardware from its own sealed invariants. The vortex
@@ -468,6 +479,17 @@ export declare function hardwareSpecFromInvariants(matrix?: MindMatrix): {
         verilogLines: number;
         theorems: number;
         root: string;
+        source: "absent";
+    } | {
+        measured: boolean;
+        rows: number;
+        agreeing: number;
+        disagreeing: string[];
+        verilogModule: boolean;
+        verilogLines: number;
+        theorems: number;
+        root: string;
+        source: "measured";
     };
     documented: string[];
     flagged: string[];
@@ -1769,7 +1791,7 @@ export declare function uiChatTurn(query: string, matrix?: MindMatrix): {
     };
     figure: {
         formula: string;
-        archetype: "flow" | "lattice" | "wheel" | "orbit" | "region" | "curve" | "series";
+        archetype: "lattice" | "flow" | "wheel" | "orbit" | "region" | "curve" | "series";
         series: {
             x: number;
             y: number;
@@ -1781,7 +1803,7 @@ export declare function uiChatTurn(query: string, matrix?: MindMatrix): {
         phase: number;
         direction: string;
         amplitude: number;
-        archetype: "flow" | "lattice" | "wheel" | "orbit" | "region" | "curve" | "series";
+        archetype: "lattice" | "flow" | "wheel" | "orbit" | "region" | "curve" | "series";
     };
     color: {
         hue: number;
@@ -1853,7 +1875,7 @@ export declare function unifiedChatTurn(query: string, matrix?: MindMatrix): {
         phase: number;
         direction: string;
         amplitude: number;
-        archetype: "flow" | "lattice" | "wheel" | "orbit" | "region" | "curve" | "series";
+        archetype: "lattice" | "flow" | "wheel" | "orbit" | "region" | "curve" | "series";
     };
     address: string;
     digest: string;
@@ -4440,11 +4462,11 @@ export declare function videoChatTurn(spokenText: string, matrix?: MindMatrix): 
         phase: number;
         direction: string;
         amplitude: number;
-        archetype: "flow" | "lattice" | "wheel" | "orbit" | "region" | "curve" | "series";
+        archetype: "lattice" | "flow" | "wheel" | "orbit" | "region" | "curve" | "series";
     };
     figure: {
         formula: string;
-        archetype: "flow" | "lattice" | "wheel" | "orbit" | "region" | "curve" | "series";
+        archetype: "lattice" | "flow" | "wheel" | "orbit" | "region" | "curve" | "series";
         series: {
             x: number;
             y: number;

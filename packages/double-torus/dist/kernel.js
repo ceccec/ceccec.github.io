@@ -1382,6 +1382,7 @@ function addressEntropyBits() {
   const effectiveBits = nominalBits - discardedBits;
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) };
 }
+var FORGE_COST_CEILING = `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits, a birthday bound of 2^${addressEntropyBits().birthdayLog2} \u2014 the CEILING this hash offers, not a guarantee (findContentAddressCollision exhibits a real collision in its 32-bit FNV core; toUuidSha256 is the vetted path)`;
 function gcd(a, b) {
   a = Math.abs(Math.round(a));
   b = Math.abs(Math.round(b));
@@ -1528,6 +1529,7 @@ function transliterateByMap(text, map) {
 }
 export {
   DIGEST_BITS,
+  FORGE_COST_CEILING,
   GATES,
   ICHING_NUMBERS,
   MEMO_CAP,

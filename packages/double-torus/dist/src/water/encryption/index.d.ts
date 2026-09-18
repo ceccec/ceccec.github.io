@@ -2813,7 +2813,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         family: {
             computes: boolean;
-            prefer: "hash" | "auto" | "code" | "lattice";
+            prefer: "lattice" | "hash" | "auto" | "code";
             selected: {
                 id: string;
                 name: string;
@@ -3433,7 +3433,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             family: {
                 computes: boolean;
-                prefer: "hash" | "auto" | "code" | "lattice";
+                prefer: "lattice" | "hash" | "auto" | "code";
                 selected: {
                     id: string;
                     name: string;
@@ -6048,7 +6048,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             family: {
                 computes: boolean;
-                prefer: "hash" | "auto" | "code" | "lattice";
+                prefer: "lattice" | "hash" | "auto" | "code";
                 selected: {
                     id: string;
                     name: string;
@@ -6677,7 +6677,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 family: {
                     computes: boolean;
-                    prefer: "hash" | "auto" | "code" | "lattice";
+                    prefer: "lattice" | "hash" | "auto" | "code";
                     selected: {
                         id: string;
                         name: string;
@@ -12139,7 +12139,7 @@ export declare function postQuantumMigrationChecklist(matrix?: MindMatrix): {
 /** PQC algorithm family selector — DEMO parameter labels only (no production keygen). */
 export declare function pqcAlgorithmFamilySelector(matrix?: MindMatrix, prefer?: 'lattice' | 'hash' | 'code' | 'auto'): {
     computes: boolean;
-    prefer: "hash" | "auto" | "code" | "lattice";
+    prefer: "lattice" | "hash" | "auto" | "code";
     selected: {
         id: string;
         name: string;
@@ -12290,7 +12290,7 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
     };
     family: {
         computes: boolean;
-        prefer: "hash" | "auto" | "code" | "lattice";
+        prefer: "lattice" | "hash" | "auto" | "code";
         selected: {
             id: string;
             name: string;
@@ -12560,7 +12560,7 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
     };
     family: {
         computes: boolean;
-        prefer: "hash" | "auto" | "code" | "lattice";
+        prefer: "lattice" | "hash" | "auto" | "code";
         selected: {
             id: string;
             name: string;
@@ -12704,7 +12704,7 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
         };
         family: {
             computes: boolean;
-            prefer: "hash" | "auto" | "code" | "lattice";
+            prefer: "lattice" | "hash" | "auto" | "code";
             selected: {
                 id: string;
                 name: string;
@@ -16440,7 +16440,7 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
         };
         family: {
             computes: boolean;
-            prefer: "hash" | "auto" | "code" | "lattice";
+            prefer: "lattice" | "hash" | "auto" | "code";
             selected: {
                 id: string;
                 name: string;
@@ -17142,7 +17142,7 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
             };
             family: {
                 computes: boolean;
-                prefer: "hash" | "auto" | "code" | "lattice";
+                prefer: "lattice" | "hash" | "auto" | "code";
                 selected: {
                     id: string;
                     name: string;
@@ -18063,7 +18063,7 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
         };
         family: {
             computes: boolean;
-            prefer: "hash" | "auto" | "code" | "lattice";
+            prefer: "lattice" | "hash" | "auto" | "code";
             selected: {
                 id: string;
                 name: string;
@@ -18692,7 +18692,7 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
             };
             family: {
                 computes: boolean;
-                prefer: "hash" | "auto" | "code" | "lattice";
+                prefer: "lattice" | "hash" | "auto" | "code";
                 selected: {
                     id: string;
                     name: string;

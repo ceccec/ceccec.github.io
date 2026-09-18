@@ -59,7 +59,6 @@ export declare function memoByMovieRoute<T>(path: string, matrix: MindMatrix, ke
 export declare function memoByMovieRouteAt<T>(path: string, matrix: MindMatrix, at: number, key: string, fn: () => T): T;
 /** Normalise a route to a stable slug ('' → 'home'). */
 export declare function wiringRouteKey(path: string): string;
-export declare function movieRouteKey(path: string): string;
 /** Client copy text — joins client bundle movieTexts (browser-safe). */
 export declare function clientMovieSeedCopyText(path?: string, matrix?: MindMatrix): string;
 export declare function allMovieSeedCopyText(path?: string, matrix?: MindMatrix): string;

@@ -667,6 +667,16 @@ export type GlobalWorkspaceContrastRow = {
     readonly receipt: string;
 };
 export declare const GLOBAL_WORKSPACE_CONTRAST: readonly GlobalWorkspaceContrastRow[];
+/**
+ * A SOURCE LOCATES ITS CLAIM; A LENGTH DOES NOT. These rows were held to `source.length > 8`, which passes any
+ * nine characters — 'randomness' would have satisfied it — while the facet beside it reads "every row carries a
+ * source". A source locates when it names where the claim can be checked: a domain, an arXiv or DOI id, a dated
+ * record, or the rows of this very table when the row is derived from them rather than cited from outside.
+ * Two rows named a record without locating it and now carry one; nothing here was invented to satisfy the test.
+ */
+export declare function sourceLocatesItsClaim(source: string): boolean;
+/** A next experiment must be RUNNABLE — an npm script or a route, which is what its facet has always claimed. */
+export declare function nextExperimentIsRunnable(next: string): boolean;
 /** Balance gate — the J-space × portal contrast stays sourced, honestly tiered, and category-clean at call time. */
 export declare function globalWorkspaceContrastResearch(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -42329,8 +42339,6 @@ export declare function clayFtlFacetsOnlyWhenRelated(matrix?: MindMatrix, at?: n
 };
 /** npm run quantum:clay-related (duals related-clay · ftl-related · related-ftl) */
 export declare function runClayFtlFacetsOnlyWhenRelatedExit(_root?: string, _argv?: readonly string[]): number;
-export declare function runRelatedClayExit(root?: string, argv?: readonly string[]): number;
-export declare function runFtlRelatedExit(root?: string, argv?: readonly string[]): number;
 /**
  * USER LAW: send waves of trinities to discover and save all from the session as
  * theorems of the millennium solutions (computable folds — NOT CMI prize).

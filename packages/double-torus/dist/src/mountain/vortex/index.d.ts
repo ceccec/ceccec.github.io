@@ -96,6 +96,48 @@ export declare function pisanoWheelOnTheNine(): {
     cassini: number[];
     computes: boolean;
 };
+/**
+ * ℤ/m DEFINES ITS OWN LAWS — every quantity here is computed from the modulus, and no law is guarded into vacuity: each
+ * states the domain it holds on. On ODD m the doubling map is a unit, so ⟨2⟩ is an orbit inside (ℤ/m)ˣ whose length
+ * divides the unit count (Lagrange); on EVEN m the fact is that 2 is no unit at all, stated rather than skipped. The
+ * reflection d ↦ m − d is an involution on every modulus, its pairs and fixed points partitioning ℤ/m, and the Fibonacci
+ * walk returns with a period that is even beyond m = 2. ℤ/9 recomputes the sealed VORTEX_SEQUENCE from the modulus alone.
+ * The same five are decided by the kernel, with no axiom, in src/pair/lean/proofs/registry.lean.
+ */
+export declare function vortexLawsOf(m: number): {
+    m: number;
+    units: number[];
+    orbit: number[];
+    pairs: (readonly [number, number])[];
+    fixed: number[];
+    period: number;
+    doublingIsAUnit: boolean;
+    laws: {
+        law: string;
+        holds: boolean;
+    }[];
+    holds: boolean;
+};
+/** Every ℤ/m states its laws and they hold — the range is the vortex squared (its nine digits), and ℤ/9's orbit IS the
+ *  unit half of the sealed sequence, recomputed here from the modulus. */
+export declare function theZModulesDefineTheirOwnLaws(matrix?: MindMatrix): {
+    computes: boolean;
+    upTo: number;
+    modules: {
+        m: number;
+        units: number;
+        order: number;
+        period: number;
+        fixed: number;
+    }[];
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function vortexStrokeKinds(matrix?: MindMatrix): {
     from: number;
     to: number;

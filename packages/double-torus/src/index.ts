@@ -45,10 +45,16 @@ export * from '../../../src/quantum/heaven/mind/index.ts'
 // Vetted crypto (content-addressed) — the SHA-256 layer, Ed25519 signing, and the append-only transparency
 // log structure live in the void/origin src/0. The mind barrel consumes them internally but does NOT
 // re-export them, so we surface them here directly (no duplication with `export * from mind` above):
+// …and, beside the vetted path, the two folds that say WHY it exists. The main entry shipped toUuid,
+// tamperCostLog2 and maxTamperingCostLog2 — the cost arithmetic — while addressEntropyBits and
+// findContentAddressCollision reached only the /kernel entry, so a consumer of the default import could
+// compute a tampering cost and had no way to learn the address is 122 effective bits with a demonstrated
+// collision in its 32-bit core. Shipping the arithmetic without the ceiling is the weak claim in package form.
 export {
   sha256, sha256Sync, sha256MerkleRoot, sha256MerkleProof, verifySha256Proof,
   ed25519Keypair, ed25519Sign, ed25519Verify,
   transparencyLogRoot, logInclusion, logConsistent, toUuidSha256,
+  addressEntropyBits, findContentAddressCollision, FORGE_COST_CEILING,
 } from '../../../src/0/index.ts'
 
 // Vortex analyse — mind only re-exports hopfield*/Edge; geometry already surfaces vortexMath /

@@ -888,7 +888,7 @@ export declare function computedTheoremFigureAndAnimation(atom: {
 }): {
     figure: {
         formula: string;
-        archetype: "flow" | "lattice" | "wheel" | "orbit" | "region" | "curve" | "series";
+        archetype: "lattice" | "flow" | "wheel" | "orbit" | "region" | "curve" | "series";
         series: {
             x: number;
             y: number;
@@ -900,7 +900,7 @@ export declare function computedTheoremFigureAndAnimation(atom: {
         phase: number;
         direction: string;
         amplitude: number;
-        archetype: "flow" | "lattice" | "wheel" | "orbit" | "region" | "curve" | "series";
+        archetype: "lattice" | "flow" | "wheel" | "orbit" | "region" | "curve" | "series";
     };
     itemid: string;
 };
@@ -1554,7 +1554,7 @@ export declare function entangledWiringOf(atom: {
     algebraicStatement?: string;
     states?: string;
 }): {
-    archetype: "flow" | "lattice" | "wheel" | "orbit" | "region" | "curve" | "series";
+    archetype: "lattice" | "flow" | "wheel" | "orbit" | "region" | "curve" | "series";
     rung: number;
     twinRung: number;
     sector: number;

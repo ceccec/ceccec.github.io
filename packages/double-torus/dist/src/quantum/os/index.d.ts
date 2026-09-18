@@ -1,5 +1,5 @@
 import type { MindMatrix } from '../../types/index.ts';
-import type { CircuitOp, CircuitResult } from '../../0/index.ts';
+import type { CircuitResult } from '../../0/index.ts';
 import { type QuantumAppEntry } from '../apps/index.ts';
 /** [55, 34, 21, 13] — consecutive-Fibonacci census rhythm, descending; sum = 123 (the QPU-inclusive 4th band). */
 export declare const CENSUS_FIBONACCI: readonly [number, number, number, number];
@@ -72,13 +72,6 @@ export type QuantumRegisterAllocation = {
 };
 /** OS service — allocate an n-qubit register: the OS owns the 2ⁿ amplitude state space (capped at 10 qubits). */
 export declare function quantumOsAllocateRegister(qubits: number): QuantumRegisterAllocation;
-/** OS service — schedule + run an ordered gate list on a register; state is content-addressed by CircuitResult.root. */
-export declare function quantumOsRunCircuit(spec: {
-    n: number;
-    ops: readonly CircuitOp[];
-    shots?: number;
-    seed?: string;
-}): CircuitResult;
 /**
  * The OS's quantum-computer driver — the surface that exposes the simulator: register allocation, gate
  * scheduling (palette + ordered ops → runQuantumCircuit), measurement (seeded shots), content-addressed

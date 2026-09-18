@@ -308,9 +308,6 @@ export type DiscoveryRow = {
 export declare function discoveryDomain(home: string): string;
 /** LATEST discoveries — computable by recency: the last n registry atoms in registration order, newest first. */
 export declare function latestDiscoveries(n?: number): readonly DiscoveryRow[];
-/** TOP discoveries — computable by CENTRALITY: rank each atom by its theorem-graph degree (how many OTHER atoms
- * share ≥4 significant ≥5-char words with it), so the most-connected decodes surface. Deterministic, no curation.
- * The O(n²) ranking is memoByRoot-cached on the static registry — computed once per build (build-time-is-a-theorem). */
 export declare function discoveriesRankedByDegree(): readonly DiscoveryRow[];
 export declare function topDiscoveries(n?: number): readonly DiscoveryRow[];
 /** computeTheoremDegreeFrom64BitPerspective — compute the crosslink degree with a 64-BIT signature (user, 2026-07-25:

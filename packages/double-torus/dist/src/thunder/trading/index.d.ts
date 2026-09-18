@@ -290,7 +290,6 @@ export declare function runTradingTraceSmartMoneyExit(_root: string, _argv?: rea
 export declare function runTradingVortexExit(_root: string, _argv?: readonly string[]): number;
 /** npm run trading:dashboard — print dev route for the trading dashboard. */
 export declare function runTradingDashboardDevExit(_root: string, _argv?: readonly string[]): number;
-/** npm run trading:learn — skill atoms + realtime source catalogue for retail curriculum. */
 export declare function runTradingLearnExit(_root: string, _argv?: readonly string[]): number;
 /** npm run trading:learn-risk — vol-target sizing + inverse-vol cap as risk teaching proxy. */
 export declare function runTradingLearnRiskExit(_root: string, _argv?: readonly string[]): number;
