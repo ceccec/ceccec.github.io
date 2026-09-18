@@ -47,7 +47,7 @@ export function findClaimGaps(root: string = process.cwd()): ClaimGap[] {
   const out: ClaimGap[] = []
   const walk = (dir: string) => {
     for (const e of readdirSync(dir, { withFileTypes: true })) {
-      if (e.name === 'node_modules' || e.name === '.lake' || e.name === 'cache') continue
+      if (e.name === 'node_modules' || e.name.startsWith('.')) continue // src/*/cache is a folder name here, not build output
       const p = join(dir, e.name)
       if (e.isDirectory()) { walk(p); continue }
       if (!e.name.endsWith('.ts')) continue
@@ -87,6 +87,86 @@ export function findClaimGaps(root: string = process.cwd()): ClaimGap[] {
   return out
 }
 
+/** A claim this corpus PUBLISHES, and the fold that published it. */
+export type PublishedClaim = { file: string; line: number; fold: string; claim: string }
+
+/** Read a quoted value from its opening quote to its matching close — a published statement rarely fits on
+ *  one line, and reading only the ones that did saw 1,776 of 5,905. */
+const valueAt = (src: string, from: number): string | null => {
+  const q = src[from]
+  if (q !== "'" && q !== '`' && q !== '"') return null
+  let i = from + 1
+  while (i < src.length) {
+    if (src[i] === '\\') { i += 2; continue }
+    if (src[i] === q) return src.slice(from + 1, i)
+    i += 1
+  }
+  return null
+}
+
+/** A sentence that refuses claims nothing, so nothing needs to back it. Most of this corpus's boundaries
+ *  are these, and counting them as claims would bury the ones that are. */
+const REFUSES = /\b(?:no|not|never|without|refus\w*|neither|nor|cannot|nothing|none|zero|NOT)\b/
+
+/**
+ * EVERY CLAIM THIS CORPUS PUBLISHES, TRIED AGAINST THE FOLD THAT PUBLISHES IT.
+ *
+ * The two rules above read facets — the corpus talking to itself. A `statement:` or `boundary:` is the
+ * corpus talking to a READER, and it is the larger surface by far: 5,442 of them against roughly 1,100
+ * facet labels. Nothing was reading them.
+ *
+ * THE TRIAL, and why it is not a word list. A gate that looks for claim WORDS catches the vocabularies
+ * whoever wrote the list thought of, and needs a new list the day a fold is named for a market or a mind.
+ * The question here is not what a sentence is about — it is whether anything can refute it. A published
+ * claim is tried when its own fold carries a facet whose `on:` computes; it is acquitted when the sentence
+ * refuses rather than asserts; and it is UNTRIED when neither holds: published to a reader, from a fold
+ * with nothing in it that can fail.
+ *
+ * UNTRIED IS NOT FALSE. Most of these are backed by the arithmetic the fold performs — the doubling
+ * circuit, the vortex seam, χ = −2. The finding is that the backing is never checked, so the sentence and
+ * the code can drift apart with nothing to notice.
+ *
+ * THE NUMBER TRIED IS PRINTED ALWAYS. A reader of "0 findings" cannot tell a clean corpus from an
+ * extractor that stopped reading, and this corpus has been bitten by exactly that.
+ */
+export function findUntriedClaims(root: string = process.cwd()): { published: number; refused: number; refutable: number; untried: PublishedClaim[] } {
+  const untried: PublishedClaim[] = []
+  let published = 0, refused = 0, refutable = 0
+  const walk = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === 'node_modules' || e.name.startsWith('.')) continue
+      const p = join(dir, e.name)
+      if (e.isDirectory()) { walk(p); continue }
+      if (!e.name.endsWith('.ts')) continue
+      const text = readFileSync(p, 'utf8')
+      const rel = relative(root, p).replace(/\\/g, '/')
+      const folds = [...text.matchAll(/^export (?:async )?function ([A-Za-z_$][\w$]*)/gm)].map((m) => ({ at: m.index!, name: m[1]! }))
+      for (const m of text.matchAll(/\b(?:statement|boundary):\s*/g)) {
+        const value = valueAt(text, m.index! + m[0].length)
+        if (value === null || value.trim().length < 20) continue
+        published += 1
+        if (REFUSES.test(value)) { refused += 1; continue }
+        let i = folds.length - 1
+        while (i >= 0 && folds[i]!.at > m.index!) i -= 1
+        if (i < 0) continue // published outside any fold — a constant, not a fold's claim
+        const body = text.slice(folds[i]!.at, folds[i + 1]?.at ?? text.length)
+        // A FACET THAT CAN FAIL: an `on:` whose value is not a hardcoded literal.
+        // The closers must ALL come off. Stripping one `}` or `,` left `on: true }]` — a facet array written
+        // on a single line — reading as a computation, so a fold whose only facet was hardcoded scored as
+        // refutable. A fixture with one fold of each kind caught it; the real tree hid it, because facets are
+        // usually one per line and end in `},`.
+        const computes = [...body.matchAll(/(?<![\w$])on:\s*([^,\n]+)/g)]
+          .map((x) => x[1]!.trim().replace(/[\]\)},\s]+$/, ''))
+          .some((on) => !/^(?:true|false)$/.test(on))
+        if (computes) { refutable += 1; continue }
+        untried.push({ file: rel, line: text.slice(0, m.index!).split('\n').length, fold: folds[i]!.name, claim: value.replace(/\s+/g, ' ').slice(0, 110) })
+      }
+    }
+  }
+  walk(join(root, 'src'))
+  return { published, refused, refutable, untried }
+}
+
 export function assertClaimsMatchEvidence(): void {
   const gaps = findClaimGaps()
   const spelled = gaps.filter((g) => g.rule === 'spelled-comparison')
@@ -95,4 +175,9 @@ export function assertClaimsMatchEvidence(): void {
   for (const g of gaps.slice(0, 12)) console.log(`  [${g.rule}] ${g.file}:${g.line}\n      ${g.label}\n      on: ${g.on}`)
   console.log(ratchet('claims.spelled-comparison', spelled.length, { evidence: () => spelled.map((g) => `${g.file}:${g.line}  ${g.label}`) }))
   console.log(ratchet('claims.cost-vs-evidence', cost.length, { evidence: () => cost.map((g) => `${g.file}:${g.line}  ${g.label}`) }))
+
+  const trial = findUntriedClaims()
+  console.log(`claims: ${trial.published} published statement(s) tried — ${trial.refused} refuse rather than assert, ${trial.refutable} come from a fold with a facet that can fail, ${trial.untried.length} from a fold with nothing in it that can`)
+  for (const c of trial.untried.slice(0, 8)) console.log(`  [untried] ${c.file}:${c.line}  ${c.fold}\n      ${c.claim}`)
+  console.log(ratchet('claims.untried-published', trial.untried.length, { evidence: () => trial.untried.map((c) => `${c.file}:${c.line}  ${c.fold}  ${c.claim}`) }))
 }
