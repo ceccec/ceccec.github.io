@@ -57,7 +57,7 @@ export function findParkedTheorems(root: string = process.cwd()): Parked[] {
   const files = new Map<string, string>()
   const walk = (dir: string) => {
     for (const e of readdirSync(dir, { withFileTypes: true })) {
-      if (e.name === 'node_modules' || e.name === '.lake' || e.name === 'cache') continue
+      if (e.name === 'node_modules' || e.name.startsWith('.')) continue // src/*/cache is a folder name here, not build output
       const p = join(dir, e.name)
       if (e.isDirectory()) walk(p)
       else if (e.name.endsWith('.ts')) files.set(relative(root, p).replace(/\\/g, '/'), readFileSync(p, 'utf8'))
@@ -77,10 +77,26 @@ export function findParkedTheorems(root: string = process.cwd()): Parked[] {
       // while something did, one screen away. What is being counted is whether a proof is consumed, not how far
       // it travelled, so the test is any mention beyond the declaration itself.
       if (SELF_CONTAINED.some((e) => e.fold === fold)) continue // read, judged complete, and duplicating nothing
-      const own = (text.match(new RegExp(`\\b${fold}\\b`, 'g')) ?? []).length
-      const elsewhere = [...files].some(([other, body]) => other !== rel && new RegExp(`\\b${fold}\\b`).test(body))
-      // the declaration and its memoByRoot key both name it, so a parked fold mentions itself twice
-      if (!elsewhere && own <= 2) out.push({ file: rel, fold })
+      // WHAT COUNTS AS A READER, and the three ways of getting it wrong that this gate has now had.
+      //
+      // Counting MENTIONS with a threshold of two — the declaration plus a memoByRoot key naming itself — is
+      // right for a memoised fold and wrong for every other: one with no memo and a real call site also
+      // mentions itself twice, so `generateAllAlignmentTheorems` read as parked while executeWave55 calls it
+      // eleven lines below. Counting CALLS instead misses the reader that never calls: a fold passed by
+      // reference — `{ solvedByFold: claySolvedByThisFoldFromTheorem }` — is read by whoever invokes it later,
+      // and this corpus does that. And STRIPPING the strings out first, so a memo key would not count, made a
+      // regex literal like /['"]/ open a literal that ran on and swallowed the code after it: the algebraic
+      // theorem gate read as parked while onlyAlgebraicQuantumComputingIsTopPriority calls it two lines in.
+      //
+      // So nothing is stripped and nothing is pattern-matched for shape. Every mention counts, minus the two
+      // that are a fold naming ITSELF: its declaration, and its own memo key.
+      const memoKeys = (body: string) =>
+        (body.match(new RegExp(`memoByRoot\\(\\s*['\`"]${fold}[:'\`"]`, 'g')) ?? []).length
+      const mentions = (body: string) => (body.match(new RegExp(`\\b${fold}\\b`, 'g')) ?? []).length
+      const readers = mentions(text) - 1 - memoKeys(text)
+        + [...files].filter(([other]) => other !== rel).reduce((n, [, body]) => n + mentions(body) - memoKeys(body), 0)
+      const read = readers > 0
+      if (!read) out.push({ file: rel, fold })
     }
   }
   return out

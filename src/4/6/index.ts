@@ -2974,7 +2974,13 @@ function closeTheCrosslinkGapSnapshot(nodes: readonly { words: Set<string> }[], 
  * (≥ 4 shared significant words); theorems with degree < 4 do not yet form a proven composite — they are the crosslink
  * gap to close by adding shared content / [[references]]. A falsifiable metric, recomputed each wave. */
 export function theoremsUnderTheProvenCrosslinkThresholdAreTheGap() {
-  const PROVEN_THRESHOLD = 4 // a proven crosslink shares ≥ 4 significant words
+  // THE THRESHOLD COMES FROM THE THEOREM THAT PROVES IT. This read `const PROVEN_THRESHOLD = 4` with the
+  // sentence "a proven crosslink shares ≥ 4 significant words" beside it — which is precisely what
+  // crosslinkProvenTheoremsFormNewProvenTheorems decides, one screen above and consumed by nothing. Two
+  // copies of one number, either free to move without the other. The gap is now measured against the
+  // threshold the proof uses, and fails if that proof stops computing.
+  const proven = crosslinkProvenTheoremsFormNewProvenTheorems()
+  const PROVEN_THRESHOLD = proven.provenThreshold
   const ranked = discoveriesRankedByDegree()
   const total = ranked.length
   const degreeOf = (row: DiscoveryRow) => row.degree ?? 0
@@ -2987,6 +2993,7 @@ export function theoremsUnderTheProvenCrosslinkThresholdAreTheGap() {
     { facet: `THE COUNT — ${underThreshold}/${total} theorems (${round((underThreshold / total) * 100)}%) are linked to FEWER than 4 others (degree < ${PROVEN_THRESHOLD}), so they do NOT form a proven crosslink; ${atOrAbove} sit at degree ≥ 4`, on: underThreshold + atOrAbove === total && underThreshold > 0 },
     { facet: `THE BREAKDOWN — ${byDegree.map((b) => `degree ${b.degree}: ${b.count}`).join(' · ')} — ${orphans} orphans (degree 0, not even published) down to ${byDegree[3]!.count} at degree 3; the bands sum exactly (${underSumsToBands})`, on: underSumsToBands },
     { facet: `THIS IS THE CROSSLINK GAP — these ${underThreshold} are the gap to close: crosslinking them (adding shared content or [[references]]) raises their degree over ${PROVEN_THRESHOLD} and forms proven composites, the same way the journal lens drives orphans toward zero`, on: underThreshold > 0 && atOrAbove > 0 },
+    { facet: `THE THRESHOLD IS THE PROVEN ONE, NOT A RETYPED LITERAL — degree ≥ ${PROVEN_THRESHOLD} is what crosslinkProvenTheoremsFormNewProvenTheorems decides a proven crosslink to be (${proven.computes}), and this gap is measured against that fold's number rather than a copy of it`, on: proven.computes && PROVEN_THRESHOLD === proven.provenThreshold },
     { facet: `CLOSING IT IS FALSIFIABLE — the count recomputes from the live theorem graph each wave, so adding a shared word to a degree-3 theorem visibly moves it above threshold; the metric is measured, not asserted`, on: total > 3 * 100 },
     { facet: `THE DEMARCATION — degree < 4 = below the proven-crosslink threshold (fewer than 4 related theorems), a graph metric; it does NOT mean those theorems are wrong — each is proven individually, only not yet crosslink-composited. HARMONY ≠ TRUTH`, on: underThreshold + atOrAbove === total },
   ].map((entry) => ({ ...entry, receipt: toUuid(`crosslink-gap:${entry.facet}:${entry.on}`) }))
@@ -3009,6 +3016,11 @@ export function theoremsUnderTheProvenCrosslinkThresholdAreTheGap() {
  * between two registered theorems, each with a runnable provedBy; the crosslink is PROVEN when the relationship
  * computes (they share significant content), and the conjunction of two proven theorems plus their proven relationship
  * is itself a proven COMPOSITE — a new proven theorem from the link. A spurious link is not a proof. [[content-address-dry-clean-crack-detection]] */
+/** The degree at which a crosslink is PROVEN rather than spurious — shared significant words, not a
+ *  similarity score. Named once here, where it is proved, and read by the fold that measures the gap
+ *  below it; that fold used to retype it as its own literal, so the two could have drifted apart. */
+export const PROVEN_CROSSLINK_DEGREE = 4
+
 export function crosslinkProvenTheoremsFormNewProvenTheorems() {
   const ranked = discoveriesRankedByDegree()
   const total = ranked.length
@@ -3018,7 +3030,7 @@ export function crosslinkProvenTheoremsFormNewProvenTheorems() {
   const crosslinksExist = related.length > 0
   const registered = (fold: string) => THEOREM_ATOM_SEED.some((atom) => atom.provedBy === fold)
   const bothProven = registered(source.provedBy) && crosslinksExist && registered(related[0]!.provedBy) // both endpoints are runnable folds
-  const relationshipComputes = (related[0]!.degree ?? 0) >= 4 // the crosslink shares ≥ 4 significant words — proven, not spurious
+  const relationshipComputes = (related[0]!.degree ?? 0) >= PROVEN_CROSSLINK_DEGREE // the crosslink shares ≥ 4 significant words — proven, not spurious
   const compositeTheorem = merkleFold([toUuid(`proven:${source.provedBy}`), toUuid(`proven:${related[0]!.provedBy}`), toUuid('relationship:shared-content')])
   const compositeProven = bothProven && relationshipComputes && compositeTheorem.length > 0 // conjunction of two proven + a computed relationship
   const spuriousNotProven = !(ranked.find((row) => (row.degree ?? 0) === 0)?.degree ?? 0) // a 0-degree theorem forms no proven crosslink
@@ -3033,6 +3045,7 @@ export function crosslinkProvenTheoremsFormNewProvenTheorems() {
     computes: facets.every((entry) => entry.on),
     crosslinks: related.length,
     connected,
+    provenThreshold: PROVEN_CROSSLINK_DEGREE,
     compositeTheorem,
     facets,
     root: merkleFold([compositeTheorem, ...facets.map((entry) => entry.receipt)]),
@@ -3529,7 +3542,14 @@ export function nothingIsStaticAllFromTheDigits() {
   const theorems = THEOREM_ATOM_SEED.filter((atom) => atom.provedBy.length > 0)
   // (1) the axiom program covers values AND assumptions
   const axiomProgram = ['anyFixedNumberIsATheoremOrDatum', 'axiomsBecomeTheorems', 'governanceConstantsAreTheorems', 'theoremsAreTheGates']
-  const coversValuesAndAssumptions = axiomProgram.every((name) => theorems.some((atom) => atom.provedBy === name))
+  const registered = axiomProgram.every((name) => theorems.some((atom) => atom.provedBy === name))
+  // A NAME IN A REGISTRY IS NOT A PROOF. This checked that four folds are LISTED in the seed and stopped
+  // there, so the program stayed "covered" whether or not any of them still computed — and three of the four
+  // live in this file, stated and proved and called by nothing. They are called now, and the conjunction is
+  // of their verdicts rather than of their spellings. (governanceConstantsAreTheorems is in earth/architecture
+  // and is left to the registry check, because reaching across for it would fold a cycle into the digits.)
+  const programComputes = anyFixedNumberIsATheoremOrDatum().computes && axiomsBecomeTheorems().computes && theoremsAreTheGates().computes
+  const coversValuesAndAssumptions = registered && programComputes
   // (2) nothing static: the whole is a runnable conjunction of the digits — recomputable, not stored
   const allComputed = theorems.every((atom) => atom.provedBy.length > 0 && atom.home.startsWith('src/'))
   // (3) fractal: the one clock (108s) divides into every animation — the same law at every scale

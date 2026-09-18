@@ -805,6 +805,16 @@
   "holds": true,
   "caption": "the quantities journalPublishesOnlyArticlesApprovedByRelatedTheoremsAsEditors computes for this theorem (approved, orphans, total, publishedFraction), drawn from its own run — no other proof returns them"
  },
+ "crosslink proven theorems to form new proven theorems — a computed relationship, not a spurious link": {
+  "form": "bars",
+  "values": [
+   5,
+   645,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities crosslinkProvenTheoremsFormNewProvenTheorems computes for this theorem (crosslinks, connected, provenThreshold), drawn from its own run — no other proof returns them"
+ },
  "theorems under the proven-crosslink threshold are the gap — 202/550 linked to fewer than 4": {
   "form": "bars",
   "values": [
