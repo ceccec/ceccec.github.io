@@ -10079,6 +10079,14 @@ export const VOCAB_DRY_METHOD_MAP = [
   { word: 'meaning', method: 'meaningIsQuantumComputable', pair: 'meaning/compute' },
   { word: 'term', method: 'scientificTerminologyIsQuantumComputableMeasurableComparable', pair: 'term/measure' },
   { word: 'formula', method: 'theoremFormulaCodeDual', pair: 'formula/code' },
+  // The theological vocabulary this corpus uses structurally, each bound to the computation it names — so the
+  // word stops being a mood and becomes an address. TRINITY is the 2-of-3 threshold: three parties, two enough
+  // to validate, the third a witness rather than a duplicate. MERKABA is the stella octangula — the cube's eight
+  // ±1 vertices split by coordinate-sign parity into two regular tetrahedra. HERO is the third of the trinity,
+  // the witness that makes agreement testimony instead of a private pair.
+  { word: 'trinity', method: 'theoremsComeInTrinities', pair: 'trinity/proof' },
+  { word: 'merkaba', method: 'merkaba', pair: 'merkaba/movie' },
+  { word: 'hero', method: 'heroLawAlignment', pair: 'hero/card' },
 ] as const
 
 /**

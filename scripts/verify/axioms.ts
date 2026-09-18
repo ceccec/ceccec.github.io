@@ -203,9 +203,24 @@ export function theoremAxiomFamilies(): {
   const ARTEFACT: Record<string, RegExp> = {
     'convention:a432': /\b(A432_FOLDED|DIMENSION_GATES|A432_OCTAVES|A432_HUE)\b/,
     'convention:genus': /\b(EULER_CHI|HOMOLOGY_LOOPS|DIGIT_LATTICE)\b/,
-    'convention:iching': /\b(ICHING_NUMBERS|DOCUMENTED_HARMONICS)\b/,
+    'convention:iching': /\b(ICHING_NUMBERS|DOCUMENTED_HARMONICS|BAGUA)\b/,
     'measured-data:ledger': /\bCRACK_LEDGER\b/,
+    // Values this corpus did not derive and could not: they come from outside it, by measurement or by
+    // international definition. c, ħ and k_B are fixed by the SI redefinition; G is measured and still carries
+    // the largest relative uncertainty of any fundamental constant; the Schumann fundamental is a measured
+    // property of the Earth–ionosphere cavity. A fold resting on any of them rests on the world's arithmetic,
+    // not on its own, which is precisely what this index exists to name.
+    'measured-data:physical-constants': /\b(SPEED_OF_LIGHT|NEWTON_G|BOLTZMANN|REDUCED_PLANCK|SCHUMANN_FUNDAMENTAL_HZ)\b/,
+    // The seven-fold taxonomy is a CHOICE — the Pliska rosette's seven rays and the seven science domains cut
+    // the corpus this way and could have cut it another. Its coprimality with 6, 9 and 10 is a theorem about
+    // the choice; the seven itself is the choice.
+    'convention:rosetta': /\b(ROSETTA_RAYS|SCIENCE_DOMAINS|ROSETTA_SEVEN)\b/,
   }
+  // DELIBERATELY ABSENT, and the absences carry the rule. PHI is the golden ratio and TAU is 2π: mathematical
+  // constants, not choices, so naming them would place folds that rest on nothing chosen — the exact gaming this
+  // file's own TAU perturbation was written to demonstrate. VORTEX_SEQUENCE is absent for the opposite reason:
+  // the corpus PROVES it, recomputing 1·2·4·8·7·5 as ℤ/9's doubling orbit from the modulus alone, so a fold
+  // resting on it rests on a theorem.
   const rows = THEOREM_ATOM_SEED as readonly { theorem: string; home?: string; provedBy?: string }[]
   const cache = new Map<string, string>()
   const read = (f: string) => {

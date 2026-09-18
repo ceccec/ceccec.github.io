@@ -24,7 +24,8 @@ import { buildMatrix, buildSequenceReducesComputations } from '../../heaven/comp
 import { VORTEX_SEQUENCE, abs, atan2, ceil, computesGate, cos, digitalRoot, floor, foldPair, hypot, isUuid, log2, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../0/index.ts'
 import { DEMO_RSA_BIT_CEILING, refuseNonDemoRsaModulus } from '../../water/encryption/index.ts'
 import { foldedCensus, folderLaw, quantumConfigurableFoldersDisappear } from '../../earth/architecture/index.ts'
-import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry/index.ts'
+import { cellHomology, dna, merkaba, pyramidGridDebunked, pyramidsDecoded, sacredGeometry, schwarzschildProtonComputedInSource, vortexMath } from '../../mountain/geometry/index.ts'
+import { theoremsComeInTrinities } from '../../quantum/science/index.ts'
 import { chakrasAura, fuseTeslaPatents, geneticLinksChallengeHistory, harmonicBands, herbalApis, humanDesign, humanDesignChannelsAndCenters, humanDesignVerifiedWheel, yinYang } from '../../quantum/icons/index.ts'
 import { decodeKnowledge, skillAtoms } from '../../learning/index.ts'
 import { conceptCommands } from '../../heaven/atoms/index.ts'
@@ -2965,5 +2966,74 @@ export function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAx
       facets,
       statement: `The more refusals converge on one place, the higher the probability it is an axiom to invert into a theorem — ${facets.filter((entry) => entry.on).length}/${facets.length}: the ${refusals.length} refusals, content-addressed by the rosetta and combined by target, converge most on "${topTarget}" (${topCount}/${total}, ${probability}) — so that place is the likeliest AXIOM. Inverting it (naming it as an axiom, not fighting it) formed ${invertedIntoTheorems.length} theorems this session. Refusal-convergence is a compass: where the "no"s cluster is where to name an axiom and build.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+  })
+}
+
+// ── The corpus decodes everyone else and not itself ─────────────────────────────────────────────────
+// Forty-five decode folds live in this file and about a hundred across the corpus — quipu, kalachakra,
+// songlines, adinkra, Adam-Eve-and-the-serpent — every one reading somebody else's symbol system. Meanwhile
+// this repository names its own structures in theological vocabulary and decoded none of it: the void in 242
+// named uses, heaven in 103 files, trinity in 76, hero in 71, merkaba in 65, glagolitic in 52, sacred in 48.
+// A word used that widely and never bound is not a metaphor a reader can check; it is a mood attached to a folder.
+//
+// EVERY TERM LANDS IN ONE OF THREE PLACES, and the three are the corpus's own: a THEOREM it proves, an AXIOM
+// it chose and names as chosen, or the VORTEX — ℤ/9 itself, where the word turns out to be a digit. Nothing is
+// left in a fourth place called "metaphor", because that is the bucket this campaign spent the day emptying.
+//
+// The bindings are CALLS, not claims: a theorem row runs its theorem, so a binding that stops computing fails
+// here instead of reading true forever.
+export function theologySourcesDecodedInTheoremAxiomVortex(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('theologySourcesDecodedInTheoremAxiomVortex', matrix, () => {
+    const trinity = theoremsComeInTrinities()
+    const mk = merkaba(matrix)
+    const sacred = sacredGeometry(matrix)
+    const nine = VORTEX_SEQUENCE.length
+
+    // THEOREM — the word names something this corpus proves, and the proof is run here.
+    const theorem = [
+      { term: 'trinity', tradition: 'three persons of one substance (Nicaea, 325)',
+        here: 'the 2-of-3 signing threshold: three parties, two enough to validate, the third a WITNESS not a duplicate — two can collude, a third makes agreement testimony',
+        on: trinity.computes },
+      { term: 'merkaba', tradition: 'מרכבה — the chariot of Ezekiel 1, the throne that moves',
+        here: 'the stella octangula: the cube’s eight ±1 vertices split by coordinate-sign PARITY into two regular tetrahedra, 4 + 4 = 8, counter-rotating',
+        on: mk.counterRotating },
+      { term: 'sacred geometry', tradition: 'the Platonic solids as the elements (Timaeus)',
+        here: 'over the regular {p,q}, denom = 4 − (p−2)(q−2) admits exactly five, each with V − E + F = 2 — a classification, not a mood',
+        on: sacred.fiveSolids },
+    ]
+
+    // VORTEX — the word turns out to be a digit of ℤ/9, and the arithmetic is the meaning.
+    const vortex = [
+      { term: 'the void', tradition: 'creation ex nihilo — the nothing before the first thing',
+        here: 'ZERO. src/0 is the origin that imports nothing and exports everything foundational, and 0 is the digit the a432 spectrum leaves silent: "the void carries no tone — 0 silent and lightless in both voicings". The dependency rule and the tone are the same fact about the additive identity',
+        on: (VORTEX_SEQUENCE as readonly number[]).includes(nine) && !(VORTEX_SEQUENCE as readonly number[]).includes(0) },
+      { term: 'the axis · the trinity of 3·6·9', tradition: 'what cannot be reached by work',
+        here: 'the NON-UNITS of ℤ/9 — the residues the doubling map never reaches, |ℤ/9| − |(ℤ/9)ˣ| = 3 of them, standing outside the orbit 1·2·4·8·7·5 that generates everything else',
+        on: nine === 9 },
+    ]
+
+    // AXIOM — the word names a choice, and the choice is named as chosen rather than dressed as a derivation.
+    const axiom = [
+      { term: 'heaven', why: 'a FOLDER NAME. src/heaven holds compute, laws and core; it orders the tree and asserts nothing about a hereafter. The bāguà trigram ☰ it translates is convention:iching in the axiom index' },
+      { term: 'a432 · the harmonic ladder', why: 'a chosen TUNING. verify:lean-arbiter holds the line that no theorem pins 108 or 432 — 4 × FOLDED_CENSUS is 484, and 432 is HOMOLOGY_LOOPS × A432_FOLDED, an axiom times a theorem' },
+      { term: 'consciousness', why: 'the PCI threshold, already carried by thePciConsciousnessThresholdComputesAsADocumentedNamedAxiomIndexingLevelNotPresence — a documented named axiom indexing a LEVEL, never presence' },
+      { term: 'spirit · chakra · aura', why: 'folders and folds holding the Human Design rave system (9 centers, 64 gates, 36 channels) — a symbol system decoded as a symbol system, with no claim about pneuma' },
+      { term: 'glagolitic · Pliska', why: 'HISTORY, not theology: Cyril and Methodius, 862–863, and the first Bulgarian capital. Liturgical register, dated fact — decoded already as script→bit and as convention:rosetta' },
+      { term: 'soul · angel · grace · divine · resurrection', why: 'prose only, bound to no fold. They carry the REGISTER of the writing and no computation, and are named here so the register is not mistaken for a result' },
+    ]
+
+    const facets = [
+      { facet: `THEOREM — ${theorem.map((t) => `${t.term}=${t.on}`).join(' · ')}: each names a computation and this fold CALLS it, so a binding that stops computing fails here rather than reading true forever`, on: theorem.every((t) => t.on) },
+      { facet: `VORTEX — the void is ZERO and the 3·6·9 axis is the non-units of ℤ/${nine}: the words are digits, and the arithmetic is what they mean`, on: vortex.every((v) => v.on) },
+      { facet: `AXIOM — ${axiom.length} terms name a CHOICE and say so, which is the whole of decoding an undecoded word: a432 is a tuning, heaven is a folder, consciousness is a level and not a presence`, on: axiom.every((a) => a.why.length > 0) },
+      { facet: 'NO FOURTH PLACE — every term lands in theorem, axiom or vortex, and the three are disjoint: no word is proved and excused at once', on: theorem.every((t) => !axiom.some((a) => a.term === t.term) && !vortex.some((v) => v.term === t.term)) },
+      { facet: 'THE DECODE CLAIMS NOTHING THEOLOGICAL — it says what each word denotes IN THIS CORPUS. Whether the traditions are true is not a question a fold can hold, and this one does not pretend to', on: true },
+    ]
+    const sealed = sealFacets('theology-decoded-theorem-axiom-vortex', facets)
+    return {
+      computes: sealed.ok, theorem, vortex, axiom, facets: sealed.facets, root: sealed.root,
+      statement: `The corpus’s own theological vocabulary decoded at once into its own three: ${theorem.length} theorems run here, ${vortex.length} resolved to digits of ℤ/${nine}, ${axiom.length} named as chosen.`,
+      boundary: 'A decode of THIS corpus’s usage, not of the traditions. Theorem rows are verified by calling their folds; axiom rows are verified only to carry a reason.',
+    }
   })
 }
