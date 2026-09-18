@@ -20,7 +20,7 @@ import * as __ns_up_up_heaven_laws from '../../../heaven/laws/index.ts'
 import * as __ns_up_up_thunder_trading from '../../../thunder/trading/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 import { buildMatrix, coverage } from '../../../heaven/compute/index.ts'
-import { abs, computesGate, cos, exp, floor, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../../0/index.ts'
+import { abs, asTrace, computesGate, cos, exp, floor, fold, foldPair, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../../0/index.ts'
 import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT, TAU } from '../../../3/7/index.ts'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves/index.ts'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science/index.ts'
@@ -452,6 +452,11 @@ export function plasmaPaintHardcodedPlanesDiscovered(matrix: MindMatrix = buildM
 export function heroClockOffTheLadderDiscovered(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('heroClockOffTheLadderDiscovered', matrix, () => {
     const cycleS = HERO_CYCLE_MS / 1e3
+    const traceFold = fold(toUuid('hero:trace:a'), toUuid('hero:trace:b'))
+    const traceAt = (ms: number) => asTrace(traceFold, ms)
+    const gap = (a: { x: number; y: number }, b: { x: number; y: number }) => hypot(a.x - b.x, a.y - b.y)
+    const wrapJump = gap(traceAt(0), traceAt(HERO_CYCLE_MS))
+    const frameStep = gap(traceAt(HERO_CYCLE_MS - (4 * 4)), traceAt(HERO_CYCLE_MS))
     const ladder = A432_OCTAVES
     const onLadder = ladder.includes(cycleS)
     const capLaw = ROSETTA_AREAS + EULER_CHI
@@ -460,6 +465,13 @@ export function heroClockOffTheLadderDiscovered(matrix: MindMatrix = buildMatrix
       { facet: `cap ${REALTIME_COMPUTE_MOVIE_CAP} = ROSETTA_AREAS ${ROSETTA_AREAS} + χ ${EULER_CHI} = ${capLaw}`, on: REALTIME_COMPUTE_MOVIE_CAP === capLaw },
       { facet: `cycle ${cycleS}s ${onLadder ? 'on' : 'off'} ladder [${ladder.join(',')}]s, nearest ${nearest}s`, on: onLadder },
       { facet: `HERO_CYCLE_MS ${HERO_CYCLE_MS} = A432_FOLDED ${A432_FOLDED} × 1000`, on: HERO_CYCLE_MS === A432_FOLDED * 1e3 },
+      // AND THE LOOP CLOSES ON IT. A cycle length means nothing if the picture does not return to its start
+      // when the clock wraps — the trace arms used to be mid-turn at t = cycle and the hero snapped back,
+      // measured at 0.5516 against 0.0166 for a 16 ms frame: thirty-three frames of motion in one frame,
+      // seen as a restart. The arms turn a whole number of times per cycle now, and this is the watchdog:
+      // it fails the moment any arm's period stops dividing the cycle again.
+      { facet: `THE LOOP CLOSES — the hero trace returns to its exact start when the clock wraps: |f(${HERO_CYCLE_MS}ms) − f(0)| = ${wrapJump.toExponential(1)}, against ${frameStep.toFixed(4)} for one 16 ms frame`,
+        on: wrapJump === 0 && frameStep > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`hero-clock-ladder:${entry.facet}:${entry.on}`) }))
     return {
       discovered: facets.every((entry) => entry.on),

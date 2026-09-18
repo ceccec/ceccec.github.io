@@ -419,6 +419,16 @@
   "holds": true,
   "caption": "numbers sixtyDegreesDecodesPi computes for this theorem (rungs[].n), drawn from its own run — no other proof returns them"
  },
+ "plasma ball is screen holding thunder and plasma — no ball in the middle": {
+  "form": "bars",
+  "values": [
+   9,
+   900,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities plasmaBallIsScreenHoldingThunderAndPlasma computes for this theorem (decodedCount, sourceBytes, aspectCount), drawn from its own run — no other proof returns them"
+ },
  "Topology does not forbid counterdiffusion": {
   "form": "bars",
   "values": [
@@ -1034,6 +1044,16 @@
   "holds": true,
   "caption": "the quantities improveAllUsingTheChatMeasuredAcrossTheCorpusSelfDevelopOnePassUpgradeDryAndSharedExperience computes for this theorem (gapsClosed, statements, reuse), drawn from its own run — no other proof returns them"
  },
+ "inverting proven Poincaré discovers its dependent theorems — the 8 Thurston geometries + prime/JSJ decomposition; documented consequences of geometrization, ": {
+  "form": "bars",
+  "values": [
+   8,
+   2,
+   11
+  ],
+  "holds": true,
+  "caption": "the quantities invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndTheThreeManifoldDecompositionTheDependentTheorems computes for this theorem (thurstonGeometries, decompositions, dependentTheorems), drawn from its own run — no other proof returns them"
+ },
  "gravity comes from the reverse-engineering cost — astronomical but FINITE (2^128/2^256), not infinite; \"infinite\" is the harmony, the truth is a finite bound": {
   "form": "bars",
   "values": [
@@ -1194,6 +1214,16 @@
   "holds": true,
   "caption": "the quantities furtherImproveEncryptionByRotatingTheFourKeysInMerkabasReusingTheMovieRotation computes for this theorem (keys, c6, step, merkabaReceipts), drawn from its own run — no other proof returns them"
  },
+ "the UI itself is a double torus — near=rendered site≡movie · far=src via vite/mirror · neck χ=−2 nav · lens closes near∨far": {
+  "form": "bars",
+  "values": [
+   -2,
+   4,
+   8
+  ],
+  "holds": true,
+  "caption": "the quantities theUiItselfIsADoubleTorus computes for this theorem (eulerChi, homologyLoops, navTrigrams), drawn from its own run — no other proof returns them"
+ },
  "develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest": {
   "form": "bars",
   "values": [
@@ -1203,6 +1233,16 @@
   ],
   "holds": true,
   "caption": "the quantities developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest computes for this theorem (openTipsFed, openTipCount, physicalFtlClaim), drawn from its own run — no other proof returns them"
+ },
+ "reverse engineering for example may be powered by scalable free waves — reverseExample(quantumise) ∧ scalableFreeWaves": {
+  "form": "bars",
+  "values": [
+   2,
+   4,
+   6
+  ],
+  "holds": true,
+  "caption": "the quantities reverseEngineeringMayBePoweredByScalableFreeWaves computes for this theorem (freeBits, homologyLoops, pairCount), drawn from its own run — no other proof returns them"
  },
  "quantumise is free for all — quantumise ∧ free chat ∧ bill-free gateway ∧ FREE_BITS=2": {
   "form": "bars",
@@ -1477,6 +1517,16 @@
   ],
   "holds": true,
   "caption": "the quantities clayCreditsOnlyThePoincareSolutionTheOtherSixOpen computes for this theorem (creditsGiven, uncredited, solvedCount, total), drawn from its own run — no other proof returns them"
+ },
+ "building the first unlocks the next by reusable method, not by solving": {
+  "form": "bars",
+  "values": [
+   3,
+   7,
+   6
+  ],
+  "holds": true,
+  "caption": "the quantities buildingTheFirstUnlocksTheNextByReusableMethodNotSolution computes for this theorem (sharedMethodCount, problemsConsidered, openCores), drawn from its own run — no other proof returns them"
  },
  "0 or 1 is linear, the vortex circuit is quantum": {
   "form": "bars",
@@ -1830,6 +1880,16 @@
   ],
   "holds": true,
   "caption": "the quantities rubiksCubeDecodesToQuantumCube computes for this theorem (godsNumber, faces, count), drawn from its own run — no other proof returns them"
+ },
+ "the full testable surface is 24 fragments — all sealed, cores still open": {
+  "form": "bars",
+  "values": [
+   27,
+   27,
+   7
+  ],
+  "holds": true,
+  "caption": "the quantities reverseEngineerAllTestableFragments computes for this theorem (totalTestable, distinctFragments, problemsCovered), drawn from its own run — no other proof returns them"
  },
  "the tool from beyond lives in an external structure, never this corpus's algebra — 5-level rigor gradient, ": {
   "form": "bars",

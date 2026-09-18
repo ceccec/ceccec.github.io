@@ -2164,6 +2164,7 @@ export function reverseEngineerAllTestableFragments(matrix: MindMatrix = buildMa
     exhaustive: facets.every((entry) => entry.on),
     totalTestable,
     distinctFragments,
+    problemsCovered: perProblem.length, // "27 fragments across the 7 problems" — the 7, counted
     perProblem,
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
@@ -2946,6 +2947,7 @@ export function buildingTheFirstUnlocksTheNextByReusableMethodNotSolution(matrix
     computes: facets.every((entry) => entry.on),
     sharedMethods,
     sharedMethodCount: sharedMethods.length,
+    problemsConsidered: challenge.problems.length, // the pool the shared-method count was taken across
     openCores: challenge.openCores,
     facets,
     root: merge(challenge.root, merkleFold(facets.map((entry) => entry.receipt))),
@@ -3156,6 +3158,7 @@ export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndThe
   return {
     computes: facets.every((entry) => entry.on),
     thurstonGeometries,
+    decompositions, // prime (connected-sum) + JSJ (torus) — the third facet's number, computed above
     dependentTheorems,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),

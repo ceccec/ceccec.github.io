@@ -2823,6 +2823,7 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
     const fwd = foldPair(toUuid('aspect:lightning-forward'), containment.root)
     const inv = foldPair(toUuid('aspect:inverted-lightning'), containment.root)
     const rev = foldPair(toUuid('aspect:thunder-reverse'), containment.root)
+    const aspectIds = ['lightning', 'inverted-lightning', 'thunder'] as const // the three aspects folded below
     const identityRoot = foldPair(fwd.merged, foldPair(inv.merged, rev.merged).merged)
     const thunderPlasmaSame =
       lightning.computes &&
@@ -2876,8 +2877,9 @@ export function plasmaBallIsScreenHoldingThunderAndPlasma(matrix: MindMatrix = b
         reverse: { id: 'thunder', root: rev.merged, theorem: 'theThunderTheoremRatingIsDrivenByTopTheoremsImportingPageRankOverTheReuseGraph' } },
       phenomena: phenomena.theoremRoutes,
       decodedCount: phenomena.theoremRoutes.length,
+      sourceBytes: ballSlice.length, // the painter source this fold read to decide srcReadable — its own measurement
+      aspectCount: aspectIds.length, // forward · inverse · reverse — the trinity folded over one containment root
       srcReadable,
-      physicalFtlClaim: 0 as const,
       facets,
       root: merkleFold([
         phenomena.root,
@@ -2904,13 +2906,13 @@ export function runPlasmaBallIsScreenHoldingThunderAndPlasmaExit(_root = '', _ar
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} plasma-screen-thunder — screen=${report.plasmaBallIsScreenHoldingThunderAndPlasma} ` +
       `noBall=${report.noBallInTheMiddle} thunder≡plasma=${report.thunderPlasmaSameDifferentAspects} ` +
-      `phenomena=${report.decodedCount} clay= ftl=${report.physicalFtlClaim} ` +
+      `phenomena=${report.decodedCount} aspects=${report.aspectCount} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   for (const p of report.phenomena) process.stdout.write(`  · ${p.name} [${p.tier}] → ${p.theorem} · ${p.route}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 // The more refusals point to one place, the bigger the probability it is an inverted AXIOM waiting to form a theorem.

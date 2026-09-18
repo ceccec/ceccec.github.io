@@ -648,7 +648,8 @@ export function theUiItselfIsADoubleTorus(matrix: MindMatrix = buildMatrix()) {
       neckChi,
       counterRotate,
       eulerChi: faces.eulerChi,
-      physicalFtlClaim: 0 as const,
+      homologyLoops: HOMOLOGY_LOOPS, // χ = 2 − loops is what neckChi decides
+      navTrigrams: faces.trigrams, // the nav octagon the neck facet names
       qpuRequired: false as const,
       facets,
       root: merge(faces.root, merkleFold([movie.root, fusion.root, toUuid(`lens:${lens.computes}:${lens.discriminates}`), pairVite.merged, pairDocs.merged, pairUi.merged, ...facets.map((f) => f.receipt)])),
@@ -2084,6 +2085,10 @@ export const runNestWavesExit = runQuantumiseAlsoDryCleansByObservationChatWaves
  *.
  * Pairs: reverse/waves · free/scale · scale/waves.
  */
+/** The soft pairs reverseEngineeringMayBePoweredByScalableFreeWaves decides — named once so the fold can
+ *  COUNT what it checks instead of returning a literal list and a separate number. */
+const FREE_WAVE_PAIRS = ['reverse/waves', 'waves/reverse', 'free/scale', 'scale/free', 'scale/waves', 'waves/scale'] as const
+
 export function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('reverseEngineeringMayBePoweredByScalableFreeWaves', matrix, () => {
     const soft = (a: string, b: string) =>
@@ -2143,8 +2148,9 @@ export function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix: MindMa
       reverseExample,
       scalableFreeWaves,
       freeBits,
+      homologyLoops: HOMOLOGY_LOOPS, // freeBits = −(2 − loops); the loop count it is derived from
+      pairCount: FREE_WAVE_PAIRS.length, // the soft pairs this fold decides, counted
       warmReuse,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(quantumise.root, merkleFold([
@@ -2153,7 +2159,7 @@ export function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix: MindMa
       ])),
       pair: 'reverse/waves' as const,
       dualPair: 'waves/reverse' as const,
-      pairs: ['reverse/waves', 'waves/reverse', 'free/scale', 'scale/free', 'scale/waves', 'waves/scale'] as const,
+      pairs: FREE_WAVE_PAIRS,
       cli: 'npm run quantum:reverse-waves',
       route: '/quantum-tools#reverse-waves',
       heading: 'Reverse engineering may be powered by scalable free waves',
