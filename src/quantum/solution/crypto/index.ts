@@ -511,3 +511,55 @@ export async function solutionManifest() {
     statement: `${mac.statement} The earlier manifest claimed PRODUCTION READY with a verify() that returned true for every input; that claim is withdrawn. Timings above are measured over ${100} iterations; RSA-2048 is timed in the same run where a filesystem-capable runtime allows it.`,
   }
 }
+
+/**
+ * AND THE ASYMMETRIC ONE, SO THE MAC HAS SOMETHING TO BE MEASURED AGAINST.
+ *
+ * crossUuidIsAnAuthenticationTagNotASignature states the gap honestly: its tag is a fold of the private key, the
+ * verifier needs that key, and so non-repudiation fails — a MAC, not a signature. A demarcation is not a fix.
+ * This fold closes it with the platform's Ed25519, and the closing property is the one the MAC cannot have:
+ * VERIFICATION TOUCHES ONLY THE PUBLIC KEY. Holding what verification requires is no longer holding what
+ * signing requires, so a tag no longer fails to distinguish Alice from her verifier.
+ *
+ * Node's node:crypto signs and verifies Ed25519 SYNCHRONOUSLY, which is why this can be a fold at all — the
+ * WebCrypto route is async and would not fit. Where the module is absent, so is the capability: the fold reports
+ * `available: false` and asserts nothing, rather than reporting a signature scheme it did not run. That is the
+ * same rule the rest of the corpus follows for a measurement it cannot take.
+ */
+export function ed25519SignaturesAreAsymmetric() {
+  const nodeCrypto = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:crypto') }).getBuiltinModule?.('node:crypto')
+    : undefined
+  if (!nodeCrypto) {
+    return {
+      computes: false, available: false,
+      facets: [{ facet: 'ED25519 IS NOT AVAILABLE HERE — node:crypto is absent, so no signature was made and none is claimed', on: true }],
+      boundary: 'Absent, not assumed: a signature scheme that did not run reports nothing.',
+      statement: 'Ed25519 asymmetry is unmeasured in this environment.',
+    }
+  }
+  const { publicKey, privateKey } = nodeCrypto.generateKeyPairSync('ed25519')
+  const other = nodeCrypto.generateKeyPairSync('ed25519').publicKey
+  const message = Buffer.from('the middle of the uuid is the program; the end is the message')
+  const signature = nodeCrypto.sign(null, message, privateKey)
+  // Every check below hands verify() the PUBLIC key only. The private key never reaches a verification path.
+  const verifiesWithPublicKeyAlone = nodeCrypto.verify(null, message, publicKey, signature)
+  const rejectsTamperedMessage = nodeCrypto.verify(null, Buffer.from('a different message'), publicKey, signature) === false
+  const rejectsAnotherKey = nodeCrypto.verify(null, message, other, signature) === false
+  const mac = crossUuidIsAnAuthenticationTagNotASignature()
+  const facets = [
+    { facet: 'VERIFICATION TOUCHES ONLY THE PUBLIC KEY — the private key is never passed to a verification path, so holding what verification requires is not holding what signing requires', on: verifiesWithPublicKeyAlone },
+    { facet: 'A TAMPERED MESSAGE IS REJECTED under the same public key', on: rejectsTamperedMessage },
+    { facet: 'ANOTHER PUBLIC KEY IS REJECTED — the signature binds to the key that made it, and only that key can have made it', on: rejectsAnotherKey },
+    { facet: `NON-REPUDIATION IS THE DIFFERENCE — the cross-uuid tag beside this one is a MAC whose verifier can forge (measured: ${mac.verifierCanForge}); this one cannot be forged by a verifier, because a verifier never holds the signing key`, on: verifiesWithPublicKeyAlone && mac.verifierCanForge === true },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on), available: true, facets,
+    signatureBytes: signature.length,
+    boundary:
+      'Ed25519 from node:crypto, keys generated in memory for this run — the PRIMITIVE is demonstrated, not a key management scheme, '
+      + 'not a PKI, and not a claim that this corpus\'s content-addresses became asymmetric: toUuid is still an FNV fold with '
+      + 'addressEntropyBits() effective bits and a measured collision in its 32-bit core. Absent in the browser, where it says so.',
+    statement: 'Ed25519 verification touches only the public key, so non-repudiation holds where the cross-uuid MAC fails.',
+  }
+}
