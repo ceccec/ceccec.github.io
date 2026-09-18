@@ -35,6 +35,7 @@
   "side-effects.top-level": 0,
   "sparkle.rows-disagreeing": 0,
   "sparkle.theorems-beyond-propext": 0,
+  "tautology.identity-witnesses": 1,
   "tautology.self-proving": 11,
   "titles.algebra-gaps": 0,
   "titles.divergent": 0

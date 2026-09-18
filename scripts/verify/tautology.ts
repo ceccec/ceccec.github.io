@@ -75,6 +75,33 @@ export function findTautologies(root: string = process.cwd()): Tautology[] {
   return found
 }
 
+/** A witness that compares a value with an ARITHMETIC REARRANGEMENT OF ITSELF — the second shape this corpus
+ *  produced. `const c = k / 10 … abs(c - c * c) < 1e-12` asks whether a decimal is its own square, and
+ *  `const lambda = c / f … abs(f * lambda - c)` asks whether multiplication undoes division. Both hold for every
+ *  input, so the facet could not go off, while its prose named the no-deleting theorem and the exactness of c = f·λ.
+ *  Narrow on purpose, like the fabrication rule: only a same-line comparison whose two sides are built from one
+ *  local and its own definition. A real test compares against something MEASURED, or shows it rejects a wrong value. */
+export function findIdentityWitnesses(root: string = process.cwd()): Tautology[] {
+  const found: Tautology[] = []
+  for (const file of sources(root)) {
+    let text = ''
+    try { text = readFileSync(file, 'utf8') } catch { continue }
+    text.split('\n').forEach((line, i) => {
+      const at = { file: file.replace(root + '/', ''), line: i + 1, declaredAt: i + 1 }
+      for (const m of line.matchAll(/abs\(\s*([A-Za-z_][A-Za-z0-9_]*)\s*-\s*\1\s*\*\s*\1\s*\)\s*[<>]/g)) {
+        found.push({ ...at, name: m[1]!, value: `${m[1]} vs ${m[1]} squared` })
+      }
+      const decl = line.match(/const ([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([A-Za-z_][A-Za-z0-9_]*)\s*\/\s*([A-Za-z_][A-Za-z0-9_]*)\b/)
+      if (decl) {
+        const x = decl[1]!, p = decl[2]!, q = decl[3]!
+        const undone = new RegExp(`abs\\(\\s*(${q}\\s*\\*\\s*${x}|${x}\\s*\\*\\s*${q})\\s*-\\s*${p}\\s*\\)`)
+        if (undone.test(line)) found.push({ ...at, name: x, value: `${q} times ${x} vs ${p}` })
+      }
+    })
+  }
+  return found
+}
+
 export function assertNoNewTautologies(): void {
   const found = findTautologies()
   const byFile = new Map<string, number>()
@@ -83,4 +110,6 @@ export function assertNoNewTautologies(): void {
   for (const [f, n] of [...byFile].sort((a, b) => b[1] - a[1]).slice(0, 8)) {
     console.log(`  ${String(n).padStart(3)}  ${f}`)
   }
+  const identity = findIdentityWitnesses()
+  console.log(ratchet('tautology.identity-witnesses', identity.length, { evidence: () => identity.map((t) => `${t.file}:${t.line}  ${t.name} — ${t.value}`) }))
 }

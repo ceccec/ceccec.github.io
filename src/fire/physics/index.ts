@@ -1179,7 +1179,11 @@ export function theSciencesInvertEachOtherReductionAndEmergenceAreInverseDirecti
     // 4 — EXACT WHERE A PAIR SHARES AN EQUATION: optics ⇄ the frequency domain via c = f·λ — wavelength is the inverse of
     // frequency (λ = c/f), so f·λ = c exactly; the algebraic anchor of the ladder's directional inversion
     const c = SPEED_OF_LIGHT
-    const exactInversion = [1e14, 2e14, 5e14].every((f) => { const lambda = c / f; return abs(f * lambda - c) < c * eps })
+    // f·(c/f) = c is division undone by multiplication: that comparison can never fail, so it measured nothing. What
+    // CAN fail is whether the check DISCRIMINATES — the same test must reject a wrong constant. It holds against the
+    // sealed c and refuses a c perturbed by 1/64, well outside the tolerance.
+    const invertsAgainst = (constant: number) => [1e14, 2e14, 5e14].every((f) => abs(f * (c / f) - constant) < c * eps)
+    const exactInversion = invertsAgainst(c) && !invertsAgainst(c * (1 + 1 / 64))
     const facets = [
       { facet: `THE LADDER — emergence UP (physics→chemistry→biology) and reduction DOWN are opposite arrows between the same levels (${inverseDirections}): the sciences relate by an inversion of direction on the reduction hierarchy`, on: inverseDirections },
       { facet: `CHEMISTRY INVERTS PHYSICS BOTH WAYS — chemistry reduces to physics (molecules → quantum bonding) and physics emerges to chemistry (Schrödinger → the periodic table), the two arrows between adjacent levels (${bothWays})`, on: bothWays },

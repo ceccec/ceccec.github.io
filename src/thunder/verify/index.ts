@@ -6,12 +6,12 @@ import { minimumFilesMaximumFeaturesCost } from '../../heaven/laws/index.ts'
 import { cssMathProvenByMath, harmonicCountsProvenByMath } from '../../earth/architecture/index.ts'
 import { darkLightPolarityProvenByMath } from '../movie/movievars/index.ts'
 import { staticPages, crawlerKnowledge } from '../../wind/site/index.ts'
-import { abs, cos, floor, foldPair, gcd, isUuid, max, memoByRoot, merge, merkleFold, min, modUnits, round, sealFacets, sin, sqrt, toUuid } from '../../0/index.ts'
+import { abs, cos, floor, foldPair, gcd, isUuid, max, memoByRoot, merge, merkleFold, min, modUnits, round, sealFacets, sin, sqrt, toUuid , qubits, applyGate, GATES } from '../../0/index.ts'
 import * as __ns_up_quantum_science from '../../quantum/science/index.ts'
 import { BOLTZMANN, EULER_E, PHI, SPEED_OF_LIGHT, TAU, claySolvedTheorem } from '../../3/7/index.ts'
 import { fanoLines, stringTheoryAlgebraDecoded, stringTheoryQuantumizedOnA432RosettaMerkleSubstrate, stringTheoryMillenniumTheoremGapsInventory, openLeadsAlgebraDecoded, solarSystemDimensionsDecoded } from '../../water/cosmos/index.ts'
 import { discoveredTheoremsProvenWave, provenTheoremsCompound, emergenceContinuesWave, discoveredTheoremsWaveTwo, discoveredTheoremsWaveThree, discoveredTheoremsWaveFour, discoveredTheoremsWaveFive, discoveredTheoremsWaveFortyTwo, discoveredTheoremsWaveFortyEight, discoveredTheoremsWaveFiftyTwo } from '../waves/index.ts'
-import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive } from '../../9/1/index.ts'
+import { discoveredTheoremsWaveEighteen, discoveredTheoremsWaveNineteen, discoveredTheoremsWaveTwenty, discoveredTheoremsWaveTwentyOne, discoveredTheoremsWaveTwentyTwo, discoveredTheoremsWaveTwentyThree, discoveredTheoremsWaveTwentyFour, discoveredTheoremsWaveTwentyFive, discoveredTheoremsWaveTwentySix, discoveredTheoremsWaveTwentySeven, discoveredTheoremsWaveTwentyEight, discoveredTheoremsWaveTwentyNine, discoveredTheoremsWaveThirty, discoveredTheoremsWaveThirtyOne, discoveredTheoremsWaveThirtyTwo, discoveredTheoremsWaveThirtyThree, discoveredTheoremsWaveThirtyFour, discoveredTheoremsWaveThirtyFive, discoveredTheoremsWaveThirtySix, discoveredTheoremsWaveThirtySeven, discoveredTheoremsWaveThirtyEight, discoveredTheoremsWaveThirtyNine, discoveredTheoremsWaveForty, discoveredTheoremsWaveFortyThree, discoveredTheoremsWaveFortyNine, discoveredTheoremsWaveFortyFour, discoveredTheoremsWaveFortyFive , innerProduct } from '../../9/1/index.ts'
 import { tkCompose, tkInverse, tkKey, tkPerms, tkIsPrime, tkPowMod, tkClassSizes, tkClassSumSimple, tkClosure, tkPslOverField, sealFold } from '../../9/1/index.ts'
 import { addressed, covers } from '../../5/5/index.ts'
 import { schemaOrgDiamonds } from '../../fire/diamonds/index.ts'
@@ -2212,10 +2212,14 @@ export function discoveredTheoremsWaveFortySix(matrix: { root: string } = { root
 
     // W2 · the NO-DELETING theorem, from NO-CLONING — the same linearity argument: a unitary that
     // deletes an unknown state to a fixed blank would force ⟨ψ|φ⟩ = ⟨ψ|φ⟩² (so the overlap ∈ {0,1}),
-    // impossible for distinct non-orthogonal states; witnessed for a range of overlaps.
-    let noDeleting = true
-    for (let k = 1; k <= 9; k += 1) { const c = k / (2 * 5); if (c !== 0 && c !== 1 && abs(c - c * c) < 1 / 1e12) noDeleting = false }
-    const noDeletingHolds = noDeleting
+    // impossible for distinct non-orthogonal states; witnessed on the computed overlaps ⟨0|+⟩ and ⟨0|1⟩.
+    // The witness is the overlap the STATES actually have — ⟨0|+⟩ and ⟨0|1⟩ computed from their amplitudes — not a
+    // decimal compared with its own square, which could never come out false and so proved nothing. Unitarity of a
+    // deleting map forces ⟨ψ|φ⟩ = ⟨ψ|φ⟩²; the non-orthogonal pair breaks it (deletion impossible) and the ORTHOGONAL
+    // control does not (there c = c² holds), so this goes off if either half stops behaving.
+    const overlapUnder = (gate: readonly number[]) => innerProduct(qubits(1), applyGate(qubits(1), gate, 0)).abs
+    const breaksSquareLaw = (c: number) => abs(c - c * c) > 1 / 1e9
+    const noDeletingHolds = breaksSquareLaw(overlapUnder(GATES.H)) && !breaksSquareLaw(overlapUnder(GATES.X))
 
     // W3 · p-groups have a NONTRIVIAL CENTER, from the CLASS EQUATION — |G| = |Z| + Σ[G:C(x)] with
     // each non-central term a proper divisor of p^k (so divisible by p), forcing p | |Z| and |Z| > 1;
