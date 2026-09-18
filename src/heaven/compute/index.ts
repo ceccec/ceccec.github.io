@@ -1659,7 +1659,8 @@ export function portalChatRanked(prompt: string, matrix: MindMatrix = buildMatri
 export function splitSearch(prompt: string) {
   const engine = privateSearchRanksByBM25IndustryStandard(prompt)
   const words = [...new Set((prompt.match(/[A-Za-z0-9]+/g) ?? []).flatMap((seg) => splitCamelSegment(seg)).filter((word) => word.length > 2))].slice(0, 8)
-  const combos = words.length >= 2 ? words.flatMap((a, i) => words.slice(i + 1).map((b) => `${a} ${b}`)) : [...words]
+  const atLeastTwoWords = words.length >= 2
+  const combos = atLeastTwoWords ? words.flatMap((a, i) => words.slice(i + 1).map((b) => `${a} ${b}`)) : [...words]
   const perCombo = combos.map((combo) => ({ combo, top: engine.rank(combo).slice(0, 3) }))
   const amplitudes = new Map<string, { slug: string; title: string; provedBy: string; identity?: string; score: number; pairs: string[] }>()
   for (const { combo, top } of perCombo)
@@ -1671,7 +1672,7 @@ export function splitSearch(prompt: string) {
     }
   const merged = [...amplitudes.values()].sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
   const constructive = merged.some((row) => row.pairs.length > 1) || merged.length <= 1
-  const expectedCombos = words.length >= 2 ? (words.length * (words.length - 1)) / 2 : words.length
+  const expectedCombos = atLeastTwoWords ? (words.length * (words.length - 1)) / 2 : words.length
   const facets = [
     { facet: `THE PROMPT SPLITS — ${words.length} distinct words → ${combos.length} pair combinations (C(n,2), capped n≤8), the superposed subqueries`, on: combos.length === expectedCombos },
     { facet: `AMPLITUDES ADD — each pair ran the one BM25 rank and per-document scores summed across pairs; a document hit by several pairs rises (constructive interference computed: ${constructive})`, on: constructive },
@@ -2395,11 +2396,12 @@ export function collectiveAiMind(prompt: string, responses: Partial<Record<AiPro
   const sets = minds.map((m) => terms(m.answer))
   const clusters = minds.map((_, i) => minds.filter((_, j) => i === j || jaccard(sets[i]!, sets[j]!) >= AGREE))
   const largest = clusters.reduce((best, c) => (c.length > best.length ? c : best), [] as typeof minds)
-  const consensusReached = largest.length >= 2
+  const atLeastTwoLargest = largest.length >= 2
+  const consensusReached = atLeastTwoLargest
   const anchorInLargest = largest.find((m) => m.trusted) // prefer the trusted anchor as the representative when it agrees
   const collective = consensusReached ? (anchorInLargest ?? largest[0]!) : minds[0]! // minds[0] = corpus anchor; a lone model never wins
   const confidence = consensusReached && minds.length ? largest.length / minds.length : 0 // CORROBORATION: fraction of the pool that agrees; a lone anchor has none (0), not a false 1
-  const loneModelQuarantined = collective.trusted || largest.length >= 2 // security invariant: no LONE untrusted mind surfaces
+  const loneModelQuarantined = collective.trusted || atLeastTwoLargest // security invariant: no LONE untrusted mind surfaces
   const facets = [
     { facet: `LOCAL ANCHOR ALWAYS IN THE POOL — the deterministic corpus answer is mind[0] (trusted); the wave never depends solely on untrusted models — ${minds.length} mind(s) in the pool: ${minds.map((m) => m.id).join(', ')}`, on: minds[0]!.trusted === true && minds.length >= 1 },
     { facet: `2-OF-N CONSENSUS IS THE TRUST — the collective ("${collective.id}") is a representative of the largest mutually-agreeing cluster (${largest.length}/${minds.length}) and is surfaced ONLY when that cluster holds ≥2 minds; a lone untrusted model is quarantined, never surfaced (${loneModelQuarantined})`, on: (consensusReached ? largest.some((m) => m.address === collective.address) : collective.address === minds[0]!.address) && loneModelQuarantined },

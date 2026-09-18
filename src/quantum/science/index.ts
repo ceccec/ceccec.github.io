@@ -1318,9 +1318,10 @@ export function theoremsComeInTrinities() {
   // each PAIR's bracket is nonzero (the pair interacts) and — via pauliAlgebraCloses — equals the THIRD, so
   // no pair is closed: the trinity is irreducible, all three needed. The map (a,b)↦c is the 3-cycle.
   const everyPairInteracts = gens.every((_, i) => commutator(gens[i]!, gens[(i + 1) % 3]!).some((v) => abs(v) > 1e-9))
+  const threeGens = gens.length === 3
   const facets = [
-    { facet: `the su(2) generators are a CLOSED trinity — [σX,σY]=2iσZ, [σY,σZ]=2iσX, [σZ,σX]=2iσY all hold (the sealed pauliAlgebraCloses, ${algebra.count} relations): three interacting theorems, not one standalone`, on: algebra.closes && gens.length === 3 },
-    { facet: `they INTERACT as a rosetta: the bracket of every pair is nonzero and equals the THIRD generator, so no pair is closed — the trinity is irreducible and the generating map (a,b)↦c is the 3-cycle X→Y→Z→X`, on: everyPairInteracts && gens.length === 3 },
+    { facet: `the su(2) generators are a CLOSED trinity — [σX,σY]=2iσZ, [σY,σZ]=2iσX, [σZ,σX]=2iσY all hold (the sealed pauliAlgebraCloses, ${algebra.count} relations): three interacting theorems, not one standalone`, on: algebra.closes && threeGens },
+    { facet: `they INTERACT as a rosetta: the bracket of every pair is nonzero and equals the THIRD generator, so no pair is closed — the trinity is irreducible and the generating map (a,b)↦c is the 3-cycle X→Y→Z→X`, on: everyPairInteracts && threeGens },
     { facet: `CURATION LAW (the purging shape): to live in the codebase a result must be a theorem inside such an interacting rosetta trinity, carrying a complete academic paper — the computed figure, the proof animation, and the saved acknowledgment format; a standalone or unproven claim has no home and is purged`, on: algebra.closes && everyPairInteracts },
   ]
   return {

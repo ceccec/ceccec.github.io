@@ -2788,12 +2788,13 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
     const beyondStandards = Array.from(new Set(beyond.map((entry) => entry.standard)))
     const nonGapAllOn = rows.filter((entry) => entry.coverage !== 'gap').every((entry) => entry.on)
     const gapAllOff = gap.every((entry) => !entry.on)
+    const atLeastEightGap = gap.length >= 8
     const facets = [
       { facet: `GLOBAL COVERAGE — ${rows.length} aspect-level tests across ${standards.length} frameworks: EU (${eu.standards.join(', ')}) + international/US/UK (${beyondStandards.join(', ')}); covered=${covered.length} partial=${partial.length} gap=${gap.length}`, on: rows.length >= 6 * 8 && standards.length === eu.standards.length + beyondStandards.length && nonGapAllOn },
       { facet: `EXTENDED BEYOND EU — the ${beyond.length} beyond-EU aspects add ISO/IEC 27001:2022 & 27002, NIST CSF 2.0, SOC 2 (AICPA TSC), UK Cyber Essentials, and ISO/IEC 27701, each mapped to the same computed evidence`, on: beyond.length >= 4 * 6 && beyondStandards.length >= 5 && eu.computes },
       { facet: `ONE EVIDENCE BASE, MANY STANDARDS — every framework's controls map to the SAME latest discoveries (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC); one architecture answers many standards`, on: integrity && noEgress && encryption && pqcAware },
-      { facet: `CERTIFICATIONS ARE NAMED GAPS — ISO 27001 cert, SOC 2 report, Cyber Essentials cert, and EUCC/CC all require an accredited auditor or notified body (${gap.length} gaps, none faked closed ${gapAllOff})`, on: gap.length >= 8 && gapAllOff },
-      { facet: `THE DEMARCATION — an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS.`, on: gap.length >= 8 && gapAllOff && pqc.claySolvedByThisFold === 0 },
+      { facet: `CERTIFICATIONS ARE NAMED GAPS — ISO 27001 cert, SOC 2 report, Cyber Essentials cert, and EUCC/CC all require an accredited auditor or notified body (${gap.length} gaps, none faked closed ${gapAllOff})`, on: atLeastEightGap && gapAllOff },
+      { facet: `THE DEMARCATION — an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS.`, on: atLeastEightGap && gapAllOff && pqc.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`global-cyber-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('global-cyber-standards-audit-every-aspect', facets)
     return {
@@ -4046,13 +4047,15 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       && crossSignature.forward !== crossSignature.reverse
       && isUuid(crossSignature.merged)
 
+    const fourScales = mk.scales.length === 4 // the merkaba's four scales, asked once and read twice below
     const tetraDual =
       mk.tetraUp.every((v, i) => mk.tetraDown[i]!.every((c, k) => c === -v[k]!))
       && mk.counterRotating
-      && mk.scales.length === 4
+      && fourScales
+    const fourPoles = earth.poles.length === 4
     const scaleSpinIsomorphism =
-      earth.poles.length === 4
-      && mk.scales.length === 4
+      fourPoles
+      && fourScales
       && earth.poles.every((p, i) => p.spinSign === mk.scales[i]!.sign)
     const crossInMerkaba = foldPair(mk.root, crossSignature.merged)
     const sixfoldDeg = roundTo(360 / 6, 6)
@@ -4179,7 +4182,7 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
     const isoCertified = false as const
 
     const facets = [
-      { facet: 'earthRealisedByComputingPolesAsPyramid — N·E·S·W poles compute (genus-2 pyramid)', on: earth.computes && earth.realised && earth.poles.length === 4 },
+      { facet: 'earthRealisedByComputingPolesAsPyramid — N·E·S·W poles compute (genus-2 pyramid)', on: earth.computes && earth.realised && fourPoles },
       { facet: 'merkaba dual tetra · 4 alternating scales — tetraDown=−tetraUp · counterRotating', on: tetraDual },
       { facet: 'bothEarthsRotateWithinEachOther — device/inverted shells = merkaba up/down', on: earths.counterRotating && earths.rotates },
       { facet: 'FoL→Fruit rosetta lattice — flowerOfLifeCenters · flowerUnlocksFruitBySpin', on: fruitUnlock.holds && flower.length === fruitUnlock.flower },

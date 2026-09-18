@@ -1107,8 +1107,10 @@ export function chatWavesTransAnyTurn(prompt: string, matrix: MindMatrix = build
       ? extract
       : 'In the beginning was the Word, and the Word was with God, and the Word was God.'
   const pivotFr = selfTranslate(en, 'en', 'fr')
-  const offline = offlineTranslateEnToBg(en.length < 6 * 8 ? en : 'Support · contact')
-  const gla = toGlagolitic(en.length < 6 * 8 ? en : 'Support · contact')
+  // One choice of source text, made once: a long line is replaced by a short stand-in before either rendering.
+  const source = en.length < 6 * 8 ? en : 'Support · contact'
+  const offline = offlineTranslateEnToBg(source)
+  const gla = toGlagolitic(source)
   const turn = freeChatTurnAtArchitecturalFtl(`trans-any:${en.slice(0, 8 * 4)}`, matrix)
   const rankLine = service.efficiencyRank
     .map((c) => `${c.id}=${c.score.toFixed(3)}`)

@@ -1042,11 +1042,12 @@ export function theAppStoreLikeGatesScanCodeLocallyForSecurityPrivacyPolicyQuali
     const cleanFindings = review(clean)
     const flagsAll = violations.length === gates.length // the violating sample trips every gate
     const cleanPasses = cleanFindings.length === 0 // correct code raises nothing (no false positive)
+    const fiveGates = gates.length === 5
     const facets = [
-      { facet: `an App-Store-style REVIEW SUITE, local: ${gates.length} gates (${gates.map((g) => g.name).join(' · ')}) each a pure local scanner — the review an app store runs on its servers, run on YOURS at zero tokens before you ship`, on: gates.length === 5 && gates.every((g) => g.why.length > 0) },
+      { facet: `an App-Store-style REVIEW SUITE, local: ${gates.length} gates (${gates.map((g) => g.name).join(' · ')}) each a pure local scanner — the review an app store runs on its servers, run on YOURS at zero tokens before you ship`, on: fiveGates && gates.every((g) => g.why.length > 0) },
       { facet: `it DISCRIMINATES with controls: the violating sample trips all ${violations.length}/${gates.length} gates (hardcoded key · eval · exfil fetch · rm -rf · debug · superlative), the clean sample raises ${cleanFindings.length} — no false positive on correct code`, on: flagsAll && cleanPasses },
       { facet: `LOCAL + zero-token is the advantage: the store reviews on its infrastructure after upload; this runs on your machine, deterministically, BEFORE you ship — you scan yourself, no external service, no data leaves`, on: flagsAll && cleanPasses },
-      { facet: `it composes the existing local gates: it sits beside the crack gate (literals), the weak-encryption detector (theCrackGateFindsWeakEncryptionByTheorems) and the prose-entropy audit — one review surface over the local suite`, on: gates.length === 5 && flagsAll },
+      { facet: `it composes the existing local gates: it sits beside the crack gate (literals), the weak-encryption detector (theCrackGateFindsWeakEncryptionByTheorems) and the prose-entropy audit — one review surface over the local suite`, on: fiveGates && flagsAll },
     ]
     return {
       computes: facets.every((entry) => entry.on),
@@ -2834,10 +2835,11 @@ export function researchTags(matrix: MindMatrix = buildMatrix(), at = 0) {
     const tags = ['homothety', 'conic-sections', 'projective-geometry'] as const
     const pairOk = pairOn('research/tags') && pairOn('tags/research') && softPair('research', 'tags')
     const composeOn = softPair('answer', 'mo') && softPair('chat', 'research')
-    const on = lane.computes && pairOk && tags.length >= 3 && composeOn
+    const atLeastThreeTags = tags.length >= 3
+    const on = lane.computes && pairOk && atLeastThreeTags && composeOn
     const facets = [
       { facet: 'researchTags', on },
-      { facet: `tag inventory count=${tags.length}`, on: tags.length >= 3 },
+      { facet: `tag inventory count=${tags.length}`, on: atLeastThreeTags },
       { facet: 'compose answer/mo · chat/research', on: composeOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`research-tags:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('research-tags', facets)

@@ -641,10 +641,11 @@ export function sign(matrix: MindMatrix = buildMatrix(), signer = 'agent', witne
   const trinity = parties.map((party, index) => ({ party, role: index === 0 ? 'signer' : index === parties.length - 1 ? 'hero' : 'witness', signature: toUuid(`sign:${party}:${termsRoot}`) }))
   const threshold = 2 // two is enough
   const hero = trinity[trinity.length - 1]! // the third — the hero, the third eye
+  const isTrinity = trinity.length === 3 // a team of three, asked once and leaned on twice below
   const facets = [
-    { facet: 'the agent signs with TWO witnesses — a trinity, a team of three', on: trinity.length === 3 && trinity.filter((entry) => entry.role !== 'signer').length === 2 },
+    { facet: 'the agent signs with TWO witnesses — a trinity, a team of three', on: isTrinity && trinity.filter((entry) => entry.role !== 'signer').length === 2 },
     { facet: 'each of the three commits to the SAME current terms (a content-addressed signature)', on: trinity.every((entry) => isUuid(entry.signature) && entry.signature === toUuid(`sign:${entry.party}:${termsRoot}`)) },
-    { facet: 'two is enough — the validating threshold is 2 of the 3', on: threshold === 2 && trinity.length === 3 },
+    { facet: 'two is enough — the validating threshold is 2 of the 3', on: threshold === 2 && isTrinity },
     { facet: 'the third is the HERO — the third eye, the transcendent witness that completes the trinity', on: hero.role === 'hero' && isUuid(hero.signature) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sign:${entry.facet}:${entry.on}`) }))
   return {

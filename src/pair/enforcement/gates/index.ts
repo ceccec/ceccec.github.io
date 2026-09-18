@@ -4637,7 +4637,8 @@ export function feedGatesIndexToChat(root: string = enforcementScanRoot()) {
     spray.physicalFtlClaimFacet === 0 &&
     spray.clayEq0 <= clayBudget &&
     spray.notPhysicalFtl <= notFtlBudget
-  const gatesFed = fileOk && tips.length >= 4 && sprayLean
+  const atLeastFourTips = tips.length >= 4
+  const gatesFed = fileOk && atLeastFourTips && sprayLean
   const on =
     gatesFed &&
     gatesChatPaired &&
@@ -4650,7 +4651,7 @@ export function feedGatesIndexToChat(root: string = enforcementScanRoot()) {
       facet: `sprayLean — clay=0×${spray.clayEq0} physicalFtl=0×${spray.physicalFtlEq0} NOT-FTL×${spray.notPhysicalFtl} totalMarkers=${spray.totalSprayMarkers}`,
       on: sprayLean,
     },
-    { facet: `improveTips=${tips.length}`, on: tips.length >= 4 },
+    { facet: `improveTips=${tips.length}`, on: atLeastFourTips },
     { facet: 'pair gates/chat bidirectional', on: gatesChatPaired && foldGatesChat.bidirectional },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gates-chat:${entry.facet}:${entry.on}`) }))
   const computes = facets.every((f) => f.on) && on

@@ -972,13 +972,14 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
     const emb = asTorus(fold(toUuid('torus:geo:a'), toUuid('torus:geo:b')))
     const left = doubleTorusSurface(0, 0, 0, -1)
     const right = doubleTorusSurface(0, 0, 0, 1)
+    const sevenScienceDomains = SCIENCE_DOMAINS.length === 7
     const domainProof: Record<(typeof DOUBLE_TORUS_QC_UPGRADE_WAVES)[number]['id'], boolean> = {
       algebra: priority.computes === true && priority.onlyAlgebraicQuantumComputingIsTopPriority === true,
       geometry: geo.aligns === true && (emb.lobe === 0 || emb.lobe === 1) && Number.isFinite(emb.x) && right.x > left.x,
       physics: dynamics.computes === true,
       biology: life.computes === true && life.lifeTorus === true,
       chemistry: chem.computes === true,
-      star: SCIENCE_DOMAINS.length === 7
+      star: sevenScienceDomains
         && SCIENCE_DOMAINS.every((d) => d.field.length > 0 && d.oecd.length > 0)
         && QUANTUM_SKY_POSSIBILITIES.length > 0
         && QUANTUM_SKY_POSSIBILITIES.every((p) => p === 'quantum' || p.startsWith('quantum/'))
@@ -1020,7 +1021,7 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
       countless.computes === true &&
       noCost.computes === true
     const qcOn = qc.computes === true && qc.doubleTorusQuantumComputer === true
-    const starCoversAll = SCIENCE_DOMAINS.length === 7 && waves.some((w) => w.id === 'star' && w.prove)
+    const starCoversAll = sevenScienceDomains && waves.some((w) => w.id === 'star' && w.prove)
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const pairUpgrade = foldPair(toUuid('cmd:torus'), toUuid('cmd:upgrade'))
     const pairFree = foldPair(toUuid('cmd:free'), toUuid('cmd:chat'))
@@ -1664,10 +1665,11 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
     ].map((row) => ({ ...row, receipt: toUuid(`life-torus:${row.superposition}:${row.on}`) }))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const pairFold = foldPair(toUuid('cmd:life'), toUuid('cmd:torus'))
+    const sevenRows = rows.length === 7
     const facets = [
-      { facet: `every life-forming superposition DOCUMENTED as a torus equation — ${rows.filter((row) => row.on).length}/${rows.length} rows compute (matter · metabolism · heredity · homeostasis · reproduction · sensing · mind), each grounded in a named sealed theorem`, on: rows.every((row) => row.on) && rows.length === 7 },
+      { facet: `every life-forming superposition DOCUMENTED as a torus equation — ${rows.filter((row) => row.on).length}/${rows.length} rows compute (matter · metabolism · heredity · homeostasis · reproduction · sensing · mind), each grounded in a named sealed theorem`, on: rows.every((row) => row.on) && sevenRows },
       { facet: 'the documentation IS the computation — every equation re-verifies at call time on the src/0 kernel and the torus constants; nothing is remembered prose', on: rows.every((row) => row.equation.length > 0 && row.theorem.length > 0) },
-      { facet: `HONEST SCOPE — structural identities on the genus-2 carrier (the in-repo emergence model): NOT a claim that biological life is a double torus, NOT vitalism from equations · measured rows.length=${rows.length} · claySolvedByThisFold=${claySolvedByThisFold}`, on: rows.length === 7 && claySolvedByThisFold === 0 },
+      { facet: `HONEST SCOPE — structural identities on the genus-2 carrier (the in-repo emergence model): NOT a claim that biological life is a double torus, NOT vitalism from equations · measured rows.length=${rows.length} · claySolvedByThisFold=${claySolvedByThisFold}`, on: sevenRows && claySolvedByThisFold === 0 },
       { facet: 'pair life/torus bidirectional', on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
     ].map((entry) => ({ ...entry, receipt: toUuid(`life-torus:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)

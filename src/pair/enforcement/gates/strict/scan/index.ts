@@ -1677,10 +1677,11 @@ export function patentCanon(root: string = enforcementScanRoot()) {
     { section: 'references', tool: 'paper canon references slot (source & locks)', present: appsText.includes("references: '5 · References") },
   ].map((row) => ({ ...row, receipt: toUuid(`patent-canon:${row.section}:${row.present}`) }))
   const allPresent = machinery.every((row) => row.present)
+  const eightSections = sections.length === 8
   const facets = [
-    { facet: `grantable-structure canon NAMED — ${sections.length} required sections (title · field · background · summary · description · claims · abstract · drawings), the external legal contract held as a named axiom`, on: sections.length === 8 },
+    { facet: `grantable-structure canon NAMED — ${sections.length} required sections (title · field · background · summary · description · claims · abstract · drawings), the external legal contract held as a named axiom`, on: eightSections },
     { facet: `the portal COMPUTES the specification — ${machinery.filter((row) => row.present).length}/${machinery.length} section machineries present (paper canon slots · facet-claims · theoremFigure drawings)`, on: allPresent },
-    { facet: 'FREE FOR ALL by construction — completeness serves defensive disclosure (prior art), never proprietary claiming; legal sufficiency per jurisdiction is counsel\'s call, stated not claimed', on: allPresent && sections.length === 8 },
+    { facet: 'FREE FOR ALL by construction — completeness serves defensive disclosure (prior art), never proprietary claiming; legal sufficiency per jurisdiction is counsel\'s call, stated not claimed', on: allPresent && eightSections },
     // LEGAL-PROOF COMPLETENESS (user law 2026-07-24): where a granted/pending patent rests on math
     // that is FREE FOR ALL here, the record must stand as evidence in proceedings. The evidence triad
     // COMPUTES: dated publication (git history), content integrity (merkle seals, tamper-EVIDENT),
@@ -2724,6 +2725,7 @@ export function computeStrictGateSnapshot(
   const hardcodedCracks = scanCrackSurface(root) // full surface: src + .vitepress, .ts/.mts/.vue
   const scriptShellViolations = scanScriptShellViolations(scriptShells)
   const digitAudit = { passed: true, receipt: toUuid('digit-gate:vortex:sealed'), failures: [] as string[] }
+  const merkleIs64 = merkle.length === 64
   const parts = [
     toUuid(`strict:imports:${imports.length}`),
     toUuid(`strict:one-math:${oneMath.length}`),
@@ -2737,7 +2739,7 @@ export function computeStrictGateSnapshot(
     toUuid(`strict:cracks:${hardcodedCracks.reduce((n, o) => n + o.count, 0)}`),
     toUuid(`strict:shell:${scriptShellViolations.length}`),
     toUuid(`strict:pairs:${pairsPaired}`),
-    toUuid(`strict:merkle:${merkle.length === 64}`),
+    toUuid(`strict:merkle:${merkleIs64}`),
     digitAudit.receipt,
   ]
   return {
@@ -2753,7 +2755,7 @@ export function computeStrictGateSnapshot(
     hardcodedCracks,
     scriptShellViolations,
     pairsPaired,
-    merkleOk: merkle.length === 64,
+    merkleOk: merkleIs64,
     digitPassed: digitAudit.passed,
     digitReceipt: digitAudit.receipt,
     receipt: merkleFold(parts) }

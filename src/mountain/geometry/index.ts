@@ -1177,10 +1177,11 @@ export function sacredGeometry(matrix: MindMatrix = buildMatrix()) {
     'φ or a “sacred cubit” intentionally “encoded in the Great Pyramid” is a coincidence — a simple seked slope rule reproduces the same face angle, Petrie never mentioned φ, and the “pyramid-inch” is discredited pyramidology.',
     'The clean “dodecahedron = aether / fifth element” identity is later (Aristotle), not Plato’s own words; the “mystical keys to consciousness” reading is a modern overlay on what was, for Plato, a (wrong-but-rational) physics of matter.',
   ]
+  const fiveSolids = platonicSolids.length === 5 // there are exactly five, and that is the theorem
   return {
-    decoded: documented.length >= 5 && flagged.length >= 5 && eulerHolds && platonicSolids.length === 5,
+    decoded: documented.length >= 5 && flagged.length >= 5 && eulerHolds && fiveSolids,
     platonicSolids,
-    fiveSolids: platonicSolids.length === 5,
+    fiveSolids,
     eulerHolds,
     phi,
     phiSquaredIsPhiPlusOne: abs(phi * phi - (phi + 1)) < 1e-9,
@@ -2037,11 +2038,12 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       spinSign: (i % 2 === 0 ? 1 : -1) as 1 | -1,
       receipt: toUuid(`earth-pole-pyramid:${c.name}:${c.bearing}`) }))
     const expectedBearings = pyramid.cardinals.map((c) => c.bearing)
+    const fourPoles = poles.length === 4
     const alternatingOmega =
-      poles.length === 4
+      fourPoles
       && poles.every((p, i) => (i === 0 ? true : p.spinSign * poles[i - 1]!.spinSign === -1))
     const phaseLockCardinals =
-      poles.length === 4
+      fourPoles
       && expectedBearings.length === 4
       && poles.every((p, i) => p.bearing === expectedBearings[i])
       && expectedBearings[1]! - expectedBearings[0]! === (9 * 5 * 2)

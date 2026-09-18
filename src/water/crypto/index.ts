@@ -1822,10 +1822,11 @@ export function securityFromTheoremsNotAxioms(matrix: MindMatrix = buildMatrix()
     const axioms = basis.filter((b) => b.kind === 'axiom')
     const everyTheoremChecks = reproducible && tamperEvidentByRecompute && theorems.every((t) => t.locallyProven)
     const axiomsAreTheVulnerabilities = axioms.every((a) => !a.locallyProven) // the vuln finder's findings ARE these
+    const twoAxioms = axioms.length === 2
     const facets = [
-      { facet: `VULNERABILITIES COME FROM AXIOMS: every localVulnerabilityFinder finding is an assumed property that fails (collision resistance, bit width, ∞ cost) — the vulnerability is exactly where security rests on an axiom, not a proof`, on: axiomsAreTheVulnerabilities && axioms.length === 2 },
+      { facet: `VULNERABILITIES COME FROM AXIOMS: every localVulnerabilityFinder finding is an assumed property that fails (collision resistance, bit width, ∞ cost) — the vulnerability is exactly where security rests on an axiom, not a proof`, on: axiomsAreTheVulnerabilities && twoAxioms },
       { facet: `the portal's REAL security is a locally-proven THEOREM: reproducibility (recompute + compare, verified here) and tamper-evidence (any change ⇒ different root, verified here) — checkable with zero trust, no axiom to break`, on: everyTheoremChecks },
-      { facet: `so REDEFINE the basis: ${theorems.length} properties are theorems (provable locally) and only ${axioms.length} remain axioms — the security surface shrinks to exactly the NAMED residual, which is the minimal thing left to trust`, on: theorems.length === 3 && axioms.length === 2 },
+      { facet: `so REDEFINE the basis: ${theorems.length} properties are theorems (provable locally) and only ${axioms.length} remain axioms — the security surface shrinks to exactly the NAMED residual, which is the minimal thing left to trust`, on: theorems.length === 3 && twoAxioms },
       { facet: `and the residual axiom is minimised AND named: only the hash's collision/preimage resistance needs trust — and quantumThreatScan already says make it post-quantum; everything else is recomputation. Axioms-become-theorems, applied to encryption`, on: axioms.every((a) => a.property.includes('resistance') || a.property.includes('unforge')) },
     ]
     return {

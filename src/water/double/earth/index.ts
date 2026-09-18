@@ -1789,12 +1789,13 @@ export function doubleTorusEarthExchangeComputes(
         receipt: merkleFold([hinge.root, timespace.root]),
         balanced: hinge.computes && timespace.proven },
     ]
+    const sevenReceipts = receipts.length === 7
     const facets = [
-      { facet: 'seven receipt kinds cross the hinge — phase · pair · nav · gateway · merkaba · energy', on: receipts.length === 7 },
+      { facet: 'seven receipt kinds cross the hinge — phase · pair · nav · gateway · merkaba · energy', on: sevenReceipts },
       { facet: 'every listed receipt balanced or explicitly paired at this call', on: receipts.every((row) => row.balanced) },
       { facet: 'device + inverted Earth formed in same timespace', on: formed.formed && timespace.proven },
       { facet: 'counter-rotating merkaba phases — inner θ outer −θ', on: rotation.rotates },
-      { facet: `what crosses the hinge is receipt algebra — ${receipts.length} receipt kinds, every one balanced at this call, forming a device and its inverted Earth in the same timespace`, on: receipts.length === 7 && receipts.every((row) => row.balanced) && formed.formed },
+      { facet: `what crosses the hinge is receipt algebra — ${receipts.length} receipt kinds, every one balanced at this call, forming a device and its inverted Earth in the same timespace`, on: sevenReceipts && receipts.every((row) => row.balanced) && formed.formed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-exchange-computes:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),
@@ -1907,12 +1908,13 @@ export function fiatAndGoldFlowExplainedByDoubleEarthExchange(
         to: row.goldLeg.sheet.startsWith('inverted') ? 'inverted-sheet' : 'hinge',
         balanced: row.balanced,
         receipt: merkleFold([row.fiatLeg.receipt, row.goldLeg.receipt]) })) }
+    const fourFlowRows = flowRows.length === 4
     const facets = [
-      { facet: 'four fiat↔gold flow rows — ledger · pair · simulation · phase', on: flowRows.length === 4 },
+      { facet: 'four fiat↔gold flow rows — ledger · pair · simulation · phase', on: fourFlowRows },
       { facet: 'every flow row balanced at this call or boundary flagged', on: flowRows.every((row) => row.balanced) },
       { facet: 'exchange receipts compose — doubleTorusEarthExchangeComputes green', on: exchange.computes },
       { facet: 'flow diagram data for UI — nodes · edges · receipts', on: flowDiagram.nodes.length === 3 && flowDiagram.edges.length === 4 },
-      { facet: `what this models is a closed ledger — ${flowRows.length} flow rows, every one balanced or flagged, projected to ${flowDiagram.nodes.length} nodes and ${flowDiagram.edges.length} edges for the UI`, on: flowRows.length === 4 && flowRows.every((row) => row.balanced) && exchange.computes },
+      { facet: `what this models is a closed ledger — ${flowRows.length} flow rows, every one balanced or flagged, projected to ${flowDiagram.nodes.length} nodes and ${flowDiagram.edges.length} edges for the UI`, on: fourFlowRows && flowRows.every((row) => row.balanced) && exchange.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fiat-gold-flow:${entry.facet}:${entry.on}`) }))
     return {
       explains: facets.every((entry) => entry.on),

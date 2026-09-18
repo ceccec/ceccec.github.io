@@ -774,14 +774,15 @@ export function unitDistanceResearch(matrix: MindMatrix = buildMatrix(), at = 0)
     const grid = unitDistanceGridBaseline((2 * 5) ** 5)
     const projection = quantumProjectionParams('unit-distance')
     const findings = unitDistanceFindings()
+    const fiveFindings = findings.length === 5 // the tier census, asked once for both facets below
     const { computes, facets, root } = computesGate('unit-distance-research', [
       { facet: 'exact bookkeeping — conductor and rd(F) from the first ℓ primes ≡ 1 (mod 3)', on: tower.logRootDiscriminant > 0 && tower.largestAuxPrime % 3 === 1 },
       { facet: 'GS relation budget — margin d²/4 − d − C0 − 3t > 0 at the γ-crossover', on: unitDistanceGolodShafarevichMargin(tower.ell) > 0 },
       { facet: 'γ crossover exists — minimal ℓ with γ > 0 found below the sieve bound', on: crossover !== null && report.gamma > 0 },
       { facet: 'δ positive and honestly tiny — 0 < δ < 1e-4 in both Q readings', on: report.deltaUtopian > 0 && report.deltaUtopian < 1e-4 && report.deltaChebotarevGrh > 0 && report.deltaChebotarevGrh < 1e-4 },
       { facet: 'animation projection registered — pro-3 layers and channel count derive from the sequence', on: projection.segments === 3 && projection.forms === 7 && projection.dimensions === (5 * 2) },
-      { facet: 'findings computed, never quoted — every figure recomputes from the folds and all three tiers present', on: findings.length === 5 && findings.some((row) => row.tier === 'DOCUMENTED') && findings.some((row) => row.tier === 'MODEL_FIT') && findings.some((row) => row.tier === 'HYPOTHESIS') },
-      { facet: `what runs here is exact bookkeeping plus flagged heuristics — ${findings.length} findings, every figure recomputed from the folds over a tower with logRootDiscriminant ${tower.logRootDiscriminant > 0 ? '> 0' : '≤ 0'}`, on: findings.length === 5 && tower.logRootDiscriminant > 0 },
+      { facet: 'findings computed, never quoted — every figure recomputes from the folds and all three tiers present', on: fiveFindings && findings.some((row) => row.tier === 'DOCUMENTED') && findings.some((row) => row.tier === 'MODEL_FIT') && findings.some((row) => row.tier === 'HYPOTHESIS') },
+      { facet: `what runs here is exact bookkeeping plus flagged heuristics — ${findings.length} findings, every figure recomputed from the folds over a tower with logRootDiscriminant ${tower.logRootDiscriminant > 0 ? '> 0' : '≤ 0'}`, on: fiveFindings && tower.logRootDiscriminant > 0 },
     ])
     return {
       computes,

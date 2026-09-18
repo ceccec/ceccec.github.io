@@ -538,9 +538,10 @@ export function threeWordWaves(matrix: MindMatrix = buildMatrix()) {
   // The sequence is meaningful: each wave folds into the next, an arc from imagination
   // to proof, so the order itself is content-addressed (reorder it and the root moves).
   const sequenceRoot = merkleFold(waves.map((wave, index) => toUuid(`seq:${index}:${wave.phrase}`)))
+  const nineWaves = waves.length === 9 // one wave per digit of the vortex
   return {
-    sent: waves.every((wave) => wave.explores) && waves.length === 9,
-    meaningfulSequence: waves.length === 9,
+    sent: waves.every((wave) => wave.explores) && nineWaves,
+    meaningfulSequence: nineWaves,
     count: waves.length,
     waves,
     sequenceRoot,

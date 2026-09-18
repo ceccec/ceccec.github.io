@@ -3223,10 +3223,11 @@ export function combineQuantumBits(
       productRoot = merkleFold(envRoots.length > 0 ? envRoots : [toUuid('combine:envelope-merge:empty')])
       products.push({ id: `envelope-merge:${bitIds.join('+')}`, root: productRoot })
     }
-    const envelopePayloadRoot = bits.length >= 2
+    const atLeastTwoBits = bits.length >= 2
+    const envelopePayloadRoot = atLeastTwoBits
       ? merkleFold(bits.map((b) => b.envelope.root))
       : (bits[0]?.envelope.root ?? toUuid('combine:envelope:empty'))
-    const allCombinable = bits.length >= 2 && bits.every((b) => b.combinable === true && isUuid(b.root))
+    const allCombinable = atLeastTwoBits && bits.every((b) => b.combinable === true && isUuid(b.root))
     const honestyOk = bits.every((b) => b.qpuRequired === false && b.physicalQubit === false && b.certified === false && b.claySolvedByThisFold === 0)
     const computes = allCombinable && honestyOk && isUuid(productRoot) && isUuid(envelopePayloadRoot)
     return {
