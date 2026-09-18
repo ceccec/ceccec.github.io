@@ -1,4 +1,5 @@
 // ☶ Gèn · Mountain — geometry, topology & colour folds (merkaba, double-torus, sacred geometry, the RGB/CMY/CMYK & hex-colour dualities, the 64=4³ cube, heart/proton, the genetic code, imperial fractions), dissolved out of the monolith. Independent; folds.ts back-imports the gate folds. Re-exported through the mind barrel.
+import { theMerkabaDerivedItsMotionATheoremOfTetrahedralSymmetryNoAxiomAssumed } from '../../1/9/index.ts'
 import { packageScriptsOf } from '../../pair/enforcement/gates/strict/scan/index.ts'
 import { EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS, enforcementScanRoot } from '../../pair/enforcement/gates/computational/index.ts'
 import { existsSync, readFileSync } from 'node:fs'
@@ -208,12 +209,19 @@ function merkabaRaw(matrix: MindMatrix = buildMatrix()) {
   })
   // The star tetrahedron (stella octangula): two regular tetrahedra inscribed in a
   // cube, one the negation of the other — interlocked, counter-rotating.
-  const tetraUp: readonly (readonly [number, number, number])[] = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]]
-  const tetraDown = tetraUp.map((v) => [-v[0], -v[1], -v[2]] as [number, number, number])
+  // THE VERTICES ARE DERIVED, NOT LISTED. src/1/9 splits the cube's eight ±1 vertices by coordinate-sign parity
+  // into the two regular tetrahedra of the stella octangula and checks V − E + F = 2 on them. This listed one
+  // tetrahedron by hand and then "checked" duality against the negation that had just defined tetraDown — a
+  // comparison that could not come out false, guarding four typed vertices and feeding counterRotating.
+  const stella = theMerkabaDerivedItsMotionATheoremOfTetrahedralSymmetryNoAxiomAssumed()
+  const tetraUp: readonly (readonly [number, number, number])[] =
+    stella.tetraA.map((v) => [v[0]!, v[1]!, v[2]!] as [number, number, number])
+  const tetraDown = tetraUp.map((v) => [-v[0]!, -v[1]!, -v[2]!] as [number, number, number])
   // Opposite at all scales: every adjacent pair of scales spins in opposite senses.
   const alternating = scales.every((entry, i) => i === 0 || entry.sign * scales[i - 1].sign === -1)
-  // The two tetrahedra are exact opposites (the down is the negated up).
-  const dual = tetraUp.every((v, i) => tetraDown[i].every((c, k) => c === -v[k]))
+  // The claim is the theorem's: the two tetrahedra PARTITION the cube, 4 + 4 = 8 by parity. That fails if the
+  // split ever stops covering the cube, where comparing a negation with itself never could.
+  const dual = stella.computes && stella.stellaIsCube && tetraUp.length + tetraDown.length === stella.cubeVertices
   return {
     counterRotating: alternating && dual && scales.length > 0,
     scales,

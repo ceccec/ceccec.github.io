@@ -22,16 +22,32 @@ date-released: "2026-09-14"
 
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.22352566"
+    description: >-
+      CITE THIS FOR THE SOFTWARE. The concept DOI of the release archive: it
+      resolves to the newest archived release and follows every future one
+      (currently v1.5.0, record 22737368, linked isSupplementTo the v1.5.0 tag).
+      A citation of this DOI reaches the software as released, which the
+      priority record below does not.
+  - type: doi
     value: "10.5281/zenodo.21787144"
     description: >-
-      Deposited record fixing authorship and date (2026-08-04). Its title,
-      "Quantum Proofs of the Clay Millennium Problems v1.0", reflects claims
-      withdrawn after audit on 2026-08-20 — see the abstract above. Cited for
-      priority and attribution, not for its title.
+      THE FIRST DEPOSIT — 2026-08-04, Tsvetan Rouschev — and the priority record
+      kept as such: the earliest dated, authored statement of the ℤ/9 involution
+      approach to the Clay Millennium problems, published before any later work
+      on the same ground. It is retained precisely so the date and the authorship
+      stand on the public record, independently recomputable from the deposit.
+      Its title, "Quantum Proofs of the Clay Millennium Problems v1.0", carries
+      claims the author's own 2026-08-20 audit withdrew — this repository asserts
+      no Clay problem is solved by it; see the abstract above and HONESTY.md.
+      Cited for PRIORITY and attribution, not as proof, and not for its title.
+      NOTE its concept DOI (10.5281/zenodo.21787143) is shared with two unrelated
+      works and now resolves to the uuidna record, so cite this VERSION DOI and
+      never that concept.
 version: "1.5.0"
 repository-code: "https://github.com/ceccec/ceccec.github.io"
 url: "https://ceccec.psg.bg"
-repository-artifact: "https://github.com/ceccec/ceccec.github.io/releases/tag/v1.2.0"
+repository-artifact: "https://github.com/ceccec/ceccec.github.io/releases/tag/v1.5.0"
 
 license: "CC-BY-NC-ND-4.0"
 license-url: "https://creativecommons.org/licenses/by-nc-nd/4.0/"
