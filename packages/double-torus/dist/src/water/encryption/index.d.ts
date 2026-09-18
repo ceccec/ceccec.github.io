@@ -374,7 +374,7 @@ export declare function runEncryptionReverseVerifyGuardedExit(_root: string, _ar
 /**
  * UI panel — encrypt↔decrypt + measured demo RSA + beyond-RSA PQC suite + local reverse vs standards + local novel security + standards audit.
  * Pair: reverse/encryption-verify · measure/demo-rsa · measure/crypto-beyond · reverse/timed-vs-standards · prove/local-novel-encrypt · prove/1tbit-encrypt · max-bits/crypto · prove/local-magnitudes-iso · iso/pqc-catalog · poles/cross-pqc · audit/standards
- * Route: /en/encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #secp256k1-prime · #quantum-standards-audit)
+ * Route: /encryption (#demo-rsa-measure · #crypto-beyond-rsa · #local-reverse-timed-vs-standards · #prove-local-novel-encrypt · #local-audit-quantum · #prove-1tbit · #max-bits-crypto · #prove-local-magnitudes-iso · #iso-pqc-catalog · #poles-cross-pqc · #secp256k1-prime · #quantum-standards-audit)
  */
 export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -10484,7 +10484,7 @@ export type LocalAuditFacetTiming = {
 /**
  * Run the local security/audit suite with memoByRoot reuse receipts.
  * Pair: audit/local-quantum · CLI npm run quantum:local-audit-quantum
- * Route: /en/encryption#local-audit-quantum
+ * Route: /encryption#local-audit-quantum
  *
  * Composes proveLocalNovelEncryptionSecurity + localEncryptionReverseTimedVsStandards +
  * quantumStandardsAuditSuite through memoized roots; reports cold vs warm ms, memo hits,
@@ -12228,7 +12228,7 @@ export declare function pqcNecessityFromShorCompose(matrix?: MindMatrix): {
 /**
  * Crypto toolkit measured BEYOND demo RSA — PQC catalogs, Shor/ECC map, hash taxonomy, directional trinity.
  * Structural/demo ops with timed receipts; NOT production KEM/DSA impl; NOT FIPS/ISO certified.
- * Pair: measure/crypto-beyond · CLI npm run quantum:crypto-beyond-measure · route /en/encryption#crypto-beyond-rsa
+ * Pair: measure/crypto-beyond · CLI npm run quantum:crypto-beyond-measure · route /encryption#crypto-beyond-rsa
  */
 export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
     computes: boolean;
@@ -13221,7 +13221,7 @@ export type OneTbitModelReceipt = {
 };
 /**
  * Prove (or refute) “1 Tbit realtime encryption” at call time under named models.
- * Pair: prove/1tbit-encrypt · CLI npm run quantum:prove-1tbit-encrypt · route /en/encryption#prove-1tbit
+ * Pair: prove/1tbit-encrypt · CLI npm run quantum:prove-1tbit-encrypt · route /encryption#prove-1tbit
  *
  * Models:
  * - wire-crypto — AES-256-GCM wire throughput. No sealed bench → measured=0, proved=false (refused as SLA).
@@ -13281,7 +13281,7 @@ export type LocalVsIsoDirectionRow = {
 /**
  * Prove (or refute) "local encryption is magnitudes stronger than ISO in all directions".
  * Pair: prove/local-magnitudes-iso · CLI npm run quantum:prove-local-magnitudes-iso
- * Route: /en/encryption#prove-local-magnitudes-iso
+ * Route: /encryption#prove-local-magnitudes-iso
  *
  * Composes PR #22 localEncryptionReverseTimedVsStandards timing/standards metrics + directional trinity
  * + local novel structural gates + amortized holographic extent (same family as proveOneTbit).
@@ -16080,7 +16080,7 @@ export declare function runIsoPqcRequirementsGapFillInBrowser(matrix?: MindMatri
 export declare function runIsoPqcRequirementsGapFillExit(_root: string, _argv?: readonly string[]): number;
 /**
  * Maximum honest bit widths for encrypt · decrypt · inverse · reverse — quantum-wave receipt.
- * Pair: max-bits/crypto · CLI npm run quantum:max-bits-crypto · route /en/encryption#max-bits-crypto
+ * Pair: max-bits/crypto · CLI npm run quantum:max-bits-crypto · route /encryption#max-bits-crypto
  *
  * Composes encryptDecryptQuantumTools · encryptionReverseVerify · localEncryptionReverseTimedVsStandards ·
  * directionalTrinityForwardInverseReverse · proveOneTbitRealtimeEncryptionClaim · refuse / worker caps.
@@ -17516,7 +17516,7 @@ export declare function runMaxBitsHardwareBoundaryAgreeExit(_root?: string, _arg
  * Geometric cross = N↔S × E↔W from Earth poles-as-pyramid; tip signatures + sealed
  * certificate *structures* for PQC tooling — NOT CA/PKI, NOT FIPS/ISO certification.
  *
- * Pair: poles/cross-pqc · CLI npm run quantum:poles-cross-pqc · route /en/encryption#poles-cross-pqc
+ * Pair: poles/cross-pqc · CLI npm run quantum:poles-cross-pqc · route /encryption#poles-cross-pqc
  * Composes merkaba · bothEarths · FoL→Fruit · sixtyDegree(60→90) · universalNavigationalCross ·
  * earthRealisedByComputingPolesAsPyramid · isoNistPqcStandardsCatalog · directionalTrinity.
  *
@@ -19056,7 +19056,7 @@ export declare function secp256k1PrimeConstructionTerms(): readonly {
  * Seal · invert · decode secp256k1 field prime p via directional trinity math.
  *
  * Pair: secp256k1/invert-decode · CLI npm run quantum:secp256k1-prime-invert-decode
- * Route: /en/encryption#secp256k1-prime · /proofs/secp256k1-field-prime
+ * Route: /encryption#secp256k1-prime · /proofs/secp256k1-field-prime
  *
  * Invert = (1) construction as signed Σ±2^e  (2) mod-p inverse of sample units
  * Decode = binary/power-of-two subtraction chain + hex/decimal + ECC facet map
@@ -19371,7 +19371,7 @@ export declare const demoLie: typeof productionBrowserToolsAreNotDemos;
 export declare function runProductionBrowserToolsAreNotDemosExit(_root: string, _argv?: readonly string[]): number;
 export declare const runToolHonestExit: typeof runProductionBrowserToolsAreNotDemosExit;
 export declare const runDemoLieExit: typeof runProductionBrowserToolsAreNotDemosExit;
-/** Chat intent phrases → /en/ssltest · pair ssl/test (functionality class: stack→receipt; quantumise ≠ mirror). */
+/** Chat intent phrases → /ssltest · pair ssl/test (functionality class: stack→receipt; quantumise ≠ mirror). */
 export declare const SSL_TEST_CHAT_PHRASES: readonly ["ssl test", "ssltest", "tls test", "https test", "ssl/test", "test/ssl", "certificate test", "open ssltest", "quantumise ssl"];
 export type SslTestCoverage = 'covered' | 'partial' | 'gap';
 export type SslTestChecklistRow = {
@@ -19405,7 +19405,7 @@ export declare function normalizeSslTestHostLabel(raw: string): {
  * SSL test UI complete — quantumise stack→receipt (functionality class), not Qualys/ssllabs mirror.
  * Sealed recompute · rosetta/merkaba poles-cross · forward·inverse·reverse trinity · tool/honest.
  * Warm-reuse at computational FTL (memoByRoot cold/warm) · facet quantumiseAtFtlSpeed.
- * Pairs: ssl/test · test/ssl · soft quantumise/ftl · CLI npm run quantum:ssl-test · route /en/ssltest
+ * Pairs: ssl/test · test/ssl · soft quantumise/ftl · CLI npm run quantum:ssl-test · route /ssltest
  */
 export declare function sslTestUiComplete(matrix?: MindMatrix, hostLabel?: string): {
     computes: boolean;

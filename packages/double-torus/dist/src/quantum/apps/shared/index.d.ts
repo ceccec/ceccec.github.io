@@ -22,56 +22,56 @@ export declare const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[]
  * Pure compute rows are browser-achievable; spawn/gate rows stay Node with strangler plan.
  */
 export declare const STDIO_MCP_CAPABILITY_SEEDS: readonly [{
-    readonly id: "census-status";
+    readonly id: "census_status";
     readonly browserAchievable: true;
     readonly browserGap: "";
     readonly stranglerPlan: "sealed — UNFOLDED_CENSUS/FOLDED_CENSUS/DIMENSION_GATES via runStdioMcpCapabilityInBrowser";
     readonly fold: "censusStatus";
     readonly description: "Report sealed census + a432 gate constants";
 }, {
-    readonly id: "compute-from-source";
+    readonly id: "compute_from_source";
     readonly browserAchievable: true;
     readonly browserGap: "";
     readonly stranglerPlan: "sealed — A432_HUE · toUuid · rosettaRayOf pure recompute in browser";
     readonly fold: "computeFromSource";
-    readonly description: "Pure compute-from-source (a432-hue · to-uuid · rosetta-ray)";
+    readonly description: "Pure compute_from_source (a432-hue · to-uuid · rosetta-ray)";
 }, {
-    readonly id: "list-capabilities";
+    readonly id: "list_capabilities";
     readonly browserAchievable: true;
     readonly browserGap: "";
     readonly stranglerPlan: "sealed — listCapabilities() mirrors stdio tools/list in browser panel";
     readonly fold: "listCapabilities";
     readonly description: "Meta: browserAchievable matrix for 7 stdio tools (complements tools/list)";
 }, {
-    readonly id: "fold-report";
+    readonly id: "fold_report";
     readonly browserAchievable: true;
     readonly browserGap: "";
     readonly stranglerPlan: "browser when fold id ∈ quantumCliToolsCatalog.browserRunnable; else Node bootstrap fold";
     readonly fold: "foldReport";
     readonly description: "Fold report for a sealed export name";
 }, {
-    readonly id: "run-gate";
+    readonly id: "run_gate";
     readonly browserAchievable: false;
     readonly browserGap: "spawns npm/Node gates (check:types · limits:verify · mission:gate · docs:build) — CI/local only";
     readonly stranglerPlan: "show last gate receipt in UI when present; never fake trinity pass in browser";
     readonly fold: "runGate";
     readonly description: "Run sealed mission/gate npm scripts via bootstrap";
 }, {
-    readonly id: "run-wave";
+    readonly id: "run_wave";
     readonly browserAchievable: false;
     readonly browserGap: "wave workflows are Node shell mounts (.claude/workflows) — not browser-executable";
     readonly stranglerPlan: "expose wave status facets from sealed selfBuild receipts in panel";
     readonly fold: "runWave";
     readonly description: "Run ceccec-build-waves kind via local workflow";
 }, {
-    readonly id: "run-export";
+    readonly id: "run_export";
     readonly browserAchievable: false;
     readonly browserGap: "bootstrap run <entry> <exportName> needs Node module loader";
     readonly stranglerPlan: "map exportName → browser runner when catalog browserRunnable; else residual";
     readonly fold: "runExport";
     readonly description: "Run sealed export via CLI bootstrap";
 }];
-export declare const PASTE_BOOTSTRAP_SAMPLE_URLS: readonly ["https://github.com/ceccec/ceccec.github.io", "https://github.com/ceccec/ceccec.github.io/tree/main/src/0", "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md", "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md", "git@github.com:ceccec/ceccec.github.io.git", "https://ceccec.github.io/", "https://ceccec.github.io/en/quantum-tools#toolbox-standard-io", "https://ceccec.github.io/mcp.json", "https://ceccec.github.io/agents.json", "https://ceccec.github.io/.well-known/ai-skills.json", "https://ceccec.psg.bg/llms.txt", "https://ceccec.psg.bg/en/#first-in-corpus"];
+export declare const PASTE_BOOTSTRAP_SAMPLE_URLS: readonly ["https://github.com/ceccec/ceccec.github.io", "https://github.com/ceccec/ceccec.github.io/tree/main/src/0", "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md", "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md", "git@github.com:ceccec/ceccec.github.io.git", "https://ceccec.psg.bg/", "https://ceccec.psg.bg/quantum-tools#toolbox-standard-io", "https://ceccec.psg.bg/mcp.json", "https://ceccec.psg.bg/agents.json", "https://ceccec.psg.bg/.well-known/ai-skills.json", "https://ceccec.psg.bg/llms.txt", "https://ceccec.psg.bg/en/#first-in-corpus"];
 /** Named drainable MCP quantum faces — catalog star inventory (pair + dual + CLI tool ids). */
 export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
     readonly fold: "mcpQuantumUi";

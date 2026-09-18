@@ -64,6 +64,69 @@ export declare function vortexStrokeGateways(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * THE WRITTEN CYCLE READ AGAINST THE DOUBLING LAW. vortexStrokeGateways walks 1\2\4\8/7/5/3\6\9/0\1 as one tour;
+ * erpax writes the same cycle with its seams showing — 1\2\4\8/7/5 · 3\6\9 · 0\1 — because doubling never leaves
+ * the units and the axis is reached only by reflection (theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge).
+ * Each step is classified from vortexMath's own doubling orbit and cross: 'orbit' inside 1-2-4-8-7-5, 'axis' inside
+ * 3-6-9, 'void' out of 0, and 'join' at the two seams (5→3, 9→0) — the `·` a painter draws as a break, never as a
+ * doubling stroke.
+ */
+/**
+ * THE REFLECTION'S ONE FIXED POINT, computed for the painters that mark it. r(d) = 10 − d on the digits 1…9: the digits it
+ * leaves where they are, and the pairs it swaps. The vortex-strokes painter draws the pairs as chords and rings exactly the
+ * fixed points returned here, and the movie binds that ring to this fold — so the mark is where the arithmetic puts it.
+ */
+export declare function theTenComplementFixesExactlyFive(): {
+    fixed: number[];
+    pairs: (readonly [number, number])[];
+    computes: boolean;
+};
+/**
+ * THE PISANO WHEEL ON THE NINE, with Cassini's sign on every step. The Fibonacci recurrence read mod 9 returns to its start
+ * (0, 1) after a period found by walking it, never typed; the wheel visits the digital roots of F(1)…F(period), and step n
+ * carries the sign Cassini's identity gives it, F(n−1)·F(n+1) − F(n)² = (−1)ⁿ — both checked on the Fibonacci numbers
+ * themselves, so the walk the painter draws and the numbers it stands for cannot drift apart. The kernel holds both beyond
+ * this check: Registry.pisano_nine_is_twenty_four decides the period, and Registry.cassini_for_every_n proves the sign for
+ * every n (src/pair/lean/proofs/registry.lean).
+ */
+export declare function pisanoWheelOnTheNine(): {
+    period: number;
+    walk: number[];
+    cassini: number[];
+    computes: boolean;
+};
+export declare function vortexStrokeKinds(matrix?: MindMatrix): {
+    from: number;
+    to: number;
+    kind: "join" | "void" | "axis" | "orbit";
+}[];
+/**
+ * THE 2×7 FOLDS INTO THE 1+6 AND BACK — the author: "if all fused properly they will be rotating in 2x7 morphing to 1+6
+ * and vice versa". The seven rosetta rays each carry a life end (radius 1) and a death end (radius 1/2): fourteen ends,
+ * the 2×7. As m runs from 0 to 1 each end travels straight to its ray's seat — ray 0 to the centre, rays 1…6 to the six
+ * digits of the doubling orbit around a hexagon — so at m = 1 the fourteen are seven, the 1+6, and running m back
+ * unfolds them. The painter (drawTwoBySevenMorph) and the fold below read these same points.
+ */
+export declare function twoBySevenPoints(m: number, orbit: readonly number[], rays?: number): {
+    ray: number;
+    end: "life" | "death";
+    digit: number;
+    x: number;
+    y: number;
+}[];
+export declare function twoBySevenFoldsIntoOnePlusSix(matrix?: MindMatrix): {
+    computes: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** invertedSequenceLearnedFromErpax — learn the erpax inverted sequence (user, 2026-07-28: "learn from
  * https://github.com/erpax/erpax inverted sequence to fill the gaps in theorems and animations especially the
  * movie"). erpax publishes ONE structure read twice — forward `1\2\4\8/7/5 · 3\6\9 · 0\1`, reflected

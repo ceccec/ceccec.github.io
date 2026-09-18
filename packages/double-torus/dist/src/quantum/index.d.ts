@@ -309,11 +309,6 @@ export interface FieldLayer {
     /** content-address of this layer within the field. */
     readonly root: string;
 }
-/**
- * The eight domain layers of one field — the iching × rosetta consolidation every animation reuses.
- * Each layer keys to a trigram (domain), a rosetta ray (perspective), and a force/topology role.
- * All derive from the field's content-address + A432 hue — no per-layer hand-tuning.
- */
 export declare function fieldLayers(field: AnimationField): readonly FieldLayer[];
 /** A viewpoint onto the one field — a rosetta ray re-projects the SAME content-addressed field. */
 export interface RosettaPerspective {

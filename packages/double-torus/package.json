@@ -1,6 +1,6 @@
 {
   "name": "@ceccec/double-torus",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "The agnostic, zero-dependency computational core of the Double Torus — completely quantum: all math AND animations plus analyse/dynamics/geometry, one hero clock, movieCanvas palette, TAU, doubleTorusIsCompletelyQuantum proof, and counter-rotating rosetta wave discovery (clay/FTL COMPUTED). Pure TypeScript. Runs in any browser or Node, depends on nothing. Sealed quantum compute substrate only — NOT QPU hardware · NOT physical FTL · NOT Clay.",
   "type": "module",
   "main": "./dist/index.js",

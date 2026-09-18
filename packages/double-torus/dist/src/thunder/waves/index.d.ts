@@ -758,6 +758,7 @@ export type ProofAnimationSpec = {
     readonly hueDigit: number;
     readonly seed: number;
     readonly coords: ProofAnimationCoords;
+    readonly witness?: ProofWitness;
 };
 /** THE FOLDS OF ZERO GENERATE THE DIGITS (user law) — folding is a mirror, and two mirrors at
  *  angle θ generate the dihedral group D_{180/θ}: the 0 folded at θ degrees becomes the
@@ -795,6 +796,19 @@ export declare function vortexCircuitPiecewiseLaw(): {
 };
 /** The theorem's coordinates from its digit — pure arithmetic on the sealed sequence, never keyed. */
 export declare function proofAnimationCoords(digit: number): ProofAnimationCoords;
+export type ProofWitness = {
+    readonly form: 'bars' | 'walk' | 'grid' | 'graph';
+    readonly caption: string;
+    readonly holds: boolean;
+    readonly values?: readonly number[];
+    readonly against?: readonly number[];
+    readonly marks?: readonly number[];
+    readonly modulus?: number;
+    readonly cells?: readonly (readonly number[])[];
+    readonly frames?: readonly (readonly (readonly [number, number, number, number])[])[];
+    readonly together?: boolean;
+};
+export declare const THEOREM_WITNESS_NAMES: readonly string[];
 /** Any content title → its animation spec — the visual metaphor computed, never hand-keyed.
  *  `proofKey` is the theorem's OWN (algebraic identity ⊢ proving fold) pair: the spec seed is its
  *  content-address, so the animation is the visual RECEIPT of the proof — the same proof always
@@ -802,6 +816,10 @@ export declare function proofAnimationCoords(digit: number): ProofAnimationCoord
 export declare function specForContent(title: string, proofKey?: string): ProofAnimationSpec;
 export declare function proofAnimations(matrix?: MindMatrix): {
     animated: boolean;
+    witnessed: number;
+    drawnFromATemplate: string[];
+    everyWitnessHolds: boolean;
+    everyWitnessNamesARow: boolean;
     uniqueAnimationsMatchUniqueTheorems: boolean;
     everyAnimationConfirmsItsProof: boolean;
     noOtherAnimationAllowed: boolean;

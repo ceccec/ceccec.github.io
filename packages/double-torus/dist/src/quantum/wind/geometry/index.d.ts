@@ -22,6 +22,19 @@ export declare function depthIsThePerspectiveDivide(): {
 };
 export declare function branch(ctx: CanvasRenderingContext2D, x: number, y: number, len: number, angle: number, depth: number, d: Dims, hue: number, dark?: boolean): void;
 /**
+ * THE SAME FRACTAL, COLLECTED INSTEAD OF DRAWN. branch strokes every segment on its own — one raster call and one
+ * colour string per segment, which made the hero's arms most of the movie's two thousand seven hundred draw calls a
+ * frame. Every segment at one depth of one arm has the same colour and width (they depend on the arm, the hue and the
+ * depth only), so the segments are gathered by depth here and strokeBranchLevels draws each depth as one path.
+ */
+export declare function branchSegments(levels: number[][], x: number, y: number, len: number, angle: number, depth: number, d: Dims): void;
+/**
+ * Stroke collected levels in branch's own colours and widths, deepest (the trunk) first as branch drew it. Not
+ * pixel-identical, and said so: where two segments of one path meet, their semi-transparent ends composite once
+ * instead of twice, and crossings between subtrees blend in depth order rather than tree order.
+ */
+export declare function strokeBranchLevels(ctx: CanvasRenderingContext2D, levels: readonly (readonly number[] | undefined)[], d: Dims, hue: number, dark?: boolean): void;
+/**
  * 19 Flower-of-Life centres (1 + 6 + 12) — triangular lattice, unit-scaled.
  * Computed gapless ring lattice — NOT a wet decorative seven-circle schematic.
  */

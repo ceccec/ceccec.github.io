@@ -4,6 +4,14 @@ import * as __ns_up_earth_architecture from '../earth/architecture/index.ts';
 import type { AgentEducation, McpToolManifest, MindMatrix, SchoolCurriculum } from '../types/index.ts';
 import { type LocaleName } from '../wind/site/index.ts';
 export declare function agentEducation(matrix?: MindMatrix): AgentEducation;
+/**
+ * A concept command's MCP tool name: the command with its dots as underscores (concept.self.address → concept_self_address),
+ * so every published tool lies inside the ^[a-zA-Z0-9_-]{1,64}$ that MCP clients accept — the Claude API refuses a dotted
+ * name, and all 108 were dotted. No command name contains an underscore, so conceptCommandOfToolName reads the command
+ * back unambiguously; verify:mcp-transport checks that round trip for every command.
+ */
+export declare const mcpToolName: (command: string) => string;
+export declare const conceptCommandOfToolName: (tool: string) => string;
 export declare function mcpToolManifest(matrix?: MindMatrix): McpToolManifest;
 export declare function skillAtoms(matrix?: MindMatrix): {
     intelligent: boolean;
@@ -1169,7 +1177,7 @@ export declare function vitepressSidebar(matrix?: MindMatrix): {
         gaplessCensus: boolean;
         folders: {
             id: "papers" | "references" | "diamonds" | "model" | "theorems" | "proofs" | "pages-root" | "pages-bg" | "pages-gla" | "domain-tools" | "domain-trading" | "domain-encryption" | "domain-theorems" | "domain-research" | "domain-learn" | "domain-society" | "hub-origin" | "hub-proof" | "hub-explore" | "hub-learn" | "hub-apps" | "hub-frontier" | "hub-reference";
-            path: "/frontiers" | "/learn" | "/explore" | ".vitepress/pages" | ".vitepress/pages/bg" | ".vitepress/pages/gla" | ".vitepress/pages/proofs" | ".vitepress/pages/theorems" | ".vitepress/pages/papers" | ".vitepress/pages/references" | ".vitepress/pages/diamonds" | ".vitepress/pages/model" | "/quantum-tools" | "/quantum-trading-hub" | "/encryption" | "/research" | "/society-merkaba" | "/origin" | "/proof" | "/apps" | "/frontier" | "/reference";
+            path: "/frontiers" | "/learn" | "/explore" | "/encryption" | "/quantum-tools" | ".vitepress/pages" | ".vitepress/pages/bg" | ".vitepress/pages/gla" | ".vitepress/pages/proofs" | ".vitepress/pages/theorems" | ".vitepress/pages/papers" | ".vitepress/pages/references" | ".vitepress/pages/diamonds" | ".vitepress/pages/model" | "/quantum-trading-hub" | "/research" | "/society-merkaba" | "/origin" | "/proof" | "/apps" | "/frontier" | "/reference";
             role: "en-root locale mounts" | "bg locale" | "gla locale" | "Clay domain proofs" | "machine tag index" | "machine papers REST" | "machine references REST" | "machine diamonds REST" | "model cards" | "tools canonical" | "trading canonical" | "encryption canonical" | "theorem registry canonical" | "research canonical" | "learn canonical" | "society canonical" | "rosetta ray hub" | "rosetta ray hub (learn ray)";
             kind: "hub" | "domain" | "locale" | "corpus";
             emitter: "references" | "toGlagolitic" | "sciencePortalParts" | "siteDomainRegistry" | "staticPages+computed-pages" | "localePath+bulgarianFromEnglish" | "domainProofCatalog" | "theoremRosettaSidebar" | "papers()" | "diamondLattice" | "ModelCardPages";

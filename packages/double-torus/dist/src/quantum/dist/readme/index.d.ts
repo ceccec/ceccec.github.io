@@ -72,7 +72,7 @@ export declare function servedRouteFamilies(matrix?: MindMatrix): {
         readonly enumerated: true;
     }, {
         readonly family: "theorems";
-        readonly label: "theorem papers";
+        readonly label: "theorem papers — the registered theorems plus the card papers outside the registry";
         readonly index: "/theorems";
         readonly count: number;
         readonly enumerated: false;

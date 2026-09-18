@@ -49809,7 +49809,7 @@ export declare function honestRevolutionClaim(matrix?: MindMatrix, at?: number):
  * Honest-revolution W2 — interference vs classical-shadow receipt.
  * Amplitudes cancel (interference); classical probability shadows cannot.
  * Composes W1 `honestRevolutionClaim` + parallelism≠speedup + simulatorsLiveInZero + classical-64bit honesty.
- * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /en/quantum-tools#honest-revolution-w2
+ * Pair: moment/prove · CLI npm run quantum:honest-revolution-w2 · route /quantum-tools#honest-revolution-w2
  */
 export declare function interferenceVsClassicalShadow(matrix?: MindMatrix, at?: number): {
     holds: boolean;
@@ -50829,7 +50829,7 @@ export declare function classical64BitEnvironmentAtCallTime(): Classical64BitEnv
  * sealed folds run on classical JS/TS Node/browser on any classical 64-bit host.
  *
  * Pair: prove/no-qpu-64bit · CLI npm run quantum:prove-no-qpu-64bit
- * Route: /en/quantum-tools#prove-no-qpu-64bit
+ * Route: /quantum-tools#prove-no-qpu-64bit
  *
  * HONEST: composes compareCeccecEfficiencyByVote / noKnownModelMoreEfficientProven when decided;
  * classical-64bit (NO physical QM speedup).
@@ -52470,7 +52470,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         dualPair: "fractal/import";
         cli: string;
         route: string;
-        uiSurface: "/en/quantum-tools#import-fractal";
+        uiSurface: "/quantum-tools#import-fractal";
         anchor: string;
         heading: string;
         statement: string;
@@ -55855,7 +55855,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             dualPair: "fractal/import";
             cli: string;
             route: string;
-            uiSurface: "/en/quantum-tools#import-fractal";
+            uiSurface: "/quantum-tools#import-fractal";
             anchor: string;
             heading: string;
             statement: string;
@@ -58001,7 +58001,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
         dualPair: "fractal/import";
         cli: string;
         route: string;
-        uiSurface: "/en/quantum-tools#import-fractal";
+        uiSurface: "/quantum-tools#import-fractal";
         anchor: string;
         heading: string;
         statement: string;

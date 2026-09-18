@@ -88,7 +88,7 @@ export declare function sitemapJson(siteUrl: string, matrix?: MindMatrix, now?: 
         readonly enumerated: true;
     }, {
         readonly family: "theorems";
-        readonly label: "theorem papers";
+        readonly label: "theorem papers — the registered theorems plus the card papers outside the registry";
         readonly index: "/theorems";
         readonly count: number;
         readonly enumerated: false;
@@ -161,7 +161,7 @@ export declare function everyAgentSurfaceCitesAndComplies(matrix?: MindMatrix): 
     boundary: string;
 };
 /** agentSurfaceLinksResolveToServedRoutes — the links an agent is handed must EXIST (measured 2026-07-28 on the
- * live origins: `/quantum-tools` and `/bg/quantum-tools` serve 200, `/en/quantum-tools` serves 404 — English is
+ * live origins: `/quantum-tools` and `/bg/quantum-tools` serve 200, `/quantum-tools` serves 404 — English is
  * the ROOT locale, so an `/en/` prefix is a dead end). An agent that follows a published link into a 404 learns
  * nothing and cites nothing; the surfaces that carry the citation must also carry live routes. Fail-closed: the
  * facet counts `/en/`-prefixed links in the emitted agent artifacts and opens while any remain. */

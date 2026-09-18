@@ -992,7 +992,7 @@ export declare function runDryDupeExit(root?: string, _argv?: readonly string[])
 export declare function patentCanon(root?: string): {
     computes: boolean;
     patentCanon: boolean;
-    sections: ("title" | "abstract" | "background" | "claims" | "summary" | "technical field" | "detailed description" | "drawings")[];
+    sections: ("title" | "summary" | "abstract" | "background" | "claims" | "technical field" | "detailed description" | "drawings")[];
     machinery: {
         receipt: string;
         section: string;
@@ -1247,7 +1247,7 @@ export declare function coreMathFreeForAll(root?: string): {
     patent: {
         computes: boolean;
         patentCanon: boolean;
-        sections: ("title" | "abstract" | "background" | "claims" | "summary" | "technical field" | "detailed description" | "drawings")[];
+        sections: ("title" | "summary" | "abstract" | "background" | "claims" | "technical field" | "detailed description" | "drawings")[];
         machinery: {
             receipt: string;
             section: string;

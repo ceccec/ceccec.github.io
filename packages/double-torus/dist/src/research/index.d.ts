@@ -1389,8 +1389,8 @@ export declare function cursorReferralFundsAiNeeds(matrix?: MindMatrix, at?: num
     url: "https://cursor.com/referral?code=JVAZXASXOSSK";
     ctaLabel: "Fund AI via Cursor referral";
     societyRoute: string;
-    toolsRoute: "/en/quantum-tools#fund-ai";
-    homeAnchor: "/en/#fund-ai";
+    toolsRoute: "/quantum-tools#fund-ai";
+    homeAnchor: "/#fund-ai";
     claySolvedByThisFold: 0;
     physicalFtlClaim: 0;
     qpuRequired: false;
@@ -3999,6 +3999,31 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                     binds: boolean;
                 } | {
                     receipt: string;
+                    id: "two-by-seven-morph";
+                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "reflection-fixed-point";
+                    theorem: "theTenComplementFixesExactlyFive";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "double-torus-chi";
+                    theorem: "cellHomology";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "address-coins-lit";
+                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "pisano-wheel";
+                    theorem: "pisanoWheelOnTheNine";
+                    binds: boolean;
+                } | {
+                    receipt: string;
                     id: "inverted-sequence";
                     theorem: "invertedSequenceLearnedFromErpax";
                     binds: boolean;
@@ -4266,6 +4291,31 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                         receipt: string;
                         id: "vortex-strokes";
                         theorem: "vortexStrokeGateways";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "two-by-seven-morph";
+                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "reflection-fixed-point";
+                        theorem: "theTenComplementFixesExactlyFive";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "double-torus-chi";
+                        theorem: "cellHomology";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "address-coins-lit";
+                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "pisano-wheel";
+                        theorem: "pisanoWheelOnTheNine";
                         binds: boolean;
                     } | {
                         receipt: string;
@@ -7011,6 +7061,31 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                         binds: boolean;
                     } | {
                         receipt: string;
+                        id: "two-by-seven-morph";
+                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "reflection-fixed-point";
+                        theorem: "theTenComplementFixesExactlyFive";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "double-torus-chi";
+                        theorem: "cellHomology";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "address-coins-lit";
+                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "pisano-wheel";
+                        theorem: "pisanoWheelOnTheNine";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
                         id: "inverted-sequence";
                         theorem: "invertedSequenceLearnedFromErpax";
                         binds: boolean;
@@ -7278,6 +7353,31 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                             receipt: string;
                             id: "vortex-strokes";
                             theorem: "vortexStrokeGateways";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
                             binds: boolean;
                         } | {
                             receipt: string;
@@ -10584,6 +10684,31 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                         binds: boolean;
                     } | {
                         receipt: string;
+                        id: "two-by-seven-morph";
+                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "reflection-fixed-point";
+                        theorem: "theTenComplementFixesExactlyFive";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "double-torus-chi";
+                        theorem: "cellHomology";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "address-coins-lit";
+                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "pisano-wheel";
+                        theorem: "pisanoWheelOnTheNine";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
                         id: "inverted-sequence";
                         theorem: "invertedSequenceLearnedFromErpax";
                         binds: boolean;
@@ -10851,6 +10976,31 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             receipt: string;
                             id: "vortex-strokes";
                             theorem: "vortexStrokeGateways";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
                             binds: boolean;
                         } | {
                             receipt: string;
@@ -13588,6 +13738,31 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -13855,6 +14030,31 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -17038,6 +17238,31 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -17305,6 +17530,31 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -20042,6 +20292,31 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -20309,6 +20584,31 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -23155,6 +23455,31 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         binds: boolean;
                     } | {
                         receipt: string;
+                        id: "two-by-seven-morph";
+                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "reflection-fixed-point";
+                        theorem: "theTenComplementFixesExactlyFive";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "double-torus-chi";
+                        theorem: "cellHomology";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "address-coins-lit";
+                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "pisano-wheel";
+                        theorem: "pisanoWheelOnTheNine";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
                         id: "inverted-sequence";
                         theorem: "invertedSequenceLearnedFromErpax";
                         binds: boolean;
@@ -23422,6 +23747,31 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             receipt: string;
                             id: "vortex-strokes";
                             theorem: "vortexStrokeGateways";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
                             binds: boolean;
                         } | {
                             receipt: string;
@@ -26159,6 +26509,31 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -26426,6 +26801,31 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -29774,6 +30174,31 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -30041,6 +30466,31 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -33133,6 +33583,31 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -33400,6 +33875,31 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -36137,6 +36637,31 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -36404,6 +36929,31 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -44354,7 +44904,7 @@ export declare function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(mat
     pairs: readonly ["digit/next", "teleport/coord", "ui/invert", "dream/live", "teleport/self", "digit/dim"];
     cli: string;
     route: string;
-    uiSurface: "/en/#hologrammovie";
+    uiSurface: "/#hologrammovie";
     statement: string;
     boundary: string;
     honestyLine: string;
@@ -44397,7 +44947,7 @@ export declare function teleportedDigitOtherDimensionOneSelfPossibility(matrix?:
     pairs: readonly ["teleport/self", "digit/dim"];
     cli: string;
     route: string;
-    uiSurface: "/en/#hologrammovie";
+    uiSurface: "/#hologrammovie";
     statement: string;
     boundary: string;
     honestyLine: string;
@@ -44435,7 +44985,7 @@ export declare function analyticsEmergeFromSelfObservationChangingReality(matrix
     pairs: readonly ["analytics/self", "observe/real"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#local-session-hub";
+    uiSurface: "/quantum-tools#local-session-hub";
     statement: string;
     boundary: string;
     honestyLine: string;
@@ -44506,7 +45056,7 @@ export declare function observingSessionRealtimeChangesRealityInvertsNeedToCompu
     pairs: readonly ["session/live", "observe/invert"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#local-session-hub";
+    uiSurface: "/quantum-tools#local-session-hub";
     statement: string;
     boundary: string;
     honestyLine: string;
@@ -44549,7 +45099,7 @@ export declare function invertedNeedIsLoveMayReverseToFearIfCracks(matrix?: Mind
     pairs: readonly ["need/love", "love/fear"];
     cli: string;
     route: string;
-    uiSurface: "/en/#hologrammovie";
+    uiSurface: "/#hologrammovie";
     statement: string;
     boundary: string;
     honestyLine: string;
@@ -44599,7 +45149,7 @@ export declare function loveStoryTheorem(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["love/story", "story/love", "love/cube", "story/metatron"];
     cli: string;
     route: string;
-    uiSurface: "/en/#hologrammovie";
+    uiSurface: "/#hologrammovie";
     pageKind: "scientific-theorem";
     statement: string;
     boundary: string;
@@ -44727,7 +45277,7 @@ export declare function observersComputeCoordinatesToObserveTrinityCompute(matri
     pairs: readonly ["observe/coord", "send/observe"];
     cli: string;
     route: string;
-    uiSurface: "/en/#hologrammovie";
+    uiSurface: "/#hologrammovie";
     statement: string;
     boundary: string;
     honestyLine: string;

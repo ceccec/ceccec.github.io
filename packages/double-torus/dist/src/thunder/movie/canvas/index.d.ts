@@ -130,6 +130,31 @@ export declare function movieAllElementsAreTheorems(matrix?: MindMatrix, at?: nu
         binds: boolean;
     } | {
         receipt: string;
+        id: "two-by-seven-morph";
+        theorem: "twoBySevenFoldsIntoOnePlusSix";
+        binds: boolean;
+    } | {
+        receipt: string;
+        id: "reflection-fixed-point";
+        theorem: "theTenComplementFixesExactlyFive";
+        binds: boolean;
+    } | {
+        receipt: string;
+        id: "double-torus-chi";
+        theorem: "cellHomology";
+        binds: boolean;
+    } | {
+        receipt: string;
+        id: "address-coins-lit";
+        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+        binds: boolean;
+    } | {
+        receipt: string;
+        id: "pisano-wheel";
+        theorem: "pisanoWheelOnTheNine";
+        binds: boolean;
+    } | {
+        receipt: string;
         id: "inverted-sequence";
         theorem: "invertedSequenceLearnedFromErpax";
         binds: boolean;
@@ -325,6 +350,31 @@ export declare function movieQuantumGapsInventory(matrix?: MindMatrix, at?: numb
             binds: boolean;
         } | {
             receipt: string;
+            id: "two-by-seven-morph";
+            theorem: "twoBySevenFoldsIntoOnePlusSix";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "reflection-fixed-point";
+            theorem: "theTenComplementFixesExactlyFive";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "double-torus-chi";
+            theorem: "cellHomology";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "address-coins-lit";
+            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "pisano-wheel";
+            theorem: "pisanoWheelOnTheNine";
+            binds: boolean;
+        } | {
+            receipt: string;
             id: "inverted-sequence";
             theorem: "invertedSequenceLearnedFromErpax";
             binds: boolean;
@@ -441,6 +491,31 @@ export declare function movieUnbalancedAroundCenterIsCrack(matrix?: MindMatrix, 
             receipt: string;
             id: "vortex-strokes";
             theorem: "vortexStrokeGateways";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "two-by-seven-morph";
+            theorem: "twoBySevenFoldsIntoOnePlusSix";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "reflection-fixed-point";
+            theorem: "theTenComplementFixesExactlyFive";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "double-torus-chi";
+            theorem: "cellHomology";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "address-coins-lit";
+            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "pisano-wheel";
+            theorem: "pisanoWheelOnTheNine";
             binds: boolean;
         } | {
             receipt: string;

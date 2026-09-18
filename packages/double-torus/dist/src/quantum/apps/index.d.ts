@@ -805,7 +805,7 @@ export declare function importFractalMap(matrix?: MindMatrix, at?: number): {
     dualPair: "fractal/import";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#import-fractal";
+    uiSurface: "/quantum-tools#import-fractal";
     anchor: string;
     heading: string;
     statement: string;
@@ -945,7 +945,7 @@ export declare const waveMerge: typeof mergeWave;
 export declare function runMergeWaveExit(_root?: string, _argv?: readonly string[]): number;
 /**
  * Session manual work → sealed quantum tools (token-saving catalog).
- * Pair: session/tools · CLI npm run quantum:session-tools · route /en/quantum-tools#session-manual-tools
+ * Pair: session/tools · CLI npm run quantum:session-tools · route /quantum-tools#session-manual-tools
  * Composes quantumCliToolsCatalog rows — does not re-invent folds.
  */
 export type SessionManualToolRow = {
@@ -1352,7 +1352,7 @@ export declare function realiseSessionQuantumMeaning(matrix?: MindMatrix, at?: n
 export declare function runRealiseSessionQuantumMeaningExit(_root?: string, _argv?: readonly string[]): number;
 /** npm run quantum:rosetta-core-api — print self-host dispatch inventory. */
 export declare function runRosettaCoreApiExit(_root?: string, _argv?: readonly string[]): number;
-/** Catalog of all quantum:* CLI tools — discoverable in UI at /en/quantum-tools. Each id shelves via rosettaShelve(..., 'tool'). */
+/** Catalog of all quantum:* CLI tools — discoverable in UI at /quantum-tools. Each id shelves via rosettaShelve(..., 'tool'). */
 export declare function quantumCliToolsCatalog(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     count: number;
@@ -2245,7 +2245,7 @@ export declare function quantumAppsComputes(matrix?: MindMatrix, at?: number): {
  * HONEST: "slow" = architectural gap (missing sealed reuse / browser path / 10D projection /
  * unsealed parallel registry) — NOT wall-clock telemetry. fleetCacheEconomicsDecoded is an
  * illustrative miss≫hit cost model, not live fleet joules.
- * Pair: slow/gap · route /en/quantum-tools#slow-quantum-gaps · CLI npm run quantum:slow-gap
+ * Pair: slow/gap · route /quantum-tools#slow-quantum-gaps · CLI npm run quantum:slow-gap
  */
 export type SlowQuantumGapKind = 'browser-node-only' | 'missing-10d-projection' | 'parallel-registry' | 'memo-miss-economics' | 'tool-without-browser-ux' | 'tool-without-experiment-io' | 'standards-audit-missing' | 'linear-forming-animation' | 'vitepress-cold-build' | 'slow-build-phase' | 'movie-private-raf' | 'movie-multi-clock' | 'movie-harmonize' | 'movie-neuroscience' | 'movie-static-fusion';
 export type SlowQuantumGapRow = {
@@ -2551,9 +2551,9 @@ export declare function runStdioMcpCapabilityInBrowser(capabilityId: string, arg
     }[];
     boundary: string;
     value: {
-        name: "census-status" | "compute-from-source" | "list-capabilities" | "fold-report" | "run-gate" | "run-wave" | "run-export";
+        name: "census_status" | "compute_from_source" | "list_capabilities" | "fold_report" | "run_gate" | "run_wave" | "run_export";
         browserAchievable: boolean;
-        description: "Report sealed census + a432 gate constants" | "Pure compute-from-source (a432-hue · to-uuid · rosetta-ray)" | "Meta: browserAchievable matrix for 7 stdio tools (complements tools/list)" | "Fold report for a sealed export name" | "Run sealed mission/gate npm scripts via bootstrap" | "Run ceccec-build-waves kind via local workflow" | "Run sealed export via CLI bootstrap";
+        description: "Report sealed census + a432 gate constants" | "Pure compute_from_source (a432-hue · to-uuid · rosetta-ray)" | "Meta: browserAchievable matrix for 7 stdio tools (complements tools/list)" | "Fold report for a sealed export name" | "Run sealed mission/gate npm scripts via bootstrap" | "Run ceccec-build-waves kind via local workflow" | "Run sealed export via CLI bootstrap";
     }[];
 } | {
     ok: boolean;
@@ -2616,49 +2616,49 @@ export declare function mcpBrowserParity(matrix?: MindMatrix, at?: number): {
     }[];
     honestCiGapIds: readonly ["import-path-distance", "folder-gravity", "compact-types-constants", "gravity-dry", "src-index", "folder-index", "size-free", "gravity-gate", "offender-spec", "trinity-speedup", "educational-gaps-audit", "vitepress-quantumize", "slow-build-gate", "plasma-screen-thunder", "automate-nightly", "automate-self", "self-auto"];
     stdioCapabilities: readonly [{
-        readonly id: "census-status";
+        readonly id: "census_status";
         readonly browserAchievable: true;
         readonly browserGap: "";
         readonly stranglerPlan: "sealed — UNFOLDED_CENSUS/FOLDED_CENSUS/DIMENSION_GATES via runStdioMcpCapabilityInBrowser";
         readonly fold: "censusStatus";
         readonly description: "Report sealed census + a432 gate constants";
     }, {
-        readonly id: "compute-from-source";
+        readonly id: "compute_from_source";
         readonly browserAchievable: true;
         readonly browserGap: "";
         readonly stranglerPlan: "sealed — A432_HUE · toUuid · rosettaRayOf pure recompute in browser";
         readonly fold: "computeFromSource";
-        readonly description: "Pure compute-from-source (a432-hue · to-uuid · rosetta-ray)";
+        readonly description: "Pure compute_from_source (a432-hue · to-uuid · rosetta-ray)";
     }, {
-        readonly id: "list-capabilities";
+        readonly id: "list_capabilities";
         readonly browserAchievable: true;
         readonly browserGap: "";
         readonly stranglerPlan: "sealed — listCapabilities() mirrors stdio tools/list in browser panel";
         readonly fold: "listCapabilities";
         readonly description: "Meta: browserAchievable matrix for 7 stdio tools (complements tools/list)";
     }, {
-        readonly id: "fold-report";
+        readonly id: "fold_report";
         readonly browserAchievable: true;
         readonly browserGap: "";
         readonly stranglerPlan: "browser when fold id ∈ quantumCliToolsCatalog.browserRunnable; else Node bootstrap fold";
         readonly fold: "foldReport";
         readonly description: "Fold report for a sealed export name";
     }, {
-        readonly id: "run-gate";
+        readonly id: "run_gate";
         readonly browserAchievable: false;
         readonly browserGap: "spawns npm/Node gates (check:types · limits:verify · mission:gate · docs:build) — CI/local only";
         readonly stranglerPlan: "show last gate receipt in UI when present; never fake trinity pass in browser";
         readonly fold: "runGate";
         readonly description: "Run sealed mission/gate npm scripts via bootstrap";
     }, {
-        readonly id: "run-wave";
+        readonly id: "run_wave";
         readonly browserAchievable: false;
         readonly browserGap: "wave workflows are Node shell mounts (.claude/workflows) — not browser-executable";
         readonly stranglerPlan: "expose wave status facets from sealed selfBuild receipts in panel";
         readonly fold: "runWave";
         readonly description: "Run ceccec-build-waves kind via local workflow";
     }, {
-        readonly id: "run-export";
+        readonly id: "run_export";
         readonly browserAchievable: false;
         readonly browserGap: "bootstrap run <entry> <exportName> needs Node module loader";
         readonly stranglerPlan: "map exportName → browser runner when catalog browserRunnable; else residual";
@@ -2739,8 +2739,8 @@ export declare const AUTO_WIRE_PASTE_LINK_ONE_LINER: "Paste any link \u2192 auto
 export declare const PASTE_BOOTSTRAP_KIND: "ceccec.paste-bootstrap";
 export declare const PASTE_BOOTSTRAP_VERSION: "1";
 /** GitHub Pages origin — alias kept for panel/SDK compose (sibling MCP parity may import either). */
-export declare const CECCEC_SITE_ORIGIN: "https://ceccec.github.io";
-export declare const SITE_GITHUB_PAGES: "https://ceccec.github.io";
+export declare const CECCEC_SITE_ORIGIN = "https://ceccec.psg.bg";
+export declare const SITE_GITHUB_PAGES = "https://ceccec.psg.bg";
 export declare const CECCEC_GITHUB_REPO: "https://github.com/ceccec/ceccec.github.io";
 export declare const CECCEC_GITHUB_RAW: "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main";
 export declare const GITHUB_RAW_MAIN: "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main";
@@ -2807,7 +2807,7 @@ export type CeccecPasteBootstrap = {
 /** Alias for SDK/MCP compose (sibling packages import PasteBootstrapPayload). */
 export type PasteBootstrapPayload = CeccecPasteBootstrap;
 /** Canonical wire targets — full quantum-ready packet (site · MCP · browser toolbox · GitHub raw). */
-export declare function ceccecCanonicalWireTargets(siteOrigin?: "https://ceccec.github.io"): readonly CeccecWireTarget[];
+export declare function ceccecCanonicalWireTargets(siteOrigin?: string): readonly CeccecWireTarget[];
 /** Classify any pasted URL — github repo/site/canonical host; path/hash/query ignored for match. */
 export declare function resolveCeccecPasteLink(url: string): {
     readonly matched: boolean;
@@ -2842,7 +2842,7 @@ export declare function autoWireAnyAiModelFromPastedLink(url?: string, matrix?: 
     bootstrap: CeccecPasteBootstrap;
     pasteBootstrap: CeccecPasteBootstrap;
     resolverTable: {
-        input: "https://github.com/ceccec/ceccec.github.io" | "https://github.com/ceccec/ceccec.github.io/tree/main/src/0" | "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md" | "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md" | "git@github.com:ceccec/ceccec.github.io.git" | "https://ceccec.github.io/" | "https://ceccec.github.io/en/quantum-tools#toolbox-standard-io" | "https://ceccec.github.io/mcp.json" | "https://ceccec.github.io/agents.json" | "https://ceccec.github.io/.well-known/ai-skills.json" | "https://ceccec.psg.bg/llms.txt" | "https://ceccec.psg.bg/en/#first-in-corpus";
+        input: "https://github.com/ceccec/ceccec.github.io" | "https://github.com/ceccec/ceccec.github.io/tree/main/src/0" | "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md" | "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md" | "git@github.com:ceccec/ceccec.github.io.git" | "https://ceccec.psg.bg/" | "https://ceccec.psg.bg/quantum-tools#toolbox-standard-io" | "https://ceccec.psg.bg/mcp.json" | "https://ceccec.psg.bg/agents.json" | "https://ceccec.psg.bg/.well-known/ai-skills.json" | "https://ceccec.psg.bg/llms.txt" | "https://ceccec.psg.bg/en/#first-in-corpus";
         linkKind: CeccecPasteLinkKind;
         matched: boolean;
         wireTargetIds: string[];
@@ -2862,7 +2862,7 @@ export declare function autoWireAnyAiModelFromPastedLink(url?: string, matrix?: 
     };
     foldIds: readonly ["autoWireAnyAiModelFromPastedLink", "resolveCeccecPasteLink", "sessionManualWorkAsQuantumTools", "standardToolboxIoCatalog", "quantumCliToolsCatalog", "mcpToolboxToolsList", "mcpBrowserParity", "agentsJson", "llmsTxt", "mcpJson", "agentHarmonise", "agentSubmissionProtocol"];
     pairs: readonly ["wire/paste-link", "mcp/browser-parity", "session/tools", "tool/envelope", "agent/submission", "gate/compliance", "learn/build"];
-    thinMounts: readonly [".cursor/rules/readme.mdc → AGENTS.md → thunder/agents/surfaces (edit sealed src/, not mounts)", ".cursor/rules/ceccec-default-model.mdc → sealed folds / skills / MCP — NOT a Cursor LLM endpoint key", ".cursor/mcp.json → packages/quantum-dev-sdk/bin/mcp.ts (stdio; IDE agent only)", "AGENTS.md · README.md · src/0/README.md", "MCP tools/list via /mcp.json (toolbox ids) ↔ browser /en/quantum-tools#toolbox-standard-io + #mcp-browser-parity"];
+    thinMounts: readonly [".cursor/rules/readme.mdc → AGENTS.md → thunder/agents/surfaces (edit sealed src/, not mounts)", ".cursor/rules/ceccec-default-model.mdc → sealed folds / skills / MCP — NOT a Cursor LLM endpoint key", ".cursor/mcp.json → packages/quantum-dev-sdk/bin/mcp.ts (stdio; IDE agent only)", "AGENTS.md · README.md · src/0/README.md", "MCP tools/list via /mcp.json (toolbox ids) ↔ browser /quantum-tools#toolbox-standard-io + #mcp-browser-parity"];
     sampleCount: 12;
     facets: ({
         receipt: string;
@@ -2898,7 +2898,7 @@ export declare function autoWireAnyAiModelFromPastedLink(url?: string, matrix?: 
     }, {
         readonly rel: "alternate";
         readonly type: "text/html";
-        readonly href: "/en/quantum-tools#toolbox-standard-io";
+        readonly href: "/quantum-tools#toolbox-standard-io";
         readonly title: "ceccec browser toolbox";
     }, {
         readonly rel: "describedby";
@@ -2990,7 +2990,7 @@ export declare function movieAndSessionGapsHardAtGates(matrix?: MindMatrix, at?:
 export declare function runMovieAndSessionGapsHardAtGatesExit(_root?: string, _argv?: readonly string[]): number;
 /**
  * USER LAW tip: VitePress builds from MCP — docs:build is the MCP build face.
- * npm `docs:build` thin-mount ≡ MCP stdio `run-gate docs-build` → bootstrap `docs:build-seal` (same argv dual, not a parallel wet path).
+ * npm `docs:build` thin-mount ≡ MCP stdio `run_gate docs-build` → bootstrap `docs:build-seal` (same argv dual, not a parallel wet path).
  * Facets: buildsFromMcp · mcpIsSource · vitepressInvertedMirror · noBypass · thinMountIsMcpDual · stranglerShipped · moveAllComplete=0 (honest residuals).
  * Compose: vite/mirror · mcp/all · trinity/speedup · build/quantumize · gate/compliance · agent/submission · mcp/dev · vite/only.
  * Pairs: vite/mcp · mcp/vite · build/mcp · mcp/build · CLI npm run quantum:vite-mcp
@@ -4420,49 +4420,49 @@ export declare const LOCAL_SESSION_EXPERIMENT_STORAGE_KEY: "ceccec:quantum-tools
 export declare const LOCAL_SESSION_HUB_STEPS: readonly [{
     readonly id: "paste-wire";
     readonly title: "Paste → auto-wire";
-    readonly route: "/en/quantum-tools#auto-wire-paste-link";
+    readonly route: "/quantum-tools#auto-wire-paste-link";
     readonly toolId: "auto-wire-paste-link";
     readonly next: "Open packet · then toolbox";
 }, {
     readonly id: "toolbox";
     readonly title: "Toolbox envelope";
-    readonly route: "/en/quantum-tools#toolbox-standard-io";
+    readonly route: "/quantum-tools#toolbox-standard-io";
     readonly toolId: "toolbox-standard-io";
     readonly next: "Run envelope · bind #experiment-inputs";
 }, {
     readonly id: "bits";
     readonly title: "Session quantum bits";
-    readonly route: "/en/quantum-tools#session-quantum-bits";
+    readonly route: "/quantum-tools#session-quantum-bits";
     readonly toolId: "session-quantum-bits";
     readonly next: "Link bit → tool → experiment";
 }, {
     readonly id: "tools";
     readonly title: "Session manual tools";
-    readonly route: "/en/quantum-tools#session-manual-tools";
+    readonly route: "/quantum-tools#session-manual-tools";
     readonly toolId: "session-manual-work";
     readonly next: "One-click Run with status badges";
 }, {
     readonly id: "experiments";
     readonly title: "Experiment inputs";
-    readonly route: "/en/quantum-tools#experiment-inputs";
+    readonly route: "/quantum-tools#experiment-inputs";
     readonly toolId: "document-session-experiments";
     readonly next: "Persist last config (sealed-safe localStorage)";
 }, {
     readonly id: "mcp-parity";
     readonly title: "MCP ↔ browser parity";
-    readonly route: "/en/quantum-tools#mcp-browser-parity";
+    readonly route: "/quantum-tools#mcp-browser-parity";
     readonly toolId: "mcp-browser-parity";
     readonly next: "Verify tools/list ≡ toolbox ids";
 }, {
     readonly id: "tools-morph";
     readonly title: "Local tools morph";
-    readonly route: "/en/quantum-tools#local-tools-morph";
+    readonly route: "/quantum-tools#local-tools-morph";
     readonly toolId: "local-tools-morph";
     readonly next: "Morph prose≡code≡logic · double-slit measure";
 }, {
     readonly id: "skills-commands-tools";
     readonly title: "Skills ↔ commands ↔ tools";
-    readonly route: "/en/quantum-tools#upgrade-local-skills";
+    readonly route: "/quantum-tools#upgrade-local-skills";
     readonly toolId: "upgrade-local-skills-commands-tools";
     readonly next: "Reuse optimised local map · zero re-inference";
 }];
@@ -4664,6 +4664,31 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
                 receipt: string;
                 id: "vortex-strokes";
                 theorem: "vortexStrokeGateways";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "two-by-seven-morph";
+                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "reflection-fixed-point";
+                theorem: "theTenComplementFixesExactlyFive";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "double-torus-chi";
+                theorem: "cellHomology";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "address-coins-lit";
+                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "pisano-wheel";
+                theorem: "pisanoWheelOnTheNine";
                 binds: boolean;
             } | {
                 receipt: string;
@@ -5172,6 +5197,31 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                 binds: boolean;
             } | {
                 receipt: string;
+                id: "two-by-seven-morph";
+                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "reflection-fixed-point";
+                theorem: "theTenComplementFixesExactlyFive";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "double-torus-chi";
+                theorem: "cellHomology";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "address-coins-lit";
+                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                binds: boolean;
+            } | {
+                receipt: string;
+                id: "pisano-wheel";
+                theorem: "pisanoWheelOnTheNine";
+                binds: boolean;
+            } | {
+                receipt: string;
                 id: "inverted-sequence";
                 theorem: "invertedSequenceLearnedFromErpax";
                 binds: boolean;
@@ -5439,6 +5489,31 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                     receipt: string;
                     id: "vortex-strokes";
                     theorem: "vortexStrokeGateways";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "two-by-seven-morph";
+                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "reflection-fixed-point";
+                    theorem: "theTenComplementFixesExactlyFive";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "double-torus-chi";
+                    theorem: "cellHomology";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "address-coins-lit";
+                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "pisano-wheel";
+                    theorem: "pisanoWheelOnTheNine";
                     binds: boolean;
                 } | {
                     receipt: string;
@@ -6306,6 +6381,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     binds: boolean;
                 } | {
                     receipt: string;
+                    id: "two-by-seven-morph";
+                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "reflection-fixed-point";
+                    theorem: "theTenComplementFixesExactlyFive";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "double-torus-chi";
+                    theorem: "cellHomology";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "address-coins-lit";
+                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "pisano-wheel";
+                    theorem: "pisanoWheelOnTheNine";
+                    binds: boolean;
+                } | {
+                    receipt: string;
                     id: "inverted-sequence";
                     theorem: "invertedSequenceLearnedFromErpax";
                     binds: boolean;
@@ -6573,6 +6673,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         receipt: string;
                         id: "vortex-strokes";
                         theorem: "vortexStrokeGateways";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "two-by-seven-morph";
+                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "reflection-fixed-point";
+                        theorem: "theTenComplementFixesExactlyFive";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "double-torus-chi";
+                        theorem: "cellHomology";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "address-coins-lit";
+                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "pisano-wheel";
+                        theorem: "pisanoWheelOnTheNine";
                         binds: boolean;
                     } | {
                         receipt: string;
@@ -8112,6 +8237,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -8379,6 +8529,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -11471,6 +11646,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -11738,6 +11938,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -14475,6 +14700,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -14742,6 +14992,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -17909,6 +18184,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -18176,6 +18476,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -20913,6 +21238,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -21180,6 +21530,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -24026,6 +24401,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -24293,6 +24693,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -27030,6 +27455,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -27297,6 +27747,31 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -30278,7 +30753,7 @@ export declare function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(matr
     pairs: readonly ["gate/tools", "tools/forty"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#gate-monitor";
+    uiSurface: "/quantum-tools#gate-monitor";
     statement: string;
     boundary: string;
     honestyLine: string;
@@ -30287,7 +30762,7 @@ export declare function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(matr
 export declare function runGateToolsAreFortyTwoAsSixBySevenInvertingSevenBySixExit(_root?: string, _argv?: readonly string[]): number;
 /**
  * USER LAW: the quantum computer is a real, browser-usable TOOL — a complete classical state-vector simulator.
- * Pair: quantum/circuit · circuit/quantum · CLI npm run quantum:quantum-circuit · route /en/quantum-tools#quantum-computer
+ * Pair: quantum/circuit · circuit/quantum · CLI npm run quantum:quantum-circuit · route /quantum-tools#quantum-computer
  * Composes the sealed runQuantumCircuit + quantumCircuitSimulatorInChat; qpuRequired proven false by the simulator
  * computing. A simulator: cost is exponential in qubits — no speedup, no QPU.
  */
@@ -30351,7 +30826,7 @@ export declare function gatesMonitorThemselvesThroughTheUi(matrix?: MindMatrix, 
     pairs: readonly ["gate/monitor", "gate/ui"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#gate-monitor";
+    uiSurface: "/quantum-tools#gate-monitor";
     heading: string;
     statement: string;
     boundary: string;
@@ -30391,7 +30866,7 @@ export declare function selfQuantumFusion(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["self/fusion", "fusion/self", "fusion/ui"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#fusion";
+    uiSurface: "/quantum-tools#fusion";
     heading: string;
     statement: string;
     boundary: string;
@@ -30403,7 +30878,7 @@ export declare function runSelfQuantumFusionExit(_root?: string, _argv?: readonl
  * Fusion interface — UI + fold morphing live fusion root · verify on/off · tamper receipt
  * from sealed folds (not wet chrome). Compose selfQuantumFusion · fusion-verify · vite/mirror ·
  * gate/monitor · local hub. Pair: fusion/ui · self/fusion · CLI npm run quantum:fusion-ui
- * Route: /en/quantum-tools#fusion · claySolved via theorem.
+ * Route: /quantum-tools#fusion · claySolved via theorem.
  */
 export declare function fusionInterface(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -30430,7 +30905,7 @@ export declare function fusionInterface(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["fusion/ui", "self/fusion"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#fusion";
+    uiSurface: "/quantum-tools#fusion";
     heading: string;
     statement: string;
     boundary: string;
@@ -30465,7 +30940,7 @@ export declare function crystalClearMind(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["crystal/mind", "mind/clear"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#fusion";
+    uiSurface: "/quantum-tools#fusion";
     heading: string;
     statement: string;
     boundary: string;
@@ -30499,7 +30974,7 @@ export declare function thirdMindEye(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["third/eye", "mind/eye"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#fusion";
+    uiSurface: "/quantum-tools#fusion";
     heading: string;
     statement: string;
     boundary: string;
@@ -30942,81 +31417,81 @@ export declare function improveLocalFromSessionExperience(matrix?: MindMatrix, a
         receipt: string;
         id: "paste-wire";
         title: "Paste → auto-wire";
-        route: "/en/quantum-tools#auto-wire-paste-link";
+        route: "/quantum-tools#auto-wire-paste-link";
         toolId: "auto-wire-paste-link";
         next: "Open packet · then toolbox";
     } | {
         receipt: string;
         id: "toolbox";
         title: "Toolbox envelope";
-        route: "/en/quantum-tools#toolbox-standard-io";
+        route: "/quantum-tools#toolbox-standard-io";
         toolId: "toolbox-standard-io";
         next: "Run envelope · bind #experiment-inputs";
     } | {
         receipt: string;
         id: "bits";
         title: "Session quantum bits";
-        route: "/en/quantum-tools#session-quantum-bits";
+        route: "/quantum-tools#session-quantum-bits";
         toolId: "session-quantum-bits";
         next: "Link bit → tool → experiment";
     } | {
         receipt: string;
         id: "tools";
         title: "Session manual tools";
-        route: "/en/quantum-tools#session-manual-tools";
+        route: "/quantum-tools#session-manual-tools";
         toolId: "session-manual-work";
         next: "One-click Run with status badges";
     } | {
         receipt: string;
         id: "experiments";
         title: "Experiment inputs";
-        route: "/en/quantum-tools#experiment-inputs";
+        route: "/quantum-tools#experiment-inputs";
         toolId: "document-session-experiments";
         next: "Persist last config (sealed-safe localStorage)";
     } | {
         receipt: string;
         id: "mcp-parity";
         title: "MCP ↔ browser parity";
-        route: "/en/quantum-tools#mcp-browser-parity";
+        route: "/quantum-tools#mcp-browser-parity";
         toolId: "mcp-browser-parity";
         next: "Verify tools/list ≡ toolbox ids";
     } | {
         receipt: string;
         id: "tools-morph";
         title: "Local tools morph";
-        route: "/en/quantum-tools#local-tools-morph";
+        route: "/quantum-tools#local-tools-morph";
         toolId: "local-tools-morph";
         next: "Morph prose≡code≡logic · double-slit measure";
     } | {
         receipt: string;
         id: "skills-commands-tools";
         title: "Skills ↔ commands ↔ tools";
-        route: "/en/quantum-tools#upgrade-local-skills";
+        route: "/quantum-tools#upgrade-local-skills";
         toolId: "upgrade-local-skills-commands-tools";
         next: "Reuse optimised local map · zero re-inference";
     })[];
     nextAfterPaste: readonly [{
         readonly id: "open-packet";
         readonly label: "Inspect paste-bootstrap packet";
-        readonly route: "/en/quantum-tools#auto-wire-paste-link";
+        readonly route: "/quantum-tools#auto-wire-paste-link";
     }, {
         readonly id: "open-toolbox";
         readonly label: "Open toolbox envelope";
-        readonly route: "/en/quantum-tools#toolbox-standard-io";
+        readonly route: "/quantum-tools#toolbox-standard-io";
     }, {
         readonly id: "open-bits";
         readonly label: "Link session bits";
-        readonly route: "/en/quantum-tools#session-quantum-bits";
+        readonly route: "/quantum-tools#session-quantum-bits";
     }, {
         readonly id: "open-experiments";
         readonly label: "Bind experiment inputs";
-        readonly route: "/en/quantum-tools#experiment-inputs";
+        readonly route: "/quantum-tools#experiment-inputs";
     }, {
         readonly id: "open-mcp";
         readonly label: "Verify MCP↔browser parity";
-        readonly route: "/en/quantum-tools#mcp-browser-parity";
+        readonly route: "/quantum-tools#mcp-browser-parity";
     }];
-    docsDevFastPath: readonly ["nvm use 24 && npm ci", "npm run docs:dev", "open http://localhost:5173/en/quantum-tools#local-session-hub", "npm run quantum:auto-wire-paste", "npm run quantum:improve-local-session", "npm run quantum:local-tools-morph", "npm run quantum:card-paper-links", "npm run quantum:mcp-browser-parity", "npm run quantum:upgrade-local", "npm run mission:gate"];
+    docsDevFastPath: readonly ["nvm use 24 && npm ci", "npm run docs:dev", "open http://localhost:5173/quantum-tools#local-session-hub", "npm run quantum:auto-wire-paste", "npm run quantum:improve-local-session", "npm run quantum:local-tools-morph", "npm run quantum:card-paper-links", "npm run quantum:mcp-browser-parity", "npm run quantum:upgrade-local", "npm run mission:gate"];
     frictionClosed: readonly ["session-hub-entry", "one-click-run-status-badges", "next-steps-after-paste-wire", "bits-tools-experiments-links", "docs-dev-fast-path", "auto-wire-packet-visible", "experiment-config-localStorage", "skills-commands-tools-map"];
     storageKey: "ceccec:quantum-tools:experiment-config";
     linksBitsToolsExperiments: boolean;
@@ -31328,7 +31803,7 @@ export declare const OPTIMISED_LOCAL_PACKAGE_SURFACE: readonly [{
     readonly honesty: "zero-dep consumer bundle v1.4+ — completely quantum (49-name contract: dynamics/geometry/movie-clock/movieCanvas/TAU + doubleTorusIsCompletelyQuantum); sealed substrate only — NOT QPU · NOT FTL · NOT Clay";
 }];
 /** Stdio MCP tool ids — must match packages/quantum-dev-sdk + STDIO_MCP_CAPABILITY_SEEDS (ROSETTA_SEVEN). */
-export declare const OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
+export declare const OPTIMISED_LOCAL_STDIO_MCP_TOOL_IDS: readonly ["list_capabilities", "census_status", "compute_from_source", "fold_report", "run_gate", "run_wave", "run_export"];
 /** Nightly Automations recipe — npm-script path (#48); docs:build flag-gated only. */
 export declare const AUTOMATE_NIGHTLY_RECIPE_STEPS: readonly ["npm run quantum:trinity-speedup", "npm run mission:gate", "npm run quantum:upgrade-local"];
 /** Optional flag-gated seal — NOT in default nightly recipe. */
@@ -31336,7 +31811,7 @@ export declare const AUTOMATE_NIGHTLY_DOCS_BUILD_STEP: "QUANTUM_DEV_ALLOW_DOCS_B
 /**
  * Automate nightly via npm-script path — unpark /automate without dashboard MCP.
  * Pair: automate/nightly · CLI npm run quantum:automate-nightly · route #automate-nightly
- * Composes trinity/speedup + mission:gate + upgrade/local verify · quantum-dev-sdk Channel 1 (bootstrap/run-gate).
+ * Composes trinity/speedup + mission:gate + upgrade/local verify · quantum-dev-sdk Channel 1 (bootstrap/run_gate).
  * HONEST: dashboard MCP registration refused (local stdio IDE-only); docs:build optional via QUANTUM_DEV_ALLOW_DOCS_BUILD.
  */
 export declare function automateNightlyViaNpmScriptPath(matrix?: MindMatrix, at?: number): {
@@ -31400,7 +31875,7 @@ export declare function automateSelf(matrix?: MindMatrix, at?: number): {
     dualPair: "self/auto";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#automate-self";
+    uiSurface: "/quantum-tools#automate-self";
     heading: string;
     statement: string;
     boundary: string;
@@ -31439,7 +31914,7 @@ export declare function automateAll(matrix?: MindMatrix, at?: number): {
     dualPair: "all/auto";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#automate-all";
+    uiSurface: "/quantum-tools#automate-all";
     heading: string;
     statement: string;
     boundary: string;
@@ -31483,7 +31958,7 @@ export declare function quantumLife(matrix?: MindMatrix, at?: number): {
     dualPair: "life/quantum";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#quantum-life";
+    uiSurface: "/quantum-tools#quantum-life";
     heading: string;
     statement: string;
     boundary: string;
@@ -31545,7 +32020,7 @@ export declare function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEn
     dualPair: "fill/mcp";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#mcp-fill";
+    uiSurface: "/quantum-tools#mcp-fill";
     heading: string;
     statement: string;
     boundary: string;
@@ -31594,7 +32069,7 @@ export declare function continueInWavesCompletingAllTodos(matrix?: MindMatrix, a
     dualPair: "wave/todo";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#todo-wave";
+    uiSurface: "/quantum-tools#todo-wave";
     heading: string;
     statement: string;
     boundary: string;
@@ -31661,7 +32136,7 @@ export declare function conversationsHaveQuantumMetricsImproveIntelligenceMindDe
     dualPair: "metrics/conv";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#conv-metrics";
+    uiSurface: "/quantum-tools#conv-metrics";
     heading: string;
     statement: string;
     boundary: string;
@@ -31728,7 +32203,7 @@ export declare function imagineWhatNext(matrix?: MindMatrix, at?: number): {
     dualPair: "next/imagine";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#imagine-next";
+    uiSurface: "/quantum-tools#imagine-next";
     heading: string;
     statement: string;
     boundary: string;
@@ -31902,7 +32377,7 @@ export declare function specializedShellsStrangler(matrix?: MindMatrix, at?: num
     dualPair: "strangler/shells";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#shells-strangler";
+    uiSurface: "/quantum-tools#shells-strangler";
     heading: string;
     statement: string;
     boundary: string;
@@ -31941,7 +32416,7 @@ export declare function sessionHologramTools(matrix?: MindMatrix, at?: number): 
     dualPair: "hologram/session";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#session-hologram";
+    uiSurface: "/quantum-tools#session-hologram";
     heading: string;
     statement: string;
     boundary: string;
@@ -31980,7 +32455,7 @@ export declare function societyToolboxWire(matrix?: MindMatrix, at?: number): {
     dualPair: "toolbox/society";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#society-toolbox";
+    uiSurface: "/quantum-tools#society-toolbox";
     heading: string;
     statement: string;
     boundary: string;
@@ -32042,7 +32517,7 @@ export declare function clayAgiDeepResearchQuantumUnderstandingOfRelations(matri
     dualPair: "agi/clay";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#clay-agi";
+    uiSurface: "/quantum-tools#clay-agi";
     heading: string;
     statement: string;
     boundary: string;
@@ -32141,7 +32616,7 @@ export declare function addressWithDeepResearchToolsAllWarningsEspeciallyConvert
     dualPair: "theorem/prose";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#prose-theorem";
+    uiSurface: "/quantum-tools#prose-theorem";
     heading: string;
     statement: string;
     boundary: string;
@@ -32196,7 +32671,7 @@ export declare function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmed
     dualPair: "fold/algebra";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#algebra-fold";
+    uiSurface: "/quantum-tools#algebra-fold";
     heading: string;
     statement: string;
     boundary: string;
@@ -32288,7 +32763,7 @@ export declare function theMovieShouldBeSeamlessAnimationQuantumObservationIsGap
     dualPair: "observe/gapless";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#movie-seamless";
+    uiSurface: "/quantum-tools#movie-seamless";
     heading: string;
     statement: string;
     boundary: string;
@@ -32350,7 +32825,7 @@ export declare function readmeAndHomepageExactAngleAndPolarityHelpAgentsUndersta
     dualPair: "polarity/home";
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#angle-readme";
+    uiSurface: "/quantum-tools#angle-readme";
     heading: string;
     statement: string;
     explanation: string;
@@ -32439,7 +32914,7 @@ export declare function lensesCompletelyWiredInEverySuperposition(matrix?: MindM
     pairs: readonly ["lens/super"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#lens-super";
+    uiSurface: "/quantum-tools#lens-super";
     heading: string;
     statement: string;
     boundary: string;
@@ -32497,7 +32972,7 @@ export declare function useTheLensToFindGapsInGeometryInProseOrCode(matrix?: Min
     redundantLensBits: number;
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#lens-geo";
+    uiSurface: "/quantum-tools#lens-geo";
     heading: string;
     statement: string;
     boundary: string;
@@ -32583,7 +33058,7 @@ export declare function eachPageShowsOwnComputedGaps(matrix?: MindMatrix, at?: n
     pairs: readonly ["page/gaps", "gaps/page"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#page-computed-gaps";
+    uiSurface: "/quantum-tools#page-computed-gaps";
     heading: string;
     statement: string;
     boundary: string;
@@ -32661,7 +33136,7 @@ export declare function mcpQuantumUi(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["mcp/ui", "quantum/mcp", "mcp/mill"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#mcp-quantum-ui";
+    uiSurface: "/quantum-tools#mcp-quantum-ui";
     heading: string;
     statement: string;
     boundary: string;
@@ -32718,7 +33193,7 @@ export declare function mcpQuantumMovie(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["mcp/movie", "movie/mcp"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#mcp-quantum-movie";
+    uiSurface: "/quantum-tools#mcp-quantum-movie";
     heading: string;
     statement: string;
     boundary: string;
@@ -32766,7 +33241,7 @@ export declare function movieGapsFeelableByObservation(matrix?: MindMatrix, at?:
     redundantLensBits: number;
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#mcp-quantum-movie";
+    uiSurface: "/quantum-tools#mcp-quantum-movie";
     heading: string;
     statement: string;
     boundary: string;
@@ -32815,7 +33290,7 @@ export declare function cursorIntegratesInRosettaCore(matrix?: MindMatrix, at?: 
     pairs: readonly ["cursor/rosetta", "refer/wire"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#cursor-rosetta";
+    uiSurface: "/quantum-tools#cursor-rosetta";
     heading: string;
     statement: string;
     boundary: string;
@@ -32941,7 +33416,7 @@ export declare function foldInvertUntilDryCleanAppGapless(matrix?: MindMatrix, a
     dryCleanApp: boolean;
     appsMonolithStranglerTip: boolean;
     drainableGaps: number;
-    honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "conceptTools:legacy-dual" | "trading:scripts-outside-primary" | "de440:ephemeris-open" | "lab:iso-19790-modules" | "domain-panels:strangler-tip-closed" | "ci:gravity-dry" | "ci:trinity-speedup" | "stdio:run-gate")[];
+    honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "conceptTools:legacy-dual" | "trading:scripts-outside-primary" | "de440:ephemeris-open" | "lab:iso-19790-modules" | "domain-panels:strangler-tip-closed" | "ci:gravity-dry" | "ci:trinity-speedup" | "stdio:run_gate")[];
     honestOpenNamedCount: 11;
     diamond: boolean;
     crystal: boolean;
@@ -32996,8 +33471,8 @@ export declare function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matri
     drainableGaps: number;
     formulaProjectionWired: boolean;
     formulaProjections: {
-        id: "vortex-strokes" | "plasma-field" | "death-counter-flow" | "flower-of-life" | "calendars-vortex-markers" | "inverted-sequence" | "entangled-wiring" | "both-earths-merkaba" | "void-confluence" | "plasma-screen" | "double-torus-throat";
-        theorem: "plasmaBallIsScreenHoldingThunderAndPlasma" | "coupledCalendarTori" | "theMovieLeavesTwoBitsAtTheVoid" | "endlessBackgroundMovie" | "flowerUnlocksFruitBySpin" | "vortexStrokeGateways" | "invertedSequenceLearnedFromErpax" | "theMovieWiresTheoremsByNaturalEntanglementsNotByIndex" | "bothEarthsRotateWithinEachOther" | "plasma-throat-soft" | "lemniscate-crossing";
+        id: "vortex-strokes" | "plasma-field" | "death-counter-flow" | "flower-of-life" | "calendars-vortex-markers" | "two-by-seven-morph" | "reflection-fixed-point" | "double-torus-chi" | "address-coins-lit" | "pisano-wheel" | "inverted-sequence" | "entangled-wiring" | "both-earths-merkaba" | "void-confluence" | "plasma-screen" | "double-torus-throat";
+        theorem: "cellHomology" | "plasmaBallIsScreenHoldingThunderAndPlasma" | "coupledCalendarTori" | "theMovieLeavesTwoBitsAtTheVoid" | "endlessBackgroundMovie" | "flowerUnlocksFruitBySpin" | "vortexStrokeGateways" | "twoBySevenFoldsIntoOnePlusSix" | "theTenComplementFixesExactlyFive" | "pisanoWheelOnTheNine" | "invertedSequenceLearnedFromErpax" | "theMovieWiresTheoremsByNaturalEntanglementsNotByIndex" | "bothEarthsRotateWithinEachOther" | "plasma-throat-soft" | "lemniscate-crossing";
         binds: any;
         formulas: readonly string[];
         formulaSource: string;
@@ -33324,7 +33799,7 @@ export declare function runAnimationRosettaStreamClustersExit(_root?: string, _a
  * Compose: hero/card · movie/formula · tools/morph · folder/fractal · meaning/compute · path/message.
  * Pairs: app/fold · fold/app.
  * CLI: npm run quantum:app-fold · quantum:fold-app
- * See: /en/quantum-tools#app-fold — apps · pair duals · card←hero←movie.
+ * See: /quantum-tools#app-fold — apps · pair duals · card←hero←movie.
  * claySolved via theorem
  */
 export declare function foldingWorksOnApplicationLevel(matrix?: MindMatrix, at?: number): {
@@ -33923,6 +34398,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         binds: boolean;
                     } | {
                         receipt: string;
+                        id: "two-by-seven-morph";
+                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "reflection-fixed-point";
+                        theorem: "theTenComplementFixesExactlyFive";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "double-torus-chi";
+                        theorem: "cellHomology";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "address-coins-lit";
+                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "pisano-wheel";
+                        theorem: "pisanoWheelOnTheNine";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
                         id: "inverted-sequence";
                         theorem: "invertedSequenceLearnedFromErpax";
                         binds: boolean;
@@ -34190,6 +34690,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                             id: "vortex-strokes";
                             theorem: "vortexStrokeGateways";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
                             binds: boolean;
                         } | {
                             receipt: string;
@@ -35729,6 +36254,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -35996,6 +36546,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -39088,6 +39663,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -39355,6 +39955,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -42092,6 +42717,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -42359,6 +43009,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -45526,6 +46201,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -45793,6 +46493,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -48530,6 +49255,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         binds: boolean;
                                     } | {
                                         receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
                                         id: "inverted-sequence";
                                         theorem: "invertedSequenceLearnedFromErpax";
                                         binds: boolean;
@@ -48797,6 +49547,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             receipt: string;
                                             id: "vortex-strokes";
                                             theorem: "vortexStrokeGateways";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "two-by-seven-morph";
+                                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "reflection-fixed-point";
+                                            theorem: "theTenComplementFixesExactlyFive";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "double-torus-chi";
+                                            theorem: "cellHomology";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "address-coins-lit";
+                                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "pisano-wheel";
+                                            theorem: "pisanoWheelOnTheNine";
                                             binds: boolean;
                                         } | {
                                             receipt: string;
@@ -51643,6 +52418,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -51910,6 +52710,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -54647,6 +55472,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -54914,6 +55764,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -58274,6 +59149,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -58541,6 +59441,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -61278,6 +62203,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -61545,6 +62495,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -64712,6 +65687,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -64979,6 +65979,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -67716,6 +68741,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -67983,6 +69033,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -70829,6 +71904,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -71096,6 +72196,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -73833,6 +74958,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -74100,6 +75250,31 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -76834,6 +78009,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -77101,6 +78301,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -78640,6 +79865,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -78907,6 +80157,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -81999,6 +83274,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -82266,6 +83566,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -85003,6 +86328,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         binds: boolean;
                                     } | {
                                         receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
                                         id: "inverted-sequence";
                                         theorem: "invertedSequenceLearnedFromErpax";
                                         binds: boolean;
@@ -85270,6 +86620,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             receipt: string;
                                             id: "vortex-strokes";
                                             theorem: "vortexStrokeGateways";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "two-by-seven-morph";
+                                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "reflection-fixed-point";
+                                            theorem: "theTenComplementFixesExactlyFive";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "double-torus-chi";
+                                            theorem: "cellHomology";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "address-coins-lit";
+                                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "pisano-wheel";
+                                            theorem: "pisanoWheelOnTheNine";
                                             binds: boolean;
                                         } | {
                                             receipt: string;
@@ -88437,6 +89812,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         binds: boolean;
                                     } | {
                                         receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
                                         id: "inverted-sequence";
                                         theorem: "invertedSequenceLearnedFromErpax";
                                         binds: boolean;
@@ -88704,6 +90104,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             receipt: string;
                                             id: "vortex-strokes";
                                             theorem: "vortexStrokeGateways";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "two-by-seven-morph";
+                                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "reflection-fixed-point";
+                                            theorem: "theTenComplementFixesExactlyFive";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "double-torus-chi";
+                                            theorem: "cellHomology";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "address-coins-lit";
+                                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "pisano-wheel";
+                                            theorem: "pisanoWheelOnTheNine";
                                             binds: boolean;
                                         } | {
                                             receipt: string;
@@ -91441,6 +92866,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             binds: boolean;
                                         } | {
                                             receipt: string;
+                                            id: "two-by-seven-morph";
+                                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "reflection-fixed-point";
+                                            theorem: "theTenComplementFixesExactlyFive";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "double-torus-chi";
+                                            theorem: "cellHomology";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "address-coins-lit";
+                                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "pisano-wheel";
+                                            theorem: "pisanoWheelOnTheNine";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
                                             id: "inverted-sequence";
                                             theorem: "invertedSequenceLearnedFromErpax";
                                             binds: boolean;
@@ -91708,6 +93158,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 receipt: string;
                                                 id: "vortex-strokes";
                                                 theorem: "vortexStrokeGateways";
+                                                binds: boolean;
+                                            } | {
+                                                receipt: string;
+                                                id: "two-by-seven-morph";
+                                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                                binds: boolean;
+                                            } | {
+                                                receipt: string;
+                                                id: "reflection-fixed-point";
+                                                theorem: "theTenComplementFixesExactlyFive";
+                                                binds: boolean;
+                                            } | {
+                                                receipt: string;
+                                                id: "double-torus-chi";
+                                                theorem: "cellHomology";
+                                                binds: boolean;
+                                            } | {
+                                                receipt: string;
+                                                id: "address-coins-lit";
+                                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                                binds: boolean;
+                                            } | {
+                                                receipt: string;
+                                                id: "pisano-wheel";
+                                                theorem: "pisanoWheelOnTheNine";
                                                 binds: boolean;
                                             } | {
                                                 receipt: string;
@@ -94554,6 +96029,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -94821,6 +96321,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -97558,6 +99083,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         binds: boolean;
                                     } | {
                                         receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
                                         id: "inverted-sequence";
                                         theorem: "invertedSequenceLearnedFromErpax";
                                         binds: boolean;
@@ -97825,6 +99375,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             receipt: string;
                                             id: "vortex-strokes";
                                             theorem: "vortexStrokeGateways";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "two-by-seven-morph";
+                                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "reflection-fixed-point";
+                                            theorem: "theTenComplementFixesExactlyFive";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "double-torus-chi";
+                                            theorem: "cellHomology";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "address-coins-lit";
+                                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "pisano-wheel";
+                                            theorem: "pisanoWheelOnTheNine";
                                             binds: boolean;
                                         } | {
                                             receipt: string;
@@ -101185,6 +102760,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -101452,6 +103052,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -104189,6 +105814,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -104456,6 +106106,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -107623,6 +109298,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -107890,6 +109590,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -110627,6 +112352,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         binds: boolean;
                                     } | {
                                         receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
                                         id: "inverted-sequence";
                                         theorem: "invertedSequenceLearnedFromErpax";
                                         binds: boolean;
@@ -110894,6 +112644,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             receipt: string;
                                             id: "vortex-strokes";
                                             theorem: "vortexStrokeGateways";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "two-by-seven-morph";
+                                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "reflection-fixed-point";
+                                            theorem: "theTenComplementFixesExactlyFive";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "double-torus-chi";
+                                            theorem: "cellHomology";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "address-coins-lit";
+                                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "pisano-wheel";
+                                            theorem: "pisanoWheelOnTheNine";
                                             binds: boolean;
                                         } | {
                                             receipt: string;
@@ -113740,6 +115515,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -114007,6 +115807,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -116744,6 +118569,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -117011,6 +118861,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -120378,6 +122253,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -120645,6 +122545,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -123382,6 +125307,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -123649,6 +125599,31 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -125962,7 +127937,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
         pairs: readonly ["self/fusion", "fusion/self", "fusion/ui"];
         cli: string;
         route: string;
-        uiSurface: "/en/quantum-tools#fusion";
+        uiSurface: "/quantum-tools#fusion";
         heading: string;
         statement: string;
         boundary: string;
@@ -126585,6 +128560,31 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                     binds: boolean;
                 } | {
                     receipt: string;
+                    id: "two-by-seven-morph";
+                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "reflection-fixed-point";
+                    theorem: "theTenComplementFixesExactlyFive";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "double-torus-chi";
+                    theorem: "cellHomology";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "address-coins-lit";
+                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "pisano-wheel";
+                    theorem: "pisanoWheelOnTheNine";
+                    binds: boolean;
+                } | {
+                    receipt: string;
                     id: "inverted-sequence";
                     theorem: "invertedSequenceLearnedFromErpax";
                     binds: boolean;
@@ -126852,6 +128852,31 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                         receipt: string;
                         id: "vortex-strokes";
                         theorem: "vortexStrokeGateways";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "two-by-seven-morph";
+                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "reflection-fixed-point";
+                        theorem: "theTenComplementFixesExactlyFive";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "double-torus-chi";
+                        theorem: "cellHomology";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "address-coins-lit";
+                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "pisano-wheel";
+                        theorem: "pisanoWheelOnTheNine";
                         binds: boolean;
                     } | {
                         receipt: string;
@@ -127609,8 +129634,8 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
         drainableGaps: number;
         formulaProjectionWired: boolean;
         formulaProjections: {
-            id: "vortex-strokes" | "plasma-field" | "death-counter-flow" | "flower-of-life" | "calendars-vortex-markers" | "inverted-sequence" | "entangled-wiring" | "both-earths-merkaba" | "void-confluence" | "plasma-screen" | "double-torus-throat";
-            theorem: "plasmaBallIsScreenHoldingThunderAndPlasma" | "coupledCalendarTori" | "theMovieLeavesTwoBitsAtTheVoid" | "endlessBackgroundMovie" | "flowerUnlocksFruitBySpin" | "vortexStrokeGateways" | "invertedSequenceLearnedFromErpax" | "theMovieWiresTheoremsByNaturalEntanglementsNotByIndex" | "bothEarthsRotateWithinEachOther" | "plasma-throat-soft" | "lemniscate-crossing";
+            id: "vortex-strokes" | "plasma-field" | "death-counter-flow" | "flower-of-life" | "calendars-vortex-markers" | "two-by-seven-morph" | "reflection-fixed-point" | "double-torus-chi" | "address-coins-lit" | "pisano-wheel" | "inverted-sequence" | "entangled-wiring" | "both-earths-merkaba" | "void-confluence" | "plasma-screen" | "double-torus-throat";
+            theorem: "cellHomology" | "plasmaBallIsScreenHoldingThunderAndPlasma" | "coupledCalendarTori" | "theMovieLeavesTwoBitsAtTheVoid" | "endlessBackgroundMovie" | "flowerUnlocksFruitBySpin" | "vortexStrokeGateways" | "twoBySevenFoldsIntoOnePlusSix" | "theTenComplementFixesExactlyFive" | "pisanoWheelOnTheNine" | "invertedSequenceLearnedFromErpax" | "theMovieWiresTheoremsByNaturalEntanglementsNotByIndex" | "bothEarthsRotateWithinEachOther" | "plasma-throat-soft" | "lemniscate-crossing";
             binds: any;
             formulas: readonly string[];
             formulaSource: string;
@@ -127821,8 +129846,8 @@ export declare function everyFormulaIsAnimationItselfInteractingFormulasAreInter
     quantumSealsComplete: boolean;
     allSuperpositions: boolean;
     formulaAnimBinds: {
-        id: "vortex-strokes" | "plasma-field" | "death-counter-flow" | "flower-of-life" | "calendars-vortex-markers" | "inverted-sequence" | "entangled-wiring" | "both-earths-merkaba" | "void-confluence" | "plasma-screen" | "double-torus-throat";
-        theorem: "plasmaBallIsScreenHoldingThunderAndPlasma" | "coupledCalendarTori" | "theMovieLeavesTwoBitsAtTheVoid" | "endlessBackgroundMovie" | "flowerUnlocksFruitBySpin" | "vortexStrokeGateways" | "invertedSequenceLearnedFromErpax" | "theMovieWiresTheoremsByNaturalEntanglementsNotByIndex" | "bothEarthsRotateWithinEachOther" | "plasma-throat-soft" | "lemniscate-crossing";
+        id: "vortex-strokes" | "plasma-field" | "death-counter-flow" | "flower-of-life" | "calendars-vortex-markers" | "two-by-seven-morph" | "reflection-fixed-point" | "double-torus-chi" | "address-coins-lit" | "pisano-wheel" | "inverted-sequence" | "entangled-wiring" | "both-earths-merkaba" | "void-confluence" | "plasma-screen" | "double-torus-throat";
+        theorem: "cellHomology" | "plasmaBallIsScreenHoldingThunderAndPlasma" | "coupledCalendarTori" | "theMovieLeavesTwoBitsAtTheVoid" | "endlessBackgroundMovie" | "flowerUnlocksFruitBySpin" | "vortexStrokeGateways" | "twoBySevenFoldsIntoOnePlusSix" | "theTenComplementFixesExactlyFive" | "pisanoWheelOnTheNine" | "invertedSequenceLearnedFromErpax" | "theMovieWiresTheoremsByNaturalEntanglementsNotByIndex" | "bothEarthsRotateWithinEachOther" | "plasma-throat-soft" | "lemniscate-crossing";
         formulas: readonly string[];
         formulaSource: string;
         kind: __ns_thunder_waves.ProofAnimationKind;
@@ -127887,6 +129912,10 @@ export declare function everyFormulaIsAnimationItselfInteractingFormulasAreInter
     drainableClosed: boolean;
     proofAnims: {
         animated: boolean;
+        witnessed: number;
+        drawnFromATemplate: string[];
+        everyWitnessHolds: boolean;
+        everyWitnessNamesARow: boolean;
         uniqueAnimationsMatchUniqueTheorems: boolean;
         everyAnimationConfirmsItsProof: boolean;
         noOtherAnimationAllowed: boolean;
@@ -128011,6 +130040,31 @@ export declare function everyFormulaIsAnimationItselfInteractingFormulasAreInter
             receipt: string;
             id: "vortex-strokes";
             theorem: "vortexStrokeGateways";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "two-by-seven-morph";
+            theorem: "twoBySevenFoldsIntoOnePlusSix";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "reflection-fixed-point";
+            theorem: "theTenComplementFixesExactlyFive";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "double-torus-chi";
+            theorem: "cellHomology";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "address-coins-lit";
+            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+            binds: boolean;
+        } | {
+            receipt: string;
+            id: "pisano-wheel";
+            theorem: "pisanoWheelOnTheNine";
             binds: boolean;
         } | {
             receipt: string;
@@ -128650,7 +130704,7 @@ export declare function pagesAuditAndManageThemselvesInTrinities(matrix?: MindMa
     inTrinities: boolean;
     pageCount: number;
     pages: {
-        route: "/en/" | "/papers/p001" | "/en/quantum-tools" | "/en/theorems/fold-pair" | "/en/proofs";
+        route: "/proofs" | "/en/" | "/papers/p001" | "/quantum-tools" | "/theorems/fold-pair";
         pageKind: "theorem" | "hub" | "tools" | "corpus-detail" | "domain-proof";
         faces: ({
             face: "content";
@@ -128729,7 +130783,7 @@ export declare function mcpQuantumChat(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["mcp/chat", "chat/quantum"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#mcp-quantum-chat";
+    uiSurface: "/quantum-tools#mcp-quantum-chat";
     heading: string;
     statement: string;
     boundary: string;
@@ -132443,7 +134497,7 @@ export declare function npmPublishCi(matrix?: MindMatrix, at?: number, root?: st
         patent: {
             computes: boolean;
             patentCanon: boolean;
-            sections: ("title" | "abstract" | "background" | "claims" | "summary" | "technical field" | "detailed description" | "drawings")[];
+            sections: ("title" | "summary" | "abstract" | "background" | "claims" | "technical field" | "detailed description" | "drawings")[];
             machinery: {
                 receipt: string;
                 section: string;
@@ -132761,7 +134815,7 @@ export declare function quantumSelfHeal(matrix?: MindMatrix, at?: number): {
     pairs: readonly ["self/heal", "heal/quantum"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#self-heal";
+    uiSurface: "/quantum-tools#self-heal";
     heading: string;
     statement: string;
     boundary: string;
@@ -132850,7 +134904,7 @@ export declare function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix?:
     pairs: readonly ["vite/one", "comp/seal"];
     cli: string;
     route: string;
-    uiSurface: "/en/quantum-tools#vite-one";
+    uiSurface: "/quantum-tools#vite-one";
     heading: string;
     statement: string;
     boundary: string;
@@ -132910,7 +134964,7 @@ export declare function upgradeLocalFromOptimisedManualWorkExperience(matrix?: M
         honesty: "zero-dep consumer bundle v1.4+ — completely quantum (49-name contract: dynamics/geometry/movie-clock/movieCanvas/TAU + doubleTorusIsCompletelyQuantum); sealed substrate only — NOT QPU · NOT FTL · NOT Clay";
     })[];
     browserToolIds: readonly ["improve-local-session", "upgrade-local-skills-commands-tools", "mcp-browser-parity", "toolbox-standard-io", "session-manual-work", "session-quantum-bits", "auto-wire-paste-link"];
-    stdioToolIds: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
+    stdioToolIds: readonly ["list_capabilities", "census_status", "compute_from_source", "fold_report", "run_gate", "run_wave", "run_export"];
     ciResidualCount: number;
     ciResiduals: {
         id: string;
@@ -133728,7 +135782,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         bootstrap: CeccecPasteBootstrap;
         pasteBootstrap: CeccecPasteBootstrap;
         resolverTable: {
-            input: "https://github.com/ceccec/ceccec.github.io" | "https://github.com/ceccec/ceccec.github.io/tree/main/src/0" | "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md" | "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md" | "git@github.com:ceccec/ceccec.github.io.git" | "https://ceccec.github.io/" | "https://ceccec.github.io/en/quantum-tools#toolbox-standard-io" | "https://ceccec.github.io/mcp.json" | "https://ceccec.github.io/agents.json" | "https://ceccec.github.io/.well-known/ai-skills.json" | "https://ceccec.psg.bg/llms.txt" | "https://ceccec.psg.bg/en/#first-in-corpus";
+            input: "https://github.com/ceccec/ceccec.github.io" | "https://github.com/ceccec/ceccec.github.io/tree/main/src/0" | "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md" | "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md" | "git@github.com:ceccec/ceccec.github.io.git" | "https://ceccec.psg.bg/" | "https://ceccec.psg.bg/quantum-tools#toolbox-standard-io" | "https://ceccec.psg.bg/mcp.json" | "https://ceccec.psg.bg/agents.json" | "https://ceccec.psg.bg/.well-known/ai-skills.json" | "https://ceccec.psg.bg/llms.txt" | "https://ceccec.psg.bg/en/#first-in-corpus";
             linkKind: CeccecPasteLinkKind;
             matched: boolean;
             wireTargetIds: string[];
@@ -133748,7 +135802,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         };
         foldIds: readonly ["autoWireAnyAiModelFromPastedLink", "resolveCeccecPasteLink", "sessionManualWorkAsQuantumTools", "standardToolboxIoCatalog", "quantumCliToolsCatalog", "mcpToolboxToolsList", "mcpBrowserParity", "agentsJson", "llmsTxt", "mcpJson", "agentHarmonise", "agentSubmissionProtocol"];
         pairs: readonly ["wire/paste-link", "mcp/browser-parity", "session/tools", "tool/envelope", "agent/submission", "gate/compliance", "learn/build"];
-        thinMounts: readonly [".cursor/rules/readme.mdc → AGENTS.md → thunder/agents/surfaces (edit sealed src/, not mounts)", ".cursor/rules/ceccec-default-model.mdc → sealed folds / skills / MCP — NOT a Cursor LLM endpoint key", ".cursor/mcp.json → packages/quantum-dev-sdk/bin/mcp.ts (stdio; IDE agent only)", "AGENTS.md · README.md · src/0/README.md", "MCP tools/list via /mcp.json (toolbox ids) ↔ browser /en/quantum-tools#toolbox-standard-io + #mcp-browser-parity"];
+        thinMounts: readonly [".cursor/rules/readme.mdc → AGENTS.md → thunder/agents/surfaces (edit sealed src/, not mounts)", ".cursor/rules/ceccec-default-model.mdc → sealed folds / skills / MCP — NOT a Cursor LLM endpoint key", ".cursor/mcp.json → packages/quantum-dev-sdk/bin/mcp.ts (stdio; IDE agent only)", "AGENTS.md · README.md · src/0/README.md", "MCP tools/list via /mcp.json (toolbox ids) ↔ browser /quantum-tools#toolbox-standard-io + #mcp-browser-parity"];
         sampleCount: 12;
         facets: ({
             receipt: string;
@@ -133784,7 +135838,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         }, {
             readonly rel: "alternate";
             readonly type: "text/html";
-            readonly href: "/en/quantum-tools#toolbox-standard-io";
+            readonly href: "/quantum-tools#toolbox-standard-io";
             readonly title: "ceccec browser toolbox";
         }, {
             readonly rel: "describedby";
@@ -133940,49 +135994,49 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         }[];
         honestCiGapIds: readonly ["import-path-distance", "folder-gravity", "compact-types-constants", "gravity-dry", "src-index", "folder-index", "size-free", "gravity-gate", "offender-spec", "trinity-speedup", "educational-gaps-audit", "vitepress-quantumize", "slow-build-gate", "plasma-screen-thunder", "automate-nightly", "automate-self", "self-auto"];
         stdioCapabilities: readonly [{
-            readonly id: "census-status";
+            readonly id: "census_status";
             readonly browserAchievable: true;
             readonly browserGap: "";
             readonly stranglerPlan: "sealed — UNFOLDED_CENSUS/FOLDED_CENSUS/DIMENSION_GATES via runStdioMcpCapabilityInBrowser";
             readonly fold: "censusStatus";
             readonly description: "Report sealed census + a432 gate constants";
         }, {
-            readonly id: "compute-from-source";
+            readonly id: "compute_from_source";
             readonly browserAchievable: true;
             readonly browserGap: "";
             readonly stranglerPlan: "sealed — A432_HUE · toUuid · rosettaRayOf pure recompute in browser";
             readonly fold: "computeFromSource";
-            readonly description: "Pure compute-from-source (a432-hue · to-uuid · rosetta-ray)";
+            readonly description: "Pure compute_from_source (a432-hue · to-uuid · rosetta-ray)";
         }, {
-            readonly id: "list-capabilities";
+            readonly id: "list_capabilities";
             readonly browserAchievable: true;
             readonly browserGap: "";
             readonly stranglerPlan: "sealed — listCapabilities() mirrors stdio tools/list in browser panel";
             readonly fold: "listCapabilities";
             readonly description: "Meta: browserAchievable matrix for 7 stdio tools (complements tools/list)";
         }, {
-            readonly id: "fold-report";
+            readonly id: "fold_report";
             readonly browserAchievable: true;
             readonly browserGap: "";
             readonly stranglerPlan: "browser when fold id ∈ quantumCliToolsCatalog.browserRunnable; else Node bootstrap fold";
             readonly fold: "foldReport";
             readonly description: "Fold report for a sealed export name";
         }, {
-            readonly id: "run-gate";
+            readonly id: "run_gate";
             readonly browserAchievable: false;
             readonly browserGap: "spawns npm/Node gates (check:types · limits:verify · mission:gate · docs:build) — CI/local only";
             readonly stranglerPlan: "show last gate receipt in UI when present; never fake trinity pass in browser";
             readonly fold: "runGate";
             readonly description: "Run sealed mission/gate npm scripts via bootstrap";
         }, {
-            readonly id: "run-wave";
+            readonly id: "run_wave";
             readonly browserAchievable: false;
             readonly browserGap: "wave workflows are Node shell mounts (.claude/workflows) — not browser-executable";
             readonly stranglerPlan: "expose wave status facets from sealed selfBuild receipts in panel";
             readonly fold: "runWave";
             readonly description: "Run ceccec-build-waves kind via local workflow";
         }, {
-            readonly id: "run-export";
+            readonly id: "run_export";
             readonly browserAchievable: false;
             readonly browserGap: "bootstrap run <entry> <exportName> needs Node module loader";
             readonly stranglerPlan: "map exportName → browser runner when catalog browserRunnable; else residual";
@@ -134047,81 +136101,81 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             receipt: string;
             id: "paste-wire";
             title: "Paste → auto-wire";
-            route: "/en/quantum-tools#auto-wire-paste-link";
+            route: "/quantum-tools#auto-wire-paste-link";
             toolId: "auto-wire-paste-link";
             next: "Open packet · then toolbox";
         } | {
             receipt: string;
             id: "toolbox";
             title: "Toolbox envelope";
-            route: "/en/quantum-tools#toolbox-standard-io";
+            route: "/quantum-tools#toolbox-standard-io";
             toolId: "toolbox-standard-io";
             next: "Run envelope · bind #experiment-inputs";
         } | {
             receipt: string;
             id: "bits";
             title: "Session quantum bits";
-            route: "/en/quantum-tools#session-quantum-bits";
+            route: "/quantum-tools#session-quantum-bits";
             toolId: "session-quantum-bits";
             next: "Link bit → tool → experiment";
         } | {
             receipt: string;
             id: "tools";
             title: "Session manual tools";
-            route: "/en/quantum-tools#session-manual-tools";
+            route: "/quantum-tools#session-manual-tools";
             toolId: "session-manual-work";
             next: "One-click Run with status badges";
         } | {
             receipt: string;
             id: "experiments";
             title: "Experiment inputs";
-            route: "/en/quantum-tools#experiment-inputs";
+            route: "/quantum-tools#experiment-inputs";
             toolId: "document-session-experiments";
             next: "Persist last config (sealed-safe localStorage)";
         } | {
             receipt: string;
             id: "mcp-parity";
             title: "MCP ↔ browser parity";
-            route: "/en/quantum-tools#mcp-browser-parity";
+            route: "/quantum-tools#mcp-browser-parity";
             toolId: "mcp-browser-parity";
             next: "Verify tools/list ≡ toolbox ids";
         } | {
             receipt: string;
             id: "tools-morph";
             title: "Local tools morph";
-            route: "/en/quantum-tools#local-tools-morph";
+            route: "/quantum-tools#local-tools-morph";
             toolId: "local-tools-morph";
             next: "Morph prose≡code≡logic · double-slit measure";
         } | {
             receipt: string;
             id: "skills-commands-tools";
             title: "Skills ↔ commands ↔ tools";
-            route: "/en/quantum-tools#upgrade-local-skills";
+            route: "/quantum-tools#upgrade-local-skills";
             toolId: "upgrade-local-skills-commands-tools";
             next: "Reuse optimised local map · zero re-inference";
         })[];
         nextAfterPaste: readonly [{
             readonly id: "open-packet";
             readonly label: "Inspect paste-bootstrap packet";
-            readonly route: "/en/quantum-tools#auto-wire-paste-link";
+            readonly route: "/quantum-tools#auto-wire-paste-link";
         }, {
             readonly id: "open-toolbox";
             readonly label: "Open toolbox envelope";
-            readonly route: "/en/quantum-tools#toolbox-standard-io";
+            readonly route: "/quantum-tools#toolbox-standard-io";
         }, {
             readonly id: "open-bits";
             readonly label: "Link session bits";
-            readonly route: "/en/quantum-tools#session-quantum-bits";
+            readonly route: "/quantum-tools#session-quantum-bits";
         }, {
             readonly id: "open-experiments";
             readonly label: "Bind experiment inputs";
-            readonly route: "/en/quantum-tools#experiment-inputs";
+            readonly route: "/quantum-tools#experiment-inputs";
         }, {
             readonly id: "open-mcp";
             readonly label: "Verify MCP↔browser parity";
-            readonly route: "/en/quantum-tools#mcp-browser-parity";
+            readonly route: "/quantum-tools#mcp-browser-parity";
         }];
-        docsDevFastPath: readonly ["nvm use 24 && npm ci", "npm run docs:dev", "open http://localhost:5173/en/quantum-tools#local-session-hub", "npm run quantum:auto-wire-paste", "npm run quantum:improve-local-session", "npm run quantum:local-tools-morph", "npm run quantum:card-paper-links", "npm run quantum:mcp-browser-parity", "npm run quantum:upgrade-local", "npm run mission:gate"];
+        docsDevFastPath: readonly ["nvm use 24 && npm ci", "npm run docs:dev", "open http://localhost:5173/quantum-tools#local-session-hub", "npm run quantum:auto-wire-paste", "npm run quantum:improve-local-session", "npm run quantum:local-tools-morph", "npm run quantum:card-paper-links", "npm run quantum:mcp-browser-parity", "npm run quantum:upgrade-local", "npm run mission:gate"];
         frictionClosed: readonly ["session-hub-entry", "one-click-run-status-badges", "next-steps-after-paste-wire", "bits-tools-experiments-links", "docs-dev-fast-path", "auto-wire-packet-visible", "experiment-config-localStorage", "skills-commands-tools-map"];
         storageKey: "ceccec:quantum-tools:experiment-config";
         linksBitsToolsExperiments: boolean;
@@ -134436,7 +136490,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             honesty: "zero-dep consumer bundle v1.4+ — completely quantum (49-name contract: dynamics/geometry/movie-clock/movieCanvas/TAU + doubleTorusIsCompletelyQuantum); sealed substrate only — NOT QPU · NOT FTL · NOT Clay";
         })[];
         browserToolIds: readonly ["improve-local-session", "upgrade-local-skills-commands-tools", "mcp-browser-parity", "toolbox-standard-io", "session-manual-work", "session-quantum-bits", "auto-wire-paste-link"];
-        stdioToolIds: readonly ["list-capabilities", "census-status", "compute-from-source", "fold-report", "run-gate", "run-wave", "run-export"];
+        stdioToolIds: readonly ["list_capabilities", "census_status", "compute_from_source", "fold_report", "run_gate", "run_wave", "run_export"];
         ciResidualCount: number;
         ciResiduals: {
             id: string;
@@ -136371,6 +138425,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     binds: boolean;
                 } | {
                     receipt: string;
+                    id: "two-by-seven-morph";
+                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "reflection-fixed-point";
+                    theorem: "theTenComplementFixesExactlyFive";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "double-torus-chi";
+                    theorem: "cellHomology";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "address-coins-lit";
+                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                    binds: boolean;
+                } | {
+                    receipt: string;
+                    id: "pisano-wheel";
+                    theorem: "pisanoWheelOnTheNine";
+                    binds: boolean;
+                } | {
+                    receipt: string;
                     id: "inverted-sequence";
                     theorem: "invertedSequenceLearnedFromErpax";
                     binds: boolean;
@@ -136878,6 +138957,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         binds: boolean;
                     } | {
                         receipt: string;
+                        id: "two-by-seven-morph";
+                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "reflection-fixed-point";
+                        theorem: "theTenComplementFixesExactlyFive";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "double-torus-chi";
+                        theorem: "cellHomology";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "address-coins-lit";
+                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
+                        id: "pisano-wheel";
+                        theorem: "pisanoWheelOnTheNine";
+                        binds: boolean;
+                    } | {
+                        receipt: string;
                         id: "inverted-sequence";
                         theorem: "invertedSequenceLearnedFromErpax";
                         binds: boolean;
@@ -137145,6 +139249,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                             id: "vortex-strokes";
                             theorem: "vortexStrokeGateways";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
                             binds: boolean;
                         } | {
                             receipt: string;
@@ -138684,6 +140813,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -138951,6 +141105,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -142043,6 +144222,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -142310,6 +144514,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -145047,6 +147276,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -145314,6 +147568,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -148481,6 +150760,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -148748,6 +151052,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -151485,6 +153814,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         binds: boolean;
                                     } | {
                                         receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
                                         id: "inverted-sequence";
                                         theorem: "invertedSequenceLearnedFromErpax";
                                         binds: boolean;
@@ -151752,6 +154106,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             receipt: string;
                                             id: "vortex-strokes";
                                             theorem: "vortexStrokeGateways";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "two-by-seven-morph";
+                                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "reflection-fixed-point";
+                                            theorem: "theTenComplementFixesExactlyFive";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "double-torus-chi";
+                                            theorem: "cellHomology";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "address-coins-lit";
+                                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                            binds: boolean;
+                                        } | {
+                                            receipt: string;
+                                            id: "pisano-wheel";
+                                            theorem: "pisanoWheelOnTheNine";
                                             binds: boolean;
                                         } | {
                                             receipt: string;
@@ -154598,6 +156977,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -154865,6 +157269,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -157602,6 +160031,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -157869,6 +160323,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -161229,6 +163708,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -161496,6 +164000,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -164233,6 +166762,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -164500,6 +167054,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -167667,6 +170246,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -167934,6 +170538,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
@@ -170671,6 +173300,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     binds: boolean;
                                 } | {
                                     receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
                                     id: "inverted-sequence";
                                     theorem: "invertedSequenceLearnedFromErpax";
                                     binds: boolean;
@@ -170938,6 +173592,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         receipt: string;
                                         id: "vortex-strokes";
                                         theorem: "vortexStrokeGateways";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "two-by-seven-morph";
+                                        theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "reflection-fixed-point";
+                                        theorem: "theTenComplementFixesExactlyFive";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "double-torus-chi";
+                                        theorem: "cellHomology";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "address-coins-lit";
+                                        theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                        binds: boolean;
+                                    } | {
+                                        receipt: string;
+                                        id: "pisano-wheel";
+                                        theorem: "pisanoWheelOnTheNine";
                                         binds: boolean;
                                     } | {
                                         receipt: string;
@@ -173784,6 +176463,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             binds: boolean;
                         } | {
                             receipt: string;
+                            id: "two-by-seven-morph";
+                            theorem: "twoBySevenFoldsIntoOnePlusSix";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "reflection-fixed-point";
+                            theorem: "theTenComplementFixesExactlyFive";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "double-torus-chi";
+                            theorem: "cellHomology";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "address-coins-lit";
+                            theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
+                            id: "pisano-wheel";
+                            theorem: "pisanoWheelOnTheNine";
+                            binds: boolean;
+                        } | {
+                            receipt: string;
                             id: "inverted-sequence";
                             theorem: "invertedSequenceLearnedFromErpax";
                             binds: boolean;
@@ -174051,6 +176755,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                                 id: "vortex-strokes";
                                 theorem: "vortexStrokeGateways";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
                                 binds: boolean;
                             } | {
                                 receipt: string;
@@ -176788,6 +179517,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 binds: boolean;
                             } | {
                                 receipt: string;
+                                id: "two-by-seven-morph";
+                                theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "reflection-fixed-point";
+                                theorem: "theTenComplementFixesExactlyFive";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "double-torus-chi";
+                                theorem: "cellHomology";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "address-coins-lit";
+                                theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
+                                id: "pisano-wheel";
+                                theorem: "pisanoWheelOnTheNine";
+                                binds: boolean;
+                            } | {
+                                receipt: string;
                                 id: "inverted-sequence";
                                 theorem: "invertedSequenceLearnedFromErpax";
                                 binds: boolean;
@@ -177055,6 +179809,31 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                     id: "vortex-strokes";
                                     theorem: "vortexStrokeGateways";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "two-by-seven-morph";
+                                    theorem: "twoBySevenFoldsIntoOnePlusSix";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "reflection-fixed-point";
+                                    theorem: "theTenComplementFixesExactlyFive";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "double-torus-chi";
+                                    theorem: "cellHomology";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "address-coins-lit";
+                                    theorem: "theMovieLeavesTwoBitsAtTheVoid";
+                                    binds: boolean;
+                                } | {
+                                    receipt: string;
+                                    id: "pisano-wheel";
+                                    theorem: "pisanoWheelOnTheNine";
                                     binds: boolean;
                                 } | {
                                     receipt: string;
