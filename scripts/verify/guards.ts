@@ -49,14 +49,26 @@ export function findGuards(root: string = process.cwd()): Guard[] {
   return found
 }
 
-/** A literal bound inside a file that carries facets — the numbers the claims lean on. */
-export function findCaps(root: string = process.cwd()): { file: string; caps: number }[] {
-  const out: { file: string; caps: number }[] = []
+/** A literal LENGTH BAR inside a file that carries facets — the numbers the claims lean on: `x.length >= 3`,
+ *  `rows.length > 12`, `parts.length === 4`. String truncation is NOT counted, and counting it was wrong: a corpus
+ *  sample showed most `slice(0, N)` hits shorten a content address for printing (`payloadRoot.slice(0, 8)`) or key a
+ *  receipt (`facet.slice(0, 64)`), bounding nothing the fold asserts — 2429 counted, mostly display, which would let a
+ *  real cap hide in the noise. A bar decides whether a claim holds; that is what this measures. */
+export function findCaps(root: string = process.cwd()): { file: string; caps: number; sites: string[] }[] {
+  const out: { file: string; caps: number; sites: string[] }[] = []
   for (const file of sources(root)) {
     const text = readFileSync(file, 'utf8')
     if (!/^\s*\{ facet:/m.test(text)) continue
-    const caps = (text.match(/slice\(0, [0-9]+\)|\.length >= [0-9]+|\.length > [0-9]+/g) ?? []).length
-    if (caps > 0) out.push({ file: relative(root, file).replace(/\\/g, '/'), caps })
+    const sites: string[] = []
+    text.split('\n').forEach((line, i) => {
+      for (const m of line.matchAll(/\.length\s*(>=|>|===|!==|<=|<)\s*([0-9]+)/g)) {
+        // A CAP IS A CHOSEN BOUND, so it starts at two. `x.length === 0`, `> 0`, `!== 0` and `< 2` ask whether a thing
+        // is empty or a singleton — structural questions with no number to derive — and counting them took the measure
+        // from 2429 to 2941 while adding nothing a wave could fix.
+        if (Number(m[2]) >= 2) sites.push(`${relative(root, file).replace(/\\/g, '/')}:${i + 1}  .length ${m[1]} ${m[2]}`)
+      }
+    })
+    if (sites.length) out.push({ file: relative(root, file).replace(/\\/g, '/'), caps: sites.length, sites })
   }
   return out.sort((a, b) => b.caps - a.caps)
 }
@@ -67,9 +79,9 @@ export function assertGuardsAndCaps(): void {
   const noFs = guards.filter((g) => g.kind === 'no-filesystem-empty')
   const caps = findCaps()
   const capTotal = caps.reduce((sum, entry) => sum + entry.caps, 0)
-  console.log(`guards: ${browser.length} browser degradations · ${noFs.length} filesystem-absent empties · caps: ${capTotal} in ${caps.length} facet-bearing files`)
+  console.log(`guards: ${browser.length} browser degradations · ${noFs.length} filesystem-absent empties · caps: ${capTotal} literal length bars in ${caps.length} facet-bearing files`)
   for (const entry of caps.slice(0, 5)) console.log(`  ${String(entry.caps).padStart(4)}  ${entry.file}`)
   console.log(ratchet('guards.browser-degrades', browser.length, { evidence: () => browser.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
   console.log(ratchet('guards.no-filesystem-empty', noFs.length, { evidence: () => noFs.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
-  console.log(ratchet('caps.in-facet-folds', capTotal, { evidence: () => caps.map((entry) => `${entry.caps} literal bound(s) in ${entry.file}`) }))
+  console.log(ratchet('caps.in-facet-folds', capTotal, { evidence: () => caps.flatMap((entry) => entry.sites) }))
 }
