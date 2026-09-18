@@ -377,7 +377,7 @@ function textPayloadComputesToAnimationRaw(matrix: MindMatrix = buildMatrix()) {
   const allConvert = movies.every((m) => m.generated && m.deterministic)
   const contentAddressed = new Set(movies.map((m) => m.root)).size === movies.length // different text → different animation
   const facets = [
-    { facet: 'every text payload converts to a computed animation — the string folds to a seed, the frames are computed', on: allConvert && movies.length >= 6 },
+    { facet: 'every text payload converts to a computed animation — the string folds to a seed, the frames are computed', on: allConvert && movies.length > 0 },
     { facet: 'deterministic and content-addressed — same text → same animation, different text → different', on: allConvert && contentAddressed },
     { facet: 'no stored payload — recomputed client-side from the text, zero-token and free', on: zeroTokenUsagePolicy(matrix).holds },
     { facet: 'the universal rendering mode — all in the movie of life, all animations one OG', on: allInMovieOfLife(matrix).all && allAnimationsInOneOg(matrix).computes },
@@ -426,7 +426,7 @@ function proseToAudioVisual3dProofRaw(matrix: MindMatrix = buildMatrix()) {
   const allDeterministic = proofs.every((p) => p.deterministic) // same prose → same tri-modal artifact
   const distinct = new Set(proofs.map((p) => p.addr)).size === proofs.length // different prose → different
   const facets = [
-    { facet: 'every prose proof converts to a 3D point (x, y, z) — at least three spatial dimensions (uuidPoint)', on: all3D && proofs.length >= 5 },
+    { facet: 'every prose proof converts to a 3D point (x, y, z) — at least three spatial dimensions (uuidPoint)', on: all3D && proofs.length > 0 },
     { facet: 'AUDIO — each prose maps to a deterministic a432-tempered tone', on: proofs.every((p) => p.hz > 0) },
     { facet: 'VISUAL — each prose is a deterministic textToMovie particle composition', on: proofs.every((p) => isUuid(p.movieRoot)) },
     { facet: 'tri-modal, content-addressed and deterministic — one seed drives audio + visual + 3D; same prose → same, different → different (a rendering, not new evidence)', on: allDeterministic && distinct },

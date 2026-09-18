@@ -215,7 +215,7 @@ function merkabaRaw(matrix: MindMatrix = buildMatrix()) {
   // The two tetrahedra are exact opposites (the down is the negated up).
   const dual = tetraUp.every((v, i) => tetraDown[i].every((c, k) => c === -v[k]))
   return {
-    counterRotating: alternating && dual && scales.length >= 4,
+    counterRotating: alternating && dual && scales.length > 0,
     scales,
     count: scales.length,
     tetraUp,

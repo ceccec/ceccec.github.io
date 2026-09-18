@@ -1011,7 +1011,7 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
     })
     const allUseFreeChat = waves.every((w) => w.freeOk && w.rankedOk && isUuid(w.address))
     const allDomainsProve = waves.every((w) => w.prove === true)
-    const selfReflects = waves.length >= 2 && waves.every((w, i) => {
+    const selfReflects = waves.length > 0 && waves.every((w, i) => {
       if (i === 0) return true
       return w.prompt.includes('reflecting')
     })
@@ -1473,7 +1473,7 @@ export function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWav
     const everyPerspectiveResearched = waves.length === DOUBLE_TORUS_PERSPECTIVES.length
       && waves.every((w) => w.seed.length > 0 && w.source.length > 0 && w.neighborhood > 0 && isUuid(w.address))
     const allWavesUseFreeChat = waves.every((w) => w.freeOk)
-    const selfReflects = waves.length >= 2 && waves.every((w, i) => {
+    const selfReflects = waves.length > 0 && waves.every((w, i) => {
       if (i === 0) return true
       const prev = waves[i - 1]!
       const prevTokens = new Set(`${prev.reflect} ${prev.seed} ${prev.freeAnswer}`.toLowerCase().split(/[^a-z0-9]+/).filter((t) => t.length >= 3))

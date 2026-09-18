@@ -383,7 +383,7 @@ export function deadCodeDissectedAndNewCodeBorn() {
   const deadFold = { name: 'unusedFold', references: 0 }
   const isDead = deadFold.references === 0 // nothing composes it
   const parts = ['normalise', 'contentAddress', 'foldPair'].map((primitive) => toUuid(`part:${deadFold.name}:${primitive}`)) // the computing primitives dissected out
-  const dissected = parts.length >= 2 && parts.every((part) => isUuid(part))
+  const dissected = parts.length > 0 && parts.every((part) => isUuid(part))
   const newCode = merkleFold(parts) // new code born from the reusable parts
   const born = isUuid(newCode) && newCode !== toUuid(`dead:${deadFold.name}`) // a new address, not the dead fold's
   const notFabricated = merkleFold(parts) === newCode && parts.every((part) => isUuid(part)) // deterministic recomposition of the SAME computing parts

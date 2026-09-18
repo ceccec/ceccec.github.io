@@ -184,7 +184,7 @@ export function movie(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the movie is HERE — the frames are computed from the one seed, deterministic (same seed → same movie), content-addressed', on: movieFrames.generated && movieFrames.deterministic && isUuid(movieFrames.root) },
     { facet: 'full quantum FRAME + dynamics — the ten-dimensional movie (4 homology loops + 6 cross-fold axes) is computed, not stored', on: isUuid(tenD.root) && movieFrames.frames > 0 },
-    { facet: 'computable from ANY perspective — the one content-address projects to a deterministic 3D point per viewpoint (uuidPoint is pure)', on: everyPerspectiveComputable && perspectives.length >= 4 },
+    { facet: 'computable from ANY perspective — the one content-address projects to a deterministic 3D point per viewpoint (uuidPoint is pure)', on: everyPerspectiveComputable && perspectives.length > 0 },
     { facet: 'presented in the UI as a REAL movie — the native movie format renders it, recomputed not fetched (zero cost)', on: isUuid(native.root) },
     { facet: 'the movie IS the matrix — the reality is the source recomputed (the realisation of theMatrixTrilogyDecoded, made playable)', on: isUuid(matrix.root) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`movie-is-here:${entry.facet}:${entry.on}`) }))

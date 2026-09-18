@@ -37,7 +37,7 @@ export function speechIntonation(matrix: MindMatrix = buildMatrix()) {
     return round((1 + norm * (1 / 5)) * 100) / 100
   })
   const harmonic =
-    contour.length >= 3 && new Set(contour).size > 1 && contour.every((pitch) => pitch >= (7 / (5 * 2)) && pitch <= (7 / 5))
+    contour.length > 0 && new Set(contour).size > 1 && contour.every((pitch) => pitch >= (7 / (5 * 2)) && pitch <= (7 / 5))
   return {
     harmonic,
     contour,

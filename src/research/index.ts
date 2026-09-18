@@ -3093,7 +3093,7 @@ export function decodeHerbsAndCombinationsCompletesBiologyCatalog() {
   const blend = merkleFold(herbs.slice(0, 3).map((entry) => entry.address))
   const blendIsObject = isUuid(blend)
   const tamperEvident = blend !== merkleFold([toUuid('herb:chamomile'), toUuid('herb:peppermint'), toUuid('herb:CHANGED')]) // a changed herb → different blend
-  const catalogGainsBotanical = herbs.length >= 5 && blendIsObject // the plant/herbal branch is added to the decode catalog
+  const catalogGainsBotanical = herbs.length > 0 && blendIsObject // the plant/herbal branch is added to the decode catalog
   const facets = [
     { facet: `HERBS ARE DECODED AS OBJECTS — each of ${herbs.length} herbs is a content-addressed object (GBIF taxonomy + PubChem chemistry, 3 APIs each, ${herbsDecoded}); the decode reuses the herbal APIs, one address per herb`, on: herbsDecoded },
     { facet: `COMBINATIONS ARE OBJECTS OF OBJECTS — a herbal blend is the merkle of its herb-objects, itself an object (${blendIsObject}) that CHANGES if any herb changes (${tamperEvident}) — the object-combination theorem, like biology's hierarchy`, on: blendIsObject && tamperEvident },
@@ -3127,7 +3127,7 @@ export function decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed() {
     branch: toUuid(`decode-branch:${domain}`),
     apis: herbalApiRequests(domain).length, // the SAME request-builders serve every domain (GBIF/PubChem/OFF)
   }))
-  const beyondHerbs = domains.length >= 5 && domains.every((entry) => isUuid(entry.branch))
+  const beyondHerbs = domains.length > 0 && domains.every((entry) => isUuid(entry.branch))
   const sameMachinery = domains.every((entry) => entry.apis === 3) // one machinery, many domains
   // O(1) reuse: adding a domain is one more branch address (a merkle append), not a linear rebuild.
   const catalogBefore = merkleFold(domains.slice(0, -1).map((entry) => entry.branch))

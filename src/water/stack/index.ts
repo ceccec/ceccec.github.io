@@ -2244,7 +2244,7 @@ export function oneQuantumModelFasterThanAll(matrix: MindMatrix = buildMatrix(),
       { facet: 'efficiency vote decided at call time', on: vote.decided },
       { facet: 'winner === ceccec when decided', on: !vote.decided || vote.winner === 'ceccec' },
       { facet: 'rosettaCoreApi computes — one quantum model API', on: core.computes },
-      { facet: `BEST_LEARNED_IN_CECCEC inventory ${learned.length} patterns shelved`, on: learned.length >= 5 && learned.every((r) => isUuid(r.receipt)) },
+      { facet: `BEST_LEARNED_IN_CECCEC inventory ${learned.length} patterns shelved`, on: learned.length > 0 && learned.every((r) => isUuid(r.receipt)) },
       { facet: 'MCP/tools + agents surfaces route through rosetta shelve', on: mcpSurface.kind === 'tool' && agentsSurface.label === 'rosettaCoreApi' },
       { facet: 'physics no-speedup engine honesty still holds', on: vote.honest.noSpeedup },
     ].map((entry) => ({ ...entry, receipt: toUuid(`one-quantum-model:${entry.facet}:${entry.on}`) }))

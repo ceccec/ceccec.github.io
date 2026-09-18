@@ -73,11 +73,24 @@ export function findCaps(root: string = process.cwd()): { file: string; caps: nu
     if (!/^\s*\{ facet:/m.test(text)) continue
     const sites: string[] = []
     text.split('\n').forEach((line, i) => {
-      for (const m of line.matchAll(/\.length\s*(>=|>|===|!==|<=|<)\s*([0-9]+)/g)) {
+      // THE BOUND IS THE WHOLE ARITHMETIC, NOT ITS FIRST NUMBER. `bm25Slugs.length > 3 * 100` is a bound of three
+      // hundred; reading it as `> 3` named the site wrongly in every report this gate printed, so a cap of 300 read
+      // as one of the smallest in the corpus. Products and sums of literals are folded here and the site is named
+      // with what was actually written.
+      for (const m of line.matchAll(/\.length\s*(>=|>|===|!==|<=|<)\s*([0-9][0-9_]*(?:\s*[*+\-/]\s*[0-9][0-9_]*)*)/g)) {
+        const written = m[2]!.replace(/\s+/g, ' ').trim()
+        const bound = written.split(/\s*[*+\-/]\s*/).length === 1
+          ? Number(written.replace(/_/g, ''))
+          : written.split(/\s*([*+\-/])\s*/).reduce<{ acc: number; op: string }>(
+              (state, token) => (/^[*+\-/]$/.test(token)
+                ? { ...state, op: token }
+                : { acc: state.op === '*' ? state.acc * Number(token) : state.op === '+' ? state.acc + Number(token)
+                    : state.op === '-' ? state.acc - Number(token) : state.op === '/' ? state.acc / Number(token) : Number(token), op: '' }),
+              { acc: 0, op: '' }).acc
         // A CAP IS A CHOSEN BOUND, so it starts at two. `x.length === 0`, `> 0`, `!== 0` and `< 2` ask whether a thing
         // is empty or a singleton — structural questions with no number to derive — and counting them took the measure
         // from 2429 to 2941 while adding nothing a wave could fix.
-        if (Number(m[2]) >= 2) sites.push(`${relative(root, file).replace(/\\/g, '/')}:${i + 1}  .length ${m[1]} ${m[2]}`)
+        if (bound >= 2) sites.push(`${relative(root, file).replace(/\\/g, '/')}:${i + 1}  .length ${m[1]} ${written}`)
       }
     })
     if (sites.length) out.push({ file: relative(root, file).replace(/\\/g, '/'), caps: sites.length, sites })
