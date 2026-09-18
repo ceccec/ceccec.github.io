@@ -2097,8 +2097,11 @@ export function shorBreaksWhichPublicKey(matrix: MindMatrix = buildMatrix()) {
     const broken = families.filter((f) => f.shor === 'breaks')
     const safe = families.filter((f) => f.shor === 'safe')
     const facets = [
-      { facet: `Shor BREAKS ${broken.length} public-key families (RSA/DH/ECC/Ed25519)`, on: broken.length === 4 },
-      { facet: `Shor-SAFE ${safe.length} hash/symmetric/content-address families`, on: safe.length === 3 },
+      // NOT `=== 4` and `=== 3`. Those are the table's own row counts typed back at it, and they stay true while
+      // a family sits in neither class. What is asserted here is the PARTITION: breaks and safe cover the table
+      // exactly, so each side equals the whole minus the other. Add a row with any other `shor` and both fail.
+      { facet: `Shor BREAKS ${broken.length} public-key families (RSA/DH/ECC/Ed25519)`, on: broken.length === families.length - safe.length && broken.every((f) => f.shor === 'breaks') },
+      { facet: `Shor-SAFE ${safe.length} hash/symmetric/content-address families`, on: safe.length === families.length - broken.length && safe.every((f) => f.shor === 'safe') },
       { facet: 'content-address/merkle marked Shor-safe (no exposed period)', on: families.some((f) => f.family.includes('merkle') && f.shor === 'safe') },
       { facet: 'every broken family names a PQC replace (NIST/ISO path)', on: broken.every((f) => f.pqcReplace.length > 0) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`shor-map:${entry.facet}:${entry.on}`) }))
