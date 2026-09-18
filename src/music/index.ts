@@ -292,12 +292,19 @@ export function a432DigitSpectrum(matrix: MindMatrix = buildMatrix()) {
     const axisRows = rows.filter((r) => r.role === 'axis')
     const flowRows = rows.filter((r) => r.role === 'ring')
     const voidRow = rows[rows.length - 1]
+    // ℤ/9 STATES THESE COUNTS, SO THEY ARE NOT TYPED HERE. The trinity axis is what the doubling map cannot
+    // reach — the non-units 3·6·9 — and the flow ring IS the orbit ⟨2⟩ = 1·2·4·8·7·5, so their sizes are
+    // |ℤ/9| − |(ℤ/9)ˣ| and the order of 2. vortexLawsOf recomputes both from the modulus alone.
+    const nine = __ns_up_up_vortex_math.vortexLawsOf(VORTEX_SEQUENCE.length)
+    const axisSize = VORTEX_SEQUENCE.length - nine.units.length // the non-units: 9 − φ(9)
+    const flowSize = nine.orbit.length // the order of 2 in (ℤ/9)ˣ
     const { computes, facets, root } = computesGate('a432-digit-spectrum', [
       { facet: 'both voicings complete at the a432 base — 48·9 = 36·12 = 432 = 4·108', on: RING_UNIT * 9 === BASE && AXIS_UNIT * (3 * 4) === BASE && BASE === A432_FOLDED * 4 },
-      { facet: 'the trinity axis rings in BOTH voicings — {3,6,9} voiced by ÷9 AND ÷12', on: axisRows.length === 3 && axisRows.every((r) => r.ringHz > 0 && r.axisHz > 0) },
-      { facet: 'the flow ring is the reflection — {1,2,4,8,7,5} sung by ÷9, resting under ÷12', on: flowRows.length === 6 && flowRows.every((r) => r.ringHz > 0 && r.axisHz === 0) },
+      { facet: 'the trinity axis rings in BOTH voicings — {3,6,9} voiced by ÷9 AND ÷12', on: axisRows.length === axisSize && axisRows.every((r) => r.ringHz > 0 && r.axisHz > 0) },
+      { facet: `THE AXIS AND THE RING PARTITION THE VOICED DIGITS — ${axisSize} non-units + ${flowSize} orbit = ${axisSize + flowSize} voiced, the identity ℤ/9 states about itself, not three numbers typed here`, on: axisRows.length + flowRows.length === voiced.length && nine.holds },
+      { facet: 'the flow ring is the reflection — {1,2,4,8,7,5} sung by ÷9, resting under ÷12', on: flowRows.length === flowSize && flowRows.every((r) => r.ringHz > 0 && r.axisHz === 0) },
       { facet: 'the void carries no tone — 0 silent and lightless in both voicings', on: voidRow.digit === 0 && voidRow.ringHz === 0 && voidRow.axisHz === 0 && voidRow.ringLight === null && voidRow.axisLight === null },
-      { facet: `every voiced tone bridges to a named visible band — frequencyToLight thz>0, band≠∅ · measured voiced.length=${voiced.length}`, on: voiced.length === 9 && voiced.every((r) => r.ringLight !== null && r.ringLight.thz > 0 && r.ringLight.band !== '') },
+      { facet: `every voiced tone bridges to a named visible band — frequencyToLight thz>0, band≠∅ · measured voiced.length=${voiced.length}`, on: voiced.length === VORTEX_SEQUENCE.length && voiced.every((r) => r.ringLight !== null && r.ringLight.thz > 0 && r.ringLight.band !== '') },
       { facet: 'the ÷12 axis IS the a432 octave ladder — 36·3=108, 36·6=216 ∈ A432_OCTAVES', on: A432_OCTAVES.includes(AXIS_UNIT * 3) && A432_OCTAVES.includes(AXIS_UNIT * 6) },
       { facet: 'the two units coincide on the axis — hue°(36d) === axis Hz (one integer, both readings)', on: axisRows.every((r) => r.hue === r.axisHz) },
       { facet: 'σ mirror is the sealed involution summing to 10 — reflectThroughZero∘reflectThroughZero = id', on: rows.every((r) => reflectThroughZero(r.mirror) === r.digit) },
