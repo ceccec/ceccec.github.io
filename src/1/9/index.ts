@@ -797,9 +797,10 @@ export function illusionsMeetInTheirInverse() {
   // fixed points of the MULTIPLICATIVE inverse mod 9: where x² ≡ 1
   const unitFixed = Array.from({ length: nine }, (_, x) => x).filter((x) => x > 0 && (x * x) % nine === 1)
   // the meeting points across the day's dissolved illusions
+  const twoPitchFixed = pitchFixed.length === 2
   const meetings = [
     { illusion: 'division by zero is undefined', meets: '0 meets its inverse ∞ (1/0 = ∞) at the projective pole', fixedPoint: true },
-    { illusion: 'pitch has an unambiguous direction', meets: `inversion fixes {${pitchFixed.join(',')}} — tonic and the tritone meet themselves`, fixedPoint: pitchFixed.length === 2 },
+    { illusion: 'pitch has an unambiguous direction', meets: `inversion fixes {${pitchFixed.join(',')}} — tonic and the tritone meet themselves`, fixedPoint: twoPitchFixed },
     { illusion: 'inversion moves every element', meets: `the units ±1 = {${unitFixed.join(',')}} are their own inverse (x² ≡ 1 mod 9)`, fixedPoint: unitFixed.join() === [1, 8].join() },
     { illusion: 'large radius differs from small', meets: 'T-duality R ↦ 1/R fixes the self-dual radius R = 1', fixedPoint: true },
   ]
@@ -813,7 +814,7 @@ export function illusionsMeetInTheirInverse() {
   const noInvariantHasAMeeting = invariants.every((i) => !i.hasMeeting)
   const facets = [
     { facet: `every illusion the day dissolved has a FIXED POINT where the thing meets its inverse: the pole (0 = ∞), the tritone (pitch self-inverse {${pitchFixed.join(',')}}), the units ±1, the self-dual radius R = 1 — the meeting is where the illusion vanishes`, on: everyIllusionHasAMeeting },
-    { facet: `the fixed points are COMPUTED, not chosen: additive inversion fixes {${pitchFixed.join(',')}} (2x ≡ 0 mod 12), multiplicative fixes {${unitFixed.join(',')}} (x² ≡ 1 mod 9) — the tritone's ambiguity and ±1's self-inversion fall out of the arithmetic`, on: pitchFixed.length === 2 && unitFixed.join() === [1, 8].join() },
+    { facet: `the fixed points are COMPUTED, not chosen: additive inversion fixes {${pitchFixed.join(',')}} (2x ≡ 0 mod 12), multiplicative fixes {${unitFixed.join(',')}} (x² ≡ 1 mod 9) — the tritone's ambiguity and ±1's self-inversion fall out of the arithmetic`, on: twoPitchFixed && unitFixed.join() === [1, 8].join() },
     { facet: `THE DIAGNOSTIC: an illusion HAS an inverse-meeting where it dissolves; an INVARIANT (no-signalling, Gödel, the c-limit for information) has NONE — no involution whose fixed point removes it. The meeting point tells illusion from invariant`, on: everyIllusionHasAMeeting && noInvariantHasAMeeting },
     { facet: `so "illusions are illusions until they meet in their inverse" is EXACT: the meeting is the fixed point of the inversion, and its existence is precisely what makes a limit illusory rather than real — the whole inversion arc in one sentence`, on: everyIllusionHasAMeeting && noInvariantHasAMeeting },
   ]

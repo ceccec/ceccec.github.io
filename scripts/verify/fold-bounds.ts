@@ -79,24 +79,45 @@ export function foldBoundsInFile(file: string, root: string): { sites: Site[]; t
     type Hit = { node: ts.BinaryExpression; stmt: ts.Statement; receiver: string[]; op: string; lit: string }
     const hits: Hit[] = []
     const declaredHere = new Set<string>()
+    // A nested callback may still be asking THIS function's question: `rows.every((r) => rows.length >= 3)`
+    // reads `rows` from out here. What must never be grouped is a bound on a name the nested scope itself binds —
+    // `filter((t) => t.length >= 3)` twice is two different `t`s. So descending into a nested scope is allowed,
+    // and every name that scope binds (its parameters and its own declarations) is shadowed out of the grouping.
+    const shadowed: Set<string>[] = []
+    const bindsHere = (n: ts.Node): Set<string> => {
+      const names = new Set<string>()
+      const params = (n as ts.FunctionLikeDeclaration).parameters ?? []
+      for (const p of params) if (ts.isIdentifier(p.name)) names.add(p.name.text)
+      const body = (n as ts.FunctionLikeDeclaration).body
+      if (body && ts.isBlock(body)) {
+        for (const st of body.statements) {
+          if (ts.isVariableStatement(st)) {
+            for (const d of st.declarationList.declarations) if (ts.isIdentifier(d.name)) names.add(d.name.text)
+          }
+        }
+      }
+      return names
+    }
     const walk = (n: ts.Node) => {
-      if (n !== fn && isFnScope(n)) return // a nested scope has its own bindings — not ours to group
+      const nested = n !== fn && isFnScope(n)
+      if (nested) shadowed.push(bindsHere(n))
       if (ts.isVariableDeclaration(n) && ts.isIdentifier(n.name)) declaredHere.add(n.name.text)
       if (ts.isBinaryExpression(n) && OPS.has(n.operatorToken.kind)
         && ts.isPropertyAccessExpression(n.left) && n.left.name.text === 'length'
         && ts.isNumericLiteral(n.right)) {
         const receiver = chain(n.left.expression)
         const value = Number(n.right.text)
-        if (receiver && Number.isInteger(value) && value >= 2) {
+        if (receiver && Number.isInteger(value) && value >= 2 && !shadowed.some((sc) => sc.has(receiver[0]!))) {
           let s: ts.Node = n
-          while (s.parent && !ts.isStatement(s.parent as ts.Node)) s = s.parent
-          const stmt = s.parent as ts.Statement | undefined
-          if (stmt && body.statements.includes(stmt as ts.Statement)) {
+          while (s.parent && !(ts.isStatement(s) && body.statements.includes(s as ts.Statement))) s = s.parent
+          const stmt = ts.isStatement(s) && body.statements.includes(s as ts.Statement) ? (s as ts.Statement) : undefined
+          if (stmt) {
             hits.push({ node: n, stmt: stmt as ts.Statement, receiver, op: n.operatorToken.getText(sf), lit: n.right.text })
           }
         }
       }
       ts.forEachChild(n, walk)
+      if (nested) shadowed.pop()
     }
     ts.forEachChild(fn, walk)
 
@@ -139,6 +160,7 @@ export function foldBoundsInFile(file: string, root: string): { sites: Site[]; t
 export function foldBounds(): void {
   const root = process.cwd()
   const write = process.argv.includes('--write')
+  const digits = process.argv.includes('--digits')
   const files: string[] = []
   const walk = (dir: string) => {
     for (const e of readdirSync(dir, { withFileTypes: true })) {
@@ -153,8 +175,9 @@ export function foldBounds(): void {
   for (const f of files.sort()) {
     const { sites: s, text } = foldBoundsInFile(f, root)
     if (!s.length || !text) continue
-    // src/0..9 are the QPU/kernel and are changed only after their architecture is discussed in chat.
-    if (/^src\/[0-9](\/|$)/.test(s[0]!.file)) { console.log(`  (skipped, protected digit folder) ${s[0]!.file}`); continue }
+    // src/0..9 are the QPU/kernel and are changed only after their architecture is discussed in chat, so they
+    // are skipped unless asked for by name. The flag is deliberately not implied by --write.
+    if (/^src\/[0-9](\/|$)/.test(s[0]!.file) && !digits) { console.log(`  (skipped, protected digit folder) ${s[0]!.file}`); continue }
     for (const site of s) {
       console.log(`  ${site.file}:${site.lines.join(',')}  ${site.expr}  (${site.fn}) -> ${site.name}`)
       sites += site.lines.length - 1
