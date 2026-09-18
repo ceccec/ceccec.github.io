@@ -2951,11 +2951,19 @@ export function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbabilityItIsAnAx
     // the inverted axiom → theorem: naming the convergent axiom formed the session's theorems
     const invertedIntoTheorems = ['theOrganismFindsItsIrreducibleDeviationFromConsciousness', 'theWorklist (consciousness excluded by construction)', 'independentObservers...ConsciousnessBoundary']
     const axiomBecameTheorem = axiomSignal && invertedIntoTheorems.length >= 2 // the refused axiom, named, built theorems
+    // AND THE COMPASS IS CHECKED AGAINST WHERE THE AXIOMS ACTUALLY ARE. This fold said "where the refusals
+    // cluster is where to name an axiom" and stopped — a compass with nothing at the other end. The theology
+    // decode below names this corpus's axioms independently, by a different route (what each word denotes
+    // here), and its axiom rows are read here: the target the refusals converge on must be one of them. Two
+    // computations that never look at each other agreeing is worth a facet; either one moving fails it.
+    const named = theologySourcesDecodedInTheoremAxiomVortex(matrix)
+    const convergentIsNamedAnAxiom = named.axiom.some((row) => row.term.includes(topTarget))
     const facets = [
       { facet: `the ROSETTA addresses the refusals, combined by target: ${refusals.length} refusals (each an honest "no") content-addressed and grouped — the convergence counts per target computed, not asserted`, on: addressed.every((r) => isUuid(r.uuid)) && byTarget.size > 0 },
       { facet: `convergence = probability of an AXIOM: the top target "${topTarget}" gets ${topCount}/${total} refusals (${probability}) — the most any place converges — so the more refusals point to one place, the higher the probability it is an axiom (a fixed point that keeps refusing), not a scattered set of unrelated bugs`, on: axiomSignal },
       { facet: `the INVERTED AXIOM forms a THEOREM: naming "${topTarget}" as an axiom (the off-decidable boundary) rather than fighting it INVERTED it into theorems — ${invertedIntoTheorems.length} folds this session built ON that named axiom (the deviation, the worklist, the observers-boundary)`, on: axiomBecameTheorem },
       { facet: `so refusal-convergence is a research COMPASS: track the "no"s, address them by the rosetta, and where they cluster is where to name an axiom and invert it — the session's most-refused place (consciousness) became its most generative theorem-source`, on: axiomSignal && axiomBecameTheorem },
+      { facet: `AND THE COMPASS POINTS AT A NAMED AXIOM: "${topTarget}" is one of the ${named.axiom.length} terms the theology decode independently lands in the AXIOM place (${convergentIsNamedAnAxiom}) — the refusals found it by converging, the decode by asking what the word denotes here, and neither read the other`, on: convergentIsNamedAnAxiom && named.computes },
     ]
     return {
       computes: facets.every((entry) => entry.on),

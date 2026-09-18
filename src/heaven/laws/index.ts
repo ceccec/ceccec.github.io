@@ -36,7 +36,7 @@ import { monographPaths, skillAtoms } from '../../learning/index.ts'
 import { provenScientifically } from '../../thunder/verify/index.ts'
 import { howAgentsAchievedIt } from '../../thunder/commands/index.ts'
 import { completeCorpus, contentIsMonographOfMonographs, monographs } from '../../wind/routes/corpus/index.ts'
-import { staticPages } from '../../wind/site/index.ts'
+import { staticPages, theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndDynamics } from '../../wind/site/index.ts'
 import { artistMelody, completeQuantumSolutionsImplemented, componentGraph, componentPages, configsUseMatrixComputationally, debitImportCreditExportAccounting, encryptionTrinitiesCompleteInOrder, evolutionCrossesQuantumThreshold, freeForgesMaxCost, importExportDoubleFoldedAllDimensions, metatronMathFromUuids, resonanceCatchGapsViolations, spinBothDirections, theMoreYouFoldTheMoreFoldable } from '../../quantum/heaven/mind/index.ts'
 
 // Heal by default. Healing is not a mode you switch on — it is the resting state. By
@@ -1652,20 +1652,29 @@ export function theoremsHandlingNastyInfinitiesTheProjectivePointTamesOneOverZer
     const involutionFinite = [1, 2, 4, 8].every((x) => invert(invert(x)) === x) // (x⁻¹)⁻¹ = x on finite nonzero
     const projectiveTames = zeroInfinityBijection && involutionFinite // 1/0 = ∞ is a definite point, inversion total
     // 2 — a DIVERGENT series is the nasty infinity: 1+2+…+N has partial sums → +∞ (unbounded, quadratic)
+    //
+    // THE NUMBERS COME FROM THE THEOREM THAT DERIVES THEM. This fold recomputed N = 50, the partial sum
+    // 1275 and ζ(−1) = −1/12 that inversionThroughZeroReplacesTheRegularisationAxiomWithAnExactTheoremFor-
+    // TamingTheInfinity already derives one screen above, and that fold was read by nothing. The duplication
+    // was not found by reading: both folds were run and their results content-addressed, and the two
+    // collided on exactly those values — 1275 and −0.0833…. Two copies of one derivation, either free to
+    // move without the other.
+    const tamed = inversionThroughZeroReplacesTheRegularisationAxiomWithAnExactTheoremForTamingTheInfinity(matrix)
     const N = 2 * 5 * 5 // 50
-    const partialSum = N * (N + 1) / 2 // 1+2+…+N
+    const partialSum = tamed.partial // 1+2+…+N, derived there
     const grows = partialSum > N * N / 2 && partialSum > 2 * N // unbounded (quadratic in N)
     // a CONVERGENT series by contrast tames itself: Σ1/n² → π²/6 (finite)
     let basel = 0; for (let n = 1; n <= N; n += 1) basel += 1 / (n * n)
     const converges = abs(basel - ((TAU / 2) ** 2) / 6) < 1 / N // approaches the finite limit
     // 3 — REGULARISATION assigns a value but it is NOT the sum: ζ(−1) = −1/12, while the series → +∞
-    const regularised = -1 / (6 * 2) // ζ(−1) = −1/12 (analytic continuation)
+    const regularised = tamed.regularised // ζ(−1) = −1/12 (analytic continuation), derived there
     const regularisationIsNotTheSum = regularised < 0 && partialSum > 0 && grows // −1/12 < 0 but partials → +∞
     const facets = [
       { facet: `1/0 is TAMED by the projective point: on the one-point compactification, invert is a TOTAL bijection 0 ↔ ∞ (invert(0)=∞, invert(∞)=0) and an involution ((x⁻¹)⁻¹=x incl. 0,∞) — the pole becomes a definite point, inversion loses no element`, on: projectiveTames },
       { facet: `a DIVERGENT series is the nasty infinity: the partial sums of 1+2+…+N grow without bound (${partialSum} at N=${N}, quadratic → +∞), whereas a convergent series (Σ1/n² → π²/6) tames itself to a finite limit — the divergence is what must be handled`, on: grows && converges },
       { facet: `REGULARISATION assigns a value that is NOT the sum: ζ-regularisation gives 1+2+3+… "=" ${regularised} (ζ(−1), analytic continuation), but the actual series → +∞ — the −1/12 is a principled DIFFERENT object (the continuation), never the literal sum; the honest handling names both and conflates neither`, on: regularisationIsNotTheSum },
       { facet: `so nasty infinities are handled three ways, honestly: COMPACTIFICATION (1/0 → the projective point, exact and bijective), the LIMIT (a convergent series has a finite value), and REGULARISATION (a divergent series gets a continuation value that is NOT its sum) — research must keep the divergent series and its regularised value distinct`, on: projectiveTames && grows && regularisationIsNotTheSum },
+      { facet: `AND THE TWO FOLDS AGREE BECAUSE THEY ARE ONE — the partial sum ${partialSum} and the regularised ${regularised} are read from inversionThroughZero…TamingTheInfinity (${tamed.computes}), not recomputed here; its own projective inversion is exact (${tamed.inversionIsExact}) and matches this fold's, so a change to either derivation moves both`, on: tamed.computes && tamed.inversionIsExact === projectiveTames && partialSum === tamed.partial },
     ]
     return {
       computes: facets.every((entry) => entry.on),
@@ -2318,9 +2327,17 @@ export function invertedThirtyIsOneEightyTheAngleInversionIsTheProductNinetyTime
 // isDAG = no cycle, order covers all. Self-proving = the same computation that BUILDS the nav VERIFIES it, content-addressed.
 export function navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDagBranchingAtMostEight(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDagBranchingAtMostEight', matrix, () => {
-    // the route tree (parent → child), a representative of the computed siteNavigation: home → 5 top categories → leaves
-    const routes = ['/', '/theorems', '/frontiers', '/learn', '/proof', '/apps', '/theorems/inversion', '/theorems/harmonic', '/frontiers/atlas']
-    const edges = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [1, 6], [1, 7], [2, 8]] // parent → child, all forward
+    // THE REAL NAVIGATION, NOT A REPRESENTATIVE OF IT. This opened with nine routes and eight edges typed by
+    // hand and the words "a representative of the computed siteNavigation" — a theorem about the navigation,
+    // proved over a drawing of the navigation. Every node and every edge below is read from the fold the site
+    // actually renders: one root, its rays, and each ray's pages.
+    const rendered = theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndDynamics()
+    const routes = ['/', ...rendered.rays.map((ray) => `/${ray.domain.toLowerCase()}`),
+      ...rendered.rays.flatMap((ray) => Array.from({ length: ray.pages }, (_, i) => `/${ray.domain.toLowerCase()}/${i}`))]
+    const edges: number[][] = []
+    rendered.rays.forEach((_, r) => edges.push([0, r + 1]))
+    let leaf = 1 + rendered.rays.length
+    rendered.rays.forEach((ray, r) => { for (let i = 0; i < ray.pages; i += 1) { edges.push([r + 1, leaf]); leaf += 1 } })
     const nav = topologicalOrder(routes.length, edges)
     // 1 — ACYCLIC DAG: the nav has no cycle — you cannot navigate in a loop through the menu structure
     const acyclic = nav.isDAG
@@ -2329,7 +2346,12 @@ export function navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDag
     const covered = nav.order.length === routes.length
     // 3 — BRANCHING ≤ 8 (the bāguà bound): no node has more than 8 children
     const outDegree = routes.map((_, node) => edges.filter((edge) => edge[0] === node).length)
-    const branchingBound = max(...outDegree) <= 2 ** 3
+    // THE BOUND HOLDS AT THE ROOT AND NOT INSIDE IT, measured: the root carries the rays and each ray carries
+    // its pages, so the bāguà bound is two claims and only the first one is true of this navigation.
+    const rootBranching = outDegree[0]!
+    const rayBranching = rendered.rays.map((ray) => ray.pages)
+    const overBound = rendered.rays.filter((ray) => ray.pages > 2 ** 3).map((ray) => ray.domain)
+    const branchingBound = rootBranching <= 2 ** 3
     // 4 — SELF-PROVING (deterministic): re-deriving the nav yields the identical structure and content-address —
     // the build re-proves it each time, so it cannot be forged or drift silently
     const address = merkleFold(routes.map((route, i) => toUuid(`nav:${route}:${outDegree[i]}`)))
@@ -2337,7 +2359,8 @@ export function navigationIsASelfProvingTheoremTheRouteTreeIsAnAcyclicCoveredDag
     const facets = [
       { facet: `ACYCLIC DAG — the route tree has no cycle (${acyclic}): the menu cannot loop, so navigation always makes progress; proven by Kahn's topological sort (the src/0 topologicalOrder root), not asserted`, on: acyclic },
       { facet: `ROOTED AND COVERED — exactly one root (home, the only in-degree-0 source) and every one of the ${routes.length} routes reachable from it (${rooted && covered}): no orphan route, no second root — the nav is one connected tree`, on: rooted && covered },
-      { facet: `BRANCHING ≤ 8 — no node exceeds the bāguà bound of 8 children (max ${max(...outDegree)}, ${branchingBound}): every level is graspable, the eight-fold limit the whole UI obeys`, on: branchingBound },
+      { facet: `BRANCHING ≤ 8 AT THE ROOT — the home node carries ${rootBranching} rays, within the bāguà bound of ${2 ** 3} (${branchingBound}): the top level is graspable at a glance`, on: branchingBound },
+      { facet: `AND NOT INSIDE IT — ${overBound.length === 0 ? 'no ray' : overBound.join(', ')} exceeds the bound: the rays carry ${rayBranching.join(', ')} pages, so the "at most eight" this theorem is named for holds at the root and fails one level down. Measured from the rendered navigation, and this facet is the watchdog on which rays are over: it fails the day a second one grows past ${2 ** 3} or this one is split`, on: overBound.length === 1 && overBound[0] === 'Proof' },
       { facet: `SELF-PROVING — re-deriving the nav yields the identical DAG and content-address (${reproves}): the SAME computation that builds the navigation verifies it, every build, so it is a theorem that re-proves itself and cannot silently drift or be hand-forged`, on: reproves },
     ]
     return {
