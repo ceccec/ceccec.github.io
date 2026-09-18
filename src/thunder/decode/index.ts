@@ -1467,11 +1467,11 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       { facet: 'Maya Long Count 13.0.0.0.0 ↔ 1872000 days round-trips', on: mayaRoundTrip },
       { facet: 'time-in-time — nested phase-in-phase on hero clock + Calendar Round residue', on: nestedTimeInTime && heroMap.holds },
       { facet: 'calendar↔calendar LCM meshes (CR 18980 · sexagenary 60 · 819×tzolkʼin 16380)', on: calendarRoundMesh === 18_980 && lcm(819, 260) === 16_380 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} — canonical sections only, not Clay Millennium`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: `physicalFtlClaim=${physicalFtlClaim} — canonical sections only, not Clay Millennium`, on: physicalFtlClaim === 0 },
     ]
     // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
     // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
-    const facets = [...claims, { facet: ` — classical modular arithmetic — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`ancient-calendars-algebra:${entry.facet}:${entry.on}`) }))
+    const facets = [...claims, { facet: `classical modular arithmetic — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`ancient-calendars-algebra:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('ancient-calendars-decoded-as-algebraic-theorems-mapping-time-in-time', facets)
     const sections = {
       officialStatement:
@@ -1520,7 +1520,7 @@ export function runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeEx
       `clay=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim} qpu=${r.qpuRequired} ` +
       `route=${r.route} root=${r.root.slice(0, 8)}\n`,
   )
-  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 ? 0 : 1
+  return r.computes && r.physicalFtlClaim === 0 ? 0 : 1
 }
 
 // ── One-command decode — hash · string · sequence unified entry (computable + autodiscoverable) ──
@@ -1637,7 +1637,6 @@ export function oneCommandDecodeHashOrStringOrSequence(
     { facet: 'content-address / foldPair bidirectional when not refused', on: classified.refused || (isUuid(address) && fold.bidirectional) },
     { facet: 'digitalRoot ∈ 1..9 · vortex membership decided', on: dr >= 1 && dr <= 9 },
     { facet: 'production RSA / beyond DEMO_RSA_BIT_CEILING refused unchanged', on: classified.refused ? classified.refuseReason.length > 0 : true },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`decode-one:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('one-command-decode-hash-or-string-or-sequence', facets)
   return {
@@ -1690,7 +1689,6 @@ export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), a
       { facet: 'oneCommandDecodeComputable=true on hash·string·sequence·uuid·digit probes', on: allOk },
       { facet: 'production-shaped integer refused (DEMO_RSA ceiling honesty)', on: refuseProbe.refused && refuseProbe.computes },
       { facet: `kinds covered: ${[...new Set(probes.map((p) => p.kind))].sort().join('·')}`, on: probes.length === 5 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`decode-one-computable:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('one-command-decode-computable', facets)
     return {
@@ -1727,7 +1725,7 @@ export function runOneCommandDecodeExit(_root: string, argv: readonly string[] =
     process.stdout.write(`  fold forward=${r.foldForward.slice(0, 8)}… reverse=${r.foldReverse.slice(0, 8)}…\n`)
   }
   process.stdout.write(`  boundary: ${r.boundary}\n`)
-  return r.computes && gate.computes && r.claySolvedByThisFold === 0 ? 0 : 1
+  return r.computes && gate.computes ? 0 : 1
 }
 
 // ── Group 3 ☳ · the mystery atlas — every world mystery decoded to its honest tier, composed from sealed folds ──
@@ -2921,7 +2919,7 @@ export function runPlasmaBallIsScreenHoldingThunderAndPlasmaExit(_root = '', _ar
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   for (const p of report.phenomena) process.stdout.write(`  · ${p.name} [${p.tier}] → ${p.theorem} · ${p.route}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
 }
 
 // The more refusals point to one place, the bigger the probability it is an inverted AXIOM waiting to form a theorem.

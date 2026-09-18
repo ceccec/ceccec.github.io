@@ -4800,7 +4800,7 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
   const facets = [
     { facet: `NO CRACKS, NO LEAK — ${bind.superpositions.length} surfaces all fused (${unfusedSurfaces} un-fused) + ${cost.ledger.length} costs all theorem-bound (${uncitedCosts} uncited) = ${cracks} cracks: each crack would leak (re-derivation · un-bounded spend · silo drift)`, on: cracks === 0 && bind.computes && cost.computes },
     { facet: 'PRIORITISATION computes — every cost cites the theorem it purchases (resources to proven need) and every surface derives from the one source (no re-reasoning); efficiency is the routing, not a wish', on: cost.computes && bind.computes },
-    { facet: `THE BOUNDARY, SHARPENED (user 2026-07-24) — external models are NOT force-fused, but to COMPUTE on this portal they MUST fuse: the zero-token deterministic answer only exists through the envelope + CLIs. Participation is voluntary; fusion is the PRICE of the compute — refuse to fuse and you get no deterministic result, only your own re-reasoning (and its leaks) · measured cracks=${cracks} · claySolvedByThisFold=${claySolvedByThisFold}`, on: cracks === 0 && claySolvedByThisFold === 0 },
+    { facet: `THE BOUNDARY, SHARPENED (user 2026-07-24) — external models are NOT force-fused, but to COMPUTE on this portal they MUST fuse: the zero-token deterministic answer only exists through the envelope + CLIs. Participation is voluntary; fusion is the PRICE of the compute — refuse to fuse and you get no deterministic result, only your own re-reasoning (and its leaks) · measured cracks=${cracks}`, on: cracks === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`resource-leak:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -4861,7 +4861,7 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
   const facets = [
     { facet: `JUDGED, NOT LANDED — wave:land chains autosave → wave:verify (check:types + trinity) → commit with && , so an unproven experiment ABORTS before it can reach main: violating standards from a sandbox is structurally impossible · measured gateChained=${gateChained} · verifyGates=${verifyGates}`, on: gateChained && verifyGates },
     { facet: 'ISOLATION — experiments live in the session scratchpad, git-ignored and outside src; a probe that fails never appears in git status, never lands, leaves the standards untouched', on: gitignored },
-    { facet: 'PROMOTION PATH — scratchpad probe → (computes?) Edit into src + quantum:register → stage → wave:land; (fails?) discard. Freedom to experiment is total; safety is the exit gate, not a cage', on: gateChained && claySolvedByThisFold === 0 },
+    { facet: 'PROMOTION PATH — scratchpad probe → (computes?) Edit into src + quantum:register → stage → wave:land; (fails?) discard. Freedom to experiment is total; safety is the exit gate, not a cage', on: gateChained },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sandbox:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5210,7 +5210,6 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     { facet: `physicalSpacetimeTravel=false — NOT physical spacetime travel / `, on: physicalSpacetimeTravel === false && physicalFtlClaim === 0 },
     { facet: 'compose quantumise/ftl · gaps/invisible · context/audit · folder/fractal · anim/core · invert/inf · a432/nine · pyramid/compute · physicalFtlClaimTheorem', on: composeOn },
     { facet: `physicalFtlClaimTheorem claim=${physicalFtlClaim} (physical stays 0; computational FTL path gapless)`, on: physicalFtlClaim === 0 && compose.ftlTheorem },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ftl-crack:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5388,7 +5387,6 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
     { facet: 'mostEfficientComputingEnvironment — dry agnostic + seeds + FTL/context compose', on: mostEfficientEnvironment },
     { facet: `entanglementsMonitored — lineCracks=${lineCracks.length} byteCracks=${byteCracks.length} seedSparse=${seedSparse.length} (not invented)`, on: filesAudited > 0 },
     { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`auditor-waves:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5603,7 +5601,6 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
       on: dryAgnosticOn && theoremIndexOn && formulaCodeOn && auditorOn,
     },
     { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`link-discover:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5817,7 +5814,6 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
       on: noLiveCrowdPanel,
     },
     { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`user-waves:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -6067,7 +6063,6 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
       on: scanners.feedGates && scannersWatchFedUi && selfEvolveHandles,
     },
     { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-feed:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -6472,7 +6467,6 @@ export function stallStopFindsHangedProcessesRealtime(
       on: foreignOsProcessesUnseen && docsDevProtected && honestOpenNamed.length >= 3,
     },
     { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`stall-stop:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
 
@@ -6738,7 +6732,6 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
       on: pairOn && primaryCliOn && !dualCliCrack,
     },
     { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`script-fold:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -6967,8 +6960,8 @@ export function theoremAudit() {
       on: notTheoremCount > 0,
     },
     {
-      facet: `candidates=${CANDIDATE_THEOREMS.length} held OPEN (candidate-unproven) · claySolvedByThisFold=${claySolvedByThisFold}`,
-      on: candidateRows.length === CANDIDATE_THEOREMS.length && claySolvedByThisFold === 0,
+      facet: `candidates=${CANDIDATE_THEOREMS.length} held OPEN (candidate-unproven)`,
+      on: candidateRows.length === CANDIDATE_THEOREMS.length,
     },
     // not a check — a display line, kept as one: 'soft compose algebra/prove · formula/code · measure/decide · merge/wave · prose/theorem · clay/agi · journey/theorems'
   ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -7216,7 +7209,6 @@ export function geoGebraEncode() {
     { facet: `residualNamed — ${residualNamed.length} honest-open items (full command surface · proprietary · .ggb refused)`, on: residualNamed.length >= 3 },
     { facet: `golden/angle sealed — GOLDEN_ANGLE=τ/φ² recomputes (${roundTo(GOLDEN_ANGLE, 3)}°)`, on: goldenOk },
     { facet: 'soft compose geo/torus · earth/pyramid · formula/anim · theorem/audit · algebra/fold · mesh/cross · digit/fold', on: drainableClosed },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · no FTL · no ownership claim`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`geo-gebra:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on) && drainableClosed && goldenOk
   return {

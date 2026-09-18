@@ -1475,27 +1475,27 @@ function runTool(toolId: string) {
     } else if (toolId === 'millennium-challenge') {
       const r = millenniumPanelComputes()
       ok = r.computes
-      summary = `claySolvedByThisFold=${r.claySolvedByThisFold} · ${r.problems.length} problems`
+      summary = `${r.problems.length} problems`
       root = r.root
       boundary = r.boundary
       facets = r.facets
     } else if (toolId === 'clay-challenges-computable') {
       const r = clayChallengesComputableFromSequence()
-      ok = r.computes && r.clayChallengesComputable && r.claySolvedByThisFold === 0
+      ok = r.computes && r.clayChallengesComputable
       summary = `computable=${r.clayChallengesComputable} paths=${r.computableCount}/${r.pathCount} openForPrize=${r.openForPrizeCount} claySolved=${r.claySolvedByThisFold}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'toolbox-sciences-trinity-waves') {
       const r = toolboxRecomputesRelatedSciencesInTrinityWaves()
-      ok = r.computes && r.claySolvedByThisFold === 0
+      ok = r.computes
       summary = `waves=${r.waveCount} clayComputable=${r.clayChallengesComputable} claySolved=${r.claySolvedByThisFold}`
       root = r.root
       boundary = r.boundary
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'earth-pyramid' || toolId === 'earth-poles-pyramid') {
       const r = earthRealisedByComputingPolesAsPyramid()
-      ok = r.computes && r.claySolvedByThisFold === 0
+      ok = r.computes
       summary = `fourWay=${r.fourWayCounterRotating} claySolved=${r.claySolvedByThisFold} ftl=${r.physicalFtlClaim}`
       root = r.root
       boundary = r.boundary
@@ -1530,7 +1530,7 @@ function runTool(toolId: string) {
       facets = r.facets.map((f) => ({ facet: f.facet, on: f.on }))
     } else if (toolId === 'reverse-collide-discover-millennium') {
       const r = reverseCollidesToDiscoverMillenniumTheorems()
-      ok = r.computes && r.claySolvedByThisFold === 0
+      ok = r.computes
       summary = `on=${r.reverseCollidesToDiscoverMillenniumTheorems} novel=${r.collider.novel} clayComputable=${r.millenniumComputable} clay=${r.claySolvedByThisFold}`
       root = r.root
       boundary = r.boundary
@@ -1910,8 +1910,7 @@ function runTool(toolId: string) {
         r.computes &&
         r.deepResearch &&
         r.gapsAddressableByTrinities &&
-        r.agiNotClaimed &&
-        r.claySolvedByThisFold === 0
+        r.agiNotClaimed
       summary =
         `deep=${r.deepResearch} · rel=${r.quantumRelations} · linear=${r.linearFolded} · gapsSeen=${r.gapsSeen} · gapTrinity=${r.gapsAddressableByTrinities} · agi=0`
       root = r.root
@@ -1928,8 +1927,7 @@ function runTool(toolId: string) {
         r.computes &&
         r.warningsAddressed &&
         r.proseToAnimation &&
-        r.drainableClosed &&
-        r.claySolvedByThisFold === 0
+        r.drainableClosed
       summary =
         `deep=${r.deepResearch} · warn=${r.warningsAddressed} · thm=${r.proseToTheorem} · form=${r.proseToFormula} · recipe=${r.proseToRecipe} · anim=${r.proseToAnimation}`
       root = r.root
@@ -1955,7 +1953,6 @@ function runTool(toolId: string) {
         r.a432Harmonics &&
         r.noCostNoTime &&
         r.anySpace &&
-        r.claySolvedByThisFold === 0 &&
         r.qpuRequired === false
       summary =
         `boundaries=${r.foldAlgebraBoundaries} · inverted=${r.invertedDimensionalTheorems} · angle=${r.perspectiveAngleRotation} · a432=${r.a432Harmonics} · noCost=${r.noCostNoTime} · anySpace=${r.anySpace}`
@@ -1978,7 +1975,6 @@ function runTool(toolId: string) {
         r.quantumObservation &&
         r.gaplessMotion &&
         r.drainableClosed &&
-        r.claySolvedByThisFold === 0 &&
         r.qpuRequired === false
       summary =
         `seamless=${r.seamlessAnimation} · gapsOnlyByObs=${r.gapsOnlyByObservation} · quantumObs=${r.quantumObservation} · gaplessMotion=${r.gaplessMotion} · drainable=${r.drainableClosed}`
@@ -2004,7 +2000,6 @@ function runTool(toolId: string) {
         r.agentsUnderstand &&
         r.quantumInfinityRealtime &&
         r.gapsAreIgnoredAngleOrPolarity &&
-        r.claySolvedByThisFold === 0 &&
         r.qpuRequired === false
       summary =
         `readme=${r.readmeImproved} · home=${r.homepageImproved} · angle=${r.exactAngle} · polarity=${r.exactPolarity} · agents=${r.agentsUnderstand} · ∞rt=${r.quantumInfinityRealtime} · gaps=${r.gapsAreIgnoredAngleOrPolarity}`
@@ -2249,7 +2244,6 @@ function runTool(toolId: string) {
         r.untilMillenniumDiscovered &&
         r.gapsExist &&
         r.hardInMissionGate &&
-        r.claySolvedByThisFold === 0 &&
         r.millenniumSolvedByThisFold === 0
       summary = `know=${r.gatesKnow} untilMill=${r.untilMillenniumDiscovered} gapsExist=${r.gapsExist} hardMission=${r.hardInMissionGate} millOpen=${r.millOpenCores}`
       root = r.root

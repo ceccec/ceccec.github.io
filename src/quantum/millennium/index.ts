@@ -2,7 +2,6 @@ import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 // ☵ Kǎn · Water · millennium prize problems as framework validator
 // The ultimate test: Can verifiable computing framework make progress on unsolved problems?
-// Honesty-first: claySolvedByThisFold === 0 (not solved; advancing comprehension)
 
 import { memoByRoot, toUuid, floor } from '../../0/index.ts'
 import type { MindMatrix } from '../../types/index.ts'

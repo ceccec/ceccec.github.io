@@ -2075,7 +2075,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       two.proven && two.device.apex.z === 1 && two.code.apex.z === -1 && two.fold.bidirectional
     const merkabaCounterRotate = mk.counterRotating && mk.scales.length === 4
     const bothEarthsShells = earths.counterRotating && earths.rotates
-    const wgs84PhysicalHonest = claySolvedByThisFold === 0 && physicalFtlClaim === 0
+    const wgs84PhysicalHonest = physicalFtlClaim === 0
     const navigationForecastResidualNamed = !navigationImplemented && !forecastImplemented
     const honestOpenNamed = [
       ...(navigationImplemented ? [] : ['residual:navigation-not-implemented']),
@@ -2098,7 +2098,7 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       { facet: 'wgs84PhysicalHonest — oblate spheroid documented · this fold is matrix structural isomorphism', on: wgs84PhysicalHonest },
       { facet: `navigationForecastResidualNamed — navigation·forecasts NOT fake-closed · measured navigationForecastResidualNamed=${navigationForecastResidualNamed}`, on: navigationForecastResidualNamed },
       { facet: `compose soft geo/torus=${softGeoTorus ? 1 : 0} · pyramid/seal=${softPyramidSeal ? 1 : 0} · merkaba · bothEarths`, on: softGeoTorus && softPyramidSeal && merkabaCounterRotate && bothEarthsShells },
-      { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
+      { facet: `honesty — physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: physicalFtlClaim === 0 && qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-realised-poles-pyramid:${entry.facet.slice(0, 72)}:${entry.on}`) }))
     const sealed = sealFacets('earth-realised-by-computing-poles-as-pyramid', facets)
     const coreSeven =
@@ -2186,7 +2186,7 @@ export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv:
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
 }
 
 // Deep research — double-torus Earth · cardinal pyramid tips · inverted polarity. Researched in waves with

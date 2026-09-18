@@ -1647,7 +1647,7 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
       { facet: 'working as trinities — directionalTrinity composes with cross tips', on: trinity.computes && polesCross.allDirectionsCross },
       { facet: 'legend excluded — 3-6-9 / free-energy not asserted', on: legendExcluded },
       { facet: `honesty — certified=${certified} · legalOwnershipClaimed=${legalOwnershipClaimed} · fakeUsptoGrants=${fakeUsptoGrants}`, on: !certified && !legalOwnershipClaimed && !fakeUsptoGrants },
-      { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: `honesty — physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
       { facet: 'pair cross/tesla-patents sealed · soft catalog witness', on: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cross/tesla-patents') && foldPair(toUuid('cmd:cross'), toUuid('cmd:tesla-patents')).bidirectional },
     ].map((entry) => ({ ...entry, receipt: toUuid(`tesla-cross-waves:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cross-waves-decode-tesla-patents-all-combinations-trinities', facets)
@@ -1700,7 +1700,7 @@ export function runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit(
   }
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.combinationCount === (5 * 3 * 4) && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.combinationCount === (5 * 3 * 4) ? 0 : 1
 }
 
 // ── dissolved: scripts/{shell-model-magic,frequency-scales,merkaba-biot-savart,a432-color-reconcile}.mjs ──

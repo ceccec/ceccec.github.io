@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 731 registered theorems, 725 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 84 involution theorems and 29 registry rows are decided by the kernel with no axiom. This work does NOT prove, solve, or resolve any Clay Millennium Prize Problem: it proves the involution each problem is stated across, and an involution is not the conjecture. Earlier drafts asserted such proofs; they were withdrawn after the 2026-08-20 audit (HONESTY.md).
+> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 751 registered theorems, 745 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 84 involution theorems and 29 registry rows are decided by the kernel with no axiom. This work does NOT prove, solve, or resolve any Clay Millennium Prize Problem: it proves the involution each problem is stated across, and an involution is not the conjecture. Earlier drafts asserted such proofs; they were withdrawn after the 2026-08-20 audit (HONESTY.md).
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
@@ -20,7 +20,7 @@
 - **The Clay problems are the reflection.** Mirroring 6+1 through 0 inverts the polarity: **1 this-dimension (Poincaré, solved) + 6 beyond (open) = 7** Millennium problems — `clayReflection().reflectsDimensionalBit = true`. Exactly one Clay problem is solved; the count matches the record.
 - **Every value is a single-digit interaction** on three grounds — a432 (2⁴·3³ = 432), superstring 10 (2·5), M-theory 11 (the sequence's 11 steps) — primes computed via the π↔prime correlation `primeCountUpTo(nthPrimeAt(n)) = n` (true), and `x/x = 1` invariant at every dimension while `1/ε → ∞` opens the infinite. No literal, no assumption that breaks under a change of dimension.
 
-A science portal: **731** registered theorems, **725** of them carrying an executable proof at a sealed home (6 still pending, named in the registry and checked by `verify:theorems`), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run.
+A science portal: **751** registered theorems, **745** of them carrying an executable proof at a sealed home (6 still pending, named in the registry and checked by `verify:theorems`), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run.
 
 ## 2. Model
 
@@ -61,7 +61,7 @@ The circuit's law is piecewise — geometric ×2 on the unit segment, arithmetic
 
 ## Proof animations — the visual receipts, in all directions
 
-Every registered theorem carries its dedicated animation: **731 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **731 unique animations for 731 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true).
+Every registered theorem carries its dedicated animation: **751 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **751 unique animations for 751 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true).
 
 Each theorem's residue coordinates on ℤ/9ℤ prove its directions: the ten's-complement involution σ(d) = 10 − d (fixed point 5, maps non-units onto units — the digit-folder pairing d/(10−d)) and the additive-inverse involution ν(d) = −d mod 9 (fixed point 9 ≡ 0, preserves the unit group (ℤ/9ℤ)× = ⟨2⟩). Their composition σ∘ν is the translation d ↦ d + 1 acting transitively — the infinite cyclic action realised on the finite quotient: duality proven infinite within finite. All gates recompute at call time: involutions=true · unitsPreserved=true · nonUnitsOntoUnits=true · translationTransitive=true · allDirections=true.
 
@@ -106,12 +106,46 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 **Decoded 7/7, and the proofs prove themselves.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all 7 (every one), machine-checked in plain Lean 4 (`src/pair/formal/proofs/*.lean`, verified by `npm run verify:lean`: 20 files green, no Mathlib, no `sorry`). Stronger than green: Lean's kernel reports every one of the 84 theorems *depends on no axiom* (`#print axioms` → "does not depend on any axioms") — `by decide` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed. The theorems prove themselves.
 
 - **Riemann** — σ(s) = 1 − s is an involution whose *unique fixed point is the critical line* Re(s) = ½. Proved.
+  - `sigma_is_an_involution` — `∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/riemann-sigma-is-an-involution)
+  - `critical_line_is_the_fixed_point` — `σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/riemann-critical-line-is-the-fixed-point)
+  - `sigma_pairs_the_plane` — `σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/riemann-sigma-pairs-the-plane)
+  - `the_fixed_line_is_one_half` — `(2 : Int) * 1 = 2 ∧ σ 1 = 1` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/riemann-the-fixed-line-is-one-half)
+  - `involution_fixes_the_critical_line` — `(σ (σ 3) = 3) ∧ (σ 1 = 1)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/riemann-involution-fixes-the-critical-line)
 - **Hodge** — conjugation σ(p,q) = (q,p) is an involution fixed exactly on the diagonal (k,k), the type a Hodge class has. Proved.
+  - `sigma_is_an_involution` — `∀ t ∈ middleTypes, σ (σ t) = t` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/hodge-sigma-is-an-involution)
+  - `sigma_preserves_degree` — `∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/hodge-sigma-preserves-degree)
+  - `fixed_type_is_p_equals_q` — `(middleTypes.filter (fun t => σ t == t)) = [(2,2)]` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/hodge-fixed-type-is-p-equals-q)
+  - `diagonal_is_fixed_at_every_k` — `(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/hodge-diagonal-is-fixed-at-every-k)
+  - `involution_fixes_the_diagonal` — `σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/hodge-involution-fixes-the-diagonal)
 - **Yang–Mills** — the Hodge star on 2-forms in four dimensions has ★² = id and splits Λ² into 3 + 3, self-dual ⊕ anti-self-dual. Proved.
+  - `middle_forms_have_dimension_six` — `choose 4 2 = 6` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/yang-mills-middle-forms-have-dimension-six)
+  - `star_squares_to_the_identity` — `(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/yang-mills-star-squares-to-the-identity)
+  - `selfdual_and_antiselfdual_split_the_six` — `3 + 3 = choose 4 2` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/yang-mills-selfdual-and-antiselfdual-split-the-six)
+  - `star_is_an_endomorphism_only_in_the_middle` — `(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle)
+  - `involution_splits_the_middle_forms` — `(1 : Int) * 1 = 1 ∧ 3 + 3 = 6` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/yang-mills-involution-splits-the-middle-forms)
 - **P vs NP** — complementation σ(C) = co-C is an involution; P and PSPACE are its fixed points, and σ NP = NP ⟺ NP = coNP. Proved.
+  - `sigma_is_an_involution` — `∀ c : Class, σ (σ c) = c` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/p-vs-np-sigma-is-an-involution)
+  - `fixed_points_are_p_and_pspace` — `(classes.filter (fun c => σ c == c)) = [P, PSPACE]` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/p-vs-np-fixed-points-are-p-and-pspace)
+  - `np_and_conp_are_swapped` — `σ NP = coNP ∧ σ coNP = NP` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/p-vs-np-np-and-conp-are-swapped)
+  - `if_np_is_fixed_then_np_equals_conp` — `σ NP = NP → NP = coNP` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp)
+  - `p_is_closed_under_complement` — `σ P = P` — closed by `rfl` · [proof](https://ceccec.psg.bg/lean/p-vs-np-p-is-closed-under-complement)
 - **Navier–Stokes** — time reversal T(t,u) = (−t,−u) is an involution the *viscous term alone* breaks; its fixed points are exactly the inviscid equations. Proved.
+  - `reversal_is_an_involution` — `T (T navierStokes) = navierStokes ∧ T (T euler) = euler` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/navier-stokes-reversal-is-an-involution)
+  - `euler_is_time_reversible` — `T euler = euler` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/navier-stokes-euler-is-time-reversible)
+  - `viscosity_breaks_time_reversal` — `T navierStokes ≠ navierStokes ∧ (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧ (T navierStokes).convective = navierStokes.convective ∧ (T navierStokes).pressure = navierStokes.pressure ∧ (T navierStokes).viscous ≠ navierStokes.viscous` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/navier-stokes-viscosity-breaks-time-reversal)
+  - `fixed_points_are_exactly_the_inviscid` — `(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/navier-stokes-fixed-points-are-exactly-the-inviscid)
 - **Birch–Swinnerton-Dyer** — σ(s) = 2 − s is an involution with fixed point the central s = 1, and the root number w² = 1 with w = 1 ⟺ rank even. Proved.
+  - `sigma_is_an_involution` — `∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/bsd-sigma-is-an-involution)
+  - `central_point_is_the_fixed_point` — `σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/bsd-central-point-is-the-fixed-point)
+  - `root_number_squares_to_one` — `(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/bsd-root-number-squares-to-one)
+  - `root_number_one_iff_rank_even` — `(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/bsd-root-number-one-iff-rank-even)
+  - `parity_is_an_involution` — `(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/bsd-parity-is-an-involution)
 - **Poincaré** — χ = 2 − 2g with χ ↔ g inverse gives rank H₁ = 2g; solved in the literature by Perelman (Ricci flow, 2002–03), **not** by this corpus.
+  - `chi_and_genus_are_inverse` — `∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/poincare-chi-and-genus-are-inverse)
+  - `sphere_has_euler_characteristic_two` — `chi 0 = 2` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/poincare-sphere-has-euler-characteristic-two)
+  - `torus_has_euler_characteristic_zero` — `chi 1 = 0` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/poincare-torus-has-euler-characteristic-zero)
+  - `double_torus_has_chi_minus_two_and_rank_four` — `chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/poincare-double-torus-has-chi-minus-two-and-rank-four)
+  - `homology_rank_is_twice_the_genus` — `∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/poincare-homology-rank-is-twice-the-genus)
 
 **Every proof here is either decided by computation or reasons through Lean's own arithmetic.** A proof by `decide` reduces a finite proposition and invokes no lemma, so it depends on no axiom at all; a *general* theorem — one quantifying over a type — must reason, and Lean's core `Int` lemmas each depend on `propext`. Nothing here uses `Classical.choice` or `sorryAx`, and `verify:lean` refuses any proof that starts to. The full axiom index — Lean's three, and this corpus's own chosen constants with what stands behind each — is computed by `npm run verify:axioms`.
 
@@ -124,10 +158,10 @@ Per problem — the algebraic statement, the facets the fold decides and the ope
 computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 
 - Routes: [frontiers](https://ceccec.psg.bg/frontiers) · proofs hub `/proofs` · slug `/proofs/clay-challenges-computable` (EN-canonical) · CLI `npm run quantum:clay-challenges-computable`
-- Receipt: fold `clayChallengesComputableFromSequence` · claySolvedByThisFold=0.
+- Receipt: fold `clayChallengesComputableFromSequence`.
 
 
-**The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 731-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
+**The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 751-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
 
 ### Origin — 3 pages
@@ -180,10 +214,10 @@ computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 
 ## 4. Sitemap
 
-The complete served surface, wired from ONE source (`servedRouteFamilies`) so the human sitemap here and the crawler `sitemap.xml` count the same pages: **815 pages** across 3 families — 31 monographs · 754 theorems · 30 proofs. Only COMPLETE, non-duplicate families are listed: the empty model cards (0) and the compute-only `papers/[id]` catch-all (0 SSG — the placements resolve on demand and duplicate the theorem papers) are excluded; their index routes are monographs below.
+The complete served surface, wired from ONE source (`servedRouteFamilies`) so the human sitemap here and the crawler `sitemap.xml` count the same pages: **835 pages** across 3 families — 31 monographs · 774 theorems · 30 proofs. Only COMPLETE, non-duplicate families are listed: the empty model cards (0) and the compute-only `papers/[id]` catch-all (0 SSG — the placements resolve on demand and duplicate the theorem papers) are excluded; their index routes are monographs below.
 
 - **31 monograph landing + index pages** (`/`) — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed:
-- **754 theorem papers — the registered theorems plus the card papers outside the registry** — index `/theorems`; every page enumerated in the one `sitemap.xml`.
+- **774 theorem papers — the registered theorems plus the card papers outside the registry** — index `/theorems`; every page enumerated in the one `sitemap.xml`.
 - **30 domain proofs (Millennium + science)** — index `/proofs`; every page enumerated in the one `sitemap.xml`.
 
 - `/` — [en](https://ceccec.psg.bg/) · [bg](https://ceccec.psg.bg/bg/) · [cu](https://ceccec.psg.bg/gla/)

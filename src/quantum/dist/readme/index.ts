@@ -10,7 +10,7 @@ import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pa
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED, riemannCriticalLineIsTheInvolutionFixedPoint } from '../../../4/6/index.ts'
 import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3/index.ts'
-import { LEAN_SEALED_REGISTRY, leanInvolutionCorpus } from '../../../pair/formal/proofs/index.ts'
+import { LEAN_SEALED_REGISTRY, leanInvolutionCorpus, leanPageRows } from '../../../pair/formal/proofs/index.ts'
 import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos/index.ts'
 import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1/index.ts'
 import { portalChat, portalRecall } from '../../../heaven/compute/index.ts'
@@ -107,21 +107,20 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
     const facets = [
       { facet: `sequence — theBinaryBitIsLinearTheVortexCircuitIsQuantum computes · VORTEX_SEQUENCE length=${vortexLen}`, on: bit.computes && vortexLen === 9 },
       { facet: `π/primes coordinates — primesAndPi… computes · PI_TRAIN_DIGITS length=${piTrainLen} (spigot coords)`, on: primesPi.computes && piTrainLen === 108 },
-      { facet: 'directional trinity — forward·inverse·reverse vortexed in all computational directions', on: dir.computes && dir.claySolvedByThisFold === 0 },
+      { facet: 'directional trinity — forward·inverse·reverse vortexed in all computational directions', on: dir.computes },
       { facet: 'trinity/speedup — agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath (facts-once · not FTL)', on: trinitySpeed.computes },
       {
         facet: 'rosetta/I Ching/FoL — readmeSvgGapsFilledByTrinityMind · flowerFruitTree (wetStaticFoL=false)',
         on:
           (svgTrinity.computes || svgTrinity.filled)
           && flowerFruit.decodes
-          && svgTrinity.claySolvedByThisFold === 0
           && svgTrinity.physicalFtlClaim === 0
           && svgTrinity.qpuRequired === false },
-      { facet: `counter-rotating rosetta waves — clay=${waves.claySolvedByThisFold} · physicalFtl=${waves.physicalFtlClaim}`, on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
-      { facet: `quantum on 64-bit — proveCeccecSpeed… qpuRequired=${noQpu.qpuRequired} · classical-64bit`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit && noQpu.claySolvedByThisFold === 0 },
+      { facet: `counter-rotating rosetta waves — clay=${waves.claySolvedByThisFold} · physicalFtl=${waves.physicalFtlClaim}`, on: waves.counterRotating && waves.physicalFtlClaim === 0 },
+      { facet: `quantum on 64-bit — proveCeccecSpeed… qpuRequired=${noQpu.qpuRequired} · classical-64bit`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'infinite speedup at no cost — efficiencyScalesToInfinityAtNoCostOnReuse (amortized memo · tokens=0)', on: infinityReuse.on && infinityReuse.ratioUnbounded && infinityReuse.noPhysicsSpeedup },
       { facet: `serverless deploy — sacredSociety.zeroLivingCost=${society.zeroLivingCost} (client-computed static)`, on: society.zeroLivingCost === true },
-      { facet: `honesty locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && !qualifiesAsProposedSolution },
+      { facet: `honesty locks — physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && !qualifiesAsProposedSolution },
       { facet: 'linksUseOnlyVitePressApi — in-site links use VitePress API only (withBase · VP markdown)', on: linkLaw.computes && linkLaw.linksUseOnlyVitePressApi },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sequence-discovery-home:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sequence-discovery-realised-for-home', facets)
@@ -156,7 +155,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
 
     const statusLine =
       `computes=${sealed.ok && bit.computes && primesPi.computes && dir.computes && noQpu.qpuRequired === false} · ` +
-      `claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · ` +
+      `physicalFtlClaim=${physicalFtlClaim} · ` +
       `qpuRequired=${qpuRequired} · ` +
       'amortized reuse ≠ P≠NP · structure ≠ wet numerology'
 
@@ -376,7 +375,7 @@ export function sequenceDiscoveryMarkdownSection(
     ...(linkBase
       ? [`- Routes: [prove-no-qpu-64bit](${href('/quantum-tools#prove-no-qpu-64bit')}) · [directional-trinity](${href('/quantum-tools#directional-trinity')}) · [rosetta-complete](${href('/quantum-tools#rosetta-complete')}) · [efficiency-vote](${href('/efficiency-vote')}) · [proofs](${href('/proofs')})`]
       : [`- Routes (VitePress markdown): [prove-no-qpu-64bit](/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](/quantum-tools#directional-trinity) · [rosetta-complete](/quantum-tools#rosetta-complete) · [efficiency-vote](/efficiency-vote) · proofs hub \`/proofs\` (root SSG · domain/proof)`]),
-    `- ${foldNameReceipt('sequenceDiscoveryRealisedForHome', `claySolvedByThisFold=${d.claySolvedByThisFold} · physicalFtlClaim=${d.physicalFtlClaim} · qpuRequired=${d.qpuRequired}.`)}`,
+    `- ${foldNameReceipt('sequenceDiscoveryRealisedForHome', `physicalFtlClaim=${d.physicalFtlClaim} · qpuRequired=${d.qpuRequired}.`)}`,
     '',
   ]
 }
@@ -425,7 +424,7 @@ export function twoBitsFreeSocietySupportMarkdownSection(
     '### Status',
     '',
     `twoBits.computes=${bits.computes} · societySupports=${support.computes} · vote.decided=${support.vote.decided} · ` +
-    `claySolvedByThisFold=${bits.claySolvedByThisFold} · physicalFtlClaim=${bits.physicalFtlClaim} · qpuRequired=${bits.qpuRequired}`,
+    `physicalFtlClaim=${bits.physicalFtlClaim} · qpuRequired=${bits.qpuRequired}`,
     '',
     ...(linkBase
       ? [
@@ -474,12 +473,12 @@ export function earthPolesPyramidMarkdownSection(
     '',
     '### Status',
     '',
-    `computes=${e.computes} · fourWayCounterRotating=${e.fourWayCounterRotating} · claySolvedByThisFold=${e.claySolvedByThisFold} · physicalFtlClaim=${e.physicalFtlClaim} · qpuRequired=${e.qpuRequired} · NOT lithosphere claim · NOT Clay prize`,
+    `computes=${e.computes} · fourWayCounterRotating=${e.fourWayCounterRotating} · physicalFtlClaim=${e.physicalFtlClaim} · qpuRequired=${e.qpuRequired} · NOT lithosphere claim · NOT Clay prize`,
     '',
     ...(linkBase
       ? [`- Routes: [research](${href('/research')}) · [proofs](${href('/proofs')}) · hero.svg 4-dir · fold \`earthRealisedByComputingPolesAsPyramid\``]
       : [`- Routes (VitePress markdown): [research](/research) · proofs hub \`/proofs\` · hero.svg 4-dir · fold \`earthRealisedByComputingPolesAsPyramid\``]),
-    `- ${foldNameReceipt('earthRealisedByComputingPolesAsPyramid', `claySolvedByThisFold=${e.claySolvedByThisFold} · physicalFtlClaim=${e.physicalFtlClaim}.`)}`,
+    `- ${foldNameReceipt('earthRealisedByComputingPolesAsPyramid', `physicalFtlClaim=${e.physicalFtlClaim}.`)}`,
     '',
   ]
 }
@@ -533,13 +532,28 @@ export function clayChallengesComputableMarkdownSection(
       return [
         `**Decoded ${g.decoded}/${n}, and the proofs prove themselves.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all ${g.decoded}${decodedIsAll ? ' (every one)' : ''}, machine-checked in plain Lean 4 (\`src/pair/formal/proofs/*.lean\`, verified by \`npm run verify:lean\`: ${lean.files} files green, no Mathlib, no \`sorry\`). Stronger than green: Lean\'s kernel reports every one of the ${lean.involutionTheorems} theorems *depends on no axiom* (\`#print axioms\` → "does not depend on any axioms") — \`by decide\` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed. The theorems prove themselves.`,
         '',
-        '- **Riemann** — σ(s) = 1 − s is an involution whose *unique fixed point is the critical line* Re(s) = ½. Proved.',
-        '- **Hodge** — conjugation σ(p,q) = (q,p) is an involution fixed exactly on the diagonal (k,k), the type a Hodge class has. Proved.',
-        '- **Yang–Mills** — the Hodge star on 2-forms in four dimensions has ★² = id and splits Λ² into 3 + 3, self-dual ⊕ anti-self-dual. Proved.',
-        '- **P vs NP** — complementation σ(C) = co-C is an involution; P and PSPACE are its fixed points, and σ NP = NP ⟺ NP = coNP. Proved.',
-        '- **Navier–Stokes** — time reversal T(t,u) = (−t,−u) is an involution the *viscous term alone* breaks; its fixed points are exactly the inviscid equations. Proved.',
-        '- **Birch–Swinnerton-Dyer** — σ(s) = 2 − s is an involution with fixed point the central s = 1, and the root number w² = 1 with w = 1 ⟺ rank even. Proved.',
-        '- **Poincaré** — χ = 2 − 2g with χ ↔ g inverse gives rank H₁ = 2g; solved in the literature by Perelman (Ricci flow, 2002–03), **not** by this corpus.',
+        // THE PROOFS THEMSELVES, under the sentence that describes each. `Proved.` is a word; the rows below
+        // are the propositions the Lean kernel accepted, read from the sources at write time with the tactic
+        // that closed each and a link to its own page. A deleted or renamed theorem changes this list.
+        ...[
+          ['- **Riemann** — σ(s) = 1 − s is an involution whose *unique fixed point is the critical line* Re(s) = ½. Proved.', 'riemann.lean'] as const,
+          ['- **Hodge** — conjugation σ(p,q) = (q,p) is an involution fixed exactly on the diagonal (k,k), the type a Hodge class has. Proved.', 'hodge.lean'] as const,
+          ['- **Yang–Mills** — the Hodge star on 2-forms in four dimensions has ★² = id and splits Λ² into 3 + 3, self-dual ⊕ anti-self-dual. Proved.', 'yang-mills.lean'] as const,
+          ['- **P vs NP** — complementation σ(C) = co-C is an involution; P and PSPACE are its fixed points, and σ NP = NP ⟺ NP = coNP. Proved.', 'p-vs-np.lean'] as const,
+          ['- **Navier–Stokes** — time reversal T(t,u) = (−t,−u) is an involution the *viscous term alone* breaks; its fixed points are exactly the inviscid equations. Proved.', 'navier-stokes.lean'] as const,
+          ['- **Birch–Swinnerton-Dyer** — σ(s) = 2 − s is an involution with fixed point the central s = 1, and the root number w² = 1 with w = 1 ⟺ rank even. Proved.', 'bsd.lean'] as const,
+          ['- **Poincaré** — χ = 2 − 2g with χ ↔ g inverse gives rank H₁ = 2g; solved in the literature by Perelman (Ricci flow, 2002–03), **not** by this corpus.', 'poincare.lean'] as const,
+        ].flatMap(([prose, leanFile]) => [
+          prose,
+          ...leanPageRows().filter((row) => row.file === leanFile).map((row) =>
+            // THE PROOF LINK IS CANONICAL, NOT LOCALISED. `href` rewrites for the locale, and the bg home
+            // then asked for /bg/lean/… — 34 dead links, because Lean theorem pages are EN-canonical and
+            // exist under no locale. The comment at the top of this fold already said so about /theorems;
+            // it is true of /lean too, and this is the absolute form that survives the locale transform.
+            // `tactic` is the parser's word for what closed it; four of these open a multi-line block, where
+            // it reads back as a bare `by`, so those are named as a block rather than printed as one word.
+            `  - \`${row.name}\` — \`${row.proposition}\` — closed by ${row.tactic === 'by' ? 'a tactic block' : `\`${row.tactic}\``} · [proof](${CANONICAL_HOST}/lean/${row.slug})`),
+        ]),
         '',
         // WHAT "PROVE THEMSELVES" MEANS, EXACTLY. The sentence above is true and it was carrying more
         // weight than it could hold: 47 of the 51 theorems depend on NO axiom because `decide` reduces
@@ -566,7 +580,7 @@ export function clayChallengesComputableMarkdownSection(
     ...(linkBase
       ? [`- Routes: [frontiers](${href('/frontiers')}) · proofs hub \`/proofs\` · slug \`/proofs/clay-challenges-computable\` (EN-canonical) · CLI \`npm run quantum:clay-challenges-computable\``]
       : [`- Routes (VitePress): frontiers registry \`/frontiers\` · proofs hub \`/proofs\` · slug \`/proofs/clay-challenges-computable\` · CLI \`npm run quantum:clay-challenges-computable\``]),
-    `- ${foldNameReceipt('clayChallengesComputableFromSequence', `claySolvedByThisFold=${c.claySolvedByThisFold}.`)}`,
+    `- ${foldNameReceipt('clayChallengesComputableFromSequence')}.`,
     '',
   ]
 }
@@ -590,7 +604,7 @@ export function toolboxSciencesTrinityWavesMarkdownSection(
     '### Status',
     '',
     `computes=${t.computes} · waves=${t.waveCount} · clayChallengesComputable=${t.clayChallengesComputable} · ` +
-    `claySolvedByThisFold=${t.claySolvedByThisFold} · physicalFtlClaim=${t.physicalFtlClaim} · qpuRequired=${t.qpuRequired}`,
+    `physicalFtlClaim=${t.physicalFtlClaim} · qpuRequired=${t.qpuRequired}`,
     '',
     ...(linkBase
       ? [`- Routes: [toolbox sciences waves](${href('/quantum-tools#toolbox-sciences-trinity-waves')}) · [sciences-trinities](${href('/research#sciences-trinities')}) · CLI \`npm run quantum:toolbox-sciences-trinity-waves\``]

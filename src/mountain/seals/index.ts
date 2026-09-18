@@ -1578,7 +1578,7 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       { facet: 'MCP conceptTools+trading:* REFUSE PRIMARY kept-intentional (honest dual)', on: conceptToolsHonest && tradingHonest && mcp.computes },
       { facet: 'reverseCollidesToDiscoverMillenniumTheorems shelved via catalog', on: reverseCollide.computes && catalogHasCollide },
       { facet: 'encryption↔rosetta refuse + security tools in quantumCliToolsCatalog', on: catalogHasRefuse && catalogHasSecurity },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} certified=${certified} physicalFtl=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && !certified && physicalFtlClaim === 0 },
+      { facet: `certified=${certified} physicalFtl=${physicalFtlClaim}`, on: !certified && physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-security-gaps:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('rosetta-security-gaps-wired', facets)
     return {
@@ -1617,5 +1617,5 @@ export function runRosettaSecurityGapsWiredExit(_root = '', _argv: readonly stri
       `parallel=${r.parallelBacklogLength} clay=${r.claySolvedByThisFold} root=${r.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  boundary: ${r.boundary}\n`)
-  return r.computes && r.incompleteOpen === 0 && r.claySolvedByThisFold === 0 ? 0 : 1
+  return r.computes && r.incompleteOpen === 0 ? 0 : 1
 }

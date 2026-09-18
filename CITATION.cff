@@ -2,8 +2,8 @@ cff-version: 1.2.0
 title: "Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed Verification"
 abstract: >-
   The double-torus vortex algebra of the sequence 12487536901, with the Clay
-  Millennium problems as proof of concept. Every claim recomputes from src/0. 731
-  registered theorems, 725 of them carrying an executable proof. 20 Lean 4 proof
+  Millennium problems as proof of concept. Every claim recomputes from src/0. 751
+  registered theorems, 745 of them carrying an executable proof. 20 Lean 4 proof
   files compile in plain Lean with no Mathlib and no `sorry`; 84 involution
   theorems and 29 registry rows are decided by the kernel with no axiom. This work
   does NOT prove, solve, or resolve any Clay Millennium Prize Problem: it proves

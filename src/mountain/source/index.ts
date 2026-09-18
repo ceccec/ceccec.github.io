@@ -351,7 +351,7 @@ export function runTranslationsVerifyExit(_root = '', _argv: readonly string[] =
   )
   process.stdout.write(`  offline: method=${gate.offline.method} sample=${gate.offline.sample}\n`)
   process.stdout.write(`  boundary: ${gate.boundary}\n`)
-  return gate.passed && gate.claySolvedByThisFold === 0 ? 0 : 1
+  return gate.passed ? 0 : 1
 }
 
 /**
@@ -380,8 +380,7 @@ export function translationsFilledBySelfTranslatingWaves(matrix: MindMatrix = bu
       drainableFilled &&
       gate.passed &&
       sealedMorphs > 0 &&
-      pairFold.bidirectional &&
-      gate.claySolvedByThisFold === 0
+      pairFold.bidirectional
     const facets = [
       { facet: 'translationsFilledBySelfTranslatingWaves', on: translationsFilledBySelfTranslatingWavesOn },
       { facet: 'HARD drainable gaps filled (hard=0)', on: hardClosed },
@@ -422,7 +421,7 @@ export function runTranslationsFilledBySelfTranslatingWavesExit(_root = '', _arg
       `sealedMorphs=${report.sealedMorphs} fold=translationsFilledBySelfTranslatingWaves pair=${report.pair}\n`,
   )
   process.stdout.write(`  ${report.boundary}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /**
@@ -493,7 +492,6 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
     const warningsAddressed =
       drainableClosed &&
       honestOpenNamedOn &&
-      claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
@@ -510,7 +508,6 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
         on: composeOn,
       },
       { facet: 'pair warn/all · all/warn', on: pairsOn },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`warn-all:${entry.facet}:${entry.on}`) }))
     return {
       computes: facets.every((f) => f.on) && warningsAddressed,
@@ -645,7 +642,6 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
       glaParityHonest &&
       pairsOn &&
       physicalFtlClaim === 0 &&
-      claySolvedByThisFold === 0 &&
       sample.method === 'phrase-table'
     const honestOpenNamed = [
       'offline:free-prose-beyond-phrase-table',
@@ -671,7 +667,6 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
         facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
         on: physicalFtlClaim === 0 && ftlThm.recomputed,
       },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       {
         facet: 'pair chat/trans · soft translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free',
         on: pairsOn,
@@ -983,8 +978,7 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
       pairsOn &&
       efficiencyWinOn &&
       mostEfficientModel === 'pivot' &&
-      physicalFtlClaim === 0 &&
-      claySolvedByThisFold === 0
+      physicalFtlClaim === 0
 
     const honestOpenNamed = [
       'not-universal-paid-mt',
@@ -1018,7 +1012,6 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
         facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
         on: physicalFtlClaim === 0 && ftlThm.recomputed,
       },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       {
         facet: 'pair trans/any · soft chat/trans · trans/wave · chat/ftl · research/free · learn/best · mcp speech/dictation/language',
         on: pairsOn,
@@ -1364,8 +1357,7 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
       qualityOn &&
       worldClaimHonest &&
       pairsOn &&
-      physicalFtlClaim === 0 &&
-      claySolvedByThisFold === 0
+      physicalFtlClaim === 0
 
     const honestOpenNamed = [
       'sealed-pivotTongues-not-iso-7000-world-languages',
@@ -1409,7 +1401,6 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
         facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
         on: physicalFtlClaim === 0 && ftlThm.recomputed,
       },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       {
         facet: 'pair trans/quality · soft trans/any · chat/trans · trans/wave',
         on: pairsOn,

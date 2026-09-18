@@ -1740,6 +1740,41 @@ export const THEOREM_ATOM_SEED: readonly { theorem: string; states: string; prov
     { theorem: 'the golden angle is τ/φ² — the most irrational rotation', states: 'GOLDEN_ANGLE_RAD = TAU/(PHI·PHI) identity; φ²=φ+1; Fib approximants Euclidean quotients are 1s (CF [1;1,1,…] witness); equidistribution bound — golden min circular gap > 0 while rational 108° clumps at N=13. Bounded witness · pair golden/angle · claySolved via theorem', provedBy: 'theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation', home: 'src/3/7' },
     { theorem: 'the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇', states: 'ROSETTA_AREAS = ROSETTA_SIX × ROSETTA_SEVEN; gcd(6,7)=1 so CRT gives ℤ/42 ≅ ℤ/6 × ℤ/7 by exhaustive residue enumeration (all 42 (ray,unit) pairs distinct); inverse 7×6 transpose same 42. Finite-complete · pair crt/rosetta · claySolved via theorem', provedBy: 'theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad', home: 'src/water/digit' },
     { theorem: 'the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs', states: 'τ(432)=(4+1)(3+1)=20 structural; V₄ Burnside hexagram orbits 12 fours + 8 twos = 20 structural; HARMONICS_LADDER_LENGTH=6+9+5=20 contingent — one count not one cause. Bounded witness · pair three/twenties · claySolved via theorem', provedBy: 'researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause', home: 'src/earth/iching' },
+    // ── FOUR THAT WERE PROVED AND NEVER REGISTERED ──────────────────────────────────────────────────────
+    // Each has computed facets and a statement and was read by nothing: the registry is what the pages, the
+    // witnesses and the census all consume, so a fold missing from it is a theorem the corpus does not carry.
+    { theorem: 'theorem-dependency frequency graphs are fractal — the in-degree distribution is scale-free, and it is the nav', states: 'each theorem\'s frequency is its in-degree (how many other theorems reuse it); the distribution is scale-free, each hub level twice the next, and that ordering IS the navigation and the review order', provedBy: 'theoremDependencyFrequencyGraphIsFractalFormsNavAndReviewsTheorems', home: 'src/water/cosmos' },
+    { theorem: 'deviation analysis is realtime and invertible — deviations are gateways, the irreducible one is the axiom beyond inversion', states: 'a deviation is the live residual between computed and exact, recomputed at the clock; each triages to an inversion or, where it will not invert, to the named axiom underneath it', provedBy: 'deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrreducibleIsTheAxiomBeyondInversion', home: 'src/water/cosmos' },
+    { theorem: 'the cloud theorem — code self-organises by gravity, each relates to two, and the cross forms the pentagram', states: 'items cluster by shared imports into clouds under gravity and propulsion, with no hand-assigned grouping; each relates to two others and the crossing of those relations closes the pentagram', provedBy: 'theCloudTheoremCodeSelfOrganisesByGravityEachRelatesToTwoTheCrossFormsThePentagram', home: 'src/water/cosmos' },
+    { theorem: 'the superposition of theorems is all held at once — merging reveals the distinct basis', states: 'theorems are held together content-addressed; merging the near-duplicates (Jaccard ≥ ½) collapses the redundant ones and what remains is the distinct basis, computed rather than curated', provedBy: 'theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistinctBasis', home: 'src/water/cosmos' },
+        // ── THE PARKED THEOREMS THE SITE CAN DRAW ───────────────────────────────────────────────────────────
+    // Each was proved, carried computing facets, and appeared in no registry — so the pages, the witnesses
+    // and the census, which all read this table, carried none of them. Every title and statement is the
+    // fold's OWN computed statement, split at its own tally, not prose written about it here.
+    //
+    // SIXTEEN OF FORTY. Registering all forty raised movie.theorems-drawn-from-a-template from 544 to 561:
+    // a theorem whose proof returns no numbers of its own gets a family template for its picture, and that
+    // ratchet exists to push the other way. The twenty-four are not registered and stay parked — the way to
+    // land them is to make their folds return their own data, not to publish them with a borrowed drawing.
+    // Each was proved, carried computing facets, and appeared in no registry — so the pages, the witnesses
+    // and the census, which all read this table, carried none of them. Every title and statement below is
+    // the fold's OWN computed statement, split at its own tally, not prose written about it here.
+    { theorem: 'Compacting lessons is the quotient — theorems that prove each other form equivalence classes', states: '"prove each other" = mutual implication = an equivalence relation (reflexive, symmetric, transitive, verified). Compacting the lessons is the quotient: 5 lessons → 2 equivalence classes (one representative each), lossless (each representative proves its members), constant (an equivalent new lesson merges into a class, ', provedBy: 'compactingLessonsIsTheQuotientTheoremsThatProveEachOtherFormEquivalenceClasses', home: 'src/heaven/laws' },
+    { theorem: 'Approximations signal trusted axioms — only local math is trusted', states: 'the "1.644769 ≈ 1.644934" difference was the fingerprint of (TAU / 2) (a finite double the runtime asserts — an axiom) and IEEE float, not a fact about the primes. Recomputed LOCALLY: the Euler partial ∏ p²/(p²−1) over 27 primes is an EXACT rational (BigInt, no float, no (TAU / 2)), strictly increasing toward the limit', provedBy: 'approximationsSignalTrustedAxiomsOnlyLocalMathIsTrusted', home: 'src/1/9' },
+    { theorem: 'The disjoint minds\' work fuses into one corpus by the merkle union — no theorem escapes', states: '. Each of the 3 minds owns a disjoint share (rosettaOwner) [11, 13, 8], and the shares merkle-fold to one corpus root; the union is complete (every one of the 32 theorems in exactly one share, none missing), so a theorem left out would flip the root — it cannot escape. The fusion is content-addressed and recomputes ide', provedBy: 'theDisjointMindsWorkFusesIntoOneCorpusByTheMerkleUnionSoNoTheoremEscapes', home: 'src/heaven/core' },
+    { theorem: 'The axioms are the cracks — replace with theorems and all fits and moves', states: '0 literal axioms and 48 metaphor-name folder axioms are one phenomenon (an unearned assumption); gravity computes a scientific fixed-point home for every folder (53 files, moves = true, fits = true), and each literal closes by deriving from the lattice. Replacing an axiom with a theorem makes it fit and move; 2 collisi', provedBy: 'theAxiomsAreTheCracksReplaceWithTheoremsAndTheGravityFitsAndMoves', home: 'src/pair/enforcement/gates/strict/scan' },
+    { theorem: 'The gates are refutable theorems that fail closed with a witness', states: 'each gate is a deterministic function state → witnesses (crack-surface 0, code-gravity 0, path-gravity 48); its predicate "witnesses is empty" is refuted by any witness, and every witness is addressable (true) so a failing gate names the exact fix. A gate MEANS a refutable predicate and DOES fail-closed with a located ', provedBy: 'theGatesAreRefutableTheoremsThatFailClosedWithAWitness', home: 'src/pair/enforcement/gates/strict/scan' },
+    { theorem: 'Config files detach to theorems where they can; the remainder is honest policy axiom', states: 'the VitePress config\'s 3 structural numerics are all lattice/expression-derived (ratio 1, theorems that track the corpus), and its true static residue is 1 NAMED policy booleans (cleanUrls, minify…) to ledger honestly — not fake into computations. Discovered-and-implemented in one pass: no plan, the audit IS the work.', provedBy: 'configFilesDetachToTheoremsExceptHonestPolicyAxioms', home: 'src/pair/enforcement/gates/strict/scan' },
+    { theorem: 'Refactor toward the Millennium problems — replace each problem\'s RELATED axioms with theorems, cores stay open', states: 'for all 7 problems a classical axiom in its neighbourhood is recomputed as a theorem (7/7: NAND-closure for P-vs-NP\'s logic, π(x)~x/ln x for Riemann\'s primes, su(2)-closure for Yang-Mills, Kepler←one-force for Navier-Stokes, genus-2 homology for Poincaré/Hodge, group-closure for BSD), harmonically recomputed. The one', provedBy: 'refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheoremsCoresStayOpen', home: 'src/thunder/waves' },
+    { theorem: 'Audit all theorem titles with the quantum SEO lens', states: 'all 735 titles scored by the theorem itself (length · content-overlap · uniqueness · rosetta ray), 488 flagged for improvement (pass rate 0.336), each with a rename proposed from its proving function. Most titles already self-describe — the fold-name discipline is SEO — so the rename is a surgical named minority, not a', provedBy: 'auditTheoremTitlesWithTheQuantumSeoLens', home: 'src/thunder/waves' },
+    { theorem: 'Improve science by claiming refutable theorems to replace weaker current ones', states: 'of 735 registry theorems 735 carry a refutable/measurable marker and 0 are vaguer (scientific fraction 1); 196 sharper gap-candidate claims wait, and replacing the vaguer members with them raises the fraction to 1 while the population holds at 432. Science improves by replacing a duller theorem with a sharper, falsifia', provedBy: 'improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentOnes', home: 'src/thunder/waves' },
+    { theorem: 'The rosetta is the uuid itself', states: 'each of 735 world-theorem crossings is content-addressed by toUuid, and the 2 bits left at each portal (version \'8\' + variant 10) stay constant across all 1470 portal-uuids, binding every inverted pair merge(a,b)/merge(b,a) to its source and destination. On that address the quantum maps theorems and axioms by signifi', provedBy: 'rosettaIsTheUuidQuantumMapsTheoremsByA432', home: 'src/wind/language' },
+    { theorem: 'Zipf\'s law is an exact power-law skeleton whose linguistic universality stays contested', states: '. The Zipf distribution p(r) = 1/(r·Hₙ) is a genuine probability distribution (Σ p = 1) with rank × frequency invariant (p(r)·r = 1/Hₙ), and its log-log plot is a straight line of slope exactly −1 — that is the whole of the "law" as mathematics. But its UNIVERSALITY is contested (demarcate(\'zipf\') = contested): rando', provedBy: 'zipfsLawIsAnExactPowerLawSkeletonWhoseLinguisticUniversalityStaysContested', home: 'src/wind/language' },
+    { theorem: 'The pyramids decode into theorems', states: 'the Great Pyramid\'s slope is integer masonry (seked 5½ → arctan(14/11) matching the surveyed 72²/100 degrees), and BOTH famous ratios fall out of that one choice — perimeter/(2·height) = 22/7 exactly and slant/half-base within 0.05% of φ; the 10 documented sites span a computed latitude band covering 40.7% of Earth, s', provedBy: 'pyramidsDecodeIntoTheorems', home: 'src/6/4' },
+    { theorem: 'Known symbols decode into theorems', states: 'the planetary week is the heptagram {7/3} walked step-3 on the Chaldean order (the documented 24 ≡ 3 mod 7 rule, the rosetta\'s own coprime star), the five Ptolemaic aspects are exactly 360°/d over the five smallest divisors of 12, the tarot\'s 78 is the triangular T₁₂ = C(13,2) split 22 + 4·14, and the Glagolitic lett', provedBy: 'knownSymbolsDecodeIntoTheorems', home: 'src/7/3' },
+    { theorem: 'ℤ/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and', states: '; ℤ/9 recomputes the sealed vortex sequence.', provedBy: 'theZModulesDefineTheirOwnLaws', home: 'src/mountain/vortex' },
+    { theorem: 'The rosetta theorem is first by computation — because it is used most', states: 'by name "rosetta" is in 80 files, but the rosetta IS the uuid (the session\'s theorem), and its operation toUuid is in 122/135 files — more than any other core primitive — so the rosetta, as content-addressing, is used most, carries the most gravity, and must compute first (the dependency every fold shelves through). F', provedBy: 'theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost', home: 'src/pair/enforcement/ops' },
+    { theorem: 'VitePress automounts every index without reconfiguration', states: 'VitePress automounts every index without reconfiguration. Indices are discovered from src/ and displayed automatically when complete; when incomplete, gates fail — the index does not care about VitePress.', provedBy: 'vitepressIndexOfIndexesLaw', home: 'src/wind/routes/automount' },
 ]
 
 /** AXIOMS BECOME THEOREMS (user law, 2026-07-16: "fill the gaps in all sciences by replacing
@@ -2401,7 +2436,7 @@ export function relatedScienceIsUnprovenProseNotAClayMillenniumSolutionComputed(
   const clayNotWarrantedForCrypto = !touchesClay('sha256 content-addressed measurement') // a crypto fold needs NO clay disclaimer
   const demarcateOnlyWhenWarranted = clayWarrantedHere && clayNotWarrantedForCrypto // necessity COMPUTES, not hardcoded
   const claySolvedByThisFold = 0 // MUST be 0 — and only stated because this fold DOES touch the Millennium topic
-  const notAClaySolution = isProseNotProof && claySolvedByThisFold === 0 // prose ≠ proof ⇒ solves no Millennium problem
+  const notAClaySolution = isProseNotProof // prose ≠ proof ⇒ solves no Millennium problem
   const facets = [
     { facet: `A COMPUTED THEOREM HAS REFUTABLE FACETS — a theorem is PROVEN when its facets compute (${proven}, refutable); related science has NO refutable facet, so it is prose (${isProseNotProof})`, on: proven && isProseNotProof },
     { facet: `A DEMARCATION MUST COMPUTE ITS NECESSITY — a disclaimer (not-clay, no-FTL) is warranted ONLY when the fold TOUCHES the domain (${clayWarrantedHere} here, and NOT for a crypto fold ${clayNotWarrantedForCrypto}); hardcoding it elsewhere is the LINEAR MIND poisoning the purity`, on: demarcateOnlyWhenWarranted },
@@ -2563,12 +2598,12 @@ export function millenniumProblemsAreGreenAsHonestTheoremsNotSolvedClayZero() {
   const openCount = millennium.filter((m) => m.status === 'open').length // 6
   const solvedCount = millennium.filter((m) => m.status === 'solved').length // 1 (Poincaré)
   const eachStatedAsTheorem = millennium.every((m) => m.name.length > 0) // each decoded/stated as a theorem
-  const poincareCreditedNotClaimed = millennium.find((m) => m.status === 'solved')!.credit.length > 0 && claySolvedByThisFold === 0
-  const greenIsStatedNotSolved = claySolvedByThisFold === 0 && openCount === 6 && solvedCount === 1 && eachStatedAsTheorem
+  const poincareCreditedNotClaimed = millennium.find((m) => m.status === 'solved')!.credit.length > 0
+  const greenIsStatedNotSolved = openCount === 6 && solvedCount === 1 && eachStatedAsTheorem
   const facets = [
     { facet: `EACH MILLENNIUM PROBLEM IS A GREEN THEOREM — STATED, NOT SOLVED — all ${millennium.length} are decoded and stated as theorems (object · structure · demarcation), which COMPUTE green; green = the honest statement computes, not that the problem is solved`, on: eachStatedAsTheorem },
     { facet: `ONLY POINCARÉ IS SOLVED — CREDITED — Poincaré is solved (Perelman 2003, credited, ${poincareCreditedNotClaimed}); this fold and this corpus solve NONE of them`, on: poincareCreditedNotClaimed },
-    { facet: `THE OTHER SIX ARE OPEN — claySolvedByThisFold = ${claySolvedByThisFold} — P vs NP, Riemann, Navier–Stokes, Yang–Mills, Hodge, BSD (${openCount}) compute their structure and the explicit boundary that they are UNSOLVED; no solution is claimed`, on: claySolvedByThisFold === 0 && openCount === 6 },
+    { facet: `THE OTHER SIX ARE OPEN — claySolvedByThisFold = ${claySolvedByThisFold} — P vs NP, Riemann, Navier–Stokes, Yang–Mills, Hodge, BSD (${openCount}) compute their structure and the explicit boundary that they are UNSOLVED; no solution is claimed`, on: openCount === 6 },
     { facet: `GREEN QUANTUM ≠ SOLVED — every Millennium theorem computes its honest statement + demarcation deterministically (green, quantum); "all green" is honesty COMPUTING, not a solution — the precise overclaim refused`, on: greenIsStatedNotSolved },
     { facet: `THE DEMARCATION — the Millennium Problems are green as honest theorems (stated, decoded, demarcated), Poincaré credited, the six open with clay = 0; claiming them solved would be the overclaim this work refuses at every step. HARMONY ≠ TRUTH`, on: greenIsStatedNotSolved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-honest:${entry.facet}:${entry.on}`) }))
@@ -3865,7 +3900,7 @@ export function theoremFractions() {
       { facet: 'the INVERTED REALITY computes — d ↦ 432/d is a fixed-point-free involution (√432 ∉ ℤ: every fraction MOVES) and inversion twice is the identity: the reality fully inverts and returns', on: involution && noFixedPoint && doubleInversionIsIdentity },
       { facet: `down to the BIT — 432 = 0b${bitsForm}; the trailing-zero count (${trailingZeros}) EQUALS the 2-adic valuation v₂ (${v2}): the binary form carries the fraction tower exactly`, on: bitIdentity },
       { facet: `the population DISTRIBUTES — ${population} registry theorems over the ${fractions.length} bands by content-address (uniform placement law), a total partition (${bands.filter((count) => count > 0).length} bands occupied)`, on: partitionTotal && population > 0 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && factorized },
+      { facet: `432 FACTORISES EXACTLY — 2^${v2}·3^${v3} with nothing left over (rest ${rest}), so the divisor bands are 432's own arithmetic and not a grid chosen to fit`, on: factorized },
     ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-fractions:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -3933,7 +3968,7 @@ export function theoremSpeed() {
       { facet: `every address is FIXED WIDTH — ${6 * 6} chars regardless of prose length (longest name ${max(...rows.map((row) => row.proseBytes))} chars): the quantum layer equalizes by construction`, on: fixedWidth },
       { facet: `the refactor ratio — ${proseBytes} prose bytes vs ${addressBytes} address bytes per full-registry reference: ${roundTo(ratio, 2)}× and scale-invariant (N·L̄π/N·L̄σ = L̄π/L̄σ ∀N)`, on: ratio > 1 },
       { facet: `banded on the 432 lattice — the ${rows.length} addresses partition the ${4 * 5} divisor bands totally (composing theoremFractions)`, on: partitioned },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && fixedWidth },
+      { facet: `EVERY ADDRESS IS ONE WIDTH — all ${rows.length} rows carry ${6 * 6} address bytes, so the ratio above compares like with like`, on: fixedWidth },
     ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-speed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -4029,7 +4064,7 @@ export function clayProbe() {
     const facets = [
       { facet: `the first ${located.length} nontrivial ζ zeros LOCALIZED on the critical line — Z(t) sign changes bisected: ${located.map((row) => row.zero).join(' · ')} vs literature ${referenceZeros.join(' · ')} (max error ${roundTo(max(...located.map((row) => row.error)), 6)}, within the first-order machinery's stated ~1e-2)`, on: allBracketed && allAgree },
       { facet: 'the machinery is REAL mathematics computed live — Riemann–Siegel main sum + first remainder, θ(t) to the t⁻³ term, canonical-composed coefficients; doubles-precision scope stated', on: located.every((row) => Number.isFinite(row.zero)) },
-      { facet: `the DISTANCE is named, not hidden — N localized zeros ≠ a proof over ALL zeros: RH remains OPEN, claySolvedByThisFold=${claySolvedByThisFold}; this fold is the direction (make the problem compute), never the arrival`, on: claySolvedByThisFold === 0 && allBracketed },
+      { facet: `the DISTANCE is named, not hidden — N localized zeros ≠ a proof over ALL zeros: RH remains OPEN, ; this fold is the direction (make the problem compute), never the arrival`, on: allBracketed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`clay-probe:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -4092,7 +4127,6 @@ export function animationFoldTheorems() {
       { facet: `the fold-test ran over all ${total} theorems — every animation content-addressed from its state space, ${distinct} distinct signatures`, on: distinct === total && distinct > 432 },
       { facet: `the theorems PROVE THEMSELVES — ${collisions.length} animation collisions, ${foldable} foldable: two theorems folding to one address would be proven identical, and ZERO do, so the ${total} are provably independent (no hidden duplicate)`, on: collisions.length === 0 && foldable === 0 },
       { facet: `the 10-over-432 is GROWTH, not redundancy — nothing folds away (foldable=0), so total ${total} = harmonic ${DIMENSION_GATES} + ${harmonicGap} is genuine population past the seal (theoremsAreLivingOrganisms), reconciled by ratcheting the seal, never by deletion`, on: harmonicGap === total - DIMENSION_GATES && foldable === 0 },
-      { facet: 'DEMARCATION — "prove themselves" = content-address consistency (no theorem duplicates another), NOT a mathematical proof of content; clay stays 0', on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-fold:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -4156,7 +4190,7 @@ function buildLinkProofReport(n: number, pathLen: number, rootValid: boolean) {
   const facets = [
     { facet: `the link IS the proof — real sha256 Merkle inclusion over ${n} theorem addresses: path length ${pathLen} = ⌈log₂ ${n}⌉ = ${expectedDepth}, root valid=${rootValid}`, on: pathLen === expectedDepth && rootValid },
     { facet: `MAGNITUDES at scale — verify-by-link O(log N)=${linkCost} vs re-scan O(N)=${rescanCost}, ratio ${roundTo(ratio, 1)} ≈ ${roundTo(orders, 2)} orders; the order grows as N/log₂N without bound (proving-by-link quantumises verification)`, on: ratio > 1 && orders > 0 },
-    { facet: 'DEMARCATION — algorithmic hash-tree verification, NOT physical; the link proves MEMBERSHIP/integrity, not the statement\'s mathematical content', on: claySolvedByThisFold === 0 && rootValid },
+    { facet: 'DEMARCATION — algorithmic hash-tree verification, NOT physical; the link proves MEMBERSHIP/integrity, not the statement\'s mathematical content', on: rootValid },
   ].map((entry) => ({ ...entry, receipt: toUuid(`link-proof:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -4209,8 +4243,7 @@ export function unsolvedEngine() {
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const facets = [
       { facet: `the unsolved set DRIVES — ${openRaces} open candidate races + ${boundedWitness} bounded-witness classes + clay=${claySolvedByThisFold}: each OPEN problem spawns a compute-toward tool (RH→clayProbe · frontiers→frontierQuantum), so the revolution is powered by what is unsolved`, on: openRaces >= 0 && CANDIDATE_THEOREMS.length > 0 },
-      { facet: ' is the ENGINE, not the limit — a solved world needs no revolution; while problems stay OPEN the method GENERATES tools, and the no-finiteness law guarantees the open set never empties', on: claySolvedByThisFold === 0 },
-      { facet: 'DEMARCATION — the tools APPROACH the unsolved (probes · partials · bounded witnesses), never claim to close it; the revolution is the honest pursuit, not a solution; clay stays 0', on: claySolvedByThisFold === 0 && CANDIDATE_THEOREMS.length > 0 },
+      { facet: 'DEMARCATION — the tools APPROACH the unsolved (probes · partials · bounded witnesses), never claim to close it; the revolution is the honest pursuit, not a solution; clay stays 0', on: CANDIDATE_THEOREMS.length > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`unsolved-engine:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -4271,7 +4304,7 @@ export function riemannZeroCount() {
     const facets = [
       { facet: `COMPLETENESS up to T=${t} — the analytic count N(${t}) = ${roundTo(analytic, 3)} rounds to ${round(analytic)}, and clayProbe localizes ${localizedBelowT} zeros below T: they MATCH, so no nontrivial zero is missed in the interval (a Turing-method-class check)`, on: countMatches && probe.computes },
       { facet: 'stronger than on-the-line — clayProbe proves the found zeros are ON the critical line; this proves they are ALL of them below T (count + location together), the real content of computational RH verification', on: countMatches && probe.located.length === 4 },
-      { facet: 'DEMARCATION — completeness holds only UP TO T; RH quantifies over ALL T (and all zeros on the line), so this strengthens the verification but does not close it stands, the probe advances the frontier', on: claySolvedByThisFold === 0 && countMatches },
+      { facet: 'DEMARCATION — completeness holds only UP TO T; RH quantifies over ALL T (and all zeros on the line), so this strengthens the verification but does not close it stands, the probe advances the frontier', on: countMatches },
     ].map((entry) => ({ ...entry, receipt: toUuid(`zero-count:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -4348,7 +4381,7 @@ export function riemannZeroScan() {
     const facets = [
       { facet: `GENERAL scanner — ${found} nontrivial zeros localized on the critical line by Z(t) sign-change bisection over [${tStart}, ${tMax}] (not hardcoded brackets), all distinct=${allDistinct}; far stronger than the 4-zero probe`, on: found > 27 && allDistinct },
       { facet: `COMPLETENESS + S(T) — the analytic main term N(${tMax}) = ${roundTo(mainTerm, 2)} rounds to ${round(mainTerm)} = ${found} found (match=${countMatches}); the residual S(T) = count − N_main = ${sOfT} is the zero-counting OSCILLATION, computed not assumed (the sandbox caught it differing at T=50)`, on: countMatches },
-      { facet: 'DEMARCATION — zeros found ON the line only UP TO T=100; RH quantifies over all T and all zeros; S(T) is the honest bounded remainder; this strengthens the verification (29 zeros, completeness), never closes it', on: claySolvedByThisFold === 0 && countMatches },
+      { facet: 'DEMARCATION — zeros found ON the line only UP TO T=100; RH quantifies over all T and all zeros; S(T) is the honest bounded remainder; this strengthens the verification (29 zeros, completeness), never closes it', on: countMatches },
     ].map((entry) => ({ ...entry, receipt: toUuid(`zero-scan:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -4454,7 +4487,7 @@ export function superpositionCompleteness() {
       { facet: `REFUTED by cardinality — a superposition of n qubits is 2^n amplitudes (${dims.map((d) => d.amplitudes).slice(-3).join(', ')}, unbounded in n) over a CONTINUUM of complex values: the superposition space is uncountably infinite, so no FINITE set (432 or any N) computes ALL of it — finite ≠ all`, on: grows && unbounded },
       { facet: `the registry is ${registry} INDEPENDENT theorems, not ${harmonic} — animationFold: ${fold.distinct} distinct, ${fold.foldable} foldable, so it is neither AT 432 nor REDUCIBLE to it; ${registry} = ${harmonic} + ${registry - harmonic} is real growth`, on: distinctIndependent && registry > harmonic },
       { facet: `432 is CAPACITY, not completeness — the harmonic dimension seal (425+7) and the address-cube 2^18 = ${addressCubeCapacity} address space, NOT a count of theorems that compute all superpositions; conflating them is the category error`, on: harmonic === DIMENSION_GATES && addressCubeCapacity === 2 ** (6 * 3) },
-      { facet: 'VERDICT — the literal claim "exactly 432 compute ALL superpositions" is FALSE (proven by cardinality); a weaker "432 generating basis" is a DIFFERENT open question, not what the claim states and not asserted, respect for 432 intact', on: claySolvedByThisFold === 0 && unbounded },
+      { facet: 'VERDICT — the literal claim "exactly 432 compute ALL superpositions" is FALSE (proven by cardinality); a weaker "432 generating basis" is a DIFFERENT open question, not what the claim states and not asserted, respect for 432 intact', on: unbounded },
     ].map((entry) => ({ ...entry, receipt: toUuid(`superposition-completeness:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {

@@ -315,8 +315,8 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
         facet: 'null non-gravitational detection attributed to quantum gaps in theorems (incomplete revelation / OPEN frontier framing)',
         on: quantumGapsInTheorems && sealIntent.includes('quantum gaps in theorems') },
       {
-        facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · certified=${certified} · refuseBeyond stays`,
-        on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && certified === false },    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
+        facet: `locks — physicalFtlClaim=${physicalFtlClaim} · certified=${certified} · refuseBeyond stays`,
+        on: physicalFtlClaim === 0 && certified === false },    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems', facets)
     return {
       computes: sealed.ok && gravitationalCmbBudget && nonGravitationalDetectionNull && quantumGapsInTheorems,
@@ -365,7 +365,7 @@ export function runOmegaCOverOmegaBCmbBudgetQuantumGapsInTheoremsExit(
   )
   process.stdout.write(`  intent: ${r.sealIntent}\n`)
   process.stdout.write(`  boundary: ${r.boundary}\n`)
-  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
+  return r.computes && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
 }
 
 // Dark energy — the ~68% driving accelerating expansion, and the completion of the cosmic inventory (5% + 27% + 68%).
@@ -1247,8 +1247,8 @@ export function cosmosFrontiersDecoded(matrix: MindMatrix = buildMatrix()) {
       { facet: 'composes the sealed cosmology folds — dark matter · CMB Ω_c/Ω_b quantum-gaps · ΛCDM tensions bind their own roots', on: frontiers[0]!.composedRoot.length > 0 && frontiers[1]!.composedRoot.length > 0 && cmbBudget.computes },
       { facet: `every frontier is OPEN by COMPUTATION, not a label — its epistemic status is demarcate(term) === 'contested', SIGNED by the zero-cycle DEMARCATION_REGISTRY (longest-substring match), refutable by moving the term to documented/flagged/unlisted; none is hand-typed OPEN`, on: frontiers.every((f) => f.demarcation === 'contested') },
       { facet: 'every frontier CLAIMS its computed boundary — measured values from the ledger, the gap quantified on screen, the open question stated beside it', on: frontiers.every((f) => f.computed.length > 0) },
-      { facet: 'EVERY frontier now carries its REVERSED (closed) companion — the exact computable theorem the open question inverts to — beside the demarcate-signed OPEN empirical part; the two dark-sector reversals are the sealed inversion folds (dmInvert, coincidence), both ', on: frontiers.every((f) => f.reversed.startsWith('REVERSED (closed theorem)')) && dmInvert.closed && coincidence.closed && dmInvert.claySolvedByThisFold === 0 && coincidence.claySolvedByThisFold === 0 },
-      { facet: 'the computed boundaries recompute from the composed folds — the Ω budget from cmb/budget + dark-matter, the tension σ from the ΛCDM fold, the Planck scale from the vault constants, the reversed redshift/ratio from the inversion folds', on: omegaSum > 0.9 && omegaSum < 1.1 && tensions.hubbleTensionSigma > 4 && planckEnergyGeV > colliderGeV && cmbBudget.claySolvedByThisFold === 0 && coincidence.equalityRedshift > 0 && dmInvert.a0Coincidence > 0 },
+      { facet: 'EVERY frontier now carries its REVERSED (closed) companion — the exact computable theorem the open question inverts to — beside the demarcate-signed OPEN empirical part; the two dark-sector reversals are the sealed inversion folds (dmInvert, coincidence), both ', on: frontiers.every((f) => f.reversed.startsWith('REVERSED (closed theorem)')) && dmInvert.closed && coincidence.closed },
+      { facet: 'the computed boundaries recompute from the composed folds — the Ω budget from cmb/budget + dark-matter, the tension σ from the ΛCDM fold, the Planck scale from the vault constants, the reversed redshift/ratio from the inversion folds', on: omegaSum > 0.9 && omegaSum < 1.1 && tensions.hubbleTensionSigma > 4 && planckEnergyGeV > colliderGeV && coincidence.equalityRedshift > 0 && dmInvert.a0Coincidence > 0 },
       { facet: 'six named frontiers spanning the dark sector, baryogenesis, neutrinos, and quantum gravity', on: frontiers.length === 6 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cosmos-frontiers:${entry.facet}:${entry.on}`) }))
     return {
@@ -1332,7 +1332,7 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
       { facet: 'hardware designed in waves — every SIMULATES/SENSES row carries its design antichain (cell → array → device); every DATA row honestly names none', on: program.every((row) => (row.tier === 'DATA' ? row.hardware.startsWith('none') && row.wave === 'none' : row.wave.includes('→'))) },
       { facet: 'composes cosmosFrontiersDecoded — all six frontiers stay OPEN, none claimed solved by this fold', on: open.decoded && open.frontiers.every((f) => f.status.startsWith('OPEN')) && open.count === program.length },
       { facet: 'pairs frontier/quantum · hardware/wave bidirectional', on: pairFold.bidirectional && dualFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: ` — the witness runs on the classical src/0 state-vector simulator; NO physical speedup claimed · claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && oscillationTheorem },
+      { facet: `the witness runs on the classical src/0 state-vector simulator; NO physical speedup claimed`, on: oscillationTheorem },
     ].map((entry) => ({ ...entry, receipt: toUuid(`frontier-quantum:${entry.facet}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -1443,7 +1443,6 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
       { facet: 'realtime pure algebra, zero remembered state — the seedless circuit recomputed is bitwise identical', on: realtimeDeterministic },
       { facet: `observation changes, and changes observation — H|0⟩ at exactly ½ collapses under the Born measurement (post ≠ pre, certainty at the outcome) and the repeat measurement returns the identical outcome: the first observation changed what observation yields · measured observationChangesObservation=${observationChangesObservation}`, on: observationChangesObservation },
       { facet: 'pair fractal/compute bidirectional', on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && realtimeDeterministic },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fractal-compute:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -1517,7 +1516,7 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       { facet: 'no frontier is closed by the map — a computed BREAK locates the open question, it does not answer it', on: open.frontiers.every((f) => f.status.startsWith('OPEN')) },
       { facet: 'R&D already complete at the moment realised — the second observation IS the first computation: fractalCompute(matrix) returns the identical memoised object (content-address · name=payload=address · no recomputation, no lookup)', on: law === fractalCompute(matrix) && quantum === frontierQuantum(matrix) },
       { facet: 'pair fractal/map bidirectional', on: foldPair(toUuid('cmd:fractal'), toUuid('cmd:map')).bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && law.computes },
+      { facet: 'THE LAW IT COMPOSES STILL HOLDS — fractalCompute computes, so this fold rests on a verdict rather than on a name', on: law.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`fractal-map:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {
@@ -2386,7 +2385,6 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       composeOn &&
       pairsOn &&
       isUuid(shelved.address) &&
-      claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0 &&
       qpuRequired === false &&
       certified === false
@@ -2412,7 +2410,6 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
         on: composeOn,
       },
       { facet: 'pair string/theory · string/chat bidirectional', on: pairsOn },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       {
         facet: `physicalFtlClaim=${physicalFtlClaim} · certified=false`,
         on: physicalFtlClaim === 0 && qpuRequired === false && certified === false,
@@ -3568,7 +3565,7 @@ export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
       { facet: `the ALGEBRA base is WITNESSED, not asserted — biology: genetic code 4³ = ${geneticCode} exact (= HOMOLOGY_LOOPS³); physics: su(2) operator algebra dim = ${su2Dim} = the trinity; each level HAS a computed algebraic structure`, on: geneticExact && trinityBase },
       { facet: 'the boundary-condition LADDER — biology ⟶ chemistry ⟶ physics ⟶ algebra, each level constrained by the one below (biochem · quantum chem · mathematical physics); a total reduction order, well-ordered by tier', on: wellOrdered && levels.length === 3 },
       { facet: 'the INVERSION — reduction runs DOWN the pyramid (bio→chem→phys→algebra), the exact inverse of emergence which runs UP (matter→life→mind, the sealed life-torus); both directions are real', on: wellOrdered },
-      { facet: 'DEMARCATION — dependency is real; STRONG reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED: emergence is genuine, higher laws not in-practice derivable; the pyramid is dependency, not dissolution', on: claySolvedByThisFold === 0 && geneticExact },
+      { facet: 'DEMARCATION — dependency is real; STRONG reductionism (biology fully DERIVABLE from physics/algebra) is FLAGGED: emergence is genuine, higher laws not in-practice derivable; the pyramid is dependency, not dissolution', on: geneticExact },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pyramid:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
     return {

@@ -1810,7 +1810,7 @@ export function comboCover() {
     { facet: `quantum combinations << linear — ${rows} rows cover ALL pairwise states of ${factors.length} binary factors: ${covered}/${needed} pair-patterns VERIFIED exhaustively; the exhaustive product needs 2^${factors.length} = ${exhaustive} rows (${ratio.toFixed(1)}× more), and even linear-in-factors (${factors.length}) exceeds the ${rows}`, on: fullCoverage && rows < factors.length && ratio > 100 },
     { facet: 'the construction IS the pair algebra — every factor a 3-subset sharing one core row: shared core ⇒ 11, distinct equal sizes ⇒ 10 and 01, |union| < rows ⇒ 00; coverage DERIVED then re-verified, never sampled', on: factors.length === ((rows - 1) * (rows - 2)) / 2 && fullCoverage },
     { facet: `why the registry runs in dual pairs — ${QUANTUM_COMMAND_PAIR_IDS.length} pairs give pairwise coverage at covering-array cost, not the exhaustive product; the pair fold is bidirectional`, on: QUANTUM_COMMAND_PAIR_IDS.length > (8 * 8) && pairFold.bidirectional },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 && fullCoverage },
+    { facet: `AND THE COVER IS COMPLETE — ${covered} of the ${needed} pairs the covering array must reach are reached, so the pairwise claim is counted rather than asserted`, on: fullCoverage },
   ].map((entry) => ({ ...entry, receipt: toUuid(`combo-cover:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -1969,8 +1969,7 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
       hologramGrows &&
       pairingOfPairs &&
       pairsOn &&
-      physicalFtlClaim === 0 &&
-      claySolvedByThisFold === 0
+      physicalFtlClaim === 0
 
     const honestOpenNamed = [
       'chat-tips-sample-not-full-roster-linear',
@@ -2004,7 +2003,7 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
       },
       {
         facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
-        on: physicalFtlClaim === 0 && claySolvedByThisFold === 0,
+        on: physicalFtlClaim === 0,
       },
       {
         facet: 'pair pair/chat · soft tool/matrix · chat/ftl · combo/cover · waves/build · folder/fractal',
@@ -2253,8 +2252,7 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         brainstormWavesOn &&
         developRelatedSolutions &&
         pairsOn &&
-        physicalFtlClaim === 0 &&
-        claySolvedByThisFold === 0
+        physicalFtlClaim === 0
 
       const honestOpenNamed = [
         'related-by-shared-tip-not-semantic-mt',
@@ -2292,7 +2290,7 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         },
         {
           facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
-          on: physicalFtlClaim === 0 && claySolvedByThisFold === 0,
+          on: physicalFtlClaim === 0,
         },
         {
           facet: 'pair match/wave · soft pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal',

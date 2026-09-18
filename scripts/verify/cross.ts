@@ -64,9 +64,15 @@ export function findParkedTheorems(root: string = process.cwd()): Parked[] {
     }
   }
   walk(join(root, 'src'))
+  // A READER IN scripts/ IS STILL A READER. This walked src only, so leanTheoremsAsLatex read as parked
+  // while scripts/verify/lean-latex.ts imports it and writes its output on every run. The gates and the
+  // build are consumers like any other; the folds themselves stay the src ones, but the search for who
+  // reads them covers everything this repository runs.
+  for (const dir of ['scripts', '.vitepress']) { try { walk(join(root, dir)) } catch { /* optional */ } }
   const manifest = readFileSync(join(root, 'package.json'), 'utf8')
   const out: Parked[] = []
   for (const [rel, text] of files) {
+    if (!rel.startsWith('src/')) continue // folds live in src; scripts and .vitepress are read as CONSUMERS only
     for (const m of text.matchAll(/^export function ([a-zA-Z0-9_]+)\s*\(/gm)) {
       const fold = m[1]!
       if (!CLAIMS_A_LAW.test(fold)) continue

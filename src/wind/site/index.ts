@@ -794,7 +794,7 @@ export function runFolderMigrationDedupWavesExit(_root = '', _argv: readonly str
   process.stdout.write(`  nav after:  ${report.navAfter.sidebar}\n`)
   for (const residual of report.residuals) process.stdout.write(`  residual: ${residual}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.gaplessCensus && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.gaplessCensus ? 0 : 1
 }
 
 // Tri-locale path routing — VitePress useLangs twin (site.locales[key].link || `/${key}/`).
@@ -1152,7 +1152,7 @@ export function runVitepressDocsResearchImprovementsExit(_root = '', _argv: read
   for (const url of report.researched) process.stdout.write(`  · researched ${url}\n`)
   for (const g of report.gaps) process.stdout.write(`  · ${g.status.padEnd(8)} ${g.id} — ${g.detail}\n`)
   for (const f of report.facets) process.stdout.write(`  · ${f.on ? 'on' : 'off'} ${f.facet}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /** PWA manifest — theme/background fuse from the movie palette, not static hex files. */

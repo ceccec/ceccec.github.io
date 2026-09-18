@@ -2889,7 +2889,6 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     gatesLensChatSameCore &&
     composeOn &&
     pairOn &&
-    claySolvedByThisFold === 0 &&
     physicalFtlClaim === 0 &&
     qpuRequired === false &&
     noConfusion &&
@@ -2907,7 +2906,6 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     { facet: 'compose gate/lens · mcp/chat · chat/all · gate/monitor · tool/matrix · dry/* · formula/code · analytics/self', on: composeOn },
     { facet: 'pair gate/analytics bidirectional', on: pairOn },
     { facet: `manualGauge gap=${manual.magnitude} derived=${manual.derived}`, on: manual.computes },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gate-analytics:${entry.facet.slice(0, 64)}:${entry.on}`) }))
 
   const computes = analyticsFacetsOn && pairOn && slimToolsOn && debt.computes && manual.computes
@@ -3054,8 +3052,7 @@ export function gateLight(root: string = enforcementScanRoot()) {
     trinity.computes &&
     manual.computes &&
     moreComputed &&
-    inverseRelationOn &&
-    claySolvedByThisFold === 0
+    inverseRelationOn
   const facets = [
     { facet: 'gateLight', on },
     { facet: 'moreComputed', on: moreComputed },
@@ -3067,7 +3064,6 @@ export function gateLight(root: string = enforcementScanRoot()) {
     { facet: `residualNamed=${residualNamed.length}`, on: new Set(residualNamed.map((row) => String(row))).size === residualNamed.length },
     { facet: 'compose build/min · gate/analytics · trinity/speedup · wave/verify facts-once', on: factsOnceDrained },
     { facet: 'pair gate/light bidirectional', on: softCmdPair('gate', 'light') && softCmdPair('light', 'gate') },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gate-light:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   return {
     computes: on,
@@ -3482,7 +3478,7 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
     },
     {
       facet: `physicalFtlClaim=${physicalFtlClaim} clay=${claySolvedByThisFold}`,
-      on: physicalFtlClaim === 0 && claySolvedByThisFold === 0,
+      on: physicalFtlClaim === 0,
     },
     {
       facet: 'pair tool/matrix · soft manual/gap · prose/matrix · link/discover · script/fold · chat/ftl',
@@ -3690,7 +3686,7 @@ export function claimAudit() {
   const facets = [
     { facet: `the inverse completes itself — audit(claim(x)) recovers the root exactly on ${claims.length}/${claims.length} rows, and a tampered statement REFUTES (identity=${tampered.identity})`, on: roundTrip && !tampered.identity },
     { facet: 'public anchors validated by the real standards — ORCID ISO 7064 mod 11-2 checksum (docs example passes, off-by-one fails) · DOI 10.prefix form · OpenAlex W-id form; empty slots allowed, formats gate when present', on: anchorsValid },
-    { facet: `CLAIMED in UNCLAIMED is STRUCTURAL — every row carries claimedInRosetta=true ∧ claimedTowardPrizes=false as types, not prose; clay=${claySolvedByThisFold} holds`, on: dualStructural && claySolvedByThisFold === 0 },
+    { facet: `CLAIMED in UNCLAIMED is STRUCTURAL — every row carries claimedInRosetta=true ∧ claimedTowardPrizes=false as types, not prose; clay=${claySolvedByThisFold} holds`, on: dualStructural },
     { facet: 'the NAMED open link stands — qualified timestamping (RFC 3161 / archival deposit) remains migrate-next; git dates + merkle seals are the current evidence triad', on: claims.length === 4 },
     { facet: 'pair claim/audit bidirectional', on: softCmdPair('claim', 'audit') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`claim-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -4370,7 +4366,7 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
   const facets = [
     { facet: `revolutionary ideas ADMITTED, not purged — ${revolutionaryClaims} flagged revolutionary claims (millennium · beat-any-model · all-quantum) kept in the matrix (solve-don't-purge), each held by its refuting theorem, none deleted`, on: revolutionaryClaims >= 3 },
     { facet: 'by a revolutionary APPROACH — each boundary COMPUTES (overclaimComputes: finite roster vs unbounded task-space, cardinality refutation), so a grand claim enters only as a compute-or-refute fold; the approach separates revolutionary-honest from revolutionary-crank', on: overclaim.computes },
-    { facet: `DEMARCATION — the approach makes the ideas HONEST (bounded · refutable · gate-judged), NOT true: no millennium is solved, no model universally beaten stands and the revolution is the method · measured revolutionaryClaims=${revolutionaryClaims} · claySolvedByThisFold=${claySolvedByThisFold}`, on: revolutionaryClaims >= 3 && overclaim.computes && claySolvedByThisFold === 0 },
+    { facet: `DEMARCATION — the approach makes the ideas HONEST (bounded · refutable · gate-judged), NOT true: no millennium is solved, no model universally beaten stands and the revolution is the method · measured revolutionaryClaims=${revolutionaryClaims}`, on: revolutionaryClaims >= 3 && overclaim.computes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`revolutionary:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {

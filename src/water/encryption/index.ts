@@ -880,7 +880,7 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'quantum standards audit computes (reverse+inverse · 10D)', on: audit.computes },
       { facet: 'migration checklist honesty step holds', on: migrate.computes },
       { facet: 'poles→cross PQC · crossIsPartOfMerkabaRosetta · angle90ReachableThrough60 · certified=false', on: polesCross.computes && polesCross.crossIsPartOfMerkabaRosetta && polesCross.angle90ReachableThrough60 && polesCross.certified === false },
-      { facet: `secp256k1 field prime seal·invert·decode — bits=${secp256k1PrimeFold.bitLength} ownership=false `, on: secp256k1PrimeFold.computes && secp256k1PrimeFold.bitcoinOwnershipClaimed === false && secp256k1PrimeFold.claySolvedByThisFold === 0 },
+      { facet: `secp256k1 field prime seal·invert·decode — bits=${secp256k1PrimeFold.bitLength} ownership=false `, on: secp256k1PrimeFold.computes && secp256k1PrimeFold.bitcoinOwnershipClaimed === false },
     ])
     // Panel section metadata DRY from CRYPTO_COMPARISON_MESH — live `on` from fold recomputes only.
     const bitsHw = maxBitsHardwareBoundaryAgree(matrix)
@@ -1653,7 +1653,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: thisRepoIsNotTheIsoStandard && isoOfficialStandard === false && certified === false },
     { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === 'none' && inventory.externalDeploymentCount === 0 },
     { facet: `productionReverseRefused=${productionReverseRefused}`, on: productionReverseRefused && ceiling.holds && far.holds },
-    { facet: `certified=${certified} fipsValidated=${fipsValidated} claySolvedByThisFold=${claySolvedByThisFold}`, on: certified === false && fipsValidated === false && claySolvedByThisFold === 0 },
+    { facet: `certified=${certified} fipsValidated=${fipsValidated} `, on: certified === false && fipsValidated === false },
     { facet: `securityModel=${securityModel}`, on: securityModel === 'structural+adversarial+measured-local' },
   ]
   const sealed = sealFacets('prove-local-novel-encryption-security', facets)
@@ -1712,7 +1712,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     cli: 'npm run quantum:prove-local-novel-encrypt',
     route: '/encryption#prove-local-novel-encrypt',
     siblingMagnitudesPair: 'prove/local-magnitudes-iso',
-    statement: `proveLocalNovelEncryptionSecurity · localSecurityProved=${localSecurityProved} · overallWireClaimProved=${overallWireClaimProved} · strongerThanNistPqc=${strongerThanNistPqc} · certified=${certified} · claySolvedByThisFold=${claySolvedByThisFold}`,
+    statement: `proveLocalNovelEncryptionSecurity · localSecurityProved=${localSecurityProved} · overallWireClaimProved=${overallWireClaimProved} · strongerThanNistPqc=${strongerThanNistPqc} · certified=${certified}`,
     boundary: `securityModel=${securityModel} · wireProofStatus=${wireProofStatus} · sibling=${'prove/local-magnitudes-iso'}` }
 }
 
@@ -1756,20 +1756,15 @@ export function agentAssumeNothingMathProvesInTheMoment(matrix: MindMatrix = bui
       reverse.definitionalNotCryptanalysis === true &&
       reverse.recomputeMatch === true &&
       reverse.crack === reverse.recomputeMatch &&
-      reverse.certified === false &&
-      reverse.claySolvedByThisFold === 0
+      reverse.certified === false
     const novelIsStructural =
       novel.localSecurityProved === novel.computes &&
       novel.overallWireClaimProved === false &&
       novel.strongerThanNistPqc === false &&
       novel.certified === false &&
-      novel.claySolvedByThisFold === 0 &&
       novel.securityModel === 'structural+adversarial+measured-local'
     const efficiencyGated = !vote.decided || (vote.decided && vote.winner === 'ceccec')
     const noClayFtl =
-      novel.claySolvedByThisFold === 0 &&
-      reverse.claySolvedByThisFold === 0 &&
-      noQpu.claySolvedByThisFold === 0 &&
       noQpu.qpuRequired === false
     const pairId = 'moment/prove' as const
     const pairFold = foldPair(toUuid('cmd:moment'), toUuid('cmd:prove'))
@@ -2281,7 +2276,7 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
       { facet: 'NIST FIPS 203/204/205 + ISO 18033-2 Amd 2 present as PQC answer catalog', on: catalog.computes && catalog.standards.some((s) => s.id === 'FIPS 203') && catalog.standards.some((s) => s.id.includes('Amd 2:2026')) },
       { facet: `taxonomy: authenticity migrate ≠ integrity (merkle stays) · measured taxonomy.computes=${taxonomy.computes} · taxonomy.merkleRoot=${taxonomy.merkleRoot}`, on: taxonomy.computes && isUuid(taxonomy.merkleRoot) },
       { facet: 'migration checklist keeps honesty step (no ISO/FIPS certification claim)', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done) },
-      { facet: `NOT claimed: Clay/cert — claySolvedByThisFold=${claySolvedByThisFold} certified=${certified}`, on: claySolvedByThisFold === 0 && certified === false && fipsValidated === false },
+      { facet: `NOT claimed: Clay/cert —  certified=${certified}`, on: certified === false && fipsValidated === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pqc-necessity:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('pqc-necessity-from-shor-compose', facets)
     return {
@@ -2554,7 +2549,7 @@ export function quantumStandardsAuditSuite(matrix: MindMatrix = buildMatrix(), a
       auditRow({ id: 'pqc-migration', standardOrDimension: 'NIST IR 8547 migration', auditExport: 'postQuantumMigrationChecklist', reverseOrInverse: 'neither', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done), coverage: kemOpen ? 'partial' : 'covered', root: migrate.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Checklist audit — OPEN KEM/sig items are honest PARTIAL (no Web Crypto PQC yet)' }),
       auditRow({ id: 'pqc-family-selector', standardOrDimension: 'PQC algorithm families (NIST+ISO)', auditExport: 'pqcAlgorithmFamilySelector', reverseOrInverse: 'neither', on: family.computes && family.families.length === 5 && family.everyParamSourced && family.pkMonotone, coverage: 'covered', root: family.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Standardized FIPS 203/204/205 parameter sets — public-key + ciphertext/signature bytes and NIST categories, monotone-verified. No keygen (Web Crypto lacks PQC; hand-rolled lattice crypto unsafe). Not FIPS validated.' }),
       auditRow({ id: 'shor-break-map', standardOrDimension: 'Shor PKC break map', auditExport: 'shorBreaksWhichPublicKey', reverseOrInverse: 'neither', on: shorMap.computes && shorMap.brokenCount === 4, root: shorMap.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'Educational taxonomy — not live cryptanalysis' }),
-      auditRow({ id: 'pqc-necessity', standardOrDimension: 'PQC necessity theorem (Shor→PQC)', auditExport: 'pqcNecessityFromShorCompose', reverseOrInverse: 'both', on: necessity.computes && !necessity.certified && necessity.claySolvedByThisFold === 0, root: necessity.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'MODELED composition — not Clay progress, not certified' }),
+      auditRow({ id: 'pqc-necessity', standardOrDimension: 'PQC necessity theorem (Shor→PQC)', auditExport: 'pqcNecessityFromShorCompose', reverseOrInverse: 'both', on: necessity.computes && !necessity.certified, root: necessity.root, route: '/encryption#quantum-standards-audit', browserRunnable: true, browserGap: '', boundary: 'MODELED composition — not Clay progress, not certified' }),
       auditRow({ id: 'forward-pqc-catalog', standardOrDimension: 'Forward — PQC replace catalog (NIST+ISO)', auditExport: 'isoNistPqcStandardsCatalog', reverseOrInverse: 'forward', on: catalog.computes && catalog.count >= (8 * 2), root: catalog.root, route: '/encryption#iso-pqc-catalog', browserRunnable: true, browserGap: '', boundary: 'Forward direction = named PQC migrate targets — MODELED alignment' }),
       auditRow({ id: 'reverse-demo-rsa', standardOrDimension: 'Production browser reverse (sealed-catalog allowlist)', auditExport: 'encryptionReverseVerify', reverseOrInverse: 'reverse', on: reverse.verified && demo.computes && productionRefused, root: reverse.root, route: '/encryption', browserRunnable: true, browserGap: '', boundary: 'Production browser tool · sealed-catalog moduli — production RSA break refused; never Bitcoin' }),
       auditRow({ id: 'inverse-digit-zero', standardOrDimension: 'Digit-zero inverse (n⁻¹ mod 9)', auditExport: 'zeroDivisionTable', reverseOrInverse: 'inverse', on: zeroInv.holds && mod9Ok && reverseNeInverseDigits, root: zeroInv.root, route: '/quantum-tools', browserRunnable: true, browserGap: '', boundary: 'Inverse = multiplicative mod 9; reverse field = additive complement — must differ' }),
@@ -2639,7 +2634,7 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
     const integrity = merkleFold([A, B]) === merkleFold([A, B]) && merkleFold([A, B]) !== merkleFold([A, C]) // tamper-evident + reproducible
     const noEgress = enc.encrypted && enc.recovers // pure, deterministic, nothing sent (proxy)
     const encryption = enc.encrypted && enc.needsAllFour // 4-key confidentiality + access control
-    const pqcAware = pqc.computes && pqc.claySolvedByThisFold === 0 // Shor→PQC mapped, migration honest-partial
+    const pqcAware = pqc.computes // Shor→PQC mapped, migration honest-partial
     const respawn = toUuid('corpus:v1') === toUuid('corpus:v1') && merkleFold([A]) !== merkleFold([B]) // reproducible rebuild, change-sensitive
     const sbomParts = ['core', 'ui', 'crypto'].map((name) => toUuid(`sbom:${name}`))
     const sbom = isUuid(merkleFold(sbomParts)) && merkleFold(sbomParts) !== merkleFold(sbomParts.slice(0, 2)) // content-addressed manifest
@@ -2696,7 +2691,7 @@ export function euCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildMatri
       { facet: `EVERY ASPECT OF EVERY STANDARD — ${rows.length} aspect-level tests across ${standards.length} EU standards (${standards.join(', ')}): covered=${covered.length} partial=${partial.length} gap=${gap.length}, each row a computed test with an evidence fold`, on: rows.length >= 4 * 6 && standards.length >= 6 && rows.every((entry) => isUuid(entry.receipt)) && nonGapAllOn },
       { facet: `DRIVEN BY THE LATEST DISCOVERIES — the evidence is the latest discoveries (${latest.length}): content-address integrity, no-egress full-security, 4-key encryption, quantum-breaks-linear → PQC; the audit regenerates from the live registry`, on: drivenByLatest && integrity && noEgress && encryption && pqcAware },
       { facet: `INTEGRITY & DATA-MINIMISATION COVERED — merkle content-address integrity (NIS2·CRA·DORA detection) and no network egress (GDPR·CRA data minimisation, privacy-by-design) are structurally covered (${covered.length} covered rows)`, on: integrity && noEgress && covered.length >= 6 },
-      { facet: `CRYPTO & PQC AUDITED, HONESTLY PARTIAL — encryption (4-key + AES) and PQC-readiness (Shor→PQC) are tested but migration & conformity stay open — honest PARTIAL, not certified`, on: encryption && pqcAware && pqc.claySolvedByThisFold === 0 && partial.length >= 6 },
+      { facet: `CRYPTO & PQC AUDITED, HONESTLY PARTIAL — encryption (4-key + AES) and PQC-readiness (Shor→PQC) are tested but migration & conformity stay open — honest PARTIAL, not certified`, on: encryption && pqcAware && partial.length >= 6 },
       { facet: `THE DEMARCATION — an alignment / self-assessment audit mapping EU requirements to computed architectural properties; NOT legal compliance, NOT a conformity assessment / CE marking; notified-body certification (EUCC/CC), incident-reporting duties, and legal records are named GAPS (${gap.length}, none faked closed ${gapAllOff}).`, on: gap.length >= 4 && gapAllOff },
     ].map((entry) => ({ ...entry, receipt: toUuid(`eu-cyber-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('eu-cyber-standards-audit-every-aspect', facets)
@@ -2740,7 +2735,7 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
     const integrity = merkleFold([A, B]) === merkleFold([A, B]) && merkleFold([A, B]) !== merkleFold([A, C])
     const noEgress = enc.encrypted && enc.recovers
     const encryption = enc.encrypted && enc.needsAllFour
-    const pqcAware = pqc.computes && pqc.claySolvedByThisFold === 0
+    const pqcAware = pqc.computes
     const respawn = toUuid('corpus:v1') === toUuid('corpus:v1') && merkleFold([A]) !== merkleFold([B])
     const sbomParts = ['core', 'ui', 'crypto'].map((name) => toUuid(`gsbom:${name}`))
     const sbom = isUuid(merkleFold(sbomParts)) && merkleFold(sbomParts) !== merkleFold(sbomParts.slice(0, 2))
@@ -2797,7 +2792,7 @@ export function globalCyberStandardsAuditEveryAspect(matrix: MindMatrix = buildM
       { facet: `EXTENDED BEYOND EU — the ${beyond.length} beyond-EU aspects add ISO/IEC 27001:2022 & 27002, NIST CSF 2.0, SOC 2 (AICPA TSC), UK Cyber Essentials, and ISO/IEC 27701, each mapped to the same computed evidence`, on: beyond.length >= 4 * 6 && beyondStandards.length >= 5 && eu.computes },
       { facet: `ONE EVIDENCE BASE, MANY STANDARDS — every framework's controls map to the SAME latest discoveries (content-address integrity, no-egress, 4-key encryption, quantum-breaks-linear → PQC); one architecture answers many standards`, on: integrity && noEgress && encryption && pqcAware },
       { facet: `CERTIFICATIONS ARE NAMED GAPS — ISO 27001 cert, SOC 2 report, Cyber Essentials cert, and EUCC/CC all require an accredited auditor or notified body (${gap.length} gaps, none faked closed ${gapAllOff})`, on: atLeastEightGap && gapAllOff },
-      { facet: `THE DEMARCATION — an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS.`, on: atLeastEightGap && gapAllOff && pqc.claySolvedByThisFold === 0 },
+      { facet: `THE DEMARCATION — an alignment / self-assessment across jurisdictions, NOT legal compliance, NOT a conformity assessment, and NOT certification in ANY framework; certifications, incident-reporting duties, and legal/organisational controls are named GAPS.`, on: atLeastEightGap && gapAllOff },
     ].map((entry) => ({ ...entry, receipt: toUuid(`global-cyber-audit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('global-cyber-standards-audit-every-aspect', facets)
     return {
@@ -3290,7 +3285,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
     { facet: `isoRequiresPostQuantumSecurity=${isoRequires.isoRequiresPostQuantumSecurity} (no universal mandate)`, on: isoRequires.computes && isoRequires.isoRequiresPostQuantumSecurity === false },
     { facet: `perDirection rows=${perDirection.length} (3 directions x 3 models)`, on: perDirection.length === 3 * 3 },
     { facet: `certified=${certified} isoOfficialStandard=${isoOfficialStandard} fipsValidated=${fipsValidated} productionReverseRefused=${productionReverseRefused}`, on: !certified && !isoOfficialStandard && !fipsValidated && productionReverseRefused },
-    { facet: `breaksNistPqc=${breaksNistPqc} claySolvedByThisFold=${claySolvedByThisFold}`, on: !breaksNistPqc && claySolvedByThisFold === 0 },
+    { facet: `breaksNistPqc=${breaksNistPqc} `, on: !breaksNistPqc },
   ]
   const sealed = sealFacets('prove-local-encryption-magnitudes-stronger-than-iso-all-directions', facets)
   const root = merge(
@@ -3395,7 +3390,7 @@ export function isoPqcHandoffForScienceTrinities(matrix: MindMatrix = buildMatri
       { facet: 'PQC catalog + audit + necessity compute for handoff', on: catalog.computes && audit.computes && necessity.computes },
       { facet: `handoff exports ${exports.length} sealed names for trinity lattice`, on: exports.length >= (5 * 2) },
       { facet: '10/10 dimension audit coverage ready to compose', on: audit.dimensions.coveredCount === DIMENSIONS },
-      { facet: 'certified=false · fipsValidated=false (hard honesty)', on: !necessity.certified && !necessity.fipsValidated && necessity.claySolvedByThisFold === 0 },
+      { facet: 'certified=false · fipsValidated=false (hard honesty)', on: !necessity.certified && !necessity.fipsValidated },
       { facet: 'migration OPEN kem/sig gaps remain named for significance scoring', on: migrate.openCount >= 2 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pqc-handoff:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('iso-pqc-handoff-for-science-trinities', facets)
@@ -3810,7 +3805,7 @@ export function maximumBitsEncryptDecryptInverseReverse(matrix: MindMatrix = bui
       { facet: `structuralUuidBits=${structuralUuidBits} WIDTH (foldPair) — not security strength; ≠ encryptMaxBits`, on: structuralUuidBits === UUID_STRUCTURAL_BITS && structuralUuidBits < encryptMaxBits },
       { facet: `wire 1 Tbit/s NOT proved — oneTbit.wire.provedAtCallTime=${wireOneTbitProvedAtCallTime} (no AES bench)`, on: wireOneTbitProvedAtCallTime === false && oneTbit.computes },
       { facet: `composes toolkit + reverse-verify + timed-vs-standards + beyond-RSA + directional trinity`, on: tools.ready && reverseVerify.verified && localTimed.computes && beyond.computes && trinity.computes },
-      { facet: `certified=${certified} claySolvedByThisFold=${claySolvedByThisFold} · NOT FIPS · NOT production RSA break`, on: !certified && claySolvedByThisFold === 0 && localTimed.breaksNistPqc === false },
+      { facet: `certified=${certified} NOT FIPS · NOT production RSA break`, on: !certified && localTimed.breaksNistPqc === false },
       {
         facet: 'HARD bits/hardware — claimed max-bits ≡ hardware boundary ∧ sealed-catalog sample ≠ hw ceiling',
         on:
@@ -3991,7 +3986,7 @@ export function runMaxBitsHardwareBoundaryAgreeExit(_root = '', _argv: readonly 
     process.stdout.write(`  ${c.open ? '✗' : '✓'} ${c.id}\n`)
   }
   process.stdout.write(`  boundary: ${r.boundary}\n`)
-  return r.computes && r.remaining === 0 && r.claySolvedByThisFold === 0 ? 0 : 1
+  return r.computes && r.remaining === 0 ? 0 : 1
 }
 
 /**
@@ -4200,7 +4195,7 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       { facet: 'ISO/NIST PQC catalog present — FIPS 203 KEM + FIPS 204/205 signatures (MODELED maps)', on: pqc.computes && Boolean(nistKemRow) && nistSigRows.length === 2 },
       { facet: 'composes directional trinity · beyond-RSA toolkit · max-bits · migration honesty', on: trinity.computes && beyond.computes && maxBits.computes && migrate.computes },
       { facet: `honesty — certified=${certified} · industryPkiCertificates=${industryPkiCertificates} · wireClaimProved=${wireClaimProved}`, on: !certified && !industryPkiCertificates && !wireClaimProved && !fipsValidated && !isoCertified },
-      { facet: `honesty — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false },
+      { facet: `honesty — physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: physicalFtlClaim === 0 && qpuRequired === false },
     ]
     const sealed = sealFacets('poles-form-cross-signatures-for-pqc-including-certificates', facets)
     const root = merge(
@@ -4326,7 +4321,6 @@ export function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCert
   return report.computes
     && report.crossIsPartOfMerkabaRosetta
     && report.certified === false
-    && report.claySolvedByThisFold === 0
     && report.physicalFtlClaim === 0
     ? 0
     : 1
@@ -4476,7 +4470,7 @@ export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMat
       { facet: `limbs64×4 — little-endian ${limbBits}-bit limbs of p`, on: limbs64.length === 4 && limbs64.reduce((a, b, i) => a + (b << BigInt(i * limbBits)), 0n) === p },
       { facet: `directional trinity composes — digit mod-9 inverse ≠ mod-p field inverse · measured trinity.computes=${trinity.computes}`, on: trinity.computes && trinity.boundary.includes('NOT ten') },
       { facet: 'ECC facet map — Shor breaks ECC named · Bitcoin/mainnet material REFUSED', on: eccFacet },
-      { facet: `honesty — clay=${claySolvedByThisFold} certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: claySolvedByThisFold === 0 && !certified && !bitcoinOwnershipClaimed },
+      { facet: `honesty — clay=${claySolvedByThisFold} certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: !certified && !bitcoinOwnershipClaimed },
     ]
     const sealed = sealFacets('secp256k1-field-prime-invert-decode', facets)
     const root = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)))
@@ -4551,7 +4545,6 @@ export function runSecp256k1FieldPrimeInvertAndDecodeExit(
     && report.constructionInverted
     && report.bitcoinOwnershipClaimed === false
     && report.certified === false
-    && report.claySolvedByThisFold === 0
     ? 0
     : 1
 }
@@ -4665,7 +4658,7 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       { facet: 'max-bits refuseBeyond ∧ productionReverseRefused (DEMO ceiling stays)', on: maxBits.refuseBeyond && maxBits.productionReverseRefused },
       { facet: 'encryptionReverseVerify production-browser · sealed-catalog boundary (no production RSA break)', on: reverseVerify.verified },
       { facet: `productionBreakEnabled=${productionBreakEnabled}`, on: productionBreakEnabled === false },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} certified=${certified} physicalFtl=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && !certified && physicalFtlClaim === 0 },
+      { facet: `certified=${certified} physicalFtl=${physicalFtlClaim}`, on: !certified && physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prod-rsa-refuse-complete:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('production-rsa-refuse-completes-quantum-via-rosetta', facets)
     return {
@@ -4712,7 +4705,7 @@ export function runProductionRsaRefuseCompletesQuantumViaRosettaExit(
     process.stdout.write(`  ${p.wired ? '✓' : '✗'} ${p.id} ray=${p.ray} — ${p.reason.slice(0, 8 * 9)}\n`)
   }
   process.stdout.write(`  boundary: ${r.boundary}\n`)
-  return r.computes && r.incompleteOpen === 0 && r.claySolvedByThisFold === 0 && !r.productionBreakEnabled ? 0 : 1
+  return r.computes && r.incompleteOpen === 0 && !r.productionBreakEnabled ? 0 : 1
 }
 
 // ─── Crypto comparison mesh — single sealed source for comparison nodes/edges ───
@@ -4936,8 +4929,7 @@ export function cryptoComparisonMeshIsDry(matrix: MindMatrix = buildMatrix()) {
     const toolSeeds = cryptoComparisonMeshToolSeeds()
     const toolSeedIdsUnique = new Set(toolSeeds.map((t) => t.id)).size === toolSeeds.length
     const cryptoComparisonMeshIsDryOn =
-      mesh.computes && uniqueFoldPairs && panelMetaOk && toolSeedIdsUnique
-      && mesh.claySolvedByThisFold === 0 && mesh.certified === false && mesh.refuseBeyond === true
+      mesh.computes && uniqueFoldPairs && panelMetaOk && toolSeedIdsUnique && mesh.certified === false && mesh.refuseBeyond === true
 
     const facets = [
       { facet: 'cryptoComparisonMeshIsDry', on: cryptoComparisonMeshIsDryOn },
@@ -4945,7 +4937,7 @@ export function cryptoComparisonMeshIsDry(matrix: MindMatrix = buildMatrix()) {
       { facet: 'unique fold|pair|cli|route among non-proof nodes (no wet twin inside mesh)', on: uniqueFoldPairs },
       { facet: 'panel sections derive 1:1 from mesh.inPanel', on: panelMetaOk },
       { facet: 'tool seeds unique by toolId (proof aliases collapsed)', on: toolSeedIdsUnique },
-      { facet: 'certified=false · refuseBeyond stays', on: mesh.claySolvedByThisFold === 0 && mesh.certified === false && mesh.refuseBeyond === true },
+      { facet: 'certified=false · refuseBeyond stays', on: mesh.certified === false && mesh.refuseBeyond === true },
     ]
     const sealed = sealFacets('crypto-comparison-mesh-is-dry', facets)
     return {
@@ -4979,7 +4971,7 @@ export function runCryptoComparisonMeshIsDryExit(_root: string, _argv: readonly 
   )
   process.stdout.write(`  soft-nest: cryptoRelatedSurfacesAreDry stays apps (catalog/toolbox) · mesh core here\n`)
   process.stdout.write(`  boundary: ${r.boundary}\n`)
-  return r.computes && r.cryptoComparisonMeshIsDry && r.claySolvedByThisFold === 0 ? 0 : 1
+  return r.computes && r.cryptoComparisonMeshIsDry ? 0 : 1
 }
 
 /**

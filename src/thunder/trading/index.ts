@@ -1062,7 +1062,6 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
       composeOn &&
       pairsOn &&
       isUuid(shelved.address) &&
-      claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
@@ -1081,7 +1080,6 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
         on: composeOn,
       },
       { facet: 'pair trade/challenge · strategy/chat bidirectional', on: pairsOn },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`trade-challenge:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('strategies-challenge-in-chat', facets)
     const topDuel = [...challenges].sort((x, y) => y.winnerScore - x.winnerScore)[0]

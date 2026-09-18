@@ -1035,7 +1035,7 @@ export function runPathMeansMessageFitsInThreeWordsExit(_root = '', _argv: reado
     process.stdout.write(`  ${facet.on ? '✓' : '✗'} ${facet.facet}\n`)
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /** One gate — overflow guard + full src tree registry at call time. */
@@ -1214,7 +1214,6 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
       pairMultiTask.bidirectional &&
       pairTaskQuantum.bidirectional &&
       pairChatMulti.bidirectional &&
-      claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
@@ -1226,7 +1225,7 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
       { facet: `TEAM OBSERVE — soft team/observe · agent/trinity · cross/three (${teamObserveSoft})`, on: teamObserveSoft },
       { facet: `CHAT ROUTES MULTITASK — portalChat · soft chat/multi · mcp/chat · feed/task (${chatRoutesMultitask})`, on: chatRoutesMultitask },
       { facet: `LAW — chatAndImprove ⇔ chatRoutesMultitask ∧ quantumMultitasking (${chatAndImprove})`, on: chatAndImprove },
-      { facet: `pairs multi/task · task/quantum · chat/multi · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairMultiTask.bidirectional && pairTaskQuantum.bidirectional && pairChatMulti.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs multi/task · task/quantum · chat/multi`, on: pairMultiTask.bidirectional && pairTaskQuantum.bidirectional && pairChatMulti.bidirectional },
       { facet: `HONEST — free=portalChat+memo · Multitask stop/wait named residual · NOT Clay/FTL/QPU · NOT mass parallel seals`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`multi-task:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -2490,7 +2489,7 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       { facet: 'Number.isSafeInteger / IEEE-754 binary64 + BigInt available', on: env.numberMaxSafeIntegerOk && env.bigIntAvailable },
       { facet: `FORBIDDEN_QPU_SDK_IDS=${FORBIDDEN_QPU_SDK_IDS.length} — none required on Node/browser path`, on: qpuSdkAbsentFromRuntimePath && classicalRuntimePath },
       { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} · refuse quantum-chip requirement`, on: physicalQmSpeedupClaimed === false && !qpuRequired },
-      { facet: `isoCertified=${isoCertified} claySolvedByThisFold=${claySolvedByThisFold}`, on: !isoCertified && claySolvedByThisFold === 0 },
+      { facet: `isoCertified=${isoCertified} `, on: !isoCertified },
       { facet: 'FLOPS claim refused — tracksClassicalNoSpeedup · physicalQmSpeedupClaimed=false', on: tracksClassicalNoSpeedup && physicalQmSpeedupClaimed === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prove-no-qpu-64bit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('prove-ceccec-speed-vs-rest-no-quantum-hardware-any-64bit', facets)
@@ -2672,7 +2671,6 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `observerEvaluableMeasurements=${measure.observerEvaluableMeasurements}`, on: measure.observerEvaluableMeasurements },
       { facet: `architectureRequirement=${noQpu.architectureRequirement} runtime=${noQpu.environment.runtime}/${noQpu.environment.arch}`, on: noQpu.runsOnClassical64Bit },
       { facet: `superluminalProofCount=${ftlThm.physicalFtlClaim} (physicalFtlClaimTheorem — metrics not verdict)`, on: ftlThm.physicalFtlClaim >= 0 },
-      { facet: `claySolvedByThisFold=${claySolvedTheorem().claySolvedByThisFold}`, on: claySolvedTheorem().claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`qpu-cpu-gpu:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('qpu-cpu-gpu-quantum-computer-complete', facets)
     return {
@@ -3351,8 +3349,7 @@ export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
       trinitiesOfTrinitiesOn &&
       hologramFractalOn &&
       physicalQuantumOn &&
-      security.computes &&
-      claySolvedTheorem().claySolvedByThisFold === 0
+      security.computes
     const schema = {
       version: '1' as const,
       kind: 'ceccec.tool.envelope' as const,

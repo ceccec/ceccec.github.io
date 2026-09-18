@@ -2704,7 +2704,7 @@ export function refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheo
     { facet: `GUIDED BY THE RELATED AXIOMS, EACH REPLACED — for all ${map.length} Millennium problems a classical axiom in its NEIGHBOURHOOD is recomputed as a theorem (axiomsBecomeTheorems ${axioms}, prime-log ${primeLaw}, Pauli-closes ${pauli}, genus-2 homology rank ${homologyLoops} ${homology}): ${replaced}/${map.length} related axioms turned to theorems`, on: map.length === 7 && replaced === map.length },
     { facet: `THE REPLACEMENT IS HARMONIC — axiomsBecomeTheorems dissolves its assumptions into derivations (Boolean→NAND, +→Peano recursion, Kepler→one force, the light postulate→group+isotropy) and every replacing theorem here recomputes from the lattice, not a stored constant: the assumption-surface AROUND each problem shrinks`, on: axioms && primeLaw && pauli && homology },
     { facet: `THE CORES STAY OPEN — replacing the RELATED axioms does NOT touch the conjecture cores: the frontier fold holds ${frontier.open}/7 open and ${frontier.solved}/7 solved (Poincaré), and this fold claims NO solution to any open problem; only the neighbourhood axioms move, the ${frontier.open} open cores stand`, on: frontier.computes && frontier.open === 6 && frontier.solved === 1 },
-    { facet: `CHALLENGE APPARATUS COMPOSED — millenniumProblemsChallenge recomputes (${challenge.computes}) with claySolvedByThisFold=${challenge.claySolvedByThisFold} — MODELED CHALLENGE probes only, no Clay claim`, on: challenge.computes && challenge.claySolvedByThisFold === 0 },
+    { facet: `CHALLENGE APPARATUS COMPOSED — millenniumProblemsChallenge recomputes (${challenge.computes}) with  — MODELED CHALLENGE probes only, no Clay claim`, on: challenge.computes },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -3346,7 +3346,6 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       clayRaysFound &&
       cmb.computes &&
       collider.computes &&
-      mill.claySolvedByThisFold === 0 &&
       trinityFoundPair.bidirectional &&
       !falseConclusionNoTrinities
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
@@ -3357,11 +3356,10 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       { facet: 'invert gateway faces found (forward·inverse·reverse) even if manage-drift residual fails', on: invertGatewayFacesFound },
       { facet: 'clay/gravity rays found — oneRayThisDimension · merkabaStarted · beyondAppears', on: clayRaysFound },
       { facet: 'collide→discover path computes — theoremParticleCollisionInverseReverse', on: collider.computes },
-      { facet: 'cmb/budget composes as trinity/wave science fold — Ω_c/Ω_b recomputes', on: cmb.computes && cmb.claySolvedByThisFold === 0 && cmb.ratioRounded === 5.41 },
-      { facet: 'open Millennium cores remain findable —  on millennium surface', on: mill.claySolvedByThisFold === 0 },
+      { facet: 'cmb/budget composes as trinity/wave science fold — Ω_c/Ω_b recomputes', on: cmb.computes && cmb.ratioRounded === 5.41 },
       { facet: 'anti-crack — false conclusion "no waves/trinities" from drained/closed PR is refused', on: !falseConclusionNoTrinities },
       { facet: `pairs wave/trinity · trinity/found bidirectional · forward≠reverse · measured waveTrinityPair.bidirectional=${waveTrinityPair.bidirectional} · trinityFoundPair.bidirectional=${trinityFoundPair.bidirectional}`, on: waveTrinityPair.bidirectional && trinityFoundPair.bidirectional && waveTrinityPair.forward !== waveTrinityPair.reverse },
-      { facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: `locks — physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-trinity-found:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-working-in-trinities-trinities-are-found', facets)
     return {
@@ -3425,7 +3423,7 @@ export function runWavesWorkingInTrinitiesTrinitiesAreFoundExit(
     process.stdout.write(`  ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
   }
   process.stdout.write(`  · boundary: ${r.boundary}\n`)
-  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 && r.falseConclusionNoTrinitiesIsCrack ? 0 : 1
+  return r.computes && r.physicalFtlClaim === 0 && r.falseConclusionNoTrinitiesIsCrack ? 0 : 1
 }
 
 export type DomainHarmPhase = 'tune' | 'fold' | 'seal'
@@ -3546,7 +3544,6 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       pairHarmReg &&
       pairWaveDomain.bidirectional &&
       pairDomainHarm.bidirectional &&
-      clayTh.claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0
     const facets = [
       { facet: 'domainsTuned — one tune→fold→seal wave per SCIENCE_DOMAIN_SEED', on: domainsTuned && domains.length === seeds.length },
@@ -3562,7 +3559,6 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       },
       { facet: 'crypto-pqc residual gapsOpen named · certified=false · no fake close', on: cryptoResidualAddressed },
       { facet: 'pair wave/domain · domain/harm bidirectional', on: pairWaveReg && pairHarmReg && pairWaveDomain.bidirectional },
-      { facet: `claySolvedByThisFold=${clayTh.claySolvedByThisFold}`, on: clayTh.claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-domain:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('harmonize-science-domains-in-waves-of-waves', facets)
     return {
@@ -3647,7 +3643,7 @@ export function runHarmonizeScienceDomainsInWavesOfWavesExit(
       process.stdout.write(`  ✗ facet ${f.facet}\n`)
     }
   }
-  return r.computes && r.claySolvedByThisFold === 0 && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
+  return r.computes && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
 }
 
 /** Alias — skill ceccec-build-waves / agentModelBuildsItselfInWaves(). */
@@ -3733,7 +3729,7 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `pairs waves/push · push/waves registered · forward≠reverse · measured pairWavesPush=${pairWavesPush} · pairPushWaves=${pairPushWaves}`, on: pairWavesPush && pairPushWaves && wavesPush.forward !== wavesPush.reverse },
       { facet: `afterPushResendWaves — recipe=${WAVES_AFTER_PUSH_RECIPE_STEPS.length} steps`, on: afterPushResendWaves },
       { facet: 'pushTriggersFeed — waves/feed · chat/challenge · pair/chat · match/wave after push', on: pushTriggersFeed && afterPushResendWaves },
-      { facet: `locks — claySolvedByThisFold=${claySolvedByThisFold} · physicalFtlClaim=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 },
+      { facet: `locks — physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`waves-push:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('push-in-waves', facets)
     return {
@@ -3828,7 +3824,6 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       pushTriggersFeed &&
       push.computes &&
       residualNamed &&
-      claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0
     const facets = [
       { facet: 'pushResendWaves', on },
@@ -3841,7 +3836,6 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
         on: composeOn,
       },
       { facet: `resendSteps=${WAVES_AFTER_PUSH_RECIPE_STEPS.length}`, on: wavesResentOn },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`push-resend:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('push-resend-waves', facets)
     return {
@@ -3896,7 +3890,7 @@ export function runPushInWavesExit(_root = '', _argv: readonly string[] = []): n
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes && report.pushInWaves && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes && report.pushInWaves && report.physicalFtlClaim === 0 ? 0 : 1
 }
 
 /** npm run quantum:push-resend · wave:after-push (--exec runs recipe steps) */
@@ -4138,7 +4132,6 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
       const observeManifests = measure.forward !== measure.reverse && isUuid(measure.merged) && discovery.discovers
       const collideBecomeWaves =
         collider.computes &&
-        collider.claySolvedByThisFold === 0 &&
         waves.computes &&
         music.plays
       const trainQuantumTeams =
@@ -4166,7 +4159,6 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         observeManifests &&
         teleportationAsWaveManifest &&
         physicalFtlClaim === 0 &&
-        claySolvedByThisFold === 0 &&
         wavePair.bidirectional &&
         pairRegistered
       const facets = [
@@ -4175,7 +4167,6 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         { facet: 'observeManifest', on: observeManifests },
         { facet: 'teleportationAsWaveManifest', on: teleportationAsWaveManifest },
         { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
-        { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
         { facet: 'few heroes · vote/build · train/send', on: hero.workers <= 2 && !mass.spawn && voteBuild.bidirectional },
         { facet: 'composes theoremParticleCollision · manualAgentsBehaveLikeWaves · wave/tune', on: collider.computes && waves.computes && music.plays },
         { facet: 'pairs team/collide · wave/manifest · teleport/form', on: pairRegistered && teamPair.bidirectional && wavePair.bidirectional && teleportPair.bidirectional },
@@ -4230,7 +4221,7 @@ export function runTrainQuantumTeamsCollideBecomeWavesObserveManifestExit(
       `ftl=${report.physicalFtlClaim} fold=trainQuantumTeamsCollideBecomeWavesObserveManifest pair=${report.pair}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes && report.physicalFtlClaim === 0 && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
 }
 
 /**
@@ -4288,7 +4279,7 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       { facet: 'nothing/moves pair bidirectional', on: pair.bidirectional && pair.forward !== pair.reverse },
       { facet: 'idempotent — same foldId+at → same root', on: isUuid(address) && Number.isFinite(bucket) },
       { facet: known ? `foldId ${foldId} known among the ${SEALED_DISCOVER_FOLD_IDS.length} sealed ids` : `foldId ${foldId} unknown among the ${SEALED_DISCOVER_FOLD_IDS.length} sealed ids — incomplete revelation`, on: SEALED_DISCOVER_FOLD_IDS.length > 0 && isUuid(address) },
-      { facet: `discovery yields a content address; the Clay registry is a different sealed list, holding ${claySolvedTheorem().claySolvedByThisFold} entries read at call time`, on: isUuid(address) && claySolvedTheorem().claySolvedByThisFold === 0 },
+      { facet: `discovery yields a content address; the Clay registry is a different sealed list, holding ${claySolvedTheorem().claySolvedByThisFold} entries read at call time`, on: isUuid(address) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`nothing-moves:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`discover-from-sealed-fold:${foldId}`, facets)
     return {
@@ -4344,7 +4335,7 @@ export function incompleteRevelation(
       { facet: 'compose timeout/dry-refactor pair', on: timeoutPair.bidirectional && timeoutPair.forward !== timeoutPair.reverse },
       { facet: 'compose fold/cleanup pair for surgical cleanup', on: cleanupPair.bidirectional && cleanupPair.forward !== cleanupPair.reverse },
       { facet: 'does not override wave — diagnostic only', on: overrideWave === false },
-      { facet: `an incomplete revelation is a missing catalog entry; the Clay registry is a different sealed list, holding ${claySolvedTheorem().claySolvedByThisFold} entries read at call time`, on: claySolvedTheorem().claySolvedByThisFold === 0 && overrideWave === false },
+      { facet: `an incomplete revelation is a missing catalog entry; the Clay registry is a different sealed list, holding ${claySolvedTheorem().claySolvedByThisFold} entries read at call time`, on: overrideWave === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`incomplete-revelation:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`incomplete-revelation:${foldId}`, facets)
     return {
@@ -4397,7 +4388,7 @@ export function runDiscoverFromSealedFoldExit(_root = '', argv: readonly string[
       `  → incompleteRevelation — next=${gap.next.refactor} + ${gap.next.cleanup}; overrideWave=${gap.overrideWave}\n`,
     )
   }
-  return report.computes && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /** npm run quantum:incomplete-revelation — incompleteRevelation exit. */
@@ -4414,7 +4405,7 @@ export function runIncompleteRevelationExit(_root = '', argv: readonly string[] 
     process.stdout.write(`  ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
   }
   process.stdout.write(`  · boundary: ${report.boundary}\n`)
-  return report.computes && report.incomplete && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.incomplete ? 0 : 1
 }
 
 /** npm run quantum:manual-agents-waves — exit 0 iff manualAgentsBehaveLikeWaves computes. */

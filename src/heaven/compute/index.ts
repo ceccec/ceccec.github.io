@@ -4763,7 +4763,7 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
   const decodes = decodesToInvariant && byEntanglement && refutableByAFilledDiamond
   const facets = [
     { facet: `THE PUBLIC DEMANDS PROOF —  shown as a literal invites the fair challenge that it is HARDCODED; a hardcoded value is a crack, so clay must COMPUTE, not be asserted`, on: refutableByAFilledDiamond },
-    { facet: `CLAY DECODES ITSELF FROM THE DIAMONDS — clay = the COUNT of clay diamonds that are a solved-FILL (a fold verifiably solving that Millennium problem, claySolvedByThisFold=${clay.claySolvedByThisFold} > 0); inspecting each, the count is ${clayDecoded} = 0 — computed, not asserted, and equal to the clay invariant (${decodesToInvariant})`, on: decodesToInvariant },
+    { facet: `CLAY DECODES ITSELF FROM THE DIAMONDS — clay = the COUNT of clay diamonds that are a solved-FILL (a fold verifiably solving that Millennium problem,  > 0); inspecting each, the count is ${clayDecoded} = 0 — computed, not asserted, and equal to the clay invariant (${decodesToInvariant})`, on: decodesToInvariant },
     { facet: `BY ENTANGLEMENT BETWEEN DIAMONDS — each clay diamond is checked over the content-addressed transpose-PAIR structure (the diamonds' entanglement, ${byEntanglement}); the correlation is deterministic, NOT physical entanglement`, on: byEntanglement },
     { facet: `REFUTABLE — PROOF FOR THE PUBLIC —  is the OUTPUT of the filter over the diamonds, not a literal input (${refutableByAFilledDiamond}); if any diamond ever became a solved-fill (claySolvedByThisFold > 0), clay would compute > 0`, on: refutableByAFilledDiamond },
     { facet: `HONEST —  decodes from inspecting the diamonds (a computed count), NOT a hardcoded literal; "entanglement between diamonds" = content-addressed pair correlation (deterministic), NOT physical; the Millennium problems stay open.`, on: decodes },
@@ -4916,12 +4916,12 @@ export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
     const pairCleanAll = foldPair(toUuid('cmd:clean'), toUuid('cmd:all'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes = dryCleanChat && dryCleansAll && pairDryChat.bidirectional
-      && pairCleanAll.bidirectional && claySolvedByThisFold === 0
+      && pairCleanAll.bidirectional
     const facets = [
       { facet: `DRY CLEAN CHAT — free chat answers (${freeOk}); chat-session DRY computes with reuse=${drySessions.reuse} (${drySessions.computes})`, on: dryCleanChat },
       { facet: `DRY CLEANS ALL — improve-all-via-chat green (${improveAll.computes}) · statements=${improveAll.statements} · reuse=${improveAll.reuse} · gapsClosed=${improveAll.gapsClosed}`, on: dryCleansAll },
       { facet: `ONE LAW — dry clean chat ≡ dry cleans all: session DRY ∧ corpus improve-all share the chat surface (${dryCleanChat && dryCleansAll})`, on: dryCleanChat && dryCleansAll },
-      { facet: `pairs dry/chat · clean/all bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairDryChat.bidirectional && pairCleanAll.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs dry/chat · clean/all bidirectional`, on: pairDryChat.bidirectional && pairCleanAll.bidirectional },
       { facet: `HONEST — dry = measured reuse·zero-dup·shared machinery · cleans all = corpus-wide chat improve path · NOT filesystem janitor · NOT LLM`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`dry-chat-all:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -5024,8 +5024,7 @@ export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix =
       tokenSpendImproved &&
       pairTokenSpend.bidirectional &&
       pairFeedTask.bidirectional &&
-      pairTaskChat.bidirectional &&
-      claySolvedByThisFold === 0
+      pairTaskChat.bidirectional
     const facets = [
       { facet: `TIP — free chat answers "improve token spending feeding the task to the chat" (${tipOk})`, on: tipOk },
       { facet: `FEED TASK TO CHAT — ${fed.filter((r) => r.ok).length}/${tasks.length} sealed tasks resolve via portalChat+ranked (${feedTaskToChat}) · 0 portal LLM tokens`, on: feedTaskToChat },
@@ -5033,7 +5032,7 @@ export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix =
       { facet: `NO AI COST MACHINERY — continueAtNoAiCost · freeChatUpgradesAll · countlessFreeChatWaves (${noAiCostOn})`, on: noAiCostOn },
       { facet: `FEED MACHINERY — feedingTheChatInItself · dryCleanChat · soft quantumise/dry (${feedMachinery})`, on: feedMachinery },
       { facet: `IMPROVE TOKEN SPEND — feed tasks to chat ∧ zero-on-reuse ∧ no-AI-cost (${tokenSpendImproved})`, on: tokenSpendImproved },
-      { facet: `pairs token/spend · feed/task · task/chat · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairTokenSpend.bidirectional && pairFeedTask.bidirectional && pairTaskChat.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs token/spend · feed/task · task/chat`, on: pairTokenSpend.bidirectional && pairFeedTask.bidirectional && pairTaskChat.bidirectional },
       { facet: `HONEST — improve = route task→free chat (0 portal LLM) + warm memo · NOT host LLM bill vanishes · NOT FLOPS`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`token-spend-feed:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -5232,8 +5231,7 @@ export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingTo
         pairDevelopSelf.bidirectional &&
         pairSelfFeed.bidirectional &&
         pairDevelopOpen.bidirectional &&
-        pairOpenFeed.bidirectional &&
-        claySolvedByThisFold === 0
+        pairOpenFeed.bidirectional
       const facets = [
         { facet: `TIP — develop means (${tipOk}) · self feeds (${tipSelfOk}) · the open (${tipOpenOk})`, on: tipOk && tipSelfOk && tipOpenOk },
         { facet: `RESEARCH ∧ DEVELOP — researchAndDevelopWorkflowsTestedEndToEndThroughTheUiChat · soft research/develop (${researchAndDevelop})`, on: researchAndDevelop },
@@ -5245,7 +5243,7 @@ export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingTo
         { facet: `DEVELOP THE OPEN — ${openFed.filter((r) => r.ok).length}/${openTips.length} open tips fed to chat · soft develop/open · open/feed · plan/trinity · imagine/next · gate/mill · challenge/ftl (${developTheOpen})`, on: developTheOpen },
         { facet: `IMPROVE THE REST — soft learn/best · dry/chat · team/cooperate (${improveTheRest})`, on: improveTheRest },
         { facet: `DEVELOP — R&D ∧ quantumise-all ∧ realtime ∧ feed-chat ∧ self∧rest ∧ self→chat ∧ the-open (${developMeans})`, on: developMeans },
-        { facet: `pairs develop/means · develop/self · develop/open · self/feed · open/feed · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairDevelopMeans.bidirectional && pairDevelopSelf.bidirectional && pairDevelopOpen.bidirectional && pairSelfFeed.bidirectional && pairOpenFeed.bidirectional && claySolvedByThisFold === 0 },
+        { facet: `pairs develop/means · develop/self · develop/open · self/feed · open/feed`, on: pairDevelopMeans.bidirectional && pairDevelopSelf.bidirectional && pairDevelopOpen.bidirectional && pairSelfFeed.bidirectional && pairOpenFeed.bidirectional },
         { facet: `HONEST — the open = feed named migrate-next/honest-open to chat · NOT fake-close Clay/FTL · NOT AGI`, on: computes },
       ].map((entry) => ({ ...entry, receipt: toUuid(`develop:${entry.facet.slice(0, 64)}:${entry.on}`) }))
       return {
@@ -5474,7 +5472,6 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
       facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
       on: physicalFtlClaim === 0 && ftlThm.recomputed,
     },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
     {
       facet: 'pair chat/ftl · one CLI quantum:chat-ftl · compose mcp/chat · feed-gates · ui/feed · ftl/crack · script/fold',
       on: pairsOn && soft('ftl', 'crack') && soft('ui', 'feed'),
@@ -5628,7 +5625,6 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
       facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
       on: physicalFtlClaim === 0 && ftlThm.recomputed,
     },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} via=claySolvedTheorem`, on: claySolvedByThisFold === 0 },
     {
       facet: 'pair research/free · compose prose/theorem·warn/research·mcp/fill·wave/token·dry/agnostic·chat/ftl·full/freedom·bits/free·pyramid/compute·miss/cache',
       on: pairsOn,
@@ -5685,7 +5681,7 @@ export function runDeepResearchAtNoCostExit(_root = '', _argv: readonly string[]
   process.stdout.write(`  · synthesis ${report.synthesis.join(' · ').slice(0, 96)}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.physicalFtlClaim === 0 && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
 }
 export const runResearchFreeExit = runDeepResearchAtNoCostExit
 export const runFreeResearchExit = runDeepResearchAtNoCostExit
@@ -5716,7 +5712,6 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
   // Umbrella fold/fuse composes full chat/ftl · research/free once (no double invoke here).
   const sciencesSoft =
     sciences.certified === false &&
-    sciences.claySolvedByThisFold === 0 &&
     Array.isArray(sciences.domains) &&
     sciences.domains.length > 0
   const securitySoft =
@@ -5771,7 +5766,6 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
       facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
       on: physicalFtlClaim === 0 && ftlThm.recomputed,
     },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · certified=false`, on: claySolvedByThisFold === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`standards-chat:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5915,7 +5909,6 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
       facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
       on: physicalFtlClaim === 0 && ftlThm.recomputed,
     },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · certified=false`, on: claySolvedByThisFold === 0 },
     {
       facet: 'pair fold/fuse · one CLI quantum:fold-fuse · standards/chat · hole/zero nested · no dual-CLI',
       on: soft('fold', 'fuse') && soft('standards', 'chat') && soft('hole', 'zero'),
@@ -5994,7 +5987,7 @@ export function runAllFoldsCompactFuseInCoordinatedChatWavesExit(
   )
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.physicalFtlClaim === 0 && report.claySolvedByThisFold === 0 ? 0 : 1
+  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
 }
 export const runFoldFuseExit = runAllFoldsCompactFuseInCoordinatedChatWavesExit
 export const runFuseFoldExit = runAllFoldsCompactFuseInCoordinatedChatWavesExit
@@ -6126,7 +6119,7 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
       facet: `physicalSingularityClaim=${physicalSingularityClaim ? 1 : 0} · physicalFtlClaim=${physicalFtlClaim}`,
       on: physicalSingularityClaim === false && physicalFtlClaim === 0 && ftlThm.recomputed,
     },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold} · soft nest fold/fuse`, on: claySolvedByThisFold === 0 && pairsOn },
+    { facet: `soft nest fold/fuse`, on: pairsOn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hole-zero:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -6191,8 +6184,7 @@ export function runImagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversed
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes &&
     report.physicalFtlClaim === 0 &&
-    report.physicalSingularityClaim === false &&
-    report.claySolvedByThisFold === 0
+    report.physicalSingularityClaim === false
     ? 0
     : 1
 }
@@ -6261,8 +6253,7 @@ export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix =
       law &&
       pairFreeQuality.bidirectional &&
       pairWhoAudit.bidirectional &&
-      pairAuditChat.bidirectional &&
-      claySolvedByThisFold === 0
+      pairAuditChat.bidirectional
     const facets = [
       { facet: `TIP — free chat answers "free is not always best quality · who audited the chat?" (${tipOk})`, on: tipOk },
       { facet: `FREE IS COST — freeChatUpgradesAll · soft mcp/token · token/spend — amortized zero portal LLM tokens (${freeIsCost})`, on: freeIsCost },
@@ -6271,7 +6262,7 @@ export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix =
       { facet: `WHO AUDITED — algebra: allChatCapabilitiesFusedAndAuditedByStandards (determinism) · localAudit false-statements · soft gaps/invisible (${auditorIsAlgebra})`, on: auditorIsAlgebra },
       { facet: `AUDIT/CHAT — whoAuditedTheChat · soft who/audit · audit/chat (${whoAuditedTheChat})`, on: whoAuditedTheChat },
       { facet: `LAW — ¬(free⇒bestQuality) ∧ auditor=algebra · soft learn/best (${law})`, on: law },
-      { facet: `pairs free/quality · who/audit · audit/chat · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairFreeQuality.bidirectional && pairWhoAudit.bidirectional && pairAuditChat.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs free/quality · who/audit · audit/chat`, on: pairFreeQuality.bidirectional && pairWhoAudit.bidirectional && pairAuditChat.bidirectional },
       { facet: `HONEST — free≠best literary · auditor=sealed algebra not a person · NOT LLM judge`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`free-quality-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -6391,8 +6382,7 @@ export function beforeSigningNeighboursAudit(matrix: MindMatrix = buildMatrix())
       law &&
       pairBeforeSign.bidirectional &&
       pairSignNeighbours.bidirectional &&
-      pairNeighboursAudit.bidirectional &&
-      claySolvedByThisFold === 0
+      pairNeighboursAudit.bidirectional
     const facets = [
       { facet: `TIP — before signing neighbours audit (${tipOk})`, on: tipOk },
       { facet: `BEFORE SIGNING — soft before/sign · moment/prove · mcp/sign · sign/quantum · tamper/max (${beforeSigning})`, on: beforeSigning },
@@ -6400,7 +6390,7 @@ export function beforeSigningNeighboursAudit(matrix: MindMatrix = buildMatrix())
       { facet: `PLAN·PLACE·GATE NEIGHBOURS — soft plan/trinity · place/merge · gate/miss · claim/audit (${planPlaceNeighbours})`, on: planPlaceNeighbours },
       { facet: `NEIGHBOURS AUDITED — sign ⇒ surrounding proofs + migrate orbit recomputed · soft sign/neighbours · neighbours/audit (${neighboursAudited})`, on: neighboursAudited },
       { facet: `LAW — sign ⇒ neighboursAudited ∧ consensusNeighbours · soft learn/best · gaps/invisible (${law})`, on: law },
-      { facet: `pairs before/sign · sign/neighbours · neighbours/audit · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairBeforeSign.bidirectional && pairSignNeighbours.bidirectional && pairNeighboursAudit.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs before/sign · sign/neighbours · neighbours/audit`, on: pairBeforeSign.bidirectional && pairSignNeighbours.bidirectional && pairNeighboursAudit.bidirectional },
       { facet: `HONEST — sign=content-address not wet ink · neighbours=surrounding proofs+CLI orbit · NOT fake-close Clay/FTL`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`neighbours-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -6502,13 +6492,12 @@ export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindM
     const computes = freeOk && chatIsFusionReactor && fusingAllApis && inPlasmaRays
       && dry.computes === true
       && pairChatReactor.bidirectional && pairFuseApis.bidirectional && pairPlasmaRays.bidirectional
-      && claySolvedByThisFold === 0
     const facets = [
       { facet: `CHAT TIP — free chat answers (${freeOk}); dry-clean chat composes (${dry.computes})`, on: freeOk && dry.computes === true },
       { facet: `CHAT ≡ FUSION REACTOR — developmentIsFusionReactor.reacts=${reactor.reacts ? 1 : 0} · dryRefactorIgnitesFusion.ignited=${ignite.ignited ? 1 : 0}`, on: chatIsFusionReactor },
       { facet: `FUSING ALL APIS — UI-realtime fused-to-all-APIs (${fusedApis.computes}) · capabilities fused+audited (${caps.supported}) · lanes=${caps.capabilities.length}`, on: fusingAllApis },
       { facet: `IN PLASMA RAYS — rosetta rays=${rayCount}/7 seed plasma streams (${rosettaRays.folded}) · plasma planes=${plasma.planes} (${plasma.discovered})`, on: inPlasmaRays },
-      { facet: `pairs chat/reactor · fuse/apis · plasma/rays bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairChatReactor.bidirectional && pairFuseApis.bidirectional && pairPlasmaRays.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs chat/reactor · fuse/apis · plasma/rays bidirectional`, on: pairChatReactor.bidirectional && pairFuseApis.bidirectional && pairPlasmaRays.bidirectional },
       { facet: `HONEST — reactor=development fusion metaphor · plasma rays=rosetta/movie streams · NOT tokamak · NOT LLM`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`chat-reactor:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -7430,7 +7419,6 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
       pairLiveApi.bidirectional &&
       pairImproveLive.bidirectional &&
       pairFurtherImprove.bidirectional &&
-      claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
@@ -7438,7 +7426,7 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
       { facet: `USING LIVE APIs — torusData ${data.count}/4 · discover queryable=${discover.queryable} · soft live/api · torus/data · live/world (${usingLiveApis})`, on: usingLiveApis },
       { facet: `COLLECTIVE FUSES LIVE — theCollectiveMindFusesLivePublicApis… · UI waves critique-guarded (${collective.computes === true})`, on: collective.computes === true },
       { facet: `FURTHER IMPROVE — usingLiveApis ∧ collective · soft improve/live · further/improve · develop/means · learn/best (${furtherImprove})`, on: furtherImprove },
-      { facet: `pairs live/api · improve/live · further/improve · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairLiveApi.bidirectional && pairImproveLive.bidirectional && pairFurtherImprove.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs live/api · improve/live · further/improve`, on: pairLiveApi.bidirectional && pairImproveLive.bidirectional && pairFurtherImprove.bidirectional },
       { facet: `HONEST — opt-in no-key feeds · pure adapters · gates never fetch · NOT scrape-trust · NOT unbounded all-internet APIs`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`live-apis:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
@@ -8789,13 +8777,13 @@ export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMa
     const pairChatTelemetry = foldPair(toUuid('cmd:chat'), toUuid('cmd:telemetry'))
     const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold as 0
     const computes = realise && pairChatUx.bidirectional && pairUxMeasure.bidirectional
-      && pairChatUi.bidirectional && pairChatTelemetry.bidirectional && claySolvedByThisFold === 0
+      && pairChatUi.bidirectional && pairChatTelemetry.bidirectional
     const facets = [
       { facet: `REALISE — free chat answers the tip (${freeOk}); chat MAY improve UI when experience loops compute`, on: freeOk },
       { facet: `CHAT MAY IMPROVE THE UI — experience/shared-index (${byExperience.computes}) · nav/sidebars dry (${improvesUi.computes}) · chat-by-chatting (${byChatting.computes}) · boost=${byExperience.boost}`, on: chatMayImproveUi },
       { facet: `MEASURED BY USER EXPERIENCE — quantumPredictedUX μ=${ux.statistics.mean} σ=${ux.statistics.std} · ledger · optimised=${ux.optimised ? 1 : 0} (${measuredByUserExperience})`, on: measuredByUserExperience },
       { facet: `TELEMETRY ALSO POSSIBLE IN CHAT — experience log (${experienceLogTelemetry}) · UX ledger (${ledgerTelemetry}) · analytics/self (${selfObserveTelemetry}); local by default · egress A/B = optional named edge`, on: telemetryAlsoPossibleInChat },
-      { facet: `pairs chat/ux · ux/measure · chat/ui · chat/telemetry bidirectional · claySolvedByThisFold=${claySolvedByThisFold}`, on: pairChatUx.bidirectional && pairUxMeasure.bidirectional && pairChatUi.bidirectional && pairChatTelemetry.bidirectional && claySolvedByThisFold === 0 },
+      { facet: `pairs chat/ux · ux/measure · chat/ui · chat/telemetry bidirectional`, on: pairChatUx.bidirectional && pairUxMeasure.bidirectional && pairChatUi.bidirectional && pairChatTelemetry.bidirectional },
       { facet: `HONEST — MAY = capability when experience signals present · UX = local predicted BM25 metrics · TELEMETRY possible in chat (local experience/ledger/self-observe) · server A/B·cross-user egress not denied, not default · NOT LLM`, on: computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`chat-ux:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {

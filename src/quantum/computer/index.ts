@@ -541,7 +541,7 @@ export function honestRevolutionFpgaHonesty(matrix: MindMatrix = buildMatrix(), 
       { facet: 'siliconFabricationPlanFromModel decoded', on: plan.decoded },
       { facet: 'fpgaReproductionTier — all blocks map to FPGA primitives', on: plan.fpgaReproductionTier.allMapped },
       { facet: 'coProcessorBridgeInterface — classical host, not the QPU', on: plan.coProcessorBridgeInterface.present && plan.coProcessorBridgeInterface.isNotTheQpu },
-      { facet: ' on FPGA tier and bridge', on: !plan.fpgaReproductionTier.qpuRequired && !plan.coProcessorBridgeInterface.qpuRequired },
+      { facet: 'on FPGA tier and bridge', on: !plan.fpgaReproductionTier.qpuRequired && !plan.coProcessorBridgeInterface.qpuRequired },
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w5:${e.facet}:${e.on}`) }))
     const holds = facets.every((f) => f.on)
     return {

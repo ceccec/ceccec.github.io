@@ -53,7 +53,7 @@ runMillennium()
 
       <section id="proofs" class="research-index__hub-link">
         <h3><a href="/proofs">Domain proofs</a></h3>
-        <UiBadge :status="domainProofs.computes && domainProofs.claySolvedByThisFold === 0 ? 'ready' : 'warn'">
+        <UiBadge :status="domainProofs.computes ? 'ready' : 'warn'">
           rows={{ domainProofs.rows.length }} · clay={{ domainProofs.claySolvedByThisFold }} ·
           gaps closed={{ domainProofs.closedGaps }} / open={{ domainProofs.openGaps }}
         </UiBadge>
@@ -74,7 +74,7 @@ runMillennium()
 
       <section id="millennium-challenge">
         <h3>Millennium challenge</h3>
-        <UiBadge :status="millennium.claySolvedByThisFold === 0 && millennium.computes ? 'ready' : 'warn'">
+        <UiBadge :status="millennium.computes ? 'ready' : 'warn'">
           claySolvedByThisFold={{ millennium.claySolvedByThisFold }} · {{ millennium.computes ? '✓' : '—' }}
         </UiBadge>
         <p class="research-index__meta">

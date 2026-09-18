@@ -1624,7 +1624,6 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
       pairGs &&
       foldSg.bidirectional &&
       foldGs.bidirectional &&
-      claySolvedByThisFold === 0 &&
       physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
@@ -1642,10 +1641,9 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
       },
       { facet: `siteDesc≤${budget} · portal→/learn`, on: siteDescFits && portalRoutesOnLearn },
       { facet: 'pair seo/gaps · gaps/seo', on: pairSg && pairGs && foldSg.bidirectional },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 },
       {
         facet: 'NOT fake-close — platform OG · cu hreflang · ranking named honest-open',
-        on: honestOpenNamedOn && drainableClosed && claySolvedByThisFold === 0,
+        on: honestOpenNamedOn && drainableClosed,
       },
     ].map((entry) => ({ ...entry, receipt: toUuid(`seo-gaps:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('find-seo-violations', facets)

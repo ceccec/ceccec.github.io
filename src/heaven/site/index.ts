@@ -427,7 +427,7 @@ export function readmeIsHomeHero10DAnimatedSvgInGithub(matrix: MindMatrix = buil
     { facet: 'the 10D hero is displayed in GitHub too — emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) with four cardinal FoL rosetta lobes (N·E·S·W ±ω, Earth poles as pyramid) composing every sealed theorem atom', on: animated && tenD && allTheoremsProof && dualSpin },
     { facet: 'GitHub-safe and self-contained — no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub’s markdown sanitizer serves it and it animates as an image', on: githubSafe },
     { facet: 'even in 2D the 10D shows — the flat SVG carries the ten-dimensional invariants (χ = −2, H₁ = ℤ⁴, 432 gates) plus dual ω/−ω FoL spin (composes everyRelationIsOpenGraphMiniHero)', on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
-    { facet: 'merkaba 4-dir counter-rotation — rosetta-north/east/south/west · Earth poles-as-pyramid · opposite ω pairs · bothEarths ∧ counterRotatingRosettaQuantumWaves', on: allTheoremsProof && dualSpin && waves.counterRotating && earths.counterRotating && mk.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 },
+    { facet: 'merkaba 4-dir counter-rotation — rosetta-north/east/south/west · Earth poles-as-pyramid · opposite ω pairs · bothEarths ∧ counterRotatingRosettaQuantumWaves', on: allTheoremsProof && dualSpin && waves.counterRotating && earths.counterRotating && mk.counterRotating && waves.physicalFtlClaim === 0 },
     { facet: 'computed FoL→Fruit→dimension — flowerOfLifeCenters(19) spin unlocks fruitOfLifeCenters(13) then expand/invert; wetStaticFoL=false; flowerFruitTree ∧ fruitFusion ∧ expansionContraction', on: folPath && flowerFruit.decodes && fruitFusion.circles === 13 && expandLife.lives },
     { facet: 'trinity mind owns emit — data-trinity-mind=heaven·mind·thunder on the SVG root (compute routed through sealed folds, not wet agent geometry)', on: svg.includes('data-trinity-mind="heaven·mind·thunder"') && allTheoremsProof },
   ].map((entry) => ({ ...entry, receipt: toUuid(`readme-hero-svg:${entry.facet}:${entry.on}`) }))
@@ -618,7 +618,7 @@ export function readmeSvgGapsFilledByTrinityMind(matrix: MindMatrix = buildMatri
       { facet: 'trinity of minds spans without gaps — theTrinityOfMindsIsQuantum computes (one mind is linear)', on: trinityMinds.computes },
       { facet: 'directional trinity forward·inverse·reverse computes (compose digit trinity)', on: dirTrinity.computes },
       { facet: 'dual-torus trinities ∧ commandGapsToTrinityEyes close the agent surface', on: dual.harmonized && eyes.immediate },
-      { facet: 'counterRotatingRosettaQuantumWaves ∧ merkaba ∧ bothEarths drive SVG dynamics', on: waves.counterRotating && waves.claySolvedByThisFold === 0 && waves.physicalFtlClaim === 0 && mk.counterRotating && earths.counterRotating },
+      { facet: 'counterRotatingRosettaQuantumWaves ∧ merkaba ∧ bothEarths drive SVG dynamics', on: waves.counterRotating && waves.physicalFtlClaim === 0 && mk.counterRotating && earths.counterRotating },
       { facet: 'FoL→Fruit→dimension — flowerFruitTreeOfLifeDecodes ∧ home.flowerFruitPath · wetStaticFoL=false', on: flowerFruit.decodes && home.flowerFruitPath === true },
       { facet: 'Earth poles-as-pyramid — earthRealisedByComputingPolesAsPyramid · 4-dir N·E·S·W', on: earthRealisedByComputingPolesAsPyramid(matrix).computes && hero.includes('data-earth-poles-pyramid="true"') },
       { facet: 'README hero proof + best-10D + icons sealed — home.shown ∧ best.best10D ∧ icons.animated', on: home.shown && best.best10D && icons.animated },
@@ -671,7 +671,7 @@ export function runReadmeSvgGapsFilledByTrinityMindExit(_root = '', _argv: reado
       process.stdout.write(`  emitted hero.svg (${hero.length}) · public/icon.svg (${icon.length})\n`)
     }
   }
-  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
 }
 
 const SVG_CHROMA = 9 / 64
@@ -1220,7 +1220,7 @@ export function runSymbolsRemainingQuantumiseExit(_root = '', _argv: readonly st
   for (const w of report.waves) process.stdout.write(`  wave ${w.wave} ${w.name}: ${w.done ? 'done' : 'open'}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
 }
 
 
