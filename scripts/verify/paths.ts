@@ -25,6 +25,7 @@
  * aspirational; it is a dead command. That count is a hard zero, not a floor.
  */
 
+import { execFileSync } from 'node:child_process'
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { ratchet } from './status.ts'
@@ -91,13 +92,25 @@ export function findDeadPaths(root: string = process.cwd()): DeadPath[] {
 }
 
 /** Every path named by a `scripts.*` entry in package.json exists on disk. */
+/** Is the path in git's index — the only test that speaks for a clone rather than for this disk. */
+function tracked(root: string, rel: string): boolean {
+  try { return execFileSync('git', ['ls-files', '--error-unmatch', rel], { cwd: root, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim().length > 0 }
+  catch { return false }
+}
+
 export function findDeadScriptPaths(root: string = process.cwd()): DeadScript[] {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   const out: DeadScript[] = []
   for (const [name, cmd] of Object.entries(pkg.scripts ?? {})) {
     for (const m of cmd.matchAll(SCRIPT_PATH)) {
       const p = m[1]!
+      // EXISTING ON THIS DISK IS NOT THE TEST — BEING IN THE REPOSITORY IS. A script registered in package.json
+      // while its file is still untracked passes existsSync here and is dead in every fresh clone, which is
+      // exactly how verify:cross shipped in 530a2e39 with no scripts/verify/cross.ts beside it. The gate that
+      // exists to catch a command that cannot launch could not see the one case where the command launches for
+      // the author alone.
       if (!existsSync(join(root, p))) out.push({ name, path: p })
+      else if (!tracked(root, p)) out.push({ name, path: `${p} (untracked — dead in a fresh clone)` })
     }
   }
   return out.sort((a, b) => a.path.localeCompare(b.path) || a.name.localeCompare(b.name))
