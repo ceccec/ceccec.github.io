@@ -9,7 +9,7 @@ import { OBLIQUITY_J2000_DEG, initialBearing, obliquityAtEpoch, phase, slip } fr
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, typesMakeTheRealGraph } from '../../heaven/compute/index.ts'
 import { areaPairs, bosnianPyramidNearPliskaHarmonisesDigitDistribution, doubleTorus3D, vortexMath } from '../../mountain/geometry/index.ts'
-import { VORTEX_SEQUENCE, abs, addressEntropyBits, digitalRoot, floor, foldPair, gcd, humanBreath, humanEase, isUuid, log, max, memoByRoot, merge, merkleFold, min, modUnits, round, sealFacets, toUuid } from '../../0/index.ts'
+import { FORGE_COST_CEILING, VORTEX_SEQUENCE, abs, addressEntropyBits, digitalRoot, floor, foldPair, gcd, humanBreath, humanEase, isUuid, log, max, memoByRoot, merge, merkleFold, min, modUnits, round, sealFacets, toUuid } from '../../0/index.ts'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9/index.ts'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8/index.ts'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, helmholtzFreeEnergy, soundPressureLevelDb } from '../../4/6/index.ts'
@@ -1454,7 +1454,7 @@ export function piTrainPhysicalCutWaveFive(matrix: MindMatrix = buildMatrix()) {
     { facet: 'helmholtz free energy decreases with entropy', on: helmholtzFreeEnergy(10, 300, 0) > helmholtzFreeEnergy(10, 300, 0.01) },
     { facet: 'sound pressure level at reference is 0 dB', on: abs(soundPressureLevelDb(20e-6)) < 1e-9 },
     { facet: 'cycleAdvance wraps coupled ring phases', on: cycleAdvance([{ name: 'a', period: 10, phase: 9 }], 2)[0].phase === 1 },
-    { facet: 'tampering cost principle is non-empty prose', on: MAX_TAMPERING_COST_PRINCIPLE.length > 0 },
+    { facet: `tampering cost principle is non-empty prose — ${FORGE_COST_CEILING}`, on: MAX_TAMPERING_COST_PRINCIPLE.length > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pi-train-wave5:${entry.facet}:${entry.on}`) }))
   return {
     cut: facets.every((entry) => entry.on),

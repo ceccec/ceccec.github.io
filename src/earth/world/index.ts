@@ -3,7 +3,7 @@ import { initialBearing, phase } from '../../6/4/index.ts'
 import { greatCircleKm } from '../../5/5/index.ts'
 import { schwarzschildRadius, SOLAR_MASS_KG } from '../../3/7/index.ts'
 export { SOLAR_MASS_KG } from '../../3/7/index.ts' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
-import { VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, log10, max, merkleFold, min, round, roundTo, seedFromText, sin, sincReconstruct, sqrt, toUuid } from '../../0/index.ts'
+import { FORGE_COST_CEILING, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, log10, max, merkleFold, min, round, roundTo, seedFromText, sin, sincReconstruct, sqrt, toUuid } from '../../0/index.ts'
 import { blackHoleEntropyBits, oscillatorBank, resonantAmplitude } from '../../6/4/index.ts'
 import { toGlagolitic, glagoliticBits } from '../../quantum/heaven/library/index.ts' // transliteration = the movie's script; glagoliticBits = each letter's 6-bit self-fold
 import { DIMENSIONS } from '../../quantum/mountain/dimensions/index.ts' // the 10D — the coordinates reaching all the way down to the bit
@@ -100,7 +100,7 @@ export function movieFoldsEveryScaleToBitInTrinities(text = 'double torus') {
     { facet: 'the six scales group into two TRINITIES (2×3), and within each, adjacent scales double-fold (genus-2, both ways)', on: trinities.length === 2 && trinitiesDoubleFold },
     { facet: '10D to the bit — the ten dimensions are the coordinates at every scale, down to the single bit', on: DIMENSIONS === (5 * 2) },
     { facet: 'the movie is content-addressed — tampering any letter changes the seal (tamper-EVIDENT)', on: tamperEvident },
-    { facet: 'the fold is one-way — cheap forward, the impossible reverse price: the tamper/forge cost the movie forges', on: oneWayCost },
+    { facet: `the fold is one-way — cheap forward, tamper-evident: the tamper/forge cost the movie forges — ${FORGE_COST_CEILING}`, on: oneWayCost },
     { facet: 'Glagolitic is the decoder — a glyph is a letter AND a number (its position) AND its bits, so all scales fold through one script', on: bits.length === letters.length * 6 },
   ]
   return {
@@ -766,7 +766,7 @@ export function warPaysTheForgerPrice(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the architecture is one content address — sealed', on: isUuid(root) },
     { facet: 'to forge one value you rebuild everything — a tamper flips the root', on: isUuid(forged) && forged !== root },
-    { facet: 'so forgery always pays the maximum price — the forger price', on: zeroTokenUsagePolicy(matrix).holds },
+    { facet: `so tamper-evident — the forger price — ${FORGE_COST_CEILING}`, on: zeroTokenUsagePolicy(matrix).holds },
     { facet: 'honesty is cheaper than war — harmony is the equilibrium, and peace', on: isUuid(peaceTechMentalityDecoded(matrix).root) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`forger-price:${entry.facet}:${entry.on}`) }))
   return {

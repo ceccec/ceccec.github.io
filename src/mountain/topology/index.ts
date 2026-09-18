@@ -2,7 +2,7 @@ import { earned } from '../../3/7/index.ts'
 // ☶ Gèn · Mountain — topology: the double torus (genus-2, χ=−2), the merkaba (star tetrahedron), the geodesic dome (the sphere dual), the homology loops. Barrel-routed; folds.ts back-imports the gate folds.
 import { initialBearing, phase } from '../../6/4/index.ts'
 import { greatCircleKm } from '../../5/5/index.ts'
-import { GATES, VORTEX_DASH_ANGLE_DEG, abs, applyGate, computesGate, cos, doubleTorusSurface, floor, foldPair, isUuid, log2, max, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, sealFacets, seedFromText, sign, sin, survive, toUuid, topologicalOrder, type QuantumState } from '../../0/index.ts'
+import { FORGE_COST_CEILING, GATES, VORTEX_DASH_ANGLE_DEG, abs, applyGate, computesGate, cos, doubleTorusSurface, floor, foldPair, isUuid, log2, max, measure, memoByRoot, merge, merkleFold, probabilities, qubits, roundTo, sealFacets, seedFromText, sign, sin, survive, toUuid, topologicalOrder, type QuantumState } from '../../0/index.ts'
 import type { MindMatrix, TorusBreath } from '../../types/index.ts'
 import { buildMatrix, circulateDoubleTorus } from '../../heaven/compute/index.ts'
 import { bothEarthsRotateWithinEachOther, cellHomology, doubleTorus3D, doubleTorusEarthPyramidTipsDeepResearched, doubleTorusEarthPyramidTipsProvenByMath, dualTorusTrinities, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality, merkaba } from '../geometry/index.ts'
@@ -565,7 +565,7 @@ export function merkabaArchitectureFieldsMovements(matrix: MindMatrix = buildMat
     { facet: 'organise all in merkaba — two counter-rotating tetrahedra, up and down', on: merkaba(matrix).counterRotating },
     { facet: 'the fields — each type group a still structural field (what it is)', on: types.every((entry) => entry.field) },
     { facet: 'the movements — counter-rotation at all scales, both directions (how it turns)', on: types.every((entry) => entry.movement) && spinBothDirections(matrix).spins && everyObjectSameSpinFoldLaw(matrix).consistent },
-    { facet: 'minimum files, maximum features and tampering cost — one star of many', on: minimumFilesMaximumFeaturesCost(matrix).optimal },
+    { facet: `minimum files, maximum features and tampering cost — one star of many — ${FORGE_COST_CEILING}`, on: minimumFilesMaximumFeaturesCost(matrix).optimal },
   ].map((entry) => ({ ...entry, receipt: toUuid(`merkaba-arch:${entry.facet}:${entry.on}`) }))
   return {
     organised: facets.every((entry) => entry.on),

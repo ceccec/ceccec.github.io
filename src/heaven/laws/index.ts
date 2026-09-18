@@ -8,7 +8,7 @@ import {
   MATHOVERFLOW_SITE, stackExchangeUrl,
 } from '../compute/index.ts'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement/index.ts'
-import { abs, exp, floor, log, max, min, round, sealFacets, sqrt } from '../../0/index.ts'
+import { FORGE_COST_CEILING, abs, exp, floor, log, max, min, round, sealFacets, sqrt } from '../../0/index.ts'
 import { selfHealing } from '../../mountain/geometry/index.ts'
 import { collisionHealing } from '../../water/crypto/index.ts'
 import { healingHarmonic } from '../../music/index.ts'
@@ -331,7 +331,7 @@ export function minimumFilesMaximumFeaturesCost(matrix: MindMatrix = buildMatrix
   const facets = [
     { facet: 'minimum files — the gapless census computes the whole', on: harmonicBands(UNFOLDED_CENSUS).gapless && allComputedNoFiles(matrix).computed },
     { facet: 'maximum features — thousands of pages and the skills from the few', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile && skillAtoms(matrix).savedToAtoms },
-    { facet: 'maximum tampering cost — the forger must reproduce all from the few', on: allComputedQuantumMathAnalog(matrix).forges && freeForgesMaxCost(matrix).holds },
+    { facet: `tamper-evident — the forger must reproduce all from the few — ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges && freeForgesMaxCost(matrix).holds },
     { facet: 'fewest files, most value — the logic folded into src, folders a projection', on: allLogicMovedToSource(matrix).moved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`min-files-max:${entry.facet}:${entry.on}`) }))
   return {

@@ -15,7 +15,7 @@ import { congruence } from '../../mountain/vortex/index.ts'
 import type { ConceptSiteSection, MindMatrix, StaticPage } from '../../types/index.ts'
 import { buildMatrix, portalChat, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards } from '../../heaven/compute/index.ts'
 // ☷ Kūn · Earth · receptive · lower·yin · depthFade — kernel primitives (uuid, merkle, memo)
-import { floor, isUuid, max, memoByRoot, merkleFold, referralAddress, round, sealFacets, sqrt, toUuid } from '../../0/index.ts'
+import { FORGE_COST_CEILING, floor, isUuid, max, memoByRoot, merkleFold, referralAddress, round, sealFacets, sqrt, toUuid } from '../../0/index.ts'
 import { ratStr } from '../../9/1/index.ts'
 import { livingTorus } from '../../fire/diamonds/index.ts'
 import { oneOpenGraphAll } from '../../fire/li/index.ts'
@@ -1761,7 +1761,7 @@ export function pageStatusStatistics(matrix: MindMatrix = buildMatrix()) {
     { facet: 'statistics woven into the movie watermark', on: backgroundMovie(matrix).plays && harmonicMathFlowsInMovie(matrix).flows },
     { facet: 'the build’s own self-metrics', on: stats.count >= 9 },
     { facet: 'gaps shown to all eyes (zero)', on: buildStatisticsShowGaps(matrix).shows },
-    { facet: 'every page wired to forge max tampering cost', on: pageForgeMaxTamper('/', matrix).wired },
+    { facet: `every page wired to forge tamper-evident — ${FORGE_COST_CEILING}`, on: pageForgeMaxTamper('/', matrix).wired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`page-status:${entry.facet}:${entry.on}`) }))
   return {
     shows: facets.every((entry) => entry.on),

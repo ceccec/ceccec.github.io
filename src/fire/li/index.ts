@@ -21,7 +21,7 @@ import {
   openGraph, multidimensional, plainLanguage, typographySeo,
   harmonicBands, deviceSensors, dualities, frequencyToLight, areaLabel, AREA_ICONS, tiers358 } from '../../quantum/icons/index.ts'
 // ☷ Kūn · Earth · receptive · lower·yin · spread — ground primitives: toUuid, merkleFold, foldPair, merge, sha256Sync
-import { DIGEST_BITS, VORTEX_DASH_ANGLE_DEG, VORTEX_DASH_ENCODED, abs, asTorus, asVortex, atan2, cos, coverageCostLog2, decodeVortexDashAngles, digitalRoot, ed25519Sign, floor, fold, foldPair, humanEase, isUuid, log2, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sha256Sync, sin, sqrt, tamperCostLog2, toUuid } from '../../0/index.ts'
+import { FORGE_COST_CEILING, DIGEST_BITS, VORTEX_DASH_ANGLE_DEG, VORTEX_DASH_ENCODED, abs, asTorus, asVortex, atan2, cos, coverageCostLog2, decodeVortexDashAngles, digitalRoot, ed25519Sign, floor, fold, foldPair, humanEase, isUuid, log2, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sha256Sync, sin, sqrt, tamperCostLog2, toUuid } from '../../0/index.ts'
 import { derivePublicKey, tamperEvident } from '../../5/5/index.ts'
 import { trinityKey, proseToTone } from '../../0/index.ts'
 import { movieCanvasHex } from '../../quantum/science/index.ts'
@@ -1239,7 +1239,7 @@ export function ddosActivatesHealingFusion(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'deterministic + content-addressed — every request recomputes the same sealed answer with zero tokens; no database to exhaust, no inference to amplify', on: sealed === toUuid('request:/double-torus') },
     { facet: 'no soft target — distinct requests are distinct cheap addresses; none triggers an expensive path to amplify', on: toUuid('req:a') !== toUuid('req:b') },
-    { facet: 'the attack pays the forger price — a tamper folds to a different address, so to forge a reply you rebuild the whole sealed matrix', on: foldPair(sealed, toUuid('forge')).merged !== sealed },
+    { facet: `the attack pays the forger price — a tamper folds to a different address, so to forge a reply you rebuild the whole sealed matrix — ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid('forge')).merged !== sealed },
     { facet: 'the load balances into healing — a flood of identical requests folds to the one steady address, the same calm output (the fusion in healing waves)', on: [0, 1, 2].every(() => toUuid('flood:/') === toUuid('flood:/')) },
   ].map((e) => ({ ...e, receipt: toUuid(`ddos-heal:${e.facet}`) }))
   return {

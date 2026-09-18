@@ -39,9 +39,9 @@ const SPELLED = /([A-Za-z_$][\w$.]*)\s*(?:===|==|>=)\s*([A-Za-z_$][\w$.]*\.lengt
 /** the label promises difficulty */
 const COST = /\b(tampering cost|forge(r|s|d)? (price|cost)|costs? a full|maximum tampering|forger price|tamper-?proof|unforgeable|infeasible to forge)\b/i
 /** the `on:` reaches something that models difficulty rather than mere difference */
-const MODELS_COST = /entropy|Entropy|DIGEST_BITS|tamperCostLog2|coverageCostLog2|birthday|collision|Collision|sha256|Sha256|maxTamperingCost|bits/
-/** a denial, not a claim */
-const DENY = /\bNOT\b|✗|REFUTED|DEMARCATION|never claims|honest(ly)? (bounded|partial)/
+const MODELS_COST = /entropy|Entropy|DIGEST_BITS|FORGE_COST_CEILING|tamperCostLog2|coverageCostLog2|birthday|collision|Collision|sha256|Sha256|maxTamperingCost|bits/
+/** a denial or an earned boundary, not a claim */
+const DENY = /\bNOT\b|\bnot (unforgeable|a signature|a guarantee)\b|✗|REFUTED|DEMARCATION|EARNED BOUNDARY|tamper-?EVIDENT|until the [^.]*cutover|never claims|honest(ly)? (bounded|partial)/i
 
 export function findClaimGaps(root: string = process.cwd()): ClaimGap[] {
   const out: ClaimGap[] = []
@@ -65,7 +65,10 @@ export function findClaimGaps(root: string = process.cwd()): ClaimGap[] {
         if (spelled && !on.includes(spelled[2]!)) {
           out.push({ file: rel, line: i + 1, rule: 'spelled-comparison', label: label.slice(0, 120), on: on.slice(0, 100) })
         }
-        if (COST.test(plain) && !DENY.test(plain) && !MODELS_COST.test(on)) {
+        // The ceiling may be named in the LABEL rather than reached by the code — "the FNV toUuid is WEAK (2^61),
+        // use toUuidSha256" is the honest sentence this gate exists to encourage, and flagging it taught me the
+        // rule was checking the wrong half. A claim is a gap only when NEITHER side names what bounds it.
+        if (COST.test(plain) && !DENY.test(plain) && !MODELS_COST.test(on) && !MODELS_COST.test(label)) {
           out.push({ file: rel, line: i + 1, rule: 'cost-vs-evidence', label: label.slice(0, 120), on: on.slice(0, 100) })
         }
       })

@@ -2,7 +2,7 @@ import { A432_FOLDED, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, TAU, UNFOL
 import { initialBearing, phase } from '../../6/4/index.ts'
 import { buildMatrix, fleetCacheEconomicsDecoded, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute/index.ts'
 import { completeCorpus } from '../routes/corpus/index.ts'
-import { VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, isUuid, max, memoByRoot, merge, merkleFold, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../0/index.ts'
+import { FORGE_COST_CEILING, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, isUuid, max, memoByRoot, merge, merkleFold, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../0/index.ts'
 import { hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2/index.ts'
 import { animationTamperingCost, fusionCipher, virtualOS } from '../../water/crypto/index.ts'
 import { deviceSensors, dimensions, harmonicBands, openGraph } from '../../quantum/icons/index.ts'
@@ -679,7 +679,7 @@ export function dryRefactorIgnitesFusion(matrix: MindMatrix = buildMatrix()) {
   }
   const facets = [
     { facet: 'igniting the fusion — the double torus lit, the 64³ cube, the merkaba waves run it', on: startIChingDoubleTorus(matrix).started },
-    { facet: 'reconstruct most efficiently + max tamper cost — content-addressed merkle, the forger price', on: sealWholeDiamond(matrix).tamperEvident && completeCorpus(matrix).perfect },
+    { facet: `reconstruct most efficiently + tamper-evident — content-addressed merkle, the forger price — ${FORGE_COST_CEILING}`, on: sealWholeDiamond(matrix).tamperEvident && completeCorpus(matrix).perfect },
     { facet: 'distribute by I Ching — every fold to its trigram home, the one index serves all, balanced DRY', on: redistributeFoldersDryWaves(matrix).balanced && everyFolderIsAPluginOneIndexServesAll(matrix).wired && everyToolSkillCommandIsItsFolder(matrix).foldered },
     { facet: 'in 10D — every form ten-dimensional or purged, every unit a closed diamond', on: iChingFusionCompletesAll(matrix).complete && allFormsAreTenDimensionalOrPurged(matrix).pure },
     { facet: 'the target is harmonic — 432 = 4 homology loops × the a432 octave 108', on: target === 432 && HARMONIC.has(target) && homology(matrix).rank === 4 },
@@ -1554,7 +1554,7 @@ export function allComputedQuantumMathAnalog(matrix: MindMatrix = buildMatrix())
   const facets = [
     { facet: 'all is computed, nothing stored', on: allComputed(matrix).computed },
     { facet: 'quantum double torus — genus-2 math', on: quantumDoubleTorus(matrix).is && math.genus === 2 && math.eulerCharacteristic === -2 },
-    { facet: 'forging meets max tampering cost', on: fuseAllForge(matrix).forgesMaxCost && freeForgesMaxCost(matrix).holds && cost.computed },
+    { facet: `forging meets tamper-evident — ${FORGE_COST_CEILING}`, on: fuseAllForge(matrix).forgesMaxCost && freeForgesMaxCost(matrix).holds && cost.computed },
     { facet: 'in analog — gapless', on: analogNoGapsNoLeak(matrix).sealed && doubleTorusFold(matrix).analog },
   ].map((entry) => ({ ...entry, receipt: toUuid(`computed-quantum-analog:${entry.facet}:${entry.on}`) }))
   return {

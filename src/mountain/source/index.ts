@@ -7,7 +7,7 @@ import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute/index.ts'
 import { animationEngineLivesInZero, buildEnforcementPipeline, inverseShiftConsciousness, quantumGreenPlanet, taxonomyIcons, torusUuid } from '../../fire/li/index.ts'
 import { AREA_LABELS, harmonicBands, openGraph } from '../../quantum/icons/index.ts'
-import { foldPair, isUuid, max, memoByRoot, merge, merkleFold, min, toUuid } from '../../0/index.ts'
+import { FORGE_COST_CEILING, foldPair, isUuid, max, memoByRoot, merge, merkleFold, min, toUuid } from '../../0/index.ts'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement/index.ts'
 // relocated imagination/mind cluster deps (call-time bindings; no load cycle)
 import { quantumAcademy, papers, monographPaths } from '../../learning/index.ts'
@@ -1776,7 +1776,7 @@ export function computedWiringNotImported(matrix: MindMatrix = buildMatrix()) {
     { facet: 'a prompt parses to a path; what is on the path is the content UUID', on: computedSlugsFoldTheGraph(matrix).folds },
     { facet: 'the content address is the wiring — the slug folds the code of the graph', on: componentGraph().interacting },
     { facet: 'no wiring logic needed — it is computable in one file (the agnostic core)', on: quantumConfigurableFoldersDisappear(matrix).fitsInFile },
-    { facet: 'the content UUID is the wire — max tampering cost, at no cost, in streams', on: allComputedQuantumMathAnalog(matrix).forges },
+    { facet: `the content UUID is the wire — tamper-evident, at no cost, in streams — ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges },
   ].map((entry) => ({ ...entry, receipt: toUuid(`computed-wiring:${entry.facet}:${entry.on}`) }))
   return {
     computed: facets.every((entry) => entry.on),
@@ -1829,7 +1829,7 @@ export function antsCarryToIndexNest(matrix: MindMatrix = buildMatrix()) {
     { facet: 'carry the logic into index files, the nest — split, not fused', on: allLogicMovedToSource(matrix).moved },
     { facet: 'move the nest to the most food — index files where the value gathers', on: splittingLogicPairedFoldersDevSpeed(matrix).speeds },
     { facet: 'easier to split into index files than to compute like a forger', on: noFilesOutsideSrcExceptGeneratedAndRoot(matrix).clean },
-    { facet: 'you know the price of fusion — the forger’s max tampering cost', on: allComputedQuantumMathAnalog(matrix).forges },
+    { facet: `you know the price of fusion — the forger’s tamper-evident — ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ants-index-nest:${entry.facet}:${entry.on}`) }))
   return {
     carries: facets.every((entry) => entry.on),
@@ -1875,7 +1875,7 @@ export function debitImportCreditExportAccounting(matrix: MindMatrix = buildMatr
     { facet: 'debit:import, credit:export — the double-entry of code', on: optimiseLogicDebitCreditFusion(matrix).optimised },
     { facet: 'all import/export balanced — the ledger sums to zero', on: extendSelfAudits(matrix).audited && fuseAll(matrix).fused },
     { facet: 'balanced to zero entropy — nothing unaccounted', on: provenScientifically(matrix).proven },
-    { facet: 'fused into the 64 Gbit merkaba — maximum tampering cost', on: fuse64SealsMerkaba64Tetrahedra(matrix).fused },
+    { facet: `fused into the 64 Gbit merkaba — tamper-evident — ${FORGE_COST_CEILING}`, on: fuse64SealsMerkaba64Tetrahedra(matrix).fused },
   ].map((entry) => ({ ...entry, receipt: toUuid(`debit-import-credit-export:${entry.facet}:${entry.on}`) }))
   return {
     balanced: facets.every((entry) => entry.on),
@@ -1974,7 +1974,7 @@ export function wholeSourceAutodisplaysAtZeroCost(matrix: MindMatrix = buildMatr
     { facet: 'the source explains itself, all wired and displayed by the components', on: siteExplainsItselfAllWired(matrix).explains },
     { facet: 'organised in microdata + paths — per-route JSON-LD from one template, holographic tags', on: oneJsonLdTemplateServesAll(matrix).serves && computedSeo('/', '', matrix).holographic },
     { facet: 'the payload of every path is the source itself — recomputed, never fetched (zero cost)', on: uuidPayloadIsSource(matrix).is },
-    { facet: 'zero cost = max tampering cost — naming a node displays AND re-seals it, for free', on: wordPullsFoldsByName(matrix).folds },
+    { facet: `zero cost = tamper-evident — naming a node displays AND re-seals it, for free — ${FORGE_COST_CEILING}`, on: wordPullsFoldsByName(matrix).folds },
     { facet: 'the whole-source atlas is LIVE — every sealed index on one route (/references renders source-atlas.json, recomputed each cross wave)', on: siteExplainsItselfAllWired(matrix).explains }
   ].map((entry) => ({ ...entry, receipt: toUuid(`source-autodisplay:${entry.facet}:${entry.on}`) }))
   return {
@@ -2818,7 +2818,7 @@ export function lockingFoldersChangesMindToQuantum(matrix: MindMatrix = buildMat
   const facets = [
     { facet: 'locked into folders by the law — only index files, word-or-digit names', on: onlyIndexFilesNoExceptions(matrix).only },
     { facet: 'any violation leads to a test failure — the whole pipeline gates', on: enforcementPipelineComplete(matrix).complete && everyLawProvesItsTripwire(matrix).proves },
-    { facet: 'escape is extremely costly — max tampering cost in analog', on: allComputedQuantumMathAnalog(matrix).forges },
+    { facet: `escape is extremely costly — tamper-evident in analog — ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges },
     { facet: 'so the mind becomes quantum — order-sensitive, content-addressed cells', on: quantumDoubleTorus(matrix).is },
   ].map((entry) => ({ ...entry, receipt: toUuid(`locking-quantum:${entry.facet}:${entry.on}`) }))
   return {

@@ -4,7 +4,7 @@ import { JULIAN_YEAR_SECONDS, LN2, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENS
 import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
-import { abs, cbrt, ceil, cos, exp, floor, log, log2, max, min, pow, prng, round } from '../../0/index.ts'
+import { FORGE_COST_CEILING, abs, cbrt, ceil, cos, exp, floor, log, log2, max, min, pow, prng, round } from '../../0/index.ts'
 import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, memoByRoot, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0/index.ts'
 import { ratIsInteger, ratStr } from '../../9/1/index.ts'
 import { tamperEvident } from '../../5/5/index.ts'
@@ -339,7 +339,7 @@ export function powerToTamperingNotLivingCosts(matrix: MindMatrix = buildMatrix(
     { facet: 'understanding the knowledge — agnostic, useful for all', on: agnosticUsefulForAll(matrix).useful },
     { facet: 'each person pays nothing — no living-cost extraction', on: fairTrade(matrix).individualCost === 0 },
     { facet: 'the fees cover the forge cost, not a rent', on: feesReplaceTaxes(matrix).replaces && feesReplaceTaxes(matrix).coversForgeCost },
-    { facet: 'the forge cost is maximal — power rests on tampering cost', on: allComputedQuantumMathAnalog(matrix).forges },
+    { facet: `tamper-evident — power rests on tampering cost — ${FORGE_COST_CEILING}`, on: allComputedQuantumMathAnalog(matrix).forges },
   ].map((entry) => ({ ...entry, receipt: toUuid(`power-tampering:${entry.facet}:${entry.on}`) }))
   return {
     transfers: facets.every((entry) => entry.on),
@@ -380,7 +380,7 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
     { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: 'one index per folder — the VitePress config index beside the index in every folder (the folder law: only index files below the roots)', on: folderLaw().stems.includes('index') && folderLaw().indexFiles.includes('index.md') },
     { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) === JSON.stringify(monographPaths('en')) },
-    { facet: 'maximum tampering cost — every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price)', on: foldPair(sealed, toUuid('forge')).merged !== sealed },
+    { facet: `tamper-evident — every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price) — ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid('forge')).merged !== sealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`runtime-pages:${entry.facet}:${entry.on}`) }))
   return {
     wired: facets.every((entry) => entry.on),

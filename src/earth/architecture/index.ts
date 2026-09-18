@@ -9,7 +9,7 @@ import type { DigitFolderReport, DigitMath, DigitMathBinding, MindMatrix, PiTrai
 import { buildMatrix, proofReport, reciprocity, verifyRoot } from '../../heaven/compute/index.ts'
 import { cellHomology, dualTorusTrinities, merkaba, areaPairs } from '../../mountain/geometry/index.ts'
 import { vortexMath } from '../../mountain/vortex/index.ts'
-import { ICHING_NUMBERS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, ceil, digitalRoot, floor, foldPair, isUuid, log, max, memoByRoot, merge, merkleFold, prng, seedFromText, toUuid, type StatusBadgeKind } from '../../0/index.ts'
+import { FORGE_COST_CEILING, ICHING_NUMBERS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, ceil, digitalRoot, floor, foldPair, isUuid, log, max, memoByRoot, merge, merkleFold, prng, seedFromText, toUuid, type StatusBadgeKind } from '../../0/index.ts'
 import { addressed, covers } from '../../5/5/index.ts'
 import { methodNameFromFolderTail } from '../../9/1/index.ts'
 import { EIGHT_FOLD_SCIENCES, type EightFoldScience } from '../../8/2/index.ts'
@@ -1483,7 +1483,7 @@ export function everyFolderIsAPluginOneIndexServesAll(matrix: MindMatrix = build
     { facet: 'every src folder is a VitePress plugin — a self-wiring unit; the double-torus folder pairs are the plugin units (the folder law gives each one index entry)', on: folderLaw().stems.includes('index') && folders.length >= 8 },
     { facet: 'one index serves all — one source (monographPaths over staticPages + componentPages) computes every page, and a folder index re-exports its whole surface (the vortex router)', on: monographPaths('en').length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: 'wired quantum with zero build time — the plugin serves the computed output at runtime and emits the same at build, from the one content-addressed model, deterministically (same address in dev and build)', on: toUuid('plugin:mind') === sealed && toUuid('plugin:dist') !== sealed },
-    { facet: 'maximum tampering cost — each plugin emits one content address; a tamper folds to a different address, so forging one costs a full rebuild (the forger price)', on: foldPair(sealed, toUuid('forge')).merged !== sealed },
+    { facet: `tamper-evident — each plugin emits one content address; a tamper folds to a different address, so forging one costs a full rebuild (the forger price) — ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid('forge')).merged !== sealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`folder-plugin:${entry.facet}:${entry.on}`) }))
   return {
     wired: facets.every((entry) => entry.on),

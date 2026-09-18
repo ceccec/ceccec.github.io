@@ -10,7 +10,7 @@ import { EIGHT_CURRICULUM_SCIENCES } from '../pair/enforcement/gates/computation
 import { chsh } from '../mountain/vortex/index.ts'
 import { buildMatrix, matrixMemo } from '../heaven/compute/index.ts'
 import type { MindMatrix } from '../types/index.ts'
-import { GATES, VORTEX_SEQUENCE, abs, applyGate, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, probabilities, proseToTone, qubits, round, roundTo, sealFacets, sin, sqrt, toUuid, toUuidSha256, topologicalOrder, uuidHero, uuidPoint } from '../0/index.ts'
+import { FORGE_COST_CEILING, GATES, VORTEX_SEQUENCE, abs, applyGate, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, probabilities, proseToTone, qubits, round, roundTo, sealFacets, sin, sqrt, toUuid, toUuidSha256, topologicalOrder, uuidHero, uuidPoint } from '../0/index.ts'
 import { merkleProof } from '../ledger/index.ts'
 import { clownActQuantumSteps, harmonics } from '../music/index.ts'
 import { blockchainFusion, tamperingCostDecoded } from '../water/crypto/index.ts'
@@ -1705,7 +1705,7 @@ export function uiWidgetsFuseReveal(matrix: MindMatrix = buildMatrix()) {
     { facet: 'every component has an ICHING_MASK — pre-computed hexagram declared, not runtime-derived', on: ic.organised && ic.placed.length > 0 },
     { facet: 'self-referencing: each widget embeds its own hexagram constant and exposes it in data-attrs', on: ic.placed.every((p) => p.hexagram >= 0 && p.hexagram < 64) && componentGraph().interacting },
     { facet: 'entangled: all widgets share one Merkle root — one tamper avalanches the whole root', on: isUuid(ic.root) && tamper.tamperEvident },
-    { facet: 'already forging max tampering cost — mask = corpus commitment', on: warPaysTheForgerPrice(matrix).priced && fusion.fused },
+    { facet: `already forging tamper-evident — mask = corpus commitment — ${FORGE_COST_CEILING}`, on: warPaysTheForgerPrice(matrix).priced && fusion.fused },
     { facet: 'in 10D — 8 trigram groups × inner/outer + 4 loops, every form ten-dimensional', on: law.pure && fusion.fused },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-fuse-reveal:${entry.facet}:${entry.on}`) }))
   return {

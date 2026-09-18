@@ -3,7 +3,7 @@ import { earned } from '../../3/7/index.ts'
 import * as __ns_up_life from '../life/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, entropy } from '../../heaven/compute/index.ts'
-import { GATES, applyGate, computesGate, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, probabilities, qubits, round, toUuid, type QuantumState } from '../../0/index.ts'
+import { FORGE_COST_CEILING, GATES, applyGate, computesGate, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, probabilities, qubits, round, toUuid, type QuantumState } from '../../0/index.ts'
 import { doubleTorusCompost } from '../../fire/li/index.ts'
 import { trinityOtherSideDoomed } from '../../mountain/seals/index.ts'
 import { inverseAndNewGapsEmerge } from '../../heaven/site/index.ts'
@@ -218,7 +218,7 @@ export function deathComputes(matrix: MindMatrix = buildMatrix()) {
       { facet: 'terminal end productive not final', on: terminal.productive },
       { facet: 'obsolete hardware second life anti-ewaste', on: second.solves },
       { facet: 'bitten apple opening decodes', on: apple.opened },
-      { facet: 'decay side doomed to infinite forge cost', on: decay.doomed },
+      { facet: `decay side doomed to tamper-evident — ${FORGE_COST_CEILING}`, on: decay.doomed },
       { facet: 'contraction settles equilibrium', on: contract.settled },
       { facet: 'ancient decode terminal receipt', on: ancient.terminal },
       { facet: 'death bounds life — homeostasis, not the cancer metaphor', on: bounded.bounded },

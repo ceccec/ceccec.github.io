@@ -2004,6 +2004,20 @@ export function addressEntropyBits(): { nominalBits: number; discardedBits: numb
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) }
 }
 
+/**
+ * THE ONE SENTENCE A COST CLAIM MAY LEAN ON.
+ *
+ * "Maximum tampering cost" is a defined term here — MAX_TAMPERING_COST_PRINCIPLE claims it only when measured
+ * coverage closes at 1 and reciprocal entropy is 0 — and facets across the corpus were using it loosely, as a
+ * synonym for "content-addressed". Tamper-EVIDENCE is not tamper-RESISTANCE: that a change flips the address is
+ * what a hash does on its quietest day, while what a forgery COSTS is bounded by how hard the same address is to
+ * hit twice. This states that bound once, computed from the address's own entropy budget, so no facet has to
+ * restate it and none has to overstate it.
+ */
+export const FORGE_COST_CEILING =
+  `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits, a birthday bound of 2^${addressEntropyBits().birthdayLog2} — `
+  + 'the CEILING this hash offers, not a guarantee (findContentAddressCollision exhibits a real collision in its 32-bit FNV core; toUuidSha256 is the vetted path)'
+
 // ── Ring algebra — the algebra implicit in the digit folders, made explicit ──────────────────────
 // The digit folders hold the vortex ring (ℤ/9ℤ)* without naming it. These three primitives pull
 // that algebra out into the origin kernel: gcd is the Euclidean atom, modUnits is the group,
