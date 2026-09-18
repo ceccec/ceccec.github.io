@@ -52,8 +52,14 @@ export const CANONICAL_SCIENCE_MASK = `src/<science>/<action>` as const
 import { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, DIMENSION_GATES, A432_FOLDED, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, titleFromAlgebra, titleCarriesAlgebra, normalizeTitle } from '../../../../3/7/index.ts'
 
 // DRY: the two canonical recursive src walkers, extracted from the ~9 inline copies the gate folds each defined.
-const indexFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...indexFilesUnder(full)); else if (entry.name === 'index.ts') out.push(full) } return out }
-const tsFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'cache' || entry.name === 'dist') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...tsFilesUnder(full)); else if (entry.name.endsWith('.ts')) out.push(full) } return out }
+// THEY WALK src/ ONLY, so `cache` and `dist` are not build output here — they are folder names this corpus
+// chose: src/pair/cache, src/quantum/water/cache, src/quantum/dist. Skipping them by BASENAME, a rule meant
+// for a repo root, hid five tracked source files (3,820 lines) from every gate that walks with these — the
+// facets-must-compute debt, the dry-clean duplicate scan, the quantum-tag check, the trinity census, and the
+// gate that says a single crack flips the corpus root, which could not have seen a crack in any of them.
+// Dot-directories stay skipped, which is what keeps .lake (Lean's build tree) out.
+const indexFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...indexFilesUnder(full)); else if (entry.name === 'index.ts') out.push(full) } return out }
+const tsFilesUnder = (dir: string): string[] => { const out: string[] = []; for (const entry of readdirSync(dir, { withFileTypes: true })) { if (entry.name.startsWith('.') || entry.name === 'node_modules') continue; const full = join(dir, entry.name); if (entry.isDirectory()) out.push(...tsFilesUnder(full)); else if (entry.name.endsWith('.ts')) out.push(full) } return out }
 export { MAX_SUBFOLDERS_PER_FOLDER, ICHING_TRIGRAMS, ICHING_EIGHT_FOLD, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, FIBONACCI_CENSUS_BANDS, UNFOLDED_CENSUS, CENSUS_RATCHET, EULER_CHI, FOLDED_CENSUS, A432_FOLDED, HOMOLOGY_LOOPS, DIMENSION_GATES, HARMONICS_LADDER_LENGTH, SIEGE_WAVES, SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES } from '../../../../3/7/index.ts'
 
 /** Folder names forbidden — every folder IS an index; index.ts is the stem file inside, never a folder name. */

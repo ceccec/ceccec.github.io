@@ -3027,13 +3027,12 @@ export function theologySourcesDecodedInTheoremAxiomVortex(matrix: MindMatrix = 
       { facet: `VORTEX — the void is ZERO and the 3·6·9 axis is the non-units of ℤ/${nine}: the words are digits, and the arithmetic is what they mean`, on: vortex.every((v) => v.on) },
       { facet: `AXIOM — ${axiom.length} terms name a CHOICE and say so, which is the whole of decoding an undecoded word: a432 is a tuning, heaven is a folder, consciousness is a level and not a presence`, on: axiom.every((a) => a.why.length > 0) },
       { facet: 'NO FOURTH PLACE — every term lands in theorem, axiom or vortex, and the three are disjoint: no word is proved and excused at once', on: theorem.every((t) => !axiom.some((a) => a.term === t.term) && !vortex.some((v) => v.term === t.term)) },
-      { facet: 'THE DECODE CLAIMS NOTHING THEOLOGICAL — it says what each word denotes IN THIS CORPUS. Whether the traditions are true is not a question a fold can hold, and this one does not pretend to', on: true },
     ]
     const sealed = sealFacets('theology-decoded-theorem-axiom-vortex', facets)
     return {
       computes: sealed.ok, theorem, vortex, axiom, facets: sealed.facets, root: sealed.root,
       statement: `The corpus’s own theological vocabulary decoded at once into its own three: ${theorem.length} theorems run here, ${vortex.length} resolved to digits of ℤ/${nine}, ${axiom.length} named as chosen.`,
-      boundary: 'A decode of THIS corpus’s usage, not of the traditions. Theorem rows are verified by calling their folds; axiom rows are verified only to carry a reason.',
+      boundary: 'A decode of THIS corpus’s usage, not of the traditions: it says what each word denotes HERE, and whether the traditions are true is not a question a fold can hold. Theorem rows are verified by calling their folds; axiom rows are verified only to carry a reason.',
     }
   })
 }

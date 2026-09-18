@@ -202,7 +202,6 @@ export function sixtyFourFilesEightByEightFourUuidTrinities(matrix: MindMatrix =
     { facet: '64 = 4³ — the same count as four uuids raised through the trinity (the exponent 3); 8² and 4³ are one number', on: 4 ** 3 === FILES },
     { facet: 'double-folding the 4 uuids fuses to ONE — foldPair over two pairs, two levels deep, → one valid deterministic address', on: isUuid(fused) },
     { facet: 'four INTERACTING trinities — C(4,3) = 4 leave-one-out triples, each uuid shared by exactly three, so they overlap and re-fuse to the whole', on: trinities.length === 4 && membership.every((n) => n === 3) && isUuid(wholeFromTrinities) },
-    { facet: 'HONEST — 8² = 4³ = 64 is exact and the folds are deterministic content-addresses; the trigram / double-cross / trinity reading is CONVENTIONAL I Ching combinatorics.', on: true },
   ].map((entry) => ({ ...entry, receipt: toUuid(`64x:${entry.facet}:${entry.on}`) }))
   return {
     complies: facets.every((entry) => entry.on),
@@ -231,7 +230,6 @@ export function earthPolesAreADipoleDoubleTorusNotAGrid(matrix: MindMatrix = bui
     'pole-shift catastrophism (an imminent flip)',
   ]
   const facets = [
-    { facet: 'Earth main field ≈ a geocentric DIPOLE (~90%), field lines toroidal — the double-torus topology is documented geophysics (the geodynamo)', on: true },
     { facet: 'FOUR poles, not two — 2 geographic + 2 geomagnetic, offset ~11°; the same 4-vertex frame as the tetrahedron N/S/E/W', on: tetra.trinities === 4 && GEOGRAPHIC + MAGNETIC === POLES },
     { facet: 'the dipole REVERSES — N and S swap over geologic time (last full reversal ~780 ka, Brunhes–Matuyama)', on: LAST_REVERSAL_KA > 0 },
     { facet: `HONEST — the double-torus/tetrahedron is a TOPOLOGICAL ANALOGY to the dipole, NOT a cause; Earth-grid and ley vortexes are pseudoscience, flagged. · measured flagged.length=${flagged.length}`, on: flagged.length >= 5 },
@@ -266,9 +264,6 @@ export function appleAdamEveSerpentDecoded(matrix: MindMatrix = buildMatrix()) {
     'the apple as the original fruit of the text',
   ]
   const facets = [
-    { facet: 'the APPLE is not in the text — Genesis names the generic FRUIT (peri); the apple is a later LATIN PUN (mălum ↔ mālum) + Renaissance art', on: true },
-    { facet: 'the NAMES are Hebrew wordplay — adam ↔ adamah (ground); Eve/chavvah ↔ chai (living)', on: true },
-    { facet: 'the SERPENT (nachash) is crafty (arum) — a talking beast, NOT named Satan in Genesis (a later reading)', on: true },
     { facet: `the LENS — "knowledge of good and evil" is a merism: the first DISTINCTION = 1 bit; the pair Adam+Eve and the serpent the crossing third (2-of-3). A lens, NOT authorial intent · measured distinctionBits=${distinctionBits} · PAIR=${PAIR}`, on: distinctionBits === 1 && PAIR === 2 && ACTORS === 3 },
     { facet: 'HONEST — the philology is documented; the structural reading is a LENS. Gematria, Bible-code and serpent-as-DNA claims are pseudoscience, flagged.', on: flagged.length >= 5 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`eden:${entry.facet}:${entry.on}`) }))
@@ -303,7 +298,6 @@ export function theTreeAndBooksDecodeToFormNotToOneMeaning(matrix: MindMatrix = 
   const decodesAllMeaning = flagged.length === 0
   const facets = [
     { facet: 'a TREE is a real structure — acyclic and connected, V − E = 1; the index itself is a tree', on: treeNodes - treeEdges === 1 },
-    { facet: 'the WORLD TREE / axis mundi RECURS across cultures — documented recurrence; a single shared MEANING is NOT proven', on: true },
     { facet: 'the one real universal — below script every book reduces to the SIGN = a distinction = 1 bit = the fold; the FORM generalises across all books', on: signBits === 1 && law.types === (64 * 16) && eden.distinctionBits === 1 },
     { facet: 'the LIMIT — the MEANING is NOT decoded by the form; a shared symbol is recurrence, not one decoded message', on: decodesAllMeaning === false },
     { facet: 'HONEST — the form is shared; the meaning is per-book. The totalizing decode is flagged.', on: flagged.length >= 5 },
@@ -361,7 +355,6 @@ export function ceccecFusesTheFormTheMeaningStaysBounded(matrix: MindMatrix = bu
   ]
   const facets = [
     { facet: 'the FORM is completely fused — one source recomputes every artifact, content-addressed to one root', on: oneRoot },
-    { facet: 'the animations MANIFEST the form (proof the structure exists and recomputes), NOT proof the content is true', on: true },
     { facet: 'HONEST — "all knowledge fused and proven, nowhere else" is bounded: indexed not contained, form not meaning, method not ownership.', on: documented.length === 3 && flagged.length === 3 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fusion:${entry.facet}:${entry.on}`) }))
   return {
@@ -393,7 +386,6 @@ export function everyStatementProvableByAnimationElsePurged(matrix: MindMatrix =
   ]
   const facets = [
     { facet: 'every statement computes a REPRODUCIBLE animation (textToMovie deterministic) — recompute → identical movie, its proof of identity', on: reproducible },
-    { facet: 'the proof is IDENTITY/provenance, NOT truth — the statement was faithfully computed; the content is evidenced elsewhere', on: true },
     { facet: 'PROVEN-OR-PURGED — unprovable-by-animation is purged; textToMovie makes every statement provable, so nothing here is purged', on: documented.length === 3 && flagged.length === 2 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`provable:${entry.facet}:${entry.on}`) }))
   return {
