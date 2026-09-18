@@ -5,7 +5,7 @@ import { floor, max, memoByRoot, merkleFold, min, round, roundTo, seedFromText, 
 import { lobeHues, scaleColor, scaleColorAlpha, GOLDEN_ANGLE } from '../../../quantum/science/index.ts'
 import {
   computedMovieThemeColors,
-  movieRouteKey,
+  wiringRouteKey,
   plasmaMoviePalette } from '../../../fire/plasma/ball/index.ts'
 import { PLANE_VIS, HERO_CYCLE_MS, REALTIME_COMPUTE_MOVIE_CAP } from '../../../fire/plasma/ball/index.ts'
 import { hingeMoviePaintLayers } from '../../../water/double/earth/index.ts'
@@ -81,7 +81,7 @@ export function backgroundMovieColorVars(
   endless = true,
   mode: 'light' | 'dark' = 'light',
 ): Record<string, string> {
-  const routeKey = movieRouteKey(path)
+  const routeKey = wiringRouteKey(path)
   return memoByRoot(`backgroundMovieColorVars:${routeKey}:${cssWidth}:${endless ? 1 : 0}:${mode}`, matrix, () =>
     backgroundMovieColorVarsRaw(matrix, cssWidth, path, endless, mode),
   )

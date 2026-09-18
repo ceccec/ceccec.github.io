@@ -255,10 +255,6 @@ export function quantumOsAllocateRegister(qubits: number): QuantumRegisterAlloca
   return { id: `qreg-${n}`, qubits: n, capacityAmplitudes: 2 ** n, receipt: toUuid(`qreg:${n}`) }
 }
 
-/** OS service — schedule + run an ordered gate list on a register; state is content-addressed by CircuitResult.root. */
-export function quantumOsRunCircuit(spec: { n: number; ops: readonly CircuitOp[]; shots?: number; seed?: string }): CircuitResult {
-  return runQuantumCircuit(spec)
-}
 
 /**
  * The OS's quantum-computer driver — the surface that exposes the simulator: register allocation, gate
@@ -268,7 +264,7 @@ export function quantumOsRunCircuit(spec: { n: number; ops: readonly CircuitOp[]
 export function quantumComputerDriverComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumComputerDriverComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const register = quantumOsAllocateRegister(3)
-    const run = quantumOsRunCircuit({ ...QC_DEFAULT_CIRCUIT, shots: (64 * 16), seed: 'os-ghz' })
+    const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots: (64 * 16), seed: 'os-ghz' })
     const honest = quantumComputerHonestClaim(matrix, at)
     const { computes, facets, root } = computesGate('quantum-computer-driver', [
       { facet: 'register allocation — the OS owns the 2ⁿ amplitude state space', on: register.capacityAmplitudes === 8 && register.qubits === 3 },

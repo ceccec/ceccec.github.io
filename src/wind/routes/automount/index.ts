@@ -260,20 +260,21 @@ export function rosettaZeitwerkLoader(slug: string): ZeitwerkEntry | null {
 
   const digitRe = /^\d+$/
   const allDigits = segments.every((seg) => digitRe.test(seg))
+  const isPair = segments.length === 2
 
   let science: string
   let model: string
   let action: string
 
-  if (allDigits && segments.length === 2) {
-    science = segments[0]!
-    model = SCHEMA_TWO_LEVEL_MODEL
-    action = segments[1]!
-  } else if (segments.length >= 3) {
+  // A two-segment route resolves the same way whether or not the segments are digits: the first branch here
+  // read `allDigits && segments.length === 2` and carried a body byte-identical to the `segments.length === 2`
+  // branch below it, so the guard decided nothing — either branch produced the same science/model/action. It is
+  // gone, and the pair test is named once.
+  if (segments.length >= 3) {
     science = segments[segments.length - 3]!
     model = segments[segments.length - 2]!
     action = segments[segments.length - 1]!
-  } else if (segments.length === 2) {
+  } else if (isPair) {
     science = segments[0]!
     model = SCHEMA_TWO_LEVEL_MODEL
     action = segments[1]!
@@ -285,7 +286,7 @@ export function rosettaZeitwerkLoader(slug: string): ZeitwerkEntry | null {
 
   const leaf = action
   const srcPath =
-    allDigits && segments.length === 2
+    allDigits && isPair
       ? `src/${segments[0]}/${segments[1]}/index.ts`
       : `src/${science}/${model}/${action}/index.ts`
 
@@ -296,7 +297,7 @@ export function rosettaZeitwerkLoader(slug: string): ZeitwerkEntry | null {
       : `concept.${science}.${action}`
 
   const inflected = leaf === clean.split('/').pop()
-  const stationResolved = !allDigits || segments.length === 2
+  const stationResolved = !allDigits || isPair
   const ray = rosettaRayOf(leaf)
 
   return {

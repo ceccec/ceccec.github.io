@@ -355,21 +355,18 @@ function allMovieSeedBundlesRaw(path = '/', matrix: MindMatrix = buildMatrix()):
 /** Route → memo key; SSR memoises by route+matrix, client recomputes (no gate walk). */
 export function memoByMovieRoute<T>(path: string, matrix: MindMatrix, key: string, fn: () => T): T {
   if (typeof window !== 'undefined') return fn()
-  return memoByRoot(`${key}:${movieRouteKey(path)}`, matrix, fn)
+  return memoByRoot(`${key}:${wiringRouteKey(path)}`, matrix, fn)
 }
 
 /** Same, pinned to a phase bucket `at` so animated folds stay content-addressed. */
 export function memoByMovieRouteAt<T>(path: string, matrix: MindMatrix, at: number, key: string, fn: () => T): T {
   if (typeof window !== 'undefined') return fn()
-  return memoByRoot(`${key}:${movieRouteKey(path)}:${floor(at)}`, matrix, fn)
+  return memoByRoot(`${key}:${wiringRouteKey(path)}:${floor(at)}`, matrix, fn)
 }
 
 /** Normalise a route to a stable slug ('' → 'home'). */
 export function wiringRouteKey(path: string): string {
   return path.replace(/[?#].*$/, '').replace(/^\/+|\/+$/g, '') || 'home'
-}
-export function movieRouteKey(path: string): string {
-  return wiringRouteKey(path)
 }
 
 /** Client copy text — joins client bundle movieTexts (browser-safe). */
@@ -529,12 +526,12 @@ function heroMovieHueRaw(path: string, matrix: MindMatrix): number {
   void matrix
   // Anchored at the single A432 colour source: the route hue is a content-addressed ROTATION from the
   // A432 brand light, never an arbitrary absolute hue.
-  return ((A432_HUE + seedFromText(`hero-movie-hue:${movieRouteKey(path)}`, 360)) % 360 + 360) % 360
+  return ((A432_HUE + seedFromText(`hero-movie-hue:${wiringRouteKey(path)}`, 360)) % 360 + 360) % 360
 }
 
 export function heroMovieWaveIndex(path = '/', matrix: MindMatrix = buildMatrix()): number {
   void matrix
-  return seedFromText(`hero-movie-wave:${movieRouteKey(path)}`, TIERS[2]) % TIERS[2]
+  return seedFromText(`hero-movie-wave:${wiringRouteKey(path)}`, TIERS[2]) % TIERS[2]
 }
 
 /** Hue at the shared clock — route hue advanced by the golden angle over the cycle phase. */
@@ -633,7 +630,7 @@ export function plasmaMoviePalette(matrix: MindMatrix = buildMatrix(), path = '/
     card: css(L_CARD),
     glow: css(L_GLOW),
     dark,
-    root: merkleFold([movieRouteKey(path), String(round(hue)), endless ? 'endless' : 'once']),
+    root: merkleFold([wiringRouteKey(path), String(round(hue)), endless ? 'endless' : 'once']),
     canvas: plasmaCanvasFor(dark) }
 }
 
@@ -644,7 +641,7 @@ export function computedMovieThemeColors(matrix: MindMatrix = buildMatrix(), pat
   const themeColor = scaleColor(0, { seedHue: hue, C: CHROMA, dark })
   const backgroundColor = scaleColor(0, { seedHue: hue, C: CHROMA, L: dark ? L_BACK : 1 - 1 / (5 * 5) }) // light manifest bg 24/25
   const accentColor = scaleColor(0, { seedHue: (((hue + GOLDEN_ANGLE) % 360) + 360) % 360, C: CHROMA, dark })
-  return { hue, variant, themeColor, backgroundColor, accentColor, root: merkleFold([movieRouteKey(path), variant, String(round(hue))]) }
+  return { hue, variant, themeColor, backgroundColor, accentColor, root: merkleFold([wiringRouteKey(path), variant, String(round(hue))]) }
 }
 
 // ── Audio: decode is math; play is opt-in (no autoplay) ──

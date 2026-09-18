@@ -1305,14 +1305,13 @@ const theoremFigureBuilders: Record<string, () => TheoremFigureData> = {
   'sixty-degrees-decodes-pi': () => {
     const rungs = sixtyDegreesDecodesPi().rungs
     const last = rungs[rungs.length - 1]!
-    const lx = (n: number) => log2(n)
     return {
       formula: 'aₙ₊₁ = 2aₙbₙ/(aₙ+bₙ),  bₙ₊₁ = √(aₙ₊₁·bₙ)   (Archimedes, radius 1)',
       caption: `Inscribed (lower) and circumscribed (upper) perimeter-halves bracket π. The hexagon (n = 6) doubles to the ${last.n}-gon, squeezing ${last.lower.toFixed(4)} < π < ${last.upper.toFixed(4)}. Computed by sixtyDegreesDecodesPi().`,
       xLabel: 'log₂(polygon sides n)', yLabel: 'bound on π',
       series: [
-        { label: 'upper (circumscribed a/2)', kind: 'line', role: 'a', points: rungs.map((r) => ({ x: lx(r.n), y: r.upper })) },
-        { label: 'lower (inscribed b/2)', kind: 'line', role: 'b', points: rungs.map((r) => ({ x: lx(r.n), y: r.lower })) },
+        { label: 'upper (circumscribed a/2)', kind: 'line', role: 'a', points: rungs.map((r) => ({ x: log2(r.n), y: r.upper })) },
+        { label: 'lower (inscribed b/2)', kind: 'line', role: 'b', points: rungs.map((r) => ({ x: log2(r.n), y: r.lower })) },
       ],
       refLines: [{ y: (TAU / 2), label: 'π = 3.14159…' }],
       source: 'sixtyDegreesDecodesPi().rungs @ src/9/1' }

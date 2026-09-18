@@ -11600,13 +11600,7 @@ export function runClayFtlFacetsOnlyWhenRelatedExit(_root = '', _argv: readonly 
   return report.computes && report.claySolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
 }
 
-export function runRelatedClayExit(root = '', argv: readonly string[] = []): number {
-  return runClayFtlFacetsOnlyWhenRelatedExit(root, argv)
-}
 
-export function runFtlRelatedExit(root = '', argv: readonly string[] = []): number {
-  return runClayFtlFacetsOnlyWhenRelatedExit(root, argv)
-}
 
 /**
  * USER LAW: send waves of trinities to discover and save all from the session as

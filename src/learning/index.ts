@@ -1894,7 +1894,6 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
   // ONE grouping law at every scale: the sidebar folds by the SAME seven rosetta rays as the nav,
   // related sections and crosslinks — two taxonomies were the confusion (13 tag groups + a 23-item
   // 'More' drawer, over the eight-fold law). Seven rays ≤ 8: the folder law holds in the sidebar too.
-  const buildSidebar = (i: 0 | 1) => rosettaFold(i)
   // Discovery omits nav aliases — thin-mount leaves stay served but do not compete in related/crosslink sidebars.
   const discoveryRoutes = (routes: string[]) =>
     dedupe(routes).filter((route) => !domains.isNavAlias(route.replace(/^\//, '')))
@@ -1966,8 +1965,8 @@ export function siteNavigation(matrix: MindMatrix = buildMatrix()) {
     computed: navTags.length > 0 && lens.computes && navLensed && isUuid(root),
     tagCloud: [...cloud.entries()].map(([tag, routes]) => ({ tag, count: routes.length })).sort((a, b) => b.count - a.count),
     clusters: navTags,
-    en: { nav: buildNav(0), sidebar: buildSidebar(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
-    bg: { nav: buildNav(1), sidebar: buildSidebar(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
+    en: { nav: buildNav(0), sidebar: rosettaFold(0), relatedSidebar: enRelatedSidebar, crosslinks: enCrosslinks, footer: buildFooter(0) },
+    bg: { nav: buildNav(1), sidebar: rosettaFold(1), relatedSidebar: bgRelatedSidebar, crosslinks: bgCrosslinks, footer: buildFooter(1) },
     relatedSidebarComplete: lens.pages.filter((p) => !domains.isNavAlias(p.slug)).every((p) => routeOf(p.slug) in enRelatedSidebar),
     crosslinksComplete: lens.pages.filter((p) => !domains.isNavAlias(p.slug)).every((p) => Array.isArray(enCrosslinks[routeOf(p.slug)])),
     aliasDiscoveryPurged: Object.keys(domains.aliasToCanonical).every((alias) => !(routeOf(alias) in enRelatedSidebar) && !Array.isArray(enCrosslinks[routeOf(alias)])),
