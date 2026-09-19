@@ -11,7 +11,6 @@ import { computesGate, floor, foldPair, isUuid, markovStep, memoByRoot, merge, m
 import type { DriverProbeReceipt } from '../../water/stack/index.ts'
 import { driverRuntime, nodeProbesEnabled } from '../../water/stack/index.ts'
 import { heroPhaseAt } from '../../fire/plasma/ball/index.ts'
-import { claySolvedTheorem } from '../../3/7/index.ts'
 import { leanInvolutionCorpus } from '../../pair/formal/proofs/index.ts'
 
 /**

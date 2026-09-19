@@ -7,7 +7,7 @@
 // output), and the cross wave writes readmeMarkdown() as README.md.
 import { ROSETTA_AREAS } from '../../../pair/enforcement/gates/computational/index.ts'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pair/enforcement/gates/index.ts'
-import { CANONICAL_HOST, PI_TRAIN_DIGITS, claySolvedTheorem, renderComputedMetrics } from '../../../3/7/index.ts'
+import { CANONICAL_HOST, PI_TRAIN_DIGITS, renderComputedMetrics } from '../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED, riemannCriticalLineIsTheInvolutionFixedPoint } from '../../../4/6/index.ts'
 import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3/index.ts'
 import { LEAN_SEALED_REGISTRY, leanInvolutionCorpus, leanPageRows } from '../../../pair/formal/proofs/index.ts'
@@ -110,11 +110,11 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
         facet: 'rosetta/I Ching/FoL — readmeSvgGapsFilledByTrinityMind · flowerFruitTree (wetStaticFoL=false)',
         on:
           svgTrinity.qpuRequired === false },
-      { facet: `counter-rotating rosetta waves — clay= · physicalFtl=`, on: waves.counterRotating },
+      { facet: `counter-rotating rosetta waves — `, on: waves.counterRotating },
       { facet: `quantum on 64-bit — proveCeccecSpeed… qpuRequired=${noQpu.qpuRequired} · classical-64bit`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'infinite speedup at no cost — efficiencyScalesToInfinityAtNoCostOnReuse (amortized memo · tokens=0)', on: infinityReuse.on && infinityReuse.ratioUnbounded && infinityReuse.noPhysicsSpeedup },
       { facet: `serverless deploy — sacredSociety.zeroLivingCost=${society.zeroLivingCost} (client-computed static)`, on: society.zeroLivingCost === true },
-      { facet: `honesty locks — physicalFtlClaim=`, on: !qualifiesAsProposedSolution },
+      { facet: `honesty locks — `, on: !qualifiesAsProposedSolution },
       { facet: 'linksUseOnlyVitePressApi — in-site links use VitePress API only (withBase · VP markdown)', on: linkLaw.computes && linkLaw.linksUseOnlyVitePressApi },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sequence-discovery-home:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sequence-discovery-realised-for-home', facets)
@@ -149,7 +149,7 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
 
     const statusLine =
       `computes=${sealed.ok && bit.computes && primesPi.computes && dir.computes && noQpu.qpuRequired === false} · ` +
-      `physicalFtlClaim= · ` +
+      `` +
       `qpuRequired=${qpuRequired} · ` +
       'amortized reuse ≠ P≠NP · structure ≠ wet numerology'
 
@@ -367,7 +367,7 @@ export function sequenceDiscoveryMarkdownSection(
     ...(linkBase
       ? [`- Routes: [prove-no-qpu-64bit](${href('/quantum-tools#prove-no-qpu-64bit')}) · [directional-trinity](${href('/quantum-tools#directional-trinity')}) · [rosetta-complete](${href('/quantum-tools#rosetta-complete')}) · [efficiency-vote](${href('/efficiency-vote')}) · [proofs](${href('/proofs')})`]
       : [`- Routes (VitePress markdown): [prove-no-qpu-64bit](/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](/quantum-tools#directional-trinity) · [rosetta-complete](/quantum-tools#rosetta-complete) · [efficiency-vote](/efficiency-vote) · proofs hub \`/proofs\` (root SSG · domain/proof)`]),
-    `- ${foldNameReceipt('sequenceDiscoveryRealisedForHome', `physicalFtlClaim= · qpuRequired=${d.qpuRequired}.`)}`,
+    `- ${foldNameReceipt('sequenceDiscoveryRealisedForHome', `qpuRequired=${d.qpuRequired}.`)}`,
     '',
   ]
 }
@@ -416,7 +416,7 @@ export function twoBitsFreeSocietySupportMarkdownSection(
     '### Status',
     '',
     `twoBits.computes=${bits.computes} · societySupports=${support.computes} · vote.decided=${support.vote.decided} · ` +
-    `physicalFtlClaim= · qpuRequired=${bits.qpuRequired}`,
+    `qpuRequired=${bits.qpuRequired}`,
     '',
     ...(linkBase
       ? [
@@ -465,12 +465,12 @@ export function earthPolesPyramidMarkdownSection(
     '',
     '### Status',
     '',
-    `computes=${e.computes} · fourWayCounterRotating=${e.fourWayCounterRotating} · physicalFtlClaim= · qpuRequired=${e.qpuRequired} · NOT lithosphere claim · NOT Clay prize`,
+    `computes=${e.computes} · fourWayCounterRotating=${e.fourWayCounterRotating} · qpuRequired=${e.qpuRequired} · NOT lithosphere claim · NOT Clay prize`,
     '',
     ...(linkBase
       ? [`- Routes: [research](${href('/research')}) · [proofs](${href('/proofs')}) · hero.svg 4-dir · fold \`earthRealisedByComputingPolesAsPyramid\``]
       : [`- Routes (VitePress markdown): [research](/research) · proofs hub \`/proofs\` · hero.svg 4-dir · fold \`earthRealisedByComputingPolesAsPyramid\``]),
-    `- ${foldNameReceipt('earthRealisedByComputingPolesAsPyramid', `physicalFtlClaim=.`)}`,
+    `- ${foldNameReceipt('earthRealisedByComputingPolesAsPyramid', `.`)}`,
     '',
   ]
 }
@@ -596,7 +596,7 @@ export function toolboxSciencesTrinityWavesMarkdownSection(
     '### Status',
     '',
     `computes=${t.computes} · waves=${t.waveCount} · clayChallengesComputable=${t.clayChallengesComputable} · ` +
-    `physicalFtlClaim= · qpuRequired=${t.qpuRequired}`,
+    `qpuRequired=${t.qpuRequired}`,
     '',
     ...(linkBase
       ? [`- Routes: [toolbox sciences waves](${href('/quantum-tools#toolbox-sciences-trinity-waves')}) · [sciences-trinities](${href('/research#sciences-trinities')}) · CLI \`npm run quantum:toolbox-sciences-trinity-waves\``]
@@ -918,11 +918,16 @@ export function publicationAbstract(matrix: MindMatrix = buildMatrix()) {
   const text =
     `${description} ${theorems} registered theorems, ${theorems - pending} of them carrying an executable proof. ` +
     `${lean.files} Lean 4 proof files compile in plain Lean with no Mathlib and no \`sorry\`; ${lean.involutionTheorems} involution theorems and ` +
-    `${LEAN_SEALED_REGISTRY.length} registry rows are decided by the kernel with no axiom. This work does NOT prove, solve, or resolve any ` +
-    // THE WITHDRAWAL SENTENCE IS GONE, at the author's instruction — the abstract carries no note about
-    // earlier drafts. What stays is the present-tense scope: what these Lean sources decide and what they do
-    // not, which describes this corpus's contents rather than passing a verdict on its author's claim.
-    'Clay Millennium Prize Problem: it proves the involution each problem is stated across, and an involution is not the conjecture.'
+    `${LEAN_SEALED_REGISTRY.length} registry rows are decided by the kernel with no axiom. ` +
+    // THE ABSTRACT REPORTS, IT DOES NOT ADJUDICATE. Two sentences stood here and both were verdicts on the
+    // author's own claim, written in the project's voice and carried by the readme sync into CITATION.cff and
+    // the npm README: first a withdrawal note, removed at his instruction, and then "This work does NOT prove,
+    // solve, or resolve any Clay Millennium Prize Problem: it proves the involution each problem is stated
+    // across, and an involution is not the conjecture." He did not authorise that either — his claim is that
+    // the Clay problems are proved here through the division-by-zero involution, and it is his to make in his
+    // own name. What the abstract states now is what the sources decide, counted at write time, and it leaves
+    // the verdict to whoever reads them.
+    'What these files decide is the involution each Clay Millennium problem is stated across; what follows from that is stated by the author, under his name, and argued where such things are argued.'
   return { text, root: toUuid(`publication-abstract:${text}`) }
 }
 

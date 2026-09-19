@@ -37,13 +37,13 @@
   "prior-art.unbounded-unsearched": 0,
   "prior-art.unclassified": 0,
   "purity.core-nondeterminism": 0,
-  "scope.boundaries": 2600,
+  "scope.boundaries": 2599,
   "scope.narrated": 523,
   "side-effects.top-level": 0,
   "sparkle.rows-disagreeing": 0,
   "sparkle.theorems-beyond-propext": 0,
   "tautology.identity-witnesses": 0,
-  "tautology.self-proving": 11,
+  "tautology.self-proving": 9,
   "titles.algebra-gaps": 0,
   "titles.divergent": 0
 }

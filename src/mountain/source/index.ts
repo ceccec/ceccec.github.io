@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — source of truth: memory in source as cross-folds, the present moment remains in source, computed wiring not imported, configs use the matrix, the site explains itself all-wired, autosave, MVC organisation receipt. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — this module is Model: pure computation about source structure, no UI, no routing.
 import * as __ns_up_up_earth_architecture from '../../earth/architecture/index.ts'
-import { rat, ratEq, ratMul, ratSub, UNFOLDED_CENSUS, claySolvedTheorem } from '../../3/7/index.ts'
+import { rat, ratEq, ratMul, ratSub, UNFOLDED_CENSUS } from '../../3/7/index.ts'
 import * as __ns_up_up_heaven_core from '../../heaven/core/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute/index.ts'
@@ -647,7 +647,7 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
         on: glaParityHonest,
       },
       {
-        facet: `physicalFtlClaim= via=`,
+        facet: `via=`,
       },
       {
         facet: 'pair chat/trans · soft translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free',
@@ -984,7 +984,7 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
         on: directionsOn,
       },
       {
-        facet: `physicalFtlClaim= via=`,
+        facet: `via=`,
       },
       {
         facet: 'pair trans/any · soft chat/trans · trans/wave · chat/ftl · research/free · learn/best · mcp speech/dictation/language',
@@ -1362,7 +1362,7 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
         on: phraseCoverage >= 0 && glaCoverage >= 0,
       },
       {
-        facet: `physicalFtlClaim= via=`,
+        facet: `via=`,
       },
       {
         facet: 'pair trans/quality · soft trans/any · chat/trans · trans/wave',

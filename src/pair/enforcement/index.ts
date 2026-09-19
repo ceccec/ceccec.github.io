@@ -1738,7 +1738,6 @@ export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMa
 // call-time namespace edge (cycle-safe): learning reads this barrel; the strategy engine reads back at call time
 import * as __ns_up_wind_learning from '../../learning/index.ts'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6/index.ts'
-import { claySolvedTheorem } from '../../3/7/index.ts'
 
 // ── DYNAMIC STRATEGIES FROM THE THEOREMS, REALTIME (user law: develop dynamic strategies based on
 // the theorems used realtime by the agents) — the agent's playbook is COMPUTED, never remembered:

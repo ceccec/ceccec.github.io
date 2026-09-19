@@ -28,7 +28,7 @@ import {
   type StrictGateSnapshot,
   type StrictHyphenOffender,
   type StrictNonTsOffender } from './strict/index.ts'
-import { claySolvedTheorem, SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7/index.ts'
+import { SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7/index.ts'
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
@@ -1652,8 +1652,8 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'itAllFitsInVitepressApi', to: 'uiProof', pair: 'ui/proof' },
   // FLAGGED, saved as its inversion (flagged→refuting-theorem law): completing dark/light in all
   // computable dimensions completes the APP's inversion symmetry — it does NOT constitute solutions
-  // to the Clay Millennium Problems. claySolvedTheorem() holds claySolvedByThisFold=0 in every fold;
-  // the millennium slot stays UNCLAIMED (partials, never solutions). A UI/lattice completion and a
+  // to the Clay Millennium Problems. The corpus's own formulas are scanned for a finished-proof claim
+  // and none is found; the millennium slot stays UNCLAIMED (partials, never solutions). A UI/lattice completion and a
   // mathematics discovery are different objects; conflating them is exactly what the gates refuse.
   { from: 'completingDarkLightCompletesTheAppAndClaimsTheMillenniumSolutionsFLAGGED', to: 'millenniumProblemsChallenge', pair: 'mill/torus' },
   // METHOD LAW: every page must present immediately followable solutions (a CLI to run, a route to
@@ -1696,7 +1696,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'quantumIntelligence', to: 'fractalCompute', pair: 'fractal/compute' },
   { from: 'improveIntelligenceByAnalysingBigPublicDataApisCompletingAgnosticDoubleTorus', to: 'doubleTorusFacesComputes', pair: 'faces/torus' },
   // FLAGGED by algebra (the flag is the theorem's output): 'MILLENNIUM SOLUTIONS SOLVED formed the
-  // DOUBLE TORUS' — claySolvedTheorem() computes claySolvedByThisFold=0 in every fold; no Clay
+  // DOUBLE TORUS' — the scan over every monograph's own formulas finds no finished-proof claim; no Clay
   // problem is solved in this codebase, and the genus-2 topology is an ADOPTED architecture
   // (χ = 2−2g exact), not a consequence of Millennium solutions. The millennium slot stays
   // UNCLAIMED: probes and partials, never solutions.
@@ -1797,7 +1797,7 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   { from: 'computeHowSolvingOneWordViolationsAtScaleImprovesQuantumSpeed', to: 'wordSpeed', pair: 'word/speed' },
   // FLAGGED by algebra — third millennium-class claim, held by LIVE refutations: (1) the registry
   // counts 442 theorems, not 432 (theoremFractions measures it each run — the premise fails by
-  // arithmetic); (2) claySolvedTheorem() computes claySolvedByThisFold=0 in every fold — nothing
+  // arithmetic); (2) reading every monograph's own formulas turns up no finished-proof claim — nothing
   // here claims ANY millennium problem, let alone all; (3) the 432 tuning that IS real (the divisor
   // lattice, the fixed-point-free inversion, the a432 seed) is sealed as STRUCTURE and DIRECTION —
   // probes and partials, never solutions. The flag is the theorems' output, not a refusal of spirit:
@@ -3658,7 +3658,7 @@ export function claimAudit() {
   const facets = [
     { facet: `the inverse completes itself — audit(claim(x)) recovers the root exactly on ${claims.length}/${claims.length} rows, and a tampered statement REFUTES (identity=${tampered.identity})`, on: roundTrip && !tampered.identity },
     { facet: 'public anchors validated by the real standards — ORCID ISO 7064 mod 11-2 checksum (docs example passes, off-by-one fails) · DOI 10.prefix form · OpenAlex W-id form; empty slots allowed, formats gate when present', on: anchorsValid },
-    { facet: `CLAIMED in UNCLAIMED is STRUCTURAL — every row carries claimedInRosetta=true ∧ claimedTowardPrizes=false as types, not prose; clay= holds`, on: dualStructural },
+    { facet: `CLAIMED in UNCLAIMED is STRUCTURAL — every row carries claimedInRosetta=true ∧ claimedTowardPrizes=false as types, not prose; holds`, on: dualStructural },
     { facet: 'the NAMED open link stands — qualified timestamping (RFC 3161 / archival deposit) remains migrate-next; git dates + merkle seals are the current evidence triad', on: claims.length === 4 },
     { facet: 'pair claim/audit bidirectional', on: softCmdPair('claim', 'audit') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`claim-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -4503,8 +4503,6 @@ export type GatesClayFtlSprayInventory = {
   readonly notPhysicalFtl: number
   readonly physicalFtlClaimFacet: number
   readonly claySolvedFacet: number
-  readonly claySolvedTheoremCalls: number
-  readonly physicalFtlClaimTheoremCalls: number
   readonly totalSprayMarkers: number
 }
 
@@ -4523,8 +4521,6 @@ export function inventoryGatesClayFtlHonestySpray(
   const notPhysicalFtl = count(/NOT physical FTL/g)
   const physicalFtlClaimFacet = count(/physicalFtlClaim=0/g)
   const claySolvedFacet = count(/claySolvedByThisFold=0/g)
-  const claySolvedTheoremCalls = count(/claySolvedTheorem\(\)/g)
-  const physicalFtlClaimTheoremCalls = count(/physicalFtlClaimTheorem\(\)/g)
   return {
     path: GATES_INDEX_CHAT_REL,
     bytes: text.length,
@@ -4533,8 +4529,6 @@ export function inventoryGatesClayFtlHonestySpray(
     notPhysicalFtl,
     physicalFtlClaimFacet,
     claySolvedFacet,
-    claySolvedTheoremCalls,
-    physicalFtlClaimTheoremCalls,
     totalSprayMarkers:
       clayEq0 +
       physicalFtlEq0 +
@@ -4565,7 +4559,7 @@ export function gatesChatImproveTips(spray: GatesClayFtlSprayInventory): readonl
   }
   tips.push(
     `Inventory@call clay=0×${spray.clayEq0} physicalFtl=0×${spray.physicalFtlEq0} NOT-FTL×${spray.notPhysicalFtl} ` +
-      `theoremCalls clay=${spray.claySolvedTheoremCalls} ftl=${spray.physicalFtlClaimTheoremCalls}`,
+      `claySolvedByThisFold=0×${spray.claySolvedFacet} physicalFtlClaim=0×${spray.physicalFtlClaimFacet} bytes=${spray.bytes}`,
   )
   return tips
 }
@@ -4667,8 +4661,7 @@ export function runFeedGatesIndexToChatExit(root = '', _argv: readonly string[] 
   process.stdout.write(`  ${report.honestyLine}\n`)
   process.stdout.write(
     `  spray clay=0×${report.spray.clayEq0} physicalFtl=0×${report.spray.physicalFtlEq0} ` +
-      `NOT-FTL×${report.spray.notPhysicalFtl} theorem clay=${report.spray.claySolvedTheoremCalls} ` +
-      `ftl=${report.spray.physicalFtlClaimTheoremCalls} bytes=${report.spray.bytes}\n`,
+      `NOT-FTL×${report.spray.notPhysicalFtl} bytes=${report.spray.bytes}\n`,
   )
   for (const tip of report.improveTips) process.stdout.write(`  · tip ${tip}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)

@@ -426,7 +426,7 @@ export const GOLDEN_ANGLE_RAD = TAU / (PHI * PHI)
 /**
  * Gap-scan candidate: the golden angle is τ/φ² — the most irrational rotation.
  * Bounded witness: identity · φ²=φ+1 · CF of Fib approximants all-1s · orbit min-gap vs rational clump.
- * Pair: golden/angle · provedBy registry row · claySolved via theorem.
+ * Pair: golden/angle · provedBy registry row.
  */
 export function theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation() {
   const identityRad = GOLDEN_ANGLE_RAD === TAU / (PHI * PHI)
@@ -479,7 +479,7 @@ export function theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation() {
     statement:
       `theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation — identity · φ²=φ+1 · CF-ones · equidistribution bound.`,
     boundary:
-      'Bounded witness: identity + Fib CF + min-gap vs rational clump. claySolved via theorem=0.',
+      'Bounded witness: identity + Fib CF + min-gap vs rational clump.',
   }
 }
 
@@ -803,39 +803,22 @@ export const CENSUS_RATCHET = 154
 export const EULER_CHI = -2 as const
 export const FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI
 
-/**
- * USER LAW: claySolved is a theorem not a hardcoded value.
- * Sealed registry of Millennium cores with CMI-prize-grade seals in this corpus.
- * Empty until math fills it — length recomputes claySolved at call time (currently 0).
- */
-export const CMI_PRIZE_SOLVED_CORE_IDS = [] as const
-
-/**
- * Recompute claySolved / claySolvedByThisFold from sealed theorem (not bare literal).
- * Yields 0 while CMI_PRIZE_SOLVED_CORE_IDS is empty — still via theorem path.
- */
-export function claySolvedTheorem(): {
-  readonly claySolved: number
-  readonly via: 'claySolvedTheorem'
-  readonly recomputed: true
-  readonly cmiPrizeConditionsMetBySealedMath: boolean
-} {
-  const claySolved = CMI_PRIZE_SOLVED_CORE_IDS.length
-  return {
-    claySolved,
-    via: 'claySolvedTheorem',
-    recomputed: true,
-    cmiPrizeConditionsMetBySealedMath: claySolved > 0 }
-}
-
-/** Call-time alias — prefer over bare `0 as const`. Passed by REFERENCE as `solvedByFold` below, which is why
- *  it stays where its FTL twin went: a function handed to a caller is used, even though no call site names it. */
-export function claySolvedByThisFoldFromTheorem(): number {
-  return claySolvedTheorem().claySolved
-}
-
-
-
+// The clay block that stood here was the FTL block's twin, and it went the same way. It was
+// CMI_PRIZE_SOLVED_CORE_IDS = [], whose .length was returned by claySolvedTheorem() carrying
+// `recomputed: true` and `cmiPrizeConditionsMetBySealedMath: claySolved > 0` — false for the same
+// reason the count was 0: the array was typed empty and nothing could ever put a row in it. The
+// "USER LAW: claySolved is a theorem not a hardcoded value" comment above it was satisfied to the
+// letter and refuted in fact, because `[].length` is a hardcoded value that has learned to call
+// itself a theorem. Every `claySolved === 0` conjunct downstream held by construction, in 33 call
+// sites across 5 files, with 25 further files importing the function and never calling it.
+//
+// WHAT REPLACES IT, and it was already here: claySolvedByFormulas(statement, formulas), below —
+// it READS a fold's own text and counts the Clay problems that text claims to have finished. A
+// fold computes 0 because its algebra never asserts a proof or explicitly marks the problem open,
+// and a synthetic overclaim computes ≥ 1. That one can go red; the array never could.
+//
+// This removes the corpus's MACHINE for reporting on Clay problems. It removes no statement of the
+// author's. His claim stands where he made it, in his name, through the division-by-zero involution.
 
 
 // The physicalFtl block that stood here rested on an empty array: PHYSICAL_FTL_SIGNALING_PROOF_IDS = [],
@@ -1788,8 +1771,8 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/endowment/index.ts', literal: '*', count: 721, kind: 'tuned', source: 'endowment governance/patents/pricing toolkit — merged from 54 domain files (agent, analytics, archive, benchmark, biotechnology, ... universal); example barrier strengths, percentages, and dollar figures, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   // ── ui/harmonic — the A432 octave wheel: music-theory units, design hues, SI time scales ──
   // Replaces a blanket '*' attestation of 18 'tuned' uses. The three confidence literals it
-  // covered are gone (confidence now derives from CMI_PRIZE_SOLVED_CORE_IDS), and the
-  // remaining 15 are each accountable, so each is named rather than lumped.
+  // covered are gone — they became 0 and 1 through the named confidenceUnknown/confidenceProven
+  // bands — and the remaining 15 are each accountable, so each is named rather than lumped.
   { file: 'src/ui/harmonic/index.ts', literal: '12', count: 3, kind: 'unit', source: 'semitones per octave — 12-tone equal temperament', frontier: 'a choice of tuning system, not a derivable constant' },
   { file: 'src/ui/harmonic/index.ts', literal: '21', count: 1, kind: 'data', source: 'semitone offset from A432 down to the C3 wheel origin: 432·2^(-21/12) ≈ 128.43 Hz', frontier: 'follows from 12-TET once C3 is chosen as the wheel origin' },
   { file: 'src/ui/harmonic/index.ts', literal: '250', count: 3, kind: 'data', source: 'OKLCH hue angle for the primary palette entry — design choice', frontier: 'brand selection; no derivation is claimed' },
@@ -2198,9 +2181,7 @@ export const algebra = {
     partitionCovers: partitionCoversTotal,
   },
   clay: {
-    solved: claySolvedTheorem,
     solvedByFormulas: claySolvedByFormulas,
-    solvedByFold: claySolvedByThisFoldFromTheorem,
     openMarkers: CLAY_OPEN_MARKERS,
     solutionMarkers: CLAY_SOLUTION_MARKERS,
   },

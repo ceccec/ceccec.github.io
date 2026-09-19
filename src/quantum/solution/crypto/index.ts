@@ -533,7 +533,10 @@ export function ed25519SignaturesAreAsymmetric() {
   if (!nodeCrypto) {
     return {
       computes: false, available: false,
-      facets: [{ facet: 'ED25519 IS NOT AVAILABLE HERE — node:crypto is absent, so no signature was made and none is claimed', on: true }],
+      // READ, NOT TYPED. This was `on: true` — correct inside the branch and therefore incapable of failing,
+      // which is the definition of a facet that is not a check. It now reads the same state the branch tested,
+      // so if this arm is ever reached with the module present the facet goes red instead of agreeing.
+      facets: [{ facet: 'ED25519 IS NOT AVAILABLE HERE — node:crypto is absent, so no signature was made and none is claimed', on: nodeCrypto === undefined }],
       boundary: 'Absent, not assumed: a signature scheme that did not run reports nothing.',
       statement: 'Ed25519 asymmetry is unmeasured in this environment.',
     }

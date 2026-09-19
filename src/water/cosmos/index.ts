@@ -4,7 +4,7 @@
 import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
 import * as __ns_up_lake_widgets from '../../widgets/index.ts'
-import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7/index.ts'
+import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7/index.ts'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7/index.ts'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
@@ -313,7 +313,7 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
         facet: 'null non-gravitational detection attributed to quantum gaps in theorems (incomplete revelation / OPEN frontier framing)',
         on: quantumGapsInTheorems && sealIntent.includes('quantum gaps in theorems') },
       {
-        facet: `locks — physicalFtlClaim= · certified=${certified} · refuseBeyond stays`,
+        facet: `locks — certified=${certified} · refuseBeyond stays`,
         on: certified === false },    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems', facets)
     return {
@@ -355,7 +355,7 @@ export function runOmegaCOverOmegaBCmbBudgetQuantumGapsInTheoremsExit(
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} cmb-omega-c-over-b — Ω_c/Ω_b=${r.ratioRounded} ` +
       `grav=${r.gravitationalCmbBudget} null=${r.nonGravitationalDetectionNull} ` +
-      `gaps=${r.quantumGapsInTheorems} clay= ` +
+      `gaps=${r.quantumGapsInTheorems} ` +
       `ftl= certified=${r.certified} qpu=${r.qpuRequired} ` +
       `root=${r.root.slice(0, 8)}\n`,
   )
@@ -1365,7 +1365,7 @@ export function runFrontierQuantumExit(root = '', _argv: readonly string[] = [])
   const report = frontierQuantum()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} frontier-quantum — simulates=${report.counts.simulates}/6 senses=${report.counts.senses}/6 ` +
-      `data=${report.counts.data}/6 maxDrift=${report.oscillation.maxDrift.toExponential(1)} clay= ftl=\n`,
+      `data=${report.counts.data}/6 maxDrift=${report.oscillation.maxDrift.toExponential(1)} ftl=\n`,
   )
   for (const row of report.program) process.stdout.write(`  · ${row.tier} ${row.frontier} | ${row.hardware} | wave ${row.wave}\n`)
   process.stdout.write(`  ${report.statement}\n`)
@@ -2388,7 +2388,7 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       },
       { facet: 'pair string/theory · string/chat bidirectional', on: pairsOn },
       {
-        facet: `physicalFtlClaim= · certified=false`,
+        facet: `certified=false`,
         on: certified === false,
       },    ].map((entry) => ({
       ...entry,
@@ -2459,7 +2459,7 @@ export function runStringTheoryInChatExit(_root = '', _argv: readonly string[] =
     `${report.computes ? '✓' : '✗'} string-theory — inChat=${report.stringInChat ? 1 : 0} ` +
       `duality=${report.dualityChatOn ? 1 : 0} sealed=${report.sealedRecompute ? 1 : 0} ` +
       `corners=${report.participants.length} edges=${report.dualEdgeCount} M=${report.mTheoryD} ` +
-      `D=${report.superstringD} clay= ftl=\n`,
+      `D=${report.superstringD} ftl=\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   process.stdout.write(`  room=${report.room.id}\n`)

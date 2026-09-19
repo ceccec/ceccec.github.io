@@ -12,7 +12,7 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
-import { A432_FOLDED, A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, claySolvedTheorem, earned, frequencyToLight, photonEnergyEv } from '../../3/7/index.ts'
+import { A432_FOLDED, A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, earned, frequencyToLight, photonEnergyEv } from '../../3/7/index.ts'
 import { movieCanvasPolarity } from '../../quantum/science/index.ts'
 import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball/index.ts'
 import { wavelengthOf } from '../../1/9/index.ts'
@@ -1687,7 +1687,7 @@ export function runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} cross-waves-tesla-patents — patents=${report.patentCount} ` +
       `combos=${report.combinationCount} certified=${report.certified} legal=${report.legalOwnershipClaimed} ` +
-      `clay= ftl= root=${report.root.slice(0, 8)}\n`,
+      `ftl= root=${report.root.slice(0, 8)}\n`,
   )
   for (const p of report.patents) {
     process.stdout.write(`  · ${p.no} — ${p.title} (${p.granted})\n`)

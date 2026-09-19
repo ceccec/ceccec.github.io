@@ -31,7 +31,6 @@ import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../..
 import { computedWebManifest, siteConfig } from '../../../wind/site/index.ts'
 import { livingTorus } from '../../../fire/diamonds/index.ts'
 import { cardHeroLinkWiresInUi, clientWorkBoundedByPureMath } from '../../../wind/routes/corpus/index.ts'
-import { claySolvedTheorem } from '../../../3/7/index.ts'
 import {
   matrixRgbDecodeFlowsInMovie,
   rosettaDecodeFlowsInMovie,

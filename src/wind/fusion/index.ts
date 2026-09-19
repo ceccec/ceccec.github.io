@@ -1,4 +1,4 @@
-import { A432_FOLDED, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, TAU, UNFOLDED_CENSUS, claySolvedTheorem } from '../../3/7/index.ts'
+import { A432_FOLDED, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, TAU, UNFOLDED_CENSUS } from '../../3/7/index.ts'
 import { initialBearing, phase } from '../../6/4/index.ts'
 import { buildMatrix, fleetCacheEconomicsDecoded, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute/index.ts'
 import { completeCorpus } from '../routes/corpus/index.ts'

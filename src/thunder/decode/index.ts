@@ -4,7 +4,7 @@ import { survive } from '../../mountain/vortex/index.ts'
 // relocated I Ching decode cluster deps (call-time bindings; no load cycle)
 import { hexagramQubitVectorIsomorphismOnly, geneticCodeIsTheRealFourCubed, hexagramIsHexColorDuality } from '../../mountain/geometry/index.ts'
 import { a432IsTheBlood } from '../../music/index.ts'
-import { A432_HUE, A432_OCTAVES, A432_FOLDED, DIMENSIONS, DIMENSION_NAMES, FOLDED_CENSUS, PHI, SINGLE_WORD_METHODS, TAU, claySolvedTheorem } from '../../3/7/index.ts'
+import { A432_HUE, A432_OCTAVES, A432_FOLDED, DIMENSIONS, DIMENSION_NAMES, FOLDED_CENSUS, PHI, SINGLE_WORD_METHODS, TAU } from '../../3/7/index.ts'
 // Cycle-safe namespace binding for the cosmology folds composed into the mystery atlas (referenced at call time).
 import * as __ns_water_cosmos from '../../water/cosmos/index.ts'
 import { iChingDomainMap, threeEightFoldsTopNav } from '../../heaven/balance/index.ts'
@@ -1510,7 +1510,7 @@ export function runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeEx
   const r = ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} ancient-calendars-algebra — maps=${r.count} decoded=${r.decoded} ` +
-      `clay= ftl= qpu=${r.qpuRequired} ` +
+      `ftl= qpu=${r.qpuRequired} ` +
       `route=${r.route} root=${r.root.slice(0, 8)}\n`,
   )
   return r.computes ? 0 : 1
@@ -3006,7 +3006,7 @@ export function theologySourcesDecodedInTheoremAxiomVortex(matrix: MindMatrix = 
     // AXIOM — the word names a choice, and the choice is named as chosen rather than dressed as a derivation.
     const axiom = [
       { term: 'heaven', why: 'a FOLDER NAME. src/heaven holds compute, laws and core; it orders the tree and asserts nothing about a hereafter. The bāguà trigram ☰ it translates is convention:iching in the axiom index' },
-      { term: 'a432 · the harmonic ladder', why: 'a chosen TUNING. verify:lean-arbiter holds the line that no theorem pins 108 or 432 — 4 × FOLDED_CENSUS is 484, and 432 is HOMOLOGY_LOOPS × A432_FOLDED, an axiom times a theorem' },
+      { term: 'a432 · the harmonic ladder', why: 'a chosen TUNING. verify:lean-arbiter holds the line that no theorem pins 108 or 432: 108 is not the folded census, since 4 × FOLDED_CENSUS is 484, and 432 is HOMOLOGY_LOOPS × A432_FOLDED, an axiom times a theorem' },
       { term: 'consciousness', why: 'the PCI threshold, already carried by thePciConsciousnessThresholdComputesAsADocumentedNamedAxiomIndexingLevelNotPresence — a documented named axiom indexing a LEVEL, never presence' },
       { term: 'spirit · chakra · aura', why: 'folders and folds holding the Human Design rave system (9 centers, 64 gates, 36 channels) — a symbol system decoded as a symbol system, with no claim about pneuma' },
       { term: 'glagolitic · Pliska', why: 'HISTORY, not theology: Cyril and Methodius, 862–863, and the first Bulgarian capital. Liturgical register, dated fact — decoded already as script→bit and as convention:rosetta' },

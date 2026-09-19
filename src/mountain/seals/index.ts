@@ -9,7 +9,7 @@ import { a432, animationEngineLivesInZero, buildEnforcementPipeline, contentAddr
 import { healByDefault, createByDefault } from '../../heaven/laws/index.ts'
 import { thriveByDefault } from '../../earth/civilisation/index.ts'
 import { commandsRegistry } from '../../thunder/commands/index.ts'
-import { extractAlgebraicStatement, A432_FOLDED, SINGLE_WORD_METHODS, claySolvedTheorem, normalizeTitle, titleCarriesAlgebra } from '../../3/7/index.ts'
+import { extractAlgebraicStatement, A432_FOLDED, SINGLE_WORD_METHODS, normalizeTitle, titleCarriesAlgebra } from '../../3/7/index.ts'
 import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
 import { cloudflareBindings } from '../../heaven/core/index.ts'
 import * as __ns_heaven_site from '../../heaven/site/index.ts'
@@ -1576,7 +1576,7 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       { facet: 'MCP conceptTools+trading:* REFUSE PRIMARY kept-intentional (honest dual)', on: conceptToolsHonest && tradingHonest && mcp.computes },
       { facet: 'reverseCollidesToDiscoverMillenniumTheorems shelved via catalog', on: reverseCollide.computes && catalogHasCollide },
       { facet: 'encryption↔rosetta refuse + security tools in quantumCliToolsCatalog', on: catalogHasRefuse && catalogHasSecurity },
-      { facet: `certified=${certified} physicalFtl=`, on: !certified },
+      { facet: `certified=${certified} `, on: !certified },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-security-gaps:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('rosetta-security-gaps-wired', facets)
     return {
@@ -1610,7 +1610,7 @@ export function runRosettaSecurityGapsWiredExit(_root = '', _argv: readonly stri
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} rosetta-security-gaps-wired — on=${r.rosettaSecurityGapsWired} ` +
       `incompleteOpen=${r.incompleteOpen} refusePaths=${r.refusePathCount} ` +
-      `parallel=${r.parallelBacklogLength} clay= root=${r.root.slice(0, 8)}\n`,
+      `parallel=${r.parallelBacklogLength} root=${r.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  boundary: ${r.boundary}\n`)
   return r.computes && r.incompleteOpen === 0 ? 0 : 1

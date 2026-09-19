@@ -23,7 +23,7 @@ import {
   doubleTorusMathAtAllScalesFlowsInMovie } from '../../mountain/geometry/index.ts'
 import { livingTorus } from '../../fire/diamonds/index.ts'
 import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball/index.ts'
-import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, claySolvedTheorem, earned } from '../../3/7/index.ts'
+import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, earned } from '../../3/7/index.ts'
 import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy/index.ts'
 import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions/index.ts'
 import { quantumDynamicsComputes, quantumChemistryToyComputes } from '../../quantum/dynamics/index.ts'
@@ -2724,7 +2724,7 @@ export function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(
       `flow=${report.dynamics.flow} spin=${report.dynamics.spin} linking=${report.dynamics.linking} ` +
       `R=${report.constants.majorRadius} r=${report.constants.minorRadius} ` +
       `A432=${report.constants.A432_HUE} J2000=${report.constants.MEEUS_J2000_JD} ` +
-      `phase=${report.phase.universePhase.toFixed(6)} ftl= clay= ` +
+      `phase=${report.phase.universePhase.toFixed(6)} ftl= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const f of report.facets) {

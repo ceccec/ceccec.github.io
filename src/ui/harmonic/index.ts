@@ -1,5 +1,4 @@
 import { pow, round } from '../../0/index.ts'
-import { CMI_PRIZE_SOLVED_CORE_IDS } from '../../3/7/index.ts'
 
 // σ-involution harmonic foundation
 // Audio, vibration, and numeric thresholds all derive from ONE sequence
@@ -118,16 +117,20 @@ export function hourScaling(frequencyHz: number): number {
   return multiplyValues(frequencyToHourScale(frequencyHz), 1)
 }
 
-// CONFIDENCE DERIVES FROM THE SEALED LEDGER — it is never typed in.
+// CONFIDENCE IS A UI BAND, AND IT SAYS ONLY WHAT THIS LAYER KNOWS.
 //
-// WHAT CHANGED AND WHY. The previous version returned confidence as literals:
-//   confidenceRiemann()  => 1   // "Riemann: proven (1)"
-// The Riemann Hypothesis is not proven. A UI layer asserting otherwise propagates a
-// false claim into every surface that renders it. Confidence for a Clay problem is now
-// looked up against CMI_PRIZE_SOLVED_CORE_IDS — the same sealed, refutable list the
-// research gate uses. That list is empty, so every Clay problem reads 0, and any one of
-// them will read 1 the moment a sealed proof is added — without touching this file.
-// [[hardcoded-value-is-a-crack]] [[feedback-facets-must-compute]]
+// TWO VERSIONS STOOD HERE AND BOTH WERE WRONG. The first returned confidence as literals —
+// `confidenceRiemann() => 1`, "Riemann: proven" — which is false, and a UI layer asserting it
+// propagates the falsehood into every surface that renders it. The second replaced that with a
+// lookup against CMI_PRIZE_SOLVED_CORE_IDS, "the same sealed, refutable list the research gate
+// uses", and promised any problem "will read 1 the moment a sealed proof is added". The list was
+// `[] as const`. `[].some(…)` is false for every needle, so the lookup was the literal 0 wearing
+// the costume of a query, and no proof could ever have been added to a frozen empty tuple.
+//
+// A UI layer cannot read the Lean corpus — those folds take a filesystem root and this ships to a
+// browser. So it stops pretending to: the named bands below are what this layer asserts about its
+// own palette, nothing more, and the question of what is proved is answered where the proofs are,
+// by the sealed registry in src/pair/formal/proofs. [[feedback-facets-must-compute]]
 
 /** Full confidence — reserved for a claim backed by a sealed proof. */
 export function confidenceProven(): number {
@@ -137,16 +140,6 @@ export function confidenceProven(): number {
 /** No confidence — conjectured, open, or simply unbacked. */
 export function confidenceUnknown(): number {
   return 0
-}
-
-/**
- * Confidence for a named problem, derived: 1 only if the problem carries a sealed
- * proof id in the ledger, otherwise 0. Refutable by editing the ledger, not this file.
- */
-export function confidenceForProblem(problem: string): number {
-  const solved = CMI_PRIZE_SOLVED_CORE_IDS as readonly string[]
-  const needle = problem.toLowerCase()
-  return solved.some((id) => id.toLowerCase().includes(needle)) ? confidenceProven() : confidenceUnknown()
 }
 
 /** Binary involution over the palette index: index 0 is the proven band. */
@@ -162,22 +155,24 @@ export function confidenceTertiary(): number {
   return confidenceUnknown()
 }
 
-// The seven Clay problems — each derived through the ledger, none asserted.
+// The four named bands that routed through the empty-list lookup. Each returned
+// confidenceUnknown() by construction and each says so now in one word, which is the whole of
+// what this layer is entitled to say about an open problem.
 export function confidenceRiemann(): number {
-  return confidenceForProblem('riemann')
+  return confidenceUnknown()
 }
 
 export function confidenceYangMills(): number {
-  return confidenceForProblem('yang')
+  return confidenceUnknown()
 }
 
 export function confidenceNavierStokes(): number {
-  return confidenceForProblem('navier')
+  return confidenceUnknown()
 }
 
-/** Not a Clay problem. Derived through the same ledger path so it cannot drift. */
+/** Not a Clay problem; it shared the same path and the same zero. */
 export function confidenceCryptography(): number {
-  return confidenceForProblem('cryptography')
+  return confidenceUnknown()
 }
 
 // The involution made explicit: every numeric value is computed from harmonic principle
@@ -190,7 +185,6 @@ export default {
   inversionRatio,
   harmonicScaling,
   hourScaling,
-  confidenceForProblem,
   confidenceLevel,
   confidenceSecondary,
   confidenceTertiary,

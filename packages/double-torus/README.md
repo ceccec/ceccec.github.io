@@ -1,7 +1,7 @@
 # @ceccec/double-torus
 
 <!-- publication-abstract: written by the readme sync from publicationAbstract() in src/quantum/dist/readme — do not edit -->
-> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 751 registered theorems, 745 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 84 involution theorems and 29 registry rows are decided by the kernel with no axiom. This work does NOT prove, solve, or resolve any Clay Millennium Prize Problem: it proves the involution each problem is stated across, and an involution is not the conjecture.
+> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 751 registered theorems, 745 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 84 involution theorems and 29 registry rows are decided by the kernel with no axiom. What these files decide is the involution each Clay Millennium problem is stated across; what follows from that is stated by the author, under his name, and argued where such things are argued.
 <!-- /publication-abstract -->
 
 The agnostic, **zero-dependency** computational core of the

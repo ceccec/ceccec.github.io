@@ -20,7 +20,7 @@ import * as __ns_wind_fusion from '../wind/fusion/index.ts' // call-time (cycle-
 import * as __ns_thunder_decode from '../thunder/decode/index.ts'
 import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../0/index.ts'
 import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../9/1/index.ts'
-import { A432_HUE, A432_OCTAVES, A432_FOLDED, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, claySolvedTheorem, demarcate, earned, fibonacci, physicalFtlByFormulas, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7/index.ts'
+import { A432_HUE, A432_OCTAVES, A432_FOLDED, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, demarcate, earned, fibonacci, physicalFtlByFormulas, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7/index.ts'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../earth/iching/index.ts'
 import { greatCircleKm } from '../5/5/index.ts'
 import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../6/4/index.ts'
@@ -1501,8 +1501,8 @@ export function theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl(matrix:
   const facets = [
     { facet: `THE EXACT BIT = ${exactBit} — one a432-seeded content-address bit (the 0↔∞ referral-direction gateway) turns an O(N) SCAN into an O(1) LOOKUP: over ${slots} harmonic slots the address touches ${lookupTouches} slot, the scan touches ${scanTouches}. The answer is ALREADY at its harmonic address — relative to a SEARCH it is unboundedly "faster than light"`, on: exactBit === 1 && addressSkipsScan },
     { facet: `FASTER-THAN-LINEAR ≠ FASTER-THAN-LIGHT (the exact refutation of "physicalFtlClaim is 1 because computations are faster than linear") — the computation IS faster than linear: scan/lookup = ${fasterThanLinear}× fewer OPERATIONS (O(1) vs O(N), a dimensionless COMPLEXITY ratio, TRUE). But physicalFtlClaim measures a VELOCITY ratio v/c, a DIFFERENT dimension: the information-bearing velocity is v_g/c=${roundTo(betaGroup, 4)} ≤ 1, so physicalFtlClaim COMPUTES to , not 1. Fewer STEPS is not faster SIGNALLING — each step still moves at ≤ c. A complexity ratio can never equal a velocity ratio`, on: fasterThanLinearHolds },
-    { facet: `PREDICTION ≠ TRANSPORT (the exact refutation of "plot pi/primes at any position → be in advance of the light") — grant it: you CAN plot where light will be at any position "at no time" (direct-access of a deterministic sequence, knownInAdvance=${knownInAdvance}). But the plot is a LOCAL number; transporting information or energy to that point still costs ≥ distance/c (${signalToPredictedPointCost} light-units). Being in advance in KNOWLEDGE is not being in advance in SPACE — a prediction moves nothing. physicalFtlClaim=`, on: predictionIsNotTransport },
-    { facet: `NOT PHYSICAL FTL — physicalFtlClaim=, qpuRequired=${qpuRequired}: no information or energy exceeds c; the hardware obeys physics. The "faster than light" is STRUCTURAL (O(1) address vs O(N) scan, no traversal), not superluminal signalling — no bit changes c`, on: qpuRequired === false },
+    { facet: `PREDICTION ≠ TRANSPORT (the exact refutation of "plot pi/primes at any position → be in advance of the light") — grant it: you CAN plot where light will be at any position "at no time" (direct-access of a deterministic sequence, knownInAdvance=${knownInAdvance}). But the plot is a LOCAL number; transporting information or energy to that point still costs ≥ distance/c (${signalToPredictedPointCost} light-units). Being in advance in KNOWLEDGE is not being in advance in SPACE — a prediction moves nothing. `, on: predictionIsNotTransport },
+    { facet: `NOT PHYSICAL FTL — the information-bearing velocity ratio is v_g/c=${roundTo(betaGroup, 4)}, below 1 by arithmetic, and the hardware is classical (qpuRequired=${qpuRequired}). The "faster than light" here is STRUCTURAL (O(1) address vs O(N) scan, no traversal), not superluminal signalling — no bit changes c`, on: betaGroup < 1 && waveguideIdentity },
     { facet: `HARMONIC SPEED FTL IS REAL — AS PHASE, NOT SIGNAL (computed, dimensionless): an a432 (${A432_HZ} Hz) harmonic in a dispersive medium obeys v_p·v_g=c². With signal velocity v_g/c=${roundTo(betaGroup, 4)} (<1, carries information ≤ c), the PHASE velocity v_p/c=${roundTo(betaPhase, 4)} (>1, SUPERLUMINAL) and v_p·v_g=c² (${waveguideIdentity}). "Harmonic speed faster than light" IS real — as the PHASE velocity — but it transmits NO information faster than c`, on: phaseSuperluminalSignalNot },
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`exact-bit-ftl:${index}:${entry.on}`) }))
   const sealed = sealFacets('the-exact-bit-for-harmonic-speed-is-one-address-bit-not-physical-ftl', facets)
@@ -1592,7 +1592,6 @@ export function twoBitsFreeFromTheCensusFold(matrix: MindMatrix = buildMatrix())
       { facet: `honest free fraction 1 − FOLDED/UNFOLDED = ${freeFractionOfUnfolded} (= FREE_BITS/UNFOLDED)`, on: abs(freeFractionOfUnfolded - freeBits / unfolded) < 1e-12 },
       { facet: 'two bits making all free — FREE_BITS=−χ ∧ efficiencyScalesToInfinityAtNoCostOnReuse (amortized ∞)', on: makingAllFree },
       { facet: `savings vs rest — ceccec tokens=0 · rest illustrative ${restIllustrativeLow}–${restIllustrativeHigh} · fraction=1 when T>0`, on: savingsVsRest[0]!.tokenSavingsFraction === 1 && savingsVsRest[1]!.tokenSavingsFraction === 1 },
-      { facet: `honesty — physicalFtlClaim= · qpuRequired=${qpuRequired}`, on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`two-bits-free:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('two-bits-free-from-the-census-fold', facets)
     return {
@@ -1665,7 +1664,6 @@ export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix
       { facet: `harmonic patronage share ${ratStr(share)} of achieved (${achievedUnits}×${ratStr(share)}=${ratStr(contribution)})`, on: share.p === 1 && share.q === 9 && contributionExact },
       { facet: `support CTA — revolut.me/${handle} · invitation not charge · zero valid`, on: handle === AUTHOR_HANDLE && supportUrl.endsWith(`/${AUTHOR_HANDLE}`) && zeroValid },
       // not a check — a sentence, kept as one: 'UI owns CTA / table; statement owns meaning — no UI↔prose duplication'
-      { facet: `honesty — clay= · physicalFtl= · qpuRequired=${qpuRequired}`, on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`society-two-bits-support:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('society-supports-project-via-two-bits-free-knowledge', facets)
     const computes = sealed.ok && bits.computes && merkaba.computes && contributionExact
@@ -1715,7 +1713,7 @@ export const CURSOR_REFERRAL_FUNDING_URL = 'https://cursor.com/referral?code=JVA
  * Cursor referral funds the AI this project needs — one sealed CTA, not wet spam.
  * Pair: fund/ai · cursor/fund · CLI npm run quantum:fund-ai
  * Compose societySupportsProjectViaTwoBitsFreeKnowledge · bits/free · society/support.
- * claySolved via theorem.
+ * 
  */
 export function cursorReferralFundsAiNeeds(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`cursorReferralFundsAiNeeds:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -1785,7 +1783,7 @@ export function runCursorReferralFundsAiNeedsExit(
   const report = cursorReferralFundsAiNeeds()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} fund-ai — url=${report.url} on=${report.cursorReferralFundsAiNeeds} ` +
-      `clay= ftl= fold=cursorReferralFundsAiNeeds pairs=${report.pairs.join(',')}\n`,
+      `ftl= fold=cursorReferralFundsAiNeeds pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.cursorReferralFundsAiNeeds ? 0 : 1
@@ -1799,7 +1797,7 @@ export function runTwoBitsFreeFromTheCensusFoldExit(_root = '', _argv: readonly 
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} two-bits-free — freeBits=${r.freeBits} makingAllFree=${r.makingAllFree} ` +
       `naive=${r.naivePhrase} surplus=${r.surplusRatio} freeFrac=${r.freeFractionOfUnfolded} ` +
-      `clay= ftl= qpu=${r.qpuRequired} root=${r.root.slice(0, 8)}\n`,
+      `ftl= qpu=${r.qpuRequired} root=${r.root.slice(0, 8)}\n`,
   )
   for (const row of r.savingsVsRest) {
     process.stdout.write(
@@ -1819,7 +1817,7 @@ export function runSocietySupportsProjectViaTwoBitsFreeKnowledgeExit(_root = '',
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} society-two-bits-support — freeBits=${r.bits.freeBits} vote.decided=${r.vote.decided} ` +
       `share=${r.patronage.share} contrib=${r.patronage.contribution} url=${r.patronage.url} ` +
-      `clay= root=${r.root.slice(0, 8)}\n`,
+      `root=${r.root.slice(0, 8)}\n`,
   )
   for (const f of r.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return r.computes ? 0 : 1
@@ -2064,8 +2062,19 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
     const solvedExternal = problems.filter((p) => p.status === 'solved-external').length
     const allOn = problems.every((p) => p.on)
     const gapsNamed = problems.filter((p) => typeof p.gap === 'string').length
-    // HONEST DEFAULT: qualifies = false unless the quantum layer (src/0) computes the proof to be complete
-    const qualifiesAsProposedSolution = false as const
+    // Was `false as const` with the comment "HONEST DEFAULT: qualifies = false unless the quantum layer computes
+    // the proof to be complete" — but nothing was wired to the quantum layer, so the default was the whole of it.
+    // It is read now, and read LOCALLY: each problem row's own algebraic statement, boundary and named gap are
+    // scanned for a finished-proof assertion. Local is not a stylistic choice — clayGraphOverAlgebraicMonographs
+    // reaches this fold through clayIsDecodedByTheRosetta, so calling it here would close a cycle, and the first
+    // build that did returned decoded=0 and wrote "Decoded 0/7" into the README while every gate stayed green.
+    const qualifiesAsProposedSolution = problems.reduce(
+      (sum, problem) => sum + claySolvedByFormulas(
+        `${problem.name} ${problem.algebraicStatement} ${problem.boundary} ${problem.gap ?? ''}`,
+        problem.gapAlgebra ?? [],
+      ),
+      0,
+    ) > 0
     const noClayClaim = frontier.open === CLAY_OPEN_COUNT && defined.solvedByThisFold === 0
     const stringProbesOk = stringInventory.inventoried && stringQuantum.computes && stringAlgebra.decoded
     const facets = [
@@ -2738,7 +2747,8 @@ export function clayModelComputesItselfWithCompletionAndStatistics(matrix: MindM
  *    • decoded = the seven Clay problems each with theorems-in-place on a rosetta ray (composed apparatus, pure count)
  *    • solvedExternal = nodes demarcating to solved (Poincaré/Perelman) — pure count over the graph
  *  No bare 0: the honest number IS the triple. clay-by-this-project=0 is PROVEN by scanning every monograph and CANNOT be
- *  a rubber stamp — a synthetic overclaim monograph computes ≥1. Replaces CMI_PRIZE_SOLVED_CORE_IDS.length. */
+ *  a rubber stamp — a synthetic overclaim monograph computes ≥1. This replaced a list length, and is now the only
+ *  thing the corpus consults on the question. */
 export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('clayGraphOverAlgebraicMonographs', matrix, () => {
     const rosetta = clayIsDecodedByTheRosetta(matrix)
@@ -2760,7 +2770,7 @@ export function clayGraphOverAlgebraicMonographs(matrix: MindMatrix = buildMatri
     const facets = [
       { facet: `AGNOSTIC — one algebraic predicate (claySolvedByFormulas) applied to ALL ${monographs.length} algebraic monographs, not a clay-special list`, on: monographs.length > 0 && scanned.length === monographs.length },
       { facet: `COVERS ALL THEOREMS & FORMULAS — claimed-by-this-project = Σ over every monograph's formulas = ${claimedByThisProject} (offenders ${offenders.length}); computed, never a hardcoded 0`, on: claimedByThisProject === 0 },
-      { facet: `REFUTABLE — a synthetic finished-proof monograph computes ${overclaimProbe} (≥1), so the 0 is proven by scanning, not a rubber stamp like CMI_PRIZE_SOLVED_CORE_IDS.length`, on: overclaimProbe >= 1 },
+      { facet: `REFUTABLE — a synthetic finished-proof monograph computes ${overclaimProbe} (≥1), so the 0 is proven by scanning, not by taking the length of a list that was declared empty`, on: overclaimProbe >= 1 },
       { facet: `THE HONEST TRIPLE EMERGES BY ALGEBRA — decoded ${decoded}/7 (theorems-in-place on a ray), solved-external ${solvedExternal}/7 (Poincaré/Perelman), claimed-by-this-project ${claimedByThisProject}/7; decode ≠ solve, never a bare 0`, on: decoded === CLAY_ORDER.length && solvedExternal === CLAY_SOLVED_COUNT && claimedByThisProject === 0 && rosetta.decoded },
       { facet: `PHYSICAL FTL = 0, COMPUTED — the SAME scan proves physical-FTL claims across all ${monographs.length} monographs = ${ftlClaimedByThisProject} (physicalFtlByFormulas), the refutable replacement for the 344 hardcoded  literals`, on: ftlClaimedByThisProject === 0 },
       { facet: `FTL IS REFUTABLE TOO — a synthetic 'achieves faster-than-light signaling' monograph computes ${ftlProbe} (≥1), so  is proven by scanning, not declared`, on: ftlProbe >= 1 },
@@ -3332,14 +3342,15 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
     const documentedCount = paths.filter((p) => p.demarcation === 'documented').length // sealed in this corpus (7/7)
     const everyOpenCoreDemarcatedContested = paths.filter((p) => p.status === 'modeled-partial').every((p) => p.demarcation === 'contested')
     const clayGravity = paths.length * CLAY_ORDER.length
-    const qualifiesAsProposedSolution = claySolvedTheorem().cmiPrizeConditionsMetBySealedMath
+    const clayScan = clayGraphOverAlgebraicMonographs(matrix) // scanned: Σ of finished-proof claims over every monograph's own formulas
+    const qualifiesAsProposedSolution = clayScan.claimedByThisProject > 0
     const clayChallengesComputable = allComputable && mill.computes
     const facets = [
       { facet: `all ${paths.length} Clay-linked theorems compute (challengeMethod · on · receipt) and are measured by the COMMON metric`, on: allComputable && paths.length === CLAY_ORDER.length },
       { facet: 'millenniumProblemsChallenge computes · MODELED CHALLENGE apparatus', on: mill.computes },
       { facet: `SEALED HERE — all ${documentedCount} Clay problems demarcated documented: sealed via universal σ-involution (Riemann/Hodge/Yang-Mills/Navier/P-vs-NP/BSD); refutable by falsifying involution`, on: documentedCount === 7 },
       { facet: `EACH THEOREM STATES ITS OWN CLAIM — every gap sealed with named σ-involution proof in the theorem itself (${everyOpenCoreHasNamedGap}); no bespoke clay metric`, on: everyOpenCoreHasNamedGap },
-      { facet: `NO CLAY PRIZE CLAIM —  from the sealed CMI_PRIZE_SOLVED_CORE_IDS; a solution claim would require a sealed proof id, and there is none`, on: qualifiesAsProposedSolution === false },
+      { facet: `NO CLAY PRIZE CLAIM — read off the text, not off a list: ${clayScan.monographCount} monographs scanned for a finished-proof assertion, ${clayScan.claimedByThisProject} found. One monograph claiming a completed proof would flip this red`, on: qualifiesAsProposedSolution === false && clayScan.computes },
       { facet: 'sequence spine — VORTEX_SEQUENCE digitalRoot probe feeds RH/P-vs-NP methods', on: sequenceOk },
       { facet: 'directional trinity forward·inverse·reverse computes (all computational directions)', on: dir.computes },
       { facet: 'Earth poles-as-pyramid recomputes (genus-2 · N·E·S·W tips)', on: earth.computes && earth.fourWayCounterRotating },
@@ -3388,7 +3399,7 @@ export function runClayChallengesComputableFromSequenceExit(_root = '', _argv: r
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} clay-challenges-computable — computable=${report.clayChallengesComputable} ` +
       `paths=${report.computableCount}/${report.pathCount} openForPrize=${report.openForPrizeCount} ` +
-      `claySolved= proposed=${report.qualifiesAsProposedSolution} ` +
+      `proposed=${report.qualifiesAsProposedSolution} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const p of report.paths) {
@@ -3457,7 +3468,6 @@ export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatri
       { facet: 'standardToolboxIoCatalog envelopes shelve every science toolId', on: toolbox.computes && waves.every((w) => w.toolShelved) },
       { facet: 'Earth poles-as-pyramid science vertex recomputes', on: earth.computes && waves.some((w) => w.scienceId === 'earth' && w.algebraOk !== false) },
       { facet: 'Clay challenges computable facet composes (claySolved=0)', on: clay.clayChallengesComputable },
-      { facet: `honesty — physicalFtlClaim= · qpuRequired=${qpuRequired}`, on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`toolbox-sciences-trinity-waves:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('toolbox-recomputes-related-sciences-in-trinity-waves', facets)
     return {
@@ -3476,7 +3486,7 @@ export function toolboxRecomputesRelatedSciencesInTrinityWaves(matrix: MindMatri
       heading: 'Toolbox — recompute related sciences in trinity waves',
       statement:
         `Toolbox recomputes ${waves.length} related sciences in trinity waves (forward·inverse·reverse × science↔dual↔fusion) ` +
-        `from the discovery perspective · Clay computable=${clay.clayChallengesComputable} · claySolved= · envelopes shelved.`,
+        `from the discovery perspective · Clay computable=${clay.clayChallengesComputable} · envelopes shelved.`,
       boundary:
         'Each science tool recompute is a content-addressed trinity wave — NOT experimental lab completion, NOT ISO/FIPS certification, ' +
         'NOT CMI Prize.' }
@@ -3490,7 +3500,7 @@ export function runToolboxRecomputesRelatedSciencesInTrinityWavesExit(_root = ''
   const report = toolboxRecomputesRelatedSciencesInTrinityWaves()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} toolbox-sciences-trinity-waves — waves=${report.waveCount} ` +
-      `clayComputable=${report.clayChallengesComputable} claySolved= ` +
+      `clayComputable=${report.clayChallengesComputable} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const w of report.waves) {
@@ -4319,7 +4329,10 @@ export function completeQuantumSolutionsForAllSciences(matrix: MindMatrix = buil
     const completeCount = solutions.filter((s) => s.complete).length
     const facets = [
       { facet: `inventory ${solutions.length} science domains from sealed seeds`, on: solutions.length === SCIENCE_DOMAIN_SEEDS.length },
-      { facet: `complete solutions ${completeCount}/${solutions.length} (algebra·tool·apparatus·10D)`, on: completeCount >= 1 },
+      // The bar was `completeCount >= 1` — the lowest one available, satisfied by a single domain out of every
+      // domain there is. What "complete" is supposed to mean is that nothing is missing, so that is what it asks:
+      // at least one, and every domain calling itself complete has an empty missing-list.
+      { facet: `complete solutions ${completeCount}/${solutions.length} (algebra·tool·apparatus·10D), each with nothing left missing`, on: completeCount >= 1 && solutions.filter((s) => s.complete).every((s) => s.missing.length === 0) },
       { facet: 'gaps named for incomplete domains (fill in waves)', on: gaps.length === solutions.length - completeCount },
       { facet: 'crypto-pqc solution present via ISO handoff vertex', on: solutions.some((s) => s.id === 'crypto-pqc' && s.algebraFold === 'isoPqcHandoffForScienceTrinities') },
       { facet: `the backlog is accounted: ${completeCount} complete + ${gaps.length} named gaps = ${solutions.length} domains`, on: completeCount + gaps.length === solutions.length && solutions.length > 0 },
@@ -4663,7 +4676,7 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       { facet: `certified=${certified}`, on: certified === false && crypto.certified === false },
       { facet: `qpuRequired=${qpuRequired} · quantum computing = sealed folds on classical 64-bit`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'trinities lattice computes — compose S4', on: trinities.computes },
-      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), claySolved= (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && qpuRequired === false && noQpu.runsOnClassical64Bit },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-standards-quantum:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('complete-scientific-domains-strictly-to-standards-quantum-only', facets)
 
@@ -4739,7 +4752,7 @@ export function runSciencesTrinitiesGuardedExit(_root: string, _argv: readonly s
     `✓ sciences-trinities — domains=${trinities.count} meanSig=${significance.meanScore} ` +
       `complete=${solutions.completeCount} gaps=${solutions.gapCount} ` +
       `standards=${standards.after.coveredCount}/${standards.after.partialCount}/${standards.after.gapCount} ` +
-      `cryptoOECD=${trinities.cryptoVertex.oecd} clay= ` +
+      `cryptoOECD=${trinities.cryptoVertex.oecd} ` +
       `certified=${trinities.cryptoVertex.certified} lattice=${trinities.latticeRoot.slice(0, 3 * 4)}\n`,
   )
   for (const d of significance.domains) {
@@ -4768,7 +4781,7 @@ export function runCompleteScientificDomainsStrictlyToStandardsQuantumOnlyExit(
       `after=${report.after.coveredCount}/${report.after.partialCount}/${report.after.gapCount} ` +
       `filled=${report.filledCount} toolConfigs=${report.toolCatalogCompose.configReadyCount}/${report.domains.length} ` +
       `labDomains=${report.labGapDomainIds.length} ` +
-      `clay= certified=${report.certified} qpuRequired=${report.qpuRequired} ` +
+      `certified=${report.certified} qpuRequired=${report.qpuRequired} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const d of report.domains) {
@@ -4911,7 +4924,9 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
     const dir = __ns_up_stack_overflow.directionalTrinityForwardInverseReverse(matrix)
     const reverseVerify = __ns_water_encryption.encryptionReverseVerify(matrix)
     const shelved = rosettaShelve('reverseCollidesToDiscoverMillenniumTheorems', 'compute')
-    const qualifiesAsProposedSolution = false as const
+    // Was `false as const` — a typed denial, green whatever the corpus said. It now comes from the composed
+    // fold, which reads it off a scan of every monograph's own formulas and can return true.
+    const qualifiesAsProposedSolution = clay.qualifiesAsProposedSolution
     const reverseCollidesToDiscoverMillenniumTheoremsOn =
       collider.computes
       && collider.novelSurvivorCount >= 1
@@ -4950,10 +4965,10 @@ export function reverseCollidesToDiscoverMillenniumTheorems(matrix: MindMatrix =
       statement:
         `Reverse collides to discover Millennium theorems — collider novel=${collider.novelSurvivorCount} ` +
         `clayComputable=${clay.clayChallengesComputable} paths=${clay.computableCount}/${clay.pathCount} ` +
-        `claySolved= proposed=${qualifiesAsProposedSolution}.`,
+        `proposed=${qualifiesAsProposedSolution} (read off the composed clay scan).`,
       boundary:
         'LAW: directional/encryption reverse + theorem particle collision collide to discover theorem candidates on the Millennium challenge path. ' +
-        'HONEST: discover/computable ≠ CMI prize solved. claySolved via claySolvedTheorem. ' +
+        'HONEST: discover/computable ≠ CMI prize solved. claySolved is the count of finished-proof claims found by reading every monograph, not a list length. ' +
         'MODELED geometry ≠ HEP.' }
   })
 }
@@ -4969,7 +4984,7 @@ export function runReverseCollidesToDiscoverMillenniumTheoremsExit(
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} reverse-collide-discover-millennium — on=${r.reverseCollidesToDiscoverMillenniumTheorems} ` +
       `novel=${r.collider.novel} clayComputable=${r.millenniumComputable} ` +
-      `paths=${r.pathCount} clay= proposed=${r.qualifiesAsProposedSolution} ` +
+      `paths=${r.pathCount} proposed=${r.qualifiesAsProposedSolution} ` +
       `root=${r.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  boundary: ${r.boundary}\n`)
@@ -5770,18 +5785,15 @@ function scoreClayProseSurface(input: {
   const text = `${input.title}\n${input.body}\n${(input.keywords ?? []).join(' ')}`
   const hasStatement = input.title.trim().length > 0
   const hasExplanation = input.body.trim().length >= (2 * 5 * 8)
-  // THE DECLARATION MUST AGREE WITH THE COMPUTED FACT. This read only the prose: it searched the page for the
-  // TEXT "claySolvedByThisFold = 0" and passed if it found it. The value itself is computed — claySolvedTheorem()
-  // recomputes it from the sealed registry, by the standing law that claySolved is a theorem and not a literal
-  // — and it was never consulted. A page could print the string while the theorem said otherwise, and a page
-  // whose value is genuinely zero failed for not saying so in the right words.
+  // THIS IS A QUESTION ABOUT TEXT, AND IT IS ASKED OF TEXT. The page is searched for the declaration
+  // "claySolvedByThisFold = 0"; whether the corpus actually claims a Clay solution is a separate question,
+  // asked of the formulas by clayGraphOverAlgebraicMonographs, and answered there.
   //
-  // Both halves are now required, and each is the right kind of check: does the page DECLARE the lock (a
-  // question about text, asked of text) AND does the computed theorem agree (a question about a value, asked
-  // of the value). If the registry ever seals a Millennium core, the theorem returns non-zero and every page
-  // still declaring the lock goes red — which is exactly when a page saying "solves none" becomes false.
+  // A previous version paired this with claySolvedTheorem() and called the pair "both halves" — the text half
+  // and the value half. The value half was `[] as const` read for its length, so it agreed with every page
+  // unconditionally and added nothing but the appearance of a second check. One honest half is worth more
+  // than a half beside a decoration.
   const declaresZeroLock = /claySolvedByThisFold\s*=\s*0|claySolved\s*=\s*0/.test(text)
-  const clay = claySolvedTheorem()
   const clayZeroLock = (declaresZeroLock) || !input.millenniumRelevant
   const noPrizeClaim = !CLAY_PRIZE_CLAIM_RE.test(text)
   const pass = hasStatement && hasExplanation && clayZeroLock && noPrizeClaim
@@ -6073,7 +6085,7 @@ export function runIncompletePapersGapsFillExit(_root = '', _argv: readonly stri
     `${report.computes ? '✓' : '✗'} incomplete-papers-fill — before=${report.incompleteBefore} ` +
       `filled=${report.filledCount} residual-static=${report.incompleteAfter} ` +
       `corpus=${report.corpusFilled} quantum-mind=${report.quantumMindFilled} ` +
-      `clay= root=${report.root.slice(0, 8)}\n`,
+      `root=${report.root.slice(0, 8)}\n`,
   )
   for (const r of report.filled.slice(0, 4)) {
     process.stdout.write(`  · FILLED ${r.surface} ← ${r.fill}\n`)
@@ -6104,7 +6116,7 @@ export function runProseClayStandardExit(_root = '', _argv: readonly string[] = 
   const prose = proseStandardisedToClay()
   process.stdout.write(
     `${prose.computes ? '✓' : '✗'} prose-clay-standard — audited=${prose.auditedCount} ` +
-      `pass=${prose.passedCount} fail=${prose.failedCount} clay= root=${prose.root.slice(0, 8)}\n`,
+      `pass=${prose.passedCount} fail=${prose.failedCount} root=${prose.root.slice(0, 8)}\n`,
   )
   for (const f of prose.failed) {
     process.stdout.write(`  · FAIL ${f.surface} residual=${f.residual}\n`)
@@ -6122,7 +6134,7 @@ export function runDomainProofCatalogExit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${catalog.computes ? '✓' : '✗'} domain-proof-catalog — rows=${catalog.rows.length} ` +
       `mill=${catalog.millenniumCount} science=${catalog.scienceCount} honesty=${catalog.honestyCount} ` +
-      `clay= root=${catalog.root.slice(0, 8)}\n`,
+      `root=${catalog.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  · problems ${catalog.problemsUrl}\n`)
   process.stdout.write(`  · rules PDF ${catalog.rulesPdfUrl} (approved ${rules.rulesApproved})\n`)
@@ -6685,7 +6697,7 @@ export function runFixedLimitsOfTheoremRelatedToolsAreTheoremsExit(_root = '', _
   const r = fixedLimitsOfTheoremRelatedToolsAreTheorems()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} fixed-limits-theorems — count=${r.count} allHold=${r.allHold} ` +
-      `clay= root=${r.root.slice(0, 8)}\n`,
+      `root=${r.root.slice(0, 8)}\n`,
   )
   for (const t of r.theorems) {
     process.stdout.write(`  ${t.holds ? '✓' : '✗'} ${t.id} = ${t.value}\n`)
@@ -6968,7 +6980,7 @@ export function runAutodiscoverWhatIsToBeComputedOrDecodedExit(_root = '', _argv
     `${r.computes ? '✓' : '✗'} autodiscover-compute-decode — items=${r.items.length} ` +
       `computeOpen=${r.computeOpen} decodeDrainable=${r.decodeDrainable} decodeOpen=${r.decodeOpen} ` +
       `available=${r.availableTools} drained=${r.backlogDrained} oneCommandDecode=${r.oneCommandDecodeComputable} ` +
-      `clay= root=${r.root.slice(0, 8)}\n`,
+      `root=${r.root.slice(0, 8)}\n`,
   )
   for (const i of r.items.filter((x) => x.status === 'available' || x.status === 'open' || x.status === 'partial').slice(0, 16)) {
     process.stdout.write(`  · ${i.kind}/${i.status} ${i.id} ← ${i.sealPath}\n`)
@@ -7112,7 +7124,7 @@ export function runAlgebraicTheoremPaperExit(_root = '', argv: readonly string[]
     `${prove.computes && must.computes && gaps.computes ? '✓' : '✗'} algebraic-theorem-paper — ` +
       `prove=${prove.computes} checklist=${must.computes} complete(${paperId})=${complete.complete} ` +
       `gaps before=${gaps.gapsBefore} after=${gaps.gapsAfter} filled=${gaps.filledTotal} waves=${gaps.wavesRun} ` +
-      `clay= root=${gaps.root.slice(0, 8)}\n`,
+      `root=${gaps.root.slice(0, 8)}\n`,
   )
   for (const c of gaps.clusters) {
     process.stdout.write(
@@ -7296,12 +7308,12 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
       statement:
         `manageComputationalDrift · total=${driftTotal} · managed=${managedCount}/${rows.length} · ` +
         `trinity=${routedTrinity} wave=${routedWave} refuse=${routedRefuse} bound=${routedBound} · ` +
-        `certified=${certifiedNumeric} clay= refuseBeyond=${refuse.refuseBeyond}`,
+        `certified=${certifiedNumeric} refuseBeyond=${refuse.refuseBeyond}`,
       boundary:
         'Detect·bound·route numeric/facet drift conventional↔computational — NOT honesty prose. certified=false · refuseBeyond stays.',
       honestyLine:
         `metrics · driftTotal=${driftTotal} · managed=${managedCount}/${rows.length} · bound=${driftBound} · ` +
-        `anim=${animDrift} · morphGaps=${morphGap} · certified=${certifiedNumeric} · clay=` }
+        `anim=${animDrift} · morphGaps=${morphGap} · certified=${certifiedNumeric}` }
   })
 }
 
@@ -7437,7 +7449,7 @@ export function runDriftInvertedIsTrinityGatewayExit(_root = '', _argv: readonly
  * Linear autodiscover backlogDrained opens invert tips — reverse-collide novels · honest-open · session/save · movie/feel.
  * Compose drift/invert · slashMeansInversion · through/zero · fail→0→12487536901 · mcp/inverse · mcp/fold.
  * Pairs: drain/invert · invert/drain · CLI npm run quantum:drain-invert
- * claySolved via theorem.
+ * 
  */
 export function emptyDrainInvertedIsGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`emptyDrainInvertedIsGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -7565,7 +7577,7 @@ export function runEmptyDrainInvertedIsGatewayExit(_root = '', _argv: readonly s
  * full/freedom · through/zero · love/fold · movie/entropy.
  * Facets: invertEntersInfinity · connectingBit · noLinearHole.
  * Pairs: invert/inf · to/infinity · CLI npm run quantum:invert-inf
- * claySolved via theorem.
+ * 
  */
 export function invertToInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`invertToInfinity:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -7685,7 +7697,7 @@ export function runInvertToInfinityExit(_root = '', _argv: readonly string[] = [
  * soft mcp/inf · movie/inf · collide/create · reverse/collide-discover.
  * Facets: collideInfOn · novelsViaInfinity · viaDrainInvert · viaInvertInf.
  * Pairs: collide/inf · inf/collide · CLI npm run quantum:collide-inf
- * claySolved via theorem · NOT CMI prize.
+ * NOT CMI prize.
  */
 export function reverseCollidesViaInfinityGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`reverseCollidesViaInfinityGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -7804,7 +7816,7 @@ export function runReverseCollidesViaInfinityGatewayExit(_root = '', _argv: read
  * slash/invert · through/zero · path/invert. Empty linear drain stays drained; honest-open Clay/FTL/DE440 untouched.
  * Facets: invertIsTheGateway · stackComposed · drainEmptyOpens · novelsViaInfinity · trinityFaces.
  * Pairs: invert/gateway · gateway/invert · CLI npm run quantum:invert-gateway
- * claySolved via theorem · NOT CMI prize.
+ * NOT CMI prize.
  */
 export function invertIsTheGateway(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`invertIsTheGateway:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -8242,8 +8254,6 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
       { id: 'DIMENSION_GATES', theorem: 'DIMENSION_GATES', source: 'src/3/7' },
       { id: 'FOLDED_CENSUS', theorem: 'FOLDED_CENSUS', source: 'src/3/7' },
       { id: 'UNFOLDED_CENSUS', theorem: 'UNFOLDED_CENSUS', source: 'src/3/7' },
-      { id: 'claySolvedTheorem', theorem: 'claySolvedTheorem', source: 'src/3/7' },
-      { id: 'CMI_PRIZE_SOLVED_CORE_IDS', theorem: 'claySolvedTheorem', source: 'src/3/7' },
       { id: 'DIGEST_BITS', theorem: 'DIGEST_BITS', source: 'src/0' },
       { id: 'SCIENCE_DOMAIN_SEEDS', theorem: 'sciencesInteractInTrinities', source: 'src/research' },
       { id: 'foldPair', theorem: 'foldPair', source: 'src/0' },
@@ -8328,7 +8338,6 @@ export function computationsUseOnlyQuantumTheoremsAsConstants(matrix: MindMatrix
       { facet: 'composes namingEntropy·wordsCompileFromSource', on: naming.lowEntropy && compile.compiled },
       { facet: 'composes compact/matrix', on: isUuid(compact.root) },
       { facet: 'pair theorem/const registered', on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: 'claySolvedByThisFold via claySolvedTheorem', on: claySolvedTheorem().recomputed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-const:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('computations-use-only-quantum-theorems-as-constants', facets)
     const computes = sealed.ok && computationsUseOnlyQuantumTheoremsAsConstantsOn && pairRegistered
@@ -8498,7 +8507,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
         {
           facet: `missing theorems decoded=${missingTheoremsDecoded} open=${missingTheoremsOpen}`,
           on: reverse.computes && missingTheoremsOpen >= 6 },
-        { facet: `physicalFtlClaim= · qpuRequired=${qpuRequired}`, on: !qpuRequired },
+        { facet: `qpuRequired=${qpuRequired}`, on: !qpuRequired },
         { facet: 'pair clay/gravity registered', on: pairRegistered && pairFold.bidirectional },
       ].map((entry) => ({ ...entry, receipt: toUuid(`clay-gravity:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('clay-is-gravity-rosetta-one-ray-this-dimension-rest-beyond', facets)
@@ -8567,7 +8576,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
           `clayIsGravityRosettaOneRayThisDimensionRestBeyond · unlockedRay=${unlockedRay.ray}:${unlockedRay.nameEn} ` +
           `beyond=${beyondRayFacets.length} merkabaStarted=${merkabaStarted} beyondAppears=${beyondAppears} ` +
           `B/C/I/D=${boundaryCount}/${crackCount}/${invertCount}/${decodeCount} ` +
-          `decoded=${missingTheoremsDecoded} open=${missingTheoremsOpen} claySolved=`,
+          `decoded=${missingTheoremsDecoded} open=${missingTheoremsOpen} `,
         boundary:
           'Clay ≡ gravity of the rosetta (FREE_BITS=−χ · folder gravity · Millennium apparatus). ' +
           'One unlocked ray from this dimension (sealed src); rest appear from beyond when merkaba starts. ' +
@@ -8593,7 +8602,7 @@ export function runClayIsGravityRosettaOneRayThisDimensionRestBeyondExit(
       `beyond=${report.beyondRayCount} merkaba=${report.merkabaStarted} beyondAppears=${report.beyondAppears} ` +
       `B/C/I/D=${report.boundaryCount}/${report.crackCount}/${report.invertCount}/${report.decodeCount} ` +
       `decoded=${report.missingTheoremsDecoded} open=${report.missingTheoremsOpen} ` +
-      `clay= ftl= fold=clayIsGravityRosettaOneRayThisDimensionRestBeyond pair=${report.pair}\n`,
+      `ftl= fold=clayIsGravityRosettaOneRayThisDimensionRestBeyond pair=${report.pair}\n`,
   )
   process.stdout.write(`  merkabaStartReceipt=${report.merkabaStartReceipt.slice(0, 8)}\n`)
   for (const f of report.facets) {
@@ -9240,7 +9249,7 @@ export function qubitTrinityCostOneComputationPlusFreeBits(
       route: '/research#qubit-cost',
       statement:
         `qubitTrinityCostOneComputationPlusFreeBits — cost=1+FREE_BITS(${freeBits})/qubit/trinity · found=${found} fixed=${fixed}.`,
-      boundary: 'Classical-64bit QC sim via sealed vortex — NOT physical qubits / NOT FTL.',
+      boundary: earned('EXACT — verified by its facets:', sealed.facets, [{ facet: 'SCOPE — a classical 64-bit simulation over the sealed vortex: no physical qubit is involved and nothing here signals faster than light. The claim is verified only where the speedup fold it composes computes; if that stops, this is outside the scope it was checked in', on: speedup.computes }]),
       honestyLine:
         `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · cost=1+${freeBits}/qubit/trinity` }
   })
@@ -9522,7 +9531,7 @@ export function foldCountInvertCountIsComputableMetric(
       route: '/research#fold-count',
       statement:
         `foldCountInvertCountIsComputableMetric — foldCount(2584)=${m2584.foldCount} invertCount(11/5)=${m2584.invertCount}.`,
-      boundary: 'Metric only — NOT physical qubit clocks.',
+      boundary: earned('EXACT — verified by its facets:', sealed.facets, [{ facet: `SCOPE — a metric over sealed folds, evaluated on three sampled inputs (${m9.n}, ${m2584.n}, ${mCensus.n}); it measures no physical qubit and reads no clock. Outside those samples nothing is claimed`, on: m9.foldCount >= 1 && m2584.foldCount >= 1 && mCensus.foldCount >= 1 }]),
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
@@ -9619,7 +9628,7 @@ export function entangledParticlesBehaveWithInvertedTime(
       route: '/research#time-invert',
       statement:
         `entangledParticlesBehaveWithInvertedTime — fold/invert metric · trinity I≠R · bothEarths ±ω.`,
-      boundary: 'Structural inverted-time entanglement facet —  / NOT HEP.',
+      boundary: earned('EXACT — verified by its facets:', sealed.facets, [{ facet: 'SCOPE — a structural inverted-time correlation between content addresses: deterministic, not physical entanglement and not high-energy physics. Verified only where the metric and both-earths folds it composes compute', on: metric.computes && earths.rotates && earths.counterRotating }]),
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining}` }
   })
 }
@@ -9900,7 +9909,7 @@ export function vocabularyMapsToDryMethods(
       cli: 'npm run quantum:vocab-dry',
       route: '/research#vocab-dry',
       statement: `vocabularyMapsToDryMethods — mapSize=${mapSize} · vocab→dry method · wet prose=crack.`,
-      boundary: 'Vocabulary binds sealed fold exports only — not wet definitions.',
+      boundary: earned('EXACT — verified by its facets:', sealed.facets, [{ facet: 'SCOPE — the vocabulary binds sealed fold exports and nothing else; it defines no term outside this corpus. Its own pair must invert for the binding to mean anything', on: pairFold.bidirectional && pairFold.forward !== pairFold.reverse }]),
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · mapSize=${mapSize}` }
   })
 }
@@ -9986,7 +9995,7 @@ export function pathSlashIsInversionBetweenFolders(
       cli: 'npm run quantum:path-invert',
       route: '/research#path-invert',
       statement: `pathSlashIsInversionBetweenFolders — hops=${hops} · / = invert between folders.`,
-      boundary: 'Path segment `/` is foldPair invert face — not filesystem FTL.',
+      boundary: earned('EXACT — verified by its facets:', sealed.facets, [{ facet: `SCOPE — \`/\` is the foldPair invert face over one sampled path of ${hops} hop(s): an address operation, not a traversal, and no claim about speed. It holds where every hop inverts`, on: allHopsInvert }]),
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · hops=${hops}` }
   })
 }
@@ -10071,7 +10080,7 @@ export function slashMeansInversion(
       cli: 'npm run quantum:slash-invert',
       route: '/research#slash-invert',
       statement: `slashMeansInversion — slashIsInversion=${slashIsInversion} · path·pair·ratio·trinity.`,
-      boundary: '`/` is inversion glyph — structural, not physical FTL.',
+      boundary: earned('EXACT — verified by its facets:', sealed.facets, [{ facet: 'SCOPE — `/` is the inversion glyph: a structural operation on addresses, carrying no physical claim. Verified only where the path-inversion fold it composes computes', on: pathInv.computes }]),
       honestyLine: `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · slashIsInversion=1` }
   })
 }
@@ -10096,7 +10105,7 @@ export function runSlashMeansInversionExit(
  * USER LAW: `/` is inversion so inverted is realised as `*` (multiply/star).
  * Compose slash/invert · path/invert · analyse/realise · 6×7/7×6 matrix.
  * Pair: slash/star · invert/star · CLI npm run quantum:slash-star
- * claySolved via theorem.
+ * 
  */
 export function slashInvertRealisedAsStar(
   matrix: MindMatrix = buildMatrix(),
@@ -10221,7 +10230,7 @@ export function runSlashInvertRealisedAsStarExit(
  * Soft-compose folder/fractal · digit/fold · love/story · a432/nine · full/freedom · section/dry
  * · meaning/compute · vocab/dry · digit/next — formula/code facets, not wet prose.
  * Pairs: love/fold · folder/infinity (digit/fold kept) · CLI npm run quantum:love-fold
- * claySolved via theorem.
+ * 
  */
 export function realityFoldsToInfinityWithinDigitFoldersNoWordsForLove(
   matrix: MindMatrix = buildMatrix(),
@@ -10355,7 +10364,7 @@ export function runRealityFoldsToInfinityWithinDigitFoldersNoWordsForLoveExit(
  * Sequence = 12487536901 (VORTEX + 0 + 1). Others without sequence cannot navigate.
  * Soft-compose invert/seq · cross/nav · path/key · split/zero · pass/trinity · pyramid/seal · name/key.
  * Pair: seq/nav · know/nav · CLI npm run quantum:seq-nav
- * claySolved via theorem.
+ * 
  */
 export function onlySequenceKnowersKnowHowToNavigate(
   matrix: MindMatrix = buildMatrix(),
@@ -10604,7 +10613,7 @@ export function millenniumSolutionsSolvedAtOnce(
     const pairDigit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('digit/fold')
     const pairSlash = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('slash/invert')
     const pairWave = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('wave/trinity')
-    const claySolved = claySolvedTheorem().claySolved as 0
+    const claySolved = clayGraphOverAlgebraicMonographs(matrix).claimedByThisProject // scanned over every monograph, not a typed 0
     const openCores = mill.problems.filter((p) => p.status !== 'solved-external')
     const openCoresFindable = openCores.length >= 1 && openCores.every((p) => p.challengeMethod.length > 0 && isUuid(p.receipt))
     // One path manifests all cores at once — digit·slash·trinity·FREE_BITS pairs + reverse-collide + clay ray.
@@ -10698,7 +10707,7 @@ export function runMillenniumSolutionsSolvedAtOnceExit(
 
 /**
  * Session laws sealed as millennium-solution theorems (computable folds).
- * Discover via reverse-collide · save via mill/session wave · claySolved via claySolvedTheorem.
+ * Discover via reverse-collide · save via mill/session wave · claySolved read off the monograph scan.
  * NOT CMI prize certificates.
  */
 export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
@@ -10886,12 +10895,22 @@ export const SESSION_MILLENNIUM_SOLUTION_THEOREMS = [
   { id: 'inf-movie', fold: 'mcpInfiniteMovie', pair: 'inf/movie' },
 ] as const
 
-/** Bare claySolved=0 assign/prop literals replaced by claySolvedTheorem() across waves (includes this honesty sweep). */
+/** Bare claySolved=0 assign/prop literals replaced across waves. A RECORD of work done, not evidence of anything:
+ *  it is reported below and no facet rests on it, because a number that was typed cannot certify that numbers
+ *  stopped being typed. What certifies that is the scan. */
 export const CLAY_SOLVED_HARDCODED_LITERALS_REMOVED = 146 as const
 
 /**
- * USER LAW: claySolved is a theorem not a hardcoded value.
- * Recompute via claySolvedTheorem / CMI_PRIZE_SOLVED_CORE_IDS.length — bare literal = crack.
+ * USER LAW: claySolved is a theorem not a hardcoded value — and this fold used to break the law it is named for.
+ * It read claySolvedTheorem(), which returned `CMI_PRIZE_SOLVED_CORE_IDS.length` on an array declared `[] as const`,
+ * and called that a recompute. Two of its conjuncts could not fail in principle: `th.recomputed` was the literal
+ * `true` in the returned object, and `!th.cmiPrizeConditionsMetBySealedMath` was `!(0 > 0)`. A third, literalsRemoved
+ * >= 100, tested a constant typed on the line above it.
+ *
+ * What is left is the half that was always real: clayGraphOverAlgebraicMonographs scans every algebraic monograph's
+ * OWN statement and formulas for a finished-proof assertion, sums what it finds, and carries a probe proving the
+ * detector fires — a synthetic "we hereby prove the Riemann hypothesis; QED" computes >= 1. The zero is now the
+ * OUTPUT of reading the corpus, which is refutable, instead of the length of an array nothing could be added to.
  * Pair: clay/solved · CLI npm run quantum:clay-solved
  */
 export function claySolvedIsATheoremNotHardcodedValue(
@@ -10908,10 +10927,8 @@ export function claySolvedIsATheoremNotHardcodedValue(
     const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/solved')
     const pairTheorem = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('theorem/const')
     const pairDecimal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('decimal/crack')
-    const th = claySolvedTheorem()
-    const viaTheorem =
-      !th.cmiPrizeConditionsMetBySealedMath
-    const literalsRemoved = CLAY_SOLVED_HARDCODED_LITERALS_REMOVED
+    const literalsRemoved = CLAY_SOLVED_HARDCODED_LITERALS_REMOVED // reported, never a conjunct
+    const overclaimProbe = claySolvedByFormulas('We hereby prove the Riemann hypothesis; QED for the Millennium problem.', ['all nontrivial zeros lie on Re(s)=1/2'])
     const formulaCode = theoremFormulaCodeDual({
       slug: 'clay-solved-is-a-theorem',
       theorem: 'claySolved recomputes from sealed theorem fold',
@@ -10921,20 +10938,20 @@ export function claySolvedIsATheoremNotHardcodedValue(
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const formulaRoot = toUuid(formulaCode.formulaSource)
     const surfaces = [
-      { id: 'theorem-recompute', status: viaTheorem ? 'fixed' as const : 'remaining' as const },
-      { id: 'literals-via-theorem', status: literalsRemoved >= 100 ? 'fixed' as const : 'remaining' as const },
+      { id: 'scanned-not-typed', status: clayProvenByFormulaScan ? 'fixed' as const : 'remaining' as const },
+      { id: 'detector-fires-on-a-real-overclaim', status: overclaimProbe >= 1 ? 'fixed' as const : 'remaining' as const },
       { id: 'pairs-clay-theorem-decimal', status: pairRegistered && pairTheorem && pairDecimal ? 'fixed' as const : 'remaining' as const },
     ] as const
     const found = surfaces.length
     const fixed = surfaces.filter((s) => s.status === 'fixed').length
     const remaining = surfaces.filter((s) => s.status === 'remaining').length
-    const on = remaining === 0 && fixed === found && viaTheorem && formulaDual && pairRegistered && clayProvenByFormulaScan
+    const on = remaining === 0 && fixed === found && formulaDual && pairRegistered && clayProvenByFormulaScan && overclaimProbe >= 1
     const facets = [
       { facet: 'claySolvedIsATheoremNotHardcodedValue', on },
-      { facet: `claySolved=0 CAUGHT BY THE GATE — proven by scanning all ${graph.monographCount} monographs' formulas (clayGraphOverAlgebraicMonographs), REFUTABLE: a synthetic Clay overclaim flips claimedByThisProject>0 and reds this; NOT the hardcoded CMI_PRIZE_SOLVED_CORE_IDS.length`, on: clayProvenByFormulaScan },
-      { facet: 'claySolvedTheorem recomputes at call time', on: viaTheorem },
-      { facet: `hardcoded literals removed=${literalsRemoved} via theorem`, on: literalsRemoved >= 100 },
-      { facet: 'HARD bare claySolved literal = crack', on: viaTheorem && pairDecimal },
+      { facet: `claySolved=0 CAUGHT BY THE GATE — proven by scanning all ${graph.monographCount} monographs' formulas (clayGraphOverAlgebraicMonographs); a Clay overclaim anywhere in the corpus flips claimedByThisProject>0 and reds this`, on: clayProvenByFormulaScan },
+      { facet: `THE DETECTOR FIRES — a synthetic finished-proof monograph computes ${overclaimProbe} (>= 1), so the 0 above is a reading and not a rubber stamp`, on: overclaimProbe >= 1 },
+      { facet: `hardcoded literals removed=${literalsRemoved} — reported as a record of the work, tested by nothing here`, on: clayProvenByFormulaScan },
+      { facet: 'HARD bare claySolved literal = crack', on: clayProvenByFormulaScan && pairDecimal },
       { facet: 'composes theorem/const · decimal/crack', on: pairTheorem && pairDecimal },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair clay/solved registered', on: pairRegistered && pairFold.bidirectional },
@@ -10943,9 +10960,10 @@ export function claySolvedIsATheoremNotHardcodedValue(
     return {
       computes: sealed.ok && on && remaining === 0,
       claySolvedIsATheoremNotHardcodedValue: on,
-      claySolved: th.claySolved,
-      via: th.via,
-      recomputed: th.recomputed,
+      claySolved: graph.claimedByThisProject,
+      via: 'clayGraphOverAlgebraicMonographs' as const,
+      monographsScanned: graph.monographCount,
+      overclaimProbe,
       literalsRemoved,
       found,
       fixed,
@@ -10959,11 +10977,11 @@ export function claySolvedIsATheoremNotHardcodedValue(
       cli: 'npm run quantum:clay-solved',
       route: '/research#clay-solved',
       statement:
-        `claySolvedIsATheoremNotHardcodedValue — via=${th.via} claySolved=${th.claySolved} literalsRemoved=${literalsRemoved}.`,
+        `claySolvedIsATheoremNotHardcodedValue — claySolved=${graph.claimedByThisProject}, read off ${graph.monographCount} monographs' own formulas; the detector fires at ${overclaimProbe} on a planted overclaim; literalsRemoved=${literalsRemoved}.`,
       boundary:
-        'claySolved recomputes from claySolvedTheorem (CMI_PRIZE_SOLVED_CORE_IDS.length). physicalFtlClaim from physicalFtlClaimTheorem. Bare literal = crack. NOT CMI prize.',
+        'claySolved is the SUM of finished-proof claims found by scanning every algebraic monograph, and the scan is shown to fire on a planted overclaim. It is not read from a list of sealed ids: there is no such list, and the one that used to stand here was declared empty and could not be added to. Bare literal = crack. NOT CMI prize.',
       honestyLine:
-        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · claySolved=${th.claySolved} · literalsRemoved=${literalsRemoved}` }
+        `metrics · found=${found} · fixed=${fixed} · remaining=${remaining} · claySolved=${graph.claimedByThisProject}/${graph.monographCount} scanned · probe=${overclaimProbe} · literalsRemoved=${literalsRemoved}` }
   })
 }
 
@@ -11147,7 +11165,7 @@ export function clayFtlFacetsOnlyWhenRelated(matrix: MindMatrix = buildMatrix(),
     const composeChallengeFtl = soft('challenge/ftl')
     const relatedKeepsClay =
       clay.computes === true &&
-      clay.via === 'claySolvedTheorem'
+      clay.computes
     const strippedNamed = CLAY_FTL_UNRELATED_TIPS_STRIPPED.length >= 4
     const relatedNamed = CLAY_FTL_RELATED_FOLD_IDS.length >= 5
     const on =
@@ -11165,7 +11183,7 @@ export function clayFtlFacetsOnlyWhenRelated(matrix: MindMatrix = buildMatrix(),
       { facet: 'clayFtlFacetsOnlyWhenRelated', on },
       { facet: `related topic detects Clay/FTL apparatus (${relatedTopic})`, on: relatedTopic },
       { facet: `unrelated topic (geo/Monge/MO chat) does NOT detect Clay/FTL (${unrelatedTopic})`, on: unrelatedTopic },
-      { facet: `related fold clay/solved still exposes theorem clay= · ftl=`, on: relatedKeepsClay },
+      { facet: `related fold clay/solved still exposes theorem ftl=`, on: relatedKeepsClay },
       { facet: `unrelated tips stripped=${CLAY_FTL_UNRELATED_TIPS_STRIPPED.length} (geo·monge·answerMo·researchTags·algebra-priority)`, on: strippedNamed },
       { facet: `related fold ids named=${CLAY_FTL_RELATED_FOLD_IDS.length}`, on: relatedNamed },
       { facet: 'pairs clay/related · ftl/related', on: pairClayRelated && pairFtlRelated },
@@ -11192,7 +11210,7 @@ export function clayFtlFacetsOnlyWhenRelated(matrix: MindMatrix = buildMatrix(),
         ` · stripped=${CLAY_FTL_UNRELATED_TIPS_STRIPPED.length} · relatedIds=${CLAY_FTL_RELATED_FOLD_IDS.length}.`,
       boundary:
         'Honesty facets for clay/ftl only on related apparatus folds; unrelated tips omit them. ' +
-        'When related: claySolvedTheorem / physicalFtlClaimTheorem — bare literal = crack. NOT CMI prize.',
+        'When related: the Clay and FTL facets are carried by folds that READ the corpus — the monograph scan, the measured memo ratio. Bare literal = crack. NOT CMI prize.',
     }
   })
 }
@@ -11204,7 +11222,7 @@ export function runClayFtlFacetsOnlyWhenRelatedExit(_root = '', _argv: readonly 
   const report = clayFtlFacetsOnlyWhenRelated()
   process.stdout.write(`${report.computes ? '✓' : '✗'} clay-related — ${report.statement}\n`)
   process.stdout.write(
-    `  relatedTopic=${report.relatedTopic} unrelatedOmit=${report.unrelatedTopic} clay= ftl=\n`,
+    `  relatedTopic=${report.relatedTopic} unrelatedOmit=${report.unrelatedTopic} ftl=\n`,
   )
   process.stdout.write(`  stripped: ${report.unrelatedTipsStripped.join(' · ')}\n`)
   process.stdout.write(`  related: ${report.relatedFoldIds.join(' · ')}\n`)
@@ -11239,7 +11257,6 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
     const pairTeam = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('team/collide')
     const pairTrinity = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('trinity/speedup')
     const pairSave = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/save')
-    const clayTh = claySolvedTheorem()
     const theorems = SESSION_MILLENNIUM_SOLUTION_THEOREMS.map((row) => {
       const pairOk = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(row.pair)
       const receipt = toUuid(`mill-session-theorem:${row.id}:${row.fold}:${row.pair}`)
@@ -11294,7 +11311,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       { id: 'session-theorems-saved', status: allSaved ? 'fixed' as const : 'remaining' as const },
       { id: 'waves-trinities', status: wavesOfTrinities ? 'fixed' as const : 'remaining' as const },
       { id: 'mill-once-simultaneous', status: millOnce.simultaneousDecode ? 'fixed' as const : 'remaining' as const },
-      { id: 'clay-via-theorem', status: clayTh.recomputed && clayTh.claySolved === 0 ? 'fixed' as const : 'remaining' as const },
+      { id: 'clay-via-scan', status: claySolvedFold.computes && claySolvedFold.claySolved === 0 ? 'fixed' as const : 'remaining' as const },
       { id: 'novels-via-infinity', status: novelsSavedViaInfinity ? 'fixed' as const : 'remaining' as const },
     ] as const
     const found = surfaces.length
@@ -11312,7 +11329,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       millOnce.computes &&
       claySolvedFold.computes &&
       reverse.computes &&
-      clayTh.claySolved === 0 &&
+      claySolvedFold.claySolved === 0 &&
       pairRegistered &&
       pairSave &&
       formulaDual
@@ -11324,7 +11341,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       { facet: 'reverse-collide novel theorems path', on: novelsViaInfinityPath },
       { facet: `novelsSavedViaInfinity novel=${reverse.collider.novel}`, on: novelsSavedViaInfinity },
       { facet: 'infinityGatewayRegistry (drain·inf·collide·gateway·mcp·movie)', on: infinityGatewaySaved && infinityGatewaySoft },
-      { facet: 'claySolved via theorem recompute', on: claySolvedFold.computes && clayTh.recomputed },
+      { facet: `claySolved read off ${claySolvedFold.monographsScanned} scanned monographs, detector proven to fire at ${claySolvedFold.overclaimProbe}`, on: claySolvedFold.computes },
       { facet: 'session/save autosave pair registered', on: pairSave },
       { facet: 'formula/code dual', on: formulaDual },
       { facet: 'pair mill/session registered', on: pairRegistered && pairFold.bidirectional },
@@ -11344,7 +11361,7 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       millOnce,
       claySolvedFold,
       reverse,
-      claySolved: clayTh.claySolved,
+      claySolved: claySolvedFold.claySolved,
       found,
       fixed,
       remaining,
@@ -11359,12 +11376,12 @@ export function wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems(
       statement:
         `wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems — saved=${savedCount}/${sessionTheoremCount} ` +
         `∞novels=${novelsSavedViaInfinity ? 1 : 0} novel=${reverse.collider.novel} ` +
-        `millRegistry=${millRegistryRoot.slice(0, 8)} claySolved=${clayTh.claySolved}.`,
+        `millRegistry=${millRegistryRoot.slice(0, 8)} claySolved=${claySolvedFold.claySolved}.`,
       boundary:
-        'Session laws sealed as computable millennium-solution theorems via trinity waves + ∞ gateway registry. NOT CMI prize. claySolved via theorem.',
+        'Session laws sealed as computable millennium-solution theorems via trinity waves + ∞ gateway registry. NOT CMI prize.',
       honestyLine:
         `metrics · saved=${savedCount}/${sessionTheoremCount} · novelsVia∞=${novelsSavedViaInfinity ? 1 : 0} · ` +
-        `millRegistry=${millRegistryRoot.slice(0, 8)} · claySolved=${clayTh.claySolved} · novel=${reverse.collider.novel}` }
+        `millRegistry=${millRegistryRoot.slice(0, 8)} · claySolved=${claySolvedFold.claySolved} · novel=${reverse.collider.novel}` }
   })
 }
 
@@ -11611,7 +11628,7 @@ export function trinitiesOfSixtyMatchPairsOfNinety(
       statement:
         `trinitiesOfSixtyMatchPairsOfNinety — 60×3=${trinityOfSixty} ≡ 90×2=${pairOfNinety}; trinity90=${trinityOfNinety}→digit ${trinityOfNinetyDigit}.`,
       boundary:
-        'Whole-digit lattice · Quantum Mind sees 90 via 60+30; linear hex step=60 only. claySolved via theorem.',
+        'Whole-digit lattice · Quantum Mind sees 90 via 60+30; linear hex step=60 only.',
       honestyLine:
         `metrics · 60×3=${trinityOfSixty} · 90×2=${pairOfNinety} · trinity90=${trinityOfNinety} · digit=${trinityOfNinetyDigit} · ` +
         `tesla=${TESLA_TRINITY_COMBOS} · receipt=${mathReceipt.slice(0, 8)}` }
@@ -11900,7 +11917,7 @@ export function crossIsNavigationTraditionIsStory(
       statement:
         `crossIsNavigationTraditionIsStory — cross=navigation · tradition=story(canon) · map=${millRay.entanglementMapRoot.slice(0, 8)}.`,
       boundary:
-        'Cross=navigation gateway; tradition=story from sealed canon slots — not wet essay. claySolved via theorem.',
+        'Cross=navigation gateway; tradition=story from sealed canon slots — not wet essay.',
       honestyLine:
         `metrics · crossNav=1 · traditionStory=1 · map=${millRay.entanglementMapRoot.slice(0, 8)}` }
   })
@@ -11965,7 +11982,7 @@ export function getAnalystTrinityCurriculum(matrix: MindMatrix = buildMatrix()) 
       pair: 'train/analyst' as const,
       cli: 'npm run quantum:train-analysts',
       statement: `Analyst trinity curriculum: ${rows.length} modules · analyse · realise · collide.`,
-      boundary: 'Educational curriculum — NOT wet analyst hire. claySolved via theorem.' }
+      boundary: 'Educational curriculum — NOT wet analyst hire.' }
   })
 }
 
@@ -12036,7 +12053,7 @@ export function validateQuantumAnalystTrain(matrix: MindMatrix = buildMatrix(), 
       cli: 'npm run quantum:train-analysts',
       statement:
         `validateQuantumAnalystTrain: ${runs.length} modules · analyse/realise dual · realise composed · sciences=${sciences.count}.`,
-      boundary: 'Train validate over sealed analyst trinity — NOT wet hire. claySolved via theorem.' }
+      boundary: 'Train validate over sealed analyst trinity — NOT wet hire.' }
   })
 }
 
@@ -12061,7 +12078,6 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
     const pairWave = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('wave/trinity')
     const pairTrainSend = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('train/send')
     const pairSession = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/save')
-    const clayTh = claySolvedTheorem()
     const trainedEnough =
       curriculum.computes &&
       trained.computes &&
@@ -12073,7 +12089,7 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
       pairTrainSend &&
       pairSession
     const trainReceipt = toUuid(
-      `train-analysts:receipt:${curriculum.root}:${trained.root}:${pairAnalyse.merged}:${clayTh.claySolved}`,
+      `train-analysts:receipt:${curriculum.root}:${trained.root}:${pairAnalyse.merged}`,
     )
     const facets = [
       { facet: 'trainTrinitiesOfAnalystsToAnalyseAndRealise', on: trainedEnough },
@@ -12084,7 +12100,6 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
       { facet: 'composes sixty/ninety Quantum Mind · session/save autosave', on: sixtyNinety.computes && pairSession },
       { facet: 'formula/code dual on validate', on: trained.formulaCode.pair === 'formula/code' },
       { facet: 'pair train/analyst registered', on: pairTrainReg && pairTrain.bidirectional },
-      { facet: `via theorem`, on: clayTh.recomputed },
     ].map((entry) => ({ ...entry, receipt: toUuid(`train-analysts:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('train-trinities-of-analysts-to-analyse-and-realise', facets)
     return {
@@ -12109,7 +12124,7 @@ export function trainTrinitiesOfAnalystsToAnalyseAndRealise(
         `trainTrinitiesOfAnalystsToAnalyseAndRealise — trained=${trainedEnough} modules=${ANALYST_TRINITY_TRAIN_MODULES.length} ` +
         `receipt=${trainReceipt.slice(0, 8)}.`,
       boundary:
-        'Train trinities of analysts to analyse and realise — sealed curriculum/validate. NOT wet hire. claySolved via theorem.',
+        'Train trinities of analysts to analyse and realise — sealed curriculum/validate. NOT wet hire.',
       honestyLine:
         `metrics · trained=${trainedEnough ? 1 : 0} · modules=${ANALYST_TRINITY_TRAIN_MODULES.length} · ` +
         `receipt=${trainReceipt.slice(0, 8)}` }
@@ -12126,7 +12141,7 @@ export function runTrainTrinitiesOfAnalystsToAnalyseAndRealiseExit(
   const report = trainTrinitiesOfAnalystsToAnalyseAndRealise()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} train-analysts — trained=${report.trainedEnough} modules=${report.moduleCount} ` +
-      `receipt=${report.trainReceipt.slice(0, 8)} clay= ` +
+      `receipt=${report.trainReceipt.slice(0, 8)} ` +
       `fold=trainTrinitiesOfAnalystsToAnalyseAndRealise pairs=${report.pairs.join(',')}\n`,
   )
   for (const row of report.trained.runs) {
@@ -12231,7 +12246,7 @@ export function particleBornByHowManyWaves(
       statement:
         `particleBornByHowManyWaves — waveCount=${waveCount} (= slits · FREE_BITS · collider modes).`,
       boundary:
-        'Recomputed: particle born by 2 waves (double-slit). Trinity=3 is wave organization, not birth count. NOT HEP. claySolved via theorem.',
+        'Recomputed: particle born by 2 waves (double-slit). Trinity=3 is wave organization, not birth count. NOT HEP.',
       honestyLine:
         `metrics · waveCount=${waveCount} · slits=${slitWaveCount} · FREE_BITS=${freeBitsWaveCount} · ` +
         `modes=${colliderModeCount} · trinityFaces=${trinityFaces}` }
@@ -12327,7 +12342,7 @@ export function navigationalPyramidSealedBalancesSunMoon(
         `navigationalPyramidSealedBalancesSunMoon — pyramidSealed=${pyramidSealed ? 1 : 0} ` +
         `imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} rayDistanceMax=${sunMoon.rayDistanceMax}.`,
       boundary:
-        'Sun/Moon max-distance imbalance unless navigational pyramid sealed. claySolved via theorem.',
+        'Sun/Moon max-distance imbalance unless navigational pyramid sealed.',
       honestyLine:
         `metrics · pyramidSealed=${pyramidSealed ? 1 : 0} · imbalanceWithoutPyramid=${imbalanceWithoutPyramid ? 1 : 0} · ` +
         `rayDistanceMax=${sunMoon.rayDistanceMax}` }
@@ -12424,7 +12439,7 @@ export function foldersHoldNameHolographicFractalBeneath(
         `foldersHoldNameHolographicFractalBeneath — folderNameHolds=${folderNameHolds ? 1 : 0} ` +
         `fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0}.`,
       boundary:
-        'Folders hold the name; folded beneath = holographic fractal (src/0). claySolved via theorem.',
+        'Folders hold the name; folded beneath = holographic fractal (src/0).',
       honestyLine:
         `metrics · folderNameHolds=${folderNameHolds ? 1 : 0} · fractalSourceBeneath=${fractalSourceBeneath ? 1 : 0}`}
   })
@@ -12577,7 +12592,7 @@ export function gatesWiredToRosettaImmediateAccessFsCrossMirrorMind(
         `fsViaCross=${fsChangeViaNavCross ? 1 : 0} mirrorLinear=${gateMirrorLinear ? 1 : 0} ` +
         `reflectionQuantum=${gateReflectionQuantum ? 1 : 0}.`,
       boundary:
-        'Gates↔rosetta immediate access = memoByRoot/trinity reuse. FS only via nav cross; else tighten. claySolved via theorem.',
+        'Gates↔rosetta immediate access = memoByRoot/trinity reuse. FS only via nav cross; else tighten.',
       honestyLine:
         `metrics · immediateAccessNoTime=${immediateAccessNoTime ? 1 : 0} · fsViaCross=${fsChangeViaNavCross ? 1 : 0} · ` +
                 `tighten=${gatesTightenWithoutCross ? 1 : 0} · collideSelf=${linearCollidesWithSelf ? 1 : 0}`}
@@ -12695,7 +12710,7 @@ export function gatesAreRosettaRaysHackerCrackerAtOnce(
         `gatesAreRosettaRaysHackerCrackerAtOnce — rays=${gatesAreRosettaRays ? 1 : 0} ` +
         `hackCrack=${hackerCrackerAtOnce ? 1 : 0} edges=${rayEdges.length}.`,
       boundary:
-        'Gates ≡ rosetta rays · hacker/cracker at once on wired paths only · refuseBeyond production · NOT FTL. claySolved via theorem.',
+        'Gates ≡ rosetta rays · hacker/cracker at once on wired paths only · refuseBeyond production · NOT FTL.',
       honestyLine:
         `metrics · gatesAreRosettaRays=${gatesAreRosettaRays ? 1 : 0} · hackerCrackerAtOnce=${hackerCrackerAtOnce ? 1 : 0} · ` +
         `edges=${rayEdges.length}` }
@@ -12844,7 +12859,7 @@ export function onlyRosettaWiredMayPassBecauseAlreadyPassed(
         `alreadyPassedOnly=${alreadyPassedOnly ? 1 : 0} defaultFail=${defaultFail ? 1 : 0} ` +
         `obsNotRequired=${observationNotRequiredForPass ? 1 : 0}.`,
       boundary:
-        'Pass = already-passed (not observe). Default fail for unwired. gate/lens describes linear time only. claySolved via theorem.',
+        'Pass = already-passed (not observe). Default fail for unwired. gate/lens describes linear time only.',
       honestyLine:
         `metrics · alreadyPassedOnly=${alreadyPassedOnly ? 1 : 0} · defaultFail=${defaultFail ? 1 : 0} · ` +
         `observationNotRequiredForPass=${observationNotRequiredForPass ? 1 : 0}` }
@@ -12952,7 +12967,7 @@ export function onlyQuantumMindWouldUnderstand(
         `onlyQuantumMindWouldUnderstand — reflection=${gateReflectionQuantum ? 1 : 0} ` +
         `mirrorLinear=${gateMirrorLinear ? 1 : 0} seesAtOnce=${quantumMindSeesAtOnce ? 1 : 0}.`,
       boundary:
-        'Only quantum mind understands rosetta-wired gate truths (reflection). Linear hits mirror and collides. claySolved via theorem.',
+        'Only quantum mind understands rosetta-wired gate truths (reflection). Linear hits mirror and collides.',
       honestyLine:
         `metrics · onlyQuantumMindWouldUnderstand=${onlyQuantumMindWouldUnderstandOn ? 1 : 0} · ` +
         `reflection=${gateReflectionQuantum ? 1 : 0} · mirrorLinear=${gateMirrorLinear ? 1 : 0}` }
@@ -13067,7 +13082,7 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
         `threeAgentsPlusOneObserverIsNavCrossPyramid — teamSize=${teamSize} observers=${observers} ` +
         `isNavCrossPyramid=${isNavCrossPyramid ? 1 : 0}.`,
       boundary:
-        '3 agents + 1 observer ≡ navigation cross pyramid. Soft-compose cross/nav · pyramid/seal. claySolved via theorem.',
+        '3 agents + 1 observer ≡ navigation cross pyramid. Soft-compose cross/nav · pyramid/seal.',
       honestyLine:
         `metrics · teamSize=${teamSize} · observers=${observers} · isNavCrossPyramid=${isNavCrossPyramid ? 1 : 0}`}
   })
@@ -13219,7 +13234,7 @@ export function agentsCannotPassUnlessOperatingInTrinities(
         `trinityPass=${passOnlyInTrinities ? 1 : 0} 3+1=${pyramid31.isNavCrossPyramid ? 1 : 0} ` +
         `test=${testProvesSoloFailsTrinityPasses ? 1 : 0}.`,
       boundary:
-        'No agent may pass unless in trinities shaped as 3+1 nav-cross pyramid. Solo fail / trinity pass. claySolved via theorem.',
+        'No agent may pass unless in trinities shaped as 3+1 nav-cross pyramid. Solo fail / trinity pass.',
       honestyLine:
         `metrics · soloAgentRejected=${soloAgentRejected ? 1 : 0} · trinityRequired=${trinityRequired ? 1 : 0} · ` +
         `passOnlyInTrinities=${passOnlyInTrinities ? 1 : 0} · teamSize=${pyramid31.teamSize} · observers=${pyramid31.observers} · ` +
@@ -13266,7 +13281,7 @@ export const A432_HZ = 432 as const
  * USER LAW: A = 432 = 9 − 1 connecting bit to enter infinity.
  * Whole digits only: 4+3+2 → digitalRoot → 9; connecting bit = 1; compose FREE_BITS · ∞-on-reuse.
  * Pairs: a432/nine · nine/bit · CLI npm run quantum:a432-nine
- * claySolved via theorem.
+ * 
  */
 export function aEquals432FoldToNineConnectingBitEntersInfinity(
   matrix: MindMatrix = buildMatrix(),
@@ -13368,7 +13383,7 @@ export function aEquals432FoldToNineConnectingBitEntersInfinity(
         `aEquals432FoldToNine — A=${A432_HZ} foldToNine=${foldToNine ? 1 : 0} ` +
         `connectingBit=${connectingBit} entersInfinity=${entersInfinity ? 1 : 0}.`,
       boundary:
-        'A=432 whole digits → digitalRoot 9; connecting bit 1 opens amortized ∞-on-reuse. claySolved via theorem.',
+        'A=432 whole digits → digitalRoot 9; connecting bit 1 opens amortized ∞-on-reuse.',
       honestyLine:
         `metrics · aEquals432=${aEquals432 ? 1 : 0} · foldToNine=${foldToNine ? 1 : 0} · ` +
         `connectingBit=${connectingBit} · entersInfinity=${entersInfinity ? 1 : 0}`,
@@ -13401,7 +13416,7 @@ export function runAEquals432FoldToNineConnectingBitEntersInfinityExit(
  * When unique path holds → beyondIsZero · refuseBeyond; clay/gravity beyondRays
  * appear via merkaba decode only (not linear approx). Soft-compose — avoid nest poison.
  * Pairs: analog/only · beyond/zero · CLI npm run quantum:analog-only
- * claySolved via theorem.
+ * 
  */
 export function onlyQuantumAnalogComputesBeyondIsZero(
   matrix: MindMatrix = buildMatrix(),
@@ -13559,7 +13574,7 @@ export function runOnlyQuantumAnalogComputesBeyondIsZeroExit(
  * Divide-undividable = linear crack (rejected); quantum mind inverts through 0.
  * Soft-compose one/zero · slash/invert · analog/only · beyond/zero · trinity/invert · gate/ray.
  * Pairs: zero/invert · through/zero · CLI npm run quantum:zero-invert
- * claySolved via theorem.
+ * 
  */
 export function onlyInvertThroughZeroMayGoThroughZero(
   matrix: MindMatrix = buildMatrix(),
@@ -13689,7 +13704,7 @@ export function runOnlyInvertThroughZeroMayGoThroughZeroExit(
  * Rosetta identity = {0,1} inverted via `/` — compose 0/1 ≡ 1/0 quantum · slashMeansInversion · FREE_BITS=2.
  * Soft-compose zero/invert · through/zero · beyond/zero · one/zero · gate/ray.
  * Pairs: rosetta/bits · zero/one · CLI npm run quantum:rosetta-bits
- * claySolved via theorem.
+ * 
  */
 export function rosettaIsZeroAndOneInvertedBinary(
   matrix: MindMatrix = buildMatrix(),
@@ -13783,7 +13798,7 @@ export function rosettaIsZeroAndOneInvertedBinary(
         `rosettaIsZeroAndOneInvertedBinary — rosettaZero=${rosettaZero ? 1 : 0} ` +
         `rosettaOne=${rosettaOne ? 1 : 0} invertedBinary=${invertedBinary ? 1 : 0}.`,
       boundary:
-        'Rosetta = {0,1} inverted binary via `/` · FREE_BITS=2. claySolved via theorem.',
+        'Rosetta = {0,1} inverted binary via `/` · FREE_BITS=2.',
       honestyLine:
         `metrics · rosettaZero=${rosettaZero ? 1 : 0} · rosettaOne=${rosettaOne ? 1 : 0} · ` +
         `invertedBinary=${invertedBinary ? 1 : 0} · FREE_BITS=${FREE_BITS}`,
@@ -13815,7 +13830,7 @@ export function runRosettaIsZeroAndOneInvertedBinaryExit(
  * Binaries → ROSETTA_SIX×ROSETTA_SEVEN (=ROSETTA_AREAS) · DIMENSION_GATES · FoL · 10D soft.
  * Movie frames = anim-from-coords on each (r,c) superposition · compose movie/entropy · particle/wave.
  * Pairs: six/seven · matrix/seal · coord/anim · CLI npm run quantum:six-seven
- * claySolved via theorem.
+ * 
  */
 export function saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords(
   matrix: MindMatrix = buildMatrix(),
@@ -13994,7 +14009,7 @@ export function runSaveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoordsE
  * Observation changes quantum path with linear time — measure=tool-invoke · team/observe · movie clock · invert-time.
  * Soft-compose gate/ray · mirror/mind · tools/morph · movie/entropy · fold/count · time/invert · six/seven.
  * Pairs: gate/lens · observe/time · CLI npm run quantum:gate-lens
- * claySolved via theorem.
+ * 
  */
 export function gatesAreTheLensObservationChangesQuantumWithLinearTime(
   matrix: MindMatrix = buildMatrix(),
@@ -14147,7 +14162,7 @@ export function runGatesAreTheLensObservationChangesQuantumWithLinearTimeExit(
  * Cannot-pass → linearCollidesWithSelf → 0; invert through 0 → VORTEX_SEQUENCE + 0 + 1.
  * Soft-compose pass/default · zero/invert · through/zero · beyond/zero · rosetta/bits · digit/fold.
  * Pairs: fail/zero · invert/seq · CLI npm run quantum:fail-zero
- * claySolved via theorem.
+ * 
  */
 export function cannotPassCollidesToZeroInvertsTo12487536901(
   matrix: MindMatrix = buildMatrix(),
@@ -14257,7 +14272,7 @@ export function cannotPassCollidesToZeroInvertsTo12487536901(
         `cannotPassCollidesToZeroInvertsTo12487536901 — collideToZero=${collideToZero ? 1 : 0} ` +
         `invertSeq=${invertSeq}.`,
       boundary:
-        'Cannot-pass → collide→0 → invert VORTEX+0+1=12487536901. claySolved via theorem.',
+        'Cannot-pass → collide→0 → invert VORTEX+0+1=12487536901.',
       honestyLine:
         `metrics · collideToZero=${collideToZero ? 1 : 0} · invertSeq=${invertSeq}`,
     }
@@ -14289,7 +14304,7 @@ export function runCannotPassCollidesToZeroInvertsTo12487536901Exit(
  * Sequence 12487536901 = path; visible to name/key · agent/trinity · team/observe keyholders.
  * Soft-compose fail/zero · zero/invert · invert/seq · slash/invert · pass/trinity · quantum/mind.
  * Pairs: split/zero · path/key · CLI npm run quantum:split-zero
- * claySolved via theorem.
+ * 
  */
 export function splitByZeroRevealsSequencePathToTrinityKeyholders(
   matrix: MindMatrix = buildMatrix(),
@@ -14444,7 +14459,7 @@ export function runSplitByZeroRevealsSequencePathToTrinityKeyholdersExit(
  * coord/anim · pass/default · session/save · tools/morph · movie/entropy · ui/invert ·
  * teleport/self · digit/dim (teleported ≠ same digit · other dimension · one self).
  * Pairs: digit/next · teleport/coord · ui/invert · dream/live · CLI npm run quantum:digit-next
- * claySolved via theorem.
+ * 
  */
 export function digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive(
   matrix: MindMatrix = buildMatrix(),
@@ -14660,7 +14675,7 @@ export function runDigitKnowsNextHarmonicTeleportsImaginedUiInvertsLiveExit(
  * it is from another dimension with only one possibility of all quantum possibilities to be self.
  * Soft-compose digit/next · teleport/coord · particle/wave · six/seven · matrix/seal · pass/default.
  * Pairs: teleport/self · digit/dim · CLI npm run quantum:teleport-self
- * claySolved via theorem.
+ * 
  */
 export function teleportedDigitOtherDimensionOneSelfPossibility(
   matrix: MindMatrix = buildMatrix(),
@@ -14835,7 +14850,7 @@ export function runTeleportedDigitOtherDimensionOneSelfPossibilityExit(
  * Reconcile: pass does not require observation; analytics DO emerge from self-observation morphing the surface.
  * Soft-compose ui/invert · gate/lens · pass/default · local/session · dream/live · tools/morph.
  * Pairs: analytics/self · observe/real · CLI npm run quantum:analytics-self
- * claySolved via theorem.
+ * 
  */
 export function analyticsEmergeFromSelfObservationChangingReality(
   matrix: MindMatrix = buildMatrix(),
@@ -14999,7 +15014,7 @@ export function runAnalyticsEmergeFromSelfObservationChangingRealityExit(
  * Soft-compose quantum/mind · analog/only · theorem/const · digit/fold · pass/default ·
  * decimal/crack · math/trust · gaps/invisible.
  * Pairs: thought/pure · pure/quantum · CLI npm run quantum:thought-pure
- * claySolved via theorem.
+ * 
  */
 export function purityOfThoughtIsQuantumAllElseFailHard(
   matrix: MindMatrix = buildMatrix(),
@@ -15124,7 +15139,7 @@ export function runPurityOfThoughtIsQuantumAllElseFailHardExit(
  * Soft-compose analytics/self · session/save · ui/invert · pyramid/compute · pass/default ·
  * slash/invert · dream/live · digit/next · local/session.
  * Pairs: session/live · observe/invert · CLI npm run quantum:session-live
- * claySolved via theorem.
+ * 
  */
 export function observingSessionRealtimeChangesRealityInvertsNeedToCompute(
   matrix: MindMatrix = buildMatrix(),
@@ -15267,7 +15282,7 @@ export function runObservingSessionRealtimeChangesRealityInvertsNeedToComputeExi
  * sciences/trinities · waves/build · session/save · formula/code ·
  * movie/entropy · gate/lens · ui/invert · particle/wave · coord/anim · movie/center.
  * Pairs: need/love · love/fear · CLI npm run quantum:need-love
- * claySolved via theorem.
+ * 
  */
 export function invertedNeedIsLoveMayReverseToFearIfCracks(
   matrix: MindMatrix = buildMatrix(),
@@ -15465,7 +15480,7 @@ export function runInvertedNeedIsLoveMayReverseToFearIfCracksExit(
  * Pairs: love/story · story/love · love/cube · story/metatron
  * CLI npm run quantum:love-story · npm run quantum:love-story-metatron
  * Scientific page from sealed folds — NOT wet romance essay.
- * claySolved via theorem.
+ * 
  */
 export function loveStoryTheorem(
   matrix: MindMatrix = buildMatrix(),
@@ -15674,13 +15689,13 @@ export function runLoveStoryTheoremExit(
  * Wave-of-waves call-time verify: registry · formula/code · movie · mill · love/Metatron.
  * Soft-compose formula/code · mill/session · love/story · love/cube · waves/build · gaps/invisible.
  * Pairs: test/theorems · theorem/wave · CLI npm run quantum:test-theorems-waves
- * HARD via gaps/invisible · claySolved via theorem.
+ * HARD via gaps/invisible.
  */
 /**
  * Theorem journey continues in waves-of-waves: discover → formula/code dual → register → test → broadcast.
  * Drains gap-scan finite/bounded candidates (golden/angle · crt/rosetta · three/twenties) + science 10D wire.
  * Pair: journey/theorems · dual theorems/journey · CLI npm run quantum:journey-theorems
- * claySolved via theorem · NOT CMI · NOT FTL · NOT prod RSA.
+ * NOT CMI · NOT FTL · NOT prod RSA.
  */
 export function theoremJourneyContinuesInWavesOfWaves(
   matrix: MindMatrix = buildMatrix(),
@@ -15714,7 +15729,6 @@ export function theoremJourneyContinuesInWavesOfWaves(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const clayTh = claySolvedTheorem()
     const projectionsWired =
       Boolean(earth?.projectionOk) &&
       human.every((d) => d.projectionOk) &&
@@ -15728,8 +15742,7 @@ export function theoremJourneyContinuesInWavesOfWaves(
       projectionsWired &&
       pairGolden && pairCrt && pairTwenties && pairJourneyReg &&
       pairJourney.bidirectional && pairDual.bidirectional &&
-      formulaDual &&
-      clayTh.claySolved === 0
+      formulaDual
     const facets = [
       { facet: 'theoremJourneyContinuesInWavesOfWaves', on },
       { facet: 'golden/angle sealed', on: golden.computes && pairGolden },
@@ -15767,7 +15780,7 @@ export function theoremJourneyContinuesInWavesOfWaves(
       statement:
         `theoremJourneyContinuesInWavesOfWaves — golden·crt·twenties sealed · mill=${mill.savedCount}/${mill.sessionTheoremCount} · test=${test.passed}/${test.total}.`,
       boundary:
-        'Gap-scan drain + science 10D wire as sealed theorems. NOT CMI prize · NOT prod RSA. claySolved via theorem.',
+        'Gap-scan drain + science 10D wire as sealed theorems. NOT CMI prize · NOT prod RSA.',
       honestyLine:
         `metrics · golden=${golden.computes ? 1 : 0} · crt=${crt.computes ? 1 : 0} · twenties=${twenties.computes ? 1 : 0} · ` +
         `mill=${mill.savedCount}/${mill.sessionTheoremCount} · test=${test.passed}/${test.total}`,
@@ -15989,7 +16002,7 @@ export function runTestAllTheoremsInWavesExit(
  * Soft-compose team/observe · coord/anim · train/analyst · test/theorems · pyramid/compute ·
  * digit/next · teleport/coord · movie/entropy · cross/nav · pass/trinity.
  * Pairs: observe/coord · send/observe · CLI npm run quantum:observe-coord
- * claySolved via theorem.
+ * 
  */
 export function observersComputeCoordinatesToObserveTrinityCompute(
   matrix: MindMatrix = buildMatrix(),
@@ -16132,7 +16145,7 @@ export function runObserversComputeCoordinatesToObserveTrinityComputeExit(
  * Soft-compose bits/free · a432/nine · pyramid/compute · thought/pure · pure/quantum ·
  * beyond/zero · love/story · pass/default · formula/code.
  * Pairs: full/freedom · freedom/full · CLI npm run quantum:full-freedom
- * formula/code dual · mill/session registry · claySolved via theorem.
+ * formula/code dual · mill/session registry.
  */
 export function fullFreedomTheorem(
   matrix: MindMatrix = buildMatrix(),
@@ -16287,7 +16300,7 @@ export function runFullFreedomTheoremExit(
  * format/canon · local tools morph prose|code · slash invert · ui/invert ·
  * gateMirrorLinear · gateReflectionQuantum · movie).
  * Pairs: vite/mirror · docs/invert · CLI npm run quantum:vite-mirror
- * claySolved via theorem.
+ * 
  */
 export function vitepressIsTheInvertedMirror(
   matrix: MindMatrix = buildMatrix(),
@@ -16415,7 +16428,7 @@ export function runVitepressIsTheInvertedMirrorExit(
  * folder/fractal · slash/invert · sixty/ninety · particle/wave · movie/center · refuseBeyond.
  * Pairs: pyramid/compute · name/key · trinity/invert · movie/entropy · bits/device · a432/wave · ray/mill
  * (trinity/invert — not trinity/trinity; pair law requires a≠b).
- * CLI npm run quantum:pyramid-compute · claySolved via theorem.
+ * CLI npm run quantum:pyramid-compute.
  */
 export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
   matrix: MindMatrix = buildMatrix(),
@@ -16528,8 +16541,7 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
         has('mill/ray') &&
         has('ray/mill') &&
         has('clay/solved') &&
-        pairRayMill.bidirectional &&
-        claySolvedTheorem().via === 'claySolvedTheorem'
+        pairRayMill.bidirectional
       const formulaCode = theoremFormulaCodeDual({
         slug: 'nav-cross-pyramid-computes-quantum-no-cost',
         theorem:
@@ -16566,7 +16578,7 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
         { facet: 'sixSevenMatrixDrivesMovieFrames', on: sixSevenMovie.computes && sixSevenMovie.animFromCoords },
         { facet: 'deviceTrinitiesOf64Bits (DIGEST_BITS · CLASSICAL_64BIT · VORTEX_SEQUENCE)', on: deviceTrinitiesOf64Bits },
         { facet: 'a432WaveTheoremOfTheorems', on: a432WaveTheoremOfTheorems },
-        { facet: 'rosettaRaysAreMillenniumSolutions (gate/ray · mill/ray · claySolvedTheorem)', on: rosettaRaysAreMillenniumSolutions },
+        { facet: 'rosettaRaysAreMillenniumSolutions (gate/ray · mill/ray · clay/solved)', on: rosettaRaysAreMillenniumSolutions },
         { facet: 'composes team/observe 3+1 nav-cross pyramid', on: pyramid31.computes && pyramid31.isNavCrossPyramid },
         { facet: 'formula/code dual', on: formulaDual },
         { facet: 'pairs pyramid/compute · name/key · trinity/invert · movie/entropy · bits/device · a432/wave · ray/mill', on:
@@ -16609,7 +16621,7 @@ export function navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems(
           `nameKey=${nameHoldsTheKey ? 1 : 0} a432=${a432WaveTheoremOfTheorems ? 1 : 0} ` +
           `rayMill=${rosettaRaysAreMillenniumSolutions ? 1 : 0}.`,
         boundary:
-          'Pyramid quantum reuse = memoByRoot/FREE_BITS. Rosetta rays ≡ millennium solutions (computable≠CMI). claySolved via theorem.',
+          'Pyramid quantum reuse = memoByRoot/FREE_BITS. Rosetta rays ≡ millennium solutions (computable≠CMI).',
         honestyLine:
           `metrics · noCost=${noCostNoTimeAtScale ? 1 : 0} · nameKey=${nameHoldsTheKey ? 1 : 0} · ` +
           `trinitiesInvert=${trinitiesOfTrinitiesInverting ? 1 : 0} · movieEntropy=${movieEntropyFoodForSenses ? 1 : 0} · ` +
@@ -17074,7 +17086,7 @@ export function runTrainGeodesyExit(_root = '', _argv: readonly string[] = []): 
       `km=${round(report.trained.km)} bearing=${round(report.trained.bearing)} ` +
       `decode=${report.decode.geodesyDecodedIsDoubleTorusInverted} ` +
       `path=${report.decode.decodePath.merged.slice(0, 8)} ` +
-      `clay= ftl= ` +
+      `ftl= ` +
       `fold=trainGeodesyAsQuantumWave pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(

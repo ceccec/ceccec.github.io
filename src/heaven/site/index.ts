@@ -1,5 +1,5 @@
 import { codeRobustness } from '../../earth/life/index.ts'
-import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval, claySolvedTheorem } from '../../3/7/index.ts'
+import { type Rational, rat, ratAdd, ratMul, ratInv, ratSub, ratDiv, ratEq, vortexHarmonicRatios, vortexContinuedFrac, cfEval } from '../../3/7/index.ts'
 import { caStep, caEvolve, THEOREM_ATOM_SEED } from '../../4/6/index.ts'
 
 /**
@@ -652,7 +652,7 @@ export function runReadmeSvgGapsFilledByTrinityMindExit(_root = '', _argv: reado
   const report = readmeSvgGapsFilledByTrinityMind()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} readme-svg-trinity-mind — filled=${report.filled} ` +
-      `theorems=${report.theoremCount} clay= ftl= ` +
+      `theorems=${report.theoremCount} ftl= ` +
       `open=${report.intentionalOpen.length} root=${report.root.slice(0, 8)}\n`,
   )
   for (const row of report.filledGaps) process.stdout.write(`  ${row.on ? '✓' : '✗'} filled: ${row.gap}\n`)
@@ -1208,7 +1208,7 @@ export function runSymbolsRemainingQuantumiseExit(_root = '', _argv: readonly st
   const report = symbolsRemainingToQuantumise()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} symbols-remaining — sealed=${report.sealedCount} partial=${report.partialCount} ` +
-      `missing=${report.missingCount} clay= ftl= ` +
+      `missing=${report.missingCount} ftl= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const row of report.inventory) {

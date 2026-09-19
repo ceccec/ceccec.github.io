@@ -8,7 +8,7 @@ import { floor, foldPair, isUuid, memoByRoot, merge, merkleFold, min, referralAd
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands/index.ts'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion/index.ts'
 import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus/index.ts'
-import { TAU, CANONICAL_HOST, A432_FOLDED, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, claySolvedTheorem, earned } from '../../3/7/index.ts'
+import { TAU, CANONICAL_HOST, A432_FOLDED, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, earned } from '../../3/7/index.ts'
 import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture/index.ts'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement/index.ts'
 import { rosettaRayOf } from '../../water/digit/index.ts'
@@ -1694,7 +1694,7 @@ export function runFindSeoViolationsExit(_root = '', _argv: readonly string[] = 
     `${report.computes ? '✓' : '✗'} seo-gaps — violationsFound=${report.violationsFound ? 1 : 0} ` +
       `drainableClosed=${report.drainableClosed ? 1 : 0} closed=${report.drainableCount} ` +
       `honestOpen=${report.honestOpenNamedCount} learn=${report.learnServed ? 1 : 0} ` +
-      `seo=${report.seoOptimised ? 1 : 0} clay= ftl=\n`,
+      `seo=${report.seoOptimised ? 1 : 0} ftl=\n`,
   )
   for (const id of report.closed) process.stdout.write(`  ✓ closed ${id}\n`)
   for (const id of report.open) process.stdout.write(`  · honest-open ${id}\n`)

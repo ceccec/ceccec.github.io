@@ -7,7 +7,7 @@ import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
 import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
 import * as __ns_up_thunder_waves from '../../thunder/waves/index.ts'
-import { rat, claySolvedTheorem, earned } from '../../3/7/index.ts'
+import { rat, earned } from '../../3/7/index.ts'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, SCIENCE_DOMAINS, fieldOfContent, modeOfContent } from '../../3/7/index.ts'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -787,7 +787,7 @@ export function runFolderMigrationDedupWavesExit(_root = '', _argv: readonly str
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} folder-migration-waves — folders=${report.folderCount} migrated=${report.migratedCount} ` +
       `partial=${report.partialCount} residual=${report.residualCount} gapless=${report.gaplessCensus} ` +
-      `clay= root=${report.root.slice(0, 8)}\n`,
+      `root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  nav before: ${report.navBefore.sidebar}\n`)
   process.stdout.write(`  nav after:  ${report.navAfter.sidebar}\n`)
@@ -1144,7 +1144,7 @@ export function runVitepressDocsResearchImprovementsExit(_root = '', _argv: read
   const report = vitepressDocsResearchImprovements()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} vitepress-docs-research — applied=${report.appliedCount} residual=${report.residualCount} ` +
-      `clay= root=${report.root.slice(0, 8)}\n`,
+      `root=${report.root.slice(0, 8)}\n`,
   )
   for (const url of report.researched) process.stdout.write(`  · researched ${url}\n`)
   for (const g of report.gaps) process.stdout.write(`  · ${g.status.padEnd(8)} ${g.id} — ${g.detail}\n`)

@@ -7,7 +7,7 @@ import { join } from 'node:path'
 // call-time namespace edge (cycle-safe): water/digit imports this folder; the catalog reads back at call time
 import * as __ns_up_up_water_digit from '../../water/digit/index.ts'
 import { bumpEvolve, bumpStep, hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2/index.ts'
-import { rat, ratAdd, ratEq, ratMul, vortexHarmonicRatios, claySolvedTheorem } from '../../3/7/index.ts'
+import { rat, ratAdd, ratEq, ratMul, vortexHarmonicRatios } from '../../3/7/index.ts'
 import { dopplerShift, frequencyOf, photonEnergyEv, schwarzschildRadius, seesawLightMassEv } from '../../3/7/index.ts'
 import { abs, acos, atan, ceil, chsh, congruence, cos, floor, inductionEvolve, inductionStep, log10, log2, markovEvolve, markovStep, max, min, pmixEvolve, pmixStep, pow, round, sign, sin, sqrt, stationary, survive } from '../../0/index.ts'
 import { addressed, covers } from '../../5/5/index.ts'
@@ -2165,7 +2165,7 @@ export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv:
   const report = earthRealisedByComputingPolesAsPyramid()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} earth-pyramid — pair=${report.pair} realised=${report.realised} ` +
-      `fourWay=${report.fourWayCounterRotating} clay= ` +
+      `fourWay=${report.fourWayCounterRotating} ` +
       `ftl= qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
   )
   for (const p of report.poles) {

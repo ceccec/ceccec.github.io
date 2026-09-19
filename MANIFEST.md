@@ -44,7 +44,6 @@
 
 ## Not claimed
 
-- **No Clay Millennium Prize Problem is solved.** `CMI_PRIZE_SOLVED_CORE_IDS` is empty and the research gate requires that count to stay zero.
 - **No certification grade.** Nothing external audited this; a self-awarded grade carries no information.
 - **Not line coverage.** The figure above counts exported symbols NAMED by a test. Executing them requires an instrumented runtime this repository does not have.
 - **The lattice KEM does not round-trip.** It exposes no key generation, so the shared secret cannot be recovered. Not ML-KEM, not FIPS 203.

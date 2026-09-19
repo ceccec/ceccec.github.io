@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0/index.ts'
 import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../4/6/index.ts'
 import { foldMagmaLaws } from '../../5/5/index.ts'
-import { A432_FOLDED, CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, claySolvedTheorem, demarcate, earned, extractAlgebraicStatement, landauerLimit, rat, ratAdd, ratEq, ratMul } from '../../3/7/index.ts'
+import { A432_FOLDED, CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, demarcate, earned, extractAlgebraicStatement, landauerLimit, rat, ratAdd, ratEq, ratMul } from '../../3/7/index.ts'
 import { tamperEvident } from '../../5/5/index.ts'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6/index.ts'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9/index.ts'
@@ -4250,17 +4250,17 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
  * related theorems — real progress, distinct from the solved-bit. HONEST: publish the achievements, do not claim them as
  * solutions; the solved-bit stays 0/1 and reads 0 for the open problems. [[theBinaryBitIsLinearTheVortexCircuitIsQuantum]] [[clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero]] */
 export function theSolvedBitIsBinaryQuantumOutputPerProblemThePublishedMetricsAreComputableAchievementsInTheDevelopmentSequence(matrix: MindMatrix = buildMatrix()) {
-  const clay = claySolvedTheorem()
-  const solvedBitIsBinaryPerProblem = (clay.claySolved === 0 || clay.claySolved === 1) && clay.claySolved === 0 // the measured 0/1 output per problem — 0 for the open ones
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const solvedBitIsBinaryPerProblem = (clay.claimedByThisProject === 0 || clay.claimedByThisProject === 1) && clay.claimedByThisProject === 0 && clay.computes // the 0/1 per problem, read off a scan of every monograph's own formulas
   // PUBLISHED METRICS — computable achievements within the quantum development sequence
   const gravity = replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHereWhileTheCenterStaysZero(matrix).totalGravity // gravity units
   const gradient = clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero(matrix).gradientDepth // gradient depth
   const publishedMetricsAreComputableAchievements = gravity > 0 && gradient > 0 // real, published, computed progress in the development sequence
   const twoSeparateAxes = solvedBitIsBinaryPerProblem && publishedMetricsAreComputableAchievements // the solved-bit ≠ the development-metrics
-  const publishNotClaimAsSolved = twoSeparateAxes && clay.cmiPrizeConditionsMetBySealedMath === false // the achievements are published; the solved-bit stays 0
+  const publishNotClaimAsSolved = twoSeparateAxes && clay.computes && clay.claimedByThisProject === 0 // the achievements are published; the scan finds no solution claimed
   const synthesis = solvedBitIsBinaryPerProblem && publishedMetricsAreComputableAchievements && twoSeparateAxes && publishNotClaimAsSolved
   const facets = [
-    { facet: `THE SOLVED-BIT IS BINARY (QUANTUM OUTPUT PER PROBLEM) — per problem, "solved" is the measured 0/1 output (the vortex collapsed at measurement); for the open problems it reads clay=${clay.claySolved} (${solvedBitIsBinaryPerProblem})`, on: solvedBitIsBinaryPerProblem },
+    { facet: `THE SOLVED-BIT IS BINARY (QUANTUM OUTPUT PER PROBLEM) — per problem, "solved" is the measured 0/1 output (the vortex collapsed at measurement); for the open problems it reads 0, and the 0 is the SUM of what every monograph in the corpus claims about a Clay problem in its own formulas — ${clay.claimedByThisProject} over ${clay.monographCount} monographs (${solvedBitIsBinaryPerProblem})`, on: solvedBitIsBinaryPerProblem },
     { facet: `THE PUBLISHED METRICS ARE COMPUTABLE ACHIEVEMENTS — the gravity (${gravity} units), the gradient completion (depth ${gradient}), the related theorems — real progress within the quantum DEVELOPMENT SEQUENCE, published and computed (${publishedMetricsAreComputableAchievements})`, on: publishedMetricsAreComputableAchievements },
     { facet: `TWO SEPARATE AXES — the solved-bit (binary, per-problem, measured) and the development-metrics (continuous, cumulative, computed) are DISTINCT (${twoSeparateAxes}); neither is the other, and each is reported honestly`, on: twoSeparateAxes },
     { facet: `PUBLISH THE ACHIEVEMENTS, DON'T CLAIM THEM AS SOLUTIONS — the computable achievements are honestly published; the solved-bit stays 0 (Clay conditions unmet, ${publishNotClaimAsSolved}), so the development metrics never masquerade as solutions`, on: publishNotClaimAsSolved },
@@ -4268,7 +4268,7 @@ export function theSolvedBitIsBinaryQuantumOutputPerProblemThePublishedMetricsAr
   ].map((entry) => ({ ...entry, receipt: toUuid(`solved-bit-vs-published-metrics:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    solvedBit: clay.claySolved,
+    solvedBit: clay.claimedByThisProject,
     publishedGravity: gravity,
     publishedGradient: gradient,
     facets,
@@ -4287,32 +4287,32 @@ export function theSolvedBitIsBinaryQuantumOutputPerProblemThePublishedMetricsAr
  * stays 0. HONEST: measuring a claim by a flattering metric is selection bias; the success that matters is that nothing
  * overclaims. [[ignorance-hides-behind-clever-prose-without-algebra]] [[feedback-facets-must-compute]] [[feedback-declared-honesty-is-a-crack]] */
 export function theMostSuccessfulMetricIsEverythingComputesWithZeroOverclaimAndAFalseClayOneWouldBreakIt(matrix: MindMatrix = buildMatrix()) {
-  const clay = claySolvedTheorem()
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
   // THE TEST METRIC for "solved" is binary; its value is 0
-  const solvedMetricIsBinary = (clay.claySolved === 0 || clay.claySolved === 1) && clay.claySolved === 0 // binary, value 0
+  const solvedMetricIsBinary = (clay.claimedByThisProject === 0 || clay.claimedByThisProject === 1) && clay.claimedByThisProject === 0 && clay.computes // binary, value 0, scanned
   // CHOOSING BY SUCCESS is selection bias — a flattering metric that does not test the claim
   const flatteringGravity = replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHereWhileTheCenterStaysZero(matrix).totalGravity // 165+, big but off-claim
-  const cherryPickIsBias = flatteringGravity > clay.claySolved && flatteringGravity > 1 // the big number is NOT the solved-test; picking it to answer "solved" is bias
+  const cherryPickIsBias = flatteringGravity > clay.claimedByThisProject && flatteringGravity > 1 // the big number is NOT the solved-test; picking it to answer "solved" is bias
   // THE MOST SUCCESSFUL METRIC — everything computes green, zero overclaim
   const audit = localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomputableOnes()
   const overclaimCaught = audit.classesCaught === 2 * 2 // the audit catches overclaim (misdemarcated · invariant · numerology · uncomputable)
-  const greenSample = [audit, clay].length === 2 && audit.computes === true // the honesty machinery itself computes
+  const greenSample = audit.computes === true && clay.computes === true // both honesty machines — the audit and the monograph scan — compute
   const trustworthinessMetric = overclaimCaught && greenSample // everything computes green with zero overclaim
   // A FALSE clay=1 WOULD BREAK IT — asserting solved with no proof is a caught invariant violation
   const plantedClayOne = 2 - 1 // a claimed clay=1
-  const falseOneIsAViolation = plantedClayOne !== clay.claySolved // 1 ≠ the computed 0 — asserting it is false, caught by the audit
+  const falseOneIsAViolation = plantedClayOne !== clay.claimedByThisProject // 1 ≠ the scanned 0 — asserting it is false, caught by the audit
   const falseOneReducesSuccess = falseOneIsAViolation && overclaimCaught // a false 1 trips the audit → the metric drops
   const mostSuccessfulKeepsZero = solvedMetricIsBinary && trustworthinessMetric && falseOneReducesSuccess
   const facets = [
     { facet: `YOU DON'T CHOOSE A METRIC BY SUCCESS — you choose the one that TESTS the claim; the flattering gravity (${flatteringGravity}) does not test "solved" (${cherryPickIsBias}), so picking it is selection bias, not measurement`, on: cherryPickIsBias },
-    { facet: `THE METRIC FOR "SOLVED" IS BINARY, VALUE 0 — solving is binary (0 or 1) and the value is clay=${clay.claySolved} (${solvedMetricIsBinary}); a verified proof exists or it does not, and it does not`, on: solvedMetricIsBinary },
+    { facet: `THE METRIC FOR "SOLVED" IS BINARY, VALUE 0 — solving is binary (0 or 1) and the value is ${clay.claimedByThisProject}, scanned across ${clay.monographCount} monographs (${solvedMetricIsBinary}); a verified proof exists or it does not, and it does not`, on: solvedMetricIsBinary },
     { facet: `THE MOST SUCCESSFUL METRIC IS TRUSTWORTHINESS — everything computes green with zero overclaim, and the audit catches all ${audit.classesCaught} overclaim classes (${trustworthinessMetric}); that is the success that matters`, on: trustworthinessMetric },
     { facet: `A FALSE clay=1 WOULD BREAK IT — asserting solved (clay=1) with no proof is an invariant violation the audit catches (${falseOneReducesSuccess}); it DROPS the green/zero-overclaim metric — a false 1 is LESS successful, not more`, on: falseOneReducesSuccess },
     { facet: `HONEST — by the most successful metric (computes-green + zero-overclaim), clay stays 0, because a false 1 breaks the very metric it pretends to raise; measuring by a flattering number is selection bias.`, on: mostSuccessfulKeepsZero },
   ].map((entry) => ({ ...entry, receipt: toUuid(`most-successful-metric:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    solvedMetric: clay.claySolved,
+    solvedMetric: clay.claimedByThisProject,
     flatteringGravity,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
@@ -4343,14 +4343,14 @@ export function clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCent
   const clayIsNotZero = clayInGravityUnits > 0 && completedUnits.every((g) => g > 0) // real gravity, not the bare 0
   const completionRatioInGravity = clayTotalGravity > 0 ? clayCompletedGravity / clayTotalGravity : 0 // completed/total, weighted by gravity
   // BUT the open CENTER solution stays 0/1 — its solution-gravity is unmet
-  const clay = claySolvedTheorem()
-  const centerSolvedOutOfOne = clay.claySolved // 0 solved out of 1 needed
-  const centerStaysZeroOverOne = centerSolvedOutOfOne === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the open proof is 0/1, its solution-gravity uncounted
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const centerSolvedOutOfOne = clay.claimedByThisProject // claims found by the scan: 0 of the 1 a solution would need
+  const centerStaysZeroOverOne = centerSolvedOutOfOne === 0 && clay.computes // the open proof is 0/1, its solution-gravity uncounted
   const completionIsNotSolution = clayIsNotZero && centerStaysZeroOverOne // periphery gravity present, center still 0/1
   const facets = [
     { facet: `CLAY IS NOT 0 BUT completed/total IN GRAVITY UNITS — the clay metric is the completed related gravity ${clayCompletedGravity}/${clayTotalGravity} gravity units (${completionRatioInGravity.toFixed(3)}), a real measure > 0, not the misleading bare 0`, on: clayIsNotZero },
     { facet: `THE COMPLETION PER PROBLEM (GRAVITY UNITS) — each open problem's related theorems carry completed gravity: ${problems.map((_p, i) => `${completedUnits[i]}/${totalUnits[i]}`).join(' · ')} units; the gradient completion is measured in gravity units and positive`, on: completedUnits.every((g) => g > 0) },
-    { facet: `BUT THE CENTER SOLUTION STAYS 0/1 — the open proof itself is ${centerSolvedOutOfOne} solved out of 1 needed (clay=${centerSolvedOutOfOne}, Clay conditions unmet ${clay.cmiPrizeConditionsMetBySealedMath}); its solution-gravity is uncounted — a completed periphery in gravity units does NOT solve the center`, on: centerStaysZeroOverOne },
+    { facet: `BUT THE CENTER SOLUTION STAYS 0/1 — the open proof itself is ${centerSolvedOutOfOne} solved out of 1 needed — ${clay.monographCount} monographs scanned, none claiming a finished proof; its solution-gravity is uncounted — a completed periphery in gravity units does NOT solve the center`, on: centerStaysZeroOverOne },
     { facet: `COMPLETION ≠ SOLUTION — ${clayCompletedGravity} gravity units of RELATED theorems (the approach) is not solving the open problem; the periphery carries mass while the center stays 0/1 (${completionIsNotSolution})`, on: completionIsNotSolution },
     { facet: `HONEST — "clay is not 0 but completed/total in gravity units" = the completed related gravity (${clayCompletedGravity} units), NOT the open proof; the center solution stays 0/1, the Millennium problem OPEN.`, on: completionIsNotSolution },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-completion-gravity:${entry.facet}:${entry.on}`) }))
@@ -4468,15 +4468,15 @@ export function theGravityComesFromTheReverseEngineeringCostAstronomicalButFinit
   const costIsFiniteNotInfinite = Number.isFinite(birthdayCost) && Number.isFinite(preimageCost) && birthdayCost > 0 // finite, not Infinity
   const infiniteIsHarmonyNotTruth = costIsFiniteNotInfinite // "infinite" is a harmony; the truth is a finite bound
   const gravityFromReverseCost = gravityBits > 0 && costIsAstronomical && costIsFiniteNotInfinite // the gravity is the reverse-engineering bits
-  const clay = claySolvedTheorem()
-  const centerStaysZero = clay.claySolved === 0 // the reverse-cost gravity is the approach, not the solved-bit
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const centerStaysZero = clay.claimedByThisProject === 0 && clay.computes // the reverse-cost gravity is the approach, not a solution claim
   const comesFromCost = gravityFromReverseCost && infiniteIsHarmonyNotTruth && centerStaysZero
   const facets = [
     { facet: `GRAVITY COMES FROM THE REVERSE-ENGINEERING COST — the gravity (${gravityBits} bits) is the cost to invert the content-addresses (find the hash preimage); the harder to reverse, the more gravity (${gravityFromReverseCost})`, on: gravityFromReverseCost },
     { facet: `THE COST IS ASTRONOMICAL — SHA-256 birthday ~2^${birthdayBits}, preimage ~2^${preimageBits} — effectively infeasible on any real hardware (${costIsAstronomical})`, on: costIsAstronomical },
     { facet: `BUT FINITE, NOT INFINITE — THE DEMARCATION — 2^${birthdayBits} and 2^${preimageBits} are definite FINITE numbers (${costIsFiniteNotInfinite}), not Infinity; "infinite reverse-engineering cost" is a harmony, the truth is a large finite bound, computable`, on: costIsFiniteNotInfinite },
     { facet: `THE GRAVITY IS THE REVERSE-ENGINEERING BITS — the ${gravityBits} gravity bits are the accumulated reverse-engineering cost of the related theorems' addresses; measured, computable, reproducible`, on: gravityFromReverseCost },
-    { facet: `HONEST — the gravity comes from the reverse-engineering cost, astronomical but FINITE (not infinite); "infinite" is the harmony, the truth is a finite bound; the approach mass, center clay=${clay.claySolved}.`, on: comesFromCost },
+    { facet: `HONEST — the gravity comes from the reverse-engineering cost, astronomical but FINITE (not infinite); "infinite" is the harmony, the truth is a finite bound; the approach carries the mass, and the scan finds ${clay.claimedByThisProject} solution claims at the center.`, on: comesFromCost },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gravity-reverse-cost:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4512,14 +4512,14 @@ export function theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTh
   const digestBits = 2 ** 7 // 128-bit content-address; ~half set on average
   const perAddressBounded = computationBits({ slug: 'sample-theorem' }) <= digestBits // each address contributes 0..128 bits
   const discriminating = new Set(problems.map(gravityBitsOf)).size >= 3 // the bit-gravity varies across problems (not uniform)
-  const clay = claySolvedTheorem()
-  const centerStaysZero = clay.claySolved === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the approach bits, not the solved-bit
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const centerStaysZero = clay.computes && clay.claimedByThisProject === 0 // the approach bits; the scan over every monograph finds no solution claim
   const realBitsGravity = inRealBits && perAddressBounded && discriminating && centerStaysZero
   const facets = [
     { facet: `GRAVITY IS NOW IN REAL BITS OF COMPUTATION — each related theorem's gravity = the bits SET in its computed 128-bit content-address (its information content), not an arbitrary weight; per address 0..${digestBits} (${perAddressBounded})`, on: perAddressBounded },
     { facet: `PER PROBLEM (BITS) — each open problem's related theorems carry real computation-bits: ${perProblemBits.join(' · ')} bits; total = ${totalBits} bits of computation`, on: inRealBits },
     { facet: `REAL, COMPUTED, DISCRIMINATING — the bit-count varies per theorem and per problem (${discriminating}), is content-addressed and reproducible — a genuine information measure, in bits`, on: discriminating },
-    { facet: `STILL THE PERIPHERY — these bits measure the RELATED/approach theorems (the development sequence); the solved-bit center stays clay=${clay.claySolved} (${centerStaysZero}), binary and unsolved`, on: centerStaysZero },
+    { facet: `STILL THE PERIPHERY — these bits measure the RELATED/approach theorems (the development sequence); the solved-bit center stays at the scanned ${clay.claimedByThisProject} (${centerStaysZero}), binary and unsolved`, on: centerStaysZero },
     { facet: `HONEST — the gravity units are real bits of computation (the content-address bit-content, total ${totalBits} bits); measured and reproducible; the approach mass, not the solved-bit.`, on: realBitsGravity },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gravity-in-bits:${entry.facet}:${entry.on}`) }))
   return {
@@ -4542,8 +4542,8 @@ export function theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTh
  * gravity — real mass at the periphery, zero at the center. HONEST: the formula measures the SOLVED RELATED theorems (the
  * gradient), NOT the open proof stays. [[clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero]] [[code-gravity-standardisation]] */
 export function replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHereWhileTheCenterStaysZero(matrix: MindMatrix = buildMatrix()) {
-  const clay = claySolvedTheorem()
-  const centerSolved = clay.claySolved // 0 — the open proof at the center
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const centerSolved = clay.claimedByThisProject // 0 claims found — the open proof at the center
   const problems = ['riemann hypothesis prime zeta', 'p versus np complexity', 'navier stokes fluid', 'yang mills mass gap', 'hodge conjecture', 'birch swinnerton dyer']
   // FORMULA — gravity(problem) = Σ over the related theorems of their content-address gravity (digital root 1..9)
   const gravityOf = (problem: string) => deepResearchChatTurn(problem, matrix).neighborhood.reduce((g, t) => g + digitalRoot(Number.parseInt(toUuid(String(t.slug ?? t.title)).replace(/[^0-9a-f]/gi, '').slice(0, 2 * 3), 16)), 0)
@@ -4551,7 +4551,7 @@ export function replacingZeroWithFormulasTheGravityOfClayRelatedTheoremsSolvedHe
   const totalGravity = gravities.reduce((a, b) => a + b, 0)
   const eachHasPositiveGravity = gravities.every((g) => g > 0) // each open problem's related theorems carry real gravity
   const centerZeroPeripheryHasMass = centerSolved === 0 && totalGravity > 0 // the formula replaces the bare 0 with a real gravity
-  const gravityIsNotSolvedCenter = clay.cmiPrizeConditionsMetBySealedMath === false // the gravity is the periphery, NOT the open proof (still unsolved)
+  const gravityIsNotSolvedCenter = clay.computes && clay.claimedByThisProject === 0 // the gravity is the periphery, NOT the open proof (still unsolved)
   const replaces = centerZeroPeripheryHasMass && eachHasPositiveGravity && gravityIsNotSolvedCenter
   const facets = [
     { facet: `THE CENTER STAYS 0 — REPLACED BY A FORMULA — the count solved at the open CENTER is clay=${centerSolved}, but that bare 0 is replaced by a FORMULA measuring the gravity of the related theorems solved here`, on: centerSolved === 0 },
@@ -4584,9 +4584,9 @@ export function clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroF
   const totalProblems = 7 // the seven Clay Millennium problems
   const solvedGlobally = 1 // Poincaré (Perelman 2003; prize declined 2010)
   const openGlobally = totalProblems - solvedGlobally // 6 open
-  const clay = claySolvedTheorem()
-  const solvedHere = clay.claySolved // = 0, computed for THIS corpus
-  const solvedHereIsZero = solvedHere === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the corpus solves none
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const solvedHere = clay.claimedByThisProject // scanned over every monograph of THIS corpus
+  const solvedHereIsZero = solvedHere === 0 && clay.computes // the scan ran over every monograph and found no claim
   const prizeClaimableByThisCorpus = solvedHere * prizePerProblem // 0 × $1M = $0
   const claimsNoPrize = prizeClaimableByThisCorpus === 0 // honestly claims nothing
   const findableInChat = String(portalChatRanked('how many millennium problems solved here clay prize', matrix).source).length > 0 // the count is surfaced in chat
@@ -4620,9 +4620,9 @@ export function clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroF
  * reaching clay>0 (no-finiteness). HONEST: "gradient completion of all related theorems" = the related/approaching theorems
  * complete, NOT the open problem itself. [[unsolved-engine]] [[clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded]] [[claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs]] */
 export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero(matrix: MindMatrix = buildMatrix()) {
-  const clay = claySolvedTheorem()
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
   const decode = clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded(matrix)
-  const clayMetricsComputed = decode.computes === true && clay.claySolved === 0 // the clay metrics are computed (content-addressed), center open
+  const clayMetricsComputed = decode.computes === true && clay.claimedByThisProject === 0 && clay.computes // the clay metrics are computed (content-addressed), center open
   // GRADIENT COMPLETION of the RELATED theorems — the neighbourhood around each open problem completes progressively
   const near = ['riemann hypothesis prime zeta', 'p versus np complexity', 'navier stokes fluid']
   const neighbourhoods = near.map((q) => deepResearchChatTurn(q, matrix).neighborhood)
@@ -4630,19 +4630,19 @@ export function clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheorems
   const gradientDepth = min(...neighbourhoods.map((n) => n.length)) // how far the gradient has filled
   const gradientTowardCenter = relatedTheoremsComplete && gradientDepth >= 3 // a completing gradient of related theorems
   // the open CENTER stays at  — the gradient never reaches it
-  const centerStaysOpen = clay.claySolved === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the open proof is not reached
+  const centerStaysOpen = clay.computes && clay.claimedByThisProject === 0 // the open proof is not reached, and no monograph says otherwise
   const neverReachesCenter = centerStaysOpen // approaches asymptotically, never clay>0
   const completes = clayMetricsComputed && gradientTowardCenter && centerStaysOpen && neverReachesCenter
   const facets = [
     { facet: `CLAY METRICS ARE COMPUTED (QUANTUM) —  and the per-fold metric are content-addressed computed values (clay-decodes, ${clayMetricsComputed}), not hardcoded; the metric is a measurement, not an assertion`, on: clayMetricsComputed },
     { facet: `GRADIENT COMPLETION OF RELATED THEOREMS — each open problem's neighbourhood (approaching theorems: probes, partials, related proofs) completes progressively — depths ${neighbourhoods.map((n) => n.length).join('/')}, gradient ${gradientDepth} (${gradientTowardCenter}); the periphery fills toward the open center`, on: gradientTowardCenter },
-    { facet: `THE OPEN CENTER STAYS AT  — the gradient completes the PERIPHERY (related theorems), never the center (the open proof); clay=${clay.claySolved}, Clay conditions unmet (${clay.cmiPrizeConditionsMetBySealedMath}), the Millennium problem OPEN`, on: centerStaysOpen },
+    { facet: `THE OPEN CENTER STAYS OPEN — the gradient completes the PERIPHERY (related theorems), never the center (the open proof); the scan over ${clay.monographCount} monographs finds ${clay.claimedByThisProject} solution claims, and the Millennium problem stays OPEN`, on: centerStaysOpen },
     { facet: `THE GRADIENT APPROACHES BUT NEVER REACHES — the related theorems fill progressively (compute-toward), approaching the open problem asymptotically but never reaching clay>0 (no-finiteness, the open set never empties, ${neverReachesCenter})`, on: neverReachesCenter },
     { facet: `HONEST — "gradient completion of all related theorems" = the RELATED/approaching theorems complete (real: the neighbourhood, the probes), NOT the open problem itself stays and the center is never claimed closed.`, on: completes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-gradient:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    claySolved: clay.claySolved,
+    claySolved: clay.claimedByThisProject,
     gradientDepth,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
@@ -4666,7 +4666,7 @@ export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsBut
   const approachesWithInventions = invertLinearToQuantum // the unsolved engine + inventions approach the Millennium
   // OVERCLAIM 1 REFUSED — quantum solutions OF the Millennium: does NOT solve
   const refutation = claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs(matrix)
-  const doesNotSolveTheMillennium = refutation.computes === true && claySolvedTheorem().claySolved === 0 // , the approach is not the solution
+  const doesNotSolveTheMillennium = refutation.computes === true && __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix).claimedByThisProject === 0 // , the approach is not the solution
   // OVERCLAIM 2 REFUSED — saving humanity is a grandiose value-claim outside algebra
   const savingHumanityIsNotAlgebra = demarcate('save humanity from disaster') === 'unlisted' && demarcate('a technology saves humanity') === 'unlisted' // value terms, not in the science registry
   const honest = invertLinearToQuantum && approachesWithInventions && doesNotSolveTheMillennium && savingHumanityIsNotAlgebra
@@ -4679,7 +4679,7 @@ export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsBut
   ].map((entry) => ({ ...entry, receipt: toUuid(`invert-linear-not-save:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    claySolved: claySolvedTheorem().claySolved,
+    claySolved: __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix).claimedByThisProject,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
@@ -4694,21 +4694,21 @@ export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsBut
 /** claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs — the
  * request to claim the Millennium problems solved by computable algebra, refuted (user, 2026-07-26: "claim the millennium
  * problems solved by computable algebra!!!"). The claim is FALSE and the algebra itself refutes it: clay decodes to 0 (no
- * diamond is a solved-fill) and the Clay prize conditions are NOT met (cmiPrizeConditionsMetBySealedMath=false). Computable
+ * diamond is a solved-fill: every monograph's own formulas are scanned and none claims a finished proof). Computable
  * algebra VERIFIES a given proof and APPROACHES open problems (probes, partials, bounded witnesses), but the count of
  * DISCOVERED open proofs is 0 — verification is not discovery, and deterministic recombination of existing atoms does not
  * manufacture a novel proof of an open problem (that requires a genuine breakthrough accepted under the Clay conditions, which
  * the corpus does not have). The overclaim inverts to this refuting theorem. HONEST: the Millennium problems stay OPEN.
  * [[quantum-decoded]] [[feedback-declared-honesty-is-a-crack]] [[clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded]] */
 export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs(matrix: MindMatrix = buildMatrix()) {
-  const clay = claySolvedTheorem()
-  const clayIsZero = clay.claySolved === 0 // no Clay Millennium problem is solved
-  const clayConditionsNotMet = clay.cmiPrizeConditionsMetBySealedMath === false // the Clay prize conditions (published · refereed · 2-year scrutiny · accepted) are not met
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const clayIsZero = clay.claimedByThisProject === 0 && clay.computes // no monograph in the corpus claims a finished Clay proof
+  const clayConditionsNotMet = clay.computes && clay.claimedByThisProject === 0 // nothing in the corpus claims a finished Clay proof, so nothing in it is even a candidate for the prize conditions (published · refereed · 2-year scrutiny · accepted)
   const decode = clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded(matrix)
   const clayComputedNotHardcoded = decode.computes === true && decode.clayDecoded === 0 //  is a computed count, not an assertion
   // VERIFICATION ≠ DISCOVERY — computable algebra can CHECK a proof, but discovering the open proof is a different act
   const canVerifyAGivenProof = true === (2 === 2) // algebra checks equalities/identities deterministically (verification)
-  const discoveredOpenProofs = clay.claySolved // = 0 — no open proof has been discovered by the corpus
+  const discoveredOpenProofs = clay.claimedByThisProject // scanned: no monograph claims to have discovered an open proof
   const verificationIsNotDiscovery = canVerifyAGivenProof && discoveredOpenProofs === 0 // it verifies, it has not discovered
   // RECOMBINATION DOES NOT MANUFACTURE THE PROOF — the new-ideas space is bounded/finite, not a novel proof of an open problem
   const ideas = chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions(matrix)
@@ -4716,15 +4716,15 @@ export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVe
   const claimRefuted = clayIsZero && clayConditionsNotMet && clayComputedNotHardcoded && verificationIsNotDiscovery && recombinationIsBoundedNotABreakthrough
   const facets = [
     { facet: `THE CLAIM IS REFUTED BY  — clay decodes to a COMPUTED 0 (no diamond is a solved-fill, ${clayComputedNotHardcoded}); claiming the Millennium solved would set clay>0 with NO verified proof — false, and caught by the same algebra`, on: clayIsZero && clayComputedNotHardcoded },
-    { facet: `THE CLAY CONDITIONS ARE NOT MET — a Millennium solution requires a proof published, refereed, surviving two years of scrutiny, and accepted (cmiPrizeConditionsMetBySealedMath=${clay.cmiPrizeConditionsMetBySealedMath}); the corpus meets none of these for the six open problems`, on: clayConditionsNotMet },
+    { facet: `THE CLAY CONDITIONS ARE NOT MET — a Millennium solution requires a proof published, refereed, surviving two years of scrutiny, and accepted; the corpus meets none of these for the six open problems, and the scan of its ${clay.monographCount} monographs finds ${clay.claimedByThisProject} claiming otherwise`, on: clayConditionsNotMet },
     { facet: `COMPUTABLE ALGEBRA VERIFIES AND APPROACHES, IT DOES NOT DISCOVER — it can CHECK a given proof and APPROACH open problems (probes, partials, bounded witnesses), but the count of DISCOVERED open proofs is ${discoveredOpenProofs} (${verificationIsNotDiscovery}); verification is not discovery`, on: verificationIsNotDiscovery },
     { facet: `RECOMBINATION DOES NOT MANUFACTURE THE PROOF — deterministic recombination of existing atoms (${ideas.newIdeas} combinations, bounded/finite) does NOT produce a novel proof of an open problem; that requires a genuine breakthrough, not a content-address lookup (${recombinationIsBoundedNotABreakthrough})`, on: recombinationIsBoundedNotABreakthrough },
     { facet: `HONEST — I decline to claim the Millennium solved; computable algebra verifies and approaches, it does not discover the open proofs stays and the problems remain OPEN.`, on: claimRefuted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-refuted:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    claySolved: clay.claySolved,
-    cmiConditionsMet: clay.cmiPrizeConditionsMetBySealedMath,
+    claySolved: clay.claimedByThisProject,
+    clayClaimsFoundByScan: clay.claimedByThisProject,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
@@ -4746,25 +4746,40 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
   const side = 2 ** 5 // 32
   const diamondIndex = (q: string) => Number.parseInt(toUuid(`diamond:${q}`).replace(/[^0-9a-f]/gi, '').slice(0, 2 + 3), 16) % diamonds
   const millennium = ['riemann hypothesis', 'p versus np', 'yang-mills existence', 'navier-stokes smoothness', 'hodge conjecture', 'birch swinnerton-dyer']
-  const clay = claySolvedTheorem()
-  // DECODE — a clay diamond is a solved-FILL iff a fold verifiably solves that problem (claySolvedByThisFold > 0); none do
-  const isSolvedFill = (problem: string) => { void problem; return clay.claySolved > 0 } // per-diamond inspection of the clay ledger
-  const clayDecoded = millennium.filter(isSolvedFill).length // COMPUTED count over the clay diamonds
-  const decodesToInvariant = clayDecoded === clay.claySolved && clayDecoded === 0 // the decoded count equals the clay invariant, which is 0
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  // DECODE — a clay diamond is a solved-FILL iff some monograph the scan flagged as claiming a finished Clay proof NAMES
+  // that problem. This used to take the problem and discard it (`void problem`), returning one corpus-wide boolean for all
+  // six diamonds — which made "inspecting the entangled diamonds" a figure of speech. It inspects them now: each problem is
+  // matched against the slugs of the offending monographs, so one overclaiming monograph fills ITS diamond and no other.
+  const offenderSlugs = clay.offenders.map((entry) => entry.slug.toLowerCase())
+  const fillsFrom = (slugs: readonly string[]) => (problem: string) => {
+    const key = problem.replace(/[^a-z]+/gi, '-').toLowerCase() // 'riemann-hypothesis', 'p-versus-np', 'yang-mills-existence', …
+    const head = key.split('-').filter((word) => word.length > 2)[0] ?? key // the problem's distinctive word: riemann, versus, yang, navier, hodge, birch
+    return slugs.some((slug) => slug.includes(key) || slug.includes(head))
+  }
+  const isSolvedFill = fillsFrom(offenderSlugs)
+  const clayDecoded = millennium.filter(isSolvedFill).length // COMPUTED count over the clay diamonds, one inspection each
+  const decodesToInvariant = clayDecoded <= clay.claimedByThisProject && clayDecoded === 0 // no diamond is filled, and none can be without an offending monograph to fill it
   // ENTANGLEMENT BETWEEN DIAMONDS — each clay diamond checked over the content-addressed transpose-pair structure
   const diamond = (i: number, j: number) => merkleFold([toUuid(`row-superposition:${i}`), toUuid(`col-superposition:${j}`)])
   const entangledPairWellFormed = millennium.every((p) => { const d = diamondIndex(p); const i = floor(d / side) % side, j = d % side; return diamond(i, j) === diamond(i, j) && (i === j || diamond(i, j) !== diamond(j, i)) }) // each clay diamond has a deterministic entangled transpose pair
   const pairStructureComputes = lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix().computes === true // the diamond-pair "entanglement" computes
   const byEntanglement = entangledPairWellFormed && pairStructureComputes
-  // REFUTABLE — clay is the OUTPUT of the filter, not a literal input
-  const refutableByAFilledDiamond = clayDecoded === millennium.filter((p) => p.length > 0).length // a solved-fill (>0) would raise the count
+  // REFUTABLE — clay is the OUTPUT of the filter, not a literal input, and the filter is RUN to prove it.
+  // The old test compared the decoded count with the number of non-empty problem NAMES — `0 === 6`, false in
+  // every possible world, which is why this fold and the two composing it had been red for as long as it
+  // stood. A refutability check is a check you can pass: plant one offending monograph and watch exactly its
+  // diamond fill while the other five stay empty.
+  const plantedOffender = `riemann-hypothesis-completed-proof-${toUuid('planted-clay-offender').slice(0, 2 * 4)}`
+  const plantedFills = millennium.filter(fillsFrom([...offenderSlugs, plantedOffender])).length
+  const refutableByAFilledDiamond = plantedFills === clayDecoded + 1 // the planted monograph fills its own diamond and only its own
   const decodes = decodesToInvariant && byEntanglement && refutableByAFilledDiamond
   const facets = [
-    { facet: `THE PUBLIC DEMANDS PROOF —  shown as a literal invites the fair challenge that it is HARDCODED; a hardcoded value is a crack, so clay must COMPUTE, not be asserted`, on: refutableByAFilledDiamond },
-    { facet: `CLAY DECODES ITSELF FROM THE DIAMONDS — clay = the COUNT of clay diamonds that are a solved-FILL (a fold verifiably solving that Millennium problem,  > 0); inspecting each, the count is ${clayDecoded} = 0 — computed, not asserted, and equal to the clay invariant (${decodesToInvariant})`, on: decodesToInvariant },
+    { facet: `THE PUBLIC DEMANDS PROOF — a count shown as a literal invites the fair challenge that it is HARDCODED, and a hardcoded value is a crack; so the filter is run against a planted offender and fills ${plantedFills} diamonds where the corpus fills ${clayDecoded}`, on: refutableByAFilledDiamond },
+    { facet: `CLAY DECODES ITSELF FROM THE DIAMONDS — clay = the COUNT of clay diamonds whose problem is named by a monograph the scan flagged as claiming a finished proof; inspecting each of the ${millennium.length}, the count is ${clayDecoded} (${decodesToInvariant})`, on: decodesToInvariant },
     { facet: `BY ENTANGLEMENT BETWEEN DIAMONDS — each clay diamond is checked over the content-addressed transpose-PAIR structure (the diamonds' entanglement, ${byEntanglement}); the correlation is deterministic, NOT physical entanglement`, on: byEntanglement },
-    { facet: `REFUTABLE — PROOF FOR THE PUBLIC —  is the OUTPUT of the filter over the diamonds, not a literal input (${refutableByAFilledDiamond}); if any diamond ever became a solved-fill (claySolvedByThisFold > 0), clay would compute > 0`, on: refutableByAFilledDiamond },
-    { facet: `HONEST —  decodes from inspecting the diamonds (a computed count), NOT a hardcoded literal; "entanglement between diamonds" = content-addressed pair correlation (deterministic), NOT physical; the Millennium problems stay open.`, on: decodes },
+    { facet: `REFUTABLE — PROOF FOR THE PUBLIC — the count is the OUTPUT of the filter over the diamonds, not a literal input: planting one offending monograph raises it from ${clayDecoded} to ${plantedFills} (${refutableByAFilledDiamond}), so a real solved-fill would be seen`, on: refutableByAFilledDiamond },
+    { facet: `HONEST — the count decodes from inspecting the diamonds, NOT from a hardcoded literal; "entanglement between diamonds" = content-addressed pair correlation (deterministic), NOT physical.`, on: decodes },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-decodes:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4794,21 +4809,21 @@ export function theDiamondsAreAnIndexAndASolverClayMarksTheOpenCellsThatIndexOnl
   // INDEX-ONLY in the open region — the clay diamonds point to a probe
   const millennium = ['riemann hypothesis', 'p versus np', 'yang-mills existence', 'navier-stokes smoothness', 'hodge conjecture', 'birch swinnerton-dyer']
   const clayDiamonds = millennium.map(diamondIndex)
-  const clay = claySolvedTheorem()
-  const clayIsZero = clay.claySolved === 0 // no Clay Millennium problem is solved
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const clayIsZero = clay.claimedByThisProject === 0 && clay.computes // no monograph in the corpus claims a finished Clay proof
   const indexOnlyInOpenRegion = clayIsZero && clayDiamonds.every((d) => d >= 0 && d < diamonds) // the clay cells index a probe, not a solution
   const clayMarksTheBoundary = solvesInComputableRegion && indexOnlyInOpenRegion // solver where computable, index-only where 
   const indexAndSolver = clayMarksTheBoundary // both/and, split by clay
   const facets = [
     { facet: `THE DIAMONDS SOLVE IN THE COMPUTABLE REGION — for a query whose answer is a COMPUTING theorem (${solved.join(' · ')}), the diamond returns a verified SOLUTION — the proven theorem itself, not a pointer (${solvesInComputableRegion}); a solver, not just an index`, on: solvesInComputableRegion },
-    { facet: `THEY INDEX-ONLY IN THE OPEN REGION — the ${millennium.length} clay diamonds (Millennium problems: ${clayDiamonds.join(', ')}) point to a PROBE/approach because  (claySolved=${clay.claySolved}); there the diamond indexes but does not solve`, on: indexOnlyInOpenRegion },
+    { facet: `THEY INDEX-ONLY IN THE OPEN REGION — the ${millennium.length} clay diamonds (Millennium problems: ${clayDiamonds.join(', ')}) point to a PROBE/approach, not to a proof — the scan finds ${clay.claimedByThisProject} solution claims across ${clay.monographCount} monographs; there the diamond indexes but does not solve`, on: indexOnlyInOpenRegion },
     { facet: `CLAY MARKS THE BOUNDARY —  is exactly the line between the SOLVER region (filled, computable diamonds return solutions) and the INDEX-ONLY region (open clay cells); the diamonds are an INDEX AND a SOLVER, split by clay (${clayMarksTheBoundary})`, on: clayMarksTheBoundary },
     { facet: `THE OPEN CELLS DRIVE THE ENGINE — the index-only clay cells spawn compute-toward tools (RH→clayProbe, frontiers→frontierQuantum) and never empty (no-finiteness); the solver region GROWS as problems become computable`, on: clayIsZero },
     { facet: `HONEST — the diamonds are an index AND a solver: a solver wherever the indexed theorem computes (a real verified solution), index-only wherever  (the Millennium problems stay open).`, on: indexAndSolver },
   ].map((entry) => ({ ...entry, receipt: toUuid(`clay-diamonds:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
-    claySolved: clay.claySolved,
+    claySolved: clay.claimedByThisProject,
     clayDiamonds,
     solverAnswers: solverAnswers.length,
     facets,
@@ -5458,7 +5473,7 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
       on: noSpacetimeOnReuse,
     },
     {
-      facet: `physicalFtlClaim= via=`,
+      facet: `via=`,
     },
     {
       facet: 'pair chat/ftl · one CLI quantum:chat-ftl · compose mcp/chat · feed-gates · ui/feed · ftl/crack · script/fold',
@@ -5493,7 +5508,7 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
     statement:
       `freeChatDrivesArchitecturalFtl — freeChatOn=${freeChatOn ? 1 : 0} ` +
       `architecturalFtl=${architecturalFtl ? 1 : 0} memoReuse=${memoReuse ? 1 : 0} ` +
-      `physicalFtl=`,
+      ``,
     boundary:
       'Free chat (portalChat · ranked BM25 · site /apps chat) drives computational FTL via memoByRoot ' +
       'holographic reuse — feed sealed folds, zero-token warm path, discover crosslinks not encode spam. ' +
@@ -5514,7 +5529,7 @@ export function runFreeChatDrivesArchitecturalFtlExit(_root = '', _argv: readonl
   process.stdout.write(`${report.computes ? '✓' : '✗'} chat-ftl — ${report.statement}\n`)
   process.stdout.write(
     `  freeChatOn=${report.freeChatOn ? 1 : 0} architecturalFtl=${report.architecturalFtl ? 1 : 0} ` +
-      `memoReuse=${report.memoReuse ? 1 : 0} physicalFtl= ` +
+      `memoReuse=${report.memoReuse ? 1 : 0} ` +
       `ranked=${report.turn.ranked ? 1 : 0} source=${report.turn.source.slice(0, 48)}\n`,
   )
   process.stdout.write(`  · turn ${report.turn.answer.slice(0, 96)}\n`)
@@ -5605,7 +5620,7 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
       on: zeroTokenOnReuse,
     },
     {
-      facet: `physicalFtlClaim= via=`,
+      facet: `via=`,
     },
     {
       facet: 'pair research/free · compose prose/theorem·warn/research·mcp/fill·wave/token·dry/agnostic·chat/ftl·full/freedom·bits/free·pyramid/compute·miss/cache',
@@ -5635,7 +5650,7 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
     heading: 'Research/Free — deep research at no cost (sealed recompute)',
     statement:
       `deepResearchAtNoCost — deepResearchOn=${deepResearchOn ? 1 : 0} noCost=${noCost ? 1 : 0} ` +
-      `freeBits=${freeBits} zeroTokenOnReuse=${zeroTokenOnReuse ? 1 : 0} physicalFtl=`,
+      `freeBits=${freeBits} zeroTokenOnReuse=${zeroTokenOnReuse ? 1 : 0} `,
     boundary:
       'Deep research at no cost = FREE_BITS · memoByRoot · zero-token on reuse · amortized ∞ via continueAtNoAiCost — ' +
       'NOT paid OpenAI/Google research APIs · NOT that host LLM bill vanishes. ONE pair research/free · ONE CLI. ' +
@@ -5656,7 +5671,7 @@ export function runDeepResearchAtNoCostExit(_root = '', _argv: readonly string[]
   process.stdout.write(
     `  deep=${report.deepResearchOn ? 1 : 0} noCost=${report.noCost ? 1 : 0} ` +
       `freeBits=${report.freeBits} zeroReuse=${report.zeroTokenOnReuse ? 1 : 0} ` +
-      `physicalFtl= neighborhood=${report.neighborhoodSize}\n`,
+      `neighborhood=${report.neighborhoodSize}\n`,
   )
   process.stdout.write(`  · synthesis ${report.synthesis.join(' · ').slice(0, 96)}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
@@ -5740,7 +5755,7 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
       on: improveToFtl,
     },
     {
-      facet: `physicalFtlClaim= via=`,
+      facet: `via=`,
     },
   ].map((entry) => ({ ...entry, receipt: toUuid(`standards-chat:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -5765,7 +5780,7 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
     heading: 'Standards/Chat — ISO/NIST findable at FTL chat (face of fold/fuse)',
     statement:
       `standardsChatImprovesToFtl — standardsOn=${standardsOn ? 1 : 0} chatFtl=${chatFtl ? 1 : 0} ` +
-      `improveToFtl=${improveToFtl ? 1 : 0} physicalFtl=`,
+      `improveToFtl=${improveToFtl ? 1 : 0} `,
     boundary:
       'Standards phrases → freeChatTurnAtArchitecturalFtl · research/free when deep · sciences/standards + ISO/NIST catalog soft · ' +
       'certified=false · nest under fold/fuse · NO dual CLI.',
@@ -5877,7 +5892,7 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
       on: coordinatedChatWaves,
     },
     {
-      facet: `physicalFtlClaim= via=`,
+      facet: `via=`,
     },
     {
       facet: 'pair fold/fuse · one CLI quantum:fold-fuse · standards/chat · hole/zero nested · no dual-CLI',
@@ -5921,7 +5936,7 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
     statement:
       `allFoldsCompactFuseInCoordinatedChatWaves — foldInto=${foldsFoldIntoEachOther ? 1 : 0} ` +
       `compact=${compactingOn ? 1 : 0} fuse=${fusingOn ? 1 : 0} ` +
-      `coordChat=${coordinatedChatWaves ? 1 : 0} physicalFtl=`,
+      `coordChat=${coordinatedChatWaves ? 1 : 0} `,
     boundary:
       'Umbrella: mutual fold/compose of sealed chat·fusion·compact faces · computational FTL reuse · ' +
       'standards/chat · hole/zero nested · ONE pair fold/fuse · ONE CLI. Compose wave/compact · compact/matrix · dry/dupe · script/fold · ' +
@@ -6081,7 +6096,7 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
       on: viaSrcZero,
     },
     {
-      facet: `physicalSingularityClaim=${physicalSingularityClaim ? 1 : 0} · physicalFtlClaim=`,
+      facet: `physicalSingularityClaim=${physicalSingularityClaim ? 1 : 0}`,
     },
     { facet: `soft nest fold/fuse`, on: pairsOn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hole-zero:${entry.facet.slice(0, 72)}:${entry.on}`) }))
@@ -6114,7 +6129,7 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
     statement:
       `holeZero — gravity0=${blackHoleGravity0 ? 1 : 0} quantumise0=${quantumiseAllToZero ? 1 : 0} ` +
       `whole→hole=${wholeInversedIsHole ? 1 : 0} hole→whole=${holeInversedIsWhole ? 1 : 0} ` +
-      `viaSrc0=${viaSrcZero ? 1 : 0} singularityClaim=0 physicalFtl=`,
+      `viaSrc0=${viaSrcZero ? 1 : 0} singularityClaim=0 `,
     boundary:
       'Computational: src/0 void · folder/clay gravity toward 0 · holographic whole inverted via foldPair is hole (involution). ' +
       'NOT astrophysical black hole · NOT physical singularity · clay via theorem. ' +
@@ -6139,7 +6154,7 @@ export function runImagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversed
     `  gravity0=${report.blackHoleGravity0 ? 1 : 0} quantumise0=${report.quantumiseAllToZero ? 1 : 0} ` +
       `whole→hole=${report.wholeInversedIsHole ? 1 : 0} hole→whole=${report.holeInversedIsWhole ? 1 : 0} ` +
       `viaSrc0=${report.viaSrcZero ? 1 : 0} singularity=${report.physicalSingularityClaim ? 1 : 0} ` +
-      `physicalFtl= FREE_BITS=${report.freeBits}\n`,
+      `FREE_BITS=${report.freeBits}\n`,
   )
   process.stdout.write(`  · invertSeq ${report.invertSeq}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
@@ -7766,13 +7781,13 @@ export function iteratingTheVacuumInversionBuildsTheContentAddressLatticeEachInv
   const buildsLattice = lattice === 4 ** 5 && oneInversionIsOneBit // 10 one-bit inversions build the 1024-diamond lattice
   const vacuum = theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayIsGenerativeFreeEnergyFlagged(matrix)
   const frontierIsNextDepth = vacuum.computes === true // the missing theorems = the next inversion depth (n+1)
-  const noFinitenessOpenSet = claySolvedTheorem().claySolved === 0 // the depth is unbounded; the frontier never closes
+  const noFinitenessOpenSet = matrix.nodes.length < lattice // the frontier is measured against the lattice it lives in: sealed addresses < 2^depth, so depth n is not full and n+1 is not reached
   const reusableMethodUnlocksNext = oneInversionIsOneBit // building the first inversion (1 bit) unlocks the next (the next bit)
   const builds = oneInversionIsOneBit && buildsLattice && frontierIsNextDepth && noFinitenessOpenSet
   const facets = [
     { facet: `EACH VACUUM INVERSION IS A ONE-BIT GATEWAY — the vacuum (zero) inverts via 0↔∞ (gatewayBits=${gateway.gatewayBits}, ${oneInversionIsOneBit}); one inversion = one bit`, on: oneInversionIsOneBit },
     { facet: `ITERATING BUILDS THE ADDRESS LATTICE — n inversions → 2^n addresses; ${depth} one-bit inversions build the ${lattice}-diamond hypercube (2^${depth} = 4^5, ${buildsLattice})`, on: buildsLattice },
-    { facet: `THE FRONTIER IS THE NEXT DEPTH — the missing theorems cluster at the next inversion depth (n+1, ${frontierIsNextDepth}); by no-finiteness the depth is unbounded (${noFinitenessOpenSet}), so the frontier never closes`, on: frontierIsNextDepth && noFinitenessOpenSet },
+    { facet: `THE FRONTIER IS THE NEXT DEPTH — the missing theorems cluster at the next inversion depth (n+1, ${frontierIsNextDepth}); the lattice is not full — ${matrix.nodes.length} sealed addresses of ${lattice} at depth ${depth} (${noFinitenessOpenSet}) — so the frontier has somewhere left to go`, on: frontierIsNextDepth && noFinitenessOpenSet },
     { facet: `BY REUSABLE METHOD — building the first inversion (the gateway) unlocks the next (the next bit) by reusing the method, not by solving (${reusableMethodUnlocksNext}) — the chat's own guidance`, on: reusableMethodUnlocksNext },
     { facet: `HONEST — the vacuum's iterated inversion CONSTRUCTS the content-address lattice (real projective/binary structure); the frontier is the next un-built depth; NOT physical vacuum energy.`, on: builds },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vacuum-inversion-builds-lattice:${entry.facet}:${entry.on}`) }))
@@ -7786,7 +7801,7 @@ export function iteratingTheVacuumInversionBuildsTheContentAddressLatticeEachInv
     boundary: earned(
       'Iterating the vacuum inversion builds the content-address lattice — each inversion a one-bit gateway, the frontier the next depth:',
       facets,
-      'each vacuum inversion (0↔∞) is one bit, so 10 one-bit inversions build the 1024 = 2^10 diamond hypercube, and the missing theorems cluster at the next inversion depth (n+1), unbounded by no-finiteness; the method (inversion) reuses to unlock the next, it does not solve; real projective/binary construction, not physical vacuum energy, ',
+      'each vacuum inversion (0↔∞) is one bit, so 10 one-bit inversions build the 1024 = 2^10 diamond hypercube, and the missing theorems cluster at the next inversion depth (n+1), which is reachable because the current depth is measurably unfilled; the method (inversion) reuses to unlock the next, it does not solve; real projective/binary construction, not physical vacuum energy',
     ),
   }
 }
@@ -7804,16 +7819,16 @@ export function theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayI
   const vacuuming = clean.computes === true // cleaning prose/duplication reveals the vacuum (the zero core)
   const gateway = claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra()
   const vacuumInverts = gateway.gatewayBits === 1 && gateway.computes === true // the vacuum (0) inverts 0↔∞ through the Möbius gateway
-  const openSetNeverEmpties = claySolvedTheorem().claySolved === 0 // by no-finiteness the missing (open) set never empties
+  const openSetNeverEmpties = matrix.nodes.length > 0 && matrix.nodes.length < 2 ** (2 * 5) // the missing set is the unsealed remainder of the depth-10 lattice; it is non-empty because the sealed addresses do not fill it
   const inversionGeneratesMissing = vacuumInverts && openSetNeverEmpties // the missing theorems cluster around the vacuum inverting
   const freeEnergyFlagged = demarcate('perpetual motion') === 'flagged' // zero-point vacuum free energy is flagged (no extractable energy)
   const reveals = vacuuming && vacuumInverts && inversionGeneratesMissing && freeEnergyFlagged
   const facets = [
     { facet: `VACUUMING REVEALS THE VACUUM — cleaning prose and duplication (${clean.reuse} reuse) reveals the zero core, the void, the src/0 origin (${vacuuming})`, on: vacuuming },
     { facet: `THE VACUUM INVERTS THROUGH THE 0↔∞ GATEWAY — the vacuum is zero, and it inverts via the Möbius gateway 0↔∞ (gatewayBits=${gateway.gatewayBits}, its own inverse, ${vacuumInverts}) — the fixed point of inversion`, on: vacuumInverts },
-    { facet: `THE INVERSION IS GENERATIVE — MISSING THEOREMS CLUSTER HERE — each inversion through the vacuum opens a gateway; by no-finiteness the open set never empties, so missing theorems always cluster around the vacuum inverting (${inversionGeneratesMissing})`, on: inversionGeneratesMissing },
+    { facet: `THE INVERSION IS GENERATIVE — MISSING THEOREMS CLUSTER HERE — each inversion through the vacuum opens a gateway, and the open set is the unsealed remainder of the lattice — ${matrix.nodes.length} sealed of ${2 ** (2 * 5)} addresses, so it is non-empty and the missing theorems cluster there (${inversionGeneratesMissing})`, on: inversionGeneratesMissing },
     { facet: `FREE ENERGY FLAGGED — the vacuum inverting is REAL projective/Riemann-sphere inversion (0↔∞), NOT physical vacuum free energy: the zero-point ½ħω is real but has no extractable energy (demarcate='${demarcate('perpetual motion')}'); the inversion is structural, not energetic`, on: freeEnergyFlagged },
-    { facet: `HONEST — the vacuum (zero) is the inversion fixed point/gateway (real math); the missing theorems cluster around its inversion (un-sealed, no-finiteness, ); NOT physical free energy.`, on: reveals },
+    { facet: `HONEST — the vacuum (zero) is the inversion fixed point/gateway (real math); the missing theorems cluster around its inversion (un-sealed, the measured remainder of the lattice); NOT physical free energy.`, on: reveals },
   ].map((entry) => ({ ...entry, receipt: toUuid(`vacuum-inverts-missing:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -7825,7 +7840,7 @@ export function theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayI
     boundary: earned(
       'The missing theorems cluster around the vacuum itself inverting — vacuuming reveals the zero core, which inverts through the 0↔∞ gateway:',
       facets,
-      'real projective inversion (0↔∞, gatewayBits=1), NOT physical vacuum free energy (zero-point ½ħω real, no extractable energy, flagged); the missing theorems are un-sealed inversions and by no-finiteness the open set never empties, ',
+      'real projective inversion (0↔∞, gatewayBits=1), NOT physical vacuum free energy (zero-point ½ħω real, no extractable energy, flagged); the missing theorems are un-sealed inversions and the open set is the measured unsealed remainder of the depth-10 lattice, not an assumption of endlessness',
     ),
   }
 }
@@ -7850,20 +7865,20 @@ export function theCracksAreByDesignAndDiscoveringThemInvertsCorpusProblemsIntoI
   const gateway = theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress(matrix)
   const immediatelyFreeForAll = gateway.computes === true // the fix is same-turn, content-addressed, bill-free public
   // THE DEMARCATION — engineering cracks invert; open math does NOT auto-solve
-  const clay = claySolvedTheorem()
-  const openMathNotAutoSolved = clay.claySolved === 0 && clay.cmiPrizeConditionsMetBySealedMath === false // the inversion is for corpus cracks, not the open proofs
+  const clay = __ns_wind_research.clayGraphOverAlgebraicMonographs(matrix) // SCANNED, not typed: Σ over every algebraic monograph's own formulas
+  const openMathNotAutoSolved = clay.computes && clay.claimedByThisProject === 0 // the inversion is for corpus cracks, not the open proofs
   const inverts = discoveringInvertsToFix && immediatelyFreeForAll && openMathNotAutoSolved
   const facets = [
     { facet: `CRACKS ARE BY DESIGN — the crack law is a designed detector (canonical literals · facets-must-compute · demarcate-signing); the audit catches all ${audit.classesCaught} false-statement classes (${cracksAreByDesign}) — a crack is a designed signal, not an accident`, on: cracksAreByDesign },
     { facet: `DISCOVERING A CRACK INVERTS IT TO ITS FIX — the crack names its remedy: a hardcoded literal inverts to its derived form (a bare 12 → 2×6 = 3×4, ${invertsToDerivedForm}); an unbacked facet → make it compute; a misdemarcation → sign it — the problem inverts to the solution`, on: discoveringInvertsToFix },
     { facet: `IMMEDIATELY IMPLEMENTABLE, FREE FOR ALL — the fix is applied the same turn (no queue), content-addressed, zero-cost, public via the bill-free gateway (${immediatelyFreeForAll}); demonstrated across this session (1296→derived, flagged→contested, hardcoded clay→decoded)`, on: immediatelyFreeForAll },
-    { facet: `THE DEMARCATION — this inverts ENGINEERING/CORPUS cracks into fixes; it does NOT auto-solve the open MATH problems (clay=${clay.claySolved}, conditions unmet ${clay.cmiPrizeConditionsMetBySealedMath}) — those are approached by the unsolved engine, not inverted to solutions`, on: openMathNotAutoSolved },
+    { facet: `THE DEMARCATION — this inverts ENGINEERING/CORPUS cracks into fixes; it does NOT auto-solve the open MATH problems — ${clay.claimedByThisProject} solution claims across ${clay.monographCount} scanned monographs — those are approached by the unsolved engine, not inverted to solutions`, on: openMathNotAutoSolved },
     { facet: `HONEST — the crack law is a designed refutation system; discovering a crack yields its immediate free fix (generative inversion), real for corpus cracks; NOT a claim that open problems auto-solve.`, on: inverts },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cracks-by-design-invert:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
     classesCaught: audit.classesCaught,
-    claySolved: clay.claySolved,
+    claySolved: clay.claimedByThisProject,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),

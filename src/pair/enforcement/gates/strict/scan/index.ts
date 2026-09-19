@@ -2,7 +2,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, abs, ceil, exp, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../../../0/index.ts'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7/index.ts'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../../../4/6/index.ts'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7/index.ts'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7/index.ts'
@@ -5233,7 +5233,7 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
       `nonFtlIsCrackInFtlApp — ftlApp=${ftlApp ? 1 : 0} cracksFound=${cracksFound.length} ` +
       `cracksDrained=${cracksDrained.length}/${LENS_CHAT_FTL_ALIAS_CRACKS.length} ` +
       `hologram=${holographicFractal ? 1 : 0} noSpacetime=${noSpacetimeOnReuse ? 1 : 0} ` +
-      `physicalFtl= via=`,
+      `via=`,
     boundary:
       'Computational FTL = holographic fractal recompute (whole-in-part · memoByRoot · FREE_BITS) in no spacetime on reuse. ' +
       'Non-FTL alias duals are hull cracks feeding entropy at scale. Physical spacetime travel = false via theorem. ' +
@@ -5269,7 +5269,7 @@ export const runFtlCrackExit = runNonFtlIsCrackInFtlAppExit
  *
  * Two auditor faces per index.ts (adversarial):
  *   A efficiency — line/byte monolith cracks (derived target + F(18)=2584 line ratchet)
- *   B seeds — computable seeds present (toUuid · merkleFold · foldPair · claySolvedTheorem · memoByRoot)
+ *   B seeds — computable seeds present (toUuid · merkleFold · foldPair · memoByRoot · DIMENSION_GATES)
  * Challenge = both faces run on every file; efficiency environment wins when dry/agnostic + theorem/const
  * compose and every src index was audited (entanglements monitored, not invented).
  * Pair: auditor/waves · ONE CLI quantum:auditor-waves · no dual-CLI spam.
@@ -5291,7 +5291,7 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
   /** F(18)=2584 — sealed line ratchet (limits/theorems · weave compression). */
   const LINE_RATCHET = 2584
   const SEED_MARKERS =
-    /\b(toUuid|merkleFold|foldPair|claySolvedTheorem|physicalFtlClaimTheorem|memoByRoot|DIMENSION_GATES|FOLDED_CENSUS)\b/g
+    /\b(toUuid|merkleFold|foldPair|memoByRoot|DIMENSION_GATES|FOLDED_CENSUS)\b/g
   const perFile = files.map((file) => {
     const rel = relative(root, file).replace(/\\/g, '/')
     let text = ''

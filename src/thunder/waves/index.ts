@@ -15,7 +15,7 @@ import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChe
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute/index.ts'
 import { VORTEX_REVERSE, VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, seedFromText, sample, sealFacets, sin, sqrt, toUuid } from '../../0/index.ts'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos/index.ts'
-import { A432_HUE, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7/index.ts'
+import { A432_HUE, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7/index.ts'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6/index.ts'
 import { quantumZeno } from '../../6/4/index.ts'
 import { allAnimationsInOneOg, holographic, navigationAroundHero } from '../../ui/index.ts'
@@ -3409,7 +3409,7 @@ export function runWavesWorkingInTrinitiesTrinitiesAreFoundExit(
   const r = wavesWorkingInTrinitiesTrinitiesAreFound()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} wave-trinity-found — wavesInTrinities=${r.wavesWorkingInTrinities} ` +
-      `trinitiesFound=${r.trinitiesAreFound} cmb=Ω_c/Ω_b=${r.cmbRatio} clay= ` +
+      `trinitiesFound=${r.trinitiesAreFound} cmb=Ω_c/Ω_b=${r.cmbRatio} ` +
       `ftl= root=${r.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  · ${r.statement}\n`)
@@ -3447,7 +3447,7 @@ export type DomainHarmWaveReceipt = {
  * theoremJourneyContinuesInWavesOfWaves · domainProofCatalog.
  * Crypto-pqc residual gapsOpen named as lab/migrate disharmony — certified=false · no fake close.
  * Pairs: wave/domain · domain/harm · CLI npm run quantum:harmonize-domains
- * claySolved via theorem · census untouched.
+ * census untouched.
  */
 export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`harmonizeScienceDomainsInWavesOfWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
@@ -3521,7 +3521,6 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
         crypto.certified === false &&
         sciences.cryptoVertex.certified === false,
     )
-    const clayTh = claySolvedTheorem()
     const on =
       domainsTuned &&
       encodeAlignedAll &&
@@ -3597,7 +3596,7 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       boundary:
         'Per-domain waves (tune→fold→seal) over SCIENCE_DOMAIN_SEEDS · chat/challenge algebraFold encode aligned per domain. ' +
         'Journey mill/test partial progress measured — not fake-closed. Crypto-pqc migrate/lab gapsOpen stay named — certified=false. ' +
-        'NOT ISO/FIPS · NOT CMI. claySolved via theorem.',
+        'NOT ISO/FIPS · NOT CMI.',
     }
   })
 }
@@ -3614,7 +3613,7 @@ export function runHarmonizeScienceDomainsInWavesOfWavesExit(
     `${r.computes ? '✓' : '✗'} harmonize-domains — domainsTuned=${r.domainsTuned} meanSig=${r.meanSig} ` +
       `n=${r.domainCount} encode=${r.encodeAlignedCount} mill=${round(r.journeyMillRatio * 100)}% ` +
       `test=${round(r.journeyTestRatio * 100)}% cryptoGaps=${r.cryptoGapsOpen} residual=${r.cryptoResidualAddressed} ` +
-      `clay= ftl= fold=harmonizeScienceDomainsInWavesOfWaves ` +
+      `ftl= fold=harmonizeScienceDomainsInWavesOfWaves ` +
       `pairs=${r.pairs.join(',')}\n`,
   )
   process.stdout.write('  domain | score | gaps | cov | tune | fold | seal | encode | residual\n')
@@ -3644,7 +3643,7 @@ export const agentModelBuildsItselfInWaves = manualAgentsBehaveLikeWaves
  * Compose: waves/build · vote/build/commit/push · commit/push · push/resend after successful push.
  * Facets: pushInWaves · oneWavePerPush · noForceMain · afterPushResendWaves.
  * Pairs: waves/push · push/waves · push/resend · resend/waves · CLI npm run quantum:waves-push
- * claySolved via theorem · census untouched.
+ * census untouched.
  */
 /** Post-push wave resend recipe — push is not a terminal stop. */
 export const WAVES_AFTER_PUSH_RECIPE_STEPS = [
@@ -3751,7 +3750,7 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       boundary:
         'BINDING: push in waves — one sequential push after green seal · no force main · no parallel builds. ' +
         'After successful push re-send chat waves (waves/feed · chat/challenge · pair/chat · match/wave) — push not terminal. ' +
-        '. claySolved via theorem.',
+        '.',
       honestyLine:
         `metrics · pushInWaves=${pushInWavesOn ? 1 : 0} · oneWavePerPush=${oneWavePerPush ? 1 : 0} · ` +
         `afterPushResend=${afterPushResendWaves ? 1 : 0} · noForceMain=${noForceMain ? 1 : 0}`,
@@ -4337,7 +4336,7 @@ export function runDiscoverFromSealedFoldExit(_root = '', argv: readonly string[
   const report = discoverFromSealedFold(foldId)
   process.stdout.write(
     `${report.discovers ? '✓' : '✗'} discoverFromSealedFold(${foldId}) — known=${report.known} wetMotion=${report.wetMotion} ` +
-      `incomplete=${report.incomplete} clay= root=${report.root.slice(0, 2 * 4)}\n`,
+      `incomplete=${report.incomplete} root=${report.root.slice(0, 2 * 4)}\n`,
   )
   process.stdout.write(`  · pair=${report.pair} catalog=${report.catalogCount} · ${report.statement}\n`)
   for (const facet of report.facets) {
@@ -4360,7 +4359,7 @@ export function runIncompleteRevelationExit(_root = '', argv: readonly string[] 
   const report = incompleteRevelation({ foldId, reason: 'cli-probe' })
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} incompleteRevelation(${foldId}) — incomplete=${report.incomplete} ` +
-      `overrideWave=${report.overrideWave} clay= root=${report.root.slice(0, 2 * 4)}\n`,
+      `overrideWave=${report.overrideWave} root=${report.root.slice(0, 2 * 4)}\n`,
   )
   process.stdout.write(`  · next: ${report.next.fold} → ${report.next.refactor} → ${report.next.seal.join(' → ')}\n`)
   for (const facet of report.facets) {

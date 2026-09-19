@@ -144,7 +144,7 @@ const waveLabel = (provedBy: string) =>
     </div>
 
     <p id="proofs" class="theorems-panel__provenance">
-      <a href="/proofs">/proofs</a> · claySolvedByThisFold=0
+      <a href="/proofs">/proofs</a>
     </p>
 
     <header class="theorems-panel__head">

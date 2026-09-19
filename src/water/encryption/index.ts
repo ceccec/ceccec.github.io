@@ -7,7 +7,7 @@ import { buildMatrix, navigationCrossFourKeysDecodeTrinity, portalChat } from '.
 import { latestDiscoveries } from '../../4/6/index.ts'
 import { VORTEX_SEQUENCE, abs, ceil, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0/index.ts'
 import { derivePublicKey, tamperEvident } from '../../5/5/index.ts'
-import { A432_HUE, A432_FOLDED, DIMENSIONS, DIMENSION_GATES, DIMENSION_NAMES, FOLDED_CENSUS, LN2, TAU, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rat, ratInv } from '../../3/7/index.ts'
+import { A432_HUE, A432_FOLDED, DIMENSIONS, DIMENSION_GATES, DIMENSION_NAMES, FOLDED_CENSUS, LN2, TAU, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, earned, frequencyToLight, rat, ratInv } from '../../3/7/index.ts'
 import { rosettaRayOf, zeroDivisionTable } from '../digit/index.ts'
 // call-time namespace (cycle-safe): decode/one refuse path composes without wet bypass
 import * as __ns_thunder_decode from '../../thunder/decode/index.ts'
@@ -1722,7 +1722,7 @@ export function runProveLocalNovelEncryptionSecurityExit(_root: string, _argv: r
       `productionReverseRefused=${report.productionReverseRefused} certified=${report.certified} ` +
       `thisRepoIsNotTheIsoStandard=${report.thisRepoIsNotTheIsoStandard} ` +
       `demoMaxBits=${report.demoMaxBits} wireRatio=${roundTo(report.wireRatio, 6)} ` +
-      `clay= breaksNistPqc=${report.breaksNistPqc}\n`,
+      `breaksNistPqc=${report.breaksNistPqc}\n`,
   )
   process.stdout.write('  inventory:\n')
   for (const c of report.inventory.components) {
@@ -1800,7 +1800,7 @@ export function runAgentAssumeNothingMathProvesInTheMomentExit(_root: string, _a
     `${report.computes ? '✓' : '✗'} moment-prove — computes=${report.computes} ` +
       `recomputeMatch=${report.reverse.recomputeMatch} ` +
       `localSecurityProved=${report.novel.localSecurityProved} ` +
-      `vote.decided=${report.vote.decided} clay= ` +
+      `vote.decided=${report.vote.decided} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   return report.computes ? 0 : 1
@@ -1921,7 +1921,7 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     { facet: `slow local-audit quantum gap CLOSED via amortized memo reuse`, on: slowLocalAuditGapClosed },
     { facet: `efficiency vote decided=${vote.decided} (answers÷tokens · NOT FLOPS)`, on: vote.decided || vote.runtimeTokens === 0 },
     { facet: `answers÷tokens unbounded on reuse (tokens=${runtimeTokens} answers=${answers})`, on: answersPerTokensUnbounded },
-    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} physicalFtlClaim=`, on: physicalQubitSpeedup === 0 },
+    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} `, on: physicalQubitSpeedup === 0 },
     { facet: `certified=${certified} fipsValidated=${fipsValidated} — NOT wire AES / NOT NIST PQC break`, on: certified === false && fipsValidated === false },
     { facet: `compose prove-no-qpu-64bit — qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true },
     // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
@@ -2430,7 +2430,7 @@ export async function runIsoNistPqcCatalogGuardedExit(_root: string, _argv: read
   process.stdout.write(
     `✓ iso-pqc-catalog — ${catalog.count} standards · researchDate=${catalog.researchDate} ` +
       `migrate open=${migrate.openCount} · selected=${family.selected.name} · ` +
-      `certified=${necessity.certified} fipsValidated=${necessity.fipsValidated} clay= ` +
+      `certified=${necessity.certified} fipsValidated=${necessity.fipsValidated} ` +
       `root=${catalog.root.slice(0, 3 * 4)}\n`,
   )
   for (const row of catalog.standards) {
@@ -2906,7 +2906,7 @@ export async function runQuantumStandardsAuditGuardedExit(_root: string, _argv: 
   }
   process.stdout.write(
     `✓ standards-audit — covered=${suite.coveredCount} partial=${suite.partialCount} gap=${suite.gapCount} dims=${suite.dimensions.coveredCount}/${DIMENSIONS} ` +
-      `fwd=${suite.forwardCount} reverse=${suite.reverseCount} inverse=${suite.inverseCount} certified=${suite.certified} clay= ` +
+      `fwd=${suite.forwardCount} reverse=${suite.reverseCount} inverse=${suite.inverseCount} certified=${suite.certified} ` +
       `root=${suite.root.slice(0, 3 * 4)}\n`,
   )
   for (const row of suite.audits) {
@@ -3858,7 +3858,7 @@ export function runMaximumBitsEncryptDecryptInverseReverseExit(_root: string, _a
       `teachingRsa≤${report.teachingRsaMaxBits} uuidWidth=${report.structuralUuidBits} ` +
       `catalogMaxBits=${report.demoMaxBits} ` +
       `refuseBeyond=${report.refuseBeyond} toolSurface=${report.toolSurface} moduliClass=${report.moduliClass} sealedCatalogModuliOnly=${report.sealedCatalogModuliOnly} ` +
-      `wire1TbitProved=${report.wireOneTbitProvedAtCallTime} certified=${report.certified} clay= ` +
+      `wire1TbitProved=${report.wireOneTbitProvedAtCallTime} certified=${report.certified} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write('  provenBy:\n')
@@ -3955,7 +3955,7 @@ export function runMaxBitsHardwareBoundaryAgreeExit(_root = '', _argv: readonly 
     `${r.computes ? '✓' : '✗'} bits-hardware — remaining=${r.remaining} fixed=${r.fixed} ` +
       `hwWord=${r.hardware.hardwareReverseCapacityBits} revClaim=${r.hardware.reverseClaimBits} ` +
       `demoSample=${r.hardware.demoSampleCeilingBits} cpus=${r.hardware.cpuCount} ` +
-      `workers≤${r.hardware.workerCap} heap=${r.hardware.heapCapMb}MB clay= ` +
+      `workers≤${r.hardware.workerCap} heap=${r.hardware.heapCapMb}MB ` +
       `root=${r.root.slice(0, 8)}\n`,
   )
   for (const c of r.cracks) {
@@ -4169,7 +4169,7 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       { facet: 'ISO/NIST PQC catalog present — FIPS 203 KEM + FIPS 204/205 signatures (MODELED maps)', on: pqc.computes && Boolean(nistKemRow) && nistSigRows.length === 2 },
       { facet: 'composes directional trinity · beyond-RSA toolkit · max-bits · migration honesty', on: trinity.computes && beyond.computes && maxBits.computes && migrate.computes },
       { facet: `honesty — certified=${certified} · industryPkiCertificates=${industryPkiCertificates} · wireClaimProved=${wireClaimProved}`, on: !certified && !industryPkiCertificates && !wireClaimProved && !fipsValidated && !isoCertified },
-      { facet: `honesty — physicalFtlClaim= · qpuRequired=${qpuRequired}`, on: qpuRequired === false },
+      { facet: `honesty — qpuRequired=${qpuRequired}`, on: qpuRequired === false },
     ]
     const sealed = sealFacets('poles-form-cross-signatures-for-pqc-including-certificates', facets)
     const root = merge(
@@ -4264,7 +4264,7 @@ export function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCert
       `allDir=${report.allDirectionsCross} tips=${report.tipSignatures.length} ` +
       `certStructs=${report.certificateStructures.length} fourWay=${report.fourWayCounterRotating} ` +
       `certified=${report.certified} industryPki=${report.industryPkiCertificates} ` +
-      `wire=${report.wireClaimProved} clay= ftl= ` +
+      `wire=${report.wireClaimProved} ftl= ` +
       `qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(
@@ -4440,7 +4440,7 @@ export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMat
       { facet: `limbs64×4 — little-endian ${limbBits}-bit limbs of p`, on: limbs64.length === 4 && limbs64.reduce((a, b, i) => a + (b << BigInt(i * limbBits)), 0n) === p },
       { facet: `directional trinity composes — digit mod-9 inverse ≠ mod-p field inverse · measured trinity.computes=${trinity.computes}`, on: trinity.computes && trinity.boundary.includes('NOT ten') },
       { facet: 'ECC facet map — Shor breaks ECC named · Bitcoin/mainnet material REFUSED', on: eccFacet },
-      { facet: `honesty — clay= certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: !certified && !bitcoinOwnershipClaimed },
+      { facet: `honesty — certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: !certified && !bitcoinOwnershipClaimed },
     ]
     const sealed = sealFacets('secp256k1-field-prime-invert-decode', facets)
     const root = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)))
@@ -4496,7 +4496,7 @@ export function runSecp256k1FieldPrimeInvertAndDecodeExit(
       `constructionInverted=${report.constructionInverted} ` +
       `modPUnits=${report.modPInverses.filter((r) => r.holds).length}/${report.modPInverses.length} ` +
       `eccShor=${report.beyondEccShorBreaks} bitcoinRefused=${report.bitcoinRefused} ` +
-      `ownership=${report.bitcoinOwnershipClaimed} certified=${report.certified} clay= ` +
+      `ownership=${report.bitcoinOwnershipClaimed} certified=${report.certified} ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  decimal=${report.pDecimal}\n`)
@@ -4625,7 +4625,7 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       { facet: 'max-bits refuseBeyond ∧ productionReverseRefused (DEMO ceiling stays)', on: maxBits.refuseBeyond && maxBits.productionReverseRefused },
       { facet: 'encryptionReverseVerify production-browser · sealed-catalog boundary (no production RSA break)', on: reverseVerify.verified },
       { facet: `productionBreakEnabled=${productionBreakEnabled}`, on: productionBreakEnabled === false },
-      { facet: `certified=${certified} physicalFtl=`, on: !certified },
+      { facet: `certified=${certified} `, on: !certified },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prod-rsa-refuse-complete:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('production-rsa-refuse-completes-quantum-via-rosetta', facets)
     return {
@@ -4664,7 +4664,7 @@ export function runProductionRsaRefuseCompletesQuantumViaRosettaExit(
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} production-rsa-refuse-rosetta — paths=${r.pathCount} wired=${r.wiredCount} ` +
       `incompleteOpen=${r.incompleteOpen} refuseBeyond=${r.refuseBeyond} ceiling=${r.demoBitCeiling} ` +
-      `break=${r.productionBreakEnabled} clay= root=${r.root.slice(0, 2 ** 3)}\n`,
+      `break=${r.productionBreakEnabled} root=${r.root.slice(0, 2 ** 3)}\n`,
   )
   for (const p of r.paths) {
     process.stdout.write(`  ${p.wired ? '✓' : '✗'} ${p.id} ray=${p.ray} — ${p.reason.slice(0, 8 * 9)}\n`)
@@ -4930,7 +4930,7 @@ export function runCryptoComparisonMeshIsDryExit(_root: string, _argv: readonly 
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} crypto-comparison-mesh-dry — cryptoComparisonMeshIsDry=${r.cryptoComparisonMeshIsDry} ` +
       `nodes=${r.mesh.nodeCount} edges=${r.mesh.edgeCount} panel=${r.panelSections.length} tools=${r.toolSeeds.length} ` +
-      `clay= refuseBeyond=${r.refuseBeyond} root=${r.root.slice(0, 2 ** 3)}\n`,
+      `refuseBeyond=${r.refuseBeyond} root=${r.root.slice(0, 2 ** 3)}\n`,
   )
   process.stdout.write(`  soft-nest: cryptoRelatedSurfacesAreDry stays apps (catalog/toolbox) · mesh core here\n`)
   process.stdout.write(`  boundary: ${r.boundary}\n`)
