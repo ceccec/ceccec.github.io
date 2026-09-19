@@ -717,7 +717,6 @@ export function torusData(matrix: MindMatrix = buildMatrix()) {
       torusData: on,
       rows,
       count: rows.length,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(torus.root, merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)])),

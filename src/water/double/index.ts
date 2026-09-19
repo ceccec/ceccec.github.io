@@ -579,7 +579,6 @@ export function doubleTorusFacesComputes(matrix: MindMatrix = buildMatrix()) {
       eulerChi,
       trigrams: ICHING_TRIGRAMS,
       pairs: HOMOLOGY_LOOPS,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(umbrella.root, merkleFold([movie.root, voice.root, plasma.root, facets.map((f) => f.receipt)].flat())),
@@ -728,7 +727,6 @@ export function doubleTorusQuantumComputer(matrix: MindMatrix = buildMatrix()) {
       shapeIsComputer,
       circuitComputes,
       probs: [probs[0] ?? 0, probs[1] ?? 0] as const,
-      physicalFtlClaim: 0 as const,
       qpuRequired,
       runsOnClassical64Bit,
       facets,
@@ -814,14 +812,8 @@ export function fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossibl
     const pairFuseError = foldPair(toUuid('cmd:fuse'), toUuid('cmd:error'))
     const pairErrorHandle = foldPair(toUuid('cmd:error'), toUuid('cmd:handle'))
     const pairImpossiblePossible = foldPair(toUuid('cmd:impossible'), toUuid('cmd:possible'))
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const computes =
-      law &&
-      pairFuseError.bidirectional &&
-      pairErrorHandle.bidirectional &&
-      pairImpossiblePossible.bidirectional &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: `TIP — fuse error handling in quantum computer · the impossible becomes possible (${tipOk})`, on: tipOk },
@@ -842,7 +834,6 @@ export function fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossibl
       impossibleBecomesPossible,
       seemedImpossibleNowReal: impossible.seemedImpossibleNowReal,
       genuinelyImpossibleWalls: impossible.genuinelyImpossibleWalls,
-      physicalFtlClaim,
       qpuRequired,
       facets,
       root: merge(qc.root, merkleFold([impossible.root, fusion.root, ...facets.map((f) => f.receipt)])),
@@ -1032,7 +1023,6 @@ export function allDoubleTorusWavesUseTheFreeChat(matrix: MindMatrix = buildMatr
       waves: waves.map((w) => ({ n: w.n, id: w.id, algebraic: w.algebraic, prove: w.prove, freeOk: w.freeOk })),
       domains: waves.length,
       scienceDomains: SCIENCE_DOMAINS.length,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(qc.root, merkleFold([freeUpgrade.root, countless.root, noCost.root, priority.root, geo.root, dynamics.root, life.root, chem.root, ...waves.map((w) => w.address), ...facets.map((f) => f.receipt)])),
@@ -1094,7 +1084,6 @@ function doubleTorusDomainViaFreeChat(id: TorusQcDomainId, matrix: MindMatrix = 
     prove,
     usesFreeChat,
     freeAnswer: freeAnswer.slice(0, 2 * 6 + 108),
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merge(upgrade.root, merkleFold([toUuid(`domain:${id}:${freeOk}:${prove}`), ...facets.map((f) => f.receipt)])),
@@ -1206,7 +1195,6 @@ export function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky
       scienceDomains: SCIENCE_DOMAINS.length,
       stars: stars.map((s) => ({ path: s.path, born: s.born })),
       freeAnswer: freeAnswer.slice(0, 2 * 6 + 108),
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(upgrade.root, merkleFold([qc.root, toUuid(`star-sky:${stars.length}:${allResearched}`), ...stars.map((s) => s.born), ...facets.map((f) => f.receipt)])),
@@ -1341,7 +1329,6 @@ export function constantlyImproveShiftingNewPerspectivesNowFreeInfiniteScalableC
       distinctAnswers: distinctAddresses,
       freeBits,
       waves: waves.map((w) => ({ n: w.n, id: w.id, freeOk: w.freeOk, isNew: w.isNew })),
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(upgrade.root, merkleFold([countless.root, noCost.root, freeUpgrade.root, qc.root, ...waves.map((w) => w.address), ...facets.map((f) => f.receipt)])),
@@ -1504,7 +1491,6 @@ export function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectingChatWav
       uiIsDoubleTorus: uiOn,
       doubleTorusIsQuantumComputer: qcOn,
       allWavesUseFreeChat,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(faces.root, merkleFold([completely.root, researchers.root, priority.root, uiTorus.root, qc.root, freeWaves.root, freeUpgrade.root, countless.root, noCost.root, ...waves.map((w) => w.address), ...facets.map((f) => f.receipt)])),
@@ -1578,7 +1564,6 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       animationCore: on,
       cycleMs: HERO_CYCLE_MS,
       hologram,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(movie.root, merkleFold([tenD.root, ...facets.map((entry) => entry.receipt)])),
@@ -1656,7 +1641,6 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
       lifeTorus: on,
       rows,
       count: rows.length,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),
@@ -1810,7 +1794,6 @@ export function quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSim
       complexToSimplex,
       simplexToComplex,
       domainInversions,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(qc.root, merkleFold([
@@ -1864,6 +1847,9 @@ export function runQuantumiseIsQuantumComputerProcessReverseEngineeringComplexTo
  * · NOT that Clay/open problems are solved · NOT infinite server CPU.
  * Pairs: quantumise/free · free/all · all/free.
  */
+/** The soft pairs quantumiseIsFreeForAll decides — named once so the count comes from the list itself. */
+const QUANTUMISE_FREE_PAIRS = ['quantumise/free', 'free/quantumise', 'free/all', 'all/free'] as const
+
 export function quantumiseIsFreeForAll(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('quantumiseIsFreeForAll', matrix, () => {
     const quantumise = quantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverse(matrix)
@@ -1906,8 +1892,8 @@ export function quantumiseIsFreeForAll(matrix: MindMatrix = buildMatrix()) {
       freeSurfaces,
       billFreeGateway,
       freeBits,
+      pairCount: QUANTUMISE_FREE_PAIRS.length, // the soft pairs this fold decides, counted
       agents: gateway.agents,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(quantumise.root, merkleFold([
@@ -1916,7 +1902,7 @@ export function quantumiseIsFreeForAll(matrix: MindMatrix = buildMatrix()) {
       ])),
       pair: 'quantumise/free' as const,
       dualPair: 'free/quantumise' as const,
-      pairs: ['quantumise/free', 'free/quantumise', 'free/all', 'all/free'] as const,
+      pairs: QUANTUMISE_FREE_PAIRS,
       cli: 'npm run quantum:quantumise-free',
       route: '/quantum-tools#quantumise-free',
       heading: 'Quantumise is free for all',
@@ -2022,7 +2008,6 @@ export function quantumiseAlsoDryCleansByObservationChatWavesOfWaves(matrix: Min
       reuse: dry.reuse,
       statements: dry.statements,
       warmReuse,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(quantumise.root, merkleFold([
@@ -2283,7 +2268,6 @@ export function allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves(matrix: Mi
       nestDepth,
       freeBits,
       warmReuse,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(torusWaves.root, merkleFold([
@@ -2395,7 +2379,6 @@ export function noProseMayBeTrustedLiteraryQuantumise(matrix: MindMatrix = build
       proseRefuseStack,
       refuseLiteraryTrust,
       quantumiseOn,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(quantumise.root, merkleFold([algebra.root, ...facets.map((f) => f.receipt)])),
@@ -2563,7 +2546,6 @@ export function fewerNpmScriptsWithQuantumPrompts(matrix: MindMatrix = buildMatr
       prunedDuals: [...prunedDuals],
       dualsViaPairsAndPrompts,
       quantumPrompts,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(quantumise.root, merkleFold([
@@ -2701,7 +2683,6 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
       // not a check — a sentence, kept as one: ' — classical computational tracks only'
     ]
     const sealed = sealFacets('torus-universe-align', facets)
-    const physicalFtlClaim = 0 as const
     return {
       aligns: sealed.ok,
       computes: sealed.ok,
@@ -2719,7 +2700,6 @@ export function doubleTorusDynamicsGeometryAlignsWithUniverse(
         majorRadius: geometry.majorRadius,
         minorRadius: geometry.minorRadius,
         lobeOffset: geometry.lobeOffset },
-      physicalFtlClaim,
       qpuRequired: false as const,
       count: sealed.count,
       facets: sealed.facets,
@@ -2744,7 +2724,7 @@ export function runDoubleTorusDynamicsGeometryAlignsWithUniverseExit(
       `flow=${report.dynamics.flow} spin=${report.dynamics.spin} linking=${report.dynamics.linking} ` +
       `R=${report.constants.majorRadius} r=${report.constants.minorRadius} ` +
       `A432=${report.constants.A432_HUE} J2000=${report.constants.MEEUS_J2000_JD} ` +
-      `phase=${report.phase.universePhase.toFixed(6)} ftl=${report.physicalFtlClaim} clay= ` +
+      `phase=${report.phase.universePhase.toFixed(6)} ftl= clay= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const f of report.facets) {

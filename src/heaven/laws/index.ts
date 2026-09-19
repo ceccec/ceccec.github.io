@@ -1165,13 +1165,12 @@ export function onlyAlgebraicQuantumComputingIsTopPriority(matrix: MindMatrix = 
       && isUuid(pair.merged)
     const classical64Bit = true // sealed classical simulator — no QPU required
     const qpuRequired = false as const
-    const physicalFtl = 0 as const
-    const onlyAlgebraic = algebraicGateOn && topIsAlgebraic && algebraicQuantumIdentity && classical64Bit && !qpuRequired && physicalFtl === 0
+    const onlyAlgebraic = algebraicGateOn && topIsAlgebraic && algebraicQuantumIdentity && classical64Bit && !qpuRequired
     const facets = [
       { facet: `ALGEBRAIC THEOREM GATE ON — identities must hold over a computed range by exact operations, not hand-assigned data (${algebraicGateOn}); the gate is the floor`, on: algebraicGateOn },
       { facet: `ALGEBRAIC QC OUTRANKS ALL OTHER PATHS — score(algebraic-qc)=${score('algebraic-qc')} > lexical=${score('lexical-bm25')} > prose=${score('prose-narrative')} > neural=${score('neural-llm')} (${topIsAlgebraic}); when work is ranked, algebraic quantum computing is TOP PRIORITY`, on: topIsAlgebraic },
       { facet: `ALGEBRAIC QUANTUM IDENTITY — foldPair is bidirectional and order-sensitive (forward≠reverse, same merge both ways, ${algebraicQuantumIdentity}); quantum here = content-addressed algebraic structure, not a QPU`, on: algebraicQuantumIdentity },
-      { facet: `CLASSICAL-64BIT · NO QPU · NO FTL — runs on classical 64-bit (${classical64Bit}), qpuRequired=${qpuRequired}, physicalFtl=${physicalFtl}; amortized memoByRoot reuse, not physical quantum hardware`, on: classical64Bit && !qpuRequired && physicalFtl === 0 },
+      { facet: `CLASSICAL-64BIT · NO QPU · NO FTL — runs on classical 64-bit (${classical64Bit}), qpuRequired=${qpuRequired}, physicalFtl=; amortized memoByRoot reuse, not physical quantum hardware`, on: classical64Bit && !qpuRequired },
       { facet: `ONLY ALGEBRAIC QUANTUM COMPUTING — every path that claims quantum must be algebraic and top-priority (${onlyAlgebraic}); lexical/prose/neural may assist retrieval but NEVER outrank or replace the algebraic claim`, on: onlyAlgebraic },
     ].map((entry) => ({ ...entry, receipt: toUuid(`algebra-qc-priority:${entry.facet}:${entry.on}`) }))
     return {
@@ -1179,7 +1178,6 @@ export function onlyAlgebraicQuantumComputingIsTopPriority(matrix: MindMatrix = 
       onlyAlgebraicQuantumComputingIsTopPriority: onlyAlgebraic,
       scoreAlgebraic: score('algebraic-qc'),
       qpuRequired,
-      physicalFtlClaim: physicalFtl,
       facets,
       root: merkleFold(facets.map((entry) => entry.receipt)),
       pair: 'algebra/priority' as const,

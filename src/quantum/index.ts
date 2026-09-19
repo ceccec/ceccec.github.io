@@ -36,7 +36,6 @@ import { memoByRoot, gcd } from '../0/index.ts'
 import { existsSync, rmSync, statSync, readFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { log } from '../0/index.ts'
-import { physicalFtlBooleanAtCallTime } from '../3/7/index.ts'
 import { exp } from '../0/index.ts'
 import { quantumTestCoverageReport } from './testing/coverage/index.ts'
 import { productionDeploymentAssessment } from './empirical/index.ts'
@@ -4331,7 +4330,6 @@ export type SearchPlan = {
   /** No factorisation is attempted here; this is a search-space description only. */
   readonly factorisationAttempted: false
   /** The sealed guard, asserted at call time rather than assumed. */
-  readonly physicalSuperluminalSignalling: boolean
   readonly statement: string
   readonly receipt: string
 }
@@ -4342,17 +4340,15 @@ export type SearchPlan = {
  */
 export function piBoundedSearchPlan(n: bigint): SearchPlan {
   const bound = piSearchBound(n)
-  const ftl = physicalFtlBooleanAtCallTime()
   return {
     target: n.toString(),
     bound,
     factorisationAttempted: false as const,
-    physicalSuperluminalSignalling: ftl,
     statement:
       `n has ${bound.bitLength} bits; factors are ≤ 2^${floor(bound.bitLength / 2)}. ` +
       `${bound.primeCountExact ? 'Exactly' : 'About'} ${bound.primeCandidates.toString()} primes lie below that bound, a ${bound.reductionFactor.toFixed(2)}× ` +
       `reduction against scanning every integer — a LOGARITHMIC factor that does not change the complexity class. ` +
-      `No factorisation is performed. physicalSuperluminalSignalling=${ftl} (sealed guard: PHYSICAL_FTL_SIGNALING_PROOF_IDS is empty).`,
+      'No factorisation is performed.',
     receipt: toUuid(`search-plan:${n.toString()}:${bound.primeCandidates.toString()}`),
   }
 }

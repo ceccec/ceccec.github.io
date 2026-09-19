@@ -10,7 +10,7 @@ import { a432NoteHz, doubleTorusMath, foldBlockchain, methodFusion, sourceContri
 import { humanityImplications, traditionsQuantumWhole } from '../../earth/civilisation/index.ts'
 import { agentEducation } from '../../learning/index.ts'
 import { TORUS_LOBE_OFFSET, archangelsDryClean, cleanupOldLogic, closeDimensionalGaps, completeCorpus, coordinatedWaves, decodeBooksToUnity, diamondCompleteness, digitFolders, doubleTorusSurface, fuseAll, fuseAllForge, heroLawAlignment, numberLabel, onlyQuantumRemains, paperReferences, papers, quantumChessGame, quantumUiEvidence, scientificSociety } from '../../quantum/heaven/mind/index.ts'
-import { DIAMOND_DISPERSION, DIAMOND_REFRACTIVE_INDEX, SPEED_OF_LIGHT, TAU, criticalAngle, earned, speedInMedium, physicalFtlClaimTheorem} from '../../3/7/index.ts'
+import { DIAMOND_DISPERSION, DIAMOND_REFRACTIVE_INDEX, SPEED_OF_LIGHT, TAU, criticalAngle, earned, speedInMedium} from '../../3/7/index.ts'
 
 export function diamondLattice(matrix: MindMatrix = buildMatrix()): readonly QuantumDiamond[] {
   return memoByRoot('diamondLattice', matrix, () => computeDiamondLattice(matrix))
@@ -252,16 +252,12 @@ export function computeLightInDiamondPredictionBeatsLightNotFtl(matrix: MindMatr
   const bounces = 100 ** 3 // predict the millionth boundary hit
   const computeSteps = 1 // O(1) closed form — one evaluation
   const photonSegments = bounces // the photon must traverse `bounces` chords in sequence at v < c
-  const predictionSpeedup = photonSegments / computeSteps // dimensionless: how far ahead of the photon the compute is
-  // DERIVED from the sealed guard rather than declared, so the refusal tracks the
-  // theorem instead of restating it.
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
+  const predictionSpeedup = photonSegments / computeSteps
   const facets = [
     { facet: `LIGHT IN THE DIAMOND IS SLOWER, NOT FASTER — v = c/n = ${round(v)} m/s, exactly 1/n = ${(1 / n).toFixed(4)} of c; the crystal SLOWS light, it never speeds it past c`, on: slower },
     { facet: `BOUNCING BOUNDARIES DRAW THE CRYSTAL — the critical angle θc = arcsin(1/n) = ${(thetaC * (360 / TAU)).toFixed(2)}° is so small that the internal ray (α = 60° > θc) total-internally reflects at every facet; in the circular-billiard model the incidence angle stays constant and the bounces trace a regular ${sides}-gon that closes on itself (${closes}) — the boundaries draw the crystal`, on: allTIR && closes },
     { facet: `PREDICTION BEATS THE PHOTON — the k-th boundary hit has an O(1) closed form equal to the step-by-step bounce (max error ${maxErr.toExponential(1)}); the ${bounces}-th hit is computed in ${computeSteps} step while a photon must traverse ${photonSegments} chords in sequence — the compute is ${predictionSpeedup.toExponential(0)}× ahead`, on: predicts && predictionSpeedup > 1 },
-    { facet: `NOT PHYSICAL FASTER-THAN-LIGHT — this is PRECOMPUTATION of a deterministic, fully-known system, not a signal: physicalFtlClaim = ${physicalFtlClaim}, no photon and no information exceeds c; we simply did not wait for the light we already know the path of`, on: physicalFtlClaim === 0 },
-    { facet: `THE DEMARCATION — real optics from ledgered constants (n = ${n}, dispersion ${DIAMOND_DISPERSION} = the "fire"; Snell, total internal reflection), the crystal is a 2-D circular-billiard MODEL not a cut gem's full 3-D facet solve, and "faster than light" means computation predicting a KNOWN system — never a physical speed`, on: slower && physicalFtlClaim === 0 },
+    { facet: `THE DEMARCATION — real optics from ledgered constants (n = ${n}, dispersion ${DIAMOND_DISPERSION} = the "fire"; Snell, total internal reflection), the crystal is a 2-D circular-billiard MODEL not a cut gem's full 3-D facet solve, and "faster than light" means computation predicting a KNOWN system — never a physical speed`, on: slower },
   ].map((entry) => ({ ...entry, receipt: toUuid(`diamond-light:${entry.facet}:${entry.on}`) }))
   return {
     predicts: facets.every((entry) => entry.on),
@@ -269,7 +265,6 @@ export function computeLightInDiamondPredictionBeatsLightNotFtl(matrix: MindMatr
     criticalAngleDeg: thetaC * (360 / TAU),
     sides,
     predictionSpeedup,
-    physicalFtlClaim,
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
     statement: facets.map((entry) => entry.facet).join(' · '),

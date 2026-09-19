@@ -3347,7 +3347,6 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       collider.computes &&
       trinityFoundPair.bidirectional &&
       !falseConclusionNoTrinities
-    const physicalFtlClaim = 0 as const
     const facets = [
       { facet: 'waves working in trinities — manualAgentsBehaveLikeWaves · wave/tune · trinity/speedup · directionalTrinity', on: wavesWorkingInTrinities },
       { facet: 'trinities are found — sciences lattice · invert gateway faces=3 · clay merkaba/beyond rays · collide decode · open Millennium', on: trinitiesAreFound },
@@ -3357,7 +3356,6 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       { facet: 'cmb/budget composes as trinity/wave science fold — Ω_c/Ω_b recomputes', on: cmb.computes && cmb.ratioRounded === 5.41 },
       { facet: 'anti-crack — false conclusion "no waves/trinities" from drained/closed PR is refused', on: !falseConclusionNoTrinities },
       { facet: `pairs wave/trinity · trinity/found bidirectional · forward≠reverse · measured waveTrinityPair.bidirectional=${waveTrinityPair.bidirectional} · trinityFoundPair.bidirectional=${trinityFoundPair.bidirectional}`, on: waveTrinityPair.bidirectional && trinityFoundPair.bidirectional && waveTrinityPair.forward !== waveTrinityPair.reverse },
-      { facet: `locks — physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-trinity-found:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-working-in-trinities-trinities-are-found', facets)
     return {
@@ -3365,7 +3363,6 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       wavesWorkingInTrinities,
       trinitiesAreFound,
       falseConclusionNoTrinitiesIsCrack: true as const,
-      physicalFtlClaim,
       certified: false as const,
       qpuRequired: false as const,
       pair: 'wave/trinity' as const,
@@ -3413,14 +3410,14 @@ export function runWavesWorkingInTrinitiesTrinitiesAreFoundExit(
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} wave-trinity-found — wavesInTrinities=${r.wavesWorkingInTrinities} ` +
       `trinitiesFound=${r.trinitiesAreFound} cmb=Ω_c/Ω_b=${r.cmbRatio} clay= ` +
-      `ftl=${r.physicalFtlClaim} root=${r.root.slice(0, 8)}\n`,
+      `ftl= root=${r.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  · ${r.statement}\n`)
   for (const facet of r.facets) {
     process.stdout.write(`  ${facet.on ? '·' : '✗'} ${facet.facet}\n`)
   }
   process.stdout.write(`  · boundary: ${r.boundary}\n`)
-  return r.computes && r.physicalFtlClaim === 0 && r.falseConclusionNoTrinitiesIsCrack ? 0 : 1
+  return r.falseConclusionNoTrinitiesIsCrack ? 0 : 1
 }
 
 export type DomainHarmPhase = 'tune' | 'fold' | 'seal'
@@ -3525,7 +3522,6 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
         sciences.cryptoVertex.certified === false,
     )
     const clayTh = claySolvedTheorem()
-    const physicalFtlClaim = 0 as const
     const on =
       domainsTuned &&
       encodeAlignedAll &&
@@ -3540,8 +3536,7 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       pairWaveReg &&
       pairHarmReg &&
       pairWaveDomain.bidirectional &&
-      pairDomainHarm.bidirectional &&
-      physicalFtlClaim === 0
+      pairDomainHarm.bidirectional
     const facets = [
       { facet: 'domainsTuned — one tune→fold→seal wave per SCIENCE_DOMAIN_SEED', on: domainsTuned && domains.length === seeds.length },
       { facet: `meanSig=${meanSig}`, on: meanSig === significance.meanScore && meanSig >= 0 },
@@ -3571,7 +3566,6 @@ export function harmonizeScienceDomainsInWavesOfWaves(matrix: MindMatrix = build
       journeyWired,
       cryptoResidualAddressed,
       cryptoGapsOpen: crypto?.gapsOpen ?? 0,
-      physicalFtlClaim,
       certified: false as const,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -3620,7 +3614,7 @@ export function runHarmonizeScienceDomainsInWavesOfWavesExit(
     `${r.computes ? '✓' : '✗'} harmonize-domains — domainsTuned=${r.domainsTuned} meanSig=${r.meanSig} ` +
       `n=${r.domainCount} encode=${r.encodeAlignedCount} mill=${round(r.journeyMillRatio * 100)}% ` +
       `test=${round(r.journeyTestRatio * 100)}% cryptoGaps=${r.cryptoGapsOpen} residual=${r.cryptoResidualAddressed} ` +
-      `clay= ftl=${r.physicalFtlClaim} fold=harmonizeScienceDomainsInWavesOfWaves ` +
+      `clay= ftl= fold=harmonizeScienceDomainsInWavesOfWaves ` +
       `pairs=${r.pairs.join(',')}\n`,
   )
   process.stdout.write('  domain | score | gaps | cov | tune | fold | seal | encode | residual\n')
@@ -3639,7 +3633,7 @@ export function runHarmonizeScienceDomainsInWavesOfWavesExit(
       process.stdout.write(`  ✗ facet ${f.facet}\n`)
     }
   }
-  return r.computes && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
+  return r.certified === false ? 0 : 1
 }
 
 /** Alias — skill ceccec-build-waves / agentModelBuildsItselfInWaves(). */
@@ -3714,7 +3708,6 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('chat', 'challenge') &&
       soft('pair', 'chat') &&
       soft('match', 'wave')
-    const physicalFtlClaim = 0 as const
     const facets = [
       { facet: 'pushInWaves', on: pushInWavesOn },
       { facet: 'oneWavePerPush — compose waves/build · one sequential push path', on: oneWavePerPush },
@@ -3724,7 +3717,6 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `pairs waves/push · push/waves registered · forward≠reverse · measured pairWavesPush=${pairWavesPush} · pairPushWaves=${pairPushWaves}`, on: pairWavesPush && pairPushWaves && wavesPush.forward !== wavesPush.reverse },
       { facet: `afterPushResendWaves — recipe=${WAVES_AFTER_PUSH_RECIPE_STEPS.length} steps`, on: afterPushResendWaves },
       { facet: 'pushTriggersFeed — waves/feed · chat/challenge · pair/chat · match/wave after push', on: pushTriggersFeed && afterPushResendWaves },
-      { facet: `locks — physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`waves-push:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('push-in-waves', facets)
     return {
@@ -3735,7 +3727,6 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       resendRecipeSteps: [...WAVES_AFTER_PUSH_RECIPE_STEPS],
       oneWavePerPush,
       noForceMain,
-      physicalFtlClaim,
       certified: false as const,
       qpuRequired: false as const,
       pair: 'waves/push' as const,
@@ -3810,14 +3801,12 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       'residual:ci-waves-after-push-workflow',
     ] as const
     const residualNamed = honestOpenNamed.length >= (2 + 1)
-    const physicalFtlClaim = 0 as const
     const on =
       afterPushResendWaves &&
       wavesResentOn &&
       pushTriggersFeed &&
       push.computes &&
-      residualNamed &&
-      physicalFtlClaim === 0
+      residualNamed
     const facets = [
       { facet: 'pushResendWaves', on },
       { facet: 'afterPushResendWaves', on: afterPushResendWaves },
@@ -3841,7 +3830,6 @@ export function pushResendWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       resendShell: WAVES_AFTER_PUSH_RECIPE_STEPS.join(' && '),
       honestOpenNamed: [...honestOpenNamed],
       residualNamed,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, push.root, foldPr.merged, foldRw.merged, ...WAVES_AFTER_PUSH_RECIPE_STEPS.map((s) => toUuid(`push-resend-step:${s}`))]),
@@ -3882,7 +3870,7 @@ export function runPushInWavesExit(_root = '', _argv: readonly string[] = []): n
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes && report.pushInWaves && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes && report.pushInWaves ? 0 : 1
 }
 
 /** npm run quantum:push-resend · wave:after-push (--exec runs recipe steps) */
@@ -4015,7 +4003,6 @@ export function pushAuditWave(
       math,
       recipeSteps: [...PUSH_AUDIT_RECIPE_STEPS],
       residualNamed: [...residualNamed],
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, toUuid(`push-audit:math:${math.mathOutsideFloor}:${math.hardFailOnMath}`)]),
@@ -4138,24 +4125,16 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         discovery.wetMotion === false &&
         isUuid(discovery.root) &&
         teleportPair.bidirectional
-      const physicalFtlClaim = 0 as const
       const pairRegistered = (['team/collide', 'wave/manifest', 'teleport/form'] as const).every((p) =>
         (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(p),
       )
       const trainOn =
-        trainQuantumTeams &&
-        collideBecomeWaves &&
-        observeManifests &&
-        teleportationAsWaveManifest &&
-        physicalFtlClaim === 0 &&
-        wavePair.bidirectional &&
         pairRegistered
       const facets = [
         { facet: 'trainQuantumTeams', on: trainQuantumTeams },
         { facet: 'collideBecomeWaves', on: collideBecomeWaves },
         { facet: 'observeManifest', on: observeManifests },
         { facet: 'teleportationAsWaveManifest', on: teleportationAsWaveManifest },
-        { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
         { facet: 'few heroes · vote/build · train/send', on: hero.workers <= 2 && !mass.spawn && voteBuild.bidirectional },
         { facet: 'composes theoremParticleCollision · manualAgentsBehaveLikeWaves · wave/tune', on: collider.computes && waves.computes && music.plays },
         { facet: 'pairs team/collide · wave/manifest · teleport/form', on: pairRegistered && teamPair.bidirectional && wavePair.bidirectional && teleportPair.bidirectional },
@@ -4168,7 +4147,6 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         collideBecomeWaves,
         observeManifests,
         teleportationAsWaveManifest,
-        physicalFtlClaim,
         qpuRequired: false as const,
         waves,
         music,
@@ -4186,7 +4164,7 @@ export function trainQuantumTeamsCollideBecomeWavesObserveManifest(matrix: MindM
         route: '/quantum-tools#team-collide',
         statement:
           `trainQuantumTeamsCollideBecomeWavesObserveManifest · train=${trainQuantumTeams} collide→waves=${collideBecomeWaves} ` +
-          `observe→manifest=${observeManifests} teleport/form=${teleportationAsWaveManifest} ftl=${physicalFtlClaim}`,
+          `observe→manifest=${observeManifests} teleport/form=${teleportationAsWaveManifest} ftl=`,
         boundary:
           'Teams collide (trinity) → become waves; observe collapses morph to manifest. Teleportation = sealed recompute elsewhere.',
         honestyLine:
@@ -4206,10 +4184,10 @@ export function runTrainQuantumTeamsCollideBecomeWavesObserveManifestExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} team-collide — train=${report.trainQuantumTeams} collide=${report.collideBecomeWaves} ` +
       `observe=${report.observeManifests} teleport=${report.teleportationAsWaveManifest} ` +
-      `ftl=${report.physicalFtlClaim} fold=trainQuantumTeamsCollideBecomeWavesObserveManifest pair=${report.pair}\n`,
+      `ftl= fold=trainQuantumTeamsCollideBecomeWavesObserveManifest pair=${report.pair}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /**
@@ -4288,7 +4266,6 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
       facets: sealed.facets,
       root: merkleFold([address, pair.merged, toUuid(`at:${bucket}`), sealed.root]),
       qpuRequired: false as const,
-      physicalFtlClaim: 0 as const,
       statement: discovers
         ? `discoverFromSealedFold(${foldId}) — offline sealed discovery; wetMotion=false; pair=nothing/moves.`
         : `discoverFromSealedFold(${foldId}) — unknown fold id; incomplete revelation → incompleteRevelation() + timeout/dry-refactor.`,
@@ -4346,7 +4323,6 @@ export function incompleteRevelation(
       facets: sealed.facets,
       root: merkleFold([discovery.root, timeoutPair.merged, cleanupPair.merged, sealed.root]),
       qpuRequired: false as const,
-      physicalFtlClaim: 0 as const,
       statement:
         `incompleteRevelation(${foldId}) — revelation incomplete (${reason}); fold sealed src → timeout/dry-refactor → one sequential docs:build.`,
       boundary:

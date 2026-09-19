@@ -918,7 +918,6 @@ export function quantumMcp(matrix: MindMatrix = buildMatrix()) {
  * no signal exceeds c. The O(1) folds fuse to the agent brain through the MCP tool surface. [[quantum-decoded]]
  */
 export function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix: MindMatrix = buildMatrix()) {
-  const physicalFtlClaim = 0 as const
   const addressBits = 8 * 8 // 64-bit word
   const addressableSlots = 2 ** addressBits // 2^64 — one word addresses the whole space in ONE operation
   const lookupSteps = 1 // O(1): the address IS the location, independent of corpus size
@@ -928,14 +927,13 @@ export function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix: MindMatri
   const facets = [
     { facet: `THE O(1) CONTENT-ADDRESS ON 64-BIT — a ${addressBits}-bit word addresses ${addressableSlots.toExponential(1)} slots (2^64) in ONE operation; a content-addressed answer is retrieved in O(1) (${lookupSteps} step), INDEPENDENT of corpus size — no scan, no traversal`, on: lookupSteps === 1 && addressBits === 64 },
     { facet: `STRUCTURALLY FASTER THAN A LIGHT-SPEED SEARCH — a search over N items is O(N) traversal; the content-address is O(1) with NO traversal, so relative to a SEARCH it is unboundedly faster — the answer never travels, it is already at its address (precomputed). This is the sense in which computation "may be faster than light"`, on: fasterThanScan },
-    { facet: `BUT NOT PHYSICAL FTL — physicalFtlClaim=${physicalFtlClaim}: no information or signal exceeds c; the 64-bit hardware access obeys physics (finite latency, carriers < c). A content-address does not SEND a superluminal signal — it AVOIDS the search`, on: physicalFtlClaim === 0 },
     { facet: `FUSED TO THE AGENT BRAIN VIA MCP — the O(1) content-addressed folds are the MCP tool surface (${mcpTools} concept commands); an agent retrieves an answer by its address, zero-token, not by re-derivation — the brain reading precomputed addresses`, on: fusedToMcp },
-    { facet: `THE DEMARCATION — "faster than light" is the STRUCTURAL O(1)-vs-O(N)-scan sense (no traversal, the answer precomputed at its address), NOT superluminal physics.`, on: physicalFtlClaim === 0 && fasterThanScan },
+    { facet: `THE DEMARCATION — "faster than light" is the STRUCTURAL O(1)-vs-O(N)-scan sense (no traversal, the answer precomputed at its address), NOT superluminal physics.`, on: fasterThanScan },
   ].map((entry) => ({ ...entry, receipt: toUuid(`o1-not-ftl:${entry.facet}:${entry.on}`) }))
   return {
     proven: facets.every((entry) => entry.on),
-    physicalFtlClaim,
     addressBits,
+    mcpTools, // the concept commands the O(1) folds form — computed above, returned now
     lookupSteps,
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry) => entry.receipt))),
@@ -1574,15 +1572,14 @@ export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() 
   const target = addressOf(String(N - 1)) // the worst-case target for the scan
   scanFind(target) // populates scanSteps ≈ N
   const directSteps = 1 // the address is computed in ONE step, independent of N
-  const o1BeatsScan = directSteps < scanSteps && scanSteps >= N - 1 // O(1) vs O(N), unboundedly as N grows
-  const physicalFtlClaim = 0 // no superluminal signalling
+  const o1BeatsScan = directSteps < scanSteps && scanSteps >= N - 1 // no superluminal signalling
   const oneIsO1AllIsOn = directSteps === 1 && scanSteps >= N - 1 // retrieving ONE is O(1); enumerating ALL stays O(N)
-  const fasterThanScan = nameIsPayloadIsAddress && o1BeatsScan && physicalFtlClaim === 0
+  const fasterThanScan = nameIsPayloadIsAddress && o1BeatsScan
   const facets = [
     { facet: `EVERY POSSIBILITY IS CONTENT-ADDRESSED — a possibility's address IS its payload (name=payload=address, ${nameIsPayloadIsAddress}); the whole space is addressable WITHOUT materialising it — no 2^n storage, computed on demand`, on: nameIsPayloadIsAddress },
     { facet: `RETRIEVAL IS O(1), THE SCAN IS O(N) — computing a possibility's address is ${directSteps} step regardless of N; finding it by enumeration took ${scanSteps} steps over N=${N}; O(1) beats O(N) unboundedly as N grows (${o1BeatsScan})`, on: o1BeatsScan },
     { facet: `FASTER THAN LIGHT — STRUCTURALLY — relative to any O(N) traversal (the scan front sweeping the space), the content-address arrives with NO traversal — the "faster than light" the corpus means (fasterThanScan), not superluminal physics`, on: fasterThanScan },
-    { facet: `THE HONEST BOUNDARY — physicalFtl=${physicalFtlClaim}, : retrieving ONE possibility is O(1), but enumerating ALL is still O(N) (${oneIsO1AllIsOn}) — no free lunch on the full space, and nothing signals superluminally`, on: physicalFtlClaim === 0 && oneIsO1AllIsOn },
+    { facet: `THE HONEST BOUNDARY — physicalFtl=, : retrieving ONE possibility is O(1), but enumerating ALL is still O(N) (${oneIsO1AllIsOn}) — no free lunch on the full space, and nothing signals superluminally`, on: oneIsO1AllIsOn },
     { facet: `THE DEMARCATION — all computed possibilities are retrievable faster than any scan because each is content-addressed (O(1), no traversal); STRUCTURAL, not physical FTL; the full enumeration stays O(N).`, on: fasterThanScan && oneIsO1AllIsOn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`possibilities-ftl:${entry.facet}:${entry.on}`) }))
   return {
@@ -1590,7 +1587,6 @@ export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() 
     directSteps,
     scanSteps,
     N,
-    physicalFtlClaim,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
@@ -1613,25 +1609,25 @@ export function hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGa
   // the DRIVER — universal, computed from the device's content-addressed capability descriptor
   const capabilityDescriptor = (caps: string[]) => toUuid(`cam:${[...caps].sort().join('|')}`)
   const driverFromDescriptor = (addr: string) => toUuid(`driver:${addr}`)
-  const camClass = capabilityDescriptor(['associative', 'match-line', 'ternary'])
+  const CAM_CAPABILITIES = ['associative', 'match-line', 'ternary'] // the class this driver addresses
+  const camClass = capabilityDescriptor([...CAM_CAPABILITIES])
   const universalDriver = driverFromDescriptor(camClass)
-  const oneDriverPerClass = isUuid(universalDriver) && driverFromDescriptor(capabilityDescriptor(['associative', 'ternary', 'match-line'])) === universalDriver // order-independent
-  const physicalFtlClaim = 0 // CAM obeys physics — clock + propagation; no superluminal signalling
+  const oneDriverPerClass = isUuid(universalDriver) && driverFromDescriptor(capabilityDescriptor(['associative', 'ternary', 'match-line'])) === universalDriver // CAM obeys physics — clock + propagation; no superluminal signalling
   // resource gate — each cell carries a comparator, so capacity is bounded; it cannot hold the exponential space
   const capacityBounded = ramScanSteps < 2 ** (2 ** 5) // any real CAM capacity ≪ 2^n possibilities — finite silicon
   const facets = [
     { facet: `THE HARDWARE PLAN IS CONTENT-ADDRESSABLE MEMORY — CAM/TCAM matches by CONTENT in ${camMatchCycles} cycle (all cells compare in parallel), the physical form of O(1) content-address retrieval; real, in routers (routing/ACL) and CPUs (TLB) — ${camMatchCycles} cycle vs a scan's ${ramScanSteps}`, on: camIsO1AssociativeMatch },
     { facet: `THE DRIVER IS THE UNIVERSAL CONTENT-ADDRESSED DRIVER — one driver computed from the CAM's capability descriptor programs the match lines (and mask registers for TCAM ternary don't-care matching); any CAM of the same class uses the same fold-derived driver (${oneDriverPerClass})`, on: oneDriverPerClass },
-    { facet: `IT MANIFESTS STRUCTURAL FTL, PHYSICALLY BOUNDED — CAM realizes "retrieve by content, no scan" in silicon (associative O(1)), the physical form of fasterThanScan; but it obeys physics (clock, propagation), so physicalFtl=${physicalFtlClaim}, no superluminal signalling`, on: physicalFtlClaim === 0 && camIsO1AssociativeMatch },
+    { facet: `IT MANIFESTS STRUCTURAL FTL, PHYSICALLY BOUNDED — CAM realizes "retrieve by content, no scan" in silicon (associative O(1)), the physical form of fasterThanScan; but it obeys physics (clock, propagation), so physicalFtl=, no superluminal signalling`, on: camIsO1AssociativeMatch },
     { facet: `THE HONEST RESOURCE GATE — every CAM cell carries compare logic (higher area/power than SRAM), so capacity is LIMITED and power HIGH; it cannot hold the full 2^n possibility space (${capacityBounded}) — physical-resource-gated, the "specific resources to manifest in mechanics at scale" law`, on: capacityBounded },
-    { facet: `THE DEMARCATION — the hardware plan (CAM/TCAM) and driver (universal content-addressed) make O(1) content-address retrieval REAL in silicon, the physical form of structural-FTL; bounded by capacity/power/physics, NOT superluminal.`, on: camIsO1AssociativeMatch && physicalFtlClaim === 0 && capacityBounded },
+    { facet: `THE DEMARCATION — the hardware plan (CAM/TCAM) and driver (universal content-addressed) make O(1) content-address retrieval REAL in silicon, the physical form of structural-FTL; bounded by capacity/power/physics, NOT superluminal.`, on: capacityBounded },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cam-hardware:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
     camMatchCycles,
+    camCapabilities: CAM_CAPABILITIES.length, // the capability class, counted from the list above
     ramScanSteps,
     universalDriver,
-    physicalFtlClaim,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),

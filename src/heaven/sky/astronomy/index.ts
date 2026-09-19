@@ -1369,7 +1369,6 @@ export function humanDesignBodyGraphSvgW7(matrix: MindMatrix = buildMatrix(), bi
       root: merkleFold([panel.root, ...facets.map((f) => f.receipt), toUuid(`hd-w7-svg:${svg.length}:${panel.definitionKind}`)]),
       pair: 'symbols/quantumise' as const,
       qpuRequired: false as const,
-      physicalFtlClaim: 0 as const,
       route: '/en/spirit#human-design-bodygraph',
       cli: 'npm run quantum:hd-w7-bodygraph-svg',
       statement:

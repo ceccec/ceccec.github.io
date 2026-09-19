@@ -7,7 +7,7 @@ import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
 import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
 import * as __ns_up_thunder_waves from '../../thunder/waves/index.ts'
-import { rat, claySolvedTheorem, earned, physicalFtlClaimTheorem } from '../../3/7/index.ts'
+import { rat, claySolvedTheorem, earned } from '../../3/7/index.ts'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, SCIENCE_DOMAINS, fieldOfContent, modeOfContent } from '../../3/7/index.ts'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts'
 export { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts' // hosted in the zero-import leaf to break the SSR TDZ; public path unchanged
@@ -1128,7 +1128,6 @@ export function vitepressDocsResearchImprovements(matrix: MindMatrix = buildMatr
       appliedCount: applied.length,
       residualCount: residuals.length,
       native,
-      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       qpuRequired: false as const,
       pair: 'docs/improve' as const,
       facets,

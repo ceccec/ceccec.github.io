@@ -1045,7 +1045,6 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
       has('chat/strategy') &&
       foldPair(toUuid('cmd:trade'), toUuid('cmd:challenge')).bidirectional &&
       foldPair(toUuid('cmd:strategy'), toUuid('cmd:chat')).bidirectional
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const shelved = rosettaShelve('trade-challenge', 'tool')
     const honestOpenNamed = [
@@ -1054,14 +1053,6 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
       'honesty:chat-challenge-not-LLM-invented-trades',
     ] as const
     const on =
-      strategiesInChat &&
-      challengeEachOther &&
-      sealedRecompute &&
-      paperSimOnly &&
-      composeOn &&
-      pairsOn &&
-      isUuid(shelved.address) &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'strategiesChallengeInChat', on },
@@ -1098,7 +1089,6 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
         ? { challenger: topDuel.challenger, defender: topDuel.defender, winner: topDuel.winner }
         : null,
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([

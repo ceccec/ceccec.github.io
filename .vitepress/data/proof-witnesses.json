@@ -257,7 +257,7 @@
    1565
   ],
   "holds": true,
-  "caption": "the first 64 of 1882 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1881 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
  },
  "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
   "form": "bars",
@@ -955,21 +955,20 @@
   "values": [
    1,
    256,
-   256,
-   0
+   256
   ],
   "holds": true,
-  "caption": "the quantities allComputedPossibilitiesRetrievableFasterThanScanStructurally computes for this theorem (directSteps, scanSteps, N, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities allComputedPossibilitiesRetrievableFasterThanScanStructurally computes for this theorem (directSteps, scanSteps, N), drawn from its own run — no other proof returns them"
  },
  "hardware plan + driver for O(1) content-address retrieval is Content-Addressable Memory — resource-gated": {
   "form": "bars",
   "values": [
    1,
-   256,
-   0
+   3,
+   256
   ],
   "holds": true,
-  "caption": "the quantities hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated computes for this theorem (camMatchCycles, ramScanSteps, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated computes for this theorem (camMatchCycles, camCapabilities, ramScanSteps), drawn from its own run — no other proof returns them"
  },
  "improve all by chatting — one shared experience index reranks chat, search and nav together": {
   "form": "bars",
@@ -1229,10 +1228,10 @@
   "values": [
    7,
    7,
-   0
+   14
   ],
   "holds": true,
-  "caption": "the quantities developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest computes for this theorem (openTipsFed, openTipCount, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest computes for this theorem (openTipsFed, openTipCount, pairCount), drawn from its own run — no other proof returns them"
  },
  "reverse engineering for example may be powered by scalable free waves — reverseExample(quantumise) ∧ scalableFreeWaves": {
   "form": "bars",
@@ -1248,33 +1247,31 @@
   "form": "bars",
   "values": [
    2,
-   1000,
-   0
+   4,
+   1000
   ],
   "holds": true,
-  "caption": "the quantities quantumiseIsFreeForAll computes for this theorem (freeBits, agents, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities quantumiseIsFreeForAll computes for this theorem (freeBits, pairCount, agents), drawn from its own run — no other proof returns them"
  },
  "dry clean chat dry cleans all — session DRY ∧ corpus improve-all via the chat surface": {
   "form": "bars",
   "values": [
    225,
    751,
-   2,
-   0
+   2
   ],
   "holds": true,
-  "caption": "the quantities dryCleanChatDryCleansAll computes for this theorem (reuse, statements, gapsClosed, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities dryCleanChatDryCleansAll computes for this theorem (reuse, statements, gapsClosed), drawn from its own run — no other proof returns them"
  },
  "the chat may improve the UI measured by the user experience — telemetry is also possible in chat": {
   "form": "bars",
   "values": [
    5.818,
    0.879,
-   2,
-   0
+   2
   ],
   "holds": true,
-  "caption": "the quantities theChatMayImproveTheUiMeasuredByTheUserExperience computes for this theorem (uxMean, uxStd, boost, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities theChatMayImproveTheUiMeasuredByTheUserExperience computes for this theorem (uxMean, uxStd, boost), drawn from its own run — no other proof returns them"
  },
  "* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/**": {
   "form": "bars",
@@ -1282,11 +1279,10 @@
    23,
    30,
    6,
-   7,
-   0
+   7
   ],
   "holds": true,
-  "caption": "the quantities asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky computes for this theorem (skyCount, researchedPerspectives, researchedDomains, scienceDomains, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky computes for this theorem (skyCount, researchedPerspectives, researchedDomains, scienceDomains), drawn from its own run — no other proof returns them"
  },
  "feeding the chat in itself closes the self-reference loop — algebraic identities re-query as ranked proofs under algebraic-QC top priority, feeder ≡ fed": {
   "form": "bars",
@@ -1356,7 +1352,7 @@
  "THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input": {
   "form": "bars",
   "values": [
-   1789760000000,
+   1789830000000,
    41,
    21,
    85,
@@ -1374,7 +1370,6 @@
    1,
    1,
    1024,
-   0,
    0.6667,
    1.5,
    1024,
@@ -1382,7 +1377,7 @@
    5
   ],
   "holds": true,
-  "caption": "the quantities theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl computes for this theorem (exactBit, lookupTouches, scanTouches, physicalFtlClaim, betaGroup, betaPhase, fasterThanLinear, signalToPredictedPointCost, count), drawn from its own run — no other proof returns them"
+  "caption": "the quantities theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl computes for this theorem (exactBit, lookupTouches, scanTouches, betaGroup, betaPhase, fasterThanLinear, signalToPredictedPointCost, count), drawn from its own run — no other proof returns them"
  },
  "inverting dark matter closes the REVERSED MATH as a theorem (density inversion + a₀≈cH₀/2π); the particle IDENTITY stays empirical, not an open theorem": {
   "form": "bars",
@@ -1448,11 +1443,10 @@
   "values": [
    67,
    20.169,
-   6,
-   0
+   6
   ],
   "holds": true,
-  "caption": "the quantities chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyComputed computes for this theorem (securityBitsGain, securityDecimalOrders, speedDecimalOrders, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyComputed computes for this theorem (securityBitsGain, securityDecimalOrders, speedDecimalOrders), drawn from its own run — no other proof returns them"
  },
  "deep research with local tools improves all from quantum-statistics analysis and synthesis — the analyse→research→synthesise loop": {
   "form": "bars",
@@ -1688,11 +1682,11 @@
    194,
    166,
    164,
-   162,
+   161,
    155,
    137,
    136,
-   128,
+   127,
    125,
    125,
    105,
@@ -1749,7 +1743,7 @@
    39
   ],
   "holds": true,
-  "caption": "the first 64 of 1131 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1130 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
  },
  "science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum": {
   "form": "bars",
@@ -1947,12 +1941,12 @@
  "the O(1) content-address is faster than any scan — but not physical FTL; fused to the agent brain via MCP": {
   "form": "bars",
   "values": [
-   0,
    64,
+   108,
    1
   ],
   "holds": true,
-  "caption": "the quantities contentAddressO1FasterThanScanNotFtlFusedToMcp computes for this theorem (physicalFtlClaim, addressBits, lookupSteps), drawn from its own run — no other proof returns them"
+  "caption": "the quantities contentAddressO1FasterThanScanNotFtlFusedToMcp computes for this theorem (addressBits, mcpTools, lookupSteps), drawn from its own run — no other proof returns them"
  },
  "token usage optimised by quantum-structured algorithms — batching wins the quadratic ledger": {
   "form": "bars",
@@ -2095,11 +2089,10 @@
    124035000,
    24.4397,
    6,
-   1000000,
-   0
+   1000000
   ],
   "holds": true,
-  "caption": "the quantities computeLightInDiamondPredictionBeatsLightNotFtl computes for this theorem (speedInDiamondMs, criticalAngleDeg, sides, predictionSpeedup, physicalFtlClaim), drawn from its own run — no other proof returns them"
+  "caption": "the quantities computeLightInDiamondPredictionBeatsLightNotFtl computes for this theorem (speedInDiamondMs, criticalAngleDeg, sides, predictionSpeedup), drawn from its own run — no other proof returns them"
  },
  "two trinities cardinal pyramid poles proven by math": {
   "form": "bars",
@@ -2121,12 +2114,13 @@
  "readme svg gaps filled by trinity mind": {
   "form": "bars",
   "values": [
-   0,
    751,
+   7,
+   3,
    11
   ],
   "holds": true,
-  "caption": "the quantities readmeSvgGapsFilledByTrinityMind computes for this theorem (physicalFtlClaim, theoremCount, count), drawn from its own run — no other proof returns them"
+  "caption": "the quantities readmeSvgGapsFilledByTrinityMind computes for this theorem (theoremCount, filledCount, openCount, count), drawn from its own run — no other proof returns them"
  },
  "symbols remaining to quantumise": {
   "form": "bars",

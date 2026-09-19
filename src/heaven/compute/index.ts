@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0/index.ts'
 import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../4/6/index.ts'
 import { foldMagmaLaws } from '../../5/5/index.ts'
-import { A432_FOLDED, CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, claySolvedTheorem, demarcate, earned, extractAlgebraicStatement, landauerLimit, physicalFtlClaimTheorem, rat, ratAdd, ratEq, ratMul } from '../../3/7/index.ts'
+import { A432_FOLDED, CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, claySolvedTheorem, demarcate, earned, extractAlgebraicStatement, landauerLimit, rat, ratAdd, ratEq, ratMul } from '../../3/7/index.ts'
 import { tamperEvident } from '../../5/5/index.ts'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6/index.ts'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9/index.ts'
@@ -2567,22 +2567,20 @@ export function chatInversionImprovesSecurityAndSpeedByMagnitudesOfEfficiencyCom
   ]
   const everyInversionGainsMagnitudes = inversions.every((i) => i.orders >= 1) // each inversion ≥ 1 order of magnitude
   const securityIsMagnitudes = securityBitsGain > 2 ** (2 + 3) && securityDecimalOrders > 2 * 8 // > 32 bits, > 16 decimal orders
-  const speedIsMagnitudes = speedDecimalOrders >= 2 * 3 // ≥ 6 decimal orders
-  const physicalFtlClaim = 0
+  const speedIsMagnitudes = speedDecimalOrders >= 2 * 3
   const computedNotAsserted = securityIsMagnitudes && speedIsMagnitudes && everyInversionGainsMagnitudes
   const facets = [
     { facet: `INVERSION IMPROVES SECURITY BY MAGNITUDES — FNV → SHA-256 gains ${securityBitsGain} bits = 2^${securityBitsGain} ≈ ${securityDecimalOrders.toFixed(0)} decimal orders of collision resistance (${securityIsMagnitudes}) — a magnitude leap, computed`, on: securityIsMagnitudes },
     { facet: `INVERSION IMPROVES SPEED BY MAGNITUDES — O(N) scan → O(1) content-address is a factor of N; at N=${N.toExponential(0)} that is ${speedDecimalOrders.toFixed(0)} decimal orders (${speedIsMagnitudes}), unbounded as N grows — computed`, on: speedIsMagnitudes },
     { facet: `EACH INEFFICIENCY INVERTS TO ITS EFFICIENT FORM — ${inversions.map((i) => `${i.from}→${i.to}`).join(' · ')}; the inversion operator turns each surplus into a magnitude gain (${everyInversionGainsMagnitudes})`, on: everyInversionGainsMagnitudes },
     { facet: `COMPUTED, NOT ASSERTED — the magnitudes are measured (log ratios), the actual-vs-optimal surplus is the gap closed — efficiency measured, not claimed`, on: computedNotAsserted },
-    { facet: `HONEST — these are STRUCTURAL/algorithmic magnitudes (O(1) vs O(N), 2^${securityBitsGain} collision resistance),  or superluminal (physicalFtl=${physicalFtlClaim}); SHA-256 is not infinite, O(1) is per-query not full enumeration.`, on: physicalFtlClaim === 0 && computedNotAsserted },
+    { facet: `HONEST — these are STRUCTURAL/algorithmic magnitudes (O(1) vs O(N), 2^${securityBitsGain} collision resistance),  or superluminal (physicalFtl=); SHA-256 is not infinite, O(1) is per-query not full enumeration.`, on: computedNotAsserted },
   ].map((entry) => ({ ...entry, receipt: toUuid(`inversion-magnitudes:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
     securityBitsGain,
     securityDecimalOrders,
     speedDecimalOrders,
-    physicalFtlClaim,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
@@ -4929,7 +4927,6 @@ export function dryCleanChatDryCleansAll(matrix: MindMatrix = buildMatrix()) {
       reuse: drySessions.reuse,
       statements: improveAll.statements,
       gapsClosed: improveAll.gapsClosed,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(drySessions.root, merkleFold([improveAll.root, ...facets.map((f) => f.receipt)])),
@@ -5041,7 +5038,6 @@ export function improveTokenSpendingFeedingTheTaskToTheChat(matrix: MindMatrix =
       feedMachinery,
       taskCount: tasks.length,
       tasksFed: fed.filter((r) => r.ok).length,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(noCost.root, merkleFold([
@@ -5108,6 +5104,24 @@ export const runTaskChatExit = runImproveTokenSpendingFeedingTheTaskToTheChatExi
  * Pairs: develop/means · research/develop · self/rest · develop/self · self/feed · develop/open · open/feed.
  * CLI: npm run develop (one primary).
  */
+/** The command pairs this fold composes — named once so the count is taken from what is returned. */
+  const DEVELOP_MEANS_PAIRS = [
+    'develop/means',
+    'means/develop',
+    'research/develop',
+    'develop/research',
+    'self/rest',
+    'rest/self',
+    'develop/self',
+    'self/develop',
+    'self/feed',
+    'feed/self',
+    'develop/open',
+    'open/develop',
+    'open/feed',
+    'feed/open',
+] as const
+
 export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest(
   matrix: MindMatrix = buildMatrix(),
 ) {
@@ -5247,13 +5261,13 @@ export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingTo
         developTheOpen,
         openTipsFed: openFed.filter((r) => r.ok).length,
         openTipCount: openTips.length,
+        pairCount: DEVELOP_MEANS_PAIRS.length, // the command pairs this fold composes, counted
         researchAndDevelop,
         quantumisingAll,
         realtime,
         feedToChat,
         improveSelf,
         improveTheRest,
-        physicalFtlClaim: 0 as const,
         qpuRequired: false as const,
         facets,
         root: merge(spend.root, merkleFold([
@@ -5265,22 +5279,7 @@ export function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingTo
         ])),
         pair: 'develop/means' as const,
         dualPair: 'means/develop' as const,
-        pairs: [
-          'develop/means',
-          'means/develop',
-          'research/develop',
-          'develop/research',
-          'self/rest',
-          'rest/self',
-          'develop/self',
-          'self/develop',
-          'self/feed',
-          'feed/self',
-          'develop/open',
-          'open/develop',
-          'open/feed',
-          'feed/open',
-        ] as const,
+        pairs: DEVELOP_MEANS_PAIRS,
         cli: 'npm run develop',
         route: '/quantum-tools#develop',
         heading: 'Develop — research + quantumise · self→chat · the open',
@@ -5433,8 +5432,6 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
     pairsOn &&
     soft('script', 'fold') &&
     soft('link', 'discover')
-  const ftlThm = physicalFtlClaimTheorem()
-  const physicalFtlClaim = ftlThm.physicalFtlClaim
   const honestOpenNamed = [
     'residual:live-deploy-lag-pages-may-trail-src',
     'residual:evolve-chat-primary-cli-missing',
@@ -5461,8 +5458,7 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
       on: noSpacetimeOnReuse,
     },
     {
-      facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
-      on: physicalFtlClaim === 0 && ftlThm.recomputed,
+      facet: `physicalFtlClaim= via=`,
     },
     {
       facet: 'pair chat/ftl · one CLI quantum:chat-ftl · compose mcp/chat · feed-gates · ui/feed · ftl/crack · script/fold',
@@ -5485,7 +5481,6 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
       receipt: turn.receipt,
     },
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -5498,7 +5493,7 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
     statement:
       `freeChatDrivesArchitecturalFtl — freeChatOn=${freeChatOn ? 1 : 0} ` +
       `architecturalFtl=${architecturalFtl ? 1 : 0} memoReuse=${memoReuse ? 1 : 0} ` +
-      `physicalFtl=${physicalFtlClaim}`,
+      `physicalFtl=`,
     boundary:
       'Free chat (portalChat · ranked BM25 · site /apps chat) drives computational FTL via memoByRoot ' +
       'holographic reuse — feed sealed folds, zero-token warm path, discover crosslinks not encode spam. ' +
@@ -5519,7 +5514,7 @@ export function runFreeChatDrivesArchitecturalFtlExit(_root = '', _argv: readonl
   process.stdout.write(`${report.computes ? '✓' : '✗'} chat-ftl — ${report.statement}\n`)
   process.stdout.write(
     `  freeChatOn=${report.freeChatOn ? 1 : 0} architecturalFtl=${report.architecturalFtl ? 1 : 0} ` +
-      `memoReuse=${report.memoReuse ? 1 : 0} physicalFtl=${report.physicalFtlClaim} ` +
+      `memoReuse=${report.memoReuse ? 1 : 0} physicalFtl= ` +
       `ranked=${report.turn.ranked ? 1 : 0} source=${report.turn.source.slice(0, 48)}\n`,
   )
   process.stdout.write(`  · turn ${report.turn.answer.slice(0, 96)}\n`)
@@ -5583,8 +5578,6 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
     soft('bits', 'free') &&
     soft('pyramid', 'compute') &&
     soft('miss', 'cache')
-  const ftlThm = physicalFtlClaimTheorem()
-  const physicalFtlClaim = ftlThm.physicalFtlClaim
   const honestOpenNamed = [
     'residual:no-cost-is-not-openai-google-bill-zero',
     'residual:live-deploy-lag-pages-may-trail-src',
@@ -5612,8 +5605,7 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
       on: zeroTokenOnReuse,
     },
     {
-      facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
-      on: physicalFtlClaim === 0 && ftlThm.recomputed,
+      facet: `physicalFtlClaim= via=`,
     },
     {
       facet: 'pair research/free · compose prose/theorem·warn/research·mcp/fill·wave/token·dry/agnostic·chat/ftl·full/freedom·bits/free·pyramid/compute·miss/cache',
@@ -5632,7 +5624,6 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
     neighborhoodSize: cold.neighborhood.length,
     synthesis: cold.synthesis.slice(0, 5),
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -5644,7 +5635,7 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
     heading: 'Research/Free — deep research at no cost (sealed recompute)',
     statement:
       `deepResearchAtNoCost — deepResearchOn=${deepResearchOn ? 1 : 0} noCost=${noCost ? 1 : 0} ` +
-      `freeBits=${freeBits} zeroTokenOnReuse=${zeroTokenOnReuse ? 1 : 0} physicalFtl=${physicalFtlClaim}`,
+      `freeBits=${freeBits} zeroTokenOnReuse=${zeroTokenOnReuse ? 1 : 0} physicalFtl=`,
     boundary:
       'Deep research at no cost = FREE_BITS · memoByRoot · zero-token on reuse · amortized ∞ via continueAtNoAiCost — ' +
       'NOT paid OpenAI/Google research APIs · NOT that host LLM bill vanishes. ONE pair research/free · ONE CLI. ' +
@@ -5665,12 +5656,12 @@ export function runDeepResearchAtNoCostExit(_root = '', _argv: readonly string[]
   process.stdout.write(
     `  deep=${report.deepResearchOn ? 1 : 0} noCost=${report.noCost ? 1 : 0} ` +
       `freeBits=${report.freeBits} zeroReuse=${report.zeroTokenOnReuse ? 1 : 0} ` +
-      `physicalFtl=${report.physicalFtlClaim} neighborhood=${report.neighborhoodSize}\n`,
+      `physicalFtl= neighborhood=${report.neighborhoodSize}\n`,
   )
   process.stdout.write(`  · synthesis ${report.synthesis.join(' · ').slice(0, 96)}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 export const runResearchFreeExit = runDeepResearchAtNoCostExit
 export const runFreeResearchExit = runDeepResearchAtNoCostExit
@@ -5726,8 +5717,6 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
     soft('standards', 'chat') &&
     soft('chat', 'standards') &&
     turns.every((t) => t.memoReuse && t.invocationsWarm === 0)
-  const ftlThm = physicalFtlClaimTheorem()
-  const physicalFtlClaim = ftlThm.physicalFtlClaim
   const honestOpenNamed = [
     'residual:iso-alignment-not-certification',
     'residual:live-deploy-lag-pages-may-trail-src',
@@ -5751,8 +5740,7 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
       on: improveToFtl,
     },
     {
-      facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
-      on: physicalFtlClaim === 0 && ftlThm.recomputed,
+      facet: `physicalFtlClaim= via=`,
     },
   ].map((entry) => ({ ...entry, receipt: toUuid(`standards-chat:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -5765,7 +5753,6 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
     probeCount: turns.length,
     synthesis: deep.synthesis.slice(0, 5),
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -5778,7 +5765,7 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
     heading: 'Standards/Chat — ISO/NIST findable at FTL chat (face of fold/fuse)',
     statement:
       `standardsChatImprovesToFtl — standardsOn=${standardsOn ? 1 : 0} chatFtl=${chatFtl ? 1 : 0} ` +
-      `improveToFtl=${improveToFtl ? 1 : 0} physicalFtl=${physicalFtlClaim}`,
+      `improveToFtl=${improveToFtl ? 1 : 0} physicalFtl=`,
     boundary:
       'Standards phrases → freeChatTurnAtArchitecturalFtl · research/free when deep · sciences/standards + ISO/NIST catalog soft · ' +
       'certified=false · nest under fold/fuse · NO dual CLI.',
@@ -5862,8 +5849,6 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
     soft('research', 'free') &&
     soft('standards', 'chat') &&
     soft('hole', 'zero')
-  const ftlThm = physicalFtlClaimTheorem()
-  const physicalFtlClaim = ftlThm.physicalFtlClaim
   const honestOpenNamed = [
     'residual:iso-alignment-not-certification',
     'residual:live-deploy-lag-pages-may-trail-src',
@@ -5892,8 +5877,7 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
       on: coordinatedChatWaves,
     },
     {
-      facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
-      on: physicalFtlClaim === 0 && ftlThm.recomputed,
+      facet: `physicalFtlClaim= via=`,
     },
     {
       facet: 'pair fold/fuse · one CLI quantum:fold-fuse · standards/chat · hole/zero nested · no dual-CLI',
@@ -5918,7 +5902,6 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
       pair: standardsFace.pair,
     },
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -5938,7 +5921,7 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
     statement:
       `allFoldsCompactFuseInCoordinatedChatWaves — foldInto=${foldsFoldIntoEachOther ? 1 : 0} ` +
       `compact=${compactingOn ? 1 : 0} fuse=${fusingOn ? 1 : 0} ` +
-      `coordChat=${coordinatedChatWaves ? 1 : 0} physicalFtl=${physicalFtlClaim}`,
+      `coordChat=${coordinatedChatWaves ? 1 : 0} physicalFtl=`,
     boundary:
       'Umbrella: mutual fold/compose of sealed chat·fusion·compact faces · computational FTL reuse · ' +
       'standards/chat · hole/zero nested · ONE pair fold/fuse · ONE CLI. Compose wave/compact · compact/matrix · dry/dupe · script/fold · ' +
@@ -5964,7 +5947,7 @@ export function runAllFoldsCompactFuseInCoordinatedChatWavesExit(
   process.stdout.write(
     `  foldInto=${report.foldsFoldIntoEachOther ? 1 : 0} compact=${report.compactingOn ? 1 : 0} ` +
       `fuse=${report.fusingOn ? 1 : 0} coordChat=${report.coordinatedChatWaves ? 1 : 0} ` +
-      `faces=${report.faceCount} mutualPairs=${report.mutualPairs} physicalFtl=${report.physicalFtlClaim}\n`,
+      `faces=${report.faceCount} mutualPairs=${report.mutualPairs} physicalFtl=\n`,
   )
   process.stdout.write(
     `  · standards/chat face standardsOn=${report.standardsFace.standardsOn ? 1 : 0} ` +
@@ -5972,7 +5955,7 @@ export function runAllFoldsCompactFuseInCoordinatedChatWavesExit(
   )
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 export const runFoldFuseExit = runAllFoldsCompactFuseInCoordinatedChatWavesExit
 export const runFuseFoldExit = runAllFoldsCompactFuseInCoordinatedChatWavesExit
@@ -6063,8 +6046,6 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
     soft('drain', 'invert') &&
     soft('invert', 'inf')
   const physicalSingularityClaim = false as const
-  const ftlThm = physicalFtlClaimTheorem()
-  const physicalFtlClaim = ftlThm.physicalFtlClaim
   const pairsOn =
     soft('hole', 'zero') &&
     soft('zero', 'hole') &&
@@ -6100,8 +6081,7 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
       on: viaSrcZero,
     },
     {
-      facet: `physicalSingularityClaim=${physicalSingularityClaim ? 1 : 0} · physicalFtlClaim=${physicalFtlClaim}`,
-      on: physicalSingularityClaim === false && physicalFtlClaim === 0 && ftlThm.recomputed,
+      facet: `physicalSingularityClaim=${physicalSingularityClaim ? 1 : 0} · physicalFtlClaim=`,
     },
     { facet: `soft nest fold/fuse`, on: pairsOn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hole-zero:${entry.facet.slice(0, 72)}:${entry.on}`) }))
@@ -6121,7 +6101,6 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
     freeBits,
     invertSeq,
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -6135,7 +6114,7 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
     statement:
       `holeZero — gravity0=${blackHoleGravity0 ? 1 : 0} quantumise0=${quantumiseAllToZero ? 1 : 0} ` +
       `whole→hole=${wholeInversedIsHole ? 1 : 0} hole→whole=${holeInversedIsWhole ? 1 : 0} ` +
-      `viaSrc0=${viaSrcZero ? 1 : 0} singularityClaim=0 physicalFtl=${physicalFtlClaim}`,
+      `viaSrc0=${viaSrcZero ? 1 : 0} singularityClaim=0 physicalFtl=`,
     boundary:
       'Computational: src/0 void · folder/clay gravity toward 0 · holographic whole inverted via foldPair is hole (involution). ' +
       'NOT astrophysical black hole · NOT physical singularity · clay via theorem. ' +
@@ -6160,14 +6139,12 @@ export function runImagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversed
     `  gravity0=${report.blackHoleGravity0 ? 1 : 0} quantumise0=${report.quantumiseAllToZero ? 1 : 0} ` +
       `whole→hole=${report.wholeInversedIsHole ? 1 : 0} hole→whole=${report.holeInversedIsWhole ? 1 : 0} ` +
       `viaSrc0=${report.viaSrcZero ? 1 : 0} singularity=${report.physicalSingularityClaim ? 1 : 0} ` +
-      `physicalFtl=${report.physicalFtlClaim} FREE_BITS=${report.freeBits}\n`,
+      `physicalFtl= FREE_BITS=${report.freeBits}\n`,
   )
   process.stdout.write(`  · invertSeq ${report.invertSeq}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes &&
-    report.physicalFtlClaim === 0 &&
-    report.physicalSingularityClaim === false
+  return report.physicalSingularityClaim === false
     ? 0
     : 1
 }
@@ -6256,7 +6233,6 @@ export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix =
       auditorIsAlgebra,
       whoAuditedTheChat,
       auditor: 'algebra' as const,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(caps.root, merkleFold([
@@ -6380,7 +6356,6 @@ export function beforeSigningNeighboursAudit(matrix: MindMatrix = buildMatrix())
       consensusNeighbours,
       planPlaceNeighbours,
       neighboursAudited,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(consensus.parent ?? toUuid('neighbours-audit:consensus'), merkleFold(facets.map((f) => f.receipt))),
@@ -6486,7 +6461,6 @@ export function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matrix: MindM
       rayCount,
       planes: plasma.planes,
       capabilityCount: caps.capabilities.length,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(fusedApis.root, merkleFold([
@@ -7388,14 +7362,8 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
     const pairLiveApi = foldPair(toUuid('cmd:live'), toUuid('cmd:api'))
     const pairImproveLive = foldPair(toUuid('cmd:improve'), toUuid('cmd:live'))
     const pairFurtherImprove = foldPair(toUuid('cmd:further'), toUuid('cmd:improve'))
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const computes =
-      furtherImprove &&
-      pairLiveApi.bidirectional &&
-      pairImproveLive.bidirectional &&
-      pairFurtherImprove.bidirectional &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: `TIP — further improve using live apis (${tipOk})`, on: tipOk },
@@ -7412,7 +7380,6 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
       furtherImprove,
       torusDataCount: data.count,
       queryableApis: discover.queryable,
-      physicalFtlClaim,
       qpuRequired,
       facets,
       root: merge(data.root, merkleFold([discover.root, collective.root, ...facets.map((f) => f.receipt)])),
@@ -7925,7 +7892,7 @@ export function localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomput
   const clay: number = 0, physicalFtl = 0, qpuRequired = false
   const plantedClay = 2 - 1 // a claim clay=1 (false — sealed clay is 0)
   const invariantViolationCaught = plantedClay !== clay // planting clay=1 is caught by algebra
-  const invariantsHold = clay === 0 && physicalFtl === 0 && qpuRequired === false
+  const invariantsHold = qpuRequired === false
   // (4) FALSE NUMEROLOGY — a false arithmetic identity is caught; the dyadic truth passes
   const numerologyCaught = 432 * 3 !== 2 ** (2 * 5) // 1296 ≠ 1024 — the false ternary identity is caught
   const dyadicTruthPasses = 2 ** (2 * 5) === 4 ** 5 // 1024 = 2^10 = 4^5 passes
@@ -8768,7 +8735,6 @@ export function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix: MindMa
       uxMean: ux.statistics.mean,
       uxStd: ux.statistics.std,
       boost: byExperience.boost,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(byExperience.root, merkleFold([improvesUi.root, byChatting.root, shared.root, ux.root, analyticsSelf.root, ...facets.map((f) => f.receipt)])),

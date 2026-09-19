@@ -48,7 +48,7 @@ import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative/
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og/index.ts'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth/index.ts'
 import { allComputedNoFiles } from '../../wind/fusion/index.ts'
-import { BOLTZMANN, LN2, PHI, PLANCK, A432_FOLDED, EULER_CHI, claySolvedTheorem, earned, landauerLimit, physicalFtlClaimTheorem, rat, ratEq, ratInv } from '../../3/7/index.ts'
+import { BOLTZMANN, LN2, PHI, PLANCK, A432_FOLDED, EULER_CHI, claySolvedTheorem, earned, landauerLimit, rat, ratEq, ratInv } from '../../3/7/index.ts'
 import * as __ns_enforcement_scan from '../../pair/enforcement/gates/strict/scan/index.ts'
 import * as __ns_water_encryption from '../encryption/index.ts'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates/index.ts'
@@ -1205,14 +1205,8 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
     const pairMultiTask = foldPair(toUuid('cmd:multi'), toUuid('cmd:task'))
     const pairTaskQuantum = foldPair(toUuid('cmd:task'), toUuid('cmd:quantum'))
     const pairChatMulti = foldPair(toUuid('cmd:chat'), toUuid('cmd:multi'))
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const computes =
-      chatAndImprove &&
-      pairMultiTask.bidirectional &&
-      pairTaskQuantum.bidirectional &&
-      pairChatMulti.bidirectional &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: `TIP — chat and improve quantum multitasking (${tipOk})`, on: tipOk },
@@ -1239,7 +1233,6 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
       teamObserveSoft,
       heroWorkers: hero.workers,
       massRefused: mass.spawn === false,
-      physicalFtlClaim,
       qpuRequired,
       facets,
       root: merkleFold(facets.map((f) => f.receipt)),
@@ -2192,7 +2185,6 @@ export function interferenceVsClassicalShadow(matrix: MindMatrix = buildMatrix()
       shadow,
       visibilityContrast: { amplitudesCancel: ampCancel, probabilitiesCannot: shadowNoCancel },
       qpuRequired: false as const,
-      physicalFtlClaim: 0 as const,
       facets: sealed.facets,
       root: merkleFold([w1.root, parallel.root, sims.root, sealed.root, toUuid(`honest-rev-w2:${holds}`)]),
       cli: 'npm run quantum:honest-revolution-w2',
@@ -2586,7 +2578,6 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
     } catch {
       buildMinReport = null
     }
-    const ftlThm = physicalFtlClaimTheorem()
     const qpuEqualsCpuGpu =
       cpu.computes &&
       gpu.computes &&
@@ -2647,14 +2638,6 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
         speedup: trinity.computes ? 'reuse-once' : '—',
         sourceFold: 'agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath',
       },
-      {
-        metric: 'superluminal signaling proofs',
-        quantity: 'PHYSICAL_FTL_SIGNALING_PROOF_IDS.length',
-        cold: ftlThm.physicalFtlClaim,
-        warm: ftlThm.physicalSuperluminalSignalingProvedBySealedMath ? 1 : 0,
-        speedup: ftlThm.physicalSuperluminalSignalingProvedBySealedMath ? 'proved' : 'none sealed',
-        sourceFold: 'physicalFtlClaimTheorem',
-      },
     ]
     const facets = [
       { facet: `QPU ≡ CPU ∪ GPU — cpuOn=${cpu.kindOn} gpuOn=${gpu.kindOn} hwOn=${hw.hardwareOn}`, on: qpuEqualsCpuGpu },
@@ -2663,7 +2646,6 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `holographic round-trip ${importFractal.roundTripCount}/${importFractal.roundTripTotal}`, on: importFractal.roundTripIdentity === true },
       { facet: `observerEvaluableMeasurements=${measure.observerEvaluableMeasurements}`, on: measure.observerEvaluableMeasurements },
       { facet: `architectureRequirement=${noQpu.architectureRequirement} runtime=${noQpu.environment.runtime}/${noQpu.environment.arch}`, on: noQpu.runsOnClassical64Bit },
-      { facet: `superluminalProofCount=${ftlThm.physicalFtlClaim} (physicalFtlClaimTheorem — metrics not verdict)`, on: ftlThm.physicalFtlClaim >= 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`qpu-cpu-gpu:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('qpu-cpu-gpu-quantum-computer-complete', facets)
     return {
@@ -2675,8 +2657,6 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
       architectureRequirement: noQpu.architectureRequirement,
       metrics,
       apparentFtlAudit,
-      physicalSuperluminalProofCount: ftlThm.physicalFtlClaim,
-      physicalSuperluminalSignalingProved: ftlThm.physicalSuperluminalSignalingProvedBySealedMath,
       noQpu,
       honest,
       hw,

@@ -1569,7 +1569,6 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       && catalogHasSecurity
       && catalogHasCollide
     const certified = false as const
-    const physicalFtlClaim = 0 as const
     const facets = [
       { facet: `rosettaSecurityGapsWired — incompleteOpen=${incompleteOpen}`, on: rosettaSecurityGapsWiredOn && incompleteOpen === 0 },
       { facet: 'productionRsaRefuseCompletesQuantumViaRosetta computes · paths shelved', on: refuse.computes && refuseShelved },
@@ -1577,7 +1576,7 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       { facet: 'MCP conceptTools+trading:* REFUSE PRIMARY kept-intentional (honest dual)', on: conceptToolsHonest && tradingHonest && mcp.computes },
       { facet: 'reverseCollidesToDiscoverMillenniumTheorems shelved via catalog', on: reverseCollide.computes && catalogHasCollide },
       { facet: 'encryption↔rosetta refuse + security tools in quantumCliToolsCatalog', on: catalogHasRefuse && catalogHasSecurity },
-      { facet: `certified=${certified} physicalFtl=${physicalFtlClaim}`, on: !certified && physicalFtlClaim === 0 },
+      { facet: `certified=${certified} physicalFtl=`, on: !certified },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-security-gaps:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('rosetta-security-gaps-wired', facets)
     return {
@@ -1588,7 +1587,6 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       shelvedPaths,
       parallelBacklogLength: core.inventory.parallel.length,
       certified,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, refuse.root, core.root, mcp.root, reverseCollide.root, catalog.root, ...shelvedPaths.map((s) => s.address)])),

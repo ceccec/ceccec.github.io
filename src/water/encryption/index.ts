@@ -7,7 +7,7 @@ import { buildMatrix, navigationCrossFourKeysDecodeTrinity, portalChat } from '.
 import { latestDiscoveries } from '../../4/6/index.ts'
 import { VORTEX_SEQUENCE, abs, ceil, computesGate, cos, digitalRoot, exp, floor, foldPair, gcd, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../../0/index.ts'
 import { derivePublicKey, tamperEvident } from '../../5/5/index.ts'
-import { A432_HUE, A432_FOLDED, DIMENSIONS, DIMENSION_GATES, DIMENSION_NAMES, FOLDED_CENSUS, LN2, TAU, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, physicalFtlClaimTheorem, rat, ratInv } from '../../3/7/index.ts'
+import { A432_HUE, A432_FOLDED, DIMENSIONS, DIMENSION_GATES, DIMENSION_NAMES, FOLDED_CENSUS, LN2, TAU, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, claySolvedTheorem, earned, frequencyToLight, rat, ratInv } from '../../3/7/index.ts'
 import { rosettaRayOf, zeroDivisionTable } from '../digit/index.ts'
 // call-time namespace (cycle-safe): decode/one refuse path composes without wet bypass
 import * as __ns_thunder_decode from '../../thunder/decode/index.ts'
@@ -1780,7 +1780,6 @@ export function agentAssumeNothingMathProvesInTheMoment(matrix: MindMatrix = bui
       novel,
       vote,
       noQpu,
-      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       certified: false as const,
       qpuRequired: false as const,
       count: sealed.count,
@@ -1901,7 +1900,6 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
   const fipsValidated = false as const
   const productionReverseRefused = true as const
   const physicalQubitSpeedup = 0 as const
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
   const runtimeTokens = 0 as const
   const answers = 1 as const // one sealed local-audit receipt
   const answersPerTokensUnbounded = runtimeTokens === 0 && answers > 0
@@ -1923,7 +1921,7 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     { facet: `slow local-audit quantum gap CLOSED via amortized memo reuse`, on: slowLocalAuditGapClosed },
     { facet: `efficiency vote decided=${vote.decided} (answers÷tokens · NOT FLOPS)`, on: vote.decided || vote.runtimeTokens === 0 },
     { facet: `answers÷tokens unbounded on reuse (tokens=${runtimeTokens} answers=${answers})`, on: answersPerTokensUnbounded },
-    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} physicalFtlClaim=${physicalFtlClaim}`, on: physicalQubitSpeedup === 0 && physicalFtlClaim === 0 },
+    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} physicalFtlClaim=`, on: physicalQubitSpeedup === 0 },
     { facet: `certified=${certified} fipsValidated=${fipsValidated} — NOT wire AES / NOT NIST PQC break`, on: certified === false && fipsValidated === false },
     { facet: `compose prove-no-qpu-64bit — qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true },
     // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
@@ -1960,7 +1958,6 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     runtimeTokens,
     answersPerTokensUnbounded,
     physicalQubitSpeedup,
-    physicalFtlClaim,
     certified,
     fipsValidated,
     productionReverseRefused,
@@ -2003,7 +2000,7 @@ export function runLocalAuditQuantumSpeedEfficiencyExit(_root: string, _argv: re
   }
   process.stdout.write(
     `  answers÷tokens unbounded=${report.answersPerTokensUnbounded} (tokens=${report.runtimeTokens}) ` +
-      `qubit=${report.physicalQubitSpeedup} ftl=${report.physicalFtlClaim}\n`,
+      `qubit=${report.physicalQubitSpeedup} ftl=\n`,
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes ? 0 : 1
@@ -3936,7 +3933,6 @@ export function maxBitsHardwareBoundaryAgree(matrix: MindMatrix = buildMatrix())
       maxBits,
       refuse,
       qpuRequired: false as const,
-      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim as 0,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, refuse.root, hw.receipt, pairFold.merged])),
       pair: 'bits/hardware' as const,
@@ -4151,7 +4147,6 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
     const nistSigRows = pqc.standards.filter((s) => s.id === 'FIPS 204' || s.id === 'FIPS 205')
     const nistKemRow = pqc.standards.find((s) => s.id === 'FIPS 203')
     const certified = false as const
-    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qpuRequired = false as const
     const industryPkiCertificates = false as const
     const wireClaimProved = false as const
@@ -4174,7 +4169,7 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       { facet: 'ISO/NIST PQC catalog present — FIPS 203 KEM + FIPS 204/205 signatures (MODELED maps)', on: pqc.computes && Boolean(nistKemRow) && nistSigRows.length === 2 },
       { facet: 'composes directional trinity · beyond-RSA toolkit · max-bits · migration honesty', on: trinity.computes && beyond.computes && maxBits.computes && migrate.computes },
       { facet: `honesty — certified=${certified} · industryPkiCertificates=${industryPkiCertificates} · wireClaimProved=${wireClaimProved}`, on: !certified && !industryPkiCertificates && !wireClaimProved && !fipsValidated && !isoCertified },
-      { facet: `honesty — physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: physicalFtlClaim === 0 && qpuRequired === false },
+      { facet: `honesty — physicalFtlClaim= · qpuRequired=${qpuRequired}`, on: qpuRequired === false },
     ]
     const sealed = sealFacets('poles-form-cross-signatures-for-pqc-including-certificates', facets)
     const root = merge(
@@ -4223,7 +4218,6 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       isoCertified,
       industryPkiCertificates,
       wireClaimProved,
-      physicalFtlClaim,
       qpuRequired,
       earth,
       merkaba: { counterRotating: mk.counterRotating, scales: mk.scales.length, root: mk.root },
@@ -4270,7 +4264,7 @@ export function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCert
       `allDir=${report.allDirectionsCross} tips=${report.tipSignatures.length} ` +
       `certStructs=${report.certificateStructures.length} fourWay=${report.fourWayCounterRotating} ` +
       `certified=${report.certified} industryPki=${report.industryPkiCertificates} ` +
-      `wire=${report.wireClaimProved} clay= ftl=${report.physicalFtlClaim} ` +
+      `wire=${report.wireClaimProved} clay= ftl= ` +
       `qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(
@@ -4299,7 +4293,6 @@ export function runPolesFormCrossSignaturesForPostQuantumEncryptionIncludingCert
   return report.computes
     && report.crossIsPartOfMerkabaRosetta
     && report.certified === false
-    && report.physicalFtlClaim === 0
     ? 0
     : 1
 }
@@ -4622,7 +4615,6 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
     const incompleteOpen = paths.filter((p) => p.incomplete).length
     const allWired = incompleteOpen === 0 && paths.every((p) => p.wired && p.refused)
     const certified = false as const
-    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const productionBreakEnabled = false as const
 
     const facets = [
@@ -4633,7 +4625,7 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       { facet: 'max-bits refuseBeyond ∧ productionReverseRefused (DEMO ceiling stays)', on: maxBits.refuseBeyond && maxBits.productionReverseRefused },
       { facet: 'encryptionReverseVerify production-browser · sealed-catalog boundary (no production RSA break)', on: reverseVerify.verified },
       { facet: `productionBreakEnabled=${productionBreakEnabled}`, on: productionBreakEnabled === false },
-      { facet: `certified=${certified} physicalFtl=${physicalFtlClaim}`, on: !certified && physicalFtlClaim === 0 },
+      { facet: `certified=${certified} physicalFtl=`, on: !certified },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prod-rsa-refuse-complete:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('production-rsa-refuse-completes-quantum-via-rosetta', facets)
     return {
@@ -4646,7 +4638,6 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       refuseBeyond: maxBits.refuseBeyond,
       demoBitCeiling: SEALED_CATALOG_RSA_BIT_CEILING,
       certified,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, reverseVerify.root, decodeRefuse.root, ...paths.map((p) => p.receipt)])),
@@ -5004,7 +4995,6 @@ export function productionBrowserToolsAreNotDemos(matrix: MindMatrix = buildMatr
       toolSurface: maxBits.toolSurface,
       moduliClass: maxBits.moduliClass,
       certified: false as const,
-      physicalFtl: 0 as const,
       facets: sealed.facets,
       root: merge(maxBits.root, merge(reverse.root, merge(panel.root, merge(pairHonest.merged, sealed.root)))),
       pair: 'tool/honest' as const,
@@ -5392,7 +5382,6 @@ export function sslTestUiComplete(matrix: MindMatrix = buildMatrix(), hostLabel 
       liveRemoteScanResidual,
       phrases: [...SSL_TEST_CHAT_PHRASES],
       certified: false as const,
-      physicalFtl: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merge(receipt, toUuid(`ssltest-host:${hostNorm.host || 'sealed'}`)),

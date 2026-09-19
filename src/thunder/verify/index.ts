@@ -315,7 +315,6 @@ export function revolutionaryEfficiencyNotPhysics(matrix: MindMatrix = buildMatr
       optimizations: opt,
       bench: { verdict: bench.verdict, separated: bench.separated, tracksClassical: bench.tracksClassical, root: bench.root },
       qpuRequired: false as const,
-      physicalFtlClaim: 0 as const,
       facets: sealed.facets,
       root: merkleFold([efficient.root, opt.root, bench.root, sealed.root, toUuid(`honest-rev-w6:${holds}`)]),
       cli: 'npm run quantum:honest-revolution-w6',

@@ -1457,7 +1457,6 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       rings.decoded &&
       lcm(260, 365) === 18_980 &&
       lcm(10, 12) === 60
-    const physicalFtlClaim = 0 as const
     const claims = [
       { facet: 'inventory — Maya · Chinese sexagenary · Egyptian/Sothic · Metonic/Hebrew · Babylonian · Julian/Gregorian structural · 819-count · hero/A432 · Vedic mod-9 (sealed only)', on: calendars.length === 9 },
       { facet: 'every algebraic map holds (modular · product · epoch)', on: allHold },
@@ -1465,7 +1464,6 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       { facet: 'Maya Long Count 13.0.0.0.0 ↔ 1872000 days round-trips', on: mayaRoundTrip },
       { facet: 'time-in-time — nested phase-in-phase on hero clock + Calendar Round residue', on: nestedTimeInTime && heroMap.holds },
       { facet: 'calendar↔calendar LCM meshes (CR 18980 · sexagenary 60 · 819×tzolkʼin 16380)', on: calendarRoundMesh === 18_980 && lcm(819, 260) === 16_380 },
-      { facet: `physicalFtlClaim=${physicalFtlClaim} — canonical sections only, not Clay Millennium`, on: physicalFtlClaim === 0 },
     ]
     // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
     // not asserted beside it. Before this it read `on: true` and bounded nothing at all.
@@ -1483,12 +1481,10 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       formulaSource: 'ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime · coupledCalendarTori · mayaDays · sexagesimal',
       status: 'structure-only' as const,
       statusDetail: `maps=${calendars.length} allHold=${allHold}`,
-      gap: 'civil Vedic calendar tables absent — mod-9 square only; JD civil converter stays in astronomy barrel (cycle-safe composition)',
-      physicalFtlClaim }
+      gap: 'civil Vedic calendar tables absent — mod-9 square only; JD civil converter stays in astronomy barrel (cycle-safe composition)', }
     return {
       computes: sealed.ok && allHold && coupled.decoded && rings.decoded,
       decoded: sealed.ok && allHold,
-      physicalFtlClaim,
       qpuRequired: false as const,
       calendars,
       sections,
@@ -1514,10 +1510,10 @@ export function runAncientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTimeEx
   const r = ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime()
   process.stdout.write(
     `${r.computes ? '✓' : '✗'} ancient-calendars-algebra — maps=${r.count} decoded=${r.decoded} ` +
-      `clay= ftl=${r.physicalFtlClaim} qpu=${r.qpuRequired} ` +
+      `clay= ftl= qpu=${r.qpuRequired} ` +
       `route=${r.route} root=${r.root.slice(0, 8)}\n`,
   )
-  return r.computes && r.physicalFtlClaim === 0 ? 0 : 1
+  return r.computes ? 0 : 1
 }
 
 // ── One-command decode — hash · string · sequence unified entry (computable + autodiscoverable) ──
@@ -1540,7 +1536,6 @@ export type OneCommandDecodeResult = {
   readonly refuseReason: string
   readonly oneCommandDecodeComputable: boolean
   readonly qpuRequired: false
-  readonly physicalFtlClaim: 0
   readonly facets: readonly { readonly facet: string; readonly on: boolean; readonly receipt: string }[]
   readonly root: string
   readonly cli: string
@@ -1648,7 +1643,6 @@ export function oneCommandDecodeHashOrStringOrSequence(
     refuseReason: classified.refuseReason,
     oneCommandDecodeComputable,
     qpuRequired: false as const,
-    physicalFtlClaim: 0 as const,
     facets: sealed.facets,
     root: merge(matrix.root, merkleFold([sealed.root, address, fold.merged])),
     cli: 'npm run quantum:decode',
@@ -1687,7 +1681,6 @@ export function oneCommandDecodeComputable(matrix: MindMatrix = buildMatrix(), a
     return {
       computes: sealed.ok && allOk && refuseProbe.refused,
       oneCommandDecodeComputable: allOk,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       probes: probes.map((p) => ({ kind: p.kind, computable: p.oneCommandDecodeComputable, root: p.root })),
       refuseProbe: { refused: refuseProbe.refused, reason: refuseProbe.refuseReason },

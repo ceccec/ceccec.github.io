@@ -521,8 +521,7 @@ export function thunderAndPlasmaAreSameInDifferentAspects(matrix: MindMatrix = b
       statement:
         `Thunder ≡ plasma in different aspects — ${facets.filter((e) => e.on).length}/${facets.length}: forward=lightning · inverse=plasma-screen · reverse=thunder; noBallInTheMiddle=${screen.noBallInTheMiddle}.`,
       boundary:
-        'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects.',
-      physicalFtlClaim: 0 as const }
+        'Composes plasmaBallIsScreenHoldingThunderAndPlasma (decode). Physical honesty: one discharge event, three named aspects.', }
   })
 }
 

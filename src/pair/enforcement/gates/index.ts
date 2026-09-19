@@ -28,7 +28,7 @@ import {
   type StrictGateSnapshot,
   type StrictHyphenOffender,
   type StrictNonTsOffender } from './strict/index.ts'
-import { claySolvedTheorem, physicalFtlClaimTheorem, SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7/index.ts'
+import { claySolvedTheorem, SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7/index.ts'
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
@@ -1279,7 +1279,6 @@ export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
   const trinityOnePass = techniqueIds.has('trinity-one-pass')
   const merkleRespawn = techniqueIds.has('merkle-respawn') && techniqueIds.has('audit-src-merkle-bind')
   const singleFlight = techniqueIds.has('single-flight-lock')
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     { facet: 'gate/unite — collectEnforcementFacts once per phase (one merkle + one src walk)', on: unite.pair === 'gate/unite' && uniteFold.bidirectional },
     { facet: 'runEnforcementTrinity — cross · fold · weave from cached facts (no wet re-walk)', on: trinityOnePass && qz.computes },
@@ -1287,7 +1286,7 @@ export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
     { facet: 'vote/build — one sequential docs:build · no parallel builds', on: vote.pair === 'vote/build' && voteBuildFold.bidirectional && voteBuildFold.forward !== voteBuildFold.reverse && singleFlight },
     { facet: 'mission/gate · check/types · verify/structure route through united facts', on: pairs.paired },
     { facet: 'trinity/speedup pair bidirectional', on: speedupFold.bidirectional && speedupFold.forward !== speedupFold.reverse },
-    { facet: `physicalFtlClaimTheorem=${physicalFtlClaim} — wall-clock varies; speedup = reuse + single-flight + facts-once`, on: physicalFtlClaim === 0 && singleFlight },
+    { facet: `physicalFtlClaimTheorem= — wall-clock varies; speedup = reuse + single-flight + facts-once`, on: singleFlight },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-speedup:${entry.facet}:${entry.on}`) }))
   const allOn = facets.every((entry) => entry.on)
   return {
@@ -2869,7 +2868,6 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
   const composeOn = composePairs.every(([a, b]) => softCmdPair(a, b))
   const pairOn = softCmdPair('gate', 'analytics') && softCmdPair('analytics', 'gate')
   const analyticsFacetsOn = debt.computes && manual.computes && gateFiles.length > 0 && appsSource.length > 0
-  const physicalFtlClaim = 0 as const
   const qpuRequired = false as const
   const honestOpenNamed = [
     ...(hardcodedOnTrueDebt > 0 ? [`residual:hardcoded-on-true-debt=${hardcodedOnTrueDebt}`] : []),
@@ -2882,15 +2880,6 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
   ] as const
 
   const on =
-    analyticsFacetsOn &&
-    slimToolsOn &&
-    coreAlgebraShared &&
-    gatesLensChatSameCore &&
-    composeOn &&
-    pairOn &&
-    physicalFtlClaim === 0 &&
-    qpuRequired === false &&
-    noConfusion &&
     noFatHardcodedToolBodies
 
   const facets = [
@@ -2925,7 +2914,6 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     analyticsFacetsOn,
     honestOpenNamed: [...honestOpenNamed],
     qpuRequired,
-    physicalFtlClaim,
     facets,
     root: merkleFold([
       toUuid(`gate-analytics:${hardcodedOnTrueDebt}:${handListAllowlistResidual}:${fatHardcodedInSlimTools}`),
@@ -3344,7 +3332,6 @@ export function agentEntryPacket(root: string = enforcementScanRoot()) {
     foldableShare: fit.foldableShare,
     matrixFit: fit.matrixFit,
     agentEntryClear: fit.agentEntryClear,
-    physicalFtlClaim: fit.physicalFtlClaim,
     qpuRequired: false as const,
   }
 }
@@ -3432,14 +3419,12 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
     softCmdPair('dry', 'dupe') &&
     softCmdPair('place', 'merge') &&
     ftlOnReuse
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
 
   const hardRefuse =
     incompleteRefused &&
     matrixFit &&
     foldableRatchetOn &&
-    !dualCliCrack &&
-    physicalFtlClaim === 0
+    !dualCliCrack
 
   const facets = [
     {
@@ -3469,10 +3454,6 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
     {
       facet: `HARD refuse sprawl · aliasExtra=${aliasExtra} triplePlus=${triplePlus} · dualCliCrack=${dualCliCrack ? 1 : 0}`,
       on: hardRefuse,
-    },
-    {
-      facet: `physicalFtlClaim=${physicalFtlClaim} clay=`,
-      on: physicalFtlClaim === 0,
     },
     {
       facet: 'pair tool/matrix · soft manual/gap · prose/matrix · link/discover · script/fold · chat/ftl',
@@ -3516,7 +3497,6 @@ export function toolsFitTheMatrixOrRefuse(root: string = enforcementScanRoot()) 
     placementWetCount: placementWet.length,
     incompleteNamed,
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,

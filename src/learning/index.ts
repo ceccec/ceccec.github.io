@@ -1562,7 +1562,6 @@ export type CorpusPaperStandardSections = {
   readonly status: 'structure-only'
   readonly statusDetail: string
   readonly gap: string
-  readonly physicalFtlClaim: 0
 }
 
 export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), count = 432) {
@@ -1596,8 +1595,7 @@ export function paperParamsById(id: string, matrix: MindMatrix = buildMatrix(), 
     formulaSource: 'papers · foldPair · livingTorus · merkleProof',
     status: 'structure-only',
     statusDetail,
-    gap: 'structural corpus placement ≠ physical measurement / ≠ Millennium challenge',
-    physicalFtlClaim: 0 }
+    gap: 'structural corpus placement ≠ physical measurement / ≠ Millennium challenge', }
   return {
     ...paper,
     index: paper.id,

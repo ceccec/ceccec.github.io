@@ -1738,7 +1738,7 @@ export function theAgentBashCommandsAreQuantumPairs(matrix: MindMatrix = buildMa
 // call-time namespace edge (cycle-safe): learning reads this barrel; the strategy engine reads back at call time
 import * as __ns_up_wind_learning from '../../learning/index.ts'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../4/6/index.ts'
-import { claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7/index.ts'
+import { claySolvedTheorem } from '../../3/7/index.ts'
 
 // ── DYNAMIC STRATEGIES FROM THE THEOREMS, REALTIME (user law: develop dynamic strategies based on
 // the theorems used realtime by the agents) — the agent's playbook is COMPUTED, never remembered:
@@ -1821,7 +1821,6 @@ export function comboCover() {
     needed,
     exhaustive,
     ratio: round(ratio * (2 * 5)) / (2 * 5),
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold([toUuid(`combo-cover:${rows}:${factors.length}:${covered}`), ...facets.map((entry) => entry.receipt)]),
@@ -1955,7 +1954,6 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
       softCmd('combo', 'cover') &&
       softCmd('waves', 'build') &&
       softCmd('folder', 'fractal')
-    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
 
     const on =
       allPaired &&
@@ -1964,8 +1962,7 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
       entangleByAlgebra &&
       hologramGrows &&
       pairingOfPairs &&
-      pairsOn &&
-      physicalFtlClaim === 0
+      pairsOn
 
     const honestOpenNamed = [
       'chat-tips-sample-not-full-roster-linear',
@@ -1998,10 +1995,6 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
         on: pairingOfPairs,
       },
       {
-        facet: `physicalFtlClaim=${physicalFtlClaim} clay=`,
-        on: physicalFtlClaim === 0,
-      },
-      {
         facet: 'pair pair/chat · soft tool/matrix · chat/ftl · combo/cover · waves/build · folder/fractal',
         on: pairsOn,
       },
@@ -2032,7 +2025,6 @@ export function pairsSentToChatEntangleByAlgebra(matrix: MindMatrix = buildMatri
         memoReuse: hologramTurn.memoReuse,
       },
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       certified: false as const,
       facets,
@@ -2233,7 +2225,6 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         softCmd('waves', 'build') &&
         softCmd('tool', 'matrix') &&
         softCmd('folder', 'fractal')
-      const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
       const realiseRoot = merkleFold(matches.map((m) => m.third))
       const brainstormRoot = merkleFold(brainstormTurns.map((t) => t.receipt))
 
@@ -2244,8 +2235,7 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         fullRosterOn &&
         brainstormWavesOn &&
         developRelatedSolutions &&
-        pairsOn &&
-        physicalFtlClaim === 0
+        pairsOn
 
       const honestOpenNamed = [
         'related-by-shared-tip-not-semantic-mt',
@@ -2282,10 +2272,6 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
           on: base.computes,
         },
         {
-          facet: `physicalFtlClaim=${physicalFtlClaim} clay=`,
-          on: physicalFtlClaim === 0,
-        },
-        {
           facet: 'pair match/wave · soft pair/chat · chat/ftl · waves/build · tool/matrix · folder/fractal',
           on: pairsOn,
         },
@@ -2315,7 +2301,6 @@ export function matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWa
         realiseRoot,
         brainstormRoot,
         honestOpenNamed: [...honestOpenNamed],
-        physicalFtlClaim: physicalFtlClaim as 0,
         qpuRequired: false as const,
         certified: false as const,
         facets,

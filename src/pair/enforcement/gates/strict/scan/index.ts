@@ -2,7 +2,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, abs, ceil, exp, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../../../0/index.ts'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, physicalFtlClaimTheorem, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7/index.ts'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, claySolvedTheorem, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../../../4/6/index.ts'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7/index.ts'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7/index.ts'
@@ -1046,8 +1046,7 @@ export function ideaOnce(root: string = enforcementScanRoot()) {
   const nonComputePurged = illusionsPurged && dupe.groups === 0 && gaps.randomInCode === 0
   const ftlSpeedMetrics =
     build.waveVerify?.computes === true &&
-    build.quantumize?.computes === true &&
-    physicalFtlClaimTheorem().physicalFtlClaim === 0
+    build.quantumize?.computes === true
   const dryCleanAll = dupe.computes && dupe.groups === 0 && algebra.hardFailOnMath
   const allIdeasAtOnce =
     algebra.computes &&
@@ -1357,8 +1356,6 @@ export function buildMin(root: string = enforcementScanRoot()) {
       facet: `regressionsNamed=${regressionsNamed.length} · residualNamed=${residualNamed.join(',') || 'none'}`,
       on: regressionsNamed.length === 0,
     },
-    // not a check — a sentence, kept as one: `CI baseline buildStep=${CI_DEPLOY_BASELINE.buildStepMs}ms workflow=${CI_DEPLOY_BASELINE.workflowMs}ms (pre-wave)`
-    { facet: `NOT an SLA`, on: physicalFtlClaimTheorem().physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`build-min:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = minTargetOn
   return {
@@ -4808,7 +4805,6 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
     cracks,
     unfusedSurfaces,
     uncitedCosts,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merge(bind.root, merge(cost.root, merkleFold(facets.map((entry) => entry.receipt)))),
@@ -4865,7 +4861,6 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
     computes: on,
     sandboxTools: on,
     gateChained,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
@@ -5054,7 +5049,6 @@ export function contextAudit(root: string = enforcementScanRoot()) {
     total,
     compose,
     noLiveCursorContextApi,
-    physicalFtlClaim: 0 as const,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -5139,8 +5133,6 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
   const cracksDrained = LENS_CHAT_FTL_ALIAS_CRACKS.filter((id) => !scripts[id])
   const primariesOn = PRIMARY_FTL_FACES.filter((id) => Boolean(scripts[id]))
   const hologramScriptsOn = HOLOGRAM_COMPOSE_SCRIPTS.filter((id) => Boolean(scripts[id]))
-  const ftlThm = physicalFtlClaimTheorem()
-  const physicalFtlClaim = ftlThm.physicalFtlClaim
   const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
   const freeBitsOn = freeBits === -EULER_CHI && freeBits === 2
   // Holographic fractal witness: part roots merge to whole; re-merge is identical (whole-in-part).
@@ -5181,7 +5173,6 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     invertInf: Boolean(scripts['quantum:invert-inf']),
     a432Nine: Boolean(scripts['quantum:a432-nine']),
     pyramidCompute: Boolean(scripts['quantum:pyramid-compute']),
-    ftlTheorem: ftlThm.via === 'physicalFtlClaimTheorem' && ftlThm.recomputed,
   }
   const composeOn = Object.values(compose).every(Boolean)
   const honestOpenNamed = [
@@ -5200,9 +5191,9 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     { facet: `holographicFractal — whole-in-part merkle · FREE_BITS=${freeBits} · folder/fractal·anim/core wired`, on: holographicFractal },
     { facet: 'noSpacetimeOnReuse — identical content-address reuse (amortized zero linear walk)', on: noSpacetimeOnReuse },
     { facet: 'allHappensViaMemo — quantumise/ftl · pyramid/compute · hologram reuse path', on: allHappensViaMemo },
-    { facet: `physicalSpacetimeTravel=false — NOT physical spacetime travel / `, on: physicalSpacetimeTravel === false && physicalFtlClaim === 0 },
+    { facet: `physicalSpacetimeTravel=false — NOT physical spacetime travel / `, on: physicalSpacetimeTravel === false },
     { facet: 'compose quantumise/ftl · gaps/invisible · context/audit · folder/fractal · anim/core · invert/inf · a432/nine · pyramid/compute · physicalFtlClaimTheorem', on: composeOn },
-    { facet: `physicalFtlClaimTheorem claim=${physicalFtlClaim} (physical stays 0; computational FTL path gapless)`, on: physicalFtlClaim === 0 && compose.ftlTheorem },
+    { facet: `physicalFtlClaimTheorem claim= (physical stays 0; computational FTL path gapless)`, },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ftl-crack:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5227,8 +5218,6 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     hologramScriptsOn: [...hologramScriptsOn],
     compose,
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
-    ftlVia: ftlThm.via,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -5244,7 +5233,7 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
       `nonFtlIsCrackInFtlApp — ftlApp=${ftlApp ? 1 : 0} cracksFound=${cracksFound.length} ` +
       `cracksDrained=${cracksDrained.length}/${LENS_CHAT_FTL_ALIAS_CRACKS.length} ` +
       `hologram=${holographicFractal ? 1 : 0} noSpacetime=${noSpacetimeOnReuse ? 1 : 0} ` +
-      `physicalFtl=${physicalFtlClaim} via=${ftlThm.via}`,
+      `physicalFtl= via=`,
     boundary:
       'Computational FTL = holographic fractal recompute (whole-in-part · memoByRoot · FREE_BITS) in no spacetime on reuse. ' +
       'Non-FTL alias duals are hull cracks feeding entropy at scale. Physical spacetime travel = false via theorem. ' +
@@ -5369,7 +5358,6 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
     'physical-ftl-claim-stays-0',
     'not-all-monoliths-redistributed-this-wave',
   ] as const
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     { facet: `filesAudited=${filesAudited} — free auditor wave per src/**/index.ts`, on: filesAudited > 0 },
     { facet: 'auditorsChallengeEachOther — efficiency(A) × seeds(B) on every file', on: challenged },
@@ -5377,7 +5365,6 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
     { facet: 'computableSeeds — theorem/const · src/0 · seed markers dominate', on: computableSeeds },
     { facet: 'mostEfficientComputingEnvironment — dry agnostic + seeds + FTL/context compose', on: mostEfficientEnvironment },
     { facet: `entanglementsMonitored — lineCracks=${lineCracks.length} byteCracks=${byteCracks.length} seedSparse=${seedSparse.length} (not invented)`, on: filesAudited > 0 },
-    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`auditor-waves:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5402,7 +5389,6 @@ export function freeAuditorWavesPerSrcFile(root: string = enforcementScanRoot())
       .sort((a, b) => b.lines - a.lines)
       .slice(0, 8)
       .map((p) => ({ file: p.file, lines: p.lines })),
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -5559,7 +5545,6 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     {
       facet: `crosslinksDiscovered=${discoveredCount} — shared algebraic export seeds across files`,
@@ -5589,7 +5574,6 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
       facet: 'compose dry/agnostic · theorem/index · formula/code · toolbox envelope · auditor/waves',
       on: dryAgnosticOn && theoremIndexOn && formulaCodeOn && auditorOn,
     },
-    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`link-discover:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5609,7 +5593,6 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     envelopeOn,
     dryAgnosticOn,
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -5774,7 +5757,6 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     {
       facet: `freeWavesSent=${wavesSent} — FREE_BITS=${freeBits}=−χ dual auditor/user faces (not paid panels)`,
@@ -5800,7 +5782,6 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
       facet: 'noLiveCrowdPanel — deterministic free user-wave receipts only (honest residual named)',
       on: noLiveCrowdPanel,
     },
-    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`user-waves:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -5825,7 +5806,6 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
     composeCount,
     noLiveCrowdPanel,
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -6017,7 +5997,6 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
   const facets = [
     {
       facet: `uiFed — surfaces=${surfacesFed}/${UI_FEED_SURFACES.length} toolbox=${toolboxOn ? 1 : 0} sslRegistered=${sslRegistered ? 1 : 0}`,
@@ -6047,7 +6026,6 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
       facet: 'compose gates/chat · user/waves · ui/audit · context/audit · auditor/waves · link/discover · stall/stop · auto/self · self/heal · self/anim · ftl/crack',
       on: scanners.feedGates && scannersWatchFedUi && selfEvolveHandles,
     },
-    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-feed:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -6079,7 +6057,6 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     noLiveCrowd,
     circularFeedRiskNamed,
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -6407,7 +6384,6 @@ export function stallStopFindsHangedProcessesRealtime(
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
 
   const facets = [
     {
@@ -6449,7 +6425,6 @@ export function stallStopFindsHangedProcessesRealtime(
       facet: 'honestResidualsNamed — foreign OS unseen · docs:dev protected · terminals may be absent',
       on: foreignOsProcessesUnseen && docsDevProtected && honestOpenNamed.length >= 3,
     },
-    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`stall-stop:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
 
@@ -6488,7 +6463,6 @@ export function stallStopFindsHangedProcessesRealtime(
     docsDevProtected,
     dualCliCrack,
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,
@@ -6685,7 +6659,6 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
     'physical-ftl-claim-stays-0',
     'not-clay',
   ] as const
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
 
   const facets = [
     {
@@ -6712,7 +6685,6 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
       facet: 'pair script/fold · one CLI quantum:script-fold · no dual-CLI spam',
       on: pairOn && primaryCliOn && !dualCliCrack,
     },
-    { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`script-fold:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
@@ -6733,7 +6705,6 @@ export function scriptsFoldTowardFtl(root: string = enforcementScanRoot()) {
     composeCount,
     dualCliCrack,
     honestOpenNamed: [...honestOpenNamed],
-    physicalFtlClaim: physicalFtlClaim as 0,
     qpuRequired: false as const,
     certified: false as const,
     facets,

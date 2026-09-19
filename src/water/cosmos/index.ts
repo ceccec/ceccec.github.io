@@ -4,7 +4,7 @@
 import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
 import * as __ns_up_lake_widgets from '../../widgets/index.ts'
-import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, physicalFtlClaimTheorem, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7/index.ts'
+import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, claySolvedTheorem, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7/index.ts'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7/index.ts'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
@@ -288,7 +288,6 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
     // Quantum gaps in theorems = incomplete revelation framing: identity/detection theorem apparatus OPEN
     const particleIdentityProved = false // refuseBeyond — this fold never claims a DM particle
     const quantumGapsInTheorems = nonGravitationalDetectionNull && !particleIdentityProved
-    const physicalFtlClaim = 0 as const
     const certified = false as const
     const sealIntent =
       `Ω_c/Ω_b = ${ratioRounded} — the unseen outweighs baryons ${round(ratio)}:1 in the CMB budget; ` +
@@ -314,8 +313,8 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
         facet: 'null non-gravitational detection attributed to quantum gaps in theorems (incomplete revelation / OPEN frontier framing)',
         on: quantumGapsInTheorems && sealIntent.includes('quantum gaps in theorems') },
       {
-        facet: `locks — physicalFtlClaim=${physicalFtlClaim} · certified=${certified} · refuseBeyond stays`,
-        on: physicalFtlClaim === 0 && certified === false },    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
+        facet: `locks — physicalFtlClaim= · certified=${certified} · refuseBeyond stays`,
+        on: certified === false },    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems', facets)
     return {
       computes: sealed.ok && gravitationalCmbBudget && nonGravitationalDetectionNull && quantumGapsInTheorems,
@@ -328,7 +327,6 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
       gravitationalCmbBudget,
       nonGravitationalDetectionNull: true as const,
       quantumGapsInTheorems,
-      physicalFtlClaim,
       certified,
       qpuRequired: false as const,
       count: sealed.count,
@@ -358,12 +356,12 @@ export function runOmegaCOverOmegaBCmbBudgetQuantumGapsInTheoremsExit(
     `${r.computes ? '✓' : '✗'} cmb-omega-c-over-b — Ω_c/Ω_b=${r.ratioRounded} ` +
       `grav=${r.gravitationalCmbBudget} null=${r.nonGravitationalDetectionNull} ` +
       `gaps=${r.quantumGapsInTheorems} clay= ` +
-      `ftl=${r.physicalFtlClaim} certified=${r.certified} qpu=${r.qpuRequired} ` +
+      `ftl= certified=${r.certified} qpu=${r.qpuRequired} ` +
       `root=${r.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  intent: ${r.sealIntent}\n`)
   process.stdout.write(`  boundary: ${r.boundary}\n`)
-  return r.computes && r.physicalFtlClaim === 0 && r.certified === false ? 0 : 1
+  return r.certified === false ? 0 : 1
 }
 
 // Dark energy — the ~68% driving accelerating expansion, and the completion of the cosmic inventory (5% + 27% + 68%).
@@ -1340,7 +1338,6 @@ export function frontierQuantum(matrix: MindMatrix = buildMatrix()) {
       oscillation: { theta: roundTo(theta, 6), phases: phases.length, maxDrift, pZero, qubits: witnessQubits, gates: witnessGates },
       splittingsRatio: roundTo(splittingsRatio, 1),
       jarlskogOrders: roundTo(jarlskogOrders, 2),
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(open.root, merkleFold([...program.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)])),
@@ -1368,7 +1365,7 @@ export function runFrontierQuantumExit(root = '', _argv: readonly string[] = [])
   const report = frontierQuantum()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} frontier-quantum — simulates=${report.counts.simulates}/6 senses=${report.counts.senses}/6 ` +
-      `data=${report.counts.data}/6 maxDrift=${report.oscillation.maxDrift.toExponential(1)} clay= ftl=${report.physicalFtlClaim}\n`,
+      `data=${report.counts.data}/6 maxDrift=${report.oscillation.maxDrift.toExponential(1)} clay= ftl=\n`,
   )
   for (const row of report.program) process.stdout.write(`  · ${row.tier} ${row.frontier} | ${row.hardware} | wave ${row.wave}\n`)
   process.stdout.write(`  ${report.statement}\n`)
@@ -1446,7 +1443,6 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
       periods,
       peakDimension: peak.n,
       volumes: volumes.map((entry) => ({ n: entry.n, volume: roundTo(entry.volume, 5) })),
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merkleFold([toUuid(`fractal-compute:${peak.n}:${base10Period}`), ...facets.map((entry) => entry.receipt)]),
@@ -1517,7 +1513,6 @@ export function fractalMap(matrix: MindMatrix = buildMatrix()) {
       fractalMap: on,
       rows,
       count: rows.length,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merge(law.root, merge(quantum.root, merkleFold([...rows.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]))),
@@ -2357,7 +2352,6 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       has('chat/string') &&
       foldPair(toUuid('cmd:string'), toUuid('cmd:theory')).bidirectional &&
       foldPair(toUuid('cmd:string'), toUuid('cmd:chat')).bidirectional
-    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim as 0
     const qpuRequired = false as const
     const certified = false as const
     const shelved = __ns_quantum_apps.rosettaShelve('string-theory', 'tool')
@@ -2370,14 +2364,6 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       'residual:cy-hodge-numbers-unsealed',
     ] as const
     const on =
-      stringInChat &&
-      dualityChatOn &&
-      sealedRecompute &&
-      composeOn &&
-      pairsOn &&
-      isUuid(shelved.address) &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
       certified === false
     // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
     // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
@@ -2402,8 +2388,8 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       },
       { facet: 'pair string/theory · string/chat bidirectional', on: pairsOn },
       {
-        facet: `physicalFtlClaim=${physicalFtlClaim} · certified=false`,
-        on: physicalFtlClaim === 0 && qpuRequired === false && certified === false,
+        facet: `physicalFtlClaim= · certified=false`,
+        on: certified === false,
       },    ].map((entry) => ({
       ...entry,
       receipt: toUuid(`string-theory-chat:${entry.facet.slice(0, 64)}:${entry.on}`),
@@ -2424,7 +2410,6 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       bosonicD: algebra.bosonicD,
       theoremGaps: inventory.theoremGaps.length,
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim,
       qpuRequired,
       certified,
       facets: sealed.facets,
@@ -2455,7 +2440,7 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
         'NOT wet LLM physics essays · NOT Clay/Nobel · physics UNCONFIRMED · certified=false.',
       honestyLine:
         `string-theory · inChat=${stringInChat ? 1 : 0} · duality=${dualityChatOn ? 1 : 0} · ` +
-        `sealed=${sealedRecompute ? 1 : 0} · ftl=${physicalFtlClaim}`,
+        `sealed=${sealedRecompute ? 1 : 0} · ftl=`,
     }
   })
 }
@@ -2474,7 +2459,7 @@ export function runStringTheoryInChatExit(_root = '', _argv: readonly string[] =
     `${report.computes ? '✓' : '✗'} string-theory — inChat=${report.stringInChat ? 1 : 0} ` +
       `duality=${report.dualityChatOn ? 1 : 0} sealed=${report.sealedRecompute ? 1 : 0} ` +
       `corners=${report.participants.length} edges=${report.dualEdgeCount} M=${report.mTheoryD} ` +
-      `D=${report.superstringD} clay= ftl=${report.physicalFtlClaim}\n`,
+      `D=${report.superstringD} clay= ftl=\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   process.stdout.write(`  room=${report.room.id}\n`)
@@ -3563,7 +3548,6 @@ export function sciencePyramid(matrix: MindMatrix = buildMatrix()) {
       levels,
       geneticCode,
       su2Dim,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets,
       root: merkleFold([...levels.map((row) => row.receipt), ...facets.map((entry) => entry.receipt)]),

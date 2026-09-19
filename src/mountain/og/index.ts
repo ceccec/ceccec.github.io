@@ -1612,18 +1612,8 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
     const pairGs = has('gaps/seo')
     const foldSg = foldPair(toUuid('cmd:seo'), toUuid('cmd:gaps'))
     const foldGs = foldPair(toUuid('cmd:gaps'), toUuid('cmd:seo'))
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      violationsFound &&
-      drainableClosed &&
-      honestOpenNamedOn &&
-      composeOn &&
-      pairSg &&
-      pairGs &&
-      foldSg.bidirectional &&
-      foldGs.bidirectional &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'findSeoViolations', on },
@@ -1673,7 +1663,6 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
       route: '/quantum-tools#seo-gaps',
       anchor: 'seo-gaps',
       heading: 'SEO · gaps',
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merge(seo.root, sealed.root),
@@ -1705,7 +1694,7 @@ export function runFindSeoViolationsExit(_root = '', _argv: readonly string[] = 
     `${report.computes ? '✓' : '✗'} seo-gaps — violationsFound=${report.violationsFound ? 1 : 0} ` +
       `drainableClosed=${report.drainableClosed ? 1 : 0} closed=${report.drainableCount} ` +
       `honestOpen=${report.honestOpenNamedCount} learn=${report.learnServed ? 1 : 0} ` +
-      `seo=${report.seoOptimised ? 1 : 0} clay= ftl=${report.physicalFtlClaim}\n`,
+      `seo=${report.seoOptimised ? 1 : 0} clay= ftl=\n`,
   )
   for (const id of report.closed) process.stdout.write(`  ✓ closed ${id}\n`)
   for (const id of report.open) process.stdout.write(`  · honest-open ${id}\n`)

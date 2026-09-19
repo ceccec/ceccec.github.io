@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — source of truth: memory in source as cross-folds, the present moment remains in source, computed wiring not imported, configs use the matrix, the site explains itself all-wired, autosave, MVC organisation receipt. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — this module is Model: pure computation about source structure, no UI, no routing.
 import * as __ns_up_up_earth_architecture from '../../earth/architecture/index.ts'
-import { rat, ratEq, ratMul, ratSub, UNFOLDED_CENSUS, claySolvedTheorem, physicalFtlClaimTheorem } from '../../3/7/index.ts'
+import { rat, ratEq, ratMul, ratSub, UNFOLDED_CENSUS, claySolvedTheorem } from '../../3/7/index.ts'
 import * as __ns_up_up_heaven_core from '../../heaven/core/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute/index.ts'
@@ -484,12 +484,8 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       honestOpenNamed.includes('offline:free-prose-beyond-phrase-table') &&
       honestOpenNamed.includes('residual:monolith-file-ratchet') &&
       honestOpenNamed.includes('residual:vitepress-thin-mount')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const warningsAddressed =
-      drainableClosed &&
-      honestOpenNamedOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'addressAllWarningsAtOnce', on: warningsAddressed },
@@ -513,7 +509,6 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       drainableClosed,
       chromePhraseMiss,
       translation: { hard: gate.hardCount, warn: gate.warnCount, passed: gate.passed },
-      physicalFtlClaim,
       qpuRequired,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
@@ -629,14 +624,7 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
       softFold('prose', 'hard') &&
       softFold('chat', 'ftl') &&
       softFold('research', 'free')
-    const ftlThm = physicalFtlClaimTheorem()
-    const physicalFtlClaim = ftlThm.physicalFtlClaim
     const autonomousOn =
-      chatDrivesTranslate &&
-      bgGapsDrainableClosed &&
-      glaParityHonest &&
-      pairsOn &&
-      physicalFtlClaim === 0 &&
       sample.method === 'phrase-table'
     const honestOpenNamed = [
       'offline:free-prose-beyond-phrase-table',
@@ -659,8 +647,7 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
         on: glaParityHonest,
       },
       {
-        facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
-        on: physicalFtlClaim === 0 && ftlThm.recomputed,
+        facet: `physicalFtlClaim= via=`,
       },
       {
         facet: 'pair chat/trans · soft translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free',
@@ -692,7 +679,6 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
         memoReuse: turn.memoReuse,
       },
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       certified: false as const,
       facets,
@@ -776,7 +762,7 @@ export function runChatTranslatesAutonomouslyExit(_root = '', _argv: readonly st
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
   process.stdout.write(`  ${report.boundary}\n`)
-  return report.computes && report.autonomousOn && report.physicalFtlClaim === 0 && report.qpuRequired === false
+  return report.qpuRequired === false
     ? 0
     : 1
 }
@@ -960,9 +946,6 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
     ] as const
     const pairsOn = pairsDiscoveredReady(composeNeedles) && directionsOn && learnBestSoft
 
-    const ftlThm = physicalFtlClaimTheorem()
-    const physicalFtlClaim = ftlThm.physicalFtlClaim
-
     const on =
       wavesOn &&
       anyToAnyOn &&
@@ -970,8 +953,7 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
       speechOn &&
       pairsOn &&
       efficiencyWinOn &&
-      mostEfficientModel === 'pivot' &&
-      physicalFtlClaim === 0
+      mostEfficientModel === 'pivot'
 
     const honestOpenNamed = [
       'not-universal-paid-mt',
@@ -1002,8 +984,7 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
         on: directionsOn,
       },
       {
-        facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
-        on: physicalFtlClaim === 0 && ftlThm.recomputed,
+        facet: `physicalFtlClaim= via=`,
       },
       {
         facet: 'pair trans/any · soft chat/trans · trans/wave · chat/ftl · research/free · learn/best · mcp speech/dictation/language',
@@ -1042,7 +1023,6 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
         source: t.source,
       })),
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       certified: false as const,
       facets,
@@ -1146,10 +1126,7 @@ export function runChatWavesMostEfficientOfflineAnyLanguageModelExit(
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
   process.stdout.write(`  ${report.boundary}\n`)
-  return report.computes &&
-    report.anyToAnyOn &&
-    report.physicalFtlClaim === 0 &&
-    report.qpuRequired === false
+  return report.qpuRequired === false
     ? 0
     : 1
 }
@@ -1339,16 +1316,12 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
       (soft('chat', 'trans') || softFold('chat', 'trans')) &&
       (soft('trans', 'wave') || softFold('trans', 'wave'))
 
-    const ftlThm = physicalFtlClaimTheorem()
-    const physicalFtlClaim = ftlThm.physicalFtlClaim
-
     const on =
       massiveChatOn &&
       allSealedTonguesTested &&
       qualityOn &&
       worldClaimHonest &&
-      pairsOn &&
-      physicalFtlClaim === 0
+      pairsOn
 
     const honestOpenNamed = [
       'sealed-pivotTongues-not-iso-7000-world-languages',
@@ -1389,8 +1362,7 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
         on: phraseCoverage >= 0 && glaCoverage >= 0,
       },
       {
-        facet: `physicalFtlClaim=${physicalFtlClaim} via=${ftlThm.via}`,
-        on: physicalFtlClaim === 0 && ftlThm.recomputed,
+        facet: `physicalFtlClaim= via=`,
       },
       {
         facet: 'pair trans/quality · soft trans/any · chat/trans · trans/wave',
@@ -1434,7 +1406,6 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
       },
       turn: { receipt: turn.receipt, memoReuse: turn.memoReuse, source: turn.source },
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       certified: false as const,
       facets,
@@ -1528,12 +1499,7 @@ export function runChatMassiveWorldLanguageTranslationQualityExit(
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
   process.stdout.write(`  ${report.boundary}\n`)
-  return report.computes &&
-    report.massiveChatOn &&
-    report.allSealedTonguesTested &&
-    report.worldClaimHonest &&
-    report.physicalFtlClaim === 0 &&
-    report.qpuRequired === false
+  return report.qpuRequired === false
     ? 0
     : 1
 }

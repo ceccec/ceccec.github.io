@@ -15,7 +15,7 @@ import type { StandardToolHonesty, SessionQuantumBitStatus, chatAudit } from '..
 import { TAU,
   A432_HUE, CANONICAL_HOST, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS,
   ROSETTA_SEVEN, ROSETTA_SIX, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS,
-  type RosettaComputationType, claySolvedTheorem, physicalFtlClaimTheorem, physicalFtlBooleanAtCallTime, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../../3/7/index.ts'
+  type RosettaComputationType, claySolvedTheorem, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../../../3/7/index.ts'
 import {
   agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath,
   claimAudit,
@@ -48,7 +48,6 @@ export const ROSETTA_PARALLEL_REGISTRY_BACKLOG = [] as const
 
 export const STANDARD_TOOL_HONESTY: StandardToolHonesty = {
   physicalQubitSpeedup: 0,
-  physicalFtlClaim: 0,
   notFlops: true,
   capacityMeans: 'amortized sealed recompute + memoByRoot + distributed identical roots' }
 

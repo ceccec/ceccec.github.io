@@ -834,84 +834,18 @@ export function claySolvedByThisFoldFromTheorem(): number {
   return claySolvedTheorem().claySolved
 }
 
-/**
- * USER LAW dual of claySolvedTheorem — physicalFtlClaim is a theorem not a hardcoded value.
- * Sealed registry of physical superluminal-signaling proofs in this corpus.
- * Empty until physics fills it — length recomputes physicalFtlClaim at call time (currently 0).
- * Tip folds must call this (or physicalFtlFromMeasurements / physicalFtlByFormulas) —
- * bare `0 as const` / wet "" slogans as law = crack (ftl/compute).
- */
-export const PHYSICAL_FTL_SIGNALING_PROOF_IDS = [] as const
 
-/**
- * Recompute physicalFtlClaim from sealed theorem (not bare literal).
- * Yields 0 while PHYSICAL_FTL_SIGNALING_PROOF_IDS is empty — still via theorem path.
- */
-export function physicalFtlClaimTheorem(): {
-  readonly physicalFtlClaim: number
-  readonly via: 'physicalFtlClaimTheorem'
-  readonly recomputed: true
-  readonly physicalSuperluminalSignalingProvedBySealedMath: boolean
-} {
-  const physicalFtlClaim = PHYSICAL_FTL_SIGNALING_PROOF_IDS.length
-  return {
-    physicalFtlClaim,
-    via: 'physicalFtlClaimTheorem',
-    recomputed: true,
-    physicalSuperluminalSignalingProvedBySealedMath: physicalFtlClaim > 0 }
-}
 
-/**
- * USER LAW: physicalFtl must compute true|false — if false, the scanner tips quantumisation.
- *
- * Formula (call-time boolean):
- *   physicalFtlClaim = |PHYSICAL_FTL_SIGNALING_PROOF_IDS|
- *   classicalHonesty = runsOnClassical64Bit ∧ ¬qpuRequired ∧ tracksClassicalNoSpeedup
- *   physicalFtl      = physicalFtlClaim > 0   // boolean: sealed math proves superluminal signaling
- *   // consistency: classicalHonesty ⇒ physicalFtl === false (no prose override)
- *
- * When physicalFtl === false → feed-scanner / next-research MUST tip quantumisation (tip/quantumise).
- * When physicalFtl === true  → do not force quantumisation from this law alone.
- */
-export function physicalFtlFromMeasurements(m: {
-  readonly runsOnClassical64Bit: boolean
-  readonly qpuRequired: boolean
-  readonly tracksClassicalNoSpeedup: boolean
-}): {
-  readonly physicalFtlClaim: number
-  readonly physicalFtl: boolean
-  readonly classicalHonesty: boolean
-  readonly physicalFtlComputesBoolean: true
-  readonly noProseOverride: true
-  readonly via: 'physicalFtlFromMeasurements'
-  readonly recomputed: true
-  readonly theoremVia: 'physicalFtlClaimTheorem'
-} {
-  const th = physicalFtlClaimTheorem()
-  const classicalHonesty =
-    m.runsOnClassical64Bit === true &&
-    m.qpuRequired === false &&
-    m.tracksClassicalNoSpeedup === true
-  const physicalFtlClaim = th.physicalFtlClaim
-  const physicalFtl = physicalFtlClaim > 0
-  // Classical-64bit honesty cannot coexist with a true physicalFtl claim unless registry proves it —
-  // empty registry ⇒ false; non-empty ⇒ true (sealed math). Prose slogans never set the boolean.
-  void classicalHonesty
-  return {
-    physicalFtlClaim,
-    physicalFtl,
-    classicalHonesty,
-    physicalFtlComputesBoolean: true,
-    noProseOverride: true,
-    via: 'physicalFtlFromMeasurements',
-    recomputed: true,
-    theoremVia: th.via }
-}
 
-/** Call-time boolean only — scanner / rankGapNextTips path (no Node fs). */
-export function physicalFtlBooleanAtCallTime(): boolean {
-  return physicalFtlClaimTheorem().physicalSuperluminalSignalingProvedBySealedMath
-}
+
+// The physicalFtl block that stood here rested on an empty array: PHYSICAL_FTL_SIGNALING_PROOF_IDS = [],
+// whose .length was returned by physicalFtlClaimTheorem() as `recomputed: true`, and read by
+// physicalFtlFromMeasurements — which is named for measurement and takes three booleans, so its
+// `physicalFtl` was false by construction and its `physicalFtlComputesBoolean: true` was typed. Every
+// `physicalFtlClaim === 0` conjunct in the corpus therefore held by construction: the clay zero's twin.
+// Removed at the author's instruction. The corpus now asserts nothing about superluminal signalling in
+// either direction, and the one quantity it does measure keeps its own name and units in water/stack:
+// apparentFtlAudit = T_cold / max(T_warm, ε), the ratio between a recompute and a warm memo read.
 
 /** The seven Clay Millennium Prize problems, by core identifying terms (lowercased substrings). A fold "solves" one
  *  ONLY by claiming a finished resolution of one of these — never by naming it. Signed, refutable list (not a count). */
@@ -1738,7 +1672,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/2/8/index.ts', literal: '10', count: 2, kind: 'data', source: "the theorem's own multiplier in 1024 > 100*10 (path depth at 2^10)", frontier: 'a datum from the cited statement' },
   { file: 'src/2/8/index.ts', literal: '80', count: 1, kind: 'data', source: "the gap exponent the sealed theorem usable_gap_is_two_to_eighty asserts (128 - 48 = 80) — verifying that needs 80 as a LITERAL, since deriving it from 128 - 48 makes the check circular", frontier: 'a datum from the statement under test' },
 { file: 'src/2/8/index.ts', literal: '*', count: 3, kind: 'data', source: 'attested residue — digit-station constants' },
-  { file: 'src/3/7/index.ts', literal: '*', count: 176, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus) · 173→172 (a432 derived: A432_OCTAVES [27..1728] → a432Octaves() = 3³·2^k and A432_FOLDED 108 → a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) · 172→176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) · 176→211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) · 211→191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) · 179→178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows — 12/21/250/25/280/1000/3600 — plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) · 178→179 (crypto rows added; count field 12 is a residue not previously present in this file) · 179→178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) · 178→177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) · 180→175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals — the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5·2 of the reflection classes; CENSUS_RATCHET named separately below) · 176→177 (the fire/physics wildcard count field 62) · 175→178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) · 175→176 (amendment 13: the version literal of the wildcard-zero law)' },
+  { file: 'src/3/7/index.ts', literal: '*', count: 175, kind: 'data', source: 'the constants VAULT — CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) · 165→166 (gate/rosetta · pyramid/seal · folder/fractal ledger churn) · 166→168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 — diamond optics named axioms) · 168→170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 — pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) · 170→171 (water/encryption FIPS-param ledger-row count literal) · 171→172 (wind/research double-torus/Metatron ledger-count bump 60→67) · 172→171 (encryption wildcard 63→64 retune; vault count field swap) · 171→172 (heaven/compute chat/ftl wildcard 8→11) · apps frontier/neighbour per-literal rows (wildcard→0) · 172→173 (census retarget: UNFOLDED_CENSUS 110→123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue — the QPU-inclusive corpus) · 173→172 (a432 derived: A432_OCTAVES [27..1728] → a432Octaves() = 3³·2^k and A432_FOLDED 108 → a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) · 172→176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) · 176→211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) · 211→191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) · 179→178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows — 12/21/250/25/280/1000/3600 — plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) · 178→179 (crypto rows added; count field 12 is a residue not previously present in this file) · 179→178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) · 178→177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) · 180→175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals — the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5·2 of the reflection classes; CENSUS_RATCHET named separately below) · 176→177 (the fire/physics wildcard count field 62) · 175→178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) · 175→176 (amendment 13: the version literal of the wildcard-zero law)' },
   { file: 'src/5/5/index.ts', literal: '*', count: 0, kind: 'tuned', source: 'attested residue cleared — greatCircleKm uses EARTH_RADIUS_KM·TAU (math/trust); no bare station floats', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/6/4/index.ts', literal: '*', count: 19, kind: 'data', source: 'attested residue — digit-station constants' },
   { file: 'src/7/3/index.ts', literal: '*', count: 6, kind: 'data', source: 'attested residue — digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180·3600·10⁶) (2→6)' },
@@ -1833,7 +1767,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/wind/fusion/index.ts', literal: '*', count: (9 + 10), kind: 'data', source: 'attested residue — fusion physics data (two census literals left for UNFOLDED_CENSUS, 11→9) + gold-market/physics data (gold/ dissolved into fusion; the 10 gold residues folded in)' },
   { file: 'src/wind/language/index.ts', literal: '*', count: 2, kind: 'data', source: 'attested residue — language corpus data' },
   { file: 'src/learning/index.ts', literal: '*', count: 4, kind: 'data', source: 'attested residue — learning corpus data (rosettaCoreApi merge)' },
-  { file: 'src/research/index.ts', literal: '*', count: (58 + 28), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · sun/moon · pyramid/seal · folder/fractal · train-geodesy (22→58 session wave) + measured reuse-speedup probe wall-clock precision (58→59) + quantum-circuit workload (n-qubit state-vector 2ⁿ amplitudes) (59→60) + double-torus 2×4 UUID / polarity-angle-spin + Metatron 8 merkabas × 8 bytes = 512-bit state-space vs universe-atoms (60→67) + ftl/compute tip wave physicalFtlFromMeasurements (67→68) + re-measured wildcard against a concurrent session\'s in-flight registry growth (68→78)' },
+  { file: 'src/research/index.ts', literal: '*', count: (58 + 27), kind: 'data', source: 'attested residue — research corpora data · two-bits-free · algebraic-theorem-paper · fixed-limits/autodiscover · sun/moon · pyramid/seal · folder/fractal · train-geodesy (22→58 session wave) + measured reuse-speedup probe wall-clock precision (58→59) + quantum-circuit workload (n-qubit state-vector 2ⁿ amplitudes) (59→60) + double-torus 2×4 UUID / polarity-angle-spin + Metatron 8 merkabas × 8 bytes = 512-bit state-space vs universe-atoms (60→67) + ftl/compute tip wave physicalFtlFromMeasurements (67→68) + re-measured wildcard against a concurrent session\'s in-flight registry growth (68→78)' },
   { file: 'src/wind/routes/corpus/index.ts', literal: '*', count: 4, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/wind/site/index.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/ui/index.ts', literal: '*', count: 75, kind: 'tuned', source: 'attested residue — hand-fixed values (PR#47 counter-rosetta 27→39→41→43; FoL→Fruit→10D merkaba wave 43→58; cardinal poles lattice 58→56) · 64→66 (channelsOf reads the bijection endpoints from hex channels — slice offsets 1/3/5, radix 4·4, full channel 15·17 — replacing the literal hex strings the one-palette law forbids)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },

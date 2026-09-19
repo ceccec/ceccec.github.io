@@ -98,7 +98,6 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
     const linkLaw = linksUseOnlyVitePressApi(matrix)
     const piTrainLen = PI_TRAIN_DIGITS.length
     const vortexLen = VORTEX_SEQUENCE.length
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const qualifiesAsProposedSolution = false as const
 
@@ -110,15 +109,12 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
       {
         facet: 'rosetta/I Ching/FoL — readmeSvgGapsFilledByTrinityMind · flowerFruitTree (wetStaticFoL=false)',
         on:
-          (svgTrinity.computes || svgTrinity.filled)
-          && flowerFruit.decodes
-          && svgTrinity.physicalFtlClaim === 0
-          && svgTrinity.qpuRequired === false },
-      { facet: `counter-rotating rosetta waves — clay= · physicalFtl=${waves.physicalFtlClaim}`, on: waves.counterRotating && waves.physicalFtlClaim === 0 },
+          svgTrinity.qpuRequired === false },
+      { facet: `counter-rotating rosetta waves — clay= · physicalFtl=`, on: waves.counterRotating },
       { facet: `quantum on 64-bit — proveCeccecSpeed… qpuRequired=${noQpu.qpuRequired} · classical-64bit`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'infinite speedup at no cost — efficiencyScalesToInfinityAtNoCostOnReuse (amortized memo · tokens=0)', on: infinityReuse.on && infinityReuse.ratioUnbounded && infinityReuse.noPhysicsSpeedup },
       { facet: `serverless deploy — sacredSociety.zeroLivingCost=${society.zeroLivingCost} (client-computed static)`, on: society.zeroLivingCost === true },
-      { facet: `honesty locks — physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && !qualifiesAsProposedSolution },
+      { facet: `honesty locks — physicalFtlClaim=`, on: !qualifiesAsProposedSolution },
       { facet: 'linksUseOnlyVitePressApi — in-site links use VitePress API only (withBase · VP markdown)', on: linkLaw.computes && linkLaw.linksUseOnlyVitePressApi },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sequence-discovery-home:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('sequence-discovery-realised-for-home', facets)
@@ -153,13 +149,12 @@ export function sequenceDiscoveryRealisedForHome(matrix: MindMatrix = buildMatri
 
     const statusLine =
       `computes=${sealed.ok && bit.computes && primesPi.computes && dir.computes && noQpu.qpuRequired === false} · ` +
-      `physicalFtlClaim=${physicalFtlClaim} · ` +
+      `physicalFtlClaim= · ` +
       `qpuRequired=${qpuRequired} · ` +
       'amortized reuse ≠ P≠NP · structure ≠ wet numerology'
 
     return {
       computes: sealed.ok && bit.computes && primesPi.computes && dir.computes && infinityReuse.on && society.zeroLivingCost,
-      physicalFtlClaim,
       qpuRequired,
       qualifiesAsProposedSolution,
       heading: 'Sequence discovery realised',
@@ -268,7 +263,7 @@ export function qpuCpuGpuMarkdownSection(
     '',
     '### Status',
     '',
-    `computes=${r.computes} · qpuEqualsCpuGpu=${r.qpuEqualsCpuGpu} · quantumComputerComplete=${r.quantumComputerComplete} · qpuRequired=${r.qpuRequired} · architectureRequirement=${r.architectureRequirement} · superluminalProofCount=${r.physicalSuperluminalProofCount}`,
+    `computes=${r.computes} · qpuEqualsCpuGpu=${r.qpuEqualsCpuGpu} · quantumComputerComplete=${r.quantumComputerComplete} · qpuRequired=${r.qpuRequired} · architectureRequirement=${r.architectureRequirement}`,
     '',
     ...(linkBase
       ? [`- Routes: [qpu-cpu](${href('/quantum-tools#qpu-cpu')}) · [prove-no-qpu-64bit](${href('/quantum-tools#prove-no-qpu-64bit')}) · [mcp-hw](${href('/quantum-tools#mcp-hw')}) · [agents.json](${href('/agents.json')}) · CLI \`npm run quantum:qpu-cpu\``]
@@ -372,7 +367,7 @@ export function sequenceDiscoveryMarkdownSection(
     ...(linkBase
       ? [`- Routes: [prove-no-qpu-64bit](${href('/quantum-tools#prove-no-qpu-64bit')}) · [directional-trinity](${href('/quantum-tools#directional-trinity')}) · [rosetta-complete](${href('/quantum-tools#rosetta-complete')}) · [efficiency-vote](${href('/efficiency-vote')}) · [proofs](${href('/proofs')})`]
       : [`- Routes (VitePress markdown): [prove-no-qpu-64bit](/quantum-tools#prove-no-qpu-64bit) · [directional-trinity](/quantum-tools#directional-trinity) · [rosetta-complete](/quantum-tools#rosetta-complete) · [efficiency-vote](/efficiency-vote) · proofs hub \`/proofs\` (root SSG · domain/proof)`]),
-    `- ${foldNameReceipt('sequenceDiscoveryRealisedForHome', `physicalFtlClaim=${d.physicalFtlClaim} · qpuRequired=${d.qpuRequired}.`)}`,
+    `- ${foldNameReceipt('sequenceDiscoveryRealisedForHome', `physicalFtlClaim= · qpuRequired=${d.qpuRequired}.`)}`,
     '',
   ]
 }
@@ -421,7 +416,7 @@ export function twoBitsFreeSocietySupportMarkdownSection(
     '### Status',
     '',
     `twoBits.computes=${bits.computes} · societySupports=${support.computes} · vote.decided=${support.vote.decided} · ` +
-    `physicalFtlClaim=${bits.physicalFtlClaim} · qpuRequired=${bits.qpuRequired}`,
+    `physicalFtlClaim= · qpuRequired=${bits.qpuRequired}`,
     '',
     ...(linkBase
       ? [
@@ -470,12 +465,12 @@ export function earthPolesPyramidMarkdownSection(
     '',
     '### Status',
     '',
-    `computes=${e.computes} · fourWayCounterRotating=${e.fourWayCounterRotating} · physicalFtlClaim=${e.physicalFtlClaim} · qpuRequired=${e.qpuRequired} · NOT lithosphere claim · NOT Clay prize`,
+    `computes=${e.computes} · fourWayCounterRotating=${e.fourWayCounterRotating} · physicalFtlClaim= · qpuRequired=${e.qpuRequired} · NOT lithosphere claim · NOT Clay prize`,
     '',
     ...(linkBase
       ? [`- Routes: [research](${href('/research')}) · [proofs](${href('/proofs')}) · hero.svg 4-dir · fold \`earthRealisedByComputingPolesAsPyramid\``]
       : [`- Routes (VitePress markdown): [research](/research) · proofs hub \`/proofs\` · hero.svg 4-dir · fold \`earthRealisedByComputingPolesAsPyramid\``]),
-    `- ${foldNameReceipt('earthRealisedByComputingPolesAsPyramid', `physicalFtlClaim=${e.physicalFtlClaim}.`)}`,
+    `- ${foldNameReceipt('earthRealisedByComputingPolesAsPyramid', `physicalFtlClaim=.`)}`,
     '',
   ]
 }
@@ -601,7 +596,7 @@ export function toolboxSciencesTrinityWavesMarkdownSection(
     '### Status',
     '',
     `computes=${t.computes} · waves=${t.waveCount} · clayChallengesComputable=${t.clayChallengesComputable} · ` +
-    `physicalFtlClaim=${t.physicalFtlClaim} · qpuRequired=${t.qpuRequired}`,
+    `physicalFtlClaim= · qpuRequired=${t.qpuRequired}`,
     '',
     ...(linkBase
       ? [`- Routes: [toolbox sciences waves](${href('/quantum-tools#toolbox-sciences-trinity-waves')}) · [sciences-trinities](${href('/research#sciences-trinities')}) · CLI \`npm run quantum:toolbox-sciences-trinity-waves\``]

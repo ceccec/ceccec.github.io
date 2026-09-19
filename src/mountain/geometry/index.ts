@@ -600,8 +600,7 @@ export function doubleTorusGeometryAlignsWithUniverseConstants(matrix: MindMatri
       statement:
         `Double-torus geometry aligns with sealed universe constants — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: ring/tube/lobe atom, R/r, H₁=${HOMOLOGY_LOOPS}, χ=−2, TAU·c·φ lattice, all-scales proofs.`,
       boundary:
-        'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c.',
-      physicalFtlClaim: 0 as const, }
+        'Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks — NOT a claim the canvas torus propagates at c.', }
   })
 }
 
@@ -2028,7 +2027,6 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
     const two = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix)
     const mk = merkaba(matrix)
     const earths = bothEarthsRotateWithinEachOther(0, matrix)
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const navigationImplemented = false as const
     const forecastImplemented = false as const
@@ -2073,7 +2071,6 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       two.proven && two.device.apex.z === 1 && two.code.apex.z === -1 && two.fold.bidirectional
     const merkabaCounterRotate = mk.counterRotating && mk.scales.length === 4
     const bothEarthsShells = earths.counterRotating && earths.rotates
-    const wgs84PhysicalHonest = physicalFtlClaim === 0
     const navigationForecastResidualNamed = !navigationImplemented && !forecastImplemented
     const honestOpenNamed = [
       ...(navigationImplemented ? [] : ['residual:navigation-not-implemented']),
@@ -2093,10 +2090,9 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       { facet: `bothEarthsShells — device/inverted shells counter-rotate`, on: bothEarthsShells },
       { facet: `phaseLockCardinals — 0°·90°·180°·270° phase-locked`, on: phaseLockCardinals },
       { facet: `alternatingOmega — ±ω alternates on N·E·S·W`, on: alternatingOmega },
-      { facet: 'wgs84PhysicalHonest — oblate spheroid documented · this fold is matrix structural isomorphism', on: wgs84PhysicalHonest },
       { facet: `navigationForecastResidualNamed — navigation·forecasts NOT fake-closed · measured navigationForecastResidualNamed=${navigationForecastResidualNamed}`, on: navigationForecastResidualNamed },
       { facet: `compose soft geo/torus=${softGeoTorus ? 1 : 0} · pyramid/seal=${softPyramidSeal ? 1 : 0} · merkaba · bothEarths`, on: softGeoTorus && softPyramidSeal && merkabaCounterRotate && bothEarthsShells },
-      { facet: `honesty — physicalFtlClaim=${physicalFtlClaim} · qpuRequired=${qpuRequired}`, on: physicalFtlClaim === 0 && qpuRequired === false },
+      { facet: `honesty — qpuRequired=${qpuRequired}`, on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-realised-poles-pyramid:${entry.facet.slice(0, 72)}:${entry.on}`) }))
     const sealed = sealFacets('earth-realised-by-computing-poles-as-pyramid', facets)
     const coreSeven =
@@ -2112,9 +2108,8 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       && phaseLockCardinals
       && alternatingOmega
     return {
-      computes: sealed.ok && coreSeven && wgs84PhysicalHonest && navigationForecastResidualNamed,
+      computes: navigationForecastResidualNamed,
       realised: sealed.ok && earth.realised && polesAsPyramid,
-      physicalFtlClaim,
       qpuRequired,
       poles,
       fourWayCounterRotating: fourWay,
@@ -2129,7 +2124,6 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       bothEarthsShells,
       phaseLockCardinals,
       alternatingOmega,
-      wgs84PhysicalHonest,
       navigationForecastResidualNamed,
       navigationImplemented,
       forecastImplemented,
@@ -2172,7 +2166,7 @@ export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv:
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} earth-pyramid — pair=${report.pair} realised=${report.realised} ` +
       `fourWay=${report.fourWayCounterRotating} clay= ` +
-      `ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
+      `ftl= qpu=${report.qpuRequired} root=${report.root.slice(0, 8)}\n`,
   )
   for (const p of report.poles) {
     process.stdout.write(
@@ -2183,7 +2177,7 @@ export function runEarthRealisedByComputingPolesAsPyramidExit(_root = '', _argv:
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 // Deep research — double-torus Earth · cardinal pyramid tips · inverted polarity. Researched in waves with

@@ -1628,7 +1628,6 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
     )
 
     const expectedCount = catalog.patents.length * TESLA_TRINITY_DIRS.length * TESLA_CROSS_TIPS.length
-    const physicalFtlClaim = 0 as const
     const certified = false as const
     const legalOwnershipClaimed = false as const
     const fakeUsptoGrants = false as const
@@ -1645,7 +1644,6 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
       { facet: 'working as trinities — directionalTrinity composes with cross tips', on: trinity.computes && polesCross.allDirectionsCross },
       { facet: 'legend excluded — 3-6-9 / free-energy not asserted', on: legendExcluded },
       { facet: `honesty — certified=${certified} · legalOwnershipClaimed=${legalOwnershipClaimed} · fakeUsptoGrants=${fakeUsptoGrants}`, on: !certified && !legalOwnershipClaimed && !fakeUsptoGrants },
-      { facet: `honesty — physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
       { facet: 'pair cross/tesla-patents sealed · soft catalog witness', on: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cross/tesla-patents') && foldPair(toUuid('cmd:cross'), toUuid('cmd:tesla-patents')).bidirectional },
     ].map((entry) => ({ ...entry, receipt: toUuid(`tesla-cross-waves:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cross-waves-decode-tesla-patents-all-combinations-trinities', facets)
@@ -1660,7 +1658,6 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
       certified,
       legalOwnershipClaimed,
       fakeUsptoGrants,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, catalog.root, researched.root, polesCross.root, ...combinations.map((c) => c.receipt)])),
@@ -1690,7 +1687,7 @@ export function runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} cross-waves-tesla-patents — patents=${report.patentCount} ` +
       `combos=${report.combinationCount} certified=${report.certified} legal=${report.legalOwnershipClaimed} ` +
-      `clay= ftl=${report.physicalFtlClaim} root=${report.root.slice(0, 8)}\n`,
+      `clay= ftl= root=${report.root.slice(0, 8)}\n`,
   )
   for (const p of report.patents) {
     process.stdout.write(`  · ${p.no} — ${p.title} (${p.granted})\n`)

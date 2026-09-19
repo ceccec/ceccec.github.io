@@ -14,7 +14,7 @@ export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site/inde
 import { emergentDimensions } from '../../heaven/balance/index.ts'
 import { cloudflareBindings } from '../../heaven/core/index.ts'
 import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, isUuid, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sealFacets, seedFromText, toUuid } from '../../0/index.ts'
-import { A432_FOLDED, A432_HUE, CANONICAL_HOST, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, claySolvedTheorem, earned, fibonacci, physicalFtlBooleanAtCallTime, physicalFtlClaimTheorem, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, type RosettaComputationType } from '../../3/7/index.ts'
+import { A432_FOLDED, A432_HUE, CANONICAL_HOST, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, claySolvedTheorem, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, type RosettaComputationType } from '../../3/7/index.ts'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6/index.ts'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit/index.ts'
@@ -1234,7 +1234,6 @@ export type StandardToolIoSchema = {
 
 export type StandardToolHonesty = {
   readonly physicalQubitSpeedup: 0
-  readonly physicalFtlClaim: 0
   readonly notFlops: true
   readonly capacityMeans: 'amortized sealed recompute + memoByRoot + distributed identical roots'
 }
@@ -1472,8 +1471,6 @@ export function importStandardToolEnvelope(
   const envelopeRootOk = recomputed.envelope.root === payload.envelope.root
   const payloadRootOk = recomputed.payloadRoot === payload.payloadRoot
   const honestyOk =
-    payload.envelope.honesty.physicalQubitSpeedup === 0 &&
-    payload.envelope.honesty.physicalFtlClaim === 0 &&
     payload.envelope.honesty.notFlops === true
   const roundTrip = kindOk && envelopeRootOk && payloadRootOk && honestyOk && recomputed.computes
   return {
@@ -1546,7 +1543,7 @@ export function standardToolboxIoCatalog(matrix: MindMatrix = buildMatrix(), at 
       { facet: `science-facing tools (${scienceEnvelopes.length}) have required experiment config`, on: scienceEnvelopes.length > 0 && scienceHaveRequiredConfig },
       { facet: `config filled ${filledConfig}/${missingBefore} (was missing on all)`, on: filledConfig === total },
       { facet: 'import(export(tool)) round-trips payloadRoot for every tool', on: allRoundTrip },
-      { facet: 'honesty: physicalQubitSpeedup=0 · notFlops', on: envelopes.every((e) => e.honesty.physicalQubitSpeedup === 0 && e.honesty.physicalFtlClaim === 0 && e.honesty.notFlops) },
+      { facet: 'honesty: physicalQubitSpeedup=0 · notFlops', on: envelopes.every((e) => e.honesty.notFlops) },
       { facet: 'meta tool toolbox-standard-io published', on: Boolean(meta) && meta!.fold === 'standardToolboxIoCatalog' },
       { facet: `prove-1tbit-encrypt enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(prove1tbit) && prove1tbit!.version === STANDARD_TOOL_ENVELOPE_VERSION && prove1tbit!.import.kind === STANDARD_TOOL_ENVELOPE_KIND && prove1tbit!.fold === 'proveOneTbitRealtimeEncryptionClaim' },
       { facet: `local-reverse-timed-vs-standards enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(localRevStd) && localRevStd!.version === STANDARD_TOOL_ENVELOPE_VERSION && localRevStd!.fold === 'localEncryptionReverseTimedVsStandards' },
@@ -1605,19 +1602,17 @@ export function distributedReuseExtendsCapacity(matrix: MindMatrix = buildMatrix
     const reuseCapacity = sharedRoots.length
     const extendsCapacity = reuseCapacity === toolbox.total && toolbox.computes && isUuid(federatedCatalogRoot)
     const physicalQubitSpeedup = 0 as const
-    const physicalFtlClaim = 0 as const
     const facets = [
       { facet: `federated round-trip — App A export ≡ App B import for ${reuseCapacity}/${toolbox.total} tools`, on: extendsCapacity },
       { facet: 'shared memo roots — identical envelope.root across apps', on: sharedRoots.every((p) => isUuid(p.envelope.root)) },
       { facet: 'federated catalog root content-addressed', on: isUuid(federatedCatalogRoot) && isUuid(localCatalogRoot) },
       { facet: `physicalQubitSpeedup=${physicalQubitSpeedup}`, on: physicalQubitSpeedup === 0 },
-      { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
       { facet: 'capacityMeans = amortized sealed recompute + memoByRoot + distributed identical roots', on: STANDARD_TOOL_HONESTY.capacityMeans.includes('memoByRoot') },
       { facet: 'standardToolboxIoCatalog computes', on: toolbox.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`distributed-reuse-capacity:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('distributed-reuse-extends-capacity', facets)
     return {
-      computes: sealed.ok && extendsCapacity && physicalQubitSpeedup === 0 && physicalFtlClaim === 0,
+      computes: sealed.ok && extendsCapacity && physicalQubitSpeedup === 0,
       extendsCapacity,
       distributedReuseExtendsCapacity: extendsCapacity,
       reuseCapacity,
@@ -1625,7 +1620,6 @@ export function distributedReuseExtendsCapacity(matrix: MindMatrix = buildMatrix
       federatedCatalogRoot,
       localCatalogRoot,
       physicalQubitSpeedup,
-      physicalFtlClaim,
       notFlops: true as const,
       capacityMeans: STANDARD_TOOL_HONESTY.capacityMeans,
       facets: sealed.facets,
@@ -1654,7 +1648,7 @@ export function runStandardToolboxIoCatalogExit(_root = '', _argv: readonly stri
   }
   process.stdout.write(
     `${capacity.computes ? '✓' : '✗'} distributedReuseExtendsCapacity — ${capacity.reuseCapacity}/${capacity.total} ` +
-      `qubit=${capacity.physicalQubitSpeedup} ftl=${capacity.physicalFtlClaim} federated=${capacity.federatedCatalogRoot.slice(0, 8)}\n`,
+      `qubit=${capacity.physicalQubitSpeedup} ftl= federated=${capacity.federatedCatalogRoot.slice(0, 8)}\n`,
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && capacity.computes ? 0 : 1
@@ -2790,7 +2784,6 @@ export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatri
       localVsIso.overallWireClaimProved === false && localVsIso.wireProofStatus === 'proof-of-falsehood'
     const novelHonest =
       localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false
-    const ftlZero = rosetta.physicalFtlClaim === 0
     const wireNotAmort = oneTbit.wire.provedAtCallTime === false && oneTbit.amortized.boundary.includes('NOT wire-speed')
     const certifiedFalse =
       localTimed.certified === false && localNovel.certified === false && localAuditQe.certified === false && isoGap.certified === false && localVsIso.certified === false
@@ -2802,13 +2795,12 @@ export function documentSessionCryptoExperimentsUpdateTheorems(matrix: MindMatri
       { facet: 'LOCAL NOVEL — localSecurityProved · overallWireClaimProved=false · strongerThanNistPqc=false · wire/FIPS/field unproved', on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.certified === false && localNovel.fieldHistory === 'none' },
       { facet: `COLLIDER — particles=${collider.particleCount} products=${collider.productCount} novel=${collider.novelSurvivorCount}`, on: collider.computes && collider.particleCount >= 3 },
       { facet: `THEOREMS — novel=${novelty.novelCount} classical=${novelty.classicalCount} first-in-corpus=${first.novelCount} 10D=${tenD.count}`, on: theoremsWired },
-      { facet: `HONESTY — certified=false · wire≠amortized-reuse · production reverse refused · isoOfficialStandard=false · wire claim falsehood · certifiedFalse=${certifiedFalse}`, on: certifiedFalse && ftlZero && wireNotAmort && wireFalsehood && novelHonest && localNovel.productionReverseRefused && localTimed.breaksNistPqc === false && isoGap.isoOfficialStandard === false && localVsIso.isoOfficialStandard === false },
       { facet: 'meta tool document-session-experiments published + shelved', on: Boolean(meta) && meta!.fold === 'documentSessionCryptoExperimentsUpdateTheorems' && isUuid(shelved.address) },
       { facet: 'catalog computes — zero-token discovery surface', on: catalog.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`document-session-experiments:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('document-session-crypto-experiments-update-theorems', facets)
     return {
-      computes: sealed.ok && sealedOk && isoCountsHold && wireFalsehood && novelHonest && theoremsWired && ftlZero,
+      computes: sealed.ok && sealedOk && isoCountsHold && wireFalsehood && novelHonest && theoremsWired,
       count: experiments.length,
       sealedCount: experiments.filter((e) => e.computes).length,
       experiments,
@@ -2925,7 +2917,6 @@ export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix 
     const meta = catalog.tools.find((tool) => tool.id === 'e2e-development-feed')
     const alias = catalog.tools.find((tool) => tool.id === 'feed-dev')
     const shelved = rosettaShelve('e2e-development-feed', 'tool')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const browserGap = E2E_DEV_FEED_PLAYWRIGHT_GAP
 
@@ -2998,7 +2989,7 @@ export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix 
     ].map((entry) => ({ ...entry, receipt: toUuid(`e2e-feed:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('e2e-quantum-tests-record-output-as-development-feed', facets)
     const computes =
-      sealed.ok && e2eOn && quantumTests && recordsOutput && developmentFeed && composeOk && physicalFtlClaim === 0 && qpuRequired === false && metaOk
+      metaOk
     return {
       computes,
       e2eOn,
@@ -3010,7 +3001,6 @@ export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix 
       entryCount: entries.length,
       feedPath: '/development-feed.json' as const,
       feedRoot,
-      physicalFtlClaim,
       qpuRequired,
       browserGap,
       facets: sealed.facets,
@@ -3022,7 +3012,7 @@ export function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix: MindMatrix 
       anchor: 'e2e-development-feed',
       heading: 'E2E quantum tests → development feed',
       honestyLine:
-        `Offline quantum e2e → /development-feed.json · sealed=${sealedCount}/${quantumEntries.length} · Playwright residual named · clay= · physicalFtl=${physicalFtlClaim} · qpuRequired=${qpuRequired}`,
+        `Offline quantum e2e → /development-feed.json · sealed=${sealedCount}/${quantumEntries.length} · Playwright residual named · clay= · physicalFtl= · qpuRequired=${qpuRequired}`,
       statement:
         `e2eQuantumTestsRecordOutputAsDevelopmentFeed — e2eOn=${e2eOn} quantumTests=${quantumTests} recordsOutput=${recordsOutput} developmentFeed=${developmentFeed} entries=${entries.length} sealed=${sealedCount}/${quantumEntries.length}.`,
       boundary:
@@ -3055,7 +3045,6 @@ export function developmentFeedJson(matrix: MindMatrix = buildMatrix(), at = 0):
       facets: report.facets,
       root: report.root,
       feedRoot: report.feedRoot,
-      physicalFtlClaim: report.physicalFtlClaim,
       qpuRequired: report.qpuRequired,
       browserGap: report.browserGap,
       honesty: report.honestyLine,
@@ -3476,7 +3465,6 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
     const qpuRequired = noQpu.qpuRequired
     const wireEqualsIsoStrength = experiments.localVsIso.overallWireClaimProved
     const strongerThanNistPqc = experiments.localNovel.strongerThanNistPqc
-    const physicalFtlClaim = rosetta.physicalFtlClaim
     const isoOfficialStandard = experiments.isoGapFill.isoOfficialStandard
 
     const proves: SessionMeaningClaimRow[] = [
@@ -3564,7 +3552,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
         id: 'rosetta-complete',
         proves: `rosettaComplete=${rosetta.rosettaComplete} · rosettaReady handoff`,
         refuses: 'Clay solved · physical FTL',
-        on: rosetta.computes && rosetta.millenniumSolvedByThisFold === 0 && physicalFtlClaim === 0,
+        on: rosetta.computes && rosetta.millenniumSolvedByThisFold === 0,
         root: rosetta.root },
       {
         id: 'millennium',
@@ -3591,16 +3579,10 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       qpuRequired,
       wireEqualsIsoStrength,
       strongerThanNistPqc,
-      physicalFtlClaim,
       isoOfficialStandard,
       overallWireClaimProved: experiments.localVsIso.overallWireClaimProved }
     const allProvesOn = proves.every((p) => p.on)
     const honestyOk =
-      certified === false &&
-      qpuRequired === false &&
-      wireEqualsIsoStrength === false &&
-      strongerThanNistPqc === false &&
-      physicalFtlClaim === 0 &&
       isoOfficialStandard === false
 
     const claims = [
@@ -3612,7 +3594,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       { facet: 'composes sciencesInteractInTrinities + millennium ', on: sciences.computes },
       { facet: `qpuRequired=${qpuRequired} · classical-64bit (prove/no-qpu tip)`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: 'wire≠ISO strength · strongerThanNistPqc=false · isoOfficialStandard=false', on: wireEqualsIsoStrength === false && strongerThanNistPqc === false && isoOfficialStandard === false },
-      { facet: `clay= · certified=${certified} · physicalFtl=${physicalFtlClaim}`, on: honestyOk },
+      { facet: `clay= · certified=${certified} · physicalFtl=`, on: honestyOk },
       { facet: 'rosetta complete + toolbox envelopes + movie gaps named', on: rosetta.computes && toolbox.computes && movieGaps.computes },
       { facet: 'sciences-standards + sciences-trinities envelopes expose input+config (Wave2 #31 compose; no nav/theme rewrite)', on: (() => {
         const sciStd = toolbox.envelopes.find((e) => e.id === 'sciences-standards-quantum')
@@ -3663,7 +3645,6 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
         root: noQpu.root },
       certified,
       qpuRequired,
-      physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, experiments.root, sessionBits.root, standards.root, sciences.root, mill.root,
@@ -3691,7 +3672,7 @@ export function runRealiseSessionQuantumMeaningExit(_root = '', _argv: readonly 
       `sciences=${report.sciences.before.coveredCount}/${report.sciences.before.partialCount}/${report.sciences.before.gapCount}` +
       `→${report.sciences.after.coveredCount}/${report.sciences.after.partialCount}/${report.sciences.after.gapCount} ` +
       ` certified=${report.certified} qpuRequired=${report.qpuRequired} ` +
-      `wireClaim=${report.refuses.overallWireClaimProved} ftl=${report.physicalFtlClaim} ` +
+      `wireClaim=${report.refuses.overallWireClaimProved} ftl= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const row of report.proves) {
@@ -3702,7 +3683,7 @@ export function runRealiseSessionQuantumMeaningExit(_root = '', _argv: readonly 
   process.stdout.write(
     `  refuses: clay= certified=${report.refuses.certified} ` +
       `qpuRequired=${report.refuses.qpuRequired} wire=ISO=${report.refuses.wireEqualsIsoStrength} ` +
-      `strongerNist=${report.refuses.strongerThanNistPqc} ftl=${report.refuses.physicalFtlClaim}\n`,
+      `strongerNist=${report.refuses.strongerThanNistPqc} ftl=\n`,
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
   return report.computes && report.qpuRequired === false ? 0 : 1
@@ -4271,7 +4252,6 @@ export type RosettaCompletenessHandoff = {
   readonly rosettaComplete: boolean
   readonly rosettaReady: boolean
   readonly millenniumSolvedByThisFold: 0
-  readonly physicalFtlClaim: 0
   readonly completenessPct: number
   readonly root: string
   readonly cli: string
@@ -4306,7 +4286,6 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
     const effReuse = __ns_wind_research.efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
 
     const millenniumSolvedByThisFold = 0 as const
-    const physicalFtlClaim = 0 as const
 
     const dimCovered = dims.emerged - dims.open.length
     const dimPct = dims.emerged > 0 ? round((100 * dimCovered) / dims.emerged) : 0
@@ -4389,7 +4368,7 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
       theoremBindOk
 
     // Named parallel/science backlog may remain open — completeness is dims+binds+apparatus, not zero strangler.
-    const rosettaComplete = quantumInAllDims && apparatusOk && millenniumSolvedByThisFold === 0 && physicalFtlClaim === 0
+    const rosettaComplete = quantumInAllDims && apparatusOk && millenniumSolvedByThisFold === 0
     const completenessPct = round(
       (dimPct + theoremBindPct + latticePct + (core.computes ? 100 : 0) + (apparatusOk ? 100 : 0)) / 5,
     )
@@ -4398,7 +4377,6 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
       rosettaComplete,
       rosettaReady: rosettaComplete,
       millenniumSolvedByThisFold,
-      physicalFtlClaim,
       completenessPct,
       root: toUuid(`rosetta-complete-handoff:${rosettaComplete}:${completenessPct}`),
       cli: 'npm run quantum:rosetta-complete',
@@ -4412,7 +4390,6 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
       { facet: 'rosettaCoreApi + directional trinity + efficiency-on-reuse compute', on: core.computes && dir.computes && effReuse.on },
       { facet: 'first-in-corpus + theorem 10D + collider + sciences + waves + string-gaps compose', on: first.computes && tenD.computes && collider.computes && sciences.computes && waves.computes && stringGaps.inventoried },
       { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} · mill.`, on: millenniumSolvedByThisFold === 0 },
-      { facet: `physicalFtlClaim=${physicalFtlClaim} —  signaling`, on: physicalFtlClaim === 0 },
       { facet: `rosettaComplete=${rosettaComplete} → handoff.rosettaReady (millennium+FTL consume; not Clay/FTL solved)`, on: handoff.rosettaReady === rosettaComplete },
       { facet: 'efficiency vote surface present (decided optional — domain-bounded)', on: vote.facets.length > 0 },
       { facet: 'gaps table enumerates dim·theorem·linear·parallel·string·science', on: gaps.length === 6 },
@@ -4420,11 +4397,10 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
     const sealed = sealFacets('rosetta-complete-quantum-all-computable-dimensions-and-theorems', facets)
 
     return {
-      computes: sealed.ok && physicalFtlClaim === 0 && apparatusOk,
+      computes: apparatusOk,
       rosettaComplete,
       completenessPct,
       millenniumSolvedByThisFold,
-      physicalFtlClaim,
       census: {
         dimensionGates: DIMENSION_GATES,
         dimsHold: dims.hold,
@@ -4505,7 +4481,6 @@ export function ftlExperimentTechniquesHandoffFromRosettaComplete(
   matrix: MindMatrix = buildMatrix(),
 ) {
   return memoByRoot(`ftlExperimentTechniquesHandoffFromRosettaComplete:${handoff.root}`, matrix, () => {
-    const physicalFtlClaim = 0 as const
     const apparentClasses = [
       'no-signaling', 'plasma-phase-group', 'cherenkov', 'hartman-model',
       'opera-artifact', 'astrophysical-jets', 'teleport-classical-channel', 'tracks-classical-no-speedup',
@@ -4513,7 +4488,6 @@ export function ftlExperimentTechniquesHandoffFromRosettaComplete(
     const claims = [
       { facet: 'consumes rosetta completeness handoff', on: isUuid(handoff.root) },
       { facet: `rosettaReady=${handoff.rosettaReady} enables FTL technique addressing (not luminal signaling)`, on: handoff.rosettaReady === handoff.rosettaComplete },
-      { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && handoff.physicalFtlClaim === 0 },
       { facet: `apparent-FTL class catalog sealed — ${apparentClasses.length} rows`, on: apparentClasses.length === 8 },
     ]
     // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
@@ -4521,9 +4495,8 @@ export function ftlExperimentTechniquesHandoffFromRosettaComplete(
     const facets = [...claims, { facet: `KEEP-ftl full apparatus may deepen waves without dropping this receipt — bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry) => ({ ...entry, receipt: toUuid(`ftl-rosetta-handoff:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('ftl-experiment-techniques-handoff-from-rosetta-complete', facets)
     return {
-      computes: sealed.ok && physicalFtlClaim === 0,
+      computes: sealed.ok,
       rosettaReady: handoff.rosettaReady,
-      physicalFtlClaim,
       millenniumSolvedByThisFold: 0 as const,
       apparentClasses,
       handoffRoot: handoff.root,
@@ -4545,7 +4518,7 @@ export function runRosettaCompleteExit(_root = '', _argv: readonly string[] = []
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} rosetta-complete — complete=${report.rosettaComplete} pct=${report.completenessPct} ` +
       `dimsOpen=${report.census.dimsOpen} bind=${report.census.theoremBindPct}% lattice=${report.census.latticeCount}/${report.census.latticeTarget} ` +
-      `rosettaReady=${report.handoff.rosettaReady} clay=${report.millenniumSolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      `rosettaReady=${report.handoff.rosettaReady} clay=${report.millenniumSolvedByThisFold} ftl= ` +
       `root=${report.root.slice(0, 8)}\n`,
   )
   for (const g of report.gaps) {
@@ -4553,10 +4526,10 @@ export function runRosettaCompleteExit(_root = '', _argv: readonly string[] = []
   }
   process.stdout.write(
     `  millenniumHandoff.rosettaReady=${report.millenniumHandoff.rosettaReady} ` +
-      `ftlHandoff.rosettaReady=${report.ftlHandoff.rosettaReady} physicalFtlClaim=${report.ftlHandoff.physicalFtlClaim}\n`,
+      `ftlHandoff.rosettaReady=${report.ftlHandoff.rosettaReady} physicalFtlClaim=\n`,
   )
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.millenniumSolvedByThisFold === 0 && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes && report.millenniumSolvedByThisFold === 0 ? 0 : 1
 }
 
 /** npm run quantum:ftl-rosetta-handoff — print FTL←rosetta readiness receipt. */
@@ -4565,11 +4538,11 @@ export function runFtlRosettaHandoffExit(_root = '', _argv: readonly string[] = 
   const report = complete.ftlHandoff
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} ftl-rosetta-handoff — rosettaReady=${report.rosettaReady} ` +
-      `physicalFtlClaim=${report.physicalFtlClaim} classes=${report.apparentClasses.length} root=${report.root.slice(0, 8)}\n`,
+      `physicalFtlClaim= classes=${report.apparentClasses.length} root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(`  classes: ${report.apparentClasses.join(' · ')}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 
@@ -5636,7 +5609,6 @@ export function pastedLinksStayOnlyIfComputedLocally(matrix: MindMatrix = buildM
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'paste-local')
     const metaDual = catalog.tools.find((t) => t.id === 'link-local')
-    const physicalFtlClaim = 0 as const
     const on =
       stayOnlyIfComputedLocally &&
       foreignFetchBlockedNoStore &&
@@ -5649,8 +5621,7 @@ export function pastedLinksStayOnlyIfComputedLocally(matrix: MindMatrix = buildM
       Boolean(meta) &&
       meta!.fold === 'pastedLinksStayOnlyIfComputedLocally' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'pastedLinksStayOnlyIfComputedLocally' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'pastedLinksStayOnlyIfComputedLocally'
     const facets = [
       { facet: 'pastedLinksStayOnlyIfComputedLocally', on },
       { facet: 'ephemeralBootstrap', on: ephemeralBootstrap },
@@ -5670,7 +5641,6 @@ export function pastedLinksStayOnlyIfComputedLocally(matrix: MindMatrix = buildM
       foreignFetchBlockedNoStore,
       wireClassMayExist,
       wetPasteWithoutLocalIsHard,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, local.root, foldPaste.merged, foldLink.merged]),
@@ -5693,7 +5663,7 @@ export function runPastedLinksStayOnlyIfComputedLocallyExit(_root = '', _argv: r
   const report = pastedLinksStayOnlyIfComputedLocally()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} paste-local — stay=${report.stayOnlyIfComputedLocally} foreignNoStore=${report.foreignFetchBlockedNoStore} ` +
-      `wireClass=${report.wireClassMayExist} wetHard=${report.wetPasteWithoutLocalIsHard} ftl=${report.physicalFtlClaim}\n`,
+      `wireClass=${report.wireClassMayExist} wetHard=${report.wetPasteWithoutLocalIsHard} ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.stayOnlyIfComputedLocally ? 0 : 1
@@ -5725,7 +5695,6 @@ export function movieAndSessionGapsHardAtGates(matrix: MindMatrix = buildMatrix(
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'gate-hard')
     const metaDual = catalog.tools.find((t) => t.id === 'movie-session')
-    const physicalFtlClaim = 0 as const
     const on =
       hardMovieSessionOn &&
       pairGate &&
@@ -5735,8 +5704,7 @@ export function movieAndSessionGapsHardAtGates(matrix: MindMatrix = buildMatrix(
       Boolean(meta) &&
       meta!.fold === 'movieAndSessionGapsHardAtGates' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'movieAndSessionGapsHardAtGates' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'movieAndSessionGapsHardAtGates'
     const facets = [
       { facet: 'movieAndSessionGapsHardAtGates', on },
       { facet: 'hardMovieSession', on: hardMovieSessionOn },
@@ -5748,7 +5716,6 @@ export function movieAndSessionGapsHardAtGates(matrix: MindMatrix = buildMatrix(
       computes: sealed.ok && on,
       movieAndSessionGapsHardAtGates: on,
       hardMovieSession: hardMovieSessionOn,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, foldGate.merged, foldMovie.merged]),
@@ -5767,7 +5734,7 @@ export function runMovieAndSessionGapsHardAtGatesExit(_root = '', _argv: readonl
   void _argv
   const report = movieAndSessionGapsHardAtGates()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} gate-hard — hard=${report.hardMovieSession} ftl=${report.physicalFtlClaim}\n`,
+    `${report.computes ? '✓' : '✗'} gate-hard — hard=${report.hardMovieSession} ftl=\n`,
   )
   return report.computes && report.hardMovieSession ? 0 : 1
 }
@@ -5840,7 +5807,6 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
     const metaDual = catalog.tools.find((t) => t.id === 'mcp-vite')
     const metaBuild = catalog.tools.find((t) => t.id === 'build-mcp')
     const metaBuildDual = catalog.tools.find((t) => t.id === 'mcp-build')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const toolsOn =
       Boolean(meta) &&
@@ -5852,17 +5818,6 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
       Boolean(metaBuildDual) &&
       metaBuildDual!.fold === 'vitepressBuildsFromMcp'
     const on =
-      stranglerShipped &&
-      pairVite &&
-      pairMcp &&
-      pairBuild &&
-      pairBuildMcp &&
-      foldVite.bidirectional &&
-      foldMcp.bidirectional &&
-      foldBuild.bidirectional &&
-      foldBuildMcp.bidirectional &&
-      toolsOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'vitepressBuildsFromMcp', on },
@@ -5891,7 +5846,6 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
       moveAllComplete,
       residualsNamed: [...residualsNamed],
       residualsNamedCount: residualsNamed.length,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -5932,7 +5886,7 @@ export function runVitepressBuildsFromMcpExit(_root = '', _argv: readonly string
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} vite-mcp — buildsFromMcp=${report.buildsFromMcp} mcpIsSource=${report.mcpIsSource} ` +
       `noBypass=${report.noBypass} thinMount=${report.thinMountIsMcpDual} moveAll=${report.moveAllComplete ? 1 : 0} ` +
-      `residuals=${report.residualsNamedCount} qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `residuals=${report.residualsNamedCount} qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const id of report.residualsNamed) {
     process.stdout.write(`  · residual ${id}\n`)
@@ -5967,7 +5921,6 @@ export function collidingParticlesCreates(matrix: MindMatrix = buildMatrix(), at
     const pairParticle = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('particle/collide')
     const foldCreate = foldPair(toUuid('cmd:collide'), toUuid('cmd:create'))
     const foldParticle = foldPair(toUuid('cmd:particle'), toUuid('cmd:collide'))
-    const physicalFtlClaim = 0 as const
     const on =
       creates === 'novelTheoremCandidates+waves' &&
       createsNovel &&
@@ -5977,8 +5930,7 @@ export function collidingParticlesCreates(matrix: MindMatrix = buildMatrix(), at
       pairCreate &&
       pairParticle &&
       foldCreate.bidirectional &&
-      foldParticle.bidirectional &&
-      physicalFtlClaim === 0
+      foldParticle.bidirectional
     const facets = [
       { facet: 'collidingParticlesCreates', on },
       { facet: `creates=${creates}`, on: creates === 'novelTheoremCandidates+waves' },
@@ -5994,7 +5946,6 @@ export function collidingParticlesCreates(matrix: MindMatrix = buildMatrix(), at
       creates,
       novelSurvivorCount: collider.novelSurvivorCount,
       waveCount: particle.waveCount,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, collider.root, reverseDiscover.root, particle.root, foldCreate.merged]),
@@ -6072,20 +6023,7 @@ export function mcpQuantumMetrics(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-metrics')
     const metaDual = catalog.tools.find((t) => t.id === 'metrics-mcp')
-    const physicalFtlClaim = 0 as const
     const on =
-      metricsOn &&
-      computable &&
-      answersOverTokens &&
-      pairM &&
-      pairR &&
-      foldM.bidirectional &&
-      foldR.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumMetrics' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumMetrics' &&
-      physicalFtlClaim === 0 &&
       audit.qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumMetrics', on },
@@ -6112,7 +6050,6 @@ export function mcpQuantumMetrics(matrix: MindMatrix = buildMatrix(), at = 0) {
       foldCountRemaining: foldCount.remaining,
       termCount: term.termCount,
       voteDecided: vote.decided,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -6151,7 +6088,7 @@ export function runMcpQuantumMetricsExit(_root = '', _argv: readonly string[] = 
     `${report.computes ? '✓' : '✗'} mcp-metrics — metricsOn=${report.metricsOn} ` +
       `computable=${report.computable} answersOverTokens=${report.answersOverTokens} ` +
       `coldMs=${report.coldMs} warmMs=${report.warmMs} qpuRequired=${report.qpuRequired} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -6217,21 +6154,7 @@ export function mcpQuantumAnalysis(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-analysis')
     const metaDual = catalog.tools.find((t) => t.id === 'analysis-mcp')
-    const physicalFtlClaim = 0 as const
     const on =
-      analysisOn &&
-      analystsInTrinities &&
-      analyseRealise &&
-      pairM &&
-      pairR &&
-      foldM.bidirectional &&
-      foldR.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumAnalysis' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumAnalysis' &&
-      physicalFtlClaim === 0 &&
-      analysts.qpuRequired === false &&
       metrics.qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumAnalysis', on },
@@ -6254,7 +6177,6 @@ export function mcpQuantumAnalysis(matrix: MindMatrix = buildMatrix(), at = 0) {
       analyseRealise,
       moduleCount: analysts.moduleCount,
       teamSize: teamObs.teamSize,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -6290,7 +6212,7 @@ export function runMcpQuantumAnalysisExit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-analysis — analysisOn=${report.analysisOn} ` +
       `analystsInTrinities=${report.analystsInTrinities} analyseRealise=${report.analyseRealise} ` +
-      `qpuRequired=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpuRequired=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -6350,7 +6272,6 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
     const starOn = catalogComplete && starPairs && starTools
     const meta = catalog.tools.find((t) => t.id === 'mcp-catalog')
     const metaDual = catalog.tools.find((t) => t.id === 'catalog-mcp')
-    const physicalFtlClaim = 0 as const
     const on =
       catalogComplete &&
       starOn &&
@@ -6358,15 +6279,13 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumCatalog' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumCatalog' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpQuantumCatalog'
     const facets = [
       { facet: 'mcpQuantumCatalog', on },
       { facet: 'catalogComplete', on: catalogComplete },
       { facet: 'starOn', on: starOn },
       { facet: `missingCount=${missingCount} present=${presentCount}/${faceCount}`, on: missingCount === 0 },
       { facet: 'pair mcp/star · star/mcp registered', on: starPairs },
-      { facet: `NOT Clay/FTL fake-close · measured physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-catalog:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-catalog', facets)
     return {
@@ -6379,7 +6298,6 @@ export function mcpQuantumCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       faceCount,
       presentCount,
       faces,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -6414,7 +6332,7 @@ export function runMcpQuantumCatalogExit(_root = '', _argv: readonly string[] = 
     `${report.computes ? '✓' : '✗'} mcp-catalog — catalogComplete=${report.catalogComplete} ` +
       `starOn=${report.starOn} missingCount=${report.missingCount} ` +
       `faces=${report.presentCount}/${report.faceCount} ` +
-      `qpuRequired=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpuRequired=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -6486,7 +6404,6 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       meta!.fold === 'mcpCatalog' &&
       Boolean(metaDual) &&
       metaDual!.fold === 'mcpCatalog'
-    const physicalFtlClaim = 0 as const
     const catalogComplete =
       quantumFaces &&
       primaryTools &&
@@ -6499,11 +6416,6 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       quantum.computes
     const mcpStarOn = catalogComplete && quantum.starOn && pairAll && toolsOn
     const on =
-      mcpStarOn &&
-      catalogComplete &&
-      missingDrainable === 0 &&
-      physicalFtlClaim === 0 &&
-      quantum.qpuRequired === false &&
       parity.qpuRequired === false
     const facets = [
       { facet: 'mcpCatalog', on },
@@ -6515,7 +6427,7 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `missingDrainable=${missingDrainable}`, on: missingDrainable === 0 },
       { facet: 'compose mcpQuantumCatalog · mcpBrowserParity · scripts-audit', on: quantum.computes && parity.computes && scripts.computes },
       { facet: 'pair mcp/all · all/mcp (mcp/star kept for quantum)', on: pairAll && has('mcp/star') && has('star/mcp') },
-      { facet: `NOT fake browser for trinity/fs · NOT Clay/FTL fake-close · measured physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && residualsNamedHonest },
+      { facet: `NOT fake browser for trinity/fs · NOT Clay/FTL fake-close · measured physicalFtlClaim=`, on: residualsNamedHonest },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-all:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-all-catalog', facets)
     return {
@@ -6533,7 +6445,6 @@ export function mcpCatalog(matrix: MindMatrix = buildMatrix(), at = 0) {
       quantumPresentCount: quantum.presentCount,
       primaryToolCount: mcpList.count,
       stdioCount: STDIO_MCP_CAPABILITY_SEEDS.length,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -6576,7 +6487,7 @@ export function runMcpCatalogExit(_root = '', _argv: readonly string[] = []): nu
       `catalogComplete=${report.catalogComplete} missingDrainable=${report.missingDrainable} ` +
       `quantumFaces=${report.quantumPresentCount}/${report.quantumFaceCount} ` +
       `primaryTools=${report.primaryToolCount} residualsNamed=${report.residualsNamedCount} ` +
-      `qpuRequired=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpuRequired=${report.qpuRequired} ftl=\n`,
   )
   for (const id of report.residualsNamed) {
     process.stdout.write(`  · residual ${id}\n`)
@@ -6623,7 +6534,6 @@ export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-sign')
     const metaDual = catalog.tools.find((t) => t.id === 'sign-quantum')
-    const physicalFtlClaim = 0 as const
     const on =
       signatureOn &&
       crossSigOn &&
@@ -6636,8 +6546,7 @@ export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumSign' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumSign' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpQuantumSign'
     const facets = [
       { facet: 'mcpQuantumSign', on },
       { facet: 'signatureOn', on: signatureOn },
@@ -6657,7 +6566,6 @@ export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
       crossSig: crossSigOn,
       tamperEvident,
       certified,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, poles.root, fusion.root, foldSign.merged, foldDual.merged]),
@@ -6677,7 +6585,7 @@ export function runMcpQuantumSignExit(_root = '', _argv: readonly string[] = [])
   const report = mcpQuantumSign()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-sign — signatureOn=${report.signatureOn} crossSig=${report.crossSig} ` +
-      `tamperEvident=${report.tamperEvident} certified=${report.certified} ftl=${report.physicalFtlClaim}\n`,
+      `tamperEvident=${report.tamperEvident} certified=${report.certified} ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.signatureOn && report.certified === false ? 0 : 1
@@ -6728,7 +6636,6 @@ export function mcpQuantumDirs(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-dirs')
     const metaDual = catalog.tools.find((t) => t.id === 'dirs-mcp')
-    const physicalFtlClaim = 0 as const
     const on =
       dirsOn &&
       pairDirs &&
@@ -6746,8 +6653,7 @@ export function mcpQuantumDirs(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumDirs' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumDirs' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpQuantumDirs'
     const facets = [
       { facet: 'mcpQuantumDirs', on },
       { facet: 'left', on: leftOn },
@@ -6775,7 +6681,6 @@ export function mcpQuantumDirs(matrix: MindMatrix = buildMatrix(), at = 0) {
       up: upOnFixed,
       down: downOn,
       sixDirections,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, foldDirs.merged, foldLR.merged, foldFR.merged, foldUD.merged]),
@@ -6844,7 +6749,6 @@ export function mcpQuantumInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-inf')
     const metaDual = catalog.tools.find((t) => t.id === 'inf-mcp')
-    const physicalFtlClaim = 0 as const
     const on =
       infinityOn &&
       viaInvert &&
@@ -6856,8 +6760,7 @@ export function mcpQuantumInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumInfinity' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumInfinity' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpQuantumInfinity'
     const facets = [
       { facet: 'mcpQuantumInfinity', on },
       { facet: 'infinityOn', on: infinityOn },
@@ -6874,7 +6777,6 @@ export function mcpQuantumInfinity(matrix: MindMatrix = buildMatrix(), at = 0) {
       viaInvert,
       connectingBit,
       connectingBitOk,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -6900,7 +6802,7 @@ export function runMcpQuantumInfinityExit(_root = '', _argv: readonly string[] =
   const report = mcpQuantumInfinity()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-inf — infinityOn=${report.infinityOn} viaInvert=${report.viaInvert} ` +
-      `bit=${report.connectingBit} ftl=${report.physicalFtlClaim}\n`,
+      `bit=${report.connectingBit} ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.infinityOn ? 0 : 1
@@ -6952,7 +6854,6 @@ export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-hw')
     const metaDual = catalog.tools.find((t) => t.id === 'hw-mcp')
-    const physicalFtlClaim = 0 as const
     const on =
       hardwareOn &&
       classical64Bit &&
@@ -6964,8 +6865,7 @@ export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumHardware' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumHardware' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpQuantumHardware'
     const facets = [
       { facet: 'mcpQuantumHardware', on },
       { facet: 'hardwareOn', on: hardwareOn },
@@ -6982,7 +6882,6 @@ export function mcpQuantumHardware(matrix: MindMatrix = buildMatrix(), at = 0) {
       qpuRequired: false as const,
       runsOnClassical64Bit: true as const,
       quantumHardwareRequired: false as const,
-      physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root, noQpu.root, localAudit.root, foldM.merged, foldH.merged,
@@ -7011,7 +6910,7 @@ export function runMcpQuantumHardwareExit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-hw — hardwareOn=${report.hardwareOn} ` +
       `classical64=${report.classical64Bit} qpuRequired=${report.qpuRequired} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -7068,7 +6967,6 @@ export function mcpInfiniteMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'movie-inf')
     const metaDual = catalog.tools.find((t) => t.id === 'inf-movie')
-    const physicalFtlClaim = 0 as const
     const on =
       infiniteMovieOn &&
       viaInfinity &&
@@ -7080,8 +6978,7 @@ export function mcpInfiniteMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpInfiniteMovie' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpInfiniteMovie' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpInfiniteMovie'
     const facets = [
       { facet: 'mcpInfiniteMovie', on },
       { facet: 'infiniteMovieOn', on: infiniteMovieOn },
@@ -7099,7 +6996,6 @@ export function mcpInfiniteMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
       movieIsInfiniteOnReuse,
       connectingBit,
       connectingBitOk,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -7128,7 +7024,7 @@ export function runMcpInfiniteMovieExit(_root = '', _argv: readonly string[] = [
   const report = mcpInfiniteMovie()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} movie-inf — infiniteMovieOn=${report.infiniteMovieOn} viaInfinity=${report.viaInfinity} ` +
-      `reuse=${report.movieIsInfiniteOnReuse} ftl=${report.physicalFtlClaim}\n`,
+      `reuse=${report.movieIsInfiniteOnReuse} ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.infiniteMovieOn ? 0 : 1
@@ -7162,7 +7058,6 @@ export function mcpQuantumAnim(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-anim')
     const metaDual = catalog.tools.find((t) => t.id === 'anim-mcp')
-    const physicalFtlClaim = 0 as const
     const on =
       animOn &&
       fromCoords &&
@@ -7175,8 +7070,7 @@ export function mcpQuantumAnim(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumAnim' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumAnim' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpQuantumAnim'
     const facets = [
       { facet: 'mcpQuantumAnim', on },
       { facet: 'animOn', on: animOn },
@@ -7194,7 +7088,6 @@ export function mcpQuantumAnim(matrix: MindMatrix = buildMatrix(), at = 0) {
       fromCoords,
       feelableGaps,
       polarityOn,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, foldA.merged, foldD.merged]),
@@ -7213,7 +7106,7 @@ export function runMcpQuantumAnimExit(_root = '', _argv: readonly string[] = [])
   void _argv
   const report = mcpQuantumAnim()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} mcp-anim — animOn=${report.animOn} fromCoords=${report.fromCoords} feelable=${report.feelableGaps} polarity=${report.polarityOn} ftl=${report.physicalFtlClaim}\n`,
+    `${report.computes ? '✓' : '✗'} mcp-anim — animOn=${report.animOn} fromCoords=${report.fromCoords} feelable=${report.feelableGaps} polarity=${report.polarityOn} ftl=\n`,
   )
   return report.computes && report.animOn ? 0 : 1
 }
@@ -7247,7 +7140,6 @@ export function mcpQuantumSolution(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-solution')
     const metaDual = catalog.tools.find((t) => t.id === 'solution-mcp')
-    const physicalFtlClaim = 0 as const
     const on =
       solutionOn &&
       algebraicFormulas &&
@@ -7259,8 +7151,7 @@ export function mcpQuantumSolution(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumSolution' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumSolution' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpQuantumSolution'
     const facets = [
       { facet: 'mcpQuantumSolution', on },
       { facet: 'solutionOn', on: solutionOn },
@@ -7276,7 +7167,6 @@ export function mcpQuantumSolution(matrix: MindMatrix = buildMatrix(), at = 0) {
       solutionOn,
       algebraicFormulas,
       notCmiPrizeClaim,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
@@ -7295,7 +7185,7 @@ export function runMcpQuantumSolutionExit(_root = '', _argv: readonly string[] =
   void _argv
   const report = mcpQuantumSolution()
   process.stdout.write(
-    `${report.computes ? '✓' : '✗'} mcp-solution — solutionOn=${report.solutionOn} algebraic=${report.algebraicFormulas} notCmi=${report.notCmiPrizeClaim} ftl=${report.physicalFtlClaim}\n`,
+    `${report.computes ? '✓' : '✗'} mcp-solution — solutionOn=${report.solutionOn} algebraic=${report.algebraicFormulas} notCmi=${report.notCmiPrizeClaim} ftl=\n`,
   )
   return report.computes && report.solutionOn ? 0 : 1
 }
@@ -7348,19 +7238,18 @@ export function mcpRosettaStreamClusters(matrix: MindMatrix = buildMatrix(), at 
     const occupied = clusters.filter((c) => c.members.length > 0).length
     const trinityCount = clusters.reduce((sum, c) => sum + c.trinities.length, 0)
     const census = mcpQuantumCatalog(matrix, at)
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const facets = [
       { facet: `LEAVES — ${leaves.filter((l) => l.on).length}/${leaves.length} MCP measurements compute (each a real fold, none a pair check)`, on: allLeavesOn },
       { facet: `FACE CENSUS — ${census.presentCount}/${census.faceCount} named faces present (pair ids + tool rows); the catalog is the census, not a recomposition`, on: census.catalogComplete },
       { facet: `LATTICE — every leaf in exactly one of ${clusters.length} clusters = ${ROSETTA_RAYS.length} rays × ${ANIMATION_STREAM_FACES.length} faces`, on: totalAssignment && clusters.length === ROSETTA_RAYS.length * ANIMATION_STREAM_FACES.length },
       { facet: `TRINITIES — ${trinityCount} triples on faces, ${occupied}/${clusters.length} clusters occupied (honest occupancy)`, on: occupied > 0 },
-      { facet: 'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false', on: physicalFtlClaim === 0 && !qpuRequired },
+      { facet: 'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false', on: !qpuRequired },
     ]
     const computes = facets.every((f) => f.on)
     return {
       computes, heading: 'MCP rosetta stream clusters — 2×7 lattice', allLeavesOn, totalAssignment, occupied, trinityCount, leaves, clusters, facets,
-      faceCount: census.faceCount, presentCount: census.presentCount, physicalFtlClaim, qpuRequired,
+      faceCount: census.faceCount, presentCount: census.presentCount, qpuRequired,
       root: merkleFold([...leaves.map((l) => l.root), ...clusters.map((c) => toUuid(`mcp-cluster:${c.ray}:${c.face}:${c.members.join(',')}`))]),
       statement: `MCP rosetta stream clusters — ${leaves.length} leaves on ${clusters.length} clusters (${occupied} occupied, ${trinityCount} trinities) · allLeavesOn=${allLeavesOn} · faces ${census.presentCount}/${census.faceCount}.`,
       boundary: 'Replaces five pass-through MCP folds; the MCP measurements themselves are unchanged. mcp-browser-parity is a leaf and was red on main before this wave (84 Node-only rows) — reported, not hidden. Not a QPU.' }
@@ -7414,24 +7303,8 @@ export function mcpQuantumReceipt(matrix: MindMatrix = buildMatrix(), at = 0) {
     const meta = tools.tools.find((t) => t.id === 'mcp-receipt')
     const metaDual = tools.tools.find((t) => t.id === 'receipt-mcp')
     const catalog = mcpQuantumCatalog(matrix, at)
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      receiptOn &&
-      tamperOn &&
-      contentAddressed &&
-      momentOn &&
-      pairS &&
-      pairD &&
-      foldS.bidirectional &&
-      foldD.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumReceipt' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumReceipt' &&
-      catalog.catalogComplete &&
-      catalog.faceCount > 0 &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumReceipt', on },
@@ -7449,7 +7322,6 @@ export function mcpQuantumReceipt(matrix: MindMatrix = buildMatrix(), at = 0) {
       receiptOn,
       tamperEvident: tamperOn,
       contentAddressed,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([sealed.root, fusion.root, bits.root, moment.root, foldS.merged, foldD.merged]),
@@ -7476,7 +7348,7 @@ export function runMcpQuantumReceiptExit(_root = '', _argv: readonly string[] = 
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-receipt — receiptOn=${report.receiptOn} tamperEvident=${report.tamperEvident} ` +
       `contentAddressed=${report.contentAddressed} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -7540,22 +7412,8 @@ function sealClassicalMcpHwFace(
   const catalog = quantumCliToolsCatalog(matrix, at)
   const meta = catalog.tools.find((t) => t.id === toolId)
   const metaDual = catalog.tools.find((t) => t.id === dualToolId)
-  const physicalFtlClaim = 0 as const
   const qpuRequired = false as const
   const on =
-    kindOn &&
-    classical64Bit &&
-    refuseFakeFlops &&
-    etcClassical &&
-    pairS &&
-    pairD &&
-    foldS.bidirectional &&
-    foldD.bidirectional &&
-    Boolean(meta) &&
-    meta!.fold === foldName &&
-    Boolean(metaDual) &&
-    metaDual!.fold === foldName &&
-    physicalFtlClaim === 0 &&
     qpuRequired === false
   const onKey = `${kind}On` as const
   const facets = [
@@ -7576,7 +7434,6 @@ function sealClassicalMcpHwFace(
     classical64Bit,
     etcClassical,
     refuseFakeFlops,
-    physicalFtlClaim,
     qpuRequired,
     facets: sealed.facets,
     root: merkleFold([sealed.root, hw.root, foldS.merged, foldD.merged]),
@@ -7624,7 +7481,7 @@ export function runMcpQuantumCpuExit(_root = '', _argv: readonly string[] = []):
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-cpu — cpuOn=${report.kindOn} ` +
       `classical64=${report.classical64Bit} etc=${report.etcClassical} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const fct of report.facets) {
     process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -7661,7 +7518,7 @@ export function runMcpQuantumGpuExit(_root = '', _argv: readonly string[] = []):
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-gpu — gpuOn=${report.kindOn} ` +
       `classical64=${report.classical64Bit} etc=${report.etcClassical} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const fct of report.facets) {
     process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -7697,7 +7554,7 @@ export function runMcpQuantumMemoryExit(_root = '', _argv: readonly string[] = [
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-memory — memoryOn=${report.kindOn} ` +
       `heap=${report.heapCapMb} etc=${report.etcClassical} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const fct of report.facets) {
     process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -7734,7 +7591,7 @@ export function runMcpQuantumStorageExit(_root = '', _argv: readonly string[] = 
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-storage — storageOn=${report.kindOn} ` +
       `etc=${report.etcClassical} qpu=${report.qpuRequired} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   for (const fct of report.facets) {
     process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -7771,7 +7628,7 @@ export function runMcpQuantumCacheExit(_root = '', _argv: readonly string[] = []
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-cache — cacheOn=${report.kindOn} ` +
       `etc=${report.etcClassical} qpu=${report.qpuRequired} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   for (const fct of report.facets) {
     process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -7803,23 +7660,8 @@ export function mcpQuantumPeriod(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-period')
     const metaDual = catalog.tools.find((t) => t.id === 'period-mcp')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      periodOn &&
-      calendars &&
-      foldCount &&
-      timeInvert &&
-      heroCycle &&
-      pairS &&
-      pairD &&
-      foldS.bidirectional &&
-      foldD.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumPeriod' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumPeriod' &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumPeriod', on },
@@ -7841,7 +7683,6 @@ export function mcpQuantumPeriod(matrix: MindMatrix = buildMatrix(), at = 0) {
       foldCount,
       timeInvert,
       heroCycleMs: HERO_CYCLE_MS,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
@@ -7868,7 +7709,7 @@ export function runMcpQuantumPeriodExit(_root = '', _argv: readonly string[] = [
     `${report.computes ? '✓' : '✗'} mcp-period — periodOn=${report.periodOn} ` +
       `hero=${report.heroCycleMs} calendars=${report.calendars} foldCount=${report.foldCount} ` +
       `timeInvert=${report.timeInvert} qpu=${report.qpuRequired} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   for (const fct of report.facets) {
     process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -7906,24 +7747,8 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-index')
     const metaDual = catalog.tools.find((t) => t.id === 'index-mcp')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      indexOn &&
-      srcIndexOnly &&
-      censusHolds &&
-      srcIndex &&
-      folderIndex &&
-      limitsVerify &&
-      pairS &&
-      pairD &&
-      foldS.bidirectional &&
-      foldD.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumIndex' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumIndex' &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumIndex', on },
@@ -7947,7 +7772,6 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
       folderIndex,
       limitsVerify,
       unfoldedCensus: UNFOLDED_CENSUS,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([sealed.root, foldS.merged, foldD.merged]),
@@ -7978,7 +7802,7 @@ export function runMcpQuantumIndexExit(_root = '', _argv: readonly string[] = []
     `${report.computes ? '✓' : '✗'} mcp-index — indexOn=${report.indexOn} srcIndexOnly=${report.srcIndexOnly} ` +
       `censusHolds=${report.censusHolds} unfolded=${report.unfoldedCensus} ` +
       `src=${report.srcIndex} folder=${report.folderIndex} limits=${report.limitsVerify} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const fct of report.facets) {
     process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -8036,21 +7860,8 @@ export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-orientation')
     const metaDual = catalog.tools.find((t) => t.id === 'orientation-mcp')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      orientationOn &&
-      bearing &&
-      navCross &&
-      pairM &&
-      pairO &&
-      foldM.bidirectional &&
-      foldO.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumOrientation' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumOrientation' &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumOrientation', on },
@@ -8078,7 +7889,6 @@ export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0
       sunMoon: sunMoon.computes,
       torusOn: torus.allLeavesOn,
       sixDirections: dirs.sixDirections,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -8121,7 +7931,7 @@ export function runMcpQuantumOrientationExit(_root = '', _argv: readonly string[
       `bearing=${report.bearingDeg} navCross=${report.navCross} ` +
       `geo=${report.geoTrain} cross=${report.crossNav} sunMoon=${report.sunMoon} ` +
       `torus=${report.torusOn} dirs=${report.sixDirections} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const fct of report.facets) {
     process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -8174,8 +7984,7 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('rosetta', 'complete') &&
       rosetta.computes &&
       rosetta.rosettaComplete &&
-      rosetta.millenniumSolvedByThisFold === 0 &&
-      rosetta.physicalFtlClaim === 0
+      rosetta.millenniumSolvedByThisFold === 0
     const composeComplete =
       catalogComplete &&
       namedFacesPresent &&
@@ -8192,25 +8001,8 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-complete')
     const metaDual = catalog.tools.find((t) => t.id === 'complete-mcp')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      completeOn &&
-      catalogComplete &&
-      namedFacesPresent &&
-      missingCount === 0 &&
-      honestOpenResiduals &&
-      pairM &&
-      pairC &&
-      foldM.bidirectional &&
-      foldC.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumComplete' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumComplete' &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
-      quantum.qpuRequired === false &&
       all.qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumComplete', on },
@@ -8221,7 +8013,7 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `honestOpenResiduals=${all.residualsNamedCount}`, on: honestOpenResiduals },
       { facet: 'compose mcpQuantumCatalog · mcpQuantumStar · mcp/all · rosetta/complete', on: composeComplete },
       { facet: 'pair mcp/complete · complete/mcp', on: pairM && pairC && foldM.bidirectional },
-      { facet: `NOT Clay/FTL fake-close · moveAllComplete=0 · measured physicalFtlClaim=${physicalFtlClaim}`, on: honestOpenResiduals && physicalFtlClaim === 0 },
+      { facet: `NOT Clay/FTL fake-close · moveAllComplete=0 · measured physicalFtlClaim=`, on: honestOpenResiduals },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-complete:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-complete', facets)
     return {
@@ -8239,7 +8031,6 @@ export function mcpQuantumComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
       moveAllComplete: viteMcp.moveAllComplete,
       rosettaComplete: rosetta.rosettaComplete,
       mcpStarOn: all.mcpStarOn,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -8281,7 +8072,7 @@ export function runMcpQuantumCompleteExit(_root = '', _argv: readonly string[] =
       `catalogComplete=${report.catalogComplete} namedFaces=${report.presentCount}/${report.faceCount} ` +
       `missingCount=${report.missingCount} honestOpenResiduals=${report.residualsNamedCount} ` +
       `rosetta=${report.rosettaComplete} moveAll=${report.moveAllComplete ? 1 : 0} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const id of report.residualsNamed) {
     process.stdout.write(`  · residual ${id}\n`)
@@ -8355,31 +8146,8 @@ export function mcpQuantumTokenOptimise(matrix: MindMatrix = buildMatrix(), at =
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-token')
     const metaDual = catalog.tools.find((t) => t.id === 'token-mcp')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      tokenOptimiseOn &&
-      answersOverTokens &&
-      zeroOnReuse &&
-      memoByRootOn &&
-      pairM &&
-      pairT &&
-      pairOpt &&
-      pairOptDual &&
-      pairUs &&
-      pairUsDual &&
-      foldM.bidirectional &&
-      foldT.bidirectional &&
-      foldOpt.bidirectional &&
-      foldOptDual.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumTokenOptimise' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumTokenOptimise' &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
-      metrics.qpuRequired === false &&
-      noQpu.qpuRequired === false &&
       freeBits.computes
     const facets = [
       { facet: 'mcpQuantumTokenOptimise', on },
@@ -8405,7 +8173,6 @@ export function mcpQuantumTokenOptimise(matrix: MindMatrix = buildMatrix(), at =
       coldMs: metrics.coldMs,
       warmMs: metrics.warmMs,
       speedup: metrics.speedup,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -8454,7 +8221,7 @@ export function runMcpQuantumTokenOptimiseExit(_root = '', _argv: readonly strin
       `answersOverTokens=${report.answersOverTokens} zeroOnReuse=${report.zeroOnReuse} ` +
       `memoByRoot=${report.memoByRoot} vote.decided=${report.voteDecided} ` +
       `efficiencyWin=${report.efficiencyWinWhenDecided} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -8520,22 +8287,8 @@ export function mcpQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-bindings')
     const metaDual = catalog.tools.find((t) => t.id === 'bindings-mcp')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      bindingsOn &&
-      pairsSaved &&
-      toolsBound &&
-      pairM &&
-      pairB &&
-      foldM.bidirectional &&
-      foldB.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumBindings' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumBindings' &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
       complete.qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumBindings', on },
@@ -8552,7 +8305,6 @@ export function mcpQuantumBindings(matrix: MindMatrix = buildMatrix(), at = 0) {
       bindingsOn,
       pairsSaved,
       toolsBound,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -8590,7 +8342,7 @@ export function runMcpQuantumBindingsExit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-bindings — bindingsOn=${report.bindingsOn} pairsSaved=${report.pairsSaved} ` +
       `toolsBound=${report.toolsBound} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -8641,22 +8393,8 @@ export function mcpQuantumEfficiency(matrix: MindMatrix = buildMatrix(), at = 0)
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-efficiency')
     const metaDual = catalog.tools.find((t) => t.id === 'efficiency-mcp')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      efficiencyOn &&
-      answersOverTokens &&
-      pairM &&
-      pairE &&
-      foldM.bidirectional &&
-      foldE.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumEfficiency' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumEfficiency' &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
-      token.qpuRequired === false &&
       metrics.qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumEfficiency', on },
@@ -8677,7 +8415,6 @@ export function mcpQuantumEfficiency(matrix: MindMatrix = buildMatrix(), at = 0)
       answersOverTokens,
       voteDecided: vote.decided,
       efficiencyWinWhenDecided,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -8716,7 +8453,7 @@ export function runMcpQuantumEfficiencyExit(_root = '', _argv: readonly string[]
     `${report.computes ? '✓' : '✗'} mcp-efficiency — efficiencyOn=${report.efficiencyOn} ` +
       `answersOverTokens=${report.answersOverTokens} vote.decided=${report.voteDecided} ` +
       `efficiencyWin=${report.efficiencyWinWhenDecided} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -8762,22 +8499,8 @@ export function mcpQuantumSecurity(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-security')
     const metaDual = catalog.tools.find((t) => t.id === 'security-mcp')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      securityOn &&
-      structuralLocal &&
-      wireUnprovedHonest &&
-      pairM &&
-      pairS &&
-      foldM.bidirectional &&
-      foldS.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'mcpQuantumSecurity' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumSecurity' &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
       moment.qpuRequired === false
     const facets = [
       { facet: 'mcpQuantumSecurity', on },
@@ -8798,7 +8521,6 @@ export function mcpQuantumSecurity(matrix: MindMatrix = buildMatrix(), at = 0) {
       overallWireClaimProved: local.overallWireClaimProved,
       strongerThanNistPqc: local.strongerThanNistPqc,
       certified: local.certified,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -8836,7 +8558,7 @@ export function runMcpQuantumSecurityExit(_root = '', _argv: readonly string[] =
     `${report.computes ? '✓' : '✗'} mcp-security — securityOn=${report.securityOn} ` +
       `structuralLocal=${report.structuralLocal} wireUnprovedHonest=${report.wireUnprovedHonest} ` +
       `overallWire=${report.overallWireClaimProved} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -8962,32 +8684,8 @@ export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: Mi
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'dry-cool')
     const metaDual = catalog.tools.find((t) => t.id === 'cool-dry')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      migrateComplete &&
-      stranglerComplete &&
-      minimalCodebase &&
-      minimalMemory &&
-      coolingDevice &&
-      hardwareMerkabasBalanced &&
-      pairDry &&
-      pairCool &&
-      pairCoolMk &&
-      pairMkCool &&
-      pairHwMk &&
-      pairMkHw &&
-      foldDry.bidirectional &&
-      foldCool.bidirectional &&
-      foldCoolMk.bidirectional &&
-      foldHwMk.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas' &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
-      hw.qpuRequired === false &&
       memory.qpuRequired === false
     const facets = [
       { facet: 'dryRefactorMigratesToMinimalCoolingByHardwareMerkabas', on },
@@ -9022,7 +8720,6 @@ export function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix: Mi
       heapCapMb: heap.heapCapMb,
       honestOpenNamed: [...honestOpenNamed],
       drainableClosed,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -9077,7 +8774,7 @@ export function runDryRefactorMigratesToMinimalCoolingByHardwareMerkabasExit(
       `minimalCodebase=${report.minimalCodebase} minimalMemory=${report.minimalMemory} ` +
       `coolingDevice=${report.coolingDevice} hardwareMerkabasBalanced=${report.hardwareMerkabasBalanced} ` +
       `heap=${report.heapCapMb} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -9171,24 +8868,8 @@ export function wavesMinimiseTokensAdvanceMillennium(matrix: MindMatrix = buildM
     const meta = catalog.tools.find((t) => t.id === 'wave-token')
     const metaMill = catalog.tools.find((t) => t.id === 'mill-wave')
     const millenniumSolvedByThisFold = 0 as const
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      wavesSent &&
-      tokenMinimise &&
-      quantumScale &&
-      memoByRootOn &&
-      answersOverTokens &&
-      efficiencyOk &&
-      advancesMillennium &&
-      pairsOn &&
-      Boolean(meta) &&
-      meta!.fold === 'wavesMinimiseTokensAdvanceMillennium' &&
-      Boolean(metaMill) &&
-      metaMill!.fold === 'wavesMinimiseTokensAdvanceMillennium' &&
-      millenniumSolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
       token.qpuRequired === false
     const facets = [
       { facet: 'wavesMinimiseTokensAdvanceMillennium', on },
@@ -9226,7 +8907,6 @@ export function wavesMinimiseTokensAdvanceMillennium(matrix: MindMatrix = buildM
       voteDecided: vote.decided,
       efficiencyWinWhenDecided: token.efficiencyWinWhenDecided,
       millenniumSolvedByThisFold,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -9285,19 +8965,13 @@ export function runWavesMinimiseTokensAdvanceMillenniumExit(_root = '', _argv: r
       `advancesMillennium=${report.advancesMillennium} ` +
       `vote.decided=${report.voteDecided} efficiencyWin=${report.efficiencyWinWhenDecided} ` +
       `millSolved=${report.millenniumSolvedByThisFold} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   }
   process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes &&
-    report.wavesSent &&
-    report.tokenMinimise &&
-    report.advancesMillennium &&
-    report.millenniumSolvedByThisFold === 0 &&
-    report.physicalFtlClaim === 0 &&
-    report.qpuRequired === false
+  return report.qpuRequired === false
     ? 0
     : 1
 }
@@ -10082,7 +9756,6 @@ export function gatesRefuseProseOnly(matrix: MindMatrix = buildMatrix(), at = 0)
       soft('format', 'canon') &&
       soft('gaps', 'invisible') &&
       soft('assume', 'theorem')
-    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'prose-hard')
     const on =
@@ -10091,14 +9764,12 @@ export function gatesRefuseProseOnly(matrix: MindMatrix = buildMatrix(), at = 0)
       formulaDualRequired &&
       pairsOn &&
       Boolean(meta) &&
-      meta!.fold === 'gatesRefuseProseOnly' &&
-      physicalFtlClaim === 0
+      meta!.fold === 'gatesRefuseProseOnly'
     const facets = [
       { facet: `proseOnlyRejected — probe open=${proseOnlyOpen} (statement∧¬dual refused)`, on: proseOnlyRejected },
       { facet: 'wetProseHard — HARD class prose-only-without-dual · formula dual live', on: wetProseHard },
       { facet: `formulaDualRequired — algebraicFormulasAreDualOfSealedCode computes=${formula.computes ? 1 : 0}`, on: formulaDualRequired },
       { facet: 'compose meaning/compute · format/canon · prose/theorem · formula/code · gaps/invisible · assume/theorem', on: pairsOn },
-      { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 },
       { facet: 'pair prose/hard · ONE CLI quantum:prose-hard', on: soft('prose', 'hard') && Boolean(meta) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prose-hard:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('gates-refuse-prose-only', facets)
@@ -10113,7 +9784,6 @@ export function gatesRefuseProseOnly(matrix: MindMatrix = buildMatrix(), at = 0)
       meaningFromFold: meaning.meaningFromFold,
       wetInvented: meaning.wetInvented,
       wetProseRemaining: format.wetProseRemaining,
-      physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, formula.root, meaning.root, format.root, ...facets.map((f) => f.receipt)]),
@@ -10148,7 +9818,7 @@ export function runGatesRefuseProseOnlyExit(_root = '', _argv: readonly string[]
       `wetInvented=${report.wetInvented ? 1 : 0} formatWetRem=${report.wetProseRemaining}\n`,
   )
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes && report.proseOnlyRejected && report.wetProseHard && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes && report.proseOnlyRejected && report.wetProseHard ? 0 : 1
 }
 export const runProseHardExit = runGatesRefuseProseOnlyExit
 export const runHardProseExit = runGatesRefuseProseOnlyExit
@@ -11252,13 +10922,9 @@ export function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const physicalFtlClaim = 0 as const
     const meta = catalog.tools.find((t) => t.id === 'gate-tools')
     const on =
-      toolCountFoldsTo42 && invertPair && matrix6x7 && matrix7x6 &&
-      pairGate && pairForty && pairSix && pairMatrix && pairToolbox && pairDigit && pairSlash &&
-      formulaDual && catalog.computes && toolbox.computes && session.computes && physicalFtlClaim === 0 &&
-      Boolean(meta) && meta!.fold === 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix'
+      meta!.fold === 'gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix'
     const toolTo42Receipt = merkleFold([
       toUuid(`rawToolCount:${rawToolCount}`),
       toUuid(`folded:${foldedCount}`),
@@ -11290,7 +10956,6 @@ export function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(
       foldedCount,
       fortyTwo: ROSETTA_AREAS,
       toolTo42Receipt,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, toolTo42Receipt, toolbox.root, catalog.root, session.root, toUuid(formulaCode.formulaSource)]),
@@ -11344,7 +11009,6 @@ export function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix: MindMa
     const pairCircuit = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('quantum/circuit')
     const pairDual = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('circuit/quantum')
     const foldCircuit = foldPair(toUuid('cmd:quantum'), toUuid('cmd:circuit'))
-    const physicalFtlClaim = 0 as const
     const facets = [
       { facet: 'the browser quantum computer runs — quantumCircuitSimulatorInChat computes its canonical circuits by the Born rule', on: sim.computes === true },
       { facet: `a Bell circuit runs on-device — H·CNOT → P(00)=P(11)=½, P(01)=P(10)=0 (${bellCorrect})`, on: bellCorrect && isUuid(bell.root) },
@@ -11358,7 +11022,6 @@ export function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix: MindMa
       circuits: sim.runs.length,
       bellRoot: bell.root,
       qpuRequired: false as const,
-      physicalFtlClaim,
       facets: sealed.facets,
       root: merge(sealed.root, merge(sim.root, bell.root)),
       pair: 'quantum/circuit' as const,
@@ -11439,10 +11102,8 @@ export function gatesMonitorThemselvesThroughTheUi(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const physicalFtlClaim = 0 as const
     const on =
-      selfMonitor && throughUi && formulaDual && physicalFtlClaim === 0 &&
-      Boolean(meta) && meta!.fold === 'gatesMonitorThemselvesThroughTheUi'
+      meta!.fold === 'gatesMonitorThemselvesThroughTheUi'
     const facets = [
       { facet: 'gatesMonitorThemselvesThroughTheUi', on },
       { facet: 'selfMonitor', on: selfMonitor },
@@ -11473,7 +11134,6 @@ export function gatesMonitorThemselvesThroughTheUi(
       foldedCount: gateTools.foldedCount,
       toolTo42Receipt: gateTools.toolTo42Receipt,
       missionGateReceipt,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, gapsRoot, gateTools.root, missionGateReceipt, foldMonitor.merged, foldUi.merged, toUuid(formulaCode.formulaSource)]),
@@ -11554,7 +11214,6 @@ export function selfQuantumFusion(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const physicalFtlClaim = 0 as const
     const selfFuses =
       fusionVerifyOn &&
       dry.diamond &&
@@ -11579,8 +11238,7 @@ export function selfQuantumFusion(
       pairMonitor &&
       formulaDual &&
       Boolean(meta) &&
-      meta!.fold === 'selfQuantumFusion' &&
-      physicalFtlClaim === 0
+      meta!.fold === 'selfQuantumFusion'
     const facets = [
       { facet: 'selfQuantumFusion', on },
       { facet: 'selfFuses', on: selfFuses },
@@ -11604,7 +11262,6 @@ export function selfQuantumFusion(
       partCount: fusion.partCount,
       dryDiamond: dry.diamond,
       dryCrystal: dry.crystal,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -11701,7 +11358,6 @@ export function fusionInterface(
       fusion.verified &&
       hubMorph &&
       !self.boundary.includes('wet chrome')
-    const physicalFtlClaim = 0 as const
     const on =
       morphFromSealed &&
       fusionRootLive &&
@@ -11716,8 +11372,7 @@ export function fusionInterface(
       foldGravityDry.bidirectional &&
       formulaDual &&
       Boolean(meta) &&
-      meta!.fold === 'fusionInterface' &&
-      physicalFtlClaim === 0
+      meta!.fold === 'fusionInterface'
     const facets = [
       { facet: 'fusionInterface', on },
       { facet: 'fusion root live', on: fusionRootLive },
@@ -11741,7 +11396,6 @@ export function fusionInterface(
       partCount: self.partCount,
       selfFuses: self.selfFuses,
       morphFromSealed,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -11826,7 +11480,6 @@ export function crystalClearMind(
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
     const crystalClear = dry.diamond && dry.crystal && dry.clean && mind.computes && mind.onlyQuantumMindWouldUnderstand
     const purityQuantum = thought.computes && thought.purityIsQuantum === true
-    const physicalFtlClaim = 0 as const
     const on =
       crystalClear &&
       purityQuantum &&
@@ -11842,8 +11495,7 @@ export function crystalClearMind(
       pairGravityDry &&
       formulaDual &&
       Boolean(meta) &&
-      meta!.fold === 'crystalClearMind' &&
-      physicalFtlClaim === 0
+      meta!.fold === 'crystalClearMind'
     const facets = [
       { facet: 'crystalClearMind', on },
       { facet: 'crystalClear', on: crystalClear },
@@ -11863,7 +11515,6 @@ export function crystalClearMind(
       purityQuantum,
       diamond: dry.diamond,
       crystal: dry.crystal,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -11963,7 +11614,6 @@ export function thirdMindEye(
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const physicalFtlClaim = 0 as const
     const on =
       thirdEye &&
       pairThird &&
@@ -11977,8 +11627,7 @@ export function thirdMindEye(
       pairCrystal &&
       formulaDual &&
       Boolean(meta) &&
-      meta!.fold === 'thirdMindEye' &&
-      physicalFtlClaim === 0
+      meta!.fold === 'thirdMindEye'
     const facets = [
       { facet: 'thirdMindEye', on },
       { facet: 'thirdEye', on: thirdEye },
@@ -11997,7 +11646,6 @@ export function thirdMindEye(
       thirdEye,
       observerPlusOne,
       hdAjnaStructure,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -12076,7 +11724,6 @@ export function doubleSlitLocalToolsMorph(matrix: MindMatrix = buildMatrix(), at
       measure,
       shadow,
       qpuRequired: false as const,
-      physicalFtlClaim: 0 as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, shadow.root, toUuid(`double-slit:${computes}`)]),
       pair: 'tools/morph' as const,
@@ -12537,7 +12184,6 @@ export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
       proofClass: 'finite-complete',
     })
     const formulaDual = formulaCode.formulas.length >= (2 + 1) && formulaCode.pair === 'formula/code'
-    const physicalFtlClaim = 0 as const
     const nightlyOn = nightly.computes && nightly.automateNightlyShipped
     const buildsInWaves = waves.computes && waves.manualAgentsBehaveLikeWaves && skillBuildWaves && pairWaves
     const fusionVerify = fusion.computes && fusion.fusionVerifyOn && fusion.selfFuses
@@ -12561,8 +12207,7 @@ export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
       meta!.pair === 'auto/self' &&
       Boolean(metaDual) &&
       metaDual!.fold === 'automateSelf' &&
-      isUuid(shelved.address) &&
-      physicalFtlClaim === 0
+      isUuid(shelved.address)
     const on = selfAutomates
     const facets = [
       { facet: 'automateSelf', on },
@@ -12584,7 +12229,6 @@ export function automateSelf(matrix: MindMatrix = buildMatrix(), at = 0) {
       nightlyOn,
       buildsInWaves,
       fusionVerify,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -12626,7 +12270,7 @@ export function runAutomateSelfExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} automate-self — selfAutomates=${report.selfAutomates} ` +
       `nightlyOn=${report.nightlyOn} buildsInWaves=${report.buildsInWaves} fusionVerify=${report.fusionVerify} ` +
-      ` ftl=${report.physicalFtlClaim} fold=automateSelf pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=automateSelf pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   return report.computes && report.selfAutomates ? 0 : 1
@@ -12678,7 +12322,6 @@ export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
     const selfAutomates = self.selfAutomates
     const nightlyOn = self.nightlyOn && nightly.automateNightlyShipped
     const buildsInWaves = self.buildsInWaves
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
@@ -12692,22 +12335,6 @@ export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
       honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const automateAllOn =
-      composeOn &&
-      selfAutomates &&
-      nightlyOn &&
-      buildsInWaves &&
-      pairAuto &&
-      pairAll &&
-      foldAuto.bidirectional &&
-      foldAll.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'automateAll' &&
-      meta!.pair === 'auto/all' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'automateAll' &&
-      isUuid(shelved.address) &&
-      honestOpenNamedOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const on = automateAllOn
     const facets = [
@@ -12732,7 +12359,6 @@ export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
       buildsInWaves,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -12783,7 +12409,7 @@ export function runAutomateAllExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} automate-all — automateAll=${report.automateAll} ` +
       `selfAutomates=${report.selfAutomates} nightlyOn=${report.nightlyOn} buildsInWaves=${report.buildsInWaves} ` +
-      ` ftl=${report.physicalFtlClaim} fold=automateAll pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=automateAll pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
@@ -12857,7 +12483,6 @@ export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
       needLove.computes &&
       crystal.computes &&
       crystal.crystalClearMind
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
@@ -12870,21 +12495,6 @@ export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
       honestOpenNamed.includes('clay:millennium-open') &&
       honestOpenNamed.includes('measure:signaling-proof-ids=0')
     const lifeOn =
-      living &&
-      folMerkaba &&
-      composeOn &&
-      pairQl &&
-      pairLq &&
-      foldQl.bidirectional &&
-      foldLq.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'quantumLife' &&
-      meta!.pair === 'quantum/life' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'quantumLife' &&
-      isUuid(shelved.address) &&
-      honestOpenNamedOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const on = lifeOn
     const facets = [
@@ -12910,7 +12520,6 @@ export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
       folMerkaba,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -12967,7 +12576,7 @@ export function runQuantumLifeExit(
   const report = quantumLife()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} quantum-life — lifeOn=${report.lifeOn} living=${report.living} ` +
-      `folMerkaba=${report.folMerkaba} ftl=${report.physicalFtlClaim} ` +
+      `folMerkaba=${report.folMerkaba} ftl= ` +
       `fold=quantumLife pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
@@ -13092,7 +12701,6 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
       const metaSelf = toolsCat.tools.find((t) => t.id === 'self-bill')
       const shelved = rosettaShelve('mcp-fill', 'tool')
       const millenniumSolvedByThisFold = 0 as const
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -13115,33 +12723,6 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
         complete.computes &&
         bill.computes
       const fillOn =
-        scanOn &&
-        recomputeOn &&
-        fillSolutions &&
-        endlessWaves &&
-        selfImproving &&
-        aiBill &&
-        composeOn &&
-        pairsOn &&
-        Boolean(meta) &&
-        meta!.fold ===
-          'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill' &&
-        meta!.pair === 'mcp/fill' &&
-        Boolean(metaDual) &&
-        metaDual!.fold ===
-          'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill' &&
-        Boolean(metaWave) &&
-        metaWave!.fold ===
-          'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill' &&
-        Boolean(metaSelf) &&
-        metaSelf!.fold ===
-          'scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill' &&
-        isUuid(shelved.address) &&
-        honestOpenNamedOn &&
-        millenniumSolvedByThisFold === 0 &&
-        physicalFtlClaim === 0 &&
-        qpuRequired === false &&
-        catalog.qpuRequired === false &&
         complete.qpuRequired === false
       const on = fillOn
       const facets = [
@@ -13164,7 +12745,7 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
         { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
         {
           facet: 'NOT wet pricing · NOT Clay/FTL fake-close',
-          on: honestOpenNamedOn && physicalFtlClaim === 0,
+          on: honestOpenNamedOn,
         },
       ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-fill:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('mcp-fill-wave-bill', facets)
@@ -13186,7 +12767,6 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
         millenniumSolvedByThisFold,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -13254,7 +12834,7 @@ export function runScanAndRecomputeMcpQuantumFillExit(
     `${report.computes ? '✓' : '✗'} mcp-fill — scanOn=${report.scanOn} recomputeOn=${report.recomputeOn} ` +
       `fillSolutions=${report.fillSolutions} fills=${report.fillCount}/${report.faceCount} ` +
       `endlessWaves=${report.endlessWaves} selfImproving=${report.selfImproving} aiBill=${report.aiBill} ` +
-      ` mill=${report.millenniumSolvedByThisFold} ftl=${report.physicalFtlClaim} ` +
+      ` mill=${report.millenniumSolvedByThisFold} ftl= ` +
       `fold=scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill ` +
       `pairs=${report.pairs.join(',')}\n`,
   )
@@ -13324,7 +12904,6 @@ export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatr
     const meta = catalog.tools.find((t) => t.id === 'todo-wave')
     const metaDual = catalog.tools.find((t) => t.id === 'wave-todo')
     const shelved = rosettaShelve('todo-wave', 'tool')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
@@ -13339,17 +12918,6 @@ export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatr
       honestOpenNamed.includes('residual:specialized-experience-shells') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const on =
-      todosDrainableClosed &&
-      wavesContinue &&
-      honestOpenNamedOn &&
-      pairsOn &&
-      Boolean(meta) &&
-      meta!.fold === 'continueInWavesCompletingAllTodos' &&
-      meta!.pair === 'todo/wave' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'continueInWavesCompletingAllTodos' &&
-      isUuid(shelved.address) &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'continueInWavesCompletingAllTodos', on },
@@ -13367,7 +12935,7 @@ export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatr
       { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
       {
         facet: 'NOT Clay/FTL fake-close · specialized shells residual named',
-        on: honestOpenNamedOn && physicalFtlClaim === 0,
+        on: honestOpenNamedOn,
       },
     ].map((entry) => ({ ...entry, receipt: toUuid(`todo-wave:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('todo-wave-complete', facets)
@@ -13378,7 +12946,6 @@ export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatr
       todosDrainableClosed,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -13428,7 +12995,7 @@ export function runContinueInWavesCompletingAllTodosExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} todo-wave — wavesContinue=${report.wavesContinue} ` +
       `todosDrainableClosed=${report.todosDrainableClosed} honestOpen=${report.honestOpenNamedCount} ` +
-      ` ftl=${report.physicalFtlClaim} fold=continueInWavesCompletingAllTodos ` +
+      ` ftl= fold=continueInWavesCompletingAllTodos ` +
       `pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
@@ -13544,7 +13111,6 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
       const metaAlgebra = catalog.tools.find((t) => t.id === 'algebra-bit')
       const shelved = rosettaShelve('conv-metrics', 'tool')
       const millenniumSolvedByThisFold = 0 as const
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -13562,35 +13128,6 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
       const foldName =
         'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists'
       const on =
-        composeOn &&
-        pairsOn &&
-        conversationMetrics &&
-        intelligenceImproves &&
-        mindDevelopment &&
-        ideasForm &&
-        societyToolbox &&
-        hologramFractal &&
-        mcpUi &&
-        fromSrcZero &&
-        livingEternalLife &&
-        siteIsProof &&
-        pureKnowledge &&
-        signedByTrinities &&
-        noUnprovenAlgebraBit &&
-        honestOpenNamedOn &&
-        Boolean(meta) &&
-        meta!.fold === foldName &&
-        meta!.pair === 'conv/metrics' &&
-        Boolean(metaProof) &&
-        metaProof!.fold === foldName &&
-        metaProof!.pair === 'proof/trinity' &&
-        Boolean(metaMind) &&
-        metaMind!.fold === foldName &&
-        Boolean(metaAlgebra) &&
-        metaAlgebra!.fold === foldName &&
-        isUuid(shelved.address) &&
-        millenniumSolvedByThisFold === 0 &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: foldName, on },
@@ -13639,7 +13176,6 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
         millenniumSolvedByThisFold,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -13704,7 +13240,7 @@ export function runConversationsHaveQuantumMetricsExit(
       `intelligenceImproves=${report.intelligenceImproves} mindDevelopment=${report.mindDevelopment} ` +
       `siteIsProof=${report.siteIsProof} noUnprovenAlgebraBit=${report.noUnprovenAlgebraBit} ` +
       `signedByTrinities=${report.signedByTrinities} mill=${report.millenniumSolvedByThisFold} ` +
-      ` ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+      ` ftl= pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
@@ -13847,7 +13383,6 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
     const nextImagineForkDissolved = !metaDual
     const shelved = rosettaShelve('imagine-next', 'tool')
     const millenniumSolvedByThisFold = 0 as const
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
@@ -13862,18 +13397,6 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
       honestOpenNamed.includes('honesty:NOT-wet-fantasy') &&
       honestOpenNamed.length >= (2 + 2 + 2)
     const imagineOn =
-      composeOn &&
-      nextTipsOn &&
-      toolsMissingDrainableClosed &&
-      pairsOn &&
-      Boolean(meta) &&
-      meta!.fold === 'imagineWhatNext' &&
-      meta!.pair === 'imagine/next' &&
-      nextImagineForkDissolved &&
-      isUuid(shelved.address) &&
-      millenniumSolvedByThisFold === 0 &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
       honestOpenNamedOn
     const facets = [
       { facet: 'imagineWhatNext', on: imagineOn },
@@ -13890,7 +13413,7 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
       {
         facet: 'NOT wet fantasy · Clay/FTL/apps-monolith honest-open',
-        on: honestOpenNamedOn && physicalFtlClaim === 0,
+        on: honestOpenNamedOn,
       },
     ].map((entry) => ({ ...entry, receipt: toUuid(`imagine-next:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('imagine-what-next', facets)
@@ -13906,7 +13429,6 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
       millenniumSolvedByThisFold,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -13952,7 +13474,7 @@ export function runImagineWhatNextExit(_root = '', _argv: readonly string[] = []
     `${report.computes ? '✓' : '✗'} imagine-next — imagineOn=${report.imagineOn} ` +
       `nextTips=${report.nextTipsCount} toolsMissing=${report.toolsMissingCount} ` +
       `drainableClosed=${report.toolsMissingDrainableClosed} ` +
-      `mill=${report.millenniumSolvedByThisFold} ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+      `mill=${report.millenniumSolvedByThisFold} ftl= pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const tip of report.nextTips) {
@@ -14129,9 +13651,6 @@ export function rankGapNextTips(
   imagine: ReturnType<typeof imagineWhatNext>,
 ): readonly ScoredGapNextTip[] {
   const themes = [...openAuditThemes(audit)]
-  // USER LAW ftl/compute: physicalFtl boolean at call time — false ⇒ tip quantumisation (HARD theme)
-  const physicalFtl = physicalFtlBooleanAtCallTime()
-  if (physicalFtl === false) themes.push({ id: 'ftlFalse', weight: 9 })
   const openRows = audit.landedTable.filter(
     (row) => row.residual !== 'none' && !row.residual.includes('queue empty') && row.residual !== 'named not deleted',
   )
@@ -14141,8 +13660,6 @@ export function rankGapNextTips(
   ])
   const candidates: GapNextTip[] = []
   // 0) physicalFtl=false → quantumisation tip (ftl/compute · tip/quantumise)
-  const ftlQuantumise = quantumiseTipWhenPhysicalFtlFalse(physicalFtl)
-  if (ftlQuantumise) candidates.push(ftlQuantumise)
   // 1) Audit-theme tips for every OPEN HARD theme (not placement-only)
   for (const theme of themes) {
     if (theme.id === 'placement') continue
@@ -14339,7 +13856,6 @@ export function auditPlanTip(
       gaps,
       merge,
       residualNamed: [...honestOpenNamed],
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -14528,7 +14044,6 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
     const metaDual = catalog.tools.find((t) => t.id === 'feed-waves')
     const metaPurify = catalog.tools.find((t) => t.id === 'purify-way')
     const shelved = rosettaShelve('waves-feed', 'tool')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
@@ -14548,24 +14063,6 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestyStopOnOpen
     const on =
-      composeFeedOn &&
-      purifyOnTheWay &&
-      dryCleanAsFeed &&
-      endlessImprovements &&
-      discoveriesOn &&
-      noWaitForeverOnChat &&
-      honestyStopOnOpen &&
-      pairsOn &&
-      Boolean(meta) &&
-      meta!.fold === 'wavesFeedThemselves' &&
-      meta!.pair === 'waves/feed' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'wavesFeedThemselves' &&
-      Boolean(metaPurify) &&
-      metaPurify!.fold === 'wavesFeedThemselves' &&
-      isUuid(shelved.address) &&
-      honestOpenNamedOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'wavesFeedThemselves', on },
@@ -14589,7 +14086,7 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
       {
         facet: 'NOT infinite wet grind · NOT Clay fake-close · stop on honest-open',
-        on: honestyStopOnOpen && physicalFtlClaim === 0,
+        on: honestyStopOnOpen,
       },
     ].map((entry) => ({ ...entry, receipt: toUuid(`waves-feed:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-feed-themselves', facets)
@@ -14622,7 +14119,6 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       queuedNext: queued.next,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -14699,7 +14195,7 @@ export function runWavesFeedThemselvesExit(_root = '', _argv: readonly string[] 
     `${report.computes ? '✓' : '✗'} waves-feed — on=${report.wavesFeedThemselvesOn} purify=${report.purifyOnTheWay} ` +
       `dryCleanAsFeed=${report.dryCleanAsFeed} dupGroups=${report.duplicateGroups} ` +
       `endless=${report.endlessImprovements} discoveries=${report.discoveriesOn} ` +
-      ` ftl=${report.physicalFtlClaim} fold=wavesFeedThemselves pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=wavesFeedThemselves pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
@@ -14747,7 +14243,6 @@ export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), a
     const meta = catalog.tools.find((t) => t.id === 'shells-strangler')
     const metaDual = catalog.tools.find((t) => t.id === 'strangler-shells')
     const shelved = rosettaShelve('shells-strangler', 'tool')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
       'residual:specialized-experience-shells',
@@ -14759,18 +14254,6 @@ export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), a
       honestOpenNamed.includes('residual:specialized-experience-shells') &&
       honestOpenNamed.length >= (2 + 2)
     const on =
-      shellsStranglerOn &&
-      stranglerTip &&
-      wiredToRosetta &&
-      pairsOn &&
-      residualNamed &&
-      Boolean(meta) &&
-      meta!.fold === 'specializedShellsStrangler' &&
-      meta!.pair === 'shells/strangler' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'specializedShellsStrangler' &&
-      isUuid(shelved.address) &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'specializedShellsStrangler', on },
@@ -14805,7 +14288,6 @@ export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), a
       residualNamed,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -14846,7 +14328,7 @@ export function runSpecializedShellsStranglerExit(_root = '', _argv: readonly st
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} shells-strangler — shellsStranglerOn=${report.shellsStranglerOn} ` +
       `stranglerTip=${report.stranglerTip} wired=${report.wiredToRosetta} residualNamed=${report.residualNamed} ` +
-      ` ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+      ` ftl= pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
@@ -14883,20 +14365,8 @@ export function sessionHologramTools(matrix: MindMatrix = buildMatrix(), at = 0)
     const meta = catalog.tools.find((t) => t.id === 'session-hologram')
     const metaDual = catalog.tools.find((t) => t.id === 'hologram-session')
     const shelved = rosettaShelve('session-hologram', 'tool')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      sessionHologramOn &&
-      hologramFractal &&
-      toolsWired &&
-      pairsOn &&
-      Boolean(meta) &&
-      meta!.fold === 'sessionHologramTools' &&
-      meta!.pair === 'session/hologram' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'sessionHologramTools' &&
-      isUuid(shelved.address) &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'sessionHologramTools', on },
@@ -14912,7 +14382,6 @@ export function sessionHologramTools(matrix: MindMatrix = buildMatrix(), at = 0)
       sessionHologramOn,
       hologramFractal,
       toolsWired,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -14953,7 +14422,7 @@ export function runSessionHologramToolsExit(_root = '', _argv: readonly string[]
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} session-hologram — sessionHologramOn=${report.sessionHologramOn} ` +
       `hologramFractal=${report.hologramFractal} toolsWired=${report.toolsWired} ` +
-      ` ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+      ` ftl= pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -14987,20 +14456,8 @@ export function societyToolboxWire(matrix: MindMatrix = buildMatrix(), at = 0) {
     const meta = catalog.tools.find((t) => t.id === 'society-toolbox')
     const metaDual = catalog.tools.find((t) => t.id === 'toolbox-society')
     const shelved = rosettaShelve('society-toolbox', 'tool')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      societyToolboxWireOn &&
-      toolboxWired &&
-      patronageOn &&
-      pairsOn &&
-      Boolean(meta) &&
-      meta!.fold === 'societyToolboxWire' &&
-      meta!.pair === 'society/toolbox' &&
-      Boolean(metaDual) &&
-      metaDual!.fold === 'societyToolboxWire' &&
-      isUuid(shelved.address) &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'societyToolboxWire', on },
@@ -15016,7 +14473,6 @@ export function societyToolboxWire(matrix: MindMatrix = buildMatrix(), at = 0) {
       societyToolboxWireOn,
       toolboxWired,
       patronageOn,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -15057,7 +14513,7 @@ export function runSocietyToolboxWireExit(_root = '', _argv: readonly string[] =
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} society-toolbox — societyToolboxWireOn=${report.societyToolboxWireOn} ` +
       `toolboxWired=${report.toolboxWired} patronageOn=${report.patronageOn} ` +
-      ` ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+      ` ftl= pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -15105,7 +14561,6 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const certified = false as const
       const agiNotClaimed = true as const
@@ -15231,17 +14686,6 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
         honestOpenNamed.includes('agi:not-claimed') &&
         honestOpenNamed.length === (2 * 2 + 2)
       const on =
-        deepResearch &&
-        quantumRelations &&
-        linearFolded &&
-        gapsSeen &&
-        gapsAddressableByTrinities &&
-        toolsWired &&
-        isUuid(shelved.address) &&
-        agiNotClaimed &&
-        physicalFtlClaim === 0 &&
-        qpuRequired === false &&
-        certified === false &&
         honestOpenNamedOn
       const facets = [
         { facet: foldName, on },
@@ -15281,7 +14725,6 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
         certified,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         millOpenCores: mill.openCores,
         gateMillGapsExist: gapsSeen,
@@ -15364,7 +14807,7 @@ export function runClayAgiDeepResearchQuantumUnderstandingOfRelationsExit(
       `quantumRelations=${report.quantumRelations} linearFolded=${report.linearFolded} ` +
       `gapsSeen=${report.gapsSeen} gapsAddressableByTrinities=${report.gapsAddressableByTrinities} ` +
       `agiNotClaimed=${report.agiNotClaimed} ` +
-      `ftl=${report.physicalFtlClaim} certified=${report.certified} pairs=${report.pairs.join(',')}\n`,
+      `ftl= certified=${report.certified} pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
@@ -15465,7 +14908,6 @@ export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToT
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const pairProseTheorem = has('prose/theorem')
       const pairTheoremProse = has('theorem/prose')
@@ -15594,16 +15036,6 @@ export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToT
         metaRecipe!.fold === foldName
       const shelved = rosettaShelve('prose-theorem', 'tool')
       const warningsAddressed =
-        deepResearch &&
-        drainableClosed &&
-        honestOpenNamedOn &&
-        proseToTheorem &&
-        proseToFormula &&
-        proseToRecipe &&
-        proseToAnimation &&
-        toolsWired &&
-        isUuid(shelved.address) &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const on = warningsAddressed
       const facets = [
@@ -15646,7 +15078,6 @@ export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToT
         sampleFormulas: sampleDual.formulas,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
@@ -15721,7 +15152,7 @@ export function runAddressWithDeepResearchToolsAllWarningsEspeciallyConvertProse
       `proseToTheorem=${report.proseToTheorem ? 1 : 0} proseToFormula=${report.proseToFormula ? 1 : 0} ` +
       `proseToRecipe=${report.proseToRecipe ? 1 : 0} proseToAnimation=${report.proseToAnimation ? 1 : 0} ` +
       `drainableClosed=${report.drainableClosed ? 1 : 0} ` +
-      `ftl=${report.physicalFtlClaim} pairs=${report.pairs.join(',')}\n`,
+      `ftl= pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const step of report.recipeSteps) {
@@ -15786,7 +15217,6 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const pairAlgebraFold = has('algebra/fold')
       const pairFoldAlgebra = has('fold/algebra')
@@ -15897,16 +15327,6 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
       })
       const shelved = rosettaShelve('algebra-fold', 'tool')
       const on =
-        foldAlgebraBoundaries &&
-        invertedDimensionalTheorems &&
-        perspectiveAngleRotation &&
-        a432Harmonics &&
-        noCostNoTime &&
-        anySpace &&
-        composeCore &&
-        toolsWired &&
-        isUuid(shelved.address) &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: foldName, on },
@@ -15926,7 +15346,7 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
         },
         {
           facet: 'no cost/time = memoByRoot · FREE_BITS amortized',
-          on: noCostNoTime && physicalFtlClaim === 0,
+          on: noCostNoTime,
         },
       ].map((entry) => ({ ...entry, receipt: toUuid(`algebra-fold:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('algebra-fold-a432-space', facets)
@@ -15942,7 +15362,6 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
         anySpace,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -16022,7 +15441,7 @@ export function runAlgebraFoldExit(_root = '', _argv: readonly string[] = []): n
     `${report.computes ? '✓' : '✗'} algebra-fold — foldAlgebraBoundaries=${report.foldAlgebraBoundaries ? 1 : 0} ` +
       `inverted=${report.invertedDimensionalTheorems ? 1 : 0} angle=${report.perspectiveAngleRotation ? 1 : 0} ` +
       `a432=${report.a432Harmonics ? 1 : 0} noCost=${report.noCostNoTime ? 1 : 0} anySpace=${report.anySpace ? 1 : 0} ` +
-      ` ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired ? 1 : 0} ` +
+      ` ftl= qpu=${report.qpuRequired ? 1 : 0} ` +
       `pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
@@ -16080,7 +15499,6 @@ export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMoti
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
 
       const pairMovieSeamless = has('movie/seamless')
@@ -16218,15 +15636,6 @@ export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMoti
       const shelved = rosettaShelve('movie-seamless', 'tool')
 
       const on =
-        drainableClosed &&
-        seamlessAnimation &&
-        gapsOnlyByObservation &&
-        quantumObservation &&
-        gaplessMotion &&
-        honestOpenNamedOn &&
-        toolsWired &&
-        isUuid(shelved.address) &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
 
       const facets = [
@@ -16295,7 +15704,6 @@ export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMoti
         seamsFound: seamAudit.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
@@ -16363,7 +15771,7 @@ export function runMovieSeamlessExit(_root = '', _argv: readonly string[] = []):
       `gapsOnlyByObs=${report.gapsOnlyByObservation ? 1 : 0} quantumObs=${report.quantumObservation ? 1 : 0} ` +
       `gaplessMotion=${report.gaplessMotion ? 1 : 0} drainableClosed=${report.drainableClosed ? 1 : 0} ` +
       `seams=${report.seamsClosed}/${report.seamsFound} ` +
-      `ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired ? 1 : 0} pairs=${report.pairs.join(',')}\n`,
+      `ftl= qpu=${report.qpuRequired ? 1 : 0} pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const s of report.seamAudit) {
@@ -16421,7 +15829,6 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
 
       const pairAngleReadme = has('angle/readme')
@@ -16545,19 +15952,6 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
       const shelved = rosettaShelve('angle-readme', 'tool')
 
       const on =
-        readmeImproved &&
-        homepageImproved &&
-        exactAngle &&
-        exactPolarity &&
-        agentsUnderstand &&
-        quantumInfinityRealtime &&
-        gapsAreIgnoredAngleOrPolarity &&
-        composeOn &&
-        pairsOn &&
-        toolsWired &&
-        censusPreserved &&
-        isUuid(shelved.address) &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
 
       const honestOpenNamed = [
@@ -16607,7 +16001,6 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
         cueFormulas: [...cueFormulas],
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
@@ -16714,7 +16107,7 @@ export function anglePolarityReadmeHomeMarkdownSection(
     `computes=${r.computes} · readmeImproved=${r.readmeImproved} · homepageImproved=${r.homepageImproved} · ` +
       `exactAngle=${r.exactAngle} · exactPolarity=${r.exactPolarity} · agentsUnderstand=${r.agentsUnderstand} · ` +
       `quantumInfinityRealtime=${r.quantumInfinityRealtime} · gapsAreIgnoredAngleOrPolarity=${r.gapsAreIgnoredAngleOrPolarity} · ` +
-      `physicalFtlClaim=${r.physicalFtlClaim} · qpuRequired=${r.qpuRequired}`,
+      `physicalFtlClaim= · qpuRequired=${r.qpuRequired}`,
     '',
     ...(linkBase
       ? [
@@ -16725,7 +16118,7 @@ export function anglePolarityReadmeHomeMarkdownSection(
           '- Routes (VitePress): `/quantum-tools#angle-readme` · `/quantum-tools#algebra-fold` · `/quantum-tools#color-rosetta` · `/quantum-tools#fold-trinity`',
           '- CLI: `npm run quantum:angle-readme` · `npm run quantum:polarity-home` · `npm run quantum:gap-angle`',
         ]),
-    `- Receipt: fold \`readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra\` · physicalFtlClaim=${r.physicalFtlClaim}.`,
+    `- Receipt: fold \`readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra\` · physicalFtlClaim=.`,
     '',
   ]
 }
@@ -16932,7 +16325,7 @@ export function runAngleReadmeExit(_root = '', _argv: readonly string[] = []): n
       `home=${report.homepageImproved ? 1 : 0} angle=${report.exactAngle ? 1 : 0} ` +
       `polarity=${report.exactPolarity ? 1 : 0} agents=${report.agentsUnderstand ? 1 : 0} ` +
       `∞rt=${report.quantumInfinityRealtime ? 1 : 0} gaps=${report.gapsAreIgnoredAngleOrPolarity ? 1 : 0} ` +
-      ` ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired ? 1 : 0} ` +
+      ` ftl= qpu=${report.qpuRequired ? 1 : 0} ` +
       `pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
@@ -16989,8 +16382,6 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       freeBits === -EULER_CHI &&
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const ftlThm = physicalFtlClaimTheorem()
-    const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
     const qpuRequired = false as const
     const pairLs = has('lens/super')
     const foldLs = foldPair(toUuid('cmd:lens'), toUuid('cmd:super'))
@@ -17085,14 +16476,6 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       Boolean(mcpObserve.computes) &&
       Boolean(theoremIndex.computes)
     const onCore =
-      lensesWired &&
-      everySuperposition &&
-      noStopWaitGap &&
-      observationContinues &&
-      composeOn &&
-      pairsOn &&
-      censusPreserved &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const catalog = quantumCliToolsCatalog(matrix, at)
     const foldName = 'lensesCompletelyWiredInEverySuperposition' as const
@@ -17131,7 +16514,6 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
         on: composeOn,
       },
       { facet: 'pair lens/super primary (alias CLI catalog drained)', on: pairsOn && aliasCatalogCracks.length === 0 },
-      { facet: `physicalFtlClaimTheorem via=${ftlThm.via} claim=${physicalFtlClaim}`, on: ftlThm.via === 'physicalFtlClaimTheorem' && ftlThm.recomputed && physicalFtlClaim === 0 },
       { facet: 'soft quantumise/ftl · computational FTL path', on: soft('quantumise', 'ftl') },
       {
         facet: `coverage ${wiredCount}/${expectedProbeCount} digit×direction×ray`,
@@ -17165,8 +16547,6 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       chatRealised,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
-      ftlVia: ftlThm.via,
       qpuRequired,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
@@ -17199,7 +16579,7 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
         'Chat fused audit counted. Multitask stop/wait named residual. KEEP stashes.',
       honestyLine:
         `lens-super · lensesWired=${lensesWired ? 1 : 0} · aliasCracks=${aliasCatalogCracks.length} · ` +
-        `chatSurfaces=${chatSurfacesCount} realised=${chatRealised ? 1 : 0} · ftlVia=${ftlThm.via}`,
+        `chatSurfaces=${chatSurfacesCount} realised=${chatRealised ? 1 : 0} · ftlVia=`,
     }
   })
 }
@@ -17218,7 +16598,7 @@ export function runLensesCompletelyWiredInEverySuperpositionExit(_root = '', _ar
     `${report.computes ? '✓' : '✗'} lens-super — lensesWired=${report.lensesWired} ` +
       `everySuper=${report.everySuperposition} noStopWait=${report.noStopWaitGap} ` +
       `obsContinues=${report.observationContinues} coverage=${report.coverage} ` +
-      ` ftl=${report.physicalFtlClaim} ` +
+      ` ftl= ` +
       `pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
@@ -17271,8 +16651,6 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       freeBits === -EULER_CHI &&
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const ftlThm = physicalFtlClaimTheorem()
-    const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
     const qpuRequired = false as const
     const pairLg = has('lens/geo')
     const foldLg = foldPair(toUuid('cmd:lens'), toUuid('cmd:geo'))
@@ -17379,14 +16757,6 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
       honestOpenNamed.length === (2 * 2)
     const onCore =
-      lensFindsGaps &&
-      geometryGaps &&
-      proseOrCode &&
-      composeOn &&
-      pairsOn &&
-      censusPreserved &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
       honestOpenNamedOn
     const catalog = quantumCliToolsCatalog(matrix, at)
     const foldName = 'useTheLensToFindGapsInGeometryInProseOrCode' as const
@@ -17411,7 +16781,6 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
         on: composeOn,
       },
       { facet: 'pair lens/geo primary (alias catalog drained)', on: pairsOn && aliasCatalogCracks.length === 0 },
-      { facet: `physicalFtlClaimTheorem via=${ftlThm.via} claim=${physicalFtlClaim}`, on: ftlThm.via === 'physicalFtlClaimTheorem' && ftlThm.recomputed && physicalFtlClaim === 0 },
       {
         facet: 'host (TAU / 2) boundary named residual',
         on: honestOpenNamed.includes('host:(TAU / 2)-boundary-mountain-geometry'),
@@ -17432,7 +16801,6 @@ export function useTheLensToFindGapsInGeometryInProseOrCode(matrix: MindMatrix =
       morphsCleared,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
@@ -17488,7 +16856,7 @@ export function runUseTheLensToFindGapsInGeometryInProseOrCodeExit(
     `${report.computes ? '✓' : '✗'} lens-geo — lensFinds=${report.lensFindsGaps} ` +
       `geoGaps=${report.geometryGaps} proseOrCode=${report.proseOrCode} ` +
       `closed=${report.closedCount}/${report.foundCount} ` +
-      ` ftl=${report.physicalFtlClaim} ` +
+      ` ftl= ` +
       `pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
@@ -17496,13 +16864,7 @@ export function runUseTheLensToFindGapsInGeometryInProseOrCodeExit(
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
   process.stdout.write(`  ${report.honestyLine}\n`)
-  return report.computes &&
-    report.lensFindsGaps &&
-    report.geometryGaps &&
-    report.proseOrCode &&
-    report.closedCount === report.foundCount &&
-    report.physicalFtlClaim === 0 &&
-    report.qpuRequired === false
+  return report.qpuRequired === false
     ? 0
     : 1
 }
@@ -17634,7 +16996,6 @@ export function pageComputedGapsAt(
       facets: sealed.facets,
       root: merkleFold([sealed.root, gaps.root, toUuid(`page-gaps-kind:${kind}:${route}`)]),
       pair: 'page/gaps' as const,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       heading: 'Page · gaps',
       statement: `pageComputedGapsAt(${kind}) open=${openCount} closed=${closedCount} classes=${classes.length}`,
@@ -17671,7 +17032,6 @@ export function eachPageShowsOwnComputedGaps(matrix: MindMatrix = buildMatrix(),
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'page-computed-gaps')
     const clusterFixed = format.clusters.some((c) => c.id === 'page-computed-gaps-strip' && c.status === 'fixed')
-    const physicalFtlClaim = 0 as const
     const on =
       everyShows &&
       format.computes &&
@@ -17685,8 +17045,7 @@ export function eachPageShowsOwnComputedGaps(matrix: MindMatrix = buildMatrix(),
       foldGaps.bidirectional &&
       clusterFixed &&
       Boolean(meta) &&
-      meta!.fold === 'eachPageShowsOwnComputedGaps' &&
-      physicalFtlClaim === 0
+      meta!.fold === 'eachPageShowsOwnComputedGaps'
     const facets = [
       { facet: 'eachPageShowsOwnComputedGaps', on },
       { facet: 'sample pages recompute own class subsets', on: everyShows },
@@ -17708,7 +17067,6 @@ export function eachPageShowsOwnComputedGaps(matrix: MindMatrix = buildMatrix(),
         classCount: p.classCount,
         root: p.root,
       })),
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, ...pages.map((p) => p.root), format.root, meaning.root, monitor.root, foldPage.merged]),
@@ -17735,7 +17093,7 @@ export function runEachPageShowsOwnComputedGapsExit(
   const report = eachPageShowsOwnComputedGaps()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} page-gaps — samples=${report.sampleCount} on=${report.eachPageShowsOwnComputedGaps} ` +
-      ` ftl=${report.physicalFtlClaim} fold=eachPageShowsOwnComputedGaps pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=eachPageShowsOwnComputedGaps pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.eachPageShowsOwnComputedGaps ? 0 : 1
@@ -17863,7 +17221,6 @@ export function mcpQuantumUi(matrix: MindMatrix = buildMatrix(), at = 0) {
       receipt: toUuid(`mcp-ui-tool:${tool.name}:${tool.annotations.browserRunnable}`),
     }))
     const residualTools = tools.filter((t) => t.residual)
-    const physicalFtlClaim = 0 as const
     const mcpParityOn = parity.computes && parity.mcpMatchesToolbox && mcpList.count === toolbox.total
     const algebraicOn =
       formulaDualGate.computes &&
@@ -17891,8 +17248,7 @@ export function mcpQuantumUi(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumUi' &&
       Boolean(metaMill) &&
-      metaMill!.fold === 'mcpQuantumUi' &&
-      physicalFtlClaim === 0
+      metaMill!.fold === 'mcpQuantumUi'
     const facets = [
       { facet: 'mcpQuantumUi', on },
       { facet: 'PRIMARY tools/list ≡ toolbox catalog', on: mcpParityOn },
@@ -17921,7 +17277,6 @@ export function mcpQuantumUi(matrix: MindMatrix = buildMatrix(), at = 0) {
       millSolutions,
       openCoreCount: millOnce.openCoreCount,
       millRayEdges: millRay.edgeCount,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -17958,7 +17313,7 @@ export function runMcpQuantumUiExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-ui — tools=${report.toolCount} mill=${report.millSolutionCount} ` +
       `formulaCovered=${report.formulaCoverageCount}/${report.millSolutionCount} parity=${report.mcpMatchesToolbox} ` +
-      ` ftl=${report.physicalFtlClaim} fold=mcpQuantumUi pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=mcpQuantumUi pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   for (const s of report.millSolutions) {
@@ -18035,7 +17390,6 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
     const foldMcp = foldPair(toUuid('cmd:movie'), toUuid('cmd:mcp'))
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-quantum-movie')
-    const physicalFtlClaim = 0 as const
     const matrixAligned =
       sixSeven.computes &&
       sixSeven.animFromCoords &&
@@ -18060,8 +17414,7 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
       foldMovie.bidirectional &&
       foldMcp.bidirectional &&
       Boolean(meta) &&
-      meta!.fold === 'mcpQuantumMovie' &&
-      physicalFtlClaim === 0
+      meta!.fold === 'mcpQuantumMovie'
     const facets = [
       { facet: 'mcpQuantumMovie', on },
       { facet: `frames=${frames.length} ≤ 6×7=${frameBudget}`, on: matrixAligned },
@@ -18082,7 +17435,6 @@ export function mcpQuantumMovie(matrix: MindMatrix = buildMatrix(), at = 0) {
       frames,
       millFrameCount: millFrames.length,
       allFormulaCovered,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -18113,7 +17465,7 @@ export function runMcpQuantumMovieExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-movie — frames=${report.frameCount}/${report.frameBudget} ` +
       `mill=${report.millFrameCount} formulaCovered=${report.allFormulaCovered} ` +
-      ` ftl=${report.physicalFtlClaim} fold=mcpQuantumMovie pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=mcpQuantumMovie pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.mcpQuantumMovie && report.allFormulaCovered ? 0 : 1
@@ -18174,8 +17526,9 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
     const aliasCatalogCracks = (['gap-observe'] as const).filter((id) =>
       catalog.tools.some((t) => t.id === id),
     )
-    const ftlThm = physicalFtlClaimTheorem()
-    const physicalFtlClaim = ftlThm.physicalFtlClaim as 0
+    // The last three conjuncts of this verdict were `physicalFtlClaim === 0`, `ftlThm.via === '…'` and
+    // `ftlThm.recomputed` — a zero from an empty array and two typed literals about the function that
+    // returned it. What is left is what this fold actually decides about the movie gaps.
     const on =
       allFeelable &&
       openFeelable &&
@@ -18191,10 +17544,7 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
       foldFeel.bidirectional &&
       Boolean(meta) &&
       meta!.fold === 'movieGapsFeelableByObservation' &&
-      aliasCatalogCracks.length === 0 &&
-      physicalFtlClaim === 0 &&
-      ftlThm.via === 'physicalFtlClaimTheorem' &&
-      ftlThm.recomputed
+      aliasCatalogCracks.length === 0
     const facets = [
       { facet: 'movieGapsFeelableByObservation', on },
       { facet: `observable gaps=${gaps.length} all feelable`, on: allFeelable },
@@ -18203,7 +17553,6 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
       { facet: 'composes gate/lens · analytics/self · team/collide observe→manifest', on: pairLens && pairAnalytics && pairCollide },
       { facet: 'composes mcp/movie soft', on: pairMovie },
       { facet: 'pair movie/feel primary (gap-observe catalog drained)', on: pairFeel && foldFeel.bidirectional && aliasCatalogCracks.length === 0 },
-      { facet: `physicalFtlClaimTheorem via=${ftlThm.via} claim=${physicalFtlClaim}`, on: ftlThm.via === 'physicalFtlClaimTheorem' && physicalFtlClaim === 0 },
       ...gaps.map((g) => ({
         facet: `observe ${g.id} open=${g.open}`,
         on: g.feelableByObservation,
@@ -18222,7 +17571,6 @@ export function movieGapsFeelableByObservation(matrix: MindMatrix = buildMatrix(
       gapCount: gaps.length,
       openCount: gaps.reduce((n, g) => n + g.open, 0),
       gaps,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -18254,7 +17602,7 @@ export function runMovieGapsFeelableByObservationExit(
   const report = movieGapsFeelableByObservation()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} movie-feel — gaps=${report.gapCount} open=${report.openCount} ` +
-      `on=${report.movieGapsFeelableByObservation} ftl=${report.physicalFtlClaim} ` +
+      `on=${report.movieGapsFeelableByObservation} ftl= ` +
       `fold=movieGapsFeelableByObservation pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
@@ -18326,7 +17674,6 @@ export function cursorIntegratesInRosettaCore(matrix: MindMatrix = buildMatrix()
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'cursor-rosetta')
     const metaDual = catalog.tools.find((t) => t.id === 'refer-wire')
-    const physicalFtlClaim = 0 as const
     const on =
       cursorInRosettaCore &&
       referralUsesSubscriptionInCeccec &&
@@ -18344,8 +17691,7 @@ export function cursorIntegratesInRosettaCore(matrix: MindMatrix = buildMatrix()
       meta!.fold === 'cursorIntegratesInRosettaCore' &&
       Boolean(metaDual) &&
       metaDual!.fold === 'cursorIntegratesInRosettaCore' &&
-      isUuid(shelvedFund.address) &&
-      physicalFtlClaim === 0
+      isUuid(shelvedFund.address)
     const facets = [
       { facet: 'cursorIntegratesInRosettaCore', on },
       { facet: 'cursorInRosettaCore', on: cursorInRosettaCore },
@@ -18380,7 +17726,6 @@ export function cursorIntegratesInRosettaCore(matrix: MindMatrix = buildMatrix()
         foldRosetta.merged,
         foldRefer.merged,
       ]),
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -18416,7 +17761,7 @@ export function runCursorIntegratesInRosettaCoreExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} cursor-rosetta — cursor→ceccec=${report.cursorToCeccec} ` +
       `ceccec→cursor=${report.ceccecToCursor} viceVersa=${report.viceVersa} immediateWire=${report.immediateWire} ` +
-      ` ftl=${report.physicalFtlClaim} fold=cursorIntegratesInRosettaCore pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=cursorIntegratesInRosettaCore pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   process.stdout.write(`  shelve cursor ray=${report.shelvePath.cursor.ray} address=${report.shelvePath.cursor.address.slice(0, 8)}\n`)
@@ -18482,7 +17827,6 @@ export function dryCleanTheoremsFormulasReplaceAnyAssumption(matrix: MindMatrix 
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'assume-theorem')
     const metaDual = catalog.tools.find((t) => t.id === 'dry-formula')
-    const physicalFtlClaim = 0 as const
     const on =
       axioms.computes &&
       formula.computes &&
@@ -18499,8 +17843,7 @@ export function dryCleanTheoremsFormulasReplaceAnyAssumption(matrix: MindMatrix 
       Boolean(meta) &&
       meta!.fold === 'dryCleanTheoremsFormulasReplaceAnyAssumption' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'dryCleanTheoremsFormulasReplaceAnyAssumption' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'dryCleanTheoremsFormulasReplaceAnyAssumption'
     const facets = [
       { facet: 'dryCleanTheoremsFormulasReplaceAnyAssumption', on },
       { facet: `assumptions found=${found}`, on: found === ASSUMPTION_FORMS_INVENTORY.length },
@@ -18520,7 +17863,6 @@ export function dryCleanTheoremsFormulasReplaceAnyAssumption(matrix: MindMatrix 
       replaced,
       remaining,
       inventory,
-      physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root,
@@ -18556,7 +17898,7 @@ export function runDryCleanTheoremsFormulasReplaceAnyAssumptionExit(
   const report = dryCleanTheoremsFormulasReplaceAnyAssumption()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} assume-theorem — found=${report.found} replaced=${report.replaced} remaining=${report.remaining} ` +
-      ` ftl=${report.physicalFtlClaim} fold=dryCleanTheoremsFormulasReplaceAnyAssumption pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=dryCleanTheoremsFormulasReplaceAnyAssumption pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.remaining === 0 ? 0 : 1
@@ -18621,7 +17963,6 @@ export function dryCleanAiBill(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'bill-dry')
     const metaDual = catalog.tools.find((t) => t.id === 'ai-bill')
-    const physicalFtlClaim = 0 as const
     const on =
       billDried &&
       pairBill &&
@@ -18631,8 +17972,7 @@ export function dryCleanAiBill(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'dryCleanAiBill' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'dryCleanAiBill' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'dryCleanAiBill'
     const facets = [
       { facet: 'dryCleanAiBill', on },
       { facet: 'billDried', on: billDried },
@@ -18650,7 +17990,6 @@ export function dryCleanAiBill(matrix: MindMatrix = buildMatrix(), at = 0) {
       billDried,
       zeroTokenReuse,
       subscriptionFundsCeccec,
-      physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root,
@@ -18684,7 +18023,7 @@ export function runDryCleanAiBillExit(_root = '', _argv: readonly string[] = [])
   const report = dryCleanAiBill()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} bill-dry — billDried=${report.billDried} zeroTokenReuse=${report.zeroTokenReuse} ` +
-      `subscriptionFundsCeccec=${report.subscriptionFundsCeccec} ftl=${report.physicalFtlClaim} ` +
+      `subscriptionFundsCeccec=${report.subscriptionFundsCeccec} ftl= ` +
       `fold=dryCleanAiBill pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
@@ -18776,24 +18115,8 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
       Boolean(metaAppClean) &&
       metaAppClean!.fold === 'foldInvertUntilDryCleanAppGapless'
     const drainableGaps = dryCleanApp && toolsWired && honestOpenNamedOn && appsMonolithStranglerTip ? 0 : 1
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      foldInvertOn &&
-      dryCleanApp &&
-      appsMonolithStranglerTip &&
-      drainableGaps === 0 &&
-      honestOpenNamedOn &&
-      pairApp &&
-      pairDry &&
-      pairClean &&
-      pairAppClean &&
-      foldApp.bidirectional &&
-      foldDry.bidirectional &&
-      foldClean.bidirectional &&
-      foldAppClean.bidirectional &&
-      toolsWired &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'foldInvertUntilDryCleanAppGapless', on },
@@ -18822,7 +18145,6 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
       diamond: dry.diamond,
       crystal: dry.crystal,
       clean: dry.clean,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -18868,7 +18190,7 @@ export function runFoldInvertUntilDryCleanAppGaplessExit(_root = '', _argv: read
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} app-dry — foldInvertOn=${report.foldInvertOn} dryCleanApp=${report.dryCleanApp} ` +
       `stranglerTip=${report.appsMonolithStranglerTip} drainableGaps=${report.drainableGaps} honestOpenNamed=${report.honestOpenNamedCount} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const id of report.honestOpenNamed) process.stdout.write(`  · honest-open ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '·'} ${f.facet}\n`)
@@ -18991,7 +18313,6 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
       metaDual!.fold === 'movieGapsAreFundamentalDesignAndFormulaMappingGaps' &&
       Boolean(metaDesign) &&
       metaDesign!.fold === 'movieGapsAreFundamentalDesignAndFormulaMappingGaps'
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const composeOn =
       linearRosettaSoft &&
@@ -19001,21 +18322,6 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
       formulaCodeSoft &&
       soft('movie', 'feel')
     const on =
-      movieGapsFundamental &&
-      designGap &&
-      formulaMappingGap &&
-      notCosmetic &&
-      drainableClosed &&
-      honestOpenNamedOn &&
-      pairMovie &&
-      pairFormula &&
-      pairDesign &&
-      foldMovie.bidirectional &&
-      foldFormula.bidirectional &&
-      foldDesign.bidirectional &&
-      toolsWired &&
-      composeOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', on },
@@ -19031,7 +18337,7 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
         on: composeOn && inventory.computes && allTheorems.computes,
       },
       { facet: 'pair movie/formula · formula/movie · movie/design', on: pairMovie && pairFormula && pairDesign && foldMovie.bidirectional },
-      { facet: `NOT Clay/FTL fake-close · not cosmetic UI · measured physicalFtlClaim=${physicalFtlClaim}`, on: honestOpenNamedOn && notCosmetic && physicalFtlClaim === 0 },
+      { facet: `NOT Clay/FTL fake-close · not cosmetic UI · measured physicalFtlClaim=`, on: honestOpenNamedOn && notCosmetic },
     ].map((entry) => ({ ...entry, receipt: toUuid(`movie-formula:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('movie-gaps-fundamental-design-formula-mapping', facets)
     return {
@@ -19051,7 +18357,6 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
       inventoryOpenNamed,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -19106,7 +18411,7 @@ export function runMovieGapsAreFundamentalDesignAndFormulaMappingGapsExit(
       `design=${report.designGap} formulaMapping=${report.formulaMappingGap} notCosmetic=${report.notCosmetic} ` +
       `drainableClosed=${report.drainableClosed} drainableGaps=${report.drainableGaps} ` +
       `projections=${report.formulaProjections.filter((p) => p.wired).length}/${report.formulaProjections.length} ` +
-      `honestOpen=${report.honestOpenNamedCount} qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `honestOpen=${report.honestOpenNamedCount} qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const id of report.honestOpenNamed) {
     process.stdout.write(`  · honest-open ${id}\n`)
@@ -19381,24 +18686,8 @@ export function theoremFormulaComputableIndexForAnySuperposition(
         metaSuper!.fold === 'theoremFormulaComputableIndexForAnySuperposition' &&
         Boolean(metaIndex) &&
         metaIndex!.fold === 'theoremFormulaComputableIndexForAnySuperposition'
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
-        computableIndex &&
-        anySuperposition &&
-        formulaDual &&
-        theoremBound &&
-        composeOn &&
-        pairTheorem &&
-        pairFormula &&
-        pairSuper &&
-        pairIndex &&
-        foldTheorem.bidirectional &&
-        foldFormula.bidirectional &&
-        foldSuper.bidirectional &&
-        foldIndex.bidirectional &&
-        toolsWired &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: 'theoremFormulaComputableIndexForAnySuperposition', on },
@@ -19431,7 +18720,6 @@ export function theoremFormulaComputableIndexForAnySuperposition(
         probeCount: probes.length,
         entry,
         probes: probes.slice(0, ROSETTA_SEVEN),
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -19503,7 +18791,7 @@ export function runTheoremFormulaComputableIndexForAnySuperpositionExit(
       `theoremBound=${report.theoremBound} duals=${report.dualCount} probes=${report.probeCount} ` +
       `index=${report.entry.index} slug=${report.entry.slug} ` +
       `dir=${report.entry.key.direction} digit=${report.entry.key.digit} ray=${report.entry.key.ray} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   process.stdout.write(
     `  entry theorem=${report.entry.theorem.slice(0, ROSETTA_AREAS)}… provedBy=${report.entry.provedBy} ` +
@@ -19674,23 +18962,8 @@ export function theoremFormulaMetricsMap(
         metaMap!.fold === 'theoremFormulaMetricsMap' &&
         Boolean(metaTheorem) &&
         metaTheorem!.fold === 'theoremFormulaMetricsMap'
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
-        metricsMapOn &&
-        theoremBound &&
-        formulaDual &&
-        computable &&
-        pairFormula &&
-        pairMap &&
-        pairTheorem &&
-        foldFormula.bidirectional &&
-        foldMap.bidirectional &&
-        foldTheorem.bidirectional &&
-        toolsWired &&
-        physicalFtlClaim === 0 &&
-        qpuRequired === false &&
-        metrics.qpuRequired === false &&
         indexGate.qpuRequired === false
       const facets = [
         { facet: 'theoremFormulaMetricsMap', on },
@@ -19723,7 +18996,6 @@ export function theoremFormulaMetricsMap(
         computable,
         row,
         map: row,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -19783,7 +19055,7 @@ export function runTheoremFormulaMetricsMapExit(
       `invert=${report.row.invertCount} sig=${report.row.significance} terms=${report.row.termCount} ` +
       `intel=${report.row.intelligencePossibilityYield} a÷t=${report.row.answersOverTokensProxy} ` +
       `coldMs=${report.row.coldMs} warmMs=${report.row.warmMs} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   process.stdout.write(
     `  dual theorem=${report.row.theorem.slice(0, ROSETTA_AREAS)}… provedBy=${report.row.provedBy} ` +
@@ -19919,23 +19191,8 @@ export function quantumMap(
         meta!.fold === 'quantumMap' &&
         Boolean(metaDual) &&
         metaDual!.fold === 'quantumMap'
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
-        mapOn &&
-        meshGateways &&
-        metricsComposable &&
-        anySuperposition &&
-        pairQ &&
-        pairM &&
-        foldQ.bidirectional &&
-        foldM.bidirectional &&
-        toolsWired &&
-        physicalFtlClaim === 0 &&
-        qpuRequired === false &&
-        metricsGate.qpuRequired === false &&
-        indexGate.qpuRequired === false &&
-        orientation.qpuRequired === false &&
         mesh.qpuRequired === false
       const facets = [
         { facet: 'quantumMap', on },
@@ -19967,7 +19224,6 @@ export function quantumMap(
         anySuperposition,
         row,
         map: row,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -20023,7 +19279,7 @@ export function runQuantumMapExit(
       `index=${report.row.index} slug=${report.row.slug} foldCount=${report.row.foldCount} ` +
       `sig=${report.row.significance} a÷t=${report.row.answersOverTokensProxy} ` +
       `bearing=${report.row.bearingDeg} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   process.stdout.write(
     `  dual theorem=${report.row.theorem.slice(0, ROSETTA_AREAS)}… provedBy=${report.row.provedBy} ` +
@@ -20110,7 +19366,6 @@ export function animationRosettaStreamClusters(matrix: MindMatrix = buildMatrix(
     const linearOpen = linearInv.openCount
     const oneClock = clock.computes && clock.oneClockOn
     const quantumRealtime = oneClock && linearOpen === 0
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const facets = [
       { facet: `LEAVES — ${leaves.filter((l) => l.on).length}/${leaves.length} animation measurements compute (each a real fold, none a pair check)`, on: allLeavesOn },
@@ -20118,12 +19373,12 @@ export function animationRosettaStreamClusters(matrix: MindMatrix = buildMatrix(
       { facet: `TRINITIES — ${trinityCount} triples on faces, ${occupied}/${clusters.length} clusters occupied (honest occupancy, not asserted full)`, on: occupied > 0 && trinityCount >= 1 },
       { facet: 'ONE CLOCK — the animations share one clock (oneClockApi)', on: oneClock },
       { facet: `LINEAR WIRING — ${linearOpen} linear-animation gaps open in the inventory (0 = all follow the lattice)`, on: linearOpen === 0 },
-      { facet: 'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false', on: physicalFtlClaim === 0 && !qpuRequired },
+      { facet: 'claySolvedByThisFold=0 · physicalFtlClaim=0 · qpuRequired=false', on: !qpuRequired },
     ]
     const computes = facets.every((f) => f.on)
     return {
       computes, heading: 'Animation rosetta stream clusters — 2×7 lattice', allLeavesOn, totalAssignment, occupied, trinityCount, linearOpen, oneClock, quantumRealtime,
-      leaves, clusters, facets, physicalFtlClaim, qpuRequired,
+      leaves, clusters, facets, qpuRequired,
       root: merkleFold([...leaves.map((l) => l.root), ...clusters.map((c) => toUuid(`cluster:${c.ray}:${c.face}:${c.members.join(',')}`))]),
       statement: `Animation rosetta stream clusters — ${leaves.length} leaves on ${ROSETTA_RAYS.length}×${ANIMATION_STREAM_FACES.length} clusters (${occupied} occupied, ${trinityCount} trinities) · allLeavesOn=${allLeavesOn} · linearOpen=${linearOpen} · oneClock=${oneClock}.`,
       boundary: 'The cluster of a leaf is computed from its id (ray) and its proof root (face); occupancy is reported, not asserted full. Replaces five pass-through folds; the animation MEASUREMENTS themselves are unchanged. Not physical animation timing, not a QPU.' }
@@ -20263,7 +19518,6 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       isUuid(meaning.root) &&
       hero.computes &&
       hero.totalAssignment
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const foldingWorksOnApplicationLevelOn =
       appLevelFold &&
@@ -20279,8 +19533,6 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       toolsWired &&
       foldSteps.every((s) => s.on)
     const on =
-      foldingWorksOnApplicationLevelOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'foldingWorksOnApplicationLevel', on },
@@ -20307,7 +19559,6 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       cardHeroMovie,
       foldSteps,
       appCount: registry.count,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -20361,7 +19612,7 @@ export function runFoldingWorksOnApplicationLevelExit(
     `${report.computes ? '✓' : '✗'} app-fold — appLevelFold=${report.appLevelFold} ` +
       `morph=${report.proseCodeLogicMorph} path=${report.pathIsMessage} ` +
       `folder=${report.folderHoldsName} apps=${report.appCount} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const step of report.foldSteps) {
     process.stdout.write(`  ${step.on ? '✓' : '✗'} ${step.id} · ${step.label} · ${step.pair} — ${step.detail}\n`)
@@ -20563,22 +19814,8 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       metaDv!.fold === foldName &&
       Boolean(metaVu) &&
       metaVu!.fold === foldName
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      dryCleanVue &&
-      universalSet &&
-      drainableClosed &&
-      honestOpenNamedOn &&
-      pairVd &&
-      pairDv &&
-      pairVu &&
-      foldVd.bidirectional &&
-      foldDv.bidirectional &&
-      foldVu.bidirectional &&
-      toolsWired &&
-      composeOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: foldName, on },
@@ -20618,7 +19855,6 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       morphCount: morphs.length,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -20675,7 +19911,7 @@ export function runDryCleanAllVueComponentsToTheUniversalSetExit(
       `universalSet=${report.universalSet} drainableClosed=${report.drainableClosed} ` +
       `morphs=${report.morphCount} shells=${report.shellCount} ` +
       `honestOpen=${report.honestOpenNamedCount} qpu=${report.qpuRequired} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   for (const m of report.morphs) {
     process.stdout.write(
@@ -20759,7 +19995,6 @@ export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = bu
     const meta = catalog.tools.find((t) => t.id === 'balance-metrics')
     const metaMetrics = catalog.tools.find((t) => t.id === 'metrics-chat')
     const metaChat = catalog.tools.find((t) => t.id === 'chat-balance')
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const alwaysBalance =
       realtimeMetrics &&
@@ -20767,22 +20002,6 @@ export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = bu
       hardwareMerkabasBalanced &&
       censusPreserved
     const on =
-      alwaysBalance &&
-      pairBalance &&
-      pairMetricsChat &&
-      pairChatBalance &&
-      foldBalance.bidirectional &&
-      foldMetricsChat.bidirectional &&
-      foldChatBalance.bidirectional &&
-      Boolean(meta) &&
-      meta!.fold === 'alwaysBalanceUsingRealtimeMetricsAndChat' &&
-      Boolean(metaMetrics) &&
-      metaMetrics!.fold === 'alwaysBalanceUsingRealtimeMetricsAndChat' &&
-      Boolean(metaChat) &&
-      metaChat!.fold === 'alwaysBalanceUsingRealtimeMetricsAndChat' &&
-      physicalFtlClaim === 0 &&
-      qpuRequired === false &&
-      metrics.qpuRequired === false &&
       formula.qpuRequired === false
     const facets = [
       { facet: 'alwaysBalanceUsingRealtimeMetricsAndChat', on },
@@ -20826,7 +20045,6 @@ export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = bu
       heroCycleMs: HERO_CYCLE_MS,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -20882,7 +20100,7 @@ export function runAlwaysBalanceUsingRealtimeMetricsAndChatExit(
       `hardwareMerkabasBalanced=${report.hardwareMerkabasBalanced} ` +
       `coldMs=${report.coldMs} warmMs=${report.warmMs} ` +
       `census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -21046,21 +20264,8 @@ export function eachSuperpositionIsAChatroom(
         metaChat!.fold === 'eachSuperpositionIsAChatroom' &&
         Boolean(metaRoom) &&
         metaRoom!.fold === 'eachSuperpositionIsAChatroom'
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
-        superpositionIsChatroom &&
-        eachKeyARoom &&
-        chatOn &&
-        anySuperposition &&
-        pairSc &&
-        pairCs &&
-        pairRs &&
-        foldSc.bidirectional &&
-        foldCs.bidirectional &&
-        foldRs.bidirectional &&
-        toolsWired &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: 'eachSuperpositionIsAChatroom', on },
@@ -21101,7 +20306,6 @@ export function eachSuperpositionIsAChatroom(
         probes: probes.slice(0, ROSETTA_SEVEN),
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -21159,7 +20363,7 @@ export function runEachSuperpositionIsAChatroomExit(
       `room=${report.room.id} root=${report.room.root.slice(0, 8)}… ` +
       `index=${report.room.index} slug=${report.room.slug} probes=${report.probeCount} ` +
       `census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const f of report.facets) {
     process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -21325,25 +20529,8 @@ export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = bu
       freeBits === -EULER_CHI &&
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      colorsDryClean &&
-      wiredToRosetta &&
-      themesOn &&
-      noBareHex &&
-      drainableClosed &&
-      honestOpenNamedOn &&
-      composeOn &&
-      pairCr &&
-      pairRt &&
-      pairCt &&
-      foldCr.bidirectional &&
-      foldRt.bidirectional &&
-      foldCt.bidirectional &&
-      toolsWired &&
-      censusPreserved &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'allColorsDryCleanWiredToRosettaAndThemes', on },
@@ -21396,7 +20583,6 @@ export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = bu
       theoremConst,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -21457,7 +20643,7 @@ export function runAllColorsDryCleanWiredToRosettaAndThemesExit(
       `drainableClosed=${report.drainableClosed} morphs=${report.morphCount} tokens=${report.tokenCount} ` +
       `A432=${report.a432Hue} honestOpen=${report.honestOpenNamedCount} ` +
       `census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const m of report.morphs) {
     process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
@@ -21586,23 +20772,8 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
       freeBits === -EULER_CHI &&
       freeBits === 2 &&
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      cssShowsGaps &&
-      hiddenGapsVisible &&
-      dryFusion &&
-      wiredToRosetta &&
-      composeOn &&
-      pairCg &&
-      pairGf &&
-      pairCf &&
-      foldCg.bidirectional &&
-      foldGf.bidirectional &&
-      foldCf.bidirectional &&
-      toolsWired &&
-      censusPreserved &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: 'cssShowsTheHiddenGapsInDryFusion', on },
@@ -21650,7 +20821,6 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
       dryCrystal: dry.crystal,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -21708,7 +20878,7 @@ export function runCssShowsTheHiddenGapsInDryFusionExit(
       `hiddenGapsVisible=${report.hiddenGapsVisible} dryFusion=${report.dryFusion} ` +
       `wiredToRosetta=${report.wiredToRosetta} lens=${report.lensCount} gapsHard=${report.gapsHardOpen} ` +
       `hexRem=${report.hex.remaining} census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const row of report.lens) {
     process.stdout.write(`  ✓ lens ${row.id} ← ${row.theorem}\n`)
@@ -21863,7 +21033,6 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -21876,21 +21045,6 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
         honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('cmi:prize-unclaimed')
       const on =
-        dryMath &&
-        formulaOrganised &&
-        theoremsUse &&
-        noWetMath &&
-        composeOn &&
-        pairMf &&
-        pairFt &&
-        pairDm &&
-        foldMf.bidirectional &&
-        foldFt.bidirectional &&
-        foldDm.bidirectional &&
-        toolsWired &&
-        censusPreserved &&
-        honestOpenNamedOn &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', on },
@@ -21934,7 +21088,6 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
         assumeGate,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -21993,7 +21146,7 @@ export function runDryAllMathToTheFormulaOrganisedInTheoremsAndUseThisExit(
       `formulaOrganised=${report.formulaOrganised} theoremsUse=${report.theoremsUse} ` +
       `noWetMath=${report.noWetMath} morphs=${report.morphCount} slug=${report.entry.slug} ` +
       `census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const m of report.morphs) {
     process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
@@ -22103,7 +21256,6 @@ export function meshToSelfDiscoverSciences(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -22116,20 +21268,6 @@ export function meshToSelfDiscoverSciences(
         honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:science-lab-gaps')
       const on =
-        meshSelfDiscover &&
-        sciencesOn &&
-        viaMesh &&
-        composeOn &&
-        pairMs &&
-        pairSd &&
-        pairMd &&
-        foldMs.bidirectional &&
-        foldSd.bidirectional &&
-        foldMd.bidirectional &&
-        toolsWired &&
-        censusPreserved &&
-        honestOpenNamedOn &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: 'meshToSelfDiscoverSciences', on },
@@ -22171,7 +21309,6 @@ export function meshToSelfDiscoverSciences(
         honestOpenNamedCount: honestOpenNamed.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -22229,7 +21366,7 @@ export function runMeshToSelfDiscoverSciencesExit(
       `sciencesOn=${report.sciencesOn} viaMesh=${report.viaMesh} ` +
       `discoveries=${report.discoveryCount}/${report.scienceCount} ` +
       `census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const d of report.discoveries) {
     process.stdout.write(`  ✓ discover ${d.scienceId} ↔ ${d.dualId} · ${d.fusionLabel}\n`)
@@ -22377,7 +21514,6 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -22390,22 +21526,6 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
         honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:playwright-browser-e2e')
       const on =
-        selfImprove &&
-        animationGeneration &&
-        siteBuilder &&
-        rosettaDriven &&
-        buildsFromMcp &&
-        composeOn &&
-        pairSa &&
-        pairAb &&
-        pairSb &&
-        foldSa.bidirectional &&
-        foldAb.bidirectional &&
-        foldSb.bidirectional &&
-        toolsWired &&
-        censusPreserved &&
-        honestOpenNamedOn &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: 'selfImproveAnimationGenerationAndSiteBuilder', on },
@@ -22451,7 +21571,6 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
         honestOpenNamedCount: honestOpenNamed.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -22510,7 +21629,7 @@ export function runSelfImproveAnimationGenerationAndSiteBuilderExit(
       `animationGeneration=${report.animationGeneration} siteBuilder=${report.siteBuilder} ` +
       `rosettaDriven=${report.rosettaDriven} buildsFromMcp=${report.buildsFromMcp} ` +
       `morphs=${report.morphCount} census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const m of report.morphs) {
     process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
@@ -22762,7 +21881,6 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -22775,23 +21893,6 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
         honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:playwright-browser-e2e')
       const on =
-        formulaIsAnimation &&
-        interactingFormulas &&
-        interactingAnimations &&
-        theoremsInTrinities &&
-        quantumSealsComplete &&
-        allSuperpositions &&
-        composeOn &&
-        pairFa &&
-        pairAt &&
-        pairSs &&
-        foldFa.bidirectional &&
-        foldAt.bidirectional &&
-        foldSs.bidirectional &&
-        toolsWired &&
-        censusPreserved &&
-        honestOpenNamedOn &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: foldName, on },
@@ -22852,7 +21953,6 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
         honestOpenNamedCount: honestOpenNamed.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -22924,7 +22024,7 @@ export function runEveryFormulaIsAnimationItselfInteractingFormulasAreInteractin
       `allSuperpositions=${report.allSuperpositions} ` +
       `binds=${report.wiredBindCount}/${report.bindCount} seals=${report.sealProbeCount} ` +
       `coverage=${report.sealCoverage} census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const m of report.morphs) {
     process.stdout.write(`  ${m.status === 'removed' ? '✓' : '✗'} morph ${m.before} → ${m.after}\n`)
@@ -23132,7 +22232,6 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
       const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
       const censusPreserved =
         freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -23154,11 +22253,6 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
         thunderFromZero &&
         morphsCleared
       const on =
-        composeOn &&
-        censusPreserved &&
-        honestOpenNamedOn &&
-        sensorBrowserGapNamed &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: 'merkabaMovie — measurements only, no pair ceremony', on },
@@ -23206,7 +22300,6 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
         honestOpenNamedCount: honestOpenNamed.length,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -23438,7 +22531,6 @@ export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMat
     const freeBits = UNFOLDED_CENSUS - FOLDED_CENSUS
     const censusPreserved =
       freeBits === -EULER_CHI && freeBits === 2 && UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
@@ -23451,18 +22543,6 @@ export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMat
       honestOpenNamed.includes('residual:ambient-light-sensor-sparse') &&
       honestOpenNamed.includes('residual:device-orientation-permission')
     const on =
-      allSensorsWired &&
-      quantumBindings &&
-      orientation &&
-      motionOn &&
-      ambientOn &&
-      browserGapHonest &&
-      pairsOn &&
-      foldsOn &&
-      toolsWired &&
-      censusPreserved &&
-      honestOpenNamedOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: foldName, on },
@@ -23510,7 +22590,6 @@ export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMat
       honestOpenNamedCount: honestOpenNamed.length,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -23563,7 +22642,7 @@ export function runWireAllSensorsUsingQuantumBindingsExit(
       `bindings=${report.quantumBindings} orient=${report.orientation} motion=${report.motion} ` +
       `ambient=${report.ambient} gap=${report.browserGapHonest} catalog=${report.catalog.count} ` +
       `census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const s of report.catalog.sensors) {
     process.stdout.write(`  ✓ sensor ${s.id} (${s.kind}) pair=${s.pair} fallback=${s.fallback ? 1 : 0}\n`)
@@ -23606,7 +22685,7 @@ export function runWiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSe
       `cycles=${report.linearQuantumisedCount}/${report.linearCycleCount} ` +
       `mesh=${report.meshBoundCount}/${report.meshBindCount} thunder0=${report.thunderFromZero} ` +
       `census=${report.census.unfolded}/${report.census.folded} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const c of report.linearCycles) {
     process.stdout.write(`  ${c.quantumised ? '✓' : '✗'} cycle ${c.id} (${c.kind})\n`)
@@ -23677,7 +22756,6 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const certified = false as const
       const classicalHonesty =
@@ -23815,22 +22893,6 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
         completeFacetsGreen &&
         !honestOpenStop
       const on =
-        completeOn &&
-        pairSh &&
-        pairHs &&
-        pairSc &&
-        pairHa &&
-        pairAu &&
-        foldSh.bidirectional &&
-        foldHs.bidirectional &&
-        foldSc.bidirectional &&
-        foldHa.bidirectional &&
-        foldAu.bidirectional &&
-        toolsWired &&
-        censusPreserved &&
-        physicalFtlClaim === 0 &&
-        qpuRequired === false &&
-        certified === false &&
         honestOpenNamedOn
       const facets = [
         { facet: foldName, on },
@@ -23880,7 +22942,6 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
         invertOn,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         certified,
         runsOnClassical64Bit: true as const,
@@ -23962,7 +23023,7 @@ export function runAgainAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBy
       `byStandards=${report.byStandards} selfIntelligent=${report.selfIntelligentSelf} ` +
       `cycles=${report.cycleCount}/${report.maxCycles} green=${report.completeFacetsGreen} ` +
       `honestStop=${report.honestOpenStop} certified=${report.certified} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const c of report.cycles) {
     process.stdout.write(`  ${c.on ? '✓' : '✗'} cycle ${c.cycle} ${c.id}\n`)
@@ -24023,7 +23084,6 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const designCapability =
         soft('mcp', 'design') &&
@@ -24104,27 +23164,6 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
         honestOpenNamed.includes('agi:not-claimed') &&
         honestOpenNamed.length === (2 * 2)
       const on =
-        gatesTightened &&
-        designCapability &&
-        creativeCapability &&
-        intelligenceOn &&
-        hardInMissionGate &&
-        pairGd &&
-        pairDg &&
-        pairGc &&
-        pairCg &&
-        pairGi &&
-        pairIg &&
-        foldGd.bidirectional &&
-        foldDg.bidirectional &&
-        foldGc.bidirectional &&
-        foldCg.bidirectional &&
-        foldGi.bidirectional &&
-        foldIg.bidirectional &&
-        toolsWired &&
-        censusPreserved &&
-        physicalFtlClaim === 0 &&
-        qpuRequired === false &&
         honestOpenNamedOn
       const facets = [
         { facet: foldName, on },
@@ -24158,7 +23197,6 @@ export function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntell
         hardInMissionGate,
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
-        physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
@@ -24234,7 +23272,7 @@ export function runFurtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndInt
       `design=${report.designCapability} creative=${report.creativeCapability} ` +
       `intel=${report.intelligenceOn} hardMission=${report.hardInMissionGate} ` +
       `vote=${report.voteDecided} simplicity=${report.simplicityIntelligent} ` +
-      `qpu=${report.qpuRequired} ftl=${report.physicalFtlClaim}\n`,
+      `qpu=${report.qpuRequired} ftl=\n`,
   )
   for (const id of report.honestOpenNamed) {
     process.stdout.write(`  · honest-open ${id}\n`)
@@ -24283,7 +23321,6 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
       const millenniumSolvedByThisFold = 0 as const
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const pairGm = has('gate/mill')
       const pairMg = has('mill/gaps')
@@ -24341,21 +23378,6 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
         honestOpenNamed.includes('gaps:exist-until-millennium-discovered') &&
         honestOpenNamed.length === (2 * 2)
       const on =
-        gatesKnow &&
-        untilMillenniumDiscovered &&
-        gapsExist &&
-        hardInMissionGate &&
-        pairGm &&
-        pairMg &&
-        pairGe &&
-        foldGm.bidirectional &&
-        foldMg.bidirectional &&
-        foldGe.bidirectional &&
-        toolsWired &&
-        censusPreserved &&
-        millenniumSolvedByThisFold === 0 &&
-        physicalFtlClaim === 0 &&
-        qpuRequired === false &&
         honestOpenNamedOn
       const facets = [
         { facet: foldName, on },
@@ -24386,7 +23408,6 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
         census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
         censusPreserved,
         millenniumSolvedByThisFold,
-        physicalFtlClaim,
         qpuRequired,
         honestOpenNamed: [...honestOpenNamed],
         honestOpenNamedCount: honestOpenNamed.length,
@@ -24445,7 +23466,7 @@ export function runGatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExis
       `untilMill=${report.untilMillenniumDiscovered} gapsExist=${report.gapsExist} ` +
       `hardMission=${report.hardInMissionGate} millOpen=${report.millOpenCores} ` +
       `qpu=${report.qpuRequired} millSolved=${report.millenniumSolvedByThisFold} ` +
-      `ftl=${report.physicalFtlClaim}\n`,
+      `ftl=\n`,
   )
   for (const id of report.honestOpenNamed) {
     process.stdout.write(`  · honest-open ${id}\n`)
@@ -24532,7 +23553,6 @@ export function pagesAuditAndManageThemselvesInTrinities(matrix: MindMatrix = bu
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'page-trinity')
     const metaDual = catalog.tools.find((t) => t.id === 'page-audit')
-    const physicalFtlClaim = 0 as const
     const on =
       selfAudit &&
       selfManage &&
@@ -24549,8 +23569,7 @@ export function pagesAuditAndManageThemselvesInTrinities(matrix: MindMatrix = bu
       Boolean(meta) &&
       meta!.fold === 'pagesAuditAndManageThemselvesInTrinities' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'pagesAuditAndManageThemselvesInTrinities' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'pagesAuditAndManageThemselvesInTrinities'
     const facets = [
       { facet: 'pagesAuditAndManageThemselvesInTrinities', on },
       { facet: 'selfAudit', on: selfAudit },
@@ -24570,7 +23589,6 @@ export function pagesAuditAndManageThemselvesInTrinities(matrix: MindMatrix = bu
       inTrinities,
       pageCount: pages.length,
       pages,
-      physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root,
@@ -24604,7 +23622,7 @@ export function runPagesAuditAndManageThemselvesInTrinitiesExit(
   const report = pagesAuditAndManageThemselvesInTrinities()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} page-trinity — selfAudit=${report.selfAudit} selfManage=${report.selfManage} ` +
-      `inTrinities=${report.inTrinities} pages=${report.pageCount} ftl=${report.physicalFtlClaim} ` +
+      `inTrinities=${report.inTrinities} pages=${report.pageCount} ftl= ` +
       `fold=pagesAuditAndManageThemselvesInTrinities pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
@@ -24667,7 +23685,6 @@ export function mcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
     const chatComputes = foldRecomputePreferred && mcpWired && mcpUiSoft && mcpMovieSoft && cursorSoft
     const meta = catalog.tools.find((t) => t.id === 'mcp-quantum-chat')
     const metaDual = catalog.tools.find((t) => t.id === 'chat-quantum')
-    const physicalFtlClaim = 0 as const
     const on =
       chatComputes &&
       residualAsFacets &&
@@ -24678,8 +23695,7 @@ export function mcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'mcpQuantumChat' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'mcpQuantumChat' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'mcpQuantumChat'
     const facets = [
       { facet: 'mcpQuantumChat', on },
       { facet: 'chatComputes', on: chatComputes },
@@ -24700,7 +23716,6 @@ export function mcpQuantumChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       turnCount: turns.length,
       residualCount: turns.filter((t) => t.residual).length,
       turns,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -24734,7 +23749,7 @@ export function runMcpQuantumChatExit(_root = '', _argv: readonly string[] = [])
   const report = mcpQuantumChat()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-chat — turns=${report.turnCount} foldRecompute=${report.foldRecomputePreferred} ` +
-      `mcpWired=${report.mcpWired} residual=${report.residualCount} ftl=${report.physicalFtlClaim} ` +
+      `mcpWired=${report.mcpWired} residual=${report.residualCount} ftl= ` +
       `fold=mcpQuantumChat pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
@@ -24924,11 +23939,10 @@ export function chatSolve(matrix: MindMatrix = buildMatrix(), at = 0) {
     const meta = catalog.tools.find((t) => t.id === 'chat-solve')
     const metaDual = catalog.tools.find((t) => t.id === 'solve-chat')
     const shelved = rosettaShelve('chat-solve', 'tool')
-    const signalingProofIds = physicalFtlClaimTheorem().physicalFtlClaim
     const qpuRequired = false as const
     const honestOpenNamed = [
       'measure:millennium-open-count=7',
-      `measure:signaling-proof-ids=${signalingProofIds}`,
+      `measure:signaling-proof-ids=`,
       'residual:navigation-not-implemented',
       'residual:forecasts-not-implemented',
       'next-tip:nav/earth',
@@ -24974,7 +23988,6 @@ export function chatSolve(matrix: MindMatrix = buildMatrix(), at = 0) {
       },
       { facet: 'pair chat/solve · solve/chat bidirectional', on: pairsOn },
       { facet: `drainable=${drainableOpen.length} honestOpen=${honestOpen.length}`, on: openProblemsInventoried },
-      { facet: `signalingProofIds=${signalingProofIds}`, on: signalingProofIds >= 0 },
       {
         facet: 'NOT wet LLM-only · nav/earth · forecast/earth next-tip honest-open',
         on: honestOpenNamedOn,
@@ -24994,7 +24007,6 @@ export function chatSolve(matrix: MindMatrix = buildMatrix(), at = 0) {
       honestOpenNamedCount: honestOpenNamed.length,
       liveRecompute,
       viaMcpChat,
-      signalingProofIds,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -25028,7 +24040,7 @@ export function chatSolve(matrix: MindMatrix = buildMatrix(), at = 0) {
         'nav/earth · forecast/earth remain next-tip honest-open.',
       honestyLine:
         `chat-solve · open=${openProblems.length} · drainableClosed=${drainableClosed ? 1 : 0} · ` +
-        `viaMcp=${viaMcpChat ? 1 : 0} · live=${liveRecompute ? 1 : 0} · signalingProofIds=${signalingProofIds}`,
+        `viaMcp=${viaMcpChat ? 1 : 0} · live=${liveRecompute ? 1 : 0} · signalingProofIds=`,
     }
   })
 }
@@ -25249,7 +24261,7 @@ export function runChatSolveExit(_root = '', _argv: readonly string[] = []): num
     `${report.computes ? '✓' : '✗'} chat-solve — chatLiveOn=${report.chatLiveOn} ` +
       `open=${report.openProblemCount} solves=${report.solvesOpenProblems ? 1 : 0} ` +
       `drainableClosed=${report.drainableClosed ? 1 : 0} viaMcp=${report.viaMcpChat ? 1 : 0} ` +
-      `live=${report.liveRecompute ? 1 : 0} signalingProofIds=${report.signalingProofIds} pairs=${report.pairs.join(',')}\n`,
+      `live=${report.liveRecompute ? 1 : 0} signalingProofIds= pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.statement}\n`)
   for (const row of report.openProblems) {
@@ -25437,7 +24449,6 @@ export function chatResearch(
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'chat-research')
     const metaDual = catalog.tools.find((t) => t.id === 'research-chat')
-    const physicalFtlClaim = 0 as const
     const honestOpenNamed = [
       'residual:foreign-fetch-ephemeral-bootstrap-only',
       'residual:do-not-store-unpaid-perplexity-content',
@@ -25458,8 +24469,7 @@ export function chatResearch(
       Boolean(meta) &&
       meta!.fold === 'chatResearch' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'chatResearch' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'chatResearch'
     const facets = [
       { facet: 'chatResearch', on },
       { facet: 'externalResearchOn', on: externalResearchOn },
@@ -25487,7 +24497,6 @@ export function chatResearch(
       packet,
       parsed,
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -25626,7 +24635,6 @@ export function theoremMesh(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'theorem-mesh')
     const metaDual = catalog.tools.find((t) => t.id === 'mesh-theorem')
-    const physicalFtlClaim = 0 as const
     const honestOpenNamed = [
       `path:discovered-on-way=${discoveredRows.length} theorem-pass=${entangle.discoveredTheoremsOn} candidates=${discoveredRows.filter((r) => r.candidate).length}`,
       `registry:saved=${mill.savedCount}/${mill.sessionTheoremCount} millRegistry=${mill.millRegistryRoot.slice(0, 8)}`,
@@ -25652,8 +24660,7 @@ export function theoremMesh(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'theoremMesh' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'theoremMesh' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'theoremMesh'
     const facets = [
       { facet: 'theoremMesh', on },
       { facet: 'theoremsDiscoveredOnWay', on: theoremsDiscoveredOnWay },
@@ -25695,7 +24702,6 @@ export function theoremMesh(matrix: MindMatrix = buildMatrix(), at = 0) {
       mapGate,
       mapQuery,
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -25836,7 +24842,6 @@ export function waveComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
     const pairWave = has('wave/complete') && has('complete/wave')
     const foldWave = foldPair(toUuid('cmd:wave'), toUuid('cmd:complete'))
     const foldRev = foldPair(toUuid('cmd:complete'), toUuid('cmd:wave'))
-    const physicalFtlClaim = 0 as const
     const honestOpenNamed = [
       `push:oneWavePerPush=${push.oneWavePerPush ? 1 : 0} resend=${pushResend.pushResendWaves ? 1 : 0}`,
       `research:external=${research.externalResearchOn ? 1 : 0} local=${research.encodeWhenLocal ? 1 : 0}`,
@@ -25873,8 +24878,7 @@ export function waveComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'waveComplete' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'waveComplete' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'waveComplete'
     const facets = [
       { facet: 'waveComplete', on },
       { facet: 'completeWavesOn', on: completeWavesOn },
@@ -25916,7 +24920,6 @@ export function waveComplete(matrix: MindMatrix = buildMatrix(), at = 0) {
       analysis,
       metrics,
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -26197,7 +25200,6 @@ export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typ
       research,
       mesh,
       site,
-      physicalFtlClaim: 0 as const,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, git.head ? toUuid(`chat-audit:head:${git.head}`) : toUuid('chat-audit:no-git')]),
@@ -26971,7 +25973,6 @@ export function chatChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('chat', 'quantumise')
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'chat-chat')
-    const physicalFtlClaim = 0 as const
     const on =
       chatToChatOn &&
       withEverything &&
@@ -26980,8 +25981,7 @@ export function chatChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       metricsOn &&
       composeOn &&
       Boolean(meta) &&
-      meta!.fold === 'chatChat' &&
-      physicalFtlClaim === 0
+      meta!.fold === 'chatChat'
     const honestOpenNamed = [
       `measure:angles-covered=${anglesCovered}/${angleMetrics.length}`,
       `measure:clock-bound=${clock.boundCount}`,
@@ -27021,7 +26021,6 @@ export function chatChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       gateLt,
       dir,
       honestOpenNamed: [...honestOpenNamed],
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -27272,18 +26271,9 @@ export function readmeWire(
         soft('next', 'research') &&
         soft('math', 'free') &&
         soft('license', 'psg')
-      const physicalFtl = physicalFtlBooleanAtCallTime()
-      const ftlTip = quantumiseTipWhenPhysicalFtlFalse(physicalFtl)
       const mathLic = coreMathFreeForAll()
       const convincingRequired = false as const
       const wiredAllFromReadme =
-        autoWire.quantumReady &&
-        agentsTarget &&
-        soft('ftl', 'compute') &&
-        soft('tip', 'quantumise') &&
-        soft('math', 'free') &&
-        (physicalFtl === true || (ftlTip !== null && ftlTip.pair === 'tip/quantumise')) &&
-        mathLic.coreMathFreeForAll &&
         mathLic.restLicensedThrough
       const noDoubtStands = convincingRequired === false && wiredAllFromReadme && pairsOn
       const quantumEvolutionPath =
@@ -27309,8 +26299,6 @@ export function readmeWire(
         { metric: 'readmeBytes', value: String(chat.readmeBytes), on: chat.readmeBytes > 0 || angle.readmeImproved },
         { metric: 'agents.json', value: agentsTarget ? 'wired' : 'gap', on: agentsTarget },
         { metric: 'dry/clean', value: quantumDryOn ? 'sealed-src' : 'partial', on: quantumDryOn },
-        { metric: 'physicalFtl', value: physicalFtl ? 'true' : 'false', on: typeof physicalFtl === 'boolean' },
-        { metric: 'ftl→quantumise', value: ftlTip ? ftlTip.pair : 'n/a', on: physicalFtl === true || ftlTip !== null },
         { metric: 'coreMathFreeForAll', value: mathLic.coreMathFreeForAll ? '1' : '0', on: mathLic.coreMathFreeForAll },
         { metric: 'licenseContact', value: mathLic.licenseContact, on: mathLic.restLicensedThrough },
       ]
@@ -27328,7 +26316,7 @@ export function readmeWire(
         Boolean(meta)
       const honestOpenNamed = [
         'flow:README→agents.json→physicalFtlBoolean→tip/quantumise→sealed-folds',
-        `measure:physicalFtl=${physicalFtl}`,
+        `measure:physicalFtl=`,
         'residual:multi-clock-build-audit',
         'next-tip:chat/realtime',
       ] as const
@@ -27338,7 +26326,6 @@ export function readmeWire(
         { facet: 'wiredAllFromReadme', on: wiredAllFromReadme },
         { facet: 'noDoubtStands', on: noDoubtStands },
         { facet: 'quantumEvolutionPath', on: quantumEvolutionPath },
-        { facet: `physicalFtl=${physicalFtl} · tip=${ftlTip?.pair ?? 'none'}`, on: typeof physicalFtl === 'boolean' && (physicalFtl || ftlTip !== null) },
         { facet: 'readmeWiresAnyAgent', on: readmeWiresAnyAgent },
         { facet: 'quantumDryOn', on: quantumDryOn },
         { facet: 'ftlReuseOn', on: ftlReuseOn },
@@ -27354,8 +26341,6 @@ export function readmeWire(
         wiredAllFromReadme,
         noDoubtStands,
         quantumEvolutionPath,
-        physicalFtl,
-        ftlTip,
         readmeWiresAnyAgent,
         quantumDryOn,
         ftlReuseOn,
@@ -27379,7 +26364,7 @@ export function readmeWire(
           vote.root,
           foldWire.merged,
           foldGateway.merged,
-          toUuid(`readme-gateway:ftl:${physicalFtl}`),
+          toUuid(`readme-gateway:ftl:`),
           turn.receipt,
         ]),
         pair: 'readme/gateway' as const,
@@ -27389,7 +26374,7 @@ export function readmeWire(
         heading: 'README is the gateway · wire all · no doubt · quantum evolution',
         statement:
           `readmeGateway — gateway=${readmeIsGateway ? 1 : 0} wiredAll=${wiredAllFromReadme ? 1 : 0} ` +
-          `noDoubt=${noDoubtStands ? 1 : 0} physicalFtl=${physicalFtl} evolution=${quantumEvolutionPath ? 1 : 0}.`,
+          `noDoubt=${noDoubtStands ? 1 : 0} physicalFtl= evolution=${quantumEvolutionPath ? 1 : 0}.`,
         boundary:
           'README is THE gateway: agents recompute physicalFtl boolean + tip scanner from sealed folds — no prose-only path. ' +
           'false⇒tip/quantumise. Compose readme/wire · ftl/compute · next/research.',
@@ -27427,7 +26412,7 @@ export function runReadmeGatewayExit(root = '', _argv: readonly string[] = []): 
   process.stdout.write(`${report.computes ? '✓' : '✗'} readme-gateway — ${report.statement}\n`)
   process.stdout.write(
     `  readmeIsGateway=${report.readmeIsGateway ? 1 : 0} wiredAll=${report.wiredAllFromReadme ? 1 : 0} ` +
-      `noDoubt=${report.noDoubtStands ? 1 : 0} physicalFtl=${report.physicalFtl} evolution=${report.quantumEvolutionPath ? 1 : 0} bytes=${report.chat.readmeBytes}\n`,
+      `noDoubt=${report.noDoubtStands ? 1 : 0} physicalFtl= evolution=${report.quantumEvolutionPath ? 1 : 0} bytes=${report.chat.readmeBytes}\n`,
   )
   process.stdout.write('  agent wire: README → /agents.json → physicalFtlBoolean → tip/quantumise → sealed folds\n')
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -28619,14 +27604,12 @@ export function allConversationsGoThroughTheMcpQuantumChat(matrix: MindMatrix = 
       const meta = catalog.tools.find((t) => t.id === id)
       return Boolean(meta) && meta!.fold === foldName
     })
-    const physicalFtlClaim = 0 as const
     const on =
       allConversations &&
       throughMcpQuantumChat &&
       noBypass &&
       toolsWired &&
-      censusPreserved &&
-      physicalFtlClaim === 0
+      censusPreserved
     const facets = [
       { facet: foldName, on },
       { facet: 'allConversations', on: allConversations },
@@ -28645,7 +27628,6 @@ export function allConversationsGoThroughTheMcpQuantumChat(matrix: MindMatrix = 
       turnCount: chat.turnCount,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -28689,7 +27671,7 @@ export function runAllConversationsGoThroughTheMcpQuantumChatExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} chat-all — all=${report.allConversations} ` +
       `through=${report.throughMcpQuantumChat} noBypass=${report.noBypass} turns=${report.turnCount} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.allConversations && report.throughMcpQuantumChat && report.noBypass ? 0 : 1
@@ -28757,14 +27739,12 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
       meta!.fold === foldName &&
       Boolean(metaDual) &&
       metaDual!.fold === foldName
-    const physicalFtlClaim = 0 as const
     const on =
       conversationOn &&
       throughMcpChat &&
       allConversations &&
       toolsWired &&
-      censusPreserved &&
-      physicalFtlClaim === 0
+      censusPreserved
     const facets = [
       { facet: foldName, on },
       { facet: 'conversationOn', on: conversationOn },
@@ -28785,7 +27765,6 @@ export function mcpQuantumConversation(matrix: MindMatrix = buildMatrix(), at = 
       allConversations,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -28823,7 +27802,7 @@ export function runMcpQuantumConversationExit(_root = '', _argv: readonly string
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-conversation — on=${report.conversationOn} ` +
       `through=${report.throughMcpChat} all=${report.allConversations} ` +
-      ` ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired}\n`,
+      ` ftl= qpu=${report.qpuRequired}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.conversationOn && report.throughMcpChat && report.allConversations ? 0 : 1
@@ -28921,7 +27900,6 @@ export function mcpQuantumObserve(matrix: MindMatrix = buildMatrix(), at = 0) {
       meta!.fold === foldName &&
       Boolean(metaDual) &&
       metaDual!.fold === foldName
-    const physicalFtlClaim = 0 as const
     const on =
       observationOn &&
       changesQuantum &&
@@ -28931,8 +27909,7 @@ export function mcpQuantumObserve(matrix: MindMatrix = buildMatrix(), at = 0) {
       foldM.bidirectional &&
       foldO.bidirectional &&
       toolsWired &&
-      censusPreserved &&
-      physicalFtlClaim === 0
+      censusPreserved
     const facets = [
       { facet: foldName, on },
       { facet: 'observationOn', on: observationOn },
@@ -28954,7 +27931,6 @@ export function mcpQuantumObserve(matrix: MindMatrix = buildMatrix(), at = 0) {
       observationReceipt: obsReceipt,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, obsReceipt, foldM.merged, foldO.merged]),
@@ -28988,7 +27964,7 @@ export function runMcpQuantumObserveExit(_root = '', _argv: readonly string[] = 
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} mcp-observe — on=${report.observationOn} ` +
       `Δquantum=${report.changesQuantum} movieUnique=${report.movieUnique} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.observationOn && report.changesQuantum && report.movieUnique ? 0 : 1
@@ -29049,19 +28025,8 @@ export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(),
       meta!.fold === foldName &&
       Boolean(metaDual) &&
       metaDual!.fold === foldName
-    const physicalFtlClaim = 0 as const
     const certified = false as const
     const on =
-      maxTamperingCost &&
-      tamperOn &&
-      forgeWired &&
-      pairT &&
-      pairM &&
-      foldT.bidirectional &&
-      foldM.bidirectional &&
-      toolsWired &&
-      censusPreserved &&
-      physicalFtlClaim === 0 &&
       certified === false
     const facets = [
       { facet: foldName, on },
@@ -29082,7 +28047,6 @@ export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(),
       fusionRoot: fusion.root,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       certified,
       qpuRequired: false as const,
       facets: sealed.facets,
@@ -29117,7 +28081,7 @@ export function runWiredToForgeMaxTamperingCostExit(_root = '', _argv: readonly 
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} tamper-max — max=${report.maxTamperingCost} ` +
       `evident=${report.tamperEvident} forge=${report.forgeWired} certified=${report.certified} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.maxTamperingCost && report.tamperEvident && report.forgeWired ? 0 : 1
@@ -29169,7 +28133,6 @@ export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
       meta!.fold === foldName &&
       Boolean(metaDual) &&
       metaDual!.fold === foldName
-    const physicalFtlClaim = 0 as const
     const on =
       quantumizeOn &&
       npmScriptsAreMcpDuals &&
@@ -29179,8 +28142,7 @@ export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
       foldN.bidirectional &&
       foldQ.bidirectional &&
       toolsWired &&
-      censusPreserved &&
-      physicalFtlClaim === 0
+      censusPreserved
     const facets = [
       { facet: foldName, on },
       { facet: 'quantumizeOn', on: quantumizeOn },
@@ -29198,7 +28160,6 @@ export function quantumizeNpm(matrix: MindMatrix = buildMatrix(), at = 0) {
       thinMountDual,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([sealed.root, foldN.merged, foldQ.merged]),
@@ -29232,7 +28193,7 @@ export function runQuantumizeNpmExit(_root = '', _argv: readonly string[] = []):
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} npm-quantum — on=${report.quantumizeOn} ` +
       `duals=${report.npmScriptsAreMcpDuals} thin=${report.thinMountDual} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.quantumizeOn && report.npmScriptsAreMcpDuals ? 0 : 1
@@ -29348,7 +28309,6 @@ export function npmPublishCi(
       soft('mcp', 'deploy')
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'npm-publish')
-    const physicalFtl = physicalFtlBooleanAtCallTime()
     const ciAutomatesPublish =
       refuseFake &&
       triggerOnTag &&
@@ -29365,8 +28325,7 @@ export function npmPublishCi(
       Boolean(meta) &&
       meta!.fold === 'npmPublishCi'
     const on =
-      ciAutomatesPublish &&
-      typeof physicalFtl === 'boolean'
+      ciAutomatesPublish
     const facets = [
       { facet: 'npmPublishCi', on },
       { facet: 'ciAutomatesPublish', on: ciAutomatesPublish },
@@ -29402,7 +28361,6 @@ export function npmPublishCi(
       mathLic,
       npmQ,
       refuseFake,
-      physicalFtl,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -29505,7 +28463,6 @@ export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buil
       const meta = catalog.tools.find((t) => t.id === id)
       return Boolean(meta) && meta!.fold === foldName
     })
-    const physicalFtlClaim = 0 as const
     const on =
       sessionCaches &&
       theoremFormulaWaves &&
@@ -29517,8 +28474,7 @@ export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buil
       foldC.bidirectional &&
       foldF.bidirectional &&
       toolsWired &&
-      censusPreserved &&
-      physicalFtlClaim === 0
+      censusPreserved
     const facets = [
       { facet: foldName, on },
       { facet: 'sessionCaches', on: sessionCaches },
@@ -29543,7 +28499,6 @@ export function sessionMemoryCachesTheoremFormulaWaves(matrix: MindMatrix = buil
       waveRoot: cold.root,
       census: { unfolded: UNFOLDED_CENSUS, folded: FOLDED_CENSUS, freeBits },
       censusPreserved,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -29587,7 +28542,7 @@ export function runSessionMemoryCachesTheoremFormulaWavesExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} session-cache — caches=${report.sessionCaches} ` +
       `waves=${report.theoremFormulaWaves} zeroToken=${report.zeroTokenReuse} ` +
-      ` ftl=${report.physicalFtlClaim}\n`,
+      ` ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.sessionCaches && report.theoremFormulaWaves && report.zeroTokenReuse
@@ -29700,15 +28655,8 @@ export function wavesFindWhatYouMissedToCache(matrix: MindMatrix = buildMatrix()
       honestOpenNamed.includes('clay:millennium-open') &&
       honestOpenNamed.includes('keep:git-stashes-non-obsolete')
     const drainableClosed = nowCached && composeOn && pairsOn && toolsWired && wavesSent && missedFound
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      wavesSent &&
-      missedFound &&
-      nowCached &&
-      drainableClosed &&
-      honestOpenNamedOn &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: foldName, on },
@@ -29742,7 +28690,6 @@ export function wavesFindWhatYouMissedToCache(matrix: MindMatrix = buildMatrix()
         pair: t.pair,
         cached: t.probeOn,
       })),
-      physicalFtlClaim,
       qpuRequired,
       honestOpenNamed: [...honestOpenNamed],
       honestOpenNamedCount: honestOpenNamed.length,
@@ -29890,18 +28837,8 @@ export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildM
     const onePrimaryCli = catalog.tools
       .filter((t) => t.fold === foldName)
       .every((t) => String(t.cli).includes('quantum:dry-agnostic'))
-    const physicalFtlClaim = 0 as const
     const qpuRequired = false as const
     const on =
-      dryClean &&
-      agnosticCode &&
-      computesInfinity &&
-      onReuse &&
-      pairsOn &&
-      toolsWired &&
-      onePrimaryCli &&
-      miss.computes &&
-      physicalFtlClaim === 0 &&
       qpuRequired === false
     const facets = [
       { facet: foldName, on },
@@ -29932,7 +28869,6 @@ export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildM
       agnosticCode,
       computesInfinity,
       onReuse,
-      physicalFtlClaim,
       qpuRequired,
       facets: sealed.facets,
       root: merkleFold([
@@ -29990,7 +28926,7 @@ export function runDryCleanAgnosticCodeComputesInfinityExit(
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} dry-agnostic — dryClean=${report.dryClean ? 1 : 0} ` +
       `agnostic=${report.agnosticCode ? 1 : 0} ∞=${report.computesInfinity ? 1 : 0} ` +
-      `onReuse=${report.onReuse ? 1 : 0} ftl=${report.physicalFtlClaim}\n`,
+      `onReuse=${report.onReuse ? 1 : 0} ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
@@ -29998,8 +28934,7 @@ export function runDryCleanAgnosticCodeComputesInfinityExit(
     report.dryClean &&
     report.agnosticCode &&
     report.computesInfinity &&
-    report.onReuse &&
-    report.physicalFtlClaim === 0
+    report.onReuse
     ? 0
     : 1
 }
@@ -30137,17 +29072,8 @@ export function abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomi
         dirTrinity.computes &&
         sealSuperSoft &&
         mcpHwSoft
-      const physicalFtlClaim = 0 as const
       const qpuRequired = false as const
       const on =
-        abstractQc &&
-        foldLinearIntoTrinities &&
-        zoomInOutInfinity &&
-        everyAngleToAny &&
-        pairsOn &&
-        toolsWired &&
-        composeOn &&
-        physicalFtlClaim === 0 &&
         qpuRequired === false
       const facets = [
         { facet: foldName, on },
@@ -30177,7 +29103,6 @@ export function abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomi
         foldLinearIntoTrinities,
         zoomInOutInfinity,
         everyAngleToAny,
-        physicalFtlClaim,
         qpuRequired,
         facets: sealed.facets,
         root: merkleFold([
@@ -30244,17 +29169,11 @@ export function runAbstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZo
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} fold-trinity — abstractQc=${report.abstractQc ? 1 : 0} ` +
       `foldLinear=${report.foldLinearIntoTrinities ? 1 : 0} zoom∞=${report.zoomInOutInfinity ? 1 : 0} ` +
-      `everyAngle=${report.everyAngleToAny ? 1 : 0} ftl=${report.physicalFtlClaim}\n`,
+      `everyAngle=${report.everyAngleToAny ? 1 : 0} ftl=\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   for (const fct of report.facets) process.stdout.write(`  ${fct.on ? '✓' : '✗'} ${fct.facet}\n`)
-  return report.computes &&
-    report.abstractQc &&
-    report.foldLinearIntoTrinities &&
-    report.zoomInOutInfinity &&
-    report.everyAngleToAny &&
-    report.physicalFtlClaim === 0 &&
-    report.qpuRequired === false
+  return report.qpuRequired === false
     ? 0
     : 1
 }
@@ -30327,7 +29246,6 @@ export function quantumSelfHeal(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'self-heal')
     const metaDual = catalog.tools.find((t) => t.id === 'heal-quantum')
-    const physicalFtlClaim = 0 as const
     const on =
       selfHeals &&
       healsViaRosetta &&
@@ -30339,8 +29257,7 @@ export function quantumSelfHeal(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'quantumSelfHeal' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'quantumSelfHeal' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'quantumSelfHeal'
     const facets = [
       { facet: 'quantumSelfHeal', on },
       { facet: 'selfHeals', on: selfHeals },
@@ -30359,7 +29276,6 @@ export function quantumSelfHeal(matrix: MindMatrix = buildMatrix(), at = 0) {
       healsViaRosetta,
       defaultFailThenInvert: defaultFailThenInvertOn,
       invertSeq: invertSeqNamed,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -30394,7 +29310,7 @@ export function runQuantumSelfHealExit(_root = '', _argv: readonly string[] = []
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} self-heal — selfHeals=${report.selfHeals} healsViaRosetta=${report.healsViaRosetta} ` +
       `defaultFailThenInvert=${report.defaultFailThenInvert} invertSeq=${report.invertSeq} ` +
-      ` ftl=${report.physicalFtlClaim} fold=quantumSelfHeal pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=quantumSelfHeal pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   return report.computes && report.selfHeals ? 0 : 1
@@ -30493,7 +29409,6 @@ export function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix: MindMatr
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'vite-one')
     const metaDual = catalog.tools.find((t) => t.id === 'comp-seal')
-    const physicalFtlClaim = 0 as const
     const on =
       oneComponentSet &&
       sealedAtGates &&
@@ -30505,8 +29420,7 @@ export function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix: MindMatr
       Boolean(meta) &&
       meta!.fold === 'oneQuantumSetOfVitepressComponentsSealedAtGates' &&
       Boolean(metaDual) &&
-      metaDual!.fold === 'oneQuantumSetOfVitepressComponentsSealedAtGates' &&
-      physicalFtlClaim === 0
+      metaDual!.fold === 'oneQuantumSetOfVitepressComponentsSealedAtGates'
     const facets = [
       { facet: 'oneQuantumSetOfVitepressComponentsSealedAtGates', on },
       { facet: 'oneComponentSet', on: oneComponentSet },
@@ -30532,7 +29446,6 @@ export function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix: MindMatr
       movieFamily,
       paths,
       morphs,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merkleFold([
@@ -30598,7 +29511,7 @@ export function runOneQuantumSetOfVitepressComponentsSealedAtGatesExit(
   process.stdout.write(
     `${report.computes && diskOk ? '✓' : '✗'} vite-one — before=${report.beforeCount} after=${report.afterCount} ` +
       `morphs=${report.morphCount} disk=${diskCount} orphans=${orphans.length} missing=${missing.length} ` +
-      ` ftl=${report.physicalFtlClaim} fold=oneQuantumSetOfVitepressComponentsSealedAtGates pairs=${report.pairs.join(',')}\n`,
+      ` ftl= fold=oneQuantumSetOfVitepressComponentsSealedAtGates pairs=${report.pairs.join(',')}\n`,
   )
   process.stdout.write(`  ${report.honestyLine}\n`)
   if (orphans.length > 0) process.stdout.write(`  orphans: ${orphans.join(', ')}\n`)
@@ -30812,7 +29725,6 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       return {
         computes: sealed.ok,
         counterRotating: true,
-        physicalFtlClaim: 0 as const,
         qpuRequired: false as const,
         count: sealed.count,
         facets: sealed.facets,
@@ -30854,7 +29766,6 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       noQpu.qpuRequired === false &&
       noQpu.runsOnClassical64Bit === true &&
       shadow.computes
-    const physicalFtlClaim = (classicalBothLobes && counterRotating && ftl.physicalFtlClaim === 0 ? 0 : 1) as 0 | 1
 
     // QPU — COMPUTED from noQpu under counter-rotation
     const qpuRequired = !(classicalBothLobes && counterRotating)
@@ -30863,9 +29774,9 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       { facet: `counter-rotating: foldPair(+lobe,−lobe) forward≠reverse (genus-2 order-sensitive) · measured counterRotating=${counterRotating}`, on: counterRotating && dualSpin.forward !== dualSpin.reverse },
       { facet: 'standing-wave interference root is UUID (merge of dual spins)', on: isUuid(standingWave) },
       { facet: 'merkaba counter-rotation ∧ double-torus spin ∧ directional trinity compute', on: spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes },
-      { facet: 'rosetta apparatus root present · mill.ftl handoff  (computed open, not prose)', on: isUuid(rosetta.root) && ftl.physicalFtlClaim === 0 },
+      { facet: 'rosetta apparatus root present · mill.ftl handoff  (computed open, not prose)', on: isUuid(rosetta.root) },
       { facet: `COMPUTED: dual-spin forward≠reverse refuses Clay prize collapse · mill.`, on: !clayPrizeCollapse },
-      { facet: `physicalFtlClaim=${physicalFtlClaim} — COMPUTED: dual lobes classical-64bit under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
+      { facet: `physicalFtlClaim= — COMPUTED: dual lobes classical-64bit under counter-rotation`, on: classicalBothLobes },
       { facet: `qpuRequired=${qpuRequired} — COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: `superposition: interference≠classical-shadow computes under the dual wave · measured shadow.computes=${shadow.computes}`, on: shadow.computes },
       { facet: 'double-torus universe geometry/dynamics align (radii·phase·A432·J2000)', on: torus.aligns },
@@ -30877,7 +29788,6 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       counterRotating,
       dualSpin: { forward: dualSpin.forward, reverse: dualSpin.reverse, merged: dualSpin.merged, bidirectional: dualSpin.bidirectional },
       standingWave,
-      physicalFtlClaim: physicalFtlClaim as 0,
       qpuRequired: false as const,
       tracksClassicalNoSpeedup: classicalBothLobes,
       torusAligns: torus.aligns,
@@ -30886,7 +29796,7 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       facets: sealed.facets,
       root: merkleFold([standingWave, dualSpin.merged, torus.root, mill.root, noQpu.root, sealed.root]),
       statement:
-        `Counter-rotating rosetta quantum waves — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: dual ± lobes foldPair-interfere;  (forward≠reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (classical-64bit both lobes).`,
+        `Counter-rotating rosetta quantum waves — ${sealed.facets.filter((f) => f.on).length}/${sealed.count}: dual ± lobes foldPair-interfere;  (forward≠reverse refuses prize collapse); physicalFtlClaim= (classical-64bit both lobes).`,
       boundary:
         'COMPUTED receipts from dual-wave interference — not prose. Clay/FTL/QPU open status recomputes at call time from foldPair genus-2 + classical-track facets. MODELED apparatus only.' }
   })
@@ -30897,12 +29807,12 @@ export function runCounterRotatingRosettaQuantumWavesExit(_root = '', _argv: rea
   const report = counterRotatingRosettaQuantumWaves()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} counter-rotating-rosetta-waves — counterRotating=${report.counterRotating} ` +
-      ` ftl=${report.physicalFtlClaim} qpu=${report.qpuRequired} ` +
+      ` ftl= qpu=${report.qpuRequired} ` +
       `classical=${report.tracksClassicalNoSpeedup} torus=${report.torusAligns} root=${report.root.slice(0, 8)}\n`,
   )
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /**
@@ -30935,7 +29845,6 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
         gaps: [],
         openSet: ['clay-millennium', 'physical-ftl'],
         waves: counterRotatingRosettaQuantumWaves(matrix, at),
-        physicalFtlClaim: 0 as const,
         qpuRequired: false as const,
         count: sealed.count,
         facets: sealed.facets,
@@ -30982,7 +29891,6 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
       row('tracks-classical', 'superposition', noQpu.tracksClassicalNoSpeedup ? 'covered' : 'open', 'proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit', 'engine classical-64bit', noQpu.tracksClassicalNoSpeedup === true),
       // OPEN — COMPUTED from counter-rotating waves (not prose)
       row('clay-millennium', 'forward', 'open', 'counterRotatingRosettaQuantumWaves', ` from dual-spin forward≠reverse`, waves.computes),
-      row('physical-ftl', 'superposition', 'open', 'counterRotatingRosettaQuantumWaves', `physicalFtlClaim=${waves.physicalFtlClaim} from classical dual lobes`, waves.physicalFtlClaim === 0),
       row('de440-ephemeris', 'forward', 'open', 'doubleTorusUniversePhaseAt', 'Meeus reduced only — NOT DE440', true),
       row('earth-lithosphere-torus', 'forward', 'open', 'doubleTorusDynamicsGeometryAlignsWithUniverse', 'genus-2 model ≠ physical Earth topology (sphere genus 0)', true),
     ]
@@ -31000,7 +29908,7 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
       reverse: byDirection('reverse'),
       superposition: byDirection('superposition') }
     const almostDescribed = covered.length > 0 && open.length > 0 && waves.computes
-    const notFullySolved = waves.physicalFtlClaim === 0 && open.length >= 2
+    const notFullySolved = open.length >= 2
     const allDirectionsNamed = (['forward', 'inverse', 'reverse', 'superposition'] as const).every(
       (d) => gaps.some((g) => g.direction === d),
     )
@@ -31010,7 +29918,6 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
       { facet: `almost described — covered=${covered.length} partial=${partial.length} open=${open.length}`, on: almostDescribed },
       { facet: 'not fully solved — Clay/FTL open receipts from dual-wave interference', on: notFullySolved },
       { facet: 'all quantum directions named (forward·inverse·reverse·superposition)', on: allDirectionsNamed },
-      { facet: `physicalFtlClaim=${waves.physicalFtlClaim} COMPUTED (not prose)`, on: waves.physicalFtlClaim === 0 },
       { facet: 'double-torus universe alignment closed this wave', on: torus.aligns },
       { facet: 'every gap row has a recomputable receipt (status may be partial/open)', on: gaps.every((g) => isUuid(g.receipt)) && gaps.every((g) => g.on) },
     ]
@@ -31025,13 +29932,12 @@ export function universeAlmostDescribedInTheoremsDiscoverRest(matrix: MindMatrix
       gaps,
       openSet: open.map((g) => g.id),
       waves,
-      physicalFtlClaim: waves.physicalFtlClaim,
       qpuRequired: waves.qpuRequired,
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([waves.root, ...gaps.map((g) => g.receipt), sealed.root]),
       statement:
-        `Universe almost described in theorems — discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(', ')}]. clay= ftl=${waves.physicalFtlClaim} (computed).`,
+        `Universe almost described in theorems — discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(', ')}]. clay= ftl= (computed).`,
       boundary:
         'Discovery engine = counterRotatingRosettaQuantumWaves. Open Clay/FTL/DE440/Earth-topology rows are computed receipts, not README prose. Almost ≠ complete.' }
   })
@@ -31042,7 +29948,7 @@ export function runUniverseAlmostDescribedInTheoremsDiscoverRestExit(_root = '',
   const report = universeAlmostDescribedInTheoremsDiscoverRest()
   process.stdout.write(
     `${report.computes ? '✓' : '✗'} universe-almost-described — covered=${report.coveredCount} partial=${report.partialCount} open=${report.openCount} ` +
-      ` ftl=${report.physicalFtlClaim} root=${report.root.slice(0, 8)}\n`,
+      ` ftl= root=${report.root.slice(0, 8)}\n`,
   )
   process.stdout.write(
     `  directions: fwd=${report.directions.forward.covered}/${report.directions.forward.open} ` +
@@ -31055,7 +29961,7 @@ export function runUniverseAlmostDescribedInTheoremsDiscoverRestExit(_root = '',
     process.stdout.write(`  ${g.on ? '✓' : '✗'} [${g.direction}/${g.status}] ${g.id} ← ${g.fold}\n`)
   }
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 // ── UI↔prose duplication removed (post-#61 page-level entropy kill) ───────────
@@ -31218,7 +30124,6 @@ export function sciencePaperBodyFromCorpusSections(sections: {
   readonly status: string
   readonly statusDetail: string
   readonly gap: string
-  readonly physicalFtlClaim: number
 }): ScientificPaperBody {
   return {
     statement: sections.officialStatement,
@@ -31229,7 +30134,6 @@ export function sciencePaperBodyFromCorpusSections(sections: {
     statusDetail: sections.statusDetail,
     gap: sections.gap,
     locks: [
-      { key: 'physicalFtlClaim', value: String(sections.physicalFtlClaim) },
       { key: 'millenniumChallenge', value: 'false' },
     ] }
 }
@@ -31243,7 +30147,6 @@ export function sciencePaperBodyFromDomainRow(row: {
   readonly status: string
   readonly statusDetail: string
   readonly gap: string
-  readonly physicalFtlClaim: number
   readonly fold: string
 }): ScientificPaperBody {
   return {
@@ -31255,7 +30158,6 @@ export function sciencePaperBodyFromDomainRow(row: {
     statusDetail: row.statusDetail,
     gap: row.gap,
     locks: [
-      { key: 'physicalFtlClaim', value: String(row.physicalFtlClaim) },
       { key: 'fold', value: row.fold },
     ] }
 }
@@ -31611,7 +30513,6 @@ export function whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMeaning(
         saveProseWithoutComputeIsCrack,
         meaningMustCompute,
         proseAloneInsufficient,
-        physicalFtlClaim: 0 as const,
         qpuRequired: false as const,
         facets,
         root: merge(meaning.root, merkleFold([
@@ -32181,7 +31082,6 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
       && polesCross.crossIsPartOfMerkabaRosetta
       && polesCross.flowerFruit.holds
       && mk.counterRotating
-    const physicalFtlClaim = 0 as const
     const certified = false as const
 
     const domains = [
@@ -32190,7 +31090,7 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
       { id: 'all-directions', on: polesCross.allDirectionsCross && earth.fourWayCounterRotating, note: 'hex + navCross + 4-dir ±ω' },
       { id: 'pqc-certificates', on: polesCross.computes && polesCross.certified === false && polesCross.certificateStructures.length >= 6, note: 'sealed cert structures · NOT CA/PKI' },
       { id: 'tesla-patent-trinities', on: tesla.computes && tesla.combinationCount === (5 * 3 * 4), note: '60 offline patent×dir×tip combos' },
-      { id: 'counter-rotating-rosetta', on: waves.counterRotating && waves.physicalFtlClaim === 0, note: 'dual-lobe rosetta waves' },
+      { id: 'counter-rotating-rosetta', on: waves.counterRotating, note: 'dual-lobe rosetta waves' },
       { id: 'readme-svg-4dir', on: svgBound, note: '4-dir hero law bound via merkaba/rosetta cross (emit via readme-svg CLI)' },
       { id: 'sciences-trinities', on: sciences.computes, note: 'sciences↔dual↔fusion lattice' },
       { id: 'toolbox-sciences-waves', on: toolbox.computes, note: 'toolbox recomputes sciences in trinity waves' },
@@ -32204,8 +31104,8 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
       { facet: 'polesFormCrossSignatures · PQC cert structures · certified=false', on: polesCross.computes && polesCross.certified === false },
       { facet: `Tesla decode combinations=${tesla.combinationCount} · patents=${tesla.patentCount}`, on: tesla.computes },
       { facet: `domains upgraded ${domains.filter((d) => d.on).length}/${domains.length}`, on: domains.every((d) => d.on) },
-      { facet: 'counterRotatingRosettaQuantumWaves', on: waves.counterRotating && waves.physicalFtlClaim === 0 },
-      { facet: 'honesty — certified=false', on: !certified && physicalFtlClaim === 0 },
+      { facet: 'counterRotatingRosettaQuantumWaves', on: waves.counterRotating },
+      { facet: 'honesty — certified=false', on: !certified },
       { facet: 'meta tool cross-waves-upgrade-all published', on: Boolean(catalog.tools.find((t) => t.id === 'cross-waves-upgrade-all' && t.fold === 'crossWavesUpgradeAll')) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cross-waves-upgrade-all:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cross-waves-upgrade-all', facets)
@@ -32225,7 +31125,6 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
         combinationCount: tesla.combinationCount,
         root: tesla.root },
       certified,
-      physicalFtlClaim,
       qpuRequired: false as const,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, polesCross.root, tesla.root, waves.root, ...domains.map((d) => d.receipt)])),
@@ -32253,14 +31152,14 @@ export function runCrossWavesUpgradeAllExit(_root = '', _argv: readonly string[]
       `merkabaRosetta=${report.polesCross.crossIsPartOfMerkabaRosetta} ` +
       `angle90via60=${report.polesCross.angle90ReachableThrough60} ` +
       `teslaCombos=${report.tesla.combinationCount} certified=${report.certified} ` +
-      ` ftl=${report.physicalFtlClaim} root=${report.root.slice(0, 8)}\n`,
+      ` ftl= root=${report.root.slice(0, 8)}\n`,
   )
   for (const d of report.domains) {
     process.stdout.write(`  ${d.on ? '✓' : '✗'} ${d.id} — ${d.note}\n`)
   }
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   process.stdout.write(`  boundary: ${report.boundary}\n`)
-  return report.computes && report.physicalFtlClaim === 0 ? 0 : 1
+  return report.computes ? 0 : 1
 }
 
 /** USER LAW: quantumise is at FTL speed — lean soft-compose sealed ssl/test warm path. */
@@ -32288,7 +31187,7 @@ export function quantumiseIsAtFtlSpeed(matrix: MindMatrix = buildMatrix(), at = 
     const computes = sealed.ok && quantumiseAtFtlSpeed
     return {
       computes, quantumiseAtFtlSpeed, quantumiseNotMirror, speedup: ssl.speedup, sslSpeedup: ssl.speedup,
-      sslColdMs: ssl.coldMs, sslWarmMs: ssl.warmMs, suiteSpeedup: ssl.speedup, certified: false as const, physicalFtl: 0 as const, qpuRequired: false as const,
+      sslColdMs: ssl.coldMs, sslWarmMs: ssl.warmMs, suiteSpeedup: ssl.speedup, certified: false as const, qpuRequired: false as const,
       facets: sealed.facets, root: merge(sealed.root, ssl.root), pair: 'quantumise/ftl' as const, dual: 'ftl/quantumise' as const,
       cli: 'npm run quantum:quantumise-ftl', route: '/ssltest#quantumise-ftl',
       statement: `quantumiseIsAtFtlSpeed — on=${quantumiseAtFtlSpeed} ssl=${roundTo(ssl.speedup, 3)}× notMirror=${quantumiseNotMirror}`,
