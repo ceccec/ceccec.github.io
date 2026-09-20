@@ -151,18 +151,18 @@ const statusItems = ref([
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-  background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+  background: linear-gradient(calc(3turn / 8), var(--darker) 0%, var(--dark) 100%);
   color: var(--light);
 }
 
 .header {
-  background: linear-gradient(90deg, var(--ich-element-1-rgb) 0%, var(--ich-element-2-rgb) 100%);
-  border-bottom: 1px solid var(--primary);
+  background: linear-gradient(calc(1turn / 4), var(--ich-element-1-rgb) 0%, var(--ich-element-2-rgb) 100%);
+  border-bottom: var(--ich-line) solid var(--primary);
   padding: var(--spacing-lg);
 }
 
 .header-content {
-  max-width: 1600px;
+  max-width: calc(var(--ich-panel-max) * 5);
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -171,16 +171,16 @@ const statusItems = ref([
 }
 
 .logo {
-  font-size: 32px;
+  font-size: var(--ich-sp16);
 }
 
 .header h1 {
   flex: 1;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: linear-gradient(calc(1turn / 4), var(--primary), var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-size: 28px;
+  font-size: var(--ich-sp14);
 }
 
 .stats {
@@ -196,26 +196,26 @@ const statusItems = ref([
 }
 
 .stat .value {
-  font-size: 20px;
+  font-size: var(--ich-sp10);
   color: var(--primary);
   font-weight: bold;
 }
 
 .stat .label {
-  opacity: 0.6;
-  margin-top: 4px;
+  opacity: var(--ich-op-soft);
+  margin-top: var(--ich-sp2);
 }
 
 .main-layout {
   display: grid;
-  grid-template-columns: 250px 1fr 300px;
+  grid-template-columns: calc(var(--ich-sp5) * 5 * 5) 1fr calc(var(--ich-sp5) * 5 * 6);
   gap: 0;
   overflow: hidden;
 }
 
 .sidebar-nav {
   background: var(--bg-tint-dark-heavy);
-  border-right: 1px solid var(--primary);
+  border-right: var(--ich-line) solid var(--primary);
   overflow-y: auto;
   padding: var(--spacing-lg);
 }
@@ -229,7 +229,7 @@ const statusItems = ref([
   font-size: var(--font-size-sm);
   text-transform: uppercase;
   margin-bottom: var(--spacing-md);
-  letter-spacing: 1px;
+  letter-spacing: var(--ich-line);
 }
 
 .nav-section ul {
@@ -237,16 +237,16 @@ const statusItems = ref([
 }
 
 .nav-section li {
-  margin-bottom: 4px;
+  margin-bottom: var(--ich-sp2);
 }
 
 .nav-section a {
   display: block;
-  padding: 8px 12px;
+  padding: var(--ich-sp4) var(--ich-sp6);
   color: var(--light);
   text-decoration: none;
   font-size: var(--font-size-sm);
-  border-left: 3px solid transparent;
+  border-left: var(--ich-border-3) solid transparent;
   transition: var(--transition);
 }
 
@@ -254,7 +254,7 @@ const statusItems = ref([
   color: var(--primary);
   background: var(--bg-tint-cyan-light);
   border-left-color: var(--primary);
-  transform: translateX(5px);
+  transform: translateX(calc(var(--ich-line) * 5));
 }
 
 .content {
@@ -264,7 +264,7 @@ const statusItems = ref([
 
 .sidebar-info {
   background: var(--bg-tint-dark-heavy);
-  border-left: 1px solid var(--primary);
+  border-left: var(--ich-line) solid var(--primary);
   overflow-y: auto;
   padding: var(--spacing-lg);
 }
@@ -278,80 +278,80 @@ const statusItems = ref([
   font-size: var(--font-size-sm);
   text-transform: uppercase;
   margin-bottom: var(--spacing-md);
-  letter-spacing: 1px;
+  letter-spacing: var(--ich-line);
 }
 
 .status-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--ich-sp4);
 }
 
 .status-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--ich-sp4);
   font-size: var(--font-size-sm);
-  padding: 8px;
+  padding: var(--ich-sp4);
   background: var(--bg-tint-black-medium);
   border-radius: var(--radius-sm);
 }
 
 .indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  width: var(--ich-sp4);
+  height: var(--ich-sp4);
+  border-radius: calc(100% / 2);
   background: var(--bg-tint-magenta);
   display: inline-block;
 }
 
 .status-item.active .indicator {
   background: var(--success);
-  animation: pulse 2s infinite;
+  animation: pulse calc(var(--ich-dur-breath) / 2) infinite;
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: var(--ich-sp4);
 }
 
 .stat-card {
   background: var(--bg-tint-black-heavy);
-  padding: 12px;
+  padding: var(--ich-sp6);
   border-radius: var(--radius-sm);
-  border-left: 3px solid var(--primary);
+  border-left: var(--ich-border-3) solid var(--primary);
   text-align: center;
 }
 
 .stat-card .value {
-  font-size: 18px;
+  font-size: var(--ich-sp9);
   color: var(--primary);
   font-weight: bold;
 }
 
 .stat-card .label {
   font-size: var(--font-size-xs);
-  opacity: 0.6;
-  margin-top: 4px;
+  opacity: var(--ich-op-soft);
+  margin-top: var(--ich-sp2);
 }
 
 .footer {
   background: var(--bg-tint-dark-medium);
-  border-top: 1px solid var(--primary);
+  border-top: var(--ich-line) solid var(--primary);
   padding: var(--spacing-lg);
   text-align: center;
   font-size: var(--font-size-sm);
-  opacity: 0.7;
+  opacity: var(--ich-op-mid);
 }
 
 .footer p {
-  margin: 4px 0;
+  margin: var(--ich-sp2) 0;
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: var(--ich-sp3);
 }
 
 ::-webkit-scrollbar-track {
@@ -360,7 +360,7 @@ const statusItems = ref([
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
-  border-radius: 3px;
+  border-radius: var(--ich-border-3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -369,6 +369,6 @@ const statusItems = ref([
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  50% { opacity: var(--ich-op-half); }
 }
 </style>

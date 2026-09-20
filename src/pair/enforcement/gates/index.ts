@@ -693,7 +693,23 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
       path: 'src/earth/iching',
       reason: 'canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems' },
   ] as const
-  const ichingRemovedSynonymShells = [] as const // no empty/alias iching shells under src/ this wave
+  // Was `[] as const` — a frozen empty array whose .length was published as "removed synonym shells" and
+  // conjoined as `=== 0`. Nothing could ever be added to it, so the count was zero by type, not by looking.
+  // This gate already walks the tree, so it looks: any folder under src/ whose name names the i-ching and
+  // is not the canonical home is an alias shell, and adding one moves the number.
+  const ichingRemovedSynonymShells = ((): readonly string[] => {
+    const shells: string[] = []
+    const walk = (dir: string): void => {
+      for (const entry of readdirSync(join(root, dir), { withFileTypes: true })) {
+        if (!entry.isDirectory() || entry.name.startsWith('.') || entry.name === 'node_modules') continue
+        const rel = `${dir}/${entry.name}`
+        if (/iching/i.test(entry.name) && rel !== 'src/earth/iching') shells.push(rel)
+        walk(rel)
+      }
+    }
+    try { walk('src') } catch { /* the tree is the gate's own; absence is reported by the census */ }
+    return shells
+  })()
   const ichingHonest =
     ichingKeep.length === 1 &&
     ichingKeep[0]!.path === 'src/earth/iching' &&
@@ -719,7 +735,7 @@ export function folderGravityMeasuredByTheCode(root: string = enforcementScanRoo
       facet: `compose import/distance — edges=${edges.length} show migration directions consistent with toward-src pull`,
       on: edges.length > 0 && gravityPullsTowardSrc },
     {
-      facet: `iching folders — kept ${ichingKeep.map((k) => k.path).join(', ')} · removed synonym shells=${ichingRemovedSynonymShells.length}`,
+      facet: `iching folders — kept ${ichingKeep.map((k) => k.path).join(', ')} · alias shells found under src/=${ichingRemovedSynonymShells.length}${ichingRemovedSynonymShells.length ? ` (${ichingRemovedSynonymShells.join(', ')})` : ''}`,
       on: ichingHonest },
     // THE LABEL WAS FROZEN AND THE CHECK WAS NOT. This read `census 123/121` while censusOk
     // compares against UNFOLDED_CENSUS, which derives from the Fibonacci bands (55+34+21+13)

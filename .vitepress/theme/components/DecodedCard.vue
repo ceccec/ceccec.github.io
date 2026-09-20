@@ -184,6 +184,6 @@ const titleId = computed(() => {
 .decoded-card__anim { margin: 0; display: grid; justify-items: center; }
 .decoded-card__anim canvas { max-width: calc(1px * 2 * 9 * 5); }
 .decoded-card__statement[role='button'] { cursor: pointer; }
-.decoded-card__statement[role='button']:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.decoded-card__statement[role='button']:focus-visible { outline: var(--ich-sp1) solid currentColor; outline-offset: var(--ich-sp1); }
 .decoded-card__clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
 </style>

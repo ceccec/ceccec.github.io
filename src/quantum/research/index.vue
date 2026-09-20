@@ -30,9 +30,9 @@ const panel = shallowRef(quantumResearchPanelComputes())
 </template>
 
 <style scoped>
-.quantum-research-index__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
+.quantum-research-index__lede { opacity: var(--ich-op-card-soft); max-width: calc(var(--ich-sp8) * (54 - 2)); }
 .quantum-research-index__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-ms); }
-.quantum-research-index__table th, .quantum-research-index__table td { border: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent); padding: var(--ich-sp4) var(--ich-sp5); vertical-align: top; text-align: left; }
+.quantum-research-index__table th, .quantum-research-index__table td { border: var(--ich-line) solid color-mix(in srgb, currentColor calc(9% + 6%), transparent); padding: var(--ich-sp4) var(--ich-sp5); vertical-align: top; text-align: left; }
 .quantum-research-index__meta { font-size: var(--ich-text-xs); opacity: var(--ich-op-card-meta); margin-top: var(--ich-sp2); }
 .quantum-research-index__list { list-style: none; padding: 0; margin: 0; }
 .quantum-research-index__list li { margin-bottom: var(--ich-sp3); }

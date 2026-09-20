@@ -57,7 +57,7 @@ const gaps = computed(() =>
   gap: var(--ich-sp2);
   align-items: baseline;
   margin: 0;
-  opacity: calc(4 / 5);
+  opacity: var(--ich-op-card-faint);
 }
 .page-computed-gaps__list {
   list-style: none;
@@ -72,6 +72,6 @@ const gaps = computed(() =>
   gap: var(--ich-sp2);
   align-items: baseline;
 }
-.page-computed-gaps__list code { opacity: calc(3 / 5); }
-.page-computed-gaps__list span { opacity: calc(7 / (2 * 5)); }
+.page-computed-gaps__list code { opacity: var(--ich-op-soft); }
+.page-computed-gaps__list span { opacity: var(--ich-op-mid); }
 </style>

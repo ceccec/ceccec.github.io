@@ -31,7 +31,7 @@
 
 import { createRequire } from 'node:module'
 import { eachFacet } from './corpus.ts'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 const require = createRequire(`${process.cwd()}/`)
 
@@ -138,17 +138,19 @@ export function findWeakestBarFacets(root: string = process.cwd()): VacuousFacet
 }
 
 export function assertFacetsCanFail(): void {
-  const vacuous = findVacuousFacets()
-  const byWhy = new Map<string, number>()
-  for (const v of vacuous) {
-    const key = v.why.split(' &&')[0]!
-    byWhy.set(key, (byWhy.get(key) ?? 0) + 1)
-  }
-  for (const [why, count] of [...byWhy].sort((a, b) => b[1] - a[1])) console.log(`  ${String(count).padStart(4)}  ${why}`)
-  for (const v of vacuous.slice(0, 6)) console.log(`    ${v.file}:${v.line}  ${v.facet}`)
-  console.log(ratchet('limits.always-true', vacuous.length, { evidence: () => vacuous.map((v) => `${v.file}:${v.line}  ${v.facet}`) }))
+  everyRatchet(() => {
+    const vacuous = findVacuousFacets()
+    const byWhy = new Map<string, number>()
+    for (const v of vacuous) {
+      const key = v.why.split(' &&')[0]!
+      byWhy.set(key, (byWhy.get(key) ?? 0) + 1)
+    }
+    for (const [why, count] of [...byWhy].sort((a, b) => b[1] - a[1])) console.log(`  ${String(count).padStart(4)}  ${why}`)
+    for (const v of vacuous.slice(0, 6)) console.log(`    ${v.file}:${v.line}  ${v.facet}`)
+    console.log(ratchet('limits.always-true', vacuous.length, { evidence: () => vacuous.map((v) => `${v.file}:${v.line}  ${v.facet}`) }))
 
-  const weak = findWeakestBarFacets()
-  for (const w of weak.slice(0, 4)) console.log(`    ${w.file}:${w.line}  [${w.why}]  ${w.facet.slice(0, 62)}`)
-  console.log(ratchet('limits.weakest-bar', weak.length, { evidence: () => weak.map((w) => `${w.file}:${w.line}  [${w.why}]  ${w.facet}`) }))
+    const weak = findWeakestBarFacets()
+    for (const w of weak.slice(0, 4)) console.log(`    ${w.file}:${w.line}  [${w.why}]  ${w.facet.slice(0, 62)}`)
+    console.log(ratchet('limits.weakest-bar', weak.length, { evidence: () => weak.map((w) => `${w.file}:${w.line}  [${w.why}]  ${w.facet}`) }))
+  })
 }

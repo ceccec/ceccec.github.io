@@ -412,5 +412,8 @@
   color: var(--ui-foreground);
   padding: calc(var(--ich-sp4) * calc(1 / 2)) var(--ich-sp4);
   font-size: var(--ich-em-card-meta);
-  box-shadow: var(--ich-glow, none);
+  /* --ich-glow is a COLOUR. `box-shadow: <colour>` with no offsets is invalid CSS, so this whole
+     declaration was dropped by every browser and the tooltip had no shadow — while `, none` made
+     the absence read as a decision. The geometry comes off the ladder; the colour is the token. */
+  box-shadow: 0 var(--ich-sp2) var(--ich-sp4) var(--ich-glow);
 }

@@ -893,9 +893,61 @@ export function physicalFtlByFormulas(statement: string, formulas: readonly stri
 
 /** The overclaim axes — each is (terms it NAMES, markers that ASSERT the claim, markers that DENY/OPEN it). Adding an
  *  axis (a future "unbreakable encryption" claim, say) extends every consumer for free — one primitive, m axes compose. */
+/** Artificial general intelligence — a fold "claims AGI" only by asserting it HAS one, never by naming it. */
+export const AGI_TERMS = [
+  'artificial general intelligence', 'agi', 'general intelligence', 'superintelligence', 'sentient',
+  'conscious machine', 'self-aware system',
+] as const
+/** Language asserting the corpus HAS achieved general intelligence (strict). */
+export const AGI_CLAIM_MARKERS = [
+  'achieves artificial general intelligence', 'is an agi', 'we have built an agi', 'achieves agi',
+  'is generally intelligent', 'is sentient', 'is self-aware', 'attains superintelligence',
+] as const
+/** Language DENYING it — its presence refutes a co-located claim (honest folds carry these). */
+export const AGI_DENIAL_MARKERS = [
+  'not agi', 'no agi', 'not artificial general intelligence', 'not sentient', 'not conscious',
+  'not self-aware', 'deterministic', 'no learned model', 'not an llm', 'sealed corpus', 'harmony ≠ truth',
+  'agi is not claimed', 'not general intelligence',
+] as const
+
+/** Dark-matter particle IDENTITY — naming a candidate is physics; asserting the corpus HAS identified it is the claim. */
+export const DM_IDENTITY_TERMS = [
+  'wimp', 'axion', 'sterile neutrino', 'dark matter particle', 'dark-matter particle', 'neutralino', 'dark photon',
+] as const
+/** Language asserting the identity is SETTLED. */
+export const DM_IDENTITY_CLAIM_MARKERS = [
+  'dark matter is a', 'dark matter is the', 'identifies dark matter as', 'dark matter has been detected',
+  'we have identified the dark matter', 'the dark matter particle is', 'dark matter is identified',
+] as const
+/**
+ * Language DENYING it. THESE MUST NOT OVERLAP WITH ORDINARY DESCRIPTION, and the first draft did:
+ * it listed 'null to date', 'open frontier' and 'refusebeyond' — all of which the honest CMB fold
+ * says in its own statement. The deny branch is a BLANKET VETO (overclaimByFormulas returns 0 the
+ * moment any marker matches), so the scan returned 0 for every input including a planted claim:
+ * a detector disabled by the very text it was pointed at. The first perturb test missed it because
+ * the planted string was synthetic; perturbing the fold's REAL statement is what caught it.
+ * A denial marker is a phrase somebody writes ONLY to disavow the claim — never a phrase that
+ * appears while merely describing the evidence.
+ */
+export const DM_IDENTITY_DENIAL_MARKERS = [
+  'not a dark matter particle claim', 'no dark-matter particle is identified',
+  'dark matter identity remains open', 'this fold claims no particle identity',
+] as const
+
 export const OVERCLAIM_AXES = {
   clay: { terms: CMI_PRIZE_PROBLEM_TERMS, claim: CLAY_SOLUTION_MARKERS, deny: CLAY_OPEN_MARKERS },
   ftl: { terms: PHYSICAL_FTL_TERMS, claim: PHYSICAL_FTL_CLAIM_MARKERS, deny: PHYSICAL_FTL_DENIAL_MARKERS },
+  // THE THIRD AXIS, ADDED 2026-09-20. `agiNotClaimed = true as const` sat in quantum/apps asserting the
+  // corpus claims no general intelligence — a refusal nothing could move, in a corpus that talks about
+  // minds, chat and self-development on every page. One OVERCLAIM_AXES row gives it the same scanner the
+  // clay and FTL refusals use, and every consumer of overclaimByFormulas gets it for free.
+  agi: { terms: AGI_TERMS, claim: AGI_CLAIM_MARKERS, deny: AGI_DENIAL_MARKERS },
+  // THE FOURTH AXIS, ADDED 2026-09-20. `certified = false as const` in water/cosmos sealed the CMB dark-matter
+  // fold's refusal to name a particle — and when that tautology was purged it was replaced by a SECOND hardcoded
+  // false (`particleIdentityProved = false`), which is the same defect wearing a better name. The tautology gate
+  // caught the move. Now the refusal READS the fold's own statement: name a candidate AND assert it is settled
+  // and the facet goes dark. That is a refusal that can be refuted, which is the only kind worth sealing.
+  dm: { terms: DM_IDENTITY_TERMS, claim: DM_IDENTITY_CLAIM_MARKERS, deny: DM_IDENTITY_DENIAL_MARKERS },
 } as const
 export type OverclaimAxis = keyof typeof OVERCLAIM_AXES
 
@@ -917,9 +969,33 @@ export function overclaimByFormulas(axis: OverclaimAxis, statement: string, form
     }
   }
   const text = `${statement} ${formulas.join(' ')}`.toLowerCase()
-  if ((spec.deny as readonly string[]).some((marker) => text.includes(marker))) return 0 // the fold denies/opens the claim → none
-  if (!(spec.claim as readonly string[]).some((marker) => text.includes(marker))) return 0 // no assertion of the claim → none
-  return (spec.terms as readonly string[]).filter((term) => text.includes(term)).length
+  // A DENIAL CANCELS THE CLAIM IT SITS WITH — NOT EVERY CLAIM IN THE DOCUMENT.
+  //
+  // The deny branch used to veto the WHOLE text: one marker anywhere returned 0 for everything. In a
+  // corpus whose deny lists contain 'open', 'decoded', 'empirical' and 'deterministic' — words on
+  // nearly every page — that is not a safeguard, it is an off switch. Measured, before this change:
+  //
+  //   overclaimByFormulas('clay', 'We hereby prove the Riemann hypothesis; the millennium problem
+  //                                is solved. QED.')                                        -> 1
+  //   ...the same sentence with the word 'open' anywhere after it                           -> 0
+  //   ...with 'decoded', 'unclaimed' or 'not cmi' anywhere after it                         -> 0
+  //   overclaimByFormulas('agi', 'This system is sentient and achieves AGI. It is deterministic.') -> 0
+  //
+  // So the detector guarding every Millennium-prize claim in this corpus was disabled by the word
+  // 'open'. This is the empty-marker bug again — a detector emptied of what it detects — and the
+  // empty-string guard above was written for exactly that lesson, one layer too shallow.
+  //
+  // The fix is scope, not a shorter list: a denial only speaks for the SENTENCE it appears in. A fold
+  // may honestly write "P remains open" in one sentence; that must not launder "we solved Q" in the
+  // next. Honest folds are unaffected — they put the denial beside the claim, which is what makes it
+  // a denial and not a disclaimer parked at the bottom of the page.
+  const sentences = text.split(/(?<=[.;!?·\n])\s+|\s+—\s+/).filter((part) => part.trim().length > 0)
+  const asserting = sentences.filter((sentence) =>
+    (spec.claim as readonly string[]).some((marker) => sentence.includes(marker)) &&
+    !(spec.deny as readonly string[]).some((marker) => sentence.includes(marker)))
+  if (asserting.length === 0) return 0 // nothing asserts the claim without denying it in the same breath
+  const claimed = asserting.join(' ')
+  return (spec.terms as readonly string[]).filter((term) => claimed.includes(term)).length
 }
 // HOMOLOGY_LOOPS is declared above the census, which now derives its band count from it.
 /** a432 derived, not declared: 432 = 3³·2⁴ — the trinity cubed (the 3·6·9 axis, 3×3×3) times the 4-bit
@@ -1731,7 +1807,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/thunder/movie/canvas/index.ts', literal: '*', count: 4, kind: 'tuned', source: 'attested residue — hand-fixed values (PR#63 movie-all-elements 1→4), derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/thunder/resonance/index.ts', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed values, derivation not yet known; Wave C1 drawResonanceProjection (ratcheted 1→2)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/thunder/verify/index.ts', literal: '*', count: 5, kind: 'tuned', source: 'attested residue — hand-fixed values + discovery-wave pins relocated from cosmos 2026-07-08', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
-  { file: 'src/thunder/waves/index.ts', literal: '*', count: 20, kind: 'tuned', source: 'attested residue — hand-fixed values + discovery-wave pins + wave/domain (#101) encode slice·percent (19→20)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
+  { file: 'src/thunder/waves/index.ts', literal: '*', count: 22, kind: 'tuned', source: 'attested residue — hand-fixed values + discovery-wave pins + wave/domain (#101) encode slice·percent (19→20)', frontier: 'epistemic law: fixed at discovery, may eventually be computed — each value a research target' },
   { file: 'src/water/cosmos/index.ts', literal: '0.2056', count: 2, kind: 'data', source: 'Mercury orbital eccentricity — JPL J2000 elements (value + its facet check)' },
   { file: 'src/water/cosmos/index.ts', literal: '0.0068', count: 1, kind: 'data', source: 'Venus orbital eccentricity — JPL J2000 elements' },
   { file: 'src/water/cosmos/index.ts', literal: '0.0167', count: 1, kind: 'data', source: 'Earth orbital eccentricity — JPL J2000 elements' },
@@ -1758,12 +1834,11 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: '.vitepress/lib/component-bagua-groups.ts', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: '.vitepress/lib/dev-server-bind.mts', literal: '*', count: 1, kind: 'data', source: 'pinned dev port 5173 (launch/config coupling)' },
   { file: '.vitepress/theme/components/CollectiveMind.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
-  { file: '.vitepress/theme/components/DoubleTorusExperience.vue', literal: '*', count: 4, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
-  { file: '.vitepress/theme/components/HeroBackgroundLayer.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
+  { file: '.vitepress/theme/components/DoubleTorusExperience.vue', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: '.vitepress/theme/components/LinkedHeroCard.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
-  { file: '.vitepress/theme/components/ModelCardPages.vue', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
+  { file: '.vitepress/theme/components/ModelCardPages.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: '.vitepress/theme/components/RayHub.vue', literal: '*', count: 2, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
-  { file: '.vitepress/theme/components/SpeechReader.vue', literal: '*', count: 3, kind: 'tuned', source: 'attested residue — hand-fixed layout values (floating-button z-index, corner radius) + a page-text character cap, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
+  { file: '.vitepress/theme/components/SpeechReader.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — a page-text character cap (30000) read before speaking; the z-index and corner radius it also covered are now ladder expressions, so only the cap is left', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: '.vitepress/theme/components/UiAsideShell.vue', literal: '*', count: 1, kind: 'tuned', source: 'attested residue — hand-fixed layout/animation values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/pair/theorem/stability/detector/index.ts', literal: '*', count: 24, kind: 'tuned', source: 'quantum-proof detector/hardware toolkit — example confidence and calibration values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
   { file: 'src/pair/quantum/hardware/index.ts', literal: '*', count: 13, kind: 'tuned', source: 'quantum-proof detector/hardware toolkit — example confidence and calibration values, derivation not yet known', frontier: 'epistemic law: fixed at discovery, may eventually be computed' },
@@ -1816,17 +1891,6 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/index.ts', literal: '1000000', count: 3, kind: 'unit', source: 'simulator coherence time in microseconds — stands for unbounded coherence, not a measurement', frontier: 'a sentinel, not a physical value' },
   // ── the remaining quantum surface: SVG geometry, retry budgets, SI scales, targets ──
   // Each is data, an SI unit, or a hand-fixed parameter with no derivation yet known.
-  { file: 'src/quantum/solver/browser/index.vue', literal: '600', count: 7, kind: 'data', source: 'SVG viewBox width and layout coordinates for the solver interface', frontier: 'presentation geometry; no computation depends on it' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '124', count: 2, kind: 'data', source: 'SVG layout coordinate', frontier: 'presentation geometry' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '58', count: 2, kind: 'data', source: 'SVG layout coordinate', frontier: 'presentation geometry' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '237', count: 2, kind: 'data', source: 'SVG layout coordinate', frontier: 'presentation geometry' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '212', count: 1, kind: 'data', source: 'SVG layout coordinate', frontier: 'presentation geometry' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '700', count: 1, kind: 'data', source: 'SVG viewBox height', frontier: 'presentation geometry' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '255', count: 1, kind: 'unit', source: 'maximum byte value 2^8 - 1 in colour maths', frontier: 'terminal: the byte' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '0.3', count: 1, kind: 'data', source: 'SVG opacity', frontier: 'presentation' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '0.4', count: 1, kind: 'data', source: 'SVG opacity', frontier: 'presentation' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '0.2', count: 1, kind: 'data', source: 'SVG opacity', frontier: 'presentation' },
-  { file: 'src/quantum/solver/browser/index.vue', literal: '1.8', count: 1, kind: 'data', source: 'SVG stroke width', frontier: 'presentation' },
   { file: 'src/quantum/solver/index.ts', literal: '65537', count: 1, kind: 'data', source: 'RSA public exponent F4 = 2^16 + 1 — RFC 8017 default', frontier: 'a standard choice' },
   { file: 'src/quantum/solver/index.ts', literal: '10', count: 1, kind: 'tuned', source: 'default attempt budget', frontier: 'a retry budget' },
   { file: 'src/quantum/index.ts', literal: '196', count: 1, kind: 'data', source: 'chi-squared critical-value table entry used by the statistical check', frontier: 'a tabulated statistic — replaceable by computing the quantile' },
@@ -1861,10 +1925,7 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/voice/index.ts', literal: '31', count: 2, kind: 'data', source: 'voice/tone table entry', frontier: 'presentation data' },
   { file: 'src/quantum/voice/index.ts', literal: '13', count: 1, kind: 'data', source: 'voice/tone table entry', frontier: 'presentation data' },
   { file: 'src/quantum/voice/index.ts', literal: '0.5', count: 1, kind: 'tuned', source: 'voice mix level', frontier: 'presentation parameter' },
-  { file: 'src/ui/layouts/index.vue', literal: '0.6', count: 2, kind: 'data', source: 'layout opacity', frontier: 'presentation' },
-  { file: 'src/ui/layouts/index.vue', literal: '0.7', count: 1, kind: 'data', source: 'layout opacity', frontier: 'presentation' },
-  { file: 'src/ui/layouts/index.vue', literal: '0.5', count: 1, kind: 'data', source: 'layout opacity', frontier: 'presentation' },
-  { file: 'src/ui/layouts/index.vue', literal: '50', count: 2, kind: 'data', source: 'layout percentage split', frontier: 'presentation' },
+  { file: 'src/ui/layouts/index.vue', literal: '50', count: 1, kind: 'data', source: 'layout percentage split', frontier: 'presentation' },
   { file: 'src/ui/layouts/index.vue', literal: '53', count: 1, kind: 'data', source: 'layout percentage split', frontier: 'presentation' },
   // ── crypto — RSA standard exponent, algorithm bounds, and console rule width ──
   { file: 'src/crypto/reverse/index.ts', literal: '65537', count: 1, kind: 'data', source: 'RSA public exponent F4 = 2^16 + 1 — RFC 8017 (PKCS#1) default', frontier: 'a standard choice, not a derivation' },

@@ -8,12 +8,14 @@
  * the floor is what the tree measures today; a divergence is a crack, so that floor is zero.
  */
 
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 import { theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks } from '../../src/mountain/seals/index.ts'
 
 export function assertTitleGaps(): void {
-  const titles = theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks()
-  for (const f of titles.facets) console.log(`  ${f.on ? '✓' : '·'} ${f.facet.slice(0, 120)}${f.facet.length > 120 ? '…' : ''}`)
-  console.log(ratchet('titles.divergent', titles.divergent.length, { evidence: () => titles.divergent }))
-  console.log(ratchet('titles.algebra-gaps', titles.gaps.length, { evidence: () => titles.gaps }))
+  everyRatchet(() => {
+    const titles = theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks()
+    for (const f of titles.facets) console.log(`  ${f.on ? '✓' : '·'} ${f.facet.slice(0, 120)}${f.facet.length > 120 ? '…' : ''}`)
+    console.log(ratchet('titles.divergent', titles.divergent.length, { evidence: () => titles.divergent }))
+    console.log(ratchet('titles.algebra-gaps', titles.gaps.length, { evidence: () => titles.gaps }))
+  })
 }

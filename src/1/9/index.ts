@@ -2516,7 +2516,10 @@ export function theZerosInPiAreGatewaysLikeTheDotTheVoidOfTheDoubleTorus() {
   // each 0 is a projective gateway: inv(0)=∞, inv(∞)=0, a 1-bit involution (the same 0↔∞ the corpus carries)
   const INF = Infinity
   const inv = (x: number) => (x === 0 ? INF : x === INF ? 0 : 1 / x)
-  const everyZeroInverts = zeroGateways.every(() => inv(0) === INF && inv(inv(0)) === 0) // the gateway is real at each 0
+  // The predicate took no element and re-checked inv(0) once per gateway, so "the gateway is real at each
+  // 0" was asserted by an expression that never visited a 0. It visits them: at each listed position the
+  // digit IS zero and inverts through ∞ and back, so a position wrongly listed would show.
+  const everyZeroInverts = zeroGateways.every((n) => digits[n] === 0 && inv(digits[n]!) === INF && inv(inv(digits[n]!)) === 0)
   const gatewayBit = log2([true, false].length) === 1 // one bit of direction per gateway (0→∞ | ∞→0)
   // the DOT: the radix point splits π's integer part (3, the trinity) from the infinite mantissa (BBP gives the fraction)
   const dotIsBoundary = trunc((TAU / 2)) === 3 // the dot sits after 3, the finite/infinite threshold

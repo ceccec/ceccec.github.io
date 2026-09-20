@@ -23,7 +23,7 @@
 
 import { createRequire } from 'node:module'
 import { corpusFiles } from './corpus.ts'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 const require = createRequire(`${process.cwd()}/`)
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp'])
@@ -326,40 +326,42 @@ export function concentrationOf(name: string, file: string, line: number, re: Re
 }
 
 export function assertScopesCompute(): void {
-  const narrated = findNarratedScopes()
-  // THE FLOOR IS RECORDED, NOT TYPED. Both numbers here were `const BASELINE = 620` and I edited them by
-  // hand after every wave — a hardcoded value maintained by a human, inside the file that exists to catch
-  // exactly that. ratchet() reads what was measured, throws on worse, records on better, and the record is
-  // committed so every tightening is a diff. Adopted from ceccec-github-io-7a's status.ts.
-  console.log(`fold scopes still narrated rather than computed — ${ratchet('scope.narrated', narrated.length, { evidence: () => narrated.map((n) => `${n.file}:${n.line}  ${n.head}`) })}`)
-  for (const n of narrated.slice(0, 10)) console.log(`  ${n.file}:${n.line}  ${n.head}`)
-  if (narrated.length > 10) console.log(`  ...and ${narrated.length - 10} more`)
+  everyRatchet(() => {
+    const narrated = findNarratedScopes()
+    // THE FLOOR IS RECORDED, NOT TYPED. Both numbers here were `const BASELINE = 620` and I edited them by
+    // hand after every wave — a hardcoded value maintained by a human, inside the file that exists to catch
+    // exactly that. ratchet() reads what was measured, throws on worse, records on better, and the record is
+    // committed so every tightening is a diff. Adopted from ceccec-github-io-7a's status.ts.
+    console.log(`fold scopes still narrated rather than computed — ${ratchet('scope.narrated', narrated.length, { evidence: () => narrated.map((n) => `${n.file}:${n.line}  ${n.head}`) })}`)
+    for (const n of narrated.slice(0, 10)) console.log(`  ${n.file}:${n.line}  ${n.head}`)
+    if (narrated.length > 10) console.log(`  ...and ${narrated.length - 10} more`)
 
-  const boundaries = findNarratedBoundaries()
-  const labelled = boundaries.filter((b) => /HONEST SCOPE/.test(b.says))
-  console.log(`\nboundaries whose limits are prose rather than computation — ${ratchet('scope.boundaries', boundaries.length, { evidence: () => boundaries.map((b) => `${b.file}:${b.line}  ${b.says}`) })} · a CEILING, not a target`)
-  console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — navigation only; deleting the label converts nothing`)
-  for (const b of labelled.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
-  if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)
+    const boundaries = findNarratedBoundaries()
+    const labelled = boundaries.filter((b) => /HONEST SCOPE/.test(b.says))
+    console.log(`\nboundaries whose limits are prose rather than computation — ${ratchet('scope.boundaries', boundaries.length, { evidence: () => boundaries.map((b) => `${b.file}:${b.line}  ${b.says}`) })} · a CEILING, not a target`)
+    console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — navigation only; deleting the label converts nothing`)
+    for (const b of labelled.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
+    if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)
 
-  // THE INVOLUTION, RUN OVER EVERYTHING RATHER THAN OVER WHAT I NOTICED. Reports, never ratchets: a pattern
-  // may be legitimately dominated by its main case, and there is no share at which a name becomes dishonest.
-  const criteria = discoverCriteria()
-  const alternating = criteria.filter((c) => alternativesOf(c.source).length >= 4)
-  console.log(`\ncriteria involuted: ${criteria.length} regex constants discovered, ${alternating.length} with 4+ alternatives`)
-  // THE CORPUS IS NAMED, because a concentration figure means nothing without one. This gate owns boundary
-  // prose and nothing else, so that is what it measures against — NOT each criterion's own subject matter.
-  // REFUTABLE's authoritative numbers (96.6% pass, 97.3% on \d) are over theorem statements and are recorded
-  // in the header above; the ranking here is a different corpus and will differ. Reporting the wrong corpus
-  // silently would be the exact defect this file exists for.
-  const corpus = boundaries.map((b) => b.says)
-  const ranked = alternating
-    .map((c) => { try { return concentrationOf(c.name, c.file, c.line, new RegExp(c.source, c.flags.replace('g', '')), corpus) } catch { return undefined } })
-    .filter((r): r is Concentration => !!r && r.passes >= 2 * 5)
-    .sort((a, b) => b.topShare - a.topShare)
-  console.log(`  measured against ${corpus.length} boundary excerpts (this gate's own corpus, NOT each criterion's subject) · ${ranked.length} rank`)
-  console.log('  a high share means the other alternatives are decoration — REPORTED, not enforced:')
-  for (const r of ranked.slice(0, 2 * 3)) {
-    console.log(`    ${(r.topShare * 100).toFixed(1).padStart(5)}% of passes on one alternative · ${String(r.alternatives).padStart(2)} alts · ${r.name} (${r.file}:${r.line}) → ${r.top.slice(0, 24)}`)
-  }
+    // THE INVOLUTION, RUN OVER EVERYTHING RATHER THAN OVER WHAT I NOTICED. Reports, never ratchets: a pattern
+    // may be legitimately dominated by its main case, and there is no share at which a name becomes dishonest.
+    const criteria = discoverCriteria()
+    const alternating = criteria.filter((c) => alternativesOf(c.source).length >= 4)
+    console.log(`\ncriteria involuted: ${criteria.length} regex constants discovered, ${alternating.length} with 4+ alternatives`)
+    // THE CORPUS IS NAMED, because a concentration figure means nothing without one. This gate owns boundary
+    // prose and nothing else, so that is what it measures against — NOT each criterion's own subject matter.
+    // REFUTABLE's authoritative numbers (96.6% pass, 97.3% on \d) are over theorem statements and are recorded
+    // in the header above; the ranking here is a different corpus and will differ. Reporting the wrong corpus
+    // silently would be the exact defect this file exists for.
+    const corpus = boundaries.map((b) => b.says)
+    const ranked = alternating
+      .map((c) => { try { return concentrationOf(c.name, c.file, c.line, new RegExp(c.source, c.flags.replace('g', '')), corpus) } catch { return undefined } })
+      .filter((r): r is Concentration => !!r && r.passes >= 2 * 5)
+      .sort((a, b) => b.topShare - a.topShare)
+    console.log(`  measured against ${corpus.length} boundary excerpts (this gate's own corpus, NOT each criterion's subject) · ${ranked.length} rank`)
+    console.log('  a high share means the other alternatives are decoration — REPORTED, not enforced:')
+    for (const r of ranked.slice(0, 2 * 3)) {
+      console.log(`    ${(r.topShare * 100).toFixed(1).padStart(5)}% of passes on one alternative · ${String(r.alternatives).padStart(2)} alts · ${r.name} (${r.file}:${r.line}) → ${r.top.slice(0, 24)}`)
+    }
+  })
 }

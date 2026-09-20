@@ -29,7 +29,7 @@
  */
 import { readdirSync, readFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 export type ClaimGap = { file: string; line: number; rule: 'spelled-comparison' | 'cost-vs-evidence'; label: string; on: string }
 
@@ -174,16 +174,18 @@ export function findUntriedClaims(root: string = process.cwd()): { published: nu
 }
 
 export function assertClaimsMatchEvidence(): void {
-  const gaps = findClaimGaps()
-  const spelled = gaps.filter((g) => g.rule === 'spelled-comparison')
-  const cost = gaps.filter((g) => g.rule === 'cost-vs-evidence')
-  console.log(`claims: ${spelled.length} label(s) spelling a comparison the code does not make · ${cost.length} cost claim(s) tested only by difference`)
-  for (const g of gaps.slice(0, 12)) console.log(`  [${g.rule}] ${g.file}:${g.line}\n      ${g.label}\n      on: ${g.on}`)
-  console.log(ratchet('claims.spelled-comparison', spelled.length, { evidence: () => spelled.map((g) => `${g.file}:${g.line}  ${g.label}`) }))
-  console.log(ratchet('claims.cost-vs-evidence', cost.length, { evidence: () => cost.map((g) => `${g.file}:${g.line}  ${g.label}`) }))
+  everyRatchet(() => {
+    const gaps = findClaimGaps()
+    const spelled = gaps.filter((g) => g.rule === 'spelled-comparison')
+    const cost = gaps.filter((g) => g.rule === 'cost-vs-evidence')
+    console.log(`claims: ${spelled.length} label(s) spelling a comparison the code does not make · ${cost.length} cost claim(s) tested only by difference`)
+    for (const g of gaps.slice(0, 12)) console.log(`  [${g.rule}] ${g.file}:${g.line}\n      ${g.label}\n      on: ${g.on}`)
+    console.log(ratchet('claims.spelled-comparison', spelled.length, { evidence: () => spelled.map((g) => `${g.file}:${g.line}  ${g.label}`) }))
+    console.log(ratchet('claims.cost-vs-evidence', cost.length, { evidence: () => cost.map((g) => `${g.file}:${g.line}  ${g.label}`) }))
 
-  const trial = findUntriedClaims()
-  console.log(`claims: ${trial.published} published statement(s) tried — ${trial.refused} refuse rather than assert, ${trial.refutable} come from a fold with a facet that can fail, ${trial.untried.length} from a fold with nothing in it that can`)
-  for (const c of trial.untried.slice(0, 8)) console.log(`  [untried] ${c.file}:${c.line}  ${c.fold}\n      ${c.claim}`)
-  console.log(ratchet('claims.untried-published', trial.untried.length, { evidence: () => trial.untried.map((c) => `${c.file}:${c.line}  ${c.fold}  ${c.claim}`) }))
+    const trial = findUntriedClaims()
+    console.log(`claims: ${trial.published} published statement(s) tried — ${trial.refused} refuse rather than assert, ${trial.refutable} come from a fold with a facet that can fail, ${trial.untried.length} from a fold with nothing in it that can`)
+    for (const c of trial.untried.slice(0, 8)) console.log(`  [untried] ${c.file}:${c.line}  ${c.fold}\n      ${c.claim}`)
+    console.log(ratchet('claims.untried-published', trial.untried.length, { evidence: () => trial.untried.map((c) => `${c.file}:${c.line}  ${c.fold}  ${c.claim}`) }))
+  })
 }

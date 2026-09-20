@@ -99,7 +99,7 @@ watch(isDark, () => repaint())
 <style scoped>
 .emf-a432-panel__content {
   display: grid;
-  gap: 1rem;
+  gap: var(--ich-sp8);
 }
 
 .emf-a432-panel__lede {
@@ -116,7 +116,7 @@ watch(isDark, () => repaint())
 
 .emf-a432-panel__movie-host {
   min-height: calc(var(--ich-fig) + var(--ich-unit));
-  border-radius: calc(1rem * 3 / 4);
+  border-radius: calc(var(--ich-sp8) * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
 }

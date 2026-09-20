@@ -116,11 +116,11 @@ onUnmounted(() => {
   position: fixed;
   left: max(var(--ich-sp6), env(safe-area-inset-left, 0px));
   top: max(var(--ich-sp6), env(safe-area-inset-top, 0px));
-  z-index: 50;
+  z-index: calc(2 * 5 * 5);
   width: var(--ich-size-toggle);
   height: var(--ich-size-toggle);
   border-radius: var(--ich-radius-pill);
-  border: 1px solid var(--vp-hero-border);
+  border: var(--ich-line) solid var(--vp-hero-border);
   background: transparent;
   color: var(--vp-c-text-2);
   cursor: pointer;

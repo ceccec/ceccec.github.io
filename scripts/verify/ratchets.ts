@@ -24,6 +24,7 @@
 
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
+import { everyRatchet } from './status.ts'
 
 const ROOT = process.cwd()
 
@@ -85,57 +86,59 @@ function scriptsRunning(file: string): string[] {
 }
 
 export function assertEveryRatchetTicks(): void {
-  const sites = ratchetSites()
-  const closure = chainClosure()
-  const floors = JSON.parse(readFileSync(join(ROOT, 'scripts/verify/status.json'), 'utf8')) as Record<string, number>
+  everyRatchet(() => {
+    const sites = ratchetSites()
+    const closure = chainClosure()
+    const floors = JSON.parse(readFileSync(join(ROOT, 'scripts/verify/status.json'), 'utf8')) as Record<string, number>
 
-  const unenforced: string[] = []
-  const silent: string[] = []
-  console.log(`ratchets: ${sites.length} call sites, ${Object.keys(floors).length} recorded floors`)
-  for (const s of sites.sort((a, b) => a.key.localeCompare(b.key))) {
-    const runners = scriptsRunning(s.file)
-    const inChain = runners.filter((r) => closure.has(r))
-    if (!inChain.length) unenforced.push(`${s.key} (${s.file}${runners.length ? ` — only ${runners.join(', ')}` : ', no npm script'})`)
-    if (!s.consumed) silent.push(`${s.key} (${s.file}:${s.line})`)
-    const floor = floors[s.key]
-    console.log(
-      `  ${String(floor ?? 'NO FLOOR').padStart(8)}  ${s.key.padEnd(38)} ` +
-      `${inChain.length ? `enforced by ${inChain[0]}` : 'NOT ENFORCED'}${s.consumed ? '' : '  · RESULT DISCARDED'}`
-    )
-  }
+    const unenforced: string[] = []
+    const silent: string[] = []
+    console.log(`ratchets: ${sites.length} call sites, ${Object.keys(floors).length} recorded floors`)
+    for (const s of sites.sort((a, b) => a.key.localeCompare(b.key))) {
+      const runners = scriptsRunning(s.file)
+      const inChain = runners.filter((r) => closure.has(r))
+      if (!inChain.length) unenforced.push(`${s.key} (${s.file}${runners.length ? ` — only ${runners.join(', ')}` : ', no npm script'})`)
+      if (!s.consumed) silent.push(`${s.key} (${s.file}:${s.line})`)
+      const floor = floors[s.key]
+      console.log(
+        `  ${String(floor ?? 'NO FLOOR').padStart(8)}  ${s.key.padEnd(38)} ` +
+        `${inChain.length ? `enforced by ${inChain[0]}` : 'NOT ENFORCED'}${s.consumed ? '' : '  · RESULT DISCARDED'}`
+      )
+    }
 
-  // A FLOOR WITH NO CALL SITE is the mirror defect: a number nothing recomputes, which reads as a
-  // measurement and is a memory. Deleting the gate and keeping the row would pass every other check.
-  const keys = new Set(sites.map((s) => s.key))
-  const orphanFloors = Object.keys(floors).filter((k) => !keys.has(k))
+    // A FLOOR WITH NO CALL SITE is the mirror defect: a number nothing recomputes, which reads as a
+    // measurement and is a memory. Deleting the gate and keeping the row would pass every other check.
+    const keys = new Set(sites.map((s) => s.key))
+    const orphanFloors = Object.keys(floors).filter((k) => !keys.has(k))
 
-  if (unenforced.length) {
-    throw new Error(
-      `${unenforced.length} ratchet(s) are recorded but NOT reachable from verify:all — a floor nothing asks about ` +
-      `is not a floor: ${unenforced.join(' · ')}. Add the gate to the chain, or delete the ratchet and its row together.`
-    )
-  }
-  if (silent.length) {
-    throw new Error(
-      `${silent.length} ratchet(s) discard what they return — they enforce but say nothing, so HELD, TIGHTENED and ` +
-      `SEEDED all look identical to a reader: ${silent.join(' · ')}. A floor seeded from a dirty tree announces itself ` +
-      `in exactly that discarded line.`
-    )
-  }
-  if (orphanFloors.length) {
-    throw new Error(
-      `${orphanFloors.length} recorded floor(s) have no ratchet() call — nothing recomputes them, so they are memories ` +
-      `dressed as measurements: ${orphanFloors.join(', ')}`
-    )
-  }
-  // THE GATE MUST NOT COUNT ITSELF. Its prose quotes the very call it looks for, and twice it read that
-  // prose as a finding. This is the perturbation that would have caught both, run every time.
-  const selfSites = sites.filter((s) => s.file.endsWith('scripts/verify/ratchets.ts'))
-  if (selfSites.length) {
-    throw new Error(
-      `the ratchet census found ${selfSites.length} call site(s) in its OWN file (${selfSites.map((s) => `${s.key}:${s.line}`).join(', ')}) — ` +
-      `it is reading its documentation as code. It has no ratchet of its own; anything it finds here is a parsing defect.`
-    )
-  }
-  console.log('every recorded floor is reachable from verify:all and every result is read')
+    if (unenforced.length) {
+      throw new Error(
+        `${unenforced.length} ratchet(s) are recorded but NOT reachable from verify:all — a floor nothing asks about ` +
+        `is not a floor: ${unenforced.join(' · ')}. Add the gate to the chain, or delete the ratchet and its row together.`
+      )
+    }
+    if (silent.length) {
+      throw new Error(
+        `${silent.length} ratchet(s) discard what they return — they enforce but say nothing, so HELD, TIGHTENED and ` +
+        `SEEDED all look identical to a reader: ${silent.join(' · ')}. A floor seeded from a dirty tree announces itself ` +
+        `in exactly that discarded line.`
+      )
+    }
+    if (orphanFloors.length) {
+      throw new Error(
+        `${orphanFloors.length} recorded floor(s) have no ratchet() call — nothing recomputes them, so they are memories ` +
+        `dressed as measurements: ${orphanFloors.join(', ')}`
+      )
+    }
+    // THE GATE MUST NOT COUNT ITSELF. Its prose quotes the very call it looks for, and twice it read that
+    // prose as a finding. This is the perturbation that would have caught both, run every time.
+    const selfSites = sites.filter((s) => s.file.endsWith('scripts/verify/ratchets.ts'))
+    if (selfSites.length) {
+      throw new Error(
+        `the ratchet census found ${selfSites.length} call site(s) in its OWN file (${selfSites.map((s) => `${s.key}:${s.line}`).join(', ')}) — ` +
+        `it is reading its documentation as code. It has no ratchet of its own; anything it finds here is a parsing defect.`
+      )
+    }
+    console.log('every recorded floor is reachable from verify:all and every result is read')
+  })
 }

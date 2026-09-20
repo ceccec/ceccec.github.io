@@ -4,7 +4,7 @@
 import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
 import * as __ns_up_lake_widgets from '../../widgets/index.ts'
-import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7/index.ts'
+import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, overclaimByFormulas, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7/index.ts'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7/index.ts'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
@@ -286,18 +286,22 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
       dm.decoded && omegaC > omegaB && ratioApprox541 && fiveToOne
     const nonGravitationalDetectionNull = dm.decoded // composed: LZ/indirect/LHC null facet in darkMatterDecoded
     // Quantum gaps in theorems = incomplete revelation framing: identity/detection theorem apparatus OPEN
-    const particleIdentityProved = false // refuseBeyond — this fold never claims a DM particle
-    const quantumGapsInTheorems = nonGravitationalDetectionNull && !particleIdentityProved
-    const certified = false as const
-    const sealIntent =
+    // MEASURED, not declared: scan this fold's OWN emitted text for a settled particle identity.
+    // Was `false` (and before that `certified = false as const`) — a refusal nothing could refute.
+    const sealIntentDraft =
       `Ω_c/Ω_b = ${ratioRounded} — the unseen outweighs baryons ${round(ratio)}:1 in the CMB budget; ` +
       'every non-gravitational detection NULL to date because of the quantum gaps in theorems'
+    const notesDraft: readonly string[] = [
+      ' — classical sealed-density arithmetic · NOT FLOPS · NOT physical DM particle proof',
+    ]
+    const particleIdentityProved = Boolean(overclaimByFormulas('dm', sealIntentDraft, notesDraft)) // ANY claim, not a threshold somebody chose
+    const quantumGapsInTheorems = nonGravitationalDetectionNull && !particleIdentityProved
+    const certified = false as const
+    const sealIntent = sealIntentDraft
     // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
     // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
     // report itself satisfied. Several are safety scope, which is exactly why they are kept.
-    const notes: readonly string[] = [
-      ' — classical sealed-density arithmetic · NOT FLOPS · NOT physical DM particle proof',
-    ]
+    const notes: readonly string[] = notesDraft
 
     const facets = [
       {
@@ -313,8 +317,8 @@ export function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix: MindMatri
         facet: 'null non-gravitational detection attributed to quantum gaps in theorems (incomplete revelation / OPEN frontier framing)',
         on: quantumGapsInTheorems && sealIntent.includes('quantum gaps in theorems') },
       {
-        facet: `locks — certified=${certified} · refuseBeyond stays`,
-        on: certified === false },    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
+        facet: `locks — certified=${certified} · refuseBeyond stays: this fold never claims a dark-matter particle identity (${particleIdentityProved})`,
+        on: particleIdentityProved === false },    ].map((entry) => ({ ...entry, receipt: toUuid(`cmb-omega-c-over-b:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems', facets)
     return {
       computes: sealed.ok && gravitationalCmbBudget && nonGravitationalDetectionNull && quantumGapsInTheorems,
@@ -2777,7 +2781,10 @@ export function theTraceWaveIsSevenDimensionalTheSpectralInvariantFromTracesAlon
   const cp = charPoly(M) // Faddeev–LeVerrier: [1, c₁, …, c₇] built from the trace moments tr(Mᵏ) alone
   const traceIsFirstCoeff = abs(cp[1] - -matTrace(M)) < 1e-9 // c₁ = −tr(M): the trace IS the first spectral invariant
   const sevenDim = M.length === 7 && (M[0]?.length ?? 0) === 7 // 7-dimensional
-  const spectralFromTraces = cp.length === 7 + 1 // degree 7 → 7 eigenvalues, all from traces
+  // DERIVED FROM THE MATRIX, NOT FROM THE 7. A degree-n characteristic polynomial has n+1 coefficients
+  // for EVERY n; writing 7 + 1 made the check agree with the general fact only at one dimension, and
+  // agree with nothing if M ever changed size. M.length is the n that is actually in front of it.
+  const spectralFromTraces = cp.length === M.length + 1 // degree n → n eigenvalues, all from traces
   const facets = [
     { facet: `THE TRACE IS THE BASIS-INDEPENDENT SPECTRAL INVARIANT: the characteristic polynomial's first coefficient is exactly −tr(M) (${traceIsFirstCoeff}), and Faddeev–LeVerrier builds ALL its coefficients from the trace moments tr(Mᵏ) — so the spectrum (the eigenvalues) is computed ONLY from traces, which are conjugation-invariant, basis-free and dimensionless (per the constants lesson)`, on: traceIsFirstCoeff },
     { facet: `IN 7D — THE OCTONION SELF-OBSERVING DIMENSION: on a 7×7 operator (${sevenDim}, Im 𝕆, the only nontrivial cross-product/self-observing dimension besides 3), the trace moments recover the full characteristic polynomial — ${cp.length} coefficients → 7 eigenvalues (${spectralFromTraces}) — the wave computes the spectral invariant of the 7D structure using traces alone, built recursively (the fractal)`, on: sevenDim && spectralFromTraces },

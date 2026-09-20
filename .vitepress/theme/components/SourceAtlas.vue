@@ -35,7 +35,7 @@ const groups = (a: Atlas) => Object.keys(a.sciences).sort().map((science) => ({ 
 </template>
 
 <style scoped>
-.source-atlas__census { font-variant-numeric: tabular-nums; opacity: calc(4 / 5); }
+.source-atlas__census { font-variant-numeric: tabular-nums; opacity: var(--ich-op-card-faint); }
 .source-atlas ul { columns: 2; margin: 0 0 var(--ich-sp4); }
 .source-atlas li { break-inside: avoid; font-size: calc(1em * 9 / (2 * 5)); }
 @media (max-width: 620px) { .source-atlas ul { columns: 1; } }

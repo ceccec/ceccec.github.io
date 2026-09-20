@@ -317,7 +317,7 @@ export default { name: 'UniversalPageTemplate' }
 
 .standard-paper {
   display: grid;
-  gap: var(--ich-sp5, 1.25rem);
+  gap: var(--ich-sp5);
   margin: 0 0 calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(3 / 4));
   max-width: calc(1px * 2 * 360);
   font-family: Georgia, 'Times New Roman', serif;
@@ -325,25 +325,24 @@ export default { name: 'UniversalPageTemplate' }
 }
 .standard-paper h2 {
   font-size: calc(1em * 6 / 5);
-  margin: 0 0 var(--ich-sp2, 0.5rem);
+  margin: 0 0 var(--ich-sp2);
 }
 .standard-paper__formula {
   white-space: pre-wrap;
   font-family: ui-monospace, Menlo, monospace;
   font-size: calc(1em * 9 / (2 * 5));
-  padding: var(--ich-sp4, 1rem);
+  padding: var(--ich-sp4);
   border-left: calc(1px * 3) solid currentColor;
-  overflow-x: auto;
 }
 .standard-paper__meta {
   font-size: calc(1em * 4 / 5);
-  opacity: calc(3 / 5);
+  opacity: var(--ich-op-soft);
 }
 .standard-paper__locks {
   display: grid;
   grid-template-columns: max-content 1fr;
-  gap: calc(1px * 2) var(--ich-sp3, 0.75rem);
+  gap: calc(1px * 2) var(--ich-sp3);
 }
-.standard-paper__locks dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
+.standard-paper__locks dt { font-weight: calc(6 * 100); opacity: var(--ich-op-soft); }
 .standard-paper__locks dd { margin: 0; }
 </style>

@@ -55,7 +55,7 @@ const show = computed(() => abstract.value.length > 0 || keywords.value.length >
   font-size: var(--ich-text-2xs);
   letter-spacing: var(--ich-track-wide);
   text-transform: uppercase;
-  opacity: calc(3 / 4);
+  opacity: var(--ich-op-card-meta);
 }
 .paper-frame__abstract {
   margin: 0;
@@ -65,6 +65,6 @@ const show = computed(() => abstract.value.length > 0 || keywords.value.length >
 .paper-frame__keywords {
   margin: var(--ich-sp1) 0 0;
   font-size: var(--ich-text-xs);
-  opacity: calc(4 / 5);
+  opacity: var(--ich-op-card-faint);
 }
 </style>

@@ -25,7 +25,7 @@
   overflow: hidden;
   margin: var(--vp-movie-card-margin) 0;
   background: transparent;
-  border: 1px solid var(--vp-hero-border);
+  border: var(--ich-line) solid var(--vp-hero-border);
   border-radius: var(--vp-movie-radius);
 }
 
@@ -59,7 +59,7 @@
 }
 
 .vp-with-hero-movie .ui-card--ghost {
-  border: 1px dashed var(--vp-hero-border);
+  border: var(--ich-line) dashed var(--vp-hero-border);
 }
 
 .vp-with-hero-movie .ui-card--ghost .ui-card__content {

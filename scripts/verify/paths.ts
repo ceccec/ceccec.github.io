@@ -28,7 +28,7 @@
 import { execFileSync } from 'node:child_process'
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 
 /** Segment-matched, never substring: this repository is named "ceccec.github.io", which
@@ -117,31 +117,33 @@ export function findDeadScriptPaths(root: string = process.cwd()): DeadScript[] 
 }
 
 export function assertPathsResolve(): void {
-  // SCRIPTS FIRST: the strings ratchet below throws on regression, and a throw must not hide
-  // the one measurement whose floor is zero.
-  const deadScripts = findDeadScriptPaths()
-  for (const d of deadScripts.slice(0, 12)) console.log(`  ${d.name}  -> ${d.path}`)
-  if (deadScripts.length > 12) console.log(`  ...and ${deadScripts.length - 12} more`)
-  console.log(ratchet('paths.dead-scripts', deadScripts.length, { evidence: () => deadScripts.map((d) => `${d.name} -> ${d.path}`) }))
+  everyRatchet(() => {
+    // SCRIPTS FIRST: the strings ratchet below throws on regression, and a throw must not hide
+    // the one measurement whose floor is zero.
+    const deadScripts = findDeadScriptPaths()
+    for (const d of deadScripts.slice(0, 12)) console.log(`  ${d.name}  -> ${d.path}`)
+    if (deadScripts.length > 12) console.log(`  ...and ${deadScripts.length - 12} more`)
+    console.log(ratchet('paths.dead-scripts', deadScripts.length, { evidence: () => deadScripts.map((d) => `${d.name} -> ${d.path}`) }))
 
-  const dead = findDeadPaths()
-  const byExt = new Map<string, number>()
-  for (const d of dead) {
-    const ext = d.path.split('.').pop() ?? '?'
-    byExt.set(ext, (byExt.get(ext) ?? 0) + 1)
-  }
-  // THE EVIDENCE PRINTS BEFORE THE RATCHET, BECAUSE THE RATCHET THROWS.
-  //
-  // This listed the dead paths AFTER `ratchet(...)`, so on the one occasion the listing matters — a
-  // regression — the throw happened first and the list never printed. The gate reported "52, above
-  // the recorded 51" and then destroyed the only thing that says WHICH path is the 52nd. That
-  // happened today: identifying it took reconstructing the state by hand, twice, against a gate
-  // that already knew the answer and refused to say it before dying.
-  console.log(`  by extension: ${[...byExt].map(([e, n]) => `${e}=${n}`).join(' ')}`)
-  // TWELVE IS A SAMPLE FOR THE PASSING CASE ONLY. When the ratchet breaks it prints the FULL list
-  // itself, from the evidence thunk below — so this listing no longer has to guess how much to show,
-  // and the `recordedFloor` lookup that used to widen it here is gone. One mechanism, not two.
-  for (const d of dead.slice(0, 12)) console.log(`  ${d.path}  <- ${d.citedBy[0]}${d.citedBy.length > 1 ? ` (+${d.citedBy.length - 1})` : ''}`)
-  if (dead.length > 12) console.log(`  ...and ${dead.length - 12} more`)
-  console.log(ratchet('paths.dead-strings', dead.length, { evidence: () => dead.map((d) => `${d.path}  <- ${d.citedBy.join(', ')}`) }))
+    const dead = findDeadPaths()
+    const byExt = new Map<string, number>()
+    for (const d of dead) {
+      const ext = d.path.split('.').pop() ?? '?'
+      byExt.set(ext, (byExt.get(ext) ?? 0) + 1)
+    }
+    // THE EVIDENCE PRINTS BEFORE THE RATCHET, BECAUSE THE RATCHET THROWS.
+    //
+    // This listed the dead paths AFTER `ratchet(...)`, so on the one occasion the listing matters — a
+    // regression — the throw happened first and the list never printed. The gate reported "52, above
+    // the recorded 51" and then destroyed the only thing that says WHICH path is the 52nd. That
+    // happened today: identifying it took reconstructing the state by hand, twice, against a gate
+    // that already knew the answer and refused to say it before dying.
+    console.log(`  by extension: ${[...byExt].map(([e, n]) => `${e}=${n}`).join(' ')}`)
+    // TWELVE IS A SAMPLE FOR THE PASSING CASE ONLY. When the ratchet breaks it prints the FULL list
+    // itself, from the evidence thunk below — so this listing no longer has to guess how much to show,
+    // and the `recordedFloor` lookup that used to widen it here is gone. One mechanism, not two.
+    for (const d of dead.slice(0, 12)) console.log(`  ${d.path}  <- ${d.citedBy[0]}${d.citedBy.length > 1 ? ` (+${d.citedBy.length - 1})` : ''}`)
+    if (dead.length > 12) console.log(`  ...and ${dead.length - 12} more`)
+    console.log(ratchet('paths.dead-strings', dead.length, { evidence: () => dead.map((d) => `${d.path}  <- ${d.citedBy.join(', ')}`) }))
+  })
 }

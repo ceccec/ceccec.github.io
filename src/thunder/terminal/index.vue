@@ -62,7 +62,7 @@ watch(() => props.at, (at) => {
 
 <style scoped>
 .terminal-driver-panel__header { display: flex; align-items: center; gap: var(--ich-sp6); flex-wrap: wrap; }
-.terminal-driver-panel__lede { opacity: var(--ich-op-card-soft); margin: var(--ich-sp4) 0 1rem; }
+.terminal-driver-panel__lede { opacity: var(--ich-op-card-soft); margin: var(--ich-sp4) 0 var(--ich-sp8); }
 .terminal-driver-panel__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-ms); }
-.terminal-driver-panel__table th, .terminal-driver-panel__table td { text-align: left; padding: var(--ich-sp3) var(--ich-sp4); border-bottom: 1px solid var(--vp-c-divider); }
+.terminal-driver-panel__table th, .terminal-driver-panel__table td { text-align: left; padding: var(--ich-sp3) var(--ich-sp4); border-bottom: var(--ich-line) solid var(--vp-c-divider); }
 </style>

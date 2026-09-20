@@ -136,7 +136,7 @@ const waveLabel = (provedBy: string) =>
             <p class="theorems-panel__proof">{{ t(atom.proof) }}</p>
             <details v-if="formulaOf(atom.theorem).length" class="theorems-panel__formula">
               <summary>{{ t('exact computation') }}</summary>
-              <pre><code>{{ formulaOf(atom.theorem).join('\n') }}</code></pre>
+              <pre class="ich-scroll-x"><code>{{ formulaOf(atom.theorem).join('\n') }}</code></pre>
             </details>
           </div>
         </li>
@@ -179,30 +179,30 @@ const waveLabel = (provedBy: string) =>
 </template>
 
 <style scoped>
-.theorems-panel { display: grid; gap: 1rem; }
-.theorems-panel__head h2 { margin-bottom: 0.15rem; }
-.theorems-panel__counts { display: flex; gap: 0.5rem; color: var(--vp-c-text-2); font-size: 0.9em; flex-wrap: wrap; }
-.theorems-panel__provenance { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-left: 3px solid var(--vp-c-brand-1, var(--vp-c-text-3)); background: var(--vp-c-bg-soft); color: var(--vp-c-text-2); font-size: 0.85em; border-radius: 0 6px 6px 0; }
+.theorems-panel { display: grid; gap: var(--ich-sp8); }
+.theorems-panel__head h2 { margin-bottom: var(--ich-sp1); }
+.theorems-panel__counts { display: flex; gap: var(--ich-sp4); color: var(--vp-c-text-2); font-size: calc(1em * 9 / (2 * 5)); flex-wrap: wrap; }
+.theorems-panel__provenance { margin: var(--ich-sp4) 0 0; padding: var(--ich-sp5) var(--ich-sp6); border-left: var(--ich-border-3) solid var(--vp-c-brand-1, var(--vp-c-text-3)); background: var(--vp-c-bg-soft); color: var(--vp-c-text-2); font-size: calc(1em * (16 + 1) / (4 * 5)); border-radius: 0 var(--ich-sp3) var(--ich-sp3) 0; }
 .theorems-panel__provenance strong { color: var(--vp-c-text-1); }
-.theorems-panel__discoveries { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem 0.6rem 2rem; background: var(--vp-c-bg-soft); font-size: 0.85em; border-radius: 6px; }
-.theorems-panel__discoveries li { margin: 0.2rem 0; scroll-margin-top: calc(1px * 2 * 5 * 8); }
-.theorems-panel__corpus-novel { list-style: none; padding: 0; margin: 0.5rem 0 0; display: grid; gap: 0.55rem; }
-.theorems-panel__corpus-novel li { padding: 0.55rem 0.7rem; background: var(--vp-c-bg-soft); border-radius: 6px; border-left: 3px solid var(--vp-c-brand-1, var(--vp-c-text-3)); }
-.theorems-panel__fold { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: baseline; }
-.theorems-panel__boundary { margin: 0.25rem 0 0; color: var(--vp-c-text-3); font-size: 0.75em; }
-.theorems-panel__wave h3 { margin: 0.6rem 0 0.25rem; }
+.theorems-panel__discoveries { margin: var(--ich-sp4) 0 0; padding: var(--ich-sp5) var(--ich-sp6) var(--ich-sp5) var(--ich-sp16); background: var(--vp-c-bg-soft); font-size: calc(1em * (16 + 1) / (4 * 5)); border-radius: var(--ich-sp3); }
+.theorems-panel__discoveries li { margin: var(--ich-sp2) 0; scroll-margin-top: calc(1px * 2 * 5 * 8); }
+.theorems-panel__corpus-novel { list-style: none; padding: 0; margin: var(--ich-sp4) 0 0; display: grid; gap: var(--ich-sp4); }
+.theorems-panel__corpus-novel li { padding: var(--ich-sp4) var(--ich-sp6); background: var(--vp-c-bg-soft); border-radius: var(--ich-sp3); border-left: var(--ich-border-3) solid var(--vp-c-brand-1, var(--vp-c-text-3)); }
+.theorems-panel__fold { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); align-items: baseline; }
+.theorems-panel__boundary { margin: var(--ich-sp2) 0 0; color: var(--vp-c-text-3); font-size: calc(1em * 3 / 4); }
+.theorems-panel__wave h3 { margin: var(--ich-sp5) 0 var(--ich-sp2); }
 .theorems-panel__wave h3 small { color: var(--vp-c-text-3); font-weight: normal; }
-.theorems-panel__wave ul, .theorems-panel__frontiers { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
-.theorems-panel__wave li, .theorems-panel__frontiers li { display: flex; align-items: flex-start; gap: 0.6rem; }
+.theorems-panel__wave ul, .theorems-panel__frontiers { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--ich-sp3); }
+.theorems-panel__wave li, .theorems-panel__frontiers li { display: flex; align-items: flex-start; gap: var(--ich-sp5); }
 .theorems-panel__body { min-width: 0; flex: 1; }
-.theorems-panel__row { display: flex; align-items: baseline; gap: 0.6rem; justify-content: space-between; }
-.theorems-panel__proof { margin: 0; color: var(--vp-c-text-2); font-size: 0.82em; }
-.theorems-panel__reversed { margin-top: 0.3rem; padding-left: 0.55rem; border-left: 2px solid var(--status-ready, var(--vp-c-brand-1)); color: var(--status-ready, var(--vp-c-text-1)); }
-.theorems-panel__formula { margin-top: 0.3rem; font-size: 0.78em; }
-.theorems-panel__formula summary { cursor: pointer; opacity: calc(3 / 5); user-select: none; }
-.theorems-panel__formula pre { margin: 0.3rem 0 0; padding: 0.5rem 0.65rem; overflow-x: auto; border: 1px solid var(--vp-c-divider); border-radius: 6px; background: var(--vp-c-bg-soft); font-family: ui-monospace, Menlo, monospace; line-height: calc(3 / 2); white-space: pre; }
+.theorems-panel__row { display: flex; align-items: baseline; gap: var(--ich-sp5); justify-content: space-between; }
+.theorems-panel__proof { margin: 0; color: var(--vp-c-text-2); font-size: calc(1em * (64 + 16 + 2) / 100); }
+.theorems-panel__reversed { margin-top: var(--ich-sp2); padding-left: var(--ich-sp4); border-left: var(--ich-sp1) solid var(--status-ready, var(--vp-c-brand-1)); color: var(--status-ready, var(--vp-c-text-1)); }
+.theorems-panel__formula { margin-top: var(--ich-sp2); font-size: calc(1em * 3 * (5 + 8) / 100); }
+.theorems-panel__formula summary { cursor: pointer; opacity: var(--ich-op-soft); user-select: none; }
+.theorems-panel__formula pre { margin: var(--ich-sp2) 0 0; padding: var(--ich-sp4) var(--ich-sp5); border: var(--ich-line) solid var(--vp-c-divider); border-radius: var(--ich-sp3); background: var(--vp-c-bg-soft); font-family: ui-monospace, Menlo, monospace; line-height: calc(3 / 2); white-space: pre; }
 .theorems-panel__name { min-width: 0; }
-.theorems-panel__class { font-size: 0.72em; color: var(--vp-c-text-2); white-space: nowrap; }
+.theorems-panel__class { font-size: calc(1em * 2 * 9 / (5 * 5)); color: var(--vp-c-text-2); white-space: nowrap; }
 .theorems-panel__class[data-class='finite-complete'] { color: var(--status-ready); }
 .theorems-panel__class[data-class='bounded-witness'] { color: var(--status-warn); }
 .theorems-panel__class[data-class='open'] { color: var(--status-gap); }

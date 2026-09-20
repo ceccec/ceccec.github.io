@@ -26,7 +26,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { axiomFreedom } from './lean.ts'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 
 export type AxiomKind = 'foundational' | 'convention' | 'external-standard' | 'measured-data'
@@ -125,43 +125,45 @@ export function axiomsInUse(root: string = process.cwd()): Map<string, number> {
 }
 
 export function assertAxiomIndex(): void {
-  const index = [...FOUNDATIONAL, ...CORPUS_AXIOMS]
-  console.log(`axiom index: ${index.length} entries — ${FOUNDATIONAL.length} foundational, ${CORPUS_AXIOMS.length} of this corpus`)
-  for (const e of index) {
-    console.log(`  ${e.kind.padEnd(17)} ${e.name}`)
-    console.log(`        explained by  ${e.explainedBy.slice(0, 120)}${e.explainedBy.length > 120 ? '…' : ''}`)
-    console.log(`        researched    ${e.research ? e.research.slice(0, 110) + (e.research.length > 110 ? '…' : '') : 'NOT RESEARCHED — no literature question, or none looked for'}'`)
-  }
+  everyRatchet(() => {
+    const index = [...FOUNDATIONAL, ...CORPUS_AXIOMS]
+    console.log(`axiom index: ${index.length} entries — ${FOUNDATIONAL.length} foundational, ${CORPUS_AXIOMS.length} of this corpus`)
+    for (const e of index) {
+      console.log(`  ${e.kind.padEnd(17)} ${e.name}`)
+      console.log(`        explained by  ${e.explainedBy.slice(0, 120)}${e.explainedBy.length > 120 ? '…' : ''}`)
+      console.log(`        researched    ${e.research ? e.research.slice(0, 110) + (e.research.length > 110 ? '…' : '') : 'NOT RESEARCHED — no literature question, or none looked for'}'`)
+    }
 
-  // EVERY AXIOM THE KERNEL REPORTS MUST BE INDEXED. An unexplained axiom is a hole, and this is where
-  // one would show up: a proof that starts depending on something the index does not name.
-  const inUse = axiomsInUse()
-  const named = new Set(FOUNDATIONAL.map((e) => e.name))
-  const unindexed = [...inUse.keys()].filter((a) => !named.has(a))
-  console.log(`\n  the kernel reports: ${[...inUse.entries()].map(([k, n]) => `${k}×${n}`).join(' · ') || 'nothing — every theorem decided by computation'}`)
-  if (unindexed.length) throw new Error(`${unindexed.length} axiom(s) in use with no index entry: ${unindexed.join(', ')} — an axiom nobody has explained is a hole`)
+    // EVERY AXIOM THE KERNEL REPORTS MUST BE INDEXED. An unexplained axiom is a hole, and this is where
+    // one would show up: a proof that starts depending on something the index does not name.
+    const inUse = axiomsInUse()
+    const named = new Set(FOUNDATIONAL.map((e) => e.name))
+    const unindexed = [...inUse.keys()].filter((a) => !named.has(a))
+    console.log(`\n  the kernel reports: ${[...inUse.entries()].map(([k, n]) => `${k}×${n}`).join(' · ') || 'nothing — every theorem decided by computation'}`)
+    if (unindexed.length) throw new Error(`${unindexed.length} axiom(s) in use with no index entry: ${unindexed.join(', ')} — an axiom nobody has explained is a hole`)
 
-  const unresearched = index.filter((e) => e.research === null)
-  // NAMED, NOT JUST COUNTED, AND BEFORE THE RATCHET. This printed a number and nothing else, so a
-  // regression threw "N, above the recorded M" with no way to see WHICH entry lost its research.
-  // The count was the whole report; the entries were never listed at all.
-  for (const e of unresearched) console.log(`  unresearched: ${e.name}`)
-  console.log(ratchet('axiom-index.unresearched', unresearched.length, { evidence: () => unresearched.map((e) => `unresearched: ${e.name}`) }))
+    const unresearched = index.filter((e) => e.research === null)
+    // NAMED, NOT JUST COUNTED, AND BEFORE THE RATCHET. This printed a number and nothing else, so a
+    // regression threw "N, above the recorded M" with no way to see WHICH entry lost its research.
+    // The count was the whole report; the entries were never listed at all.
+    for (const e of unresearched) console.log(`  unresearched: ${e.name}`)
+    console.log(ratchet('axiom-index.unresearched', unresearched.length, { evidence: () => unresearched.map((e) => `unresearched: ${e.name}`) }))
 
-  // WHICH THEOREMS REST ON WHICH AXIOM — the index described seven axioms and named no theorem.
-  const fam = theoremAxiomFamilies()
-  const total = (THEOREM_ATOM_SEED as readonly unknown[]).length
-  console.log(`theorem → axiom family, by what each proving fold READS (not by its prose):`)
-  for (const [k, v] of Object.entries(fam.byFamily).sort((a, b) => b[1] - a[1])) console.log(`  ${String(v).padStart(4)}  ${k}`)
-  console.log(`  ${String(fam.unplaced).padStart(4)}  UNPLACED — the fold references none of the indexed artefacts.`)
-  console.log(`         NOT a claim of axiom-freedom: an axiom the index has not named cannot be found by looking for the names it has.`)
-  console.log(`         Axiom-freedom is decided on the Lean side, per theorem, and reported by verify:lean.`)
-  // NEGATED for the same reason as lean.registry-sealed and independence.cross-checked: this counted the
-  // UNPLACED folds, so every registry row added without an indexed artefact raised it. Fifteen of the twenty
-  // rows 96484f0f added were exactly that, and the gate read honest growth as regression. What ratchets now
-  // is the count PLACED — the folds that do reference an indexed artefact — which only good work raises.
-  const placed = total - fam.unplaced
-  console.log(`  ${ratchet('axiom-index.placed', -placed, { evidence: () => [`${placed} fold(s) of ${total} reference an indexed artefact — this figure FELL, which for a negated ratchet means placement was LOST, not gained`] })}  — stored negated, so ${placed} placed may only RISE`)
+    // WHICH THEOREMS REST ON WHICH AXIOM — the index described seven axioms and named no theorem.
+    const fam = theoremAxiomFamilies()
+    const total = (THEOREM_ATOM_SEED as readonly unknown[]).length
+    console.log(`theorem → axiom family, by what each proving fold READS (not by its prose):`)
+    for (const [k, v] of Object.entries(fam.byFamily).sort((a, b) => b[1] - a[1])) console.log(`  ${String(v).padStart(4)}  ${k}`)
+    console.log(`  ${String(fam.unplaced).padStart(4)}  UNPLACED — the fold references none of the indexed artefacts.`)
+    console.log(`         NOT a claim of axiom-freedom: an axiom the index has not named cannot be found by looking for the names it has.`)
+    console.log(`         Axiom-freedom is decided on the Lean side, per theorem, and reported by verify:lean.`)
+    // NEGATED for the same reason as lean.registry-sealed and independence.cross-checked: this counted the
+    // UNPLACED folds, so every registry row added without an indexed artefact raised it. Fifteen of the twenty
+    // rows 96484f0f added were exactly that, and the gate read honest growth as regression. What ratchets now
+    // is the count PLACED — the folds that do reference an indexed artefact — which only good work raises.
+    const placed = total - fam.unplaced
+    console.log(`  ${ratchet('axiom-index.placed', -placed, { evidence: () => [`${placed} fold(s) of ${total} reference an indexed artefact — this figure FELL, which for a negated ratchet means placement was LOST, not gained`] })}  — stored negated, so ${placed} placed may only RISE`)
+  })
 }
 
 /**

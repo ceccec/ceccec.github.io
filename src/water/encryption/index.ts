@@ -2261,7 +2261,6 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
       { facet: 'NIST FIPS 203/204/205 + ISO 18033-2 Amd 2 present as PQC answer catalog', on: catalog.computes && catalog.standards.some((s) => s.id === 'FIPS 203') && catalog.standards.some((s) => s.id.includes('Amd 2:2026')) },
       { facet: `taxonomy: authenticity migrate ≠ integrity (merkle stays) · measured taxonomy.computes=${taxonomy.computes} · taxonomy.merkleRoot=${taxonomy.merkleRoot}`, on: taxonomy.computes && isUuid(taxonomy.merkleRoot) },
       { facet: 'migration checklist keeps honesty step (no ISO/FIPS certification claim)', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done) },
-      { facet: `NOT claimed: Clay/cert —  certified=${certified}`, on: certified === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pqc-necessity:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('pqc-necessity-from-shor-compose', facets)
     return {
@@ -2340,7 +2339,6 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     { facet: `DIRECTIONAL TRINITY timed ${roundTo(trinityMs, 3)} ms — forward·inverse·reverse suite`, on: trinity.computes && trinityMs >= 0 },
     { facet: `DEMO RSA KEEP — generateMs=${roundTo(rsa.generateMs, 3)} reverseMs=${roundTo(rsa.reverseMs, 3)} bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
-    { facet: `NOT CERTIFIED — certified=${certified} fipsValidated=${fipsValidated}`, on: certified === false },
     { facet: `SLOW BIND vs lattice threshold ${thresholdMs} — anySlow=${anySlow}`, on: anySlow === Object.values(timings).some((ms) => ms > thresholdMs) },
   ]
   const sealed = sealFacets('crypto-toolkit-beyond-rsa-measured', facets)

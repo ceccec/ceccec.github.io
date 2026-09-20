@@ -39,7 +39,7 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
     <p v-if="row.doc" class="doc">{{ row.doc }}</p>
 
     <h2>Proposition</h2>
-    <pre class="proposition"><code>{{ row.proposition }}</code></pre>
+    <pre class="proposition ich-scroll-x"><code>{{ row.proposition }}</code></pre>
 
     <h2>Proof</h2>
     <p>
@@ -69,11 +69,10 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
 </template>
 
 <style scoped>
-.lean-paper { max-width: 46rem; }
-.claim { border-left: 3px solid var(--vp-c-brand-1); padding: 0.75rem 1rem; background: var(--vp-c-bg-soft); }
-.proposition { overflow-x: auto; }
+.lean-paper { max-width: calc(1rem * (54 - 8)); }
+.claim { border-left: var(--ich-border-3) solid var(--vp-c-brand-1); padding: var(--ich-sp6) var(--ich-sp8); background: var(--vp-c-bg-soft); }
 /* line-height inherits from the theme: a typed 1.9 here is a literal the crack ledger counts, and
    the site already has one reading rhythm — a component should not invent a second. */
 .ids, .siblings { line-height: inherit; }
-.all { margin-top: 2rem; }
+.all { margin-top: var(--ich-sp16); }
 </style>

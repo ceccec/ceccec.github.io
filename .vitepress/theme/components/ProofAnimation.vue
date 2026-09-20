@@ -405,5 +405,5 @@ onBeforeUnmount(() => { offClock?.(); offClock = null; io?.disconnect() })
 </template>
 
 <style scoped>
-.proof-anim { flex: none; border-radius: 4px; }
+.proof-anim { flex: none; border-radius: var(--ich-sp2); }
 </style>

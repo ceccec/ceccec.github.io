@@ -37,5 +37,5 @@ const panel = shallowRef(quantumSciencePanelComputes())
 <style scoped>
 .qs-panel { display: grid; gap: var(--ich-sp6); }
 table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-sm); }
-th, td { border-bottom: 1px solid var(--vp-c-divider); padding: var(--ich-sp3) var(--ich-sp4); text-align: left; vertical-align: top; }
+th, td { border-bottom: var(--ich-line) solid var(--vp-c-divider); padding: var(--ich-sp3) var(--ich-sp4); text-align: left; vertical-align: top; }
 </style>

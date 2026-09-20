@@ -3262,20 +3262,29 @@ export function millenniumProblemsChallenge(matrix: MindMatrix = buildMatrix()) 
  */
 export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMatrix = buildMatrix()) {
   const clay = clayChallengesComputableFromSequence(matrix)
-  const qpuRequired = false as const
-  const breaksNistPqc = false as const
-  const novelToHumanity = false as const
+  // THE FOLD'S OWN FIRST FACET SAYS "every honesty NEGATIVE is a computed boolean, not declared prose",
+  // and all three negOn read `false === false` off three `as const` literals declared right here. The fold
+  // that exists to make negatives computable was declaring them. Each one is now READ from the fold that
+  // actually measures it, so a negative that stopped holding would show:
+  //   · no QPU — proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit times the run on classical 64-bit
+  //   · NIST PQC unbroken — localEncryptionReverseTimedVsStandards times the local reverse against the levels
+  //   · not new to humanity — the prior-art ledger carries the credits, and it is counted, not asserted
+  const noQpu = __ns_up_stack_overflow.proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix)
+  const timedVsStandards = __ns_water_encryption.localEncryptionReverseTimedVsStandards(matrix)
   const anchor = clay.computes // the refutable computed anchor every inversion rides
+  // THE THIRD NEGATIVE HAS NO MEASUREMENT HERE, AND SAYS SO. "not new to humanity" is a policy default the
+  // acknowledgment format carries, and the prior-art ledger that could count it lives in scripts/verify,
+  // which src does not import. Rather than invent a proxy — the defect this fold is named against — it is
+  // listed as a named policy axiom, outside the computed pairs, where a reader can see it is not measured.
+  const policyAxioms = ['novelToHumanity=false — the acknowledgment default; prior art is credited per row, counted by verify:prior-art, not here'] as const
   const inversions = [
-    { neg: 'NOT physical quantum speedup', negOn: qpuRequired === false,
+    { neg: 'NOT physical quantum speedup', negOn: noQpu.computes && noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true,
       pos: 'runs on CLASSICAL 64-bit — deterministic, zero-token, content-addressed', posOn: anchor },
-    { neg: 'NOT breaking NIST PQC (breaksNistPqc=false)', negOn: breaksNistPqc === false,
+    { neg: 'NOT breaking NIST PQC (measured against the levels, not declared)', negOn: timedVsStandards.computes && timedVsStandards.breaksNistPqc === false,
       pos: 'the PQC standards audit IS computed — all 5 families, FIPS 203/204/205 + ISO parameter sets sourced', posOn: anchor },
-    { neg: 'NOT new to humanity (novelToHumanity=false)', negOn: novelToHumanity === false,
-      pos: 'first-in-THIS-registry — every theorem re-derived by exact computation, formulas + source shown', posOn: anchor },
   ]
   const facets = [
-    { facet: `MAKE COMPUTABLE — every honesty NEGATIVE is a computed boolean, not declared prose (${inversions.length} pairs, all negOn=${inversions.every((i) => i.negOn)})`, on: inversions.every((i) => i.negOn) && anchor },
+    { facet: `MAKE COMPUTABLE — each honesty negative is READ from the fold that measures it, not declared here (${inversions.length} measured pairs, all negOn=${inversions.every((i) => i.negOn)}); the ${policyAxioms.length} that cannot be measured in src are named as policy axioms instead of dressed as checks: ${policyAxioms.join(' · ')}`, on: inversions.every((i) => i.negOn) && anchor },
     { facet: `INVERT THE NOT — each negative inverts to its computed POSITIVE complement (generative): ${inversions.map((i) => i.pos.split(' — ')[0]).join(' · ')}`, on: inversions.every((i) => i.posOn) },
     { facet: `DO NOT HOLD BACK — the positives are foregrounded and refutable (ride clay.computes=${anchor}); the negatives stay as the honest bound, so no gate breaks`, on: anchor },
     { facet: `GENERATIVE, NOT A FLIP —  inverts to solved-LOCALLY (computablePath=${clay.computableCount}/${clay.pathCount}), never to a false "solved"; refutable — bridge a gap and the status changes`, on: clay.computableCount === CLAY_ORDER.length },

@@ -15,7 +15,7 @@
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 const sources = (root: string): string[] => {
   const out: string[] = []
@@ -123,14 +123,16 @@ export function findCaps(root: string = process.cwd()): { file: string; caps: nu
 }
 
 export function assertGuardsAndCaps(): void {
-  const guards = findGuards()
-  const browser = guards.filter((g) => g.kind === 'browser-degrades')
-  const noFs = guards.filter((g) => g.kind === 'no-filesystem-empty')
-  const caps = findCaps()
-  const capTotal = caps.reduce((sum, entry) => sum + entry.caps, 0)
-  console.log(`guards: ${browser.length} browser degradations · ${noFs.length} filesystem-absent empties · caps: ${capTotal} literal length bars in ${caps.length} facet-bearing files`)
-  for (const entry of caps.slice(0, 5)) console.log(`  ${String(entry.caps).padStart(4)}  ${entry.file}`)
-  console.log(ratchet('guards.browser-degrades', browser.length, { evidence: () => browser.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
-  console.log(ratchet('guards.no-filesystem-empty', noFs.length, { evidence: () => noFs.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
-  console.log(ratchet('caps.in-facet-folds', capTotal, { evidence: () => caps.flatMap((entry) => entry.sites) }))
+  everyRatchet(() => {
+    const guards = findGuards()
+    const browser = guards.filter((g) => g.kind === 'browser-degrades')
+    const noFs = guards.filter((g) => g.kind === 'no-filesystem-empty')
+    const caps = findCaps()
+    const capTotal = caps.reduce((sum, entry) => sum + entry.caps, 0)
+    console.log(`guards: ${browser.length} browser degradations · ${noFs.length} filesystem-absent empties · caps: ${capTotal} literal length bars in ${caps.length} facet-bearing files`)
+    for (const entry of caps.slice(0, 5)) console.log(`  ${String(entry.caps).padStart(4)}  ${entry.file}`)
+    console.log(ratchet('guards.browser-degrades', browser.length, { evidence: () => browser.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
+    console.log(ratchet('guards.no-filesystem-empty', noFs.length, { evidence: () => noFs.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
+    console.log(ratchet('caps.in-facet-folds', capTotal, { evidence: () => caps.flatMap((entry) => entry.sites) }))
+  })
 }

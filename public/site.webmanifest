@@ -2,24 +2,57 @@
   "id": "/",
   "name": "Double Torus — Quantum Learning Portal",
   "short_name": "Double Torus",
-  "description": "A quantum-learning educational portal for AI agents and humans, served as an MCP tool surface over a double-torus UUID stream. Installable, and works offline by default.",
+  "description": "The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui", "browser"],
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
   "orientation": "any",
-  "background_color": "#0f172a",
-  "theme_color": "#3b82f6",
+  "background_color": "#000038",
+  "theme_color": "#6bd7ff",
   "lang": "en",
   "dir": "ltr",
-  "categories": ["education", "productivity", "developer"],
+  "categories": [
+    "education",
+    "productivity",
+    "developer"
+  ],
   "icons": [
-    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
   ],
   "shortcuts": [
-    { "name": "Quantum Mind", "short_name": "Mind", "description": "The living double torus, merkaba and rhythm", "url": "/en/quantum-mind" },
-    { "name": "MCP tools", "short_name": "MCP", "description": "The tool surface for AI agents", "url": "/en/mcp" },
-    { "name": "Start here", "short_name": "Start", "description": "Four plain steps — see, learn, use, prove", "url": "/en/start" }
+    {
+      "name": "Theorem registry",
+      "short_name": "Registry",
+      "description": "Every proven theorem — waves, gaps, open frontiers",
+      "url": "/frontiers"
+    },
+    {
+      "name": "Domain proofs",
+      "short_name": "Proofs",
+      "description": "Canonical domain proofs · Clay marks Millennium only",
+      "url": "/proofs"
+    },
+    {
+      "name": "The vortex",
+      "short_name": "Vortex",
+      "description": "The sequence 1-2-4-8-7-5, proven live",
+      "url": "/vortex"
+    }
   ]
 }

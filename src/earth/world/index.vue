@@ -167,9 +167,9 @@ const goldFusion = computed(() => goldFusionComputes())
 
 <style scoped>
 .bh-sim-panel {
-  font-size: calc(1rem * 7 / 8);
+  font-size: calc(var(--ich-sp8) * 7 / 8);
   max-width: var(--ich-rosetta-measure);
-  margin: 1rem 0;
+  margin: var(--ich-sp8) 0;
 }
 .boundary {
   opacity: var(--ich-op-card-meta);
@@ -178,18 +178,18 @@ const goldFusion = computed(() => goldFusionComputes())
 dl {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: var(--ich-sp2) 1rem;
+  gap: var(--ich-sp2) var(--ich-sp8);
 }
 dt {
   font-weight: var(--ich-weight-semibold);
 }
 .gold-mine-map-panel {
-  font-size: calc(1rem * 7 / 8);
+  font-size: calc(var(--ich-sp8) * 7 / 8);
   max-width: var(--ich-rosetta-measure);
   margin: var(--ich-sp12) 0;
 }
 .gold-fusion-generator-panel {
-  font-size: calc(1rem * 7 / 8);
+  font-size: calc(var(--ich-sp8) * 7 / 8);
   max-width: var(--ich-rosetta-measure);
   margin: var(--ich-sp12) 0;
 }
@@ -211,7 +211,7 @@ caption {
 }
 th,
 td {
-  border-bottom: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent);
+  border-bottom: var(--ich-line) solid color-mix(in srgb, currentColor calc(9% + 6%), transparent);
   padding: var(--ich-sp2) var(--ich-sp4) var(--ich-sp2) 0;
   text-align: left;
 }
@@ -220,7 +220,7 @@ td {
   opacity: var(--ich-op-card-soft);
 }
 .cosmos-capstone-panel {
-  font-size: calc(1rem * 7 / 8);
+  font-size: calc(var(--ich-sp8) * 7 / 8);
   max-width: var(--ich-rosetta-measure);
   margin: var(--ich-sp12) 0;
 }

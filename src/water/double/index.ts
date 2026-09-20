@@ -719,7 +719,6 @@ export function doubleTorusQuantumComputer(matrix: MindMatrix = buildMatrix()) {
       { facet: `UI IS THE COMPUTER SURFACE — theUiItselfIsADoubleTorus (${uiOn}); χ=${faces.eulerChi} carrier`, on: uiOn && carrierOn },
       { facet: `LIVE CIRCUIT — H|0⟩ → P(0)=P(1)=½ (${circuitComputes}); measure collapses ({0,1}) (${measurementCollapses})`, on: circuitComputes && measurementCollapses },
       { facet: `Σ₂ ≡ QC — classical-64bit · qpuRequired=${qpuRequired} · pair torus/computer bidirectional`, on: isTheQuantumComputer && pairQc.bidirectional },
-      { facet: `HONEST — content-addressed classical simulator · NOT physical QPU · NOT Clay prize`, on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`torus-qc:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     return {
       computes: facets.every((entry) => entry.on),

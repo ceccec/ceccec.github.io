@@ -4240,13 +4240,15 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
   const scanCost = 2 ** 5, addressCost = 1 // N vs 1
   const quantumSpeedIsO1NotPhysical = addressCost < scanCost && policy.gpuSurface !== undefined // O(1) < O(N); no QPU claimed
   const qpuRequired = false
-  const notPhysicalSpeedup = qpuRequired === false // the speed is naming, not physics
-  const manages = gpuOnDeviceCooperative && cpuSharedByMemo && memoryContentAddressedO1 && quantumSpeedIsO1NotPhysical && notPhysicalSpeedup
+  // `notPhysicalSpeedup = qpuRequired === false` stood here, on a `const qpuRequired = false` one line up.
+  // The conjunct it was standing in for is already computed above it: quantumSpeedIsO1NotPhysical measures
+  // the O(1) address against the O(N) scan and notes no QPU is claimed. One name for it, not two.
+  const manages = gpuOnDeviceCooperative && cpuSharedByMemo && memoryContentAddressedO1 && quantumSpeedIsO1NotPhysical
   const facets = [
     { facet: `CPU SHARED BY MEMOISATION — memoByRoot caches by content-address, so the same computation runs once and is shared (${calls} call, result reused, ${cpuSharedByMemo}); no redundant recompute across requests`, on: cpuSharedByMemo },
     { facet: `GPU ON-DEVICE COOPERATIVE — the GPU surface is the browser Canvas/WebGL ('${policy.gpuSurface}', ${gpuOnDeviceCooperative}), on-device and cooperative — no cloud GPU, no per-request GPU billing`, on: gpuOnDeviceCooperative },
     { facet: `MEMORY IS CONTENT-ADDRESSED (O(1)) — retrieval is by name = address = payload (${memoryContentAddressedO1}), the CAM structure; distinct blocks → distinct addresses, reproducible, no scan`, on: memoryContentAddressedO1 },
-    { facet: `QUANTUM SPEED = O(1) NAMING, NOT PHYSICAL — the speed is the O(1) content-address lookup (${addressCost}) versus an O(N) scan (${scanCost}); NOT a physical quantum speedup (qpuRequired=${qpuRequired}, no QPU)`, on: quantumSpeedIsO1NotPhysical && notPhysicalSpeedup },
+    { facet: `QUANTUM SPEED = O(1) NAMING, NOT PHYSICAL — the speed is the O(1) content-address lookup (${addressCost}) versus an O(N) scan (${scanCost}); NOT a physical quantum speedup (qpuRequired=${qpuRequired}, no QPU)`, on: quantumSpeedIsO1NotPhysical },
     { facet: `HONEST — shared CPU/GPU/memory management by content-address is real and deterministic; "quantum speed" = O(1) naming (name=address), NOT physics; server resources stay finite.`, on: manages },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-resource:${entry.facet}:${entry.on}`) }))
   return {
@@ -7925,17 +7927,19 @@ export function localAuditFindsAllKindsOfFalseStatementsByAlgebraNotJustUncomput
   const clay: number = 0, physicalFtl = 0, qpuRequired = false
   const plantedClay = 2 - 1 // a claim clay=1 (false — sealed clay is 0)
   const invariantViolationCaught = plantedClay !== clay // planting clay=1 is caught by algebra
-  const invariantsHold = qpuRequired === false
+  // `invariantsHold = qpuRequired === false` stood here, on a literal declared one line up. What this
+  // section actually demonstrates is one line above it: planting clay=1 against the sealed 0 IS caught.
+  // A held invariant is shown by catching its violation, not by comparing a literal with itself.
   // (4) FALSE NUMEROLOGY — a false arithmetic identity is caught; the dyadic truth passes
   const numerologyCaught = 432 * 3 !== 2 ** (2 * 5) // 1296 ≠ 1024 — the false ternary identity is caught
   const dyadicTruthPasses = 2 ** (2 * 5) === 4 ** 5 // 1024 = 2^10 = 4^5 passes
   const classesCaught = [uncomputableCaught, misdemarcatedCaught, invariantViolationCaught, numerologyCaught].filter(Boolean).length
-  const realStatementsPass = realFoldsCompute && stringTheorySigned && flaggedIsRefuted && invariantsHold && dyadicTruthPasses
+  const realStatementsPass = realFoldsCompute && stringTheorySigned && flaggedIsRefuted && invariantViolationCaught && dyadicTruthPasses
   const findsAll = classesCaught === 2 * 2 && realStatementsPass // all four classes caught, every real statement passes
   const facets = [
     { facet: `FINDS UNCOMPUTABLE STATEMENTS — the quantum lens: a planted computes=false fold is caught (${uncomputableCaught}) while the real folds compute (${realFoldsCompute}); every statement is a computed comparison, never a declared truth`, on: uncomputableCaught && realFoldsCompute },
     { facet: `FINDS MISDEMARCATED STATEMENTS — a claimed tier must EQUAL demarcate() (algebra over the signed registry): "astrology is documented" is caught (${misdemarcatedCaught}), string theory's signed 'contested' passes and the earlier 'flagged' mislabel is refuted (${stringTheorySigned && flaggedIsRefuted}) — the class the old lens missed`, on: misdemarcatedCaught && stringTheorySigned && flaggedIsRefuted },
-    { facet: `FINDS HONESTY-INVARIANT VIOLATIONS — clay/physicalFtl = 0 and qpuRequired = false are checked by algebra; a planted clay=1 is caught (${invariantViolationCaught}) and the invariants hold (${invariantsHold})`, on: invariantViolationCaught && invariantsHold },
+    { facet: `FINDS HONESTY-INVARIANT VIOLATIONS — clay/physicalFtl = 0 and qpuRequired = false are checked by algebra; a planted clay=1 is caught (${invariantViolationCaught}) — an invariant is shown to hold by CATCHING its violation, which is what this measures`, on: invariantViolationCaught },
     { facet: `FINDS FALSE NUMEROLOGY — a false identity (432×3 = ${432 * 3} ≠ ${2 ** (2 * 5)} = 1024) is caught (${numerologyCaught}) while the dyadic truth 1024 = 2^10 = 4^5 passes (${dyadicTruthPasses})`, on: numerologyCaught && dyadicTruthPasses },
     { facet: `HONEST — the audit finds statements FALSE BY ALGEBRA (uncomputable · misdemarcated · invariant-violating · false-identity), ${classesCaught}/4 classes, each a computed comparison with no hand-set exception; it finds constructional falsehood, NOT semantic world-truth, deterministic and local.`, on: findsAll },
   ].map((entry) => ({ ...entry, receipt: toUuid(`false-audit:${entry.facet}:${entry.on}`) }))

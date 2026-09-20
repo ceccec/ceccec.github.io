@@ -69,7 +69,7 @@ export function zenodoRecordId(doi: string): string {
 export type ConceptHead = { readonly conceptDoi: string; readonly record: string; readonly title: string }
 
 export async function resolveConcept(conceptDoi: string): Promise<ConceptHead> {
-  const res = await fetch(`https://doi.org/${conceptDoi}`, { redirect: 'follow' })
+  const res = await fetch(`https://doi.org/${conceptDoi}`, { redirect: 'follow', headers: READ_HEADERS })
   const record = /zenodo\.org\/records\/(\d+)/.exec(res.url)?.[1] ?? ''
   if (!record) throw new Error(`${conceptDoi} did not resolve to a Zenodo record (landed on ${res.url})`)
   const head = await harvest(`10.5281/zenodo.${record}`)
@@ -92,11 +92,24 @@ function dcAll(xml: string, tag: string): string[] {
 }
 
 /** Harvest one record's published Dublin Core. Read-only, unauthenticated. */
+/**
+ * ONE IDENTIFIED USER-AGENT FOR EVERY OUTBOUND READ. Zenodo answers Node's default user-agent with
+ * HTTP 403 ("unusual traffic"), and the DOI-resolution path below never checked res.ok — so a bot
+ * block produced a 403 body with a res.url of https://zenodo.org/doi/… (no /records/), the record
+ * regex yielded '', and `record === zenodoRecordId(...)` was false. The gate then reported FOUR
+ * DOIs as "A DIFFERENT WORK" with an empty record id and an empty title. This file's own header
+ * warns that "a comparison against an empty string fails every time and looks exactly like a
+ * finding", and then did exactly that: an infrastructure refusal dressed as a substantive one, on
+ * the gate whose whole job is telling those two apart. Identify the client, and check res.ok
+ * everywhere, so a block is reported as a block.
+ */
+const READ_HEADERS = { 'user-agent': 'ceccec.github.io-verify (+https://ceccec.github.io; read-only metadata check)' } as const
+
 export async function harvest(doi: string): Promise<HarvestedRecord> {
   const id = zenodoRecordId(doi)
   const url = `${OAI}?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:zenodo.org:${id}`
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`OAI-PMH GetRecord for ${doi} returned HTTP ${res.status}`)
+  const res = await fetch(url, { headers: READ_HEADERS })
+  if (!res.ok) throw new Error(`OAI-PMH GetRecord for ${doi} returned HTTP ${res.status} — an infrastructure refusal, NOT a finding about the record`)
   const xml = await res.text()
   const err = /<error code="([^"]+)">([^<]*)</.exec(xml)
   if (err) throw new Error(`OAI-PMH refused ${doi}: ${err[1]} ${err[2]}`)
@@ -339,8 +352,12 @@ export async function assertCitedDoisResolve(root: string = process.cwd()): Prom
     let record = ''
     let title = ''
     try {
-      const res = await fetch(`https://doi.org/${c.doi}`, { redirect: 'follow' })
+      const res = await fetch(`https://doi.org/${c.doi}`, { redirect: 'follow', headers: READ_HEADERS })
+      // A REFUSAL IS NOT A SUBSTITUTION. Without this, a 403 fell through with record '' and the DOI
+      // was reported as resolving to a different work — the loudest possible wrong answer.
+      if (!res.ok) throw new Error(`doi.org/zenodo returned HTTP ${res.status} — blocked, not redirected`)
       record = /zenodo\.org\/records\/(\d+)/.exec(res.url)?.[1] ?? ''
+      if (!record) throw new Error(`resolved to ${res.url}, which carries no /records/<id> — cannot be compared to anything`)
       title = record ? (await harvest(`10.5281/zenodo.${record}`)).title : ''
     } catch (e) {
       console.log(`  ${c.doi} — NOT RESOLVED (${(e as Error).message}) · ${c.where}`)

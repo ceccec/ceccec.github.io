@@ -134,13 +134,13 @@ function confidenceLabel(value: number) {
   font: inherit;
   color: var(--vp-c-text-1);
   background: transparent;
-  border: 1px dashed var(--vp-hero-border);
+  border: var(--ich-line) dashed var(--vp-hero-border);
   border-radius: calc(var(--vp-movie-radius, var(--ich-sp4)) * calc(2 / 3));
   text-shadow: var(--vp-hero-text-shadow);
 }
 
 .global-help__input:focus {
-  outline: 1px solid var(--vp-movie-link);
+  outline: var(--ich-line) solid var(--vp-movie-link);
   border-color: var(--vp-movie-link);
 }
 
@@ -151,7 +151,7 @@ function confidenceLabel(value: number) {
   font-size: var(--ich-text-ml);
   color: var(--vp-c-text-1);
   background: transparent;
-  border: 1px dashed var(--vp-hero-border);
+  border: var(--ich-line) dashed var(--vp-hero-border);
   border-radius: calc(var(--vp-movie-radius, var(--ich-sp4)) * calc(2 / 3));
   cursor: pointer;
   text-shadow: var(--vp-hero-text-shadow);
@@ -176,7 +176,7 @@ function confidenceLabel(value: number) {
 
 .global-help__answer {
   padding-top: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(1 / 3));
-  border-top: 1px dashed var(--vp-hero-border);
+  border-top: var(--ich-line) dashed var(--vp-hero-border);
 }
 
 .global-help__meta {

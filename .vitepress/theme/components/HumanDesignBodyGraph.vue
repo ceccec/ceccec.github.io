@@ -122,7 +122,7 @@ function resetJ2000() {
 .hd-bodygraph__honesty,
 .hd-bodygraph__boundary {
   margin: 0 0 var(--ich-sp3);
-  font-size: var(--ich-fs-sm, 0.875rem);
+  font-size: var(--ich-fs-sm);
   line-height: calc(3 / 2);
   color: var(--vp-c-text-2);
 }
@@ -138,15 +138,15 @@ function resetJ2000() {
 .hd-bodygraph__jd label {
   display: inline-flex;
   align-items: center;
-  gap: calc(var(--ich-sp1, 0.25rem));
-  font-size: var(--ich-fs-sm, 0.875rem);
+  gap: var(--ich-sp1);
+  font-size: var(--ich-fs-sm);
   color: var(--vp-c-text-2);
 }
 
 .hd-bodygraph__jd input {
-  width: 4.5rem;
-  padding: 0.2rem 0.35rem;
-  border: 1px solid var(--vp-c-divider);
+  width: calc(var(--ich-sp9) * 4);
+  padding: calc(var(--ich-unit) * 4 / 5) calc(var(--ich-unit) * 7 / 5);
+  border: var(--ich-line) solid var(--vp-c-divider);
   border-radius: calc(var(--vp-movie-radius, 0.5rem) * calc(1 / 2));
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
@@ -154,13 +154,13 @@ function resetJ2000() {
 }
 
 .hd-bodygraph__reset {
-  padding: 0.25rem 0.55rem;
-  border: 1px solid var(--vp-c-divider);
+  padding: var(--ich-sp2) calc(var(--ich-unit) * (5 + 6) / 5);
+  border: var(--ich-line) solid var(--vp-c-divider);
   border-radius: calc(var(--vp-movie-radius, 0.5rem) * calc(1 / 2));
   background: transparent;
   color: var(--vp-c-text-1);
   font: inherit;
-  font-size: var(--ich-fs-sm, 0.875rem);
+  font-size: var(--ich-fs-sm);
   cursor: pointer;
 }
 

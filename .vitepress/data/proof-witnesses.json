@@ -241,13 +241,13 @@
    2413,
    2451,
    2491,
-   2525,
-   2605,
-   2638,
-   2672,
-   2705,
-   2740,
-   2775,
+   2528,
+   2608,
+   2641,
+   2675,
+   2708,
+   2743,
+   2778,
    547,
    653,
    711,
@@ -1352,7 +1352,7 @@
  "THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input": {
   "form": "bars",
   "values": [
-   1789910000000,
+   1789920000000,
    41,
    21,
    85,
@@ -2025,7 +2025,7 @@
  "css becomes another use case of the theorems — the blog ui is holographic and reusable": {
   "form": "bars",
   "values": [
-   12296,
+   13589,
    214,
    6
   ],

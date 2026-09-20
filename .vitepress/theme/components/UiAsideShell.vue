@@ -47,14 +47,14 @@ const { textShadow } = useImmersiveMovie()
 .ui-aside--boxed {
   margin: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(3 / 2)) 0 calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(3 / 4));
   padding: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(5 / 6)) var(--vp-movie-gap, var(--ich-sp6));
-  border: 1px dashed var(--vp-hero-border);
+  border: var(--ich-line) dashed var(--vp-hero-border);
   border-radius: var(--vp-movie-radius, var(--ich-sp4));
 }
 
 .ui-aside--divider {
   margin: calc(var(--vp-movie-gap, var(--ich-sp6)) * calc(5 / 6)) 0;
   padding: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(2 / 3)) 0;
-  border-top: 1px dashed var(--vp-hero-border);
+  border-top: var(--ich-line) dashed var(--vp-hero-border);
 }
 
 .ui-aside__summary {

@@ -66,29 +66,29 @@ const labels = computed(() => ({
 .theorem-support {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--ich-sp5, 1rem);
+  gap: var(--ich-sp5);
   align-items: center;
   justify-content: space-between;
-  margin: var(--ich-sp6, 1.5rem) 0;
-  padding: var(--ich-sp5, 1rem);
-  border: var(--ich-border-hair, 1px) solid var(--vp-c-divider);
-  border-radius: var(--ich-radius, 8px);
+  margin: var(--ich-sp6) 0;
+  padding: var(--ich-sp5);
+  border: var(--ich-border-hair) solid var(--vp-c-divider);
+  border-radius: var(--ich-radius);
   background: var(--vp-c-bg-soft);
 }
 
 .theorem-support__body {
-  flex: 1 1 16rem;
-  min-width: 12rem;
+  flex: 1 1 calc(var(--ich-sp16) * 8);
+  min-width: calc(var(--ich-sp16) * 6);
 }
 
 .theorem-support__title {
-  margin: 0 0 var(--ich-sp3, 0.4rem);
-  font-size: var(--ich-em-md, 1rem);
+  margin: 0 0 var(--ich-sp3);
+  font-size: var(--ich-em-md);
 }
 
 .theorem-support__invite {
-  margin: 0 0 var(--ich-sp4, 0.6rem);
-  font-size: var(--ich-em-sm, 0.9rem);
+  margin: 0 0 var(--ich-sp4);
+  font-size: var(--ich-em-sm);
   opacity: var(--ich-op-dim);
 }
 
@@ -101,7 +101,7 @@ const labels = computed(() => ({
 
 .theorem-support__fund {
   display: block;
-  margin-top: var(--ich-sp3, 0.4rem);
+  margin-top: var(--ich-sp3);
 }
 
 .theorem-support__tap:hover {
@@ -112,20 +112,20 @@ const labels = computed(() => ({
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--ich-sp2, 0.3rem);
+  gap: var(--ich-sp2);
   text-decoration: none;
   color: inherit;
 }
 
 .theorem-support__qr-svg :deep(svg) {
-  width: var(--ich-qr-size, 8.5rem);
+  width: var(--ich-qr-size);
   height: auto;
   display: block;
-  border-radius: var(--ich-radius-sm, 4px);
+  border-radius: var(--ich-radius-sm);
 }
 
 .theorem-support__scan {
-  font-size: var(--ich-em-xs, 0.75rem);
+  font-size: var(--ich-em-xs);
   opacity: var(--ich-op-dim);
 }
 </style>

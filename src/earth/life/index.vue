@@ -137,7 +137,7 @@ const implications = computed(() => panel.value.human.implications)
 
 .human-resonance-panel__section h3 {
   margin: 0 0 var(--ich-sp4);
-  font-size: 1rem;
+  font-size: var(--ich-sp8);
 }
 
 .human-resonance-panel__facet-list {

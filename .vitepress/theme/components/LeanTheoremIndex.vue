@@ -31,5 +31,5 @@ const total = computed(() => leanPageRows().length)
 </template>
 
 <style scoped>
-.claim { border-left: 3px solid var(--vp-c-brand-1); padding: 0.75rem 1rem; background: var(--vp-c-bg-soft); }
+.claim { border-left: var(--ich-border-3) solid var(--vp-c-brand-1); padding: var(--ich-sp6) var(--ich-sp8); background: var(--vp-c-bg-soft); }
 </style>

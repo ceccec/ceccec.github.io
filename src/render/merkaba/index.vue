@@ -300,7 +300,7 @@ watch(isDark, () => repaint())
 .merkaba-dual-earth__reexplain {
   margin-top: var(--ich-sp4);
   padding-top: var(--ich-sp4);
-  border-top: 1px solid color-mix(in srgb, var(--vp-c-divider) calc(64% - 4%), transparent);
+  border-top: var(--ich-line) solid color-mix(in srgb, var(--vp-c-divider) calc(64% - 4%), transparent);
 }
 
 .merkaba-dual-earth__reexplain-title {
@@ -339,7 +339,7 @@ watch(isDark, () => repaint())
 .merkaba-dual-earth__pyramid-research {
   margin-top: var(--ich-sp4);
   padding-top: var(--ich-sp4);
-  border-top: 1px solid color-mix(in srgb, var(--vp-c-divider) calc(64% - 4%), transparent);
+  border-top: var(--ich-line) solid color-mix(in srgb, var(--vp-c-divider) calc(64% - 4%), transparent);
 }
 
 .merkaba-dual-earth__interpretation {
@@ -374,7 +374,7 @@ watch(isDark, () => repaint())
 .merkaba-dual-earth__nav-cross {
   margin-top: var(--ich-sp4);
   padding-top: var(--ich-sp4);
-  border-top: 1px solid color-mix(in srgb, var(--vp-c-divider) calc(64% - 4%), transparent);
+  border-top: var(--ich-line) solid color-mix(in srgb, var(--vp-c-divider) calc(64% - 4%), transparent);
 }
 
 .merkaba-dual-earth__nav-cross-table {
@@ -388,7 +388,7 @@ watch(isDark, () => repaint())
 .merkaba-dual-earth__nav-cross-table th,
 .merkaba-dual-earth__nav-cross-table td {
   padding: var(--ich-sp2);
-  border: 1px solid color-mix(in srgb, var(--vp-c-divider) calc(100% / 2), transparent);
+  border: var(--ich-line) solid color-mix(in srgb, var(--vp-c-divider) calc(100% / 2), transparent);
   text-align: left;
   vertical-align: top;
 }

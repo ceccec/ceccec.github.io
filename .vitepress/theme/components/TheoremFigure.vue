@@ -89,13 +89,13 @@ const roleClass = (role: FigRole) => `fig-role--${role}`
 .thm-fig__formula code { font-size: calc(1em * (5 + 6) / (2 * 5)); }
 .thm-fig__svg { width: 100%; height: auto; overflow: visible; }
 
-.thm-fig__axis { stroke: currentColor; stroke-width: calc(6 / 5); opacity: calc(7 / (2 * 5)); }
-.thm-fig__grid { stroke: currentColor; stroke-width: calc(1 / 2); opacity: calc(3 / (4 * 5)); }
-.thm-fig__tick { fill: currentColor; font-size: calc(1px * 3 * 4); opacity: calc(7 / (2 * 5)); font-variant-numeric: tabular-nums; }
+.thm-fig__axis { stroke: currentColor; stroke-width: calc(6 / 5); opacity: var(--ich-op-mid); }
+.thm-fig__grid { stroke: currentColor; stroke-width: calc(1 / 2); opacity: var(--ich-op-ghost); }
+.thm-fig__tick { fill: currentColor; font-size: calc(1px * 3 * 4); opacity: var(--ich-op-mid); font-variant-numeric: tabular-nums; }
 .thm-fig__tick--y { text-anchor: end; }
 .thm-fig__tick--x { text-anchor: middle; }
-.thm-fig__axis-label { fill: currentColor; font-size: calc(1px * (5 + 8)); text-anchor: middle; opacity: calc(4 / 5); }
-.thm-fig__ref { stroke: var(--vp-c-brand-1); stroke-width: calc(6 / 5); stroke-dasharray: 6 4; opacity: calc(9 / (2 * 5)); }
+.thm-fig__axis-label { fill: currentColor; font-size: calc(1px * (5 + 8)); text-anchor: middle; opacity: var(--ich-op-card-faint); }
+.thm-fig__ref { stroke: var(--vp-c-brand-1); stroke-width: calc(6 / 5); stroke-dasharray: 6 4; opacity: var(--ich-op-strong); }
 .thm-fig__ref-label { fill: var(--vp-c-brand-1); font-size: calc(1px * 3 * 4); text-anchor: end; font-weight: calc(6 * 100); }
 
 .thm-fig__line { fill: none; stroke-width: calc((5 + 6) / 5); }
@@ -111,8 +111,8 @@ const roleClass = (role: FigRole) => `fig-role--${role}`
 .thm-fig__legend { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); justify-content: center; font-size: calc(1em * 9 / (2 * 5)); }
 .thm-fig__key { display: inline-flex; align-items: center; gap: calc(1px * 6); }
 .thm-fig__swatch { width: calc(1px * 2 * 7); height: calc(1px * 2 * 7); border-radius: calc(1px * 3); display: inline-block; }
-.thm-fig__caption { font-size: calc(1em * 9 / (2 * 5)); opacity: calc(4 / 5); text-align: center; }
-.thm-fig__source { font-size: calc(1em * 4 / 5); opacity: calc(3 / 5); text-align: center; margin: 0; }
+.thm-fig__caption { font-size: calc(1em * 9 / (2 * 5)); opacity: var(--ich-op-card-faint); text-align: center; }
+.thm-fig__source { font-size: calc(1em * 4 / 5); opacity: var(--ich-op-soft); text-align: center; margin: 0; }
 
 @media print {
   /* keep the ok/bad hue distinction in print, but only via the same computed vars — no literals */

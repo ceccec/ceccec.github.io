@@ -244,23 +244,23 @@ onBeforeUnmount(() => { offClock?.(); io?.disconnect(); dispose?.() })
 </template>
 
 <style scoped>
-.three-closure { margin: 2rem 0; }
-.stage { width: 100%; border-radius: 8px; overflow: hidden; background: var(--vp-c-bg-alt); }
+.three-closure { margin: var(--ich-sp16) 0; }
+.stage { width: 100%; border-radius: var(--ich-sp4); overflow: hidden; background: var(--vp-c-bg-alt); }
 .stage :deep(canvas) { display: block; width: 100%; height: auto; }
-.legend { margin-top: 1rem; font-size: 0.9rem; }
-.claim { margin: 0 0 0.6rem; color: var(--vp-c-text-1); }
-.facets { list-style: none; padding: 0; margin: 0 0 0.6rem; }
+.legend { margin-top: var(--ich-sp8); font-size: var(--ich-sp7); }
+.claim { margin: 0 0 var(--ich-sp5); color: var(--vp-c-text-1); }
+.facets { list-style: none; padding: 0; margin: 0 0 var(--ich-sp5); }
 .facets li { color: var(--vp-c-text-2); font-variant-numeric: tabular-nums; }
 .facets li[data-on='false'] { color: var(--vp-c-danger-1); }
-.mark { display: inline-block; width: 1.4em; color: var(--vp-c-brand-1); }
+.mark { display: inline-block; width: calc(1em * 7 / 5); color: var(--vp-c-brand-1); }
 .facets li[data-on='false'] .mark { color: var(--vp-c-danger-1); }
 .catalogue { color: var(--vp-c-text-2); }
-.catalogue p { margin: 0.4rem 0; }
+.catalogue p { margin: var(--ich-sp3) 0; }
 .chip {
-  display: inline-block; margin: 0.1rem 0.25rem 0.1rem 0; padding: 0.05rem 0.4rem;
-  border: 1px solid var(--vp-c-divider); border-radius: 4px;
-  font-family: var(--vp-font-family-mono); font-size: 0.78em;
+  display: inline-block; margin: var(--ich-sp1) var(--ich-sp2) var(--ich-sp1) 0; padding: calc(var(--ich-unit) / 5) var(--ich-sp3);
+  border: var(--ich-line) solid var(--vp-c-divider); border-radius: var(--ich-sp2);
+  font-family: var(--vp-font-family-mono); font-size: calc(1em * 3 * (5 + 8) / 100);
 }
-.failed { color: var(--vp-c-danger-1); font-size: 0.9rem; }
+.failed { color: var(--vp-c-danger-1); font-size: var(--ich-sp7); }
 .disagree { color: var(--vp-c-warning-1, var(--vp-c-danger-1)); }
 </style>

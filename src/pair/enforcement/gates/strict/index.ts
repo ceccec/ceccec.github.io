@@ -195,8 +195,21 @@ export function auditStrictGates(facts: { root: string; strict: StrictGateSnapsh
       `Strict gates (DRY) — pipeline only: script shells · pairs · merkle · digit math — 0 failures, receipt ${s.receipt}. Barrel law audited by weave strictTrees.`,
     )
   } else {
+    // THE MESSAGE MUST NAME WHAT FAILED. This printed four of the thirteen conditions strictGatePassed()
+    // tests — shell, pairs, merkle, digit — and a build whose ONLY failing condition was `cracks` reported
+    // all four green beside the word FAILED. A reader saw a failure that named nothing, inside a build that
+    // exited 0. Every condition is listed now, and the failing ones are named first.
+    const conditions: Array<[string, number | boolean]> = [
+      ['imports', s.imports.length], ['oneMath', s.oneMath.length], ['importGaps', s.importGaps.length],
+      ['indexOnly', s.indexOnly.length], ['vitepress', s.vitepressIndex.filter((v) => !v.transitional).length],
+      ['nonTs', s.nonTs.length], ['hyphen', s.hyphenFolders.length], ['memoClock', s.memoClock.length],
+      ['shell', s.scriptShellViolations.length], ['cracks', s.hardcodedCracks.length],
+      ['pairs', s.pairsPaired], ['merkle', s.merkleOk], ['digit', s.digitPassed],
+    ]
+    const failing = conditions.filter(([, v]) => (typeof v === 'boolean' ? !v : v !== 0))
     report.push(
-      `Strict gates FAILED — shell:${s.scriptShellViolations.length} pairs:${s.pairsPaired} merkle:${s.merkleOk} digit:${s.digitPassed} receipt ${s.receipt}.`,
+      `Strict gates FAILED on ${failing.map(([k, v]) => `${k}=${v}`).join(' · ')} — all conditions: ` +
+        `${conditions.map(([k, v]) => `${k}=${v}`).join(' ')} receipt ${s.receipt}.`,
     )
   }
   return { findings, report, receipt: s.receipt, passed }

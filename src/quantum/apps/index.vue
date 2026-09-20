@@ -5269,45 +5269,45 @@ function runTool(toolId: string) {
 </template>
 
 <style scoped>
-.quantum-apps__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
-.quantum-apps__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(1rem * (16 - 5)), 1fr)); gap: var(--ich-sp6); margin-top: 1rem; }
+.quantum-apps__lede { opacity: var(--ich-op-card-soft); max-width: calc(var(--ich-sp8) * (54 - 2)); }
+.quantum-apps__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(var(--ich-sp8) * (16 - 5)), 1fr)); gap: var(--ich-sp6); margin-top: var(--ich-sp8); }
 .quantum-apps__tile { all: unset; cursor: pointer; display: block; }
 .quantum-apps__meta { display: block; font-size: var(--ich-text-xs); opacity: var(--ich-op-soft); margin-top: var(--ich-sp2); }
-.quantum-apps__footer { margin-top: 1rem; }
+.quantum-apps__footer { margin-top: var(--ich-sp8); }
 .quantum-apps__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-ms); margin-top: var(--ich-sp4); }
-.quantum-apps__table th, .quantum-apps__table td { border: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent); padding: var(--ich-sp4) var(--ich-sp5); vertical-align: top; text-align: left; }
+.quantum-apps__table th, .quantum-apps__table td { border: var(--ich-line) solid color-mix(in srgb, currentColor calc(9% + 6%), transparent); padding: var(--ich-sp4) var(--ich-sp5); vertical-align: top; text-align: left; }
 .quantum-apps__result { margin-top: var(--ich-sp6); }
 .quantum-apps__facets { list-style: none; padding: 0; }
 .quantum-apps__chat-form { display: flex; gap: var(--ich-sp3); align-items: center; flex-wrap: wrap; }
-.quantum-apps__chat-form .quantum-apps__input { margin: 0; flex: 1 1 min(100%, calc(1rem * (5 * 8 - 4))); }
+.quantum-apps__chat-form .quantum-apps__input { margin: 0; flex: 1 1 min(100%, calc(var(--ich-sp8) * (5 * 8 - 4))); }
 .quantum-apps__chat-turn { flex-direction: column; align-items: flex-start; gap: var(--ich-sp2); }
 .quantum-apps__results { margin: var(--ich-sp2) 0 0; padding-left: var(--ich-sp5); display: flex; flex-direction: column; gap: var(--ich-sp2); }
 .quantum-apps__results li { display: list-item; }
 .quantum-apps__facets li { margin-bottom: var(--ich-sp2); display: flex; gap: var(--ich-sp3); flex-wrap: wrap; align-items: baseline; }
 .quantum-apps__error { color: var(--vp-c-danger-1, crimson); font-size: var(--ich-text-sm); }
-.quantum-apps__textarea { font-family: var(--vp-font-family-mono, ui-monospace, monospace); min-height: calc(1rem * 6); resize: vertical; }
+.quantum-apps__textarea { font-family: var(--vp-font-family-mono, ui-monospace, monospace); min-height: calc(var(--ich-sp8) * 6); resize: vertical; }
 .quantum-apps__input {
   display: block;
-  width: min(100%, calc(1rem * (5 * 8 - 4)));
+  width: min(100%, calc(var(--ich-sp8) * (5 * 8 - 4)));
   margin: var(--ich-sp3) 0 var(--ich-sp5);
   padding: var(--ich-sp3) var(--ich-sp4);
-  border: 1px solid color-mix(in srgb, currentColor calc(9% + 9%), transparent);
+  border: var(--ich-line) solid color-mix(in srgb, currentColor calc(9% + 9%), transparent);
   background: transparent;
   color: inherit;
   font: inherit;
 }
-.quantum-apps__hub-steps { list-style: decimal; padding-left: calc(1rem * (3 / 2)); margin: var(--ich-sp4) 0; }
+.quantum-apps__hub-steps { list-style: decimal; padding-left: calc(var(--ich-sp8) * (3 / 2)); margin: var(--ich-sp4) 0; }
 .quantum-apps__hub-steps li { margin-bottom: var(--ich-sp4); display: flex; flex-wrap: wrap; gap: var(--ich-sp3); align-items: baseline; }
 .quantum-apps__docs-dev { margin-top: var(--ich-sp5); }
 .quantum-apps__code {
   display: block;
   overflow: auto;
-  max-height: calc(1rem * (8 + 5));
+  max-height: calc(var(--ich-sp8) * (8 + 5));
   padding: var(--ich-sp4);
   margin: var(--ich-sp3) 0;
   font-family: var(--vp-font-family-mono, ui-monospace, monospace);
   font-size: var(--ich-text-xs);
-  border: 1px solid color-mix(in srgb, currentColor calc(9% + 6%), transparent);
+  border: var(--ich-line) solid color-mix(in srgb, currentColor calc(9% + 6%), transparent);
   white-space: pre-wrap;
 }
 .quantum-apps__packet { margin-top: var(--ich-sp5); }

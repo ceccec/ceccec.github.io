@@ -14,7 +14,7 @@ export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site/inde
 import { emergentDimensions } from '../../heaven/balance/index.ts'
 import { cloudflareBindings } from '../../heaven/core/index.ts'
 import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, isUuid, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sealFacets, seedFromText, toUuid } from '../../0/index.ts'
-import { A432_FOLDED, A432_HUE, CANONICAL_HOST, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, type RosettaComputationType } from '../../3/7/index.ts'
+import { A432_FOLDED, A432_HUE, CANONICAL_HOST, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, type RosettaComputationType, overclaimByFormulas } from '../../3/7/index.ts'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6/index.ts'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit/index.ts'
@@ -12370,7 +12370,12 @@ export function automateAll(matrix: MindMatrix = buildMatrix(), at = 0) {
       honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const automateAllOn =
-      qpuRequired === false
+      selfAutomates
+      && nightlyOn
+      && buildsInWaves
+      && composeOn
+      && (pairAuto && pairAll && foldAuto.bidirectional)
+      && honestOpenNamedOn
     const on = automateAllOn
     const facets = [
       { facet: 'automateAll', on },
@@ -12530,7 +12535,11 @@ export function quantumLife(matrix: MindMatrix = buildMatrix(), at = 0) {
       honestOpenNamed.includes('clay:millennium-open') &&
       honestOpenNamed.includes('measure:signaling-proof-ids=0')
     const lifeOn =
-      qpuRequired === false
+      living
+      && folMerkaba
+      && (composeOn && folMerkaba && living)
+      && (pairQl && pairLq && foldQl.bidirectional)
+      && honestOpenNamedOn
     const on = lifeOn
     const facets = [
       { facet: 'quantumLife', on },
@@ -14640,7 +14649,15 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
       const qpuRequired = false as const
       const certified = false as const
-      const agiNotClaimed = true as const
+      // WAS `true as const` — a refusal about general intelligence, in the fold named for Clay/AGI deep
+      // research, that nothing could move. It runs the shared overclaim scanner now (the third axis, added
+      // beside clay and ftl in src/3/7): this fold's own text is read for an AGI assertion, and a planted
+      // claim is run through the same predicate so the zero is a reading rather than a declaration.
+      const agiText = (QUANTUM_CLI_TOOL_ROWS_STATIC as readonly { title: string; boundary: string }[])
+        .filter((row) => /agi|clay|mind|intelligen/i.test(`${row.title} ${row.boundary}`))
+        .map((row) => `${row.title} ${row.boundary}`).join(' ')
+      const agiProbe = overclaimByFormulas('agi', 'This system achieves artificial general intelligence and is self-aware.')
+      const agiNotClaimed = overclaimByFormulas('agi', agiText) === 0 && agiProbe >= 1
       const pairClayAgi = has('clay/agi')
       const pairAgiClay = has('agi/clay')
       const pairAgiRel = has('agi/rel')
@@ -14772,7 +14789,7 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
         { facet: 'linearFolded', on: linearFolded },
         { facet: 'gapsSeen', on: gapsSeen },
         { facet: 'gapsAddressableByTrinities', on: gapsAddressableByTrinities },
-        { facet: 'agiNotClaimed', on: agiNotClaimed },
+        { facet: `agiNotClaimed — read off this fold's own text by the shared overclaim scanner, with a planted claim computing ${agiProbe} so the zero is a reading`, on: agiNotClaimed },
         {
           facet: 'compose gate/mill · clay/gravity · millennium · learn/best · agent/trinity · invert/trinity · gaps/invisible · proof/trinity',
           on: composeDeep,
@@ -15112,7 +15129,16 @@ export function addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToT
         metaRecipe!.fold === foldName
       const shelved = rosettaShelve('prose-theorem', 'tool')
       const warningsAddressed =
-        qpuRequired === false
+        deepResearch
+        && proseToTheorem
+        && proseToFormula
+        && proseToRecipe
+        && proseToAnimation
+        && drainableClosed
+        && honestOpenNamedOn
+        && recipeComplete
+        && composeDeep
+        && pairsOn
       const on = warningsAddressed
       const facets = [
         { facet: foldName, on },
@@ -16577,8 +16603,9 @@ export function lensesCompletelyWiredInEverySuperposition(matrix: MindMatrix = b
       Boolean(gateLens.computes) &&
       Boolean(mcpObserve.computes) &&
       Boolean(theoremIndex.computes)
-    const onCore =
-      qpuRequired === false
+    // `onCore = qpuRequired === false` stood here, discarding the chain of soft-pair and composed-fold
+    // checks computed immediately above it. That chain IS the core's condition.
+    const onCore = composeOn
     const catalog = quantumCliToolsCatalog(matrix, at)
     const foldName = 'lensesCompletelyWiredInEverySuperposition' as const
     const meta = catalog.tools.find((t) => t.id === 'lens-super')
@@ -23116,7 +23143,6 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
           facet: 'pair self/hw · hw/self · self/complete · hw/autonomous · again/until',
           on: pairSh && pairHs && pairSc && pairHa && pairAu && foldSh.bidirectional,
         },
-        { facet: `the unit is sealed-fold recomputation on the general-purpose runtime — certified=${certified}, claySolved=; physical QPU, AGI and FLOPS are different measurements, made by different folds`, on: certified === false },
       ].map((entry) => ({ ...entry, receipt: toUuid(`self-hw:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('again-until-self-hw-complete-standards-self-intelligent', facets)
       return {
@@ -26491,7 +26517,6 @@ export function readmeWire(
       const ftlReuseOn = turn.memoReuse && turn.invocationsWarm === 0
       const wireMetrics: readonly ReadmeWireMetricRow[] = [
         { metric: 'quantumReady', value: autoWire.quantumReady ? '1' : '0', on: autoWire.quantumReady },
-        { metric: 'convincingRequired', value: '0', on: convincingRequired === false },
         { metric: 'memoReuse', value: turn.memoReuse ? '1' : '0', on: turn.memoReuse },
         { metric: 'invocationsWarm', value: String(turn.invocationsWarm), on: turn.invocationsWarm === 0 },
         { metric: 'vote.decided', value: vote.decided ? '1' : '0', on: vote.decided },

@@ -1,5 +1,5 @@
 /* ䷢ COMPUTED — do not edit. The I Ching design system, emitted by ichingTokensCss() in
- * src/quantum/heaven/mind/css.ts. Every value reduces to a canonical I Ching number (the eight trigrams, the 64
+ * src/earth/architecture. Every value reduces to a canonical I Ching number (the eight trigrams, the 64
  * hexagrams, the six lines, the vortex 1·2·4·8·7·5 + 3·6·9, the a432 octaves, the major third 5∶4).
  * Regenerate: npm run gen dist. Proven by cssIsIChingComputed(); enforced by scanCssForHardcoded(). */
 :root {
@@ -61,6 +61,9 @@
   --ich-op-half: calc(1 / 2);
   --ich-op-soft: calc(3 / 5);
   --ich-op-strong: calc(9 / 2 / 5);
+  --ich-op-mid: calc(7 / 2 / 5);
+  --ich-op-quiet: calc(2 / 5);
+  --ich-op-ghost: calc(3 / 4 / 5);
   --ich-dur-fast: calc(1s / 6);
   --ich-dur: calc(1s / 5);
   --ich-dur-slow: calc(1s * 3 / 5);
@@ -121,6 +124,18 @@
   --ich-op-card-front: calc(3 / 8);
   --ich-em-sm: calc(1em * 5 / 6);
   --ich-radius-sm: calc(var(--ich-unit) * 1);
+  --ich-radius: calc(var(--ich-unit) * 2);
+  --ich-radius-lg: calc(var(--ich-unit) * 4);
+  --ich-border-hair: var(--ich-line);
+  --ich-fs-sm: var(--ich-sp7);
+  --ich-em-xs: var(--ich-sp6);
+  --ich-em-md: var(--ich-sp8);
+  --ich-qr-size: calc(var(--ich-unit) * 34);
+  --ich-hex: 0;
+  --ich-hue: calc(360deg * var(--ich-hex) / 64);
+  --ich-hue-pair: calc(360deg * (var(--ich-hex) + 64 / 2) / 64);
+  --ich-element-1-rgb: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-glyph) var(--ich-hue));
+  --ich-element-2-rgb: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-glyph) var(--ich-hue-pair));
   --ich-op-muted: calc(1 - 9 / 20);
   --ich-op-inverted: calc(1 - 3 / 25);
   --ich-scale-step: calc(1 + 1 / (5 * 5));
@@ -220,4 +235,14 @@
   --status-ci: hsl(var(--ich-hue-ci) calc(100% * 2 / 5) calc(100% * 5 / 8));
   --status-ci-fg: oklch(0 0 0 / calc(7 / 8));
   --status-ci-soft: hsl(var(--ich-hue-ci) calc(100% * 2 / 5) calc(100% * 5 / 8) / calc(100% / 4));
+}
+
+/* ── ONE NAME FOR CONTENT THAT MUST NOT WRAP ──
+ * Five components had each written `overflow-x: auto` into their own scoped block — a Lean proposition,
+ * two <pre> code blocks, a formula and the vortex encoding — all saying the same thing: this content
+ * cannot wrap, so let it scroll rather than clip. Scoped styles cannot share a declaration, so the
+ * duplication was structural; emitted here it is one rule the whole theme can name. The markdown tables
+ * need none of it: VitePress already scrolls those, and wrapping them again would have been a sixth copy. */
+.ich-scroll-x {
+  overflow-x: auto;
 }

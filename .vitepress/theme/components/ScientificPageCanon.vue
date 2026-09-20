@@ -75,12 +75,12 @@ defineProps<{
 .scientific-page-canon__theorem {
   margin: 0;
   font-style: italic;
-  opacity: calc(4 / 5);
+  opacity: var(--ich-op-card-faint);
 }
 .scientific-page-canon__fold {
   margin: var(--ich-sp2) 0 0;
   font-size: calc(1em * 4 / 5);
-  opacity: calc(3 / 5);
+  opacity: var(--ich-op-soft);
 }
 .scientific-page-canon__facets {
   display: flex;
@@ -94,9 +94,9 @@ defineProps<{
   margin: 0;
   font-variant-numeric: tabular-nums;
 }
-.scientific-page-canon__terms dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
+.scientific-page-canon__terms dt { font-weight: calc(6 * 100); opacity: var(--ich-op-soft); }
 .scientific-page-canon__terms dd { margin: 0; }
-.scientific-page-canon__terms dd span { opacity: calc(3 / 5); font-size: calc(1em * 4 / 5); }
+.scientific-page-canon__terms dd span { opacity: var(--ich-op-soft); font-size: calc(1em * 4 / 5); }
 .scientific-page-canon__anim {
   margin: 0;
   display: grid;
@@ -105,7 +105,7 @@ defineProps<{
 }
 .scientific-page-canon__anim figcaption {
   font-size: calc(1em * 7 / (2 * 5));
-  opacity: calc(7 / (2 * 5));
+  opacity: var(--ich-op-mid);
   font-variant-numeric: tabular-nums;
 }
 </style>

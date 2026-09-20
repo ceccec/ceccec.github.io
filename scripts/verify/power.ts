@@ -18,7 +18,7 @@
 
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 import { sharedHeroAt, drawHeroMovieFrame, HERO_CYCLE_MS } from '../../src/quantum/index.ts'
 import { harmonizeField } from '../../src/music/index.ts'
 
@@ -93,8 +93,10 @@ export function reportAnimationPower(): void {
 }
 
 export function assertAllAnimatedNoExtraPower(): void {
-  const clocks = animationClockFiles()
-  console.log(ratchet('movie.animation-clocks', clocks.length, { evidence: () => clocks }))
-  const on = heroFrameCost()
-  console.log(ratchet('movie.draw-calls-per-frame', on.drawCallsPerFrame, { evidence: () => [`${on.drawCallsPerFrame} raster calls per hero frame over the cycle (${on.msPerFrame} ms/frame here, not ratcheted)`] }))
+  everyRatchet(() => {
+    const clocks = animationClockFiles()
+    console.log(ratchet('movie.animation-clocks', clocks.length, { evidence: () => clocks }))
+    const on = heroFrameCost()
+    console.log(ratchet('movie.draw-calls-per-frame', on.drawCallsPerFrame, { evidence: () => [`${on.drawCallsPerFrame} raster calls per hero frame over the cycle (${on.msPerFrame} ms/frame here, not ratcheted)`] }))
+  })
 }

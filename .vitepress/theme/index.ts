@@ -24,7 +24,6 @@ import {
   SourceAtlas,
   ThreeClosure,
 } from './components/index.ts'
-import UniversalSolverInterface from '../../src/quantum/solver/browser/index.vue'
 
 export default {
   extends: DefaultTheme,
@@ -48,7 +47,6 @@ export default {
     if (!ctx.app.component('ThreeClosure')) ctx.app.component('ThreeClosure', ThreeClosure)
     if (!ctx.app.component('DigitMotion')) ctx.app.component('DigitMotion', DigitMotion)
     if (!ctx.app.component('SevenStarRosetta')) ctx.app.component('SevenStarRosetta', DigitMotion)
-    if (!ctx.app.component('UniversalSolverInterface')) ctx.app.component('UniversalSolverInterface', UniversalSolverInterface)
 
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
       window.addEventListener('load', () => {

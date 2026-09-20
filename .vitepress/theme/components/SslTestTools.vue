@@ -185,11 +185,11 @@ recompute()
 </template>
 
 <style scoped>
-.ssltest__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
+.ssltest__lede { opacity: var(--ich-op-card-soft); max-width: calc(var(--ich-sp8) * (54 - 2)); }
 .ssltest__label { display: block; font-weight: calc(6 * 100); margin-bottom: var(--ich-sp2); font-size: var(--ich-text-sm); }
 .ssltest__input {
   width: 100%; box-sizing: border-box; margin-bottom: var(--ich-sp2);
-  padding: var(--ich-sp2) var(--ich-sp3); border: 1px solid var(--vp-c-divider);
+  padding: var(--ich-sp2) var(--ich-sp3); border: var(--ich-line) solid var(--vp-c-divider);
   border-radius: calc(1px * 6); background: var(--vp-c-bg-soft); color: inherit;
   font-family: ui-monospace, Menlo, monospace; font-size: var(--ich-text-sm);
 }

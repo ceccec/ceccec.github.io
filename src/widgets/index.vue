@@ -59,8 +59,8 @@ watch(() => props.at, (at) => { panel.value = quantumWidgetsPanelComputes(undefi
 </template>
 
 <style scoped>
-.quantum-widgets__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
-.quantum-widgets__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: var(--ich-sp6); margin: 1rem 0; }
+.quantum-widgets__lede { opacity: var(--ich-op-card-soft); max-width: calc(var(--ich-sp8) * (54 - 2)); }
+.quantum-widgets__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(var(--ich-sp16) * 8), 1fr)); gap: var(--ich-sp6); margin: var(--ich-sp8) 0; }
 .quantum-widgets__tile-head { display: flex; align-items: center; justify-content: space-between; gap: var(--ich-sp4); margin-bottom: var(--ich-sp3); }
 .quantum-widgets__meta { font-size: var(--ich-text-xs); opacity: var(--ich-op-card-meta); margin: 0 0 var(--ich-sp4); word-break: break-all; }
 .quantum-widgets__summary { font-size: var(--ich-text-ms); margin: 0 0 var(--ich-sp4); }

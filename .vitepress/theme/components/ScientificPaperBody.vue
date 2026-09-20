@@ -82,9 +82,9 @@ const formulaParts = computed(() => paperFormulaParts(props.paper.formulas))
 .scientific-paper-body__theorem {
   font-family: var(--vp-font-family-serif, Georgia, 'Times New Roman', serif);
   padding: var(--ich-sp3) 0;
-  border-top: 1px solid currentColor;
-  border-bottom: 1px solid currentColor;
-  max-width: 34em;              /* a printed measure — ~66 characters */
+  border-top: var(--ich-line) solid currentColor;
+  border-bottom: var(--ich-line) solid currentColor;
+  max-width: calc(1em * (27 + 7));              /* a printed measure — ~66 characters */
 }
 .scientific-paper-body__line {
   margin: 0 0 var(--ich-sp2);
@@ -110,8 +110,8 @@ const formulaParts = computed(() => paperFormulaParts(props.paper.formulas))
   .scientific-paper-body__theorem {
     break-inside: avoid;
     page-break-inside: avoid;
-    border-color: #000;
-    color: #000;
+    border-color: var(--color-print-text);
+    color: var(--color-print-text);
     max-width: none;
   }
   .scientific-paper-body__line { orphans: 3; widows: 3; }
@@ -119,7 +119,7 @@ const formulaParts = computed(() => paperFormulaParts(props.paper.formulas))
 }
 .scientific-paper-body__meta {
   font-size: calc(1em * 7 / (2 * 5));
-  opacity: calc(3 / 5);
+  opacity: var(--ich-op-soft);
   margin: var(--ich-sp2) 0 0;
 }
 .scientific-paper-body__locks {
@@ -128,6 +128,6 @@ const formulaParts = computed(() => paperFormulaParts(props.paper.formulas))
   gap: calc(1px * 2) var(--ich-sp3);
   margin: var(--ich-sp2) 0 0;
 }
-.scientific-paper-body__locks dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
+.scientific-paper-body__locks dt { font-weight: calc(6 * 100); opacity: var(--ich-op-soft); }
 .scientific-paper-body__locks dd { margin: 0; }
 </style>

@@ -57,7 +57,7 @@ runTool()
 </template>
 
 <style scoped>
-.fusion-verify__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
+.fusion-verify__lede { opacity: var(--ich-op-card-soft); max-width: calc(var(--ich-sp8) * (54 - 2)); }
 .fusion-verify__list { list-style: none; padding: 0; margin: 0; }
 .fusion-verify__list li { margin-bottom: var(--ich-sp3); display: flex; gap: var(--ich-sp3); align-items: flex-start; }
 .fusion-verify__meta { font-size: var(--ich-text-xs); opacity: var(--ich-op-card-meta); }

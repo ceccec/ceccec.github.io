@@ -43,7 +43,7 @@ onBeforeUnmount(() => { off?.(); off = null })
 .mystery-atlas { display: grid; gap: var(--ich-sp4); }
 .mystery-atlas__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--ich-sp3); }
 .mystery-atlas__leaf {
-  display: grid; grid-template-columns: calc(1rem * (9 - 1 / 2)) 1fr; gap: var(--ich-sp2) var(--ich-sp5); align-items: baseline;
+  display: grid; grid-template-columns: calc(var(--ich-sp8) * (9 - 1 / 2)) 1fr; gap: var(--ich-sp2) var(--ich-sp5); align-items: baseline;
   padding: var(--ich-sp3) var(--ich-sp5); border-radius: var(--ich-sp4);
   border-left: var(--ich-unit) solid hsl(var(--tier-hue, 0) calc(100% * 7 / 8) calc(100% / 2));
   background: hsl(var(--tier-hue, 0) calc(100% * 7 / 8) calc(100% / 2) / calc(7 / 100));

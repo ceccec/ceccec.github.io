@@ -117,7 +117,7 @@ const navAria = computed(() => pick('Trinity gateways', 'Троични порт
 
 .trinity-gateways__related-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--ich-sp16) * 9 / 2), 1fr));
   gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(2 / 3));
 }
 </style>

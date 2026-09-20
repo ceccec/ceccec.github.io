@@ -82,6 +82,42 @@ function write(root: string, next: Status, before: Status): void {
  * RESTORING THE SOURCE IS NOT RESTORING THE FLOOR. Check status.json after any perturbation that made a
  * number fall, and put the recorded value back to what the clean tree measures.
  */
+/**
+ * EVERY RATCHET IN A GATE REPORTS, NOT JUST THE FIRST.
+ *
+ * `ratchet()` throws the moment a floor is exceeded, so a gate that measures six things stops at the
+ * first red one and the other five are never computed. One red number hides every red number behind
+ * it — and it is silent about hiding them, which is the part that costs days.
+ *
+ * Measured, in this repository, twice in one session: verify:prior-art threw on
+ * attributed-by-pattern (325 against 322) at line 2884 and never reached prior-art.unclassified at
+ * line 2970, which stood at 17 against a floor of 0. Paying down the first debt revealed the second,
+ * with no indication the second had ever existed. verify:stream was written to solve exactly this
+ * between gates — it asks every gate regardless of what failed before it — and the same defect was
+ * still live one level down, inside each gate.
+ *
+ * Wrap a gate body in everyRatchet() and its ratchets record instead of throwing; the wrapper throws
+ * once at the end with all of them. Tightenings still record as they happen (monotone, so safe).
+ * Eighteen of the fifty-nine gate files call more than one ratchet; those are the ones that need it.
+ */
+let collecting: string[] | null = null
+
+export function everyRatchet<T>(body: () => T): T {
+  const outer = collecting
+  collecting = []
+  let failures: string[] = []
+  try {
+    const out = body()
+    failures = collecting
+    return out
+  } finally {
+    collecting = outer
+    if (failures.length > 0) {
+      throw new Error(`${failures.length} ratchet(s) refused in this gate:\n  ${failures.join('\n  ')}`)
+    }
+  }
+}
+
 export function ratchet(
   name: string,
   measured: number,
@@ -115,7 +151,11 @@ export function ratchet(
     const lines = opts.evidence()
     console.log(`  ${name} — ${measured} against the recorded ${recorded}; all ${lines.length} listed, the ${measured - recorded} new one(s) are among them:`)
     for (const l of lines) console.log(`    ${l}`)
-    throw new Error(`${name}: ${measured}, above the recorded ${recorded}. The ratchet only falls.`)
+    const refusal = `${name}: ${measured}, above the recorded ${recorded}. The ratchet only falls.`
+    // Inside everyRatchet() the refusal is HELD, not swallowed: the wrapper throws with all of them
+    // at the end of the gate, so the caller sees every red number this gate can measure, not the first.
+    if (collecting) { collecting.push(refusal); return `${name}: ${measured} — REFUSED (above ${recorded}); held, reported at the end of this gate` }
+    throw new Error(refusal)
   }
   if (measured < recorded) {
     const before = { ...status }

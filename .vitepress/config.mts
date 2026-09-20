@@ -388,7 +388,19 @@ export default defineConfig({
             if (id.includes('node_modules/vue') || id.includes('node_modules/@vue') || id.includes('node_modules/vue-router')) {
               return 'vue-vendor'
             }
-            if (id.includes('src/wind/ui/')) return 'shadcn-ui'
+            // THIS RULE TESTED A PATH THAT DOES NOT EXIST. `src/wind/ui/` is not in the tree — the shadcn
+            // components live in .vitepress/theme/components/ui — so the predicate never matched, no
+            // shadcn-ui chunk was ever emitted, and the whole stack (radix-vue and the @floating-ui it
+            // pulls) stayed in the entry chunk. A split that silently splits nothing looks exactly like
+            // a split that works: the rule was here, and the bytes were not.
+            // VENDOR ONLY, DELIBERATELY. Matching the ui COMPONENTS as well pulled 8.6 MB into this chunk:
+            // one of them imports .vitepress/lib/status-badge, which imports the render barrel, which
+            // deep-imports src — so assigning the component here dragged the whole corpus graph with it.
+            // The split exists to move the radix/floating-ui/internationalized vendor stack out of the
+            // entry chunk; the components themselves already chunk correctly on their own.
+            if (id.includes('node_modules/radix-vue') || id.includes('node_modules/@floating-ui') || id.includes('node_modules/@internationalized')) {
+              return 'shadcn-ui'
+            }
             return undefined
           },
         },

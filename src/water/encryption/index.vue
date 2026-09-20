@@ -586,7 +586,7 @@ runTool()
 </template>
 
 <style scoped>
-.encryption-tools__lede { opacity: var(--ich-op-card-soft); max-width: calc(1rem * (54 - 2)); }
+.encryption-tools__lede { opacity: var(--ich-op-card-soft); max-width: calc(var(--ich-sp8) * (54 - 2)); }
 .encryption-tools__moduli { display: flex; flex-wrap: wrap; gap: var(--ich-sp3); margin: var(--ich-sp4) 0; align-items: center; }
 .encryption-tools__run { margin-top: var(--ich-sp3); }
 .encryption-tools__list { list-style: none; padding: 0; margin: var(--ich-sp4) 0 0; }
@@ -595,12 +595,12 @@ runTool()
 .encryption-tools__boundary { font-size: var(--ich-text-sm); opacity: var(--ich-op-card-meta); margin-top: var(--ich-sp4); }
 .encryption-tools__error { color: var(--vp-c-danger-1, crimson); font-size: var(--ich-text-sm); }
 .encryption-tools__table { width: 100%; border-collapse: collapse; font-size: var(--ich-text-xs); margin: var(--ich-sp4) 0; }
-.encryption-tools__table th, .encryption-tools__table td { text-align: left; padding: var(--ich-sp2) var(--ich-sp3); border-bottom: 1px solid var(--vp-c-divider); vertical-align: top; }
+.encryption-tools__table th, .encryption-tools__table td { text-align: left; padding: var(--ich-sp2) var(--ich-sp3); border-bottom: var(--ich-line) solid var(--vp-c-divider); vertical-align: top; }
 .encryption-tools__production { margin: var(--ich-sp4) 0; }
 .encryption-tools__tool { margin: var(--ich-sp4) 0; }
 .encryption-tools__label { display: block; font-weight: calc(6 * 100); margin-bottom: var(--ich-sp2); font-size: var(--ich-text-sm); }
-.encryption-tools__input { width: 100%; box-sizing: border-box; margin-bottom: var(--ich-sp2); padding: var(--ich-sp2) var(--ich-sp3); border: 1px solid var(--vp-c-divider); border-radius: calc(1px * 6); background: var(--vp-c-bg-soft); color: inherit; font-family: ui-monospace, Menlo, monospace; font-size: var(--ich-text-sm); }
-.encryption-tools__input:focus { outline: calc(1px * 2) solid var(--vp-c-brand-1, currentColor); }
+.encryption-tools__input { width: 100%; box-sizing: border-box; margin-bottom: var(--ich-sp2); padding: var(--ich-sp2) var(--ich-sp3); border: var(--ich-line) solid var(--vp-c-divider); border-radius: calc(var(--ich-line) * 6); background: var(--vp-c-bg-soft); color: inherit; font-family: ui-monospace, Menlo, monospace; font-size: var(--ich-text-sm); }
+.encryption-tools__input:focus { outline: calc(var(--ich-line) * 2) solid var(--vp-c-brand-1, currentColor); }
 .encryption-tools__out { margin: var(--ich-sp2) 0; }
 .encryption-tools__out p { margin: var(--ich-sp2) 0; }
 .encryption-tools__out code { word-break: break-all; font-size: var(--ich-text-xs); }

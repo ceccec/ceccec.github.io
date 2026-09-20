@@ -486,7 +486,11 @@ export function addressAllWarningsAtOnce(matrix: MindMatrix = buildMatrix()) {
       honestOpenNamed.includes('residual:vitepress-thin-mount')
     const qpuRequired = false as const
     const warningsAddressed =
-      qpuRequired === false
+      drainableClosed
+      && honestOpenNamedOn
+      && translationDrainableClosed
+      && composeOn
+      && pairsOn
     const facets = [
       { facet: 'addressAllWarningsAtOnce', on: warningsAddressed },
       { facet: 'warningsAddressed', on: warningsAddressed },

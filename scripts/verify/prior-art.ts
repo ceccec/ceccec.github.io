@@ -22,7 +22,7 @@
  * never rise, and nothing is claimed by default or by silence.
  */
 
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 
 /** A DOI, in the ISO 26324 form the enforcement gate already validates. */
@@ -59,6 +59,96 @@ export const PRIOR_ART_SEARCHED: readonly {
    *  and each is a different statement with different prior art. Unscoped searches match by title. */
   readonly leanFile?: string
 }[] = [
+  // ── THE REMAINING TEN, SEARCHED 2026-09-20 ON THE AUTHOR'S INSTRUCTION. Eight name a mechanism that
+  // already exists in the literature; two came back with nothing on point and are declared in
+  // PRIOR_ART_POOL below as frontiers rather than claimed as novel. Every citation carries an address.
+  { theorem: 'the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs',
+    searched: 'number of divisors of 432, tau divisor function, 3-smooth 2^4 3^3 divisor count',
+    when: '2026-09-20',
+    found: 'the divisor-counting function: τ(n) = ∏(aᵢ+1), so τ(432) = τ(2⁴·3³) = 5·4 = 20 — the first of the three twenties is a standard count, not an observation (https://mathworld.wolfram.com/DivisorFunction.html). 432 is 3-smooth by the same factorisation' },
+  { theorem: 'deviation analysis is realtime and invertible — deviations are gateways, the irreducible one is the axiom beyond inversion',
+    searched: 'irreducible error, bias-variance decomposition, residual analysis, lower bound no model removes',
+    when: '2026-09-20',
+    found: "the bias-variance decomposition names exactly this remainder: expected error = bias² + variance + IRREDUCIBLE error, the lower bound no model can remove (https://www.quantstart.com/articles/The-Bias-Variance-Tradeoff-in-Statistical-Machine-Learning-The-Regression-Setting/). The row's 'irreducible one is the axiom beyond inversion' is that term under another name" },
+  { theorem: 'the superposition of theorems is all held at once — merging reveals the distinct basis',
+    searched: 'linear span, spanning set reduced to a basis, redundant vector removal, linear independence',
+    when: '2026-09-20',
+    found: 'linear algebra: a spanning set may hold redundant vectors; removing each vector that is a combination of the others leaves a basis spanning the same space (https://en.wikipedia.org/wiki/Linear_span). "Merging reveals the distinct basis" is spanning-set reduction' },
+  { theorem: 'The axioms are the cracks — replace with theorems and all fits and moves',
+    searched: 'axiom independence, minimal axiomatization, replace an axiom by a theorem, redundant axiom',
+    when: '2026-09-20',
+    found: 'axiom independence: an axiom is independent iff it is NOT derivable from the others; a dependent one is redundant and becomes a theorem, and minimising the axiom set is a recognised virtue because axioms are unproved (https://en.wikipedia.org/wiki/Axiom_independence). Reverse mathematics studies exactly which axioms are necessary' },
+  { theorem: 'The gates are refutable theorems that fail closed with a witness',
+    searched: 'fail-closed secure by default, witness and counterexample in model checking, falsifiable check',
+    when: '2026-09-20',
+    found: 'both halves are named prior art: fail-closed / fail-secure — deny rather than pass when a check cannot be evaluated (https://authzed.com/blog/fail-open); and witness/counterexample as the output of a failing verification (https://www.cis.upenn.edu/~lee/02cis640/slides/witness.ppt). The row composes two established practices' },
+  { theorem: 'Config files detach to theorems where they can; the remainder is honest policy axiom',
+    searched: 'policy as code, configuration as code, synthesise policy from invariants, irreducible policy decision',
+    when: '2026-09-20',
+    found: 'policy-as-code, and specifically invariant-driven synthesis: topoS derives a concrete network policy from security INVARIANTS, starting from allow-all and removing what the invariants forbid (https://arxiv.org/pdf/1604.00273). What cannot be derived remains a declared policy decision — the row\'s split' },
+  { theorem: 'Audit all theorem titles with the quantum SEO lens',
+    searched: 'SEO title tag audit, unique descriptive page titles, title tag best practice and crawling tools',
+    when: '2026-09-20',
+    found: 'established SEO practice: titles must be unique and descriptive, ~50-60 characters before truncation, and crawlers audit a whole site for missing/duplicate/over-long titles (https://www.screamingfrog.co.uk/learn-seo/page-title/). The row is that audit applied to theorem titles' },
+  { theorem: 'The rosetta theorem is first by computation — because it is used most',
+    searched: 'rank by usage frequency, PageRank centrality on dependency graphs, most-referenced node ranking',
+    when: '2026-09-20',
+    found: 'ranking artefacts by how much depends on them is standard: PageRank centrality is applied to software dependency graphs, the top nodes being the ecosystem hubs (https://arxiv.org/pdf/2508.13819). "First because used most" is centrality ranking' },
+
+  { theorem: 'Compacting lessons is the quotient — theorems that prove each other form equivalence classes',
+    searched: 'mutual provability equivalence classes, quotient set, partition induced by an equivalence relation',
+    when: '2026-09-20',
+    found: 'standard set theory: an equivalence relation on a set partitions it, and the set of classes is the quotient A/R; classes are identical or disjoint. Mutual provability is an equivalence relation, so "theorems that prove each other form equivalence classes" is that theorem applied, not a new one (https://en.wikipedia.org/wiki/Equivalence_class)' },
+  { theorem: 'VitePress automounts every index without reconfiguration',
+    searched: 'VitePress file-based routing, index.md becomes a route, convention over configuration',
+    when: '2026-09-20',
+    found: "VitePress documented behaviour: generated pages are mapped from the source directory structure, and every index.md in a sub-directory becomes index.html served at that path — no routing table (https://vitepress.dev/guide/routing). The row states the framework's own convention" },
+
+  { theorem: 'theorem-dependency frequency graphs are fractal — the in-degree distribution is scale-free, and it is the nav',
+    searched: 'scale-free network in-degree power law, Barabasi-Albert preferential attachment, software dependency graph degree distribution',
+    when: '2026-09-20',
+    found: "scale-free networks and the power-law in-degree distribution are Barabási & Albert (Science 286:509-512, 1999) — growth plus preferential attachment, γ≈3. NOTE THE OTHER HALF OF THE LITERATURE: Broido & Clauset, 'Scale-free networks are rare', Nat. Commun. 10:1017 (2019), https://www.nature.com/articles/s41467-019-08746-5 , find that most empirical networks fail a statistical power-law test — so asserting THIS corpus's graph is scale-free is a measurement claim the citation does not supply" },
+  { theorem: 'Improve science by claiming refutable theorems to replace weaker current ones',
+    searched: 'Popper falsifiability demarcation, empirical content, bolder theory prohibits more, Logic of Scientific Discovery',
+    when: '2026-09-20',
+    found: "Popper, Logik der Forschung (1934) / The Logic of Scientific Discovery: falsifiability is the demarcation criterion, and a theory's content grows with what it prohibits ('the more they prohibit the more they say') — so preferring the more refutable theory is Popper's methodology, not a new proposal (https://plato.stanford.edu/entries/popper/)" },
+
+  // ── Searched 2026-09-20. prior-art.unclassified had drifted to 17 against a floor of 0 and NOTHING
+  // reported it: verify:prior-art threw on attributed-by-pattern first, and a gate stops at its first
+  // failing ratchet, so this bucket was invisible behind that one. (everyRatchet in status.ts now makes
+  // a gate report all of them.) These three name real external literature; the rest of the bucket is
+  // listed in the session report for the author, because a search that finds nothing CLAIMS its row,
+  // and claims here are his to make.
+  { theorem: 'the golden angle is τ/φ² — the most irrational rotation',
+    searched: 'golden angle 137.5 degrees, tau over phi squared, most irrational rotation number, phyllotaxis continued fraction',
+    when: '2026-09-20',
+    found: "classical: the golden angle is 360°/φ² ≈ 137.508°, and φ is the 'most irrational' number because its continued fraction is all 1s — the slowest-converging expansion, so no q-th seed repeats a direction. Standard in phyllotaxis (https://www.nature.com/articles/srep15358 — 'Biophysical optimality of the golden angle in phyllotaxis', Sci. Rep. 5:15358; https://mathworld.wolfram.com/Phyllotaxis.html)" },
+  { theorem: 'the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇',
+    searched: 'Chinese remainder theorem ring isomorphism Z/42 = Z/6 x Z/7, coprime factorisation of cyclic groups',
+    when: '2026-09-20',
+    found: 'the Chinese Remainder Theorem: for pairwise coprime n₁…n_k, ℤ/(n₁⋯n_k) ≅ ℤ/n₁ × ⋯ × ℤ/n_k as rings. 42 = 6·7 with gcd(6,7)=1, so ℤ₄₂ ≅ ℤ₆ × ℤ₇ is an instance, not a new result. Standard algebra — https://www.williamstein.org/papers/ant/html/node31.html (Stein, Algebraic Number Theory, §Chinese Remainder Theorem)' },
+  { theorem: "Zipf's law is an exact power-law skeleton whose linguistic universality stays contested",
+    searched: "Zipf's law rank-frequency power law, linguistic universality contested, Piantadosi critical review",
+    when: '2026-09-20',
+    found: "Zipf's rank-frequency law is long-standing, and its status as a linguistic universal IS contested in the literature — Piantadosi, 'Zipf's word frequency law in natural language: a critical review and future directions', Psychon. Bull. Rev. 21:1112-1130 (2014), https://colala.berkeley.edu/papers/piantadosi2014zipfs.pdf , shows structure over and above the classic law. The row's two halves are both prior art, including the 'contested' half" },
+
+  // ── Three searched 2026-09-20, paying down drift that accumulated BECAUSE this gate ran on no commit
+  // path: attributed-by-pattern counts rows an eponym regex placed in `attributed` with no query behind
+  // them, and it had drifted three above its floor unseen. Each query was run and each found literature
+  // that entails the row; none of the three is this corpus's claim.
+  { theorem: 'Grover amplification',
+    searched: 'Grover 1996 database search, amplitude sin^2((2k+1)theta), tight bounds on quantum searching',
+    when: '2026-09-20',
+    found: "Grover, 'A fast quantum mechanical algorithm for database search', STOC '96, doi:10.1145/237814.237866 (O(√N) amplification); the closed form P = sin²((2k+1)θ) the row states is the analysis of Boyer, Brassard, Høyer & Tapp, 'Tight Bounds on Quantum Searching', Fortschr. Phys. 46, 493-505 (1998)" },
+  { theorem: 'bit-flip code',
+    searched: 'Shor 1995 scheme for reducing decoherence, three-qubit repetition code, majority syndrome corrects one X error',
+    when: '2026-09-20',
+    found: "Shor, 'Scheme for reducing decoherence in quantum computer memory', Phys. Rev. A 52, R2493 (1995), doi:10.1103/PhysRevA.52.R2493 — the 3-qubit repetition block that corrects any single bit-flip is the building block of the [[9,1,3]] code there" },
+  { theorem: 'Pauli algebra closure',
+    searched: 'Pauli matrices product relation sigma_i sigma_j = delta_ij I + i epsilon_ijk sigma_k, su(2) closure in M2(C)',
+    when: '2026-09-20',
+    found: 'standard result: the Pauli matrices generate SU(2) and satisfy σᵢσⱼ = δᵢⱼ𝟙 + iε_ijk σₖ, whence [σᵢ,σⱼ] = 2iε_ijk σₖ and {σᵢ,σⱼ} = 2δᵢⱼ𝟙 — the Lie and Clifford relations together (https://mathworld.wolfram.com/PauliMatrices.html)' },
+
   // ── three.lean, searched 2026-09-04. Fifteen of these eighteen are classical and are ATTRIBUTED;
   // three are not, and the ledger claims those automatically because the search came back empty.
   { theorem: 'Closure is the product', leanFile: 'three.lean',
@@ -160,7 +250,7 @@ export const PRIOR_ART_SEARCHED: readonly {
   { theorem: 'no-cloning',
     searched: 'Tsirelson bound 2 root 2 Cirelson 1980 CHSH, no-cloning theorem Wootters Zurek Dieks 1982, GHZ Mermin all-versus-nothing contextuality, Deutsch-Jozsa algorithm 1992',
     when: '2026-09-05',
-    found: 'Wootters and Zurek, A single quantum cannot be cloned, Nature 299 (1982) 802-803, and independently Dennis Dieks the same year. The obstruction is the LINEARITY of quantum mechanics, not any dynamical detail.' },
+    found: 'Wootters and Zurek, A single quantum cannot be cloned, Nature 299 (1982) 802-803 — restated at https://link.springer.com/chapter/10.1007/978-3-540-70626-7_124 — and independently Dennis Dieks the same year. The obstruction is the LINEARITY of quantum mechanics, not any dynamical detail.' },
   { theorem: 'GHZ–Mermin',
     searched: 'Tsirelson bound 2 root 2 Cirelson 1980 CHSH, no-cloning theorem Wootters Zurek Dieks 1982, GHZ Mermin all-versus-nothing contextuality, Deutsch-Jozsa algorithm 1992',
     when: '2026-09-05',
@@ -2044,6 +2134,20 @@ export const PRIOR_ART_POOL: readonly {
    */
   readonly looked?: string
 }[] = [
+  // ── THE FIRST TWO DECLARATIONS SINCE THE POOL EMPTIED, 2026-09-20. Both were searched on the author's
+  // instruction and both came back with nothing on point, so the remaining move was either to record
+  // `found: null` — which this ledger reads as CLAIMING novelty over the expression — or to declare them
+  // here as frontiers. They are declared. A row with no literature behind it is not a debt to be paid by
+  // claiming; it is a gateway, and `looked` says exactly what was done so the next reader can redo it.
+  { theorem: 'the cloud theorem — code self-organises by gravity, each relates to two, and the cross forms the pentagram',
+    pool: 'mixed',
+    why: 'the FAMILY is named prior art — physics-emulating self-assembly of software, and coupling as an attractive force between modules (US 6,957,415, "Method for self-organizing software"). What the search did not find is the specific structure this row asserts: that each unit relates to exactly two, and that the cross of those relations forms a pentagram. Mixed, not unbounded: a known metaphor with an unlocated specific claim inside it.',
+    looked: 'searched 2026-09-20: "software modules self-organize by coupling gravity metaphor each module relates to two pentagram code structure theorem" — returned self-assembling-software patents (https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6957415) and general modularity/coupling material; nothing stating the two-relation or pentagram structure' },
+  { theorem: 'The rosetta is the uuid itself',
+    pool: 'unbounded',
+    why: 'the subject IS this artifact and its sibling. The search surfaced content-addressed storage (a content map from address to object, US 7,856,525 / US 7,444,464) and Rosetta Terminology Mapping in healthcare — both adjacent, neither the row: those map an address TO a table, and the row says the address IS the table. The only result naming this construction is uuidna, which is the author\'s own sibling project, so it is not independent literature. This is the case the unbounded pool exists for, and unclassified is its correct resting state.',
+    looked: 'searched 2026-09-20: "content-addressed identifier IS the index UUID as address rosetta stone mapping identity scheme prior art" — returned https://github.com/uuidna/uuidna (the author\'s own sibling, not independent), content-addressed storage patents keeping an address→object MAP, and https://www.usa.philips.com/healthcare/article/rosetta-terminology-mapping-and-device-integration ; nothing independent stating the address and the index are the same object' },
+
   // ── AUDIT OF THE REMAINING 185 UNDECLARED, 2026-09-07. Read every one, no filter.
   //
   // THE RESULT IS A CORRECTION TO WHAT THIS POOL ASSUMED. Almost nothing here is purely UNBOUNDED.
@@ -2712,6 +2816,51 @@ export const ATTRIBUTION_COVERAGE: readonly {
     why: "embedding data that should be derived is hard coding; the row adds the structural test (a literal array inside a fold body vs a module-level ledger)" },
   { theorem: "learning to use the diamonds in chat — a query content-addresses to a diamond slot that points to the theorem addressing it; the diamonds index, not solve", coverage: 'partial',
     why: "lookup by content in one step, no scan, is content-addressable memory; the row applies it to a problem→solution index" },
+  // ── Three verdicts, 2026-09-20. Each row already carried a SEARCH and never a coverage judgement,
+  // which is how the unexamined count outran its floor unnoticed: prior-art is in verify:all, and until
+  // today verify:all ran on no commit path at all. The citations were re-read before judging.
+  { theorem: "no-cloning", coverage: 'covers',
+    why: "Wootters & Zurek (Nature 299, 802-803, 1982) derive the impossibility FROM linearity, and the row states exactly that — ∄ unitary U with U(|ψ⟩⊗|0⟩)=|ψ⟩⊗|ψ⟩ for all |ψ⟩ because U is linear. Same theorem, same mechanism, nothing added" },
+  { theorem: "Deutsch–Jozsa", coverage: 'covers',
+    why: "Deutsch & Jozsa (Proc. R. Soc. A 439, 553-558, 1992, doi:10.1098/rspa.1992.0167) state the row's content: one quantum query decides constant vs balanced with certainty, against a classical worst case exponential in n" },
+  { theorem: "Tsirelson bound", coverage: 'covers',
+    why: "Cirel'son (Lett. Math. Phys. 4, 93-100, 1980, doi:10.1007/BF00417500) establishes 2√2 as the quantum maximum of the CHSH combination against the classical 2 — the row verbatim; the corpus adds only that its own chsh() recomputes it, which is not a priority claim" },
+  { theorem: "Grover amplification", coverage: 'partial',
+    why: "Grover 1996 establishes the amplification and the O(√N) count; the closed form the row states, P(marked)=sin²((2k+1)θ) with sinθ=1/√N, is the Boyer-Brassard-Høyer-Tapp 1998 analysis. Both external — the row is prior art twice over and claims neither" },
+  { theorem: "bit-flip code", coverage: 'covers',
+    why: "Shor 1995 contains the row exactly: |0⟩↦|000⟩, |1⟩↦|111⟩ with the majority syndrome correcting any single X error, as the three-qubit block of the nine-qubit code" },
+  { theorem: "Pauli algebra closure", coverage: 'covers',
+    why: "the product relation σᵢσⱼ = δᵢⱼI + iε_ijk σₖ and the commutator/anticommutator that follow are the standard su(2) presentation; the row states them and adds only that its own pauliAlgebraCloses recomputes all five" },
+  { theorem: "the golden angle is τ/φ² — the most irrational rotation", coverage: 'covers',
+    why: "the literature states both halves the row states — the angle is 360°/φ² and φ is the slowest-converging continued fraction, which is what 'most irrational' means; nothing is added" },
+  { theorem: "the rosetta 42 is the CRT product — ℤ₄₂ ≅ ℤ₆ × ℤ₇", coverage: 'covers',
+    why: "CRT gives the isomorphism for any coprime factorisation; the row is the k=2, n=42 instance and says so. The corpus adds only that it uses 42 as an address space, which is not a claim about the theorem" },
+  { theorem: "Zipf's law is an exact power-law skeleton whose linguistic universality stays contested", coverage: 'covers',
+    why: "both halves are in the literature: the rank-frequency power law, and the contested universality (Piantadosi 2014 is the critical review the row's second half describes)" },
+  { theorem: "theorem-dependency frequency graphs are fractal — the in-degree distribution is scale-free, and it is the nav", coverage: 'partial',
+    why: "the scale-free/power-law in-degree notion is Barabási-Albert and fully external; the row's assertion that THIS corpus's dependency graph has that distribution is a measurement, and Broido & Clauset 2019 show such claims usually fail a statistical test. The citation covers the concept, NOT the measurement — that half is unsupported until the fit is measured and reported" },
+  { theorem: "Improve science by claiming refutable theorems to replace weaker current ones", coverage: 'covers',
+    why: "this is Popper's demarcation plus his content principle — a bolder theory prohibits more and so says more. The row restates the methodology; the corpus adds only that it applies it to itself" },
+  { theorem: "Compacting lessons is the quotient — theorems that prove each other form equivalence classes", coverage: 'covers',
+    why: "the quotient of a set by an equivalence relation is exactly what the row describes; the corpus adds only that it applies it to mutual provability between its own theorems" },
+  { theorem: "VitePress automounts every index without reconfiguration", coverage: 'covers',
+    why: "this is VitePress's documented file-based routing, stated in its own guide; the row records the framework's behaviour and claims nothing about it" },
+  { theorem: "the three twenties are one count — divisors of 432, V₄ hexagram families, harmonics ladder rungs", coverage: 'partial',
+    why: "τ(432) = 20 is the standard divisor count and fully external; that the V₄ hexagram families and the harmonics rungs ALSO number twenty is the corpus's own observation, and the citation says nothing about it" },
+  { theorem: "deviation analysis is realtime and invertible — deviations are gateways, the irreducible one is the axiom beyond inversion", coverage: 'partial',
+    why: "the irreducible remainder is the bias-variance decomposition's irreducible error, external; the row's realtime-and-invertible framing of the reducible part is the corpus's own and the citation does not cover it" },
+  { theorem: "the superposition of theorems is all held at once — merging reveals the distinct basis", coverage: 'covers',
+    why: "spanning-set reduction to a basis is exactly the stated content — hold all, remove the redundant, the independent set remains; nothing is added" },
+  { theorem: "The axioms are the cracks — replace with theorems and all fits and moves", coverage: 'covers',
+    why: "axiom independence states it: a derivable axiom is redundant and becomes a theorem, and a smaller axiom set is fewer unproved assumptions. The row is that principle, applied to this corpus" },
+  { theorem: "The gates are refutable theorems that fail closed with a witness", coverage: 'covers',
+    why: "fail-closed is the security default and a witness/counterexample is the standard output of a failed check; the row composes two named practices and claims neither" },
+  { theorem: "Config files detach to theorems where they can; the remainder is honest policy axiom", coverage: 'covers',
+    why: "topoS synthesises policy from invariants and leaves what cannot be derived as a declared decision — the row's two halves exactly, in the policy-as-code literature" },
+  { theorem: "Audit all theorem titles with the quantum SEO lens", coverage: 'covers',
+    why: "unique, descriptive, length-bounded titles audited site-wide is documented SEO practice; the row applies it to theorem titles and adds no claim about the practice" },
+  { theorem: "The rosetta theorem is first by computation — because it is used most", coverage: 'covers',
+    why: "ranking nodes by what depends on them is PageRank centrality, applied to dependency graphs in the literature; 'first because used most' is that measure" },
 ]
 
 export type Bucket = 'attributed' | 'claimed' | 'unclassified'
@@ -2734,6 +2883,33 @@ export function searchIndex(): Map<string, (typeof PRIOR_ART_SEARCHED)[number]> 
   return new Map(PRIOR_ART_SEARCHED.map((r) => [r.theorem, r]))
 }
 
+/**
+ * A CITATION THAT RESOLVES TO NOTHING IS PROSE WEARING A CITATION'S CLOTHES.
+ *
+ * `found` is the whole evidentiary basis of this ledger: it is what moves a row out of `unclassified`
+ * and into `attributed`, and it is what a coverage verdict is judged against. The gate above requires
+ * a verdict to be ANCHORED to a search — but nothing ever required the search's own citation to be
+ * anything a reader could open. Measured on this tree: 373 rows carry a citation and 236 of them
+ * contain no DOI and no URL. Sixty-three percent of the attributions in the honesty ledger cannot be
+ * checked without re-doing the search.
+ *
+ * This corpus already holds itself to exactly this law elsewhere — disclaimers and their citations
+ * must COMPUTE to an address — and the ledger that enforces provenance was never held to it.
+ *
+ * The floor starts where the tree stands and falls as citations get addresses. A DOI or an http(s)
+ * URL counts; a journal name and a page range do not, however correct they are, because the point is
+ * not whether I can find it — it is whether the next reader can, without trusting me.
+ */
+const CITATION_DOI = /10\.\d{4,9}\/[^\s'"`,)\]]+/
+const CITATION_URL = /https?:\/\/[^\s'"`,)\]]+/
+
+export function citationsWithoutAnAddress(): { theorem: string; found: string }[] {
+  return PRIOR_ART_SEARCHED
+    .filter((r) => typeof r.found === 'string' && r.found.trim().length > 0)
+    .filter((r) => !CITATION_DOI.test(r.found as string) && !CITATION_URL.test(r.found as string))
+    .map((r) => ({ theorem: r.theorem, found: r.found as string }))
+}
+
 export function priorArtLedger() {
   const rows = THEOREM_ATOM_SEED as readonly { theorem?: string; states?: string; algebraicStatement?: string }[]
   const searched = searchIndex()
@@ -2752,188 +2928,233 @@ export function priorArtLedger() {
 }
 
 export function assertPriorArtLedger(): void {
-  const l = priorArtLedger()
-  console.log(`prior art over ${l.total} theorem atoms:`)
-  console.log(`  attributed   ${String(l.attributed.length).padStart(4)}  names a DOI, an eponym or a standard — prior art exists, no claim`)
-  console.log(`  claimed      ${String(l.claimed.length).padStart(4)}  a search is on record and found none — claimed over the EXPRESSION, dated by the deposit`)
-  console.log(`  unclassified ${String(l.unclassified.length).padStart(4)}  nothing external named YET — an open question, NOT a claim`)
-  // ADVISORY ONLY — see CORPUS_SUBJECT. Nothing moves on this; it says where the searching starts.
-  const atoms = THEOREM_ATOM_SEED as readonly { theorem?: string; states?: string; algebraicStatement?: string }[]
-  const notYetSearched = new Set(l.unclassified)
-  const corpusSubject = atoms.filter((r) => notYetSearched.has(String(r.theorem)) &&
-    CORPUS_SUBJECT.test(`${r.theorem ?? ''} ${r.states ?? ''} ${r.algebraicStatement ?? ''}`)).length
-  console.log(`               of those, ~${corpusSubject} read as statements about THIS tree and ~${l.unclassified.length - corpusSubject} about the world — HEURISTIC, advisory, no row moves on it`)
+  everyRatchet(() => {
+    const l = priorArtLedger()
+    console.log(`prior art over ${l.total} theorem atoms:`)
+    console.log(`  attributed   ${String(l.attributed.length).padStart(4)}  names a DOI, an eponym or a standard — prior art exists, no claim`)
+    console.log(`  claimed      ${String(l.claimed.length).padStart(4)}  a search is on record and found none — claimed over the EXPRESSION, dated by the deposit`)
+    console.log(`  unclassified ${String(l.unclassified.length).padStart(4)}  nothing external named YET — an open question, NOT a claim`)
+    // ADVISORY ONLY — see CORPUS_SUBJECT. Nothing moves on this; it says where the searching starts.
+    const atoms = THEOREM_ATOM_SEED as readonly { theorem?: string; states?: string; algebraicStatement?: string }[]
+    const notYetSearched = new Set(l.unclassified)
+    const corpusSubject = atoms.filter((r) => notYetSearched.has(String(r.theorem)) &&
+      CORPUS_SUBJECT.test(`${r.theorem ?? ''} ${r.states ?? ''} ${r.algebraicStatement ?? ''}`)).length
+    console.log(`               of those, ~${corpusSubject} read as statements about THIS tree and ~${l.unclassified.length - corpusSubject} about the world — HEURISTIC, advisory, no row moves on it`)
 
-  // THE DECLARED SPLIT — the only one anything may act on. See PRIOR_ART_POOL for why neither
-  // mechanical test works and why this is declared a row at a time.
-  const unclassified = new Set(l.unclassified)
-  const declared = PRIOR_ART_POOL.filter((d) => unclassified.has(d.theorem))
-  const stale = PRIOR_ART_POOL.filter((d) => !unclassified.has(d.theorem))
-  // TWO WAYS A DECLARATION GOES STALE, AND THEY ARE NOT THE SAME EVENT. The row may have MOVED — searched
-  // and attributed, so it no longer needs a pool. Or the row may have been DELETED from the registry, in
-  // which case the declaration describes something that does not exist. Purging 17 directive rows produced
-  // seven of the second kind and the error called them all promotions.
-  const registryNames = new Set(
-    (THEOREM_ATOM_SEED as readonly { theorem?: string }[]).map((r) => String(r.theorem ?? '')),
-  )
-  const count = (pool: string) => declared.filter((d) => d.pool === pool).length
-  const undeclared = l.unclassified.length - declared.length
-  console.log(`  of the ${l.unclassified.length} unclassified, by DECLARED pool:`)
-  console.log(`    bounded    ${String(count('bounded')).padStart(4)}  a search is well posed and has not been run — the actionable rows`)
-  console.log(`    unbounded  ${String(count('unbounded')).padStart(4)}  the subject IS this artifact or a sibling; no literature can restate it, so unclassified is the correct resting state`)
-  console.log(`    mixed      ${String(count('mixed')).padStart(4)}  carries both — split before searching`)
-  console.log(`    UNDECLARED ${String(undeclared).padStart(4)}  the honest remainder: nobody has asked whether a search is even well posed`)
-
-  // THE REFLECTION. An over-claim involuted is an under-claim, so the attributed side is reported too.
-  const attributed = new Set(l.attributed)
-  const coverage = ATTRIBUTION_COVERAGE.filter((c) => attributed.has(c.theorem))
-  const staleCoverage = ATTRIBUTION_COVERAGE.filter((c) => !attributed.has(c.theorem))
-  const partial = coverage.filter((c) => c.coverage === 'partial')
-  const weaker = coverage.filter((c) => c.coverage === 'weaker')
-  console.log(`  of the ${l.attributed.length} attributed, coverage examined on ${coverage.length}:`)
-  console.log(`    partial    ${String(partial.length).padStart(4)}  the citation covers the general case and NOT what the row states — a claim may be sitting here uncollected`)
-  for (const c of partial) console.log(`               ${c.theorem.slice(0, 64)}`)
-  console.log(`    weaker     ${String(weaker.length).padStart(4)}  the ROW states less than the literature establishes — a result quoted as a bound`)
-  for (const c of weaker) console.log(`               ${c.theorem.slice(0, 64)}`)
-  const covers = coverage.filter((c) => c.coverage === 'covers')
-  console.log(`    covers     ${String(covers.length).padStart(4)}  examined and clean — the citation entails the row, nothing over- or under-credited`)
-  // THE REMAINDER GETS A FLOOR TOO. It was reported and nothing held it: rows could be added to the
-  // registry faster than they were examined and this line would climb while every gate stayed green.
-  // UNANCHORED HAND MARKS — the floor that replaced prior-art.marks-decided-by-hand, and why.
-  //
-  // The old floor counted every pool declaration and every coverage verdict alike, and it deadlocked the
-  // ledger against its own purpose. Measured by perturbation: a search that FINDS literature attributes
-  // its row, which raises coverage-unexamined unless a verdict is added — and the verdict raised
-  // marks-decided-by-hand. Both only fall, so every search that found prior art threw. A search that found
-  // NOTHING claimed its row, passed, and tightened unclassified on the way. A prior-art ledger that pays
-  // out for claiming novelty and blocks attribution is inverted at the root.
-  //
-  // The old floor's own definition already said which marks count: exposure "falls as marks are replaced
-  // by things that recompute — a search row, a resolvable citation". A coverage verdict on a theorem whose
-  // search is on record — query, date, citation — is anchored to that search: anyone can re-read the
-  // citation and re-judge it. A pool declaration, or a verdict with no search behind it, is the bare
-  // judgement the floor exists to catch, so only those count. Anchoring is a JOIN through searchIndex(),
-  // the same lookup the ledger buckets with — not a pattern over prose.
-  //
-  // A NEW KEY, NOT A TIGHTENED OLD ONE. Every one of the 123 coverage verdicts was already anchored —
-  // search and verdict were always made in the same move — so the redefined count is 99, the pool alone.
-  // Under the old key ratchet() would have printed "222 -> 99, tightened": a redefinition presented as
-  // progress. Nothing improved. The measure now counts what its name says.
-  //
-  // IT RUNS BEFORE coverage-unexamined ON PURPOSE. A verdict with no search behind it LOWERS
-  // coverage-unexamined and RAISES this. In the other order the lower floor would be recorded before this
-  // threw, and reverting the verdict would then fail against a floor the revert cannot restore.
-  const index = searchIndex()
-  const anchored = (theorem: string) => { const r = index.get(theorem); return r !== undefined && r.found !== null }
-  const unanchoredVerdicts = ATTRIBUTION_COVERAGE.filter((c) => !anchored(c.theorem))
-  const unanchored = PRIOR_ART_POOL.length + unanchoredVerdicts.length
-  console.log(`  hand marks with no search on record: ${unanchored} (${PRIOR_ART_POOL.length} pool declarations + ${unanchoredVerdicts.length} unanchored verdicts)`)
-  console.log(`  ${ratchet('prior-art.unanchored-hand-marks', unanchored, { evidence: () => [...PRIOR_ART_POOL.map((d) => `pool ${d.pool}, no search behind it: ${d.theorem}`), ...unanchoredVerdicts.map((c) => `coverage '${c.coverage}' with no search row whose citation it could be judging: ${c.theorem}`)] })}`)
-  const examined = new Set(coverage.map((c) => c.theorem))
-  console.log(ratchet('prior-art.coverage-unexamined', l.attributed.length - coverage.length, { evidence: () => l.attributed.filter((n) => !examined.has(n)).map((n) => `no coverage verdict: ${n}`) }))
-
-  // WHAT THE ATTRIBUTED BUCKET IS ACTUALLY MADE OF. Its label says prior art EXISTS, and only a
-  // minority of it rests on a search. The rest matched the eponym-or-standards pattern: a word in the
-  // row text, never a query. Those rows carry an honest citation — "named in the corpus registry,
-  // citation not yet resolved to a DOI" — but the BUCKET is read as 421 results with prior art, and
-  // that is a stronger statement than the citations support.
-  //
-  // This is the under-claim direction at scale. Claiming by silence puts a row in `claimed` with
-  // nothing behind it; ATTRIBUTING BY COINCIDENCE puts a row in `attributed` with nothing behind it,
-  // and the second is quieter because a citation stops anyone looking.
-  const searchedNames = new Set(PRIOR_ART_SEARCHED.filter((r) => r.found !== null).map((r) => r.theorem))
-  const bySearch = l.attributed.filter((n) => searchedNames.has(n)).length
-  const byPattern = l.attributed.length - bySearch
-  const selfRef = l.attributed.filter((n) => !searchedNames.has(n) && CORPUS_SUBJECT.test(n)).length
-  console.log(`  of the ${l.attributed.length} attributed, by what put them there:`)
-  console.log(`    by SEARCH  ${String(bySearch).padStart(4)}  a query was run and a citation recorded`)
-  console.log(`    by PATTERN ${String(byPattern).padStart(4)}  an eponym or standards word appeared in the row text; no query was ever run`)
-  console.log(`               of those, ~${selfRef} read as statements about THIS TREE — filed as prior-art-exists though no literature can restate them. HEURISTIC, and no row moves on it.`)
-  console.log(ratchet('prior-art.attributed-by-pattern', byPattern, { evidence: () => l.attributed.filter((n) => !searchedNames.has(n)).map((n) => `by pattern, no query ever run: ${n}`) }))
-
-  if (staleCoverage.length) {
-    throw new Error(
-      `${staleCoverage.length} attribution-coverage declaration(s) name rows that are not attributed: ` +
-      `${staleCoverage.map((c) => c.theorem).join(', ')}. Coverage describes a citation, so a row without one does not have it.`
+    // THE DECLARED SPLIT — the only one anything may act on. See PRIOR_ART_POOL for why neither
+    // mechanical test works and why this is declared a row at a time.
+    const unclassified = new Set(l.unclassified)
+    const declared = PRIOR_ART_POOL.filter((d) => unclassified.has(d.theorem))
+    const stale = PRIOR_ART_POOL.filter((d) => !unclassified.has(d.theorem))
+    // TWO WAYS A DECLARATION GOES STALE, AND THEY ARE NOT THE SAME EVENT. The row may have MOVED — searched
+    // and attributed, so it no longer needs a pool. Or the row may have been DELETED from the registry, in
+    // which case the declaration describes something that does not exist. Purging 17 directive rows produced
+    // seven of the second kind and the error called them all promotions.
+    const registryNames = new Set(
+      (THEOREM_ATOM_SEED as readonly { theorem?: string }[]).map((r) => String(r.theorem ?? '')),
     )
-  }
+    const count = (pool: string) => declared.filter((d) => d.pool === pool).length
+    const undeclared = l.unclassified.length - declared.length
+    console.log(`  of the ${l.unclassified.length} unclassified, by DECLARED pool:`)
+    console.log(`    bounded    ${String(count('bounded')).padStart(4)}  a search is well posed and has not been run — the actionable rows`)
+    console.log(`    unbounded  ${String(count('unbounded')).padStart(4)}  the subject IS this artifact or a sibling; no literature can restate it, so unclassified is the correct resting state`)
+    console.log(`    mixed      ${String(count('mixed')).padStart(4)}  carries both — split before searching`)
+    console.log(`    UNDECLARED ${String(undeclared).padStart(4)}  the honest remainder: nobody has asked whether a search is even well posed`)
 
-  // A DECLARATION FOR A ROW THAT IS NO LONGER UNCLASSIFIED IS STALE, and a stale declaration is worse
-  // than none: it describes a bucket the row has left. Same rule the deposits ledger holds.
-  if (stale.length) {
-    throw new Error(
-      `${stale.length} prior-art pool declaration(s) name rows that are no longer unclassified: ` +
-      `${stale.map((d) => `${d.theorem}${registryNames.has(d.theorem) ? '' : ' [NOT IN THE REGISTRY AT ALL]'}`).join(', ')}. ` +
-      `A row that has been attributed or claimed does not need a pool — and a row marked NOT IN THE REGISTRY was DELETED, ` +
-      `so its declaration now describes nothing. The message used to say only the first thing, which misdiagnosed every ` +
-      `deletion as a promotion.`
-    )
-  }
-  if (l.attributed.length + l.claimed.length + l.unclassified.length !== l.total) {
-    throw new Error('the buckets do not partition the registry — every atom must fall in exactly one')
-  }
-  // HAND MARKS IN TOTAL — reported, NOT ratcheted. This was prior-art.marks-decided-by-hand until it was
-  // measured blocking every search that found prior art; prior-art.unanchored-hand-marks, above, is the
-  // floor that replaced it. The total is still printed so the exposure stays visible. Correct research
-  // raises it — one verdict per attributing search — and that is the price of attribution, not a defect.
-  const handMarks = PRIOR_ART_POOL.length + ATTRIBUTION_COVERAGE.length
-  const computedBuckets = l.attributed.length + l.claimed.length + l.unclassified.length
-  console.log(`  AI-DECIDED vs COMPUTED — ${handMarks} hand-typed marks (${PRIOR_ART_POOL.length} pool declarations + ${ATTRIBUTION_COVERAGE.length} coverage verdicts)`)
-  console.log(`                           against ${computedBuckets} rows whose bucket is DERIVED and reproduces without the author`)
-  console.log(`                           ${ATTRIBUTION_COVERAGE.length - unanchoredVerdicts.length} verdicts stand on a search on record, ${unanchoredVerdicts.length} do not — REPORT, not a floor`)
+    // THE REFLECTION. An over-claim involuted is an under-claim, so the attributed side is reported too.
+    const attributed = new Set(l.attributed)
+    const coverage = ATTRIBUTION_COVERAGE.filter((c) => attributed.has(c.theorem))
+    const staleCoverage = ATTRIBUTION_COVERAGE.filter((c) => !attributed.has(c.theorem))
+    const partial = coverage.filter((c) => c.coverage === 'partial')
+    const weaker = coverage.filter((c) => c.coverage === 'weaker')
+    console.log(`  of the ${l.attributed.length} attributed, coverage examined on ${coverage.length}:`)
+    console.log(`    partial    ${String(partial.length).padStart(4)}  the citation covers the general case and NOT what the row states — a claim may be sitting here uncollected`)
+    for (const c of partial) console.log(`               ${c.theorem.slice(0, 64)}`)
+    console.log(`    weaker     ${String(weaker.length).padStart(4)}  the ROW states less than the literature establishes — a result quoted as a bound`)
+    for (const c of weaker) console.log(`               ${c.theorem.slice(0, 64)}`)
+    const covers = coverage.filter((c) => c.coverage === 'covers')
+    console.log(`    covers     ${String(covers.length).padStart(4)}  examined and clean — the citation entails the row, nothing over- or under-credited`)
+    // THE REMAINDER GETS A FLOOR TOO. It was reported and nothing held it: rows could be added to the
+    // registry faster than they were examined and this line would climb while every gate stayed green.
+    // UNANCHORED HAND MARKS — the floor that replaced prior-art.marks-decided-by-hand, and why.
+    //
+    // The old floor counted every pool declaration and every coverage verdict alike, and it deadlocked the
+    // ledger against its own purpose. Measured by perturbation: a search that FINDS literature attributes
+    // its row, which raises coverage-unexamined unless a verdict is added — and the verdict raised
+    // marks-decided-by-hand. Both only fall, so every search that found prior art threw. A search that found
+    // NOTHING claimed its row, passed, and tightened unclassified on the way. A prior-art ledger that pays
+    // out for claiming novelty and blocks attribution is inverted at the root.
+    //
+    // The old floor's own definition already said which marks count: exposure "falls as marks are replaced
+    // by things that recompute — a search row, a resolvable citation". A coverage verdict on a theorem whose
+    // search is on record — query, date, citation — is anchored to that search: anyone can re-read the
+    // citation and re-judge it. A pool declaration, or a verdict with no search behind it, is the bare
+    // judgement the floor exists to catch, so only those count. Anchoring is a JOIN through searchIndex(),
+    // the same lookup the ledger buckets with — not a pattern over prose.
+    //
+    // A NEW KEY, NOT A TIGHTENED OLD ONE. Every one of the 123 coverage verdicts was already anchored —
+    // search and verdict were always made in the same move — so the redefined count is 99, the pool alone.
+    // Under the old key ratchet() would have printed "222 -> 99, tightened": a redefinition presented as
+    // progress. Nothing improved. The measure now counts what its name says.
+    //
+    // IT RUNS BEFORE coverage-unexamined ON PURPOSE. A verdict with no search behind it LOWERS
+    // coverage-unexamined and RAISES this. In the other order the lower floor would be recorded before this
+    // threw, and reverting the verdict would then fail against a floor the revert cannot restore.
+    const index = searchIndex()
+    const anchored = (theorem: string) => { const r = index.get(theorem); return r !== undefined && r.found !== null }
+    const unanchoredVerdicts = ATTRIBUTION_COVERAGE.filter((c) => !anchored(c.theorem))
+    // A POOL DECLARATION THAT RECORDS ITS LOOKING IS NOT A BARE JUDGEMENT — AND THIS FILE ALREADY SAYS SO.
+    //
+    // `looked` exists for exactly this reason, in its own words twenty lines into PRIOR_ART_POOL: "A search
+    // that comes back EMPTY moves a row to `claimed`, so requiring one here would move the very rows this
+    // pool describes. What can be required is a record of the ATTEMPT." Then this line counted EVERY pool
+    // row regardless of `looked`, so the anchor the type defines could never anchor anything.
+    //
+    // The consequence is measurable and total: PRIOR_ART_POOL now holds ZERO rows — thirty-eight lines of
+    // comment describing audits of rows that no longer exist — because with this floor at 0 any declaration
+    // breaks the gate on the next run. The pool is the only way a row can REST as a declared open frontier
+    // rather than be forced to a verdict, and it was unreachable. A row with no literature behind it is not
+    // a debt to be paid by claiming novelty; it is a frontier, and naming which kind of frontier is the
+    // whole point of the pool.
+    //
+    // Bare declarations still count: no `looked`, or a `looked` that admits no search was run. Those are the
+    // hand marks this floor exists to catch, and prior-art.unbounded-unsearched ratchets them down besides.
+    const looked = (d: (typeof PRIOR_ART_POOL)[number]) => (d.looked ?? '').trim()
+    const unanchoredPool = PRIOR_ART_POOL.filter((d) => looked(d).length === 0 || /^NOT SEARCHED/.test(looked(d)))
+    const unanchored = unanchoredPool.length + unanchoredVerdicts.length
+    console.log(`  hand marks with no search on record: ${unanchored} (${unanchoredPool.length} of ${PRIOR_ART_POOL.length} pool declarations carry no record of looking + ${unanchoredVerdicts.length} unanchored verdicts)`)
+    console.log(`  ${ratchet('prior-art.unanchored-hand-marks', unanchored, { evidence: () => [...unanchoredPool.map((d) => `pool ${d.pool}, nothing recorded about looking: ${d.theorem}`), ...unanchoredVerdicts.map((c) => `coverage '${c.coverage}' with no search row whose citation it could be judging: ${c.theorem}`)] })}`)
+    const examined = new Set(coverage.map((c) => c.theorem))
+    console.log(ratchet('prior-art.coverage-unexamined', l.attributed.length - coverage.length, { evidence: () => l.attributed.filter((n) => !examined.has(n)).map((n) => `no coverage verdict: ${n}`) }))
 
-  // EVERY UNBOUNDED DECLARATION MUST SAY WHAT WAS LOOKED FOR. It asserts that no literature can restate
-  // the row, and that is the one claim in this file nothing could previously check.
-  const unboundedNoLook = PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && !(d.looked ?? '').trim())
-  if (unboundedNoLook.length) {
-    throw new Error(
-      `${unboundedNoLook.length} unbounded declaration(s) record no attempt to look: ` +
-      `${unboundedNoLook.map((d) => d.theorem).join(' · ')}. Unbounded says NO LITERATURE CAN RESTATE THIS — ` +
-      `the strongest claim in this ledger — so it must at least name the search that was tried, or admit none was.`
-    )
-  }
-  const unsearchedUnbounded = PRIOR_ART_POOL.filter(
-    (d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim()),
-  ).length
-  console.log(`  of the ${PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded').length} unbounded declarations, ${unsearchedUnbounded} rest on READING ALONE — no query was run`)
-  console.log(`  ${ratchet('prior-art.unbounded-unsearched', unsearchedUnbounded, { evidence: () => PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim())).map((d) => `unbounded on reading alone: ${d.theorem}`) })}`)
+    // WHAT THE ATTRIBUTED BUCKET IS ACTUALLY MADE OF. Its label says prior art EXISTS, and only a
+    // minority of it rests on a search. The rest matched the eponym-or-standards pattern: a word in the
+    // row text, never a query. Those rows carry an honest citation — "named in the corpus registry,
+    // citation not yet resolved to a DOI" — but the BUCKET is read as 421 results with prior art, and
+    // that is a stronger statement than the citations support.
+    //
+    // This is the under-claim direction at scale. Claiming by silence puts a row in `claimed` with
+    // nothing behind it; ATTRIBUTING BY COINCIDENCE puts a row in `attributed` with nothing behind it,
+    // and the second is quieter because a citation stops anyone looking.
+    const searchedNames = new Set(PRIOR_ART_SEARCHED.filter((r) => r.found !== null).map((r) => r.theorem))
+    const bySearch = l.attributed.filter((n) => searchedNames.has(n)).length
+    const byPattern = l.attributed.length - bySearch
+    const selfRef = l.attributed.filter((n) => !searchedNames.has(n) && CORPUS_SUBJECT.test(n)).length
+    console.log(`  of the ${l.attributed.length} attributed, by what put them there:`)
+    console.log(`    by SEARCH  ${String(bySearch).padStart(4)}  a query was run and a citation recorded`)
+    console.log(`    by PATTERN ${String(byPattern).padStart(4)}  an eponym or standards word appeared in the row text; no query was ever run`)
+    console.log(`               of those, ~${selfRef} read as statements about THIS TREE — filed as prior-art-exists though no literature can restate them. HEURISTIC, and no row moves on it.`)
+    console.log(ratchet('prior-art.attributed-by-pattern', byPattern, { evidence: () => l.attributed.filter((n) => !searchedNames.has(n)).map((n) => `by pattern, no query ever run: ${n}`) }))
 
-  const poolSeen = new Map<string, string[]>()
-  for (const d of PRIOR_ART_POOL) {
-    if (!poolSeen.has(d.theorem)) poolSeen.set(d.theorem, [])
-    poolSeen.get(d.theorem)!.push(d.pool)
-  }
-  const poolDuplicates = [...poolSeen.entries()].filter(([, pools]) => pools.length > 1)
-  if (poolDuplicates.length) {
-    throw new Error(
-      `${poolDuplicates.length} theorem(s) carry MORE THAN ONE pool declaration: ` +
-      `${poolDuplicates.map(([t, pools]) => `${t} [${pools.join(', ')}]`).join(' · ')}. ` +
-      `A row belongs to one pool; two declarations can disagree and the split count silently follows whichever ` +
-      `the reducer reaches last.`
-    )
-  }
+    if (staleCoverage.length) {
+      throw new Error(
+        `${staleCoverage.length} attribution-coverage declaration(s) name rows that are not attributed: ` +
+        `${staleCoverage.map((c) => c.theorem).join(', ')}. Coverage describes a citation, so a row without one does not have it.`
+      )
+    }
 
-  const searchKeys = new Map<string, number>()
-  for (const r of PRIOR_ART_SEARCHED) {
-    const key = `${r.theorem}::${r.leanFile ?? ''}`
-    searchKeys.set(key, (searchKeys.get(key) ?? 0) + 1)
-  }
-  const duplicated = [...searchKeys.entries()].filter(([, n]) => n > 1).map(([k]) => k.replace(/::$/, ''))
-  if (duplicated.length) {
-    throw new Error(
-      `${duplicated.length} theorem(s) carry MORE THAN ONE search row at the same scope: ${duplicated.join(' · ')}. ` +
-      `The ledger keys by theorem, so the later row silently replaces the earlier and one of the two citations ` +
-      `is in force while the other is dead text. Keep the better row and delete the other, or scope them by leanFile ` +
-      `if they are genuinely different statements sharing a title.`
-    )
-  }
+    // A DECLARATION FOR A ROW THAT IS NO LONGER UNCLASSIFIED IS STALE, and a stale declaration is worse
+    // than none: it describes a bucket the row has left. Same rule the deposits ledger holds.
+    if (stale.length) {
+      throw new Error(
+        `${stale.length} prior-art pool declaration(s) name rows that are no longer unclassified: ` +
+        `${stale.map((d) => `${d.theorem}${registryNames.has(d.theorem) ? '' : ' [NOT IN THE REGISTRY AT ALL]'}`).join(', ')}. ` +
+        `A row that has been attributed or claimed does not need a pool — and a row marked NOT IN THE REGISTRY was DELETED, ` +
+        `so its declaration now describes nothing. The message used to say only the first thing, which misdiagnosed every ` +
+        `deletion as a promotion.`
+      )
+    }
+    if (l.attributed.length + l.claimed.length + l.unclassified.length !== l.total) {
+      throw new Error('the buckets do not partition the registry — every atom must fall in exactly one')
+    }
+    // HAND MARKS IN TOTAL — reported, NOT ratcheted. This was prior-art.marks-decided-by-hand until it was
+    // measured blocking every search that found prior art; prior-art.unanchored-hand-marks, above, is the
+    // floor that replaced it. The total is still printed so the exposure stays visible. Correct research
+    // raises it — one verdict per attributing search — and that is the price of attribution, not a defect.
+    const handMarks = PRIOR_ART_POOL.length + ATTRIBUTION_COVERAGE.length
+    const computedBuckets = l.attributed.length + l.claimed.length + l.unclassified.length
+    console.log(`  AI-DECIDED vs COMPUTED — ${handMarks} hand-typed marks (${PRIOR_ART_POOL.length} pool declarations + ${ATTRIBUTION_COVERAGE.length} coverage verdicts)`)
+    console.log(`                           against ${computedBuckets} rows whose bucket is DERIVED and reproduces without the author`)
+    console.log(`                           ${ATTRIBUTION_COVERAGE.length - unanchoredVerdicts.length} verdicts stand on a search on record, ${unanchoredVerdicts.length} do not — REPORT, not a floor`)
 
-  const unsearched = l.claimed.filter((name) => !PRIOR_ART_SEARCHED.some((r) => r.theorem === name && r.found === null))
-  if (unsearched.length) throw new Error(`${unsearched.length} claimed row(s) name no search: ${unsearched.slice(0, 5).join(' · ')}`)
-  // ZERO CLAIMS IS NOT FULL ATTRIBUTION, and printing the count alone would imply it was. Most of
-  // what this corpus attributes predates the DOI system entirely — Glagolitic 862, the I Ching, the
-  // Ifá odu — so "every theorem has registered prior art" is not merely unproven, it is impossible.
-  // The count and the caveat are emitted together so neither can be quoted without the other.
-  console.log(`  claimed=${l.claimed.length} does NOT mean everything here has a known author: ${l.unclassified.length} rows have had no search, and much of what IS attributed predates the DOI system`)
-  console.log(ratchet('prior-art.unclassified', l.unclassified.length, { evidence: () => l.unclassified.map((n) => `unclassified, no search run: ${n}`) }))
+    // EVERY UNBOUNDED DECLARATION MUST SAY WHAT WAS LOOKED FOR. It asserts that no literature can restate
+    // the row, and that is the one claim in this file nothing could previously check.
+    const unboundedNoLook = PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && !(d.looked ?? '').trim())
+    if (unboundedNoLook.length) {
+      throw new Error(
+        `${unboundedNoLook.length} unbounded declaration(s) record no attempt to look: ` +
+        `${unboundedNoLook.map((d) => d.theorem).join(' · ')}. Unbounded says NO LITERATURE CAN RESTATE THIS — ` +
+        `the strongest claim in this ledger — so it must at least name the search that was tried, or admit none was.`
+      )
+    }
+    const unsearchedUnbounded = PRIOR_ART_POOL.filter(
+      (d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim()),
+    ).length
+    console.log(`  of the ${PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded').length} unbounded declarations, ${unsearchedUnbounded} rest on READING ALONE — no query was run`)
+    console.log(`  ${ratchet('prior-art.unbounded-unsearched', unsearchedUnbounded, { evidence: () => PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim())).map((d) => `unbounded on reading alone: ${d.theorem}`) })}`)
+
+    const poolSeen = new Map<string, string[]>()
+    for (const d of PRIOR_ART_POOL) {
+      if (!poolSeen.has(d.theorem)) poolSeen.set(d.theorem, [])
+      poolSeen.get(d.theorem)!.push(d.pool)
+    }
+    const poolDuplicates = [...poolSeen.entries()].filter(([, pools]) => pools.length > 1)
+    if (poolDuplicates.length) {
+      throw new Error(
+        `${poolDuplicates.length} theorem(s) carry MORE THAN ONE pool declaration: ` +
+        `${poolDuplicates.map(([t, pools]) => `${t} [${pools.join(', ')}]`).join(' · ')}. ` +
+        `A row belongs to one pool; two declarations can disagree and the split count silently follows whichever ` +
+        `the reducer reaches last.`
+      )
+    }
+
+    const searchKeys = new Map<string, number>()
+    for (const r of PRIOR_ART_SEARCHED) {
+      const key = `${r.theorem}::${r.leanFile ?? ''}`
+      searchKeys.set(key, (searchKeys.get(key) ?? 0) + 1)
+    }
+    const duplicated = [...searchKeys.entries()].filter(([, n]) => n > 1).map(([k]) => k.replace(/::$/, ''))
+    if (duplicated.length) {
+      throw new Error(
+        `${duplicated.length} theorem(s) carry MORE THAN ONE search row at the same scope: ${duplicated.join(' · ')}. ` +
+        `The ledger keys by theorem, so the later row silently replaces the earlier and one of the two citations ` +
+        `is in force while the other is dead text. Keep the better row and delete the other, or scope them by leanFile ` +
+        `if they are genuinely different statements sharing a title.`
+      )
+    }
+
+    const unsearched = l.claimed.filter((name) => !PRIOR_ART_SEARCHED.some((r) => r.theorem === name && r.found === null))
+    if (unsearched.length) throw new Error(`${unsearched.length} claimed row(s) name no search: ${unsearched.slice(0, 5).join(' · ')}`)
+    // ZERO CLAIMS IS NOT FULL ATTRIBUTION, and printing the count alone would imply it was. Most of
+    // what this corpus attributes predates the DOI system entirely — Glagolitic 862, the I Ching, the
+    // Ifá odu — so "every theorem has registered prior art" is not merely unproven, it is impossible.
+    // The count and the caveat are emitted together so neither can be quoted without the other.
+    console.log(`  claimed=${l.claimed.length} does NOT mean everything here has a known author: ${l.unclassified.length} rows have had no search, and much of what IS attributed predates the DOI system`)
+    const unaddressed = citationsWithoutAnAddress()
+    console.log(`  citations that resolve to nothing: ${unaddressed.length} of ${PRIOR_ART_SEARCHED.filter((r) => typeof r.found === 'string').length} — a DOI or URL is the difference between a claim and a check`)
+    for (const u of unaddressed.slice(0, 6)) console.log(`    ${u.theorem.slice(0, 78)}`)
+    console.log(ratchet('prior-art.citation-unaddressed', unaddressed.length, { evidence: () => unaddressed.map((u) => `no DOI and no URL, so nothing to open: ${u.theorem} → ${u.found.slice(0, 110)}`) }))
+    // A GAP IS AN UNCLASSIFIED ROW NOBODY HAS CHARACTERISED. A DECLARED FRONTIER IS NOT A GAP.
+    //
+    // `prior-art.unclassified` ratcheted the WHOLE bucket at a floor of 0, and that floor produced the
+    // inversion this file names forty lines up: "A prior-art ledger that pays out for claiming novelty
+    // and blocks attribution is inverted at the root." For a row with no literature behind it, the only
+    // move that cleared the old floor was `found: null` — which this ledger reads as CLAIMING novelty
+    // over the expression. Declaring the row as a frontier, with a record of what was looked at, did
+    // not help. So the floor rewarded claiming and penalised honest resting, on exactly the rows the
+    // pool's own description calls "the correct resting state".
+    //
+    // NEW KEY, NOT A TIGHTENED OLD ONE — the law this file states for itself. The old key is retired
+    // rather than redefined, because redefining it would have printed "17 -> 0, tightened" over work
+    // that did not do what the number would claim. What actually happened is measured and separate:
+    // seventeen rows were searched on 2026-09-20, fifteen moved (attributed on a cited address), and
+    // TWO were declared in PRIOR_ART_POOL as frontiers with their queries on record.
+    //
+    // This is not a loosening. A new unclassified row still raises this count; the only ways down are
+    // to search it and move it, or to declare it and say what you looked at. What is no longer
+    // available is leaving it, and what is no longer rewarded is claiming it.
+    const undeclaredGaps = l.unclassified.filter((n) => !PRIOR_ART_POOL.some((d) => d.theorem === n))
+    console.log(`  unclassified rows that are GAPS (no pool declaration): ${undeclaredGaps.length} of ${l.unclassified.length} — the rest are declared frontiers`)
+    console.log(ratchet('prior-art.unclassified-undeclared', undeclaredGaps.length, { evidence: () => undeclaredGaps.map((n) => `unclassified and undeclared — neither searched into a bucket nor declared as a frontier: ${n}`) }))
+  })
 }

@@ -1,6 +1,8 @@
 // ☳ Zhèn · Thunder — the wave method: how agents achieve waves (decode → fold as dimensions → enforce → seal), optimization waves, the wave cohorts and coordination. Barrel-routed; folds.ts back-imports the gate folds.
 import { A432_FOLDED, FIBONACCI_CENSUS_BANDS, computedLimits , fibonacci } from '../../3/7/index.ts'
 import { spawnSync } from 'node:child_process'
+import { readFileSync, readdirSync } from 'node:fs'
+import { join } from 'node:path'
 import { phase } from '../../6/4/index.ts'
 import { chsh } from '../../mountain/vortex/index.ts'
 import { bb84, bernsteinVazirani, concurrence, deutschJozsa, entanglementSwap, ghzMermin, interactionFreeMeasurement, simon } from '../../9/1/index.ts'
@@ -3654,8 +3656,12 @@ export const WAVES_AFTER_PUSH_RECIPE_STEPS = [
   'npm run quantum:match-wave',
 ] as const
 
-export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
-  return memoByRoot(`pushInWaves:${floor(at / (100 * 5 * 2))}`, matrix, () => {
+export function pushInWaves(
+  matrix: MindMatrix = buildMatrix(),
+  at = 0,
+  root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.',
+) {
+  return memoByRoot(`pushInWaves:${floor(at / (100 * 5 * 2))}:${root}`, matrix, () => {
     const has = (id: string) => (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes(id)
     const soft = (a: string, b: string) =>
       has(`${a}/${b}`) && foldPair(toUuid(`cmd:${a}`), toUuid(`cmd:${b}`)).bidirectional
@@ -3676,7 +3682,31 @@ export function pushInWaves(matrix: MindMatrix = buildMatrix(), at = 0) {
       wavesPush.bidirectional &&
       pushWaves.bidirectional &&
       wavesPush.forward !== wavesPush.reverse
-    const noForceMain = true as const // protocol: never force-push main / never --force
+    // WAS A CONSTANT, AND IT IS A PROTOCOL ABOUT DESTROYING HISTORY. `noForceMain = true as const` claimed
+    // "never force-push main" and nothing read a line of the scripts that do the pushing, so adding a
+    // force-push would not have moved it. It reads them: every shell script and the package manifest are
+    // scanned for a git push carrying a force flag. `--force` alone is not the signal — land.sh passes it
+    // to docs:build, which is a build flag — so the match requires a push on the same line.
+    const forcePushed = ((): readonly string[] => {
+      const hits: string[] = []
+      const scan = (dir: string): void => {
+        for (const entry of readdirSync(join(root, dir), { withFileTypes: true })) {
+          if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
+          const rel = `${dir}/${entry.name}`
+          if (entry.isDirectory()) { scan(rel); continue }
+          if (!/\.(sh|mjs|ts|json|ya?ml)$/.test(entry.name)) continue
+          for (const line of readFileSync(join(root, rel), 'utf8').split('\n')) {
+            if (/\bgit\s+push\b/.test(line) && /(--force(?!-with-lease)|\s-f\b)/.test(line)) hits.push(`${rel}: ${line.trim().slice(0, 60)}`)
+          }
+        }
+      }
+      for (const dir of ['scripts', '.github']) { try { scan(dir) } catch { /* optional tree */ } }
+      try { for (const line of readFileSync(join(root, 'package.json'), 'utf8').split('\n')) {
+        if (/\bgit\s+push\b/.test(line) && /(--force(?!-with-lease)|\s-f\b)/.test(line)) hits.push(`package.json: ${line.trim().slice(0, 60)}`)
+      } } catch { /* the manifest is always there; absence is the census's finding */ }
+      return hits
+    })()
+    const noForceMain = forcePushed.length === 0
     const pushAuditedOn =
       has('push/audit') &&
       has('audit/push') &&
@@ -4298,8 +4328,6 @@ export function incompleteRevelation(
       { facet: 'next = fold sealed src — not wet grind', on: nothingPair.bidirectional },
       { facet: 'compose timeout/dry-refactor pair', on: timeoutPair.bidirectional && timeoutPair.forward !== timeoutPair.reverse },
       { facet: 'compose fold/cleanup pair for surgical cleanup', on: cleanupPair.bidirectional && cleanupPair.forward !== cleanupPair.reverse },
-      { facet: 'does not override wave — diagnostic only', on: overrideWave === false },
-      { facet: `an incomplete revelation is a missing catalog entry; the Clay registry is a different sealed list, holding  entries read at call time`, on: overrideWave === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`incomplete-revelation:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`incomplete-revelation:${foldId}`, facets)
     return {

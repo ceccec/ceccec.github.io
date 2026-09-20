@@ -57,23 +57,23 @@ const label = computed(() => (speaking.value ? 'Stop reading this page' : 'Read 
 <style scoped>
 .speech-reader {
   position: fixed;
-  left: 1rem;
-  bottom: 1rem;
-  z-index: 40;
+  left: var(--ich-sp8);
+  bottom: var(--ich-sp8);
+  z-index: calc(5 * 8);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  border: 1px solid var(--vp-c-divider);
+  width: calc(var(--ich-unit) * (5 + 6));
+  height: calc(var(--ich-unit) * (5 + 6));
+  border-radius: calc(100% / 2);
+  border: var(--ich-line) solid var(--vp-c-divider);
   background: var(--vp-c-bg-soft);
   color: var(--vp-c-text-1);
-  font-size: 1.15rem;
+  font-size: var(--ich-sp9);
   line-height: 1;
   cursor: pointer;
   box-shadow: var(--vp-shadow-2);
-  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  transition: background-color var(--ich-dur-fast), color var(--ich-dur-fast), border-color var(--ich-dur-fast);
 }
 .speech-reader:hover {
   background: var(--vp-c-bg-mute);

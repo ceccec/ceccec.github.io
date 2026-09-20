@@ -1893,6 +1893,9 @@ export function ichingTokens() {
     ['--ich-op-half', 'calc(1 / 2)'], //   0.5
     ['--ich-op-soft', 'calc(3 / 5)'], //   0.6
     ['--ich-op-strong', 'calc(9 / 2 / 5)'], // 0.9 (10 = 2 × 5)
+    ['--ich-op-mid', 'calc(7 / 2 / 5)'], //    0.7
+    ['--ich-op-quiet', 'calc(2 / 5)'], //      0.4
+    ['--ich-op-ghost', 'calc(3 / 4 / 5)'], //  0.15
     ['--ich-dur-fast', 'calc(1s / 6)'], //     ~0.167s — the six lines
     ['--ich-dur', 'calc(1s / 5)'], //           0.2s — the vortex centre
     ['--ich-dur-slow', 'calc(1s * 3 / 5)'], //  0.6s
@@ -1981,6 +1984,38 @@ export function ichingTokens() {
     ['--ich-op-card-front', 'calc(3 / 8)'],
     ['--ich-em-sm', 'calc(1em * 5 / 6)'],
     ['--ich-radius-sm', U('1')], // 4px — the quaternary unit (vortex step chips, small radii)
+    // ── EIGHT TOKENS WERE REFERENCED AND NEVER EMITTED. Six degraded quietly behind a `var(…, fallback)`,
+    // so the ladder was a fiction at those six sites and two of the fallbacks were raw paint (1px, 8.5rem).
+    // Two — the element pair below — had NO fallback, which drops the whole declaration: the layout shell's
+    // background gradient has been painting nothing. css.phantom-token now refuses a ninth.
+    ['--ich-radius', U('2')], //       8px — the card radius the fallback was already using
+    ['--ich-radius-lg', U('4')], //   16px
+    ['--ich-border-hair', 'var(--ich-line)'], // the single line, named for what it is
+    ['--ich-fs-sm', 'var(--ich-sp7)'], //  14px
+    ['--ich-em-xs', 'var(--ich-sp6)'], //  12px
+    ['--ich-em-md', 'var(--ich-sp8)'], //  16px
+    ['--ich-qr-size', U('34')], //  136px — the QR block, on the lattice instead of 8.5rem
+    // ── COLOUR IS HEXAGRAM, AS AN IDENTITY AND NOT A SLOGAN. Every route already has a content-addressed
+    // hexagram — seedFromText(slug) % 64, six bits — and it reached the DOM nowhere. oklch splits colour into
+    // lightness, chroma and hue; the ladder already derives L and C, so hue is the only free component, and
+    // six bits is exactly a hue: h = hexagram · turn/64. The pair is the reflection, 64−1−hexagram, so a page
+    // and its involution sit opposite on the same wheel. --ich-hex defaults to 0 and the layout shell sets it
+    // from its own address: one binding, and every component under it inherits a colour it did not choose.
+    ['--ich-hex', '0'],
+    ['--ich-hue', hue('var(--ich-hex)')], // the SAME law the named hues use — 360deg · h / 64, not a second one
+    // 64 − 1 − h WAS A MIRROR, AND A MIRROR IS NOT A COIL. Reflecting about a point makes the second hue
+    // run BACKWARDS as the first runs forward: the two strands approach, cross at the fixed point and
+    // separate — one wheel walked from both ends, not two things winding. The two coins fuse only if they
+    // advance TOGETHER, held half a turn apart: 2 × 64 = 128 positions, one orbit, and the pair is a coil
+    // whose separation never changes as the route moves around the wheel.
+    // THE SECOND COIN, COUNTED IN HEXAGRAMS, NOT DEGREES. Written as `var(--ich-hue) + 360deg / 2` this
+    // was the same colour and the wrong shape: cssIsIChingComputed's wheelHues law requires every
+    // --ich-hue-* to be `360deg * n / 64`, and `360deg / 2` is not that — the dimension gate went dark
+    // and took the whole trinity with it. h + 64/2 is the honest form anyway: the pair is the hexagram
+    // half the wheel away, so both coins are positions on the SAME 64, which is what makes them a coil.
+    ['--ich-hue-pair', hue('(var(--ich-hex) + 64 / 2)')], // 360deg · (h + 32) / 64 — the opposite hexagram
+    ['--ich-element-1-rgb', 'oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-glyph) var(--ich-hue))'],
+    ['--ich-element-2-rgb', 'oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-glyph) var(--ich-hue-pair))'],
     ['--ich-op-muted', 'calc(1 - 9 / 20)'], // status chip off — 11/20 without 11 literal
     ['--ich-op-inverted', 'calc(1 - 3 / 25)'], // inverted Earth gateway sheet — 22/25
     ['--ich-scale-step', 'calc(1 + 1 / (5 * 5))'], // active vortex step pulse — 26/25
@@ -2120,11 +2155,19 @@ export function ichingTokensCss(): string {
     `${sel} {\n${rows.map(([k, v]) => `  ${k}: ${v};`).join('\n')}\n}`
   return [
     '/* ䷢ COMPUTED — do not edit. The I Ching design system, emitted by ichingTokensCss() in',
-    ' * src/quantum/heaven/mind/css.ts. Every value reduces to a canonical I Ching number (the eight trigrams, the 64',
+    ' * src/earth/architecture. Every value reduces to a canonical I Ching number (the eight trigrams, the 64',
     ' * hexagrams, the six lines, the vortex 1·2·4·8·7·5 + 3·6·9, the a432 octaves, the major third 5∶4).',
     ' * Regenerate: npm run gen dist. Proven by cssIsIChingComputed(); enforced by scanCssForHardcoded(). */',
     block(':root', [...light, ...aliases]),
     block('.dark', dark),
+    '',
+    '/* ── ONE NAME FOR CONTENT THAT MUST NOT WRAP ──',
+    ' * Five components had each written `overflow-x: auto` into their own scoped block — a Lean proposition,',
+    ' * two <pre> code blocks, a formula and the vortex encoding — all saying the same thing: this content',
+    ' * cannot wrap, so let it scroll rather than clip. Scoped styles cannot share a declaration, so the',
+    ' * duplication was structural; emitted here it is one rule the whole theme can name. The markdown tables',
+    ' * need none of it: VitePress already scrolls those, and wrapping them again would have been a sixth copy. */',
+    block('.ich-scroll-x', [['overflow-x', 'auto']]),
     '',
   ].join('\n')
 }

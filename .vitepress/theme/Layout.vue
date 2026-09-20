@@ -18,6 +18,18 @@ const { Layout: VPLayout } = DefaultTheme
 const route = useRoute()
 const { frontmatter, page: pageData } = useData()
 const showHomeHero = computed(() => Boolean(frontmatter.value.hero))
+
+// COLOUR IS HEXAGRAM — the binding that was missing. Every route already had a content-addressed
+// hexagram (seedFromText(slug) % 64, the same placement the architecture uses for folders) and it
+// reached the DOM at no point: --ich-element-1-rgb and --ich-element-2-rgb were referenced by the
+// layout's gradient and emitted by nothing, so that declaration was dropped by every browser.
+// Six bits of the route's own address are exactly a hue on the oklch wheel, and the pair is the
+// reflection 64−1−h — a page and its involution opposite each other. One binding here; every
+// component below inherits a colour it did not pick and cannot drift from.
+const ichHex = computed(() => {
+  const slug = route.path.replace(/^\/(en|bg)(?=\/|$)/, '').replace(/^\//, '').split('/').filter(Boolean).pop() || 'home'
+  return ((seedFromText(slug) % 64) + 64) % 64
+})
 const cssWidth = ref((64 * 16))
 const slots = useSlots()
 const forwardedSlots = computed(() =>
@@ -58,7 +70,7 @@ onUnmounted(() => {
 // EVERY PAGE IS A PAPER, SO EVERY PAGE CARRIES ITS CREDIT. A measurement over the built site found
 // 1039 pages with no author, no licence and no DOI outside the Lean theorem pages. The citation is
 // computed from the ONE sealed credit fold, never typed here.
-import { pageCitation, CANONICAL_HOST } from '../render'
+import { pageCitation, CANONICAL_HOST, seedFromText } from '../render'
 const credit = computed(() => pageCitation(
   (pageData.value.title || frontmatter.value.title || 'Double Torus') as string,
   `${CANONICAL_HOST}/${pageData.value.relativePath.replace(/(index)?\.md$/, '')}`
@@ -67,7 +79,7 @@ const credit = computed(() => pageCitation(
 </script>
 
 <template>
-  <div class="vp-with-hero-movie">
+  <div class="vp-with-hero-movie" :style="{ '--ich-hex': String(ichHex) }">
     <ClientOnly>
       <div class="vp-with-hero-movie__backdrop" aria-hidden="true">
         <BackgroundMovie />
@@ -120,13 +132,13 @@ const credit = computed(() => pageCitation(
 .page-credit {
   margin: var(--ich-sp6) 0 var(--ich-sp4);
   padding-top: var(--ich-sp3);
-  border-top: 1px solid var(--vp-c-divider);
-  font-size: 0.82rem;
+  border-top: var(--ich-line) solid var(--vp-c-divider);
+  font-size: var(--ich-sp7);
   color: var(--vp-c-text-2);
 }
-.page-credit__cite { margin: 0 0 0.25rem; word-break: break-word; }
+.page-credit__cite { margin: 0 0 var(--ich-sp2); word-break: break-word; }
 .page-credit__meta { margin: 0; }
-.page-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.page-credit a { color: inherit; text-decoration: underline; text-underline-offset: var(--ich-sp1); }
 
 .vp-with-hero-movie {
   position: relative;

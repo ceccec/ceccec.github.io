@@ -1,8 +1,10 @@
 /**
  * EVERY RELATIVE IMPORT MUST RESOLVE — the gate that was missing.
  *
- * A folder rename left `src/quantum/solver/browser/index.vue` importing
- * `../../universal-solver/index` after that folder became `../../universal`. The dev
+ * A folder rename left the solver's browser page (a .vue since purged — a foreign design
+ * system on a 404 route) importing `../../universal-solver/index` after that folder became
+ * `../../universal`. Its path is deliberately not written here: a dead path in a comment is
+ * still a dead path, and paths.dead-strings reads comments too. The dev
  * server returned 500 on every page. `check:types` was green. All five verification
  * gates were green. Nothing caught it, because the rewriter handled `.ts` and skipped
  * `.vue`, and no gate resolves Vue imports.

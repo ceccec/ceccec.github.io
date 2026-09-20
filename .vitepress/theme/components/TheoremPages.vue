@@ -131,7 +131,7 @@ const paperLine = (line: string): { label: string; body: string } => {
         <p class="theorem-paper__source-home">
           <code>{{ row.provedBy }}</code> · <code>{{ sourceOf(row)!.home }}/index.ts</code>
         </p>
-        <pre class="theorem-paper__code"><code>{{ sourceOf(row)!.code }}</code></pre>
+        <pre class="theorem-paper__code ich-scroll-x"><code>{{ sourceOf(row)!.code }}</code></pre>
       </section>
 
       <footer class="theorem-paper__cite">
@@ -156,19 +156,19 @@ const paperLine = (line: string): { label: string; body: string } => {
 .theorem-paper__masthead {
   display: flex; justify-content: space-between; gap: var(--ich-sp4);
   font-size: calc(1em * 4 / 5); letter-spacing: calc(1em / 100);
-  text-transform: uppercase; opacity: calc(7 / (2 * 5));
-  border-bottom: 1px solid currentColor; padding-bottom: var(--ich-sp2);
+  text-transform: uppercase; opacity: var(--ich-op-mid);
+  border-bottom: var(--ich-line) solid currentColor; padding-bottom: var(--ich-sp2);
 }
 .theorem-paper__id { font-variant-numeric: tabular-nums; }
 .theorem-paper__title { font-size: calc(1em * 2); line-height: calc(6 / 5); margin: var(--ich-sp4) 0 var(--ich-sp2); }
-.theorem-paper__byline { font-style: italic; opacity: calc(4 / 5); margin: 0 0 var(--ich-sp2); }
+.theorem-paper__byline { font-style: italic; opacity: var(--ich-op-card-faint); margin: 0 0 var(--ich-sp2); }
 .theorem-paper__tags { display: flex; flex-wrap: wrap; gap: calc(1px * 6); margin: 0 0 var(--ich-sp4); }
 .theorem-paper__tag {
   font-family: ui-monospace, Menlo, monospace; font-size: calc(1em * 7 / (2 * 5)); text-decoration: none;
-  padding: 0 calc(1px * 6); border: 1px solid currentColor; border-radius: calc(1px * 4); opacity: calc(4 / 5); }
+  padding: 0 calc(1px * 6); border: var(--ich-line) solid currentColor; border-radius: calc(1px * 4); opacity: var(--ich-op-card-faint); }
 .theorem-paper__tag:hover { opacity: 1; }
 .theorem-paper__ack-grid { display: grid; grid-template-columns: max-content 1fr; gap: calc(1px * 2) var(--ich-sp3); margin: var(--ich-sp2) 0 0; }
-.theorem-paper__ack-grid dt { font-weight: calc(6 * 100); opacity: calc(3 / 5); }
+.theorem-paper__ack-grid dt { font-weight: calc(6 * 100); opacity: var(--ich-op-soft); }
 .theorem-paper__ack-grid dd { margin: 0; text-align: justify; }
 @media print { .theorem-paper__tag { border-color: var(--color-print-text, black); } }
 /* The theorem environment — Theorem. / Proof. …∎ set as a printed paper: a ruled block, the Theorem line
@@ -190,16 +190,16 @@ const paperLine = (line: string): { label: string; body: string } => {
 .theorem-paper section p, .theorem-paper__cite p { text-align: justify; hyphens: auto; margin: 0; }
 .theorem-paper__figure { margin: var(--ich-sp5) auto; display: grid; justify-items: center; gap: var(--ich-sp2); }
 .theorem-paper__figure figcaption {
-  font-size: calc(1em * 4 / 5); text-align: center; max-width: calc(1px * 5 * 100); opacity: calc(4 / 5);
+  font-size: calc(1em * 4 / 5); text-align: center; max-width: calc(1px * 5 * 100); opacity: var(--ich-op-card-faint);
 }
 .theorem-paper__hero { margin-top: var(--ich-sp4); }
-.theorem-paper__source-home { font-size: calc(1em * 4 / 5); opacity: calc(4 / 5); }
+.theorem-paper__source-home { font-size: calc(1em * 4 / 5); opacity: var(--ich-op-card-faint); }
 .theorem-paper__code {
-  font-size: calc(1em * 7 / (2 * 5)); line-height: calc(7 / 5); overflow-x: auto;
-  border: 1px solid currentColor; border-radius: calc(1px * 4); padding: var(--ich-sp3);
+  font-size: calc(1em * 7 / (2 * 5)); line-height: calc(7 / 5);
+  border: var(--ich-line) solid currentColor; border-radius: calc(1px * 4); padding: var(--ich-sp3);
   font-family: ui-monospace, Menlo, monospace; text-align: left; white-space: pre;
 }
-.theorem-paper__cite { margin-top: var(--ich-sp5); border-top: 1px solid currentColor; padding-top: var(--ich-sp3); }
+.theorem-paper__cite { margin-top: var(--ich-sp5); border-top: var(--ich-line) solid currentColor; padding-top: var(--ich-sp3); }
 .theorem-paper__cite p { font-size: calc(1em * 9 / (2 * 5)); font-variant-numeric: tabular-nums; }
 </style>
 

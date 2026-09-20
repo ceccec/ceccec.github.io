@@ -111,7 +111,7 @@ watch(at, (time) => {
 <style scoped>
 .quantum-dynamics-simulation-panel__content {
   display: grid;
-  gap: 1rem;
+  gap: var(--ich-sp8);
 }
 
 .quantum-dynamics-simulation-panel__lede {
@@ -128,7 +128,7 @@ watch(at, (time) => {
 
 .quantum-dynamics-simulation-panel__movie-host {
   min-height: calc(var(--ich-fig) - var(--ich-sp8));
-  border-radius: calc(1rem * 3 / 4);
+  border-radius: calc(var(--ich-sp8) * 3 / 4);
   overflow: hidden;
   background: var(--ich-scrim);
 }

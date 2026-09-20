@@ -123,6 +123,6 @@ export default { name: 'LinkedHeroCard' }
   gap: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(1 / 2));
   margin-top: calc(var(--vp-movie-gap, var(--ich-sp4)) * calc(1 / 2));
   font-size: calc(1em * 4 / 5);
-  opacity: calc(4 / 5);
+  opacity: var(--ich-op-card-faint);
 }
 </style>

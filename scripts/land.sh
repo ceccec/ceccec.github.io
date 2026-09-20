@@ -55,10 +55,19 @@ untracked=$(git ls-files --others --exclude-standard | grep -vxF -f <(printf '%s
 [ -n "$untracked" ] && { echo "land: untracked and NOT landed (pass --add to include):"; printf '  %s\n' $untracked; }
 # enforcement:trinity always: the Pages build runs it inside docs:build, so a finding it makes would otherwise surface
 # only after the push, as a red deploy (it did: a .mjs under scripts/ passed every gate here and failed the build)
-gates=(check:types verify:structure verify:imports verify:paths verify:side-effects verify:barrel verify:comments enforcement:trinity)
-grep -qE '^src/(quantum|thunder/movie|mountain|fire)/|^\.vitepress/lib/movie' <<<"$changed" && gates+=(verify:movie verify:power)
-grep -qE '\.lean$|^src/pair/formal/proofs/' <<<"$changed" && gates+=(verify:lean verify:lean-latex verify:lean-registry verify:lean-arbiter)
-grep -qxF package.json <<<"$changed" && gates+=(manifest:check)
+# THE ROSTER DERIVES. It was a hand-list of eight gates plus three path conditions, and `verify:all`
+# had fifty-one: THIRTY-EIGHT gates — tautology, prior-art, canon, claims, fabrication, every-fold,
+# ratchets, hashes — could not run on any commit path at all. The pre-commit hook runs `verify`, which
+# is four of them. So the chain existed, and only a human typing `npm run verify:all` ever ran it;
+# HEAD itself was sitting on a red prior-art ratchet that no landing could have caught.
+# One roster now: whatever `verify:all` chains is what a landing runs. A gate added to the chain is
+# enforced the moment it is added, and canon.gate-unreachable refuses a hand-list from coming back.
+# verify:stream, not the chain: it ASKS every gate regardless of what failed before it, derives the
+# roster from package.json itself, and refuses on a gate that gave no verdict as loudly as on one that
+# refused. It was written for exactly this and wired to nothing — the runner that fixes the `&&`
+# short-circuit sat unreachable while landings ran eight gates. Re-deriving the chain here would be a
+# second roster; there is one, and it lives in verify:all.
+gates=(check:types verify:stream)
 grep -qE '^\.vitepress/|^src/ui/' <<<"$changed" && gates+=(docs:build)
 gates+=(${EXTRA[@]+"${EXTRA[@]}"})
 mkdir -p "$LOGS"

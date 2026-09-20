@@ -190,7 +190,7 @@ function gatewayHref(slug: string): string {
       </UiTabsContent>
 
       <UiTabsContent value="vortex">
-        <p class="double-torus-experience__vortex-encoded"><code>{{ all.hinge.vortex.encoded }}</code></p>
+        <p class="double-torus-experience__vortex-encoded ich-scroll-x"><code>{{ all.hinge.vortex.encoded }}</code></p>
         <ol class="double-torus-experience__vortex-steps">
           <li
             v-for="(step, index) in all.hinge.vortex.steps"
@@ -387,8 +387,8 @@ function gatewayHref(slug: string): string {
   width: 100%;
   /* Bounded fallback before JS sizes the drawing buffer (matches MOVIE_ASPECT = 9/13); the JS `measure`
      sets the inline height per frame. max-height caps it to the viewport so it can never run away again. */
-  aspect-ratio: 13 / 9;
-  max-height: 82vh;
+  aspect-ratio: calc(5 + 8) / 9;
+  max-height: calc(1vh * (64 + 16 + 2));
   border-radius: calc(var(--vp-movie-radius) * calc(3 / 4));
   background: transparent;
   /* touch-interactive: drag to scrub the phase clock, tap to sound A432 + vibrate (shared interaction layer) */
@@ -444,7 +444,6 @@ function gatewayHref(slug: string): string {
 
 .double-torus-experience__vortex-encoded {
   margin: 0 0 var(--ich-sp2);
-  overflow-x: auto;
 }
 
 .double-torus-experience__gateway-item a {
@@ -484,7 +483,7 @@ function gatewayHref(slug: string): string {
   align-items: center;
   padding: var(--ich-pad-chip-y) var(--ich-pad-chip-x);
   border-radius: var(--ich-radius-sm);
-  border: var(--ich-line) solid oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg * 5 / 9) / var(--ich-oklch-a-field));
+  border: var(--ich-line) solid oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(calc(1turn / 1) * 5 / 9) / var(--ich-oklch-a-field));
   font-family: var(--vp-font-family-mono);
   font-size: var(--ich-text-ms);
   transition:
@@ -494,20 +493,20 @@ function gatewayHref(slug: string): string {
 }
 
 .double-torus-experience__vortex-step--active {
-  border-color: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg * 5 / 9) / var(--ich-oklch-a-active));
-  background: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg * 5 / 9) / var(--ich-oklch-a-fill));
+  border-color: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(calc(1turn / 1) * 5 / 9) / var(--ich-oklch-a-active));
+  background: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(calc(1turn / 1) * 5 / 9) / var(--ich-oklch-a-fill));
   /* BLURRY-TEXT FIX (vitepress-api violation wave): fractional scale() re-rasterized the digit text
      into subpixel blur — the emphasis is now a ring (box-shadow), zero text rasterization change. */
-  box-shadow: 0 0 0 calc(var(--ich-sp6) / 6) oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg * 5 / 9) / var(--ich-oklch-a-active));
+  box-shadow: 0 0 0 calc(var(--ich-sp6) / 6) oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(calc(1turn / 1) * 5 / 9) / var(--ich-oklch-a-active));
 }
 
 .double-torus-experience__vortex-step--fusion {
-  border-color: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg / 6) / var(--ich-oklch-a-fusion));
-  background: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg / 6) / var(--ich-oklch-a-fusion-fill));
+  border-color: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(calc(1turn / 1) / 6) / var(--ich-oklch-a-fusion));
+  background: oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(calc(1turn / 1) / 6) / var(--ich-oklch-a-fusion-fill));
 }
 
 .double-torus-experience__vortex-step--fusion.double-torus-experience__vortex-step--active {
-  box-shadow: 0 0 var(--ich-sp6) oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(360deg / 6) / var(--ich-oklch-a-glow));
+  box-shadow: 0 0 var(--ich-sp6) oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-gateway) calc(calc(1turn / 1) / 6) / var(--ich-oklch-a-glow));
 }
 
 .double-torus-experience__vortex-tag {
