@@ -15,7 +15,7 @@
  */
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { scanVueForHardcoded } from '../../src/earth/architecture/index.ts'
+import { scanVueForHardcoded, ichingTokensCss } from '../../src/earth/architecture/index.ts'
 import { ratchet, everyRatchet } from './status.ts'
 
 export function findVuePaintLiterals(root: string = process.cwd()): string[] {
@@ -57,6 +57,7 @@ export function assertVuePaintDerived(): void {
     for (const m of motion.slice(0, 6)) console.log(`      ${m.slice(0, 116)}`)
     console.log(ratchet('vue.undreived-paint', found.length, { evidence: () => found }))
     assertNoPhantomTokens() // one surface: a value off the ladder, and a token the ladder never defined
+  assertTokensCssMatchesGenerator() // …and the generated sheet still being what the generator emits
   })
 }
 
@@ -126,4 +127,40 @@ export function assertNoPhantomTokens(): void {
   const phantom = findPhantomTokens()
   for (const p of phantom.slice(0, 12)) console.log(`  ${p}`)
   console.log(ratchet('css.phantom-token', phantom.length, { evidence: () => phantom }))
+}
+
+/**
+ * THE ARTEFACT MUST EQUAL ITS GENERATOR — A CROSS-CHECK, NOT A SELF-ASSERTION.
+ *
+ * src/render/ui/tokens.css carries "COMPUTED — do not edit" in its own header and nothing enforced it.
+ * Two ways that goes wrong, both silent: hand-edit the file and every component still resolves, so
+ * css.phantom-token stays 0 while the shipped paint quietly stops being the ladder; or change
+ * ichingTokensCss() and never regenerate, so the committed sheet is stale. The second is not
+ * hypothetical — `npm run gen dist`, the only thing that writes this file, exits 1 on an unrelated
+ * "Skill atoms incomplete" long after the CSS is written, so a regeneration looks like a failure and
+ * gets skipped. That happened in this session.
+ *
+ * This is a CROSS-CHECK in the sense independence.cross-checked means: the file is constrained by a
+ * predicate that lives in another file, so neither can drift without the other objecting. A fold that
+ * only checks itself cannot catch a stale copy of itself.
+ */
+export function tokensCssDrift(root: string = process.cwd()): string[] {
+  const rel = 'src/render/ui/tokens.css'
+  let committed = ''
+  try { committed = readFileSync(join(root, rel), 'utf8') } catch { return [`${rel} — the generated stylesheet is missing entirely`] }
+  const emitted = ichingTokensCss()
+  if (committed.trimEnd() === emitted.trimEnd()) return []
+  const a = committed.trimEnd().split('\n'), b = emitted.trimEnd().split('\n')
+  const out: string[] = []
+  if (a.length !== b.length) out.push(`${rel} — ${a.length} committed lines vs ${b.length} the generator emits`)
+  for (let i = 0; i < Math.max(a.length, b.length) && out.length < 8; i++) {
+    if (a[i] !== b[i]) out.push(`${rel}:${i + 1} — committed ${JSON.stringify((a[i] ?? '').trim()).slice(0, 80)} · generator ${JSON.stringify((b[i] ?? '').trim()).slice(0, 80)}`)
+  }
+  return out
+}
+
+export function assertTokensCssMatchesGenerator(): void {
+  const drift = tokensCssDrift()
+  for (const d of drift.slice(0, 8)) console.log(`  ${d}`)
+  console.log(ratchet('css.tokens-drift', drift.length, { evidence: () => drift }))
 }

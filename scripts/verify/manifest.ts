@@ -13,6 +13,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { computedWebManifest } from '../../src/wind/site/index.ts'
 import { toUuid } from '../../src/0'
 import { quantumTestFramework, quantumAlgorithmBenchmarks } from '../../src/quantum/testing'
 import { quantumTestCoverageReport } from '../../src/quantum/testing/coverage'
@@ -113,6 +114,36 @@ export function writeManifest(): void {
 }
 
 /** Fail if the committed manifest has drifted from what computes. */
+/**
+ * EVERY GENERATED ARTEFACT MUST EQUAL ITS GENERATOR — the same contract, applied to the rest of them.
+ *
+ * `npm run gen dist` writes five files: README.md, hero.svg, public/icon.svg, public/site.webmanifest
+ * and src/render/ui/tokens.css. README had readmeSignatureValid, the two SVGs had the svg sync, and
+ * tokens.css got a drift check today. public/site.webmanifest had NOTHING: computedWebManifest writes
+ * it, and no gate ever compared the committed copy to what that function emits. Hand-edit it, or
+ * change the generator without regenerating, and nothing objects — the manifest a browser installs
+ * the site from simply stops being the one the corpus computes.
+ *
+ * This is a CROSS-CHECK, not a self-assertion: the file is constrained by a predicate that lives in
+ * another file, so neither can move without the other saying so. A fold that only checks itself
+ * cannot notice it has become a stale copy of itself.
+ */
+export function webManifestDrift(): void {
+  const rel = 'public/site.webmanifest'
+  const p = join(process.cwd(), rel)
+  const computed = computedWebManifest()
+  const committed = existsSync(p) ? readFileSync(p, 'utf8') : ''
+  const ok = computed.trimEnd() === committed.trimEnd()
+  console.log(`${rel}: computed=${toUuid(computed).slice(0, 8)} committed=${toUuid(committed).slice(0, 8)} ${ok ? 'IN SYNC' : 'DRIFTED'}`)
+  if (!ok) {
+    const a = committed.trimEnd().split('\n'), b = computed.trimEnd().split('\n')
+    for (let i = 0; i < Math.max(a.length, b.length) && i < 6; i++) {
+      if (a[i] !== b[i]) console.log(`  :${i + 1} committed ${JSON.stringify(a[i] ?? '').slice(0, 80)} · generator ${JSON.stringify(b[i] ?? '').slice(0, 80)}`)
+    }
+    throw new Error(`${rel} has drifted from computedWebManifest — run \`npm run gen dist\``)
+  }
+}
+
 export function manifestDrift(): void {
   const p = join(process.cwd(), MANIFEST)
   const computed = manifestMarkdown()
@@ -120,4 +151,5 @@ export function manifestDrift(): void {
   const ok = computed === committed
   console.log(`${MANIFEST}: computed=${toUuid(computed).slice(0, 8)} committed=${toUuid(committed).slice(0, 8)} ${ok ? 'IN SYNC' : 'DRIFTED'}`)
   if (!ok) throw new Error(`${MANIFEST} has drifted — run \`npm run manifest\``)
+  webManifestDrift() // one surface for "a generated artefact still equals its generator"
 }

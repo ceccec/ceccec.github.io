@@ -53,7 +53,7 @@
  */
 import { createRequire } from 'node:module'
 import { corpusFiles } from './corpus.ts'
-import { readFileSync, readdirSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { ratchet, everyRatchet } from './status.ts'
 
@@ -239,6 +239,47 @@ export function findUnreachableGates(root: string = process.cwd()): string[] {
   return out
 }
 
+/**
+ * A GENERATED ARTEFACT WITH NO VERIFIER IS A HAND-EDITABLE FILE WEARING "COMPUTED — DO NOT EDIT".
+ *
+ * The generator writes five files today. Four were checked against it and one — public/site.webmanifest
+ * — was not, for as long as it has existed: computedWebManifest emitted it and no gate ever compared
+ * the committed copy back. That is the gate-unreachable defect in another costume. The instance is
+ * fixed; this is the class. Add a sixth output tomorrow and this refuses until something verifies it.
+ *
+ * Reachability is the same rule used for gates: the artefact's path must appear in some file under
+ * scripts/verify or src/pair/enforcement that is not a receipt log. Naming it is not proof that the
+ * check is correct — nothing here can be — but a path no verifier even mentions is certainly unchecked.
+ */
+export function generatedArtefactsWithoutAVerifier(root: string = process.cwd()): string[] {
+  const gen = join(root, 'src/quantum/dist/generators/index.ts')
+  let text = ''
+  try { text = readFileSync(gen, 'utf8') } catch { return ['src/quantum/dist/generators/index.ts — the generator is missing; nothing can be checked against it'] }
+  const paths = [...text.matchAll(/out\.push\(\{\s*path:\s*'([^']+)'/g)].map((m) => m[1]!)
+  const verifiers: string[] = []
+  const walk = (dir: string): void => {
+    let names: string[] = []
+    try { names = readdirSync(dir) } catch { return }
+    for (const n of names) {
+      const p = join(dir, n)
+      let st
+      try { st = statSync(p) } catch { continue }
+      if (st.isDirectory()) { if (n !== 'receipts' && n !== 'node_modules') walk(p); continue }
+      if (!/\.ts$/.test(n)) continue
+      try { verifiers.push(readFileSync(p, 'utf8')) } catch { /* unreadable is not a verifier */ }
+    }
+  }
+  walk(join(root, 'scripts', 'verify'))
+  walk(join(root, 'src', 'pair', 'enforcement'))
+  const out: string[] = []
+  for (const rel of [...new Set(paths)]) {
+    const base = rel.split('/').pop()!
+    if (verifiers.some((v) => v.includes(rel) || v.includes(base))) continue
+    out.push(`${rel} — written by the generator and named by no verifier: nothing compares the committed file to what the generator emits`)
+  }
+  return out
+}
+
 export function assertCanonicalForms(): void {
   everyRatchet(() => {
     const found = findCanonBreaks()
@@ -263,7 +304,11 @@ export function assertCanonicalForms(): void {
   console.log(`  ${found.decorativeConjunct.length}  a facet padded with a conjunct that can never be false — it reads as a guard and guards nothing`)
   for (const s2 of found.decorativeConjunct.slice(0, 4)) console.log(`      ${show(s2)}`)
   console.log(ratchet('canon.decorative-conjunct', found.decorativeConjunct.length, { evidence: () => found.decorativeConjunct.map(show) }))
-    const unreachable = findUnreachableGates()
+    const unverified = generatedArtefactsWithoutAVerifier()
+  console.log(`  ${unverified.length}  a generated artefact nothing checks against its generator — "do not edit" enforced by nobody`)
+  for (const u of unverified.slice(0, 4)) console.log(`      ${u}`)
+  console.log(ratchet('canon.generated-unverified', unverified.length, { evidence: () => unverified }))
+  const unreachable = findUnreachableGates()
     console.log(`  ${unreachable.length}  a gate nothing on the commit path can run — written, chained nowhere, green by never being asked`)
     for (const u of unreachable.slice(0, 4)) console.log(`      ${u}`)
     console.log(ratchet('canon.gate-unreachable', unreachable.length, { evidence: () => unreachable }))
