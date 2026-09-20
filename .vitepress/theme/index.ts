@@ -1,3 +1,4 @@
+import { defineAsyncComponent } from 'vue'
 // VitePress requires the custom theme entry at .vitepress/theme/index.ts — thin shell only.
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
@@ -44,6 +45,10 @@ export default {
     if (!ctx.app.component('DomainProofPages')) ctx.app.component('DomainProofPages', DomainProofPages)
     if (!ctx.app.component('TheoremIndex')) ctx.app.component('TheoremIndex', TheoremIndex)
     if (!ctx.app.component('SourceAtlas')) ctx.app.component('SourceAtlas', SourceAtlas)
+    // ASYNC ON PURPOSE. Registered eagerly this component put 8 KB into the ENTRY chunk — the bundle
+    // every visitor downloads before anything paints — to serve one page. build.app-chunk-kilobytes
+    // caught it at 492 against 484, which is the ratchet doing exactly its job. It loads when /hands/ does.
+    if (!ctx.app.component('HandsFold')) ctx.app.component('HandsFold', defineAsyncComponent(() => import('./components/HandsFold.vue')))
     if (!ctx.app.component('ThreeClosure')) ctx.app.component('ThreeClosure', ThreeClosure)
     if (!ctx.app.component('DigitMotion')) ctx.app.component('DigitMotion', DigitMotion)
     if (!ctx.app.component('SevenStarRosetta')) ctx.app.component('SevenStarRosetta', DigitMotion)

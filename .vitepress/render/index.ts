@@ -3,7 +3,7 @@
 // so a trigram flatten only ever rewrites THIS barrel (the executor walks .vitepress), never the 53 consumers.
 // Generated from the actual .vitepress import surface; re-exports resolve to the current fold locations.
 /* eslint-disable */
-export { STATUS_BADGE_KINDS, VORTEX_SEQUENCE, createAnimationEngine, humanBreath, pointerInteraction, seedFromText } from '../../src/0'
+export { STATUS_BADGE_KINDS, VORTEX_SEQUENCE, createAnimationEngine, humanBreath, pointerInteraction, seedFromText, reflectFold, foldFixedPoints, reflectFoldFamily, foldPair, merge, toUuid, digitalRoot, doubleTorusSurface, TORUS_LOBE_OFFSET } from '../../src/0'
 export type { StatusBadgeKind } from '../../src/0'
 export { localeFromRoute, localePath } from '../../src/1/9'
 export type { LocaleName } from '../../src/1/9'

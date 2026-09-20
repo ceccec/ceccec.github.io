@@ -22,6 +22,10 @@ export { default as LeanTheoremIndex } from './LeanTheoremIndex.vue'
 export { default as DomainProofPages } from './DomainProofPages.vue'
 export { default as TheoremIndex } from './TheoremIndex.vue'
 export { default as SourceAtlas } from './SourceAtlas.vue'
+// HandsFold is NOT re-exported here on purpose. A static re-export of a .vue from this barrel lands the
+// component in the ENTRY chunk even when its only consumer imports it dynamically — package.json declares
+// no `sideEffects`, so Rollup must assume the module has them and cannot drop it. It is registered with
+// defineAsyncComponent in ../index.ts and loads with /hands/.
 export { default as ThreeClosure } from './ThreeClosure.vue'
 export { default as TrinityGateways } from './TrinityGateways.vue'
 export { default as GlobalHelp } from './GlobalHelp.vue'
