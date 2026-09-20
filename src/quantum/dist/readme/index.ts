@@ -251,7 +251,7 @@ export function qpuCpuGpuMarkdownSection(
     '',
     '### Physical FTL metrics (observer-evaluable)',
     '',
-    'Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot reuse (same quantity as `localAuditQuantumSpeedEfficiency` and `quantumiseIsAtFtlSpeed` ssl warm path). Superluminal signaling is counted only via `physicalFtlClaimTheorem` (`PHYSICAL_FTL_SIGNALING_PROOF_IDS.length`).',
+    'Apparent FTL speedup is defined as **T_cold / max(T_warm, ε)** on memoByRoot reuse (same quantity as `localAuditQuantumSpeedEfficiency` and `quantumiseIsAtFtlSpeed` ssl warm path). It is a ratio between a recompute and a warm memo read on the identical input — a measurement of storage, reported as a lower bound when the warm read finishes below timer resolution.',
     '',
     '| Metric | Quantity | Cold | Warm | Speedup / identity | Source fold |',
     '|---|---|---:|---:|---|---|',

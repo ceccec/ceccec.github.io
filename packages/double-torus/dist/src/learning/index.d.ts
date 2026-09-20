@@ -865,7 +865,6 @@ export type CorpusPaperStandardSections = {
     readonly status: 'structure-only';
     readonly statusDetail: string;
     readonly gap: string;
-    readonly physicalFtlClaim: 0;
 };
 export declare function paperParamsById(id: string, matrix?: MindMatrix, count?: number): {
     index: string;
@@ -1207,7 +1206,6 @@ export declare function vitepressSidebar(matrix?: MindMatrix): {
             content: string;
         };
         residuals: ("composed-after #68 uiProseDuplicationRemoved — residual Clay Statement=title catalog pattern in staticPages descriptions" | "composed-after #70 mcp-commands-scripts-gaps-audit (MCP/script synonym census landed; residual conceptTools + trading:* outside PRIMARY)" | "thin-mount alias leaves still served (efficiency-vote… · learn-developer) — intentional census fold" | "compose import/distance — importPathShowsDistanceInMigrationMatrix measures compact+even code in the src matrix (npm run quantum:import-path-distance)")[];
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;

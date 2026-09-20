@@ -2258,9 +2258,7 @@ export declare function honestRevolutionFpgaHonesty(matrix?: MindMatrix, at?: nu
         qpuRequired: false;
         statement: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: {
         receipt: string;
         facet: string;

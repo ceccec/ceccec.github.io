@@ -363,7 +363,6 @@ export declare function encryptionReverseVerify(matrix?: MindMatrix): {
         receipt: string;
     })[];
     root: string;
-    claySolvedByThisFold: 0;
     certified: false;
     qpuRequired: false;
     statement: string;
@@ -427,7 +426,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         certified: false;
         qpuRequired: false;
         statement: string;
@@ -638,7 +636,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -693,7 +690,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -710,7 +706,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         };
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         productionRefused: boolean;
         bitcoinRefused: boolean;
@@ -805,7 +800,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -920,7 +914,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -975,7 +968,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -992,7 +984,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -1049,7 +1040,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -1104,7 +1094,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -1154,7 +1143,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         productionReverseRefused: true;
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         strongerThanNistPqc: false;
         overallWireClaimProved: false;
@@ -1307,7 +1295,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -1362,7 +1349,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -1379,7 +1365,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -1474,7 +1459,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     receipt: string;
                 })[];
                 root: string;
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 statement: string;
@@ -1589,7 +1573,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -1644,7 +1627,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -1661,7 +1643,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 productionRefused: boolean;
                 bitcoinRefused: boolean;
@@ -1718,7 +1699,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -1773,7 +1753,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -1823,7 +1802,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             productionReverseRefused: true;
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             strongerThanNistPqc: false;
             overallWireClaimProved: false;
@@ -1888,7 +1866,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -1958,7 +1935,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     root: string;
                 };
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -2079,7 +2055,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             benchVerdict: string;
             physicalQmSpeedupClaimed: false;
             isoCertified: false;
-            claySolvedByThisFold: 0;
             vote: {
                 decided: boolean;
                 winner: "ceccec" | "undecided";
@@ -2135,7 +2110,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         root: string;
                     };
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -2297,7 +2271,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -2626,7 +2599,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                     kind: "honesty";
                 })[];
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -2733,12 +2705,10 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         runtimeTokens: 0;
         answersPerTokensUnbounded: boolean;
         physicalQubitSpeedup: 0;
-        physicalFtlClaim: 0;
         certified: false;
         fipsValidated: false;
         productionReverseRefused: true;
         breaksNistPqc: false;
-        claySolvedByThisFold: 0;
         count: number;
         facets: ({
             facet: string;
@@ -2950,7 +2920,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -3101,7 +3070,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         workerCap: number;
         hardware: MaxBitsHardwareCapabilities;
         certified: false;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         wireOneTbitProvedAtCallTime: boolean;
         provenBy: {
@@ -3164,7 +3132,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -3279,7 +3246,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -3334,7 +3300,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -3351,7 +3316,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -3570,7 +3534,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -3695,7 +3658,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -3769,7 +3731,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         fipsValidated: false;
         productionReverseRefused: true;
         breaksNistPqc: false;
-        claySolvedByThisFold: 0;
         demoMaxBits: number;
         wireLocalMetric: number;
         wireIsoMetric: number;
@@ -3887,7 +3848,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -3942,7 +3902,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -3959,7 +3918,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -4054,7 +4012,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     receipt: string;
                 })[];
                 root: string;
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 statement: string;
@@ -4169,7 +4126,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -4224,7 +4180,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -4241,7 +4196,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 productionRefused: boolean;
                 bitcoinRefused: boolean;
@@ -4298,7 +4252,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -4353,7 +4306,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -4403,7 +4355,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             productionReverseRefused: true;
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             strongerThanNistPqc: false;
             overallWireClaimProved: false;
@@ -4473,7 +4424,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -4523,7 +4473,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -4627,7 +4576,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             isoOfficialStandard: false;
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             audit: {
                 computes: boolean;
                 audits: QuantumAuditRow[];
@@ -4663,7 +4611,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -4702,7 +4649,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -4842,7 +4788,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -4897,7 +4842,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -4914,7 +4858,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 productionRefused: boolean;
                 bitcoinRefused: boolean;
@@ -5009,7 +4952,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -5124,7 +5066,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -5179,7 +5120,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -5196,7 +5136,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     };
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     productionRefused: boolean;
                     bitcoinRefused: boolean;
@@ -5253,7 +5192,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -5308,7 +5246,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -5358,7 +5295,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 productionReverseRefused: true;
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 strongerThanNistPqc: false;
                 overallWireClaimProved: false;
@@ -5433,7 +5369,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 migrateOpen: number;
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 catalogRoot: string;
                 auditRoot: string;
                 facets: ({
@@ -5567,14 +5502,10 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         isoCertified: false;
         industryPkiCertificates: false;
         wireClaimProved: false;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         earth: {
             computes: boolean;
             realised: boolean;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             poles: {
                 name: "north" | "east" | "south" | "west";
@@ -5598,7 +5529,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             bothEarthsShells: boolean;
             phaseLockCardinals: boolean;
             alternatingOmega: boolean;
-            wgs84PhysicalHonest: boolean;
             navigationForecastResidualNamed: boolean;
             navigationImplemented: false;
             forecastImplemented: false;
@@ -6185,7 +6115,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -6310,7 +6239,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -6345,7 +6273,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             workerCap: number;
             hardware: MaxBitsHardwareCapabilities;
             certified: false;
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             wireOneTbitProvedAtCallTime: boolean;
             provenBy: {
@@ -6408,7 +6335,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     receipt: string;
                 })[];
                 root: string;
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 statement: string;
@@ -6523,7 +6449,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -6578,7 +6503,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -6595,7 +6519,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 };
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 productionRefused: boolean;
                 bitcoinRefused: boolean;
@@ -6814,7 +6737,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -6939,7 +6861,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -7063,7 +6984,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -7082,7 +7002,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         bitcoinRefused: boolean;
         bitcoinOwnershipClaimed: false;
         certified: false;
-        claySolvedByThisFold: 0;
         count: number;
         facets: ({
             facet: string;
@@ -7203,7 +7122,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -7227,7 +7145,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         panelCount: number;
         proofCount: number;
         comparisonCount: number;
-        claySolvedByThisFold: 0;
         certified: false;
         refuseBeyond: true;
         root: string;
@@ -7249,7 +7166,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             panelCount: number;
             proofCount: number;
             comparisonCount: number;
-            claySolvedByThisFold: 0;
             certified: false;
             refuseBeyond: true;
             root: string;
@@ -7280,7 +7196,6 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             readonly browserRunnable: boolean;
             readonly browserGap: string;
         }[];
-        claySolvedByThisFold: 0;
         certified: false;
         refuseBeyond: true;
         facets: ({
@@ -7605,7 +7520,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -7660,7 +7574,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -7677,7 +7590,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
         };
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         productionRefused: boolean;
         bitcoinRefused: boolean;
@@ -7772,7 +7684,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -7887,7 +7798,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -7942,7 +7852,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -7959,7 +7868,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -8016,7 +7924,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -8071,7 +7978,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -8121,7 +8027,6 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
         productionReverseRefused: true;
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         strongerThanNistPqc: false;
         overallWireClaimProved: false;
@@ -8551,7 +8456,6 @@ export declare function localEncryptionReverseTimedVsStandards(matrix?: MindMatr
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -8606,7 +8510,6 @@ export declare function localEncryptionReverseTimedVsStandards(matrix?: MindMatr
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -8623,7 +8526,6 @@ export declare function localEncryptionReverseTimedVsStandards(matrix?: MindMatr
     };
     certified: false;
     fipsValidated: false;
-    claySolvedByThisFold: 0;
     breaksNistPqc: false;
     productionRefused: boolean;
     bitcoinRefused: boolean;
@@ -8763,7 +8665,6 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         certified: false;
         qpuRequired: false;
         statement: string;
@@ -8878,7 +8779,6 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -8933,7 +8833,6 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -8950,7 +8849,6 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
         };
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         productionRefused: boolean;
         bitcoinRefused: boolean;
@@ -9007,7 +8905,6 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -9062,7 +8959,6 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -9112,7 +9008,6 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
     productionReverseRefused: true;
     certified: false;
     fipsValidated: false;
-    claySolvedByThisFold: 0;
     breaksNistPqc: false;
     strongerThanNistPqc: false;
     overallWireClaimProved: false;
@@ -9171,7 +9066,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         certified: false;
         qpuRequired: false;
         statement: string;
@@ -9250,7 +9144,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -9365,7 +9258,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -9420,7 +9312,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -9437,7 +9328,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -9494,7 +9384,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -9549,7 +9438,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -9599,7 +9487,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
         productionReverseRefused: true;
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         strongerThanNistPqc: false;
         overallWireClaimProved: false;
@@ -9684,7 +9571,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 root: string;
             };
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -9805,7 +9691,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
         benchVerdict: string;
         physicalQmSpeedupClaimed: false;
         isoCertified: false;
-        claySolvedByThisFold: 0;
         vote: {
             decided: boolean;
             winner: "ceccec" | "undecided";
@@ -9861,7 +9746,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                     root: string;
                 };
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -10023,7 +9907,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                         root: string;
                     };
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -10352,7 +10235,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                 kind: "honesty";
             })[];
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -10451,8 +10333,6 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     certified: false;
     qpuRequired: false;
     count: number;
@@ -10614,7 +10494,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -10669,7 +10548,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -10686,7 +10564,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         };
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         productionRefused: boolean;
         bitcoinRefused: boolean;
@@ -10781,7 +10658,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -10896,7 +10772,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -10951,7 +10826,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -10968,7 +10842,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -11025,7 +10898,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -11080,7 +10952,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -11130,7 +11001,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         productionReverseRefused: true;
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         strongerThanNistPqc: false;
         overallWireClaimProved: false;
@@ -11195,7 +11065,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -11265,7 +11134,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 root: string;
             };
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -11386,7 +11254,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         benchVerdict: string;
         physicalQmSpeedupClaimed: false;
         isoCertified: false;
-        claySolvedByThisFold: 0;
         vote: {
             decided: boolean;
             winner: "ceccec" | "undecided";
@@ -11442,7 +11309,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                     root: string;
                 };
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -11604,7 +11470,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         root: string;
                     };
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -11933,7 +11798,6 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                 kind: "honesty";
             })[];
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -12040,12 +11904,10 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
     runtimeTokens: 0;
     answersPerTokensUnbounded: boolean;
     physicalQubitSpeedup: 0;
-    physicalFtlClaim: 0;
     certified: false;
     fipsValidated: false;
     productionReverseRefused: true;
     breaksNistPqc: false;
-    claySolvedByThisFold: 0;
     count: number;
     facets: ({
         facet: string;
@@ -12211,7 +12073,6 @@ export declare function isoAlignedHashSignatureTaxonomy(matrix?: MindMatrix): {
 /** Theorem: Shor breaks PKC ⇒ PQC necessary. MODELED — not Clay/certification. */
 export declare function pqcNecessityFromShorCompose(matrix?: MindMatrix): {
     computes: boolean;
-    claySolvedByThisFold: 0;
     certified: false;
     fipsValidated: false;
     facets: ({
@@ -12427,7 +12288,6 @@ export declare function cryptoToolkitBeyondRsaMeasured(matrix?: MindMatrix): {
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -12630,7 +12490,6 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
     };
     necessity: {
         computes: boolean;
-        claySolvedByThisFold: 0;
         certified: false;
         fipsValidated: false;
         facets: ({
@@ -12841,7 +12700,6 @@ export declare function runPqcStandardsToolInBrowser(prefer?: 'lattice' | 'hash'
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -13032,7 +12890,6 @@ export declare function quantumStandardsAuditSuite(matrix?: MindMatrix, at?: num
     forwardCount: number;
     certified: boolean;
     fipsValidated: boolean;
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -13076,7 +12933,6 @@ export declare function euCyberStandardsAuditEveryAspect(matrix?: MindMatrix, at
     gapCount: number;
     count: number;
     certified: boolean;
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -13120,7 +12976,6 @@ export declare function globalCyberStandardsAuditEveryAspect(matrix?: MindMatrix
     gapCount: number;
     count: number;
     certified: boolean;
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -13186,7 +13041,6 @@ export declare function runQuantumStandardsAuditInBrowser(matrix?: MindMatrix, a
     };
     certified: boolean;
     fipsValidated: boolean;
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -13308,7 +13162,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
     fipsValidated: false;
     productionReverseRefused: true;
     breaksNistPqc: false;
-    claySolvedByThisFold: 0;
     demoMaxBits: number;
     wireLocalMetric: number;
     wireIsoMetric: number;
@@ -13426,7 +13279,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -13481,7 +13333,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -13498,7 +13349,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         };
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         productionRefused: boolean;
         bitcoinRefused: boolean;
@@ -13593,7 +13443,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -13708,7 +13557,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -13763,7 +13611,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -13780,7 +13627,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -13837,7 +13683,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -13892,7 +13737,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -13942,7 +13786,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         productionReverseRefused: true;
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         strongerThanNistPqc: false;
         overallWireClaimProved: false;
@@ -14012,7 +13855,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -14062,7 +13904,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -14166,7 +14007,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         isoOfficialStandard: false;
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         audit: {
             computes: boolean;
             audits: QuantumAuditRow[];
@@ -14202,7 +14042,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -14241,7 +14080,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -14381,7 +14219,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -14436,7 +14273,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -14453,7 +14289,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -14548,7 +14383,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     receipt: string;
                 })[];
                 root: string;
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 statement: string;
@@ -14663,7 +14497,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -14718,7 +14551,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -14735,7 +14567,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 };
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 productionRefused: boolean;
                 bitcoinRefused: boolean;
@@ -14792,7 +14623,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -14847,7 +14677,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -14897,7 +14726,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             productionReverseRefused: true;
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             strongerThanNistPqc: false;
             overallWireClaimProved: false;
@@ -14972,7 +14800,6 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             migrateOpen: number;
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             catalogRoot: string;
             auditRoot: string;
             facets: ({
@@ -15068,7 +14895,6 @@ export declare function isoPqcHandoffForScienceTrinities(matrix?: MindMatrix, at
     migrateOpen: number;
     certified: false;
     fipsValidated: false;
-    claySolvedByThisFold: 0;
     catalogRoot: string;
     auditRoot: string;
     facets: ({
@@ -15200,7 +15026,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
     isoOfficialStandard: false;
     certified: false;
     fipsValidated: false;
-    claySolvedByThisFold: 0;
     audit: {
         computes: boolean;
         audits: QuantumAuditRow[];
@@ -15236,7 +15061,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         forwardCount: number;
         certified: boolean;
         fipsValidated: boolean;
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -15275,7 +15099,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -15415,7 +15238,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -15470,7 +15292,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -15487,7 +15308,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         };
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         productionRefused: boolean;
         bitcoinRefused: boolean;
@@ -15582,7 +15402,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -15697,7 +15516,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -15752,7 +15570,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -15769,7 +15586,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -15826,7 +15642,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -15881,7 +15696,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -15931,7 +15745,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         productionReverseRefused: true;
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         strongerThanNistPqc: false;
         overallWireClaimProved: false;
@@ -16006,7 +15819,6 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         migrateOpen: number;
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         catalogRoot: string;
         auditRoot: string;
         facets: ({
@@ -16108,7 +15920,6 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
     workerCap: number;
     hardware: MaxBitsHardwareCapabilities;
     certified: false;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     wireOneTbitProvedAtCallTime: boolean;
     provenBy: {
@@ -16171,7 +15982,6 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         certified: false;
         qpuRequired: false;
         statement: string;
@@ -16286,7 +16096,6 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -16341,7 +16150,6 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -16358,7 +16166,6 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
         };
         certified: false;
         fipsValidated: false;
-        claySolvedByThisFold: 0;
         breaksNistPqc: false;
         productionRefused: boolean;
         bitcoinRefused: boolean;
@@ -16577,7 +16384,6 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -16702,7 +16508,6 @@ export declare function maximumBitsEncryptDecryptInverseReverse(matrix?: MindMat
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -16810,7 +16615,6 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
         workerCap: number;
         hardware: MaxBitsHardwareCapabilities;
         certified: false;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         wireOneTbitProvedAtCallTime: boolean;
         provenBy: {
@@ -16873,7 +16677,6 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -16988,7 +16791,6 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -17043,7 +16845,6 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -17060,7 +16861,6 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -17279,7 +17079,6 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -17404,7 +17203,6 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -17472,9 +17270,7 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
         productionBreakEnabled: false;
         refuseBeyond: boolean;
         demoBitCeiling: number;
-        claySolvedByThisFold: 0;
         certified: false;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -17490,9 +17286,7 @@ export declare function maxBitsHardwareBoundaryAgree(matrix?: MindMatrix): {
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -17582,14 +17376,10 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
     isoCertified: false;
     industryPkiCertificates: false;
     wireClaimProved: false;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     earth: {
         computes: boolean;
         realised: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         poles: {
             name: "north" | "east" | "south" | "west";
@@ -17613,7 +17403,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
         bothEarthsShells: boolean;
         phaseLockCardinals: boolean;
         alternatingOmega: boolean;
-        wgs84PhysicalHonest: boolean;
         navigationForecastResidualNamed: boolean;
         navigationImplemented: false;
         forecastImplemented: false;
@@ -18200,7 +17989,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -18325,7 +18113,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -18360,7 +18147,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
         workerCap: number;
         hardware: MaxBitsHardwareCapabilities;
         certified: false;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         wireOneTbitProvedAtCallTime: boolean;
         provenBy: {
@@ -18423,7 +18209,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             statement: string;
@@ -18538,7 +18323,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -18593,7 +18377,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -18610,7 +18393,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -18829,7 +18611,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -18954,7 +18735,6 @@ export declare function polesFormCrossSignaturesForPostQuantumEncryptionIncludin
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -19114,7 +18894,6 @@ export declare function secp256k1FieldPrimeInvertAndDecode(matrix?: MindMatrix):
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -19133,7 +18912,6 @@ export declare function secp256k1FieldPrimeInvertAndDecode(matrix?: MindMatrix):
     bitcoinRefused: boolean;
     bitcoinOwnershipClaimed: false;
     certified: false;
-    claySolvedByThisFold: 0;
     count: number;
     facets: ({
         facet: string;
@@ -19176,9 +18954,7 @@ export declare function productionRsaRefuseCompletesQuantumViaRosetta(matrix?: M
     productionBreakEnabled: false;
     refuseBeyond: boolean;
     demoBitCeiling: number;
-    claySolvedByThisFold: 0;
     certified: false;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -19260,7 +19036,6 @@ export declare function cryptoComparisonMesh(matrix?: MindMatrix): {
     panelCount: number;
     proofCount: number;
     comparisonCount: number;
-    claySolvedByThisFold: 0;
     certified: false;
     refuseBeyond: true;
     root: string;
@@ -19286,7 +19061,6 @@ export declare function cryptoComparisonMeshIsDry(matrix?: MindMatrix): {
         panelCount: number;
         proofCount: number;
         comparisonCount: number;
-        claySolvedByThisFold: 0;
         certified: false;
         refuseBeyond: true;
         root: string;
@@ -19317,7 +19091,6 @@ export declare function cryptoComparisonMeshIsDry(matrix?: MindMatrix): {
         readonly browserRunnable: boolean;
         readonly browserGap: string;
     }[];
-    claySolvedByThisFold: 0;
     certified: false;
     refuseBeyond: true;
     facets: ({
@@ -19347,9 +19120,7 @@ export declare function productionBrowserToolsAreNotDemos(matrix?: MindMatrix): 
     refuseBeyondStaysForKeyBreakClaims: boolean;
     toolSurface: "production-browser";
     moduliClass: "sealed-catalog";
-    claySolvedByThisFold: 0;
     certified: false;
-    physicalFtl: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -19437,9 +19208,7 @@ export declare function sslTestUiComplete(matrix?: MindMatrix, hostLabel?: strin
     memoHits: number;
     liveRemoteScanResidual: string;
     phrases: ("ssl test" | "ssltest" | "tls test" | "https test" | "ssl/test" | "test/ssl" | "certificate test" | "open ssltest" | "quantumise ssl")[];
-    claySolvedByThisFold: 0;
     certified: false;
-    physicalFtl: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;

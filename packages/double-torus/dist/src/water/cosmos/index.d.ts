@@ -120,7 +120,6 @@ export declare function darkMatterDecoded(matrix?: MindMatrix): {
 };
 export declare function invertingDarkMatterClosesTheReversedMathTheParticleIdentityStaysEmpirical(matrix?: MindMatrix): {
     closed: boolean;
-    claySolvedByThisFold: number;
     ratioCoverB: number;
     darkFractionOfMatter: number;
     baryonFractionOfMatter: number;
@@ -140,7 +139,6 @@ export declare function invertingDarkMatterClosesTheReversedMathTheParticleIdent
 };
 export declare function theCosmicCoincidenceInvertsToAMatterDarkEnergyEqualityRedshiftTheTimingStaysEmpirical(matrix?: MindMatrix): {
     closed: boolean;
-    claySolvedByThisFold: number;
     omegaMatter: number;
     ratioMatterToDarkEnergy: number;
     equalityRedshift: number;
@@ -174,8 +172,6 @@ export declare function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix?: 
     gravitationalCmbBudget: boolean;
     nonGravitationalDetectionNull: true;
     quantumGapsInTheorems: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     certified: false;
     qpuRequired: false;
     count: number;
@@ -773,8 +769,6 @@ export declare function frontierQuantum(matrix?: MindMatrix): {
     };
     splittingsRatio: number;
     jarlskogOrders: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -812,8 +806,6 @@ export declare function fractalCompute(matrix?: MindMatrix): {
         n: number;
         volume: number;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -848,8 +840,6 @@ export declare function fractalMap(matrix?: MindMatrix): {
         holds: boolean;
     }[];
     count: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1172,8 +1162,6 @@ export declare function stringTheoryInChat(matrix?: MindMatrix, at?: number): {
     bosonicD: number;
     theoremGaps: number;
     honestOpenNamed: ("residual:string-physics-unconfirmed" | "honesty:no-clay-prize-claim" | "honesty:no-nobel-claim" | "honesty:chat-recompute-not-LLM-physics-essay" | "residual:ads-cft-correlators-unsealed" | "residual:cy-hodge-numbers-unsealed")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: ({
@@ -1612,8 +1600,6 @@ export declare function sciencePyramid(matrix?: MindMatrix): {
     }[];
     geneticCode: number;
     su2Dim: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;

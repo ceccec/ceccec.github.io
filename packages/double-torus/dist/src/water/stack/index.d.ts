@@ -1864,7 +1864,6 @@ export declare function pathMeansMessageFitsInThreeWords(matrix?: MindMatrix): {
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     pair: "path/message";
     cli: string;
@@ -2033,8 +2032,6 @@ export declare function chatAndImproveQuantumMultitasking(matrix?: MindMatrix): 
     teamObserveSoft: boolean;
     heroWorkers: number;
     massRefused: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -49603,7 +49600,6 @@ export declare function compareCeccecEfficiencyByVote(matrix?: MindMatrix): {
             root: string;
         };
         qpuRequired: false;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -49951,9 +49947,7 @@ export declare function interferenceVsClassicalShadow(matrix?: MindMatrix, at?: 
         amplitudesCancel: boolean;
         probabilitiesCannot: boolean;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -50033,7 +50027,6 @@ export declare function oneQuantumModelFasterThanAll(matrix?: MindMatrix, at?: n
                 root: string;
             };
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -50362,7 +50355,6 @@ export declare function oneQuantumModelFasterThanAll(matrix?: MindMatrix, at?: n
         fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
         kind: "honesty";
     })[];
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -50439,7 +50431,6 @@ export declare function agentCeccecLearnsFromTheBestBecomesTheBest(matrix?: Mind
                     root: string;
                 };
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -50768,7 +50759,6 @@ export declare function agentCeccecLearnsFromTheBestBecomesTheBest(matrix?: Mind
             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
             kind: "honesty";
         })[];
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -50853,7 +50843,6 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
     benchVerdict: string;
     physicalQmSpeedupClaimed: false;
     isoCertified: false;
-    claySolvedByThisFold: 0;
     vote: {
         decided: boolean;
         winner: "ceccec" | "undecided";
@@ -50909,7 +50898,6 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
                 root: string;
             };
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -51071,7 +51059,6 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
                     root: string;
                 };
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -51400,7 +51387,6 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
             kind: "honesty";
         })[];
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -51525,8 +51511,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
     architectureRequirement: "classical-64bit";
     metrics: PhysicalFtlMetricRow[];
     apparentFtlAudit: number;
-    physicalSuperluminalProofCount: number;
-    physicalSuperluminalSignalingProved: boolean;
     noQpu: {
         computes: boolean;
         speedDecided: boolean;
@@ -51545,7 +51529,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         benchVerdict: string;
         physicalQmSpeedupClaimed: false;
         isoCertified: false;
-        claySolvedByThisFold: 0;
         vote: {
             decided: boolean;
             winner: "ceccec" | "undecided";
@@ -51601,7 +51584,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     root: string;
                 };
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -51763,7 +51745,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                         root: string;
                     };
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -52092,7 +52073,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                 kind: "honesty";
             })[];
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -52257,8 +52237,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         qpuRequired: false;
         runsOnClassical64Bit: true;
         quantumHardwareRequired: false;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -52276,7 +52254,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         honestyLine: string;
     };
     cpu: {
-        [x: string]: string | boolean | 0 | readonly [string, string] | ({
+        [x: string]: string | boolean | readonly [string, string] | ({
             receipt: string;
             facet: string;
             on: boolean;
@@ -52288,8 +52266,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         classical64Bit: boolean;
         etcClassical: boolean;
         refuseFakeFlops: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -52307,7 +52283,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         honestyLine: string;
     };
     gpu: {
-        [x: string]: string | boolean | 0 | readonly [string, string] | ({
+        [x: string]: string | boolean | readonly [string, string] | ({
             receipt: string;
             facet: string;
             on: boolean;
@@ -52319,8 +52295,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         classical64Bit: boolean;
         etcClassical: boolean;
         refuseFakeFlops: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -52660,7 +52634,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -52715,7 +52688,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -52732,7 +52704,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
             };
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             productionRefused: boolean;
             bitcoinRefused: boolean;
@@ -52826,7 +52797,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     receipt: string;
                 })[];
                 root: string;
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 statement: string;
@@ -52941,7 +52911,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -52996,7 +52965,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -53013,7 +52981,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                 };
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 productionRefused: boolean;
                 bitcoinRefused: boolean;
@@ -53070,7 +53037,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -53125,7 +53091,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -53173,7 +53138,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
             productionReverseRefused: true;
             certified: false;
             fipsValidated: false;
-            claySolvedByThisFold: 0;
             breaksNistPqc: false;
             strongerThanNistPqc: false;
             overallWireClaimProved: false;
@@ -53238,7 +53202,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
             forwardCount: number;
             certified: boolean;
             fipsValidated: boolean;
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -53308,7 +53271,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     root: string;
                 };
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -53429,7 +53391,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
             benchVerdict: string;
             physicalQmSpeedupClaimed: false;
             isoCertified: false;
-            claySolvedByThisFold: 0;
             vote: {
                 decided: boolean;
                 winner: "ceccec" | "undecided";
@@ -53485,7 +53446,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                         root: string;
                     };
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -53647,7 +53607,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -53976,7 +53935,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                     kind: "honesty";
                 })[];
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -54083,12 +54041,10 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         runtimeTokens: 0;
         answersPerTokensUnbounded: boolean;
         physicalQubitSpeedup: 0;
-        physicalFtlClaim: 0;
         certified: false;
         fipsValidated: false;
         productionReverseRefused: true;
         breaksNistPqc: false;
-        claySolvedByThisFold: 0;
         count: number;
         facets: ({
             facet: string;
@@ -54201,7 +54157,6 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
             };
             pair: "gate/slow-build";
             qpuRequired: false;
-            physicalFtlClaim: 0;
             statement: string;
             boundary: string;
         };
@@ -54390,6 +54345,118 @@ export declare const UUIDNA_SEALED_THEOREMS: readonly [{
 export declare function sealedByUuidna(key: string): string;
 /** landauer_bound_derived's floor, in joules per erased bit at 300 K — the kernel's integer, not a typed decimal. */
 export declare const UUIDNA_LANDAUER_FLOOR_300K_J = 2.87097813e-21;
+/**
+ * THE VORTEX, DECIDED NEXT DOOR — the millennium-solutions deposit's kernel theorems about the arithmetic
+ * this corpus states in prose, mirrored character for character.
+ *
+ * Two records state the same facts about ℤ/9 and the ten's complement. This one states them in `statement:`
+ * prose and checks them with facets; the deposit DECIDES them in Lean over a finite domain, seals each to a
+ * receipt in an append-only ledger, and publishes them under a DOI. Two vocabularies for one arithmetic is
+ * how two records drift apart, so each row below carries the deposit's statement exactly as its kernel
+ * accepted it, and THIS corpus's own folds are checked against them rather than restated beside them.
+ *
+ * The uuidna mirror above earned the char-for-char rule: a statement copied with `and` for `∧` folded a
+ * paraphrase of the theorem instead of the theorem. Read from the deposit's ledger and Lean sources
+ * (src/proof/discovered.json, 2026-09-18).
+ */
+export declare const MILLENNIUM_DEPOSIT: "@ceccec/millennium-solutions";
+export declare const MILLENNIUM_VORTEX: readonly [{
+    readonly key: "lean_z9_units_are_six";
+    readonly file: "z9.lean";
+    readonly receipt: "76d332a5-ee8e-8ba2-b98f-7f25343f9d5c";
+    readonly statement: "units = [1, 2, 4, 5, 7, 8]";
+    readonly says: "six units in ℤ/9 — the doubling orbit this corpus writes as the first six of VORTEX_SEQUENCE, sorted";
+}, {
+    readonly key: "lean_z9plus_doubling_has_period_six";
+    readonly file: "z9plus.lean";
+    readonly receipt: "59e48172-1f6a-884c-9b87-bda4334d1488";
+    readonly statement: "(List.range 30).all (fun k => pw 2 k == pw 2 (k + 6))";
+    readonly says: "doubling has period six — the orbit closes and returns, checked over thirty steps";
+}, {
+    readonly key: "lean_z9plus_doubling_alone_reaches_only_the_units";
+    readonly file: "z9plus.lean";
+    readonly receipt: "8fb1adf8-9b65-838a-af5c-7622473bf5d3";
+    readonly statement: "((List.range 12).map (fun k => pw 2 k)).eraseDups.length = 6 ∧ ((List.range 12).map (fun k => pw 2 k)).all (fun d => ! [0, 3, 6].contains d)";
+    readonly says: "doubling never reaches 0, 3 or 6 — the non-units are outside the orbit, not merely late in it";
+}, {
+    readonly key: "lean_z9plus_doubling_and_reflection_together_reach_every_residue";
+    readonly file: "z9plus.lean";
+    readonly receipt: "5c55b180-d10e-8368-8540-7347a323c58e";
+    readonly statement: "(closure 4 [1]).length = 9";
+    readonly says: "doubling WITH reflection reaches all nine residues — neither operation alone is transitive";
+}, {
+    readonly key: "lean_mechanical_the_doubling_orbit_reflection_pairs_sum_to_nine";
+    readonly file: "mechanical.lean";
+    readonly receipt: "cb1ef520-8b5b-89ce-b0e2-a471293fd9e2";
+    readonly statement: "1 + 8 == 9 && 2 + 7 == 9 && 4 + 5 == 9";
+    readonly says: "the orbit pairs sum to nine — this corpus computes the same pairing as the 90° fold, ν";
+}, {
+    readonly key: "lean_coin_the_reflection_is_an_involution";
+    readonly file: "coin.lean";
+    readonly receipt: "cc33eadb-fdd6-8fa8-8094-8e40f58568ee";
+    readonly statement: "digits.all (fun d => refl (refl d) == d)";
+    readonly says: "the reflection undoes itself — the deposit notes this alone does not PIN the map: d ↦ c − d is an involution on 0..9 for every c from 9 to 20 under truncating subtraction";
+}, {
+    readonly key: "lean_coin_exactly_one_digit_is_unmoved";
+    readonly file: "coin.lean";
+    readonly receipt: "59ddc277-5be7-8d66-9aa5-0168fe1507f5";
+    readonly statement: "(digits.filter (fun d => refl d == d)) = [5]";
+    readonly says: "ONE fixed point, and it is five — with the row below, this is what pins c = 10";
+}, {
+    readonly key: "lean_coin_exactly_one_digit_reflects_out_of_range";
+    readonly file: "coin.lean";
+    readonly receipt: "047bfad9-df35-8319-8582-323972768f03";
+    readonly statement: "(digits.filter (fun d => refl d > 9)) = [0] ∧ refl 0 = 10";
+    readonly says: "the void is the one digit whose reflection leaves the digits — an absence of a partner inside the set, which the deposit is careful to say is not a force";
+}, {
+    readonly key: "lean_coin_the_fall_fixes_every_digit_but_the_void";
+    readonly file: "coin.lean";
+    readonly receipt: "541de88e-2d3f-8b17-b7c4-43d0f5776c21";
+    readonly statement: "(digits.filter (fun d => fall d != d)) = [0] ∧ nonzero.all (fun d => fall d == d)";
+    readonly says: "the fall moves the void alone — and it is what carries 10 back to 1";
+}];
+/** A deposit theorem folded to the address a claim here stands on — '' when the key is not mirrored. */
+export declare function decidedByTheDeposit(key: string): string;
+/** The mirror folded to one root — change any mirrored statement and this moves. */
+export declare const MILLENNIUM_VORTEX_ROOT: string;
+/**
+ * ONE REFLECTION FOLDED BY ANGLE, AND THE ONE DIGIT THE TWO RECORDS DISAGREE ABOUT.
+ *
+ * The deposit proves TWO reflections — `refl d = 10 − d` in coin.lean and the nine-pairing in
+ * mechanical.lean — as separate theorems. This corpus has ONE law with an angle in it: θ = 180°/k selects
+ * the pairing sum S = 11 − k, so σ (θ=180°, S=10) and ν (θ=90°, S=9) are the same reflection folded twice.
+ * The angle is what unifies the deposit's two theorems, and that is the consolidation: not a second copy of
+ * the arithmetic, but the parameter that generates both.
+ *
+ * THE POLARITY is the order the two are applied in: ν then σ is the successor, σ then ν the predecessor.
+ *
+ * AND THE VOID IS WHERE THE TWO RECORDS PART, measured rather than argued. This corpus reduces mod S, so
+ * σ(0) = 0 and the composition cannot move the void: the orbit of 0 is {0}, one digit of ten. The deposit
+ * does not reduce — refl 0 = 10 leaves the range, and fall 10 = 1 carries it back — so there the same
+ * composition is the successor on every digit and its orbit of 0 covers all ten.
+ *
+ * NEITHER IS WRONG: a closed ten-clock and an open one are different objects, and each record is consistent
+ * with itself. What was wrong was the sentence in src/0 claiming the composition "moves EVERY digit" and
+ * generates a transitive action — true of the deposit's arithmetic, false of the code it sits above, and
+ * checked by nothing until this fold. It is corrected in the same commit.
+ */
+export declare function theTwoRecordsFoldOneReflectionAndPartAtTheVoid(): {
+    agrees: boolean;
+    mirrored: 9;
+    orbitHere: number[];
+    orbitThere: number[];
+    successorHere: number[];
+    units: (2 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6)[];
+    count: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** The whole definition folded to one root — change any statement and this moves. */
 export declare const UUIDNA_QUANTUM_DEFINITION_ROOT: string;
 export declare function thermoQuantumBalance(matrix?: MindMatrix, at?: number): {
@@ -54428,8 +54495,6 @@ export declare function thermoQuantumBalance(matrix?: MindMatrix, at?: number): 
         heapCapMb: number;
         honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "cooling:physical-device-not-claimed" | "apps:monolith-ratchet-weave" | "app-dry:strangler-tip-closed")[];
         drainableClosed: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -54464,8 +54529,6 @@ export declare function thermoQuantumBalance(matrix?: MindMatrix, at?: number): 
             freeBits: number;
         };
         censusPreserved: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -54522,7 +54585,7 @@ export declare function cpuGpuSelfBalance(matrix?: MindMatrix, at?: number): {
     gpuWeight: number;
     metrics: CpuGpuBalanceMetric[];
     cpu: {
-        [x: string]: string | boolean | 0 | readonly [string, string] | ({
+        [x: string]: string | boolean | readonly [string, string] | ({
             receipt: string;
             facet: string;
             on: boolean;
@@ -54534,8 +54597,6 @@ export declare function cpuGpuSelfBalance(matrix?: MindMatrix, at?: number): {
         classical64Bit: boolean;
         etcClassical: boolean;
         refuseFakeFlops: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -54553,7 +54614,7 @@ export declare function cpuGpuSelfBalance(matrix?: MindMatrix, at?: number): {
         honestyLine: string;
     };
     gpu: {
-        [x: string]: string | boolean | 0 | readonly [string, string] | ({
+        [x: string]: string | boolean | readonly [string, string] | ({
             receipt: string;
             facet: string;
             on: boolean;
@@ -54565,8 +54626,6 @@ export declare function cpuGpuSelfBalance(matrix?: MindMatrix, at?: number): {
         classical64Bit: boolean;
         etcClassical: boolean;
         refuseFakeFlops: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -54591,8 +54650,6 @@ export declare function cpuGpuSelfBalance(matrix?: MindMatrix, at?: number): {
         qpuRequired: false;
         runsOnClassical64Bit: true;
         quantumHardwareRequired: false;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -54621,8 +54678,6 @@ export declare function cpuGpuSelfBalance(matrix?: MindMatrix, at?: number): {
         heapCapMb: number;
         honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "cooling:physical-device-not-claimed" | "apps:monolith-ratchet-weave" | "app-dry:strangler-tip-closed")[];
         drainableClosed: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -54657,8 +54712,6 @@ export declare function cpuGpuSelfBalance(matrix?: MindMatrix, at?: number): {
             freeBits: number;
         };
         censusPreserved: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -54846,7 +54899,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -54910,8 +54962,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
         architectureRequirement: "classical-64bit";
         metrics: PhysicalFtlMetricRow[];
         apparentFtlAudit: number;
-        physicalSuperluminalProofCount: number;
-        physicalSuperluminalSignalingProved: boolean;
         noQpu: {
             computes: boolean;
             speedDecided: boolean;
@@ -54930,7 +54980,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             benchVerdict: string;
             physicalQmSpeedupClaimed: false;
             isoCertified: false;
-            claySolvedByThisFold: 0;
             vote: {
                 decided: boolean;
                 winner: "ceccec" | "undecided";
@@ -54986,7 +55035,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         root: string;
                     };
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -55148,7 +55196,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -55477,7 +55524,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                     kind: "honesty";
                 })[];
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -55642,8 +55688,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             qpuRequired: false;
             runsOnClassical64Bit: true;
             quantumHardwareRequired: false;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -55661,7 +55705,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             honestyLine: string;
         };
         cpu: {
-            [x: string]: string | boolean | 0 | readonly [string, string] | ({
+            [x: string]: string | boolean | readonly [string, string] | ({
                 receipt: string;
                 facet: string;
                 on: boolean;
@@ -55673,8 +55717,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             classical64Bit: boolean;
             etcClassical: boolean;
             refuseFakeFlops: boolean;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -55692,7 +55734,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             honestyLine: string;
         };
         gpu: {
-            [x: string]: string | boolean | 0 | readonly [string, string] | ({
+            [x: string]: string | boolean | readonly [string, string] | ({
                 receipt: string;
                 facet: string;
                 on: boolean;
@@ -55704,8 +55746,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             classical64Bit: boolean;
             etcClassical: boolean;
             refuseFakeFlops: boolean;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -56045,7 +56085,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -56100,7 +56139,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -56117,7 +56155,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 };
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 productionRefused: boolean;
                 bitcoinRefused: boolean;
@@ -56211,7 +56248,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -56326,7 +56362,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -56381,7 +56416,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -56398,7 +56432,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                     };
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     productionRefused: boolean;
                     bitcoinRefused: boolean;
@@ -56455,7 +56488,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                     forwardCount: number;
                     certified: boolean;
                     fipsValidated: boolean;
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -56510,7 +56542,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -56558,7 +56589,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 productionReverseRefused: true;
                 certified: false;
                 fipsValidated: false;
-                claySolvedByThisFold: 0;
                 breaksNistPqc: false;
                 strongerThanNistPqc: false;
                 overallWireClaimProved: false;
@@ -56623,7 +56653,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 forwardCount: number;
                 certified: boolean;
                 fipsValidated: boolean;
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -56693,7 +56722,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         root: string;
                     };
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -56814,7 +56842,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 benchVerdict: string;
                 physicalQmSpeedupClaimed: false;
                 isoCertified: false;
-                claySolvedByThisFold: 0;
                 vote: {
                     decided: boolean;
                     winner: "ceccec" | "undecided";
@@ -56870,7 +56897,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -57032,7 +57058,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -57361,7 +57386,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                         fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                         kind: "honesty";
                     })[];
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -57468,12 +57492,10 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             runtimeTokens: 0;
             answersPerTokensUnbounded: boolean;
             physicalQubitSpeedup: 0;
-            physicalFtlClaim: 0;
             certified: false;
             fipsValidated: false;
             productionReverseRefused: true;
             breaksNistPqc: false;
-            claySolvedByThisFold: 0;
             count: number;
             facets: ({
                 facet: string;
@@ -57586,7 +57608,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 };
                 pair: "gate/slow-build";
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 statement: string;
                 boundary: string;
             };
@@ -57734,8 +57755,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             heapCapMb: number;
             honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "cooling:physical-device-not-claimed" | "apps:monolith-ratchet-weave" | "app-dry:strangler-tip-closed")[];
             drainableClosed: boolean;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -57770,8 +57789,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 freeBits: number;
             };
             censusPreserved: boolean;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -57815,8 +57832,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
         overallWireClaimProved: false;
         strongerThanNistPqc: false;
         certified: false;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -58009,7 +58024,6 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
         honestyLine: string;
     };
     residualNamed: string[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -58075,7 +58089,6 @@ export declare function directionalTrinityForwardInverseReverse(matrix?: MindMat
         computes: boolean;
         root: string;
     };
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;

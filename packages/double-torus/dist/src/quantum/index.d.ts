@@ -1758,7 +1758,6 @@ export type SearchPlan = {
     /** No factorisation is attempted here; this is a search-space description only. */
     readonly factorisationAttempted: false;
     /** The sealed guard, asserted at call time rather than assumed. */
-    readonly physicalSuperluminalSignalling: boolean;
     readonly statement: string;
     readonly receipt: string;
 };

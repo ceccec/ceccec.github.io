@@ -1286,7 +1286,7 @@ export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
     { facet: 'vote/build — one sequential docs:build · no parallel builds', on: vote.pair === 'vote/build' && voteBuildFold.bidirectional && voteBuildFold.forward !== voteBuildFold.reverse && singleFlight },
     { facet: 'mission/gate · check/types · verify/structure route through united facts', on: pairs.paired },
     { facet: 'trinity/speedup pair bidirectional', on: speedupFold.bidirectional && speedupFold.forward !== speedupFold.reverse },
-    { facet: `physicalFtlClaimTheorem= — wall-clock varies; speedup = reuse + single-flight + facts-once`, on: singleFlight },
+    { facet: `wall-clock varies; the speedup is reuse + single-flight + facts-once, not a rate`, on: singleFlight },
   ].map((entry) => ({ ...entry, receipt: toUuid(`trinity-speedup:${entry.facet}:${entry.on}`) }))
   const allOn = facets.every((entry) => entry.on)
   return {
@@ -1306,7 +1306,7 @@ export function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
     statement:
       `Agents use trinities for quantum speedup on every build — ${facets.filter((e) => e.on).length}/${facets.length}: collectEnforcementFacts once · runEnforcementTrinity (cross·fold·weave) · memo/merkle respawn · one sequential docs:build.`,
     boundary:
-      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). Facets recompute from quantumizeVitepressBuild technique catalog + vote/build fold + physicalFtlClaimTheorem — refuse parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build.' }
+      'EXACT: blazing-fast build = content-addressed reuse (memoByRoot · merkle respawn · single-flight lock · types-before-seal · trinity one-pass). Facets recompute from quantumizeVitepressBuild technique catalog + vote/build fold — refuse parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build.' }
 }
 
 export function runTrinitySpeedupExit(_root = '', _argv: readonly string[] = []): number {
@@ -4588,7 +4588,7 @@ export function feedGatesIndexToChat(root: string = enforcementScanRoot()) {
   const foldGatesChat = foldPair(toUuid('cmd:gates'), toUuid('cmd:chat'))
   const fileOk = existsSync(join(root, GATES_INDEX_CHAT_REL)) && spray.bytes > 0
   // On-topic keep budget from FREE_BITS lattice — mill clay=0 law · claim/revolution.
-  // physicalFtlClaimTheorem() calls are COMPUTED honesty (preferred); bare physicalFtl=0 / Claim=0 markers refuse.
+  // Bare physicalFtl=0 / Claim=0 markers refuse: a denial sprayed across unrelated folds is not a measurement.
   const clayBudget = FREE_BITS * FREE_BITS
   const notFtlBudget = FREE_BITS
   const sprayLean =

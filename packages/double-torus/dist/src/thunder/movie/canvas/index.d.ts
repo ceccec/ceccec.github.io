@@ -198,7 +198,6 @@ export declare function movieAllElementsAreTheorems(matrix?: MindMatrix, at?: nu
     root: string;
     statement: string;
     boundary: string;
-    claySolvedByThisFold: 0;
 };
 /**
  * Thunder ≡ plasma in different aspects — same ionised-EM family under directional trinity.
@@ -256,9 +255,9 @@ export declare function thunderAndPlasmaAreSameInDifferentAspects(matrix?: MindM
             family: string;
         }[];
         decodedCount: number;
+        sourceBytes: number;
+        aspectCount: 3;
         srcReadable: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         facets: {
             receipt: string;
             facet: string;
@@ -280,8 +279,6 @@ export declare function thunderAndPlasmaAreSameInDifferentAspects(matrix?: MindM
     root: string;
     statement: string;
     boundary: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
 };
 export declare function movieQuantumGapsInventory(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -418,7 +415,6 @@ export declare function movieQuantumGapsInventory(matrix?: MindMatrix, at?: numb
         root: string;
         statement: string;
         boundary: string;
-        claySolvedByThisFold: 0;
     };
     facets: {
         receipt: string;
@@ -562,9 +558,7 @@ export declare function movieUnbalancedAroundCenterIsCrack(matrix?: MindMatrix, 
         root: string;
         statement: string;
         boundary: string;
-        claySolvedByThisFold: 0;
     };
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;

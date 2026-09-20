@@ -12998,7 +12998,6 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
             root: string;
             pair: "symbols/quantumise";
             qpuRequired: false;
-            physicalFtlClaim: 0;
             route: string;
             cli: string;
             statement: string;
@@ -14497,7 +14496,6 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
     root: string;
     pair: "symbols/quantumise";
     qpuRequired: false;
-    physicalFtlClaim: 0;
     route: string;
     cli: string;
     statement: string;
@@ -21635,7 +21633,6 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
         root: string;
         pair: "symbols/quantumise";
         qpuRequired: false;
-        physicalFtlClaim: 0;
         route: string;
         cli: string;
         statement: string;

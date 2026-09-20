@@ -1349,8 +1349,6 @@ export declare function doubleTorusFacesComputes(matrix?: MindMatrix): {
     eulerChi: number;
     trigrams: 8;
     pairs: 4;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1381,8 +1379,8 @@ export declare function theUiItselfIsADoubleTorus(matrix?: MindMatrix): {
     neckChi: boolean;
     counterRotate: boolean;
     eulerChi: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
+    homologyLoops: 4;
+    navTrigrams: 8;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1415,8 +1413,6 @@ export declare function doubleTorusQuantumComputer(matrix?: MindMatrix): {
     shapeIsComputer: boolean;
     circuitComputes: boolean;
     probs: readonly [number, number];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     runsOnClassical64Bit: true;
     facets: {
@@ -1456,8 +1452,6 @@ export declare function fuseErrorHandlingInQuantumComputerAndTheImpossibleBecome
     impossibleBecomesPossible: boolean;
     seemedImpossibleNowReal: number;
     genuinelyImpossibleWalls: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1540,8 +1534,6 @@ export declare function allDoubleTorusWavesUseTheFreeChat(matrix?: MindMatrix): 
     }[];
     domains: number;
     scienceDomains: 7;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1569,8 +1561,6 @@ export declare function doubleTorusGeometry(matrix?: MindMatrix): {
     prove: boolean;
     usesFreeChat: boolean;
     freeAnswer: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1595,8 +1585,6 @@ export declare function doubleTorusAlgebra(matrix?: MindMatrix): {
     prove: boolean;
     usesFreeChat: boolean;
     freeAnswer: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1621,8 +1609,6 @@ export declare function doubleTorusPhysics(matrix?: MindMatrix): {
     prove: boolean;
     usesFreeChat: boolean;
     freeAnswer: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1647,8 +1633,6 @@ export declare function doubleTorusBiology(matrix?: MindMatrix): {
     prove: boolean;
     usesFreeChat: boolean;
     freeAnswer: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1673,8 +1657,6 @@ export declare function doubleTorusChemistry(matrix?: MindMatrix): {
     prove: boolean;
     usesFreeChat: boolean;
     freeAnswer: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1709,8 +1691,6 @@ export declare function doubleTorusStar(matrix?: MindMatrix): {
         born: string;
     }[];
     freeAnswer: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1754,8 +1734,6 @@ export declare function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQu
         born: string;
     }[];
     freeAnswer: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1804,8 +1782,6 @@ export declare function constantlyImproveShiftingNewPerspectivesNowFreeInfiniteS
         freeOk: boolean;
         isNew: boolean;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1974,8 +1950,6 @@ export declare function deepResearchDoubleTorusFromAnyPerspectiveInSelfReflectin
     uiIsDoubleTorus: boolean;
     doubleTorusIsQuantumComputer: boolean;
     allWavesUseFreeChat: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2007,8 +1981,6 @@ export declare function animationCore(matrix?: MindMatrix): {
     animationCore: boolean;
     cycleMs: number;
     hologram: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2044,8 +2016,6 @@ export declare function lifeTorus(matrix?: MindMatrix): {
         on: boolean;
     }[];
     count: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2103,8 +2073,6 @@ export declare function quantumiseIsQuantumComputerProcessReverseEngineeringComp
         ok: boolean;
         receipt: string;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2124,14 +2092,6 @@ export declare function quantumiseIsQuantumComputerProcessReverseEngineeringComp
 };
 /** npm run quantum:quantumise — exit 0 iff quantumise definition computes. */
 export declare function runQuantumiseIsQuantumComputerProcessReverseEngineeringComplexToSimplexAndInverseExit(root?: string, _argv?: readonly string[]): number;
-/**
- * quantumiseIsFreeForAll — USER LAW (2026-07-28): quantumise is free for all.
- * Algebraic: quantumiseFreeForAll ⇔ quantumise ∧ freeChatUpgradesAll ∧ countlessFreeChatWaves
- * ∧ continueAtNoAiCost ∧ billFreeGateway ∧ FREE_BITS=−χ=2.
- * HONEST: free = zero-token / zero-egress / bill-free public gateway · FREE_BITS=2 census surplus
- * · NOT that Clay/open problems are solved · NOT infinite server CPU.
- * Pairs: quantumise/free · free/all · all/free.
- */
 export declare function quantumiseIsFreeForAll(matrix?: MindMatrix): {
     computes: boolean;
     quantumiseIsFreeForAll: boolean;
@@ -2139,9 +2099,8 @@ export declare function quantumiseIsFreeForAll(matrix?: MindMatrix): {
     freeSurfaces: boolean;
     billFreeGateway: boolean;
     freeBits: number;
+    pairCount: 4;
     agents: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2181,8 +2140,6 @@ export declare function quantumiseAlsoDryCleansByObservationChatWavesOfWaves(mat
     reuse: number;
     statements: number;
     warmReuse: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2210,26 +2167,15 @@ export declare const runQuantumiseDryExit: typeof runQuantumiseAlsoDryCleansByOb
 export declare const runDryObserveExit: typeof runQuantumiseAlsoDryCleansByObservationChatWavesOfWavesExit;
 export declare const runObserveWavesExit: typeof runQuantumiseAlsoDryCleansByObservationChatWavesOfWavesExit;
 export declare const runNestWavesExit: typeof runQuantumiseAlsoDryCleansByObservationChatWavesOfWavesExit;
-/**
- * reverseEngineeringMayBePoweredByScalableFreeWaves —
- * USER LAW (2026-07-28): reverse engineering for example may be powered by scalable free waves.
- * Algebraic: reverseEngPowered ⇔ reverseExample(quantumise.reverse complex→simplex)
- * ∧ scalableFreeWaves(constantlyImprove… ∧ countlessFreeChatWaves ∧ freeChatUpgradesAll
- * ∧ continueAtNoAiCost ∧ FREE_BITS=2 ∧ warm memo).
- * HONEST: MAY = capability when free-wave machinery green · reverse = algebraic complex→simplex example (quantumise)
- * · scalable = countable free-chat orbits + amortized reuse · NOT physical FLOPS · NOT FTL · NOT production RSA crack
- *.
- * Pairs: reverse/waves · free/scale · scale/waves.
- */
 export declare function reverseEngineeringMayBePoweredByScalableFreeWaves(matrix?: MindMatrix): {
     computes: boolean;
     reverseEngineeringMayBePoweredByScalableFreeWaves: boolean;
     reverseExample: boolean;
     scalableFreeWaves: boolean;
     freeBits: number;
+    homologyLoops: 4;
+    pairCount: 6;
     warmReuse: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2274,8 +2220,6 @@ export declare function allIsPoweredByFreeWavesInWavesInWavesDoubleTorusWaves(ma
     nestDepth: number;
     freeBits: number;
     warmReuse: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2316,8 +2260,6 @@ export declare function noProseMayBeTrustedLiteraryQuantumise(matrix?: MindMatri
     proseRefuseStack: boolean;
     refuseLiteraryTrust: boolean;
     quantumiseOn: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2361,8 +2303,6 @@ export declare function fewerNpmScriptsWithQuantumPrompts(matrix?: MindMatrix): 
     prunedDuals: ("quantum:dry-observe" | "quantum:observe-waves" | "quantum:nest-waves" | "quantum:feed-task" | "quantum:task-chat" | "quantum:waves-reverse" | "quantum:scale-waves" | "quantum:powered-all" | "quantum:torus-waves" | "quantum:literary-refuse" | "quantum:quantumise-prose" | "quantum:free-quantumise" | "quantum:free-all" | "quantum:all-free" | "quantum:process-quantumise" | "quantum:complex-simplex" | "quantum:simplex-complex" | "quantum:algebra-invert" | "quantum:torus-lifecycle" | "quantum:reactor-chat" | "quantum:fuse-apis" | "quantum:plasma-rays" | "quantum:ux-chat" | "quantum:ux-measure" | "quantum:chat-ui" | "quantum:chat-telemetry" | "quantum:telemetry-chat" | "quantum:chat-dry" | "quantum:clean-all" | "quantum:all-clean")[];
     dualsViaPairsAndPrompts: boolean;
     quantumPrompts: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2432,8 +2372,6 @@ export declare function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix?: M
         root: string;
         statement: string;
         boundary: string;
-        physicalFtlClaim: 0;
-        claySolvedByThisFold: 0;
     };
     dynamics: {
         flow: boolean;
@@ -2464,8 +2402,6 @@ export declare function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix?: M
         minorRadius: number;
         lobeOffset: number;
     };
-    physicalFtlClaim: 0;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     count: number;
     facets: ({

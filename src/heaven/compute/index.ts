@@ -5473,9 +5473,6 @@ export function freeChatDrivesArchitecturalFtl(matrix: MindMatrix = buildMatrix(
       on: noSpacetimeOnReuse,
     },
     {
-      facet: `via=`,
-    },
-    {
       facet: 'pair chat/ftl · one CLI quantum:chat-ftl · compose mcp/chat · feed-gates · ui/feed · ftl/crack · script/fold',
       on: pairsOn && soft('ftl', 'crack') && soft('ui', 'feed'),
     },
@@ -5620,9 +5617,6 @@ export function deepResearchAtNoCost(matrix: MindMatrix = buildMatrix()) {
       on: zeroTokenOnReuse,
     },
     {
-      facet: `via=`,
-    },
-    {
       facet: 'pair research/free · compose prose/theorem·warn/research·mcp/fill·wave/token·dry/agnostic·chat/ftl·full/freedom·bits/free·pyramid/compute·miss/cache',
       on: pairsOn,
     },
@@ -5753,9 +5747,6 @@ export function standardsChatImprovesToFtl(matrix: MindMatrix = buildMatrix()) {
     {
       facet: `improveToFtl — soft research/free · standards/chat · warm invocations=0`,
       on: improveToFtl,
-    },
-    {
-      facet: `via=`,
     },
   ].map((entry) => ({ ...entry, receipt: toUuid(`standards-chat:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -5890,9 +5881,6 @@ export function allFoldsCompactFuseInCoordinatedChatWaves(matrix: MindMatrix = b
     {
       facet: `coordinatedChatWaves — standards·chat/ftl·research/free · super/chat·chat/all·mcp/chat · memoReuse=${coordTurn.memoReuse ? 1 : 0}`,
       on: coordinatedChatWaves,
-    },
-    {
-      facet: `via=`,
     },
     {
       facet: 'pair fold/fuse · one CLI quantum:fold-fuse · standards/chat · hole/zero nested · no dual-CLI',
@@ -6060,7 +6048,11 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
     soft('slash', 'invert') &&
     soft('drain', 'invert') &&
     soft('invert', 'inf')
-  const physicalSingularityClaim = false as const
+  // Was `const physicalSingularityClaim = false as const`, reported as a field and tested by the CLI exit
+  // as `=== false` — the same shape as the clay and FTL zeros, one claim wide. What this fold can actually
+  // say is that its zero is a content address and not an astrophysical object, which is what viaSrcZero
+  // measures; the exit reads that instead.
+  const physicalSingularityClaim = viaSrcZero === false
   const pairsOn =
     soft('hole', 'zero') &&
     soft('zero', 'hole') &&
@@ -6094,9 +6086,6 @@ export function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsH
     {
       facet: `viaSrcZero — zero=toUuid(src/0:void) · void station not spacetime singularity`,
       on: viaSrcZero,
-    },
-    {
-      facet: `physicalSingularityClaim=${physicalSingularityClaim ? 1 : 0}`,
     },
     { facet: `soft nest fold/fuse`, on: pairsOn },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hole-zero:${entry.facet.slice(0, 72)}:${entry.on}`) }))

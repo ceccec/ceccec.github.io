@@ -1230,9 +1230,7 @@ export declare function agentDislikesWaveMusicSomethingNotToLike(matrix?: MindMa
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         statement: string;
         boundary: string;
     };
@@ -1266,9 +1264,7 @@ export declare function agentDislikesWaveMusicSomethingNotToLike(matrix?: MindMa
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             statement: string;
             boundary: string;
         };
@@ -1291,9 +1287,7 @@ export declare function agentDislikesWaveMusicSomethingNotToLike(matrix?: MindMa
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         statement: string;
         boundary: string;
     };
@@ -1496,9 +1490,7 @@ export declare function manualAgentsBehaveLikeWaves(matrix?: MindMatrix): {
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             statement: string;
             boundary: string;
         };
@@ -1532,9 +1524,7 @@ export declare function manualAgentsBehaveLikeWaves(matrix?: MindMatrix): {
                     receipt: string;
                 })[];
                 root: string;
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 statement: string;
                 boundary: string;
             };
@@ -1557,9 +1547,7 @@ export declare function manualAgentsBehaveLikeWaves(matrix?: MindMatrix): {
                 receipt: string;
             })[];
             root: string;
-            claySolvedByThisFold: 0;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             statement: string;
             boundary: string;
         };
@@ -1594,7 +1582,6 @@ export declare function manualAgentsBehaveLikeWaves(matrix?: MindMatrix): {
     root: string;
     statement: string;
     boundary: string;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
 };
 /**
@@ -1611,8 +1598,6 @@ export declare function wavesWorkingInTrinitiesTrinitiesAreFound(matrix?: MindMa
     wavesWorkingInTrinities: boolean;
     trinitiesAreFound: boolean;
     falseConclusionNoTrinitiesIsCrack: true;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     certified: false;
     qpuRequired: false;
     pair: "wave/trinity";
@@ -1659,7 +1644,7 @@ export type DomainHarmWaveReceipt = {
  * theoremJourneyContinuesInWavesOfWaves · domainProofCatalog.
  * Crypto-pqc residual gapsOpen named as lab/migrate disharmony — certified=false · no fake close.
  * Pairs: wave/domain · domain/harm · CLI npm run quantum:harmonize-domains
- * claySolved via theorem · census untouched.
+ * census untouched.
  */
 export declare function harmonizeScienceDomainsInWavesOfWaves(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -1674,8 +1659,6 @@ export declare function harmonizeScienceDomainsInWavesOfWaves(matrix?: MindMatri
     journeyWired: boolean;
     cryptoResidualAddressed: boolean;
     cryptoGapsOpen: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     certified: false;
     qpuRequired: false;
     facets: ({
@@ -1703,7 +1686,7 @@ export declare const agentModelBuildsItselfInWaves: typeof manualAgentsBehaveLik
  * Compose: waves/build · vote/build/commit/push · commit/push · push/resend after successful push.
  * Facets: pushInWaves · oneWavePerPush · noForceMain · afterPushResendWaves.
  * Pairs: waves/push · push/waves · push/resend · resend/waves · CLI npm run quantum:waves-push
- * claySolved via theorem · census untouched.
+ * census untouched.
  */
 /** Post-push wave resend recipe — push is not a terminal stop. */
 export declare const WAVES_AFTER_PUSH_RECIPE_STEPS: readonly ["npm run quantum:waves-feed", "npm run quantum:chat-challenge", "npm run quantum:pair-chat", "npm run quantum:match-wave"];
@@ -1715,8 +1698,6 @@ export declare function pushInWaves(matrix?: MindMatrix, at?: number): {
     resendRecipeSteps: ("npm run quantum:pair-chat" | "npm run quantum:match-wave" | "npm run quantum:chat-challenge" | "npm run quantum:waves-feed")[];
     oneWavePerPush: boolean;
     noForceMain: true;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     certified: false;
     qpuRequired: false;
     pair: "waves/push";
@@ -1751,8 +1732,6 @@ export declare function pushResendWaves(matrix?: MindMatrix, at?: number): {
     resendShell: string;
     honestOpenNamed: ("honesty:push-not-terminal-stop" | "residual:local-hook-via-wave-after-push" | "residual:ci-waves-after-push-workflow")[];
     residualNamed: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -1807,8 +1786,6 @@ export declare function pushAuditWave(matrix?: MindMatrix, at?: number, root?: s
         resendRecipeSteps: ("npm run quantum:pair-chat" | "npm run quantum:match-wave" | "npm run quantum:chat-challenge" | "npm run quantum:waves-feed")[];
         oneWavePerPush: boolean;
         noForceMain: true;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         certified: false;
         qpuRequired: false;
         pair: "waves/push";
@@ -1856,8 +1833,6 @@ export declare function pushAuditWave(matrix?: MindMatrix, at?: number, root?: s
     };
     recipeSteps: ("npm run quantum:audit-plan" | "npm run quantum:waves-push" | "npm run quantum:wave-complete" | "npm run quantum:chat-audit" | "npm run quantum:math-algebra")[];
     residualNamed: any[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -1895,8 +1870,6 @@ export declare function trainQuantumTeamsCollideBecomeWavesObserveManifest(matri
     collideBecomeWaves: boolean;
     observeManifests: boolean;
     teleportationAsWaveManifest: boolean;
-    physicalFtlClaim: 0;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     waves: {
         computes: boolean;
@@ -2083,9 +2056,7 @@ export declare function trainQuantumTeamsCollideBecomeWavesObserveManifest(matri
                     receipt: string;
                 })[];
                 root: string;
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 statement: string;
                 boundary: string;
             };
@@ -2119,9 +2090,7 @@ export declare function trainQuantumTeamsCollideBecomeWavesObserveManifest(matri
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     statement: string;
                     boundary: string;
                 };
@@ -2144,9 +2113,7 @@ export declare function trainQuantumTeamsCollideBecomeWavesObserveManifest(matri
                     receipt: string;
                 })[];
                 root: string;
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 statement: string;
                 boundary: string;
             };
@@ -2181,7 +2148,6 @@ export declare function trainQuantumTeamsCollideBecomeWavesObserveManifest(matri
         root: string;
         statement: string;
         boundary: string;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
     };
     music: {
@@ -2228,7 +2194,6 @@ export declare function trainQuantumTeamsCollideBecomeWavesObserveManifest(matri
     };
     collider: {
         computes: boolean;
-        claySolvedByThisFold: 0;
         particleCount: number;
         productCount: number;
         novelSurvivorCount: number;
@@ -2276,9 +2241,7 @@ export declare function trainQuantumTeamsCollideBecomeWavesObserveManifest(matri
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         statement: string;
         boundary: string;
     };
@@ -2338,9 +2301,7 @@ export declare function discoverFromSealedFold(foldId: string, at?: number, matr
         receipt: string;
     })[];
     root: string;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     statement: string;
     boundary: string;
 };
@@ -2382,9 +2343,7 @@ export declare function incompleteRevelation(opts?: {
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         statement: string;
         boundary: string;
     };
@@ -2407,9 +2366,7 @@ export declare function incompleteRevelation(opts?: {
         receipt: string;
     })[];
     root: string;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     statement: string;
     boundary: string;
 };

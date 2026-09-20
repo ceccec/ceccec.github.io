@@ -709,7 +709,6 @@ export declare function folderMigrationDedupWaves(matrix?: MindMatrix): {
         content: string;
     };
     residuals: ("composed-after #68 uiProseDuplicationRemoved — residual Clay Statement=title catalog pattern in staticPages descriptions" | "composed-after #70 mcp-commands-scripts-gaps-audit (MCP/script synonym census landed; residual conceptTools + trading:* outside PRIMARY)" | "thin-mount alias leaves still served (efficiency-vote… · learn-developer) — intentional census fold" | "compose import/distance — importPathShowsDistanceInMigrationMatrix measures compact+even code in the src matrix (npm run quantum:import-path-distance)")[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -981,8 +980,6 @@ export declare function vitepressDocsResearchImprovements(matrix?: MindMatrix): 
         computed: true;
         vitepressVersionTarget: string;
     };
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     pair: "docs/improve";
     facets: {

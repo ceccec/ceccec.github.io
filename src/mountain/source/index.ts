@@ -647,9 +647,6 @@ export function chatTranslatesAutonomously(matrix: MindMatrix = buildMatrix()) {
         on: glaParityHonest,
       },
       {
-        facet: `via=`,
-      },
-      {
         facet: 'pair chat/trans · soft translations/verify · trans/wave · warn/all · prose/hard · chat/ftl · research/free',
         on: pairsOn,
       },
@@ -982,9 +979,6 @@ export function chatWavesMostEfficientOfflineAnyLanguageModel(matrix: MindMatrix
       {
         facet: `directions ${directions.join('·')} via forward/inverse/reverse`,
         on: directionsOn,
-      },
-      {
-        facet: `via=`,
       },
       {
         facet: 'pair trans/any · soft chat/trans · trans/wave · chat/ftl · research/free · learn/best · mcp speech/dictation/language',
@@ -1360,9 +1354,6 @@ export function chatMassiveWorldLanguageTranslationQuality(matrix: MindMatrix = 
       {
         facet: `phrase-en-bg cov=${phraseCoverage.toFixed(3)} · gla-transliterate cov=${glaCoverage.toFixed(3)}`,
         on: phraseCoverage >= 0 && glaCoverage >= 0,
-      },
-      {
-        facet: `via=`,
       },
       {
         facet: 'pair trans/quality · soft trans/any · chat/trans · trans/wave',

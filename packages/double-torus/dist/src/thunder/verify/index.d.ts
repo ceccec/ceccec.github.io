@@ -124,7 +124,6 @@ export declare function revolutionaryEfficiencyNotPhysics(matrix?: MindMatrix, a
         root: string;
     };
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;

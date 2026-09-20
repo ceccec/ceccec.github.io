@@ -631,8 +631,6 @@ export declare function strategiesChallengeInChat(matrix?: MindMatrix, at?: numb
         winner: string;
     };
     honestOpenNamed: ("residual:live-trading-not-sealed" | "honesty:paper-sim-only-not-live-money" | "honesty:chat-challenge-not-LLM-invented-trades")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;

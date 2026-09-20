@@ -801,7 +801,6 @@ export declare function buildMin(root?: string): {
         };
         pair: "gate/slow-build";
         qpuRequired: false;
-        physicalFtlClaim: 0;
         statement: string;
         boundary: string;
     };
@@ -2346,8 +2345,6 @@ export declare function resourceLeakGate(root?: string): {
     cracks: number;
     unfusedSurfaces: number;
     uncitedCosts: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2383,8 +2380,6 @@ export declare function sandboxTools(root?: string): {
     computes: boolean;
     sandboxTools: boolean;
     gateChained: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2466,8 +2461,6 @@ export declare function contextAudit(root?: string): {
         convMetrics: boolean;
     };
     noLiveCursorContextApi: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -2499,7 +2492,7 @@ export declare function runContextAuditExit(root?: string, _argv?: readonly stri
  *         holographicFractal · noSpacetimeOnReuse · allHappensViaMemo · physicalSpacetimeTravel=false ·
  *         honestOpenNamed
  * Compose: quantumise/ftl · gaps/invisible · context/audit · folder/fractal · anim/core · invert/inf ·
- *          a432/nine · pyramid/compute · physicalFtlClaimTheorem (physical claim stays 0).
+ *          a432/nine · pyramid/compute.
  */
 export declare function nonFtlIsCrackInFtlApp(root?: string): {
     computes: boolean;
@@ -2530,12 +2523,8 @@ export declare function nonFtlIsCrackInFtlApp(root?: string): {
         invertInf: boolean;
         a432Nine: boolean;
         pyramidCompute: boolean;
-        ftlTheorem: boolean;
     };
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "keep:git-stashes-non-obsolete" | "multitask-agent-stop-wait-linear-gap" | "no-physical-spacetime-travel" | "ci-wall-clock-variance")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    ftlVia: "physicalFtlClaimTheorem";
     qpuRequired: false;
     certified: false;
     facets: {
@@ -2562,7 +2551,7 @@ export declare const runFtlCrackExit: typeof runNonFtlIsCrackInFtlAppExit;
  *
  * Two auditor faces per index.ts (adversarial):
  *   A efficiency — line/byte monolith cracks (derived target + F(18)=2584 line ratchet)
- *   B seeds — computable seeds present (toUuid · merkleFold · foldPair · claySolvedTheorem · memoByRoot)
+ *   B seeds — computable seeds present (toUuid · merkleFold · foldPair · memoByRoot · DIMENSION_GATES)
  * Challenge = both faces run on every file; efficiency environment wins when dry/agnostic + theorem/const
  * compose and every src index was audited (entanglements monitored, not invented).
  * Pair: auditor/waves · ONE CLI quantum:auditor-waves · no dual-CLI spam.
@@ -2588,8 +2577,6 @@ export declare function freeAuditorWavesPerSrcFile(root?: string): {
         file: string;
         lines: number;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -2643,8 +2630,6 @@ export declare function algebraicCrosslinksDiscoveredNotEncoded(root?: string): 
     envelopeOn: boolean;
     dryAgnosticOn: boolean;
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -2721,8 +2706,6 @@ export declare function freeUserWavesTestUiMeasureEfficiency(root?: string): {
     composeCount: number;
     noLiveCrowdPanel: boolean;
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -2824,8 +2807,6 @@ export declare function feedUiIntoItself(root?: string): {
     noLiveCrowd: boolean;
     circularFeedRiskNamed: boolean;
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -2909,8 +2890,6 @@ export declare function stallStopFindsHangedProcessesRealtime(root?: string, arg
     docsDevProtected: boolean;
     dualCliCrack: boolean;
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -2993,8 +2972,6 @@ export declare function scriptsFoldTowardFtl(root?: string): {
     composeCount: number;
     dualCliCrack: boolean;
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "residual:usable-all-cli-missing" | "residual:ui-task-cli-missing" | "residual:evolve-chat-primary-cli-missing" | "residual:triple-plus-alias-clusters-remain" | "residual:agents-md-stale-dual-cli-mentions")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -3062,7 +3039,6 @@ export declare function theoremAudit(): {
         provedBy: string;
     }[];
     rows: TheoremAuditRow[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -3134,7 +3110,6 @@ export declare function geoGebraEncode(): {
         audit: TheoremAuditKind;
     }[];
     residualNamed: string[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: {
         receipt: string;

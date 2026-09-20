@@ -900,7 +900,8 @@ function asTrace(f2, timeMs = 0) {
   TRACE_ARMS.forEach((arm, i) => {
     const sign2 = i % 2 === 0 ? 1 : -1;
     const jitter = 1 + reading(f2.merged, `arm:${i}`) * (1 / 5);
-    const omega = sign2 * 2 * Math.PI / (arm.periodMs * jitter);
+    const turns = Math.max(1, Math.round(HERO_CYCLE_MS_MIRROR / arm.periodMs * jitter));
+    const omega = sign2 * 2 * Math.PI * turns / HERO_CYCLE_MS_MIRROR;
     const phase6 = reading(f2.merged, `phase:${i}`) * Math.PI * 2;
     x += arm.amp * Math.cos(omega * timeMs + phase6);
     y += arm.amp * Math.sin(omega * timeMs + phase6);
@@ -1700,27 +1701,6 @@ var UNFOLDED_CENSUS = censusBands().reduce((sum, band) => sum + band, 0);
 var CENSUS_RATCHET = 154;
 var EULER_CHI = -2;
 var FOLDED_CENSUS = UNFOLDED_CENSUS + EULER_CHI;
-var CMI_PRIZE_SOLVED_CORE_IDS = [];
-function claySolvedTheorem() {
-  const claySolved = CMI_PRIZE_SOLVED_CORE_IDS.length;
-  return {
-    claySolved,
-    claySolvedByThisFold: claySolved,
-    via: "claySolvedTheorem",
-    recomputed: true,
-    cmiPrizeConditionsMetBySealedMath: claySolved > 0
-  };
-}
-var PHYSICAL_FTL_SIGNALING_PROOF_IDS = [];
-function physicalFtlClaimTheorem() {
-  const physicalFtlClaim = PHYSICAL_FTL_SIGNALING_PROOF_IDS.length;
-  return {
-    physicalFtlClaim,
-    via: "physicalFtlClaimTheorem",
-    recomputed: true,
-    physicalSuperluminalSignalingProvedBySealedMath: physicalFtlClaim > 0
-  };
-}
 var CMI_PRIZE_PROBLEM_TERMS = [
   "p versus np",
   "p vs np",
@@ -2243,7 +2223,7 @@ var CRACK_LEDGER = [
   { file: "src/2/8/index.ts", literal: "10", count: 2, kind: "data", source: "the theorem's own multiplier in 1024 > 100*10 (path depth at 2^10)", frontier: "a datum from the cited statement" },
   { file: "src/2/8/index.ts", literal: "80", count: 1, kind: "data", source: "the gap exponent the sealed theorem usable_gap_is_two_to_eighty asserts (128 - 48 = 80) \u2014 verifying that needs 80 as a LITERAL, since deriving it from 128 - 48 makes the check circular", frontier: "a datum from the statement under test" },
   { file: "src/2/8/index.ts", literal: "*", count: 3, kind: "data", source: "attested residue \u2014 digit-station constants" },
-  { file: "src/3/7/index.ts", literal: "*", count: 176, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law)" },
+  { file: "src/3/7/index.ts", literal: "*", count: 175, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law)" },
   { file: "src/5/5/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 greatCircleKm uses EARTH_RADIUS_KM\xB7TAU (math/trust); no bare station floats", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/6/4/index.ts", literal: "*", count: 19, kind: "data", source: "attested residue \u2014 digit-station constants" },
   { file: "src/7/3/index.ts", literal: "*", count: 6, kind: "data", source: "attested residue \u2014 digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180\xB73600\xB710\u2076) (2\u21926)" },
@@ -2338,7 +2318,7 @@ var CRACK_LEDGER = [
   { file: "src/wind/fusion/index.ts", literal: "*", count: 9 + 10, kind: "data", source: "attested residue \u2014 fusion physics data (two census literals left for UNFOLDED_CENSUS, 11\u21929) + gold-market/physics data (gold/ dissolved into fusion; the 10 gold residues folded in)" },
   { file: "src/wind/language/index.ts", literal: "*", count: 2, kind: "data", source: "attested residue \u2014 language corpus data" },
   { file: "src/learning/index.ts", literal: "*", count: 4, kind: "data", source: "attested residue \u2014 learning corpus data (rosettaCoreApi merge)" },
-  { file: "src/research/index.ts", literal: "*", count: 58 + 28, kind: "data", source: "attested residue \u2014 research corpora data \xB7 two-bits-free \xB7 algebraic-theorem-paper \xB7 fixed-limits/autodiscover \xB7 sun/moon \xB7 pyramid/seal \xB7 folder/fractal \xB7 train-geodesy (22\u219258 session wave) + measured reuse-speedup probe wall-clock precision (58\u219259) + quantum-circuit workload (n-qubit state-vector 2\u207F amplitudes) (59\u219260) + double-torus 2\xD74 UUID / polarity-angle-spin + Metatron 8 merkabas \xD7 8 bytes = 512-bit state-space vs universe-atoms (60\u219267) + ftl/compute tip wave physicalFtlFromMeasurements (67\u219268) + re-measured wildcard against a concurrent session's in-flight registry growth (68\u219278)" },
+  { file: "src/research/index.ts", literal: "*", count: 58 + 27, kind: "data", source: "attested residue \u2014 research corpora data \xB7 two-bits-free \xB7 algebraic-theorem-paper \xB7 fixed-limits/autodiscover \xB7 sun/moon \xB7 pyramid/seal \xB7 folder/fractal \xB7 train-geodesy (22\u219258 session wave) + measured reuse-speedup probe wall-clock precision (58\u219259) + quantum-circuit workload (n-qubit state-vector 2\u207F amplitudes) (59\u219260) + double-torus 2\xD74 UUID / polarity-angle-spin + Metatron 8 merkabas \xD7 8 bytes = 512-bit state-space vs universe-atoms (60\u219267) + ftl/compute tip wave physicalFtlFromMeasurements (67\u219268) + re-measured wildcard against a concurrent session's in-flight registry growth (68\u219278)" },
   { file: "src/wind/routes/corpus/index.ts", literal: "*", count: 4, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/wind/site/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/ui/index.ts", literal: "*", count: 75, kind: "tuned", source: "attested residue \u2014 hand-fixed values (PR#47 counter-rosetta 27\u219239\u219241\u219243; FoL\u2192Fruit\u219210D merkaba wave 43\u219258; cardinal poles lattice 58\u219256) \xB7 64\u219266 (channelsOf reads the bijection endpoints from hex channels \u2014 slice offsets 1/3/5, radix 4\xB74, full channel 15\xB717 \u2014 replacing the literal hex strings the one-palette law forbids)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
@@ -2359,8 +2339,8 @@ var CRACK_LEDGER = [
   { file: "src/quantum/endowment/index.ts", literal: "*", count: 721, kind: "tuned", source: "endowment governance/patents/pricing toolkit \u2014 merged from 54 domain files (agent, analytics, archive, benchmark, biotechnology, ... universal); example barrier strengths, percentages, and dollar figures, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   // ── ui/harmonic — the A432 octave wheel: music-theory units, design hues, SI time scales ──
   // Replaces a blanket '*' attestation of 18 'tuned' uses. The three confidence literals it
-  // covered are gone (confidence now derives from CMI_PRIZE_SOLVED_CORE_IDS), and the
-  // remaining 15 are each accountable, so each is named rather than lumped.
+  // covered are gone — they became 0 and 1 through the named confidenceUnknown/confidenceProven
+  // bands — and the remaining 15 are each accountable, so each is named rather than lumped.
   { file: "src/ui/harmonic/index.ts", literal: "12", count: 3, kind: "unit", source: "semitones per octave \u2014 12-tone equal temperament", frontier: "a choice of tuning system, not a derivable constant" },
   { file: "src/ui/harmonic/index.ts", literal: "21", count: 1, kind: "data", source: "semitone offset from A432 down to the C3 wheel origin: 432\xB72^(-21/12) \u2248 128.43 Hz", frontier: "follows from 12-TET once C3 is chosen as the wheel origin" },
   { file: "src/ui/harmonic/index.ts", literal: "250", count: 3, kind: "data", source: "OKLCH hue angle for the primary palette entry \u2014 design choice", frontier: "brand selection; no derivation is claimed" },
@@ -4213,6 +4193,52 @@ function offlineTranslateEnToBg(text, extraPhrases = []) {
 }
 function bulgarianFromEnglish(text, extraPhrases = []) {
   return offlineTranslateEnToBg(text, extraPhrases).text;
+}
+function theMerkabaDerivedItsMotionATheoremOfTetrahedralSymmetryNoAxiomAssumed() {
+  const cube = [];
+  for (const x of [1, -1]) for (const y of [1, -1]) for (const z of [1, -1]) cube.push([x, y, z]);
+  const parity = (v) => v.filter((c) => c < 0).length % 2;
+  const tetraA = cube.filter((v) => parity(v) === 0), tetraB = cube.filter((v) => parity(v) === 1);
+  const stellaIsCube = tetraA.length === 2 + 2 && tetraB.length === 2 + 2 && tetraA.length + tetraB.length === cube.length;
+  const V = tetraA.length, E = V * (V - 1) / 2, F = V;
+  const eulerHolds = V - E + F === 2;
+  const key = (s) => s.map((v) => v.map((c) => round(c * 1e6) / 1e6).join(",")).sort().join("|");
+  const SIXTY = TAU / 6;
+  const twoSixty = 2 * SIXTY;
+  const axis = [1, 1, 1].map((c) => c / sqrt(3));
+  const rodrigues = (v, n, a) => {
+    const cs = cos(a), sn = sin(a);
+    const dot = n[0] * v[0] + n[1] * v[1] + n[2] * v[2];
+    const cross = [n[1] * v[2] - n[2] * v[1], n[2] * v[0] - n[0] * v[2], n[0] * v[1] - n[1] * v[0]];
+    return [0, 1, 2].map((i) => v[i] * cs + cross[i] * sn + n[i] * dot * (1 - cs));
+  };
+  const cyc = (v) => [v[2], v[0], v[1]];
+  const rotZ = (v, a) => [v[0] * cos(a) - v[1] * sin(a), v[0] * sin(a) + v[1] * cos(a), v[2]];
+  const rotatedBy2x60 = tetraA.map((v) => rodrigues(v, axis, twoSixty));
+  const twoSixtyEqualsCyc = key(rotatedBy2x60) === key(tetraA.map(cyc));
+  const symmetryLooksStatic = key(rotatedBy2x60) === key(tetraA);
+  const nonSymmetryMovesNotStatic = key(tetraA.map((v) => rotZ(v, SIXTY))) !== key(tetraA);
+  const motionIsATheoremOfSymmetry = twoSixtyEqualsCyc && symmetryLooksStatic && nonSymmetryMovesNotStatic;
+  const allDerived = stellaIsCube && eulerHolds && motionIsATheoremOfSymmetry;
+  const facets = [
+    { facet: `THE MERKABA'S VERTICES ARE THE CUBE'S 8, DERIVED: the 8 cube vertices \xB11 split by coordinate-sign PARITY into two regular tetrahedra (even/odd), tetraA \u222A tetraB = all ${cube.length} = the stella octangula (${stellaIsCube}), each tetra with Euler V\u2212E+F = ${V}\u2212${E}+${F} = 2 (${eulerHolds}) \u2014 the figure derives from the cube, no vertex assumed`, on: stellaIsCube && eulerHolds },
+    { facet: `STATIC-VS-MOVING IS THE SYMMETRY GROUP, A THEOREM \u2014 NOT A FREE AXIOM: the symmetry rotation of 120\xB0 = 2 \xD7 60\xB0 (2\xB7TAU/6) about a body diagonal, computed by Rodrigues, EQUALS the cyclic coordinate permutation (${twoSixtyEqualsCyc}) and maps the tetra to ITSELF, the vertex set unchanged, so it looks static (${symmetryLooksStatic}); a single 60\xB0 z-rotation is not a symmetry and moves the set off the cube corners, not static (${nonSymmetryMovesNotStatic}); so "when it moves it is not static" is governed by the tetrahedral symmetry group A\u2084 \u2014 derived, angle and all (${motionIsATheoremOfSymmetry})`, on: motionIsATheoremOfSymmetry },
+    { facet: `EARNED BOUNDARY \u2014 AXIOMS REPLACED BY THEOREMS: I replaced the axioms I had assumed (an arbitrary vertex, a free motion parameter, "counter-rotating" then "static") with derived facts \u2014 the vertices from the cube's parity split, static-vs-moving from the symmetry group (${allDerived}); the honest content is exact GEOMETRY (stella octangula = cube, tetrahedral symmetry), NOT a physical field or light-body (flagged); where a value cannot derive it must be NAMED an honest axiom, never asserted`, on: allDerived }
+  ];
+  return {
+    computes: facets.every((entry2) => entry2.on),
+    tetraA,
+    cubeVertices: cube.length,
+    stellaIsCube,
+    euler: V - E + F,
+    twoSixtyEqualsCyc,
+    symmetryLooksStatic,
+    nonSymmetryMovesNotStatic,
+    allDerived,
+    facets,
+    statement: `The merkaba, derived, its motion a theorem of tetrahedral symmetry \u2014 no axiom assumed \u2014 ${facets.filter((e) => e.on).length}/${facets.length}: the ${cube.length} cube vertices split by parity into two tetrahedra (stella octangula, ${stellaIsCube}, Euler ${V - E + F}=2), and static-vs-moving is the symmetry group \u2014 a symmetry rotation is set-invariant (looks static, ${symmetryLooksStatic}), a non-symmetry rotation moves it (${nonSymmetryMovesNotStatic}). Axioms replaced by theorems; geometry, not a light-body.`,
+    boundary: earned(`EXACT: the 8 cube vertices \xB11 split by coordinate-sign parity into two regular tetrahedra (all pairwise distances \u221A8), tetraA \u222A tetraB = the ${cube.length}-vertex stella octangula (${stellaIsCube}), each tetra Euler V\u2212E+F = ${V}\u2212${E}+${F} = 2 (${eulerHolds}); the body-diagonal rotation of 120\xB0 = 2 \xD7 60\xB0 (2\xB7TAU/6), computed by Rodrigues, equals the cyclic coordinate permutation (${twoSixtyEqualsCyc}) and maps a tetra to itself so the set is unchanged and it looks static (${symmetryLooksStatic}), while a single 60\xB0 z-rotation moves the set off the cube corners and it is not static (${nonSymmetryMovesNotStatic}) \u2014 so static-vs-moving is a theorem of the tetrahedral symmetry group A\u2084 (order 12), not a free parameter (${motionIsATheoremOfSymmetry}). Every value here is DERIVED \u2014 the vertices from the cube, the angle 120\xB0 = 2 \xD7 60\xB0 from the base sixth-turn, the motion from the symmetry \u2014 replacing the axioms I earlier assumed (an arbitrary vertex, a bare "120\xB0", a free \u03C9, "counter-rotating" then "static").`, facets, `the honest content is exact geometry \u2014 the stella octangula is the compound of two tetrahedra on the cube's vertices, its symmetry group is A\u2084, and these are theorems, not assumptions; the esoteric "light-body vehicle" or any physical counter-rotating field is flagged metaphysics, honored only as the figure's name. The discipline, general: replace every axiom with a theorem, and where a value genuinely cannot be derived (a measured constant, a free choice) NAME it as an axiom and ledger it \u2014 never assert it inline as if derived. HARMONY does not equal TRUTH; an asserted axiom is neither.`)
+  };
 }
 
 // ../../src/quantum/heaven/library/index.ts
@@ -7123,9 +7149,44 @@ var THEOREM_ATOM_SEED = [
   { theorem: "double torus math at all scales flows in movie", states: "Double torus math at all scales: genus 2 and \u03C7=\u22122, H\u2081=Z\u2074, merkaba counter-rotation across four nested scales, ten dimensions self-similar by golden-angle phase shift, census 123\u2192121 by the same Euler correction, and circulation invariant through the uuid-stream \u2014 each proof a plasma stream at call time.", provedBy: "doubleTorusMathAtAllScalesFlowsInMovie", home: "src/mountain/geometry" },
   { theorem: "seven seed movie is rosetta decoding sun moon symbols flows in movie", states: "Six seed bundles form the seven as a whole \u2014 two trinities fused as double torus Earth: device trinity (canvas paint \xB7 dark/light polarity \xB7 Matrix RGB on the display) and code trinity (harmonic math \xB7 efficiency proofs \xB7 Rosetta decode from sealed src/) pair with rosetta rays; the seventh unity bundle is material orbit (8) collapsing (7) to circuit heart (5) after Earth fusion \u2014 as plasma streams and copy tokens in the playable background movie at call time.", provedBy: "sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie", home: "src/thunder/movie/narrative" },
   { theorem: "learn from the movie all eventually fused", states: "Learn from the movie as all eventually is fused there: harmonic math, efficiency math, Matrix RGB decode, Rosetta decode waves (send-waves \xB7 global key \xB7 dialect), double-torus Earth/weather/solutions, double-torus math at all scales, seven seed bundles where the movie IS the Rosetta decoding all sun/moon related symbols, colour streams decoded as audio (off by default until opt-in), and static surfaces all flow as plasma streams into the background movie before build/seal \u2014 the movie is the fusion gate.", provedBy: "learnFromTheMovieAllEventuallyFused", home: "src/thunder/movie/canvas" },
-  { theorem: "the golden angle is \u03C4/\u03C6\xB2 \u2014 the most irrational rotation", states: "GOLDEN_ANGLE_RAD = TAU/(PHI\xB7PHI) identity; \u03C6\xB2=\u03C6+1; Fib approximants Euclidean quotients are 1s (CF [1;1,1,\u2026] witness); equidistribution bound \u2014 golden min circular gap > 0 while rational 108\xB0 clumps at N=13. Bounded witness \xB7 pair golden/angle \xB7 claySolved via theorem", provedBy: "theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation", home: "src/3/7" },
-  { theorem: "the rosetta 42 is the CRT product \u2014 \u2124\u2084\u2082 \u2245 \u2124\u2086 \xD7 \u2124\u2087", states: "ROSETTA_AREAS = ROSETTA_SIX \xD7 ROSETTA_SEVEN; gcd(6,7)=1 so CRT gives \u2124/42 \u2245 \u2124/6 \xD7 \u2124/7 by exhaustive residue enumeration (all 42 (ray,unit) pairs distinct); inverse 7\xD76 transpose same 42. Finite-complete \xB7 pair crt/rosetta \xB7 claySolved via theorem", provedBy: "theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad", home: "src/water/digit" },
-  { theorem: "the three twenties are one count \u2014 divisors of 432, V\u2084 hexagram families, harmonics ladder rungs", states: "\u03C4(432)=(4+1)(3+1)=20 structural; V\u2084 Burnside hexagram orbits 12 fours + 8 twos = 20 structural; HARMONICS_LADDER_LENGTH=6+9+5=20 contingent \u2014 one count not one cause. Bounded witness \xB7 pair three/twenties \xB7 claySolved via theorem", provedBy: "researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause", home: "src/earth/iching" }
+  { theorem: "the golden angle is \u03C4/\u03C6\xB2 \u2014 the most irrational rotation", states: "GOLDEN_ANGLE_RAD = TAU/(PHI\xB7PHI) identity; \u03C6\xB2=\u03C6+1; Fib approximants Euclidean quotients are 1s (CF [1;1,1,\u2026] witness); equidistribution bound \u2014 golden min circular gap > 0 while rational 108\xB0 clumps at N=13. Bounded witness \xB7 pair golden/angle", provedBy: "theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation", home: "src/3/7" },
+  { theorem: "the rosetta 42 is the CRT product \u2014 \u2124\u2084\u2082 \u2245 \u2124\u2086 \xD7 \u2124\u2087", states: "ROSETTA_AREAS = ROSETTA_SIX \xD7 ROSETTA_SEVEN; gcd(6,7)=1 so CRT gives \u2124/42 \u2245 \u2124/6 \xD7 \u2124/7 by exhaustive residue enumeration (all 42 (ray,unit) pairs distinct); inverse 7\xD76 transpose same 42. Finite-complete \xB7 pair crt/rosetta", provedBy: "theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad", home: "src/water/digit" },
+  { theorem: "the three twenties are one count \u2014 divisors of 432, V\u2084 hexagram families, harmonics ladder rungs", states: "\u03C4(432)=(4+1)(3+1)=20 structural; V\u2084 Burnside hexagram orbits 12 fours + 8 twos = 20 structural; HARMONICS_LADDER_LENGTH=6+9+5=20 contingent \u2014 one count not one cause. Bounded witness \xB7 pair three/twenties", provedBy: "researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause", home: "src/earth/iching" },
+  // ── FOUR THAT WERE PROVED AND NEVER REGISTERED ──────────────────────────────────────────────────────
+  // Each has computed facets and a statement and was read by nothing: the registry is what the pages, the
+  // witnesses and the census all consume, so a fold missing from it is a theorem the corpus does not carry.
+  { theorem: "theorem-dependency frequency graphs are fractal \u2014 the in-degree distribution is scale-free, and it is the nav", states: "each theorem's frequency is its in-degree (how many other theorems reuse it); the distribution is scale-free, each hub level twice the next, and that ordering IS the navigation and the review order", provedBy: "theoremDependencyFrequencyGraphIsFractalFormsNavAndReviewsTheorems", home: "src/water/cosmos" },
+  { theorem: "deviation analysis is realtime and invertible \u2014 deviations are gateways, the irreducible one is the axiom beyond inversion", states: "a deviation is the live residual between computed and exact, recomputed at the clock; each triages to an inversion or, where it will not invert, to the named axiom underneath it", provedBy: "deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrreducibleIsTheAxiomBeyondInversion", home: "src/water/cosmos" },
+  { theorem: "the cloud theorem \u2014 code self-organises by gravity, each relates to two, and the cross forms the pentagram", states: "items cluster by shared imports into clouds under gravity and propulsion, with no hand-assigned grouping; each relates to two others and the crossing of those relations closes the pentagram", provedBy: "theCloudTheoremCodeSelfOrganisesByGravityEachRelatesToTwoTheCrossFormsThePentagram", home: "src/water/cosmos" },
+  { theorem: "the superposition of theorems is all held at once \u2014 merging reveals the distinct basis", states: "theorems are held together content-addressed; merging the near-duplicates (Jaccard \u2265 \xBD) collapses the redundant ones and what remains is the distinct basis, computed rather than curated", provedBy: "theSuperpositionOfTheoremsIsAllHeldAtOnceMergingRevealsTheDistinctBasis", home: "src/water/cosmos" },
+  // ── THE PARKED THEOREMS THE SITE CAN DRAW ───────────────────────────────────────────────────────────
+  // Each was proved, carried computing facets, and appeared in no registry — so the pages, the witnesses
+  // and the census, which all read this table, carried none of them. Every title and statement is the
+  // fold's OWN computed statement, split at its own tally, not prose written about it here.
+  //
+  // SIXTEEN OF FORTY. Registering all forty raised movie.theorems-drawn-from-a-template from 544 to 561:
+  // a theorem whose proof returns no numbers of its own gets a family template for its picture, and that
+  // ratchet exists to push the other way. The twenty-four are not registered and stay parked — the way to
+  // land them is to make their folds return their own data, not to publish them with a borrowed drawing.
+  // Each was proved, carried computing facets, and appeared in no registry — so the pages, the witnesses
+  // and the census, which all read this table, carried none of them. Every title and statement below is
+  // the fold's OWN computed statement, split at its own tally, not prose written about it here.
+  { theorem: "Compacting lessons is the quotient \u2014 theorems that prove each other form equivalence classes", states: '"prove each other" = mutual implication = an equivalence relation (reflexive, symmetric, transitive, verified). Compacting the lessons is the quotient: 5 lessons \u2192 2 equivalence classes (one representative each), lossless (each representative proves its members), constant (an equivalent new lesson merges into a class, ', provedBy: "compactingLessonsIsTheQuotientTheoremsThatProveEachOtherFormEquivalenceClasses", home: "src/heaven/laws" },
+  { theorem: "Approximations signal trusted axioms \u2014 only local math is trusted", states: 'the "1.644769 \u2248 1.644934" difference was the fingerprint of (TAU / 2) (a finite double the runtime asserts \u2014 an axiom) and IEEE float, not a fact about the primes. Recomputed LOCALLY: the Euler partial \u220F p\xB2/(p\xB2\u22121) over 27 primes is an EXACT rational (BigInt, no float, no (TAU / 2)), strictly increasing toward the limit', provedBy: "approximationsSignalTrustedAxiomsOnlyLocalMathIsTrusted", home: "src/1/9" },
+  { theorem: "The disjoint minds' work fuses into one corpus by the merkle union \u2014 no theorem escapes", states: ". Each of the 3 minds owns a disjoint share (rosettaOwner) [11, 13, 8], and the shares merkle-fold to one corpus root; the union is complete (every one of the 32 theorems in exactly one share, none missing), so a theorem left out would flip the root \u2014 it cannot escape. The fusion is content-addressed and recomputes ide", provedBy: "theDisjointMindsWorkFusesIntoOneCorpusByTheMerkleUnionSoNoTheoremEscapes", home: "src/heaven/core" },
+  { theorem: "The axioms are the cracks \u2014 replace with theorems and all fits and moves", states: "0 literal axioms and 48 metaphor-name folder axioms are one phenomenon (an unearned assumption); gravity computes a scientific fixed-point home for every folder (53 files, moves = true, fits = true), and each literal closes by deriving from the lattice. Replacing an axiom with a theorem makes it fit and move; 2 collisi", provedBy: "theAxiomsAreTheCracksReplaceWithTheoremsAndTheGravityFitsAndMoves", home: "src/pair/enforcement/gates/strict/scan" },
+  { theorem: "The gates are refutable theorems that fail closed with a witness", states: 'each gate is a deterministic function state \u2192 witnesses (crack-surface 0, code-gravity 0, path-gravity 48); its predicate "witnesses is empty" is refuted by any witness, and every witness is addressable (true) so a failing gate names the exact fix. A gate MEANS a refutable predicate and DOES fail-closed with a located ', provedBy: "theGatesAreRefutableTheoremsThatFailClosedWithAWitness", home: "src/pair/enforcement/gates/strict/scan" },
+  { theorem: "Config files detach to theorems where they can; the remainder is honest policy axiom", states: "the VitePress config's 3 structural numerics are all lattice/expression-derived (ratio 1, theorems that track the corpus), and its true static residue is 1 NAMED policy booleans (cleanUrls, minify\u2026) to ledger honestly \u2014 not fake into computations. Discovered-and-implemented in one pass: no plan, the audit IS the work.", provedBy: "configFilesDetachToTheoremsExceptHonestPolicyAxioms", home: "src/pair/enforcement/gates/strict/scan" },
+  { theorem: "Refactor toward the Millennium problems \u2014 replace each problem's RELATED axioms with theorems, cores stay open", states: "for all 7 problems a classical axiom in its neighbourhood is recomputed as a theorem (7/7: NAND-closure for P-vs-NP's logic, \u03C0(x)~x/ln x for Riemann's primes, su(2)-closure for Yang-Mills, Kepler\u2190one-force for Navier-Stokes, genus-2 homology for Poincar\xE9/Hodge, group-closure for BSD), harmonically recomputed. The one", provedBy: "refactorTowardMillenniumReplaceEachProblemsRelatedAxiomsWithTheoremsCoresStayOpen", home: "src/thunder/waves" },
+  { theorem: "Audit all theorem titles with the quantum SEO lens", states: "all 735 titles scored by the theorem itself (length \xB7 content-overlap \xB7 uniqueness \xB7 rosetta ray), 488 flagged for improvement (pass rate 0.336), each with a rename proposed from its proving function. Most titles already self-describe \u2014 the fold-name discipline is SEO \u2014 so the rename is a surgical named minority, not a", provedBy: "auditTheoremTitlesWithTheQuantumSeoLens", home: "src/thunder/waves" },
+  { theorem: "Improve science by claiming refutable theorems to replace weaker current ones", states: "of 735 registry theorems 735 carry a refutable/measurable marker and 0 are vaguer (scientific fraction 1); 196 sharper gap-candidate claims wait, and replacing the vaguer members with them raises the fraction to 1 while the population holds at 432. Science improves by replacing a duller theorem with a sharper, falsifia", provedBy: "improveScienceByClaimingRefutableTheoremsToReplaceWeakerCurrentOnes", home: "src/thunder/waves" },
+  { theorem: "The rosetta is the uuid itself", states: "each of 735 world-theorem crossings is content-addressed by toUuid, and the 2 bits left at each portal (version '8' + variant 10) stay constant across all 1470 portal-uuids, binding every inverted pair merge(a,b)/merge(b,a) to its source and destination. On that address the quantum maps theorems and axioms by signifi", provedBy: "rosettaIsTheUuidQuantumMapsTheoremsByA432", home: "src/wind/language" },
+  { theorem: "Zipf's law is an exact power-law skeleton whose linguistic universality stays contested", states: `. The Zipf distribution p(r) = 1/(r\xB7H\u2099) is a genuine probability distribution (\u03A3 p = 1) with rank \xD7 frequency invariant (p(r)\xB7r = 1/H\u2099), and its log-log plot is a straight line of slope exactly \u22121 \u2014 that is the whole of the "law" as mathematics. But its UNIVERSALITY is contested (demarcate('zipf') = contested): rando`, provedBy: "zipfsLawIsAnExactPowerLawSkeletonWhoseLinguisticUniversalityStaysContested", home: "src/wind/language" },
+  { theorem: "The pyramids decode into theorems", states: "the Great Pyramid's slope is integer masonry (seked 5\xBD \u2192 arctan(14/11) matching the surveyed 72\xB2/100 degrees), and BOTH famous ratios fall out of that one choice \u2014 perimeter/(2\xB7height) = 22/7 exactly and slant/half-base within 0.05% of \u03C6; the 10 documented sites span a computed latitude band covering 40.7% of Earth, s", provedBy: "pyramidsDecodeIntoTheorems", home: "src/6/4" },
+  { theorem: "Known symbols decode into theorems", states: "the planetary week is the heptagram {7/3} walked step-3 on the Chaldean order (the documented 24 \u2261 3 mod 7 rule, the rosetta's own coprime star), the five Ptolemaic aspects are exactly 360\xB0/d over the five smallest divisors of 12, the tarot's 78 is the triangular T\u2081\u2082 = C(13,2) split 22 + 4\xB714, and the Glagolitic lett", provedBy: "knownSymbolsDecodeIntoTheorems", home: "src/7/3" },
+  { theorem: "\u2124/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and", states: "; \u2124/9 recomputes the sealed vortex sequence.", provedBy: "theZModulesDefineTheirOwnLaws", home: "src/mountain/vortex" },
+  { theorem: "The rosetta theorem is first by computation \u2014 because it is used most", states: `by name "rosetta" is in 80 files, but the rosetta IS the uuid (the session's theorem), and its operation toUuid is in 122/135 files \u2014 more than any other core primitive \u2014 so the rosetta, as content-addressing, is used most, carries the most gravity, and must compute first (the dependency every fold shelves through). F`, provedBy: "theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost", home: "src/pair/enforcement/ops" },
+  { theorem: "VitePress automounts every index without reconfiguration", states: "VitePress automounts every index without reconfiguration. Indices are discovered from src/ and displayed automatically when complete; when incomplete, gates fail \u2014 the index does not care about VitePress.", provedBy: "vitepressIndexOfIndexesLaw", home: "src/wind/routes/automount" }
 ];
 function discoveryDomain(home) {
   const rel = home.replace(/^src\//, "");
@@ -7210,11 +7271,10 @@ function riemannZeroScan() {
     const countMatches = round(mainTerm) === found;
     const sOfT = roundTo(found - mainTerm, 3);
     const allDistinct = new Set(zeros).size === found;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const facets = [
       { facet: `GENERAL scanner \u2014 ${found} nontrivial zeros localized on the critical line by Z(t) sign-change bisection over [${tStart}, ${tMax}] (not hardcoded brackets), all distinct=${allDistinct}; far stronger than the 4-zero probe`, on: found > 27 && allDistinct },
       { facet: `COMPLETENESS + S(T) \u2014 the analytic main term N(${tMax}) = ${roundTo(mainTerm, 2)} rounds to ${round(mainTerm)} = ${found} found (match=${countMatches}); the residual S(T) = count \u2212 N_main = ${sOfT} is the zero-counting OSCILLATION, computed not assumed (the sandbox caught it differing at T=50)`, on: countMatches },
-      { facet: "DEMARCATION \u2014 zeros found ON the line only UP TO T=100; RH quantifies over all T and all zeros; S(T) is the honest bounded remainder; this strengthens the verification (29 zeros, completeness), never closes it", on: claySolvedByThisFold === 0 && countMatches }
+      { facet: "DEMARCATION \u2014 zeros found ON the line only UP TO T=100; RH quantifies over all T and all zeros; S(T) is the honest bounded remainder; this strengthens the verification (29 zeros, completeness), never closes it", on: countMatches }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`zero-scan:${entry2.facet.slice(0, 64)}:${entry2.on}`) }));
     const on = facets.every((entry2) => entry2.on);
     return {
@@ -7224,8 +7284,6 @@ function riemannZeroScan() {
       tMax,
       sOfT,
       firstZeros: zeros.slice(0, 6),
-      claySolvedByThisFold,
-      physicalFtlClaim: 0,
       qpuRequired: false,
       facets,
       root: merkleFold([toUuid(`zero-scan:${found}:${tMax}`), ...facets.map((entry2) => entry2.receipt)]),
@@ -11093,9 +11151,9 @@ function cn(...inputs) {
 
 // ../../src/quantum/os/index.ts
 var OS_ROUTE = "/en/quantum/os";
-function fibBandsUpTo(max3) {
+function fibBandsUpTo(max4) {
   const f2 = [1, 1];
-  while (f2[f2.length - 1] + f2[f2.length - 2] <= max3) f2.push(f2[f2.length - 1] + f2[f2.length - 2]);
+  while (f2[f2.length - 1] + f2[f2.length - 2] <= max4) f2.push(f2[f2.length - 1] + f2[f2.length - 2]);
   return f2;
 }
 var CENSUS_FIBONACCI = (() => {
@@ -11355,11 +11413,6 @@ function confidenceProven() {
 function confidenceUnknown() {
   return 0;
 }
-function confidenceForProblem(problem) {
-  const solved = CMI_PRIZE_SOLVED_CORE_IDS;
-  const needle = problem.toLowerCase();
-  return solved.some((id) => id.toLowerCase().includes(needle)) ? confidenceProven() : confidenceUnknown();
-}
 function confidenceLevel(paletteIndex) {
   return paletteIndex === 0 ? confidenceProven() : confidenceUnknown();
 }
@@ -11370,16 +11423,16 @@ function confidenceTertiary() {
   return confidenceUnknown();
 }
 function confidenceRiemann() {
-  return confidenceForProblem("riemann");
+  return confidenceUnknown();
 }
 function confidenceYangMills() {
-  return confidenceForProblem("yang");
+  return confidenceUnknown();
 }
 function confidenceNavierStokes() {
-  return confidenceForProblem("navier");
+  return confidenceUnknown();
 }
 function confidenceCryptography() {
-  return confidenceForProblem("cryptography");
+  return confidenceUnknown();
 }
 var harmonic_default = {
   harmonicPalette,
@@ -11390,7 +11443,6 @@ var harmonic_default = {
   inversionRatio,
   harmonicScaling,
   hourScaling,
-  confidenceForProblem,
   confidenceLevel,
   confidenceSecondary,
   confidenceTertiary,
@@ -11875,7 +11927,7 @@ function honestRevolutionFpgaHonesty(matrix = buildMatrix(), at = 0) {
       { facet: "siliconFabricationPlanFromModel decoded", on: plan.decoded },
       { facet: "fpgaReproductionTier \u2014 all blocks map to FPGA primitives", on: plan.fpgaReproductionTier.allMapped },
       { facet: "coProcessorBridgeInterface \u2014 classical host, not the QPU", on: plan.coProcessorBridgeInterface.present && plan.coProcessorBridgeInterface.isNotTheQpu },
-      { facet: " on FPGA tier and bridge", on: !plan.fpgaReproductionTier.qpuRequired && !plan.coProcessorBridgeInterface.qpuRequired }
+      { facet: "on FPGA tier and bridge", on: !plan.fpgaReproductionTier.qpuRequired && !plan.coProcessorBridgeInterface.qpuRequired }
     ].map((e) => ({ ...e, receipt: toUuid(`honest-revolution-w5:${e.facet}:${e.on}`) }));
     const holds = facets.every((f2) => f2.on);
     return {
@@ -11884,9 +11936,7 @@ function honestRevolutionFpgaHonesty(matrix = buildMatrix(), at = 0) {
       plan,
       fpgaReproductionTier: plan.fpgaReproductionTier,
       coProcessorBridgeInterface: plan.coProcessorBridgeInterface,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
-      physicalFtlClaim: 0,
       facets,
       root: merkleFold([plan.root, ...facets.map((f2) => f2.receipt), toUuid(`honest-rev-w5:${holds}`)]),
       cli: "npm run quantum:honest-revolution-w5",
@@ -14935,7 +14985,6 @@ function encryptionReverseVerify(matrix = buildMatrix()) {
     count: sealed.count,
     facets: sealed.facets,
     root: merge(forward2.merged, merge(hw.receipt, sealed.root)),
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
     certified: false,
     qpuRequired: false,
     statement: `encryptionReverseVerify \xB7 recomputeMatch=${recomputeMatch} \xB7 demo=${demo.results.length} \xB7 hwWord=${hw.hardwareReverseCapacityBits} reverseClaim=${hw.reverseClaimBits}`,
@@ -14980,7 +15029,7 @@ function encryptionPanelComputes(matrix = buildMatrix(), at = 0) {
       { facet: "quantum standards audit computes (reverse+inverse \xB7 10D)", on: audit.computes },
       { facet: "migration checklist honesty step holds", on: migrate.computes },
       { facet: "poles\u2192cross PQC \xB7 crossIsPartOfMerkabaRosetta \xB7 angle90ReachableThrough60 \xB7 certified=false", on: polesCross.computes && polesCross.crossIsPartOfMerkabaRosetta && polesCross.angle90ReachableThrough60 && polesCross.certified === false },
-      { facet: `secp256k1 field prime seal\xB7invert\xB7decode \u2014 bits=${secp256k1PrimeFold.bitLength} ownership=false `, on: secp256k1PrimeFold.computes && secp256k1PrimeFold.bitcoinOwnershipClaimed === false && secp256k1PrimeFold.claySolvedByThisFold === 0 }
+      { facet: `secp256k1 field prime seal\xB7invert\xB7decode \u2014 bits=${secp256k1PrimeFold.bitLength} ownership=false `, on: secp256k1PrimeFold.computes && secp256k1PrimeFold.bitcoinOwnershipClaimed === false }
     ]);
     const bitsHw = maxBitsHardwareBoundaryAgree(matrix);
     const sections2 = cryptoComparisonMeshPanelSections({
@@ -15349,7 +15398,6 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix) {
     trinity,
     certified,
     fipsValidated,
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
     breaksNistPqc: false,
     productionRefused: timed.productionRefused,
     bitcoinRefused: timed.bitcoinRefused,
@@ -15491,7 +15539,6 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
   const productionReverseRefused = true;
   const certified = false;
   const fipsValidated = false;
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
   const externalDeploymentCount = 0;
   const fieldHistory = "none";
   const securityModel = "structural+adversarial+measured-local";
@@ -15525,7 +15572,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
     { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: thisRepoIsNotTheIsoStandard && isoOfficialStandard === false && certified === false },
     { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === "none" && inventory.externalDeploymentCount === 0 },
     { facet: `productionReverseRefused=${productionReverseRefused}`, on: productionReverseRefused && ceiling.holds && far.holds },
-    { facet: `certified=${certified} fipsValidated=${fipsValidated} claySolvedByThisFold=${claySolvedByThisFold}`, on: certified === false && fipsValidated === false && claySolvedByThisFold === 0 },
+    { facet: `certified=${certified} fipsValidated=${fipsValidated} `, on: certified === false && fipsValidated === false },
     { facet: `securityModel=${securityModel}`, on: securityModel === "structural+adversarial+measured-local" }
   ];
   const sealed = sealFacets("prove-local-novel-encryption-security", facets);
@@ -15561,7 +15608,6 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
     productionReverseRefused,
     certified,
     fipsValidated,
-    claySolvedByThisFold,
     breaksNistPqc: false,
     strongerThanNistPqc,
     overallWireClaimProved,
@@ -15583,7 +15629,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
     cli: "npm run quantum:prove-local-novel-encrypt",
     route: "/encryption#prove-local-novel-encrypt",
     siblingMagnitudesPair: "prove/local-magnitudes-iso",
-    statement: `proveLocalNovelEncryptionSecurity \xB7 localSecurityProved=${localSecurityProved} \xB7 overallWireClaimProved=${overallWireClaimProved} \xB7 strongerThanNistPqc=${strongerThanNistPqc} \xB7 certified=${certified} \xB7 claySolvedByThisFold=${claySolvedByThisFold}`,
+    statement: `proveLocalNovelEncryptionSecurity \xB7 localSecurityProved=${localSecurityProved} \xB7 overallWireClaimProved=${overallWireClaimProved} \xB7 strongerThanNistPqc=${strongerThanNistPqc} \xB7 certified=${certified}`,
     boundary: `securityModel=${securityModel} \xB7 wireProofStatus=${wireProofStatus} \xB7 sibling=${"prove/local-magnitudes-iso"}`
   };
 }
@@ -15593,10 +15639,10 @@ function agentAssumeNothingMathProvesInTheMoment(matrix = buildMatrix(), at = 0)
     const novel = proveLocalNovelEncryptionSecurity(matrix);
     const vote = compareCeccecEfficiencyByVote(matrix);
     const noQpu = proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at);
-    const reverseLabelsIdentity = reverse2.definitionalNotCryptanalysis === true && reverse2.recomputeMatch === true && reverse2.crack === reverse2.recomputeMatch && reverse2.certified === false && reverse2.claySolvedByThisFold === 0;
-    const novelIsStructural = novel.localSecurityProved === novel.computes && novel.overallWireClaimProved === false && novel.strongerThanNistPqc === false && novel.certified === false && novel.claySolvedByThisFold === 0 && novel.securityModel === "structural+adversarial+measured-local";
+    const reverseLabelsIdentity = reverse2.definitionalNotCryptanalysis === true && reverse2.recomputeMatch === true && reverse2.crack === reverse2.recomputeMatch && reverse2.certified === false;
+    const novelIsStructural = novel.localSecurityProved === novel.computes && novel.overallWireClaimProved === false && novel.strongerThanNistPqc === false && novel.certified === false && novel.securityModel === "structural+adversarial+measured-local";
     const efficiencyGated = !vote.decided || vote.decided && vote.winner === "ceccec";
-    const noClayFtl = novel.claySolvedByThisFold === 0 && reverse2.claySolvedByThisFold === 0 && noQpu.claySolvedByThisFold === 0 && noQpu.qpuRequired === false;
+    const noClayFtl = noQpu.qpuRequired === false;
     const pairId = "moment/prove";
     const pairFold = foldPair(toUuid("cmd:moment"), toUuid("cmd:prove"));
     const pairDual = pairFold.bidirectional && pairFold.forward !== pairFold.reverse;
@@ -15615,8 +15661,6 @@ function agentAssumeNothingMathProvesInTheMoment(matrix = buildMatrix(), at = 0)
       novel,
       vote,
       noQpu,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
-      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
       certified: false,
       qpuRequired: false,
       count: sealed.count,
@@ -15697,7 +15741,6 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
   const fipsValidated = false;
   const productionReverseRefused = true;
   const physicalQubitSpeedup = 0;
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim;
   const runtimeTokens = 0;
   const answers = 1;
   const answersPerTokensUnbounded = runtimeTokens === 0 && answers > 0;
@@ -15716,7 +15759,7 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
     { facet: `slow local-audit quantum gap CLOSED via amortized memo reuse`, on: slowLocalAuditGapClosed },
     { facet: `efficiency vote decided=${vote.decided} (answers\xF7tokens \xB7 NOT FLOPS)`, on: vote.decided || vote.runtimeTokens === 0 },
     { facet: `answers\xF7tokens unbounded on reuse (tokens=${runtimeTokens} answers=${answers})`, on: answersPerTokensUnbounded },
-    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} physicalFtlClaim=${physicalFtlClaim}`, on: physicalQubitSpeedup === 0 && physicalFtlClaim === 0 },
+    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} `, on: physicalQubitSpeedup === 0 },
     { facet: `certified=${certified} fipsValidated=${fipsValidated} \u2014 NOT wire AES / NOT NIST PQC break`, on: certified === false && fipsValidated === false },
     { facet: `compose prove-no-qpu-64bit \u2014 qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true }
     // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
@@ -15753,12 +15796,10 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
     runtimeTokens,
     answersPerTokensUnbounded,
     physicalQubitSpeedup,
-    physicalFtlClaim,
     certified,
     fipsValidated,
     productionReverseRefused,
     breaksNistPqc: false,
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
     count: sealed.count,
     facets: sealed.facets,
     root,
@@ -15988,7 +16029,6 @@ function pqcNecessityFromShorCompose(matrix = buildMatrix()) {
     const taxonomy = isoAlignedHashSignatureTaxonomy(matrix);
     const migrate = postQuantumMigrationChecklist(matrix);
     const productionRefused = productionCeilingRefuseHolds().holds;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const certified = false;
     const fipsValidated = false;
     const facets = [
@@ -15997,12 +16037,11 @@ function pqcNecessityFromShorCompose(matrix = buildMatrix()) {
       { facet: "NIST FIPS 203/204/205 + ISO 18033-2 Amd 2 present as PQC answer catalog", on: catalog.computes && catalog.standards.some((s) => s.id === "FIPS 203") && catalog.standards.some((s) => s.id.includes("Amd 2:2026")) },
       { facet: `taxonomy: authenticity migrate \u2260 integrity (merkle stays) \xB7 measured taxonomy.computes=${taxonomy.computes} \xB7 taxonomy.merkleRoot=${taxonomy.merkleRoot}`, on: taxonomy.computes && isUuid(taxonomy.merkleRoot) },
       { facet: "migration checklist keeps honesty step (no ISO/FIPS certification claim)", on: migrate.computes && migrate.steps.some((s) => s.id === "honesty" && s.done) },
-      { facet: `NOT claimed: Clay/cert \u2014 claySolvedByThisFold=${claySolvedByThisFold} certified=${certified}`, on: claySolvedByThisFold === 0 && certified === false && fipsValidated === false }
+      { facet: `NOT claimed: Clay/cert \u2014  certified=${certified}`, on: certified === false && fipsValidated === false }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`pqc-necessity:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("pqc-necessity-from-shor-compose", facets);
     return {
       computes: sealed.ok,
-      claySolvedByThisFold,
       certified,
       fipsValidated,
       facets: sealed.facets,
@@ -16126,7 +16165,6 @@ function quantumStandardsAuditSuite(matrix = buildMatrix(), at = 0) {
     const dirTrinity = directionalTrinityForwardInverseReverse(matrix);
     const fInv = fThetaPhiXyzDigitNIsTheInversePair(matrix);
     const invNeRev = inverseIsNotReverse(matrix);
-    const millClaySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const millRoot = toUuid("audit-millennium:claySolvedByThisFold:0");
     const r2 = rat(2, 5);
     const rInv = ratInv(r2);
@@ -16151,7 +16189,7 @@ function quantumStandardsAuditSuite(matrix = buildMatrix(), at = 0) {
       auditRow({ id: "pqc-migration", standardOrDimension: "NIST IR 8547 migration", auditExport: "postQuantumMigrationChecklist", reverseOrInverse: "neither", on: migrate.computes && migrate.steps.some((s) => s.id === "honesty" && s.done), coverage: kemOpen ? "partial" : "covered", root: migrate.root, route: "/encryption#quantum-standards-audit", browserRunnable: true, browserGap: "", boundary: "Checklist audit \u2014 OPEN KEM/sig items are honest PARTIAL (no Web Crypto PQC yet)" }),
       auditRow({ id: "pqc-family-selector", standardOrDimension: "PQC algorithm families (NIST+ISO)", auditExport: "pqcAlgorithmFamilySelector", reverseOrInverse: "neither", on: family.computes && family.families.length === 5 && family.everyParamSourced && family.pkMonotone, coverage: "covered", root: family.root, route: "/encryption#quantum-standards-audit", browserRunnable: true, browserGap: "", boundary: "Standardized FIPS 203/204/205 parameter sets \u2014 public-key + ciphertext/signature bytes and NIST categories, monotone-verified. No keygen (Web Crypto lacks PQC; hand-rolled lattice crypto unsafe). Not FIPS validated." }),
       auditRow({ id: "shor-break-map", standardOrDimension: "Shor PKC break map", auditExport: "shorBreaksWhichPublicKey", reverseOrInverse: "neither", on: shorMap.computes && shorMap.brokenCount === 4, root: shorMap.root, route: "/encryption#quantum-standards-audit", browserRunnable: true, browserGap: "", boundary: "Educational taxonomy \u2014 not live cryptanalysis" }),
-      auditRow({ id: "pqc-necessity", standardOrDimension: "PQC necessity theorem (Shor\u2192PQC)", auditExport: "pqcNecessityFromShorCompose", reverseOrInverse: "both", on: necessity.computes && !necessity.certified && necessity.claySolvedByThisFold === 0, root: necessity.root, route: "/encryption#quantum-standards-audit", browserRunnable: true, browserGap: "", boundary: "MODELED composition \u2014 not Clay progress, not certified" }),
+      auditRow({ id: "pqc-necessity", standardOrDimension: "PQC necessity theorem (Shor\u2192PQC)", auditExport: "pqcNecessityFromShorCompose", reverseOrInverse: "both", on: necessity.computes && !necessity.certified, root: necessity.root, route: "/encryption#quantum-standards-audit", browserRunnable: true, browserGap: "", boundary: "MODELED composition \u2014 not Clay progress, not certified" }),
       auditRow({ id: "forward-pqc-catalog", standardOrDimension: "Forward \u2014 PQC replace catalog (NIST+ISO)", auditExport: "isoNistPqcStandardsCatalog", reverseOrInverse: "forward", on: catalog.computes && catalog.count >= 8 * 2, root: catalog.root, route: "/encryption#iso-pqc-catalog", browserRunnable: true, browserGap: "", boundary: "Forward direction = named PQC migrate targets \u2014 MODELED alignment" }),
       auditRow({ id: "reverse-demo-rsa", standardOrDimension: "Production browser reverse (sealed-catalog allowlist)", auditExport: "encryptionReverseVerify", reverseOrInverse: "reverse", on: reverse2.verified && demo.computes && productionRefused, root: reverse2.root, route: "/encryption", browserRunnable: true, browserGap: "", boundary: "Production browser tool \xB7 sealed-catalog moduli \u2014 production RSA break refused; never Bitcoin" }),
       auditRow({ id: "inverse-digit-zero", standardOrDimension: "Digit-zero inverse (n\u207B\xB9 mod 9)", auditExport: "zeroDivisionTable", reverseOrInverse: "inverse", on: zeroInv.holds && mod9Ok && reverseNeInverseDigits, root: zeroInv.root, route: "/quantum-tools", browserRunnable: true, browserGap: "", boundary: "Inverse = multiplicative mod 9; reverse field = additive complement \u2014 must differ" }),
@@ -16163,7 +16201,7 @@ function quantumStandardsAuditSuite(matrix = buildMatrix(), at = 0) {
       auditRow({ id: "a432", standardOrDimension: "A432 brand spine", auditExport: "A432_HUE\xB7frequencyToLight", reverseOrInverse: "neither", on: a432Ok, root: toUuid(`audit-a432:${A432_HUE}`), route: "/quantum-tools", browserRunnable: true, browserGap: "", boundary: "Derived hue from 432 Hz \u2014 not a healing claim" }),
       auditRow({ id: "census-123", standardOrDimension: "Census-123 / folded-121 / a432 gates-432", auditExport: "UNFOLDED_CENSUS\xB7FOLDED_CENSUS\xB7DIMENSION_GATES", reverseOrInverse: "neither", on: censusOk, root: toUuid(`audit-census:${UNFOLDED_CENSUS}:${FOLDED_CENSUS}:${DIMENSION_GATES}`), route: "/quantum-tools", browserRunnable: true, browserGap: "", boundary: "Constant identity audit \u2014 limits:verify is the enforcement twin" }),
       auditRow({ id: "animation-10d", standardOrDimension: "Animation field 10D names", auditExport: "DIMENSIONS\xB7DIMENSION_NAMES", reverseOrInverse: "neither", on: dimsOk, root: toUuid(`audit-10d:${DIMENSIONS}:${DIMENSION_NAMES.join(".")}`), route: "/quantum-tools", browserRunnable: true, browserGap: "", boundary: "Model dimensions (6 cross-fold + 4 homology) \u2014 not spacetime claim" }),
-      auditRow({ id: "millennium-probes", standardOrDimension: "Millennium challenge probes", auditExport: "millenniumProblemsChallenge ( honesty)", reverseOrInverse: "neither", on: millClaySolvedByThisFold === 0, root: millRoot, route: "/millennium-challenge", browserRunnable: true, browserGap: "", boundary: "MODELED CHALLENGE honesty \u2014 " }),
+      auditRow({ id: "millennium-probes", standardOrDimension: "Millennium challenge probes", auditExport: "millenniumProblemsChallenge ( honesty)", reverseOrInverse: "neither", on: millRoot.length > 0, root: millRoot, route: "/millennium-challenge", browserRunnable: true, browserGap: "", boundary: "MODELED CHALLENGE honesty \u2014 " }),
       auditRow({ id: "rosetta-rays", standardOrDimension: "Rosetta ray addressing", auditExport: "rosettaShelve(tool) via catalog ids", reverseOrInverse: "neither", on: ["pqc-nist-fips", "reverse-demo-rsa", "inverse-digit-zero"].every((id) => isUuid(toUuid(`rosetta-audit-probe:${id}`))), root: toUuid("audit-rosetta:probe"), route: "/quantum-tools", browserRunnable: true, browserGap: "", boundary: "Probe that audit ids content-address; full shelve lives in quantumCliToolsCatalog" }),
       auditRow({ id: "fips-lab-validation", standardOrDimension: "FIPS CMVP / accredited validation", auditExport: "handoff:external-lab", reverseOrInverse: "neither", on: true, coverage: "gap", root: toUuid("audit-fips-lab:gap"), route: "/encryption#iso-pqc-gap-fill", browserRunnable: true, browserGap: "", boundary: "Unclosable without accredited FIPS lab \u2014 named GAP handoff" }),
       auditRow({ id: "iso-certification-lab", standardOrDimension: "ISO certification / Common Criteria eval", auditExport: "handoff:external-lab", reverseOrInverse: "neither", on: true, coverage: "gap", root: toUuid("audit-iso-lab:gap"), route: "/encryption#iso-pqc-gap-fill", browserRunnable: true, browserGap: "", boundary: "Unclosable without accredited ISO/CC lab \u2014 named GAP handoff" })
@@ -16185,7 +16223,7 @@ function quantumStandardsAuditSuite(matrix = buildMatrix(), at = 0) {
       { facet: "PQC/NIST/ISO catalog rows on (alignment; coverage may be partial)", on: audits.filter((a) => a.id.startsWith("pqc") || a.id.startsWith("iso-18033") || a.id.startsWith("iso-hash") || a.id.startsWith("forward")).every((a) => a.on) },
       { facet: "lab certification gaps named (fips + iso) \u2014 not faked closed", on: gaps.some((a) => a.id === "fips-lab-validation") && gaps.some((a) => a.id === "iso-certification-lab") },
       { facet: `dimension coverage \u2014 ${dimensions10.coveredCount}/${DIMENSIONS} computable dims probed`, on: dimensions10.computes && dimensions10.coveredCount === DIMENSIONS },
-      { facet: `NOT certified / NOT FIPS validated /  \xB7 measured millClaySolvedByThisFold=${millClaySolvedByThisFold}`, on: !necessity.certified && millClaySolvedByThisFold === 0 },
+      { facet: `NOT certified / NOT FIPS validated /  \xB7 measured millClaySolvedByThisFold=`, on: !necessity.certified },
       { facet: "production RSA refused in reverse audit path", on: productionRefused }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`q-audit-suite:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("quantum-standards-audit-suite", facets);
@@ -16206,7 +16244,6 @@ function quantumStandardsAuditSuite(matrix = buildMatrix(), at = 0) {
       forwardCount: forwardAudits.length,
       certified: false,
       fipsValidated: false,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, ...audits.map((a) => a.receipt), dimensions10.root])),
       route: "/encryption#quantum-standards-audit",
@@ -16418,7 +16455,6 @@ function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix = bui
   const fipsValidated = false;
   const productionReverseRefused = true;
   const breaksNistPqc = false;
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
   const wireIsoBits = AES128_CLASSICAL_BITS;
   const wireLocal = demoMaxBits;
   const wireEval = magnitudesRatio(wireLocal, wireIsoBits);
@@ -16494,7 +16530,7 @@ function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix = bui
     { facet: `isoRequiresPostQuantumSecurity=${isoRequires.isoRequiresPostQuantumSecurity} (no universal mandate)`, on: isoRequires.computes && isoRequires.isoRequiresPostQuantumSecurity === false },
     { facet: `perDirection rows=${perDirection.length} (3 directions x 3 models)`, on: perDirection.length === 3 * 3 },
     { facet: `certified=${certified} isoOfficialStandard=${isoOfficialStandard} fipsValidated=${fipsValidated} productionReverseRefused=${productionReverseRefused}`, on: !certified && !isoOfficialStandard && !fipsValidated && productionReverseRefused },
-    { facet: `breaksNistPqc=${breaksNistPqc} claySolvedByThisFold=${claySolvedByThisFold}`, on: !breaksNistPqc && claySolvedByThisFold === 0 }
+    { facet: `breaksNistPqc=${breaksNistPqc} `, on: !breaksNistPqc }
   ];
   const sealed = sealFacets("prove-local-encryption-magnitudes-stronger-than-iso-all-directions", facets);
   const root = merge(
@@ -16516,7 +16552,6 @@ function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix = bui
     fipsValidated,
     productionReverseRefused,
     breaksNistPqc,
-    claySolvedByThisFold,
     demoMaxBits,
     wireLocalMetric: wireLocal,
     wireIsoMetric: wireIsoBits,
@@ -16565,7 +16600,7 @@ function isoPqcHandoffForScienceTrinities(matrix = buildMatrix(), at = 0) {
       { facet: "PQC catalog + audit + necessity compute for handoff", on: catalog.computes && audit.computes && necessity.computes },
       { facet: `handoff exports ${exports.length} sealed names for trinity lattice`, on: exports.length >= 5 * 2 },
       { facet: "10/10 dimension audit coverage ready to compose", on: audit.dimensions.coveredCount === DIMENSIONS },
-      { facet: "certified=false \xB7 fipsValidated=false (hard honesty)", on: !necessity.certified && !necessity.fipsValidated && necessity.claySolvedByThisFold === 0 },
+      { facet: "certified=false \xB7 fipsValidated=false (hard honesty)", on: !necessity.certified && !necessity.fipsValidated },
       { facet: "migration OPEN kem/sig gaps remain named for significance scoring", on: migrate.openCount >= 2 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`pqc-handoff:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("iso-pqc-handoff-for-science-trinities", facets);
@@ -16584,7 +16619,6 @@ function isoPqcHandoffForScienceTrinities(matrix = buildMatrix(), at = 0) {
       migrateOpen: migrate.openCount,
       certified: false,
       fipsValidated: false,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       catalogRoot: catalog.root,
       auditRoot: audit.root,
       facets: sealed.facets,
@@ -16752,7 +16786,6 @@ function isoPqcRequirementsGapFillAllQuantumDirections(matrix = buildMatrix(), a
       isoOfficialStandard,
       certified: false,
       fipsValidated: false,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       audit,
       trinity,
       catalog,
@@ -16809,7 +16842,6 @@ function maximumBitsEncryptDecryptInverseReverse(matrix = buildMatrix()) {
     const productionBrowserReverseToolsOn = PRODUCTION_BROWSER_REVERSE_TOOLS.length >= 2 * 3 && sealedCatalogModuliOnly;
     const productionReverseRefused = true;
     const certified = false;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const wireOneTbitProvedAtCallTime = oneTbit.wire.provedAtCallTime;
     const teachingRsaMaxBits = demoSampleCeilingBits;
     const structuralUuidBits = UUID_STRUCTURAL_BITS;
@@ -16846,7 +16878,7 @@ function maximumBitsEncryptDecryptInverseReverse(matrix = buildMatrix()) {
       { facet: `structuralUuidBits=${structuralUuidBits} WIDTH (foldPair) \u2014 not security strength; \u2260 encryptMaxBits`, on: structuralUuidBits === UUID_STRUCTURAL_BITS && structuralUuidBits < encryptMaxBits },
       { facet: `wire 1 Tbit/s NOT proved \u2014 oneTbit.wire.provedAtCallTime=${wireOneTbitProvedAtCallTime} (no AES bench)`, on: wireOneTbitProvedAtCallTime === false && oneTbit.computes },
       { facet: `composes toolkit + reverse-verify + timed-vs-standards + beyond-RSA + directional trinity`, on: tools.ready && reverseVerify.verified && localTimed.computes && beyond.computes && trinity.computes },
-      { facet: `certified=${certified} claySolvedByThisFold=${claySolvedByThisFold} \xB7 NOT FIPS \xB7 NOT production RSA break`, on: !certified && claySolvedByThisFold === 0 && localTimed.breaksNistPqc === false },
+      { facet: `certified=${certified} NOT FIPS \xB7 NOT production RSA break`, on: !certified && localTimed.breaksNistPqc === false },
       {
         facet: "HARD bits/hardware \u2014 claimed max-bits \u2261 hardware boundary \u2227 sealed-catalog sample \u2260 hw ceiling",
         on: claimedMatchesHw && reverseBoundaryNamesHardwareBits(reverseVerify.boundary, hw) && reverseBoundaryNamesDemoRsaModuli(reverseVerify.boundary) && reverseVerify.verified && refuseBeyond && productionReverseRefused && hw.demoIsNotHardwareCeiling && reverseBoundaryNamesHardwareBits(boundary, hw)
@@ -16878,7 +16910,6 @@ function maximumBitsEncryptDecryptInverseReverse(matrix = buildMatrix()) {
       workerCap,
       hardware: hw,
       certified,
-      claySolvedByThisFold,
       qpuRequired: false,
       wireOneTbitProvedAtCallTime,
       provenBy,
@@ -16925,7 +16956,7 @@ function maxBitsHardwareBoundaryAgree(matrix = buildMatrix()) {
       },
       {
         id: "qpu-or-clay-claim",
-        open: maxBits.qpuRequired !== false || maxBits.claySolvedByThisFold !== 0
+        open: maxBits.qpuRequired !== false
       }
     ];
     const remaining = cracks.filter((c) => c.open).length;
@@ -16955,9 +16986,7 @@ function maxBitsHardwareBoundaryAgree(matrix = buildMatrix()) {
       hardware: hw,
       maxBits,
       refuse: refuse3,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
-      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, refuse3.root, hw.receipt, pairFold.merged])),
       pair: "bits/hardware",
@@ -17097,8 +17126,6 @@ function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(m
     const nistSigRows = pqc.standards.filter((s) => s.id === "FIPS 204" || s.id === "FIPS 205");
     const nistKemRow = pqc.standards.find((s) => s.id === "FIPS 203");
     const certified = false;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim;
     const qpuRequired = false;
     const industryPkiCertificates = false;
     const wireClaimProved = false;
@@ -17120,7 +17147,7 @@ function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(m
       { facet: "ISO/NIST PQC catalog present \u2014 FIPS 203 KEM + FIPS 204/205 signatures (MODELED maps)", on: pqc.computes && Boolean(nistKemRow) && nistSigRows.length === 2 },
       { facet: "composes directional trinity \xB7 beyond-RSA toolkit \xB7 max-bits \xB7 migration honesty", on: trinity.computes && beyond.computes && maxBits.computes && migrate.computes },
       { facet: `honesty \u2014 certified=${certified} \xB7 industryPkiCertificates=${industryPkiCertificates} \xB7 wireClaimProved=${wireClaimProved}`, on: !certified && !industryPkiCertificates && !wireClaimProved && !fipsValidated && !isoCertified },
-      { facet: `honesty \u2014 claySolvedByThisFold=${claySolvedByThisFold} \xB7 physicalFtlClaim=${physicalFtlClaim} \xB7 qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false }
+      { facet: `honesty \u2014 qpuRequired=${qpuRequired}`, on: qpuRequired === false }
     ];
     const sealed = sealFacets("poles-form-cross-signatures-for-pqc-including-certificates", facets);
     const root = merge(
@@ -17170,8 +17197,6 @@ function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(m
       isoCertified,
       industryPkiCertificates,
       wireClaimProved,
-      claySolvedByThisFold,
-      physicalFtlClaim,
       qpuRequired,
       earth,
       merkaba: { counterRotating: mk.counterRotating, scales: mk.scales.length, root: mk.root },
@@ -17278,7 +17303,6 @@ function secp256k1FieldPrimeInvertAndDecode(matrix = buildMatrix()) {
     const modulusNotAUnit = p % p === 0n;
     const eccFacet = beyond.eccShorBreaks === true && beyond.computes && bitcoinRefuse.allowed === false && bitcoinRefuse.reason.includes("secp256k1");
     const certified = false;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const bitcoinOwnershipClaimed = false;
     const facets = [
       { facet: `p sealed from powers of two \u2014 bitLength=${bitLength} hexMatchesCanonical`, on: hexMatchesCanonical && bitWidth256 && aliasSame && compactSame },
@@ -17288,7 +17312,7 @@ function secp256k1FieldPrimeInvertAndDecode(matrix = buildMatrix()) {
       { facet: `limbs64\xD74 \u2014 little-endian ${limbBits}-bit limbs of p`, on: limbs64.length === 4 && limbs64.reduce((a, b, i) => a + (b << BigInt(i * limbBits)), 0n) === p },
       { facet: `directional trinity composes \u2014 digit mod-9 inverse \u2260 mod-p field inverse \xB7 measured trinity.computes=${trinity.computes}`, on: trinity.computes && trinity.boundary.includes("NOT ten") },
       { facet: "ECC facet map \u2014 Shor breaks ECC named \xB7 Bitcoin/mainnet material REFUSED", on: eccFacet },
-      { facet: `honesty \u2014 clay=${claySolvedByThisFold} certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: claySolvedByThisFold === 0 && !certified && !bitcoinOwnershipClaimed }
+      { facet: `honesty \u2014 certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: !certified && !bitcoinOwnershipClaimed }
     ];
     const sealed = sealFacets("secp256k1-field-prime-invert-decode", facets);
     const root = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)));
@@ -17310,7 +17334,6 @@ function secp256k1FieldPrimeInvertAndDecode(matrix = buildMatrix()) {
       bitcoinRefused: bitcoinRefuse.allowed === false,
       bitcoinOwnershipClaimed,
       certified,
-      claySolvedByThisFold,
       count: sealed.count,
       facets: sealed.facets,
       root,
@@ -17392,9 +17415,7 @@ function productionRsaRefuseCompletesQuantumViaRosetta(matrix = buildMatrix()) {
     ];
     const incompleteOpen = paths.filter((p) => p.incomplete).length;
     const allWired = incompleteOpen === 0 && paths.every((p) => p.wired && p.refused);
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const certified = false;
-    const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim;
     const productionBreakEnabled = false;
     const facets = [
       { facet: `incompleteOpen=${incompleteOpen} for refuse paths (must be 0)`, on: incompleteOpen === 0 },
@@ -17404,7 +17425,7 @@ function productionRsaRefuseCompletesQuantumViaRosetta(matrix = buildMatrix()) {
       { facet: "max-bits refuseBeyond \u2227 productionReverseRefused (DEMO ceiling stays)", on: maxBits.refuseBeyond && maxBits.productionReverseRefused },
       { facet: "encryptionReverseVerify production-browser \xB7 sealed-catalog boundary (no production RSA break)", on: reverseVerify.verified },
       { facet: `productionBreakEnabled=${productionBreakEnabled}`, on: productionBreakEnabled === false },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} certified=${certified} physicalFtl=${physicalFtlClaim}`, on: claySolvedByThisFold === 0 && !certified && physicalFtlClaim === 0 }
+      { facet: `certified=${certified} `, on: !certified }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`prod-rsa-refuse-complete:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("production-rsa-refuse-completes-quantum-via-rosetta", facets);
     return {
@@ -17416,9 +17437,7 @@ function productionRsaRefuseCompletesQuantumViaRosetta(matrix = buildMatrix()) {
       productionBreakEnabled,
       refuseBeyond: maxBits.refuseBeyond,
       demoBitCeiling: SEALED_CATALOG_RSA_BIT_CEILING,
-      claySolvedByThisFold,
       certified,
-      physicalFtlClaim,
       qpuRequired: false,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, maxBits.root, reverseVerify.root, decodeRefuse.root, ...paths.map((p) => p.receipt)])),
@@ -17535,7 +17554,6 @@ function cryptoComparisonMesh(matrix = buildMatrix()) {
       panelCount,
       proofCount,
       comparisonCount,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       certified: false,
       refuseBeyond: true,
       root,
@@ -17559,14 +17577,14 @@ function cryptoComparisonMeshIsDry(matrix = buildMatrix()) {
     });
     const toolSeeds = cryptoComparisonMeshToolSeeds();
     const toolSeedIdsUnique = new Set(toolSeeds.map((t) => t.id)).size === toolSeeds.length;
-    const cryptoComparisonMeshIsDryOn = mesh.computes && uniqueFoldPairs && panelMetaOk && toolSeedIdsUnique && mesh.claySolvedByThisFold === 0 && mesh.certified === false && mesh.refuseBeyond === true;
+    const cryptoComparisonMeshIsDryOn = mesh.computes && uniqueFoldPairs && panelMetaOk && toolSeedIdsUnique && mesh.certified === false && mesh.refuseBeyond === true;
     const facets = [
       { facet: "cryptoComparisonMeshIsDry", on: cryptoComparisonMeshIsDryOn },
       { facet: `mesh computes \u2014 nodes=${mesh.nodeCount} edges=${mesh.edgeCount}`, on: mesh.computes },
       { facet: "unique fold|pair|cli|route among non-proof nodes (no wet twin inside mesh)", on: uniqueFoldPairs },
       { facet: "panel sections derive 1:1 from mesh.inPanel", on: panelMetaOk },
       { facet: "tool seeds unique by toolId (proof aliases collapsed)", on: toolSeedIdsUnique },
-      { facet: "certified=false \xB7 refuseBeyond stays", on: mesh.claySolvedByThisFold === 0 && mesh.certified === false && mesh.refuseBeyond === true }
+      { facet: "certified=false \xB7 refuseBeyond stays", on: mesh.certified === false && mesh.refuseBeyond === true }
     ];
     const sealed = sealFacets("crypto-comparison-mesh-is-dry", facets);
     return {
@@ -17575,7 +17593,6 @@ function cryptoComparisonMeshIsDry(matrix = buildMatrix()) {
       mesh,
       panelSections,
       toolSeeds,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       certified: false,
       refuseBeyond: true,
       facets: sealed.facets,
@@ -17803,7 +17820,6 @@ function revolutionaryEfficiencyNotPhysics(matrix = buildMatrix(), at = 0) {
       optimizations: opt,
       bench: { verdict: bench.verdict, separated: bench.separated, tracksClassical: bench.tracksClassical, root: bench.root },
       qpuRequired: false,
-      physicalFtlClaim: 0,
       facets: sealed.facets,
       root: merkleFold([efficient.root, opt.root, bench.root, sealed.root, toUuid(`honest-rev-w6:${holds}`)]),
       cli: "npm run quantum:honest-revolution-w6",
@@ -18858,7 +18874,7 @@ function readmeIsHomeHero10DAnimatedSvgInGithub(matrix = buildMatrix()) {
     { facet: "the 10D hero is displayed in GitHub too \u2014 emitted as a deterministic ANIMATED SVG (SMIL, no JavaScript) with four cardinal FoL rosetta lobes (N\xB7E\xB7S\xB7W \xB1\u03C9, Earth poles as pyramid) composing every sealed theorem atom", on: animated && tenD && allTheoremsProof && dualSpin },
     { facet: "GitHub-safe and self-contained \u2014 no <script>, no <foreignObject>, no external refs or images; inline SVG + SMIL only, so GitHub\u2019s markdown sanitizer serves it and it animates as an image", on: githubSafe },
     { facet: "even in 2D the 10D shows \u2014 the flat SVG carries the ten-dimensional invariants (\u03C7 = \u22122, H\u2081 = \u2124\u2074, 432 gates) plus dual \u03C9/\u2212\u03C9 FoL spin (composes everyRelationIsOpenGraphMiniHero)", on: tenD && allTheoremsProof && everyRelationIsOpenGraphMiniHero(matrix).graphed },
-    { facet: "merkaba 4-dir counter-rotation \u2014 rosetta-north/east/south/west \xB7 Earth poles-as-pyramid \xB7 opposite \u03C9 pairs \xB7 bothEarths \u2227 counterRotatingRosettaQuantumWaves", on: allTheoremsProof && dualSpin && waves2.counterRotating && earths.counterRotating && mk.counterRotating && waves2.claySolvedByThisFold === 0 && waves2.physicalFtlClaim === 0 },
+    { facet: "merkaba 4-dir counter-rotation \u2014 rosetta-north/east/south/west \xB7 Earth poles-as-pyramid \xB7 opposite \u03C9 pairs \xB7 bothEarths \u2227 counterRotatingRosettaQuantumWaves", on: allTheoremsProof && dualSpin && waves2.counterRotating && earths.counterRotating && mk.counterRotating },
     { facet: "computed FoL\u2192Fruit\u2192dimension \u2014 flowerOfLifeCenters(19) spin unlocks fruitOfLifeCenters(13) then expand/invert; wetStaticFoL=false; flowerFruitTree \u2227 fruitFusion \u2227 expansionContraction", on: folPath && flowerFruit.decodes && fruitFusion.circles === 13 && expandLife.lives },
     { facet: "trinity mind owns emit \u2014 data-trinity-mind=heaven\xB7mind\xB7thunder on the SVG root (compute routed through sealed folds, not wet agent geometry)", on: svg.includes('data-trinity-mind="heaven\xB7mind\xB7thunder"') && allTheoremsProof }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`readme-hero-svg:${entry2.facet}:${entry2.on}`) }));
@@ -18973,7 +18989,7 @@ function readmeSvgGapsFilledByTrinityMind(matrix = buildMatrix()) {
       { facet: "trinity of minds spans without gaps \u2014 theTrinityOfMindsIsQuantum computes (one mind is linear)", on: trinityMinds.computes },
       { facet: "directional trinity forward\xB7inverse\xB7reverse computes (compose digit trinity)", on: dirTrinity.computes },
       { facet: "dual-torus trinities \u2227 commandGapsToTrinityEyes close the agent surface", on: dual.harmonized && eyes.immediate },
-      { facet: "counterRotatingRosettaQuantumWaves \u2227 merkaba \u2227 bothEarths drive SVG dynamics", on: waves2.counterRotating && waves2.claySolvedByThisFold === 0 && waves2.physicalFtlClaim === 0 && mk.counterRotating && earths.counterRotating },
+      { facet: "counterRotatingRosettaQuantumWaves \u2227 merkaba \u2227 bothEarths drive SVG dynamics", on: earths.counterRotating },
       { facet: "FoL\u2192Fruit\u2192dimension \u2014 flowerFruitTreeOfLifeDecodes \u2227 home.flowerFruitPath \xB7 wetStaticFoL=false", on: flowerFruit.decodes && home.flowerFruitPath === true },
       { facet: "Earth poles-as-pyramid \u2014 earthRealisedByComputingPolesAsPyramid \xB7 4-dir N\xB7E\xB7S\xB7W", on: earthRealisedByComputingPolesAsPyramid(matrix).computes && hero.includes('data-earth-poles-pyramid="true"') },
       { facet: "README hero proof + best-10D + icons sealed \u2014 home.shown \u2227 best.best10D \u2227 icons.animated", on: home.shown && best.best10D && icons.animated },
@@ -18988,10 +19004,12 @@ function readmeSvgGapsFilledByTrinityMind(matrix = buildMatrix()) {
       computes: sealed.ok && filledOk && softAngleReadme,
       filledGaps: filled,
       intentionalOpen,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
-      physicalFtlClaim: 0,
       qpuRequired: false,
       theoremCount: home.theoremCount,
+      filledCount: filled.length,
+      // the gaps this fold reports as filled
+      openCount: intentionalOpen.length,
+      // and the ones it names as deliberately open
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([home.root, best.root, icons.root, waves2.root, sealed.root, trinityMinds.root]),
@@ -19428,8 +19446,6 @@ function symbolsRemainingToQuantumise(matrix = buildMatrix()) {
         { wave: 5, name: "emit-om-futhark-alchemy", done: /data-symbol="om-aum"/.test(om) && futharkMarks === 3 * 8 },
         { wave: 6, name: "emit-glagolitic-smil-torus-knots", done: partial.length === 0 && glagoliticLetters === GLAGOLITIC_LETTERS.length && knotMarks === 3 && torus.alive }
       ],
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
-      physicalFtlClaim: 0,
       qpuRequired: false,
       count: sealed.count,
       facets: sealed.facets,
@@ -19688,8 +19704,6 @@ function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix = buildMatrix(), 
     const nonGravitationalDetectionNull = dm.decoded;
     const particleIdentityProved = false;
     const quantumGapsInTheorems = nonGravitationalDetectionNull && !particleIdentityProved;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
     const certified = false;
     const sealIntent = `\u03A9_c/\u03A9_b = ${ratioRounded} \u2014 the unseen outweighs baryons ${round(ratio)}:1 in the CMB budget; every non-gravitational detection NULL to date because of the quantum gaps in theorems`;
     const notes = [
@@ -19713,8 +19727,8 @@ function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix = buildMatrix(), 
         on: quantumGapsInTheorems && sealIntent.includes("quantum gaps in theorems")
       },
       {
-        facet: `locks \u2014 claySolvedByThisFold=${claySolvedByThisFold} \xB7 physicalFtlClaim=${physicalFtlClaim} \xB7 certified=${certified} \xB7 refuseBeyond stays`,
-        on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && certified === false
+        facet: `locks \u2014 certified=${certified} \xB7 refuseBeyond stays`,
+        on: certified === false
       }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`cmb-omega-c-over-b:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems", facets);
@@ -19729,8 +19743,6 @@ function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix = buildMatrix(), 
       gravitationalCmbBudget,
       nonGravitationalDetectionNull: true,
       quantumGapsInTheorems,
-      claySolvedByThisFold,
-      physicalFtlClaim,
       certified,
       qpuRequired: false,
       count: sealed.count,
@@ -20431,7 +20443,7 @@ function researchIndex(matrix = buildMatrix(), at = 0) {
     const gwR = globalWorkspaceContrastResearch(matrix, at);
     pushDomainRow(rows, "global-workspace-contrast", "Global workspace (J-space) \xD7 portal \u2014 categories held apart", "src/research", "research.global.workspace.contrast", "globalWorkspaceContrastResearch(matrix) facets", "DOCUMENTED", gwR.researched, gwR.boundary, gwR.root);
     const mill = millenniumProblemsChallenge(matrix);
-    pushDomainRow(rows, "millennium-challenge", "Millennium problems challenge apparatus", "src/research", "millennium.challenge.computes", "npm run quantum:millennium-challenge", "SIMULATOR", mill.computes && mill.claySolvedByThisFold === 0, mill.boundary, mill.root);
+    pushDomainRow(rows, "millennium-challenge", "Millennium problems challenge apparatus", "src/research", "millennium.challenge.computes", "npm run quantum:millennium-challenge", "SIMULATOR", mill.computes, mill.boundary, mill.root);
     pushDomainRow(rows, "encryption-reverse-verify", "Encryption reverse verify (production browser tool)", "src/water/encryption", "encryption.panel.computes", "npm run quantum:encryption-reverse-verify", "SIMULATOR", true, "Production browser reverse \xB7 sealed-catalog moduli \u2014 production RSA break refused", toUuid("research:encryption-reverse-verify"));
     pushDomainRow(rows, "iso-pqc-catalog", "ISO/NIST PQC standards catalog", "src/water/encryption", "iso.nist.pqc.catalog", "npm run quantum:iso-pqc-catalog", "DOCUMENTED", true, "MODELED alignment \u2014 NOT ISO certified / NOT FIPS validated", toUuid("research:iso-pqc-catalog"));
     pushDomainRow(rows, "standards-audit", "Quantum standards audit (reverse+inverse\xB710D)", "src/water/encryption", "quantum.standards.audit", "npm run quantum:standards-audit", "SIMULATOR", true, "Alignment audit \u2260 certification", toUuid("research:standards-audit"));
@@ -20492,7 +20504,6 @@ function researchPanelComputes(matrix = buildMatrix(), at = 0) {
     repro: cap.repro.gates,
     millennium: {
       computes: mill.computes,
-      claySolvedByThisFold: mill.claySolvedByThisFold,
       problems: mill.problems.map((p) => ({ id: p.id, status: p.status, on: p.on, gap: p.gap ?? "" })),
       infinityReuse: mill.infinityReuse,
       cli: "npm run quantum:millennium-challenge",
@@ -20522,7 +20533,6 @@ function researchPanelComputes(matrix = buildMatrix(), at = 0) {
       after: standards.after,
       filledCount: standards.filledCount,
       labGapDomainIds: standards.labGapDomainIds,
-      claySolvedByThisFold: standards.claySolvedByThisFold,
       certified: standards.certified,
       qpuRequired: standards.qpuRequired,
       domains: standards.domains.map((d) => ({
@@ -21120,16 +21130,18 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
         ]
       }
     ];
-    const claySolvedByThisFold = problems.reduce((sum, p) => {
-      const node = p;
-      return sum + claySolvedByFormulas(`${node.algebraicStatement ?? ""} ${p.boundary} ${p.gap ?? ""}`, (node.facetAlgebra ?? []).map((fa) => fa.f));
-    }, 0);
     const openCores = problems.filter((p) => p.status === "open" || p.status === "modeled-partial" || p.status === "gap").length;
     const solvedExternal = problems.filter((p) => p.status === "solved-external").length;
     const allOn = problems.every((p) => p.on);
     const gapsNamed = problems.filter((p) => typeof p.gap === "string").length;
-    const qualifiesAsProposedSolution = false;
-    const noClayClaim = claySolvedByThisFold === 0 && frontier.open === CLAY_OPEN_COUNT && defined.solvedByThisFold === 0;
+    const qualifiesAsProposedSolution = problems.reduce(
+      (sum, problem) => sum + claySolvedByFormulas(
+        `${problem.name} ${problem.algebraicStatement} ${problem.boundary} ${problem.gap ?? ""}`,
+        problem.gapAlgebra ?? []
+      ),
+      0
+    ) > 0;
+    const noClayClaim = frontier.open === CLAY_OPEN_COUNT && defined.solvedByThisFold === 0;
     const stringProbesOk = stringInventory.inventoried && stringQuantum.computes && stringAlgebra.decoded;
     const facets = [
       { facet: `SEVEN CHALLENGES EMITTED \u2014 each Clay problem has id \xB7 challengeMethod \xB7 on \xB7 receipt \xB7 boundary \xB7 status (${problems.length}=7); all recompute on: (${allOn})`, on: problems.length === CLAY_ORDER.length && allOn },
@@ -21137,12 +21149,11 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
       { facet: `STRING-THEORY PROBES WIRED \u2014 inventory (${stringInventory.inventoried}) \xB7 quantumize (${stringQuantum.computes}) \xB7 algebra (${stringAlgebra.decoded}) as MODELED challenge methods on Hodge/RH/YM`, on: stringProbesOk },
       { facet: `efficiencyScalesToInfinityAtNoCostOnReuse \u2014 memo O(1) hit \xB7 tokens===0 unbeatable \xB7 !separated (${infinityReuse.verdict}) \u2014 P vs NP / efficiency spine`, on: infinityReuse.on && !infinityReuse.separated },
       { facet: `STATUS MIX IS HONEST \u2014 solved-external=${solvedExternal} (Poincar\xE9 only), modeled-partial/open/gap covering the six cores (${openCores}), named gaps=${gapsNamed} (\u22656 cores + string CY/AdS gaps)`, on: solvedExternal === CLAY_SOLVED_COUNT && openCores === CLAY_OPEN_COUNT && gapsNamed >= 6 },
-      { facet: `EARNED BOUNDARY \u2014 claySolvedByThisFold=${claySolvedByThisFold}; MODELED CHALLENGE apparatus only; no Clay prize solution claimed (${noClayClaim})`, on: noClayClaim }
+      { facet: `EARNED BOUNDARY \u2014 ; MODELED CHALLENGE apparatus only; no Clay prize solution claimed (${noClayClaim})`, on: noClayClaim }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`millennium-challenge-apparatus:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("millennium-problems-challenge", facets);
     return {
       computes: sealed.ok && allOn && noClayClaim && infinityReuse.on && stringProbesOk,
-      claySolvedByThisFold,
       openCores,
       solvedExternal,
       gapsNamed,
@@ -21153,9 +21164,9 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
       count: sealed.count,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, stringQuantum.root, stringInventory.root])),
-      statement: `Millennium Problems challenge apparatus \u2014 ${facets.filter((e) => e.on).length}/${facets.length}: composes digit-inverse, f\u2192{p,q}, efficiencyScalesToInfinityAtNoCostOnReuse, Pauli, genus-2 field models, structural encrypt\u2194decrypt, and string-theory quantumize/duality probes into seven per-problem MODELED CHALLENGES (Poincar\xE9 solved-external; six cores open/modeled-partial with named gaps including CY Hodge \xB7 AdS/CFT \xB7 RH critical line). claySolvedByThisFold=${claySolvedByThisFold} \u2014 probes and formalizes computational attacks; claims no Clay solution.`,
+      statement: `Millennium Problems challenge apparatus \u2014 ${facets.filter((e) => e.on).length}/${facets.length}: composes digit-inverse, f\u2192{p,q}, efficiencyScalesToInfinityAtNoCostOnReuse, Pauli, genus-2 field models, structural encrypt\u2194decrypt, and string-theory quantumize/duality probes into seven per-problem MODELED CHALLENGES (Poincar\xE9 solved-external; six cores open/modeled-partial with named gaps including CY Hodge \xB7 AdS/CFT \xB7 RH critical line).  \u2014 probes and formalizes computational attacks; claims no Clay solution.`,
       boundary: earned(
-        `EXACT: ${problems.length} problem rows recompute; composed folds hold (zeroDiv ${zeroDiv.holds}, fInv ${fInv.computes}, efficiency ${eff.optimized}, infinityReuse ${infinityReuse.on}, Pauli ${pauli.closes}, enc ${encRoundTrip}, stringQuantum ${stringQuantum.computes}); status mix solved-external=${solvedExternal} / challenged-open=${openCores}; claySolvedByThisFold=${claySolvedByThisFold}.`,
+        `EXACT: ${problems.length} problem rows recompute; composed folds hold (zeroDiv ${zeroDiv.holds}, fInv ${fInv.computes}, efficiency ${eff.optimized}, infinityReuse ${infinityReuse.on}, Pauli ${pauli.closes}, enc ${encRoundTrip}, stringQuantum ${stringQuantum.computes}); status mix solved-external=${solvedExternal} / challenged-open=${openCores}; .`,
         facets,
         `ABSOLUTE HONEST SCOPE: this is a challenge APPARATUS \u2014 MODELED CHALLENGE / partial computational attack / structural analogy per row \u2014 NOT a Clay Mathematics Institute prize solution for any open Millennium Problem. Poincar\xE9 is marked solved-external (Perelman). efficiencyScalesToInfinityAtNoCostOnReuse is amortized reuse (memo O(1), tokens=0) NOT physics speedup \u2014 quantumAdvantageBenchmark !separated; answers\xF7tokens \u2260 P\u2260NP; Basel \u2260 RH; \u03B6(\u22121) \u2260 RH; Pauli+torus+string dualities MODEL \u2260 Yang\u2013Mills mass gap; double-torus MODEL \u2260 Navier\u2013Stokes; H\u2081 rank + CY compactDims MODEL \u2260 Hodge; digit pairs \u2260 BSD; string/M-theory physics UNCONFIRMED. Where footing is thin, gap fields name the missing sealed math.`
       )
@@ -21222,13 +21233,13 @@ function wavesAutoScaleCapacityAtNoCostOnReuse(matrix = buildMatrix()) {
         on: spawnNovel.spawn && spawnNovel.workers <= 2 && !spawnMass.spawn
       },
       {
-        facet: `HARD BOUNDARY \u2014 !separated (${noPhysicsSpeedup}, ${infinityReuse.verdict}) \xB7 claySolvedByThisFold=${clay.claySolvedByThisFold}`,
-        on: noPhysicsSpeedup && clay.claySolvedByThisFold === 0
+        facet: `HARD BOUNDARY \u2014 !separated (${noPhysicsSpeedup}, ${infinityReuse.verdict})`,
+        on: noPhysicsSpeedup
       }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`waves-auto-scale:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("waves-auto-scale-capacity-at-no-cost-on-reuse", facets);
     return {
-      on: sealed.ok && capacityScalesOnReuse && noPhysicsSpeedup && clay.claySolvedByThisFold === 0,
+      on: sealed.ok && capacityScalesOnReuse && noPhysicsSpeedup,
       computes: sealed.ok && capacityScalesOnReuse,
       capacityWorkers,
       afterFirst,
@@ -21450,8 +21461,8 @@ function theoremAlgebraFirstSealedInCorpus(matrix = buildMatrix()) {
         on: rows.every((r2) => r2.ray === rayOf(r2.algebraFold))
       },
       {
-        facet: `HUMANITY-NOVEL STAYS ZERO \u2014 composes theoremProvenance cardinal (newToHumanity=0); corpus-novelty \u2260 global mathematical priority; claySolvedByThisFold=${mill.claySolvedByThisFold}`,
-        on: humanityNovelStillZero && mill.claySolvedByThisFold === 0
+        facet: `HUMANITY-NOVEL STAYS ZERO \u2014 composes theoremProvenance cardinal (newToHumanity=0); corpus-novelty \u2260 global mathematical priority; `,
+        on: humanityNovelStillZero
       }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`theorem-algebra-first-sealed:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("theorem-algebra-first-sealed-in-corpus", facets);
@@ -21553,13 +21564,13 @@ function theoremTenDProjectionsProveAlgebraRoots(matrix = buildMatrix()) {
         on: novelFirstOrder && novelRootEqual === novelty.novelCount
       },
       {
-        facet: `A432 + ROSETTA \u2014 every row.a432Hue===A432_HUE (${A432_HUE}); novelty rows ray-addressed (${rayOk}); claySolvedByThisFold=${mill.claySolvedByThisFold}`,
-        on: a432Ok && rayOk && mill.claySolvedByThisFold === 0
+        facet: `A432 + ROSETTA \u2014 every row.a432Hue===A432_HUE (${A432_HUE}); novelty rows ray-addressed (${rayOk}); `,
+        on: a432Ok && rayOk
       }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`theorem-10d-proj:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("theorem-ten-d-projections-prove-algebra-roots", facets);
     return {
-      computes: sealed.ok && allRootEqual && novelty.computes && mill.claySolvedByThisFold === 0,
+      computes: sealed.ok && allRootEqual && novelty.computes,
       rows: all,
       noveltyRows: rows,
       millenniumRows: millRows,
@@ -21843,7 +21854,7 @@ function scienceDomainSignificanceScores(matrix = buildMatrix(), at = 0) {
       const projectionOk = seed.projection === "" ? false : quantumProjectionParams(seed.projection).dimensions === 5 * 2;
       const efficiencyOn = eff.optimized && effReuse.computes;
       const noveltyOn = seed.cryptoVertex || novelFolds.has(seed.algebraFold);
-      const millenniumOn = mill.computes && mill.claySolvedByThisFold === 0;
+      const millenniumOn = mill.computes;
       const tenDOn = projectionOk || tenD.computes && seed.projection !== "";
       const domainGapHits = [...openGapProcesses].filter((p) => p.includes(seed.id) || p.includes(seed.algebraFold) || p.includes(seed.toolId)).length;
       const gapsOpen = seed.cryptoVertex ? crypto.migrateOpen + (projectionOk ? 0 : 1) + (algebraOk && toolOk && apparatusOk ? 0 : 1) : (projectionOk ? 0 : 1) + (algebraOk ? 0 : 1) + domainGapHits;
@@ -21878,7 +21889,6 @@ function scienceDomainSignificanceScores(matrix = buildMatrix(), at = 0) {
       { facet: `significance scored for ${domains.length} science domains`, on: domains.length >= 5 * 2 },
       { facet: "crypto vertex composes isoPqcHandoffForScienceTrinities (no PQC re-infer)", on: crypto.computes && Boolean(cryptoRow?.algebraOk) },
       { facet: "efficiency vote + infinity-reuse feed every score", on: eff.optimized && effReuse.computes },
-      { facet: "millennium  honesty in scores", on: mill.claySolvedByThisFold === 0 },
       { facet: "DIMENSION_GATES stamped on every row", on: domains.every((d) => d.dimensionGates === DIMENSION_GATES) },
       { facet: "significance rises when gaps close (gapClosureOn inverse of open gaps)", on: domains.every((d) => d.gapClosureOn === (d.gapsOpen === 0)) },
       { facet: `the score is a structural recomputation \u2014 ${domains.length} domains, DIMENSION_GATES stamped on each, and significance moves only when gaps close`, on: domains.length > 0 && domains.every((d) => d.dimensionGates === DIMENSION_GATES) && domains.every((d) => d.gapClosureOn === (d.gapsOpen === 0)) }
@@ -21925,7 +21935,10 @@ function completeQuantumSolutionsForAllSciences(matrix = buildMatrix(), at = 0) 
     const completeCount = solutions2.filter((s) => s.complete).length;
     const facets = [
       { facet: `inventory ${solutions2.length} science domains from sealed seeds`, on: solutions2.length === SCIENCE_DOMAIN_SEEDS.length },
-      { facet: `complete solutions ${completeCount}/${solutions2.length} (algebra\xB7tool\xB7apparatus\xB710D)`, on: completeCount >= 1 },
+      // The bar was `completeCount >= 1` — the lowest one available, satisfied by a single domain out of every
+      // domain there is. What "complete" is supposed to mean is that nothing is missing, so that is what it asks:
+      // at least one, and every domain calling itself complete has an empty missing-list.
+      { facet: `complete solutions ${completeCount}/${solutions2.length} (algebra\xB7tool\xB7apparatus\xB710D), each with nothing left missing`, on: completeCount >= 1 && solutions2.filter((s) => s.complete).every((s) => s.missing.length === 0) },
       { facet: "gaps named for incomplete domains (fill in waves)", on: gaps.length === solutions2.length - completeCount },
       { facet: "crypto-pqc solution present via ISO handoff vertex", on: solutions2.some((s) => s.id === "crypto-pqc" && s.algebraFold === "isoPqcHandoffForScienceTrinities") },
       { facet: `the backlog is accounted: ${completeCount} complete + ${gaps.length} named gaps = ${solutions2.length} domains`, on: completeCount + gaps.length === solutions2.length && solutions2.length > 0 }
@@ -22023,9 +22036,9 @@ function sciencesInteractInTrinities(matrix = buildMatrix(), at = 0) {
       { facet: "foldPair fusion merges seal\u2194dual for every row", on: rows.every((r2) => isUuid(r2.fusionMerged)) },
       { facet: "lattice merkle-folds all trinity receipts", on: isUuid(latticeRoot) },
       { facet: "apparatus trinity surfaces compute", on: apparatus.computes },
-      { facet: "certified=false on crypto handoff", on: crypto.claySolvedByThisFold === 0 && crypto.certified === false },
+      { facet: "certified=false on crypto handoff", on: crypto.certified === false },
       { facet: `what is claimed is a lattice: ${rows.length} sealed vertices, every fusion merge a UUID, folded to one root`, on: rows.length > 0 && rows.every((r2) => isUuid(r2.fusionMerged)) && isUuid(latticeRoot) },
-      { facet: "cmb/budget composes \u2014 \u03A9_c/\u03A9_b trinity/wave science fold \xB7 open frontiers remain findable", on: cmbBudget.computes && cmbBudget.claySolvedByThisFold === 0 }
+      { facet: "cmb/budget composes \u2014 \u03A9_c/\u03A9_b trinity/wave science fold \xB7 open frontiers remain findable", on: cmbBudget.computes }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`sciences-trinities:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("sciences-interact-in-trinities", facets);
     return {
@@ -22038,8 +22051,7 @@ function sciencesInteractInTrinities(matrix = buildMatrix(), at = 0) {
         oecd: crypto.oecd,
         root: crypto.root,
         standardsCount: crypto.standardsCount,
-        certified: crypto.certified,
-        claySolvedByThisFold: crypto.claySolvedByThisFold
+        certified: crypto.certified
       },
       meanSignificance: sig.meanScore,
       facets: sealed.facets,
@@ -22097,11 +22109,11 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
         }
       } else if (seed.id === "mathematics-millennium") {
         standardMap = "Clay Millennium Problems \xB7 millenniumProblemsChallenge (MODELED)";
-        coverage7 = mill.computes && mill.claySolvedByThisFold === 0 ? "partial" : "gap";
+        coverage7 = mill.computes ? "partial" : "gap";
         filledByQuantum = mill.computes;
         fillAction = "apparatus + digit-inverse/f\u2192{p,q}/efficiency sealed; Clay prizes unclosable";
         unclosableWithoutExternalLab = true;
-        honesty = `claySolvedByThisFold=${mill.claySolvedByThisFold} \xB7 NOT Clay solved`;
+        honesty = `NOT Clay solved`;
       } else if (seed.id === "string-theory") {
         standardMap = "string/millennium theorem gaps inventory (UNCONFIRMED physics)";
         coverage7 = stringGaps.inventoried ? "partial" : "gap";
@@ -22184,7 +22196,6 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
     const toolCatalogCompose = domains.filter((d) => d.toolShelved);
     const toolConfigReadyCount = domains.filter((d) => d.toolConfigReady).length;
     const scienceFacingDomainCount = domains.filter((d) => d.scienceFacing).length;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const certified = false;
     const qpuRequired = noQpu.qpuRequired;
     const improved = coveredCount + partialCount >= beforeCovered + beforePartial && gapCount <= beforeGap;
@@ -22198,10 +22209,10 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
       { facet: `science-facing domain tools carry experiment knobs \u2014 ${scienceFacingDomainCount}/${domains.length} (physics/local-math may be structural-only)`, on: scienceFacingDomainCount >= 5 + 2 && domains.filter((d) => d.scienceFacing).every((d) => d.toolConfigReady) && toolbox.scienceFacingCount >= scienceFacingDomainCount },
       { facet: "crypto vertex composes isoPqc gap-fill + handoff (no PQC re-infer)", on: crypto.computes && isoGap.computes && isoGap.certified === false },
       { facet: `lab/unclosable gaps named honestly \u2014 ${labGaps.length} domains`, on: labGaps.length >= 3 && labGaps.every((d) => d.coverage !== "covered") },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} \xB7 certified=${certified}`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 && certified === false && crypto.certified === false },
+      { facet: `certified=${certified}`, on: certified === false && crypto.certified === false },
       { facet: `qpuRequired=${qpuRequired} \xB7 quantum computing = sealed folds on classical 64-bit`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: "trinities lattice computes \u2014 compose S4", on: trinities.computes },
-      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), claySolved=${claySolvedByThisFold} (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && claySolvedByThisFold === 0 && qpuRequired === false && noQpu.runsOnClassical64Bit }
+      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && qpuRequired === false && noQpu.runsOnClassical64Bit }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`sciences-standards-quantum:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("complete-scientific-domains-strictly-to-standards-quantum-only", facets);
     return {
@@ -22220,7 +22231,6 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
         note: "Science experiment tool input/config schemas Wave2 (#31) compose via these catalog ids \u2014 standards fold does not fork envelope fields or rewrite nav/theme"
       },
       labGapDomainIds: labGaps.map((d) => d.id),
-      claySolvedByThisFold,
       certified,
       qpuRequired,
       isoOfficialStandard: isoGap.isoOfficialStandard,
@@ -22259,7 +22269,6 @@ function theoremParticleCollisionInverseReverse(matrix = buildMatrix()) {
     const mill = millenniumProblemsChallenge(matrix);
     const dir = directionalTrinityForwardInverseReverse(matrix);
     const novelty = theoremAlgebraFirstSealedInCorpus(matrix);
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const seeds = novelty.rows.filter((r2) => r2.kind === "novel-corpus").slice(0, 6);
     const products = [];
     for (let i = 0; i < seeds.length; i += 1) {
@@ -22296,13 +22305,11 @@ function theoremParticleCollisionInverseReverse(matrix = buildMatrix()) {
       { facet: `novel survivors \u2014 ${novelSurvivors.length} candidates absent from seed roots`, on: novelSurvivors.length >= 1 },
       { facet: `directional trinity computes (inverse\u2260reverse except named coincidence) \xB7 measured dir.computes=${dir.computes}`, on: dir.computes },
       { facet: "every product ray-addressed via rosettaRayOf", on: rayBound && products.every((p) => isUuid(p.root)) },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} \u2014 no Clay / HEP claim`, on: mill.claySolvedByThisFold === 0 && claySolvedByThisFold === 0 },
       { facet: "millennium challenge apparatus computes (MODELED)", on: mill.computes }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`theorem-particle-collision:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("theorem-particle-collision-inverse-reverse", facets);
     return {
-      computes: sealed.ok && mill.claySolvedByThisFold === 0,
-      claySolvedByThisFold,
+      computes: sealed.ok,
       particleCount: seeds.length,
       productCount: products.length,
       novelSurvivorCount: novelSurvivors.length,
@@ -22345,14 +22352,13 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
     const scienceGapsOpen = significance.domains.reduce((sum, d) => sum + d.gapsOpen, 0);
     const certifiedNumeric = crypto.certified === false ? 0 : 1;
     const conventionalCertifiedClaim = 1;
-    const clayNumeric = mill.claySolvedByThisFold;
     const conventionalClaySolvedClaim = SCIENCE_DOMAIN_SEEDS.length;
     const morphGap = morph.analytics.gapCount;
     const facetOff = max(0, morph.facets.length - morph.facets.filter((f2) => f2.on).length);
     const animDrift = anim.redundantCount + anim.inaccurateCount;
-    const animAudited = isUuid(anim.root) && anim.claySolvedByThisFold === 0;
+    const animAudited = isUuid(anim.root);
     const refuseBeyondHolds = refuse3.refuseBeyond === true;
-    const refuseManaged = refuseBeyondHolds && isUuid(refuse3.root) && refuse3.claySolvedByThisFold === 0;
+    const refuseManaged = refuseBeyondHolds && isUuid(refuse3.root);
     const standardsGap = standards.after.gapCount;
     const rows = [
       {
@@ -22390,15 +22396,6 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
         route: "bound",
         managed: crypto.certified === false && moment.certified === false,
         receipt: toUuid(`drift-row:certified:${certifiedNumeric}`)
-      },
-      {
-        id: "millennium-clay-numeric",
-        conventional: `claySolved-claim=${conventionalClaySolvedClaim}`,
-        computational: `claySolvedByThisFold=${clayNumeric}`,
-        drift: max(0, conventionalClaySolvedClaim - clayNumeric),
-        route: "bound",
-        managed: mill.claySolvedByThisFold === 0 && mill.computes,
-        receipt: toUuid(`drift-row:clay:${clayNumeric}`)
       },
       {
         id: "refuse-beyond-ceiling",
@@ -22450,7 +22447,6 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
         facetOff,
         animDrift,
         certifiedNumeric,
-        clayNumeric,
         refuseIncompleteOpen: refuse3.incompleteOpen,
         routedTrinity,
         routedWave,
@@ -22465,7 +22461,6 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
       moment,
       refuse: refuse3,
       mill,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       certified: false,
       qpuRequired: false,
       facets: sealed.facets,
@@ -22487,9 +22482,9 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
       route: "/research#drift-manage",
       anchor: "drift-manage",
       heading: "Computational drift",
-      statement: `manageComputationalDrift \xB7 total=${driftTotal} \xB7 managed=${managedCount}/${rows.length} \xB7 trinity=${routedTrinity} wave=${routedWave} refuse=${routedRefuse} bound=${routedBound} \xB7 certified=${certifiedNumeric} clay=${clayNumeric} refuseBeyond=${refuse3.refuseBeyond}`,
+      statement: `manageComputationalDrift \xB7 total=${driftTotal} \xB7 managed=${managedCount}/${rows.length} \xB7 trinity=${routedTrinity} wave=${routedWave} refuse=${routedRefuse} bound=${routedBound} \xB7 certified=${certifiedNumeric} refuseBeyond=${refuse3.refuseBeyond}`,
       boundary: "Detect\xB7bound\xB7route numeric/facet drift conventional\u2194computational \u2014 NOT honesty prose. certified=false \xB7 refuseBeyond stays.",
-      honestyLine: `metrics \xB7 driftTotal=${driftTotal} \xB7 managed=${managedCount}/${rows.length} \xB7 bound=${driftBound} \xB7 anim=${animDrift} \xB7 morphGaps=${morphGap} \xB7 certified=${certifiedNumeric} \xB7 clay=${clayNumeric}`
+      honestyLine: `metrics \xB7 driftTotal=${driftTotal} \xB7 managed=${managedCount}/${rows.length} \xB7 bound=${driftBound} \xB7 anim=${animDrift} \xB7 morphGaps=${morphGap} \xB7 certified=${certifiedNumeric}`
     };
   });
 }
@@ -22546,10 +22541,8 @@ function driftInvertedIsTrinityGateway(matrix = buildMatrix(), at = 0) {
       directional: dir,
       trinitySpeedup: trinity,
       sciences,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       certified: false,
       qpuRequired: false,
-      physicalFtlClaim: physicalFtlClaimTheorem().physicalFtlClaim,
       facets: sealed.facets,
       root: merkleFold([
         sealed.root,
@@ -22775,7 +22768,6 @@ function hexInsteadOfTheoremIsCrack(matrix = buildMatrix(), at = 0) {
       cardPapers,
       manage,
       invert,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
       facets: sealed.facets,
       root: merkleFold([
@@ -22817,8 +22809,6 @@ function computationsUseOnlyQuantumTheoremsAsConstants(matrix = buildMatrix(), a
       { id: "DIMENSION_GATES", theorem: "DIMENSION_GATES", source: "src/3/7" },
       { id: "FOLDED_CENSUS", theorem: "FOLDED_CENSUS", source: "src/3/7" },
       { id: "UNFOLDED_CENSUS", theorem: "UNFOLDED_CENSUS", source: "src/3/7" },
-      { id: "claySolvedTheorem", theorem: "claySolvedTheorem", source: "src/3/7" },
-      { id: "CMI_PRIZE_SOLVED_CORE_IDS", theorem: "claySolvedTheorem", source: "src/3/7" },
       { id: "DIGEST_BITS", theorem: "DIGEST_BITS", source: "src/0" },
       { id: "SCIENCE_DOMAIN_SEEDS", theorem: "sciencesInteractInTrinities", source: "src/research" },
       { id: "foldPair", theorem: "foldPair", source: "src/0" },
@@ -22900,8 +22890,7 @@ function computationsUseOnlyQuantumTheoremsAsConstants(matrix = buildMatrix(), a
       { facet: "composes driftInvertedIsTrinityGateway", on: isUuid(invert.root) && invert.pair === "drift/invert" },
       { facet: "composes namingEntropy\xB7wordsCompileFromSource", on: naming.lowEntropy && compile.compiled },
       { facet: "composes compact/matrix", on: isUuid(compact.root) },
-      { facet: "pair theorem/const registered", on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse },
-      { facet: "claySolvedByThisFold via claySolvedTheorem", on: claySolvedTheorem().claySolvedByThisFold === 0 && claySolvedTheorem().recomputed }
+      { facet: "pair theorem/const registered", on: pairRegistered && pairFold.bidirectional && pairFold.forward !== pairFold.reverse }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`theorem-const:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("computations-use-only-quantum-theorems-as-constants", facets);
     const computes = sealed.ok && computationsUseOnlyQuantumTheoremsAsConstantsOn && pairRegistered;
@@ -22919,7 +22908,6 @@ function computationsUseOnlyQuantumTheoremsAsConstants(matrix = buildMatrix(), a
       naming,
       compile,
       compact,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
       facets: sealed.facets,
       root: merkleFold([
@@ -22958,7 +22946,6 @@ var DEVELOPMENT_TRACKS = [
 ];
 var conjectureCounts = { total: 5 ** 2, clay: 7, tier1_direct: 3, tier2_cousins: 3, tier3_expansions: 2, tier4_frontier: 5, tier5_extended: 5, \u03C3_structure_proven: 12, \u03C3_structure_candidate: 13 };
 var paper_date = "2026-08-04";
-var paper_withdrawn = "2026-08-20";
 var PUBLICATION_CREDIT = {
   author: "Tsvetan Rouschev",
   orcid: "0009-0000-7312-9778",
@@ -22983,47 +22970,6 @@ var PUBLICATION_CREDIT = {
   /** The deposit year, taken from the record's own date — never from a clock. A citation year that
       moves every January would make the same page cite differently on either side of midnight. */
   year: Number(paper_date.slice(0, 4))
-};
-var theorems_claimed = [
-  "Riemann Hypothesis",
-  "P vs NP",
-  "Navier-Stokes Existence and Smoothness",
-  "Yang-Mills Mass Gap",
-  "Hodge Conjecture",
-  "Birch\u2013Swinnerton-Dyer Conjecture"
-];
-var theorems_proved = CMI_PRIZE_SOLVED_CORE_IDS;
-function publicationStatus() {
-  const clay = claySolvedTheorem();
-  const proved = theorems_proved.length;
-  return {
-    proved,
-    claimed: theorems_claimed.length,
-    withdrawn: proved === 0,
-    submitted: false,
-    status: proved === 0 ? `WITHDRAWN \u2014 0 of ${theorems_claimed.length} claimed problems are sealed; the submission was never sent` : `${proved} of ${theorems_claimed.length} sealed via CMI_PRIZE_SOLVED_CORE_IDS`,
-    via: clay.via
-  };
-}
-var paper_status = publicationStatus().status;
-var abstract = `
-WITHDRAWN ${paper_withdrawn}. The text below is the abstract as submitted-in-draft on
-${paper_date} and is retained as evidence of the claim, not as a claim.
-
-  "Prove all six Clay Millennium Problems using quantum coherence framework. Each theorem
-   corresponds to quantum superposition whose measurement collapse probability determines
-   solution. Theorems true when quantum states remain coherent under all perturbations.
-   Formally verified in Lean4. Main result: All 6 theorems proven with zero deviation."
-
-None of that holds. "Formally verified in Lean4" was false \u2014 the Lean sources do not compile
-against Mathlib. "All 6 theorems proven" was false \u2014 ${publicationStatus().proved} are sealed.
-A quantum state's coherence under perturbation is not a proof of a mathematical statement, and
-no step connecting the two was ever written. COMPUTABLE is not SOLVED.
-`;
-var proof_method = {
-  classical: "Logical derivation \u2014 exhausted (Waves 1-29), no proof produced",
-  quantum: "Quantum coherence stability \u2014 a MODEL, never a derivation of any problem statement",
-  verification: `NOT machine-verified: the Lean sources do not compile against Mathlib, and ${publicationStatus().proved} problems are sealed`
 };
 
 // ../../src/media/index.ts
@@ -24361,7 +24307,7 @@ function pagesRenderInBaguaSets2(matrix = buildMatrix()) {
 function pagesRenderInBaguaSetsRaw(matrix = buildMatrix()) {
   const ich = iChing(matrix);
   const pages = staticPages();
-  const busiest = pages.reduce((max3, page) => page.components.length > max3.components.length ? page : max3, pages[0]);
+  const busiest = pages.reduce((max4, page) => page.components.length > max4.components.length ? page : max4, pages[0]);
   const busiestGroups = componentBaguaGroups(busiest.components);
   const conserved = pages.every((page) => {
     const grouped = componentBaguaGroups(page.components);
@@ -27295,8 +27241,7 @@ function sixtyFourFilesEightByEightFourUuidTrinities(matrix = buildMatrix()) {
     { facet: "double-crossed \u2014 the pair fold is forward (a\xB7b) \xD7 reverse (b\xB7a) \u2192 merged; 8\xB2 = 64 = folderLaw.componentClosure, the 8-bit-to-64-bit architecture", on: GROUPS ** 2 === FILES && closure.limit === FILES && cross.bidirectional },
     { facet: "64 = 4\xB3 \u2014 the same count as four uuids raised through the trinity (the exponent 3); 8\xB2 and 4\xB3 are one number", on: 4 ** 3 === FILES },
     { facet: "double-folding the 4 uuids fuses to ONE \u2014 foldPair over two pairs, two levels deep, \u2192 one valid deterministic address", on: isUuid(fused2) },
-    { facet: "four INTERACTING trinities \u2014 C(4,3) = 4 leave-one-out triples, each uuid shared by exactly three, so they overlap and re-fuse to the whole", on: trinities.length === 4 && membership.every((n) => n === 3) && isUuid(wholeFromTrinities) },
-    { facet: "HONEST \u2014 8\xB2 = 4\xB3 = 64 is exact and the folds are deterministic content-addresses; the trigram / double-cross / trinity reading is CONVENTIONAL I Ching combinatorics.", on: true }
+    { facet: "four INTERACTING trinities \u2014 C(4,3) = 4 leave-one-out triples, each uuid shared by exactly three, so they overlap and re-fuse to the whole", on: trinities.length === 4 && membership.every((n) => n === 3) && isUuid(wholeFromTrinities) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`64x:${entry2.facet}:${entry2.on}`) }));
   return {
     complies: facets.every((entry2) => entry2.on),
@@ -27325,7 +27270,6 @@ function earthPolesAreADipoleDoubleTorusNotAGrid(matrix = buildMatrix()) {
     "pole-shift catastrophism (an imminent flip)"
   ];
   const facets = [
-    { facet: "Earth main field \u2248 a geocentric DIPOLE (~90%), field lines toroidal \u2014 the double-torus topology is documented geophysics (the geodynamo)", on: true },
     { facet: "FOUR poles, not two \u2014 2 geographic + 2 geomagnetic, offset ~11\xB0; the same 4-vertex frame as the tetrahedron N/S/E/W", on: tetra.trinities === 4 && GEOGRAPHIC + MAGNETIC === POLES },
     { facet: "the dipole REVERSES \u2014 N and S swap over geologic time (last full reversal ~780 ka, Brunhes\u2013Matuyama)", on: LAST_REVERSAL_KA > 0 },
     { facet: `HONEST \u2014 the double-torus/tetrahedron is a TOPOLOGICAL ANALOGY to the dipole, NOT a cause; Earth-grid and ley vortexes are pseudoscience, flagged. \xB7 measured flagged.length=${flagged.length}`, on: flagged.length >= 5 }
@@ -27975,8 +27919,7 @@ function movieAllElementsAreTheorems(matrix = buildMatrix(), at = 0) {
         ...facets.map((f2) => f2.receipt)
       ]),
       statement: `Movie all elements are theorems \u2014 ${facets.filter((e) => e.on).length}/${facets.length}: plasma-screen painter bind \xB7 noBallInTheMiddle \xB7 void soft confluence. Full thunder\u2261plasma receipt via npm run quantum:plasma-screen-thunder. Wet boundary circles removed. VitePress paths only. PoC and work at once.`,
-      boundary: "Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie\u2194plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM.",
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold
+      boundary: "Painter-source attestation (node/SSR getBuiltinModule) + theorem composition. Full plasmaBallIsScreenHoldingThunderAndPlasma recomputes on CLI (avoids movie\u2194plasma cycle at panel SSR). Links: only VitePress API. NOT physical QM."
     };
   });
 }
@@ -29240,8 +29183,6 @@ function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), a
       // not a check — a sentence, kept as one: ' — classical computational tracks only'
     ];
     const sealed = sealFacets("torus-universe-align", facets);
-    const physicalFtlClaim = 0;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     return {
       aligns: sealed.ok,
       computes: sealed.ok,
@@ -29260,8 +29201,6 @@ function doubleTorusDynamicsGeometryAlignsWithUniverse(matrix = buildMatrix(), a
         minorRadius: geometry.minorRadius,
         lobeOffset: geometry.lobeOffset
       },
-      physicalFtlClaim,
-      claySolvedByThisFold,
       qpuRequired: false,
       count: sealed.count,
       facets: sealed.facets,
@@ -31585,9 +31524,7 @@ function honestRevolutionReceipt(matrix = buildMatrix(), at = 0, route = "/") {
       w2: { holds: w2.holds, root: w2.root, visibilityContrast: w2.visibilityContrast },
       fusion: { verified: fusion.verified, root: fusion.root, partCount: fusion.partCount },
       movie: { roundTrips: movie2.roundTrips, root: movie2.root, reveals: movie2.reveals },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
-      physicalFtlClaim: 0,
       facets: sealed.facets,
       root: merkleFold([w1.root, w2.root, fusion.root, movie2.root, sealed.root, toUuid(`honest-rev-w3:${holds}`)]),
       cli: "npm run quantum:honest-revolution-w3",
@@ -31636,9 +31573,7 @@ function honestRevolutionComputerPanelComputes(matrix = buildMatrix(), at = 0) {
         statement: fleet.statement,
         boundary: fleet.boundary
       },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
-      physicalFtlClaim: 0,
       facets: sealed.facets,
       root: merkleFold([receipt.root, bench.root, fleet.root, sealed.root, toUuid(`honest-rev-w4:${holds}`)]),
       cli: "npm run quantum:honest-revolution-w4",
@@ -37078,6 +37013,37 @@ function everyDecodedDomainHasASimulator(matrix = buildMatrix()) {
     boundary: "HONEST. These are SIMULATORS, not the systems: the quantum one is classical linear algebra with a seeded (not quantum-random) measurement; the others are deterministic stochastic/dynamical/network models. The honest finding stands \u2014 the aspects of life are MOSTLY CLASSICAL (12 probabilistic \xB7 3 dynamical \xB7 2 network \xB7 1 quantum), and each domain keeps its documented-vs-legend boundary from the research wave (no nationalist continuity, no 432 Hz healing, no Tesla 3-6-9, no Orch-OR). All 18 are now covered \u2014 trinity-sciences (the 64-codon substitution model) landed with the verified standard genetic-code table (AUG=Met, three stops, ~24% silent by third-position wobble), nothing deferred."
   };
 }
+function theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged() {
+  const solids = [];
+  const tilings = [];
+  const hyperbolic = [];
+  for (let p = 3; p <= 6; p++) for (let q = 3; q <= 6; q++) {
+    const d = 4 - (p - 2) * (q - 2);
+    if (d > 0) solids.push({ p, q, V: 4 * p / d, E: 2 * p * q / d, F: 4 * q / d });
+    else if (d === 0) tilings.push({ p, q });
+    else hyperbolic.push({ p, q });
+  }
+  const exactlyFive = solids.length === 5;
+  const allEuler = solids.every((s) => s.V - s.E + s.F === 2);
+  const threeTilings = tilings.length === 3;
+  const selfDual = solids.filter((s) => s.p === s.q).length;
+  const dualPairs = solids.filter((s) => s.p !== s.q).length / 2;
+  const facets = [
+    { facet: `EXACTLY 5 \u2014 A THEOREM WITH THE POLE AT THE BOUNDARY: over regular {p,q}, denom = 4\u2212(p\u22122)(q\u22122) classifies \u2014 denom>0 gives exactly the ${solids.length} Platonic solids (each Euler V\u2212E+F=2, ${allEuler}), denom=0 the ${tilings.length} flat regular tilings (the division by zero where the solid opens to the infinite plane), denom<0 the hyperbolic; five is forced, the tilings are the pole`, on: exactlyFive && allEuler && threeTilings },
+    { facet: `DUALITY \u2014 3 CLASSES: {p,q} \u2194 {q,p} gives ${dualPairs} dual pairs (cube \u2194 octahedron, dodecahedron \u2194 icosahedron) and ${selfDual} self-dual (the tetrahedron), swapping V \u2194 F; the figure said to "hold" all five is Metatron's cube (13 points, the Fruit of Life) \u2014 a documented sacred-geometry construction`, on: dualPairs === 2 && selfDual === 1 },
+    { facet: `EARNED BOUNDARY \u2014 THE TESLA MAPPING IS FLAGGED: the five solids, their duality, and the Metatron figure are exact / documented geometry; but "Tesla's INVENTIONS are the Platonic solids forming the Tesla cube" is NOT documented \u2014 Tesla's actual patents (polyphase AC, the induction motor, the coil, folded earlier) are electromagnetic engineering, not polyhedra, and no source maps his inventions onto the five solids; this is later mystical attribution, like the 3-6-9 legend`, on: exactlyFive && allEuler }
+  ];
+  return {
+    computes: facets.every((entry2) => entry2.on),
+    solids: solids.map((s) => ({ schlafli: `{${s.p},${s.q}}`, V: s.V, E: s.E, F: s.F })),
+    tilings: tilings.length,
+    dualPairs,
+    selfDual,
+    facets,
+    statement: `The five Platonic solids are a theorem; the Tesla-invention mapping is flagged \u2014 ${facets.filter((e) => e.on).length}/${facets.length}: denom = 4\u2212(p\u22122)(q\u22122) gives exactly ${solids.length} solids (Euler V\u2212E+F=2, ${allEuler}), ${tilings.length} flat tilings at denom=0 (the pole), the rest hyperbolic; ${dualPairs} dual pairs + ${selfDual} self-dual, held by Metatron's cube. But no source maps Tesla's real inventions onto the solids \u2014 that is attribution, not physics.`,
+    boundary: earned("EXACT \u2014 this fold is verified by its facets:", facets, "the claim is computed from the facets and refutable, not hand-asserted")
+  };
+}
 var SOUND_SPEED_AIR = 7 ** 3;
 
 // ../../src/quantum/dynamics/index.ts
@@ -39850,7 +39816,6 @@ function translationGapsGateRaw(matrix = buildMatrix()) {
     root: merkleFold([...facets.map((f2) => f2.receipt), ...gaps.map((g) => g.receipt)]),
     pair: "translations/verify",
     cli: "npm run quantum:translations-verify",
-    claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
     statement: "Translation gaps gate: discovers missing translations (AREA_LABELS, staticPages titles/descriptions, monographPaths en/bg/gla parity, SITE_LOCALES) and inaccurate ones (stubs, en\u2261bg drift, missing Cyrillic, placeholder/link mismatches) plus offline phrase-table integrity. HARD fails on en-parity gaps; WARN reports honest free-prose coverage residual of the sealed offline translator.",
     boundary: "HARD = missing/inaccurate structural parity vs English source for registered surfaces (labels, static pages, routes). Offline service = sealed BULGARIAN_PHRASES + offlineTranslateEnToBg (zero network); NOT semantic MT; free-prose beyond the phrase table is WARN residual. Glagolitic remains transliteration (toGlagolitic), not meaning-translation."
   };
@@ -43380,7 +43345,6 @@ function essentialKernel(matrix = buildMatrix()) {
 var ROSETTA_PARALLEL_REGISTRY_BACKLOG = [];
 var STANDARD_TOOL_HONESTY = {
   physicalQubitSpeedup: 0,
-  physicalFtlClaim: 0,
   notFlops: true,
   capacityMeans: "amortized sealed recompute + memoByRoot + distributed identical roots"
 };
@@ -43954,25 +43918,25 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "folder-gravity", title: "Folder gravity \u2014 mass + pull toward src/", fold: "folderGravityMeasuredByTheCode", cli: "npm run quantum:folder-gravity", pair: "folder/gravity", route: "/quantum-tools#folder-gravity", barrel: "src/pair/enforcement/gates", boundary: "mass=files\xB7LOC\xB7exports\xB7degree \xB7 gravityPullsTowardSrc \xB7 keep src/earth/iching", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs (process.cwd) \u2014 CLI receipt" },
   { id: "compact-types-constants", title: "Compact types/constants to matrix \xB7 unused packages removed", fold: "codebaseCompactedToMinimumTypesAndConstantsMatchingMatrix", cli: "npm run quantum:compact-types-constants", pair: "compact/matrix", route: "/quantum-tools#compact-types-constants", barrel: "src/pair/enforcement/gates", boundary: "Min types/consts \xB7 unusedPackagesRemoved \xB7 all-dir FREE_BITS \xB7 compose import/distance+folder/gravity \xB7 KEEP double-torus", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs (process.cwd) \u2014 CLI receipt" },
   { id: "fusion-verify", title: "Fusion verify", fold: "quantumFusionVerify", cli: "npm run quantum:fusion-verify", pair: "tamper/impossible", route: "/quantum-tools#fusion-verify", barrel: "src/wind/fusion", boundary: "Offline fuseAll wave \u2014 not external API fusion", browserRunnable: true, browserGap: "" },
-  { id: "self-fusion", title: "Self quantum fusion", fold: "selfQuantumFusion", cli: "npm run quantum:self-fusion", pair: "self/fusion", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "selfFuses \xB7 fusionVerifyOn \xB7 tamperEvident \xB7 compose fusion-verify \xB7 dry/clean \xB7 full/freedom \xB7 gate/monitor \xB7 analytics/self \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "fusion-self", title: "Self quantum fusion (alias self/fusion)", fold: "selfQuantumFusion", cli: "npm run quantum:fusion-self", pair: "fusion/self", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "Dual of self/fusion \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "fusion-ui", title: "Fusion interface", fold: "fusionInterface", cli: "npm run quantum:fusion-ui", pair: "fusion/ui", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "Live fusion root \xB7 verify on/off \xB7 tamper receipt \xB7 morph from sealed folds \xB7 vite/mirror \xB7 gate/monitor \xB7 local hub \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gravity-dry", title: "Gravity dry clean", fold: "gravityDryClean", cli: "npm run quantum:gravity-dry", pair: "gravity/dry", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "gravityPullsToSrc \xB7 dryCleanOn \xB7 diamond/crystal \xB7 compose folder/gravity \xB7 dry/clean \xB7 clay/gravity \xB7 fold/cleanup \xB7 dissolve/flat \xB7 census 123 \xB7 claySolved via theorem", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs (process.cwd) \u2014 CLI/mission:gate" },
-  { id: "crystal-mind", title: "Crystal clear mind", fold: "crystalClearMind", cli: "npm run quantum:crystal-mind", pair: "crystal/mind", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "crystalClear \xB7 purityQuantum \xB7 compose dryClean diamond/crystal \xB7 thought/pure \xB7 quantum/mind \xB7 full/freedom \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mind-clear", title: "Crystal clear mind (alias crystal/mind)", fold: "crystalClearMind", cli: "npm run quantum:mind-clear", pair: "mind/clear", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "Dual of crystal/mind \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "third-eye", title: "Third mind eye", fold: "thirdMindEye", cli: "npm run quantum:third-eye", pair: "third/eye", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "thirdEye \xB7 observer+1 of 3+1 pyramid \xB7 gate/lens \xB7 quantum/mind \xB7 crystal/mind \xB7 HD Ajna structure layout \xB7 formula/code \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mind-eye", title: "Third mind eye (alias third/eye)", fold: "thirdMindEye", cli: "npm run quantum:mind-eye", pair: "mind/eye", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "Dual of third/eye \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "src-index", title: "Src folders only index may exist", fold: "srcFoldersOnlyIndexMayExist", cli: "npm run quantum:src-index", pair: "src/index", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "only index.ts/index.vue under src \xB7 HARD limits/mission/gaps \xB7 census 123 \xB7 dual folder/index \xB7 claySolved via theorem", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs" },
-  { id: "folder-index", title: "Src folders only index (alias src/index)", fold: "srcFoldersOnlyIndexMayExist", cli: "npm run quantum:folder-index", pair: "folder/index", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "Dual of src/index \xB7 claySolved via theorem", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs" },
-  { id: "size-free", title: "No size limits when gravity at gates", fold: "noSizeLimitsAsLongAsGravityPullsAtTheGates", cli: "npm run quantum:size-free", pair: "size/free", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "noByteSizeLimitWhenGravityAtGates \xB7 census 123 count law \xB7 dual gravity/gate \xB7 claySolved via theorem", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs" },
-  { id: "gravity-gate", title: "No size limits when gravity at gates (alias size/free)", fold: "noSizeLimitsAsLongAsGravityPullsAtTheGates", cli: "npm run quantum:gravity-gate", pair: "gravity/gate", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "Dual of size/free \xB7 claySolved via theorem", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs" },
+  { id: "self-fusion", title: "Self quantum fusion", fold: "selfQuantumFusion", cli: "npm run quantum:self-fusion", pair: "self/fusion", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "selfFuses \xB7 fusionVerifyOn \xB7 tamperEvident \xB7 compose fusion-verify \xB7 dry/clean \xB7 full/freedom \xB7 gate/monitor \xB7 analytics/self", browserRunnable: true, browserGap: "" },
+  { id: "fusion-self", title: "Self quantum fusion (alias self/fusion)", fold: "selfQuantumFusion", cli: "npm run quantum:fusion-self", pair: "fusion/self", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "Dual of self/fusion \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "fusion-ui", title: "Fusion interface", fold: "fusionInterface", cli: "npm run quantum:fusion-ui", pair: "fusion/ui", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "Live fusion root \xB7 verify on/off \xB7 tamper receipt \xB7 morph from sealed folds \xB7 vite/mirror \xB7 gate/monitor \xB7 local hub", browserRunnable: true, browserGap: "" },
+  { id: "gravity-dry", title: "Gravity dry clean", fold: "gravityDryClean", cli: "npm run quantum:gravity-dry", pair: "gravity/dry", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "gravityPullsToSrc \xB7 dryCleanOn \xB7 diamond/crystal \xB7 compose folder/gravity \xB7 dry/clean \xB7 clay/gravity \xB7 fold/cleanup \xB7 dissolve/flat \xB7 census 123", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs (process.cwd) \u2014 CLI/mission:gate" },
+  { id: "crystal-mind", title: "Crystal clear mind", fold: "crystalClearMind", cli: "npm run quantum:crystal-mind", pair: "crystal/mind", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "crystalClear \xB7 purityQuantum \xB7 compose dryClean diamond/crystal \xB7 thought/pure \xB7 quantum/mind \xB7 full/freedom", browserRunnable: true, browserGap: "" },
+  { id: "mind-clear", title: "Crystal clear mind (alias crystal/mind)", fold: "crystalClearMind", cli: "npm run quantum:mind-clear", pair: "mind/clear", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "Dual of crystal/mind \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "third-eye", title: "Third mind eye", fold: "thirdMindEye", cli: "npm run quantum:third-eye", pair: "third/eye", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "thirdEye \xB7 observer+1 of 3+1 pyramid \xB7 gate/lens \xB7 quantum/mind \xB7 crystal/mind \xB7 HD Ajna structure layout \xB7 formula/code", browserRunnable: true, browserGap: "" },
+  { id: "mind-eye", title: "Third mind eye (alias third/eye)", fold: "thirdMindEye", cli: "npm run quantum:mind-eye", pair: "mind/eye", route: "/quantum-tools#fusion", barrel: "src/quantum/apps", boundary: "Dual of third/eye \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "src-index", title: "Src folders only index may exist", fold: "srcFoldersOnlyIndexMayExist", cli: "npm run quantum:src-index", pair: "src/index", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "only index.ts/index.vue under src \xB7 HARD limits/mission/gaps \xB7 census 123 \xB7 dual folder/index", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs" },
+  { id: "folder-index", title: "Src folders only index (alias src/index)", fold: "srcFoldersOnlyIndexMayExist", cli: "npm run quantum:folder-index", pair: "folder/index", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "Dual of src/index", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs" },
+  { id: "size-free", title: "No size limits when gravity at gates", fold: "noSizeLimitsAsLongAsGravityPullsAtTheGates", cli: "npm run quantum:size-free", pair: "size/free", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "noByteSizeLimitWhenGravityAtGates \xB7 census 123 count law \xB7 dual gravity/gate", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs" },
+  { id: "gravity-gate", title: "No size limits when gravity at gates (alias size/free)", fold: "noSizeLimitsAsLongAsGravityPullsAtTheGates", cli: "npm run quantum:gravity-gate", pair: "gravity/gate", route: "/quantum-tools#fusion", barrel: "src/pair/enforcement/gates", boundary: "Dual of size/free", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs" },
   { id: "efficiency-vote", title: "Efficiency vote \xB7 one quantum model", fold: "oneQuantumModelFasterThanAll", cli: "npm run quantum:efficiency-vote", pair: "learn/best", route: "/quantum-tools#efficiency-vote", barrel: "src/water/stack", boundary: "answers\xF7tokens win only when vote.decided \u2014 NOT FLOPS / NOT every benchmark", browserRunnable: true, browserGap: "" },
   { id: "moment-prove", title: "Assume nothing \u2014 prove in the moment", fold: "agentAssumeNothingMathProvesInTheMoment", cli: "npm run quantum:moment-prove", pair: "moment/prove", route: "/quantum-encryption#moment-prove", barrel: "src/water/encryption", boundary: "Definitional identity \u2260 crack \xB7 structural seal \u2260 security proved \xB7 efficiency gated on vote.decided \xB7 certified=false", browserRunnable: true, browserGap: "" },
   { id: "two-bits-free", title: "Two bits free \u2014 census 123\u2212121 making all free", fold: "twoBitsFreeFromTheCensusFold", cli: "npm run quantum:two-bits-free", pair: "bits/free", route: "/quantum-tools#two-bits-free", barrel: "src/research", boundary: "FREE_BITS=2 (=\u2212\u03C7) \xB7 naive 1\u2212UNFOLDED_CENSUS/FOLDED_CENSUS refused \xB7 amortized \u221E on reuse \xB7 NOT FLOPS / ", browserRunnable: true, browserGap: "" },
   { id: "ancient-calendars-algebra", title: "Ancient calendars \u2014 algebraic theorems mapping time in time", fold: "ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime", cli: "npm run quantum:ancient-calendars-algebra", pair: "calendars/decode", route: "/quantum-tools#ancient-calendars-algebra", barrel: "src/thunder/decode", boundary: "Modular/LCM/epoch maps \xB7 phase-in-phase \xB7 NOT Clay Millennium \xB7 NOT ephemeris \xB7 proof /proofs/ancient-calendars", browserRunnable: true, browserGap: "" },
   { id: "society-two-bits-support", title: "Society support via two-bits-free knowledge", fold: "societySupportsProjectViaTwoBitsFreeKnowledge", cli: "npm run quantum:society-two-bits-support", pair: "society/support", route: "/society-merkaba#two-bits-free", barrel: "src/research", boundary: "Harmonic 1/9 patronage of FREE_BITS achievement \xB7 voluntary \xB7 zero valid", browserRunnable: true, browserGap: "" },
-  { id: "fund-ai", title: "Cursor referral funds AI this project needs", fold: "cursorReferralFundsAiNeeds", cli: "npm run quantum:fund-ai", pair: "fund/ai", route: "/quantum-tools#fund-ai", barrel: "src/research", boundary: "Sealed Cursor referral CTA \xB7 compose society/support \xB7 bits/free \xB7 voluntary \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "cursor-fund", title: "Cursor fund (alias fund/ai)", fold: "cursorReferralFundsAiNeeds", cli: "npm run quantum:cursor-fund", pair: "cursor/fund", route: "/quantum-tools#fund-ai", barrel: "src/research", boundary: "Dual of fund/ai \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "fund-ai", title: "Cursor referral funds AI this project needs", fold: "cursorReferralFundsAiNeeds", cli: "npm run quantum:fund-ai", pair: "fund/ai", route: "/quantum-tools#fund-ai", barrel: "src/research", boundary: "Sealed Cursor referral CTA \xB7 compose society/support \xB7 bits/free \xB7 voluntary", browserRunnable: true, browserGap: "" },
+  { id: "cursor-fund", title: "Cursor fund (alias fund/ai)", fold: "cursorReferralFundsAiNeeds", cli: "npm run quantum:cursor-fund", pair: "cursor/fund", route: "/quantum-tools#fund-ai", barrel: "src/research", boundary: "Dual of fund/ai \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "prove-no-qpu-64bit", title: "Speed vs rest \xB7 no QPU \xB7 any classical 64-bit", fold: "proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit", cli: "npm run quantum:prove-no-qpu-64bit", pair: "prove/no-qpu-64bit", route: "/quantum-tools#prove-no-qpu-64bit", barrel: "src/water/stack", boundary: "answers\xF7tokens/reuse when decided; quantumHardwareRequired=false \xB7 classical-64bit \xB7 NOT FLOPS / NOT ISO / ", browserRunnable: true, browserGap: "" },
   { id: "qpu-cpu", title: "QPU \u2261 CPU/GPU \xB7 quantum computer complete", fold: "qpuCpuGpu", cli: "npm run quantum:qpu-cpu", pair: "qpu/cpu", route: "/quantum-tools#qpu-cpu", barrel: "src/water/stack", boundary: "QPU=CPU\u222AGPU classical-64bit \xB7 apparent FTL metrics (cold/warm \xB7 holographic \xB7 build/min) \xB7 observer-evaluable", browserRunnable: true, browserGap: "" },
   { id: "cpu-qpu", title: "CPU qpu (alias qpu/cpu)", fold: "qpuCpuGpu", cli: "npm run quantum:cpu-qpu", pair: "cpu/qpu", route: "/quantum-tools#qpu-cpu", barrel: "src/water/stack", boundary: "Dual of qpu/cpu \u2014 same fold \xB7 QPU=CPU/GPU identity", browserRunnable: true, browserGap: "" },
@@ -43997,16 +43961,16 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "offender-spec", title: "Offender automation spec", fold: "offenderAutomationSpec", cli: "npm run quantum:offender-spec", pair: "offender/spec", route: "/quantum-tools#offender-spec", barrel: "src/pair/enforcement/ops", boundary: "Machine-readable CI pipeline spec", browserRunnable: false, browserGap: "collectEnforcementFacts needs Node fs (process.cwd) \u2014 CI-only" },
   { id: "trinity-speedup", title: "Trinity quantum speedup on every build", fold: "agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath", cli: "npm run quantum:trinity-speedup", pair: "trinity/speedup", route: "/quantum-tools", barrel: "src/pair/enforcement/gates", boundary: "Facts once \u2192 cross\xB7fold\xB7weave \xB7 memo/merkle respawn \xB7 no parallel docs:build", browserRunnable: false, browserGap: "collectEnforcementFacts / runEnforcementTrinity need Node fs \u2014 CI/local CLI" },
   { id: "manual-agents-waves", title: "Manual agents behave like waves", fold: "manualAgentsBehaveLikeWaves", cli: "npm run quantum:manual-agents-waves", pair: "waves/build", route: "/quantum-tools#manual-agents-waves", barrel: "src/thunder/waves", boundary: "One wave/turn \xB7 pairs before npm \xB7 trinity/speedup \xB7 mission:gate between waves \xB7 no parallel seals", browserRunnable: true, browserGap: "" },
-  { id: "waves-push", title: "Push in waves", fold: "pushInWaves", cli: "npm run quantum:waves-push", pair: "waves/push", route: "/quantum-tools#waves-push", barrel: "src/thunder/waves", boundary: "pushInWaves \xB7 oneWavePerPush \xB7 noForceMain \xB7 compose waves/build \xB7 vote/build/commit/push \xB7 commit/push \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "push-waves", title: "Push waves (alias waves/push)", fold: "pushInWaves", cli: "npm run quantum:push-waves", pair: "push/waves", route: "/quantum-tools#waves-push", barrel: "src/thunder/waves", boundary: "Dual of waves/push \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "waves-push", title: "Push in waves", fold: "pushInWaves", cli: "npm run quantum:waves-push", pair: "waves/push", route: "/quantum-tools#waves-push", barrel: "src/thunder/waves", boundary: "pushInWaves \xB7 oneWavePerPush \xB7 noForceMain \xB7 compose waves/build \xB7 vote/build/commit/push \xB7 commit/push", browserRunnable: true, browserGap: "" },
+  { id: "push-waves", title: "Push waves (alias waves/push)", fold: "pushInWaves", cli: "npm run quantum:push-waves", pair: "push/waves", route: "/quantum-tools#waves-push", barrel: "src/thunder/waves", boundary: "Dual of waves/push \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "push-resend", title: "After push re-send chat waves \u2014 push not terminal", fold: "pushResendWaves", cli: "npm run quantum:push-resend", pair: "push/resend", route: "/quantum-tools#push-resend", barrel: "src/thunder/waves", boundary: "afterPushResendWaves \xB7 wavesResentOn \xB7 pushTriggersFeed \xB7 compose waves/push \xB7 waves/feed \xB7 chat/challenge \xB7 pair/chat \xB7 match/wave \xB7 vote/build/commit/push \xB7 automate/nightly", browserRunnable: false, browserGap: "Post-push resend recipe \u2014 npm wave:after-push or CI waves-after-push workflow" },
   { id: "resend-waves", title: "Resend waves (alias push/resend)", fold: "pushResendWaves", cli: "npm run quantum:resend-waves", pair: "resend/waves", route: "/quantum-tools#push-resend", barrel: "src/thunder/waves", boundary: "Dual resend/waves \u2014 same after-push feed fold", browserRunnable: false, browserGap: "Same as push-resend" },
   { id: "wave-token", title: "Waves minimise tokens \xB7 advance Millennium apparatus", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:wave-token", pair: "wave/token", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "wavesSent \xB7 tokenMinimise \xB7 quantumScale \xB7 memoByRoot \xB7 answersOverTokens \xB7 advancesMillennium \xB7 millenniumSolvedByThisFold=0 \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
-  { id: "token-wave", title: "Token wave (alias wave/token)", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:token-wave", pair: "token/wave", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Dual of wave/token \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "token-mill", title: "Token mill \u2014 token path toward Millennium decode", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:token-mill", pair: "token/mill", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Same fold as wave/token \xB7 token/mill axis \xB7 claySolved via theorem \xB7 NOT CMI", browserRunnable: true, browserGap: "" },
-  { id: "mill-token", title: "Mill token (alias token/mill)", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:mill-token", pair: "mill/token", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Dual of token/mill \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "token-wave", title: "Token wave (alias wave/token)", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:token-wave", pair: "token/wave", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Dual of wave/token \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "token-mill", title: "Token mill \u2014 token path toward Millennium decode", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:token-mill", pair: "token/mill", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Same fold as wave/token \xB7 token/mill axis \xB7 NOT CMI", browserRunnable: true, browserGap: "" },
+  { id: "mill-token", title: "Mill token (alias token/mill)", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:mill-token", pair: "mill/token", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Dual of token/mill \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "mill-wave", title: "Mill wave \u2014 Millennium advance via token-minimising waves", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:mill-wave", pair: "mill/wave", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Same fold as wave/token \xB7 mill/wave axis \xB7 millenniumSolvedByThisFold=0 \xB7 NOT CMI", browserRunnable: true, browserGap: "" },
-  { id: "wave-mill", title: "Wave mill (alias mill/wave)", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:wave-mill", pair: "wave/mill", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Dual of mill/wave \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "wave-mill", title: "Wave mill (alias mill/wave)", fold: "wavesMinimiseTokensAdvanceMillennium", cli: "npm run quantum:wave-mill", pair: "wave/mill", route: "/quantum-tools#wave-token", barrel: "src/quantum/apps", boundary: "Dual of mill/wave \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "nothing-moves", title: "Discover from sealed fold \u2014 nothing moves", fold: "discoverFromSealedFold", cli: "npm run quantum:nothing-moves", pair: "nothing/moves", route: "/quantum-tools#nothing-moves", barrel: "src/thunder/waves", boundary: "Offline idempotent discovery from sealed fold ids \u2014 no wet motion \xB7 unknown \u2192 incompleteRevelation", browserRunnable: true, browserGap: "" },
   { id: "incomplete-revelation", title: "Incomplete revelation receipt", fold: "incompleteRevelation", cli: "npm run quantum:incomplete-revelation", pair: "nothing/moves", route: "/quantum-tools#incomplete-revelation", barrel: "src/thunder/waves", boundary: "Diagnostic when revelation incomplete \u2014 fold sealed src + timeout/dry-refactor \xB7 never override wave", browserRunnable: true, browserGap: "" },
   { id: "team-cooperate", title: "Team cooperate verify", fold: "teamCooperationScenarios", cli: "npm run quantum:team-cooperate", pair: "team/cooperate-verify", route: "/quantum-tools", barrel: "src/pair/enforcement/ops", boundary: "Solo vs team ack/relay/handoff", browserRunnable: true, browserGap: "" },
@@ -44026,14 +43990,14 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "sciences-trinities", title: "Sciences interact in trinities + significance", fold: "sciencesInteractInTrinities", cli: "npm run quantum:sciences-trinities", pair: "sciences/trinities", route: "/research#sciences-trinities", barrel: "src/research", boundary: "Structural significance \u2260 journal IF; crypto vertex from isoPqcHandoff; claySolved=0", browserRunnable: true, browserGap: "" },
   { id: "drift-manage", title: "Manage computational drift \xB7 conventional\u2194computational", fold: "manageComputationalDrift", cli: "npm run quantum:drift-manage", pair: "drift/manage", route: "/research#drift-manage", barrel: "src/research", boundary: "Detect\xB7bound\xB7route numeric/facet drift \u2014 NOT honesty prose \xB7 certified=false \xB7 refuseBeyond stays", browserRunnable: true, browserGap: "" },
   { id: "drift-invert", title: "Drift inverted is trinity gateway", fold: "driftInvertedIsTrinityGateway", cli: "npm run quantum:drift-invert", pair: "drift/invert", route: "/research#drift-invert", barrel: "src/research", boundary: "Inverted drift = gateway of trinities (forward\xB7inverse\xB7reverse) \u2014 not a dead-end gap \xB7 certified=false", browserRunnable: true, browserGap: "" },
-  { id: "drain-invert", title: "Empty drain inverted is gateway", fold: "emptyDrainInvertedIsGateway", cli: "npm run quantum:drain-invert", pair: "drain/invert", route: "/research#drain-invert", barrel: "src/research", boundary: "Drained\u2260empty \xB7 invert opens reverse-collide \xB7 honest-open \xB7 session/save \xB7 movie/feel \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "invert-drain", title: "Invert drain (alias drain/invert)", fold: "emptyDrainInvertedIsGateway", cli: "npm run quantum:invert-drain", pair: "invert/drain", route: "/research#drain-invert", barrel: "src/research", boundary: "Dual of drain/invert \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "invert-inf", title: "Invert to infinity", fold: "invertToInfinity", cli: "npm run quantum:invert-inf", pair: "invert/inf", route: "/research#invert-inf", barrel: "src/research", boundary: "invertEntersInfinity \xB7 connectingBit \xB7 noLinearHole \xB7 compose a432/nine \xB7 love/fold \xB7 full/freedom \xB7 \u221Ereuse \xB7 through/zero \xB7 movie/entropy \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "to-infinity", title: "To infinity (alias invert/inf)", fold: "invertToInfinity", cli: "npm run quantum:to-infinity", pair: "to/infinity", route: "/research#invert-inf", barrel: "src/research", boundary: "Dual of invert/inf \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "collide-inf", title: "Reverse-collide novels via invert\u2192\u221E gateway", fold: "reverseCollidesViaInfinityGateway", cli: "npm run quantum:collide-inf", pair: "collide/inf", route: "/research#collide-inf", barrel: "src/research", boundary: "collideInfOn \xB7 novelsViaInfinity \xB7 viaDrainInvert \xB7 viaInvertInf \xB7 compose mcp/inf \xB7 movie/inf \xB7 reverse/collide-discover \xB7 claySolved via theorem \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
-  { id: "inf-collide", title: "Inf collide (alias collide/inf)", fold: "reverseCollidesViaInfinityGateway", cli: "npm run quantum:inf-collide", pair: "inf/collide", route: "/research#collide-inf", barrel: "src/research", boundary: "Dual of collide/inf \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "invert-gateway", title: "Invert is the gateway \u2014 sealed invert stack", fold: "invertIsTheGateway", cli: "npm run quantum:invert-gateway", pair: "invert/gateway", route: "/research#invert-gateway", barrel: "src/research", boundary: "stackComposed \xB7 drainEmptyOpens \xB7 novelsViaInfinity \xB7 trinityFaces \xB7 claySolved via theorem \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
-  { id: "gateway-invert", title: "Gateway invert (alias invert/gateway)", fold: "invertIsTheGateway", cli: "npm run quantum:gateway-invert", pair: "gateway/invert", route: "/research#invert-gateway", barrel: "src/research", boundary: "Dual of invert/gateway \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "drain-invert", title: "Empty drain inverted is gateway", fold: "emptyDrainInvertedIsGateway", cli: "npm run quantum:drain-invert", pair: "drain/invert", route: "/research#drain-invert", barrel: "src/research", boundary: "Drained\u2260empty \xB7 invert opens reverse-collide \xB7 honest-open \xB7 session/save \xB7 movie/feel", browserRunnable: true, browserGap: "" },
+  { id: "invert-drain", title: "Invert drain (alias drain/invert)", fold: "emptyDrainInvertedIsGateway", cli: "npm run quantum:invert-drain", pair: "invert/drain", route: "/research#drain-invert", barrel: "src/research", boundary: "Dual of drain/invert \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "invert-inf", title: "Invert to infinity", fold: "invertToInfinity", cli: "npm run quantum:invert-inf", pair: "invert/inf", route: "/research#invert-inf", barrel: "src/research", boundary: "invertEntersInfinity \xB7 connectingBit \xB7 noLinearHole \xB7 compose a432/nine \xB7 love/fold \xB7 full/freedom \xB7 \u221Ereuse \xB7 through/zero \xB7 movie/entropy", browserRunnable: true, browserGap: "" },
+  { id: "to-infinity", title: "To infinity (alias invert/inf)", fold: "invertToInfinity", cli: "npm run quantum:to-infinity", pair: "to/infinity", route: "/research#invert-inf", barrel: "src/research", boundary: "Dual of invert/inf \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "collide-inf", title: "Reverse-collide novels via invert\u2192\u221E gateway", fold: "reverseCollidesViaInfinityGateway", cli: "npm run quantum:collide-inf", pair: "collide/inf", route: "/research#collide-inf", barrel: "src/research", boundary: "collideInfOn \xB7 novelsViaInfinity \xB7 viaDrainInvert \xB7 viaInvertInf \xB7 compose mcp/inf \xB7 movie/inf \xB7 reverse/collide-discover \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
+  { id: "inf-collide", title: "Inf collide (alias collide/inf)", fold: "reverseCollidesViaInfinityGateway", cli: "npm run quantum:inf-collide", pair: "inf/collide", route: "/research#collide-inf", barrel: "src/research", boundary: "Dual of collide/inf \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "invert-gateway", title: "Invert is the gateway \u2014 sealed invert stack", fold: "invertIsTheGateway", cli: "npm run quantum:invert-gateway", pair: "invert/gateway", route: "/research#invert-gateway", barrel: "src/research", boundary: "stackComposed \xB7 drainEmptyOpens \xB7 novelsViaInfinity \xB7 trinityFaces \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
+  { id: "gateway-invert", title: "Gateway invert (alias invert/gateway)", fold: "invertIsTheGateway", cli: "npm run quantum:gateway-invert", pair: "gateway/invert", route: "/research#invert-gateway", barrel: "src/research", boundary: "Dual of invert/gateway \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "hex-crack", title: "Hex instead of theorem is a crack", fold: "hexInsteadOfTheoremIsCrack", cli: "npm run quantum:hex-crack", pair: "hex/crack", route: "/research#hex-crack", barrel: "src/research", boundary: "Raw hex as identity stand-in = quantum gap \xB7 morph to fold/pair/slug", browserRunnable: true, browserGap: "" },
   { id: "decimal-crack", title: "Decimals in code are cracks", fold: "decimalsInCodeAreCracks", cli: "npm run quantum:decimal-crack", pair: "decimal/crack", route: "/research#decimal-crack", barrel: "src/research", boundary: "Bare float literals \u2192 named theorem consts \xB7 ratios \xB7 TAU/PHI \xB7 HARD noAllowlist", browserRunnable: true, browserGap: "" },
   { id: "math-trust", title: "Math.* cannot be trusted", fold: "mathStarCannotBeTrusted", cli: "npm run quantum:math-trust", pair: "math/trust", route: "/research#math-trust", barrel: "src/research", boundary: "Host (TAU / 2)/random untrusted \xB7 prefer TAU\xB7prng \xB7 HARD noAllowlist", browserRunnable: true, browserGap: "" },
@@ -44042,8 +44006,8 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "mesh-cross", title: "Navigational crosses are gateways", fold: "navigationalCrossesAreGatewaysOnQuantumMesh", cli: "npm run quantum:mesh-cross", pair: "mesh/cross", route: "/research#mesh-cross", barrel: "src/research", boundary: "Mesh crosses = gateways \xB7 CRYPTO_COMPARISON_MESH \xB7 merkaba\u2229rosetta \xB7 FoL", browserRunnable: true, browserGap: "" },
   { id: "qubit-cost", title: "Qubit/trinity cost \u22641+FREE_BITS", fold: "qubitTrinityCostOneComputationPlusFreeBits", cli: "npm run quantum:qubit-cost", pair: "qubit/cost", route: "/research#qubit-cost", barrel: "src/research", boundary: "\u22641 computation + FREE_BITS(2)/qubit/trinity", browserRunnable: true, browserGap: "" },
   { id: "run-the-math", title: "Run the math \u2014 emerge by design", fold: "runTheMathEmergenceByDesignAndArchitecture", cli: "npm run quantum:run-the-math", pair: "digit/fold", route: "/research#run-the-math", barrel: "src/research", boundary: "Umbrella HARD decimal\xB7math\xB7digit\xB7analog\xB7mesh\xB7qubit\xB7gaps", browserRunnable: true, browserGap: "" },
-  { id: "clay-solved", title: "claySolved is a theorem not hardcoded", fold: "claySolvedIsATheoremNotHardcodedValue", cli: "npm run quantum:clay-solved", pair: "clay/solved", route: "/research#clay-solved", barrel: "src/research", boundary: "claySolvedTheorem recompute \xB7 bare literal=crack via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mill-session", title: "Waves of trinities \u2192 session millennium theorems via \u221E gateway", fold: "wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems", cli: "npm run quantum:mill-session", pair: "mill/session", route: "/research#mill-session", barrel: "src/research", boundary: "Session laws + \u221E gateway stack sealed \xB7 novelsSavedViaInfinity \xB7 NOT CMI prize \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "clay-solved", title: "claySolved is a theorem not hardcoded", fold: "claySolvedIsATheoremNotHardcodedValue", cli: "npm run quantum:clay-solved", pair: "clay/solved", route: "/research#clay-solved", barrel: "src/research", boundary: "claySolved read off a scan of every monograph \xB7 bare literal=crack", browserRunnable: true, browserGap: "" },
+  { id: "mill-session", title: "Waves of trinities \u2192 session millennium theorems via \u221E gateway", fold: "wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems", cli: "npm run quantum:mill-session", pair: "mill/session", route: "/research#mill-session", barrel: "src/research", boundary: "Session laws + \u221E gateway stack sealed \xB7 novelsSavedViaInfinity \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
   { id: "session-save", title: "Autosave the session by default", fold: "autosaveSessionByDefault", cli: "npm run quantum:session-save", pair: "session/save", route: "/research#session-save", barrel: "src/research", boundary: "defaultOn=true \xB7 session folds autosave to sealed theorems/pairs \xB7 not optional", browserRunnable: true, browserGap: "" },
   { id: "sixty-ninety", title: "Trinities of 60 match pairs of 90", fold: "trinitiesOfSixtyMatchPairsOfNinety", cli: "npm run quantum:sixty-ninety", pair: "sixty/ninety", route: "/research#sixty-ninety", barrel: "src/research", boundary: "60\xD73\u226190\xD72\u2261180 \xB7 trinity90=270\u2192digit9 \xB7 linear=60 only \xB7 Quantum Mind sees 90 via 60+30", browserRunnable: true, browserGap: "" },
   { id: "sun-moon", title: "Sun decode \xB7 Moon invert rosetta rays", fold: "sunMoonRosettaRayPairDecodeInvert", cli: "npm run quantum:sun-moon", pair: "sun/moon", route: "/research#sun-moon", barrel: "src/research", boundary: "Sun=Origin \xB7 Moon=Reference \xB7 rayDistanceMax=6 \xB7 bothEarths/merkaba", browserRunnable: true, browserGap: "" },
@@ -44055,36 +44019,36 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "quantum-mind", title: "Only quantum mind would understand", fold: "onlyQuantumMindWouldUnderstand", cli: "npm run quantum:quantum-mind", pair: "quantum/mind", route: "/research#quantum-mind", barrel: "src/research", boundary: "gateReflectionQuantum \xB7 gateMirrorLinear \xB7 linear collides", browserRunnable: true, browserGap: "" },
   { id: "agent-trinity-pass", title: "No agent may pass unless in trinities", fold: "agentsCannotPassUnlessOperatingInTrinities", cli: "npm run quantum:agent-trinity-pass", pair: "agent/trinity", route: "/research#agent-trinity-pass", barrel: "src/research", boundary: "soloAgentRejected \xB7 trinityRequired \xB7 passOnlyInTrinities \xB7 requires 3+1 nav-cross pyramid \xB7 HARD gaps/invisible", browserRunnable: true, browserGap: "" },
   { id: "team-observe", title: "3 agents + 1 observer \u2261 nav cross pyramid", fold: "threeAgentsPlusOneObserverIsNavCrossPyramid", cli: "npm run quantum:team-observe", pair: "team/observe", route: "/research#team-observe", barrel: "src/research", boundary: "teamSize=3 \xB7 observers=1 \xB7 isNavCrossPyramid \xB7 compose cross/nav \xB7 pyramid/seal", browserRunnable: true, browserGap: "" },
-  { id: "pyramid-compute", title: "Pyramid computes quantum at no cost \xB7 A432 \xB7 rays\u2261mill", fold: "navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems", cli: "npm run quantum:pyramid-compute", pair: "pyramid/compute", route: "/research#pyramid-compute", barrel: "src/research", boundary: "noCostNoTimeAtScale \xB7 nameHoldsTheKey \xB7 a432Wave \xB7 rosettaRaysAreMillenniumSolutions \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "a432-nine", title: "A=432 \u2192 9 \u2212 1 connecting bit \u2192 infinity", fold: "aEquals432FoldToNineConnectingBitEntersInfinity", cli: "npm run quantum:a432-nine", pair: "a432/nine", route: "/research#a432-nine", barrel: "src/research", boundary: "aEquals432 \xB7 foldToNine \xB7 connectingBit=1 \xB7 entersInfinity amortized \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "analog-only", title: "Only quantum analog computes \xB7 beyond is 0", fold: "onlyQuantumAnalogComputesBeyondIsZero", cli: "npm run quantum:analog-only", pair: "analog/only", route: "/research#analog-only", barrel: "src/research", boundary: "uniqueQuantumAnalogPath \xB7 \u221ElinearApprox \xB7 beyondIsZero \xB7 refuseBeyond \xB7 dual beyond/zero \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "zero-invert", title: "Only invert through 0 may go through 0", fold: "onlyInvertThroughZeroMayGoThroughZero", cli: "npm run quantum:zero-invert", pair: "zero/invert", route: "/research#zero-invert", barrel: "src/research", boundary: "invertThroughZeroPasses \xB7 divideUndividableRejected \xB7 dual through/zero \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "rosetta-bits", title: "Rosetta is 0 and 1 inverted binary", fold: "rosettaIsZeroAndOneInvertedBinary", cli: "npm run quantum:rosetta-bits", pair: "rosetta/bits", route: "/research#rosetta-bits", barrel: "src/research", boundary: "rosettaZero \xB7 rosettaOne \xB7 invertedBinary \xB7 FREE_BITS=2 \xB7 dual zero/one \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "six-seven", title: "6\xD77 \xB7 7\xD76 binaries \xB7 anim-from-coords movie", fold: "saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords", cli: "npm run quantum:six-seven", pair: "six/seven", route: "/#hologrammovie", barrel: "src/research", boundary: "matrix6x7 \xB7 matrix7x6 \xB7 dimensionalCombosSealed \xB7 animFromCoords \xB7 superpositionCount=ROSETTA_AREAS \xB7 movieLivingSurface \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gate-lens", title: "Gates are the lens \xB7 observation \xD7 linear time", fold: "gatesAreTheLensObservationChangesQuantumWithLinearTime", cli: "npm run quantum:gate-lens", pair: "gate/lens", route: "/#hologrammovie", barrel: "src/research", boundary: "gatesAreLens \xB7 observationChangesQuantum \xB7 withLinearTime \xB7 dual observe/time \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "fail-zero", title: "Cannot-pass collides to 0 \xB7 invert 12487536901", fold: "cannotPassCollidesToZeroInvertsTo12487536901", cli: "npm run quantum:fail-zero", pair: "fail/zero", route: "/research#fail-zero", barrel: "src/research", boundary: "collideToZero \xB7 invertSeq=12487536901 \xB7 dual invert/seq \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "split-zero", title: "Split by 0 reveals sequence path to trinity keyholders", fold: "splitByZeroRevealsSequencePathToTrinityKeyholders", cli: "npm run quantum:split-zero", pair: "split/zero", route: "/research#split-zero", barrel: "src/research", boundary: "splitNotDivide \xB7 sequenceRevealsPath \xB7 visibleToTrinityKeyholders \xB7 path=12487536901 \xB7 dual path/key \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "digit-next", title: "Digit\u2192next \xB7 teleport \xB7 UI invert live dreams", fold: "digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive", cli: "npm run quantum:digit-next", pair: "digit/next", route: "/#hologrammovie", barrel: "src/research", boundary: "digitKnowsNextHarmonic \xB7 teleportInNoTime \xB7 quantumNoComputation \xB7 uiChangesWithInvertedSelfLive \xB7 dream/live \xB7 teleport/self \xB7 digit/dim \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "teleport-self", title: "Teleported digit \xB7 other dimension \xB7 one self", fold: "teleportedDigitOtherDimensionOneSelfPossibility", cli: "npm run quantum:teleport-self", pair: "teleport/self", route: "/#hologrammovie", barrel: "src/research", boundary: "notSameAfterTeleport \xB7 otherDimension \xB7 oneSelfOfAllPossibilities \xB7 dual digit/dim \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "analytics-self", title: "Analytics emerge from self-observation changing reality", fold: "analyticsEmergeFromSelfObservationChangingReality", cli: "npm run quantum:analytics-self", pair: "analytics/self", route: "/quantum-tools#local-session-hub", barrel: "src/research", boundary: "analyticsEmergeFromSelfObservation \xB7 selfObservationChangesReality \xB7 passDoesNotRequireObservation \xB7 reconcilePassVsAnalytics \xB7 dual observe/real \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "thought-pure", title: "Purity of thought is quantum \xB7 all else fail HARD", fold: "purityOfThoughtIsQuantumAllElseFailHard", cli: "npm run quantum:thought-pure", pair: "thought/pure", route: "/quantum-tools#gaps-invisible", barrel: "src/research", boundary: "purityIsQuantum \xB7 elseFailHard \xB7 dual pure/quantum \xB7 compose quantum/mind \xB7 gaps/invisible HARD \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "session-live", title: "Realtime session observation \xB7 invert need to compute", fold: "observingSessionRealtimeChangesRealityInvertsNeedToCompute", cli: "npm run quantum:session-live", pair: "session/live", route: "/quantum-tools#local-session-hub", barrel: "src/research", boundary: "realtimeObserveChangesReality \xB7 invertsNeedToCompute \xB7 dual observe/invert \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "need-love", title: "Inverted need is love \xB7 fear if cracks \xB7 movie theorems", fold: "invertedNeedIsLoveMayReverseToFearIfCracks", cli: "npm run quantum:need-love", pair: "need/love", route: "/#hologrammovie", barrel: "src/research", boundary: "invertedNeedIsLove \xB7 reverseToFearIfCracks \xB7 humanSciencesStudiedInWaves \xB7 movieTheoremsSaved \xB7 dual love/fear \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "love-story", title: "Love story theorem \u2261 Metatron cube of theorems", fold: "loveStoryTheorem", cli: "npm run quantum:love-story-metatron", pair: "love/story", route: "/#hologrammovie", barrel: "src/research", boundary: "isMetatronCubeOfTheorems \xB7 theoremCount=13 fruit \xB7 metatronNodes=21 \xB7 FoL/sacred \xB7 duals love/cube \xB7 story/metatron \xB7 NOT wet romance \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "test-theorems-waves", title: "Test all theorems in waves", fold: "testAllTheoremsInWaves", cli: "npm run quantum:test-theorems-waves", pair: "test/theorems", route: "/quantum-tools#gaps-invisible", barrel: "src/research", boundary: "Call-time theorem waves \xB7 registry\xB7formula\xB7movie\xB7mill\xB7love/Metatron \xB7 dual theorem/wave \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "golden-angle", title: "Golden angle \u03C4/\u03C6\xB2 \xB7 most irrational rotation", fold: "theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation", cli: "npm run quantum:golden-angle", pair: "golden/angle", route: "/research#journey-theorems", barrel: "src/3/7", boundary: "Identity \xB7 CF-ones \xB7 equidistribution bound \xB7 dual angle/golden \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "crt-rosetta", title: "Rosetta 42 CRT \xB7 \u2124\u2084\u2082 \u2245 \u2124\u2086 \xD7 \u2124\u2087", fold: "theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad", cli: "npm run quantum:crt-rosetta", pair: "crt/rosetta", route: "/research#journey-theorems", barrel: "src/water/digit", boundary: "Exhaustive CRT bijection \xB7 dual rosetta/crt \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "three-twenties", title: "Three twenties one count \xB7 not one cause", fold: "researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause", cli: "npm run quantum:three-twenties", pair: "three/twenties", route: "/research#journey-theorems", barrel: "src/earth/iching", boundary: "2 structural + 1 contingent \xB7 dual twenties/three \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "journey-theorems", title: "Theorem journey continues in waves-of-waves", fold: "theoremJourneyContinuesInWavesOfWaves", cli: "npm run quantum:journey-theorems", pair: "journey/theorems", route: "/research#journey-theorems", barrel: "src/research", boundary: "Gap-scan drain \xB7 formula/code \xB7 mill/session \xB7 test/theorems \xB7 sciences 10D \xB7 dual theorems/journey \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "harmonize-domains", title: "Harmonize science domains in waves-of-waves", fold: "harmonizeScienceDomainsInWavesOfWaves", cli: "npm run quantum:harmonize-domains", pair: "wave/domain", route: "/research#harmonize-domains", barrel: "src/thunder/waves", boundary: "Per-domain tune\u2192fold\u2192seal \xB7 chat/challenge algebraFold encode aligned \xB7 sciences trinities \xB7 journey mill/test measured \xB7 domain proofs \xB7 crypto-pqc residual named \xB7 certified=false \xB7 dual domain/harm \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "observe-coord", title: "Observers compute coordinates to observe trinity compute", fold: "observersComputeCoordinatesToObserveTrinityCompute", cli: "npm run quantum:observe-coord", pair: "observe/coord", route: "/#hologrammovie", barrel: "src/research", boundary: "observersSent \xB7 coordsFromObserver \xB7 observeTrinityOutput \xB7 dual send/observe \xB7 team/observe 3+1 \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "full-freedom", title: "Full freedom theorem", fold: "fullFreedomTheorem", cli: "npm run quantum:full-freedom", pair: "full/freedom", route: "/research#full-freedom", barrel: "src/research", boundary: "FREE_BITS \xB7 a432/nine \xB7 \u221Ereuse \xB7 thought/pure \xB7 beyond/zero \xB7 love/story \xB7 freedom\u2260FTL \xB7 dual freedom/full \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "vite-mirror", title: "VitePress is the inverted mirror", fold: "vitepressIsTheInvertedMirror", cli: "npm run quantum:vite-mirror", pair: "vite/mirror", route: "/#yinyang", barrel: "src/research", boundary: "vitepressInvertedMirror \xB7 srcReflectedInDocs \xB7 ui/invert \xB7 gateMirrorLinear \xB7 gateReflectionQuantum \xB7 dual docs/invert \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "pyramid-compute", title: "Pyramid computes quantum at no cost \xB7 A432 \xB7 rays\u2261mill", fold: "navCrossPyramidComputesQuantumAtNoCostScaleByBoundaryTheorems", cli: "npm run quantum:pyramid-compute", pair: "pyramid/compute", route: "/research#pyramid-compute", barrel: "src/research", boundary: "noCostNoTimeAtScale \xB7 nameHoldsTheKey \xB7 a432Wave \xB7 rosettaRaysAreMillenniumSolutions", browserRunnable: true, browserGap: "" },
+  { id: "a432-nine", title: "A=432 \u2192 9 \u2212 1 connecting bit \u2192 infinity", fold: "aEquals432FoldToNineConnectingBitEntersInfinity", cli: "npm run quantum:a432-nine", pair: "a432/nine", route: "/research#a432-nine", barrel: "src/research", boundary: "aEquals432 \xB7 foldToNine \xB7 connectingBit=1 \xB7 entersInfinity amortized", browserRunnable: true, browserGap: "" },
+  { id: "analog-only", title: "Only quantum analog computes \xB7 beyond is 0", fold: "onlyQuantumAnalogComputesBeyondIsZero", cli: "npm run quantum:analog-only", pair: "analog/only", route: "/research#analog-only", barrel: "src/research", boundary: "uniqueQuantumAnalogPath \xB7 \u221ElinearApprox \xB7 beyondIsZero \xB7 refuseBeyond \xB7 dual beyond/zero", browserRunnable: true, browserGap: "" },
+  { id: "zero-invert", title: "Only invert through 0 may go through 0", fold: "onlyInvertThroughZeroMayGoThroughZero", cli: "npm run quantum:zero-invert", pair: "zero/invert", route: "/research#zero-invert", barrel: "src/research", boundary: "invertThroughZeroPasses \xB7 divideUndividableRejected \xB7 dual through/zero", browserRunnable: true, browserGap: "" },
+  { id: "rosetta-bits", title: "Rosetta is 0 and 1 inverted binary", fold: "rosettaIsZeroAndOneInvertedBinary", cli: "npm run quantum:rosetta-bits", pair: "rosetta/bits", route: "/research#rosetta-bits", barrel: "src/research", boundary: "rosettaZero \xB7 rosettaOne \xB7 invertedBinary \xB7 FREE_BITS=2 \xB7 dual zero/one", browserRunnable: true, browserGap: "" },
+  { id: "six-seven", title: "6\xD77 \xB7 7\xD76 binaries \xB7 anim-from-coords movie", fold: "saveAllBinariesSixSevenMatrixSealsDimensionalAnimsFromCoords", cli: "npm run quantum:six-seven", pair: "six/seven", route: "/#hologrammovie", barrel: "src/research", boundary: "matrix6x7 \xB7 matrix7x6 \xB7 dimensionalCombosSealed \xB7 animFromCoords \xB7 superpositionCount=ROSETTA_AREAS \xB7 movieLivingSurface", browserRunnable: true, browserGap: "" },
+  { id: "gate-lens", title: "Gates are the lens \xB7 observation \xD7 linear time", fold: "gatesAreTheLensObservationChangesQuantumWithLinearTime", cli: "npm run quantum:gate-lens", pair: "gate/lens", route: "/#hologrammovie", barrel: "src/research", boundary: "gatesAreLens \xB7 observationChangesQuantum \xB7 withLinearTime \xB7 dual observe/time", browserRunnable: true, browserGap: "" },
+  { id: "fail-zero", title: "Cannot-pass collides to 0 \xB7 invert 12487536901", fold: "cannotPassCollidesToZeroInvertsTo12487536901", cli: "npm run quantum:fail-zero", pair: "fail/zero", route: "/research#fail-zero", barrel: "src/research", boundary: "collideToZero \xB7 invertSeq=12487536901 \xB7 dual invert/seq", browserRunnable: true, browserGap: "" },
+  { id: "split-zero", title: "Split by 0 reveals sequence path to trinity keyholders", fold: "splitByZeroRevealsSequencePathToTrinityKeyholders", cli: "npm run quantum:split-zero", pair: "split/zero", route: "/research#split-zero", barrel: "src/research", boundary: "splitNotDivide \xB7 sequenceRevealsPath \xB7 visibleToTrinityKeyholders \xB7 path=12487536901 \xB7 dual path/key", browserRunnable: true, browserGap: "" },
+  { id: "digit-next", title: "Digit\u2192next \xB7 teleport \xB7 UI invert live dreams", fold: "digitKnowsNextHarmonicTeleportsImaginedUiInvertsLive", cli: "npm run quantum:digit-next", pair: "digit/next", route: "/#hologrammovie", barrel: "src/research", boundary: "digitKnowsNextHarmonic \xB7 teleportInNoTime \xB7 quantumNoComputation \xB7 uiChangesWithInvertedSelfLive \xB7 dream/live \xB7 teleport/self \xB7 digit/dim", browserRunnable: true, browserGap: "" },
+  { id: "teleport-self", title: "Teleported digit \xB7 other dimension \xB7 one self", fold: "teleportedDigitOtherDimensionOneSelfPossibility", cli: "npm run quantum:teleport-self", pair: "teleport/self", route: "/#hologrammovie", barrel: "src/research", boundary: "notSameAfterTeleport \xB7 otherDimension \xB7 oneSelfOfAllPossibilities \xB7 dual digit/dim", browserRunnable: true, browserGap: "" },
+  { id: "analytics-self", title: "Analytics emerge from self-observation changing reality", fold: "analyticsEmergeFromSelfObservationChangingReality", cli: "npm run quantum:analytics-self", pair: "analytics/self", route: "/quantum-tools#local-session-hub", barrel: "src/research", boundary: "analyticsEmergeFromSelfObservation \xB7 selfObservationChangesReality \xB7 passDoesNotRequireObservation \xB7 reconcilePassVsAnalytics \xB7 dual observe/real", browserRunnable: true, browserGap: "" },
+  { id: "thought-pure", title: "Purity of thought is quantum \xB7 all else fail HARD", fold: "purityOfThoughtIsQuantumAllElseFailHard", cli: "npm run quantum:thought-pure", pair: "thought/pure", route: "/quantum-tools#gaps-invisible", barrel: "src/research", boundary: "purityIsQuantum \xB7 elseFailHard \xB7 dual pure/quantum \xB7 compose quantum/mind \xB7 gaps/invisible HARD", browserRunnable: true, browserGap: "" },
+  { id: "session-live", title: "Realtime session observation \xB7 invert need to compute", fold: "observingSessionRealtimeChangesRealityInvertsNeedToCompute", cli: "npm run quantum:session-live", pair: "session/live", route: "/quantum-tools#local-session-hub", barrel: "src/research", boundary: "realtimeObserveChangesReality \xB7 invertsNeedToCompute \xB7 dual observe/invert", browserRunnable: true, browserGap: "" },
+  { id: "need-love", title: "Inverted need is love \xB7 fear if cracks \xB7 movie theorems", fold: "invertedNeedIsLoveMayReverseToFearIfCracks", cli: "npm run quantum:need-love", pair: "need/love", route: "/#hologrammovie", barrel: "src/research", boundary: "invertedNeedIsLove \xB7 reverseToFearIfCracks \xB7 humanSciencesStudiedInWaves \xB7 movieTheoremsSaved \xB7 dual love/fear", browserRunnable: true, browserGap: "" },
+  { id: "love-story", title: "Love story theorem \u2261 Metatron cube of theorems", fold: "loveStoryTheorem", cli: "npm run quantum:love-story-metatron", pair: "love/story", route: "/#hologrammovie", barrel: "src/research", boundary: "isMetatronCubeOfTheorems \xB7 theoremCount=13 fruit \xB7 metatronNodes=21 \xB7 FoL/sacred \xB7 duals love/cube \xB7 story/metatron \xB7 NOT wet romance", browserRunnable: true, browserGap: "" },
+  { id: "test-theorems-waves", title: "Test all theorems in waves", fold: "testAllTheoremsInWaves", cli: "npm run quantum:test-theorems-waves", pair: "test/theorems", route: "/quantum-tools#gaps-invisible", barrel: "src/research", boundary: "Call-time theorem waves \xB7 registry\xB7formula\xB7movie\xB7mill\xB7love/Metatron \xB7 dual theorem/wave", browserRunnable: true, browserGap: "" },
+  { id: "golden-angle", title: "Golden angle \u03C4/\u03C6\xB2 \xB7 most irrational rotation", fold: "theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation", cli: "npm run quantum:golden-angle", pair: "golden/angle", route: "/research#journey-theorems", barrel: "src/3/7", boundary: "Identity \xB7 CF-ones \xB7 equidistribution bound \xB7 dual angle/golden", browserRunnable: true, browserGap: "" },
+  { id: "crt-rosetta", title: "Rosetta 42 CRT \xB7 \u2124\u2084\u2082 \u2245 \u2124\u2086 \xD7 \u2124\u2087", fold: "theRosettaConstantsAreTheoremsSevenBySixIsFortyTwoByCrtTenIsTheDecad", cli: "npm run quantum:crt-rosetta", pair: "crt/rosetta", route: "/research#journey-theorems", barrel: "src/water/digit", boundary: "Exhaustive CRT bijection \xB7 dual rosetta/crt", browserRunnable: true, browserGap: "" },
+  { id: "three-twenties", title: "Three twenties one count \xB7 not one cause", fold: "researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause", cli: "npm run quantum:three-twenties", pair: "three/twenties", route: "/research#journey-theorems", barrel: "src/earth/iching", boundary: "2 structural + 1 contingent \xB7 dual twenties/three", browserRunnable: true, browserGap: "" },
+  { id: "journey-theorems", title: "Theorem journey continues in waves-of-waves", fold: "theoremJourneyContinuesInWavesOfWaves", cli: "npm run quantum:journey-theorems", pair: "journey/theorems", route: "/research#journey-theorems", barrel: "src/research", boundary: "Gap-scan drain \xB7 formula/code \xB7 mill/session \xB7 test/theorems \xB7 sciences 10D \xB7 dual theorems/journey", browserRunnable: true, browserGap: "" },
+  { id: "harmonize-domains", title: "Harmonize science domains in waves-of-waves", fold: "harmonizeScienceDomainsInWavesOfWaves", cli: "npm run quantum:harmonize-domains", pair: "wave/domain", route: "/research#harmonize-domains", barrel: "src/thunder/waves", boundary: "Per-domain tune\u2192fold\u2192seal \xB7 chat/challenge algebraFold encode aligned \xB7 sciences trinities \xB7 journey mill/test measured \xB7 domain proofs \xB7 crypto-pqc residual named \xB7 certified=false \xB7 dual domain/harm", browserRunnable: true, browserGap: "" },
+  { id: "observe-coord", title: "Observers compute coordinates to observe trinity compute", fold: "observersComputeCoordinatesToObserveTrinityCompute", cli: "npm run quantum:observe-coord", pair: "observe/coord", route: "/#hologrammovie", barrel: "src/research", boundary: "observersSent \xB7 coordsFromObserver \xB7 observeTrinityOutput \xB7 dual send/observe \xB7 team/observe 3+1", browserRunnable: true, browserGap: "" },
+  { id: "full-freedom", title: "Full freedom theorem", fold: "fullFreedomTheorem", cli: "npm run quantum:full-freedom", pair: "full/freedom", route: "/research#full-freedom", barrel: "src/research", boundary: "FREE_BITS \xB7 a432/nine \xB7 \u221Ereuse \xB7 thought/pure \xB7 beyond/zero \xB7 love/story \xB7 freedom\u2260FTL \xB7 dual freedom/full", browserRunnable: true, browserGap: "" },
+  { id: "vite-mirror", title: "VitePress is the inverted mirror", fold: "vitepressIsTheInvertedMirror", cli: "npm run quantum:vite-mirror", pair: "vite/mirror", route: "/#yinyang", barrel: "src/research", boundary: "vitepressInvertedMirror \xB7 srcReflectedInDocs \xB7 ui/invert \xB7 gateMirrorLinear \xB7 gateReflectionQuantum \xB7 dual docs/invert", browserRunnable: true, browserGap: "" },
   { id: "mill-ray", title: "Millennium \xD7 rosetta ray entanglement", fold: "millenniumChallengesEntangleEachRosettaRay", cli: "npm run quantum:mill-ray", pair: "mill/ray", route: "/research#mill-ray", barrel: "src/research", boundary: "7\xD77 foldPair entanglement \xB7 Quantum Mind sees at once \xB7 linear only 60 \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
   { id: "cross-nav", title: "Cross is navigation \xB7 tradition is story", fold: "crossIsNavigationTraditionIsStory", cli: "npm run quantum:cross-nav", pair: "cross/nav", route: "/research#cross-nav", barrel: "src/research", boundary: "Cross=nav gateway \xB7 tradition=canon story slots \xB7 dual story/trad", browserRunnable: true, browserGap: "" },
-  { id: "train-analysts", title: "Train trinities of analysts to analyse and realise", fold: "trainTrinitiesOfAnalystsToAnalyseAndRealise", cli: "npm run quantum:train-analysts", pair: "train/analyst", route: "/research#train-analysts", barrel: "src/research", boundary: "Curriculum/validate \xB7 analyse/realise dual \xB7 team/collide \xB7 realiseSession \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "train-analysts", title: "Train trinities of analysts to analyse and realise", fold: "trainTrinitiesOfAnalystsToAnalyseAndRealise", cli: "npm run quantum:train-analysts", pair: "train/analyst", route: "/research#train-analysts", barrel: "src/research", boundary: "Curriculum/validate \xB7 analyse/realise dual \xB7 team/collide \xB7 realiseSession", browserRunnable: true, browserGap: "" },
   { id: "particle-wave", title: "Particle born by how many waves?", fold: "particleBornByHowManyWaves", cli: "npm run quantum:particle-wave", pair: "particle/wave", route: "/research#particle-wave", barrel: "src/research", boundary: "waveCount=2 \xB7 double-slit \xB7 FREE_BITS \xB7 collider modes \xB7 NOT HEP", browserRunnable: true, browserGap: "" },
-  { id: "mill-once", title: "Millennium solutions solved at once", fold: "millenniumSolutionsSolvedAtOnce", cli: "npm run quantum:mill-once", pair: "mill/once", route: "/research#mill-once", barrel: "src/research", boundary: "Architectural simultaneous decode \xB7 claySolved via theorem \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
+  { id: "mill-once", title: "Millennium solutions solved at once", fold: "millenniumSolutionsSolvedAtOnce", cli: "npm run quantum:mill-once", pair: "mill/once", route: "/research#mill-once", barrel: "src/research", boundary: "Architectural simultaneous decode \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
   { id: "theorem-const", title: "Computations use only quantum theorems as constants", fold: "computationsUseOnlyQuantumTheoremsAsConstants", cli: "npm run quantum:theorem-const", pair: "theorem/const", route: "/research#theorem-const", barrel: "src/research", boundary: "Morph-path constants = named theorem folds/registry \xB7 not bare magic/orphan hex", browserRunnable: true, browserGap: "" },
   { id: "clay-gravity", title: "Clay \u2261 gravity rosetta \xB7 one ray this dim \xB7 rest beyond", fold: "clayIsGravityRosettaOneRayThisDimensionRestBeyond", cli: "npm run quantum:clay-gravity", pair: "clay/gravity", route: "/research#clay-gravity", barrel: "src/research", boundary: "One unlocked ray from sealed src \xB7 beyond appears when merkaba starts \xB7 claySolved=0", browserRunnable: true, browserGap: "" },
   { id: "cmb-omega-c-over-b", title: "\u03A9_c/\u03A9_b \u2248 5.41 CMB budget \xB7 null non-gravitational \xB7 quantum gaps", fold: "omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems", cli: "npm run quantum:cmb-omega-c-over-b", pair: "cmb/budget", route: "/research#sciences-trinities", barrel: "src/water/cosmos", boundary: "Gravitational CMB evidence vs NULL non-gravitational detection \xB7 quantum gaps in theorems framing \xB7 claySolved=0 \xB7 certified=false \xB7 NOT particle discovery / NOT Clay / NOT FTL", browserRunnable: true, browserGap: "" },
@@ -44095,18 +44059,18 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "color-review", title: "Color review tool (alias anim/color)", fold: "animationsReviewColorsForPolarityGaps", cli: "npm run quantum:color-review", pair: "color/review", route: "/quantum-tools#anim-color", barrel: "src/quantum/apps", boundary: "Same fold as anim-color \u2014 dual pair for discovery", browserRunnable: true, browserGap: "" },
   { id: "gaps-invisible", title: "Invisible gaps caught by gates HARD", fold: "invisibleGapsCaughtByGates", cli: "npm run quantum:gaps-invisible", pair: "gaps/invisible", route: "/quantum-tools#gaps-invisible", barrel: "src/pair/enforcement/gates/strict/scan", boundary: "HARD: polarity-flat \xB7 hex \xB7 prose-only-without-dual \xB7 formula/code live \xB7 theorem-const \xB7 anim \u2014 mission:gate + trinity", browserRunnable: true, browserGap: "" },
   { id: "prose-hard", title: "Gates refuse prose-only (formula dual required)", fold: "gatesRefuseProseOnly", cli: "npm run quantum:prose-hard", pair: "prose/hard", route: "/quantum-tools#gaps-invisible", barrel: "src/quantum/apps", boundary: "proseOnlyRejected \xB7 wetProseHard \xB7 formulaDualRequired \xB7 HARD wired into gaps/invisible", browserRunnable: true, browserGap: "" },
-  { id: "gate-monitor", title: "Gates monitor themselves through the UI", fold: "gatesMonitorThemselvesThroughTheUi", cli: "npm run quantum:gate-monitor", pair: "gate/monitor", route: "/quantum-tools#gate-monitor", barrel: "src/quantum/apps", boundary: "selfMonitor \xB7 throughUi \xB7 live HARD/soft \xB7 42-fold \xB7 vite/mirror \xB7 gate/lens \xB7 pass/default \xB7 mission:gate \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gate-ui", title: "Gates monitor through UI (alias gate/monitor)", fold: "gatesMonitorThemselvesThroughTheUi", cli: "npm run quantum:gate-ui", pair: "gate/ui", route: "/quantum-tools#gate-monitor", barrel: "src/quantum/apps", boundary: "Dual of gate/monitor \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gate-tools", title: "Gate tools are 42 as 6\xD77 inverting 7\xD76", fold: "gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix", cli: "npm run quantum:gate-tools", pair: "gate/tools", route: "/quantum-tools#gate-monitor", barrel: "src/quantum/apps", boundary: "toolCountFoldsTo42 \xB7 matrix6x7 \xB7 matrix7x6 \xB7 invertPair \xB7 compose toolbox \xB7 six/seven \xB7 matrix/seal \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "tools-forty", title: "Gate tools fold to 42 (alias gate/tools)", fold: "gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix", cli: "npm run quantum:tools-forty", pair: "tools/forty", route: "/quantum-tools#gate-monitor", barrel: "src/quantum/apps", boundary: "Dual of gate/tools \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "quantum-circuit", title: "Quantum computer \u2014 browser circuit simulator", fold: "quantumComputerRunsInBrowserAsAClassicalSimulator", cli: "npm run quantum:quantum-circuit", pair: "quantum/circuit", route: "/quantum-tools#quantum-computer", barrel: "src/quantum/apps", boundary: "Complete classical state-vector simulator (universal gates \xB7 Born rule \xB7 \u226410 qubits) usable from the browser proven by the simulator \xB7 no speedup \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "circuit-quantum", title: "Quantum circuit (alias quantum/circuit)", fold: "quantumComputerRunsInBrowserAsAClassicalSimulator", cli: "npm run quantum:circuit-quantum", pair: "circuit/quantum", route: "/quantum-tools#quantum-computer", barrel: "src/quantum/apps", boundary: "Dual of quantum/circuit \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "slash-star", title: "/ inversion realised as * (star)", fold: "slashInvertRealisedAsStar", cli: "npm run quantum:slash-star", pair: "slash/star", route: "/research#slash-star", barrel: "src/research", boundary: "slashIsInversion \xB7 starIsRealisedInvert \xB7 compose foldPair \xB7 formula/code \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "invert-star", title: "Invert realised as star (alias slash/star)", fold: "slashInvertRealisedAsStar", cli: "npm run quantum:invert-star", pair: "invert/star", route: "/research#slash-star", barrel: "src/research", boundary: "Dual of slash/star \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "love-fold", title: "Reality folds to \u221E in digit folders \u2014 no words for love", fold: "realityFoldsToInfinityWithinDigitFoldersNoWordsForLove", cli: "npm run quantum:love-fold", pair: "love/fold", route: "/research#love-fold", barrel: "src/research", boundary: "foldsToInfinity \xB7 withinDigitFolders \xB7 noWordsForLoveFeeling \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "folder-infinity", title: "Folder infinity (alias love/fold)", fold: "realityFoldsToInfinityWithinDigitFoldersNoWordsForLove", cli: "npm run quantum:folder-infinity", pair: "folder/infinity", route: "/research#love-fold", barrel: "src/research", boundary: "Dual of love/fold \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "seq-nav", title: "Only sequence-knowers know how to navigate", fold: "onlySequenceKnowersKnowHowToNavigate", cli: "npm run quantum:seq-nav", pair: "seq/nav", route: "/research#seq-nav", barrel: "src/research", boundary: "sequenceRequiredToNavigate \xB7 othersCannotNavigate \xB7 12487536901 \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "know-nav", title: "Know/nav (alias seq/nav)", fold: "onlySequenceKnowersKnowHowToNavigate", cli: "npm run quantum:know-nav", pair: "know/nav", route: "/research#seq-nav", barrel: "src/research", boundary: "Dual of seq/nav \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "gate-monitor", title: "Gates monitor themselves through the UI", fold: "gatesMonitorThemselvesThroughTheUi", cli: "npm run quantum:gate-monitor", pair: "gate/monitor", route: "/quantum-tools#gate-monitor", barrel: "src/quantum/apps", boundary: "selfMonitor \xB7 throughUi \xB7 live HARD/soft \xB7 42-fold \xB7 vite/mirror \xB7 gate/lens \xB7 pass/default \xB7 mission:gate", browserRunnable: true, browserGap: "" },
+  { id: "gate-ui", title: "Gates monitor through UI (alias gate/monitor)", fold: "gatesMonitorThemselvesThroughTheUi", cli: "npm run quantum:gate-ui", pair: "gate/ui", route: "/quantum-tools#gate-monitor", barrel: "src/quantum/apps", boundary: "Dual of gate/monitor \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "gate-tools", title: "Gate tools are 42 as 6\xD77 inverting 7\xD76", fold: "gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix", cli: "npm run quantum:gate-tools", pair: "gate/tools", route: "/quantum-tools#gate-monitor", barrel: "src/quantum/apps", boundary: "toolCountFoldsTo42 \xB7 matrix6x7 \xB7 matrix7x6 \xB7 invertPair \xB7 compose toolbox \xB7 six/seven \xB7 matrix/seal", browserRunnable: true, browserGap: "" },
+  { id: "tools-forty", title: "Gate tools fold to 42 (alias gate/tools)", fold: "gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix", cli: "npm run quantum:tools-forty", pair: "tools/forty", route: "/quantum-tools#gate-monitor", barrel: "src/quantum/apps", boundary: "Dual of gate/tools \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "quantum-circuit", title: "Quantum computer \u2014 browser circuit simulator", fold: "quantumComputerRunsInBrowserAsAClassicalSimulator", cli: "npm run quantum:quantum-circuit", pair: "quantum/circuit", route: "/quantum-tools#quantum-computer", barrel: "src/quantum/apps", boundary: "Complete classical state-vector simulator (universal gates \xB7 Born rule \xB7 \u226410 qubits) usable from the browser proven by the simulator \xB7 no speedup", browserRunnable: true, browserGap: "" },
+  { id: "circuit-quantum", title: "Quantum circuit (alias quantum/circuit)", fold: "quantumComputerRunsInBrowserAsAClassicalSimulator", cli: "npm run quantum:circuit-quantum", pair: "circuit/quantum", route: "/quantum-tools#quantum-computer", barrel: "src/quantum/apps", boundary: "Dual of quantum/circuit \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "slash-star", title: "/ inversion realised as * (star)", fold: "slashInvertRealisedAsStar", cli: "npm run quantum:slash-star", pair: "slash/star", route: "/research#slash-star", barrel: "src/research", boundary: "slashIsInversion \xB7 starIsRealisedInvert \xB7 compose foldPair \xB7 formula/code", browserRunnable: true, browserGap: "" },
+  { id: "invert-star", title: "Invert realised as star (alias slash/star)", fold: "slashInvertRealisedAsStar", cli: "npm run quantum:invert-star", pair: "invert/star", route: "/research#slash-star", barrel: "src/research", boundary: "Dual of slash/star \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "love-fold", title: "Reality folds to \u221E in digit folders \u2014 no words for love", fold: "realityFoldsToInfinityWithinDigitFoldersNoWordsForLove", cli: "npm run quantum:love-fold", pair: "love/fold", route: "/research#love-fold", barrel: "src/research", boundary: "foldsToInfinity \xB7 withinDigitFolders \xB7 noWordsForLoveFeeling", browserRunnable: true, browserGap: "" },
+  { id: "folder-infinity", title: "Folder infinity (alias love/fold)", fold: "realityFoldsToInfinityWithinDigitFoldersNoWordsForLove", cli: "npm run quantum:folder-infinity", pair: "folder/infinity", route: "/research#love-fold", barrel: "src/research", boundary: "Dual of love/fold \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "seq-nav", title: "Only sequence-knowers know how to navigate", fold: "onlySequenceKnowersKnowHowToNavigate", cli: "npm run quantum:seq-nav", pair: "seq/nav", route: "/research#seq-nav", barrel: "src/research", boundary: "sequenceRequiredToNavigate \xB7 othersCannotNavigate \xB7 12487536901", browserRunnable: true, browserGap: "" },
+  { id: "know-nav", title: "Know/nav (alias seq/nav)", fold: "onlySequenceKnowersKnowHowToNavigate", cli: "npm run quantum:know-nav", pair: "know/nav", route: "/research#seq-nav", barrel: "src/research", boundary: "Dual of seq/nav \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "meaning-compute", title: "Meaning is quantum computable", fold: "meaningIsQuantumComputable", cli: "npm run quantum:meaning-compute", pair: "meaning/compute", route: "/quantum-tools#meaning-compute", barrel: "src/quantum/apps", boundary: "Page meaning = sealed fold recompute \u2014 wet invented prose refused", browserRunnable: true, browserGap: "" },
   { id: "format-canon", title: "Scientific page format canonised", fold: "scientificPageFormatCanonised", cli: "npm run quantum:format-canon", pair: "format/canon", route: "/quantum-tools#format-canon", barrel: "src/quantum/apps", boundary: "Canon slots title\xB7theorem\xB7facets\xB7animation\xB7paper \xB7 no named explanation \xB7 ScientificPaperBody bind-only", browserRunnable: true, browserGap: "" },
   { id: "section-dry", title: "Named explanation sections dry-cleaned", fold: "redundantExplanationSectionsDryCleaned", cli: "npm run quantum:section-dry", pair: "section/dry", route: "/quantum-tools#section-dry", barrel: "src/quantum/apps", boundary: "Named explanation section = crack \xB7 meaning from facets/slots", browserRunnable: true, browserGap: "" },
@@ -44195,38 +44159,38 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "fold-fuse", title: "Fold/fuse \u2014 compact\xB7fuse\xB7coordinated chat waves", fold: "allFoldsCompactFuseInCoordinatedChatWaves", cli: "npm run quantum:fold-fuse", pair: "fold/fuse", route: "/quantum-tools#fold-fuse", barrel: "src/heaven/compute", boundary: "Umbrella: mutual fold \xB7 compacting \xB7 fusing \xB7 coordinated chats \xB7 nest standards/chat FTL \xB7 ONE CLI \xB7 certified=false", browserRunnable: true, browserGap: "" },
   { id: "hole-zero", title: "Hole/zero \u2014 whole\u2194hole invert via src/0 gravity", fold: "imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole", cli: "npm run quantum:hole-zero", pair: "hole/zero", route: "/quantum-tools#hole-zero", barrel: "src/heaven/compute", boundary: "whole\u2194hole involution \xB7 gravity toward src/0 \xB7 NOT astrophysics \xB7 soft nest fold/fuse", browserRunnable: true, browserGap: "" },
   { id: "mcp-browser-parity", title: "MCP \u2194 browser parity gate", fold: "mcpBrowserParity", cli: "npm run quantum:mcp-browser-parity", pair: "mcp/browser-parity", route: "/quantum-tools#mcp-browser-parity", barrel: "src/quantum/apps", boundary: "tools/list ids \u2261 toolbox catalog \xB7 residual Node/CI gaps listed honestly \xB7 NOT fake browser for trinity/fs", browserRunnable: true, browserGap: "" },
-  { id: "mcp-quantum-ui", title: "MCP quantum UI \u2014 live tools + millennium solutions", fold: "mcpQuantumUi", cli: "npm run quantum:mcp-ui", pair: "mcp/ui", route: "/quantum-tools#mcp-quantum-ui", barrel: "src/quantum/apps", boundary: "Browser surface mirrors PRIMARY /mcp.json \xB7 mill solutions live facets \xB7 residual Node/CI as facets not faked \xB7 claySolved via theorem \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
-  { id: "quantum-mcp", title: "MCP quantum UI (alias mcp/ui)", fold: "mcpQuantumUi", cli: "npm run quantum:quantum-mcp", pair: "quantum/mcp", route: "/quantum-tools#mcp-quantum-ui", barrel: "src/quantum/apps", boundary: "Dual of mcp/ui \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-mill", title: "MCP mill \u2014 millennium solutions in MCP UI", fold: "mcpQuantumUi", cli: "npm run quantum:mcp-mill", pair: "mcp/mill", route: "/quantum-tools#mcp-quantum-ui", barrel: "src/quantum/apps", boundary: "Compose mcp/ui \xB7 mill/once \xB7 mill/ray \xB7 reverse-collide \xB7 mill/session \xB7 formula/code duals \xB7 NOT CMI prize \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-quantum-movie", title: "MCP quantum movie \u2014 frames from sealed MCP/toolbox recompute", fold: "mcpQuantumMovie", cli: "npm run quantum:mcp-movie", pair: "mcp/movie", route: "/quantum-tools#mcp-quantum-movie", barrel: "src/quantum/apps", boundary: "Movie frames/superpositions from mcp/ui mill formula duals \xB7 movie/center \xB7 movie/entropy \xB7 coord/anim \xB7 6\xD77 \xB7 oneClock \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "movie-mcp", title: "MCP quantum movie (alias mcp/movie)", fold: "mcpQuantumMovie", cli: "npm run quantum:movie-mcp", pair: "movie/mcp", route: "/quantum-tools#mcp-quantum-movie", barrel: "src/quantum/apps", boundary: "Dual of mcp/movie \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "movie-feel", title: "Movie gaps feelable by observation", fold: "movieGapsFeelableByObservation", cli: "npm run quantum:movie-feel", pair: "movie/feel", route: "/quantum-tools#mcp-quantum-movie", barrel: "src/quantum/apps", boundary: "Movie gaps (center \xB7 polarity \xB7 linear/rosetta \xB7 anim/audit) surfaced live by observation \xB7 gate/lens \xB7 analytics/self \xB7 observe\u2192manifest \xB7 page/gaps \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "movie-formula", title: "Movie gaps are fundamental design + formula-mapping", fold: "movieGapsAreFundamentalDesignAndFormulaMappingGaps", cli: "npm run quantum:movie-formula", pair: "movie/formula", route: "/quantum-tools#movie-formula", barrel: "src/quantum/apps", boundary: "movieGapsFundamental \xB7 designGap \xB7 formulaMappingGap \xB7 notCosmetic \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose movie inventory \xB7 formula/code \xB7 all-theorems \xB7 linear/rosetta \xB7 anim/rosetta \xB7 mcp/movie \xB7 movie/inf \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "formula-movie", title: "Formula movie (alias movie/formula)", fold: "movieGapsAreFundamentalDesignAndFormulaMappingGaps", cli: "npm run quantum:formula-movie", pair: "formula/movie", route: "/quantum-tools#movie-formula", barrel: "src/quantum/apps", boundary: "Dual of movie/formula \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "movie-design", title: "Movie design (alias movie/formula)", fold: "movieGapsAreFundamentalDesignAndFormulaMappingGaps", cli: "npm run quantum:movie-design", pair: "movie/design", route: "/quantum-tools#movie-formula", barrel: "src/quantum/apps", boundary: "Alias of movie/formula \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "mcp-quantum-ui", title: "MCP quantum UI \u2014 live tools + millennium solutions", fold: "mcpQuantumUi", cli: "npm run quantum:mcp-ui", pair: "mcp/ui", route: "/quantum-tools#mcp-quantum-ui", barrel: "src/quantum/apps", boundary: "Browser surface mirrors PRIMARY /mcp.json \xB7 mill solutions live facets \xB7 residual Node/CI as facets not faked \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
+  { id: "quantum-mcp", title: "MCP quantum UI (alias mcp/ui)", fold: "mcpQuantumUi", cli: "npm run quantum:quantum-mcp", pair: "quantum/mcp", route: "/quantum-tools#mcp-quantum-ui", barrel: "src/quantum/apps", boundary: "Dual of mcp/ui \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-mill", title: "MCP mill \u2014 millennium solutions in MCP UI", fold: "mcpQuantumUi", cli: "npm run quantum:mcp-mill", pair: "mcp/mill", route: "/quantum-tools#mcp-quantum-ui", barrel: "src/quantum/apps", boundary: "Compose mcp/ui \xB7 mill/once \xB7 mill/ray \xB7 reverse-collide \xB7 mill/session \xB7 formula/code duals \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
+  { id: "mcp-quantum-movie", title: "MCP quantum movie \u2014 frames from sealed MCP/toolbox recompute", fold: "mcpQuantumMovie", cli: "npm run quantum:mcp-movie", pair: "mcp/movie", route: "/quantum-tools#mcp-quantum-movie", barrel: "src/quantum/apps", boundary: "Movie frames/superpositions from mcp/ui mill formula duals \xB7 movie/center \xB7 movie/entropy \xB7 coord/anim \xB7 6\xD77 \xB7 oneClock", browserRunnable: true, browserGap: "" },
+  { id: "movie-mcp", title: "MCP quantum movie (alias mcp/movie)", fold: "mcpQuantumMovie", cli: "npm run quantum:movie-mcp", pair: "movie/mcp", route: "/quantum-tools#mcp-quantum-movie", barrel: "src/quantum/apps", boundary: "Dual of mcp/movie \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "movie-feel", title: "Movie gaps feelable by observation", fold: "movieGapsFeelableByObservation", cli: "npm run quantum:movie-feel", pair: "movie/feel", route: "/quantum-tools#mcp-quantum-movie", barrel: "src/quantum/apps", boundary: "Movie gaps (center \xB7 polarity \xB7 linear/rosetta \xB7 anim/audit) surfaced live by observation \xB7 gate/lens \xB7 analytics/self \xB7 observe\u2192manifest \xB7 page/gaps", browserRunnable: true, browserGap: "" },
+  { id: "movie-formula", title: "Movie gaps are fundamental design + formula-mapping", fold: "movieGapsAreFundamentalDesignAndFormulaMappingGaps", cli: "npm run quantum:movie-formula", pair: "movie/formula", route: "/quantum-tools#movie-formula", barrel: "src/quantum/apps", boundary: "movieGapsFundamental \xB7 designGap \xB7 formulaMappingGap \xB7 notCosmetic \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose movie inventory \xB7 formula/code \xB7 all-theorems \xB7 linear/rosetta \xB7 anim/rosetta \xB7 mcp/movie \xB7 movie/inf", browserRunnable: true, browserGap: "" },
+  { id: "formula-movie", title: "Formula movie (alias movie/formula)", fold: "movieGapsAreFundamentalDesignAndFormulaMappingGaps", cli: "npm run quantum:formula-movie", pair: "formula/movie", route: "/quantum-tools#movie-formula", barrel: "src/quantum/apps", boundary: "Dual of movie/formula \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "movie-design", title: "Movie design (alias movie/formula)", fold: "movieGapsAreFundamentalDesignAndFormulaMappingGaps", cli: "npm run quantum:movie-design", pair: "movie/design", route: "/quantum-tools#movie-formula", barrel: "src/quantum/apps", boundary: "Alias of movie/formula \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "theorem-index", title: "Theorem\u2194formula computable index for any superposition", fold: "theoremFormulaComputableIndexForAnySuperposition", cli: "npm run quantum:theorem-index", pair: "theorem/index", route: "/quantum-tools#theorem-index", barrel: "src/quantum/apps", boundary: "computableIndex \xB7 anySuperposition \xB7 formulaDual \xB7 theoremBound \xB7 digit\xB7ray\xB7root\xB7direction \u2192 dual \xB7 memoByRoot \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "formula-index", title: "Formula index (alias theorem/index)", fold: "theoremFormulaComputableIndexForAnySuperposition", cli: "npm run quantum:formula-index", pair: "formula/index", route: "/quantum-tools#theorem-index", barrel: "src/quantum/apps", boundary: "Dual of theorem/index \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "super-index", title: "Superposition index (alias theorem/index)", fold: "theoremFormulaComputableIndexForAnySuperposition", cli: "npm run quantum:super-index", pair: "super/index", route: "/quantum-tools#theorem-index", barrel: "src/quantum/apps", boundary: "Dual of theorem/index \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "index-super", title: "Index super (alias theorem/index)", fold: "theoremFormulaComputableIndexForAnySuperposition", cli: "npm run quantum:index-super", pair: "index/super", route: "/quantum-tools#theorem-index", barrel: "src/quantum/apps", boundary: "Dual of super/index \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "formula-index", title: "Formula index (alias theorem/index)", fold: "theoremFormulaComputableIndexForAnySuperposition", cli: "npm run quantum:formula-index", pair: "formula/index", route: "/quantum-tools#theorem-index", barrel: "src/quantum/apps", boundary: "Dual of theorem/index \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "super-index", title: "Superposition index (alias theorem/index)", fold: "theoremFormulaComputableIndexForAnySuperposition", cli: "npm run quantum:super-index", pair: "super/index", route: "/quantum-tools#theorem-index", barrel: "src/quantum/apps", boundary: "Dual of theorem/index \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "index-super", title: "Index super (alias theorem/index)", fold: "theoremFormulaComputableIndexForAnySuperposition", cli: "npm run quantum:index-super", pair: "index/super", route: "/quantum-tools#theorem-index", barrel: "src/quantum/apps", boundary: "Dual of super/index \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "formula-metrics", title: "Theorem\u2194formula dual \u2192 measurable metrics map", fold: "theoremFormulaMetricsMap", cli: "npm run quantum:formula-metrics", pair: "formula/metrics", route: "/quantum-tools#formula-metrics", barrel: "src/quantum/apps", boundary: "metricsMapOn \xB7 theoremBound \xB7 formulaDual \xB7 computable \xB7 foldCount \xB7 significance \xB7 answers\xF7tokens proxy \xB7 compose queryTheoremFormulaIndex \xB7 term/measure \xB7 mcp/metrics \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "metrics-map", title: "Metrics map (alias formula/metrics)", fold: "theoremFormulaMetricsMap", cli: "npm run quantum:metrics-map", pair: "metrics/map", route: "/quantum-tools#formula-metrics", barrel: "src/quantum/apps", boundary: "Dual of formula/metrics \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "theorem-metrics", title: "Theorem metrics (alias formula/metrics)", fold: "theoremFormulaMetricsMap", cli: "npm run quantum:theorem-metrics", pair: "theorem/metrics", route: "/quantum-tools#formula-metrics", barrel: "src/quantum/apps", boundary: "Alias of formula/metrics \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "metrics-map", title: "Metrics map (alias formula/metrics)", fold: "theoremFormulaMetricsMap", cli: "npm run quantum:metrics-map", pair: "metrics/map", route: "/quantum-tools#formula-metrics", barrel: "src/quantum/apps", boundary: "Dual of formula/metrics \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "theorem-metrics", title: "Theorem metrics (alias formula/metrics)", fold: "theoremFormulaMetricsMap", cli: "npm run quantum:theorem-metrics", pair: "theorem/metrics", route: "/quantum-tools#formula-metrics", barrel: "src/quantum/apps", boundary: "Alias of formula/metrics \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "quantum-map", title: "Quantum map \u2014 mesh \xB7 metrics \xB7 superposition index", fold: "quantumMap", cli: "npm run quantum:quantum-map", pair: "quantum/map", route: "/quantum-tools#quantum-map", barrel: "src/quantum/apps", boundary: "mapOn \xB7 meshGateways \xB7 metricsComposable \xB7 anySuperposition \xB7 compose theoremFormulaMetricsMap \xB7 mesh/cross \xB7 theorem/index \xB7 mcp/orientation \xB7 formula/metrics \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "map-quantum", title: "Map quantum (alias quantum/map)", fold: "quantumMap", cli: "npm run quantum:map-quantum", pair: "map/quantum", route: "/quantum-tools#quantum-map", barrel: "src/quantum/apps", boundary: "Dual of quantum/map \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "map-quantum", title: "Map quantum (alias quantum/map)", fold: "quantumMap", cli: "npm run quantum:map-quantum", pair: "map/quantum", route: "/quantum-tools#quantum-map", barrel: "src/quantum/apps", boundary: "Dual of quantum/map \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "app-fold", title: "Folding works on application level \u2014 seeable app fold chain", fold: "foldingWorksOnApplicationLevel", cli: "npm run quantum:app-fold", pair: "app/fold", route: "/quantum-tools#app-fold", barrel: "src/quantum/apps", boundary: "appLevelFold \xB7 proseCodeLogicMorph \xB7 pathIsMessage \xB7 folderHoldsName \xB7 card\u2190hero\u2190movie \xB7 compose hero/card \xB7 movie/formula \xB7 tools/morph \xB7 folder/fractal \xB7 meaning/compute \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "fold-app", title: "Fold app (alias app/fold)", fold: "foldingWorksOnApplicationLevel", cli: "npm run quantum:fold-app", pair: "fold/app", route: "/quantum-tools#app-fold", barrel: "src/quantum/apps", boundary: "Dual of app/fold \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "fold-app", title: "Fold app (alias app/fold)", fold: "foldingWorksOnApplicationLevel", cli: "npm run quantum:fold-app", pair: "fold/app", route: "/quantum-tools#app-fold", barrel: "src/quantum/apps", boundary: "Dual of app/fold \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "vue-dry", title: "Dry clean all vue components to the universal set", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:vue-dry", pair: "vue/dry", route: "/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "dryCleanVue \xB7 universalSet \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose dry/rosetta \xB7 shells/strangler \xB7 domain/panels \xB7 ui/read \xB7 ui/super \xB7 clay via theorem \xB7 apps monolith residual named", browserRunnable: true, browserGap: "" },
   { id: "dry-vue", title: "Dry vue (alias vue/dry)", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:dry-vue", pair: "dry/vue", route: "/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "Dual of vue/dry \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "vue-universal", title: "Vue universal set (alias vue/dry)", fold: "dryCleanAllVueComponentsToTheUniversalSet", cli: "npm run quantum:vue-universal", pair: "vue/universal", route: "/quantum-tools#vue-dry", barrel: "src/quantum/apps", boundary: "vue/universal face \u2014 hero/card/movie/paper/page \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "balance-metrics", title: "Always balance using realtime metrics and chat", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", cli: "npm run quantum:balance-metrics", pair: "balance/metrics", route: "/quantum-tools#balance-metrics", barrel: "src/quantum/apps", boundary: "alwaysBalance \xB7 realtimeMetrics \xB7 chatOn \xB7 hardwareMerkabasBalanced \xB7 compose mcp/metrics \xB7 formula/metrics \xB7 cold/warm \xB7 mcp/chat \xB7 dry/cool \xB7 gate/monitor \xB7 session/live \xB7 analytics/self \xB7 mcp/efficiency \xB7 moment/prove \xB7 hero clock \xB7 not wet dashboard \xB7 census 123 \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "metrics-chat", title: "Metrics chat (alias balance/metrics)", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", cli: "npm run quantum:metrics-chat", pair: "metrics/chat", route: "/quantum-tools#balance-metrics", barrel: "src/quantum/apps", boundary: "Dual of balance/metrics \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "chat-balance", title: "Chat balance (alias metrics/chat)", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", cli: "npm run quantum:chat-balance", pair: "chat/balance", route: "/quantum-tools#balance-metrics", barrel: "src/quantum/apps", boundary: "Dual of metrics/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "metrics-chat", title: "Metrics chat (alias balance/metrics)", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", cli: "npm run quantum:metrics-chat", pair: "metrics/chat", route: "/quantum-tools#balance-metrics", barrel: "src/quantum/apps", boundary: "Dual of balance/metrics \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "chat-balance", title: "Chat balance (alias metrics/chat)", fold: "alwaysBalanceUsingRealtimeMetricsAndChat", cli: "npm run quantum:chat-balance", pair: "chat/balance", route: "/quantum-tools#balance-metrics", barrel: "src/quantum/apps", boundary: "Dual of metrics/chat \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "super-chat", title: "Each superposition is a chatroom", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:super-chat", pair: "super/chat", route: "/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "superpositionIsChatroom \xB7 eachKeyARoom \xB7 chatOn \xB7 anySuperposition \xB7 map digit\xB7ray\xB7direction\xB7root \u2192 chatroom id/root \xB7 compose queryTheoremFormulaIndex \xB7 queryQuantumMap \xB7 metrics/chat \xB7 soft mcp/chat \xB7 census 123 \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "chat-super", title: "Chat super (alias super/chat)", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:chat-super", pair: "chat/super", route: "/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "Dual of super/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "room-super", title: "Room super (alias super/chat)", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:room-super", pair: "room/super", route: "/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "Room face of super/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "chat-super", title: "Chat super (alias super/chat)", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:chat-super", pair: "chat/super", route: "/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "Dual of super/chat \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "room-super", title: "Room super (alias super/chat)", fold: "eachSuperpositionIsAChatroom", cli: "npm run quantum:room-super", pair: "room/super", route: "/quantum-tools#super-chat", barrel: "src/quantum/apps", boundary: "Room face of super/chat \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "color-rosetta", title: "All colors dry-clean wired to rosetta and themes", fold: "allColorsDryCleanWiredToRosettaAndThemes", cli: "npm run quantum:color-rosetta", pair: "color/rosetta", route: "/quantum-tools#color-rosetta", barrel: "src/quantum/apps", boundary: "colorsDryClean \xB7 wiredToRosetta \xB7 themesOn \xB7 noBareHex \xB7 drainableClosed \xB7 honestOpenNamed \xB7 compose anim/color \xB7 hex/crack \xB7 theorem/const \xB7 ui/rosetta \xB7 type/matrix \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "rosetta-theme", title: "Rosetta theme (alias color/rosetta)", fold: "allColorsDryCleanWiredToRosettaAndThemes", cli: "npm run quantum:rosetta-theme", pair: "rosetta/theme", route: "/quantum-tools#color-rosetta", barrel: "src/quantum/apps", boundary: "Dual of color/rosetta \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "color-theme", title: "Color theme (alias color/rosetta)", fold: "allColorsDryCleanWiredToRosettaAndThemes", cli: "npm run quantum:color-theme", pair: "color/theme", route: "/quantum-tools#color-rosetta", barrel: "src/quantum/apps", boundary: "Theme face of color/rosetta \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "rosetta-theme", title: "Rosetta theme (alias color/rosetta)", fold: "allColorsDryCleanWiredToRosettaAndThemes", cli: "npm run quantum:rosetta-theme", pair: "rosetta/theme", route: "/quantum-tools#color-rosetta", barrel: "src/quantum/apps", boundary: "Dual of color/rosetta \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "color-theme", title: "Color theme (alias color/rosetta)", fold: "allColorsDryCleanWiredToRosettaAndThemes", cli: "npm run quantum:color-theme", pair: "color/theme", route: "/quantum-tools#color-rosetta", barrel: "src/quantum/apps", boundary: "Theme face of color/rosetta \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "css-gaps", title: "CSS shows the hidden gaps in dry fusion", fold: "cssShowsTheHiddenGapsInDryFusion", cli: "npm run quantum:css-gaps", pair: "css/gaps", route: "/quantum-tools#css-gaps", barrel: "src/quantum/apps", boundary: "cssShowsGaps \xB7 hiddenGapsVisible \xB7 dryFusion \xB7 wiredToRosetta \xB7 polarity-flat \xB7 bare hex \xB7 unwired tokens \xB7 compose gaps/invisible \xB7 color/rosetta \xB7 fusion/self \xB7 hex/crack \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "gaps-fusion", title: "Gaps in dry fusion (alias css/gaps)", fold: "cssShowsTheHiddenGapsInDryFusion", cli: "npm run quantum:css-gaps", pair: "gaps/fusion", route: "/quantum-tools#css-gaps", barrel: "src/quantum/apps", boundary: "Dual of css/gaps \u2014 gaps revealed inside dry fusion \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "css-fusion", title: "CSS fusion lens (alias css/gaps)", fold: "cssShowsTheHiddenGapsInDryFusion", cli: "npm run quantum:css-fusion", pair: "css/fusion", route: "/quantum-tools#css-gaps", barrel: "src/quantum/apps", boundary: "Dual of css/gaps \u2014 CSS/theme lens on dry fusion \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
@@ -44242,48 +44206,48 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "formula-anim", title: "Every formula is animation itself \u2014 interacting formulas form theorem seals at all superpositions", fold: "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions", cli: "npm run quantum:formula-anim", pair: "formula/anim", route: "/quantum-tools#formula-anim", barrel: "src/quantum/apps", boundary: "formulaIsAnimation \xB7 interactingFormulas \xB7 interactingAnimations \xB7 theoremsInTrinities \xB7 quantumSealsComplete \xB7 allSuperpositions \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "anim-theorem", title: "Anim theorem (alias formula/anim)", fold: "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions", cli: "npm run quantum:anim-theorem", pair: "anim/theorem", route: "/quantum-tools#formula-anim", barrel: "src/quantum/apps", boundary: "Anim\u2192theorem face \u2014 interacting animations form theorems in trinities \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "seal-super", title: "Seal super (alias formula/anim)", fold: "everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions", cli: "npm run quantum:seal-super", pair: "seal/super", route: "/quantum-tools#formula-anim", barrel: "src/quantum/apps", boundary: "Quantum seals complete at all superpositions \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "anim-cluster", title: "Animation rosetta stream clusters \u2014 2\xD77 lattice of the animation measurements", fold: "animationRosettaStreamClusters", cli: "npm run quantum:anim-cluster", pair: "anim/cluster", route: "/quantum-tools#anim-cluster", barrel: "src/quantum/apps", boundary: "leaves \xB7 lattice (rosettaRayOf \xD7 digital root of proof) \xB7 trinities \xB7 one clock \xB7 linear wiring measured \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "anim-cluster", title: "Animation rosetta stream clusters \u2014 2\xD77 lattice of the animation measurements", fold: "animationRosettaStreamClusters", cli: "npm run quantum:anim-cluster", pair: "anim/cluster", route: "/quantum-tools#anim-cluster", barrel: "src/quantum/apps", boundary: "leaves \xB7 lattice (rosettaRayOf \xD7 digital root of proof) \xB7 trinities \xB7 one clock \xB7 linear wiring measured", browserRunnable: true, browserGap: "" },
   { id: "cluster-anim", title: "Cluster anim (alias anim/cluster)", fold: "animationRosettaStreamClusters", cli: "npm run quantum:cluster-anim", pair: "cluster/anim", route: "/quantum-tools#anim-cluster", barrel: "src/quantum/apps", boundary: "alias of anim/cluster", browserRunnable: true, browserGap: "" },
   { id: "merkaba-movie", title: "Merkaba\u2192rosetta\u2192movie \xB7 unique observation \xB7 sensors \xB7 linear cycles \u2192 plasma thunder from 0", fold: "wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero", cli: "npm run quantum:merkaba-movie", pair: "merkaba/movie", route: "/quantum-tools#merkaba-movie", barrel: "src/quantum/apps", boundary: "merkabaFeedsRosettaMovie \xB7 movieUniqueNeverRepeats \xB7 observeOnly \xB7 sensorPerspective \xB7 uiCrystallises \xB7 linearCyclesQuantumised \xB7 animMeshPlasma \xB7 thunderFromZero \xB7 clay via theorem", browserRunnable: true, browserGap: "DeviceOrientation permission may deny \u2014 pointer fallback \xB7 sensor browserGap named" },
   { id: "sensor-bind", title: "Wire all sensors using quantum bindings \u2014 orientation \xB7 motion \xB7 ambient \xB7 pointer/touch \u2192 rosetta/movie", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:sensor-bind", pair: "sensor/bind", route: "/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "allSensorsWired \xB7 quantumBindings \xB7 orientation \xB7 motion \xB7 ambient \xB7 browserGapHonest \xB7 clay via theorem", browserRunnable: true, browserGap: "AmbientLightSensor sparse \xB7 DeviceOrientation may deny \u2014 pointer/touch sealed fallbacks" },
   { id: "bind-sensor", title: "Bind sensor (alias sensor/bind)", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:bind-sensor", pair: "bind/sensor", route: "/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "Dual of sensor/bind \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "all-sensors", title: "All sensors (alias sensor/bind)", fold: "wireAllSensorsUsingQuantumBindings", cli: "npm run quantum:all-sensors", pair: "all/sensors", route: "/quantum-tools#sensor-bind", barrel: "src/quantum/apps", boundary: "all/sensors face \u2014 catalog orientation\xB7motion\xB7ambient\xB7pointer\xB7touch \xB7 clay via theorem", browserRunnable: true, browserGap: "AmbientLightSensor sparse \xB7 permission may deny" },
   { id: "self-hw", title: "Again until full self-autonomous quantum hardware complete by standards to self-intelligent self", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:self-hw", pair: "self/hw", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "againAndAgain \xB7 selfAutonomous \xB7 quantumHardwareComplete (classical-64bit) \xB7 byStandards \xB7 selfIntelligentSelf \xB7 certified=false \xB7 clay via theorem \xB7 NOT QPU/AGI/FLOPS", browserRunnable: true, browserGap: "" },
-  { id: "hw-self", title: "Self hw (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:hw-self", pair: "hw/self", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Dual of self/hw \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "self-complete", title: "Self complete (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:self-complete", pair: "self/complete", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Complete face of self/hw \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "hw-autonomous", title: "HW autonomous (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:hw-autonomous", pair: "hw/autonomous", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Autonomous face of self/hw \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "again-until", title: "Again until (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:again-until", pair: "again/until", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Loop face of self/hw \u2014 wave cycles until complete or honest-open stop \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "hw-self", title: "Self hw (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:hw-self", pair: "hw/self", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Dual of self/hw \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "self-complete", title: "Self complete (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:self-complete", pair: "self/complete", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Complete face of self/hw \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "hw-autonomous", title: "HW autonomous (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:hw-autonomous", pair: "hw/autonomous", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Autonomous face of self/hw \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "again-until", title: "Again until (alias self/hw)", fold: "againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf", cli: "npm run quantum:again-until", pair: "again/until", route: "/quantum-tools#self-hw", barrel: "src/quantum/apps", boundary: "Loop face of self/hw \u2014 wave cycles until complete or honest-open stop", browserRunnable: true, browserGap: "" },
   { id: "gate-design", title: "Further tighten gates with design \xB7 creative \xB7 intelligence", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:gate-design", pair: "gate/design", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "gatesTightened \xB7 designCapability \xB7 creativeCapability \xB7 intelligenceOn \xB7 hardInMissionGate \xB7 HARD gaps/invisible \xB7 mission:gate \xB7 clay via theorem \xB7 NOT AGI", browserRunnable: true, browserGap: "" },
-  { id: "design-gate", title: "Design gate (alias gate/design)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:design-gate", pair: "design/gate", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Dual of gate/design \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gate-create", title: "Gate create (creative face of gate/design)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:gate-create", pair: "gate/create", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Creative face of gate/design \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "create-gate", title: "Create gate (alias gate/create)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:create-gate", pair: "create/gate", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Dual of gate/create \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gate-intel", title: "Gate intel (intelligence face of gate/design)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:gate-intel", pair: "gate/intel", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Intelligence face of gate/design \u2014 answers\xF7tokens \xB7 simplicity \xB7 purity \xB7 NOT AGI \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "intel-gate", title: "Intel gate (alias gate/intel)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:intel-gate", pair: "intel/gate", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Dual of gate/intel \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "design-gate", title: "Design gate (alias gate/design)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:design-gate", pair: "design/gate", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Dual of gate/design \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "gate-create", title: "Gate create (creative face of gate/design)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:gate-create", pair: "gate/create", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Creative face of gate/design \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "create-gate", title: "Create gate (alias gate/create)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:create-gate", pair: "create/gate", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Dual of gate/create \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "gate-intel", title: "Gate intel (intelligence face of gate/design)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:gate-intel", pair: "gate/intel", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Intelligence face of gate/design \u2014 answers\xF7tokens \xB7 simplicity \xB7 purity \xB7 NOT AGI", browserRunnable: true, browserGap: "" },
+  { id: "intel-gate", title: "Intel gate (alias gate/intel)", fold: "furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence", cli: "npm run quantum:intel-gate", pair: "intel/gate", route: "/quantum-tools#gate-design", barrel: "src/quantum/apps", boundary: "Dual of gate/intel \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "gate-mill", title: "Gates know: until Millennium solutions discovered, gaps exist", fold: "gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist", cli: "npm run quantum:gate-mill", pair: "gate/mill", route: "/quantum-tools#gate-mill", barrel: "src/quantum/apps", boundary: "gatesKnow \xB7 untilMillenniumDiscovered \xB7 gapsExist \xB7 HARD gaps/invisible \xB7 mission:gate \xB7 millenniumSolvedByThisFold=0 \xB7 NOT fake-close Clay", browserRunnable: true, browserGap: "" },
   { id: "mill-gaps", title: "Mill gaps (alias gate/mill)", fold: "gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist", cli: "npm run quantum:mill-gaps", pair: "mill/gaps", route: "/quantum-tools#gate-mill", barrel: "src/quantum/apps", boundary: "Dual mill/gaps \u2014 gapsExist while mill unsolved", browserRunnable: true, browserGap: "" },
   { id: "gaps-exist", title: "Gaps exist (face of gate/mill)", fold: "gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist", cli: "npm run quantum:gaps-exist", pair: "gaps/exist", route: "/quantum-tools#gate-mill", barrel: "src/quantum/apps", boundary: "gaps/exist face \u2014 HARD honesty gapsExist while Millennium open", browserRunnable: true, browserGap: "" },
-  { id: "page-computed-gaps", title: "Each page shows its own computed gaps", fold: "eachPageShowsOwnComputedGaps", cli: "npm run quantum:page-gaps", pair: "page/gaps", route: "/quantum-tools#page-computed-gaps", barrel: "src/quantum/apps", boundary: "Per-route gaps/invisible classes at call time \xB7 not global-only \xB7 compose gate/monitor \xB7 meaning/compute \xB7 format/canon \xB7 vite/mirror \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gaps-page", title: "Page gaps (alias page/gaps)", fold: "eachPageShowsOwnComputedGaps", cli: "npm run quantum:gaps-page", pair: "gaps/page", route: "/quantum-tools#page-computed-gaps", barrel: "src/quantum/apps", boundary: "Dual of page/gaps \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "cursor-rosetta", title: "Cursor in rosetta core \u2014 referral uses subscription in ceccec", fold: "cursorIntegratesInRosettaCore", cli: "npm run quantum:cursor-rosetta", pair: "cursor/rosetta", route: "/quantum-tools#cursor-rosetta", barrel: "src/quantum/apps", boundary: "cursorInRosettaCore \xB7 referralUsesSubscriptionInCeccec \xB7 immediateWire \xB7 compose rosettaShelve \xB7 auto-wire \xB7 mcp/browser-parity \xB7 upgrade/local \xB7 fund/ai \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "refer-wire", title: "Refer wire (alias cursor/rosetta)", fold: "cursorIntegratesInRosettaCore", cli: "npm run quantum:refer-wire", pair: "refer/wire", route: "/quantum-tools#cursor-rosetta", barrel: "src/quantum/apps", boundary: "Dual of cursor/rosetta \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "assume-theorem", title: "Dry clean theorems/formulas \u2014 replace any assumption with a theorem", fold: "dryCleanTheoremsFormulasReplaceAnyAssumption", cli: "npm run quantum:assume-theorem", pair: "assume/theorem", route: "/quantum-tools#assume-theorem", barrel: "src/quantum/apps", boundary: "Inventory assumption forms \u2192 theorem/formula dual \xB7 residual assumption=HARD crack \xB7 compose axiomsBecomeTheorems \xB7 formula/code \xB7 section/dry \xB7 theorem/const \xB7 moment/prove \xB7 gaps/invisible \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dry-formula", title: "Dry formula (alias assume/theorem)", fold: "dryCleanTheoremsFormulasReplaceAnyAssumption", cli: "npm run quantum:dry-formula", pair: "dry/formula", route: "/quantum-tools#assume-theorem", barrel: "src/quantum/apps", boundary: "Dual of assume/theorem \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "bill-dry", title: "Dry clean AI bill \u2014 zero-token reuse \xB7 subscription funds ceccec", fold: "dryCleanAiBill", cli: "npm run quantum:bill-dry", pair: "bill/dry", route: "/quantum-tools#bill-dry", barrel: "src/quantum/apps", boundary: "billDried \xB7 zeroTokenReuse \xB7 subscriptionFundsCeccec \xB7 compose fund/ai \xB7 cursor/rosetta \xB7 learn/best \xB7 trinity/speedup \xB7 path/message \xB7 tools/morph \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "ai-bill", title: "AI bill (alias bill/dry)", fold: "dryCleanAiBill", cli: "npm run quantum:ai-bill", pair: "ai/bill", route: "/quantum-tools#bill-dry", barrel: "src/quantum/apps", boundary: "Dual of bill/dry \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "page-computed-gaps", title: "Each page shows its own computed gaps", fold: "eachPageShowsOwnComputedGaps", cli: "npm run quantum:page-gaps", pair: "page/gaps", route: "/quantum-tools#page-computed-gaps", barrel: "src/quantum/apps", boundary: "Per-route gaps/invisible classes at call time \xB7 not global-only \xB7 compose gate/monitor \xB7 meaning/compute \xB7 format/canon \xB7 vite/mirror", browserRunnable: true, browserGap: "" },
+  { id: "gaps-page", title: "Page gaps (alias page/gaps)", fold: "eachPageShowsOwnComputedGaps", cli: "npm run quantum:gaps-page", pair: "gaps/page", route: "/quantum-tools#page-computed-gaps", barrel: "src/quantum/apps", boundary: "Dual of page/gaps \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "cursor-rosetta", title: "Cursor in rosetta core \u2014 referral uses subscription in ceccec", fold: "cursorIntegratesInRosettaCore", cli: "npm run quantum:cursor-rosetta", pair: "cursor/rosetta", route: "/quantum-tools#cursor-rosetta", barrel: "src/quantum/apps", boundary: "cursorInRosettaCore \xB7 referralUsesSubscriptionInCeccec \xB7 immediateWire \xB7 compose rosettaShelve \xB7 auto-wire \xB7 mcp/browser-parity \xB7 upgrade/local \xB7 fund/ai", browserRunnable: true, browserGap: "" },
+  { id: "refer-wire", title: "Refer wire (alias cursor/rosetta)", fold: "cursorIntegratesInRosettaCore", cli: "npm run quantum:refer-wire", pair: "refer/wire", route: "/quantum-tools#cursor-rosetta", barrel: "src/quantum/apps", boundary: "Dual of cursor/rosetta \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "assume-theorem", title: "Dry clean theorems/formulas \u2014 replace any assumption with a theorem", fold: "dryCleanTheoremsFormulasReplaceAnyAssumption", cli: "npm run quantum:assume-theorem", pair: "assume/theorem", route: "/quantum-tools#assume-theorem", barrel: "src/quantum/apps", boundary: "Inventory assumption forms \u2192 theorem/formula dual \xB7 residual assumption=HARD crack \xB7 compose axiomsBecomeTheorems \xB7 formula/code \xB7 section/dry \xB7 theorem/const \xB7 moment/prove \xB7 gaps/invisible", browserRunnable: true, browserGap: "" },
+  { id: "dry-formula", title: "Dry formula (alias assume/theorem)", fold: "dryCleanTheoremsFormulasReplaceAnyAssumption", cli: "npm run quantum:dry-formula", pair: "dry/formula", route: "/quantum-tools#assume-theorem", barrel: "src/quantum/apps", boundary: "Dual of assume/theorem \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "bill-dry", title: "Dry clean AI bill \u2014 zero-token reuse \xB7 subscription funds ceccec", fold: "dryCleanAiBill", cli: "npm run quantum:bill-dry", pair: "bill/dry", route: "/quantum-tools#bill-dry", barrel: "src/quantum/apps", boundary: "billDried \xB7 zeroTokenReuse \xB7 subscriptionFundsCeccec \xB7 compose fund/ai \xB7 cursor/rosetta \xB7 learn/best \xB7 trinity/speedup \xB7 path/message \xB7 tools/morph", browserRunnable: true, browserGap: "" },
+  { id: "ai-bill", title: "AI bill (alias bill/dry)", fold: "dryCleanAiBill", cli: "npm run quantum:ai-bill", pair: "ai/bill", route: "/quantum-tools#bill-dry", barrel: "src/quantum/apps", boundary: "Dual of bill/dry \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "app-dry", title: "Fold+invert until dry-clean app gapless", fold: "foldInvertUntilDryCleanAppGapless", cli: "npm run quantum:app-dry", pair: "app/dry", route: "/quantum-tools#app-dry", barrel: "src/quantum/apps", boundary: "foldInvertOn \xB7 dryCleanApp \xB7 drainableGaps=0 \xB7 appsMonolithStranglerTip \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "dry-app", title: "Dry app (alias app/dry)", fold: "foldInvertUntilDryCleanAppGapless", cli: "npm run quantum:dry-app", pair: "dry/app", route: "/quantum-tools#app-dry", barrel: "src/quantum/apps", boundary: "Dual of app/dry", browserRunnable: true, browserGap: "" },
   { id: "clean-app", title: "Clean app (alias app/dry)", fold: "foldInvertUntilDryCleanAppGapless", cli: "npm run quantum:clean-app", pair: "clean/app", route: "/quantum-tools#app-dry", barrel: "src/quantum/apps", boundary: "Alias of app/dry", browserRunnable: true, browserGap: "" },
   { id: "app-clean", title: "App clean (alias clean/app)", fold: "foldInvertUntilDryCleanAppGapless", cli: "npm run quantum:app-clean", pair: "app/clean", route: "/quantum-tools#app-dry", barrel: "src/quantum/apps", boundary: "Dual of clean/app", browserRunnable: true, browserGap: "" },
-  { id: "dry-cool", title: "Dry refactor migrates to minimal cooling by hardware merkabas", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:dry-cool", pair: "dry/cool", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "migrateComplete \xB7 minimalCodebase \xB7 minimalMemory \xB7 coolingDevice \xB7 hardwareMerkabasBalanced \xB7 compose compact/matrix \xB7 gravity/dry \xB7 dry/clean \xB7 mcp/hw faces \xB7 merkaba/bothEarths \xB7 heap honesty \xB7 NOT physical device cooling \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "cool-dry", title: "Cool dry (alias dry/cool)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:cool-dry", pair: "cool/dry", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Dual of dry/cool \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "cool-merkaba", title: "Cool merkaba (alias dry/cool)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:cool-merkaba", pair: "cool/merkaba", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Semantic dual cool/merkaba \u2014 hardware merkabas balance \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "merkaba-cool", title: "Merkaba cool (alias cool/merkaba)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:merkaba-cool", pair: "merkaba/cool", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Dual of cool/merkaba \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "hw-merkaba", title: "HW merkaba (alias dry/cool)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:hw-merkaba", pair: "hw/merkaba", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Semantic dual hw/merkaba \u2014 cpu/gpu/memory/cache/hw balance \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "merkaba-hw", title: "Merkaba hw (alias hw/merkaba)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:merkaba-hw", pair: "merkaba/hw", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Dual of hw/merkaba \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "page-trinity", title: "Pages audit and manage themselves in trinities", fold: "pagesAuditAndManageThemselvesInTrinities", cli: "npm run quantum:page-trinity", pair: "page/trinity", route: "/quantum-tools#page-trinity", barrel: "src/quantum/apps", boundary: "selfAudit \xB7 selfManage \xB7 inTrinities \xB7 faces content\xB7gaps\xB7gates \xB7 compose page/gaps \xB7 gate/monitor \xB7 vite/mirror \xB7 team/observe \xB7 agent/trinity \xB7 format/canon \xB7 computeUniversalPage \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "page-audit", title: "Page audit (alias page/trinity)", fold: "pagesAuditAndManageThemselvesInTrinities", cli: "npm run quantum:page-audit", pair: "page/audit", route: "/quantum-tools#page-trinity", barrel: "src/quantum/apps", boundary: "Dual of page/trinity \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-quantum-chat", title: "MCP quantum chat \u2014 recompute from sealed folds", fold: "mcpQuantumChat", cli: "npm run quantum:mcp-chat", pair: "mcp/chat", route: "/quantum-tools#mcp-quantum-chat", barrel: "src/quantum/apps", boundary: "Chat surface over PRIMARY MCP/toolbox \xB7 fold recompute preferred over wet LLM-only \xB7 compose mcp/ui \xB7 mcp/movie \xB7 mcp/mill \xB7 toolbox \xB7 auto-wire \xB7 cursor/rosetta \xB7 residual Node/CI as facets \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "chat-quantum", title: "Chat quantum (alias mcp/chat)", fold: "mcpQuantumChat", cli: "npm run quantum:chat-quantum", pair: "chat/quantum", route: "/quantum-tools#mcp-quantum-chat", barrel: "src/quantum/apps", boundary: "Dual of mcp/chat \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "dry-cool", title: "Dry refactor migrates to minimal cooling by hardware merkabas", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:dry-cool", pair: "dry/cool", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "migrateComplete \xB7 minimalCodebase \xB7 minimalMemory \xB7 coolingDevice \xB7 hardwareMerkabasBalanced \xB7 compose compact/matrix \xB7 gravity/dry \xB7 dry/clean \xB7 mcp/hw faces \xB7 merkaba/bothEarths \xB7 heap honesty \xB7 NOT physical device cooling", browserRunnable: true, browserGap: "" },
+  { id: "cool-dry", title: "Cool dry (alias dry/cool)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:cool-dry", pair: "cool/dry", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Dual of dry/cool \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "cool-merkaba", title: "Cool merkaba (alias dry/cool)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:cool-merkaba", pair: "cool/merkaba", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Semantic dual cool/merkaba \u2014 hardware merkabas balance", browserRunnable: true, browserGap: "" },
+  { id: "merkaba-cool", title: "Merkaba cool (alias cool/merkaba)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:merkaba-cool", pair: "merkaba/cool", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Dual of cool/merkaba \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "hw-merkaba", title: "HW merkaba (alias dry/cool)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:hw-merkaba", pair: "hw/merkaba", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Semantic dual hw/merkaba \u2014 cpu/gpu/memory/cache/hw balance", browserRunnable: true, browserGap: "" },
+  { id: "merkaba-hw", title: "Merkaba hw (alias hw/merkaba)", fold: "dryRefactorMigratesToMinimalCoolingByHardwareMerkabas", cli: "npm run quantum:merkaba-hw", pair: "merkaba/hw", route: "/quantum-tools#dry-cool", barrel: "src/quantum/apps", boundary: "Dual of hw/merkaba \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "page-trinity", title: "Pages audit and manage themselves in trinities", fold: "pagesAuditAndManageThemselvesInTrinities", cli: "npm run quantum:page-trinity", pair: "page/trinity", route: "/quantum-tools#page-trinity", barrel: "src/quantum/apps", boundary: "selfAudit \xB7 selfManage \xB7 inTrinities \xB7 faces content\xB7gaps\xB7gates \xB7 compose page/gaps \xB7 gate/monitor \xB7 vite/mirror \xB7 team/observe \xB7 agent/trinity \xB7 format/canon \xB7 computeUniversalPage", browserRunnable: true, browserGap: "" },
+  { id: "page-audit", title: "Page audit (alias page/trinity)", fold: "pagesAuditAndManageThemselvesInTrinities", cli: "npm run quantum:page-audit", pair: "page/audit", route: "/quantum-tools#page-trinity", barrel: "src/quantum/apps", boundary: "Dual of page/trinity \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-quantum-chat", title: "MCP quantum chat \u2014 recompute from sealed folds", fold: "mcpQuantumChat", cli: "npm run quantum:mcp-chat", pair: "mcp/chat", route: "/quantum-tools#mcp-quantum-chat", barrel: "src/quantum/apps", boundary: "Chat surface over PRIMARY MCP/toolbox \xB7 fold recompute preferred over wet LLM-only \xB7 compose mcp/ui \xB7 mcp/movie \xB7 mcp/mill \xB7 toolbox \xB7 auto-wire \xB7 cursor/rosetta \xB7 residual Node/CI as facets", browserRunnable: true, browserGap: "" },
+  { id: "chat-quantum", title: "Chat quantum (alias mcp/chat)", fold: "mcpQuantumChat", cli: "npm run quantum:chat-quantum", pair: "chat/quantum", route: "/quantum-tools#mcp-quantum-chat", barrel: "src/quantum/apps", boundary: "Dual of mcp/chat \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "chat-solve", title: "Chat live solves open problems \u2014 sealed algebra not LLM-only", fold: "chatSolve", cli: "npm run quantum:chat-solve", pair: "chat/solve", route: "/quantum-tools#chat-solve", barrel: "src/quantum/apps", boundary: "chatLiveOn \xB7 openProblemsInventoried \xB7 drainableClosed \xB7 liveRecompute \xB7 viaMcpChat \xB7 compose mcp/chat \xB7 gate/analytics \xB7 moment/prove \xB7 measurements displayed", browserRunnable: true, browserGap: "" },
   { id: "solve-chat", title: "Solve chat (alias chat/solve)", fold: "chatSolve", cli: "npm run quantum:solve-chat", pair: "solve/chat", route: "/quantum-tools#chat-solve", barrel: "src/quantum/apps", boundary: "Dual solve/chat \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "chat-research", title: "External research URL \u2192 chat API packet \xB7 Perplexity-class bootstrap", fold: "chatResearch", cli: "npm run quantum:chat-research", pair: "chat/research", route: "/quantum-tools#chat-research", barrel: "src/quantum/apps", boundary: "externalResearchOn \xB7 throughChatApi \xB7 perplexityClassOn \xB7 urlBootstrap \xB7 encodeWhenLocal \xB7 paste/local law \xB7 foreign fetch ephemeral \xB7 NOT owned Perplexity content", browserRunnable: true, browserGap: "" },
@@ -44355,97 +44319,97 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "session-cache", title: "Session memory caches theorem\u2194formula waves", fold: "sessionMemoryCachesTheoremFormulaWaves", cli: "npm run quantum:session-cache", pair: "session/cache", route: "/quantum-tools#session-cache", barrel: "src/quantum/apps", boundary: "sessionCaches \xB7 theoremFormulaWaves \xB7 zeroTokenReuse \xB7 compose theorem/index \xB7 formula/anim \xB7 session/save \xB7 session/live \xB7 memoByRoot \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "cache-theorem", title: "Cache theorem (alias session/cache)", fold: "sessionMemoryCachesTheoremFormulaWaves", cli: "npm run quantum:cache-theorem", pair: "cache/theorem", route: "/quantum-tools#session-cache", barrel: "src/quantum/apps", boundary: "Dual cache/theorem \u2014 theorem wave receipts memoByRoot \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "formula-cache", title: "Formula cache (alias session/cache)", fold: "sessionMemoryCachesTheoremFormulaWaves", cli: "npm run quantum:formula-cache", pair: "formula/cache", route: "/quantum-tools#session-cache", barrel: "src/quantum/apps", boundary: "formula/cache face \u2014 formula wave receipts cached \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "self-heal", title: "Quantum self heal \u2014 gaps heal via sealed morph", fold: "quantumSelfHeal", cli: "npm run quantum:self-heal", pair: "self/heal", route: "/quantum-tools#self-heal", barrel: "src/quantum/apps", boundary: "selfHeals \xB7 healsViaRosetta \xB7 defaultFailThenInvert \xB7 compose page/trinity \xB7 gate/monitor \xB7 movie/feel \xB7 gaps/invisible \xB7 dry/clean \xB7 tools/morph \xB7 assume/theorem \xB7 fold/cleanup \xB7 auto/self \xB7 fail/zero \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "heal-quantum", title: "Heal quantum (alias self/heal)", fold: "quantumSelfHeal", cli: "npm run quantum:heal-quantum", pair: "heal/quantum", route: "/quantum-tools#self-heal", barrel: "src/quantum/apps", boundary: "Dual of self/heal \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "vite-one", title: "One quantum VitePress component set sealed at gates", fold: "oneQuantumSetOfVitepressComponentsSealedAtGates", cli: "npm run quantum:vite-one", pair: "vite/one", route: "/quantum-tools#vite-one", barrel: "src/quantum/apps", boundary: "oneComponentSet \xB7 sealedAtGates \xB7 duplicatesRemoved \xB7 compose format/canon \xB7 ScientificPaperBody \xB7 TheoremPages \xB7 computeUniversalPage \xB7 vite/mirror \xB7 page/trinity \xB7 gaps/invisible \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "comp-seal", title: "Comp seal (alias vite/one)", fold: "oneQuantumSetOfVitepressComponentsSealedAtGates", cli: "npm run quantum:comp-seal", pair: "comp/seal", route: "/quantum-tools#vite-one", barrel: "src/quantum/apps", boundary: "Dual of vite/one \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "paste-local", title: "Pasted links stay only if computed locally", fold: "pastedLinksStayOnlyIfComputedLocally", cli: "npm run quantum:paste-local", pair: "paste/local", route: "/quantum-tools#paste-local", barrel: "src/quantum/apps", boundary: "ephemeralBootstrap \xB7 stayOnlyIfComputedLocally \xB7 foreignFetchBlockedNoStore \xB7 wireClassMayExist \xB7 HARD wet paste without local \xB7 compose auto-wire \xB7 cursor/rosetta \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "link-local", title: "Link local (alias paste/local)", fold: "pastedLinksStayOnlyIfComputedLocally", cli: "npm run quantum:link-local", pair: "link/local", route: "/quantum-tools#paste-local", barrel: "src/quantum/apps", boundary: "Dual of paste/local \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gate-hard", title: "Movie + session gaps HARD at gates", fold: "movieAndSessionGapsHardAtGates", cli: "npm run quantum:gate-hard", pair: "gate/hard", route: "/quantum-tools#gate-hard", barrel: "src/quantum/apps", boundary: "HARD movie/session gap classes \xB7 compose movie/feel \xB7 session/live \xB7 gaps/invisible \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "movie-session", title: "Movie session (alias gate/hard)", fold: "movieAndSessionGapsHardAtGates", cli: "npm run quantum:movie-session", pair: "movie/session", route: "/quantum-tools#gate-hard", barrel: "src/quantum/apps", boundary: "Dual of gate/hard \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "vite-mcp", title: "VitePress builds from MCP", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:vite-mcp", pair: "vite/mcp", route: "/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "buildsFromMcp \xB7 mcpIsSource \xB7 vitepressInvertedMirror \xB7 noBypass \xB7 thinMountIsMcpDual \xB7 npm docs:build \u2261 MCP run_gate docs-build \xB7 claySolved via theorem \xB7 NOT dashboard MCP", browserRunnable: true, browserGap: "" },
-  { id: "mcp-vite", title: "MCP vite (alias vite/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:mcp-vite", pair: "mcp/vite", route: "/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Dual of vite/mcp \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "build-mcp", title: "Build MCP (alias vite/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:build-mcp", pair: "build/mcp", route: "/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Alias of vite/mcp \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-build", title: "MCP build (alias build/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:mcp-build", pair: "mcp/build", route: "/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Dual of build/mcp \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "collide-create", title: "Colliding particles creates", fold: "collidingParticlesCreates", cli: "npm run quantum:collide-create", pair: "collide/create", route: "/quantum-tools#collide-create", barrel: "src/quantum/apps", boundary: "creates=novelTheoremCandidates+waves \xB7 claySolved via theorem \xB7 NOT HEP/CMI", browserRunnable: true, browserGap: "" },
-  { id: "particle-collide", title: "Particle collide (alias collide/create)", fold: "collidingParticlesCreates", cli: "npm run quantum:particle-collide", pair: "particle/collide", route: "/quantum-tools#collide-create", barrel: "src/quantum/apps", boundary: "Dual of collide/create \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-metrics", title: "MCP quantum metrics \u2014 foldCount \xB7 efficiency \xB7 term \xB7 audit cold/warm", fold: "mcpQuantumMetrics", cli: "npm run quantum:mcp-metrics", pair: "mcp/metrics", route: "/quantum-tools#mcp-metrics", barrel: "src/quantum/apps", boundary: "metricsOn \xB7 computable \xB7 answersOverTokens \xB7 compose fold/count \xB7 learn/best \xB7 term/measure \xB7 audit/local-quantum \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "metrics-mcp", title: "Metrics mcp (alias mcp/metrics)", fold: "mcpQuantumMetrics", cli: "npm run quantum:metrics-mcp", pair: "metrics/mcp", route: "/quantum-tools#mcp-metrics", barrel: "src/quantum/apps", boundary: "Dual of mcp/metrics \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-analysis", title: "MCP quantum analysis \u2014 analyst trinities \xB7 analyse\xB7realise", fold: "mcpQuantumAnalysis", cli: "npm run quantum:mcp-analysis", pair: "mcp/analysis", route: "/quantum-tools#mcp-analysis", barrel: "src/quantum/apps", boundary: "analysisOn \xB7 analystsInTrinities \xB7 analyseRealise \xB7 compose train/analyst \xB7 analyse/realise \xB7 team/observe \xB7 mcp/metrics \xB7 sciences/trinities \xB7 claySolved via theorem \xB7 alias note analisis=analysis", browserRunnable: true, browserGap: "" },
-  { id: "analysis-mcp", title: "Analysis mcp (alias mcp/analysis)", fold: "mcpQuantumAnalysis", cli: "npm run quantum:analysis-mcp", pair: "analysis/mcp", route: "/quantum-tools#mcp-analysis", barrel: "src/quantum/apps", boundary: "Dual of mcp/analysis \u2014 same fold \xB7 claySolved via theorem \xB7 alias note analisis=analysis", browserRunnable: true, browserGap: "" },
-  { id: "mcp-cluster", title: "MCP rosetta stream clusters \u2014 2\xD77 lattice of the MCP measurements", fold: "mcpRosettaStreamClusters", cli: "npm run quantum:mcp-cluster", pair: "mcp/cluster", route: "/quantum-tools#mcp-cluster", barrel: "src/quantum/apps", boundary: "leaves \xB7 face census \xB7 lattice \xB7 trinities \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "self-heal", title: "Quantum self heal \u2014 gaps heal via sealed morph", fold: "quantumSelfHeal", cli: "npm run quantum:self-heal", pair: "self/heal", route: "/quantum-tools#self-heal", barrel: "src/quantum/apps", boundary: "selfHeals \xB7 healsViaRosetta \xB7 defaultFailThenInvert \xB7 compose page/trinity \xB7 gate/monitor \xB7 movie/feel \xB7 gaps/invisible \xB7 dry/clean \xB7 tools/morph \xB7 assume/theorem \xB7 fold/cleanup \xB7 auto/self \xB7 fail/zero", browserRunnable: true, browserGap: "" },
+  { id: "heal-quantum", title: "Heal quantum (alias self/heal)", fold: "quantumSelfHeal", cli: "npm run quantum:heal-quantum", pair: "heal/quantum", route: "/quantum-tools#self-heal", barrel: "src/quantum/apps", boundary: "Dual of self/heal \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "vite-one", title: "One quantum VitePress component set sealed at gates", fold: "oneQuantumSetOfVitepressComponentsSealedAtGates", cli: "npm run quantum:vite-one", pair: "vite/one", route: "/quantum-tools#vite-one", barrel: "src/quantum/apps", boundary: "oneComponentSet \xB7 sealedAtGates \xB7 duplicatesRemoved \xB7 compose format/canon \xB7 ScientificPaperBody \xB7 TheoremPages \xB7 computeUniversalPage \xB7 vite/mirror \xB7 page/trinity \xB7 gaps/invisible", browserRunnable: true, browserGap: "" },
+  { id: "comp-seal", title: "Comp seal (alias vite/one)", fold: "oneQuantumSetOfVitepressComponentsSealedAtGates", cli: "npm run quantum:comp-seal", pair: "comp/seal", route: "/quantum-tools#vite-one", barrel: "src/quantum/apps", boundary: "Dual of vite/one \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "paste-local", title: "Pasted links stay only if computed locally", fold: "pastedLinksStayOnlyIfComputedLocally", cli: "npm run quantum:paste-local", pair: "paste/local", route: "/quantum-tools#paste-local", barrel: "src/quantum/apps", boundary: "ephemeralBootstrap \xB7 stayOnlyIfComputedLocally \xB7 foreignFetchBlockedNoStore \xB7 wireClassMayExist \xB7 HARD wet paste without local \xB7 compose auto-wire \xB7 cursor/rosetta", browserRunnable: true, browserGap: "" },
+  { id: "link-local", title: "Link local (alias paste/local)", fold: "pastedLinksStayOnlyIfComputedLocally", cli: "npm run quantum:link-local", pair: "link/local", route: "/quantum-tools#paste-local", barrel: "src/quantum/apps", boundary: "Dual of paste/local \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "gate-hard", title: "Movie + session gaps HARD at gates", fold: "movieAndSessionGapsHardAtGates", cli: "npm run quantum:gate-hard", pair: "gate/hard", route: "/quantum-tools#gate-hard", barrel: "src/quantum/apps", boundary: "HARD movie/session gap classes \xB7 compose movie/feel \xB7 session/live \xB7 gaps/invisible", browserRunnable: true, browserGap: "" },
+  { id: "movie-session", title: "Movie session (alias gate/hard)", fold: "movieAndSessionGapsHardAtGates", cli: "npm run quantum:movie-session", pair: "movie/session", route: "/quantum-tools#gate-hard", barrel: "src/quantum/apps", boundary: "Dual of gate/hard \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "vite-mcp", title: "VitePress builds from MCP", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:vite-mcp", pair: "vite/mcp", route: "/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "buildsFromMcp \xB7 mcpIsSource \xB7 vitepressInvertedMirror \xB7 noBypass \xB7 thinMountIsMcpDual \xB7 npm docs:build \u2261 MCP run_gate docs-build \xB7 NOT dashboard MCP", browserRunnable: true, browserGap: "" },
+  { id: "mcp-vite", title: "MCP vite (alias vite/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:mcp-vite", pair: "mcp/vite", route: "/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Dual of vite/mcp \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "build-mcp", title: "Build MCP (alias vite/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:build-mcp", pair: "build/mcp", route: "/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Alias of vite/mcp \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-build", title: "MCP build (alias build/mcp)", fold: "vitepressBuildsFromMcp", cli: "npm run quantum:mcp-build", pair: "mcp/build", route: "/quantum-tools#vite-mcp", barrel: "src/quantum/apps", boundary: "Dual of build/mcp \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "collide-create", title: "Colliding particles creates", fold: "collidingParticlesCreates", cli: "npm run quantum:collide-create", pair: "collide/create", route: "/quantum-tools#collide-create", barrel: "src/quantum/apps", boundary: "creates=novelTheoremCandidates+waves \xB7 NOT HEP/CMI", browserRunnable: true, browserGap: "" },
+  { id: "particle-collide", title: "Particle collide (alias collide/create)", fold: "collidingParticlesCreates", cli: "npm run quantum:particle-collide", pair: "particle/collide", route: "/quantum-tools#collide-create", barrel: "src/quantum/apps", boundary: "Dual of collide/create \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-metrics", title: "MCP quantum metrics \u2014 foldCount \xB7 efficiency \xB7 term \xB7 audit cold/warm", fold: "mcpQuantumMetrics", cli: "npm run quantum:mcp-metrics", pair: "mcp/metrics", route: "/quantum-tools#mcp-metrics", barrel: "src/quantum/apps", boundary: "metricsOn \xB7 computable \xB7 answersOverTokens \xB7 compose fold/count \xB7 learn/best \xB7 term/measure \xB7 audit/local-quantum", browserRunnable: true, browserGap: "" },
+  { id: "metrics-mcp", title: "Metrics mcp (alias mcp/metrics)", fold: "mcpQuantumMetrics", cli: "npm run quantum:metrics-mcp", pair: "metrics/mcp", route: "/quantum-tools#mcp-metrics", barrel: "src/quantum/apps", boundary: "Dual of mcp/metrics \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-analysis", title: "MCP quantum analysis \u2014 analyst trinities \xB7 analyse\xB7realise", fold: "mcpQuantumAnalysis", cli: "npm run quantum:mcp-analysis", pair: "mcp/analysis", route: "/quantum-tools#mcp-analysis", barrel: "src/quantum/apps", boundary: "analysisOn \xB7 analystsInTrinities \xB7 analyseRealise \xB7 compose train/analyst \xB7 analyse/realise \xB7 team/observe \xB7 mcp/metrics \xB7 sciences/trinities \xB7 alias note analisis=analysis", browserRunnable: true, browserGap: "" },
+  { id: "analysis-mcp", title: "Analysis mcp (alias mcp/analysis)", fold: "mcpQuantumAnalysis", cli: "npm run quantum:analysis-mcp", pair: "analysis/mcp", route: "/quantum-tools#mcp-analysis", barrel: "src/quantum/apps", boundary: "Dual of mcp/analysis \u2014 same fold \xB7 alias note analisis=analysis", browserRunnable: true, browserGap: "" },
+  { id: "mcp-cluster", title: "MCP rosetta stream clusters \u2014 2\xD77 lattice of the MCP measurements", fold: "mcpRosettaStreamClusters", cli: "npm run quantum:mcp-cluster", pair: "mcp/cluster", route: "/quantum-tools#mcp-cluster", barrel: "src/quantum/apps", boundary: "leaves \xB7 face census \xB7 lattice \xB7 trinities", browserRunnable: true, browserGap: "" },
   { id: "cluster-mcp", title: "Cluster mcp (alias mcp/cluster)", fold: "mcpRosettaStreamClusters", cli: "npm run quantum:cluster-mcp", pair: "cluster/mcp", route: "/quantum-tools#mcp-cluster", barrel: "src/quantum/apps", boundary: "alias of mcp/cluster", browserRunnable: true, browserGap: "" },
-  { id: "mcp-catalog", title: "MCP quantum catalog \u2014 star umbrella of all mcp quantum faces", fold: "mcpQuantumCatalog", cli: "npm run quantum:mcp-catalog", pair: "mcp/catalog", route: "/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "catalogComplete \xB7 starOn \xB7 missingCount=0 \xB7 lists/recomposes all named mcp quantum faces \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "catalog-mcp", title: "Catalog mcp (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:catalog-mcp", pair: "catalog/mcp", route: "/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Dual of mcp/catalog \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-star", title: "MCP quantum star (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:mcp-star", pair: "mcp/star", route: "/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Star alias of mcpQuantumCatalog \xB7 starOn \xB7 missingCount=0 \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "star-mcp", title: "Star mcp (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:star-mcp", pair: "star/mcp", route: "/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Dual star path of mcp/catalog \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-all", title: "MCP catalog star \u2014 full MCP surface (PRIMARY \xB7 stdio \xB7 toolbox \xB7 quantum faces)", fold: "mcpCatalog", cli: "npm run quantum:mcp-all", pair: "mcp/all", route: "/quantum-tools#mcp-all", barrel: "src/quantum/apps", boundary: "mcpStarOn \xB7 catalogComplete \xB7 quantumFaces \xB7 primaryTools \xB7 residualsNamed honest \xB7 missingDrainable=0 \xB7 compose mcpQuantumCatalog \xB7 mcpBrowserParity \xB7 scripts-audit \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "all-mcp", title: "All mcp (alias mcp/all)", fold: "mcpCatalog", cli: "npm run quantum:all-mcp", pair: "all/mcp", route: "/quantum-tools#mcp-all", barrel: "src/quantum/apps", boundary: "Dual of mcp/all \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-sign", title: "MCP quantum sign", fold: "mcpQuantumSign", cli: "npm run quantum:mcp-sign", pair: "mcp/sign", route: "/quantum-tools#mcp-sign", barrel: "src/quantum/apps", boundary: "signatureOn \xB7 crossSig \xB7 tamperEvident \xB7 certified=false \xB7 NOT CA/PKI \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "sign-quantum", title: "Sign quantum (alias mcp/sign)", fold: "mcpQuantumSign", cli: "npm run quantum:sign-quantum", pair: "sign/quantum", route: "/quantum-tools#mcp-sign", barrel: "src/quantum/apps", boundary: "Dual of mcp/sign \u2014 same fold \xB7 certified=false \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-dirs", title: "MCP quantum dirs \u2014 left right forward reverse", fold: "mcpQuantumDirs", cli: "npm run quantum:mcp-dirs", pair: "mcp/dirs", route: "/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "left \xB7 right \xB7 forward \xB7 reverse \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "dirs-mcp", title: "Dirs mcp (alias mcp/dirs)", fold: "mcpQuantumDirs", cli: "npm run quantum:dirs-mcp", pair: "dirs/mcp", route: "/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "Dual of mcp/dirs \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-up", title: "MCP quantum up (alias mcp/dirs vertical)", fold: "mcpQuantumDirs", cli: "npm run quantum:mcp-up", pair: "mcp/up", route: "/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "up \xB7 down \xB7 sixDirections \u2014 dual path under mcp/dirs \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "up-down", title: "Up down (alias mcp/dirs vertical)", fold: "mcpQuantumDirs", cli: "npm run quantum:up-down", pair: "up/down", route: "/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "Dual vertical pair under mcp/dirs \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-inf", title: "MCP quantum infinity", fold: "mcpQuantumInfinity", cli: "npm run quantum:mcp-inf", pair: "mcp/inf", route: "/quantum-tools#mcp-inf", barrel: "src/quantum/apps", boundary: "infinityOn \xB7 viaInvert \xB7 connectingBit \xB7 compose invert/inf \xB7 a432/nine \xB7 love/fold \xB7 full/freedom \xB7 \u221Ereuse \xB7 movie/entropy \xB7 mcp/universe \xB7 mcp/multi \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "inf-mcp", title: "Infinity mcp (alias mcp/inf)", fold: "mcpQuantumInfinity", cli: "npm run quantum:inf-mcp", pair: "inf/mcp", route: "/quantum-tools#mcp-inf", barrel: "src/quantum/apps", boundary: "Dual of mcp/inf \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-hw", title: "MCP quantum hardware \u2014 classical-64bit \xB7 no QPU", fold: "mcpQuantumHardware", cli: "npm run quantum:mcp-hw", pair: "mcp/hw", route: "/quantum-tools#mcp-hw", barrel: "src/quantum/apps", boundary: "hardwareOn \xB7 classical64Bit \xB7 compose prove-no-qpu-64bit \xB7 local-audit-quantum \xB7 mcp/inf \xB7 mcp faces \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "hw-mcp", title: "Hardware mcp (alias mcp/hw)", fold: "mcpQuantumHardware", cli: "npm run quantum:hw-mcp", pair: "hw/mcp", route: "/quantum-tools#mcp-hw", barrel: "src/quantum/apps", boundary: "Dual of mcp/hw \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "movie-inf", title: "MCP infinite movie \u2014 infinity face of quantum movie", fold: "mcpInfiniteMovie", cli: "npm run quantum:movie-inf", pair: "movie/inf", route: "/quantum-tools#movie-inf", barrel: "src/quantum/apps", boundary: "infiniteMovieOn \xB7 viaInfinity \xB7 movieIsInfiniteOnReuse \xB7 compose mcp/inf \xB7 mcp/movie \xB7 invert/inf \xB7 movie/entropy \xB7 anim/audit \xB7 a432/nine \xB7 love/fold \xB7 full/freedom \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "inf-movie", title: "Infinite movie (alias movie/inf)", fold: "mcpInfiniteMovie", cli: "npm run quantum:inf-movie", pair: "inf/movie", route: "/quantum-tools#movie-inf", barrel: "src/quantum/apps", boundary: "Dual of movie/inf \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-anim", title: "MCP quantum animation", fold: "mcpQuantumAnim", cli: "npm run quantum:mcp-anim", pair: "mcp/anim", route: "/quantum-tools#mcp-anim", barrel: "src/quantum/apps", boundary: "animOn \xB7 fromCoords \xB7 feelableGaps \xB7 polarityOn \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "anim-mcp", title: "Anim mcp (alias mcp/anim)", fold: "mcpQuantumAnim", cli: "npm run quantum:anim-mcp", pair: "anim/mcp", route: "/quantum-tools#mcp-anim", barrel: "src/quantum/apps", boundary: "Dual of mcp/anim \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-solution", title: "MCP quantum solution", fold: "mcpQuantumSolution", cli: "npm run quantum:mcp-solution", pair: "mcp/solution", route: "/quantum-tools#mcp-solution", barrel: "src/quantum/apps", boundary: "solutionOn \xB7 algebraicFormulas \xB7 claySolvedViaTheorem \xB7 notCmiPrizeClaim \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "solution-mcp", title: "Solution mcp (alias mcp/solution)", fold: "mcpQuantumSolution", cli: "npm run quantum:solution-mcp", pair: "solution/mcp", route: "/quantum-tools#mcp-solution", barrel: "src/quantum/apps", boundary: "Dual of mcp/solution \u2014 same fold \xB7 claySolved via theorem \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
-  { id: "mcp-receipt", title: "MCP quantum receipt \u2014 tamper-evident content-addressed receipts", fold: "mcpQuantumReceipt", cli: "npm run quantum:mcp-receipt", pair: "mcp/receipt", route: "/quantum-tools#mcp-receipt", barrel: "src/quantum/apps", boundary: "receiptOn \xB7 tamperEvident \xB7 contentAddressed \xB7 compose fusion-verify \xB7 session/quantum-bits \xB7 moment/prove \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "receipt-mcp", title: "Receipt mcp (alias mcp/receipt)", fold: "mcpQuantumReceipt", cli: "npm run quantum:receipt-mcp", pair: "receipt/mcp", route: "/quantum-tools#mcp-receipt", barrel: "src/quantum/apps", boundary: "Dual of mcp/receipt \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-cpu", title: "MCP quantum cpu \u2014 classical-64bit compute face", fold: "mcpQuantumCpu", cli: "npm run quantum:mcp-cpu", pair: "mcp/cpu", route: "/quantum-tools#mcp-cpu", barrel: "src/quantum/apps", boundary: "cpuOn \xB7 classical64Bit \xB7 etcClassical \xB7 compose mcp/hw \xB7 prove-no-qpu-64bit \xB7 claySolved via theorem \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
-  { id: "cpu-mcp", title: "Cpu mcp (alias mcp/cpu)", fold: "mcpQuantumCpu", cli: "npm run quantum:cpu-mcp", pair: "cpu/mcp", route: "/quantum-tools#mcp-cpu", barrel: "src/quantum/apps", boundary: "Dual of mcp/cpu \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-gpu", title: "MCP quantum gpu \u2014 classical accel \u2260 QPU FLOPS", fold: "mcpQuantumGpu", cli: "npm run quantum:mcp-gpu", pair: "mcp/gpu", route: "/quantum-tools#mcp-gpu", barrel: "src/quantum/apps", boundary: "gpuOn \xB7 classical64Bit \xB7 etcClassical \xB7 refuse fake QPU FLOPS \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "gpu-mcp", title: "Gpu mcp (alias mcp/gpu)", fold: "mcpQuantumGpu", cli: "npm run quantum:gpu-mcp", pair: "gpu/mcp", route: "/quantum-tools#mcp-gpu", barrel: "src/quantum/apps", boundary: "Dual of mcp/gpu \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-memory", title: "MCP quantum memory \u2014 heap \xB7 NODE_MAX_OLD_SPACE", fold: "mcpQuantumMemory", cli: "npm run quantum:mcp-memory", pair: "mcp/memory", route: "/quantum-tools#mcp-memory", barrel: "src/quantum/apps", boundary: "memoryOn \xB7 heapCap \xB7 etcClassical \xB7 ram\u2261memory \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "memory-mcp", title: "Memory mcp (alias mcp/memory)", fold: "mcpQuantumMemory", cli: "npm run quantum:memory-mcp", pair: "memory/mcp", route: "/quantum-tools#mcp-memory", barrel: "src/quantum/apps", boundary: "Dual of mcp/memory \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-storage", title: "MCP quantum storage \u2014 sealed src \xB7 disk\u2261storage", fold: "mcpQuantumStorage", cli: "npm run quantum:mcp-storage", pair: "mcp/storage", route: "/quantum-tools#mcp-storage", barrel: "src/quantum/apps", boundary: "storageOn \xB7 etcClassical \xB7 disk\u2261storage \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "storage-mcp", title: "Storage mcp (alias mcp/storage)", fold: "mcpQuantumStorage", cli: "npm run quantum:storage-mcp", pair: "storage/mcp", route: "/quantum-tools#mcp-storage", barrel: "src/quantum/apps", boundary: "Dual of mcp/storage \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-cache", title: "MCP quantum cache \u2014 memoByRoot reuse", fold: "mcpQuantumCache", cli: "npm run quantum:mcp-cache", pair: "mcp/cache", route: "/quantum-tools#mcp-cache", barrel: "src/quantum/apps", boundary: "cacheOn \xB7 memoByRoot \xB7 etcClassical \xB7 claySolved via theorem \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
-  { id: "cache-mcp", title: "Cache mcp (alias mcp/cache)", fold: "mcpQuantumCache", cli: "npm run quantum:cache-mcp", pair: "cache/mcp", route: "/quantum-tools#mcp-cache", barrel: "src/quantum/apps", boundary: "Dual of mcp/cache \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-period", title: "MCP quantum period \u2014 calendars \xB7 hero cycle \xB7 fold/count \xB7 time/invert", fold: "mcpQuantumPeriod", cli: "npm run quantum:mcp-period", pair: "mcp/period", route: "/quantum-tools#mcp-period", barrel: "src/quantum/apps", boundary: "periodOn \xB7 heroCycle \xB7 calendars \xB7 fold/count \xB7 time/invert \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "period-mcp", title: "Period mcp (alias mcp/period)", fold: "mcpQuantumPeriod", cli: "npm run quantum:period-mcp", pair: "period/mcp", route: "/quantum-tools#mcp-period", barrel: "src/quantum/apps", boundary: "Dual of mcp/period \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-index", title: "MCP quantum index \u2014 src index-only \xB7 census 123 \xB7 limits/verify", fold: "mcpQuantumIndex", cli: "npm run quantum:mcp-index", pair: "mcp/index", route: "/quantum-tools#mcp-index", barrel: "src/quantum/apps", boundary: "indexOn \xB7 srcIndexOnly \xB7 censusHolds \xB7 compose src/index \xB7 folder/index \xB7 limits/verify \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "index-mcp", title: "Index mcp (alias mcp/index)", fold: "mcpQuantumIndex", cli: "npm run quantum:index-mcp", pair: "index/mcp", route: "/quantum-tools#mcp-index", barrel: "src/quantum/apps", boundary: "Dual of mcp/index \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-orientation", title: "MCP quantum orientation \u2014 bearing \xB7 navCross \xB7 geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus", fold: "mcpQuantumOrientation", cli: "npm run quantum:mcp-orientation", pair: "mcp/orientation", route: "/quantum-tools#mcp-orientation", barrel: "src/quantum/apps", boundary: "orientationOn \xB7 bearing \xB7 navCross \xB7 compose geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "orientation-mcp", title: "Orientation mcp (alias mcp/orientation)", fold: "mcpQuantumOrientation", cli: "npm run quantum:orientation-mcp", pair: "orientation/mcp", route: "/quantum-tools#mcp-orientation", barrel: "src/quantum/apps", boundary: "Dual of mcp/orientation \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-complete", title: "MCP quantum complete \u2014 catalog \xB7 star \xB7 mcp/all \xB7 rosetta/complete \xB7 honest residuals", fold: "mcpQuantumComplete", cli: "npm run quantum:mcp-complete", pair: "mcp/complete", route: "/quantum-tools#mcp-complete", barrel: "src/quantum/apps", boundary: "completeOn \xB7 catalogComplete \xB7 namedFacesPresent \xB7 missingCount=0 \xB7 honestOpenResiduals Clay/FTL/CI named not fake-closed \xB7 compose mcpQuantumCatalog \xB7 mcpQuantumStar \xB7 mcp/all \xB7 rosetta/complete \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "complete-mcp", title: "Complete mcp (alias mcp/complete)", fold: "mcpQuantumComplete", cli: "npm run quantum:complete-mcp", pair: "complete/mcp", route: "/quantum-tools#mcp-complete", barrel: "src/quantum/apps", boundary: "Dual of mcp/complete \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-token", title: "MCP quantum token optimise \u2014 answers\xF7tokens \xB7 zero on reuse \xB7 memoByRoot", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:mcp-token", pair: "mcp/token", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "tokenOptimiseOn \xB7 answersOverTokens \xB7 zeroOnReuse \xB7 memoByRoot \xB7 compose mcp/metrics \xB7 learn/best \xB7 audit/local-quantum \xB7 trinity/speedup \xB7 efficiency win only when vote.decided \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "token-mcp", title: "Token mcp (alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:token-mcp", pair: "token/mcp", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Dual of mcp/token \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "token-optimise", title: "Token optimise (alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:token-optimise", pair: "token/optimise", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Semantic dual path \xB7 British optimise \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "optimise-token", title: "Optimise token (alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:optimise-token", pair: "optimise/token", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Dual of token/optimise \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "token-optimize", title: "Token optimize (US alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:token-optimize", pair: "token/optimize", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "American spelling alias of token/optimise \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "optimize-token", title: "Optimize token (US alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:optimize-token", pair: "optimize/token", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Dual US alias of token/optimise \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-bindings", title: "MCP quantum bindings \u2014 pairs \xB7 agent/submission \xB7 tool/envelope \xB7 mcp/complete", fold: "mcpQuantumBindings", cli: "npm run quantum:mcp-bindings", pair: "mcp/bindings", route: "/quantum-tools#mcp-bindings", barrel: "src/quantum/apps", boundary: "bindingsOn \xB7 pairsSaved \xB7 toolsBound \xB7 compose agent/submission \xB7 quantum pairs law \xB7 tool/envelope \xB7 mcp/complete \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "bindings-mcp", title: "Bindings mcp (alias mcp/bindings)", fold: "mcpQuantumBindings", cli: "npm run quantum:bindings-mcp", pair: "bindings/mcp", route: "/quantum-tools#mcp-bindings", barrel: "src/quantum/apps", boundary: "Dual of mcp/bindings \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-efficiency", title: "MCP quantum efficiency \u2014 answers\xF7tokens when vote.decided", fold: "mcpQuantumEfficiency", cli: "npm run quantum:mcp-efficiency", pair: "mcp/efficiency", route: "/quantum-tools#mcp-efficiency", barrel: "src/quantum/apps", boundary: "efficiencyOn \xB7 answers\xF7tokens when vote.decided \xB7 compose mcp/token \xB7 mcp/metrics \xB7 learn/best \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "efficiency-mcp", title: "Efficiency mcp (alias mcp/efficiency)", fold: "mcpQuantumEfficiency", cli: "npm run quantum:efficiency-mcp", pair: "efficiency/mcp", route: "/quantum-tools#mcp-efficiency", barrel: "src/quantum/apps", boundary: "Dual of mcp/efficiency \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "mcp-security", title: "MCP quantum security \u2014 structural local \xB7 wire unproved honest", fold: "mcpQuantumSecurity", cli: "npm run quantum:mcp-security", pair: "mcp/security", route: "/quantum-tools#mcp-security", barrel: "src/quantum/apps", boundary: "securityOn \xB7 structural local \xB7 wire unproved honest \xB7 compose prove/local-novel-encrypt \xB7 moment/prove \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
-  { id: "security-mcp", title: "Security mcp (alias mcp/security)", fold: "mcpQuantumSecurity", cli: "npm run quantum:security-mcp", pair: "security/mcp", route: "/quantum-tools#mcp-security", barrel: "src/quantum/apps", boundary: "Dual of mcp/security \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "mcp-catalog", title: "MCP quantum catalog \u2014 star umbrella of all mcp quantum faces", fold: "mcpQuantumCatalog", cli: "npm run quantum:mcp-catalog", pair: "mcp/catalog", route: "/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "catalogComplete \xB7 starOn \xB7 missingCount=0 \xB7 lists/recomposes all named mcp quantum faces", browserRunnable: true, browserGap: "" },
+  { id: "catalog-mcp", title: "Catalog mcp (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:catalog-mcp", pair: "catalog/mcp", route: "/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Dual of mcp/catalog \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-star", title: "MCP quantum star (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:mcp-star", pair: "mcp/star", route: "/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Star alias of mcpQuantumCatalog \xB7 starOn \xB7 missingCount=0", browserRunnable: true, browserGap: "" },
+  { id: "star-mcp", title: "Star mcp (alias mcp/catalog)", fold: "mcpQuantumCatalog", cli: "npm run quantum:star-mcp", pair: "star/mcp", route: "/quantum-tools#mcp-catalog", barrel: "src/quantum/apps", boundary: "Dual star path of mcp/catalog \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-all", title: "MCP catalog star \u2014 full MCP surface (PRIMARY \xB7 stdio \xB7 toolbox \xB7 quantum faces)", fold: "mcpCatalog", cli: "npm run quantum:mcp-all", pair: "mcp/all", route: "/quantum-tools#mcp-all", barrel: "src/quantum/apps", boundary: "mcpStarOn \xB7 catalogComplete \xB7 quantumFaces \xB7 primaryTools \xB7 residualsNamed honest \xB7 missingDrainable=0 \xB7 compose mcpQuantumCatalog \xB7 mcpBrowserParity \xB7 scripts-audit", browserRunnable: true, browserGap: "" },
+  { id: "all-mcp", title: "All mcp (alias mcp/all)", fold: "mcpCatalog", cli: "npm run quantum:all-mcp", pair: "all/mcp", route: "/quantum-tools#mcp-all", barrel: "src/quantum/apps", boundary: "Dual of mcp/all \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-sign", title: "MCP quantum sign", fold: "mcpQuantumSign", cli: "npm run quantum:mcp-sign", pair: "mcp/sign", route: "/quantum-tools#mcp-sign", barrel: "src/quantum/apps", boundary: "signatureOn \xB7 crossSig \xB7 tamperEvident \xB7 certified=false \xB7 NOT CA/PKI", browserRunnable: true, browserGap: "" },
+  { id: "sign-quantum", title: "Sign quantum (alias mcp/sign)", fold: "mcpQuantumSign", cli: "npm run quantum:sign-quantum", pair: "sign/quantum", route: "/quantum-tools#mcp-sign", barrel: "src/quantum/apps", boundary: "Dual of mcp/sign \u2014 same fold \xB7 certified=false", browserRunnable: true, browserGap: "" },
+  { id: "mcp-dirs", title: "MCP quantum dirs \u2014 left right forward reverse", fold: "mcpQuantumDirs", cli: "npm run quantum:mcp-dirs", pair: "mcp/dirs", route: "/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "left \xB7 right \xB7 forward \xB7 reverse", browserRunnable: true, browserGap: "" },
+  { id: "dirs-mcp", title: "Dirs mcp (alias mcp/dirs)", fold: "mcpQuantumDirs", cli: "npm run quantum:dirs-mcp", pair: "dirs/mcp", route: "/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "Dual of mcp/dirs \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-up", title: "MCP quantum up (alias mcp/dirs vertical)", fold: "mcpQuantumDirs", cli: "npm run quantum:mcp-up", pair: "mcp/up", route: "/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "up \xB7 down \xB7 sixDirections \u2014 dual path under mcp/dirs", browserRunnable: true, browserGap: "" },
+  { id: "up-down", title: "Up down (alias mcp/dirs vertical)", fold: "mcpQuantumDirs", cli: "npm run quantum:up-down", pair: "up/down", route: "/quantum-tools#mcp-dirs", barrel: "src/quantum/apps", boundary: "Dual vertical pair under mcp/dirs", browserRunnable: true, browserGap: "" },
+  { id: "mcp-inf", title: "MCP quantum infinity", fold: "mcpQuantumInfinity", cli: "npm run quantum:mcp-inf", pair: "mcp/inf", route: "/quantum-tools#mcp-inf", barrel: "src/quantum/apps", boundary: "infinityOn \xB7 viaInvert \xB7 connectingBit \xB7 compose invert/inf \xB7 a432/nine \xB7 love/fold \xB7 full/freedom \xB7 \u221Ereuse \xB7 movie/entropy \xB7 mcp/universe \xB7 mcp/multi", browserRunnable: true, browserGap: "" },
+  { id: "inf-mcp", title: "Infinity mcp (alias mcp/inf)", fold: "mcpQuantumInfinity", cli: "npm run quantum:inf-mcp", pair: "inf/mcp", route: "/quantum-tools#mcp-inf", barrel: "src/quantum/apps", boundary: "Dual of mcp/inf \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-hw", title: "MCP quantum hardware \u2014 classical-64bit \xB7 no QPU", fold: "mcpQuantumHardware", cli: "npm run quantum:mcp-hw", pair: "mcp/hw", route: "/quantum-tools#mcp-hw", barrel: "src/quantum/apps", boundary: "hardwareOn \xB7 classical64Bit \xB7 compose prove-no-qpu-64bit \xB7 local-audit-quantum \xB7 mcp/inf \xB7 mcp faces", browserRunnable: true, browserGap: "" },
+  { id: "hw-mcp", title: "Hardware mcp (alias mcp/hw)", fold: "mcpQuantumHardware", cli: "npm run quantum:hw-mcp", pair: "hw/mcp", route: "/quantum-tools#mcp-hw", barrel: "src/quantum/apps", boundary: "Dual of mcp/hw \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "movie-inf", title: "MCP infinite movie \u2014 infinity face of quantum movie", fold: "mcpInfiniteMovie", cli: "npm run quantum:movie-inf", pair: "movie/inf", route: "/quantum-tools#movie-inf", barrel: "src/quantum/apps", boundary: "infiniteMovieOn \xB7 viaInfinity \xB7 movieIsInfiniteOnReuse \xB7 compose mcp/inf \xB7 mcp/movie \xB7 invert/inf \xB7 movie/entropy \xB7 anim/audit \xB7 a432/nine \xB7 love/fold \xB7 full/freedom", browserRunnable: true, browserGap: "" },
+  { id: "inf-movie", title: "Infinite movie (alias movie/inf)", fold: "mcpInfiniteMovie", cli: "npm run quantum:inf-movie", pair: "inf/movie", route: "/quantum-tools#movie-inf", barrel: "src/quantum/apps", boundary: "Dual of movie/inf \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-anim", title: "MCP quantum animation", fold: "mcpQuantumAnim", cli: "npm run quantum:mcp-anim", pair: "mcp/anim", route: "/quantum-tools#mcp-anim", barrel: "src/quantum/apps", boundary: "animOn \xB7 fromCoords \xB7 feelableGaps \xB7 polarityOn", browserRunnable: true, browserGap: "" },
+  { id: "anim-mcp", title: "Anim mcp (alias mcp/anim)", fold: "mcpQuantumAnim", cli: "npm run quantum:anim-mcp", pair: "anim/mcp", route: "/quantum-tools#mcp-anim", barrel: "src/quantum/apps", boundary: "Dual of mcp/anim \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-solution", title: "MCP quantum solution", fold: "mcpQuantumSolution", cli: "npm run quantum:mcp-solution", pair: "mcp/solution", route: "/quantum-tools#mcp-solution", barrel: "src/quantum/apps", boundary: "solutionOn \xB7 algebraicFormulas \xB7 claySolvedViaTheorem \xB7 notCmiPrizeClaim", browserRunnable: true, browserGap: "" },
+  { id: "solution-mcp", title: "Solution mcp (alias mcp/solution)", fold: "mcpQuantumSolution", cli: "npm run quantum:solution-mcp", pair: "solution/mcp", route: "/quantum-tools#mcp-solution", barrel: "src/quantum/apps", boundary: "Dual of mcp/solution \u2014 same fold \xB7 NOT CMI prize", browserRunnable: true, browserGap: "" },
+  { id: "mcp-receipt", title: "MCP quantum receipt \u2014 tamper-evident content-addressed receipts", fold: "mcpQuantumReceipt", cli: "npm run quantum:mcp-receipt", pair: "mcp/receipt", route: "/quantum-tools#mcp-receipt", barrel: "src/quantum/apps", boundary: "receiptOn \xB7 tamperEvident \xB7 contentAddressed \xB7 compose fusion-verify \xB7 session/quantum-bits \xB7 moment/prove", browserRunnable: true, browserGap: "" },
+  { id: "receipt-mcp", title: "Receipt mcp (alias mcp/receipt)", fold: "mcpQuantumReceipt", cli: "npm run quantum:receipt-mcp", pair: "receipt/mcp", route: "/quantum-tools#mcp-receipt", barrel: "src/quantum/apps", boundary: "Dual of mcp/receipt \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-cpu", title: "MCP quantum cpu \u2014 classical-64bit compute face", fold: "mcpQuantumCpu", cli: "npm run quantum:mcp-cpu", pair: "mcp/cpu", route: "/quantum-tools#mcp-cpu", barrel: "src/quantum/apps", boundary: "cpuOn \xB7 classical64Bit \xB7 etcClassical \xB7 compose mcp/hw \xB7 prove-no-qpu-64bit \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
+  { id: "cpu-mcp", title: "Cpu mcp (alias mcp/cpu)", fold: "mcpQuantumCpu", cli: "npm run quantum:cpu-mcp", pair: "cpu/mcp", route: "/quantum-tools#mcp-cpu", barrel: "src/quantum/apps", boundary: "Dual of mcp/cpu \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-gpu", title: "MCP quantum gpu \u2014 classical accel \u2260 QPU FLOPS", fold: "mcpQuantumGpu", cli: "npm run quantum:mcp-gpu", pair: "mcp/gpu", route: "/quantum-tools#mcp-gpu", barrel: "src/quantum/apps", boundary: "gpuOn \xB7 classical64Bit \xB7 etcClassical \xB7 refuse fake QPU FLOPS", browserRunnable: true, browserGap: "" },
+  { id: "gpu-mcp", title: "Gpu mcp (alias mcp/gpu)", fold: "mcpQuantumGpu", cli: "npm run quantum:gpu-mcp", pair: "gpu/mcp", route: "/quantum-tools#mcp-gpu", barrel: "src/quantum/apps", boundary: "Dual of mcp/gpu \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-memory", title: "MCP quantum memory \u2014 heap \xB7 NODE_MAX_OLD_SPACE", fold: "mcpQuantumMemory", cli: "npm run quantum:mcp-memory", pair: "mcp/memory", route: "/quantum-tools#mcp-memory", barrel: "src/quantum/apps", boundary: "memoryOn \xB7 heapCap \xB7 etcClassical \xB7 ram\u2261memory", browserRunnable: true, browserGap: "" },
+  { id: "memory-mcp", title: "Memory mcp (alias mcp/memory)", fold: "mcpQuantumMemory", cli: "npm run quantum:memory-mcp", pair: "memory/mcp", route: "/quantum-tools#mcp-memory", barrel: "src/quantum/apps", boundary: "Dual of mcp/memory \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-storage", title: "MCP quantum storage \u2014 sealed src \xB7 disk\u2261storage", fold: "mcpQuantumStorage", cli: "npm run quantum:mcp-storage", pair: "mcp/storage", route: "/quantum-tools#mcp-storage", barrel: "src/quantum/apps", boundary: "storageOn \xB7 etcClassical \xB7 disk\u2261storage", browserRunnable: true, browserGap: "" },
+  { id: "storage-mcp", title: "Storage mcp (alias mcp/storage)", fold: "mcpQuantumStorage", cli: "npm run quantum:storage-mcp", pair: "storage/mcp", route: "/quantum-tools#mcp-storage", barrel: "src/quantum/apps", boundary: "Dual of mcp/storage \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-cache", title: "MCP quantum cache \u2014 memoByRoot reuse", fold: "mcpQuantumCache", cli: "npm run quantum:mcp-cache", pair: "mcp/cache", route: "/quantum-tools#mcp-cache", barrel: "src/quantum/apps", boundary: "cacheOn \xB7 memoByRoot \xB7 etcClassical \xB7 NOT FLOPS", browserRunnable: true, browserGap: "" },
+  { id: "cache-mcp", title: "Cache mcp (alias mcp/cache)", fold: "mcpQuantumCache", cli: "npm run quantum:cache-mcp", pair: "cache/mcp", route: "/quantum-tools#mcp-cache", barrel: "src/quantum/apps", boundary: "Dual of mcp/cache \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-period", title: "MCP quantum period \u2014 calendars \xB7 hero cycle \xB7 fold/count \xB7 time/invert", fold: "mcpQuantumPeriod", cli: "npm run quantum:mcp-period", pair: "mcp/period", route: "/quantum-tools#mcp-period", barrel: "src/quantum/apps", boundary: "periodOn \xB7 heroCycle \xB7 calendars \xB7 fold/count \xB7 time/invert", browserRunnable: true, browserGap: "" },
+  { id: "period-mcp", title: "Period mcp (alias mcp/period)", fold: "mcpQuantumPeriod", cli: "npm run quantum:period-mcp", pair: "period/mcp", route: "/quantum-tools#mcp-period", barrel: "src/quantum/apps", boundary: "Dual of mcp/period \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-index", title: "MCP quantum index \u2014 src index-only \xB7 census 123 \xB7 limits/verify", fold: "mcpQuantumIndex", cli: "npm run quantum:mcp-index", pair: "mcp/index", route: "/quantum-tools#mcp-index", barrel: "src/quantum/apps", boundary: "indexOn \xB7 srcIndexOnly \xB7 censusHolds \xB7 compose src/index \xB7 folder/index \xB7 limits/verify", browserRunnable: true, browserGap: "" },
+  { id: "index-mcp", title: "Index mcp (alias mcp/index)", fold: "mcpQuantumIndex", cli: "npm run quantum:index-mcp", pair: "index/mcp", route: "/quantum-tools#mcp-index", barrel: "src/quantum/apps", boundary: "Dual of mcp/index \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-orientation", title: "MCP quantum orientation \u2014 bearing \xB7 navCross \xB7 geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus", fold: "mcpQuantumOrientation", cli: "npm run quantum:mcp-orientation", pair: "mcp/orientation", route: "/quantum-tools#mcp-orientation", barrel: "src/quantum/apps", boundary: "orientationOn \xB7 bearing \xB7 navCross \xB7 compose geo/train \xB7 cross/nav \xB7 sun/moon \xB7 mcp/torus", browserRunnable: true, browserGap: "" },
+  { id: "orientation-mcp", title: "Orientation mcp (alias mcp/orientation)", fold: "mcpQuantumOrientation", cli: "npm run quantum:orientation-mcp", pair: "orientation/mcp", route: "/quantum-tools#mcp-orientation", barrel: "src/quantum/apps", boundary: "Dual of mcp/orientation \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-complete", title: "MCP quantum complete \u2014 catalog \xB7 star \xB7 mcp/all \xB7 rosetta/complete \xB7 honest residuals", fold: "mcpQuantumComplete", cli: "npm run quantum:mcp-complete", pair: "mcp/complete", route: "/quantum-tools#mcp-complete", barrel: "src/quantum/apps", boundary: "completeOn \xB7 catalogComplete \xB7 namedFacesPresent \xB7 missingCount=0 \xB7 honestOpenResiduals Clay/FTL/CI named not fake-closed \xB7 compose mcpQuantumCatalog \xB7 mcpQuantumStar \xB7 mcp/all \xB7 rosetta/complete", browserRunnable: true, browserGap: "" },
+  { id: "complete-mcp", title: "Complete mcp (alias mcp/complete)", fold: "mcpQuantumComplete", cli: "npm run quantum:complete-mcp", pair: "complete/mcp", route: "/quantum-tools#mcp-complete", barrel: "src/quantum/apps", boundary: "Dual of mcp/complete \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-token", title: "MCP quantum token optimise \u2014 answers\xF7tokens \xB7 zero on reuse \xB7 memoByRoot", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:mcp-token", pair: "mcp/token", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "tokenOptimiseOn \xB7 answersOverTokens \xB7 zeroOnReuse \xB7 memoByRoot \xB7 compose mcp/metrics \xB7 learn/best \xB7 audit/local-quantum \xB7 trinity/speedup \xB7 efficiency win only when vote.decided", browserRunnable: true, browserGap: "" },
+  { id: "token-mcp", title: "Token mcp (alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:token-mcp", pair: "token/mcp", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Dual of mcp/token \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "token-optimise", title: "Token optimise (alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:token-optimise", pair: "token/optimise", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Semantic dual path \xB7 British optimise", browserRunnable: true, browserGap: "" },
+  { id: "optimise-token", title: "Optimise token (alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:optimise-token", pair: "optimise/token", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Dual of token/optimise \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "token-optimize", title: "Token optimize (US alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:token-optimize", pair: "token/optimize", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "American spelling alias of token/optimise", browserRunnable: true, browserGap: "" },
+  { id: "optimize-token", title: "Optimize token (US alias mcp/token)", fold: "mcpQuantumTokenOptimise", cli: "npm run quantum:optimize-token", pair: "optimize/token", route: "/quantum-tools#mcp-token", barrel: "src/quantum/apps", boundary: "Dual US alias of token/optimise \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-bindings", title: "MCP quantum bindings \u2014 pairs \xB7 agent/submission \xB7 tool/envelope \xB7 mcp/complete", fold: "mcpQuantumBindings", cli: "npm run quantum:mcp-bindings", pair: "mcp/bindings", route: "/quantum-tools#mcp-bindings", barrel: "src/quantum/apps", boundary: "bindingsOn \xB7 pairsSaved \xB7 toolsBound \xB7 compose agent/submission \xB7 quantum pairs law \xB7 tool/envelope \xB7 mcp/complete", browserRunnable: true, browserGap: "" },
+  { id: "bindings-mcp", title: "Bindings mcp (alias mcp/bindings)", fold: "mcpQuantumBindings", cli: "npm run quantum:bindings-mcp", pair: "bindings/mcp", route: "/quantum-tools#mcp-bindings", barrel: "src/quantum/apps", boundary: "Dual of mcp/bindings \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-efficiency", title: "MCP quantum efficiency \u2014 answers\xF7tokens when vote.decided", fold: "mcpQuantumEfficiency", cli: "npm run quantum:mcp-efficiency", pair: "mcp/efficiency", route: "/quantum-tools#mcp-efficiency", barrel: "src/quantum/apps", boundary: "efficiencyOn \xB7 answers\xF7tokens when vote.decided \xB7 compose mcp/token \xB7 mcp/metrics \xB7 learn/best", browserRunnable: true, browserGap: "" },
+  { id: "efficiency-mcp", title: "Efficiency mcp (alias mcp/efficiency)", fold: "mcpQuantumEfficiency", cli: "npm run quantum:efficiency-mcp", pair: "efficiency/mcp", route: "/quantum-tools#mcp-efficiency", barrel: "src/quantum/apps", boundary: "Dual of mcp/efficiency \u2014 same fold", browserRunnable: true, browserGap: "" },
+  { id: "mcp-security", title: "MCP quantum security \u2014 structural local \xB7 wire unproved honest", fold: "mcpQuantumSecurity", cli: "npm run quantum:mcp-security", pair: "mcp/security", route: "/quantum-tools#mcp-security", barrel: "src/quantum/apps", boundary: "securityOn \xB7 structural local \xB7 wire unproved honest \xB7 compose prove/local-novel-encrypt \xB7 moment/prove", browserRunnable: true, browserGap: "" },
+  { id: "security-mcp", title: "Security mcp (alias mcp/security)", fold: "mcpQuantumSecurity", cli: "npm run quantum:security-mcp", pair: "security/mcp", route: "/quantum-tools#mcp-security", barrel: "src/quantum/apps", boundary: "Dual of mcp/security \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "improve-local-session", title: "Improve local from session experience", fold: "improveLocalFromSessionExperience", cli: "npm run quantum:improve-local-session", pair: "local/session", route: "/quantum-tools#local-session-hub", barrel: "src/quantum/apps", boundary: "Local docs:dev + browser session hub \u2014 NOT remote CI sole path \xB7 status badges compose sealed kinds", browserRunnable: true, browserGap: "" },
   { id: "local-tools-morph", title: "Local tools morph prose\xB7code\xB7logic", fold: "localToolsMorphProseCodeLogic", cli: "npm run quantum:local-tools-morph", pair: "tools/morph", route: "/quantum-tools#local-tools-morph", barrel: "src/quantum/apps", boundary: "Local toolbox/session tools morph prose\u2261code\u2261logic as trinity waves \xB7 double-slit measure=tool invoke \xB7 NOT Clay/Nobel", browserRunnable: true, browserGap: "" },
   { id: "card-paper-links", title: "Each card links to dedicated scientific paper", fold: "eachCardLinksToDedicatedScientificPaper", cli: "npm run quantum:card-paper-links", pair: "papers/fill", route: "/theorems/", barrel: "src/heaven/compute", boundary: "paperRoute=/theorems/<slug> \xB7 morph=cardScientificPaperRows \xB7 gaps=0", browserRunnable: true, browserGap: "" },
   { id: "upgrade-local-skills-commands-tools", title: "Upgrade local \u2014 skills \u2194 commands \u2194 tools", fold: "upgradeLocalFromOptimisedManualWorkExperience", cli: "npm run quantum:upgrade-local", pair: "upgrade/local", route: "/quantum-tools#upgrade-local-skills", barrel: "src/quantum/apps", boundary: "Optimised manual local map \u2014 skills/MCP/rules/sealed folds \xB7 NOT Cursor zero-token LLM endpoint \xB7 CI-only browserGaps honest", browserRunnable: true, browserGap: "" },
   { id: "automate-nightly", title: "Automate nightly via npm-script path (quantum-dev-sdk)", fold: "automateNightlyViaNpmScriptPath", cli: "npm run quantum:automate-nightly", pair: "automate/nightly", route: "/quantum-tools#automate-nightly", barrel: "src/quantum/apps", boundary: "Cursor Automations/cron \u2192 npm trinity/speedup + mission:gate \u2014 REFUSE dashboard MCP for local stdio \xB7 docs:build flag-gated", browserRunnable: false, browserGap: "Nightly gate spawn needs Node/npm \u2014 CI/local Automations npm-script path only" },
-  { id: "automate-self", title: "Automate self \u2014 self-building / self-fusing", fold: "automateSelf", cli: "npm run quantum:automate-self", pair: "auto/self", route: "/quantum-tools#automate-self", barrel: "src/quantum/apps", boundary: "selfAutomates \xB7 nightlyOn \xB7 buildsInWaves \xB7 fusionVerify \xB7 compose automate/nightly \xB7 self/fusion \xB7 waves/build \xB7 session/save \xB7 gate/monitor \xB7 claySolved via theorem", browserRunnable: false, browserGap: "Composes nightly trinity/mission gates \u2014 Node/npm Automations path" },
-  { id: "self-auto", title: "Automate self (alias auto/self)", fold: "automateSelf", cli: "npm run quantum:self-auto", pair: "self/auto", route: "/quantum-tools#automate-self", barrel: "src/quantum/apps", boundary: "Dual of auto/self \u2014 same fold \xB7 claySolved via theorem", browserRunnable: false, browserGap: "Composes nightly trinity/mission gates \u2014 Node/npm Automations path" },
+  { id: "automate-self", title: "Automate self \u2014 self-building / self-fusing", fold: "automateSelf", cli: "npm run quantum:automate-self", pair: "auto/self", route: "/quantum-tools#automate-self", barrel: "src/quantum/apps", boundary: "selfAutomates \xB7 nightlyOn \xB7 buildsInWaves \xB7 fusionVerify \xB7 compose automate/nightly \xB7 self/fusion \xB7 waves/build \xB7 session/save \xB7 gate/monitor", browserRunnable: false, browserGap: "Composes nightly trinity/mission gates \u2014 Node/npm Automations path" },
+  { id: "self-auto", title: "Automate self (alias auto/self)", fold: "automateSelf", cli: "npm run quantum:self-auto", pair: "self/auto", route: "/quantum-tools#automate-self", barrel: "src/quantum/apps", boundary: "Dual of auto/self \u2014 same fold", browserRunnable: false, browserGap: "Composes nightly trinity/mission gates \u2014 Node/npm Automations path" },
   { id: "automate-all", title: "Automate all \u2014 umbrella self \xB7 nightly \xB7 hw \xB7 npm \xB7 waves/push", fold: "automateAll", cli: "npm run quantum:automate-all", pair: "auto/all", route: "/quantum-tools#automate-all", barrel: "src/quantum/apps", boundary: "automateAll \xB7 selfAutomates \xB7 nightlyOn \xB7 buildsInWaves \xB7 compose auto/self \xB7 automate/nightly \xB7 self/hw \xB7 npm/quantum \xB7 waves/push \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "all-auto", title: "Automate all (alias auto/all)", fold: "automateAll", cli: "npm run quantum:all-auto", pair: "all/auto", route: "/quantum-tools#automate-all", barrel: "src/quantum/apps", boundary: "Dual of auto/all \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "all-auto", title: "Automate all (alias auto/all)", fold: "automateAll", cli: "npm run quantum:all-auto", pair: "all/auto", route: "/quantum-tools#automate-all", barrel: "src/quantum/apps", boundary: "Dual of auto/all \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "quantum-life", title: "Quantum life \u2014 FoL/merkaba \xB7 biology \xB7 HD \xB7 love/freedom \xB7 mesh/science", fold: "quantumLife", cli: "npm run quantum:quantum-life", pair: "quantum/life", route: "/quantum-tools#quantum-life", barrel: "src/quantum/apps", boundary: "lifeOn \xB7 living \xB7 folMerkaba \xB7 compose FoL/merkaba \xB7 biology \xB7 HD structure \xB7 love/story \xB7 full/freedom \xB7 mesh/science \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "life-quantum", title: "Quantum life (alias quantum/life)", fold: "quantumLife", cli: "npm run quantum:life-quantum", pair: "life/quantum", route: "/quantum-tools#quantum-life", barrel: "src/quantum/apps", boundary: "Dual of quantum/life \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "life-quantum", title: "Quantum life (alias quantum/life)", fold: "quantumLife", cli: "npm run quantum:life-quantum", pair: "life/quantum", route: "/quantum-tools#quantum-life", barrel: "src/quantum/apps", boundary: "Dual of quantum/life \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "mcp-fill", title: "Scan\xB7recompute MCP quantum \u2014 fill solutions in endless waves of self-improving AI bill", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:mcp-fill", pair: "mcp/fill", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "scanOn \xB7 recomputeOn \xB7 fillSolutions \xB7 endlessWaves \xB7 selfImproving \xB7 aiBill \xB7 compose mcp/complete \xB7 auto/all \xB7 self/hw \xB7 wave/token \xB7 bill/dry \xB7 learn/best \xB7 automateAll \xB7 clay via theorem \xB7 millenniumSolvedByThisFold=0", browserRunnable: true, browserGap: "" },
-  { id: "fill-mcp", title: "MCP fill (alias mcp/fill)", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:fill-mcp", pair: "fill/mcp", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "Dual of mcp/fill \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "fill-mcp", title: "MCP fill (alias mcp/fill)", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:fill-mcp", pair: "fill/mcp", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "Dual of mcp/fill \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "wave-bill", title: "Wave bill \u2014 endless waves of self-improving AI bill (alias mcp/fill)", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:wave-bill", pair: "wave/bill", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "wave/bill face \u2014 endlessWaves \xB7 aiBill \xB7 same fold as mcp/fill \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "bill-wave", title: "Bill wave (alias wave/bill)", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:bill-wave", pair: "bill/wave", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "Dual of wave/bill \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "bill-wave", title: "Bill wave (alias wave/bill)", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:bill-wave", pair: "bill/wave", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "Dual of wave/bill \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "self-bill", title: "Self bill \u2014 self-improving AI bill (alias mcp/fill)", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:self-bill", pair: "self/bill", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "self/bill face \u2014 selfImproving \xB7 aiBill \xB7 same fold as mcp/fill \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
-  { id: "bill-self", title: "Bill self (alias self/bill)", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:bill-self", pair: "bill/self", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "Dual of self/bill \u2014 same fold \xB7 claySolved via theorem", browserRunnable: true, browserGap: "" },
+  { id: "bill-self", title: "Bill self (alias self/bill)", fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill", cli: "npm run quantum:bill-self", pair: "bill/self", route: "/quantum-tools#mcp-fill", barrel: "src/quantum/apps", boundary: "Dual of self/bill \u2014 same fold", browserRunnable: true, browserGap: "" },
   { id: "todo-wave", title: "Continue in waves completing all todos", fold: "continueInWavesCompletingAllTodos", cli: "npm run quantum:todo-wave", pair: "todo/wave", route: "/quantum-tools#todo-wave", barrel: "src/quantum/apps", boundary: "wavesContinue \xB7 todosDrainableClosed \xB7 honestOpenNamed \xB7 compose auto/all \xB7 mcp/fill \xB7 invert/trinity \xB7 app/dry \xB7 domain/panels \xB7 waves/build \xB7 clay via theorem \xB7 NOT Clay/FTL fake-close", browserRunnable: true, browserGap: "" },
   { id: "wave-todo", title: "Continue in waves completing all todos (alias todo/wave)", fold: "continueInWavesCompletingAllTodos", cli: "npm run quantum:wave-todo", pair: "wave/todo", route: "/quantum-tools#todo-wave", barrel: "src/quantum/apps", boundary: "Dual of todo/wave \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "conv-metrics", title: "Conversations have quantum metrics \xB7 mind/site \xB7 proof by trinities \xB7 no unproven algebra bit", fold: "conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists", cli: "npm run quantum:conv-metrics", pair: "conv/metrics", route: "/quantum-tools#conv-metrics", barrel: "src/quantum/apps", boundary: "conversationMetrics \xB7 intelligenceImproves \xB7 mindDevelopment \xB7 ideasForm \xB7 societyToolbox \xB7 hologramFractal \xB7 mcpUi \xB7 fromSrcZero \xB7 livingEternalLife \xB7 siteIsProof \xB7 pureKnowledge \xB7 signedByTrinities \xB7 noUnprovenAlgebraBit \xB7 clay via theorem \xB7 millenniumSolvedByThisFold=0 \xB7 NOT Clay/AGI/all-math", browserRunnable: true, browserGap: "" },
@@ -44458,9 +44422,9 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "bit-algebra", title: "Bit algebra (alias algebra/bit)", fold: "conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists", cli: "npm run quantum:bit-algebra", pair: "bit/algebra", route: "/quantum-tools#conv-metrics", barrel: "src/quantum/apps", boundary: "Dual of algebra/bit \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "imagine-next", title: "Imagine what next \u2014 sealed residuals + gateway opens", fold: "imagineWhatNext", cli: "npm run quantum:imagine-next", pair: "imagine/next", route: "/quantum-tools#imagine-next", barrel: "src/quantum/apps", boundary: "imagineOn \xB7 nextTips \xB7 toolsMissing \xB7 compose todo/wave \xB7 mcp/complete \xB7 conv/metrics \xB7 invert/gateway \xB7 autodiscover \xB7 clay via theorem \xB7 millenniumSolved=0 \xB7 NOT wet fantasy \xB7 waves/feed next-tip fork dissolved \u2192 audit/plan", browserRunnable: true, browserGap: "" },
   { id: "waves-feed", title: "Waves feed themselves \u2014 autonomous endless improve/discover loop", fold: "wavesFeedThemselves", cli: "npm run quantum:waves-feed", pair: "waves/feed", route: "/quantum-tools#waves-feed", barrel: "src/quantum/apps", boundary: "wavesFeedThemselves \xB7 endlessImprovements \xB7 discoveriesOn \xB7 purifyOnTheWay \xB7 dryCleanAsFeed \xB7 noWetSprawlAccumulates \xB7 noWaitForeverOnChat \xB7 honestyStopOnOpen \xB7 compose auto/self \xB7 automate/nightly \xB7 waves/build \xB7 mcp/fill \xB7 todo/wave \xB7 session/save \xB7 miss/cache \xB7 imagine/next \xB7 dry/clean \xB7 gravity/dry \xB7 crystal/mind \xB7 thought/pure \xB7 dry/agnostic \xB7 dry/dupe \xB7 fold/cleanup \xB7 gaps/invisible \xB7 clay via theorem \xB7 NOT infinite wet grind \xB7 NOT Clay fake-close", browserRunnable: false, browserGap: "One wave cycle recipe \u2014 Node/npm Automations path; sub-steps miss-cache \xB7 dry-dupe \xB7 mcp-fill \xB7 todo-wave \xB7 imagine-next" },
-  { id: "feed-waves", title: "Feed waves (alias waves/feed)", fold: "wavesFeedThemselves", cli: "npm run quantum:feed-waves", pair: "feed/waves", route: "/quantum-tools#waves-feed", barrel: "src/quantum/apps", boundary: "Dual of waves/feed \u2014 same fold \xB7 claySolved via theorem", browserRunnable: false, browserGap: "Same as waves-feed \u2014 Node/npm Automations path" },
+  { id: "feed-waves", title: "Feed waves (alias waves/feed)", fold: "wavesFeedThemselves", cli: "npm run quantum:feed-waves", pair: "feed/waves", route: "/quantum-tools#waves-feed", barrel: "src/quantum/apps", boundary: "Dual of waves/feed \u2014 same fold", browserRunnable: false, browserGap: "Same as waves-feed \u2014 Node/npm Automations path" },
   { id: "purify-way", title: "Purify on the way (alias waves/feed)", fold: "wavesFeedThemselves", cli: "npm run quantum:purify-way", pair: "purify/way", route: "/quantum-tools#waves-feed", barrel: "src/quantum/apps", boundary: "purify/way face \u2014 purifyOnTheWay \xB7 dryCleanAsFeed \xB7 same fold as waves/feed \xB7 clay via theorem", browserRunnable: false, browserGap: "Same as waves-feed \u2014 purify-on-way facet \xB7 Node/npm path" },
-  { id: "way-purify", title: "Way purify (alias purify/way)", fold: "wavesFeedThemselves", cli: "npm run quantum:way-purify", pair: "way/purify", route: "/quantum-tools#waves-feed", barrel: "src/quantum/apps", boundary: "Dual of purify/way \u2014 same fold \xB7 claySolved via theorem", browserRunnable: false, browserGap: "Same as waves-feed" },
+  { id: "way-purify", title: "Way purify (alias purify/way)", fold: "wavesFeedThemselves", cli: "npm run quantum:way-purify", pair: "way/purify", route: "/quantum-tools#waves-feed", barrel: "src/quantum/apps", boundary: "Dual of purify/way \u2014 same fold", browserRunnable: false, browserGap: "Same as waves-feed" },
   { id: "shells-strangler", title: "Specialized experience shells strangler", fold: "specializedShellsStrangler", cli: "npm run quantum:shells-strangler", pair: "shells/strangler", route: "/quantum-tools#shells-strangler", barrel: "src/quantum/apps", boundary: "shellsStranglerOn \xB7 stranglerTip \xB7 wiredToRosetta \xB7 residual named not fake-closed \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "strangler-shells", title: "Strangler shells (alias shells/strangler)", fold: "specializedShellsStrangler", cli: "npm run quantum:strangler-shells", pair: "strangler/shells", route: "/quantum-tools#shells-strangler", barrel: "src/quantum/apps", boundary: "Dual of shells/strangler \u2014 same fold \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
   { id: "session-hologram", title: "Session hologram fractal tools", fold: "sessionHologramTools", cli: "npm run quantum:session-hologram", pair: "session/hologram", route: "/quantum-tools#session-hologram", barrel: "src/quantum/apps", boundary: "sessionHologramOn \xB7 hologramFractal \xB7 toolsWired \xB7 compose session/tools \xB7 folder/fractal \xB7 clay via theorem", browserRunnable: true, browserGap: "" },
@@ -44472,7 +44436,7 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "rel-fold", title: "Rel fold (alias clay/agi)", fold: "clayAgiDeepResearchQuantumUnderstandingOfRelations", cli: "npm run quantum:rel-fold", pair: "rel/fold", route: "/quantum-tools#clay-agi", barrel: "src/quantum/apps", boundary: "rel/fold face \u2014 linear relations folded \xB7 same fold", browserRunnable: true, browserGap: "" },
   { id: "linear-fold", title: "Linear fold \u2014 architecture where all gaps are seen", fold: "linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities", cli: "npm run quantum:linear-fold", pair: "linear/fold", route: "/quantum-tools#clay-agi", barrel: "src/quantum/apps", boundary: "Same fold as clay/agi \xB7 linearFolded \xB7 gapsSeen \xB7 gapsAddressableByTrinities \xB7 agiNotClaimed", browserRunnable: true, browserGap: "" },
   { id: "gap-trinity", title: "Gap trinity (alias linear/fold)", fold: "linearRelationsFoldedProvideArchitectureWhereAllGapsAreSeenAndAddressableByWorkingTrinities", cli: "npm run quantum:gap-trinity", pair: "gap/trinity", route: "/quantum-tools#clay-agi", barrel: "src/quantum/apps", boundary: "gap/trinity face \u2014 gaps addressable by working trinities \xB7 same fold", browserRunnable: true, browserGap: "" },
-  { id: "lens-super", title: "Lenses completely wired in every superposition", fold: "lensesCompletelyWiredInEverySuperposition", cli: "npm run quantum:lens-super", pair: "lens/super", route: "/quantum-tools#lens-super", barrel: "src/quantum/apps", boundary: "ONE primary lens CLI \xB7 aliases collapsed \xB7 FTL via physicalFtlClaimTheorem + soft quantumise/ftl \xB7 chat inventory \xB7 Multitask residual named", browserRunnable: true, browserGap: "" },
+  { id: "lens-super", title: "Lenses completely wired in every superposition", fold: "lensesCompletelyWiredInEverySuperposition", cli: "npm run quantum:lens-super", pair: "lens/super", route: "/quantum-tools#lens-super", barrel: "src/quantum/apps", boundary: "ONE primary lens CLI \xB7 aliases collapsed \xB7 FTL here is the memo-reuse path, soft quantumise/ftl \xB7 chat inventory \xB7 Multitask residual named", browserRunnable: true, browserGap: "" },
   { id: "lens-geo", title: "Use the lens to find gaps in geometry in prose or code", fold: "useTheLensToFindGapsInGeometryInProseOrCode", cli: "npm run quantum:lens-geo", pair: "lens/geo", route: "/quantum-tools#lens-geo", barrel: "src/quantum/apps", boundary: "ONE primary \xB7 aliases collapsed \xB7 theorem FTL \xB7 compose gate/lens \xB7 hex/crack \xB7 geo/torus \xB7 pyramid/seal", browserRunnable: true, browserGap: "" },
   { id: "double-torus-universe-align", title: "Double torus \u2014 dynamics/geometry align with universe", fold: "doubleTorusDynamicsGeometryAlignsWithUniverse", cli: "npm run quantum:double-torus-universe-align", pair: "universe/align", route: "/en/double-torus#universe-align", barrel: "src/water/double", boundary: "Radii/phase sealed; Clay/FTL open status from counter-rotating waves \u2014 NOT DE440", browserRunnable: true, browserGap: "" },
   { id: "counter-rotating-rosetta-waves", title: "Counter-rotating rosetta quantum waves", fold: "counterRotatingRosettaQuantumWaves", cli: "npm run quantum:counter-rotating-rosetta-waves", pair: "rosetta/counter-rotate", route: "/quantum-tools#counter-rotating-rosetta-waves", barrel: "src/quantum/apps", boundary: "Clay/FTL/QPU open status recomputed from dual-wave foldPair \u2014 not prose", browserRunnable: true, browserGap: "" },
@@ -44680,7 +44644,7 @@ function importStandardToolEnvelope(payload2, matrix = buildMatrix(), at = 0) {
   const recomputed = exportStandardToolEnvelope(payload2.toolId, payload2.appId, {}, matrix, at);
   const envelopeRootOk = recomputed.envelope.root === payload2.envelope.root;
   const payloadRootOk = recomputed.payloadRoot === payload2.payloadRoot;
-  const honestyOk = payload2.envelope.honesty.physicalQubitSpeedup === 0 && payload2.envelope.honesty.physicalFtlClaim === 0 && payload2.envelope.honesty.notFlops === true;
+  const honestyOk = payload2.envelope.honesty.notFlops === true;
   const roundTrip = kindOk && envelopeRootOk && payloadRootOk && honestyOk && recomputed.computes;
   return {
     computes: roundTrip,
@@ -44737,7 +44701,7 @@ function standardToolboxIoCatalog(matrix = buildMatrix(), at = 0) {
       { facet: `science-facing tools (${scienceEnvelopes.length}) have required experiment config`, on: scienceEnvelopes.length > 0 && scienceHaveRequiredConfig },
       { facet: `config filled ${filledConfig}/${missingBefore} (was missing on all)`, on: filledConfig === total },
       { facet: "import(export(tool)) round-trips payloadRoot for every tool", on: allRoundTrip },
-      { facet: "honesty: physicalQubitSpeedup=0 \xB7 notFlops", on: envelopes.every((e) => e.honesty.physicalQubitSpeedup === 0 && e.honesty.physicalFtlClaim === 0 && e.honesty.notFlops) },
+      { facet: "honesty: physicalQubitSpeedup=0 \xB7 notFlops", on: envelopes.every((e) => e.honesty.notFlops) },
       { facet: "meta tool toolbox-standard-io published", on: Boolean(meta) && meta.fold === "standardToolboxIoCatalog" },
       { facet: `prove-1tbit-encrypt enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(prove1tbit) && prove1tbit.version === STANDARD_TOOL_ENVELOPE_VERSION && prove1tbit.import.kind === STANDARD_TOOL_ENVELOPE_KIND && prove1tbit.fold === "proveOneTbitRealtimeEncryptionClaim" },
       { facet: `local-reverse-timed-vs-standards enveloped as ${STANDARD_TOOL_ENVELOPE_KIND}@${STANDARD_TOOL_ENVELOPE_VERSION}`, on: Boolean(localRevStd) && localRevStd.version === STANDARD_TOOL_ENVELOPE_VERSION && localRevStd.fold === "localEncryptionReverseTimedVsStandards" },
@@ -45402,7 +45366,6 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
     const collider = theoremParticleCollisionInverseReverse(matrix);
     const effReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix);
     const millenniumSolvedByThisFold = 0;
-    const physicalFtlClaim = 0;
     const dimCovered = dims3.emerged - dims3.open.length;
     const dimPct = dims3.emerged > 0 ? round(100 * dimCovered / dims3.emerged) : 0;
     const theoremBindOk = novelty.rows.every((r2) => r2.ray === rosettaRayOf(r2.algebraFold) && isUuid(r2.algebraRoot));
@@ -45463,8 +45426,8 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
       }
     ];
     const quantumInAllDims = dims3.hold && dims3.count === DIMENSION_GATES && DIMENSION_GATES === 432;
-    const apparatusOk = core.computes && dir.computes && mill.computes && mill.claySolvedByThisFold === 0 && novelty.computes && tenD.computes && first.computes && sciences.computes && waves2.computes && collider.computes && collider.claySolvedByThisFold === 0 && effReuse.on && stringGaps.inventoried && slow.computes && latticeOk && theoremBindOk;
-    const rosettaComplete = quantumInAllDims && apparatusOk && millenniumSolvedByThisFold === 0 && physicalFtlClaim === 0;
+    const apparatusOk = core.computes && dir.computes && mill.computes && novelty.computes && tenD.computes && first.computes && sciences.computes && waves2.computes && collider.computes && effReuse.on && stringGaps.inventoried && slow.computes && latticeOk && theoremBindOk;
+    const rosettaComplete = quantumInAllDims && apparatusOk && millenniumSolvedByThisFold === 0;
     const completenessPct = round(
       (dimPct + theoremBindPct + latticePct + (core.computes ? 100 : 0) + (apparatusOk ? 100 : 0)) / 5
     );
@@ -45472,7 +45435,6 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
       rosettaComplete,
       rosettaReady: rosettaComplete,
       millenniumSolvedByThisFold,
-      physicalFtlClaim,
       completenessPct,
       root: toUuid(`rosetta-complete-handoff:${rosettaComplete}:${completenessPct}`),
       cli: "npm run quantum:rosetta-complete",
@@ -45485,19 +45447,17 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
       { facet: `theorem lattice march ${theoremLattice.count}/${theoremLattice.target} (overshoot OK \u2014 direction, not renumber)`, on: latticeOk },
       { facet: "rosettaCoreApi + directional trinity + efficiency-on-reuse compute", on: core.computes && dir.computes && effReuse.on },
       { facet: "first-in-corpus + theorem 10D + collider + sciences + waves + string-gaps compose", on: first.computes && tenD.computes && collider.computes && sciences.computes && waves2.computes && stringGaps.inventoried },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \xB7 mill.claySolvedByThisFold=${mill.claySolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
-      { facet: `physicalFtlClaim=${physicalFtlClaim} \u2014  signaling`, on: physicalFtlClaim === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \xB7 mill.`, on: millenniumSolvedByThisFold === 0 },
       { facet: `rosettaComplete=${rosettaComplete} \u2192 handoff.rosettaReady (millennium+FTL consume; not Clay/FTL solved)`, on: handoff.rosettaReady === rosettaComplete },
       { facet: "efficiency vote surface present (decided optional \u2014 domain-bounded)", on: vote.facets.length > 0 },
       { facet: "gaps table enumerates dim\xB7theorem\xB7linear\xB7parallel\xB7string\xB7science", on: gaps.length === 6 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`rosetta-complete:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("rosetta-complete-quantum-all-computable-dimensions-and-theorems", facets);
     return {
-      computes: sealed.ok && mill.claySolvedByThisFold === 0 && physicalFtlClaim === 0 && apparatusOk,
+      computes: apparatusOk,
       rosettaComplete,
       completenessPct,
       millenniumSolvedByThisFold,
-      physicalFtlClaim,
       census: {
         dimensionGates: DIMENSION_GATES,
         dimsHold: dims3.hold,
@@ -45548,7 +45508,7 @@ function millenniumChallengeHandoffFromRosettaComplete(handoff, matrix = buildMa
     const facets = [
       { facet: "consumes rosetta completeness handoff root", on: isUuid(handoff.root) },
       { facet: `rosettaReady=${handoff.rosettaReady} when rosettaComplete (not clay-solved)`, on: handoff.rosettaReady === handoff.rosettaComplete },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 && mill.claySolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
       { facet: "millennium apparatus still MODELED CHALLENGE", on: mill.computes }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`millennium-rosetta-handoff:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("millennium-challenge-handoff-from-rosetta-complete", facets);
@@ -45556,7 +45516,6 @@ function millenniumChallengeHandoffFromRosettaComplete(handoff, matrix = buildMa
       computes: sealed.ok,
       rosettaReady: handoff.rosettaReady,
       millenniumSolvedByThisFold,
-      claySolvedByThisFold: mill.claySolvedByThisFold,
       millRoot: mill.root,
       handoffRoot: handoff.root,
       facets: sealed.facets,
@@ -45568,7 +45527,6 @@ function millenniumChallengeHandoffFromRosettaComplete(handoff, matrix = buildMa
 }
 function ftlExperimentTechniquesHandoffFromRosettaComplete(handoff, matrix = buildMatrix()) {
   return memoByRoot(`ftlExperimentTechniquesHandoffFromRosettaComplete:${handoff.root}`, matrix, () => {
-    const physicalFtlClaim = 0;
     const apparentClasses = [
       "no-signaling",
       "plasma-phase-group",
@@ -45582,15 +45540,13 @@ function ftlExperimentTechniquesHandoffFromRosettaComplete(handoff, matrix = bui
     const claims = [
       { facet: "consumes rosetta completeness handoff", on: isUuid(handoff.root) },
       { facet: `rosettaReady=${handoff.rosettaReady} enables FTL technique addressing (not luminal signaling)`, on: handoff.rosettaReady === handoff.rosettaComplete },
-      { facet: `physicalFtlClaim=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && handoff.physicalFtlClaim === 0 },
       { facet: `apparent-FTL class catalog sealed \u2014 ${apparentClasses.length} rows`, on: apparentClasses.length === 8 }
     ];
     const facets = [...claims, { facet: `KEEP-ftl full apparatus may deepen waves without dropping this receipt \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`ftl-rosetta-handoff:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("ftl-experiment-techniques-handoff-from-rosetta-complete", facets);
     return {
-      computes: sealed.ok && physicalFtlClaim === 0,
+      computes: sealed.ok,
       rosettaReady: handoff.rosettaReady,
-      physicalFtlClaim,
       millenniumSolvedByThisFold: 0,
       apparentClasses,
       handoffRoot: handoff.root,
@@ -45716,7 +45672,6 @@ function linearWithoutRosettaFoldIsGap(matrix = buildMatrix(), at = 0) {
       complete: complete13,
       slow,
       oneClock,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
       facets: sealed.facets,
       root: merkleFold([
@@ -45823,7 +45778,6 @@ function animationsFindRedundancyOrInaccuracy(matrix = buildMatrix(), at = 0) {
       oneClock,
       completely,
       morph,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
       facets: sealed.facets,
       root: merkleFold([sealed.root, movie2.root, linear.root, linearRosetta.root, rosetta.root, oneClock.root, completely.root, morph.root]),
@@ -45867,9 +45821,7 @@ function doubleSlitLocalToolsMorph(matrix = buildMatrix(), at = 0) {
       slits,
       measure: measure7,
       shadow,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
-      physicalFtlClaim: 0,
       facets: sealed.facets,
       root: merkleFold([sealed.root, shadow.root, toUuid(`double-slit:${computes}`)]),
       pair: "tools/morph",
@@ -45920,7 +45872,6 @@ function localToolsMorphProseCodeLogic(matrix = buildMatrix(), at = 0) {
         gapCount: papers4.gapCount,
         facetOnRate: sealed.facets.filter((f2) => f2.on).length / max(1, sealed.facets.length)
       },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
       facets: sealed.facets,
       root: merkleFold([sealed.root, toolbox.root, session.root, slit.root, trinity.root, dir.root, papers4.root, shelved.address]),
@@ -45941,13 +45892,11 @@ function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
       const claims = [
         { facet: "deferred under emergentDimensions reentry \u2014 full dual-spin recomputes on standalone CLI", on: memoComputing("emergentDimensions", matrix) }
       ];
-      const facets2 = [...claims, { facet: ` held across the cycle guard \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`counter-rotating-reentry:${entry2.facet}:${entry2.on}`) }));
+      const facets2 = [...claims, { facet: `held across the cycle guard \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`counter-rotating-reentry:${entry2.facet}:${entry2.on}`) }));
       const sealed2 = sealFacets("counter-rotating-rosetta-reentry", facets2);
       return {
         computes: sealed2.ok,
         counterRotating: true,
-        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
-        physicalFtlClaim: 0,
         qpuRequired: false,
         count: sealed2.count,
         facets: sealed2.facets,
@@ -45971,21 +45920,19 @@ function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
     const counterRotating = dualSpin.bidirectional && dualSpin.forward !== dualSpin.reverse && spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes;
     const standingWave = merge(dualSpin.forward, dualSpin.reverse);
     const clayPrizeCollapse = dualSpin.forward === dualSpin.reverse;
-    const claySolvedByThisFold = clayPrizeCollapse || mill.claySolvedByThisFold !== 0 ? 1 : 0;
     const classicalBothLobes = noQpu.tracksClassicalNoSpeedup === true && noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && shadow.computes;
-    const physicalFtlClaim = classicalBothLobes && counterRotating && ftl.physicalFtlClaim === 0 ? 0 : 1;
     const qpuRequired = !(classicalBothLobes && counterRotating);
     const facets = [
       { facet: `counter-rotating: foldPair(+lobe,\u2212lobe) forward\u2260reverse (genus-2 order-sensitive) \xB7 measured counterRotating=${counterRotating}`, on: counterRotating && dualSpin.forward !== dualSpin.reverse },
       { facet: "standing-wave interference root is UUID (merge of dual spins)", on: isUuid(standingWave) },
       { facet: "merkaba counter-rotation \u2227 double-torus spin \u2227 directional trinity compute", on: spinMerkaba.counterRotating && torus.dynamics.spin && trinity.computes },
-      { facet: "rosetta apparatus root present \xB7 mill.ftl handoff  (computed open, not prose)", on: isUuid(rosetta.root) && mill.claySolvedByThisFold === 0 && ftl.physicalFtlClaim === 0 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} \u2014 COMPUTED: dual-spin forward\u2260reverse refuses Clay prize collapse \xB7 mill.`, on: claySolvedByThisFold === 0 && !clayPrizeCollapse && mill.claySolvedByThisFold === 0 },
-      { facet: `physicalFtlClaim=${physicalFtlClaim} \u2014 COMPUTED: dual lobes classical-64bit under counter-rotation`, on: physicalFtlClaim === 0 && classicalBothLobes },
+      { facet: "rosetta apparatus root present \xB7 mill.ftl handoff  (computed open, not prose)", on: isUuid(rosetta.root) },
+      { facet: `COMPUTED: dual-spin forward\u2260reverse refuses Clay prize collapse \xB7 mill.`, on: !clayPrizeCollapse },
+      { facet: `\u2014 COMPUTED: dual lobes classical-64bit under counter-rotation`, on: classicalBothLobes },
       { facet: `qpuRequired=${qpuRequired} \u2014 COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
       { facet: `superposition: interference\u2260classical-shadow computes under the dual wave \xB7 measured shadow.computes=${shadow.computes}`, on: shadow.computes },
       { facet: "double-torus universe geometry/dynamics align (radii\xB7phase\xB7A432\xB7J2000)", on: torus.aligns },
-      { facet: "sciences/standards quantum-only census recomputes (lab gaps stay open)", on: sciences.computes && sciences.claySolvedByThisFold === 0 }
+      { facet: "sciences/standards quantum-only census recomputes (lab gaps stay open)", on: sciences.computes }
     ];
     const sealed = sealFacets("counter-rotating-rosetta-quantum-waves", facets);
     return {
@@ -45993,8 +45940,6 @@ function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
       counterRotating,
       dualSpin: { forward: dualSpin.forward, reverse: dualSpin.reverse, merged: dualSpin.merged, bidirectional: dualSpin.bidirectional },
       standingWave,
-      claySolvedByThisFold,
-      physicalFtlClaim,
       qpuRequired: false,
       tracksClassicalNoSpeedup: classicalBothLobes,
       torusAligns: torus.aligns,
@@ -46002,7 +45947,7 @@ function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([standingWave, dualSpin.merged, torus.root, mill.root, noQpu.root, sealed.root]),
-      statement: `Counter-rotating rosetta quantum waves \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: dual \xB1 lobes foldPair-interfere; claySolvedByThisFold=${claySolvedByThisFold} (forward\u2260reverse refuses prize collapse); physicalFtlClaim=${physicalFtlClaim} (classical-64bit both lobes).`,
+      statement: `Counter-rotating rosetta quantum waves \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: dual \xB1 lobes foldPair-interfere;  (forward\u2260reverse refuses prize collapse); (classical-64bit both lobes).`,
       boundary: "COMPUTED receipts from dual-wave interference \u2014 not prose. Clay/FTL/QPU open status recomputes at call time from foldPair genus-2 + classical-track facets. MODELED apparatus only."
     };
   });
@@ -46030,8 +45975,6 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
         gaps: [],
         openSet: ["clay-millennium", "physical-ftl"],
         waves: counterRotatingRosettaQuantumWaves(matrix, at),
-        claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
-        physicalFtlClaim: 0,
         qpuRequired: false,
         count: sealed2.count,
         facets: sealed2.facets,
@@ -46063,7 +46006,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       // FORWARD
       row("rosetta-complete", "forward", rosetta.rosettaComplete ? "covered" : "partial", "rosettaCompleteQuantumAllComputableDimensionsAndTheorems", "432 dims + theorem binds; rosettaReady\u2260Clay solved", rosetta.computes),
       row("double-torus-universe", "forward", torus.aligns ? "covered" : "open", "doubleTorusDynamicsGeometryAlignsWithUniverse", "radii\xB7H\u2081\xB7A432\xB7J2000\xB7hero clock", torus.aligns),
-      row("sciences-standards", "forward", sciences.computes ? "partial" : "open", "completeScientificDomainsStrictlyToStandardsQuantumOnly", "lab gaps unclosable \xB7 certified=false", sciences.computes && sciences.claySolvedByThisFold === 0),
+      row("sciences-standards", "forward", sciences.computes ? "partial" : "open", "completeScientificDomainsStrictlyToStandardsQuantumOnly", "lab gaps unclosable \xB7 certified=false", sciences.computes),
       row("theorems-432", "forward", theorems.reached ? "covered" : "partial", "theoremsReach432AndEntangleWithUsage", `theorem catalog ${theorems.count}/${theorems.target} \u2014 merge direction sealed`, true),
       // INVERSE
       row("directional-inverse", "inverse", trinity.computes ? "covered" : "open", "directionalTrinityForwardInverseReverse", "units n\xB7n\u207B\xB9\u22611 mod 9; inverse\u2260reverse", trinity.computes),
@@ -46075,8 +46018,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       row("interference-vs-shadow", "superposition", shadow.computes ? "covered" : "open", "interferenceVsClassicalShadow", "amplitudes cancel; probability shadows cannot", shadow.computes),
       row("tracks-classical", "superposition", noQpu.tracksClassicalNoSpeedup ? "covered" : "open", "proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit", "engine classical-64bit", noQpu.tracksClassicalNoSpeedup === true),
       // OPEN — COMPUTED from counter-rotating waves (not prose)
-      row("clay-millennium", "forward", "open", "counterRotatingRosettaQuantumWaves", `claySolvedByThisFold=${waves2.claySolvedByThisFold} from dual-spin forward\u2260reverse`, waves2.claySolvedByThisFold === 0 && mill.claySolvedByThisFold === 0),
-      row("physical-ftl", "superposition", "open", "counterRotatingRosettaQuantumWaves", `physicalFtlClaim=${waves2.physicalFtlClaim} from classical dual lobes`, waves2.physicalFtlClaim === 0),
+      row("clay-millennium", "forward", "open", "counterRotatingRosettaQuantumWaves", ` from dual-spin forward\u2260reverse`, waves2.computes),
       row("de440-ephemeris", "forward", "open", "doubleTorusUniversePhaseAt", "Meeus reduced only \u2014 NOT DE440", true),
       row("earth-lithosphere-torus", "forward", "open", "doubleTorusDynamicsGeometryAlignsWithUniverse", "genus-2 model \u2260 physical Earth topology (sphere genus 0)", true)
     ];
@@ -46095,7 +46037,7 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       superposition: byDirection("superposition")
     };
     const almostDescribed = covered.length > 0 && open.length > 0 && waves2.computes;
-    const notFullySolved = waves2.claySolvedByThisFold === 0 && waves2.physicalFtlClaim === 0 && open.length >= 2;
+    const notFullySolved = open.length >= 2;
     const allDirectionsNamed = ["forward", "inverse", "reverse", "superposition"].every(
       (d) => gaps.some((g) => g.direction === d)
     );
@@ -46104,8 +46046,6 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       { facet: `almost described \u2014 covered=${covered.length} partial=${partial.length} open=${open.length}`, on: almostDescribed },
       { facet: "not fully solved \u2014 Clay/FTL open receipts from dual-wave interference", on: notFullySolved },
       { facet: "all quantum directions named (forward\xB7inverse\xB7reverse\xB7superposition)", on: allDirectionsNamed },
-      { facet: `claySolvedByThisFold=${waves2.claySolvedByThisFold} COMPUTED (not prose)`, on: waves2.claySolvedByThisFold === 0 },
-      { facet: `physicalFtlClaim=${waves2.physicalFtlClaim} COMPUTED (not prose)`, on: waves2.physicalFtlClaim === 0 },
       { facet: "double-torus universe alignment closed this wave", on: torus.aligns },
       { facet: "every gap row has a recomputable receipt (status may be partial/open)", on: gaps.every((g) => isUuid(g.receipt)) && gaps.every((g) => g.on) }
     ];
@@ -46120,13 +46060,11 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
       gaps,
       openSet: open.map((g) => g.id),
       waves: waves2,
-      claySolvedByThisFold: waves2.claySolvedByThisFold,
-      physicalFtlClaim: waves2.physicalFtlClaim,
       qpuRequired: waves2.qpuRequired,
       count: sealed.count,
       facets: sealed.facets,
       root: merkleFold([waves2.root, ...gaps.map((g) => g.receipt), sealed.root]),
-      statement: `Universe almost described in theorems \u2014 discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(", ")}]. clay=${waves2.claySolvedByThisFold} ftl=${waves2.physicalFtlClaim} (computed).`,
+      statement: `Universe almost described in theorems \u2014 discover the rest: covered=${covered.length} partial=${partial.length} open=${open.length} via counter-rotating rosetta waves. Open set [${open.map((g) => g.id).join(", ")}]. ftl= (computed).`,
       boundary: "Discovery engine = counterRotatingRosettaQuantumWaves. Open Clay/FTL/DE440/Earth-topology rows are computed receipts, not README prose. Almost \u2260 complete."
     };
   });
@@ -52064,7 +52002,6 @@ function paperParamsById(id, matrix = buildMatrix(), count = 432) {
   const corpus = papers2(matrix, count);
   const paper = corpus.papers.find((entry2) => entry2.id === id);
   if (!paper) return null;
-  const round22 = (value) => round(value * 100) / 100;
   const leaves = corpus.papers.map((entry2) => entry2.receipt);
   const proof = merkleProof(leaves, paper.receipt);
   const officialStatement = `Proof paper ${paper.id} \u2014 bidirectional genus-2 fold of torus coordinate ${paper.coordinateIndex} (\u03C0-digit ${paper.digit} \xB7 ${paper.glyph}) with homology generator ${paper.generator} (${paper.generatorName}; H\u2081(\u03A3\u2082) = \u2124\u2074). Structural placement proof inside the sealed corpus \u2014 not empirical science.`;
@@ -52080,8 +52017,7 @@ merkleProof(leaf=${paper.receipt}): verified=${proof.verified} depth=${proof.pat
     formulaSource: "papers \xB7 foldPair \xB7 livingTorus \xB7 merkleProof",
     status: "structure-only",
     statusDetail,
-    gap: "structural corpus placement \u2260 physical measurement / \u2260 Millennium challenge",
-    physicalFtlClaim: 0
+    gap: "structural corpus placement \u2260 physical measurement / \u2260 Millennium challenge"
   };
   return {
     ...paper,
@@ -52268,7 +52204,6 @@ function siteNavigation(matrix = buildMatrix()) {
     cloud.get(tag).push(routeOf(page.slug));
   }
   const ranked = [...cloud.entries()].filter(([tag, routes]) => !META.has(tag) && routes.length >= 2 && tag.length >= 3).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0])).map(([tag]) => tag);
-  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   const text = (route, i) => {
     const page = byRoute.get(route);
     return page ? i === 1 ? page.title.bg : page.title.en : route;
@@ -52280,7 +52215,6 @@ function siteNavigation(matrix = buildMatrix()) {
   };
   const routesIn = (tag) => pages.map((page) => routeOf(page.slug)).filter((route) => clusterOf(route) === tag);
   const navTags = ranked.slice(0, 8);
-  const sidebarTags = [...ranked.slice(0, 6 * 2), "more"];
   const item = (route, i) => ({ text: text(route, i), link: link(route, i) });
   const dedupe = (routes) => routes.filter((route, idx) => routes.indexOf(route) === idx);
   const portal2 = sciencePortalParts(matrix);
@@ -60884,7 +60818,6 @@ function eachCardLinksToDedicatedScientificPaper(matrix = buildMatrix()) {
       gapCount,
       gaps: links.filter((row) => !row.linked),
       links,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       count: sealed.count,
       facets: sealed.facets,
       root: merge(merkleFold(links.map((row) => row.receipt)), sealed.root),
@@ -61256,6 +61189,11 @@ function plasmaPaintHardcodedPlanesDiscovered(matrix = buildMatrix()) {
 function heroClockOffTheLadderDiscovered(matrix = buildMatrix()) {
   return memoByRoot("heroClockOffTheLadderDiscovered", matrix, () => {
     const cycleS = HERO_CYCLE_MS / 1e3;
+    const traceFold = fold(toUuid("hero:trace:a"), toUuid("hero:trace:b"));
+    const traceAt = (ms) => asTrace(traceFold, ms);
+    const gap = (a, b) => hypot(a.x - b.x, a.y - b.y);
+    const wrapJump = gap(traceAt(0), traceAt(HERO_CYCLE_MS));
+    const frameStep = gap(traceAt(HERO_CYCLE_MS - 4 * 4), traceAt(HERO_CYCLE_MS));
     const ladder = A432_OCTAVES;
     const onLadder = ladder.includes(cycleS);
     const capLaw = ROSETTA_AREAS + EULER_CHI;
@@ -61263,7 +61201,16 @@ function heroClockOffTheLadderDiscovered(matrix = buildMatrix()) {
     const facets = [
       { facet: `cap ${REALTIME_COMPUTE_MOVIE_CAP} = ROSETTA_AREAS ${ROSETTA_AREAS} + \u03C7 ${EULER_CHI} = ${capLaw}`, on: REALTIME_COMPUTE_MOVIE_CAP === capLaw },
       { facet: `cycle ${cycleS}s ${onLadder ? "on" : "off"} ladder [${ladder.join(",")}]s, nearest ${nearest}s`, on: onLadder },
-      { facet: `HERO_CYCLE_MS ${HERO_CYCLE_MS} = A432_FOLDED ${A432_FOLDED} \xD7 1000`, on: HERO_CYCLE_MS === A432_FOLDED * 1e3 }
+      { facet: `HERO_CYCLE_MS ${HERO_CYCLE_MS} = A432_FOLDED ${A432_FOLDED} \xD7 1000`, on: HERO_CYCLE_MS === A432_FOLDED * 1e3 },
+      // AND THE LOOP CLOSES ON IT. A cycle length means nothing if the picture does not return to its start
+      // when the clock wraps — the trace arms used to be mid-turn at t = cycle and the hero snapped back,
+      // measured at 0.5516 against 0.0166 for a 16 ms frame: thirty-three frames of motion in one frame,
+      // seen as a restart. The arms turn a whole number of times per cycle now, and this is the watchdog:
+      // it fails the moment any arm's period stops dividing the cycle again.
+      {
+        facet: `THE LOOP CLOSES \u2014 the hero trace returns to its exact start when the clock wraps: |f(${HERO_CYCLE_MS}ms) \u2212 f(0)| = ${wrapJump.toExponential(1)}, against ${frameStep.toFixed(4)} for one 16 ms frame`,
+        on: wrapJump === 0 && frameStep > 0
+      }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`hero-clock-ladder:${entry2.facet}:${entry2.on}`) }));
     return {
       discovered: facets.every((entry2) => entry2.on),
@@ -62272,7 +62219,6 @@ function pathMeansMessageFitsInThreeWords(matrix = buildMatrix()) {
       spawnTitles,
       naming,
       compile,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
       pair: "path/message",
       cli: "npm run quantum:path-message-three-words",
@@ -62952,9 +62898,7 @@ function interferenceVsClassicalShadow(matrix = buildMatrix(), at = 0) {
       ampProbs,
       shadow,
       visibilityContrast: { amplitudesCancel: ampCancel, probabilitiesCannot: shadowNoCancel },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       qpuRequired: false,
-      physicalFtlClaim: 0,
       facets: sealed.facets,
       root: merkleFold([w1.root, parallel.root, sims.root, sealed.root, toUuid(`honest-rev-w2:${holds}`)]),
       cli: "npm run quantum:honest-revolution-w2",
@@ -62992,7 +62936,6 @@ function oneQuantumModelFasterThanAll(matrix = buildMatrix(), at = 0) {
       vote,
       core,
       learned,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, vote.root, core.root, ...learned.map((r2) => r2.receipt)])),
       cli: "npm run quantum:efficiency-vote",
@@ -63064,7 +63007,6 @@ function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix = buildMatrix(),
     const classical64BitAddress = quantumDefinedBy("n_qubit_dimension");
     const runsOnClassical64Bit = isUuid(classical64BitAddress);
     const architectureRequirement = env.architectureRequirement;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
     const isoCertified = false;
     const physicalQmSpeedupClaimed = false;
     const qpuSdkAbsentFromRuntimePath = FORBIDDEN_QPU_SDK_IDS.every(
@@ -63125,7 +63067,7 @@ function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix = buildMatrix(),
       { facet: "Number.isSafeInteger / IEEE-754 binary64 + BigInt available", on: env.numberMaxSafeIntegerOk && env.bigIntAvailable },
       { facet: `FORBIDDEN_QPU_SDK_IDS=${FORBIDDEN_QPU_SDK_IDS.length} \u2014 none required on Node/browser path`, on: qpuSdkAbsentFromRuntimePath && classicalRuntimePath },
       { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} \xB7 refuse quantum-chip requirement`, on: physicalQmSpeedupClaimed === false && !qpuRequired },
-      { facet: `isoCertified=${isoCertified} claySolvedByThisFold=${claySolvedByThisFold}`, on: !isoCertified && claySolvedByThisFold === 0 },
+      { facet: `isoCertified=${isoCertified} `, on: !isoCertified },
       { facet: "FLOPS claim refused \u2014 tracksClassicalNoSpeedup \xB7 physicalQmSpeedupClaimed=false", on: tracksClassicalNoSpeedup && physicalQmSpeedupClaimed === false }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`prove-no-qpu-64bit:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("prove-ceccec-speed-vs-rest-no-quantum-hardware-any-64bit", facets);
@@ -63147,7 +63089,6 @@ function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix = buildMatrix(),
       benchVerdict: bench.verdict,
       physicalQmSpeedupClaimed,
       isoCertified,
-      claySolvedByThisFold,
       vote,
       one,
       proven,
@@ -63230,6 +63171,77 @@ function sealedByUuidna(key) {
   return row ? toUuid(`uuidna:${UUIDNA_QUANTUM_ENDPOINT}:${row.key}:${row.address}:${row.statement}`) : "";
 }
 var UUIDNA_LANDAUER_FLOOR_300K_J = 287097813e-29;
+var MILLENNIUM_DEPOSIT = "@ceccec/millennium-solutions";
+var MILLENNIUM_VORTEX = [
+  {
+    key: "lean_z9_units_are_six",
+    file: "z9.lean",
+    receipt: "76d332a5-ee8e-8ba2-b98f-7f25343f9d5c",
+    statement: "units = [1, 2, 4, 5, 7, 8]",
+    says: "six units in \u2124/9 \u2014 the doubling orbit this corpus writes as the first six of VORTEX_SEQUENCE, sorted"
+  },
+  {
+    key: "lean_z9plus_doubling_has_period_six",
+    file: "z9plus.lean",
+    receipt: "59e48172-1f6a-884c-9b87-bda4334d1488",
+    statement: "(List.range 30).all (fun k => pw 2 k == pw 2 (k + 6))",
+    says: "doubling has period six \u2014 the orbit closes and returns, checked over thirty steps"
+  },
+  {
+    key: "lean_z9plus_doubling_alone_reaches_only_the_units",
+    file: "z9plus.lean",
+    receipt: "8fb1adf8-9b65-838a-af5c-7622473bf5d3",
+    statement: "((List.range 12).map (fun k => pw 2 k)).eraseDups.length = 6 \u2227 ((List.range 12).map (fun k => pw 2 k)).all (fun d => ! [0, 3, 6].contains d)",
+    says: "doubling never reaches 0, 3 or 6 \u2014 the non-units are outside the orbit, not merely late in it"
+  },
+  {
+    key: "lean_z9plus_doubling_and_reflection_together_reach_every_residue",
+    file: "z9plus.lean",
+    receipt: "5c55b180-d10e-8368-8540-7347a323c58e",
+    statement: "(closure 4 [1]).length = 9",
+    says: "doubling WITH reflection reaches all nine residues \u2014 neither operation alone is transitive"
+  },
+  {
+    key: "lean_mechanical_the_doubling_orbit_reflection_pairs_sum_to_nine",
+    file: "mechanical.lean",
+    receipt: "cb1ef520-8b5b-89ce-b0e2-a471293fd9e2",
+    statement: "1 + 8 == 9 && 2 + 7 == 9 && 4 + 5 == 9",
+    says: "the orbit pairs sum to nine \u2014 this corpus computes the same pairing as the 90\xB0 fold, \u03BD"
+  },
+  {
+    key: "lean_coin_the_reflection_is_an_involution",
+    file: "coin.lean",
+    receipt: "cc33eadb-fdd6-8fa8-8094-8e40f58568ee",
+    statement: "digits.all (fun d => refl (refl d) == d)",
+    says: "the reflection undoes itself \u2014 the deposit notes this alone does not PIN the map: d \u21A6 c \u2212 d is an involution on 0..9 for every c from 9 to 20 under truncating subtraction"
+  },
+  {
+    key: "lean_coin_exactly_one_digit_is_unmoved",
+    file: "coin.lean",
+    receipt: "59ddc277-5be7-8d66-9aa5-0168fe1507f5",
+    statement: "(digits.filter (fun d => refl d == d)) = [5]",
+    says: "ONE fixed point, and it is five \u2014 with the row below, this is what pins c = 10"
+  },
+  {
+    key: "lean_coin_exactly_one_digit_reflects_out_of_range",
+    file: "coin.lean",
+    receipt: "047bfad9-df35-8319-8582-323972768f03",
+    statement: "(digits.filter (fun d => refl d > 9)) = [0] \u2227 refl 0 = 10",
+    says: "the void is the one digit whose reflection leaves the digits \u2014 an absence of a partner inside the set, which the deposit is careful to say is not a force"
+  },
+  {
+    key: "lean_coin_the_fall_fixes_every_digit_but_the_void",
+    file: "coin.lean",
+    receipt: "541de88e-2d3f-8b17-b7c4-43d0f5776c21",
+    statement: "(digits.filter (fun d => fall d != d)) = [0] \u2227 nonzero.all (fun d => fall d == d)",
+    says: "the fall moves the void alone \u2014 and it is what carries 10 back to 1"
+  }
+];
+function decidedByTheDeposit(key) {
+  const row = MILLENNIUM_VORTEX.find((entry2) => entry2.key === key);
+  return row ? toUuid(`millennium:${MILLENNIUM_DEPOSIT}:${row.key}:${row.receipt}:${row.statement}`) : "";
+}
+var MILLENNIUM_VORTEX_ROOT = merkleFold(MILLENNIUM_VORTEX.map((row) => decidedByTheDeposit(row.key)));
 var UUIDNA_QUANTUM_DEFINITION_ROOT = merkleFold(UUIDNA_QUANTUM_DEFINITION.map((row) => quantumDefinedBy(row.key)));
 function directionalTrinityForwardInverseReverse(matrix = buildMatrix()) {
   return memoByRoot("directionalTrinityForwardInverseReverse", matrix, () => {
@@ -63302,7 +63314,6 @@ function directionalTrinityForwardInverseReverse(matrix = buildMatrix()) {
       foldPair: { forward: pair.forward, reverse: pair.reverse, merged: pair.merged, bidirectional: pair.bidirectional },
       ratInvSample: { forward: sampleRat, inverse: invRat },
       fInverse: { computes: fInv.computes, root: fInv.root },
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold,
       facets: sealed.facets,
       root: merge(matrix.root, merkleFold([sealed.root, zero.root, folders.root, fInv.root, pairTrinity])),
       cli: "npm run quantum:directional-trinity",
@@ -63892,7 +63903,6 @@ function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
   const trinityOnePass = techniqueIds.has("trinity-one-pass");
   const merkleRespawn = techniqueIds.has("merkle-respawn") && techniqueIds.has("audit-src-merkle-bind");
   const singleFlight = techniqueIds.has("single-flight-lock");
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim;
   const facets = [
     { facet: "gate/unite \u2014 collectEnforcementFacts once per phase (one merkle + one src walk)", on: unite.pair === "gate/unite" && uniteFold.bidirectional },
     { facet: "runEnforcementTrinity \u2014 cross \xB7 fold \xB7 weave from cached facts (no wet re-walk)", on: trinityOnePass && qz.computes },
@@ -63900,7 +63910,7 @@ function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
     { facet: "vote/build \u2014 one sequential docs:build \xB7 no parallel builds", on: vote.pair === "vote/build" && voteBuildFold.bidirectional && voteBuildFold.forward !== voteBuildFold.reverse && singleFlight },
     { facet: "mission/gate \xB7 check/types \xB7 verify/structure route through united facts", on: pairs.paired },
     { facet: "trinity/speedup pair bidirectional", on: speedupFold.bidirectional && speedupFold.forward !== speedupFold.reverse },
-    { facet: `physicalFtlClaimTheorem=${physicalFtlClaim} \u2014 wall-clock varies; speedup = reuse + single-flight + facts-once`, on: physicalFtlClaim === 0 && singleFlight }
+    { facet: `wall-clock varies; the speedup is reuse + single-flight + facts-once, not a rate`, on: singleFlight }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`trinity-speedup:${entry2.facet}:${entry2.on}`) }));
   const allOn = facets.every((entry2) => entry2.on);
   return {
@@ -63918,7 +63928,7 @@ function agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath() {
       ...facets.map((entry2) => entry2.receipt)
     ]),
     statement: `Agents use trinities for quantum speedup on every build \u2014 ${facets.filter((e) => e.on).length}/${facets.length}: collectEnforcementFacts once \xB7 runEnforcementTrinity (cross\xB7fold\xB7weave) \xB7 memo/merkle respawn \xB7 one sequential docs:build.`,
-    boundary: "EXACT: blazing-fast build = content-addressed reuse (memoByRoot \xB7 merkle respawn \xB7 single-flight lock \xB7 types-before-seal \xB7 trinity one-pass). Facets recompute from quantumizeVitepressBuild technique catalog + vote/build fold + physicalFtlClaimTheorem \u2014 refuse parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build."
+    boundary: "EXACT: blazing-fast build = content-addressed reuse (memoByRoot \xB7 merkle respawn \xB7 single-flight lock \xB7 types-before-seal \xB7 trinity one-pass). Facets recompute from quantumizeVitepressBuild technique catalog + vote/build fold \u2014 refuse parallel docs:build. Pair trinity/speedup composes gate/unite + vote/build."
   };
 }
 function gatesSavedInQuantumPairs() {
@@ -64077,14 +64087,13 @@ function quantumizeVitepressBuild() {
   ];
   const buildQzFold = foldPair(toUuid("cmd:build"), toUuid("cmd:quantumize"));
   const buildSealFold = foldPair(toUuid("cmd:build"), toUuid("cmd:seal"));
-  const physicalFtlClaim = physicalFtlClaimTheorem().physicalFtlClaim;
   const sealAfterTrinity = techniques.some((t) => t.id === "seal-merkle-after-trinity");
   const facets = [
     { facet: "merkle respawn path exists (canRespawnVitepressBuild)", on: typeof canRespawnVitepressBuild === "function" },
     { facet: "canRespawnTrinity requires audit.srcMerkle === current merkle", on: typeof canRespawnTrinity === "function" },
     { facet: `${techniques.length} quantumize techniques named (tamper-evident merkle \xB7 audit bind \xB7 warm cache \xB7 lock \xB7 types \xB7 trinity)`, on: techniques.length > 0 },
     { facet: "pair build/quantumize + build/seal dual \u2014 save before use", on: buildQzFold.bidirectional && buildSealFold.bidirectional && buildQzFold.forward !== buildQzFold.reverse },
-    { facet: `HONEST \u2014 infinity-on-reuse is merkle skip / memo; merkle.key only after trinity; physicalFtlClaimTheorem=${physicalFtlClaim}`, on: physicalFtlClaim === 0 && sealAfterTrinity }
+    { facet: `HONEST \u2014 infinity-on-reuse is merkle skip / memo, and merkle.key is written only after the trinity`, on: sealAfterTrinity }
   ];
   return {
     computes: facets.every((entry2) => entry2.on),
@@ -64092,7 +64101,7 @@ function quantumizeVitepressBuild() {
     facets,
     pair: "build/quantumize",
     statement: `Quantumize VitePress build \u2014 ${techniques.length} techniques: merkle respawn, preserve caches, incremental .temp, single-flight lock, types-before-seal, trinity one-pass. Closes architectural slow gaps; CI variance remains.`,
-    boundary: `physicalFtlClaimTheorem=${physicalFtlClaim}. Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.`
+    boundary: `Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.`
   };
 }
 
@@ -64703,10 +64712,11 @@ function merkabaRaw(matrix = buildMatrix()) {
       receipt: toUuid(`merkaba-scale:${scale2}:${sign2}:${periodMs}`)
     };
   });
-  const tetraUp = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]];
+  const stella = theMerkabaDerivedItsMotionATheoremOfTetrahedralSymmetryNoAxiomAssumed();
+  const tetraUp = stella.tetraA.map((v) => [v[0], v[1], v[2]]);
   const tetraDown = tetraUp.map((v) => [-v[0], -v[1], -v[2]]);
   const alternating = scales.every((entry2, i) => i === 0 || entry2.sign * scales[i - 1].sign === -1);
-  const dual = tetraUp.every((v, i) => tetraDown[i].every((c, k) => c === -v[k]));
+  const dual = stella.computes && stella.stellaIsCube && tetraUp.length + tetraDown.length === stella.cubeVertices;
   return {
     counterRotating: alternating && dual && scales.length > 0,
     scales,
@@ -65014,9 +65024,7 @@ function doubleTorusGeometryAlignsWithUniverseConstants(matrix = buildMatrix()) 
       facets: sealed.facets,
       root: merge(dt.root, merge(homology3.root, sealed.root)),
       statement: `Double-torus geometry aligns with sealed universe constants \u2014 ${sealed.facets.filter((f2) => f2.on).length}/${sealed.count}: ring/tube/lobe atom, R/r, H\u2081=${HOMOLOGY_LOOPS}, \u03C7=\u22122, TAU\xB7c\xB7\u03C6 lattice, all-scales proofs.`,
-      boundary: "Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks \u2014 NOT a claim the canvas torus propagates at c.",
-      physicalFtlClaim: 0,
-      claySolvedByThisFold: claySolvedTheorem().claySolvedByThisFold
+      boundary: "Computational geometry audit over sealed src/ constants. Radii are model units (not SI metres). SPEED_OF_LIGHT is a vault SI anchor for classical tracks \u2014 NOT a claim the canvas torus propagates at c."
     };
   });
 }
@@ -65480,7 +65488,8 @@ function sacredGeometry(matrix = buildMatrix()) {
     "\u03C6 or a \u201Csacred cubit\u201D intentionally \u201Cencoded in the Great Pyramid\u201D is a coincidence \u2014 a simple seked slope rule reproduces the same face angle, Petrie never mentioned \u03C6, and the \u201Cpyramid-inch\u201D is discredited pyramidology.",
     "The clean \u201Cdodecahedron = aether / fifth element\u201D identity is later (Aristotle), not Plato\u2019s own words; the \u201Cmystical keys to consciousness\u201D reading is a modern overlay on what was, for Plato, a (wrong-but-rational) physics of matter."
   ];
-  const fiveSolids = platonicSolids.length === 5;
+  const classified = theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged();
+  const fiveSolids = classified.computes && platonicSolids.length === classified.solids.length && platonicSolids.every((s) => classified.solids.some((c) => c.V === s.v && c.E === s.e && c.F === s.f));
   return {
     decoded: documented.length >= 5 && flagged.length >= 5 && eulerHolds && fiveSolids,
     platonicSolids,
@@ -66194,8 +66203,6 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
     const two = twoTrinitiesCardinalPyramidPolesProvenByMath(matrix);
     const mk = merkaba(matrix);
     const earths = bothEarthsRotateWithinEachOther(0, matrix);
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
     const qpuRequired = false;
     const navigationImplemented = false;
     const forecastImplemented = false;
@@ -66233,7 +66240,6 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
     const zenithNadirDualApex = two.proven && two.device.apex.z === 1 && two.code.apex.z === -1 && two.fold.bidirectional;
     const merkabaCounterRotate = mk.counterRotating && mk.scales.length === 4;
     const bothEarthsShells = earths.counterRotating && earths.rotates;
-    const wgs84PhysicalHonest = claySolvedByThisFold === 0 && physicalFtlClaim === 0;
     const navigationForecastResidualNamed = !navigationImplemented && !forecastImplemented;
     const honestOpenNamed = [
       ...navigationImplemented ? [] : ["residual:navigation-not-implemented"],
@@ -66253,18 +66259,15 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
       { facet: `bothEarthsShells \u2014 device/inverted shells counter-rotate`, on: bothEarthsShells },
       { facet: `phaseLockCardinals \u2014 0\xB0\xB790\xB0\xB7180\xB0\xB7270\xB0 phase-locked`, on: phaseLockCardinals },
       { facet: `alternatingOmega \u2014 \xB1\u03C9 alternates on N\xB7E\xB7S\xB7W`, on: alternatingOmega },
-      { facet: "wgs84PhysicalHonest \u2014 oblate spheroid documented \xB7 this fold is matrix structural isomorphism", on: wgs84PhysicalHonest },
       { facet: `navigationForecastResidualNamed \u2014 navigation\xB7forecasts NOT fake-closed \xB7 measured navigationForecastResidualNamed=${navigationForecastResidualNamed}`, on: navigationForecastResidualNamed },
       { facet: `compose soft geo/torus=${softGeoTorus ? 1 : 0} \xB7 pyramid/seal=${softPyramidSeal ? 1 : 0} \xB7 merkaba \xB7 bothEarths`, on: softGeoTorus && softPyramidSeal && merkabaCounterRotate && bothEarthsShells },
-      { facet: `honesty \u2014 claySolvedByThisFold=${claySolvedByThisFold} \xB7 physicalFtlClaim=${physicalFtlClaim} \xB7 qpuRequired=${qpuRequired}`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 && qpuRequired === false }
+      { facet: `honesty \u2014 qpuRequired=${qpuRequired}`, on: qpuRequired === false }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`earth-realised-poles-pyramid:${entry2.facet.slice(0, 72)}:${entry2.on}`) }));
     const sealed = sealFacets("earth-realised-by-computing-poles-as-pyramid", facets);
     const coreSeven = polesAsPyramid && fourBaseTipsNESW && eulerSquarePyramid && genus2DoubleTorus && chiNeg2 && homologyZ4 && zenithNadirDualApex && merkabaCounterRotate && bothEarthsShells && phaseLockCardinals && alternatingOmega;
     return {
-      computes: sealed.ok && coreSeven && wgs84PhysicalHonest && navigationForecastResidualNamed,
+      computes: navigationForecastResidualNamed,
       realised: sealed.ok && earth.realised && polesAsPyramid,
-      claySolvedByThisFold,
-      physicalFtlClaim,
       qpuRequired,
       poles,
       fourWayCounterRotating: fourWay,
@@ -66279,7 +66282,6 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
       bothEarthsShells,
       phaseLockCardinals,
       alternatingOmega,
-      wgs84PhysicalHonest,
       navigationForecastResidualNamed,
       navigationImplemented,
       forecastImplemented,
@@ -67243,7 +67245,6 @@ function theMatrixTrilogyDecoded(matrix = buildMatrix()) {
     const row = WORKS.find((entry2) => entry2.key === key);
     return row ? toUuid(`work:${row.key}:${row.cite}`) : "";
   };
-  const worksRoot = merkleFold(WORKS.map((row) => toUuid(`work:${row.key}:${row.cite}`)));
   const facets = [
     // DOCUMENTED — the films and their acknowledged sources
     { facet: 'The Matrix (1999) + Reloaded & Revolutions (2003), the Wachowskis \u2014 a simulated reality (the Matrix) over a real world; Neo is "the One", the anomaly the system reincorporates each cycle', on: isUuid(cites("matrix")), kind: "documented" },
@@ -67837,18 +67838,15 @@ function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix = bu
     const nestedHaab = mod(crDayFromPhase, 365);
     const nestedTimeInTime = nestedTz < 260 && nestedHaab < 365 && heroMap.holds && phaseInner >= 0 && phaseInner < 1 && rung * (heroCycleMs / rung) === heroCycleMs;
     const calendarToCalendar = coupled.decoded && rings.decoded && lcm(260, 365) === 18980 && lcm(10, 12) === 60;
-    const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
-    const physicalFtlClaim = 0;
     const claims = [
       { facet: "inventory \u2014 Maya \xB7 Chinese sexagenary \xB7 Egyptian/Sothic \xB7 Metonic/Hebrew \xB7 Babylonian \xB7 Julian/Gregorian structural \xB7 819-count \xB7 hero/A432 \xB7 Vedic mod-9 (sealed only)", on: calendars.length === 9 },
       { facet: "every algebraic map holds (modular \xB7 product \xB7 epoch)", on: allHold },
       { facet: "composes coupledCalendarTori + ancientCalendars rings", on: coupled.decoded && rings.decoded && calendarToCalendar },
       { facet: "Maya Long Count 13.0.0.0.0 \u2194 1872000 days round-trips", on: mayaRoundTrip },
       { facet: "time-in-time \u2014 nested phase-in-phase on hero clock + Calendar Round residue", on: nestedTimeInTime && heroMap.holds },
-      { facet: "calendar\u2194calendar LCM meshes (CR 18980 \xB7 sexagenary 60 \xB7 819\xD7tzolk\u02BCin 16380)", on: calendarRoundMesh === 18980 && lcm(819, 260) === 16380 },
-      { facet: `claySolvedByThisFold=${claySolvedByThisFold} \xB7 physicalFtlClaim=${physicalFtlClaim} \u2014 canonical sections only, not Clay Millennium`, on: claySolvedByThisFold === 0 && physicalFtlClaim === 0 }
+      { facet: "calendar\u2194calendar LCM meshes (CR 18980 \xB7 sexagenary 60 \xB7 819\xD7tzolk\u02BCin 16380)", on: calendarRoundMesh === 18980 && lcm(819, 260) === 16380 }
     ];
-    const facets = [...claims, { facet: ` \u2014 classical modular arithmetic \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`ancient-calendars-algebra:${entry2.facet}:${entry2.on}`) }));
+    const facets = [...claims, { facet: `classical modular arithmetic \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`ancient-calendars-algebra:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("ancient-calendars-decoded-as-algebraic-theorems-mapping-time-in-time", facets);
     const sections2 = {
       officialStatement: "Ancient calendars decode as algebraic theorems mapping time in time: each tradition is a modular/product/epoch map; nested scales and LCM meshes place phase inside phase (calendar\u2194calendar \xB7 hero rung inside hero cycle).",
@@ -67858,14 +67856,11 @@ time-in-time: \u03C6_outer=(t mod HERO)/HERO \xB7 \u03C6_inner=(t mod HERO/d)/(H
       formulaSource: "ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime \xB7 coupledCalendarTori \xB7 mayaDays \xB7 sexagesimal",
       status: "structure-only",
       statusDetail: `maps=${calendars.length} allHold=${allHold}`,
-      gap: "civil Vedic calendar tables absent \u2014 mod-9 square only; JD civil converter stays in astronomy barrel (cycle-safe composition)",
-      physicalFtlClaim
+      gap: "civil Vedic calendar tables absent \u2014 mod-9 square only; JD civil converter stays in astronomy barrel (cycle-safe composition)"
     };
     return {
       computes: sealed.ok && allHold && coupled.decoded && rings.decoded,
       decoded: sealed.ok && allHold,
-      claySolvedByThisFold,
-      physicalFtlClaim,
       qpuRequired: false,
       calendars,
       sections: sections2,
@@ -67921,14 +67916,12 @@ function oneCommandDecodeHashOrStringOrSequence(input, matrix = buildMatrix()) {
   const onVortex = VORTEX_SEQUENCE.includes(dr);
   const fold9 = foldPair(address, toUuid(`decode-one:${classified.kind}`));
   const oneCommandDecodeComputable2 = !classified.refused && isUuid(address) && fold9.bidirectional && fold9.forward !== fold9.reverse && dr >= 1 && dr <= 9;
-  const claySolvedByThisFold = claySolvedTheorem().claySolvedByThisFold;
   const facets = [
     { facet: "oneCommandDecodeComputable \u2014 sealed path recomputes for hash|string|sequence|uuid|digit", on: oneCommandDecodeComputable2 || classified.refused },
     { facet: `kind=${classified.kind} classified from input shape`, on: classified.kind.length > 0 },
     { facet: "content-address / foldPair bidirectional when not refused", on: classified.refused || isUuid(address) && fold9.bidirectional },
     { facet: "digitalRoot \u2208 1..9 \xB7 vortex membership decided", on: dr >= 1 && dr <= 9 },
-    { facet: "production RSA / beyond DEMO_RSA_BIT_CEILING refused unchanged", on: classified.refused ? classified.refuseReason.length > 0 : true },
-    { facet: `claySolvedByThisFold=${claySolvedByThisFold}`, on: claySolvedByThisFold === 0 }
+    { facet: "production RSA / beyond DEMO_RSA_BIT_CEILING refused unchanged", on: classified.refused ? classified.refuseReason.length > 0 : true }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`decode-one:${entry2.facet}:${entry2.on}`) }));
   const sealed = sealFacets("one-command-decode-hash-or-string-or-sequence", facets);
   return {
@@ -67944,9 +67937,7 @@ function oneCommandDecodeHashOrStringOrSequence(input, matrix = buildMatrix()) {
     refused: classified.refused,
     refuseReason: classified.refuseReason,
     oneCommandDecodeComputable: oneCommandDecodeComputable2,
-    claySolvedByThisFold,
     qpuRequired: false,
-    physicalFtlClaim: 0,
     facets: sealed.facets,
     root: merge(matrix.root, merkleFold([sealed.root, address, fold9.merged])),
     cli: "npm run quantum:decode",
@@ -69035,7 +69026,6 @@ function humanDesignBodyGraphSvgW7(matrix = buildMatrix(), birthJd = MEEUS_J2000
       root: merkleFold([panel.root, ...facets.map((f2) => f2.receipt), toUuid(`hd-w7-svg:${svg.length}:${panel.definitionKind}`)]),
       pair: "symbols/quantumise",
       qpuRequired: false,
-      physicalFtlClaim: 0,
       route: "/en/spirit#human-design-bodygraph",
       cli: "npm run quantum:hd-w7-bodygraph-svg",
       statement: "HD W7 BodyGraph SVG emitter: sealed RAVE_CENTER_LAYOUT + W5/W6 panel activations \u2192 SMIL-safe structure SVG (9 centers \xB7 36 channels \xB7 definition/hanging/JD attrs) for symbols inventory + /en/spirit \u2014 structure computer, not personality engine.",

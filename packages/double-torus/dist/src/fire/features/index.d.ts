@@ -301,7 +301,6 @@ export declare function torusData(matrix?: MindMatrix): {
         unitCarrying: readonly string[];
     }[];
     count: number;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;

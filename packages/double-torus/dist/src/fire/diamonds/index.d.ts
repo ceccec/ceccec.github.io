@@ -96,7 +96,6 @@ export declare function computeLightInDiamondPredictionBeatsLightNotFtl(matrix?:
     criticalAngleDeg: number;
     sides: number;
     predictionSpeedup: number;
-    physicalFtlClaim: number;
     facets: {
         receipt: string;
         facet: string;

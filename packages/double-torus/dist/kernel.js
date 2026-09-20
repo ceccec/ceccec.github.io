@@ -856,7 +856,8 @@ function asTrace(f, timeMs = 0) {
   TRACE_ARMS.forEach((arm, i) => {
     const sign2 = i % 2 === 0 ? 1 : -1;
     const jitter = 1 + reading(f.merged, `arm:${i}`) * (1 / 5);
-    const omega = sign2 * 2 * Math.PI / (arm.periodMs * jitter);
+    const turns = Math.max(1, Math.round(HERO_CYCLE_MS_MIRROR / arm.periodMs * jitter));
+    const omega = sign2 * 2 * Math.PI * turns / HERO_CYCLE_MS_MIRROR;
     const phase = reading(f.merged, `phase:${i}`) * Math.PI * 2;
     x += arm.amp * Math.cos(omega * timeMs + phase);
     y += arm.amp * Math.sin(omega * timeMs + phase);

@@ -187,8 +187,6 @@ export declare function comboCover(): {
     needed: number;
     exhaustive: number;
     ratio: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -240,8 +238,6 @@ export declare function pairsSentToChatEntangleByAlgebra(matrix?: MindMatrix): {
         memoReuse: boolean;
     };
     honestOpenNamed: ("chat-tips-sample-not-full-roster-linear" | "entangle-pairwise-consecutive-not-all-N-choose-2" | "residual:quantum-apps-monolith" | "physical-ftl-claim-stays-0" | "not-clay" | "not-physical-qubit-entanglement")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -287,8 +283,6 @@ export declare function pairsSentToChatEntangleByAlgebraTurn(prompt: string, mat
             memoReuse: boolean;
         };
         honestOpenNamed: ("chat-tips-sample-not-full-roster-linear" | "entangle-pairwise-consecutive-not-all-N-choose-2" | "residual:quantum-apps-monolith" | "physical-ftl-claim-stays-0" | "not-clay" | "not-physical-qubit-entanglement")[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         certified: false;
         facets: {
@@ -345,8 +339,6 @@ export declare function matchingPairsImmediatelyRealiseEntanglementAndBrainstorm
     realiseRoot: string;
     brainstormRoot: string;
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -391,8 +383,6 @@ export declare function matchingPairsImmediatelyRealiseEntanglementTurn(prompt: 
         realiseRoot: string;
         brainstormRoot: string;
         honestOpenNamed: string[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         certified: false;
         facets: {

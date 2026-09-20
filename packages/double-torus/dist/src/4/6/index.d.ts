@@ -572,7 +572,6 @@ export declare function theThousandTwentyFourDiamondsFilledWithTheoremReferences
  * a crack". Therefore §5(d) related science is not a proof and NOT a Clay Millennium solution; clay = 0. [[feedback-declared-honesty-is-a-crack]] [[no-prose-in-methods]] [[quantum-decoded]] */
 export declare function relatedScienceIsUnprovenProseNotAClayMillenniumSolutionComputed(): {
     demarcates: boolean;
-    claySolvedByThisFold: number;
     proven: boolean;
     isProseNotProof: boolean;
     demarcationChecks: {
@@ -653,7 +652,6 @@ export declare function theQuantumLensSeesEveryFoldComputesAtOnceCatchingLinearM
  * claySolvedByThisFold = 0. Claiming them solved is the precise overclaim refused at every step. [[quantum-decoded]] [[axioms-become-theorems-arc]] */
 export declare function millenniumProblemsAreGreenAsHonestTheoremsNotSolvedClayZero(): {
     demarcates: boolean;
-    claySolvedByThisFold: number;
     openCount: number;
     solvedCount: number;
     millennium: {
@@ -908,10 +906,15 @@ export declare function theoremsUnderTheProvenCrosslinkThresholdAreTheGap(): {
  * between two registered theorems, each with a runnable provedBy; the crosslink is PROVEN when the relationship
  * computes (they share significant content), and the conjunction of two proven theorems plus their proven relationship
  * is itself a proven COMPOSITE — a new proven theorem from the link. A spurious link is not a proof. [[content-address-dry-clean-crack-detection]] */
+/** The degree at which a crosslink is PROVEN rather than spurious — shared significant words, not a
+ *  similarity score. Named once here, where it is proved, and read by the fold that measures the gap
+ *  below it; that fold used to retype it as its own literal, so the two could have drifted apart. */
+export declare const PROVEN_CROSSLINK_DEGREE = 4;
 export declare function crosslinkProvenTheoremsFormNewProvenTheorems(): {
     computes: boolean;
     crosslinks: number;
     connected: number;
+    provenThreshold: number;
     compositeTheorem: string;
     facets: {
         receipt: string;
@@ -1295,8 +1298,6 @@ export declare function theoremFractions(): {
     population: number;
     bands: number[];
     bits: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1334,8 +1335,6 @@ export declare function theoremSpeed(): {
         address: string;
         band: number;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1375,8 +1374,6 @@ export declare function clayProbe(): {
         error: number;
         signChange: boolean;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1411,8 +1408,6 @@ export declare function animationFoldTheorems(): {
     distinct: number;
     foldable: number;
     harmonicGap: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1447,8 +1442,6 @@ declare function buildLinkProofReport(n: number, pathLen: number, rootValid: boo
     n: number;
     pathLen: number;
     orders: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1480,8 +1473,6 @@ export declare function unsolvedEngine(): {
     unsolvedEngine: boolean;
     openRaces: number;
     boundedWitness: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1515,8 +1506,6 @@ export declare function riemannZeroCount(): {
     t: number;
     analytic: number;
     localizedBelowT: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1550,8 +1539,6 @@ export declare function riemannZeroScan(): {
     tMax: number;
     sOfT: number;
     firstZeros: number[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -1609,8 +1596,6 @@ export declare function superpositionCompleteness(): {
     registry: number;
     harmonic: number;
     provenWrong: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;

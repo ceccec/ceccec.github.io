@@ -645,8 +645,6 @@ export declare function findSeoViolations(matrix?: MindMatrix, at?: number): {
     route: string;
     anchor: string;
     heading: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;

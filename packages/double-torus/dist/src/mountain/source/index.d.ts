@@ -59,7 +59,6 @@ export declare function translationGapsGate(matrix?: MindMatrix): {
     root: string;
     pair: string;
     cli: string;
-    claySolvedByThisFold: 0;
     statement: string;
     boundary: string;
 };
@@ -81,7 +80,6 @@ export declare function translationsFilledBySelfTranslatingWaves(matrix?: MindMa
     sealedMorphs: number;
     missing: string[];
     inaccurate: string[];
-    claySolvedByThisFold: 0;
     facets: {
         receipt: string;
         facet: string;
@@ -113,8 +111,6 @@ export declare function addressAllWarningsAtOnce(matrix?: MindMatrix): {
         warn: number;
         passed: boolean;
     };
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     honestOpenNamed: ("clay:millennium-open" | "ftl:physical-claim-refused" | "ci:slow-build-wall-clock-variance" | "offline:free-prose-beyond-phrase-table" | "residual:monolith-file-ratchet" | "residual:vitepress-thin-mount" | "keep:git-stashes-non-obsolete")[];
     honestOpenNamedCount: 7;
@@ -181,8 +177,6 @@ export declare function chatTranslatesAutonomously(matrix?: MindMatrix): {
         memoReuse: boolean;
     };
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "offline:free-prose-beyond-phrase-table" | "gla:transliteration-not-meaning-translation" | "zeitwerk:action-ids-may-remain-latin" | "not-paid-mt-api" | "not-llm-translate")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -239,8 +233,6 @@ export declare function chatTranslateTurn(prompt: string, matrix?: MindMatrix): 
             memoReuse: boolean;
         };
         honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "offline:free-prose-beyond-phrase-table" | "gla:transliteration-not-meaning-translation" | "zeitwerk:action-ids-may-remain-latin" | "not-paid-mt-api" | "not-llm-translate")[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         certified: false;
         facets: {
@@ -333,8 +325,6 @@ export declare function chatWavesMostEfficientOfflineAnyLanguageModel(matrix?: M
         source: string;
     }[];
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "not-universal-paid-mt" | "any-to-any-equals-pivotTongues-registered-surfaces" | "gla-transliteration-not-meaning" | "phrase-table-en-bg-one-face" | "efficiency-win-via-coverage-rank-or-learn-best-when-decided" | "speech-soft-compose-not-browser-stt" | "water-stack-not-imported-cycle")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -407,8 +397,6 @@ export declare function chatWavesTransAnyTurn(prompt: string, matrix?: MindMatri
             source: string;
         }[];
         honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "not-universal-paid-mt" | "any-to-any-equals-pivotTongues-registered-surfaces" | "gla-transliteration-not-meaning" | "phrase-table-en-bg-one-face" | "efficiency-win-via-coverage-rank-or-learn-best-when-decided" | "speech-soft-compose-not-browser-stt" | "water-stack-not-imported-cycle")[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         certified: false;
         facets: {
@@ -510,8 +498,6 @@ export declare function chatMassiveWorldLanguageTranslationQuality(matrix?: Mind
         source: string;
     };
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "not-universal-paid-mt" | "gla-transliteration-not-meaning" | "phrase-table-en-bg-one-face" | "sealed-pivotTongues-not-iso-7000-world-languages" | "no-shared-unit-pairs-are-honest-zero-coverage" | "site-locales-en-bg-gla-named-faces")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -594,8 +580,6 @@ export declare function chatMassiveWorldLanguageTranslationQualityTurn(prompt: s
             source: string;
         };
         honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "not-universal-paid-mt" | "gla-transliteration-not-meaning" | "phrase-table-en-bg-one-face" | "sealed-pivotTongues-not-iso-7000-world-languages" | "no-shared-unit-pairs-are-honest-zero-coverage" | "site-locales-en-bg-gla-named-faces")[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         certified: false;
         facets: {

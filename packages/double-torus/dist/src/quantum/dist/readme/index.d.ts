@@ -16,8 +16,6 @@ export declare function readmeSignatureValid(committed: string, matrix?: MindMat
  */
 export declare function sequenceDiscoveryRealisedForHome(matrix?: MindMatrix): {
     computes: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     qualifiesAsProposedSolution: false;
     heading: string;

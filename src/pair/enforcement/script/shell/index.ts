@@ -243,7 +243,7 @@ export function quantumizeVitepressBuild() {
     { facet: 'canRespawnTrinity requires audit.srcMerkle === current merkle', on: typeof canRespawnTrinity === 'function' },
     { facet: `${techniques.length} quantumize techniques named (tamper-evident merkle · audit bind · warm cache · lock · types · trinity)`, on: techniques.length > 0 },
     { facet: 'pair build/quantumize + build/seal dual — save before use', on: buildQzFold.bidirectional && buildSealFold.bidirectional && buildQzFold.forward !== buildQzFold.reverse },
-    { facet: `HONEST — infinity-on-reuse is merkle skip / memo; merkle.key only after trinity; physicalFtlClaimTheorem=`, on: sealAfterTrinity },
+    { facet: `HONEST — infinity-on-reuse is merkle skip / memo, and merkle.key is written only after the trinity`, on: sealAfterTrinity },
   ]
   return {
     computes: facets.every((entry) => entry.on),
@@ -251,7 +251,7 @@ export function quantumizeVitepressBuild() {
     facets,
     pair: 'build/quantumize' as const,
     statement: `Quantumize VitePress build — ${techniques.length} techniques: merkle respawn, preserve caches, incremental .temp, single-flight lock, types-before-seal, trinity one-pass. Closes architectural slow gaps; CI variance remains.`,
-    boundary: `physicalFtlClaimTheorem=. Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.` }
+    boundary: `Measured speedup is environment-dependent (warm cache / respawn). Force rebuild with --force or QUANTUM_BUILD_FORCE=1.` }
 }
 
 /** npm run quantum:vitepress-quantumize — exit 0 iff the quantumize fold computes. */

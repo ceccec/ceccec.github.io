@@ -683,7 +683,6 @@ export declare function codebaseCompactedToMinimumTypesAndConstantsMatchingMatri
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         pair: "path/message";
         cli: string;
@@ -2127,8 +2126,6 @@ export declare function gateAnalytics(root?: string): {
     analyticsFacetsOn: boolean;
     honestOpenNamed: string[];
     qpuRequired: false;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     facets: {
         receipt: string;
         facet: string;
@@ -2270,7 +2267,6 @@ export declare function gateLight(root?: string): {
             };
             pair: "gate/slow-build";
             qpuRequired: false;
-            physicalFtlClaim: 0;
             statement: string;
             boundary: string;
         };
@@ -2470,8 +2466,6 @@ export declare function gateLight(root?: string): {
         analyticsFacetsOn: boolean;
         honestOpenNamed: string[];
         qpuRequired: false;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         facets: {
             receipt: string;
             facet: string;
@@ -2543,7 +2537,6 @@ export declare function gateLight(root?: string): {
         boundary: string;
     };
     residualNamed: string[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2722,7 +2715,6 @@ export declare function agentEntryPacket(root?: string): {
     foldableShare: number;
     matrixFit: boolean;
     agentEntryClear: boolean;
-    physicalFtlClaim: 0;
     qpuRequired: false;
 };
 export declare function toolsFitTheMatrixOrRefuse(root?: string): {
@@ -2746,8 +2738,6 @@ export declare function toolsFitTheMatrixOrRefuse(root?: string): {
     placementWetCount: number;
     incompleteNamed: string[];
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -2851,7 +2841,6 @@ export declare function claimAudit(): {
     claimAudit: boolean;
     claims: ClaimRow[];
     count: number;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -3182,7 +3171,6 @@ export declare function revolutionaryApproach(root?: string): {
     computes: boolean;
     revolutionaryApproach: boolean;
     revolutionaryClaims: number;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -3279,8 +3267,6 @@ export type GatesClayFtlSprayInventory = {
     readonly notPhysicalFtl: number;
     readonly physicalFtlClaimFacet: number;
     readonly claySolvedFacet: number;
-    readonly claySolvedTheoremCalls: number;
-    readonly physicalFtlClaimTheoremCalls: number;
     readonly totalSprayMarkers: number;
 };
 /** Count clay/ftl honesty spray markers in gates/index.ts at call time. */

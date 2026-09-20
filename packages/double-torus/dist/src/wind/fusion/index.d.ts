@@ -71117,9 +71117,7 @@ export declare function honestRevolutionReceipt(matrix?: MindMatrix, at?: number
         root: string;
         reveals: boolean;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -71180,9 +71178,7 @@ export declare function honestRevolutionComputerPanelComputes(matrix?: MindMatri
             root: string;
             reveals: boolean;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -71237,9 +71233,7 @@ export declare function honestRevolutionComputerPanelComputes(matrix?: MindMatri
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;

@@ -528,7 +528,6 @@ export type StandardToolIoSchema = {
 };
 export type StandardToolHonesty = {
     readonly physicalQubitSpeedup: 0;
-    readonly physicalFtlClaim: 0;
     readonly notFlops: true;
     readonly capacityMeans: 'amortized sealed recompute + memoByRoot + distributed identical roots';
 };
@@ -659,7 +658,6 @@ export declare function distributedReuseExtendsCapacity(matrix?: MindMatrix, at?
     federatedCatalogRoot: string;
     localCatalogRoot: string;
     physicalQubitSpeedup: 0;
-    physicalFtlClaim: 0;
     notFlops: true;
     capacityMeans: "amortized sealed recompute + memoByRoot + distributed identical roots";
     facets: ({
@@ -1046,7 +1044,6 @@ export declare function documentSessionCryptoExperimentsUpdateTheorems(matrix?: 
         particleCount: number;
         productCount: number;
         novelSurvivorCount: number;
-        claySolvedByThisFold: 0;
         root: string;
     };
     theorems: {
@@ -1108,8 +1105,6 @@ export declare function e2eQuantumTestsRecordOutputAsDevelopmentFeed(matrix?: Mi
     entryCount: number;
     feedPath: "/development-feed.json";
     feedRoot: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     browserGap: string;
     facets: ({
@@ -1161,7 +1156,6 @@ export type SessionQuantumBit = {
     readonly honesty: string;
     readonly note: string;
     readonly qpuRequired: false;
-    readonly claySolvedByThisFold: 0;
     readonly certified: false;
     readonly physicalQubit: false;
 };
@@ -1178,7 +1172,6 @@ export type QuantumBitCombination = {
     readonly envelopePayloadRoot: string;
     readonly root: string;
     readonly qpuRequired: false;
-    readonly claySolvedByThisFold: 0;
     readonly certified: false;
     readonly physicalQubit: false;
     readonly statement: string;
@@ -1209,7 +1202,6 @@ export declare function sessionManualWorkAsQuantumBits(matrix?: MindMatrix, at?:
     exportPayloadRoot: string;
     importRoundTrip: boolean;
     qpuRequired: false;
-    claySolvedByThisFold: 0;
     certified: false;
     physicalQubit: false;
     facets: ({
@@ -1248,12 +1240,10 @@ export declare function realiseSessionQuantumMeaning(matrix?: MindMatrix, at?: n
     computes: boolean;
     proves: SessionMeaningClaimRow[];
     refuses: {
-        claySolvedByThisFold: 0;
         certified: false;
         qpuRequired: false;
         wireEqualsIsoStrength: boolean;
         strongerThanNistPqc: false;
-        physicalFtlClaim: 0;
         isoOfficialStandard: false;
         overallWireClaimProved: boolean;
     };
@@ -1289,7 +1279,6 @@ export declare function realiseSessionQuantumMeaning(matrix?: MindMatrix, at?: n
             particleCount: number;
             productCount: number;
             novelSurvivorCount: number;
-            claySolvedByThisFold: 0;
             root: string;
         };
         theorems: {
@@ -1327,10 +1316,8 @@ export declare function realiseSessionQuantumMeaning(matrix?: MindMatrix, at?: n
         tracksClassicalNoSpeedup: boolean;
         root: string;
     };
-    claySolvedByThisFold: 0;
     certified: false;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -2303,7 +2290,6 @@ export type RosettaCompletenessHandoff = {
     readonly rosettaComplete: boolean;
     readonly rosettaReady: boolean;
     readonly millenniumSolvedByThisFold: 0;
-    readonly physicalFtlClaim: 0;
     readonly completenessPct: number;
     readonly root: string;
     readonly cli: string;
@@ -2319,7 +2305,6 @@ export declare function rosettaCompleteQuantumAllComputableDimensionsAndTheorems
     rosettaComplete: boolean;
     completenessPct: number;
     millenniumSolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     census: {
         dimensionGates: number;
         dimsHold: boolean;
@@ -2342,7 +2327,6 @@ export declare function rosettaCompleteQuantumAllComputableDimensionsAndTheorems
         computes: boolean;
         rosettaReady: boolean;
         millenniumSolvedByThisFold: 0;
-        claySolvedByThisFold: number;
         millRoot: string;
         handoffRoot: string;
         facets: ({
@@ -2359,7 +2343,6 @@ export declare function rosettaCompleteQuantumAllComputableDimensionsAndTheorems
     ftlHandoff: {
         computes: boolean;
         rosettaReady: boolean;
-        physicalFtlClaim: 0;
         millenniumSolvedByThisFold: 0;
         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
         handoffRoot: string;
@@ -2409,7 +2392,6 @@ export declare function millenniumChallengeHandoffFromRosettaComplete(handoff: R
     computes: boolean;
     rosettaReady: boolean;
     millenniumSolvedByThisFold: 0;
-    claySolvedByThisFold: number;
     millRoot: string;
     handoffRoot: string;
     facets: ({
@@ -2430,7 +2412,6 @@ export declare function millenniumChallengeHandoffFromRosettaComplete(handoff: R
 export declare function ftlExperimentTechniquesHandoffFromRosettaComplete(handoff: RosettaCompletenessHandoff, matrix?: MindMatrix): {
     computes: boolean;
     rosettaReady: boolean;
-    physicalFtlClaim: 0;
     millenniumSolvedByThisFold: 0;
     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
     handoffRoot: string;
@@ -2710,7 +2691,6 @@ export declare function mcpCommandsScriptsGapsAudit(matrix?: MindMatrix, at?: nu
     keptCount: number;
     openCount: number;
     qpuRequired: false;
-    claySolvedByThisFold: 0;
     rows: McpScriptAuditRow[];
     overlaps: McpScriptAuditRow[];
     useless: McpScriptAuditRow[];
@@ -2942,8 +2922,6 @@ export declare function pastedLinksStayOnlyIfComputedLocally(matrix?: MindMatrix
     foreignFetchBlockedNoStore: boolean;
     wireClassMayExist: boolean;
     wetPasteWithoutLocalIsHard: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -2969,8 +2947,6 @@ export declare function movieAndSessionGapsHardAtGates(matrix?: MindMatrix, at?:
     computes: boolean;
     movieAndSessionGapsHardAtGates: boolean;
     hardMovieSession: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -2995,7 +2971,7 @@ export declare function runMovieAndSessionGapsHardAtGatesExit(_root?: string, _a
  * Compose: vite/mirror · mcp/all · trinity/speedup · build/quantumize · gate/compliance · agent/submission · mcp/dev · vite/only.
  * Pairs: vite/mcp · mcp/vite · build/mcp · mcp/build · CLI npm run quantum:vite-mcp
  * HONEST residuals: npm thin-mount · agents.json materialize broadcast · conceptTools legacy · trading:* outside PRIMARY · dashboard MCP refused.
- * claySolved via theorem · NOT dashboard MCP.
+ * NOT dashboard MCP.
  */
 export declare function vitepressBuildsFromMcp(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3009,8 +2985,6 @@ export declare function vitepressBuildsFromMcp(matrix?: MindMatrix, at?: number)
     moveAllComplete: false;
     residualsNamed: ("npm:docs-build-thin-mount-is-mcp-dual" | "agents.json-broadcast-from-materialize" | "conceptTools:legacy-dual" | "trading:scripts-outside-primary" | "dashboard-mcp-refused-local-stdio")[];
     residualsNamedCount: 5;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3043,8 +3017,6 @@ export declare function collidingParticlesCreates(matrix?: MindMatrix, at?: numb
     creates: string;
     novelSurvivorCount: number;
     waveCount: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3068,7 +3040,7 @@ export declare function runCollidingParticlesCreatesExit(_root?: string, _argv?:
  * scientificTerminologyIsQuantumComputableMeasurableComparable · localAuditQuantumSpeedEfficiency.
  * Facets: metricsOn · computable · answersOverTokens.
  * Pairs: mcp/metrics · metrics/mcp · CLI npm run quantum:mcp-metrics
- * claySolved via theorem · NOT QPU.
+ * NOT QPU.
  */
 export declare function mcpQuantumMetrics(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3082,8 +3054,6 @@ export declare function mcpQuantumMetrics(matrix?: MindMatrix, at?: number): {
     foldCountRemaining: number;
     termCount: number;
     voteDecided: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3109,7 +3079,7 @@ export declare function runMcpQuantumMetricsExit(_root?: string, _argv?: readonl
  * Facets: analysisOn · analystsInTrinities · analyseRealise.
  * Pairs: mcp/analysis · analysis/mcp · CLI npm run quantum:mcp-analysis
  * Alias note: analisis = analysis (English path only).
- * claySolved via theorem · NOT QPU.
+ * NOT QPU.
  */
 export declare function mcpQuantumAnalysis(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3119,8 +3089,6 @@ export declare function mcpQuantumAnalysis(matrix?: MindMatrix, at?: number): {
     analyseRealise: boolean;
     moduleCount: 3;
     teamSize: 3;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3144,7 +3112,7 @@ export declare function runMcpQuantumAnalysisExit(_root?: string, _argv?: readon
  * Facets: catalogComplete · starOn · missingCount=0.
  * Pairs: mcp/catalog · catalog/mcp · mcp/star · star/mcp · CLI npm run quantum:mcp-catalog
  * Alias: mcpQuantumStar = mcpQuantumCatalog.
- * claySolved via theorem · NOT Clay/FTL fake-close · NOT QPU.
+ * NOT Clay/FTL fake-close · NOT QPU.
  */
 export declare function mcpQuantumCatalog(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3466,8 +3434,6 @@ export declare function mcpQuantumCatalog(matrix?: MindMatrix, at?: number): {
         toolId: "mcp-fill";
         dualToolId: "fill-mcp";
     })[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3495,7 +3461,7 @@ export declare function runMcpQuantumCatalogExit(_root?: string, _argv?: readonl
  * Pairs: mcp/all · all/mcp (mcp/star kept for mcpQuantumCatalog — do not break).
  * Alias: mcpStar = mcpCatalog.
  * HONEST: residualsNamed lists CI/stdio/conceptTools/trading — NOT fake browser for trinity/fs · NOT Clay/FTL fake-close.
- * claySolved via theorem.
+ *
  */
 export declare function mcpCatalog(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3512,8 +3478,6 @@ export declare function mcpCatalog(matrix?: MindMatrix, at?: number): {
     quantumPresentCount: number;
     primaryToolCount: number;
     stdioCount: 7;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3547,8 +3511,6 @@ export declare function mcpQuantumSign(matrix?: MindMatrix, at?: number): {
     crossSig: boolean;
     tamperEvident: boolean;
     certified: false;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3582,8 +3544,6 @@ export declare function mcpQuantumDirs(matrix?: MindMatrix, at?: number): {
     up: boolean;
     down: boolean;
     sixDirections: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3606,7 +3566,7 @@ export declare function runMcpQuantumDirsExit(_root?: string, _argv?: readonly s
  * Compose invertToInfinity · a432/nine · love/fold · full/freedom · ∞ on reuse · movie/entropy · mcp/universe · mcp/multi.
  * Facets: infinityOn · viaInvert · connectingBit.
  * Pairs: mcp/inf · inf/mcp · CLI npm run quantum:mcp-inf
- * claySolved via theorem.
+ *
  */
 export declare function mcpQuantumInfinity(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3615,8 +3575,6 @@ export declare function mcpQuantumInfinity(matrix?: MindMatrix, at?: number): {
     viaInvert: boolean;
     connectingBit: 1;
     connectingBitOk: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3640,7 +3598,7 @@ export declare function runMcpQuantumInfinityExit(_root?: string, _argv?: readon
  * mcp/inf · mcp faces (universe·multi·dev·ui). Honesty fields (not vote.decided gate).
  * Facets: hardwareOn · classical64Bit.
  * Pairs: mcp/hw · hw/mcp · CLI npm run quantum:mcp-hw
- * claySolved via theorem
+ *
  */
 export declare function mcpQuantumHardware(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3650,8 +3608,6 @@ export declare function mcpQuantumHardware(matrix?: MindMatrix, at?: number): {
     qpuRequired: false;
     runsOnClassical64Bit: true;
     quantumHardwareRequired: false;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -3675,7 +3631,7 @@ export declare function runMcpQuantumHardwareExit(_root?: string, _argv?: readon
  * a432/nine connecting bit · love/fold ∞ in digit folders · full/freedom amortized ∞ on reuse.
  * Facets: infiniteMovieOn · viaInfinity · movieIsInfiniteOnReuse.
  * Pairs: movie/inf · inf/movie · CLI npm run quantum:movie-inf
- * claySolved via theorem.
+ *
  */
 export declare function mcpInfiniteMovie(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3685,8 +3641,6 @@ export declare function mcpInfiniteMovie(matrix?: MindMatrix, at?: number): {
     movieIsInfiniteOnReuse: boolean;
     connectingBit: 1;
     connectingBitOk: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3708,7 +3662,7 @@ export declare function runMcpInfiniteMovieExit(_root?: string, _argv?: readonly
 /**
  * MCP quantum animation — animations via MCP recompute.
  * Pairs: mcp/anim · anim/mcp.
- * Facets: animOn · fromCoords · feelableGaps · polarityOn · claySolved via theorem.
+ * Facets: animOn · fromCoords · feelableGaps · polarityOn.
  */
 export declare function mcpQuantumAnim(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -3717,8 +3671,6 @@ export declare function mcpQuantumAnim(matrix?: MindMatrix, at?: number): {
     fromCoords: boolean;
     feelableGaps: boolean;
     polarityOn: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3748,10 +3700,7 @@ export declare function mcpQuantumSolution(matrix?: MindMatrix, at?: number): {
     mcpQuantumSolution: boolean;
     solutionOn: boolean;
     algebraicFormulas: boolean;
-    claySolvedViaTheorem: boolean;
     notCmiPrizeClaim: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3791,8 +3740,6 @@ export declare function mcpRosettaStreamClusters(matrix?: MindMatrix, at?: numbe
     }[];
     faceCount: number;
     presentCount: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     root: string;
     statement: string;
@@ -3803,7 +3750,7 @@ export declare function runMcpRosettaStreamClustersExit(_root?: string, _argv?: 
 /**
  * MCP quantum receipt — MCP face for tamper-evident content-addressed receipts.
  * Compose: fusion-verify · session/quantum-bits · moment/prove.
- * Facets: receiptOn · tamperEvident · contentAddressed · claySolved via theorem.
+ * Facets: receiptOn · tamperEvident · contentAddressed.
  * Pairs: mcp/receipt · receipt/mcp · CLI npm run quantum:mcp-receipt
  * Catalog faces 36/37 (was 35).
  */
@@ -3813,8 +3760,6 @@ export declare function mcpQuantumReceipt(matrix?: MindMatrix, at?: number): {
     receiptOn: boolean;
     tamperEvident: boolean;
     contentAddressed: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3839,7 +3784,7 @@ export declare function runMcpQuantumReceiptExit(_root?: string, _argv?: readonl
  * Pairs: mcp/cpu · cpu/mcp · CLI npm run quantum:mcp-cpu
  */
 export declare function mcpQuantumCpu(matrix?: MindMatrix, at?: number): {
-    [x: string]: string | boolean | 0 | readonly [string, string] | ({
+    [x: string]: string | boolean | readonly [string, string] | ({
         receipt: string;
         facet: string;
         on: boolean;
@@ -3851,8 +3796,6 @@ export declare function mcpQuantumCpu(matrix?: MindMatrix, at?: number): {
     classical64Bit: boolean;
     etcClassical: boolean;
     refuseFakeFlops: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3876,7 +3819,7 @@ export declare function runMcpQuantumCpuExit(_root?: string, _argv?: readonly st
  * Pairs: mcp/gpu · gpu/mcp · CLI npm run quantum:mcp-gpu
  */
 export declare function mcpQuantumGpu(matrix?: MindMatrix, at?: number): {
-    [x: string]: string | boolean | 0 | readonly [string, string] | ({
+    [x: string]: string | boolean | readonly [string, string] | ({
         receipt: string;
         facet: string;
         on: boolean;
@@ -3888,8 +3831,6 @@ export declare function mcpQuantumGpu(matrix?: MindMatrix, at?: number): {
     classical64Bit: boolean;
     etcClassical: boolean;
     refuseFakeFlops: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3920,8 +3861,6 @@ export declare function mcpQuantumMemory(matrix?: MindMatrix, at?: number): {
     classical64Bit: boolean;
     etcClassical: boolean;
     refuseFakeFlops: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3945,7 +3884,7 @@ export declare function runMcpQuantumMemoryExit(_root?: string, _argv?: readonly
  * Pairs: mcp/storage · storage/mcp · CLI npm run quantum:mcp-storage
  */
 export declare function mcpQuantumStorage(matrix?: MindMatrix, at?: number): {
-    [x: string]: string | boolean | 0 | readonly [string, string] | ({
+    [x: string]: string | boolean | readonly [string, string] | ({
         receipt: string;
         facet: string;
         on: boolean;
@@ -3957,8 +3896,6 @@ export declare function mcpQuantumStorage(matrix?: MindMatrix, at?: number): {
     classical64Bit: boolean;
     etcClassical: boolean;
     refuseFakeFlops: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -3982,7 +3919,7 @@ export declare function runMcpQuantumStorageExit(_root?: string, _argv?: readonl
  * Pairs: mcp/cache · cache/mcp · CLI npm run quantum:mcp-cache
  */
 export declare function mcpQuantumCache(matrix?: MindMatrix, at?: number): {
-    [x: string]: string | boolean | 0 | readonly [string, string] | ({
+    [x: string]: string | boolean | readonly [string, string] | ({
         receipt: string;
         facet: string;
         on: boolean;
@@ -3994,8 +3931,6 @@ export declare function mcpQuantumCache(matrix?: MindMatrix, at?: number): {
     classical64Bit: boolean;
     etcClassical: boolean;
     refuseFakeFlops: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4027,8 +3962,6 @@ export declare function mcpQuantumPeriod(matrix?: MindMatrix, at?: number): {
     foldCount: boolean;
     timeInvert: boolean;
     heroCycleMs: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4051,7 +3984,7 @@ export declare function runMcpQuantumPeriodExit(_root?: string, _argv?: readonly
  * Facets: indexOn · srcIndexOnly · censusHolds.
  * Compose src/index · folder/index · limits/verify (srcFoldersOnlyIndexMayExist).
  * Pairs: mcp/index · index/mcp · CLI npm run quantum:mcp-index
- * claySolved via theorem
+ *
  */
 export declare function mcpQuantumIndex(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -4063,8 +3996,6 @@ export declare function mcpQuantumIndex(matrix?: MindMatrix, at?: number): {
     folderIndex: boolean;
     limitsVerify: boolean;
     unfoldedCensus: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4087,7 +4018,7 @@ export declare function runMcpQuantumIndexExit(_root?: string, _argv?: readonly 
  * Facets: orientationOn · bearing · navCross.
  * Compose geo/train · cross/nav · sun/moon · mcp/torus (soft: pyramid/seal · observe/coord · mcp/dirs).
  * Pairs: mcp/orientation · orientation/mcp · CLI npm run quantum:mcp-orientation
- * claySolved via theorem
+ *
  */
 export declare function mcpQuantumOrientation(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -4101,8 +4032,6 @@ export declare function mcpQuantumOrientation(matrix?: MindMatrix, at?: number):
     sunMoon: boolean;
     torusOn: boolean;
     sixDirections: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4126,7 +4055,7 @@ export declare function runMcpQuantumOrientationExit(_root?: string, _argv?: rea
  * Compose mcpQuantumCatalog · mcpQuantumStar · mcp/all (mcpCatalog) · rosetta/complete.
  * Pairs: mcp/complete · complete/mcp · CLI npm run quantum:mcp-complete
  * HONEST: Clay/FTL/CI residuals named open — not fake-closed · moveAllComplete stays 0 via vite/mcp strangler.
- * claySolved via theorem
+ *
  */
 export declare function mcpQuantumComplete(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -4143,8 +4072,6 @@ export declare function mcpQuantumComplete(matrix?: MindMatrix, at?: number): {
     moveAllComplete: false;
     rosettaComplete: boolean;
     mcpStarOn: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4167,7 +4094,7 @@ export declare function runMcpQuantumCompleteExit(_root?: string, _argv?: readon
  * Facets: tokenOptimiseOn · answersOverTokens · zeroOnReuse · memoByRoot.
  * Compose mcpQuantumMetrics · learn/best · audit/local-quantum · trinity/speedup.
  * Pairs: mcp/token · token/mcp · token/optimise · optimise/token · token/optimize · optimize/token.
- * HONEST: efficiency win only when vote.decided · claySolved via theorem · NOT QPU · NOT FLOPS.
+ * HONEST: efficiency win only when vote.decided · NOT QPU · NOT FLOPS.
  * Alias: mcpTokenOptimise · mcpQuantumTokenOptimize (US spelling).
  */
 export declare function mcpQuantumTokenOptimise(matrix?: MindMatrix, at?: number): {
@@ -4182,8 +4109,6 @@ export declare function mcpQuantumTokenOptimise(matrix?: MindMatrix, at?: number
     coldMs: number;
     warmMs: number;
     speedup: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4219,8 +4144,6 @@ export declare function mcpQuantumBindings(matrix?: MindMatrix, at?: number): {
     bindingsOn: boolean;
     pairsSaved: boolean;
     toolsBound: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4246,7 +4169,7 @@ export declare function runMcpQuantumBindingsExit(_root?: string, _argv?: readon
  * Facets: efficiencyOn · answersOverTokens · voteDecided.
  * Compose mcpQuantumTokenOptimise · mcpQuantumMetrics · compareCeccecEfficiencyByVote · learn/best.
  * Pairs: mcp/efficiency · efficiency/mcp · CLI npm run quantum:mcp-efficiency
- * Catalog 67/67 · claySolved via theorem · NOT QPU · efficiency win only when vote.decided.
+ * Catalog 67/67 · NOT QPU · efficiency win only when vote.decided.
  */
 export declare function mcpQuantumEfficiency(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -4255,8 +4178,6 @@ export declare function mcpQuantumEfficiency(matrix?: MindMatrix, at?: number): 
     answersOverTokens: boolean;
     voteDecided: boolean;
     efficiencyWinWhenDecided: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4282,7 +4203,7 @@ export declare function runMcpQuantumEfficiencyExit(_root?: string, _argv?: read
  * Facets: securityOn · structuralLocal · wireUnprovedHonest.
  * Compose proveLocalNovelEncryptionSecurity · agentAssumeNothingMathProvesInTheMoment.
  * Pairs: mcp/security · security/mcp · CLI npm run quantum:mcp-security
- * Catalog 67/67 · claySolved via theorem · NOT FIPS/ISO · overallWireClaimProved=false.
+ * Catalog 67/67 · NOT FIPS/ISO · overallWireClaimProved=false.
  */
 export declare function mcpQuantumSecurity(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -4293,8 +4214,6 @@ export declare function mcpQuantumSecurity(matrix?: MindMatrix, at?: number): {
     overallWireClaimProved: false;
     strongerThanNistPqc: false;
     certified: false;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4327,7 +4246,7 @@ export declare function runMcpQuantumSecurityExit(_root?: string, _argv?: readon
  * CLI: npm run quantum:dry-cool
  * HONEST: cooling = computational metaphor (heap/memo · dry vs wet grind) — NOT physical device cooling.
  * Compose dual: app/dry closed KEEP strangler tip; apps:monolith-ratchet-weave residual remains.
- * claySolved via theorem
+ *
  */
 export declare function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -4341,8 +4260,6 @@ export declare function dryRefactorMigratesToMinimalCoolingByHardwareMerkabas(ma
     heapCapMb: number;
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "cooling:physical-device-not-claimed" | "apps:monolith-ratchet-weave" | "app-dry:strangler-tip-closed")[];
     drainableClosed: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4389,8 +4306,6 @@ export declare function wavesMinimiseTokensAdvanceMillennium(matrix?: MindMatrix
     voteDecided: boolean;
     efficiencyWinWhenDecided: boolean;
     millenniumSolvedByThisFold: 0;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4735,7 +4650,6 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
             root: string;
             statement: string;
             boundary: string;
-            claySolvedByThisFold: 0;
         };
         facets: {
             receipt: string;
@@ -4946,7 +4860,6 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
         rosettaComplete: boolean;
         completenessPct: number;
         millenniumSolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         census: {
             dimensionGates: number;
             dimsHold: boolean;
@@ -4969,7 +4882,6 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
             computes: boolean;
             rosettaReady: boolean;
             millenniumSolvedByThisFold: 0;
-            claySolvedByThisFold: number;
             millRoot: string;
             handoffRoot: string;
             facets: ({
@@ -4986,7 +4898,6 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
         ftlHandoff: {
             computes: boolean;
             rosettaReady: boolean;
-            physicalFtlClaim: 0;
             millenniumSolvedByThisFold: 0;
             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
             handoffRoot: string;
@@ -5075,7 +4986,6 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -5265,7 +5175,6 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             root: string;
             statement: string;
             boundary: string;
-            claySolvedByThisFold: 0;
         };
         facets: {
             receipt: string;
@@ -5560,7 +5469,6 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                 root: string;
                 statement: string;
                 boundary: string;
-                claySolvedByThisFold: 0;
             };
             facets: {
                 receipt: string;
@@ -5771,7 +5679,6 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             rosettaComplete: boolean;
             completenessPct: number;
             millenniumSolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             census: {
                 dimensionGates: number;
                 dimsHold: boolean;
@@ -5794,7 +5701,6 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                 computes: boolean;
                 rosettaReady: boolean;
                 millenniumSolvedByThisFold: 0;
-                claySolvedByThisFold: number;
                 millRoot: string;
                 handoffRoot: string;
                 facets: ({
@@ -5811,7 +5717,6 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             ftlHandoff: {
                 computes: boolean;
                 rosettaReady: boolean;
-                physicalFtlClaim: 0;
                 millenniumSolvedByThisFold: 0;
                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                 handoffRoot: string;
@@ -5900,7 +5805,6 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -6180,9 +6084,7 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                     amplitudesCancel: boolean;
                     probabilitiesCannot: boolean;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -6197,9 +6099,7 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -6222,7 +6122,6 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             gapCount: number;
             facetOnRate: number;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -6241,7 +6140,6 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
         boundary: string;
         honestyLine: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -6449,7 +6347,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 root: string;
                 statement: string;
                 boundary: string;
-                claySolvedByThisFold: 0;
             };
             facets: {
                 receipt: string;
@@ -6744,7 +6641,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     root: string;
                     statement: string;
                     boundary: string;
-                    claySolvedByThisFold: 0;
                 };
                 facets: {
                     receipt: string;
@@ -6955,7 +6851,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 rosettaComplete: boolean;
                 completenessPct: number;
                 millenniumSolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 census: {
                     dimensionGates: number;
                     dimsHold: boolean;
@@ -6978,7 +6873,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     computes: boolean;
                     rosettaReady: boolean;
                     millenniumSolvedByThisFold: 0;
-                    claySolvedByThisFold: number;
                     millRoot: string;
                     handoffRoot: string;
                     facets: ({
@@ -6995,7 +6889,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 ftlHandoff: {
                     computes: boolean;
                     rosettaReady: boolean;
-                    physicalFtlClaim: 0;
                     millenniumSolvedByThisFold: 0;
                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                     handoffRoot: string;
@@ -7084,7 +6977,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -7364,9 +7256,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -7381,9 +7271,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -7406,7 +7294,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -7425,7 +7312,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             boundary: string;
             honestyLine: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -7606,9 +7492,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     amplitudesCancel: boolean;
                     probabilitiesCannot: boolean;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -7623,9 +7507,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -7648,7 +7530,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             gapCount: number;
             facetOnRate: number;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -7693,7 +7574,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 facetOff: number;
                 animDrift: number;
                 certifiedNumeric: number;
-                clayNumeric: number;
                 refuseIncompleteOpen: number;
                 routedTrinity: number;
                 routedWave: number;
@@ -7712,7 +7592,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -7891,9 +7770,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -7908,9 +7785,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -7933,7 +7808,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -8109,9 +7983,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -8126,9 +7998,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -8305,7 +8175,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -8600,7 +8469,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -8811,7 +8679,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -8834,7 +8701,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -8851,7 +8717,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -8940,7 +8805,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -9220,9 +9084,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -9237,9 +9099,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -9262,7 +9122,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -9281,7 +9140,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -9325,7 +9183,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -9403,7 +9260,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -9518,7 +9374,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -9573,7 +9428,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -9590,7 +9444,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         };
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         productionRefused: boolean;
                         bitcoinRefused: boolean;
@@ -9647,7 +9500,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -9702,7 +9554,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -9750,7 +9601,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     productionReverseRefused: true;
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     strongerThanNistPqc: false;
                     overallWireClaimProved: false;
@@ -9835,7 +9685,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -9956,7 +9805,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     benchVerdict: string;
                     physicalQmSpeedupClaimed: false;
                     isoCertified: false;
-                    claySolvedByThisFold: 0;
                     vote: {
                         decided: boolean;
                         winner: "ceccec" | "undecided";
@@ -10012,7 +9860,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -10174,7 +10021,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -10503,7 +10349,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                             kind: "honesty";
                         })[];
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -10602,8 +10447,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 certified: false;
                 qpuRequired: false;
                 count: number;
@@ -10630,9 +10473,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 productionBreakEnabled: false;
                 refuseBeyond: boolean;
                 demoBitCeiling: number;
-                claySolvedByThisFold: 0;
                 certified: false;
-                physicalFtlClaim: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -10650,7 +10491,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             };
             mill: {
                 computes: boolean;
-                claySolvedByThisFold: number;
                 openCores: number;
                 solvedExternal: number;
                 gapsNamed: number;
@@ -10701,7 +10541,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             facets: ({
@@ -10745,7 +10584,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -10785,7 +10623,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 root: string;
                 standardsCount: number;
                 certified: false;
-                claySolvedByThisFold: 0;
             };
             meanSignificance: number;
             facets: ({
@@ -10802,10 +10639,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         certified: false;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -10992,9 +10827,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -11009,9 +10842,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -11034,7 +10865,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -11072,7 +10902,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 verified: boolean;
                 receipt: string;
             }[];
-            claySolvedByThisFold: 0;
             count: number;
             facets: ({
                 receipt: string;
@@ -11102,7 +10931,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 facetOff: number;
                 animDrift: number;
                 certifiedNumeric: number;
-                clayNumeric: number;
                 refuseIncompleteOpen: number;
                 routedTrinity: number;
                 routedWave: number;
@@ -11121,7 +10949,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -11300,9 +11127,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -11317,9 +11142,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -11342,7 +11165,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -11518,9 +11340,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -11535,9 +11355,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -11714,7 +11532,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -12009,7 +11826,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -12220,7 +12036,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -12243,7 +12058,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -12260,7 +12074,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -12349,7 +12162,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -12629,9 +12441,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -12646,9 +12456,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -12671,7 +12479,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -12690,7 +12497,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -12734,7 +12540,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -12812,7 +12617,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -12927,7 +12731,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -12982,7 +12785,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -12999,7 +12801,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         };
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         productionRefused: boolean;
                         bitcoinRefused: boolean;
@@ -13056,7 +12857,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -13111,7 +12911,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -13159,7 +12958,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     productionReverseRefused: true;
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     strongerThanNistPqc: false;
                     overallWireClaimProved: false;
@@ -13244,7 +13042,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -13365,7 +13162,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     benchVerdict: string;
                     physicalQmSpeedupClaimed: false;
                     isoCertified: false;
-                    claySolvedByThisFold: 0;
                     vote: {
                         decided: boolean;
                         winner: "ceccec" | "undecided";
@@ -13421,7 +13217,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -13583,7 +13378,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -13912,7 +13706,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                             kind: "honesty";
                         })[];
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -14011,8 +13804,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 certified: false;
                 qpuRequired: false;
                 count: number;
@@ -14039,9 +13830,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 productionBreakEnabled: false;
                 refuseBeyond: boolean;
                 demoBitCeiling: number;
-                claySolvedByThisFold: 0;
                 certified: false;
-                physicalFtlClaim: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -14059,7 +13848,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             };
             mill: {
                 computes: boolean;
-                claySolvedByThisFold: number;
                 openCores: number;
                 solvedExternal: number;
                 gapsNamed: number;
@@ -14110,7 +13898,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             facets: ({
@@ -14156,7 +13943,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -14175,7 +13961,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -14354,9 +14139,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -14371,9 +14154,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -14396,7 +14177,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -14572,9 +14352,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -14589,9 +14367,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -14768,7 +14544,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -15063,7 +14838,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -15274,7 +15048,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -15297,7 +15070,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -15314,7 +15086,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -15403,7 +15174,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -15683,9 +15453,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -15700,9 +15468,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -15725,7 +15491,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -15744,7 +15509,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -15788,7 +15552,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -15866,7 +15629,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -15981,7 +15743,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -16036,7 +15797,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -16053,7 +15813,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -16110,7 +15869,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -16165,7 +15923,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -16213,7 +15970,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -16298,7 +16054,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -16419,7 +16174,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -16475,7 +16229,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -16637,7 +16390,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -16966,7 +16718,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -17065,8 +16816,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -17093,9 +16842,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -17113,7 +16860,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -17164,7 +16910,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -17208,7 +16953,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -17248,7 +16992,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -17265,10 +17008,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -17286,7 +17027,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             boundary: string;
             honestyLine: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -17323,14 +17063,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
         }, {
             readonly id: "UNFOLDED_CENSUS";
             readonly theorem: "UNFOLDED_CENSUS";
-            readonly source: "src/3/7";
-        }, {
-            readonly id: "claySolvedTheorem";
-            readonly theorem: "claySolvedTheorem";
-            readonly source: "src/3/7";
-        }, {
-            readonly id: "CMI_PRIZE_SOLVED_CORE_IDS";
-            readonly theorem: "claySolvedTheorem";
             readonly source: "src/3/7";
         }, {
             readonly id: "DIGEST_BITS";
@@ -17530,9 +17262,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -17547,9 +17277,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -17572,7 +17300,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -17610,7 +17337,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     verified: boolean;
                     receipt: string;
                 }[];
-                claySolvedByThisFold: 0;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -17640,7 +17366,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -17659,7 +17384,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -17838,9 +17562,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -17855,9 +17577,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -17880,7 +17600,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -18056,9 +17775,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -18073,9 +17790,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -18252,7 +17967,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -18547,7 +18261,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -18758,7 +18471,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -18781,7 +18493,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -18798,7 +18509,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -18887,7 +18597,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -19167,9 +18876,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -19184,9 +18891,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -19209,7 +18914,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -19228,7 +18932,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -19272,7 +18975,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -19350,7 +19052,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -19465,7 +19166,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -19520,7 +19220,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -19537,7 +19236,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -19594,7 +19292,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -19649,7 +19346,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -19697,7 +19393,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -19782,7 +19477,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -19903,7 +19597,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -19959,7 +19652,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -20121,7 +19813,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -20450,7 +20141,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -20549,8 +20239,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -20577,9 +20265,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -20597,7 +20283,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -20648,7 +20333,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -20694,7 +20378,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -20713,7 +20396,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -20892,9 +20574,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -20909,9 +20589,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -20934,7 +20612,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -21110,9 +20787,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -21127,9 +20802,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -21306,7 +20979,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -21601,7 +21273,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -21812,7 +21483,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -21835,7 +21505,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -21852,7 +21521,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -21941,7 +21609,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -22221,9 +21888,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -22238,9 +21903,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -22263,7 +21926,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -22282,7 +21944,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -22326,7 +21987,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -22404,7 +22064,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -22519,7 +22178,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -22574,7 +22232,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -22591,7 +22248,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -22648,7 +22304,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -22703,7 +22358,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -22751,7 +22405,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -22836,7 +22489,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -22957,7 +22609,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -23013,7 +22664,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -23175,7 +22825,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -23504,7 +23153,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -23603,8 +23251,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -23631,9 +23277,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -23651,7 +23295,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -23702,7 +23345,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -23746,7 +23388,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -23786,7 +23427,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -23803,10 +23443,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -23824,7 +23462,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -23857,7 +23494,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 facetOff: number;
                 animDrift: number;
                 certifiedNumeric: number;
-                clayNumeric: number;
                 refuseIncompleteOpen: number;
                 routedTrinity: number;
                 routedWave: number;
@@ -23876,7 +23512,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -24055,9 +23690,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -24072,9 +23705,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -24097,7 +23728,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -24273,9 +23903,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -24290,9 +23918,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -24469,7 +24095,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -24764,7 +24389,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -24975,7 +24599,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -24998,7 +24621,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -25015,7 +24637,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -25104,7 +24725,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -25384,9 +25004,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -25401,9 +25019,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -25426,7 +25042,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -25445,7 +25060,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -25489,7 +25103,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -25567,7 +25180,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -25682,7 +25294,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -25737,7 +25348,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -25754,7 +25364,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         };
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         productionRefused: boolean;
                         bitcoinRefused: boolean;
@@ -25811,7 +25420,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -25866,7 +25474,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -25914,7 +25521,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     productionReverseRefused: true;
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     strongerThanNistPqc: false;
                     overallWireClaimProved: false;
@@ -25999,7 +25605,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -26120,7 +25725,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     benchVerdict: string;
                     physicalQmSpeedupClaimed: false;
                     isoCertified: false;
-                    claySolvedByThisFold: 0;
                     vote: {
                         decided: boolean;
                         winner: "ceccec" | "undecided";
@@ -26176,7 +25780,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -26338,7 +25941,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -26667,7 +26269,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                             kind: "honesty";
                         })[];
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -26766,8 +26367,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 certified: false;
                 qpuRequired: false;
                 count: number;
@@ -26794,9 +26393,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 productionBreakEnabled: false;
                 refuseBeyond: boolean;
                 demoBitCeiling: number;
-                claySolvedByThisFold: 0;
                 certified: false;
-                physicalFtlClaim: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -26814,7 +26411,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             };
             mill: {
                 computes: boolean;
-                claySolvedByThisFold: number;
                 openCores: number;
                 solvedExternal: number;
                 gapsNamed: number;
@@ -26865,7 +26461,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             facets: ({
@@ -26911,7 +26506,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -26930,7 +26524,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -27109,9 +26702,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -27126,9 +26717,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -27151,7 +26740,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -27327,9 +26915,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -27344,9 +26930,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -27523,7 +27107,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -27818,7 +27401,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -28029,7 +27611,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -28052,7 +27633,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -28069,7 +27649,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -28158,7 +27737,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -28438,9 +28016,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -28455,9 +28031,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -28480,7 +28054,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -28499,7 +28072,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -28543,7 +28115,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -28621,7 +28192,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -28736,7 +28306,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -28791,7 +28360,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -28808,7 +28376,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -28865,7 +28432,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -28920,7 +28486,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -28968,7 +28533,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -29053,7 +28617,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -29174,7 +28737,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -29230,7 +28792,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -29392,7 +28953,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -29721,7 +29281,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -29820,8 +29379,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -29848,9 +29405,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -29868,7 +29423,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -29919,7 +29473,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -29963,7 +29516,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -30003,7 +29555,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -30020,10 +29571,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -30241,7 +29790,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 pair: "path/message";
                 cli: string;
@@ -30270,7 +29818,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -30289,7 +29836,6 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
         boundary: string;
         honestyLine: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -30567,7 +30113,6 @@ export declare function cracksPassedGatesBecause(matrix?: MindMatrix, at?: numbe
         why: "static RSA_MODULI boundary kept max-bits — demo sample pretended to be hardware ceiling";
         nowGate: "bits/hardware→gaps/invisible";
     })[];
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -30608,8 +30153,6 @@ export declare function gatesRefuseProseOnly(matrix?: MindMatrix, at?: number): 
     meaningFromFold: boolean;
     wetInvented: boolean;
     wetProseRemaining: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -30696,7 +30239,6 @@ export type InvisibleGapsCaughtByGates = {
     readonly digitFold: ReturnType<typeof __ns_wind_research.wholeDigitsHarmonicInvertibleFractionsFoldToOneDigit>;
     readonly analogFold: ReturnType<typeof __ns_wind_research.analogFromIntegerFractionsFoldedToDigits>;
     readonly theoremConst: ReturnType<typeof animationsReviewColorsForPolarityGaps>['theoremConst'];
-    readonly claySolvedByThisFold: 0;
     readonly qpuRequired: false;
     readonly facets: ReturnType<typeof sealFacets>['facets'];
     readonly root: string;
@@ -30725,7 +30267,7 @@ export { invisibleGapsCaughtByGates, runInvisibleGapsCaughtByGatesExit } from '.
  * USER LAW: imagine all tools a gate may need — no matter how many, they are 42 as 6×7 inverting 7×6.
  * Enumerate toolbox · local · MCP · script-exits; fold into ROSETTA_AREAS via matrix seal.
  * Pair: gate/tools · tools/forty · CLI npm run quantum:gate-tools
- * claySolved via theorem.
+ *
  */
 export declare function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -30738,8 +30280,6 @@ export declare function gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix(matr
     foldedCount: number;
     fortyTwo: number;
     toolTo42Receipt: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -30771,8 +30311,6 @@ export declare function quantumComputerRunsInBrowserAsAClassicalSimulator(matrix
     circuits: number;
     bellRoot: string;
     qpuRequired: false;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -30795,7 +30333,7 @@ export declare function runQuantumComputerRunsInBrowserAsAClassicalSimulatorExit
  * USER LAW: gates monitor themselves through the UI (VitePress inverted mirror · local hub ·
  * analytics/self · gaps/invisible live facets) — not a separate wet dashboard essay.
  * Pair: gate/monitor · gate/ui · CLI npm run quantum:gate-monitor
- * Live HARD/soft counts + 42-fold at call time. claySolved via theorem.
+ * Live HARD/soft counts + 42-fold at call time.
  */
 export declare function gatesMonitorThemselvesThroughTheUi(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -30811,8 +30349,6 @@ export declare function gatesMonitorThemselvesThroughTheUi(matrix?: MindMatrix, 
     foldedCount: number;
     toolTo42Receipt: string;
     missionGateReceipt: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -30839,7 +30375,7 @@ export declare function runGatesMonitorThemselvesThroughTheUiExit(_root?: string
  * dry/clean diamond·crystal · full/freedom · gate/monitor pairs · analytics/self.
  * Pair: self/fusion · fusion/self · CLI npm run quantum:self-fusion
  * Facets: selfFuses · fusionVerifyOn · tamperEvident · tamper/impossible path.
- * claySolved via theorem.
+ *
  */
 export declare function selfQuantumFusion(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -30851,8 +30387,6 @@ export declare function selfQuantumFusion(matrix?: MindMatrix, at?: number): {
     partCount: number;
     dryDiamond: boolean;
     dryCrystal: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -30878,7 +30412,7 @@ export declare function runSelfQuantumFusionExit(_root?: string, _argv?: readonl
  * Fusion interface — UI + fold morphing live fusion root · verify on/off · tamper receipt
  * from sealed folds (not wet chrome). Compose selfQuantumFusion · fusion-verify · vite/mirror ·
  * gate/monitor · local hub. Pair: fusion/ui · self/fusion · CLI npm run quantum:fusion-ui
- * Route: /quantum-tools#fusion · claySolved via theorem.
+ * Route: /quantum-tools#fusion.
  */
 export declare function fusionInterface(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -30890,8 +30424,6 @@ export declare function fusionInterface(matrix?: MindMatrix, at?: number): {
     partCount: number;
     selfFuses: boolean;
     morphFromSealed: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -30916,7 +30448,7 @@ export declare function runFusionInterfaceExit(_root?: string, _argv?: readonly 
 /**
  * USER LAW: crystal clear mind — dryClean diamond·crystal · thought/pure · quantum/mind · full/freedom.
  * Pair: crystal/mind · mind/clear · CLI npm run quantum:crystal-mind
- * Facets: crystalClear · purityQuantum · claySolved via theorem.
+ * Facets: crystalClear · purityQuantum.
  */
 export declare function crystalClearMind(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -30925,8 +30457,6 @@ export declare function crystalClearMind(matrix?: MindMatrix, at?: number): {
     purityQuantum: boolean;
     diamond: boolean;
     crystal: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -30959,8 +30489,6 @@ export declare function thirdMindEye(matrix?: MindMatrix, at?: number): {
     thirdEye: any;
     observerPlusOne: boolean;
     hdAjnaStructure: any;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -31139,9 +30667,7 @@ export declare function doubleSlitLocalToolsMorph(matrix?: MindMatrix, at?: numb
             amplitudesCancel: boolean;
             probabilitiesCannot: boolean;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -31156,9 +30682,7 @@ export declare function doubleSlitLocalToolsMorph(matrix?: MindMatrix, at?: numb
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -31340,9 +30864,7 @@ export declare function localToolsMorphProseCodeLogic(matrix?: MindMatrix, at?: 
                 amplitudesCancel: boolean;
                 probabilitiesCannot: boolean;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -31357,9 +30879,7 @@ export declare function localToolsMorphProseCodeLogic(matrix?: MindMatrix, at?: 
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -31382,7 +30902,6 @@ export declare function localToolsMorphProseCodeLogic(matrix?: MindMatrix, at?: 
         gapCount: number;
         facetOnRate: number;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -31683,9 +31202,7 @@ export declare function improveLocalFromSessionExperience(matrix?: MindMatrix, a
                     amplitudesCancel: boolean;
                     probabilitiesCannot: boolean;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -31700,9 +31217,7 @@ export declare function improveLocalFromSessionExperience(matrix?: MindMatrix, a
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -31725,7 +31240,6 @@ export declare function improveLocalFromSessionExperience(matrix?: MindMatrix, a
             gapCount: number;
             facetOnRate: number;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -31818,7 +31332,6 @@ export declare function automateNightlyViaNpmScriptPath(matrix?: MindMatrix, at?
     computes: boolean;
     automateNightlyShipped: boolean;
     qpuRequired: false;
-    claySolvedByThisFold: 0;
     recipeSteps: readonly ["npm run quantum:trinity-speedup", "npm run mission:gate", "npm run quantum:upgrade-local"];
     docsBuildStep: "QUANTUM_DEV_ALLOW_DOCS_BUILD=1 npm run docs:build";
     docsBuildInDefaultRecipe: false;
@@ -31850,7 +31363,7 @@ export declare function runAutomateNightlyViaNpmScriptPathExit(_root?: string, _
  * session/save · gate/monitor.
  * Pairs: auto/self · self/auto · CLI npm run quantum:automate-self
  * Facets: selfAutomates · nightlyOn · buildsInWaves · fusionVerify
- * claySolved via theorem.
+ *
  */
 export declare function automateSelf(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -31859,8 +31372,6 @@ export declare function automateSelf(matrix?: MindMatrix, at?: number): {
     nightlyOn: boolean;
     buildsInWaves: boolean;
     fusionVerify: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -31898,8 +31409,6 @@ export declare function automateAll(matrix?: MindMatrix, at?: number): {
     buildsInWaves: boolean;
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "residual:specialized-experience-shells" | "nightly:browser-gap-node-npm" | "self-hw:certified-false-standards-alignment")[];
     honestOpenNamedCount: 5;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -31942,8 +31451,6 @@ export declare function quantumLife(matrix?: MindMatrix, at?: number): {
     folMerkaba: boolean;
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "hd:structure-only-not-aura-type" | "life:not-vitalism-not-biology-claim")[];
     honestOpenNamedCount: 4;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32004,8 +31511,6 @@ export declare function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEn
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "ai-bill:not-wet-pricing-api" | "mill:gaps-exist-until-discovered")[];
     honestOpenNamedCount: 4;
     millenniumSolvedByThisFold: 0;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32053,8 +31558,6 @@ export declare function continueInWavesCompletingAllTodos(matrix?: MindMatrix, a
     todosDrainableClosed: boolean;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "residual:specialized-experience-shells")[];
     honestOpenNamedCount: 5;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32119,9 +31622,7 @@ export declare function conversationsHaveQuantumMetricsImproveIntelligenceMindDe
     noUnprovenAlgebraBit: boolean;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "honesty:noUnprovenAlgebraBit-sealed-domain-only-NOT-all-math" | "honesty:NOT-AGI")[];
     honestOpenNamedCount: 6;
-    claySolvedByThisFold: 0;
     millenniumSolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32132,7 +31633,7 @@ export declare function conversationsHaveQuantumMetricsImproveIntelligenceMindDe
     })[];
     root: string;
     pair: "conv/metrics";
-    pairs: ("proof/trinity" | "conv/metrics" | "metrics/conv" | "mind/site" | "site/mind" | "trinity/proof" | "algebra/bit" | "bit/algebra")[];
+    pairs: ("trinity/proof" | "proof/trinity" | "conv/metrics" | "metrics/conv" | "mind/site" | "site/mind" | "algebra/bit" | "bit/algebra")[];
     dualPair: "metrics/conv";
     cli: string;
     route: string;
@@ -32186,9 +31687,7 @@ export declare function imagineWhatNext(matrix?: MindMatrix, at?: number): {
     toolsMissingDrainableClosed: boolean;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "residual:specialized-experience-shells" | "honesty:NOT-wet-fantasy")[];
     honestOpenNamedCount: 6;
-    claySolvedByThisFold: 0;
     millenniumSolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32361,8 +31860,6 @@ export declare function specializedShellsStrangler(matrix?: MindMatrix, at?: num
     residualNamed: boolean;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "residual:specialized-experience-shells")[];
     honestOpenNamedCount: 4;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32400,8 +31897,6 @@ export declare function sessionHologramTools(matrix?: MindMatrix, at?: number): 
     sessionHologramOn: boolean;
     hologramFractal: boolean;
     toolsWired: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32439,8 +31934,6 @@ export declare function societyToolboxWire(matrix?: MindMatrix, at?: number): {
     societyToolboxWireOn: boolean;
     toolboxWired: boolean;
     patronageOn: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32497,8 +31990,6 @@ export declare function clayAgiDeepResearchQuantumUnderstandingOfRelations(matri
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     millOpenCores: number;
     gateMillGapsExist: boolean;
@@ -32597,8 +32088,6 @@ export declare function addressWithDeepResearchToolsAllWarningsEspeciallyConvert
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "platform-og:facebook-first-frame-only" | "platform-og:limits-modeled-not-live-cdn-crawl" | "google:ranking-not-guaranteed" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "ci:slow-build-wall-clock-variance" | "offline:free-prose-beyond-phrase-table" | "keep:git-stashes-non-obsolete")[];
     honestOpenNamedCount: 9;
@@ -32655,8 +32144,6 @@ export declare function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmed
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -32745,8 +32232,6 @@ export declare function theMovieShouldBeSeamlessAnimationQuantumObservationIsGap
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "linear-eye:seams-visible-until-quantum-observe")[];
     honestOpenNamedCount: 4;
@@ -32807,8 +32292,6 @@ export declare function readmeAndHomepageExactAngleAndPolarityHelpAgentsUndersta
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "agents:cannot-force-foreign-models")[];
     honestOpenNamedCount: 4;
@@ -32887,9 +32370,6 @@ export declare function lensesCompletelyWiredInEverySuperposition(matrix?: MindM
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
-    ftlVia: "physicalFtlClaimTheorem";
     qpuRequired: false;
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "multitask-agent-stop-wait-linear-gap")[];
     honestOpenNamedCount: 4;
@@ -32953,8 +32433,6 @@ export declare function useTheLensToFindGapsInGeometryInProseOrCode(matrix?: Min
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "host:(TAU / 2)-boundary-mountain-geometry")[];
     honestOpenNamedCount: 4;
@@ -33019,8 +32497,6 @@ export declare function pageComputedGapsAt(route: string, pageKind?: PageGapsKin
     })[];
     root: string;
     pair: "page/gaps";
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     heading: string;
     statement: string;
@@ -33043,8 +32519,6 @@ export declare function eachPageShowsOwnComputedGaps(matrix?: MindMatrix, at?: n
         classCount: number;
         root: string;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33072,7 +32546,7 @@ export declare function runEachPageShowsOwnComputedGapsExit(_root?: string, _arg
  * Pairs: mcp/ui · quantum/mcp · mcp/mill · CLI npm run quantum:mcp-ui
  * Compose mcpBrowserParity · toolbox-standard-io · fusion/ui · gate/monitor · mill/once ·
  * formula/code · algebraicTheoremPaper · theoremFormulaCodeDual.
- * NOT CMI prize · claySolved via theorem.
+ * NOT CMI prize.
  */
 export declare function mcpQuantumUi(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -33121,8 +32595,6 @@ export declare function mcpQuantumUi(matrix?: MindMatrix, at?: number): {
     }[];
     openCoreCount: number;
     millRayEdges: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33148,7 +32620,7 @@ export declare function runMcpQuantumUiExit(_root?: string, _argv?: readonly str
  * MCP quantum movie — frames/superpositions from sealed MCP/toolbox + mill formula duals.
  * Pairs: mcp/movie · movie/mcp · CLI npm run quantum:mcp-movie
  * Compose movie/center · movie/entropy · coord/anim · 6×7 · oneClock · mcp/ui · formula/code.
- * claySolved via theorem.
+ *
  */
 export declare function mcpQuantumMovie(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -33178,8 +32650,6 @@ export declare function mcpQuantumMovie(matrix?: MindMatrix, at?: number): {
     })[];
     millFrameCount: number;
     allFormulaCovered: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33220,8 +32690,6 @@ export declare function movieGapsFeelableByObservation(matrix?: MindMatrix, at?:
         on: boolean;
         receipt: string;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: (({
         receipt: string;
@@ -33257,7 +32725,7 @@ export declare function runMovieGapsFeelableByObservationExit(_root?: string, _a
  * Facets: cursorInRosettaCore · referralUsesSubscriptionInCeccec · cursorToCeccec ·
  * ceccecToCursor · viceVersa · immediateWire.
  * Compose auto-wire · upgrade/local · mcp/browser-parity · fund/ai · rosettaShelve.
- * claySolved via theorem.
+ *
  */
 export declare function cursorIntegratesInRosettaCore(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -33275,8 +32743,6 @@ export declare function cursorIntegratesInRosettaCore(matrix?: MindMatrix, at?: 
     };
     referralUrl: "https://cursor.com/referral?code=JVAZXASXOSSK";
     wireReceipt: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33347,8 +32813,6 @@ export declare function dryCleanTheoremsFormulasReplaceAnyAssumption(matrix?: Mi
         surface: "formula";
         replacedBy: "redundantExplanationSectionsDryCleaned";
     })[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -33380,8 +32844,6 @@ export declare function dryCleanAiBill(matrix?: MindMatrix, at?: number): {
     billDried: boolean;
     zeroTokenReuse: boolean;
     subscriptionFundsCeccec: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -33421,8 +32883,6 @@ export declare function foldInvertUntilDryCleanAppGapless(matrix?: MindMatrix, a
     diamond: boolean;
     crystal: boolean;
     clean: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33496,8 +32956,6 @@ export declare function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matri
     inventoryOpenNamed: string[];
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "design:residual-named-open-when-inventory-open" | "formula:residual-when-element-unbind")[];
     honestOpenNamedCount: 4;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33566,7 +33024,7 @@ export declare function queryTheoremFormulaIndex(key?: SuperpositionIndexKey, ma
  * Compose formula/code · theorem/const · movie/formula · mcp/index · directionalTrinity · rosettaComplete (soft heavy).
  * Pairs: theorem/index · formula/index · super/index · index/super.
  * CLI: npm run quantum:theorem-index [-- key] · npm run quantum:super-index
- * claySolved via theorem
+ *
  */
 export declare function theoremFormulaComputableIndexForAnySuperposition(matrix?: MindMatrix, at?: number, key?: SuperpositionIndexKey): {
     computes: boolean;
@@ -33586,8 +33044,6 @@ export declare function theoremFormulaComputableIndexForAnySuperposition(matrix?
         readonly bound: boolean;
         readonly receipt: string;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33660,8 +33116,6 @@ export declare function theoremFormulaMetricsMap(matrix?: MindMatrix, at?: numbe
     computable: boolean;
     row: TheoremFormulaMetricsRow;
     map: TheoremFormulaMetricsRow;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33725,8 +33179,6 @@ export declare function quantumMap(matrix?: MindMatrix, at?: number, key?: Super
     anySuperposition: boolean;
     row: QuantumMapRow;
     map: QuantumMapRow;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -33784,8 +33236,6 @@ export declare function animationRosettaStreamClusters(matrix?: MindMatrix, at?:
         facet: string;
         on: boolean;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     root: string;
     statement: string;
@@ -33800,7 +33250,7 @@ export declare function runAnimationRosettaStreamClustersExit(_root?: string, _a
  * Pairs: app/fold · fold/app.
  * CLI: npm run quantum:app-fold · quantum:fold-app
  * See: /quantum-tools#app-fold — apps · pair duals · card←hero←movie.
- * claySolved via theorem
+ *
  */
 export declare function foldingWorksOnApplicationLevel(matrix?: MindMatrix, at?: number): {
     computes: boolean;
@@ -33854,8 +33304,6 @@ export declare function foldingWorksOnApplicationLevel(matrix?: MindMatrix, at?:
         readonly detail: "path is message · fractal beneath";
     }];
     appCount: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -34050,8 +33498,6 @@ export declare function dryCleanAllVueComponentsToTheUniversalSet(matrix?: MindM
     morphCount: 10;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "residual:specialized-experience-shells" | "residual:true-special-domain-hubs" | "vue-dry:strangler-wave-closed")[];
     honestOpenNamedCount: 6;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -34108,8 +33554,6 @@ export declare function alwaysBalanceUsingRealtimeMetricsAndChat(matrix?: MindMa
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -34186,8 +33630,6 @@ export declare function eachSuperpositionIsAChatroom(matrix?: MindMatrix, at?: n
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -34466,7 +33908,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     root: string;
                     statement: string;
                     boundary: string;
-                    claySolvedByThisFold: 0;
                 };
                 facets: {
                     receipt: string;
@@ -34761,7 +34202,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -34972,7 +34412,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     rosettaComplete: boolean;
                     completenessPct: number;
                     millenniumSolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     census: {
                         dimensionGates: number;
                         dimsHold: boolean;
@@ -34995,7 +34434,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         computes: boolean;
                         rosettaReady: boolean;
                         millenniumSolvedByThisFold: 0;
-                        claySolvedByThisFold: number;
                         millRoot: string;
                         handoffRoot: string;
                         facets: ({
@@ -35012,7 +34450,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     ftlHandoff: {
                         computes: boolean;
                         rosettaReady: boolean;
-                        physicalFtlClaim: 0;
                         millenniumSolvedByThisFold: 0;
                         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                         handoffRoot: string;
@@ -35101,7 +34538,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -35381,9 +34817,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -35398,9 +34832,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -35423,7 +34855,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -35442,7 +34873,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -35623,9 +35053,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -35640,9 +35068,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -35665,7 +35091,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -35710,7 +35135,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -35729,7 +35153,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -35908,9 +35331,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -35925,9 +35346,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -35950,7 +35369,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -36126,9 +35544,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -36143,9 +35559,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -36322,7 +35736,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -36617,7 +36030,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -36828,7 +36240,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -36851,7 +36262,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -36868,7 +36278,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -36957,7 +36366,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -37237,9 +36645,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -37254,9 +36660,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -37279,7 +36683,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -37298,7 +36701,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -37342,7 +36744,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -37420,7 +36821,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -37535,7 +36935,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -37590,7 +36989,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -37607,7 +37005,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -37664,7 +37061,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -37719,7 +37115,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -37767,7 +37162,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -37852,7 +37246,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -37973,7 +37366,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -38029,7 +37421,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -38191,7 +37582,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -38520,7 +37910,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -38619,8 +38008,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -38647,9 +38034,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -38667,7 +38052,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -38718,7 +38102,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -38762,7 +38145,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -38802,7 +38184,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -38819,10 +38200,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -39009,9 +38388,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -39026,9 +38403,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -39051,7 +38426,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -39089,7 +38463,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     verified: boolean;
                     receipt: string;
                 }[];
-                claySolvedByThisFold: 0;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -39119,7 +38492,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -39138,7 +38510,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -39317,9 +38688,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -39334,9 +38703,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -39359,7 +38726,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -39535,9 +38901,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -39552,9 +38916,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -39731,7 +39093,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -40026,7 +39387,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -40237,7 +39597,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -40260,7 +39619,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -40277,7 +39635,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -40366,7 +39723,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -40646,9 +40002,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -40663,9 +40017,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -40688,7 +40040,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -40707,7 +40058,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -40751,7 +40101,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -40829,7 +40178,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -40944,7 +40292,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -40999,7 +40346,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -41016,7 +40362,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -41073,7 +40418,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -41128,7 +40472,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -41176,7 +40519,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -41261,7 +40603,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -41382,7 +40723,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -41438,7 +40778,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -41600,7 +40939,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -41929,7 +41267,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -42028,8 +41365,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -42056,9 +41391,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -42076,7 +41409,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -42127,7 +41459,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -42173,7 +41504,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -42192,7 +41522,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -42371,9 +41700,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -42388,9 +41715,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -42413,7 +41738,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -42589,9 +41913,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -42606,9 +41928,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -42785,7 +42105,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -43080,7 +42399,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -43291,7 +42609,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -43314,7 +42631,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -43331,7 +42647,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -43420,7 +42735,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -43700,9 +43014,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -43717,9 +43029,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -43742,7 +43052,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -43761,7 +43070,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -43805,7 +43113,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -43883,7 +43190,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -43998,7 +43304,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -44053,7 +43358,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -44070,7 +43374,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -44127,7 +43430,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -44182,7 +43484,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -44230,7 +43531,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -44315,7 +43615,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -44436,7 +43735,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -44492,7 +43790,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -44654,7 +43951,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -44983,7 +44279,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -45082,8 +44377,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -45110,9 +44403,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -45130,7 +44421,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -45181,7 +44471,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -45225,7 +44514,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -45265,7 +44553,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -45282,10 +44569,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -45303,7 +44588,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -45340,14 +44624,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
             }, {
                 readonly id: "UNFOLDED_CENSUS";
                 readonly theorem: "UNFOLDED_CENSUS";
-                readonly source: "src/3/7";
-            }, {
-                readonly id: "claySolvedTheorem";
-                readonly theorem: "claySolvedTheorem";
-                readonly source: "src/3/7";
-            }, {
-                readonly id: "CMI_PRIZE_SOLVED_CORE_IDS";
-                readonly theorem: "claySolvedTheorem";
                 readonly source: "src/3/7";
             }, {
                 readonly id: "DIGEST_BITS";
@@ -45547,9 +44823,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -45564,9 +44838,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -45589,7 +44861,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -45627,7 +44898,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         verified: boolean;
                         receipt: string;
                     }[];
-                    claySolvedByThisFold: 0;
                     count: number;
                     facets: ({
                         receipt: string;
@@ -45657,7 +44927,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -45676,7 +44945,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -45855,9 +45123,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -45872,9 +45138,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -45897,7 +45161,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -46073,9 +45336,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -46090,9 +45351,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -46269,7 +45528,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -46564,7 +45822,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -46775,7 +46032,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -46798,7 +46054,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -46815,7 +46070,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -46904,7 +46158,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -47184,9 +46437,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -47201,9 +46452,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -47226,7 +46475,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -47245,7 +46493,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -47289,7 +46536,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -47367,7 +46613,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -47482,7 +46727,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -47537,7 +46781,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -47554,7 +46797,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -47611,7 +46853,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -47666,7 +46907,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -47714,7 +46954,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -47799,7 +47038,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -47920,7 +47158,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -47976,7 +47213,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -48138,7 +47374,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -48467,7 +47702,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -48566,8 +47800,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -48594,9 +47826,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -48614,7 +47844,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -48665,7 +47894,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -48711,7 +47939,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             facetOff: number;
                             animDrift: number;
                             certifiedNumeric: number;
-                            clayNumeric: number;
                             refuseIncompleteOpen: number;
                             routedTrinity: number;
                             routedWave: number;
@@ -48730,7 +47957,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 standardsCount: number;
                                 certified: false;
-                                claySolvedByThisFold: 0;
                             };
                             meanSignificance: number;
                             facets: ({
@@ -48909,9 +48135,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -48926,9 +48150,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -48951,7 +48173,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -49127,9 +48348,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -49144,9 +48363,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -49323,7 +48540,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -49618,7 +48834,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                         statement: string;
                                         boundary: string;
-                                        claySolvedByThisFold: 0;
                                     };
                                     facets: {
                                         receipt: string;
@@ -49829,7 +49044,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     rosettaComplete: boolean;
                                     completenessPct: number;
                                     millenniumSolvedByThisFold: 0;
-                                    physicalFtlClaim: 0;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -49852,7 +49066,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         computes: boolean;
                                         rosettaReady: boolean;
                                         millenniumSolvedByThisFold: 0;
-                                        claySolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -49869,7 +49082,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ftlHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        physicalFtlClaim: 0;
                                         millenniumSolvedByThisFold: 0;
                                         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                         handoffRoot: string;
@@ -49958,7 +49170,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -50238,9 +49449,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             amplitudesCancel: boolean;
                                             probabilitiesCannot: boolean;
                                         };
-                                        claySolvedByThisFold: 0;
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -50255,9 +49464,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         statement: string;
                                         boundary: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -50280,7 +49487,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     gapCount: number;
                                     facetOnRate: number;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -50299,7 +49505,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 boundary: string;
                                 honestyLine: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -50343,7 +49548,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -50421,7 +49625,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         receipt: string;
                                     })[];
                                     root: string;
-                                    claySolvedByThisFold: 0;
                                     certified: false;
                                     qpuRequired: false;
                                     statement: string;
@@ -50536,7 +49739,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         forwardCount: number;
                                         certified: boolean;
                                         fipsValidated: boolean;
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -50591,7 +49793,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             computes: boolean;
                                             root: string;
                                         };
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -50608,7 +49809,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     };
                                     certified: false;
                                     fipsValidated: false;
-                                    claySolvedByThisFold: 0;
                                     breaksNistPqc: false;
                                     productionRefused: boolean;
                                     bitcoinRefused: boolean;
@@ -50665,7 +49865,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -50720,7 +49919,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -50768,7 +49966,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 productionReverseRefused: true;
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 strongerThanNistPqc: false;
                                 overallWireClaimProved: false;
@@ -50853,7 +50050,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -50974,7 +50170,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 benchVerdict: string;
                                 physicalQmSpeedupClaimed: false;
                                 isoCertified: false;
-                                claySolvedByThisFold: 0;
                                 vote: {
                                     decided: boolean;
                                     winner: "ceccec" | "undecided";
@@ -51030,7 +50225,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -51192,7 +50386,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                                 root: string;
                                             };
                                             qpuRequired: false;
-                                            physicalFtlClaim: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -51521,7 +50714,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                         kind: "honesty";
                                     })[];
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -51620,8 +50812,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             certified: false;
                             qpuRequired: false;
                             count: number;
@@ -51648,9 +50838,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             productionBreakEnabled: false;
                             refuseBeyond: boolean;
                             demoBitCeiling: number;
-                            claySolvedByThisFold: 0;
                             certified: false;
-                            physicalFtlClaim: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -51668,7 +50856,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         };
                         mill: {
                             computes: boolean;
-                            claySolvedByThisFold: number;
                             openCores: number;
                             solvedExternal: number;
                             gapsNamed: number;
@@ -51719,7 +50906,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         facets: ({
@@ -51763,7 +50949,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -51803,7 +50988,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -51820,10 +51004,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -51841,7 +51023,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -51874,7 +51055,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -51893,7 +51073,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -52072,9 +51251,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -52089,9 +51266,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -52114,7 +51289,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -52290,9 +51464,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -52307,9 +51479,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -52486,7 +51656,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -52781,7 +51950,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -52992,7 +52160,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -53015,7 +52182,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -53032,7 +52198,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -53121,7 +52286,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -53401,9 +52565,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -53418,9 +52580,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -53443,7 +52603,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -53462,7 +52621,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -53506,7 +52664,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -53584,7 +52741,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -53699,7 +52855,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -53754,7 +52909,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -53771,7 +52925,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -53828,7 +52981,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -53883,7 +53035,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -53931,7 +53082,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -54016,7 +53166,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -54137,7 +53286,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -54193,7 +53341,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -54355,7 +53502,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -54684,7 +53830,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -54783,8 +53928,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -54811,9 +53954,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -54831,7 +53972,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -54882,7 +54022,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -54928,7 +54067,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -54947,7 +54085,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -55126,9 +54263,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -55143,9 +54278,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -55168,7 +54301,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -55344,9 +54476,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -55361,9 +54491,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -55540,7 +54668,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -55835,7 +54962,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -56046,7 +55172,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -56069,7 +55194,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -56086,7 +55210,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -56175,7 +55298,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -56455,9 +55577,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -56472,9 +55592,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -56497,7 +55615,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -56516,7 +55633,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -56560,7 +55676,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -56638,7 +55753,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -56753,7 +55867,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -56808,7 +55921,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -56825,7 +55937,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -56882,7 +55993,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -56937,7 +56047,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -56985,7 +56094,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -57070,7 +56178,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -57191,7 +56298,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -57247,7 +56353,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -57409,7 +56514,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -57738,7 +56842,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -57837,8 +56940,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -57865,9 +56966,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -57885,7 +56984,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -57936,7 +57034,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -57980,7 +57077,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -58020,7 +57116,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -58037,10 +57132,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -58258,7 +57351,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     pair: "path/message";
                     cli: string;
@@ -58287,7 +57379,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -58306,7 +57397,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
             boundary: string;
             honestyLine: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -58495,9 +57585,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -58512,9 +57600,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -58537,7 +57623,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -58575,7 +57660,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 verified: boolean;
                 receipt: string;
             }[];
-            claySolvedByThisFold: 0;
             count: number;
             facets: ({
                 receipt: string;
@@ -58605,7 +57689,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 facetOff: number;
                 animDrift: number;
                 certifiedNumeric: number;
-                clayNumeric: number;
                 refuseIncompleteOpen: number;
                 routedTrinity: number;
                 routedWave: number;
@@ -58624,7 +57707,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -58803,9 +57885,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -58820,9 +57900,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -58845,7 +57923,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -59021,9 +58098,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -59038,9 +58113,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -59217,7 +58290,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -59512,7 +58584,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -59723,7 +58794,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -59746,7 +58816,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -59763,7 +58832,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -59852,7 +58920,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -60132,9 +59199,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -60149,9 +59214,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -60174,7 +59237,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -60193,7 +59255,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -60237,7 +59298,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -60315,7 +59375,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -60430,7 +59489,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -60485,7 +59543,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -60502,7 +59559,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         };
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         productionRefused: boolean;
                         bitcoinRefused: boolean;
@@ -60559,7 +59615,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -60614,7 +59669,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -60662,7 +59716,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     productionReverseRefused: true;
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     strongerThanNistPqc: false;
                     overallWireClaimProved: false;
@@ -60747,7 +59800,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -60868,7 +59920,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     benchVerdict: string;
                     physicalQmSpeedupClaimed: false;
                     isoCertified: false;
-                    claySolvedByThisFold: 0;
                     vote: {
                         decided: boolean;
                         winner: "ceccec" | "undecided";
@@ -60924,7 +59975,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -61086,7 +60136,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -61415,7 +60464,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                             kind: "honesty";
                         })[];
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -61514,8 +60562,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 certified: false;
                 qpuRequired: false;
                 count: number;
@@ -61542,9 +60588,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 productionBreakEnabled: false;
                 refuseBeyond: boolean;
                 demoBitCeiling: number;
-                claySolvedByThisFold: 0;
                 certified: false;
-                physicalFtlClaim: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -61562,7 +60606,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
             };
             mill: {
                 computes: boolean;
-                claySolvedByThisFold: number;
                 openCores: number;
                 solvedExternal: number;
                 gapsNamed: number;
@@ -61613,7 +60656,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             facets: ({
@@ -61659,7 +60701,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -61678,7 +60719,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -61857,9 +60897,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -61874,9 +60912,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -61899,7 +60935,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -62075,9 +61110,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -62092,9 +61125,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -62271,7 +61302,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -62566,7 +61596,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -62777,7 +61806,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -62800,7 +61828,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -62817,7 +61844,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -62906,7 +61932,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -63186,9 +62211,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -63203,9 +62226,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -63228,7 +62249,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -63247,7 +62267,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -63291,7 +62310,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -63369,7 +62387,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -63484,7 +62501,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -63539,7 +62555,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -63556,7 +62571,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -63613,7 +62627,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -63668,7 +62681,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -63716,7 +62728,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -63801,7 +62812,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -63922,7 +62932,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -63978,7 +62987,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -64140,7 +63148,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -64469,7 +63476,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -64568,8 +63574,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -64596,9 +63600,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -64616,7 +63618,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -64667,7 +63668,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -64711,7 +63711,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -64751,7 +63750,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -64768,10 +63766,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -64789,7 +63785,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
             boundary: string;
             honestyLine: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -64826,14 +63821,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
         }, {
             readonly id: "UNFOLDED_CENSUS";
             readonly theorem: "UNFOLDED_CENSUS";
-            readonly source: "src/3/7";
-        }, {
-            readonly id: "claySolvedTheorem";
-            readonly theorem: "claySolvedTheorem";
-            readonly source: "src/3/7";
-        }, {
-            readonly id: "CMI_PRIZE_SOLVED_CORE_IDS";
-            readonly theorem: "claySolvedTheorem";
             readonly source: "src/3/7";
         }, {
             readonly id: "DIGEST_BITS";
@@ -65033,9 +64020,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -65050,9 +64035,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -65075,7 +64058,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -65113,7 +64095,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     verified: boolean;
                     receipt: string;
                 }[];
-                claySolvedByThisFold: 0;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -65143,7 +64124,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -65162,7 +64142,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -65341,9 +64320,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -65358,9 +64335,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -65383,7 +64358,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -65559,9 +64533,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -65576,9 +64548,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -65755,7 +64725,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -66050,7 +65019,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -66261,7 +65229,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -66284,7 +65251,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -66301,7 +65267,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -66390,7 +65355,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -66670,9 +65634,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -66687,9 +65649,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -66712,7 +65672,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -66731,7 +65690,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -66775,7 +65733,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -66853,7 +65810,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -66968,7 +65924,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -67023,7 +65978,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -67040,7 +65994,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -67097,7 +66050,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -67152,7 +66104,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -67200,7 +66151,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -67285,7 +66235,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -67406,7 +66355,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -67462,7 +66410,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -67624,7 +66571,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -67953,7 +66899,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -68052,8 +66997,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -68080,9 +67023,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -68100,7 +67041,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -68151,7 +67091,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -68197,7 +67136,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -68216,7 +67154,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -68395,9 +67332,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -68412,9 +67347,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -68437,7 +67370,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -68613,9 +67545,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -68630,9 +67560,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -68809,7 +67737,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -69104,7 +68031,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -69315,7 +68241,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -69338,7 +68263,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -69355,7 +68279,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -69444,7 +68367,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -69724,9 +68646,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -69741,9 +68661,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -69766,7 +68684,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -69785,7 +68702,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -69829,7 +68745,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -69907,7 +68822,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -70022,7 +68936,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -70077,7 +68990,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -70094,7 +69006,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -70151,7 +69062,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -70206,7 +69116,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -70254,7 +69163,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -70339,7 +69247,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -70460,7 +69367,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -70516,7 +69422,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -70678,7 +69583,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -71007,7 +69911,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -71106,8 +70009,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -71134,9 +70035,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -71154,7 +70053,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -71205,7 +70103,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -71249,7 +70146,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -71289,7 +70185,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -71306,10 +70201,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -71327,7 +70220,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -71360,7 +70252,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 facetOff: number;
                 animDrift: number;
                 certifiedNumeric: number;
-                clayNumeric: number;
                 refuseIncompleteOpen: number;
                 routedTrinity: number;
                 routedWave: number;
@@ -71379,7 +70270,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -71558,9 +70448,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -71575,9 +70463,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -71600,7 +70486,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -71776,9 +70661,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -71793,9 +70676,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -71972,7 +70853,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -72267,7 +71147,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -72478,7 +71357,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -72501,7 +71379,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -72518,7 +71395,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -72607,7 +71483,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -72887,9 +71762,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -72904,9 +71777,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -72929,7 +71800,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -72948,7 +71818,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -72992,7 +71861,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -73070,7 +71938,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -73185,7 +72052,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -73240,7 +72106,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -73257,7 +72122,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         };
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         productionRefused: boolean;
                         bitcoinRefused: boolean;
@@ -73314,7 +72178,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -73369,7 +72232,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -73417,7 +72279,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     productionReverseRefused: true;
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     strongerThanNistPqc: false;
                     overallWireClaimProved: false;
@@ -73502,7 +72363,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -73623,7 +72483,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     benchVerdict: string;
                     physicalQmSpeedupClaimed: false;
                     isoCertified: false;
-                    claySolvedByThisFold: 0;
                     vote: {
                         decided: boolean;
                         winner: "ceccec" | "undecided";
@@ -73679,7 +72538,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -73841,7 +72699,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -74170,7 +73027,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                             kind: "honesty";
                         })[];
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -74269,8 +73125,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 certified: false;
                 qpuRequired: false;
                 count: number;
@@ -74297,9 +73151,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 productionBreakEnabled: false;
                 refuseBeyond: boolean;
                 demoBitCeiling: number;
-                claySolvedByThisFold: 0;
                 certified: false;
-                physicalFtlClaim: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -74317,7 +73169,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
             };
             mill: {
                 computes: boolean;
-                claySolvedByThisFold: number;
                 openCores: number;
                 solvedExternal: number;
                 gapsNamed: number;
@@ -74368,7 +73219,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             facets: ({
@@ -74414,7 +73264,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -74433,7 +73282,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -74612,9 +73460,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -74629,9 +73475,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -74654,7 +73498,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -74830,9 +73673,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -74847,9 +73688,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -75026,7 +73865,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -75321,7 +74159,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -75532,7 +74369,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -75555,7 +74391,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -75572,7 +74407,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -75661,7 +74495,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -75941,9 +74774,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -75958,9 +74789,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -75983,7 +74812,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -76002,7 +74830,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -76046,7 +74873,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -76124,7 +74950,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -76239,7 +75064,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -76294,7 +75118,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -76311,7 +75134,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -76368,7 +75190,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -76423,7 +75244,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -76471,7 +75291,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -76556,7 +75375,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -76677,7 +75495,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -76733,7 +75550,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -76895,7 +75711,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -77224,7 +76039,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -77323,8 +76137,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -77351,9 +76163,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -77371,7 +76181,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -77422,7 +76231,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -77466,7 +76274,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -77506,7 +76313,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -77523,10 +76329,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -77744,7 +76548,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 pair: "path/message";
                 cli: string;
@@ -77773,7 +76576,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -77798,8 +76600,6 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -78077,7 +76877,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -78372,7 +77171,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -78583,7 +77381,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -78606,7 +77403,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -78623,7 +77419,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -78712,7 +77507,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -78992,9 +77786,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -79009,9 +77801,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -79034,7 +77824,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -79053,7 +77842,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -79234,9 +78022,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -79251,9 +78037,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -79276,7 +78060,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -79321,7 +78104,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -79340,7 +78122,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -79519,9 +78300,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -79536,9 +78315,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -79561,7 +78338,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -79737,9 +78513,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -79754,9 +78528,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -79933,7 +78705,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -80228,7 +78999,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -80439,7 +79209,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -80462,7 +79231,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -80479,7 +79247,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -80568,7 +79335,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -80848,9 +79614,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -80865,9 +79629,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -80890,7 +79652,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -80909,7 +79670,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -80953,7 +79713,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -81031,7 +79790,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -81146,7 +79904,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -81201,7 +79958,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -81218,7 +79974,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -81275,7 +80030,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -81330,7 +80084,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -81378,7 +80131,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -81463,7 +80215,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -81584,7 +80335,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -81640,7 +80390,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -81802,7 +80551,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -82131,7 +80879,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -82230,8 +80977,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -82258,9 +81003,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -82278,7 +81021,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -82329,7 +81071,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -82373,7 +81114,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -82413,7 +81153,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -82430,10 +81169,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -82620,9 +81357,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -82637,9 +81372,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -82662,7 +81395,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -82700,7 +81432,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         verified: boolean;
                         receipt: string;
                     }[];
-                    claySolvedByThisFold: 0;
                     count: number;
                     facets: ({
                         receipt: string;
@@ -82730,7 +81461,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -82749,7 +81479,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -82928,9 +81657,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -82945,9 +81672,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -82970,7 +81695,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -83146,9 +81870,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -83163,9 +81885,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -83342,7 +82062,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -83637,7 +82356,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -83848,7 +82566,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -83871,7 +82588,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -83888,7 +82604,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -83977,7 +82692,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -84257,9 +82971,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -84274,9 +82986,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -84299,7 +83009,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -84318,7 +83027,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -84362,7 +83070,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -84440,7 +83147,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -84555,7 +83261,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -84610,7 +83315,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -84627,7 +83331,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -84684,7 +83387,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -84739,7 +83441,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -84787,7 +83488,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -84872,7 +83572,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -84993,7 +83692,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -85049,7 +83747,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -85211,7 +83908,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -85540,7 +84236,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -85639,8 +84334,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -85667,9 +84360,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -85687,7 +84378,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -85738,7 +84428,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -85784,7 +84473,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             facetOff: number;
                             animDrift: number;
                             certifiedNumeric: number;
-                            clayNumeric: number;
                             refuseIncompleteOpen: number;
                             routedTrinity: number;
                             routedWave: number;
@@ -85803,7 +84491,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 standardsCount: number;
                                 certified: false;
-                                claySolvedByThisFold: 0;
                             };
                             meanSignificance: number;
                             facets: ({
@@ -85982,9 +84669,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -85999,9 +84684,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -86024,7 +84707,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -86200,9 +84882,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -86217,9 +84897,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -86396,7 +85074,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -86691,7 +85368,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                         statement: string;
                                         boundary: string;
-                                        claySolvedByThisFold: 0;
                                     };
                                     facets: {
                                         receipt: string;
@@ -86902,7 +85578,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     rosettaComplete: boolean;
                                     completenessPct: number;
                                     millenniumSolvedByThisFold: 0;
-                                    physicalFtlClaim: 0;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -86925,7 +85600,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         rosettaReady: boolean;
                                         millenniumSolvedByThisFold: 0;
-                                        claySolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -86942,7 +85616,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     ftlHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        physicalFtlClaim: 0;
                                         millenniumSolvedByThisFold: 0;
                                         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                         handoffRoot: string;
@@ -87031,7 +85704,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -87311,9 +85983,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             amplitudesCancel: boolean;
                                             probabilitiesCannot: boolean;
                                         };
-                                        claySolvedByThisFold: 0;
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -87328,9 +85998,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         statement: string;
                                         boundary: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -87353,7 +86021,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     gapCount: number;
                                     facetOnRate: number;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -87372,7 +86039,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 boundary: string;
                                 honestyLine: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -87416,7 +86082,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -87494,7 +86159,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                     })[];
                                     root: string;
-                                    claySolvedByThisFold: 0;
                                     certified: false;
                                     qpuRequired: false;
                                     statement: string;
@@ -87609,7 +86273,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         forwardCount: number;
                                         certified: boolean;
                                         fipsValidated: boolean;
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -87664,7 +86327,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             computes: boolean;
                                             root: string;
                                         };
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -87681,7 +86343,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     };
                                     certified: false;
                                     fipsValidated: false;
-                                    claySolvedByThisFold: 0;
                                     breaksNistPqc: false;
                                     productionRefused: boolean;
                                     bitcoinRefused: boolean;
@@ -87738,7 +86399,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -87793,7 +86453,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -87841,7 +86500,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 productionReverseRefused: true;
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 strongerThanNistPqc: false;
                                 overallWireClaimProved: false;
@@ -87926,7 +86584,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -88047,7 +86704,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 benchVerdict: string;
                                 physicalQmSpeedupClaimed: false;
                                 isoCertified: false;
-                                claySolvedByThisFold: 0;
                                 vote: {
                                     decided: boolean;
                                     winner: "ceccec" | "undecided";
@@ -88103,7 +86759,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -88265,7 +86920,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 root: string;
                                             };
                                             qpuRequired: false;
-                                            physicalFtlClaim: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -88594,7 +87248,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                         kind: "honesty";
                                     })[];
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -88693,8 +87346,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             certified: false;
                             qpuRequired: false;
                             count: number;
@@ -88721,9 +87372,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionBreakEnabled: false;
                             refuseBeyond: boolean;
                             demoBitCeiling: number;
-                            claySolvedByThisFold: 0;
                             certified: false;
-                            physicalFtlClaim: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -88741,7 +87390,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         };
                         mill: {
                             computes: boolean;
-                            claySolvedByThisFold: number;
                             openCores: number;
                             solvedExternal: number;
                             gapsNamed: number;
@@ -88792,7 +87440,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         facets: ({
@@ -88836,7 +87483,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -88876,7 +87522,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -88893,10 +87538,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -88914,7 +87557,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -88951,14 +87593,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 }, {
                     readonly id: "UNFOLDED_CENSUS";
                     readonly theorem: "UNFOLDED_CENSUS";
-                    readonly source: "src/3/7";
-                }, {
-                    readonly id: "claySolvedTheorem";
-                    readonly theorem: "claySolvedTheorem";
-                    readonly source: "src/3/7";
-                }, {
-                    readonly id: "CMI_PRIZE_SOLVED_CORE_IDS";
-                    readonly theorem: "claySolvedTheorem";
                     readonly source: "src/3/7";
                 }, {
                     readonly id: "DIGEST_BITS";
@@ -89158,9 +87792,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -89175,9 +87807,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -89200,7 +87830,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -89238,7 +87867,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             verified: boolean;
                             receipt: string;
                         }[];
-                        claySolvedByThisFold: 0;
                         count: number;
                         facets: ({
                             receipt: string;
@@ -89268,7 +87896,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             facetOff: number;
                             animDrift: number;
                             certifiedNumeric: number;
-                            clayNumeric: number;
                             refuseIncompleteOpen: number;
                             routedTrinity: number;
                             routedWave: number;
@@ -89287,7 +87914,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 standardsCount: number;
                                 certified: false;
-                                claySolvedByThisFold: 0;
                             };
                             meanSignificance: number;
                             facets: ({
@@ -89466,9 +88092,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -89483,9 +88107,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -89508,7 +88130,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -89684,9 +88305,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -89701,9 +88320,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -89880,7 +88497,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -90175,7 +88791,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                         statement: string;
                                         boundary: string;
-                                        claySolvedByThisFold: 0;
                                     };
                                     facets: {
                                         receipt: string;
@@ -90386,7 +89001,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     rosettaComplete: boolean;
                                     completenessPct: number;
                                     millenniumSolvedByThisFold: 0;
-                                    physicalFtlClaim: 0;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -90409,7 +89023,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         rosettaReady: boolean;
                                         millenniumSolvedByThisFold: 0;
-                                        claySolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -90426,7 +89039,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     ftlHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        physicalFtlClaim: 0;
                                         millenniumSolvedByThisFold: 0;
                                         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                         handoffRoot: string;
@@ -90515,7 +89127,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -90795,9 +89406,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             amplitudesCancel: boolean;
                                             probabilitiesCannot: boolean;
                                         };
-                                        claySolvedByThisFold: 0;
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -90812,9 +89421,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         statement: string;
                                         boundary: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -90837,7 +89444,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     gapCount: number;
                                     facetOnRate: number;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -90856,7 +89462,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 boundary: string;
                                 honestyLine: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -90900,7 +89505,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -90978,7 +89582,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                     })[];
                                     root: string;
-                                    claySolvedByThisFold: 0;
                                     certified: false;
                                     qpuRequired: false;
                                     statement: string;
@@ -91093,7 +89696,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         forwardCount: number;
                                         certified: boolean;
                                         fipsValidated: boolean;
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -91148,7 +89750,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             computes: boolean;
                                             root: string;
                                         };
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -91165,7 +89766,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     };
                                     certified: false;
                                     fipsValidated: false;
-                                    claySolvedByThisFold: 0;
                                     breaksNistPqc: false;
                                     productionRefused: boolean;
                                     bitcoinRefused: boolean;
@@ -91222,7 +89822,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -91277,7 +89876,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -91325,7 +89923,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 productionReverseRefused: true;
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 strongerThanNistPqc: false;
                                 overallWireClaimProved: false;
@@ -91410,7 +90007,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -91531,7 +90127,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 benchVerdict: string;
                                 physicalQmSpeedupClaimed: false;
                                 isoCertified: false;
-                                claySolvedByThisFold: 0;
                                 vote: {
                                     decided: boolean;
                                     winner: "ceccec" | "undecided";
@@ -91587,7 +90182,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -91749,7 +90343,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 root: string;
                                             };
                                             qpuRequired: false;
-                                            physicalFtlClaim: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -92078,7 +90671,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                         kind: "honesty";
                                     })[];
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -92177,8 +90769,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             certified: false;
                             qpuRequired: false;
                             count: number;
@@ -92205,9 +90795,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionBreakEnabled: false;
                             refuseBeyond: boolean;
                             demoBitCeiling: number;
-                            claySolvedByThisFold: 0;
                             certified: false;
-                            physicalFtlClaim: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -92225,7 +90813,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         };
                         mill: {
                             computes: boolean;
-                            claySolvedByThisFold: number;
                             openCores: number;
                             solvedExternal: number;
                             gapsNamed: number;
@@ -92276,7 +90863,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         facets: ({
@@ -92322,7 +90908,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 facetOff: number;
                                 animDrift: number;
                                 certifiedNumeric: number;
-                                clayNumeric: number;
                                 refuseIncompleteOpen: number;
                                 routedTrinity: number;
                                 routedWave: number;
@@ -92341,7 +90926,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     standardsCount: number;
                                     certified: false;
-                                    claySolvedByThisFold: 0;
                                 };
                                 meanSignificance: number;
                                 facets: ({
@@ -92520,9 +91104,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             amplitudesCancel: boolean;
                                             probabilitiesCannot: boolean;
                                         };
-                                        claySolvedByThisFold: 0;
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -92537,9 +91119,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         statement: string;
                                         boundary: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -92562,7 +91142,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     gapCount: number;
                                     facetOnRate: number;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -92738,9 +91317,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -92755,9 +91332,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -92934,7 +91509,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                         statement: string;
                                         boundary: string;
-                                        claySolvedByThisFold: 0;
                                     };
                                     facets: {
                                         receipt: string;
@@ -93229,7 +91803,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                             statement: string;
                                             boundary: string;
-                                            claySolvedByThisFold: 0;
                                         };
                                         facets: {
                                             receipt: string;
@@ -93440,7 +92013,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         rosettaComplete: boolean;
                                         completenessPct: number;
                                         millenniumSolvedByThisFold: 0;
-                                        physicalFtlClaim: 0;
                                         census: {
                                             dimensionGates: number;
                                             dimsHold: boolean;
@@ -93463,7 +92035,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             computes: boolean;
                                             rosettaReady: boolean;
                                             millenniumSolvedByThisFold: 0;
-                                            claySolvedByThisFold: number;
                                             millRoot: string;
                                             handoffRoot: string;
                                             facets: ({
@@ -93480,7 +92051,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ftlHandoff: {
                                             computes: boolean;
                                             rosettaReady: boolean;
-                                            physicalFtlClaim: 0;
                                             millenniumSolvedByThisFold: 0;
                                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                             handoffRoot: string;
@@ -93569,7 +92139,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         statement: string;
                                         boundary: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
                                     facets: ({
                                         receipt: string;
@@ -93849,9 +92418,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 amplitudesCancel: boolean;
                                                 probabilitiesCannot: boolean;
                                             };
-                                            claySolvedByThisFold: 0;
                                             qpuRequired: false;
-                                            physicalFtlClaim: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -93866,9 +92433,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             statement: string;
                                             boundary: string;
                                         };
-                                        claySolvedByThisFold: 0;
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -93891,7 +92456,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         gapCount: number;
                                         facetOnRate: number;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
                                     facets: ({
                                         receipt: string;
@@ -93910,7 +92474,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     boundary: string;
                                     honestyLine: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -93954,7 +92517,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                     })[];
                                     root: string;
-                                    claySolvedByThisFold: 0;
                                     certified: false;
                                     qpuRequired: false;
                                     statement: string;
@@ -94032,7 +92594,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             receipt: string;
                                         })[];
                                         root: string;
-                                        claySolvedByThisFold: 0;
                                         certified: false;
                                         qpuRequired: false;
                                         statement: string;
@@ -94147,7 +92708,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             forwardCount: number;
                                             certified: boolean;
                                             fipsValidated: boolean;
-                                            claySolvedByThisFold: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -94202,7 +92762,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 computes: boolean;
                                                 root: string;
                                             };
-                                            claySolvedByThisFold: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -94219,7 +92778,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         };
                                         certified: false;
                                         fipsValidated: false;
-                                        claySolvedByThisFold: 0;
                                         breaksNistPqc: false;
                                         productionRefused: boolean;
                                         bitcoinRefused: boolean;
@@ -94276,7 +92834,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         forwardCount: number;
                                         certified: boolean;
                                         fipsValidated: boolean;
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -94331,7 +92888,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             computes: boolean;
                                             root: string;
                                         };
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -94379,7 +92935,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     productionReverseRefused: true;
                                     certified: false;
                                     fipsValidated: false;
-                                    claySolvedByThisFold: 0;
                                     breaksNistPqc: false;
                                     strongerThanNistPqc: false;
                                     overallWireClaimProved: false;
@@ -94464,7 +93019,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -94585,7 +93139,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     benchVerdict: string;
                                     physicalQmSpeedupClaimed: false;
                                     isoCertified: false;
-                                    claySolvedByThisFold: 0;
                                     vote: {
                                         decided: boolean;
                                         winner: "ceccec" | "undecided";
@@ -94641,7 +93194,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 root: string;
                                             };
                                             qpuRequired: false;
-                                            physicalFtlClaim: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -94803,7 +93355,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                     root: string;
                                                 };
                                                 qpuRequired: false;
-                                                physicalFtlClaim: 0;
                                                 facets: ({
                                                     receipt: string;
                                                     facet: string;
@@ -95132,7 +93683,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                             kind: "honesty";
                                         })[];
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -95231,8 +93781,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 count: number;
@@ -95259,9 +93807,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 productionBreakEnabled: false;
                                 refuseBeyond: boolean;
                                 demoBitCeiling: number;
-                                claySolvedByThisFold: 0;
                                 certified: false;
-                                physicalFtlClaim: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -95279,7 +93825,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             };
                             mill: {
                                 computes: boolean;
-                                claySolvedByThisFold: number;
                                 openCores: number;
                                 solvedExternal: number;
                                 gapsNamed: number;
@@ -95330,7 +93875,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             facets: ({
@@ -95374,7 +93918,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -95414,7 +93957,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 standardsCount: number;
                                 certified: false;
-                                claySolvedByThisFold: 0;
                             };
                             meanSignificance: number;
                             facets: ({
@@ -95431,10 +93973,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -95452,7 +93992,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -95485,7 +94024,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -95504,7 +94042,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -95683,9 +94220,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -95700,9 +94235,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -95725,7 +94258,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -95901,9 +94433,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -95918,9 +94448,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -96097,7 +94625,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -96392,7 +94919,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -96603,7 +95129,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -96626,7 +95151,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -96643,7 +95167,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -96732,7 +95255,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -97012,9 +95534,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -97029,9 +95549,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -97054,7 +95572,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -97073,7 +95590,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -97117,7 +95633,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -97195,7 +95710,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -97310,7 +95824,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -97365,7 +95878,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -97382,7 +95894,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -97439,7 +95950,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -97494,7 +96004,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -97542,7 +96051,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -97627,7 +96135,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -97748,7 +96255,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -97804,7 +96310,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -97966,7 +96471,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -98295,7 +96799,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -98394,8 +96897,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -98422,9 +96923,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -98442,7 +96941,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -98493,7 +96991,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -98539,7 +97036,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             facetOff: number;
                             animDrift: number;
                             certifiedNumeric: number;
-                            clayNumeric: number;
                             refuseIncompleteOpen: number;
                             routedTrinity: number;
                             routedWave: number;
@@ -98558,7 +97054,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 standardsCount: number;
                                 certified: false;
-                                claySolvedByThisFold: 0;
                             };
                             meanSignificance: number;
                             facets: ({
@@ -98737,9 +97232,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -98754,9 +97247,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -98779,7 +97270,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -98955,9 +97445,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -98972,9 +97460,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -99151,7 +97637,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -99446,7 +97931,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                         statement: string;
                                         boundary: string;
-                                        claySolvedByThisFold: 0;
                                     };
                                     facets: {
                                         receipt: string;
@@ -99657,7 +98141,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     rosettaComplete: boolean;
                                     completenessPct: number;
                                     millenniumSolvedByThisFold: 0;
-                                    physicalFtlClaim: 0;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -99680,7 +98163,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         rosettaReady: boolean;
                                         millenniumSolvedByThisFold: 0;
-                                        claySolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -99697,7 +98179,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     ftlHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        physicalFtlClaim: 0;
                                         millenniumSolvedByThisFold: 0;
                                         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                         handoffRoot: string;
@@ -99786,7 +98267,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -100066,9 +98546,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             amplitudesCancel: boolean;
                                             probabilitiesCannot: boolean;
                                         };
-                                        claySolvedByThisFold: 0;
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -100083,9 +98561,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         statement: string;
                                         boundary: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -100108,7 +98584,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     gapCount: number;
                                     facetOnRate: number;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -100127,7 +98602,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 boundary: string;
                                 honestyLine: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -100171,7 +98645,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -100249,7 +98722,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                     })[];
                                     root: string;
-                                    claySolvedByThisFold: 0;
                                     certified: false;
                                     qpuRequired: false;
                                     statement: string;
@@ -100364,7 +98836,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         forwardCount: number;
                                         certified: boolean;
                                         fipsValidated: boolean;
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -100419,7 +98890,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             computes: boolean;
                                             root: string;
                                         };
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -100436,7 +98906,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     };
                                     certified: false;
                                     fipsValidated: false;
-                                    claySolvedByThisFold: 0;
                                     breaksNistPqc: false;
                                     productionRefused: boolean;
                                     bitcoinRefused: boolean;
@@ -100493,7 +98962,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -100548,7 +99016,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -100596,7 +99063,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 productionReverseRefused: true;
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 strongerThanNistPqc: false;
                                 overallWireClaimProved: false;
@@ -100681,7 +99147,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -100802,7 +99267,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 benchVerdict: string;
                                 physicalQmSpeedupClaimed: false;
                                 isoCertified: false;
-                                claySolvedByThisFold: 0;
                                 vote: {
                                     decided: boolean;
                                     winner: "ceccec" | "undecided";
@@ -100858,7 +99322,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -101020,7 +99483,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 root: string;
                                             };
                                             qpuRequired: false;
-                                            physicalFtlClaim: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -101349,7 +99811,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                         kind: "honesty";
                                     })[];
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -101448,8 +99909,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             certified: false;
                             qpuRequired: false;
                             count: number;
@@ -101476,9 +99935,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionBreakEnabled: false;
                             refuseBeyond: boolean;
                             demoBitCeiling: number;
-                            claySolvedByThisFold: 0;
                             certified: false;
-                            physicalFtlClaim: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -101496,7 +99953,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         };
                         mill: {
                             computes: boolean;
-                            claySolvedByThisFold: number;
                             openCores: number;
                             solvedExternal: number;
                             gapsNamed: number;
@@ -101547,7 +100003,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         facets: ({
@@ -101591,7 +100046,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -101631,7 +100085,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -101648,10 +100101,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -101869,7 +100320,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         pair: "path/message";
                         cli: string;
@@ -101898,7 +100348,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -101917,7 +100366,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -102106,9 +100554,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -102123,9 +100569,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -102148,7 +100592,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -102186,7 +100629,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     verified: boolean;
                     receipt: string;
                 }[];
-                claySolvedByThisFold: 0;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -102216,7 +100658,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -102235,7 +100676,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -102414,9 +100854,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -102431,9 +100869,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -102456,7 +100892,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -102632,9 +101067,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -102649,9 +101082,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -102828,7 +101259,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -103123,7 +101553,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -103334,7 +101763,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -103357,7 +101785,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -103374,7 +101801,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -103463,7 +101889,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -103743,9 +102168,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -103760,9 +102183,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -103785,7 +102206,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -103804,7 +102224,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -103848,7 +102267,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -103926,7 +102344,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -104041,7 +102458,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -104096,7 +102512,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -104113,7 +102528,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -104170,7 +102584,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -104225,7 +102638,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -104273,7 +102685,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -104358,7 +102769,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -104479,7 +102889,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -104535,7 +102944,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -104697,7 +103105,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -105026,7 +103433,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -105125,8 +103531,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -105153,9 +103557,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -105173,7 +103575,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -105224,7 +103625,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -105270,7 +103670,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -105289,7 +103688,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -105468,9 +103866,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -105485,9 +103881,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -105510,7 +103904,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -105686,9 +104079,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -105703,9 +104094,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -105882,7 +104271,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -106177,7 +104565,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -106388,7 +104775,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -106411,7 +104797,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -106428,7 +104813,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -106517,7 +104901,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -106797,9 +105180,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -106814,9 +105195,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -106839,7 +105218,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -106858,7 +105236,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -106902,7 +105279,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -106980,7 +105356,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -107095,7 +105470,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -107150,7 +105524,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -107167,7 +105540,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -107224,7 +105596,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -107279,7 +105650,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -107327,7 +105697,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -107412,7 +105781,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -107533,7 +105901,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -107589,7 +105956,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -107751,7 +106117,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -108080,7 +106445,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -108179,8 +106543,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -108207,9 +106569,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -108227,7 +106587,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -108278,7 +106637,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -108322,7 +106680,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -108362,7 +106719,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -108379,10 +106735,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -108400,7 +106754,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -108437,14 +106790,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
             }, {
                 readonly id: "UNFOLDED_CENSUS";
                 readonly theorem: "UNFOLDED_CENSUS";
-                readonly source: "src/3/7";
-            }, {
-                readonly id: "claySolvedTheorem";
-                readonly theorem: "claySolvedTheorem";
-                readonly source: "src/3/7";
-            }, {
-                readonly id: "CMI_PRIZE_SOLVED_CORE_IDS";
-                readonly theorem: "claySolvedTheorem";
                 readonly source: "src/3/7";
             }, {
                 readonly id: "DIGEST_BITS";
@@ -108644,9 +106989,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -108661,9 +107004,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -108686,7 +107027,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -108724,7 +107064,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         verified: boolean;
                         receipt: string;
                     }[];
-                    claySolvedByThisFold: 0;
                     count: number;
                     facets: ({
                         receipt: string;
@@ -108754,7 +107093,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -108773,7 +107111,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -108952,9 +107289,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -108969,9 +107304,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -108994,7 +107327,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -109170,9 +107502,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -109187,9 +107517,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -109366,7 +107694,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -109661,7 +107988,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -109872,7 +108198,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -109895,7 +108220,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -109912,7 +108236,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -110001,7 +108324,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -110281,9 +108603,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -110298,9 +108618,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -110323,7 +108641,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -110342,7 +108659,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -110386,7 +108702,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -110464,7 +108779,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -110579,7 +108893,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -110634,7 +108947,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -110651,7 +108963,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -110708,7 +109019,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -110763,7 +109073,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -110811,7 +109120,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -110896,7 +109204,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -111017,7 +109324,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -111073,7 +109379,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -111235,7 +109540,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -111564,7 +109868,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -111663,8 +109966,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -111691,9 +109992,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -111711,7 +110010,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -111762,7 +110060,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -111808,7 +110105,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             facetOff: number;
                             animDrift: number;
                             certifiedNumeric: number;
-                            clayNumeric: number;
                             refuseIncompleteOpen: number;
                             routedTrinity: number;
                             routedWave: number;
@@ -111827,7 +110123,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 standardsCount: number;
                                 certified: false;
-                                claySolvedByThisFold: 0;
                             };
                             meanSignificance: number;
                             facets: ({
@@ -112006,9 +110301,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -112023,9 +110316,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -112048,7 +110339,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -112224,9 +110514,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -112241,9 +110529,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -112420,7 +110706,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -112715,7 +111000,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                         statement: string;
                                         boundary: string;
-                                        claySolvedByThisFold: 0;
                                     };
                                     facets: {
                                         receipt: string;
@@ -112926,7 +111210,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     rosettaComplete: boolean;
                                     completenessPct: number;
                                     millenniumSolvedByThisFold: 0;
-                                    physicalFtlClaim: 0;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -112949,7 +111232,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         rosettaReady: boolean;
                                         millenniumSolvedByThisFold: 0;
-                                        claySolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -112966,7 +111248,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     ftlHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        physicalFtlClaim: 0;
                                         millenniumSolvedByThisFold: 0;
                                         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                         handoffRoot: string;
@@ -113055,7 +111336,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -113335,9 +111615,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             amplitudesCancel: boolean;
                                             probabilitiesCannot: boolean;
                                         };
-                                        claySolvedByThisFold: 0;
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -113352,9 +111630,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         statement: string;
                                         boundary: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -113377,7 +111653,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     gapCount: number;
                                     facetOnRate: number;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -113396,7 +111671,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 boundary: string;
                                 honestyLine: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -113440,7 +111714,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -113518,7 +111791,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         receipt: string;
                                     })[];
                                     root: string;
-                                    claySolvedByThisFold: 0;
                                     certified: false;
                                     qpuRequired: false;
                                     statement: string;
@@ -113633,7 +111905,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         forwardCount: number;
                                         certified: boolean;
                                         fipsValidated: boolean;
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -113688,7 +111959,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             computes: boolean;
                                             root: string;
                                         };
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -113705,7 +111975,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     };
                                     certified: false;
                                     fipsValidated: false;
-                                    claySolvedByThisFold: 0;
                                     breaksNistPqc: false;
                                     productionRefused: boolean;
                                     bitcoinRefused: boolean;
@@ -113762,7 +112031,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -113817,7 +112085,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -113865,7 +112132,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 productionReverseRefused: true;
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 strongerThanNistPqc: false;
                                 overallWireClaimProved: false;
@@ -113950,7 +112216,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -114071,7 +112336,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 benchVerdict: string;
                                 physicalQmSpeedupClaimed: false;
                                 isoCertified: false;
-                                claySolvedByThisFold: 0;
                                 vote: {
                                     decided: boolean;
                                     winner: "ceccec" | "undecided";
@@ -114127,7 +112391,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -114289,7 +112552,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 root: string;
                                             };
                                             qpuRequired: false;
-                                            physicalFtlClaim: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -114618,7 +112880,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                         kind: "honesty";
                                     })[];
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -114717,8 +112978,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             certified: false;
                             qpuRequired: false;
                             count: number;
@@ -114745,9 +113004,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionBreakEnabled: false;
                             refuseBeyond: boolean;
                             demoBitCeiling: number;
-                            claySolvedByThisFold: 0;
                             certified: false;
-                            physicalFtlClaim: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -114765,7 +113022,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         };
                         mill: {
                             computes: boolean;
-                            claySolvedByThisFold: number;
                             openCores: number;
                             solvedExternal: number;
                             gapsNamed: number;
@@ -114816,7 +113072,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         facets: ({
@@ -114860,7 +113115,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -114900,7 +113154,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -114917,10 +113170,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -114938,7 +113189,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -114971,7 +113221,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -114990,7 +113239,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -115169,9 +113417,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -115186,9 +113432,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -115211,7 +113455,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -115387,9 +113630,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -115404,9 +113645,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -115583,7 +113822,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -115878,7 +114116,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -116089,7 +114326,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -116112,7 +114348,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -116129,7 +114364,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -116218,7 +114452,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -116498,9 +114731,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -116515,9 +114746,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -116540,7 +114769,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -116559,7 +114787,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -116603,7 +114830,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -116681,7 +114907,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -116796,7 +115021,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -116851,7 +115075,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -116868,7 +115091,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -116925,7 +115147,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -116980,7 +115201,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -117028,7 +115248,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -117113,7 +115332,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -117234,7 +115452,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -117290,7 +115507,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -117452,7 +115668,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -117781,7 +115996,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -117880,8 +116094,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -117908,9 +116120,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -117928,7 +116138,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -117979,7 +116188,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -118025,7 +116233,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -118044,7 +116251,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -118223,9 +116429,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -118240,9 +116444,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -118265,7 +116467,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -118441,9 +116642,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -118458,9 +116657,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -118637,7 +116834,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -118932,7 +117128,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -119143,7 +117338,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -119166,7 +117360,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -119183,7 +117376,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -119272,7 +117464,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -119552,9 +117743,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -119569,9 +117758,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -119594,7 +117781,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -119613,7 +117799,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -119657,7 +117842,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -119735,7 +117919,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -119850,7 +118033,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -119905,7 +118087,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -119922,7 +118103,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -119979,7 +118159,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -120034,7 +118213,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -120082,7 +118260,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -120167,7 +118344,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -120288,7 +118464,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -120344,7 +118519,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -120506,7 +118680,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -120835,7 +119008,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -120934,8 +119106,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -120962,9 +119132,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -120982,7 +119150,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -121033,7 +119200,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -121077,7 +119243,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -121117,7 +119282,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -121134,10 +119298,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -121355,7 +119517,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     pair: "path/message";
                     cli: string;
@@ -121384,7 +119545,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -121409,8 +119569,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
             freeBits: number;
         };
         censusPreserved: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -121599,9 +119757,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -121616,9 +119772,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -121641,7 +119795,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -121679,7 +119832,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 verified: boolean;
                 receipt: string;
             }[];
-            claySolvedByThisFold: 0;
             count: number;
             facets: ({
                 receipt: string;
@@ -121709,7 +119861,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 facetOff: number;
                 animDrift: number;
                 certifiedNumeric: number;
-                clayNumeric: number;
                 refuseIncompleteOpen: number;
                 routedTrinity: number;
                 routedWave: number;
@@ -121728,7 +119879,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -121907,9 +120057,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -121924,9 +120072,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -121949,7 +120095,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -122125,9 +120270,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -122142,9 +120285,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -122321,7 +120462,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -122616,7 +120756,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -122827,7 +120966,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -122850,7 +120988,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -122867,7 +121004,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -122956,7 +121092,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -123236,9 +121371,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -123253,9 +121386,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -123278,7 +121409,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -123297,7 +121427,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -123341,7 +121470,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -123419,7 +121547,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -123534,7 +121661,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -123589,7 +121715,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -123606,7 +121731,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         };
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         productionRefused: boolean;
                         bitcoinRefused: boolean;
@@ -123663,7 +121787,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -123718,7 +121841,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -123766,7 +121888,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     productionReverseRefused: true;
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     strongerThanNistPqc: false;
                     overallWireClaimProved: false;
@@ -123851,7 +121972,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -123972,7 +122092,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     benchVerdict: string;
                     physicalQmSpeedupClaimed: false;
                     isoCertified: false;
-                    claySolvedByThisFold: 0;
                     vote: {
                         decided: boolean;
                         winner: "ceccec" | "undecided";
@@ -124028,7 +122147,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -124190,7 +122308,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -124519,7 +122636,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                             kind: "honesty";
                         })[];
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -124618,8 +122734,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 certified: false;
                 qpuRequired: false;
                 count: number;
@@ -124646,9 +122760,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 productionBreakEnabled: false;
                 refuseBeyond: boolean;
                 demoBitCeiling: number;
-                claySolvedByThisFold: 0;
                 certified: false;
-                physicalFtlClaim: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -124666,7 +122778,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
             };
             mill: {
                 computes: boolean;
-                claySolvedByThisFold: number;
                 openCores: number;
                 solvedExternal: number;
                 gapsNamed: number;
@@ -124717,7 +122828,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             facets: ({
@@ -124763,7 +122873,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -124782,7 +122891,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -124961,9 +123069,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -124978,9 +123084,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -125003,7 +123107,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -125179,9 +123282,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -125196,9 +123297,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -125375,7 +123474,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -125670,7 +123768,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -125881,7 +123978,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -125904,7 +124000,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -125921,7 +124016,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -126010,7 +124104,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -126290,9 +124383,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -126307,9 +124398,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -126332,7 +124421,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -126351,7 +124439,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -126395,7 +124482,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -126473,7 +124559,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -126588,7 +124673,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -126643,7 +124727,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -126660,7 +124743,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -126717,7 +124799,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -126772,7 +124853,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -126820,7 +124900,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -126905,7 +124984,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -127026,7 +125104,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -127082,7 +125159,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -127244,7 +125320,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -127573,7 +125648,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -127672,8 +125746,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -127700,9 +125772,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -127720,7 +125790,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -127771,7 +125840,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -127815,7 +125883,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -127855,7 +125922,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -127872,10 +125938,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -127893,7 +125957,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
             boundary: string;
             honestyLine: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -127922,8 +125985,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
         partCount: number;
         dryDiamond: boolean;
         dryCrystal: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -127951,8 +126012,6 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -128042,8 +126101,6 @@ export declare function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(matr
             readonly bound: boolean;
             readonly receipt: string;
         }[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -128072,8 +126129,6 @@ export declare function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(matr
         computable: boolean;
         row: TheoremFormulaMetricsRow;
         map: TheoremFormulaMetricsRow;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -128098,7 +126153,6 @@ export declare function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(matr
         algebraicFormulasAreDualOfSealedCode: boolean;
         theoremCount: number;
         formulasCovered: number;
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -128165,8 +126219,6 @@ export declare function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(matr
             surface: "formula";
             replacedBy: "redundantExplanationSectionsDryCleaned";
         })[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -128190,8 +126242,6 @@ export declare function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(matr
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -128273,8 +126323,6 @@ export declare function meshToSelfDiscoverSciences(matrix?: MindMatrix, at?: num
             readonly id: "pair-digit-fold";
             readonly status: "fixed" | "remaining";
         }];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -128302,7 +126350,6 @@ export declare function meshToSelfDiscoverSciences(matrix?: MindMatrix, at?: num
             root: string;
             standardsCount: number;
             certified: false;
-            claySolvedByThisFold: 0;
         };
         meanSignificance: number;
         facets: ({
@@ -128330,8 +126377,6 @@ export declare function meshToSelfDiscoverSciences(matrix?: MindMatrix, at?: num
         testPassed: number;
         testTotal: number;
         projectionsWired: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         formulaCode: {
             readonly formulas: readonly string[];
@@ -128364,8 +126409,6 @@ export declare function meshToSelfDiscoverSciences(matrix?: MindMatrix, at?: num
         anySuperposition: boolean;
         row: QuantumMapRow;
         map: QuantumMapRow;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -128393,8 +126436,6 @@ export declare function meshToSelfDiscoverSciences(matrix?: MindMatrix, at?: num
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -128628,7 +126669,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 root: string;
                 statement: string;
                 boundary: string;
-                claySolvedByThisFold: 0;
             };
             facets: {
                 receipt: string;
@@ -128923,7 +126963,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                     root: string;
                     statement: string;
                     boundary: string;
-                    claySolvedByThisFold: 0;
                 };
                 facets: {
                     receipt: string;
@@ -129134,7 +127173,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 rosettaComplete: boolean;
                 completenessPct: number;
                 millenniumSolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 census: {
                     dimensionGates: number;
                     dimsHold: boolean;
@@ -129157,7 +127195,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                     computes: boolean;
                     rosettaReady: boolean;
                     millenniumSolvedByThisFold: 0;
-                    claySolvedByThisFold: number;
                     millRoot: string;
                     handoffRoot: string;
                     facets: ({
@@ -129174,7 +127211,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 ftlHandoff: {
                     computes: boolean;
                     rosettaReady: boolean;
-                    physicalFtlClaim: 0;
                     millenniumSolvedByThisFold: 0;
                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                     handoffRoot: string;
@@ -129263,7 +127299,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -129543,9 +127578,7 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -129560,9 +127593,7 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -129585,7 +127616,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -129604,7 +127634,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
             boundary: string;
             honestyLine: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -129659,8 +127688,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
         inventoryOpenNamed: string[];
         honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "design:residual-named-open-when-inventory-open" | "formula:residual-when-element-unbind")[];
         honestOpenNamedCount: 4;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -129764,8 +127791,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
         moveAllComplete: false;
         residualsNamed: ("npm:docs-build-thin-mount-is-mcp-dual" | "agents.json-broadcast-from-materialize" | "conceptTools:legacy-dual" | "trading:scripts-outside-primary" | "dashboard-mcp-refused-local-stdio")[];
         residualsNamedCount: 5;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -129794,8 +127819,6 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -130111,7 +128134,6 @@ export declare function everyFormulaIsAnimationItselfInteractingFormulasAreInter
         root: string;
         statement: string;
         boundary: string;
-        claySolvedByThisFold: 0;
     };
     dirTrinity: {
         computes: boolean;
@@ -130137,7 +128159,6 @@ export declare function everyFormulaIsAnimationItselfInteractingFormulasAreInter
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -130161,8 +128182,6 @@ export declare function everyFormulaIsAnimationItselfInteractingFormulasAreInter
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -130317,8 +128336,6 @@ export declare function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepe
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -130450,8 +128467,6 @@ export declare function wireAllSensorsUsingQuantumBindings(matrix?: MindMatrix, 
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -130529,8 +128544,6 @@ export declare function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompl
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     runsOnClassical64Bit: true;
@@ -130593,8 +128606,6 @@ export declare function furtherTightenTheGatesWithDesignAndCreativeCapabilitiesA
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "agi:not-claimed")[];
     honestOpenNamedCount: 4;
@@ -130658,9 +128669,7 @@ export declare function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGap
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
     millenniumSolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "gaps:exist-until-millennium-discovered")[];
     honestOpenNamedCount: 4;
@@ -130723,8 +128732,6 @@ export declare function pagesAuditAndManageThemselvesInTrinities(matrix?: MindMa
         classCount: number;
         receipt: string;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -130769,8 +128776,6 @@ export declare function mcpQuantumChat(matrix?: MindMatrix, at?: number): {
         browserGap: string;
         receipt: string;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -130865,8 +128870,6 @@ export declare function chatResearch(matrix?: MindMatrix, at?: number, opts?: {
         readonly foreignContentClaimed: false;
     };
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -130961,7 +128964,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             agentTrinityOn: boolean;
             teamObserveOn: boolean;
             honestOpenNamed: (`graph:nodes=${number} edges=${number}` | `votes:on=${number} trinities=${number}` | "residual:whole-site-not-fake-closed-one-wave")[];
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -131001,8 +129003,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
                 memoReuse: boolean;
             };
             honestOpenNamed: ("chat-tips-sample-not-full-roster-linear" | "entangle-pairwise-consecutive-not-all-N-choose-2" | "residual:quantum-apps-monolith" | "physical-ftl-claim-stays-0" | "not-clay" | "not-physical-qubit-entanglement")[];
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             certified: false;
             facets: {
@@ -131040,8 +129040,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             realiseRoot: string;
             brainstormRoot: string;
             honestOpenNamed: string[];
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             certified: false;
             facets: {
@@ -131082,7 +129080,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -131114,7 +129111,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
         };
         consensusScore: number;
         honestOpenNamed: string[];
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -132424,8 +130420,7 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             simultaneousDecode: boolean;
             openCoresFindable: boolean;
             openCoreCount: number;
-            claySolved: 0;
-            claySolvedByThisFold: 0;
+            claySolved: number;
             found: 3;
             fixed: number;
             remaining: number;
@@ -132444,7 +130439,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
                 readonly id: "clay-locked-zero";
                 readonly status: "fixed" | "remaining";
             }];
-            physicalFtlClaim: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -132465,18 +130459,18 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             computes: boolean;
             claySolvedIsATheoremNotHardcodedValue: boolean;
             claySolved: number;
-            claySolvedByThisFold: number;
-            via: "claySolvedTheorem";
-            recomputed: true;
+            via: "clayGraphOverAlgebraicMonographs";
+            monographsScanned: number;
+            overclaimProbe: number;
             literalsRemoved: 146;
             found: 3;
             fixed: number;
             remaining: number;
             surfaces: readonly [{
-                readonly id: "theorem-recompute";
+                readonly id: "scanned-not-typed";
                 readonly status: "fixed" | "remaining";
             }, {
-                readonly id: "literals-via-theorem";
+                readonly id: "detector-fires-on-a-real-overclaim";
                 readonly status: "fixed" | "remaining";
             }, {
                 readonly id: "pairs-clay-theorem-decimal";
@@ -132487,8 +130481,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
                 readonly formulaSource: string;
                 readonly pair: "formula/code";
             };
-            physicalFtlClaim: 0;
-            physicalFtlVia: "physicalFtlClaimTheorem";
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -132508,9 +130500,7 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
         reverse: {
             computes: boolean;
             reverseCollidesToDiscoverMillenniumTheorems: boolean;
-            claySolvedByThisFold: 0;
-            qualifiesAsProposedSolution: false;
-            physicalFtlClaim: 0;
+            qualifiesAsProposedSolution: boolean;
             qpuRequired: false;
             collider: {
                 particles: number;
@@ -132539,7 +130529,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             boundary: string;
         };
         claySolved: number;
-        claySolvedByThisFold: number;
         found: 5;
         fixed: number;
         remaining: number;
@@ -132553,7 +130542,7 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             readonly id: "mill-once-simultaneous";
             readonly status: "fixed" | "remaining";
         }, {
-            readonly id: "clay-via-theorem";
+            readonly id: "clay-via-scan";
             readonly status: "fixed" | "remaining";
         }, {
             readonly id: "novels-via-infinity";
@@ -132564,7 +130553,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             readonly formulaSource: string;
             readonly pair: "formula/code";
         };
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -132606,8 +130594,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             readonly formulaSource: string;
             readonly pair: "formula/code";
         };
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -132674,8 +130660,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             readonly id: "pair-digit-fold";
             readonly status: "fixed" | "remaining";
         }];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -132736,8 +130720,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
                 readonly id: "pair-digit-fold";
                 readonly status: "fixed" | "remaining";
             }];
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -132765,7 +130747,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
                 root: string;
                 standardsCount: number;
                 certified: false;
-                claySolvedByThisFold: 0;
             };
             meanSignificance: number;
             facets: ({
@@ -132793,8 +130774,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             testPassed: number;
             testTotal: number;
             projectionsWired: boolean;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             formulaCode: {
                 readonly formulas: readonly string[];
@@ -132827,8 +130806,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             anySuperposition: boolean;
             row: QuantumMapRow;
             map: QuantumMapRow;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -132856,8 +130833,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
             freeBits: number;
         };
         censusPreserved: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -132887,8 +130862,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
         anySuperposition: boolean;
         row: QuantumMapRow;
         map: QuantumMapRow;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -132910,8 +130883,6 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
     };
     mapQuery: QuantumMapRow;
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -133062,8 +131033,6 @@ export declare function chatChat(matrix?: MindMatrix, at?: number): {
             freeBits: number;
         };
         censusPreserved: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -133139,7 +131108,6 @@ export declare function chatChat(matrix?: MindMatrix, at?: number): {
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -133155,8 +131123,6 @@ export declare function chatChat(matrix?: MindMatrix, at?: number): {
         boundary: string;
     };
     honestOpenNamed: (`measure:angles-covered=${number}/${number}` | `measure:clock-bound=${number}` | "residual:multi-clock-build-audit-stall" | "next-tip:ceccec/erpax")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -133248,7 +131214,6 @@ export declare function ceccecErpaxCompete(matrix?: MindMatrix, at?: number): {
                 root: string;
             };
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -133399,7 +131364,6 @@ export declare function ceccecErpaxCompete(matrix?: MindMatrix, at?: number): {
         efficiencyOn: boolean;
     };
     honestOpenNamed: ("external-ref:https://github.com/erpax/erpax" | `score:ceccec=${number}/${number}` | `score:erpax=${number}/${number}` | `score:llm-linear=${number}/${number}` | "vote:decided=1" | "vote:decided=0" | `erpax:adopted=${number}/${number}` | "residual:erpax-census-tables-readme" | "residual:erpax-readme-check-alias")[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -133505,7 +131469,6 @@ export declare function voteNeighbour(matrix?: MindMatrix, at?: number): {
     agentTrinityOn: boolean;
     teamObserveOn: boolean;
     honestOpenNamed: (`graph:nodes=${number} edges=${number}` | `votes:on=${number} trinities=${number}` | "residual:whole-site-not-fake-closed-one-wave")[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -133613,7 +131576,6 @@ export declare function voteEntangle(matrix?: MindMatrix, at?: number): {
         agentTrinityOn: boolean;
         teamObserveOn: boolean;
         honestOpenNamed: (`graph:nodes=${number} edges=${number}` | `votes:on=${number} trinities=${number}` | "residual:whole-site-not-fake-closed-one-wave")[];
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -133653,8 +131615,6 @@ export declare function voteEntangle(matrix?: MindMatrix, at?: number): {
             memoReuse: boolean;
         };
         honestOpenNamed: ("chat-tips-sample-not-full-roster-linear" | "entangle-pairwise-consecutive-not-all-N-choose-2" | "residual:quantum-apps-monolith" | "physical-ftl-claim-stays-0" | "not-clay" | "not-physical-qubit-entanglement")[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         certified: false;
         facets: {
@@ -133692,8 +131652,6 @@ export declare function voteEntangle(matrix?: MindMatrix, at?: number): {
         realiseRoot: string;
         brainstormRoot: string;
         honestOpenNamed: string[];
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         certified: false;
         facets: {
@@ -133734,7 +131692,6 @@ export declare function voteEntangle(matrix?: MindMatrix, at?: number): {
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -133766,7 +131723,6 @@ export declare function voteEntangle(matrix?: MindMatrix, at?: number): {
     };
     consensusScore: number;
     honestOpenNamed: string[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -133867,8 +131823,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
         };
         splittingsRatio: number;
         jarlskogOrders: number;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: {
             receipt: string;
@@ -133897,8 +131851,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
             holds: boolean;
         }[];
         count: number;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: {
             receipt: string;
@@ -133967,7 +131919,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
             agentTrinityOn: boolean;
             teamObserveOn: boolean;
             honestOpenNamed: (`graph:nodes=${number} edges=${number}` | `votes:on=${number} trinities=${number}` | "residual:whole-site-not-fake-closed-one-wave")[];
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -134007,8 +131958,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
                 memoReuse: boolean;
             };
             honestOpenNamed: ("chat-tips-sample-not-full-roster-linear" | "entangle-pairwise-consecutive-not-all-N-choose-2" | "residual:quantum-apps-monolith" | "physical-ftl-claim-stays-0" | "not-clay" | "not-physical-qubit-entanglement")[];
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             certified: false;
             facets: {
@@ -134046,8 +131995,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
             realiseRoot: string;
             brainstormRoot: string;
             honestOpenNamed: string[];
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             certified: false;
             facets: {
@@ -134088,7 +132035,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -134120,7 +132066,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
         };
         consensusScore: number;
         honestOpenNamed: string[];
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -134165,7 +132110,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
         agentTrinityOn: boolean;
         teamObserveOn: boolean;
         honestOpenNamed: (`graph:nodes=${number} edges=${number}` | `votes:on=${number} trinities=${number}` | "residual:whole-site-not-fake-closed-one-wave")[];
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -134184,7 +132128,6 @@ export declare function frontierNeighbour(matrix?: MindMatrix, at?: number): {
         boundary: string;
     };
     honestOpenNamed: (`frontiers=${number} pairNeighbours=${number} cross=${number}` | "voteEntangleConsensus=1 neighbourConsensus=1" | "voteEntangleConsensus=1 neighbourConsensus=0" | "voteEntangleConsensus=0 neighbourConsensus=1" | "voteEntangleConsensus=0 neighbourConsensus=0" | "residual:Clay-FTL-frontiers-stay-OPEN" | "residual:human-usability-not-in-this-fold")[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134235,8 +132178,6 @@ export declare function allConversationsGoThroughTheMcpQuantumChat(matrix?: Mind
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134282,8 +132223,6 @@ export declare function mcpQuantumConversation(matrix?: MindMatrix, at?: number)
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134344,8 +132283,6 @@ export declare function mcpQuantumObserve(matrix?: MindMatrix, at?: number): {
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134390,8 +132327,6 @@ export declare function wiredToForgeMaxTamperingCost(matrix?: MindMatrix, at?: n
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     certified: false;
     qpuRequired: false;
     facets: ({
@@ -134436,8 +132371,6 @@ export declare function quantumizeNpm(matrix?: MindMatrix, at?: number): {
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134548,8 +132481,6 @@ export declare function npmPublishCi(matrix?: MindMatrix, at?: number, root?: st
             freeBits: number;
         };
         censusPreserved: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -134570,8 +132501,6 @@ export declare function npmPublishCi(matrix?: MindMatrix, at?: number, root?: st
         honestyLine: string;
     };
     refuseFake: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtl: boolean;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134616,8 +132545,6 @@ export declare function sessionMemoryCachesTheoremFormulaWaves(matrix?: MindMatr
         freeBits: number;
     };
     censusPreserved: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134663,8 +132590,6 @@ export declare function wavesFindWhatYouMissedToCache(matrix?: MindMatrix, at?: 
         pair: "session/save" | "theorem/index" | "mcp/cache" | "mcp/token" | "session/cache";
         cached: boolean;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "ci:slow-build-wall-clock-variance" | "residual:monolith-file-ratchet" | "residual:vitepress-thin-mount" | "keep:git-stashes-non-obsolete")[];
     honestOpenNamedCount: 6;
@@ -134708,8 +132633,6 @@ export declare function dryCleanAgnosticCodeComputesInfinity(matrix?: MindMatrix
     agnosticCode: boolean;
     computesInfinity: boolean;
     onReuse: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134754,8 +132677,6 @@ export declare function abstractQuantumComputingComesFromFoldingLinearIntoTrinit
     foldLinearIntoTrinities: boolean;
     zoomInOutInfinity: boolean;
     everyAngleToAny: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134801,8 +132722,6 @@ export declare function quantumSelfHeal(matrix?: MindMatrix, at?: number): {
     healsViaRosetta: boolean;
     defaultFailThenInvert: boolean;
     invertSeq: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -134890,8 +132809,6 @@ export declare function oneQuantumSetOfVitepressComponentsSealedAtGates(matrix?:
         readonly after: "HeroBackgroundLayer+BackgroundMovie+CardBackgroundMovie";
         readonly status: "removed";
     }];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -135525,7 +133442,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         federatedCatalogRoot: string;
         localCatalogRoot: string;
         physicalQubitSpeedup: 0;
-        physicalFtlClaim: 0;
         notFlops: true;
         capacityMeans: "amortized sealed recompute + memoByRoot + distributed identical roots";
         facets: ({
@@ -135547,7 +133463,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         rosettaComplete: boolean;
         completenessPct: number;
         millenniumSolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         census: {
             dimensionGates: number;
             dimsHold: boolean;
@@ -135570,7 +133485,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             computes: boolean;
             rosettaReady: boolean;
             millenniumSolvedByThisFold: 0;
-            claySolvedByThisFold: number;
             millRoot: string;
             handoffRoot: string;
             facets: ({
@@ -135587,7 +133501,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         ftlHandoff: {
             computes: boolean;
             rosettaReady: boolean;
-            physicalFtlClaim: 0;
             millenniumSolvedByThisFold: 0;
             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
             handoffRoot: string;
@@ -135666,7 +133579,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             particleCount: number;
             productCount: number;
             novelSurvivorCount: number;
-            claySolvedByThisFold: 0;
             root: string;
         };
         theorems: {
@@ -135707,8 +133619,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         entryCount: number;
         feedPath: "/development-feed.json";
         feedRoot: string;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         browserGap: string;
         facets: ({
@@ -135743,7 +133653,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         exportPayloadRoot: string;
         importRoundTrip: boolean;
         qpuRequired: false;
-        claySolvedByThisFold: 0;
         certified: false;
         physicalQubit: false;
         facets: ({
@@ -135850,12 +133759,10 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         computes: boolean;
         proves: SessionMeaningClaimRow[];
         refuses: {
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             wireEqualsIsoStrength: boolean;
             strongerThanNistPqc: false;
-            physicalFtlClaim: 0;
             isoOfficialStandard: false;
             overallWireClaimProved: boolean;
         };
@@ -135891,7 +133798,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
                 particleCount: number;
                 productCount: number;
                 novelSurvivorCount: number;
-                claySolvedByThisFold: 0;
                 root: string;
             };
             theorems: {
@@ -135929,10 +133835,8 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             tracksClassicalNoSpeedup: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         certified: false;
         qpuRequired: false;
-        physicalFtlClaim: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -136071,7 +133975,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         keptCount: number;
         openCount: number;
         qpuRequired: false;
-        claySolvedByThisFold: 0;
         rows: McpScriptAuditRow[];
         overlaps: McpScriptAuditRow[];
         useless: McpScriptAuditRow[];
@@ -136367,9 +134270,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -136384,9 +134285,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -136409,7 +134308,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -136522,8 +134420,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
     counterWaves: {
         computes: boolean;
         counterRotating: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         count: number;
         facets: ({
@@ -136551,8 +134447,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             bidirectional: boolean;
         };
         standingWave: string;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         tracksClassicalNoSpeedup: boolean;
         torusAligns: boolean;
@@ -136601,8 +134495,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         waves: {
             computes: boolean;
             counterRotating: boolean;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             count: number;
             facets: ({
@@ -136630,8 +134522,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
                 bidirectional: boolean;
             };
             standingWave: string;
-            claySolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             qpuRequired: false;
             tracksClassicalNoSpeedup: boolean;
             torusAligns: boolean;
@@ -136647,8 +134537,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         count: number;
         facets: ({
@@ -136813,7 +134701,6 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             after: 1;
             fix: "source section = fold path + code only";
         })[];
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -136856,8 +134743,6 @@ export type UniverseDiscoveryGapRow = {
 export declare function counterRotatingRosettaQuantumWaves(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     counterRotating: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     count: number;
     facets: ({
@@ -136885,8 +134770,6 @@ export declare function counterRotatingRosettaQuantumWaves(matrix?: MindMatrix, 
         bidirectional: boolean;
     };
     standingWave: string;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     tracksClassicalNoSpeedup: boolean;
     torusAligns: boolean;
@@ -136942,8 +134825,6 @@ export declare function universeAlmostDescribedInTheoremsDiscoverRest(matrix?: M
     waves: {
         computes: boolean;
         counterRotating: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         count: number;
         facets: ({
@@ -136971,8 +134852,6 @@ export declare function universeAlmostDescribedInTheoremsDiscoverRest(matrix?: M
             bidirectional: boolean;
         };
         standingWave: string;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         qpuRequired: false;
         tracksClassicalNoSpeedup: boolean;
         torusAligns: boolean;
@@ -136988,8 +134867,6 @@ export declare function universeAlmostDescribedInTheoremsDiscoverRest(matrix?: M
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     count: number;
     facets: ({
@@ -137208,7 +135085,6 @@ export declare function sciencePaperBodyFromCorpusSections(sections: {
     readonly status: string;
     readonly statusDetail: string;
     readonly gap: string;
-    readonly physicalFtlClaim: number;
 }): ScientificPaperBody;
 /** Map domain-proof catalog row → canon body. */
 export declare function sciencePaperBodyFromDomainRow(row: {
@@ -137219,8 +135095,6 @@ export declare function sciencePaperBodyFromDomainRow(row: {
     readonly status: string;
     readonly statusDetail: string;
     readonly gap: string;
-    readonly claySolvedByThisFold: number;
-    readonly physicalFtlClaim: number;
     readonly fold: string;
 }): ScientificPaperBody;
 /**
@@ -137314,7 +135188,6 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
                 root: string;
             };
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -137528,7 +135401,6 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
         rosettaComplete: boolean;
         completenessPct: number;
         millenniumSolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         census: {
             dimensionGates: number;
             dimsHold: boolean;
@@ -137551,7 +135423,6 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
             computes: boolean;
             rosettaReady: boolean;
             millenniumSolvedByThisFold: 0;
-            claySolvedByThisFold: number;
             millRoot: string;
             handoffRoot: string;
             facets: ({
@@ -137568,7 +135439,6 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
         ftlHandoff: {
             computes: boolean;
             rosettaReady: boolean;
-            physicalFtlClaim: 0;
             millenniumSolvedByThisFold: 0;
             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
             handoffRoot: string;
@@ -137638,7 +135508,6 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
             computes: boolean;
             root: string;
         };
-        claySolvedByThisFold: 0;
         facets: ({
             receipt: string;
             facet: string;
@@ -137653,7 +135522,6 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -137782,7 +135650,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
         wetProseRemaining: number;
         redundancyRemoved: number;
         noNamedExplanation: boolean;
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -137886,7 +135753,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     root: string;
                 };
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -138100,7 +135966,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             rosettaComplete: boolean;
             completenessPct: number;
             millenniumSolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             census: {
                 dimensionGates: number;
                 dimsHold: boolean;
@@ -138123,7 +135988,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 computes: boolean;
                 rosettaReady: boolean;
                 millenniumSolvedByThisFold: 0;
-                claySolvedByThisFold: number;
                 millRoot: string;
                 handoffRoot: string;
                 facets: ({
@@ -138140,7 +136004,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             ftlHandoff: {
                 computes: boolean;
                 rosettaReady: boolean;
-                physicalFtlClaim: 0;
                 millenniumSolvedByThisFold: 0;
                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                 handoffRoot: string;
@@ -138210,7 +136073,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 computes: boolean;
                 root: string;
             };
-            claySolvedByThisFold: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -138225,7 +136087,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -138493,7 +136354,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 root: string;
                 statement: string;
                 boundary: string;
-                claySolvedByThisFold: 0;
             };
             facets: {
                 receipt: string;
@@ -138704,7 +136564,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             rosettaComplete: boolean;
             completenessPct: number;
             millenniumSolvedByThisFold: 0;
-            physicalFtlClaim: 0;
             census: {
                 dimensionGates: number;
                 dimsHold: boolean;
@@ -138727,7 +136586,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 computes: boolean;
                 rosettaReady: boolean;
                 millenniumSolvedByThisFold: 0;
-                claySolvedByThisFold: number;
                 millRoot: string;
                 handoffRoot: string;
                 facets: ({
@@ -138744,7 +136602,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             ftlHandoff: {
                 computes: boolean;
                 rosettaReady: boolean;
-                physicalFtlClaim: 0;
                 millenniumSolvedByThisFold: 0;
                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                 handoffRoot: string;
@@ -138833,7 +136690,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -139025,7 +136881,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     root: string;
                     statement: string;
                     boundary: string;
-                    claySolvedByThisFold: 0;
                 };
                 facets: {
                     receipt: string;
@@ -139320,7 +137175,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -139531,7 +137385,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     rosettaComplete: boolean;
                     completenessPct: number;
                     millenniumSolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     census: {
                         dimensionGates: number;
                         dimsHold: boolean;
@@ -139554,7 +137407,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         computes: boolean;
                         rosettaReady: boolean;
                         millenniumSolvedByThisFold: 0;
-                        claySolvedByThisFold: number;
                         millRoot: string;
                         handoffRoot: string;
                         facets: ({
@@ -139571,7 +137423,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     ftlHandoff: {
                         computes: boolean;
                         rosettaReady: boolean;
-                        physicalFtlClaim: 0;
                         millenniumSolvedByThisFold: 0;
                         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                         handoffRoot: string;
@@ -139660,7 +137511,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -139940,9 +137790,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -139957,9 +137805,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -139982,7 +137828,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -140001,7 +137846,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -140182,9 +138026,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -140199,9 +138041,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -140224,7 +138064,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -140269,7 +138108,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -140288,7 +138126,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -140467,9 +138304,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -140484,9 +138319,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -140509,7 +138342,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -140685,9 +138517,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -140702,9 +138532,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -140881,7 +138709,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -141176,7 +139003,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -141387,7 +139213,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -141410,7 +139235,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -141427,7 +139251,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -141516,7 +139339,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -141796,9 +139618,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -141813,9 +139633,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -141838,7 +139656,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -141857,7 +139674,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -141901,7 +139717,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -141979,7 +139794,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -142094,7 +139908,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -142149,7 +139962,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -142166,7 +139978,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -142223,7 +140034,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -142278,7 +140088,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -142326,7 +140135,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -142411,7 +140219,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -142532,7 +140339,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -142588,7 +140394,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -142750,7 +140555,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -143079,7 +140883,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -143178,8 +140981,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -143206,9 +141007,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -143226,7 +141025,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -143277,7 +141075,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -143321,7 +141118,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -143361,7 +141157,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -143378,10 +141173,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -143568,9 +141361,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -143585,9 +141376,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -143610,7 +141399,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -143648,7 +141436,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     verified: boolean;
                     receipt: string;
                 }[];
-                claySolvedByThisFold: 0;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -143678,7 +141465,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -143697,7 +141483,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -143876,9 +141661,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -143893,9 +141676,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -143918,7 +141699,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -144094,9 +141874,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -144111,9 +141889,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -144290,7 +142066,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -144585,7 +142360,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -144796,7 +142570,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -144819,7 +142592,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -144836,7 +142608,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -144925,7 +142696,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -145205,9 +142975,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -145222,9 +142990,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -145247,7 +143013,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -145266,7 +143031,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -145310,7 +143074,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -145388,7 +143151,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -145503,7 +143265,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -145558,7 +143319,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -145575,7 +143335,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -145632,7 +143391,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -145687,7 +143445,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -145735,7 +143492,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -145820,7 +143576,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -145941,7 +143696,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -145997,7 +143751,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -146159,7 +143912,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -146488,7 +144240,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -146587,8 +144338,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -146615,9 +144364,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -146635,7 +144382,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -146686,7 +144432,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -146732,7 +144477,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -146751,7 +144495,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -146930,9 +144673,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -146947,9 +144688,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -146972,7 +144711,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -147148,9 +144886,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -147165,9 +144901,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -147344,7 +145078,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -147639,7 +145372,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -147850,7 +145582,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -147873,7 +145604,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -147890,7 +145620,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -147979,7 +145708,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -148259,9 +145987,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -148276,9 +146002,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -148301,7 +146025,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -148320,7 +146043,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -148364,7 +146086,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -148442,7 +146163,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -148557,7 +146277,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -148612,7 +146331,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -148629,7 +146347,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -148686,7 +146403,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -148741,7 +146457,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -148789,7 +146504,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -148874,7 +146588,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -148995,7 +146708,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -149051,7 +146763,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -149213,7 +146924,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -149542,7 +147252,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -149641,8 +147350,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -149669,9 +147376,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -149689,7 +147394,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -149740,7 +147444,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -149784,7 +147487,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -149824,7 +147526,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -149841,10 +147542,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -149862,7 +147561,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -149899,14 +147597,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             }, {
                 readonly id: "UNFOLDED_CENSUS";
                 readonly theorem: "UNFOLDED_CENSUS";
-                readonly source: "src/3/7";
-            }, {
-                readonly id: "claySolvedTheorem";
-                readonly theorem: "claySolvedTheorem";
-                readonly source: "src/3/7";
-            }, {
-                readonly id: "CMI_PRIZE_SOLVED_CORE_IDS";
-                readonly theorem: "claySolvedTheorem";
                 readonly source: "src/3/7";
             }, {
                 readonly id: "DIGEST_BITS";
@@ -150106,9 +147796,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -150123,9 +147811,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -150148,7 +147834,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -150186,7 +147871,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         verified: boolean;
                         receipt: string;
                     }[];
-                    claySolvedByThisFold: 0;
                     count: number;
                     facets: ({
                         receipt: string;
@@ -150216,7 +147900,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -150235,7 +147918,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -150414,9 +148096,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -150431,9 +148111,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -150456,7 +148134,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -150632,9 +148309,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -150649,9 +148324,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -150828,7 +148501,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -151123,7 +148795,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -151334,7 +149005,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -151357,7 +149027,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -151374,7 +149043,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -151463,7 +149131,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -151743,9 +149410,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -151760,9 +149425,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -151785,7 +149448,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -151804,7 +149466,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -151848,7 +149509,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -151926,7 +149586,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -152041,7 +149700,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -152096,7 +149754,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -152113,7 +149770,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -152170,7 +149826,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -152225,7 +149880,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -152273,7 +149927,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -152358,7 +150011,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -152479,7 +150131,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -152535,7 +150186,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -152697,7 +150347,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -153026,7 +150675,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -153125,8 +150773,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -153153,9 +150799,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -153173,7 +150817,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -153224,7 +150867,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -153270,7 +150912,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             facetOff: number;
                             animDrift: number;
                             certifiedNumeric: number;
-                            clayNumeric: number;
                             refuseIncompleteOpen: number;
                             routedTrinity: number;
                             routedWave: number;
@@ -153289,7 +150930,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 standardsCount: number;
                                 certified: false;
-                                claySolvedByThisFold: 0;
                             };
                             meanSignificance: number;
                             facets: ({
@@ -153468,9 +151108,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -153485,9 +151123,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -153510,7 +151146,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -153686,9 +151321,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -153703,9 +151336,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -153882,7 +151513,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -154177,7 +151807,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                         statement: string;
                                         boundary: string;
-                                        claySolvedByThisFold: 0;
                                     };
                                     facets: {
                                         receipt: string;
@@ -154388,7 +152017,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     rosettaComplete: boolean;
                                     completenessPct: number;
                                     millenniumSolvedByThisFold: 0;
-                                    physicalFtlClaim: 0;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -154411,7 +152039,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         computes: boolean;
                                         rosettaReady: boolean;
                                         millenniumSolvedByThisFold: 0;
-                                        claySolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -154428,7 +152055,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ftlHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        physicalFtlClaim: 0;
                                         millenniumSolvedByThisFold: 0;
                                         apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                         handoffRoot: string;
@@ -154517,7 +152143,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -154797,9 +152422,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             amplitudesCancel: boolean;
                                             probabilitiesCannot: boolean;
                                         };
-                                        claySolvedByThisFold: 0;
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -154814,9 +152437,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         statement: string;
                                         boundary: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -154839,7 +152460,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     gapCount: number;
                                     facetOnRate: number;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
                                 facets: ({
                                     receipt: string;
@@ -154858,7 +152478,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 boundary: string;
                                 honestyLine: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -154902,7 +152521,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -154980,7 +152598,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         receipt: string;
                                     })[];
                                     root: string;
-                                    claySolvedByThisFold: 0;
                                     certified: false;
                                     qpuRequired: false;
                                     statement: string;
@@ -155095,7 +152712,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         forwardCount: number;
                                         certified: boolean;
                                         fipsValidated: boolean;
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -155150,7 +152766,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             computes: boolean;
                                             root: string;
                                         };
-                                        claySolvedByThisFold: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -155167,7 +152782,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     };
                                     certified: false;
                                     fipsValidated: false;
-                                    claySolvedByThisFold: 0;
                                     breaksNistPqc: false;
                                     productionRefused: boolean;
                                     bitcoinRefused: boolean;
@@ -155224,7 +152838,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -155279,7 +152892,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -155327,7 +152939,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 productionReverseRefused: true;
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 strongerThanNistPqc: false;
                                 overallWireClaimProved: false;
@@ -155412,7 +153023,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -155533,7 +153143,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 benchVerdict: string;
                                 physicalQmSpeedupClaimed: false;
                                 isoCertified: false;
-                                claySolvedByThisFold: 0;
                                 vote: {
                                     decided: boolean;
                                     winner: "ceccec" | "undecided";
@@ -155589,7 +153198,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -155751,7 +153359,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                                 root: string;
                                             };
                                             qpuRequired: false;
-                                            physicalFtlClaim: 0;
                                             facets: ({
                                                 receipt: string;
                                                 facet: string;
@@ -156080,7 +153687,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                         kind: "honesty";
                                     })[];
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -156179,8 +153785,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             certified: false;
                             qpuRequired: false;
                             count: number;
@@ -156207,9 +153811,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             productionBreakEnabled: false;
                             refuseBeyond: boolean;
                             demoBitCeiling: number;
-                            claySolvedByThisFold: 0;
                             certified: false;
-                            physicalFtlClaim: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -156227,7 +153829,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         };
                         mill: {
                             computes: boolean;
-                            claySolvedByThisFold: number;
                             openCores: number;
                             solvedExternal: number;
                             gapsNamed: number;
@@ -156278,7 +153879,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         facets: ({
@@ -156322,7 +153922,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -156362,7 +153961,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -156379,10 +153977,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -156400,7 +153996,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -156433,7 +154028,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -156452,7 +154046,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -156631,9 +154224,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -156648,9 +154239,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -156673,7 +154262,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -156849,9 +154437,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -156866,9 +154452,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -157045,7 +154629,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -157340,7 +154923,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -157551,7 +155133,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -157574,7 +155155,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -157591,7 +155171,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -157680,7 +155259,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -157960,9 +155538,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -157977,9 +155553,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -158002,7 +155576,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -158021,7 +155594,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -158065,7 +155637,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -158143,7 +155714,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -158258,7 +155828,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -158313,7 +155882,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -158330,7 +155898,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -158387,7 +155954,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -158442,7 +156008,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -158490,7 +156055,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -158575,7 +156139,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -158696,7 +156259,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -158752,7 +156314,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -158914,7 +156475,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -159243,7 +156803,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -159342,8 +156901,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -159370,9 +156927,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -159390,7 +156945,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -159441,7 +156995,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -159487,7 +157040,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -159506,7 +157058,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -159685,9 +157236,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -159702,9 +157251,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -159727,7 +157274,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -159903,9 +157449,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -159920,9 +157464,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -160099,7 +157641,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -160394,7 +157935,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -160605,7 +158145,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -160628,7 +158167,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -160645,7 +158183,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -160734,7 +158271,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -161014,9 +158550,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -161031,9 +158565,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -161056,7 +158588,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -161075,7 +158606,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -161119,7 +158649,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -161197,7 +158726,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -161312,7 +158840,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -161367,7 +158894,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -161384,7 +158910,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -161441,7 +158966,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -161496,7 +159020,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -161544,7 +159067,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -161629,7 +159151,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -161750,7 +159271,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -161806,7 +159326,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -161968,7 +159487,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -162297,7 +159815,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -162396,8 +159913,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -162424,9 +159939,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -162444,7 +159957,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -162495,7 +160007,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -162539,7 +160050,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -162579,7 +160089,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -162596,10 +160105,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -162817,7 +160324,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     pair: "path/message";
                     cli: string;
@@ -162846,7 +160352,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -162865,7 +160370,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             boundary: string;
             honestyLine: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -163054,9 +160558,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -163071,9 +160573,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -163096,7 +160596,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 gapCount: number;
                 facetOnRate: number;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -163134,7 +160633,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 verified: boolean;
                 receipt: string;
             }[];
-            claySolvedByThisFold: 0;
             count: number;
             facets: ({
                 receipt: string;
@@ -163164,7 +160662,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 facetOff: number;
                 animDrift: number;
                 certifiedNumeric: number;
-                clayNumeric: number;
                 refuseIncompleteOpen: number;
                 routedTrinity: number;
                 routedWave: number;
@@ -163183,7 +160680,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -163362,9 +160858,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -163379,9 +160873,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -163404,7 +160896,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -163580,9 +161071,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -163597,9 +161086,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -163776,7 +161263,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -164071,7 +161557,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -164282,7 +161767,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -164305,7 +161789,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -164322,7 +161805,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -164411,7 +161893,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -164691,9 +162172,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -164708,9 +162187,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -164733,7 +162210,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -164752,7 +162228,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -164796,7 +162271,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -164874,7 +162348,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -164989,7 +162462,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -165044,7 +162516,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -165061,7 +162532,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         };
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         productionRefused: boolean;
                         bitcoinRefused: boolean;
@@ -165118,7 +162588,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -165173,7 +162642,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -165221,7 +162689,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     productionReverseRefused: true;
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     strongerThanNistPqc: false;
                     overallWireClaimProved: false;
@@ -165306,7 +162773,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -165427,7 +162893,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     benchVerdict: string;
                     physicalQmSpeedupClaimed: false;
                     isoCertified: false;
-                    claySolvedByThisFold: 0;
                     vote: {
                         decided: boolean;
                         winner: "ceccec" | "undecided";
@@ -165483,7 +162948,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -165645,7 +163109,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -165974,7 +163437,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                             kind: "honesty";
                         })[];
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -166073,8 +163535,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 certified: false;
                 qpuRequired: false;
                 count: number;
@@ -166101,9 +163561,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 productionBreakEnabled: false;
                 refuseBeyond: boolean;
                 demoBitCeiling: number;
-                claySolvedByThisFold: 0;
                 certified: false;
-                physicalFtlClaim: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -166121,7 +163579,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             };
             mill: {
                 computes: boolean;
-                claySolvedByThisFold: number;
                 openCores: number;
                 solvedExternal: number;
                 gapsNamed: number;
@@ -166172,7 +163629,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             facets: ({
@@ -166218,7 +163674,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -166237,7 +163692,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -166416,9 +163870,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -166433,9 +163885,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -166458,7 +163908,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -166634,9 +164083,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -166651,9 +164098,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -166830,7 +164275,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -167125,7 +164569,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -167336,7 +164779,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -167359,7 +164801,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -167376,7 +164817,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -167465,7 +164905,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -167745,9 +165184,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -167762,9 +165199,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -167787,7 +165222,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -167806,7 +165240,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -167850,7 +165283,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -167928,7 +165360,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -168043,7 +165474,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -168098,7 +165528,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -168115,7 +165544,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -168172,7 +165600,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -168227,7 +165654,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -168275,7 +165701,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -168360,7 +165785,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -168481,7 +165905,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -168537,7 +165960,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -168699,7 +166121,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -169028,7 +166449,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -169127,8 +166547,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -169155,9 +166573,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -169175,7 +166591,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -169226,7 +166641,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -169270,7 +166684,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -169310,7 +166723,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -169327,10 +166739,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -169348,7 +166758,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             boundary: string;
             honestyLine: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -169385,14 +166794,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
         }, {
             readonly id: "UNFOLDED_CENSUS";
             readonly theorem: "UNFOLDED_CENSUS";
-            readonly source: "src/3/7";
-        }, {
-            readonly id: "claySolvedTheorem";
-            readonly theorem: "claySolvedTheorem";
-            readonly source: "src/3/7";
-        }, {
-            readonly id: "CMI_PRIZE_SOLVED_CORE_IDS";
-            readonly theorem: "claySolvedTheorem";
             readonly source: "src/3/7";
         }, {
             readonly id: "DIGEST_BITS";
@@ -169592,9 +166993,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -169609,9 +167008,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -169634,7 +167031,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -169672,7 +167068,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     verified: boolean;
                     receipt: string;
                 }[];
-                claySolvedByThisFold: 0;
                 count: number;
                 facets: ({
                     receipt: string;
@@ -169702,7 +167097,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -169721,7 +167115,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -169900,9 +167293,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -169917,9 +167308,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -169942,7 +167331,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -170118,9 +167506,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -170135,9 +167521,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -170314,7 +167698,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -170609,7 +167992,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -170820,7 +168202,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -170843,7 +168224,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -170860,7 +168240,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -170949,7 +168328,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -171229,9 +168607,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -171246,9 +168622,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -171271,7 +168645,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -171290,7 +168663,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -171334,7 +168706,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -171412,7 +168783,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -171527,7 +168897,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -171582,7 +168951,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -171599,7 +168967,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -171656,7 +169023,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -171711,7 +169077,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -171759,7 +169124,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -171844,7 +169208,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -171965,7 +169328,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -172021,7 +169383,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -172183,7 +169544,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -172512,7 +169872,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -172611,8 +169970,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -172639,9 +169996,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -172659,7 +170014,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -172710,7 +170064,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -172756,7 +170109,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         facetOff: number;
                         animDrift: number;
                         certifiedNumeric: number;
-                        clayNumeric: number;
                         refuseIncompleteOpen: number;
                         routedTrinity: number;
                         routedWave: number;
@@ -172775,7 +170127,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             standardsCount: number;
                             certified: false;
-                            claySolvedByThisFold: 0;
                         };
                         meanSignificance: number;
                         facets: ({
@@ -172954,9 +170305,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -172971,9 +170320,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -172996,7 +170343,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -173172,9 +170518,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -173189,9 +170533,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -173368,7 +170710,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -173663,7 +171004,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                     statement: string;
                                     boundary: string;
-                                    claySolvedByThisFold: 0;
                                 };
                                 facets: {
                                     receipt: string;
@@ -173874,7 +171214,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 rosettaComplete: boolean;
                                 completenessPct: number;
                                 millenniumSolvedByThisFold: 0;
-                                physicalFtlClaim: 0;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -173897,7 +171236,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     rosettaReady: boolean;
                                     millenniumSolvedByThisFold: 0;
-                                    claySolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -173914,7 +171252,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 ftlHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    physicalFtlClaim: 0;
                                     millenniumSolvedByThisFold: 0;
                                     apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                     handoffRoot: string;
@@ -174003,7 +171340,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -174283,9 +171619,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         amplitudesCancel: boolean;
                                         probabilitiesCannot: boolean;
                                     };
-                                    claySolvedByThisFold: 0;
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -174300,9 +171634,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     statement: string;
                                     boundary: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -174325,7 +171657,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 gapCount: number;
                                 facetOnRate: number;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
                             facets: ({
                                 receipt: string;
@@ -174344,7 +171675,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             boundary: string;
                             honestyLine: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -174388,7 +171718,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -174466,7 +171795,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     receipt: string;
                                 })[];
                                 root: string;
-                                claySolvedByThisFold: 0;
                                 certified: false;
                                 qpuRequired: false;
                                 statement: string;
@@ -174581,7 +171909,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     forwardCount: number;
                                     certified: boolean;
                                     fipsValidated: boolean;
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -174636,7 +171963,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         computes: boolean;
                                         root: string;
                                     };
-                                    claySolvedByThisFold: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -174653,7 +171979,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 };
                                 certified: false;
                                 fipsValidated: false;
-                                claySolvedByThisFold: 0;
                                 breaksNistPqc: false;
                                 productionRefused: boolean;
                                 bitcoinRefused: boolean;
@@ -174710,7 +172035,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -174765,7 +172089,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -174813,7 +172136,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             productionReverseRefused: true;
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             strongerThanNistPqc: false;
                             overallWireClaimProved: false;
@@ -174898,7 +172220,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -175019,7 +172340,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             benchVerdict: string;
                             physicalQmSpeedupClaimed: false;
                             isoCertified: false;
-                            claySolvedByThisFold: 0;
                             vote: {
                                 decided: boolean;
                                 winner: "ceccec" | "undecided";
@@ -175075,7 +172395,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -175237,7 +172556,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             root: string;
                                         };
                                         qpuRequired: false;
-                                        physicalFtlClaim: 0;
                                         facets: ({
                                             receipt: string;
                                             facet: string;
@@ -175566,7 +172884,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                     kind: "honesty";
                                 })[];
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -175665,8 +172982,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         certified: false;
                         qpuRequired: false;
                         count: number;
@@ -175693,9 +173008,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionBreakEnabled: false;
                         refuseBeyond: boolean;
                         demoBitCeiling: number;
-                        claySolvedByThisFold: 0;
                         certified: false;
-                        physicalFtlClaim: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -175713,7 +173026,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     };
                     mill: {
                         computes: boolean;
-                        claySolvedByThisFold: number;
                         openCores: number;
                         solvedExternal: number;
                         gapsNamed: number;
@@ -175764,7 +173076,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     facets: ({
@@ -175808,7 +173119,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         computes: boolean;
                         root: string;
                     };
-                    claySolvedByThisFold: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -175848,7 +173158,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -175865,10 +173174,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -175886,7 +173193,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 boundary: string;
                 honestyLine: string;
             };
-            claySolvedByThisFold: 0;
             qpuRequired: false;
             facets: ({
                 receipt: string;
@@ -175919,7 +173225,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 facetOff: number;
                 animDrift: number;
                 certifiedNumeric: number;
-                clayNumeric: number;
                 refuseIncompleteOpen: number;
                 routedTrinity: number;
                 routedWave: number;
@@ -175938,7 +173243,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -176117,9 +173421,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -176134,9 +173436,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -176159,7 +173459,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     gapCount: number;
                     facetOnRate: number;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -176335,9 +173634,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         amplitudesCancel: boolean;
                         probabilitiesCannot: boolean;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -176352,9 +173649,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
-                physicalFtlClaim: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -176531,7 +173826,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         statement: string;
                         boundary: string;
-                        claySolvedByThisFold: 0;
                     };
                     facets: {
                         receipt: string;
@@ -176826,7 +174120,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -177037,7 +174330,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         rosettaComplete: boolean;
                         completenessPct: number;
                         millenniumSolvedByThisFold: 0;
-                        physicalFtlClaim: 0;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -177060,7 +174352,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             rosettaReady: boolean;
                             millenniumSolvedByThisFold: 0;
-                            claySolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -177077,7 +174368,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         ftlHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            physicalFtlClaim: 0;
                             millenniumSolvedByThisFold: 0;
                             apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                             handoffRoot: string;
@@ -177166,7 +174456,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -177446,9 +174735,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -177463,9 +174750,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -177488,7 +174773,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -177507,7 +174791,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     boundary: string;
                     honestyLine: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -177551,7 +174834,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         receipt: string;
                     })[];
                     root: string;
-                    claySolvedByThisFold: 0;
                     certified: false;
                     qpuRequired: false;
                     statement: string;
@@ -177629,7 +174911,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -177744,7 +175025,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -177799,7 +175079,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -177816,7 +175095,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         };
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         productionRefused: boolean;
                         bitcoinRefused: boolean;
@@ -177873,7 +175151,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         forwardCount: number;
                         certified: boolean;
                         fipsValidated: boolean;
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -177928,7 +175205,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             root: string;
                         };
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -177976,7 +175252,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     productionReverseRefused: true;
                     certified: false;
                     fipsValidated: false;
-                    claySolvedByThisFold: 0;
                     breaksNistPqc: false;
                     strongerThanNistPqc: false;
                     overallWireClaimProved: false;
@@ -178061,7 +175336,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                         };
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -178182,7 +175456,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     benchVerdict: string;
                     physicalQmSpeedupClaimed: false;
                     isoCertified: false;
-                    claySolvedByThisFold: 0;
                     vote: {
                         decided: boolean;
                         winner: "ceccec" | "undecided";
@@ -178238,7 +175511,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -178400,7 +175672,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -178729,7 +176000,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                             kind: "honesty";
                         })[];
-                        claySolvedByThisFold: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -178828,8 +176098,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
-                physicalFtlClaim: 0;
                 certified: false;
                 qpuRequired: false;
                 count: number;
@@ -178856,9 +176124,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 productionBreakEnabled: false;
                 refuseBeyond: boolean;
                 demoBitCeiling: number;
-                claySolvedByThisFold: 0;
                 certified: false;
-                physicalFtlClaim: 0;
                 qpuRequired: false;
                 facets: ({
                     receipt: string;
@@ -178876,7 +176142,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             };
             mill: {
                 computes: boolean;
-                claySolvedByThisFold: number;
                 openCores: number;
                 solvedExternal: number;
                 gapsNamed: number;
@@ -178927,7 +176192,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
             facets: ({
@@ -178973,7 +176237,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     facetOff: number;
                     animDrift: number;
                     certifiedNumeric: number;
-                    clayNumeric: number;
                     refuseIncompleteOpen: number;
                     routedTrinity: number;
                     routedWave: number;
@@ -178992,7 +176255,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         root: string;
                         standardsCount: number;
                         certified: false;
-                        claySolvedByThisFold: 0;
                     };
                     meanSignificance: number;
                     facets: ({
@@ -179171,9 +176433,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 amplitudesCancel: boolean;
                                 probabilitiesCannot: boolean;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -179188,9 +176448,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -179213,7 +176471,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         gapCount: number;
                         facetOnRate: number;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -179389,9 +176646,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             amplitudesCancel: boolean;
                             probabilitiesCannot: boolean;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
-                        physicalFtlClaim: 0;
                         facets: ({
                             receipt: string;
                             facet: string;
@@ -179406,9 +176661,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
-                    physicalFtlClaim: 0;
                     facets: ({
                         receipt: string;
                         facet: string;
@@ -179585,7 +176838,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             root: string;
                             statement: string;
                             boundary: string;
-                            claySolvedByThisFold: 0;
                         };
                         facets: {
                             receipt: string;
@@ -179880,7 +177132,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                                 statement: string;
                                 boundary: string;
-                                claySolvedByThisFold: 0;
                             };
                             facets: {
                                 receipt: string;
@@ -180091,7 +177342,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             rosettaComplete: boolean;
                             completenessPct: number;
                             millenniumSolvedByThisFold: 0;
-                            physicalFtlClaim: 0;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -180114,7 +177364,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaReady: boolean;
                                 millenniumSolvedByThisFold: 0;
-                                claySolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -180131,7 +177380,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             ftlHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                physicalFtlClaim: 0;
                                 millenniumSolvedByThisFold: 0;
                                 apparentClasses: readonly ["no-signaling", "plasma-phase-group", "cherenkov", "hartman-model", "opera-artifact", "astrophysical-jets", "teleport-classical-channel", "tracks-classical-no-speedup"];
                                 handoffRoot: string;
@@ -180220,7 +177468,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             statement: string;
                             boundary: string;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -180500,9 +177747,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     amplitudesCancel: boolean;
                                     probabilitiesCannot: boolean;
                                 };
-                                claySolvedByThisFold: 0;
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -180517,9 +177762,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 statement: string;
                                 boundary: string;
                             };
-                            claySolvedByThisFold: 0;
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -180542,7 +177785,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             gapCount: number;
                             facetOnRate: number;
                         };
-                        claySolvedByThisFold: 0;
                         qpuRequired: false;
                         facets: ({
                             receipt: string;
@@ -180561,7 +177803,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         boundary: string;
                         honestyLine: string;
                     };
-                    claySolvedByThisFold: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -180605,7 +177846,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             receipt: string;
                         })[];
                         root: string;
-                        claySolvedByThisFold: 0;
                         certified: false;
                         qpuRequired: false;
                         statement: string;
@@ -180683,7 +177923,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 receipt: string;
                             })[];
                             root: string;
-                            claySolvedByThisFold: 0;
                             certified: false;
                             qpuRequired: false;
                             statement: string;
@@ -180798,7 +178037,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 forwardCount: number;
                                 certified: boolean;
                                 fipsValidated: boolean;
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -180853,7 +178091,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     root: string;
                                 };
-                                claySolvedByThisFold: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -180870,7 +178107,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             };
                             certified: false;
                             fipsValidated: false;
-                            claySolvedByThisFold: 0;
                             breaksNistPqc: false;
                             productionRefused: boolean;
                             bitcoinRefused: boolean;
@@ -180927,7 +178163,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             forwardCount: number;
                             certified: boolean;
                             fipsValidated: boolean;
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -180982,7 +178217,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 root: string;
                             };
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -181030,7 +178264,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         productionReverseRefused: true;
                         certified: false;
                         fipsValidated: false;
-                        claySolvedByThisFold: 0;
                         breaksNistPqc: false;
                         strongerThanNistPqc: false;
                         overallWireClaimProved: false;
@@ -181115,7 +178348,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 root: string;
                             };
                             qpuRequired: false;
-                            physicalFtlClaim: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -181236,7 +178468,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         benchVerdict: string;
                         physicalQmSpeedupClaimed: false;
                         isoCertified: false;
-                        claySolvedByThisFold: 0;
                         vote: {
                             decided: boolean;
                             winner: "ceccec" | "undecided";
@@ -181292,7 +178523,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     root: string;
                                 };
                                 qpuRequired: false;
-                                physicalFtlClaim: 0;
                                 facets: ({
                                     receipt: string;
                                     facet: string;
@@ -181454,7 +178684,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         root: string;
                                     };
                                     qpuRequired: false;
-                                    physicalFtlClaim: 0;
                                     facets: ({
                                         receipt: string;
                                         facet: string;
@@ -181783,7 +179012,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 fold: "quantumComputerHonestClaim · quantumAdvantageBenchmark";
                                 kind: "honesty";
                             })[];
-                            claySolvedByThisFold: 0;
                             facets: ({
                                 receipt: string;
                                 facet: string;
@@ -181882,8 +179110,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         statement: string;
                         boundary: string;
                     };
-                    claySolvedByThisFold: 0;
-                    physicalFtlClaim: 0;
                     certified: false;
                     qpuRequired: false;
                     count: number;
@@ -181910,9 +179136,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     productionBreakEnabled: false;
                     refuseBeyond: boolean;
                     demoBitCeiling: number;
-                    claySolvedByThisFold: 0;
                     certified: false;
-                    physicalFtlClaim: 0;
                     qpuRequired: false;
                     facets: ({
                         receipt: string;
@@ -181930,7 +179154,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 };
                 mill: {
                     computes: boolean;
-                    claySolvedByThisFold: number;
                     openCores: number;
                     solvedExternal: number;
                     gapsNamed: number;
@@ -181981,7 +179204,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 certified: false;
                 qpuRequired: false;
                 facets: ({
@@ -182025,7 +179247,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     computes: boolean;
                     root: string;
                 };
-                claySolvedByThisFold: 0;
                 facets: ({
                     receipt: string;
                     facet: string;
@@ -182065,7 +179286,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     root: string;
                     standardsCount: number;
                     certified: false;
-                    claySolvedByThisFold: 0;
                 };
                 meanSignificance: number;
                 facets: ({
@@ -182082,10 +179302,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 statement: string;
                 boundary: string;
             };
-            claySolvedByThisFold: 0;
             certified: false;
             qpuRequired: false;
-            physicalFtlClaim: 0;
             facets: ({
                 receipt: string;
                 facet: string;
@@ -182303,7 +179521,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     statement: string;
                     boundary: string;
                 };
-                claySolvedByThisFold: 0;
                 qpuRequired: false;
                 pair: "path/message";
                 cli: string;
@@ -182332,7 +179549,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             statement: string;
             boundary: string;
         };
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -182503,7 +179719,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             after: 1;
             fix: "source section = fold path + code only";
         })[];
-        claySolvedByThisFold: 0;
         qpuRequired: false;
         facets: ({
             receipt: string;
@@ -182541,7 +179756,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             verified: boolean;
             receipt: string;
         }[];
-        claySolvedByThisFold: 0;
         count: number;
         facets: ({
             receipt: string;
@@ -182559,8 +179773,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
     };
     algebraic: {
         computes: boolean;
-        claySolvedByThisFold: 0;
-        physicalFtlClaim: 0;
         required: readonly ["title", "abstract", "statement", "definitions", "theorems", "proofs", "formulas", "status", "references"];
         optional: readonly ["corollaries"];
         template: __ns_wind_research.AlgebraicPaperSections;
@@ -182581,7 +179793,6 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
         statement: string;
         boundary: string;
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -182617,8 +179828,6 @@ export declare function whatIsTheMeaningToSaveAMeaningProseAndNotToComputeTheMea
     saveProseWithoutComputeIsCrack: boolean;
     meaningMustCompute: boolean;
     proseAloneInsufficient: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -182722,7 +179931,6 @@ export declare function redundantExplanationSectionsDryCleaned(matrix?: MindMatr
         readonly status: "4 · Results & status";
         readonly references: "5 · References & locks";
     };
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -182843,7 +180051,6 @@ export declare function scientificPageFormatCanonised(matrix?: MindMatrix, at?: 
     wetProseRemaining: number;
     redundancyRemoved: number;
     noNamedExplanation: boolean;
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -182874,7 +180081,6 @@ export declare function algebraicFormulasAreDualOfSealedCode(matrix?: MindMatrix
     algebraicFormulasAreDualOfSealedCode: boolean;
     theoremCount: number;
     formulasCovered: number;
-    claySolvedByThisFold: 0;
     facets: ({
         receipt: string;
         facet: string;
@@ -183050,7 +180256,6 @@ export declare function uiProseDuplicationRemoved(matrix?: MindMatrix, at?: numb
         after: 1;
         fix: "source section = fold path + code only";
     })[];
-    claySolvedByThisFold: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -183090,7 +180295,6 @@ export declare function cryptoRelatedSurfacesAreDry(matrix?: MindMatrix, at?: nu
         panelCount: number;
         proofCount: number;
         comparisonCount: number;
-        claySolvedByThisFold: 0;
         certified: false;
         refuseBeyond: true;
         root: string;
@@ -183112,7 +180316,6 @@ export declare function cryptoRelatedSurfacesAreDry(matrix?: MindMatrix, at?: nu
             panelCount: number;
             proofCount: number;
             comparisonCount: number;
-            claySolvedByThisFold: 0;
             certified: false;
             refuseBeyond: true;
             root: string;
@@ -183143,7 +180346,6 @@ export declare function cryptoRelatedSurfacesAreDry(matrix?: MindMatrix, at?: nu
             readonly browserRunnable: boolean;
             readonly browserGap: string;
         }[];
-        claySolvedByThisFold: 0;
         certified: false;
         refuseBeyond: true;
         facets: ({
@@ -183162,7 +180364,6 @@ export declare function cryptoRelatedSurfacesAreDry(matrix?: MindMatrix, at?: nu
     toolSeedCount: number;
     residuals: string[];
     refuseBeyond: true;
-    claySolvedByThisFold: 0;
     certified: false;
     facets: ({
         facet: string;
@@ -183208,8 +180409,6 @@ export declare function crossWavesUpgradeAll(matrix?: MindMatrix, at?: number): 
         root: string;
     };
     certified: false;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -183237,9 +180436,7 @@ export declare function quantumiseIsAtFtlSpeed(matrix?: MindMatrix, at?: number)
     sslColdMs: number;
     sslWarmMs: number;
     suiteSpeedup: number;
-    claySolvedByThisFold: 0;
     certified: false;
-    physicalFtl: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;

@@ -702,8 +702,6 @@ export declare function ancientCalendars(matrix?: MindMatrix): {
 export declare function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     decoded: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     calendars: {
         id: string;
@@ -720,7 +718,6 @@ export declare function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInT
         status: "structure-only";
         statusDetail: string;
         gap: string;
-        physicalFtlClaim: 0;
     };
     count: number;
     facets: ({
@@ -753,9 +750,7 @@ export type OneCommandDecodeResult = {
     readonly refused: boolean;
     readonly refuseReason: string;
     readonly oneCommandDecodeComputable: boolean;
-    readonly claySolvedByThisFold: 0;
     readonly qpuRequired: false;
-    readonly physicalFtlClaim: 0;
     readonly facets: readonly {
         readonly facet: string;
         readonly on: boolean;
@@ -778,8 +773,6 @@ export declare function oneCommandDecodeHashOrStringOrSequence(input: string, ma
 export declare function oneCommandDecodeComputable(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     oneCommandDecodeComputable: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     probes: {
         kind: OneCommandDecodeKind;
@@ -1367,9 +1360,9 @@ export declare function plasmaBallIsScreenHoldingThunderAndPlasma(matrix?: MindM
         family: string;
     }[];
     decodedCount: number;
+    sourceBytes: number;
+    aspectCount: 3;
     srcReadable: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     facets: {
         receipt: string;
         facet: string;
@@ -1393,6 +1386,34 @@ export declare function theMoreRefusalsConvergeOnOnePlaceTheHigherTheProbability
         facet: string;
         on: boolean;
     }[];
+    statement: string;
+    boundary: string;
+};
+export declare function theologySourcesDecodedInTheoremAxiomVortex(matrix?: MindMatrix): {
+    computes: boolean;
+    theorem: {
+        term: string;
+        tradition: string;
+        here: string;
+        on: boolean;
+    }[];
+    vortex: {
+        term: string;
+        tradition: string;
+        here: string;
+        on: boolean;
+    }[];
+    axiom: {
+        term: string;
+        why: string;
+    }[];
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
     statement: string;
     boundary: string;
 };

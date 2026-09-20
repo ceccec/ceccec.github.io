@@ -763,7 +763,6 @@ export declare function onlyAlgebraicQuantumComputingIsTopPriority(matrix?: Mind
     onlyAlgebraicQuantumComputingIsTopPriority: boolean;
     scoreAlgebraic: number;
     qpuRequired: false;
-    physicalFtlClaim: 0;
     facets: {
         receipt: string;
         facet: string;

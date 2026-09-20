@@ -159,7 +159,7 @@ export declare const GOLDEN_ANGLE_RAD: number;
 /**
  * Gap-scan candidate: the golden angle is τ/φ² — the most irrational rotation.
  * Bounded witness: identity · φ²=φ+1 · CF of Fib approximants all-1s · orbit min-gap vs rational clump.
- * Pair: golden/angle · provedBy registry row · claySolved via theorem.
+ * Pair: golden/angle · provedBy registry row.
  */
 export declare function theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation(): {
     computes: boolean;
@@ -367,73 +367,6 @@ export declare const CENSUS_RATCHET = 154;
 /** Genus-2 double torus Euler characteristic — unfolded + χ = folded. */
 export declare const EULER_CHI: -2;
 export declare const FOLDED_CENSUS: number;
-/**
- * USER LAW: claySolved is a theorem not a hardcoded value.
- * Sealed registry of Millennium cores with CMI-prize-grade seals in this corpus.
- * Empty until math fills it — length recomputes claySolved at call time (currently 0).
- */
-export declare const CMI_PRIZE_SOLVED_CORE_IDS: readonly [];
-/**
- * Recompute claySolved / claySolvedByThisFold from sealed theorem (not bare literal).
- * Yields 0 while CMI_PRIZE_SOLVED_CORE_IDS is empty — still via theorem path.
- */
-export declare function claySolvedTheorem(): {
-    readonly claySolved: number;
-    readonly claySolvedByThisFold: number;
-    readonly via: 'claySolvedTheorem';
-    readonly recomputed: true;
-    readonly cmiPrizeConditionsMetBySealedMath: boolean;
-};
-/** Call-time alias — prefer over bare `0 as const`. */
-export declare function claySolvedByThisFoldFromTheorem(): number;
-/**
- * USER LAW dual of claySolvedTheorem — physicalFtlClaim is a theorem not a hardcoded value.
- * Sealed registry of physical superluminal-signaling proofs in this corpus.
- * Empty until physics fills it — length recomputes physicalFtlClaim at call time (currently 0).
- * Tip folds must call this (or physicalFtlFromMeasurements / physicalFtlByFormulas) —
- * bare `0 as const` / wet "" slogans as law = crack (ftl/compute).
- */
-export declare const PHYSICAL_FTL_SIGNALING_PROOF_IDS: readonly [];
-/**
- * Recompute physicalFtlClaim from sealed theorem (not bare literal).
- * Yields 0 while PHYSICAL_FTL_SIGNALING_PROOF_IDS is empty — still via theorem path.
- */
-export declare function physicalFtlClaimTheorem(): {
-    readonly physicalFtlClaim: number;
-    readonly via: 'physicalFtlClaimTheorem';
-    readonly recomputed: true;
-    readonly physicalSuperluminalSignalingProvedBySealedMath: boolean;
-};
-/** Call-time alias — prefer over bare `physicalFtlClaim: 0 as const`. */
-export declare function physicalFtlClaimFromTheorem(): number;
-/**
- * USER LAW: physicalFtl must compute true|false — if false, the scanner tips quantumisation.
- *
- * Formula (call-time boolean):
- *   physicalFtlClaim = |PHYSICAL_FTL_SIGNALING_PROOF_IDS|
- *   classicalHonesty = runsOnClassical64Bit ∧ ¬qpuRequired ∧ tracksClassicalNoSpeedup
- *   physicalFtl      = physicalFtlClaim > 0   // boolean: sealed math proves superluminal signaling
- *   // consistency: classicalHonesty ⇒ physicalFtl === false (no prose override)
- *
- * When physicalFtl === false → feed-scanner / next-research MUST tip quantumisation (tip/quantumise).
- * When physicalFtl === true  → do not force quantumisation from this law alone.
- */
-export declare function physicalFtlFromMeasurements(m: {
-    readonly runsOnClassical64Bit: boolean;
-    readonly qpuRequired: boolean;
-    readonly tracksClassicalNoSpeedup: boolean;
-}): {
-    readonly physicalFtlClaim: number;
-    readonly physicalFtl: boolean;
-    readonly classicalHonesty: boolean;
-    readonly physicalFtlComputesBoolean: true;
-    readonly noProseOverride: true;
-    readonly via: 'physicalFtlFromMeasurements';
-    readonly recomputed: true;
-    readonly theoremVia: 'physicalFtlClaimTheorem';
-};
-/** Call-time boolean only — scanner / rankGapNextTips path (no Node fs). */
-export declare function physicalFtlBooleanAtCallTime(): boolean;
 /** The seven Clay Millennium Prize problems, by core identifying terms (lowercased substrings). A fold "solves" one
  *  ONLY by claiming a finished resolution of one of these — never by naming it. Signed, refutable list (not a count). */
 export declare const CMI_PRIZE_PROBLEM_TERMS: readonly ["p versus np", "p vs np", "p = np", "p ≠ np", "p != np", "riemann hypothesis", "yang–mills", "yang-mills", "mass gap", "navier–stokes", "navier-stokes", "hodge conjecture", "birch and swinnerton-dyer", "swinnerton–dyer", "swinnerton-dyer", "poincaré conjecture", "poincare conjecture"];
@@ -1003,9 +936,7 @@ export declare const algebra: {
         readonly partitionCovers: typeof partitionCoversTotal;
     };
     readonly clay: {
-        readonly solved: typeof claySolvedTheorem;
         readonly solvedByFormulas: typeof claySolvedByFormulas;
-        readonly solvedByFold: typeof claySolvedByThisFoldFromTheorem;
         readonly openMarkers: readonly ["open", "unsolved", "unproven", "conjecture", "contested", "bounded-witness", "not cmi", "not a cmi", "no cmi", "not proposed solution", "claysolvedbythisfold=0", "decoded", "unconfirmed", "empirical", "harmony ≠ truth", "stays open", "remains open", "not claimed solved", "unclaimed"];
         readonly solutionMarkers: readonly ["solves the clay", "solves this clay", "clay problem solved", "millennium problem solved", "cmi prize solved", "we hereby prove", "qed for the", "proof complete for the", "closes the millennium", "proven complete —", "is now proved", "establishes a complete proof of the"];
     };

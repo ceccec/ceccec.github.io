@@ -460,8 +460,8 @@ export declare function quantumMcp(matrix?: MindMatrix): {
  */
 export declare function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix?: MindMatrix): {
     proven: boolean;
-    physicalFtlClaim: 0;
     addressBits: number;
+    mcpTools: number;
     lookupSteps: number;
     facets: {
         receipt: string;
@@ -772,7 +772,6 @@ export declare function allComputedPossibilitiesRetrievableFasterThanScanStructu
     directSteps: number;
     scanSteps: number;
     N: number;
-    physicalFtlClaim: number;
     facets: {
         receipt: string;
         facet: string;
@@ -792,9 +791,9 @@ export declare function allComputedPossibilitiesRetrievableFasterThanScanStructu
 export declare function hardwarePlanAndDriverForContentAddressedRetrievalIsCamResourceGated(): {
     computes: boolean;
     camMatchCycles: number;
+    camCapabilities: number;
     ramScanSteps: number;
     universalDriver: string;
-    physicalFtlClaim: number;
     facets: {
         receipt: string;
         facet: string;

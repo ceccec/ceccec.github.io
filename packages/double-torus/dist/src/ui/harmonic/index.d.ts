@@ -41,11 +41,6 @@ export declare function hourScaling(frequencyHz: number): number;
 export declare function confidenceProven(): number;
 /** No confidence — conjectured, open, or simply unbacked. */
 export declare function confidenceUnknown(): number;
-/**
- * Confidence for a named problem, derived: 1 only if the problem carries a sealed
- * proof id in the ledger, otherwise 0. Refutable by editing the ledger, not this file.
- */
-export declare function confidenceForProblem(problem: string): number;
 /** Binary involution over the palette index: index 0 is the proven band. */
 export declare function confidenceLevel(paletteIndex: 0 | 1 | 2): number;
 export declare function confidenceSecondary(): number;
@@ -53,7 +48,7 @@ export declare function confidenceTertiary(): number;
 export declare function confidenceRiemann(): number;
 export declare function confidenceYangMills(): number;
 export declare function confidenceNavierStokes(): number;
-/** Not a Clay problem. Derived through the same ledger path so it cannot drift. */
+/** Not a Clay problem; it shared the same path and the same zero. */
 export declare function confidenceCryptography(): number;
 declare const _default: {
     harmonicPalette: {
@@ -89,7 +84,6 @@ declare const _default: {
     inversionRatio: typeof inversionRatio;
     harmonicScaling: typeof harmonicScaling;
     hourScaling: typeof hourScaling;
-    confidenceForProblem: typeof confidenceForProblem;
     confidenceLevel: typeof confidenceLevel;
     confidenceSecondary: typeof confidenceSecondary;
     confidenceTertiary: typeof confidenceTertiary;

@@ -216,7 +216,6 @@ export declare function slowBuildIsQuantumGapGate(root?: string): {
     };
     pair: "gate/slow-build";
     qpuRequired: false;
-    physicalFtlClaim: 0;
     statement: string;
     boundary: string;
 };

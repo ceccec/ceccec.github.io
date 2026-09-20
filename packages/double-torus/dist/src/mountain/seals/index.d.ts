@@ -585,7 +585,6 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
             receipt: string;
         })[];
         root: string;
-        claySolvedByThisFold: 0;
         certified: false;
         qpuRequired: false;
         statement: string;
@@ -619,7 +618,6 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
     proof: {
         decoded: boolean;
         clayDecoded: number;
-        claySolvedByThisFold: number;
         mapping: {
             problem: string;
             ray: "Origin" | "Proof" | "Explore" | "Learn" | "Apps" | "Frontier" | "Reference";
@@ -640,7 +638,6 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
     slug: string;
     proof: {
         graded: boolean;
-        claySolvedByThisFold: number;
         rigorLevels: number;
         externalCount: number;
         algebraExcludedCount: number;
@@ -1599,9 +1596,7 @@ export declare function rosettaSecurityGapsWired(matrix?: MindMatrix, at?: numbe
         wired: boolean;
     }[];
     parallelBacklogLength: 0;
-    claySolvedByThisFold: 0;
     certified: false;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;

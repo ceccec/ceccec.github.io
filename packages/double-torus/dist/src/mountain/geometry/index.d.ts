@@ -207,8 +207,6 @@ export declare function doubleTorusGeometryAlignsWithUniverseConstants(matrix?: 
     root: string;
     statement: string;
     boundary: string;
-    physicalFtlClaim: 0;
-    claySolvedByThisFold: 0;
 };
 export declare function areaPairs(): {
     count: number;
@@ -1026,8 +1024,6 @@ export declare function doubleTorusEarthPyramidTipsProvenByMath(matrix?: MindMat
 export declare function earthRealisedByComputingPolesAsPyramid(matrix?: MindMatrix): {
     computes: boolean;
     realised: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     poles: {
         name: "north" | "east" | "south" | "west";
@@ -1051,7 +1047,6 @@ export declare function earthRealisedByComputingPolesAsPyramid(matrix?: MindMatr
     bothEarthsShells: boolean;
     phaseLockCardinals: boolean;
     alternatingOmega: boolean;
-    wgs84PhysicalHonest: boolean;
     navigationForecastResidualNamed: boolean;
     navigationImplemented: false;
     forecastImplemented: false;

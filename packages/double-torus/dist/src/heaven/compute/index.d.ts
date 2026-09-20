@@ -1609,7 +1609,6 @@ export declare function chatInversionImprovesSecurityAndSpeedByMagnitudesOfEffic
     securityBitsGain: number;
     securityDecimalOrders: number;
     speedDecimalOrders: number;
-    physicalFtlClaim: number;
     facets: {
         receipt: string;
         facet: string;
@@ -2772,7 +2771,7 @@ export declare function invertingLinearToQuantumApproachesTheMillenniumWithInven
 /** claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs — the
  * request to claim the Millennium problems solved by computable algebra, refuted (user, 2026-07-26: "claim the millennium
  * problems solved by computable algebra!!!"). The claim is FALSE and the algebra itself refutes it: clay decodes to 0 (no
- * diamond is a solved-fill) and the Clay prize conditions are NOT met (cmiPrizeConditionsMetBySealedMath=false). Computable
+ * diamond is a solved-fill: every monograph's own formulas are scanned and none claims a finished proof). Computable
  * algebra VERIFIES a given proof and APPROACHES open problems (probes, partials, bounded witnesses), but the count of
  * DISCOVERED open proofs is 0 — verification is not discovery, and deterministic recombination of existing atoms does not
  * manufacture a novel proof of an open problem (that requires a genuine breakthrough accepted under the Clay conditions, which
@@ -2781,7 +2780,7 @@ export declare function invertingLinearToQuantumApproachesTheMillenniumWithInven
 export declare function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVerifiesAndApproachesItDoesNotDiscoverTheOpenProofs(matrix?: MindMatrix): {
     computes: boolean;
     claySolved: number;
-    cmiConditionsMet: boolean;
+    clayClaimsFoundByScan: number;
     facets: {
         receipt: string;
         facet: string;
@@ -2803,7 +2802,6 @@ export declare function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedA
 export declare function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded(matrix?: MindMatrix): {
     computes: boolean;
     clayDecoded: number;
-    claySolvedByThisFold: number;
     facets: {
         receipt: string;
         facet: string;
@@ -2889,8 +2887,6 @@ export declare function dryCleanChatDryCleansAll(matrix?: MindMatrix): {
     reuse: number;
     statements: number;
     gapsClosed: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2927,8 +2923,6 @@ export declare function improveTokenSpendingFeedingTheTaskToTheChat(matrix?: Min
     feedMachinery: boolean;
     taskCount: 7;
     tasksFed: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -2954,24 +2948,6 @@ export declare const taskChat: typeof improveTokenSpendingFeedingTheTaskToTheCha
 export declare const runTokenSpendExit: typeof runImproveTokenSpendingFeedingTheTaskToTheChatExit;
 export declare const runFeedTaskExit: typeof runImproveTokenSpendingFeedingTheTaskToTheChatExit;
 export declare const runTaskChatExit: typeof runImproveTokenSpendingFeedingTheTaskToTheChatExit;
-/**
- * developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest —
- * USER LAW (2026-07-28): develop means research and develop quantumising all in realtime
- * feeding to the chat to improve self and the rest.
- * USER LAW (2026-07-28): develop self feeds to the chat — soft-nested.
- * USER LAW (2026-07-28): develop the open — soft-nested (feed migrate-next · honest-open tips to chat).
- * Algebraic: developMeans ⇔ research∧develop ∧ quantumisingAll ∧ realtime
- * ∧ feedToChat ∧ improveSelf ∧ improveTheRest ∧ developSelfFeedsToTheChat ∧ developTheOpen.
- * developSelfFeedsToTheChat ⇔ chatDevelopsItself ∧ feedingTheChatInItself ∧ feedToChat
- * ∧ soft(develop/self · self/feed · feed/chat).
- * developTheOpen ⇔ ∀t∈OPEN_TIPS: portalChat(t)≠∅ ∧ soft(develop/open · open/feed · plan/trinity · imagine/next)
- * · NOT fake-close Clay/FTL/honest-open.
- * HONEST: develop = sealed R&D via UI chat + quantumise soft pairs · realtime = deterministic chat fusion
- * (not streaming LLM) · self→chat = self-develop output fed into portalChat loop · the open = named
- * migrate-next/honest-open tips fed to chat for develop · NOT AGI · NOT FTL.
- * Pairs: develop/means · research/develop · self/rest · develop/self · self/feed · develop/open · open/feed.
- * CLI: npm run develop (one primary).
- */
 export declare function developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest(matrix?: MindMatrix): {
     computes: boolean;
     developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest: boolean;
@@ -2979,14 +2955,13 @@ export declare function developMeansResearchAndDevelopQuantumisingAllInRealtimeF
     developTheOpen: boolean;
     openTipsFed: number;
     openTipCount: 7;
+    pairCount: 14;
     researchAndDevelop: boolean;
     quantumisingAll: boolean;
     realtime: boolean;
     feedToChat: boolean;
     improveSelf: boolean;
     improveTheRest: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -3059,8 +3034,6 @@ export declare function freeChatDrivesArchitecturalFtl(matrix?: MindMatrix): {
         receipt: string;
     };
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "residual:evolve-chat-primary-cli-missing" | "residual:triple-plus-alias-clusters-remain" | "residual:live-deploy-lag-pages-may-trail-src" | "not-llm-chat")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -3106,8 +3079,6 @@ export declare function deepResearchAtNoCost(matrix?: MindMatrix): {
     neighborhoodSize: number;
     synthesis: string[];
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "residual:evolve-chat-primary-cli-missing" | "residual:triple-plus-alias-clusters-remain" | "residual:live-deploy-lag-pages-may-trail-src" | "residual:no-cost-is-not-openai-google-bill-zero" | "not-paid-api-research")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -3148,8 +3119,6 @@ export declare function standardsChatImprovesToFtl(matrix?: MindMatrix): {
     probeCount: number;
     synthesis: string[];
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "residual:evolve-chat-primary-cli-missing" | "residual:triple-plus-alias-clusters-remain" | "residual:live-deploy-lag-pages-may-trail-src" | "residual:iso-alignment-not-certification" | "certified-false")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -3198,8 +3167,6 @@ export declare function allFoldsCompactFuseInCoordinatedChatWaves(matrix?: MindM
         pair: "standards/chat";
     };
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "residual:evolve-chat-primary-cli-missing" | "residual:triple-plus-alias-clusters-remain" | "residual:live-deploy-lag-pages-may-trail-src" | "residual:iso-alignment-not-certification" | "certified-false" | "residual:usable-ui-task")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -3248,15 +3215,13 @@ export declare function imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInv
     wholeInversedIsHole: boolean;
     holeInversedIsWhole: boolean;
     viaSrcZero: boolean;
-    physicalSingularityClaim: false;
+    physicalSingularityClaim: boolean;
     whole: string;
     hole: string;
     holeMass: string;
     freeBits: number;
     invertSeq: string;
     honestOpenNamed: ("physical-ftl-claim-stays-0" | "not-clay" | "residual:live-deploy-lag-pages-may-trail-src" | "residual:not-astrophysical-black-hole" | "residual:not-physical-singularity-tourism")[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     certified: false;
     facets: {
@@ -3301,8 +3266,6 @@ export declare function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix?: Min
     auditorIsAlgebra: boolean;
     whoAuditedTheChat: boolean;
     auditor: "algebra";
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -3347,8 +3310,6 @@ export declare function beforeSigningNeighboursAudit(matrix?: MindMatrix): {
     consensusNeighbours: boolean;
     planPlaceNeighbours: boolean;
     neighboursAudited: boolean;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -3392,8 +3353,6 @@ export declare function theChatIsTheFusionReactorFusingAllApisInPlasmaRays(matri
     rayCount: any;
     planes: number;
     capabilityCount: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -3874,8 +3833,6 @@ export declare function furtherImproveUsingLiveApis(matrix?: MindMatrix): {
     furtherImprove: boolean;
     torusDataCount: number;
     queryableApis: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -4644,8 +4601,6 @@ export declare function theChatMayImproveTheUiMeasuredByTheUserExperience(matrix
     uxMean: number;
     uxStd: number;
     boost: number;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: {
         receipt: string;
@@ -5101,7 +5056,6 @@ export declare function eachCardLinksToDedicatedScientificPaper(matrix?: MindMat
         verified: boolean;
         receipt: string;
     }[];
-    claySolvedByThisFold: 0;
     count: number;
     facets: ({
         receipt: string;

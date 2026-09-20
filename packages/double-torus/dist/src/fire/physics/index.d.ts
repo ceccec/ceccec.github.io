@@ -393,7 +393,6 @@ export declare function naturalPhenomenaDecoded(matrix?: MindMatrix): {
     root: string;
     statement: string;
     boundary: string;
-    claySolvedByThisFold: 0;
 };
 /**
  * waveOpticsDecoded — wave optics, decoded EXACT. Diffraction, two-slit interference, polarisation, Snell's law of
@@ -823,8 +822,6 @@ export declare function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities
     certified: false;
     legalOwnershipClaimed: false;
     fakeUsptoGrants: false;
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     facets: ({
         receipt: string;

@@ -209,10 +209,10 @@ export declare function readmeSvgGapsFilledByTrinityMind(matrix?: MindMatrix): {
         status: "open";
         why: string;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     theoremCount: number;
+    filledCount: number;
+    openCount: number;
     count: number;
     facets: ({
         receipt: string;
@@ -330,8 +330,6 @@ export declare function symbolsRemainingToQuantumise(matrix?: MindMatrix): {
         name: string;
         done: boolean;
     }[];
-    claySolvedByThisFold: 0;
-    physicalFtlClaim: 0;
     qpuRequired: false;
     count: number;
     facets: ({
