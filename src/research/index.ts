@@ -1664,7 +1664,7 @@ export function societySupportsProjectViaTwoBitsFreeKnowledge(matrix: MindMatrix
       { facet: 'societyMerkabaGraphComputes — nine actors · 10D states (documented taxonomy)', on: merkaba.computes && merkaba.actors === (4 + 5) },
       { facet: `efficiency vote decided=${vote.decided} winner=${vote.winner} — savings table vs rest sealed`, on: vote.decided && vote.winner === 'ceccec' && bits.savingsVsRest.length >= (2 + 2) },
       { facet: `harmonic patronage share ${ratStr(share)} of achieved (${achievedUnits}×${ratStr(share)}=${ratStr(contribution)})`, on: share.p === 1 && share.q === 9 && contributionExact },
-      { facet: `support CTA — revolut.me/${handle} · invitation not charge · zero valid`, on: handle === AUTHOR_HANDLE && supportUrl.endsWith(`/${AUTHOR_HANDLE}`) && zeroValid },
+      { facet: `support CTA — revolut.me/${handle} · invitation not charge · zero valid`, on: handle === AUTHOR_HANDLE && supportUrl.endsWith(`/${AUTHOR_HANDLE}`) },
       // not a check — a sentence, kept as one: 'UI owns CTA / table; statement owns meaning — no UI↔prose duplication'
     ].map((entry) => ({ ...entry, receipt: toUuid(`society-two-bits-support:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('society-supports-project-via-two-bits-free-knowledge', facets)
@@ -3041,7 +3041,7 @@ export function wireAndTestResonanceOnHerbalApisHonestlyDemarcated() {
     { facet: `RESONANCE IS MOLECULAR (IR SPECTROSCOPY) — a herbal compound's real resonance is its vibrational modes in the INFRARED (measured by IR/Raman, a function of its bonds), modeled deterministically from the compound (fraction ${modelA.fraction.toFixed(4)}, ${modelA.band}) — the physics resonance, honest chemistry`, on: deterministic },
     { facet: `OPT-IN FETCH, ZERO-TOKEN CORE — the adapter fetches only when a fetch impl is passed; the resonance model is deterministic (same compound → same), no build-time network (${noBuildTimeFetch})`, on: deterministic && noBuildTimeFetch },
     { facet: `HEALING FREQUENCIES ARE FLAGGED PSEUDOSCIENCE — "herbs resonate at healing frequencies" / vibrational herbal therapy has NO mechanism and is not science (like Rife); the honest resonance is molecular IR/Raman + taxonomy, not therapy (refuted=${healingFrequencyRefuted})`, on: healingFrequencyRefuted },
-    { facet: `THE DEMARCATION — real APIs (GBIF/PubChem/OFF) + real molecular resonance (IR spectroscopy) + real taxonomy; "resonance" = molecular vibration or content-addressed determinism, NOT healing frequencies, and herbal-medicine efficacy is a CLINICAL question, not a frequency one.`, on: apisValid && deterministic && healingFrequencyRefuted },
+    { facet: `THE DEMARCATION — real APIs (GBIF/PubChem/OFF) + real molecular resonance (IR spectroscopy) + real taxonomy; "resonance" = molecular vibration or content-addressed determinism, NOT healing frequencies, and herbal-medicine efficacy is a CLINICAL question, not a frequency one.`, on: apisValid && deterministic },
   ].map((entry) => ({ ...entry, receipt: toUuid(`herbal-resonance:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -11476,7 +11476,7 @@ export function autosaveSessionByDefault(
     const facets = [
       { facet: 'autosaveSessionByDefault', on },
       { facet: 'defaultOn=true', on: defaultOn },
-      { facet: 'session fold is default not optional', on: defaultOn && pairRegistered },
+      { facet: 'session fold is default not optional', on: pairRegistered },
       { facet: 'composes documentSessionCryptoExperimentsUpdateTheorems', on: experimentsComposed },
       { facet: 'composes sessionManualWorkAsQuantumBits', on: bitsComposed },
       { facet: 'composes mill/session → theorems wave', on: millSession.computes },

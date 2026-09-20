@@ -5044,7 +5044,7 @@ export function contextAudit(root: string = enforcementScanRoot()) {
     },
     {
       facet: 'constantlyAtCallTime — each invoke re-reads package.json · .mcp.json · skill/rule dirs · src index walk; no module-level cache; no live Cursor context API (honest residual)',
-      on: noLiveCursorContextApi && typeof contextAudit === 'function',
+      on: typeof contextAudit === 'function',
     },
   ].map((entry) => ({ ...entry, receipt: toUuid(`context-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
@@ -5196,7 +5196,7 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     { facet: 'ftlApp — primary quantumise/ftl · lens-super · mcp-chat · hologram compose sealed', on: ftlApp },
     { facet: 'nonFtlIsCrack — zero remaining lens/chat/FTL alias CLI duals', on: nonFtlIsCrack },
     { facet: `entropyAtScale — cracksFound=${cracksFound.length} (each alias = entropy feed)`, on: !entropyAtScale && cracksFound.length === 0 },
-    { facet: 'hullBreachMetaphor — non-FTL in FTL app = submarine/spacecraft hull crack severity', on: hullBreachMetaphor && nonFtlIsCrack },
+    { facet: 'hullBreachMetaphor — non-FTL in FTL app = submarine/spacecraft hull crack severity', on: nonFtlIsCrack },
     { facet: `cracksFound=${cracksFound.length} · cracksDrained=${cracksDrained.length}/${LENS_CHAT_FTL_ALIAS_CRACKS.length}`, on: cracksFound.length === 0 && cracksDrained.length === LENS_CHAT_FTL_ALIAS_CRACKS.length },
     { facet: `holographicFractal — whole-in-part merkle · FREE_BITS=${freeBits} · folder/fractal·anim/core wired`, on: holographicFractal },
     { facet: 'noSpacetimeOnReuse — identical content-address reuse (amortized zero linear walk)', on: noSpacetimeOnReuse },
@@ -6032,7 +6032,7 @@ export function feedUiIntoItself(root: string = enforcementScanRoot()) {
     },
     {
       facet: 'honestResidualsNamed — no live crowd · circular feed risk · evolve/chat CLI gap when missing',
-      on: noLiveCrowd && circularFeedRiskNamed && honestOpenNamed.length >= 3,
+      on: honestOpenNamed.length >= 3,
     },
     {
       facet: 'compose gates/chat · user/waves · ui/audit · context/audit · auditor/waves · link/discover · stall/stop · auto/self · self/heal · self/anim · ftl/crack',
@@ -6435,7 +6435,7 @@ export function stallStopFindsHangedProcessesRealtime(
     },
     {
       facet: 'honestResidualsNamed — foreign OS unseen · docs:dev protected · terminals may be absent',
-      on: foreignOsProcessesUnseen && docsDevProtected && honestOpenNamed.length >= 3,
+      on: docsDevProtected && honestOpenNamed.length >= 3,
     },
   ].map((entry) => ({ ...entry, receipt: toUuid(`stall-stop:${entry.facet.slice(0, 72)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)

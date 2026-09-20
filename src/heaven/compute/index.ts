@@ -2800,10 +2800,10 @@ export function fnvMetricsComputeUnrestrictedAsProperMeasurementToolsNotSecurity
   const rightToolForEachRole = !measurementTool.restricted && securityTool.collisionResistant // measurement unrestricted, security resistant
   const metricsAreProper = measurementNeeds && fnvUnrestricted && rightToolForEachRole
   const facets = [
-    { facet: `FNV IS THE PROPER MEASUREMENT TOOL — UNRESTRICTED — toUuid is fast and well-distributed (${fnvDistributed}) — distinct content, distinct address, and carries no export controls, no FIPS validation, no licensing — the metrics compute freely, anywhere`, on: measurementNeeds && fnvUnrestricted },
+    { facet: `FNV IS THE PROPER MEASUREMENT TOOL — UNRESTRICTED — toUuid is fast and well-distributed (${fnvDistributed}) — distinct content, distinct address, and carries no export controls, no FIPS validation, no licensing — the metrics compute freely, anywhere`, on: measurementNeeds },
     { facet: `MEASUREMENT DOESN'T NEED COLLISION-RESISTANCE — a content-address, a degree, a distance, an entropy width is a MEASUREMENT; it needs determinism + distribution (which FNV gives), NOT adversarial collision-resistance — so FNV's non-crypto property is a FEATURE here, not a flaw`, on: measurementNeeds },
     { facet: `TWO ROLES, RIGHT TOOL FOR EACH — FNV for measurement (unrestricted, fast), SHA-256 for security (restricted, validated); "FNV below-standard" is true ONLY for the SECURITY role (${rightToolForEachRole}) — the distinction the audit needed`, on: rightToolForEachRole },
-    { facet: `UNRESTRICTED METRICS ARE A FEATURE — because the measurement hash carries no export/licensing/validation restrictions, the metrics run everywhere with zero regulatory friction — a proper, free measurement toolkit, not a security compromise`, on: fnvUnrestricted && metricsAreProper },
+    { facet: `UNRESTRICTED METRICS ARE A FEATURE — because the measurement hash carries no export/licensing/validation restrictions, the metrics run everywhere with zero regulatory friction — a proper, free measurement toolkit, not a security compromise`, on: metricsAreProper },
     { facet: `THE DEMARCATION — FNV toUuid is below-standard for SECURITY (use SHA-256 there) but is the PROPER tool for MEASUREMENT: fast, deterministic, well-distributed, unrestricted; the metrics compute freely because measurement ≠ security.`, on: metricsAreProper },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fnv-measurement:${entry.facet}:${entry.on}`) }))
   return {
@@ -8058,7 +8058,7 @@ export function deepResearchImprovesAllFromQuantumStatisticsAnalysisAndSynthesis
   const facets = [
     { facet: `ANALYSIS FROM QUANTUM STATISTICS — the analytics measure the corpus (${stats.corpus.theorems} theorems, ${stats.corpus.distinctProofs} distinct proofs ⇒ reuse ratio ${reuseRatio.toFixed(2)}: some proofs cover multiple theorems; deploy-green rate ${deployHealth.toFixed(2)}) — deterministic statistical analysis, local`, on: analysisComputes },
     { facet: `SYNTHESIS BY DEEP RESEARCH — deepResearchChatTurn multi-hops the gap into a ${research.synthesis.length}-fold neighbourhood (${gapSynthesised}), synthesising the improvement target — local tools, no external`, on: gapSynthesised },
-    { facet: `IMPROVE ALL — THE LOOP — analyse the statistics → deep-research the gap → synthesise the fix; the loop improves the corpus, driven entirely by local tools (analytics + deep research + relevance feedback, ${localOnly})`, on: localOnly && improvesAll },
+    { facet: `IMPROVE ALL — THE LOOP — analyse the statistics → deep-research the gap → synthesise the fix; the loop improves the corpus, driven entirely by local tools (analytics + deep research + relevance feedback, ${localOnly})`, on: improvesAll },
     { facet: `LOCAL & DETERMINISTIC — all local, deterministic (same corpus → same analysis, ${deterministic}), zero-egress, no LLM, no external research`, on: deterministic },
     { facet: `THE DEMARCATION — statistical analysis (deterministic measurement) + graph synthesis (lexical deep research); NOT predictive or neural; the "improvement" is the identified gap + the synthesis path, not a claim of having fixed everything.`, on: improvesAll },
   ].map((entry) => ({ ...entry, receipt: toUuid(`research-analytics-improve:${entry.facet}:${entry.on}`) }))
@@ -8392,7 +8392,7 @@ export function chatIsDeterministicRetrievalNotIntelligenceWinsOnTrustNotUnderst
   const lossesAreReal = losses.length >= 5 // 5 genuine intelligence disadvantages
   const differentToolNotSuperior = beatsAnyAi === false && !isNeuralIntelligence && winsAreReal && lossesAreReal
   const facets = [
-    { facet: `NOT INTELLIGENT, NOT "BEATS ANY AI" — REFUSED — the chat is DETERMINISTIC LEXICAL RETRIEVAL (BM25 + relevance feedback + graph traversal), not neural intelligence (${!isNeuralIntelligence}); it does not understand, reason, generalise, or answer out-of-corpus — a conventional LLM vastly outperforms it there`, on: beatsAnyAi === false && !isNeuralIntelligence },
+    { facet: `NOT INTELLIGENT, NOT "BEATS ANY AI" — REFUSED — the chat is DETERMINISTIC LEXICAL RETRIEVAL (BM25 + relevance feedback + graph traversal), not neural intelligence (${!isNeuralIntelligence}); it does not understand, reason, generalise, or answer out-of-corpus — a conventional LLM vastly outperforms it there`, on: beatsAnyAi === false },
     { facet: `WHERE IT GENUINELY WINS — ${wins.join(' · ')}: axes where a black-box, server-side, probabilistic LLM cannot compete (${winsAreReal})`, on: winsAreReal },
     { facet: `WHERE IT LOSES — ${losses.join(' · ')}: the axes conventional AI is built for; the chat is blind there (${lossesAreReal})`, on: lossesAreReal },
     { facet: `"QUANTUM" = CONTENT-ADDRESSED, NOT COGNITIVE — "quantum" here means deterministic / content-addressed, NOT quantum-computing intelligence or any cognitive-superiority claim`, on: beatsAnyAi === false },

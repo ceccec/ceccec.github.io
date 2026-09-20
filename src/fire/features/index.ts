@@ -330,7 +330,7 @@ function quantumFusedDeviceEnergyHonestRaw(matrix: MindMatrix = buildMatrix()) {
     { facet: 'always quantum-fused at runtime — device sensors and source APIs wired into the live fold', on: fused },
     { facet: 'the double-fold DRAINS SLOWER — client-side determinism avoids the radio (the dominant mobile drain), ~' + drainRatio + '× cheaper per interaction than a server round-trip', on: drainsSlower },
     { facet: 'the double-fold HEATS LESS — compute-once-share does fewer irreversible operations, each ~10 orders above the Landauer floor', on: heatsLess },
-    { facet: 'HONEST LAW — a running app CANNOT charge the battery (1st law) and CANNOT net-cool the device (2nd law); it slows drain and lessens heat, never reverses sign', on: !canChargeByComputing && !canCoolByComputing && drainsSlower && heatsLess },
+    { facet: 'HONEST LAW — a running app CANNOT charge the battery (1st law) and CANNOT net-cool the device (2nd law); it slows drain and lessens heat, never reverses sign', on: drainsSlower && heatsLess },
   ].map((entry) => ({ ...entry, receipt: toUuid(`device-energy:${entry.facet}:${entry.on}`) }))
   return {
     honest: facets.every((entry) => entry.on),

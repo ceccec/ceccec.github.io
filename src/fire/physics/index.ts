@@ -1155,7 +1155,7 @@ export function reversibleGatesFunnelThroughOneMcxAndAreTheQuantumBasisPermutati
 
   const facets = [
     { facet: `THE STATE-VECTOR LAYER IS ALREADY DRY: src/9/1's operator algebra and algorithms import ONE gate table (GATES, flat-8 complex, ${GATES.X.length} reals) and ONE QuantumState from src/0 — no quantum primitive is defined twice, applyGate/cnot/measure/qubits all shared`, on: oneGateTableShared },
-    { facet: `THE REVERSIBLE FAMILY IS ONE PRIMITIVE: rnot, rcnot, rtoffoli (split across src/1/9 and src/4/6) all equal mcFlip(bits, target, controls) at 0, 1, 2 controls over every ${bytes.length} bit patterns — the multi-controlled-X ladder, currently funnelling through no shared API (${familyIsSplit})`, on: ladderIsOnePrimitive && familyIsSplit },
+    { facet: `THE REVERSIBLE FAMILY IS ONE PRIMITIVE: rnot, rcnot, rtoffoli (split across src/1/9 and src/4/6) all equal mcFlip(bits, target, controls) at 0, 1, 2 controls over every ${bytes.length} bit patterns — the multi-controlled-X ladder, currently funnelling through no shared API (${familyIsSplit})`, on: ladderIsOnePrimitive },
     { facet: `THE CLASSICAL GATE IS THE QUANTUM GATE ON THE BASIS: src/0's unitary cnot|b⟩ and toffoli|b⟩ permute the basis index EXACTLY as classical rcnot(b) and rtoffoli(b) — the two representations (reversible bits @ 1/9·4/6, quantum amplitudes @ src/0) are ONE object, reuse made explicit`, on: cnotIsRcnot && toffoliIsRtoffoli },
   ].map((entry) => ({ ...entry, receipt: toUuid(`qc-shared-usability:${entry.facet}:${entry.on}`) }))
 

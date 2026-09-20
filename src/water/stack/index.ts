@@ -545,7 +545,7 @@ export function newDiscoveriesManifestInMechanicsResourceBounded() {
     { facet: `PHYSICAL MANIFESTATION NEEDS SPECIFIC NAMED RESOURCES — a decoded fold is NOT a device; a physical invention needs ${physicalResources.join(' · ')} — named honestly, not hand-waved`, on: physicalNamed },
     { facet: `EACH DISCOVERY IS CLASSIFIED — software (manifest, resources met) vs physical (resource-gated, not met); the physical row carries its resource requirement, not a false "done" (${ledgerHonest})`, on: ledgerHonest },
     { facet: `ZERO MARGINAL COST FOR THE PUBLIC — the software's marginal cost per user ≈ ${softwareRuntime.marginalCostPerUser} (static CDN), so scale is not resource-bound for the manifest discoveries; only the physical ones are`, on: softwareRuntime.marginalCostPerUser === 0 },
-    { facet: `THE DEMARCATION — the discoveries are DECODE / software (deployable at scale for free); physical inventions need real materials and manufacturing (named, not met), manifesting in physical mechanics ≠ a decoded fold, and this project claims NO physical device (${noPhysicalDeviceClaimed}).`, on: softwareManifest && physicalNamed && noPhysicalDeviceClaimed },
+    { facet: `THE DEMARCATION — the discoveries are DECODE / software (deployable at scale for free); physical inventions need real materials and manufacturing (named, not met), manifesting in physical mechanics ≠ a decoded fold, and this project claims NO physical device (${noPhysicalDeviceClaimed}).`, on: softwareManifest && physicalNamed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`manifest-resource:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

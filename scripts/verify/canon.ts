@@ -65,27 +65,67 @@ const ITERATORS = new Set(['every', 'some'])
 
 /** Does this expression reduce to a bare `true` through names that are never reassigned? A comparison
  *  anywhere makes it a real check — see note 6 on why that distinction cost three wrong detectors. */
-const unmovableTrue = (
-  ts: typeof import('typescript'),
-  e: import('typescript').Expression,
-  inits: ReadonlyMap<string, import('typescript').Expression>,
+/**
+ * UNMOVABLY TRUE, AND UNMOVABLY FALSE — because `!` flips between them and the first version could not
+ * see through it.
+ *
+ * The original descended `&&`, parentheses and `as`, but not a prefix `!`. So `!qpuRequired`, where
+ * `qpuRequired = false as const`, read as MOVABLE — and a facet written `on: classical64Bit && !qpuRequired`
+ * with both sides unmovable passed the whole-facet guard entirely. Two such facets are in the corpus
+ * (src/heaven/laws and src/water/encryption), and they are the two places where mechanically deleting
+ * the flagged conjunct would have left a facet that still cannot fail: the repair would have looked
+ * like progress and changed nothing. Found by a reader going site by site, not by the detector.
+ *
+ * The two predicates are mutually recursive because negation is: `!e` is unmovably true exactly when e
+ * is unmovably false, and vice versa. `&&` is true only if both sides are; it is FALSE as soon as
+ * either side is unmovably false, which is the asymmetry that makes them different functions rather
+ * than one with a flag.
+ */
+type TS = typeof import('typescript')
+type Expr = import('typescript').Expression
+type Inits = ReadonlyMap<string, Expr>
+
+const unmovable = (
+  want: boolean,
+  ts: TS,
+  e: Expr,
+  inits: Inits,
   reassigned: ReadonlySet<string>,
   seen: ReadonlySet<string> = new Set(),
   depth = 0,
 ): boolean => {
-  if (depth > 6) return false
-  if (e.kind === ts.SyntaxKind.TrueKeyword) return true
-  if (ts.isParenthesizedExpression(e) || ts.isAsExpression(e)) return unmovableTrue(ts, e.expression, inits, reassigned, seen, depth + 1)
+  // THE DEPTH CAP WAS SIX AND IT MADE THE DETECTOR CONTRADICT ITSELF. A five-conjunct `on:` of negated
+  // `false as const` names needs roughly eight levels to bottom out — nested &&, then `!`, then the
+  // identifier, then its `as const`, then the keyword. At six, every conjunct checked ALONE resolved as
+  // unmovable while the WHOLE expression did not, so the facet escaped the unfalsifiable bucket, landed
+  // in decorative, and the repair refused it because removing every conjunct would empty the `on:`.
+  // Detector and repair disagreed, which sharing one predicate was supposed to make impossible — and the
+  // thing that split them was a literal nobody derived, the exact shape caps.in-facet-folds exists for.
+  //
+  // Cycles are already prevented by `seen`, which refuses an identifier that is resolving itself. Depth
+  // only bounds nesting, so it needs to exceed the deepest expression the corpus actually writes, not
+  // sit at a number that looked safe.
+  if (depth > 5 * 8) return false
+  if (e.kind === (want ? ts.SyntaxKind.TrueKeyword : ts.SyntaxKind.FalseKeyword)) return true
+  if (ts.isParenthesizedExpression(e) || ts.isAsExpression(e)) return unmovable(want, ts, e.expression, inits, reassigned, seen, depth + 1)
+  if (ts.isPrefixUnaryExpression(e) && e.operator === ts.SyntaxKind.ExclamationToken) {
+    return unmovable(!want, ts, e.operand as Expr, inits, reassigned, seen, depth + 1)
+  }
   if (ts.isBinaryExpression(e) && e.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken) {
-    return unmovableTrue(ts, e.left, inits, reassigned, seen, depth + 1) && unmovableTrue(ts, e.right, inits, reassigned, seen, depth + 1)
+    return want
+      ? unmovable(true, ts, e.left, inits, reassigned, seen, depth + 1) && unmovable(true, ts, e.right, inits, reassigned, seen, depth + 1)
+      : unmovable(false, ts, e.left, inits, reassigned, seen, depth + 1) || unmovable(false, ts, e.right, inits, reassigned, seen, depth + 1)
   }
   if (ts.isIdentifier(e)) {
     if (seen.has(e.text) || reassigned.has(e.text)) return false
     const init = inits.get(e.text)
-    return init ? unmovableTrue(ts, init, inits, reassigned, new Set([...seen, e.text]), depth + 1) : false
+    return init ? unmovable(want, ts, init, inits, reassigned, new Set([...seen, e.text]), depth + 1) : false
   }
   return false
 }
+
+const unmovableTrue = (ts: TS, e: Expr, inits: Inits, reassigned: ReadonlySet<string>, seen: ReadonlySet<string> = new Set(), depth = 0): boolean =>
+  unmovable(true, ts, e, inits, reassigned, seen, depth)
 
 export function findCanonBreaks(root: string = process.cwd()): {
   selfComparison: Site[]
@@ -280,6 +320,65 @@ export function generatedArtefactsWithoutAVerifier(root: string = process.cwd())
   return out
 }
 
+/**
+ * THE REPAIR SHARES THE DETECTOR'S DEFINITION, SO THE TWO CANNOT DISAGREE.
+ *
+ * A conjunct that cannot be false contributes nothing to `on:`; removing it changes no verdict and
+ * removes the appearance of a guard. That is a mechanical edit, and doing it by hand across thirty-two
+ * sites is how a sweep introduces the defect it is removing — so this returns the exact character range
+ * and replacement text, computed from the SAME `unmovable` predicate that flags the site. If the
+ * predicate is wrong, both the finding and the fix are wrong together, which is the only honest
+ * coupling available.
+ *
+ * It deliberately refuses to touch a facet where every conjunct is unmovable: that is an unfalsifiable
+ * facet, counted separately, and deleting conjuncts there would leave `on:` empty — a repair that looks
+ * like progress and changes nothing. Those need a real predicate, which no codemod can invent.
+ */
+export function decorativeConjunctEdits(root: string = process.cwd()): { file: string; start: number; end: number; before: string; after: string }[] {
+  const ts = createRequire(import.meta.url)('typescript') as typeof import('typescript')
+  const edits: { file: string; start: number; end: number; before: string; after: string }[] = []
+  for (const file of corpusFiles(root)) {
+    const sf = file.ast()
+    const inits = new Map<string, import('typescript').Expression>()
+    const reassigned = new Set<string>()
+    const bindings = (n: import('typescript').Node): void => {
+      if (ts.isVariableDeclaration(n) && n.name && ts.isIdentifier(n.name) && n.initializer) inits.set(n.name.text, n.initializer)
+      if (ts.isBinaryExpression(n) && n.operatorToken.kind === ts.SyntaxKind.EqualsToken && ts.isIdentifier(n.left)) reassigned.add(n.left.text)
+      ts.forEachChild(n, bindings)
+    }
+    bindings(sf)
+    const visit = (n: import('typescript').Node): void => {
+      if (ts.isObjectLiteralExpression(n)) {
+        const named = n.properties.filter((p) => p.name && ts.isIdentifier(p.name)).map((p) => (p.name as import('typescript').Identifier).text)
+        const onProp = n.properties.find((p) => ts.isPropertyAssignment(p) && p.name && ts.isIdentifier(p.name) && p.name.text === 'on')
+        if (named.includes('facet') && onProp && ts.isPropertyAssignment(onProp)) {
+          const conjuncts: import('typescript').Expression[] = []
+          const split = (e: import('typescript').Expression): void => {
+            if (ts.isBinaryExpression(e) && e.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken) { split(e.left); split(e.right); return }
+            conjuncts.push(e)
+          }
+          split(onProp.initializer)
+          if (conjuncts.length > 1 && !unmovableTrue(ts, onProp.initializer, inits, reassigned)) {
+            const kept = conjuncts.filter((c) => !unmovableTrue(ts, c, inits, reassigned))
+            if (kept.length > 0 && kept.length < conjuncts.length) {
+              edits.push({
+                file: file.rel,
+                start: onProp.initializer.getStart(sf),
+                end: onProp.initializer.getEnd(),
+                before: onProp.initializer.getText(sf),
+                after: kept.map((k) => k.getText(sf)).join(' && '),
+              })
+            }
+          }
+        }
+      }
+      ts.forEachChild(n, visit)
+    }
+    visit(sf)
+  }
+  return edits
+}
+
 export function assertCanonicalForms(): void {
   everyRatchet(() => {
     const found = findCanonBreaks()
@@ -300,7 +399,19 @@ export function assertCanonicalForms(): void {
     console.log(`  ${found.unmovableClaim.length}  a claim gated on an unmovable \`true\` — a name that is never reassigned, so nothing can withdraw the claim`)
     for (const s of found.unmovableClaim.slice(0, 4)) console.log(`      ${show(s)}`)
     console.log(ratchet('canon.element-blind-predicate', found.elementBlindPredicate.length, { evidence: () => found.elementBlindPredicate.map(show) }))
-    console.log(ratchet('canon.unmovable-claim', found.unmovableClaim.length, { evidence: () => found.unmovableClaim.map(show) }))
+    // A NEW KEY, NOT A MOVED FLOOR — this file's own law, applied to itself.
+  //
+  // canon.unmovable-claim counted facets gated on an unmovable `true` using a predicate that could not
+  // see through `!`. Teaching it negation found FOURTEEN more, every one a facet that cannot fail:
+  // `on: X && !qpuRequired` with qpuRequired = false as const was invisible, and those are precisely the
+  // sites where deleting the flagged conjunct would have left the facet still unfalsifiable — a repair
+  // that looks like progress and changes nothing.
+  //
+  // The number rose because the DETECTOR improved, not because the corpus got worse, so neither moving
+  // the old floor up nor letting the old key print a new measurement would be honest about what changed.
+  // The old key is retired and this one is named for what it actually measures. The count is 32 and it
+  // only falls from here.
+  console.log(ratchet('canon.unfalsifiable-facet', found.unmovableClaim.length, { evidence: () => found.unmovableClaim.map(show) }))
   console.log(`  ${found.decorativeConjunct.length}  a facet padded with a conjunct that can never be false — it reads as a guard and guards nothing`)
   for (const s2 of found.decorativeConjunct.slice(0, 4)) console.log(`      ${show(s2)}`)
   console.log(ratchet('canon.decorative-conjunct', found.decorativeConjunct.length, { evidence: () => found.decorativeConjunct.map(show) }))

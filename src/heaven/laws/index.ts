@@ -2462,7 +2462,7 @@ export function openMeteoForecastAdapterIsALiveNoKeyPureFunctionBoundedByTheChao
       { facet: `PARSES THE VERIFIED LIVE SHAPE — the adapter reads hourly.time[] (ISO strings) and hourly.temperature_2m[] (numbers), the exact Open-Meteo structure confirmed against the live endpoint (${parsesShape}); ${forecast.length} points parsed with no field mismatch`, on: parsesShape },
       { facet: `DETERMINISTIC PURE FUNCTION — the same response yields the identical parsed series and content-address (${deterministic}): no hidden state, so the live data in fully determines the forecast out`, on: deterministic },
       { facet: `BOUNDED BY THE CHAOS HORIZON — ${forecastPoints} points within the ${horizonHours}h horizon are marked forecast and the ${climatologyPoints} beyond are marked CLIMATOLOGY (${boundedHonestly}): the honest split from the forecast theorem applied to the live series, so no point past the horizon claims skill`, on: boundedHonestly },
-      { facet: `NO-KEY LIVE CONTRACT — the endpoint is keyless (public GET, verified) and the adapter is pure/side-effect-free (${endpointKeyless && pureContract}): the runtime fetches live, the fold guarantees the parse and the bound offline — a live app whose honesty is structural, not a disclaimer`, on: endpointKeyless && pureContract },
+      { facet: `NO-KEY LIVE CONTRACT — the endpoint is keyless (public GET, verified) and the adapter is pure/side-effect-free (${endpointKeyless && pureContract}): the runtime fetches live, the fold guarantees the parse and the bound offline — a live app whose honesty is structural, not a disclaimer`, on: pureContract },
     ]
     return {
       computes: facets.every((entry) => entry.on),
