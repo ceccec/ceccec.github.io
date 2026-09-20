@@ -361,7 +361,7 @@ export function impossibleInvertsUntilPossible() {
   const impossibleInverts = primeInverse && factorInverseTrivial && baseInverts
   // 3 — ITERATE UNTIL POSSIBLE: each working inversion turns an impossible forward into a possible backward;
   // the count and the digit each ADDRESS their target directly, no prior state — the inverse is the possibility.
-  const inversionAddressesDirectly = primeCountUpTo(nthPrimeAt(100)) === 100 && piHexDigitAt(100) === piHexDigitAt(100) // idempotent, stateless, on demand
+  const inversionAddressesDirectly = primeCountUpTo(nthPrimeAt(100)) === 100 && piHexDigitAt(100) >= 0 && piHexDigitAt(100) < 16 // direct address returns a hex digit, on demand
   const facets = [
     { facet: `ANY HARMONIC POSSIBILITY IS COMPUTED IN REALTIME: π's n-th hex digit (BBP), the n-th prime (sieve to the Rosser bound) and the prime count are computed ON DEMAND at any position (${harmonicRealtime}), deterministically and with no stored table — the possibility is computed, not looked up`, on: harmonicRealtime },
     { facet: `IMPOSSIBLE INVERTS TO POSSIBLE: there is no closed form for the n-th prime (forward impossible), yet its inverse π(x) computes and π(pₙ) = n EXACTLY at every sampled n (${primeInverse}); factoring is hard forward but trivial to verify by its inverse, multiply (${factorInverseTrivial}); base-10 π extraction is unknown while base-16 BBP addresses any digit (${baseInverts}) — invert the direction, or the base, and the impossible becomes possible`, on: impossibleInverts },

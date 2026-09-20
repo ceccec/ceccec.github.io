@@ -2,7 +2,7 @@
 // Domain cuts only — vault primitives import from src/0 at call sites.
 import { IONIZING_EV, LN2, PROTON_MASS_MEV, SQRT1_2, SQRT2, photonEnergyEv } from '../../3/7/index.ts'
 import type { Rational } from '../../3/7/index.ts'
-import { GATES, abs, applyGate, atan2, ceil, cnot, cos, exp, floor, hypot, log2, max, measure, merkleFold, min, prng, probabilities, qubits, round, sin, sqrt, toUuid } from '../../0/index.ts'
+import { GATES, abs, applyGate, atan2, ceil, cnot, cos, exp, floor, hypot, isUuid, log2, max, measure, merkleFold, min, prng, probabilities, qubits, round, sin, sqrt, toUuid } from '../../0/index.ts'
 import type { QuantumState } from '../../0/index.ts'
 import { TAU, earned } from '../../3/7/index.ts'
 import { BOLTZMANN, PHI, SPEED_OF_LIGHT } from '../../3/7/index.ts'
@@ -229,7 +229,7 @@ export function quantumAccuracyExactWhereClaimedBoundedWhereApproximate() {
   const bigIntExact = factorial(5n) === 120n && factorial(6n) === 720n // exact, no rounding
   const pauli = pauliAlgebraCloses()
   const boundedFloat = pauli.closes // verified to tolerance 1e-9 — the named error bound, not exact
-  const addressExact = toUuid('accuracy:x') === toUuid('accuracy:x') && toUuid('accuracy:x') !== toUuid('accuracy:y') // exact by construction
+  const addressExact = toUuid('accuracy:x') !== toUuid('accuracy:y') && isUuid(toUuid('accuracy:x')) // distinct content, distinct address — exact by construction
   const facets = [
     { facet: `EXACT WHERE CLAIMED — integer / modular / BigInt identities compute EXACTLY: Fermat x^(p−1) ≡ 1 (mod ${p}) for all nonzero x (${fermatExact}) and 5! = 120, 6! = 720 in BigInt (${bigIntExact}) — no rounding`, on: fermatExact && bigIntExact },
     { facet: `BOUNDED WHERE APPROXIMATE — float computations (the Pauli su(2) closure) are verified to a NAMED tolerance of 1e-9 (${boundedFloat}), the honest error bound — they are checked, not CLAIMED exact`, on: boundedFloat },
@@ -265,7 +265,9 @@ export function improveDecisionMakingInQuantumTrinities() {
   const correct = true
   const oneFaultCorrect = decideBinary([correct, correct, !correct]) === correct // ≤1 fault → still correct
   const twoFaultsFail = decideBinary([correct, !correct, !correct]) !== correct // 2 faults → wrong (quorum ≠ truth)
-  const deterministic = decideBinary([true, true, false]) === decideBinary([true, true, false])
+  // Was one vote compared with itself, beside twoOfThree which already tests the decision. A majority is
+  // worth a facet for a property a majority HAS: it does not depend on the order the votes arrive in.
+  const deterministic = decideBinary([true, true, false]) === decideBinary([false, true, true])
   // THE COLLAPSE ORDER (with the proof leg): correct → proven → harmonic → efficient, lexicographic.
   type Candidate = { option: string; correct: boolean; proven: boolean; harmonic: boolean; efficient: boolean }
   const collapseRank = (c: Candidate) => [c.correct, c.proven, c.harmonic, c.efficient].map(Number) // proof leg between correct and harmonic

@@ -461,7 +461,10 @@ export function theQuantumFourierTransformCircuitAndPhaseEstimation() {
   const widths = [1, 2, 3, 4].map((n) => qft({ n, re: new Array<number>(1 << n).fill(0), im: new Array<number>(1 << n).fill(0) }, n, 1).re.length)
   const materialisesEveryAmplitude = widths.every((w, i) => w === (1 << (i + 1)))
   // Deterministic: the same input runs to a bit-identical output, so nothing here samples or measures.
-  const deterministic = phaseEstimate(phis[0]!, T) === phaseEstimate(phis[0]!, T)
+  // Was phaseEstimate compared with itself. What makes this summed rather than sampled is that the whole
+  // 2^n amplitude vector is materialised and the argmax read off it — measured just above as
+  // materialisesEveryAmplitude — and that dyadic phases come back exact (peExact).
+  const deterministic = materialisesEveryAmplitude && peExact
   const limits = computedLimits([
     { facet: `EXACT ONLY FOR DYADIC φ — every one of the ${nonDyadic.length} non-dyadic phases {1/3, 1/5, 1/7} is recovered INEXACTLY at t = ${T}; a general φ is recovered to t bits with the standard success probability, which is not claimed here and not shown here`, on: dyadicOnly },
     { facet: `${widths.join(', ')} AMPLITUDES ALLOCATED AT n = 1..4 — the whole 2^n vector, every time; a device holding n qubits allocates n, and the ratio of those two numbers is the entire claim about speedup here. this is the algorithm's STRUCTURE on a state vector, and the sealed quantum-decoded law stands`, on: materialisesEveryAmplitude },
@@ -945,7 +948,7 @@ export function theShorNineQubitCodeCorrectsAnySingleError() {
   // leading order only: the true failure probability includes weight-3 and higher terms this model drops.
   const higherOrderDropped = pL(1 / 5) > 1 && (1 / 5) < 1 // at p = 0.2 the "probability" exceeds 1, which a
   // genuine model cannot do — the quadratic is a leading-order estimate and says so by breaking here.
-  const deterministicNotSampled = pL(1 / 100) === pL(1 / 100) && errors.length === 27
+  const deterministicNotSampled = errors.length === 27 // every error pattern enumerated, none sampled
   const limits = computedLimits([
     { facet: `THIS MODEL'S THRESHOLD IS NOT THE LITERATURE'S — 36p² gives p_th = 1/${pairs9} ≈ ${(pTh * 100).toFixed(1)}%, while the surface code's measured threshold is ~${SURFACE_CODE_THRESHOLD * 100}%; the true value depends on the noise model and the decoder, and the two numbers differ by more than a factor of two, so this is the combinatorial estimate and not a claim about hardware`, on: modelThresholdDiffers },
     { facet: `LEADING ORDER ONLY, AND IT BREAKS WHERE IT SHOULD — at p = 0.2 the formula returns ${pL(1 / 5).toFixed(2)}, which is not a probability; weight-3 and higher failures are dropped, so the estimate is trustworthy only well below threshold and announces its own domain by exceeding 1 outside it`, on: higherOrderDropped },
@@ -1014,7 +1017,9 @@ export function variationalQuantumEigensolverAndQaoa() {
   const vqeQubits = 1, qaoaQubits = 3
   const smallInstancesOnly = 2 ** qaoaQubits === 8 && vqeQubits === 1 && qaoaQubits < 4
   // Deterministic: a real device would sample the expectation; here it is summed over every basis state.
-  const summedNotSampled = qaoaExpect(1 / 2, 1 / 2) === qaoaExpect(1 / 2, 1 / 2)
+  // Was the expectation compared with itself. Summed-not-sampled means it is a weighted sum over every
+  // basis state, so it is bounded by the extreme cut values and MOVES with its parameters.
+  const summedNotSampled = qaoaExpect(1 / 2, 1 / 2) !== qaoaExpect(0, 0)
   const limits = computedLimits([
     { facet: `THE OPTIMISER IS EXHAUSTIVE SEARCH, NOT DESCENT — the QAOA angles are found by evaluating the circuit at all ${gridEvaluations} points of a ${grid}×${grid} grid; including angles as poor as ⟨C⟩ = ${worstCut.toFixed(3)} against the best ${bestCut.toFixed(3)}, which is what exhaustive search does and descent does not; no gradient is computed by this fold and barren plateaus are therefore named here and solved nowhere`, on: isExhaustiveSearch && spentOnBadAngles },
     { facet: `SMALL INSTANCES, EXACT ANSÄTZE — VQE runs on ${vqeQubits} qubit and QAOA on ${qaoaQubits} (${2 ** qaoaQubits} amplitudes); the ansätze are expressive enough to reach the optimum at these sizes, which is precisely why success here says nothing about a general Hamiltonian needing a deeper circuit`, on: smallInstancesOnly },
@@ -1151,7 +1156,10 @@ export function thePhaseFlipCodeCorrectsAnyZError() {
   const twoZAlias = zPairs.every(([p, q]) => correctErrors(a, b, [p, q], []) < 1 - EPS)
   // a bit error is invisible to a phase code: X on any qubit must survive the correction unrepaired.
   const bitErrorPassesThrough = [0, 1, 2].every((q) => correctErrors(a, b, [], [q]) < 1 - EPS)
-  const deterministic = correctZ(a, b, 1) === correctZ(a, b, 1)
+  // Was the fidelity compared with itself. The code's claim is that ONE Z error is corrected: the fidelity
+  // after an error on qubit 1 returns to the clean, error-free fidelity. That can fail — and the doubles
+  // measured just above show it failing where the distance runs out.
+  const deterministic = abs(correctZ(a, b, 1) - correctZ(a, b, -1)) < EPS
   const limits = computedLimits([
     { facet: `DISTANCE 3 — ONE Z ERROR, NOT TWO: all ${zPairs.length} double-Z placements alias, the decoder lands on a different codeword and fidelity falls below 1 in every case; distance 3 buys correction at weight 1 and detection at weight 2, and nothing beyond`, on: twoZAlias },
     { facet: 'PHASE ONLY — A BIT ERROR PASSES THROUGH: an X on any of the 3 qubits survives the H-conjugated syndrome untouched, which is exactly why the full Shor code has to CONCATENATE this with the bit-flip code rather than choose between them', on: bitErrorPassesThrough },
@@ -1767,7 +1775,7 @@ export function theProjectsQuantumIsContentAddressingVerifiableByComputationNotP
   const stateSize = probabilities(qubits(qubitCount)).length
   const noPhysicalSpeedup = stateSize === 2 ** qubitCount // the sim is exponential-classical — the agent who doubts "quantum = faster" is right
   // 2 — "QUANTUM" IS CONTENT-ADDRESSING: toUuid is deterministic and distinguishing — a computable property
-  const deterministic = toUuid('same-input') === toUuid('same-input') && toUuid('a') !== toUuid('b') && isUuid(toUuid('a'))
+  const deterministic = toUuid('a') !== toUuid('b') && isUuid(toUuid('a')) // distinct content, distinct address, and it is an address
   // 3 — THE MEANING COMPUTES, NOT ASSERTED: dedup (identical → one address) and tamper-evidence (change flips it), runnable
   const dedups = new Set([toUuid('x'), toUuid('x'), toUuid('y')]).size === 2 // two copies of x collapse to one address
   const tamperEvident = toUuid('value') !== toUuid('value-edited') // any change flips the address
@@ -1807,7 +1815,7 @@ export function realtimeQuantumComputationHasNoBlocksOrDeadEndsEveryStateInverts
   const acts = inputs.map((tier) => (tier === 'documented' ? 'encode' : 'invert'))
   const adaptsInWaves = acts.length >= 3 && acts.includes('encode') && acts.includes('invert')
   // 4 — REALTIME, RECOVERABLE: any state is a deterministic content-address (recomputable, addressable)
-  const recoverable = toUuid('state') === toUuid('state') && isUuid(toUuid('state'))
+  const recoverable = isUuid(toUuid('state')) && toUuid('state') !== toUuid('state ') // an address, and one that answers to its content
   const facets = [
     { facet: `NO DEAD END — a computation and its inverse recover the start (${noDeadEnd}): every state is reversible, you can always back out`, on: noDeadEnd },
     { facet: `NO BLOCK — a one-way obstacle is passed by the reverse index, becoming a gateway (${noBlock}): a block is a state you invert around`, on: noBlock },

@@ -1459,7 +1459,10 @@ export function inversionIsTheDiscoveryEngineTheMysteryUnfoldsWhenYouKnowHowToIn
   const mystery = [1e-9, 0] // a point at the black hole 0 — resists direct computation
   const mysteryUnfolds = sqrt(invert(mystery).reduce((a, b) => a + b * b, 0)) > 1e6 // inverts to the pole ∞ — a discovery
   const probe = () => merkleFold([toUuid('discover:a'), toUuid('discover:b'), toUuid('discover:c')])
-  const discoveryIsDeterministic = probe() === probe() // discovery = evaluation of the pre-existing — reproducible, rate measurable
+  // Was probe() compared with itself — a constant fold of three fixed addresses, so it could not fail.
+  // What makes discovery an EVALUATION of the pre-existing is that the root answers to what went into it:
+  // drop a leaf and the address moves. Same input → same output is purity, held by verify:purity.
+  const discoveryIsDeterministic = probe() !== merkleFold([toUuid('discover:a'), toUuid('discover:b')])
   const notEveryMysteryUnfolds = true // Riemann, α — inversion has no computable image everywhere (the honest limit)
   const facets = [
     { facet: `INVERSION UNFOLDS THE MYSTERY INTO DISCOVERY: a mystery (a point at the black hole 0, resisting direct computation) inverts to the pole ∞ — a discovery (${mysteryUnfolds}); knowing HOW to invert turns the uncomputable into the computable (division by zero → the pole, the impossible → its shadow), the session's engine`, on: mysteryUnfolds },
@@ -1539,7 +1542,7 @@ export function theResearchAndDevelopmentHoroIsACyclicRingDanceThatGenerates() {
   const vortex: number[] = []; { let x = 1; for (let i = 0; i < 6; i++) { vortex.push(x); x = (x * 2) % 9 } } // ⟨2⟩ mod 9 — the doubling ring
   const stepIsTheVortexRing = vortex.join(',') === [1, 2, 4, 8, 7, 5].join(',') // the erpax Horo Ring inner step
   const turn = (t: number) => merkleFold([toUuid(`horo:turn:${t}`)]) // each full turn of the horo
-  const horoGenerates = turn(1) !== turn(2) && turn(1) === turn(1) // each turn a distinct, reproducible fold
+  const horoGenerates = turn(1) !== turn(2) // each turn a distinct fold; reproducibility is purity, not a facet
   const facets = [
     { facet: `R&D IS A HORO — A CYCLIC RING DANCE: the ${phases.length} phases (${phases.join(' → ')}) step in a ring, each passing to the next like dancers in a хоро; a full turn returns to the start (${horoReturnsToStart}) — the ring closes, a cyclic permutation`, on: horoReturnsToStart },
     { facet: `THE INNER STEP IS THE VORTEX RING (erpax Horo): the dance's step is the doubling vortex ${vortex.join('-')} = ⟨2⟩ mod 9, (ℤ/9ℤ)*, order 6 (${stepIsTheVortexRing}) + the 3-6-9 trinity — the erpax Horo Ring 1·2·4·8·7·5·9; the R&D horo dances the vortex`, on: stepIsTheVortexRing },
@@ -2691,7 +2694,7 @@ export function theClockIsTheZeroVoidAndDeviationsAreTheSurgicalWorklist() {
   const CLOCK = 108
   const clockLoopsToVoid = CLOCK % CLOCK === 0            // the phase returns to 0: the clock begins and ends at the void
   const zeroIsAbsorbing = [1, 2, 3, 5, 9].every((x) => x * 0 === 0) // 0 the black hole: x·0 = 0, nothing escapes
-  const zeroIsGateway = (0 === 0 ? Infinity : 0) === Infinity      // 1/0 = ∞ (projective): 0 is the 0↔∞ gateway
+  const zeroIsGateway = 1 / 0 === Infinity && 1 / Infinity === 0   // the projective claim itself, both ways: 0 is the 0↔∞ gateway
   const animationRungs = Array.from({ length: CLOCK }, (_, i) => i + 1).filter((d) => CLOCK % d === 0) // each animation a divisor rung, unfolding from 0
   // the METHOD: within the confined system the computation is total ("manifests"); the DEVIATION from the perceived
   // is the drift — modelled as computed vs observed, where the mismatch marks the exact surgical target (zero-cost, local)

@@ -2103,7 +2103,9 @@ export function tokenSpendImprovesByQuantumStatisticsAndLocalReuse() {
   const reuseFold = (query: string) => toUuid(`answer:${query}`) // a content-addressed answer — computed once, reused
   let calls = 0
   const rederive = (query: string) => toUuid(`explore:${query}:${calls++}`) // exploratory: a fresh address each call (re-spent)
-  const sameQueryOneAnswer = reuseFold('x') === reuseFold('x') // reuse: identical query → identical address → hit, 0 new tokens
+  // Was the cache key compared with itself. One answer per query means the key SEPARATES queries —
+  // otherwise every query would hit the same answer and reuse would be indistinguishable from collapse.
+  const sameQueryOneAnswer = reuseFold('x') !== reuseFold('y') // the address distinguishes the query it answers
   const rederiveReSpends = rederive('x') !== rederive('x') // re-derivation: same query, different address each call → spent again
   const reuseIsOptimal = sameQueryOneAnswer && rederiveReSpends // reuse is O(1); re-derivation leaks
   const improvements = [
@@ -2232,7 +2234,10 @@ export function accreditedAuditByPureAlgebraBidirectionalFreeForAllDetectsBroken
   const balanced = ledger.debits === ledger.credits // false → BROKEN
   const detectsBroken = balanced === false // the algebra flags the imbalance, reproducibly
   // FREE FOR ALL — deterministic + reproducible, no authority, no cost
-  const reproducible = 2 + 3 === 2 + 3 && merkleFold(['a', 'b']) === merkleFold(['a', 'b'])
+  // Was `2 + 3 === 2 + 3` beside a merkle root compared with itself — two expressions that cannot fail.
+  // src/0's contract states what merkleFold actually guarantees: the leaves are SORTED, so the root is
+  // order-independent. That is a property, and a change to the fold would break it.
+  const reproducible = merkleFold(['a', 'b']) === merkleFold(['b', 'a']) && merkleFold(['a', 'b']) !== merkleFold(['a'])
   const freeForAll = reproducible && trueIdentityHolds // anyone re-runs, same result, trustless
   const accreditsMathNotInstitution = true // AXIOM: a reproducible proof accredits CORRECTNESS, not a FIPS/ISO certificate
   const godelAndFormalizabilityBound = true // AXIOM: no formal system captures all truths; not all of society is formalizable
@@ -2394,7 +2399,7 @@ export function theThousandTwentyFourDiamondsFilledWithTheoremReferencesFormAPro
   const isMatrix = cell(0, 0).length > 0 && cell(side - 1, side - 1).length > 0
   // problem-solving INDEX — a problem content-addresses to a diamond → the theorem reference that addresses it
   const solveIndex = (problem: string) => diamondRef(toUuid(problem).replace(/[^0-9a-f]/gi, '').split('').reduce((s, c) => s + Number.parseInt(c, 16), 0) % diamonds)
-  const indexesProblem = solveIndex('how many keys can be cracked').length > 0 && solveIndex('a') === solveIndex('a') // deterministic problem → solution reference
+  const indexesProblem = solveIndex('how many keys can be cracked').length > 0 && solveIndex('a') !== solveIndex('b') // the index separates problems → solution reference
   const isProblemSolvingMatrix = isSquareMatrix && allFilled && isMatrix && indexesProblem
   const facets = [
     { facet: `THE HIDDEN MATH — 1024 = 2^10 = 4^5 = 32² — the ${diamonds} diamonds form a SQUARE ${side}×${side} matrix (${isSquareMatrix}); a square problem-solving matrix by structure`, on: isSquareMatrix },
@@ -2665,9 +2670,16 @@ export function memoryOptimisationIsQuantumOnlyWhenTheKeyContentAddressesTheComp
   const codeV2 = 'on: beyond.computes' // the folded version
   const rootOnlyKey = (name: string) => toUuid(`memo:${name}`) // memoByRoot idiom: no code in the key
   const quantumKey = (name: string, code: string) => toUuid(`memo:${name}:${code}`) // content-addresses the code
-  const rootOnlyCollidesAcrossCode = rootOnlyKey('beyond') === rootOnlyKey('beyond') // same key for v1 and v2 → stale risk
+  // Was one key compared with itself — so the collision this fold EXISTS to detect could not register.
+  // The claim is that a root-only key yields ONE address across two different codes while the quantum key
+  // yields two. Counted, both can fail: fold the code into rootOnlyKey and the first becomes 2.
+  const rootOnlyCollidesAcrossCode = new Set([codeV1, codeV2].map(() => rootOnlyKey('beyond'))).size === 1 // one key for v1 and v2 → stale risk
   const quantumInvalidatesOnCode = quantumKey('beyond', codeV1) !== quantumKey('beyond', codeV2) // key changes with code → fresh
-  const hitIffIdentical = quantumKey('beyond', codeV2) === quantumKey('beyond', codeV2) // identical computation → same address → hit
+  // Claimed "iff" and tested one half against itself. The half that can fail is the separation: the key
+  // must move when EITHER component moves — the code or the name — or a hit would not mean an identical
+  // computation. Sameness on identical input is purity, held by verify:purity.
+  const hitIffIdentical = quantumKey('beyond', codeV2) !== quantumKey('beyond', codeV1)
+    && quantumKey('beyond', codeV2) !== quantumKey('other', codeV2) // the key separates on code AND on name
   const selfInvalidating = quantumInvalidatesOnCode && hitIffIdentical // correct by construction
   const buildRespawnIsMerkleGated = true // AXIOM (measured): docs:build reseals on any src-merkle change — coarse but quantum
   const facets = [
