@@ -1599,7 +1599,9 @@ export function swarmCoordination(matrix: MindMatrix = buildMatrix()) {
     const totals = Array.from({ length: count }, (_unused, index) => shardWork(ids, index, count).count)
     return totals.reduce((sum, n) => sum + n, 0) === ids.length
   })
-  const deterministic = scales.every((count) => ids.every((id) => shardOf(id, count) === shardOf(id, count)))
+  // Was each shard compared with itself. A shard map is worth a facet when it SPREADS: at more than one
+  // shard the ids do not all land in the same place, which is the property sharding exists for.
+  const deterministic = scales.every((count) => count === 1 || new Set(ids.map((id) => shardOf(id, count))).size > 1)
   const workflows = agentBashWorkflowsAreToolsSavedInSrc(matrix)
   const loop = ['atlas-hunt', 'swarm-shard', 'surgical-edit', 'commit-pathspec']
   const loopSaved = loop.every((name) => workflows.tools.some((tool) => tool.name === name))

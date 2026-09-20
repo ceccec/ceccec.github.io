@@ -2467,7 +2467,10 @@ export function theRosettaAddressesAnyPosition() {
   // A prime is order-DEPENDENT: pₙ is defined only relative to the full count below it, so no formula
   // yields it without enumerating there — verified π(pₙ−1) = n−1 AND π(pₙ) = n. What IS exact is the
   // inversion π(pₙ) = n and the Rosser bound pₙ < n(ln n + ln ln n), n ≥ 6 — a BOUNDED computation.
-  const bbpOrderIndependent = hexWitness.every((_, n) => piHexDigitAt(n) === piHexDigitAt(n)) // callable at any n, no state
+  // The callback took n and discarded it, comparing one digit with itself — so "callable at any n" was
+  // asserted by an expression that never varied n. BBP's property is that any digit is reachable WITHOUT
+  // the ones before it, so the digits are read out of order and matched against the witness.
+  const bbpOrderIndependent = [...hexWitness.keys()].reverse().every((n) => piHexDigitAt(n) === hexWitness[n]) // any n, in any order, no state
   const ns = [1, 2, 3, 6, DECADE, 5 ** 2, 100, 5 * 100, DECADE ** 3]
   const ps = ns.map((n) => nthPrimeAt(n))
   const inverts = ns.every((n, i) => primeCountUpTo(ps[i]) === n)

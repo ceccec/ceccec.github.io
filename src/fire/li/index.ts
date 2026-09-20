@@ -1240,7 +1240,7 @@ export function ddosActivatesHealingFusion(matrix: MindMatrix = buildMatrix()) {
     { facet: 'deterministic + content-addressed — every request recomputes the same sealed answer with zero tokens; no database to exhaust, no inference to amplify', on: sealed === toUuid('request:/double-torus') },
     { facet: 'no soft target — distinct requests are distinct cheap addresses; none triggers an expensive path to amplify', on: toUuid('req:a') !== toUuid('req:b') },
     { facet: `the attack pays the forger price — a tamper folds to a different address, so to forge a reply you rebuild the whole sealed matrix — ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid('forge')).merged !== sealed },
-    { facet: 'the load balances into healing — a flood of identical requests folds to the one steady address, the same calm output (the fusion in healing waves)', on: [0, 1, 2].every(() => toUuid('flood:/') === toUuid('flood:/')) },
+    { facet: 'the load balances into healing — a flood of identical requests folds to ONE steady address while distinct paths keep their own, so the flood collapses and the traffic does not', on: new Set([0, 1, 2].map(() => toUuid('flood:/'))).size === 1 && toUuid('flood:/') !== toUuid('flood:/b') },
   ].map((e) => ({ ...e, receipt: toUuid(`ddos-heal:${e.facet}`) }))
   return {
     balanced: facets.every((e) => e.on),
@@ -1262,7 +1262,7 @@ export function bulgarianRosettaContentAddressUnlocksAll(matrix: MindMatrix = bu
   const facets = [
     { facet: 'the real Bulgarian Rosetta — the same Old Church Slavonic texts in Glagolitic AND Cyrillic, the parallel that fixed the Slavic scripts (Cyril & Methodius; the Bulgarian Preslav/Ohrid schools)', on: /[Ⰰ-ⱟ]/.test(toGlagolitic('а')) && toGlagolitic('а') === 'Ⰰ' },
     { facet: 'the content-address is the script-independent key — one source, the locales (Glagolitic/Latin/Cyrillic) computed from it, the meaning one', on: /[Ⰰ-ⱟ]/.test(toGlagolitic('double torus')) },
-    { facet: 'and identity-stable under distribution — a function keeps its name/address wherever it moves, so the core re-exports and the importers never change (the UUID is the wire)', on: toUuid('fn:toUuid') === toUuid('fn:toUuid') },
+    { facet: 'and identity-stable under distribution — a function keeps its name/address wherever it moves, and two functions never share one, so the wire identifies WHICH function moved', on: toUuid('fn:toUuid') !== toUuid('fn:merge') },
     { facet: 'so the Rosetta is the key that unlocks all — translation across scripts AND distribution across the sephirot, both by the one content-address', on: isUuid(merkleFold([toUuid('script'), toUuid('location'), toUuid('meaning')])) },
   ].map((e) => ({ ...e, receipt: toUuid(`bulgarian-rosetta:${e.facet}`) }))
   return {

@@ -1141,14 +1141,16 @@ export function liveToolAlgorithmLibrary(matrix: MindMatrix = buildMatrix()) {
   const cubeBits = holographicStateBits(1) // a 1-metre cube
   const collapseCheck = schwarzschildRadius((1 / 2 * SPEED_OF_LIGHT ** 2) / (2 * NEWTON_G)) // ≈ R = 0.5 m (self-consistency)
   const tools = [
-    { tool: 'vonNeumannExtract', domain: 'entropy', source: 'randomness', pure: JSON.stringify(vonNeumannExtract([0, 1, 1, 0, 1, 1, 0, 0])) === JSON.stringify(vonNeumannExtract([0, 1, 1, 0, 1, 1, 0, 0])), correct: JSON.stringify(vonNeumannExtract([0, 1, 1, 0, 1, 1, 0, 0])) === JSON.stringify([0, 1]) },
-    { tool: 'realizedVolatility', domain: 'market', source: 'market', pure: realizedVolatility([100, 108, 100]) === realizedVolatility([100, 108, 100]), correct: realizedVolatility([100, 108, 100]) > 0 },
-    { tool: 'chirpMass', domain: 'astronomy', source: 'astronomy', pure: chirpMass(1, 1) === chirpMass(1, 1), correct: abs(chirpMass(1, 1) - 1 / 2 ** (1 / 5)) < 1e-9 },
-    { tool: 'schumannHarmonic', domain: 'geomag', source: 'geomag', pure: schumannHarmonic(1) === schumannHarmonic(1), correct: abs(schumannHarmonic(1) - SCHUMANN_FUNDAMENTAL_HZ) < 1e-9 },
-    { tool: 'clockPhase', domain: 'time', source: 'clock', pure: clockPhase(54, 108) === clockPhase(54, 108), correct: abs(clockPhase(54, 108) - 1 / 2) < 1e-9 },
-    { tool: 'contentFingerprint', domain: 'knowledge', source: 'wikipedia', pure: contentFingerprint('rev-42') === contentFingerprint('rev-42'), correct: isUuid(contentFingerprint('rev-42')) && contentFingerprint('a') !== contentFingerprint('b') },
-    { tool: 'holographicStateBits', domain: 'space', source: 'device', pure: holographicStateBits(1) === holographicStateBits(1), correct: cubeBits > 0 && Number.isFinite(cubeBits) },
+    { tool: 'vonNeumannExtract', domain: 'entropy', source: 'randomness', pure: JSON.stringify(vonNeumannExtract([0, 1, 1, 0, 1, 1, 0, 0])) !== JSON.stringify(vonNeumannExtract([1, 0, 0, 1, 0, 0, 1, 1])), correct: JSON.stringify(vonNeumannExtract([0, 1, 1, 0, 1, 1, 0, 0])) === JSON.stringify([0, 1]) },
+    { tool: 'realizedVolatility', domain: 'market', source: 'market', pure: realizedVolatility([100, 108, 100]) !== realizedVolatility([100, 216, 100]), correct: realizedVolatility([100, 108, 100]) > 0 },
+    { tool: 'chirpMass', domain: 'astronomy', source: 'astronomy', pure: chirpMass(1, 1) !== chirpMass(2, 1), correct: abs(chirpMass(1, 1) - 1 / 2 ** (1 / 5)) < 1e-9 },
+    { tool: 'schumannHarmonic', domain: 'geomag', source: 'geomag', pure: schumannHarmonic(1) !== schumannHarmonic(2), correct: abs(schumannHarmonic(1) - SCHUMANN_FUNDAMENTAL_HZ) < 1e-9 },
+    { tool: 'clockPhase', domain: 'time', source: 'clock', pure: clockPhase(54, 108) !== clockPhase(27, 108), correct: abs(clockPhase(54, 108) - 1 / 2) < 1e-9 },
+    { tool: 'contentFingerprint', domain: 'knowledge', source: 'wikipedia', pure: contentFingerprint('rev-42') !== contentFingerprint('rev-43'), correct: isUuid(contentFingerprint('rev-42')) && contentFingerprint('a') !== contentFingerprint('b') },
+    { tool: 'holographicStateBits', domain: 'space', source: 'device', pure: holographicStateBits(1) !== holographicStateBits(2), correct: cubeBits > 0 && Number.isFinite(cubeBits) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`live-tool:${entry.tool}:${entry.domain}`) }))
+  // `pure` compared each tool's output with itself — true for all seven whatever the tools did, which is
+  // purity restated, not measured. It asks the half that can fail: does the tool RESPOND to its input?
   const allPure = tools.every((entry) => entry.pure)
   const allCorrect = tools.every((entry) => entry.correct)
   const cubeExponent = round(log10(cubeBits)) // ~69 — the order of magnitude of the bit count

@@ -253,7 +253,7 @@ export function computationsBoundToSourceApisRealtime(matrix: MindMatrix = build
   const liveApis = ['hardwareConcurrency', 'deviceMemory', 'getBattery', 'connection', 'PressureObserver', 'geolocation', 'DeviceOrientation', 'AudioContext']
   const facets = [
     { facet: 'realtime widgets bound to live source APIs — the device dashboard reads real browser telemetry', on: deviceHardwareVisibleInComputedWidgets(matrix).visible },
-    { facet: 'deterministic computations bound to src — the same content-addressed answer every time (their source is the matrix)', on: toUuid('x') === toUuid('x') },
+    { facet: 'deterministic computations bound to src — the same content-addressed answer every time (their source is the matrix)', on: toUuid('x') !== toUuid('y') },
     { facet: 'the two modes are distinct and honest — no seeded data labelled live, no live claim without an API', on: toUuid('live') !== toUuid('seeded') },
     { facet: 'the source APIs are real and named — device sensors plus public no-auth feeds', on: liveApis.length >= 6 },
   ].map((e) => ({ ...e, receipt: toUuid(`bound-source:${e.facet}`) }))

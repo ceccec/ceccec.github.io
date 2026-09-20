@@ -951,7 +951,9 @@ export function theAutomaticNamingServiceDescribesTheoremsFromComputationNotPred
     // 1 — describes from the NAME + computation, no predefined prose (the input carries NO statement/boundary)
     const derivedNotPredefined = names.every((n) => describe(n, sample, 'summary').length > 0) && describe(names[0]!, sample, 'title') !== describe(names[1]!, sample, 'title')
     // 2 — automatic naming, deterministic and content-addressed: same input → same output every time
-    const deterministic = names.every((n) => formats.every((f) => describe(n, sample, f) === describe(n, sample, f)))
+    // Was each description compared with itself. A description is worth a facet when it SEPARATES: two
+    // different names, or one name in two formats, do not collapse to the same text.
+    const deterministic = names.every((n) => new Set(formats.map((f) => describe(n, sample, f))).size === formats.length)
     const slugOk = describe('quantumRadar', sample, 'slug') === 'quantum-radar' && describe('quantumRadar', sample, 'title') === 'Quantum Radar'
     // 3 — variety of formats per path: each format distinct and non-empty; each route resolves to a format
     const distinctFormats = new Set(formats.map((f) => describe(names[0]!, sample, f))).size === formats.length
@@ -1398,7 +1400,11 @@ export function compactingLessonsIsTheQuotientTheoremsThatProveEachOtherFormEqui
     const find = (x: string): string => parent[x] === x ? x : (parent[x] = find(parent[x]!))
     proveEachOther.forEach(([a, b]) => { parent[find(a!)] = find(b!) })
     // the EQUIVALENCE-RELATION axioms, verified on the closure
-    const reflexive = lessons.every((t) => find(t) === find(t)) // A ⟺ A
+    // `find(t) === find(t)` stood here: the union-find spelling of A ⟺ A, correct and unable to fail, since
+    // reflexivity is structural in a union-find. I first replaced it with `find(t) === t`, which is WRONG —
+    // find returns the class REPRESENTATIVE, so after a⟺b⟺c it answers 'c' for 'a'. What reflexivity gives
+    // the quotient, and what can fail, is that every lesson lands in a class of its own members.
+    const reflexive = lessons.every((t) => lessons.includes(find(t)))
     const symmetric = proveEachOther.every(([a, b]) => find(a!) === find(b!)) // A⟺B ⟹ B⟺A (union-find is symmetric)
     const transitive = find('a') === find('c') // a⟺b, b⟺c ⟹ a⟺c
     const isEquivalence = reflexive && symmetric && transitive

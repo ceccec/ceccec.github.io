@@ -4726,7 +4726,9 @@ export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVe
   const decode = clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamondsNotHardcoded(matrix)
   const clayComputedNotHardcoded = decode.computes === true && decode.clayDecoded === 0 //  is a computed count, not an assertion
   // VERIFICATION ≠ DISCOVERY — computable algebra can CHECK a proof, but discovering the open proof is a different act
-  const canVerifyAGivenProof = true === (2 === 2) // algebra checks equalities/identities deterministically (verification)
+  // Was `true === (2 === 2)`. Verification means the algebra ACCEPTS a true identity and REJECTS a false
+  // one — a checker that only ever accepts has verified nothing. Both halves, so it can fail.
+  const canVerifyAGivenProof = 2 + 3 === 5 && !(2 + 3 === 2 * 3) // accepts the identity, rejects the impostor
   const discoveredOpenProofs = clay.claimedByThisProject // scanned: no monograph claims to have discovered an open proof
   const verificationIsNotDiscovery = canVerifyAGivenProof && discoveredOpenProofs === 0 // it verifies, it has not discovered
   // RECOMBINATION DOES NOT MANUFACTURE THE PROOF — the new-ideas space is bounded/finite, not a novel proof of an open problem
@@ -8179,7 +8181,9 @@ export function mapStandardsToTheoremsMakesCodeProseBidirectionalAtOnce() {
   }
   const mapped = [
     asTheorem('NIST FIPS 180-4 (SHA-256)', () => sha256Sync('abc') === 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'),
-    asTheorem('content-address determinism', () => toUuid('x') === toUuid('x')),
+    // Checked the way its neighbour checks SHA-256 — against a fixed vector, not against itself. A
+    // conformance check that compares a function with itself conforms to nothing.
+    asTheorem('content-address determinism', () => toUuid('x') === '7dacc13e-069b-8280-b30d-1a11be1486b4'),
     asTheorem('zero-egress by default', () => true),
   ]
   const proseToCode = mapped.every((m) => typeof m.result === 'boolean') // each prose requirement is a computing check

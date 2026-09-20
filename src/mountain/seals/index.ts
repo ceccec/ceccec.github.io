@@ -196,10 +196,14 @@ function computeDeterminismProofs(matrix: MindMatrix = buildMatrix()) {
   const toBits = (uuid: string) => [...hex(uuid)].flatMap((ch) => { const v = Number.parseInt(ch, 16); return [(v >> 3) & 1, (v >> 2) & 1, (v >> 1) & 1, v & 1] })
   const strip = (uuid: string) => [...hex(uuid)].filter((_, k) => k % 4 === 0).map((ch) => Number.parseInt(ch, 16) / (5 * 3))
 
-  // 1) Determinism: the same input always yields the same UUID.
-  let identical = 0
-  for (let i = 0; i < SAMPLES; i += 1) { const seed = base + i; if (toUuid(seed) === toUuid(seed)) identical += 1 }
-  const determinism = identical / SAMPLES
+  // 1) Distinctness: distinct seeds reach distinct addresses.
+  // This counted `toUuid(seed) === toUuid(seed)` — the same call twice — so the ratio read 1.0 over every
+  // sample no matter what the hash did. Same input, same output is purity, which verify:purity holds
+  // corpus-wide. What a hash audit CAN fail is collision, so that is what is sampled: the share of the
+  // seeds that land on an address of their own.
+  const addresses = new Set<string>()
+  for (let i = 0; i < SAMPLES; i += 1) addresses.add(toUuid(base + i))
+  const determinism = addresses.size / SAMPLES
 
   // 2) Avalanche (tamper-evidence): change one character and about half the 128
   //    output bits flip — a tiny edit is unmissable.

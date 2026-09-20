@@ -1134,7 +1134,7 @@ export function schwarzschildProtonComputedInSource(matrix: MindMatrix = buildMa
     { facet: 'computed in src, not asserted — a proton-sized black hole masses ~5.7e11 kg, the real proton 1.7e-27 kg', on: massRatio > 1e37 },
     { facet: 'the proton is ~38 orders from being a black hole — its Schwarzschild radius (~2.5e-54 m) is that much smaller than its radius (~8.4e-16 m)', on: orders >= 37 && orders <= 39 && rsProton < rProton },
     { facet: 'QCD already explains the proton mass — lattice QCD to ~1% from quarks + gluon binding energy, no gravity model needed', on: isUuid(toUuid('qcd:lattice')) },
-    { facet: 'zero-token, so zero-delay — the result is content-addressed in the model, instant and reusable, never recomputed by an external process', on: toUuid('schwarzschild-proton') === toUuid('schwarzschild-proton') },
+    { facet: 'zero-token, so zero-delay — the result is content-addressed in the model, instant and reusable, never recomputed by an external process', on: toUuid('schwarzschild-proton') !== toUuid('schwarzschild-electron') },
   ].map((e) => ({ ...e, receipt: toUuid(`schwarzschild:${e.facet}`) }))
   return {
     computed: facets.every((e) => e.on),

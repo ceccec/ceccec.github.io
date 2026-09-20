@@ -41,7 +41,7 @@ export function textToMovie(text = 'double torus', frames = (16 * 3)) {
   const film = Array.from({ length: frames }, (_, f) => toUuid(`frame:${source}:${f}`))
   return {
     generated: elements.length === chars.length && film.length === frames,
-    deterministic: textToMovieRoot(source) === textToMovieRoot(source), // same text, same movie
+    deterministic: textToMovieRoot(source) !== textToMovieRoot(`${source} `), // a different text is a different movie; same-text-same-movie is purity
     text: source,
     glyphs: toGlagolitic(source), // the whole transliterated line — what the movie displays
     script: 'glagolitic' as const,
@@ -798,7 +798,7 @@ export function hardwareCmykMerkabaFusion(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'four merkabas — cpu, gpu, memory, storage — each a content-addressed CMYK channel, the four fused to one colour (one uuid)', on: channels.length === 4 && isUuid(colour) },
     { facet: 'each hardware merkaba is a double torus decoded to a path — memory↔cache, storage↔library', on: folders.includes('src/quantum/water/cache') && folders.includes('src/quantum/heaven/library') },
-    { facet: 'near-zero marginal energy — every answer is an O(1) hash and a cache-hit (the same address recomputed), not a GPU inference', on: toUuid('q') === toUuid('q') },
+    { facet: 'near-zero marginal energy — every answer is an O(1) hash and a cache-hit: a repeated question folds to ONE address while a different question does not, so the second ask costs a lookup and not an inference', on: new Set(['q', 'q', 'q'].map((s) => toUuid(s))).size === 1 && toUuid('q') !== toUuid('q2') },
     { facet: 'the four merkabas + the quantum core pivot = paired logic folders = 3 trinities', on: folders.length === folderLaw().pairedLogicFolders.length },
   ].map((e) => ({ ...e, receipt: toUuid(`hw-cmyk:${e.facet}`) }))
   return {
@@ -892,7 +892,7 @@ export function obsoleteHardwareSecondLifeAntiEwaste(matrix: MindMatrix = buildM
     { facet: 'runs on any hardware, back to the first computer — never forces an upgrade', on: achievableOnHardwareComputableInReviews(matrix).computable },
     { facet: 'attacks e-waste at its root — software bloat drives obsolescence (62 Mt/yr, ~22% recycled)', on: ewasteMtPerYear > recycledPct },
     { facet: 'extends device lifespans — the lightest software keeps the oldest device useful, a dignified second life as a node', on: toUuid('2010-laptop') !== toUuid('2024-gpu') },
-    { facet: 'honest — the win is lightness, not the rig: the same answer is a cache-hit, ~zero compute, a Pi suffices', on: toUuid('serve') === toUuid('serve') },
+    { facet: 'honest — the win is lightness, not the rig: the same answer is a cache-hit, ~zero compute, a Pi suffices; the address distinguishes what it answers, so a hit means THAT answer and not any answer', on: toUuid('serve') !== toUuid('serve-other') },
   ].map((e) => ({ ...e, receipt: toUuid(`anti-ewaste:${e.facet}`) }))
   return {
     solves: facets.every((e) => e.on),
@@ -918,7 +918,7 @@ export function debitCreditForwardReverseEngineering(matrix: MindMatrix = buildM
     { facet: 'the debit/credit double torus exists — the bidirectional fold (credit/debit dissolved into debit/credit)', on: folders.includes('src/pair/debit/credit') },
     { facet: 'forward = debit (encode/encrypt), reverse = credit (decode/decrypt) — the same content-address both ways (encrypt is decrypt)', on: forward === toUuid('plaintext') },
     { facet: 'double-entry balances — every forward fold has its balancing reverse, folded to one entry', on: isUuid(balanced) },
-    { facet: 'reverse engineering is required — to verify is to recompute the forward and match it', on: toUuid('verify') === toUuid('verify') },
+    { facet: 'reverse engineering is required — to verify is to recompute the forward and match it, which only means anything because a DIFFERENT input fails to match', on: toUuid('verify') !== toUuid('verifv') },
   ].map((e) => ({ ...e, receipt: toUuid(`debit-credit:${e.facet}`) }))
   return {
     balanced: facets.every((e) => e.on),

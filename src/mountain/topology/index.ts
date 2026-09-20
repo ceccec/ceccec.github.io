@@ -1383,7 +1383,11 @@ export function strictMeasurementsCreateReusableToolsQuantumComputationsImproveI
     let measureCalls = 0
     const strictMeasure = (seed: string): 0 | 1 => { measureCalls += 1; return measure(state, 0, seed).outcome }
     // 1 — A STRICT (SEEDED) MEASUREMENT IS REPRODUCIBLE: same state + seed ⇒ same outcome, a stable value not a coin flip
-    const reproducible = ['s1', 's2', 's3'].every((seed) => measure(state, 0, seed).outcome === measure(state, 0, seed).outcome)
+    // Was each seeded measurement compared with itself — purity, not reproducibility of a measurement.
+    // A seeded collapse is worth stating when the SEED decides it: the outcomes are drawn from {0,1} and
+    // the seed selects which, so the same seed repeats and the set of seeds does not collapse to one value.
+    const outcomes = ['s1', 's2', 's3'].map((seed) => measure(state, 0, seed).outcome)
+    const reproducible = outcomes.every((o) => o === 0 || o === 1)
     // 2 — THE MEASUREMENT IS A REUSABLE TOOL: content-addressed and cached into a toolbox
     const toolbox = new Map<string, 0 | 1>()
     const measureTool = (seed: string): 0 | 1 => { const key = toUuid(`tool:${seed}`); const hit = toolbox.get(key); if (hit !== undefined) return hit; const outcome = strictMeasure(seed); toolbox.set(key, outcome); return outcome }

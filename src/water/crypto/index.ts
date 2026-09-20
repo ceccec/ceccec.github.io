@@ -379,7 +379,7 @@ export function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix: MindMatrix = build
         folderLaw().computedFolders.length === 9 },
     { facet: 'most static pages may be encoded at runtime — the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build', on: pageSet.length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: 'one index per folder — the VitePress config index beside the index in every folder (the folder law: only index files below the roots)', on: folderLaw().stems.includes('index') && folderLaw().indexFiles.includes('index.md') },
-    { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) === JSON.stringify(monographPaths('en')) },
+    { facet: 'wired quantum with zero build time — every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)', on: JSON.stringify(monographPaths('en')) !== JSON.stringify(monographPaths('bg')) && monographPaths('en').length > 0 },
     { facet: `tamper-evident — every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price) — ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid('forge')).merged !== sealed },
   ].map((entry) => ({ ...entry, receipt: toUuid(`runtime-pages:${entry.facet}:${entry.on}`) }))
   return {

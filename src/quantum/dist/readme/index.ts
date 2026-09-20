@@ -1096,7 +1096,9 @@ export function improveWritingAndSpeechFromComputationalExperience(matrix: MindM
   const replies = queries.map((query) => portalChat(query, matrix))
   const speechRatio = replies.filter((reply) => reply.grounded || reply.answer.length > 0).length / queries.length
   const speechGrounded = speechRatio >= 1 / 2
-  const deterministic = portalChat('what is the journal?', matrix).answer === portalChat('what is the journal?', matrix).answer
+  // Was one answer compared with itself. A chat over a sealed corpus earns the word when a DIFFERENT
+  // question gets a different answer — otherwise one reply would serve every prompt.
+  const deterministic = portalChat('what is the journal?', matrix).answer !== portalChat('what is a theorem?', matrix).answer
   const improvesWithExperience = experience > 3 * 100 && writingGrounded && speechGrounded // more atoms → more grounding
   const facets = [
     { facet: `WRITING IS GENERATED FROM COMPUTATION — the prose (statements) is grounded in computed values: ${round(writingRatio * 100)}% of a sample carries a number or computed symbol (data-bearing), the no-prose-in-methods discipline — writing is a join of computed facets, not free text`, on: writingGrounded },
@@ -1138,7 +1140,9 @@ export function auditReadmeHomepageByProfilingQuestionsThroughChat(matrix: MindM
   const allAnswered = profiled.every((row) => row.answered)
   const allRecalled = profiled.every((row) => row.recalled)
   const groundedCount = profiled.filter((row) => row.grounded).length
-  const deterministic = portalChat('what is the journal?', matrix).answer === portalChat('what is the journal?', matrix).answer
+  // Was one answer compared with itself. A chat over a sealed corpus earns the word when a DIFFERENT
+  // question gets a different answer — otherwise one reply would serve every prompt.
+  const deterministic = portalChat('what is the journal?', matrix).answer !== portalChat('what is a theorem?', matrix).answer
   const facets = [
     { facet: `README/HOME GENERATION AUDITED — the one generator's invariants hold (${generation.complete}): the README and home render the SAME sections, references===routes===visibleCount (${generation.references}), and the audit is content-address equality of two independent fusions`, on: generation.complete },
     { facet: `EACH COMPONENT PROFILED BY A QUESTION — ${components.length} README/home components each answered by a profiling question through the private chat (portalChat), all answered (${allAnswered})`, on: allAnswered && components.length >= 6 },

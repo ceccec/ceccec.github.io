@@ -409,7 +409,7 @@ export function glagoliticOcrReverseClosesRoundTrip(matrix: MindMatrix = buildMa
   const glyphs = new Set(Object.values(GLAGOLITIC_MAP))
   const facets = [
     { facet: 'the reverse of the encoder — the known glyph set maps back to source chars (closed-set)', on: glyphs.size >= (7 * 4) },
-    { facet: 'deterministic closed-set recognition — template matching, zero ML, the same answer every time', on: toUuid('match') === toUuid('match') },
+    { facet: 'deterministic closed-set recognition — template matching, zero ML, the same answer every time', on: toUuid('match') !== toUuid('mismatch') },
     { facet: 'closes the round-trip — forward (char→glyph) and reverse (glyph→char) are the debit/credit pair', on: debitCreditForwardReverseEngineering(matrix).balanced },
     { facet: 'honestly lossy reverse — more source chars than glyphs (Latin+Cyrillic share glyphs), the decode picks one', on: Object.keys(GLAGOLITIC_MAP).length > glyphs.size },
   ].map((e) => ({ ...e, receipt: toUuid(`glagolitic-ocr:${e.facet}`) }))

@@ -489,7 +489,13 @@ export function constantsCollapseToShortestName() {
   const value = 432 // e.g. the DIMENSION_GATES constant
   const names = ['DIMENSION_GATES', 'gates', 'g'] as const // aliases naming the SAME value
   const addressByValue = (v: number) => toUuid(`value:${v}`) // the address is the VALUE, name-independent
-  const allCollide = names.every(() => addressByValue(value) === addressByValue(value)) // every name → one address
+  // The callback took the name and discarded it, then compared one address with itself — so "every name →
+  // one address" was asserted by an expression that never saw a name. The fold is about a CONTRAST: keyed
+  // by value the aliases collapse to one address, keyed by name they would stay three. Both halves fail if
+  // the addressing changes.
+  const addressByName = (n: string) => toUuid(`name:${n}`)
+  const allCollide = new Set(names.map(() => addressByValue(value))).size === 1
+    && new Set(names.map(addressByName)).size === names.length // every name → one address, by value not by name
   const attractor = [...names].sort((a, b) => a.length - b.length)[0]! // shortest name is the attractor
   const longestName = [...names].sort((a, b) => b.length - a.length)[0]!
   const collapses = attractor.length < longestName.length
