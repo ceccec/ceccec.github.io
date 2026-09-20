@@ -994,8 +994,20 @@ export function overclaimByFormulas(axis: OverclaimAxis, statement: string, form
     (spec.claim as readonly string[]).some((marker) => sentence.includes(marker)) &&
     !(spec.deny as readonly string[]).some((marker) => sentence.includes(marker)))
   if (asserting.length === 0) return 0 // nothing asserts the claim without denying it in the same breath
-  const claimed = asserting.join(' ')
-  return (spec.terms as readonly string[]).filter((term) => claimed.includes(term)).length
+  // THE SUBJECT IS NAMED WHERE IT IS NAMED, NOT NECESSARILY WHERE IT IS CLAIMED.
+  //
+  // Counting terms only inside the asserting sentences was the first draft, and it was a second
+  // blindness traded for the first. Measured: "This corpus has solved the Riemann hypothesis; the
+  // millennium problem is solved." scored ZERO — the term sits in one clause and the assertion in the
+  // next, so neither sentence carried both and the clay axis went quiet on a naked Clay claim. The
+  // same held for ftl. Found by perturbing the REAL axes rather than a synthetic string, which is the
+  // only reason it did not ship.
+  //
+  // So: ASSERTION is sentence-scoped, because a denial standing beside a claim genuinely withdraws it.
+  // The TERM INVENTORY is text-wide, because prose names its subject once and refers to it after. A
+  // fold that never asserts still scores 0; a fold that asserts anywhere, undenied, is measured against
+  // everything it names.
+  return (spec.terms as readonly string[]).filter((term) => text.includes(term)).length
 }
 // HOMOLOGY_LOOPS is declared above the census, which now derives its band count from it.
 /** a432 derived, not declared: 432 = 3³·2⁴ — the trinity cubed (the 3·6·9 axis, 3×3×3) times the 4-bit

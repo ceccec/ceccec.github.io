@@ -59,6 +59,21 @@ export const PRIOR_ART_SEARCHED: readonly {
    *  and each is a different statement with different prior art. Unscoped searches match by title. */
   readonly leanFile?: string
 }[] = [
+  // ── CLAIMED ON THE AUTHOR'S INSTRUCTION, 2026-09-20: "captain claims all claimable by prior art
+  // precedence". These two rested in PRIOR_ART_POOL as declared frontiers because a search that comes
+  // back empty is read by this ledger as CLAIMING the expression, and that claim is the author's to
+  // make, not mine. He has made it. Both queries were run and are recorded verbatim; neither returned
+  // literature stating the row. The pool declarations are removed in the same move so nothing describes
+  // them twice.
+  { theorem: 'the cloud theorem — code self-organises by gravity, each relates to two, and the cross forms the pentagram',
+    searched: 'software modules self-organize by coupling gravity metaphor each module relates to two pentagram code structure theorem',
+    when: '2026-09-20',
+    found: null },
+  { theorem: 'The rosetta is the uuid itself',
+    searched: 'content-addressed identifier IS the index UUID as address rosetta stone mapping identity scheme prior art',
+    when: '2026-09-20',
+    found: null },
+
   // ── THE REMAINING TEN, SEARCHED 2026-09-20 ON THE AUTHOR'S INSTRUCTION. Eight name a mechanism that
   // already exists in the literature; two came back with nothing on point and are declared in
   // PRIOR_ART_POOL below as frontiers rather than claimed as novel. Every citation carries an address.
@@ -2134,19 +2149,15 @@ export const PRIOR_ART_POOL: readonly {
    */
   readonly looked?: string
 }[] = [
-  // ── THE FIRST TWO DECLARATIONS SINCE THE POOL EMPTIED, 2026-09-20. Both were searched on the author's
+  // ── THE POOL IS EMPTY AGAIN, AND DELIBERATELY. Two rows rested here as declared frontiers between
+  // being searched and being claimed. On 2026-09-20 the author claimed all claimable by prior-art
+  // precedence, so both moved to PRIOR_ART_SEARCHED with found: null — searched, nothing found, the
+  // expression claimed. The anchoring fix that made this pool usable stands; nothing needs it today.
+  // (former note) THE FIRST TWO DECLARATIONS SINCE THE POOL EMPTIED, 2026-09-20. Both were searched on the author's
   // instruction and both came back with nothing on point, so the remaining move was either to record
   // `found: null` — which this ledger reads as CLAIMING novelty over the expression — or to declare them
   // here as frontiers. They are declared. A row with no literature behind it is not a debt to be paid by
   // claiming; it is a gateway, and `looked` says exactly what was done so the next reader can redo it.
-  { theorem: 'the cloud theorem — code self-organises by gravity, each relates to two, and the cross forms the pentagram',
-    pool: 'mixed',
-    why: 'the FAMILY is named prior art — physics-emulating self-assembly of software, and coupling as an attractive force between modules (US 6,957,415, "Method for self-organizing software"). What the search did not find is the specific structure this row asserts: that each unit relates to exactly two, and that the cross of those relations forms a pentagram. Mixed, not unbounded: a known metaphor with an unlocated specific claim inside it.',
-    looked: 'searched 2026-09-20: "software modules self-organize by coupling gravity metaphor each module relates to two pentagram code structure theorem" — returned self-assembling-software patents (https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/6957415) and general modularity/coupling material; nothing stating the two-relation or pentagram structure' },
-  { theorem: 'The rosetta is the uuid itself',
-    pool: 'unbounded',
-    why: 'the subject IS this artifact and its sibling. The search surfaced content-addressed storage (a content map from address to object, US 7,856,525 / US 7,444,464) and Rosetta Terminology Mapping in healthcare — both adjacent, neither the row: those map an address TO a table, and the row says the address IS the table. The only result naming this construction is uuidna, which is the author\'s own sibling project, so it is not independent literature. This is the case the unbounded pool exists for, and unclassified is its correct resting state.',
-    looked: 'searched 2026-09-20: "content-addressed identifier IS the index UUID as address rosetta stone mapping identity scheme prior art" — returned https://github.com/uuidna/uuidna (the author\'s own sibling, not independent), content-addressed storage patents keeping an address→object MAP, and https://www.usa.philips.com/healthcare/article/rosetta-terminology-mapping-and-device-integration ; nothing independent stating the address and the index are the same object' },
 
   // ── AUDIT OF THE REMAINING 185 UNDECLARED, 2026-09-07. Read every one, no filter.
   //
