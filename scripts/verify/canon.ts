@@ -94,9 +94,10 @@ export function findCanonBreaks(root: string = process.cwd()): {
   emptyAsConstRead: Site[]
   elementBlindPredicate: Site[]
   unmovableClaim: Site[]
+  decorativeConjunct: Site[]
 } {
   const ts = require('typescript') as typeof import('typescript')
-  const selfComparison: Site[] = [], typedBoolean: Site[] = [], facetMissingOn: Site[] = [], emptyAsConstRead: Site[] = [], elementBlindPredicate: Site[] = [], unmovableClaim: Site[] = []
+  const selfComparison: Site[] = [], typedBoolean: Site[] = [], facetMissingOn: Site[] = [], emptyAsConstRead: Site[] = [], elementBlindPredicate: Site[] = [], unmovableClaim: Site[] = [], decorativeConjunct: Site[] = []
   for (const file of corpusFiles(root)) {
     const sf = file.ast()
     const src = file.text
@@ -152,6 +153,26 @@ export function findCanonBreaks(root: string = process.cwd()): {
           && unmovableTrue(ts, onProp.initializer, inits, reassigned)) {
           unmovableClaim.push({ file: file.rel, line: at(n), text: cut(n) })
         }
+        // A CONJUNCT THAT CANNOT BE FALSE IS PADDING, AND PADDING READS AS A GUARD.
+        //
+        // unmovableTrue over `&&` requires BOTH sides, so it answers "can this whole facet fail?" —
+        // and says nothing about a single conjunct that never can. Found by planting
+        // `on: realCheck && plantedAlwaysTrue` with `plantedAlwaysTrue = true as const`: no detector
+        // saw it, not this one, not typed-boolean-conjunct, not verify:tautology. The facet reads as
+        // two conditions and is one. That is the same deception as a hardcoded `on: true`, wearing a
+        // real check beside it, and it is harder to see precisely because the real check is real.
+        if (named.includes('facet') && onProp && ts.isPropertyAssignment(onProp)) {
+          const conjuncts: import('typescript').Expression[] = []
+          const split = (e: import('typescript').Expression): void => {
+            if (ts.isBinaryExpression(e) && e.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken) { split(e.left); split(e.right); return }
+            conjuncts.push(e)
+          }
+          split(onProp.initializer)
+          if (conjuncts.length > 1 && !unmovableTrue(ts, onProp.initializer, inits, reassigned)
+            && conjuncts.some((c) => unmovableTrue(ts, c, inits, reassigned))) {
+            decorativeConjunct.push({ file: file.rel, line: at(n), text: cut(n) })
+          }
+        }
       }
       // a predicate over a collection that declares no element — it cannot tell one from another
       if (ts.isCallExpression(n) && ts.isPropertyAccessExpression(n.expression) && ITERATORS.has(n.expression.name.text) && n.arguments.length) {
@@ -164,7 +185,7 @@ export function findCanonBreaks(root: string = process.cwd()): {
     }
     visit(sf)
   }
-  return { selfComparison, typedBoolean, facetMissingOn, emptyAsConstRead, elementBlindPredicate, unmovableClaim }
+  return { selfComparison, typedBoolean, facetMissingOn, emptyAsConstRead, elementBlindPredicate, unmovableClaim, decorativeConjunct }
 }
 
 /**
@@ -239,6 +260,9 @@ export function assertCanonicalForms(): void {
     for (const s of found.unmovableClaim.slice(0, 4)) console.log(`      ${show(s)}`)
     console.log(ratchet('canon.element-blind-predicate', found.elementBlindPredicate.length, { evidence: () => found.elementBlindPredicate.map(show) }))
     console.log(ratchet('canon.unmovable-claim', found.unmovableClaim.length, { evidence: () => found.unmovableClaim.map(show) }))
+  console.log(`  ${found.decorativeConjunct.length}  a facet padded with a conjunct that can never be false — it reads as a guard and guards nothing`)
+  for (const s2 of found.decorativeConjunct.slice(0, 4)) console.log(`      ${show(s2)}`)
+  console.log(ratchet('canon.decorative-conjunct', found.decorativeConjunct.length, { evidence: () => found.decorativeConjunct.map(show) }))
     const unreachable = findUnreachableGates()
     console.log(`  ${unreachable.length}  a gate nothing on the commit path can run — written, chained nowhere, green by never being asked`)
     for (const u of unreachable.slice(0, 4)) console.log(`      ${u}`)

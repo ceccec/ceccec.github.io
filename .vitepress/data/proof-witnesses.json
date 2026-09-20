@@ -1352,7 +1352,7 @@
  "THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input": {
   "form": "bars",
   "values": [
-   1789920000000,
+   1789930000000,
    41,
    21,
    85,

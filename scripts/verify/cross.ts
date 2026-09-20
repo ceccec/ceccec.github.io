@@ -20,7 +20,7 @@
  */
 import { readdirSync, readFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 /**
  * UNREAD HAS TWO CAUSES, AND THEY NEED OPPOSITE RESPONSES.
@@ -109,8 +109,10 @@ export function findParkedTheorems(root: string = process.cwd()): Parked[] {
 }
 
 export function assertTheoremsAreCrossed(): void {
-  const parked = findParkedTheorems()
-  console.log(`cross: ${parked.length} unreviewed · ${SELF_CONTAINED.length} read and judged self-contained · theorem fold(s) nothing reads — stated, proved, and consumed by no other fold`)
-  for (const p of parked.slice(0, 10)) console.log(`  ${p.file}  ${p.fold.slice(0, 78)}`)
-  console.log(ratchet('cross.parked-theorems', parked.length, { evidence: () => parked.map((p) => `${p.file}  ${p.fold}`) }))
+  everyRatchet(() => {
+    const parked = findParkedTheorems()
+    console.log(`cross: ${parked.length} unreviewed · ${SELF_CONTAINED.length} read and judged self-contained · theorem fold(s) nothing reads — stated, proved, and consumed by no other fold`)
+    for (const p of parked.slice(0, 10)) console.log(`  ${p.file}  ${p.fold.slice(0, 78)}`)
+    console.log(ratchet('cross.parked-theorems', parked.length, { evidence: () => parked.map((p) => `${p.file}  ${p.fold}`) }))
+  })
 }

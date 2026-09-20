@@ -22,7 +22,7 @@
  */
 
 import { createRequire } from 'node:module'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -83,41 +83,43 @@ export function measureBundle(path: string, root: string = process.cwd()): Bundl
 }
 
 export function assertPurity(): void {
-  const kernel = measureBundle('packages/kernel/index.mjs')
-  const core = measureBundle('packages/double-torus/dist/index.js')
+  everyRatchet(() => {
+    const kernel = measureBundle('packages/kernel/index.mjs')
+    const core = measureBundle('packages/double-torus/dist/index.js')
 
-  // THE KERNEL IS THE CLAIM. "Deterministic, zero-egress, zero runtime dependency" — every one of
-  // these must be zero, with no allowance, because the root package ships nothing else.
-  if (!kernel) {
-    console.log('packages/kernel not built — NOT MEASURED, no claim made')
-  } else {
-    const breaches = Object.entries(kernel.counts).filter(([, n]) => n > 0)
-    console.log(`kernel: ${breaches.length === 0 ? 'pure' : 'IMPURE'} — ${Object.entries(kernel.counts).map(([k, n]) => `${k}=${n}`).join(' · ')}`)
-    if (breaches.length) throw new Error(`packages/kernel is published as "Deterministic, zero-egress" and contains: ${breaches.map(([k, n]) => `${k}×${n}`).join(', ')}`)
-  }
+    // THE KERNEL IS THE CLAIM. "Deterministic, zero-egress, zero runtime dependency" — every one of
+    // these must be zero, with no allowance, because the root package ships nothing else.
+    if (!kernel) {
+      console.log('packages/kernel not built — NOT MEASURED, no claim made')
+    } else {
+      const breaches = Object.entries(kernel.counts).filter(([, n]) => n > 0)
+      console.log(`kernel: ${breaches.length === 0 ? 'pure' : 'IMPURE'} — ${Object.entries(kernel.counts).map(([k, n]) => `${k}=${n}`).join(' · ')}`)
+      if (breaches.length) throw new Error(`packages/kernel is published as "Deterministic, zero-egress" and contains: ${breaches.map(([k, n]) => `${k}×${n}`).join(', ')}`)
+    }
 
-  if (!core) {
-    console.log('packages/double-torus/dist not built — NOT MEASURED, no claim made')
-    return
-  }
-  // The core bundles the whole corpus, so it carries the ONE named egress point deliberately.
-  // Nondeterminism is not allowed at all; egress is allowed exactly once and must stay countable.
-  const EGRESS_ALLOWED = 1
-  console.log(`core:   ${Object.entries(core.counts).map(([k, n]) => `${k}=${n}`).join(' · ')}`)
-  // THIRTY-FOUR FABRICATED MEASUREMENTS, RATCHETED RATHER THAN BLOCKED, because they are a debt this
-  // wave found rather than made and a red gate helps nobody pay it. What they are, sampled:
-  //   prices: Array.from({ length: 100 }, () => Math.random() * 1000)   fake market data, returned as data
-  //   cpu_percent: 50 + Math.random() * 30                              invented resource metrics
-  //   console.log(`✓ Performance benchmarks (avg +${Math.random()*20+10|0}%)`)   a printed number nobody measured
-  //   const success = Math.random() > 0.1                               "verification" of build, tests and types
-  // The last two are the class this repository exists to refuse — a function that answers instead of
-  // refusing — and they are shipped in a package whose description begins "Deterministic".
-  console.log(ratchet('purity.core-nondeterminism', core.counts['Math.random']!, { evidence: () => [`Math.random×${core.counts['Math.random']} in the published core bundle — a package whose description begins "Deterministic". The bundle is built, not read from source, so the line numbers are in the artefact; grep the core bundle for Math.random to place them`] }))
-  if (core.counts['fetch']! > EGRESS_ALLOWED) {
-    throw new Error(`${core.counts['fetch']} fetch call(s) in the core bundle, ${EGRESS_ALLOWED} allowed — every egress point must be named in fromPublicData or counted here`)
-  }
-  for (const forbidden of ['XMLHttpRequest', 'WebSocket', 'eval', 'node: import'] as const) {
-    if (core.counts[forbidden]! > 0) throw new Error(`${forbidden}×${core.counts[forbidden]} in the core bundle — it is published as self-contained and platform-neutral`)
-  }
-  console.log(`  nondeterminism ${core.counts['Math.random']} (ratcheted, may only fall) · ${core.counts['fetch']}/${EGRESS_ALLOWED} egress · no external import`)
+    if (!core) {
+      console.log('packages/double-torus/dist not built — NOT MEASURED, no claim made')
+      return
+    }
+    // The core bundles the whole corpus, so it carries the ONE named egress point deliberately.
+    // Nondeterminism is not allowed at all; egress is allowed exactly once and must stay countable.
+    const EGRESS_ALLOWED = 1
+    console.log(`core:   ${Object.entries(core.counts).map(([k, n]) => `${k}=${n}`).join(' · ')}`)
+    // THIRTY-FOUR FABRICATED MEASUREMENTS, RATCHETED RATHER THAN BLOCKED, because they are a debt this
+    // wave found rather than made and a red gate helps nobody pay it. What they are, sampled:
+    //   prices: Array.from({ length: 100 }, () => Math.random() * 1000)   fake market data, returned as data
+    //   cpu_percent: 50 + Math.random() * 30                              invented resource metrics
+    //   console.log(`✓ Performance benchmarks (avg +${Math.random()*20+10|0}%)`)   a printed number nobody measured
+    //   const success = Math.random() > 0.1                               "verification" of build, tests and types
+    // The last two are the class this repository exists to refuse — a function that answers instead of
+    // refusing — and they are shipped in a package whose description begins "Deterministic".
+    console.log(ratchet('purity.core-nondeterminism', core.counts['Math.random']!, { evidence: () => [`Math.random×${core.counts['Math.random']} in the published core bundle — a package whose description begins "Deterministic". The bundle is built, not read from source, so the line numbers are in the artefact; grep the core bundle for Math.random to place them`] }))
+    if (core.counts['fetch']! > EGRESS_ALLOWED) {
+      throw new Error(`${core.counts['fetch']} fetch call(s) in the core bundle, ${EGRESS_ALLOWED} allowed — every egress point must be named in fromPublicData or counted here`)
+    }
+    for (const forbidden of ['XMLHttpRequest', 'WebSocket', 'eval', 'node: import'] as const) {
+      if (core.counts[forbidden]! > 0) throw new Error(`${forbidden}×${core.counts[forbidden]} in the core bundle — it is published as self-contained and platform-neutral`)
+    }
+    console.log(`  nondeterminism ${core.counts['Math.random']} (ratcheted, may only fall) · ${core.counts['fetch']}/${EGRESS_ALLOWED} egress · no external import`)
+  })
 }

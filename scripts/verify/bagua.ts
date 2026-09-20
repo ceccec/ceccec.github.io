@@ -28,7 +28,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { BAGUA_ELEMENTS } from '../../src/quantum/index.ts'
 import { EIGHT_FOLD_SCIENCES } from '../../src/8/2/index.ts'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 /** The eight trigram names, from the sealed fold -- never retyped here. */
 const EIGHT = EIGHT_FOLD_SCIENCES as readonly string[]
@@ -94,29 +94,31 @@ export function auditBagua(root: string = process.cwd()): BaguaAudit {
 }
 
 export function assertBaguaNamesRealFolders(): void {
-  const a = auditBagua()
-  console.log(`bagua vocabulary (derived from the sealed eight): ${a.vocabulary.join(' - ')}`)
-  console.log(`  dissolved and excluded: ${a.dissolved.join(' - ') || 'none'}`)
-  console.log(`  parallel tables still spelling it by hand: ${a.parallelTables}`)
+  everyRatchet(() => {
+    const a = auditBagua()
+    console.log(`bagua vocabulary (derived from the sealed eight): ${a.vocabulary.join(' - ')}`)
+    console.log(`  dissolved and excluded: ${a.dissolved.join(' - ') || 'none'}`)
+    console.log(`  parallel tables still spelling it by hand: ${a.parallelTables}`)
 
-  if (a.phantom.length) {
-    throw new Error(
-      `bagua vocabulary names ${a.phantom.length} folder(s) that do not exist: ${a.phantom.join(', ')}. ` +
-      `A ray pointing at a missing directory files work nowhere -- this is how 'lake' survived its own dissolution.`
-    )
-  }
-  if (a.missing.length) {
-    throw new Error(
-      `${a.missing.length} trigram folder(s) exist on disk but are absent from the vocabulary: ${a.missing.join(', ')}. ` +
-      `Add them to the derivation or record why they are excluded.`
-    )
-  }
-  if (a.resurrected.length) {
-    throw new Error(
-      `${a.resurrected.join(', ')} is excluded as dissolved but exists on disk again -- the exclusion has expired ` +
-      `and the derivation in src/quantum/index.ts must stop filtering it out.`
-    )
-  }
-  console.log(ratchet('bagua.parallel-tables', a.parallelTables, { evidence: () => parallelBaguaTables().map((t) => String(t)) }))
-  console.log('bagua -- every ray names a folder that exists')
+    if (a.phantom.length) {
+      throw new Error(
+        `bagua vocabulary names ${a.phantom.length} folder(s) that do not exist: ${a.phantom.join(', ')}. ` +
+        `A ray pointing at a missing directory files work nowhere -- this is how 'lake' survived its own dissolution.`
+      )
+    }
+    if (a.missing.length) {
+      throw new Error(
+        `${a.missing.length} trigram folder(s) exist on disk but are absent from the vocabulary: ${a.missing.join(', ')}. ` +
+        `Add them to the derivation or record why they are excluded.`
+      )
+    }
+    if (a.resurrected.length) {
+      throw new Error(
+        `${a.resurrected.join(', ')} is excluded as dissolved but exists on disk again -- the exclusion has expired ` +
+        `and the derivation in src/quantum/index.ts must stop filtering it out.`
+      )
+    }
+    console.log(ratchet('bagua.parallel-tables', a.parallelTables, { evidence: () => parallelBaguaTables().map((t) => String(t)) }))
+    console.log('bagua -- every ray names a folder that exists')
+  })
 }

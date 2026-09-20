@@ -18,7 +18,7 @@
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 /** Directory names never walked. Matched as SEGMENTS, not substrings: this repository
  *  is named "ceccec.github.io", which CONTAINS ".git" — a substring test would exclude
@@ -116,8 +116,10 @@ export function findUnresolvedImports(root: string = process.cwd()): Unresolved[
  *  site still renders. */
 
 export function assertImportsResolve(): void {
-  const bad = findUnresolvedImports()
-  for (const b of bad.slice(0, 20)) console.log(`  ${b.file}:${b.line}  ->  ${b.spec}`)
-  console.log(ratchet('imports.unresolved', bad.length, { evidence: () => bad.map((b) => `${b.file}:${b.line}  ->  ${b.spec}`) }))
-  if (bad.length > 20) console.log(`  ...and ${bad.length - 20} more`)
+  everyRatchet(() => {
+    const bad = findUnresolvedImports()
+    for (const b of bad.slice(0, 20)) console.log(`  ${b.file}:${b.line}  ->  ${b.spec}`)
+    console.log(ratchet('imports.unresolved', bad.length, { evidence: () => bad.map((b) => `${b.file}:${b.line}  ->  ${b.spec}`) }))
+    if (bad.length > 20) console.log(`  ...and ${bad.length - 20} more`)
+  })
 }

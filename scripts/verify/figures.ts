@@ -31,7 +31,7 @@
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 const ROOT = process.cwd()
 const PAGES = join(ROOT, '.vitepress', 'pages')
@@ -95,25 +95,27 @@ export function stampResolves(fig: Figure, root: string = ROOT): boolean {
 }
 
 export function assertPageFiguresAreStamped(): void {
-  console.log('\n=== PAGE FIGURES — a number typed into a page is a claim nothing recomputes ===')
-  if (!existsSync(PAGES)) {
-    console.log('  NOT MEASURED — .vitepress/pages does not exist. That is not zero figures.\n')
-    return
-  }
-  const figures = findPageFigures()
-  const stamped = figures.filter((f) => f.stampedFrom)
-  const broken = stamped.filter((f) => !stampResolves(f))
-  const unstamped = figures.filter((f) => !f.stampedFrom)
+  everyRatchet(() => {
+    console.log('\n=== PAGE FIGURES — a number typed into a page is a claim nothing recomputes ===')
+    if (!existsSync(PAGES)) {
+      console.log('  NOT MEASURED — .vitepress/pages does not exist. That is not zero figures.\n')
+      return
+    }
+    const figures = findPageFigures()
+    const stamped = figures.filter((f) => f.stampedFrom)
+    const broken = stamped.filter((f) => !stampResolves(f))
+    const unstamped = figures.filter((f) => !f.stampedFrom)
 
-  console.log(`  ${figures.length} claim-shaped figure(s) across the published pages`)
-  console.log(`  ${stamped.length} stamped with a source · ${unstamped.length} typed, traceable to nothing`)
-  for (const f of unstamped) console.log(`    ${f.file}:${f.line}  ${f.value}  ${f.text}`)
+    console.log(`  ${figures.length} claim-shaped figure(s) across the published pages`)
+    console.log(`  ${stamped.length} stamped with a source · ${unstamped.length} typed, traceable to nothing`)
+    for (const f of unstamped) console.log(`    ${f.file}:${f.line}  ${f.value}  ${f.text}`)
 
-  // A BROKEN STAMP IS A VIOLATION, NOT A FLOOR. Unstamped figures are debt that predates the gate;
-  // a stamp that no longer resolves is a page actively citing a source that contradicts it.
-  if (broken.length > 0) {
-    for (const f of broken) console.log(`    STALE  ${f.file}:${f.line}  states ${f.value}, cites ${f.stampedFrom}, which no longer contains it`)
-    throw new Error(`${broken.length} stamped figure(s) no longer match their source: ${broken.map((f) => `${f.file}:${f.line} (${f.value} from ${f.stampedFrom})`).join(', ')}`)
-  }
-  console.log(`  ${ratchet('pages.unstamped-figures', unstamped.length, { evidence: () => unstamped.map((f) => `${f.file}:${f.line}  ${f.value}  ${f.text}`) })}\n`)
+    // A BROKEN STAMP IS A VIOLATION, NOT A FLOOR. Unstamped figures are debt that predates the gate;
+    // a stamp that no longer resolves is a page actively citing a source that contradicts it.
+    if (broken.length > 0) {
+      for (const f of broken) console.log(`    STALE  ${f.file}:${f.line}  states ${f.value}, cites ${f.stampedFrom}, which no longer contains it`)
+      throw new Error(`${broken.length} stamped figure(s) no longer match their source: ${broken.map((f) => `${f.file}:${f.line} (${f.value} from ${f.stampedFrom})`).join(', ')}`)
+    }
+    console.log(`  ${ratchet('pages.unstamped-figures', unstamped.length, { evidence: () => unstamped.map((f) => `${f.file}:${f.line}  ${f.value}  ${f.text}`) })}\n`)
+  })
 }

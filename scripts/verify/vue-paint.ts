@@ -16,7 +16,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { scanVueForHardcoded } from '../../src/earth/architecture/index.ts'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 export function findVuePaintLiterals(root: string = process.cwd()): string[] {
   const files: string[] = []
@@ -46,16 +46,18 @@ export function findVuePaintLiterals(root: string = process.cwd()): string[] {
  * SAME file about the SAME thing — whether a component's paint comes off the ladder. It is one surface.
  */
 export function assertVuePaintDerived(): void {
-  const found = findVuePaintLiterals()
-  const byFile = new Map<string, number>()
-  for (const f of found) { const k = f.split('  ')[0]!; byFile.set(k, (byFile.get(k) ?? 0) + 1) }
-  console.log(`values in .vue <style> + canvas paint that no ladder derives — ${found.length} across ${byFile.size} component(s)`)
-  for (const [file, n] of [...byFile].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`  ${String(n).padStart(4)}  ${file}`)
-  const motion = found.filter((f) => /animation|transition|keyframe|cubic-bezier|fillStyle|strokeStyle|shadowColor|ctx\.font/i.test(f))
-  console.log(`  of those, in MOTION or PAINT declarations: ${motion.length}`)
-  for (const m of motion.slice(0, 6)) console.log(`      ${m.slice(0, 116)}`)
-  console.log(ratchet('vue.undreived-paint', found.length, { evidence: () => found }))
-  assertNoPhantomTokens() // one surface: a value off the ladder, and a token the ladder never defined
+  everyRatchet(() => {
+    const found = findVuePaintLiterals()
+    const byFile = new Map<string, number>()
+    for (const f of found) { const k = f.split('  ')[0]!; byFile.set(k, (byFile.get(k) ?? 0) + 1) }
+    console.log(`values in .vue <style> + canvas paint that no ladder derives — ${found.length} across ${byFile.size} component(s)`)
+    for (const [file, n] of [...byFile].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`  ${String(n).padStart(4)}  ${file}`)
+    const motion = found.filter((f) => /animation|transition|keyframe|cubic-bezier|fillStyle|strokeStyle|shadowColor|ctx\.font/i.test(f))
+    console.log(`  of those, in MOTION or PAINT declarations: ${motion.length}`)
+    for (const m of motion.slice(0, 6)) console.log(`      ${m.slice(0, 116)}`)
+    console.log(ratchet('vue.undreived-paint', found.length, { evidence: () => found }))
+    assertNoPhantomTokens() // one surface: a value off the ladder, and a token the ladder never defined
+  })
 }
 
 /**

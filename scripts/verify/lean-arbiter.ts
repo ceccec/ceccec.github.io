@@ -26,7 +26,7 @@
 import { execFileSync } from 'node:child_process'
 import { readFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 import { A432_FOLDED, DIMENSION_GATES, EULER_CHI, DIGIT_LATTICE, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS, fibonacci } from '../../src/3/7/index.ts'
 
 const CORPUS = 'src/pair/lean/proofs/corpus.lean'
@@ -203,50 +203,52 @@ export function measuredIndexCount(root: string = process.cwd()): number {
 }
 
 export function assertLeanArbitrates(): void {
-  let available = true
-  try { execFileSync('lean', ['--version'], { stdio: 'pipe' }) } catch { available = false }
+  everyRatchet(() => {
+    let available = true
+    try { execFileSync('lean', ['--version'], { stdio: 'pipe' }) } catch { available = false }
 
-  if (!available) {
-    console.log('lean not on PATH — the arbiter is NOT MEASURED in this environment, no claim made')
-  } else {
-    const pinned = leanPinnedFacts()
-    console.log(`lean arbitrates: ${PROBES.map((p) => `${p.name}=${pinned[p.name]}`).join(' · ')}`)
-    const off = constantDisagreements()
-    if (off.length) {
-      throw new Error(`${off.length} constant(s) disagree with the kernel — Lean decides:\n  ${off.join('\n  ')}`)
-    }
-    console.log(`  ${PROBES.length}/${PROBES.length} TypeScript constants agree with the Lean definition the kernel evaluates for them`)
-    // 432 IS NOT A CENSUS QUANTITY. Stated here so the gate carries the category, not just the count.
-    console.log(`  no theorem pins 108 or 432 — 4 × FOLDED_CENSUS = ${4 * FOLDED_CENSUS}, and 432 is HOMOLOGY_LOOPS × A432_FOLDED, an axiom times a theorem`)
+    if (!available) {
+      console.log('lean not on PATH — the arbiter is NOT MEASURED in this environment, no claim made')
+    } else {
+      const pinned = leanPinnedFacts()
+      console.log(`lean arbitrates: ${PROBES.map((p) => `${p.name}=${pinned[p.name]}`).join(' · ')}`)
+      const off = constantDisagreements()
+      if (off.length) {
+        throw new Error(`${off.length} constant(s) disagree with the kernel — Lean decides:\n  ${off.join('\n  ')}`)
+      }
+      console.log(`  ${PROBES.length}/${PROBES.length} TypeScript constants agree with the Lean definition the kernel evaluates for them`)
+      // 432 IS NOT A CENSUS QUANTITY. Stated here so the gate carries the category, not just the count.
+      console.log(`  no theorem pins 108 or 432 — 4 × FOLDED_CENSUS = ${4 * FOLDED_CENSUS}, and 432 is HOMOLOGY_LOOPS × A432_FOLDED, an axiom times a theorem`)
 
-    // THE CATEGORY, CHECKED, NOT JUST NARRATED. 432 is the a432 octave times the Betti rank,
-    // and it is NOT four folded censuses — the second clause is what went silently false when
-    // the band ladder gained its fourth band, taking the fractal clock's rung count with it.
-    if (DIMENSION_GATES !== HOMOLOGY_LOOPS * A432_FOLDED) {
-      throw new Error(`DIMENSION_GATES ${DIMENSION_GATES} is not HOMOLOGY_LOOPS × A432_FOLDED (${HOMOLOGY_LOOPS} × ${A432_FOLDED})`)
+      // THE CATEGORY, CHECKED, NOT JUST NARRATED. 432 is the a432 octave times the Betti rank,
+      // and it is NOT four folded censuses — the second clause is what went silently false when
+      // the band ladder gained its fourth band, taking the fractal clock's rung count with it.
+      if (DIMENSION_GATES !== HOMOLOGY_LOOPS * A432_FOLDED) {
+        throw new Error(`DIMENSION_GATES ${DIMENSION_GATES} is not HOMOLOGY_LOOPS × A432_FOLDED (${HOMOLOGY_LOOPS} × ${A432_FOLDED})`)
+      }
+      if (DIMENSION_GATES === HOMOLOGY_LOOPS * FOLDED_CENSUS) {
+        throw new Error(`the a432 gate and the corpus fold have collided again — 432 must not be readable as ${HOMOLOGY_LOOPS} × FOLDED_CENSUS`)
+      }
+      const head = leanRecordedHead()
+      const measured = measuredIndexCount()
+      if (head !== measured) {
+        throw new Error(`the descent record has rotted: ${DESCENT} records ${head} at its head, the tree holds ${measured} index.ts — prepend the measurement`)
+      }
+      console.log(`  descent record head ${head} = measured ${measured} index.ts · ${measured - UNFOLDED_CENSUS} above the target`)
     }
-    if (DIMENSION_GATES === HOMOLOGY_LOOPS * FOLDED_CENSUS) {
-      throw new Error(`the a432 gate and the corpus fold have collided again — 432 must not be readable as ${HOMOLOGY_LOOPS} × FOLDED_CENSUS`)
-    }
-    const head = leanRecordedHead()
-    const measured = measuredIndexCount()
-    if (head !== measured) {
-      throw new Error(`the descent record has rotted: ${DESCENT} records ${head} at its head, the tree holds ${measured} index.ts — prepend the measurement`)
-    }
-    console.log(`  descent record head ${head} = measured ${measured} index.ts · ${measured - UNFOLDED_CENSUS} above the target`)
-  }
 
-  const calls = censusCallSites()
-  if (calls.length) {
-    throw new Error(`${calls.length} census call site(s) pass a count the kernel does not pin (UNFOLDED_CENSUS = ${UNFOLDED_CENSUS}):\n  ${calls.map((c) => `${c.file}:${c.line}  ${c.text}`).join('\n  ')}`)
-  }
-  console.log(`  every harmonicBands/foldedCensus call site reads the derived census, none a literal`)
+    const calls = censusCallSites()
+    if (calls.length) {
+      throw new Error(`${calls.length} census call site(s) pass a count the kernel does not pin (UNFOLDED_CENSUS = ${UNFOLDED_CENSUS}):\n  ${calls.map((c) => `${c.file}:${c.line}  ${c.text}`).join('\n  ')}`)
+    }
+    console.log(`  every harmonicBands/foldedCensus call site reads the derived census, none a literal`)
 
-  const rows = censusContradictions()
-  const byFile = new Map<string, number>()
-  for (const r of rows) byFile.set(r.file, (byFile.get(r.file) ?? 0) + 1)
-  for (const [file, count] of [...byFile.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12)) {
-    console.log(`    ${String(count).padStart(4)}  ${file}`)
-  }
-  console.log(ratchet('lean-arbiter.census-contradictions', rows.length, { evidence: () => rows.map((r) => `${r.file}  ${JSON.stringify(r).slice(0, 160)}`) }))
+    const rows = censusContradictions()
+    const byFile = new Map<string, number>()
+    for (const r of rows) byFile.set(r.file, (byFile.get(r.file) ?? 0) + 1)
+    for (const [file, count] of [...byFile.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12)) {
+      console.log(`    ${String(count).padStart(4)}  ${file}`)
+    }
+    console.log(ratchet('lean-arbiter.census-contradictions', rows.length, { evidence: () => rows.map((r) => `${r.file}  ${JSON.stringify(r).slice(0, 160)}`) }))
+  })
 }

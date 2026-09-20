@@ -29,7 +29,7 @@
 import { createRequire } from 'node:module'
 import { readFileSync } from 'node:fs'
 import { corpusFiles } from './corpus.ts'
-import { ratchet } from './status.ts'
+import { ratchet, everyRatchet } from './status.ts'
 
 /** The vocabulary that turns a number into a claim about the world. */
 const MEASUREMENT_WORDS = /[✓✔✗×]|\bpassing\b|\bpassed\b|\bbenchmark|\bmeasured\b|\bverified\b|\bsuccess\b|\baccuracy\b|\buptime\b|%\)|\bavg\b|\blatency\b|\bthroughput\b/i
@@ -154,11 +154,13 @@ export function fabrications(root: string = process.cwd()): Fabrication[] {
 }
 
 export function assertNoNewFabrications(): void {
-  const rows = fabrications()
-  console.log(`invented measurements: ${rows.length}`)
-  const byFile = new Map<string, number>()
-  for (const r of rows) byFile.set(r.file, (byFile.get(r.file) ?? 0) + 1)
-  for (const [f, n] of [...byFile.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`  ${String(n).padStart(4)}  ${f}`)
-  for (const r of rows.slice(0, 6)) console.log(`     ${r.file}:${r.line}  ${r.why}\n        ${r.text}`)
-  console.log(ratchet('fabrication.invented-measurements', rows.length, { evidence: () => rows.map((r) => `${r.file}:${r.line}  ${r.why}  ${r.text}`) }))
+  everyRatchet(() => {
+    const rows = fabrications()
+    console.log(`invented measurements: ${rows.length}`)
+    const byFile = new Map<string, number>()
+    for (const r of rows) byFile.set(r.file, (byFile.get(r.file) ?? 0) + 1)
+    for (const [f, n] of [...byFile.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)) console.log(`  ${String(n).padStart(4)}  ${f}`)
+    for (const r of rows.slice(0, 6)) console.log(`     ${r.file}:${r.line}  ${r.why}\n        ${r.text}`)
+    console.log(ratchet('fabrication.invented-measurements', rows.length, { evidence: () => rows.map((r) => `${r.file}:${r.line}  ${r.why}  ${r.text}`) }))
+  })
 }
