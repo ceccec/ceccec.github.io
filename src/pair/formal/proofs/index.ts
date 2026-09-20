@@ -1409,4 +1409,12 @@ export const LEAN_SEALED_REGISTRY: readonly { readonly theorem: string; readonly
   { theorem: "Fermat number F₅ is composite", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["fermat_five_is_composite"], scope: 'exact' },
   { theorem: "Schur number S(2) = 4", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["schur_two_is_four"], scope: 'exact' },
   { theorem: "Catalan parity = Mersenne", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["catalan_parity_is_mersenne"], scope: 'instances' },
+  // SEALED 2026-09-20. The six theorems were already in registry.lean and decided this row's content; nothing
+  // linked them, so the row counted as unsealed while its own boundary claimed the kernel decided it. The fold
+  // checks the moduli to 81 and the kernel decides them to 47, so the scope is instances, not exact.
+  { theorem: "\u2124/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["z_doubling_orbit_lies_in_the_units_on_odd_moduli", "z_order_of_two_divides_the_unit_count_on_odd_moduli", "z_two_is_no_unit_on_even_moduli", "z_reflection_is_an_involution_and_partitions", "z_fibonacci_period_returns_and_is_even_beyond_two", "z_nine_orbit_is_the_vortex_sequence"], scope: 'instances' },
+  // SEALED 2026-09-20. corpus.lean already decided this row: rebuild 2^n \u2212 1 against receipt n at four
+  // rungs INCLUDING n = 1, where there is no advantage, and the widening gap cross-multiplied so no division
+  // enters the statement. Nothing linked it either.
+  { theorem: "hexbit receipt beats rebuild", leanFile: "src/pair/lean/proofs/corpus.lean", theorems: ["hexbit_receipt_beats_rebuild", "hexbit_advantage_widens"], scope: 'instances' },
 ] as const
