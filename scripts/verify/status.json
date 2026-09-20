@@ -59,5 +59,6 @@
   "tautology.self-proving": 9,
   "titles.algebra-gaps": 0,
   "titles.divergent": 0,
-  "vue.undreived-paint": 0
+  "vue.undreived-paint": 0,
+  "zenodo.metadata-drift": 0
 }

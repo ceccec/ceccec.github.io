@@ -67,7 +67,11 @@ untracked=$(git ls-files --others --exclude-standard | grep -vxF -f <(printf '%s
 # refused. It was written for exactly this and wired to nothing — the runner that fixes the `&&`
 # short-circuit sat unreachable while landings ran eight gates. Re-deriving the chain here would be a
 # second roster; there is one, and it lives in verify:all.
-gates=(check:types verify:stream)
+# GUARD FIRST, CHAIN SECOND. uuidna's guard lessons state it as a law and this session paid to learn
+# it: three separate ten-minute verify:stream runs ended on the same two-second error, a new script in
+# package.json left untracked. `guard` checks that every script package.json names exists, is tracked
+# and bundles — 3.4s — so the cheap class never costs the expensive run again.
+gates=(guard check:types verify:stream)
 grep -qE '^\.vitepress/|^src/ui/' <<<"$changed" && gates+=(docs:build)
 gates+=(${EXTRA[@]+"${EXTRA[@]}"})
 mkdir -p "$LOGS"
