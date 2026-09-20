@@ -2092,7 +2092,6 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       { facet: `alternatingOmega — ±ω alternates on N·E·S·W`, on: alternatingOmega },
       { facet: `navigationForecastResidualNamed — navigation·forecasts NOT fake-closed · measured navigationForecastResidualNamed=${navigationForecastResidualNamed}`, on: navigationForecastResidualNamed },
       { facet: `compose soft geo/torus=${softGeoTorus ? 1 : 0} · pyramid/seal=${softPyramidSeal ? 1 : 0} · merkaba · bothEarths`, on: softGeoTorus && softPyramidSeal && merkabaCounterRotate && bothEarthsShells },
-      { facet: `honesty — qpuRequired=${qpuRequired}`, on: qpuRequired === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`earth-realised-poles-pyramid:${entry.facet.slice(0, 72)}:${entry.on}`) }))
     const sealed = sealFacets('earth-realised-by-computing-poles-as-pyramid', facets)
     const coreSeven =

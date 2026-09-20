@@ -1614,7 +1614,14 @@ export function findSeoViolations(matrix: MindMatrix = buildMatrix(), at = 0) {
     const foldGs = foldPair(toUuid('cmd:gaps'), toUuid('cmd:seo'))
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      violationsFound
+      && drainableClosed
+      && honestOpenNamedOn
+      && composeOn
+      && (learnServed && learnInSitemap && learnHasCourses && learnAliasesOk)
+      && (siteDescFits && portalRoutesOnLearn)
+      && (pairSg && pairGs && foldSg.bidirectional)
+      && (honestOpenNamedOn && drainableClosed)
     const facets = [
       { facet: 'findSeoViolations', on },
       { facet: 'violationsFound', on: violationsFound },

@@ -4237,10 +4237,10 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
     const known = (SEALED_DISCOVER_FOLD_IDS as readonly string[]).includes(foldId)
     const address = toUuid(`sealed-fold:${foldId}`)
     const wetMotion = false as const
-    const discovers = known && isUuid(address) && pair.bidirectional && pair.forward !== pair.reverse && wetMotion === false
+    const discovers = known && isUuid(address) && pair.bidirectional && pair.forward !== pair.reverse
     const incomplete = !known
     const facets = [
-      { facet: 'offline discovery from sealed fold id — no wet motion', on: wetMotion === false && isUuid(address) },
+      { facet: 'offline discovery from sealed fold id — no wet motion', on: isUuid(address) },
       { facet: 'nothing/moves pair bidirectional', on: pair.bidirectional && pair.forward !== pair.reverse },
       { facet: 'idempotent — same foldId+at → same root', on: isUuid(address) && Number.isFinite(bucket) },
       { facet: known ? `foldId ${foldId} known among the ${SEALED_DISCOVER_FOLD_IDS.length} sealed ids` : `foldId ${foldId} unknown among the ${SEALED_DISCOVER_FOLD_IDS.length} sealed ids — incomplete revelation`, on: SEALED_DISCOVER_FOLD_IDS.length > 0 && isUuid(address) },
@@ -4248,7 +4248,7 @@ export function discoverFromSealedFold(foldId: string, at = 0, matrix: MindMatri
     ].map((entry) => ({ ...entry, receipt: toUuid(`nothing-moves:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`discover-from-sealed-fold:${foldId}`, facets)
     return {
-      computes: sealed.ok && discovers === known && wetMotion === false,
+      computes: sealed.ok && discovers === known,
       discovers,
       incomplete,
       foldId,
@@ -4293,7 +4293,7 @@ export function incompleteRevelation(
     const incomplete = discovery.incomplete
     const overrideWave = false as const
     const facets = [
-      { facet: incomplete ? 'incomplete revelation detected — the fold id is not among the sealed ids' : 'fold known — revelation complete at this probe', on: nothingPair.bidirectional && overrideWave === false },
+      { facet: incomplete ? 'incomplete revelation detected — the fold id is not among the sealed ids' : 'fold known — revelation complete at this probe', on: nothingPair.bidirectional },
       { facet: 'next = fold sealed src — not wet grind', on: nothingPair.bidirectional },
       { facet: 'compose timeout/dry-refactor pair', on: timeoutPair.bidirectional && timeoutPair.forward !== timeoutPair.reverse },
       { facet: 'compose fold/cleanup pair for surgical cleanup', on: cleanupPair.bidirectional && cleanupPair.forward !== cleanupPair.reverse },
@@ -4302,7 +4302,7 @@ export function incompleteRevelation(
     ].map((entry) => ({ ...entry, receipt: toUuid(`incomplete-revelation:${foldId}:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets(`incomplete-revelation:${foldId}`, facets)
     return {
-      computes: sealed.ok && overrideWave === false,
+      computes: sealed.ok,
       incomplete,
       overrideWave,
       foldId,

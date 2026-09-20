@@ -711,7 +711,7 @@ export function doubleTorusQuantumComputer(matrix: MindMatrix = buildMatrix()) {
     const runsOnClassical64Bit = true as const
     const isTheQuantumComputer =
       shapeIsComputer && completelyOn && algebraicOn && uiOn && carrierOn &&
-      circuitComputes && measurementCollapses && pairQc.bidirectional && qpuRequired === false && runsOnClassical64Bit
+      circuitComputes && measurementCollapses && pairQc.bidirectional && runsOnClassical64Bit
     const facets = [
       { facet: `SHAPE ≡ COMPUTER — quantumDoubleTorus.is (${shapeIsComputer}): genus-2 machine = 128-bit QC (qubits·register·folds·receipt)`, on: shapeIsComputer },
       { facet: `COMPLETELY QUANTUM SUBSTRATE — doubleTorusIsCompletelyQuantum (${completelyOn}) · dynamics·clock·10D·palette`, on: completelyOn },
@@ -814,7 +814,13 @@ export function fuseErrorHandlingInQuantumComputerAndTheImpossibleBecomesPossibl
     const pairImpossiblePossible = foldPair(toUuid('cmd:impossible'), toUuid('cmd:possible'))
     const qpuRequired = false as const
     const computes =
-      qpuRequired === false
+      tipOk
+      && errorHandlingFused
+      && inQuantumComputer
+      && wallsStayClosed
+      && impossibleBecomesPossible
+      && law
+      && (pairFuseError.bidirectional && pairErrorHandle.bidirectional && pairImpossiblePossible.bidirectional)
     const facets = [
       { facet: `TIP — fuse error handling in quantum computer · the impossible becomes possible (${tipOk})`, on: tipOk },
       { facet: `ERROR HANDLING FUSED — soft fail/zero · invert/seq · self/heal · timeout/dry · fuse/error · mcp/fusion · developmentIsFusionReactor (${errorHandlingFused})`, on: errorHandlingFused },

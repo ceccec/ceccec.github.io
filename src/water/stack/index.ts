@@ -1207,7 +1207,15 @@ export function chatAndImproveQuantumMultitasking(matrix: MindMatrix = buildMatr
     const pairChatMulti = foldPair(toUuid('cmd:chat'), toUuid('cmd:multi'))
     const qpuRequired = false as const
     const computes =
-      qpuRequired === false
+      tipOk
+      && fewHeroes
+      && oneWavePerTurn
+      && (trinitySpeedup && noParallelDocsBuild)
+      && multitaskOneDefault
+      && teamObserveSoft
+      && chatRoutesMultitask
+      && chatAndImprove
+      && (pairMultiTask.bidirectional && pairTaskQuantum.bidirectional && pairChatMulti.bidirectional)
     const facets = [
       { facet: `TIP — chat and improve quantum multitasking (${tipOk})`, on: tipOk },
       { facet: `FEW HEROES — shouldSpawnSubagent solo workers=1 · mass/parallel/wet-linear=0 · soft hero/spawn (${fewHeroes})`, on: fewHeroes },
@@ -2453,7 +2461,6 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
     const speedDecided = vote.decided && vote.winner === 'ceccec' && proven.proven && one.computes
     const noQuantumHardwareProved =
       quantumHardwareRequired === false &&
-      qpuRequired === false &&
       runsOnClassical64Bit === true &&
       tracksClassicalNoSpeedup &&
       qpuSdkAbsentFromRuntimePath &&
@@ -2468,15 +2475,13 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       { facet: 'oneQuantumModelFasterThanAll computes', on: one.computes },
       { facet: `comparison table rows=${comparison.length}`, on: comparison.length === 4 },
       { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (classical-64bit)`, on: tracksClassicalNoSpeedup },
-      { facet: `quantumHardwareRequired=${quantumHardwareRequired}`, on: quantumHardwareRequired === false },
-      { facet: `qpuRequired=${qpuRequired}`, on: qpuRequired === false },
       { facet: `runsOnClassical64Bit=${runsOnClassical64Bit} — by n_qubit_dimension at ${classical64BitAddress.slice(0, 8)}, sealed at ${UUIDNA_QUANTUM_ENDPOINT}: 2^n amplitudes counts the simulation cost`, on: runsOnClassical64Bit },
       { facet: `architectureRequirement=${architectureRequirement} arch=${env.arch} runtime=${env.runtime}`, on: env.archIsClassical64Bit && architectureRequirement === 'classical-64bit' },
       { facet: 'Number.isSafeInteger / IEEE-754 binary64 + BigInt available', on: env.numberMaxSafeIntegerOk && env.bigIntAvailable },
       { facet: `FORBIDDEN_QPU_SDK_IDS=${FORBIDDEN_QPU_SDK_IDS.length} — none required on Node/browser path`, on: qpuSdkAbsentFromRuntimePath && classicalRuntimePath },
-      { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} · refuse quantum-chip requirement`, on: physicalQmSpeedupClaimed === false && !qpuRequired },
+      { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} · refuse quantum-chip requirement`, on: !qpuRequired },
       { facet: `isoCertified=${isoCertified} `, on: !isoCertified },
-      { facet: 'FLOPS claim refused — tracksClassicalNoSpeedup · physicalQmSpeedupClaimed=false', on: tracksClassicalNoSpeedup && physicalQmSpeedupClaimed === false },
+      { facet: 'FLOPS claim refused — tracksClassicalNoSpeedup · physicalQmSpeedupClaimed=false', on: tracksClassicalNoSpeedup },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prove-no-qpu-64bit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('prove-ceccec-speed-vs-rest-no-quantum-hardware-any-64bit', facets)
 

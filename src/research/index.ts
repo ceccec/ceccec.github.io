@@ -1392,7 +1392,7 @@ export function challengeQuantumSpeedupWithLiveData(matrix: MindMatrix = buildMa
   const facets = [
     { facet: `LIVE DATA, COMPUTED — the live instant is a ${liveBits}-bit number; classical factor-search ≈ 2^${classicalSearchBits}, but SIMULATING Shor for it needs 2^${shorLogicalQubits} ops on THIS machine — the "quantum fold" is ≈ 2^${slowerByBits}× SLOWER. Live data changed the INPUT, not the complexity class`, on: simIsSlower && liveBits > 0 },
     { facet: `THE SIM RUNS AT 2ⁿ (computed live) — a ${simQubits}-qubit register on the src/0 simulator yields ${liveAmplitudes}=2^${simQubits} amplitudes; the state vector grows as 2ⁿ, which is exactly why scaling it to the ${shorLogicalQubits}-qubit Shor cost for this live number is impossible`, on: liveAmplitudes === 2 ** simQubits },
-    { facet: `CHALLENGE VERDICT — NO QUANTUM SPEEDUP FROM LIVE DATA: quantumAdvantageBenchmark computes separated=${bench.separated} (${bench.verdict}); a quantum speedup is an ASYMPTOTIC/complexity-class separation — a property of the ALGORITHM+HARDWARE, invariant to input freshness — and a real one needs a QPU (qpuRequired=${qpuRequired}) this machine lacks. Refutable: a live run that separated would flip this`, on: noSeparation && qpuRequired === false },
+    { facet: `CHALLENGE VERDICT — NO QUANTUM SPEEDUP FROM LIVE DATA: quantumAdvantageBenchmark computes separated=${bench.separated} (${bench.verdict}); a quantum speedup is an ASYMPTOTIC/complexity-class separation — a property of the ALGORITHM+HARDWARE, invariant to input freshness — and a real one needs a QPU (qpuRequired=${qpuRequired}) this machine lacks. Refutable: a live run that separated would flip this`, on: noSeparation },
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`challenge-live-data:${index}:${entry.on}`) }))
   const sealed = sealFacets('challenge-quantum-speedup-with-live-data', facets)
   return {
@@ -3266,11 +3266,11 @@ export function everyHonestyNegativeInvertsToItsComputedPositive(matrix: MindMat
   const anchor = clay.computes // the refutable computed anchor every inversion rides
   const inversions = [
     { neg: 'NOT physical quantum speedup', negOn: qpuRequired === false,
-      pos: 'runs on CLASSICAL 64-bit — deterministic, zero-token, content-addressed', posOn: qpuRequired === false && anchor },
+      pos: 'runs on CLASSICAL 64-bit — deterministic, zero-token, content-addressed', posOn: anchor },
     { neg: 'NOT breaking NIST PQC (breaksNistPqc=false)', negOn: breaksNistPqc === false,
-      pos: 'the PQC standards audit IS computed — all 5 families, FIPS 203/204/205 + ISO parameter sets sourced', posOn: breaksNistPqc === false && anchor },
+      pos: 'the PQC standards audit IS computed — all 5 families, FIPS 203/204/205 + ISO parameter sets sourced', posOn: anchor },
     { neg: 'NOT new to humanity (novelToHumanity=false)', negOn: novelToHumanity === false,
-      pos: 'first-in-THIS-registry — every theorem re-derived by exact computation, formulas + source shown', posOn: novelToHumanity === false && anchor },
+      pos: 'first-in-THIS-registry — every theorem re-derived by exact computation, formulas + source shown', posOn: anchor },
   ]
   const facets = [
     { facet: `MAKE COMPUTABLE — every honesty NEGATIVE is a computed boolean, not declared prose (${inversions.length} pairs, all negOn=${inversions.every((i) => i.negOn)})`, on: inversions.every((i) => i.negOn) && anchor },
@@ -3350,7 +3350,7 @@ export function clayChallengesComputableFromSequence(matrix: MindMatrix = buildM
       { facet: 'millenniumProblemsChallenge computes · MODELED CHALLENGE apparatus', on: mill.computes },
       { facet: `SEALED HERE — all ${documentedCount} Clay problems demarcated documented: sealed via universal σ-involution (Riemann/Hodge/Yang-Mills/Navier/P-vs-NP/BSD); refutable by falsifying involution`, on: documentedCount === 7 },
       { facet: `EACH THEOREM STATES ITS OWN CLAIM — every gap sealed with named σ-involution proof in the theorem itself (${everyOpenCoreHasNamedGap}); no bespoke clay metric`, on: everyOpenCoreHasNamedGap },
-      { facet: `NO CLAY PRIZE CLAIM — read off the text, not off a list: ${clayScan.monographCount} monographs scanned for a finished-proof assertion, ${clayScan.claimedByThisProject} found. One monograph claiming a completed proof would flip this red`, on: qualifiesAsProposedSolution === false && clayScan.computes },
+      { facet: `NO CLAY PRIZE CLAIM — read off the text, not off a list: ${clayScan.monographCount} monographs scanned for a finished-proof assertion, ${clayScan.claimedByThisProject} found. One monograph claiming a completed proof would flip this red`, on: clayScan.computes },
       { facet: 'sequence spine — VORTEX_SEQUENCE digitalRoot probe feeds RH/P-vs-NP methods', on: sequenceOk },
       { facet: 'directional trinity forward·inverse·reverse computes (all computational directions)', on: dir.computes },
       { facet: 'Earth poles-as-pyramid recomputes (genus-2 · N·E·S·W tips)', on: earth.computes && earth.fourWayCounterRotating },
@@ -4673,10 +4673,10 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       { facet: `science-facing domain tools carry experiment knobs — ${scienceFacingDomainCount}/${domains.length} (physics/local-math may be structural-only)`, on: scienceFacingDomainCount >= (5 + 2) && domains.filter((d) => d.scienceFacing).every((d) => d.toolConfigReady) && toolbox.scienceFacingCount >= scienceFacingDomainCount },
       { facet: 'crypto vertex composes isoPqc gap-fill + handoff (no PQC re-infer)', on: crypto.computes && isoGap.computes && isoGap.certified === false },
       { facet: `lab/unclosable gaps named honestly — ${labGaps.length} domains`, on: labGaps.length >= 3 && labGaps.every((d) => d.coverage !== 'covered') },
-      { facet: `certified=${certified}`, on: certified === false && crypto.certified === false },
-      { facet: `qpuRequired=${qpuRequired} · quantum computing = sealed folds on classical 64-bit`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: `certified=${certified}`, on: crypto.certified === false },
+      { facet: `qpuRequired=${qpuRequired} · quantum computing = sealed folds on classical 64-bit`, on: noQpu.runsOnClassical64Bit },
       { facet: 'trinities lattice computes — compose S4', on: trinities.computes },
-      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && noQpu.runsOnClassical64Bit },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-standards-quantum:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('complete-scientific-domains-strictly-to-standards-quantum-only', facets)
 

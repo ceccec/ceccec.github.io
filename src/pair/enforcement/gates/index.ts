@@ -1034,7 +1034,7 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
     united.computational.indexCount + EULER_CHI === FOLDED_CENSUS
   // Byte size is never HARD when gravity pulls at gates — fileSize remains warn ratchet only.
   const byteSizeHard = false as const
-  const noByteSizeLimitWhenGravityAtGates = gravityPullsAtGates && byteSizeHard === false
+  const noByteSizeLimitWhenGravityAtGates = gravityPullsAtGates
   const on =
     noByteSizeLimitWhenGravityAtGates &&
     censusCountLaw &&
@@ -1055,7 +1055,7 @@ export function noSizeLimitsAsLongAsGravityPullsAtTheGates(root: string = enforc
     { facet: 'compose src/index only-index law', on: indexLaw.onlyIndex },
     { facet: 'compose full/freedom · mission:gate', on: foldFreedom.bidirectional && foldMission.bidirectional },
     { facet: `census 123 count law (not byte cap) indexCount=${united.computational.indexCount}`, on: censusCountLaw },
-    { facet: 'byteSizeHard=false when gravity at gates', on: byteSizeHard === false && gravityPullsAtGates },
+    { facet: 'byteSizeHard=false when gravity at gates', on: gravityPullsAtGates },
     { facet: 'pair size/free · gravity/gate', on: sizeFreePaired && gravityGatePaired },
   ].map((entry) => ({ ...entry, receipt: toUuid(`size-free:${entry.facet}:${entry.on}`) }))
   const computes = facets.every((e) => e.on) && on

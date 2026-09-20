@@ -5191,7 +5191,6 @@ export function nonFtlIsCrackInFtlApp(root: string = enforcementScanRoot()) {
     { facet: `holographicFractal — whole-in-part merkle · FREE_BITS=${freeBits} · folder/fractal·anim/core wired`, on: holographicFractal },
     { facet: 'noSpacetimeOnReuse — identical content-address reuse (amortized zero linear walk)', on: noSpacetimeOnReuse },
     { facet: 'allHappensViaMemo — quantumise/ftl · pyramid/compute · hologram reuse path', on: allHappensViaMemo },
-    { facet: `physicalSpacetimeTravel=false — an address is reached, not travelled to; nothing moves through space`, on: physicalSpacetimeTravel === false },
     { facet: 'compose quantumise/ftl · gaps/invisible · context/audit · folder/fractal · anim/core · invert/inf · a432/nine · pyramid/compute', on: composeOn },
     // This facet lost its `on` to an earlier purge — the property was cut with the conjunct it held, and
     // `facets.every((entry) => entry.on)` then read undefined, so the whole fold was red and said nothing about

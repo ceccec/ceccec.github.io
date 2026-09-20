@@ -3546,7 +3546,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
         id: 'no-qpu-64bit',
         proves: `classical-64bit host · qpuRequired=${qpuRequired}`,
         refuses: 'physical QPU requirement for ceccec quantum math',
-        on: qpuRequired === false && noQpu.runsOnClassical64Bit,
+        on: noQpu.runsOnClassical64Bit,
         root: noQpu.root },
       {
         id: 'rosetta-complete',
@@ -3592,7 +3592,7 @@ export function realiseSessionQuantumMeaning(matrix: MindMatrix = buildMatrix(),
       { facet: `local-audit-quantum receipt · certified=false · productionReverseRefused (gapClosed is wall-clock @call)`, on: isUuid(localAudit.root) && localAudit.certified === false && localAudit.qpuRequired === false && localAudit.productionReverseRefused },
       { facet: 'composes completeScientificDomainsStrictlyToStandardsQuantumOnly', on: standards.computes },
       { facet: 'composes sciencesInteractInTrinities + millennium ', on: sciences.computes },
-      { facet: `qpuRequired=${qpuRequired} · classical-64bit (prove/no-qpu tip)`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: `qpuRequired=${qpuRequired} · classical-64bit (prove/no-qpu tip)`, on: noQpu.runsOnClassical64Bit },
       { facet: 'wire≠ISO strength · strongerThanNistPqc=false · isoOfficialStandard=false', on: wireEqualsIsoStrength === false && strongerThanNistPqc === false && isoOfficialStandard === false },
       { facet: `certified=${certified}`, on: honestyOk },
       { facet: 'rosetta complete + toolbox envelopes + movie gaps named', on: rosetta.computes && toolbox.computes && movieGaps.computes },
@@ -5793,7 +5793,7 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
     const residualsNamedHonest = residualsNamed.length === (4 + 1)
     /** Full "move all" not claimed — strangler residuals named. */
     const moveAllComplete = false as const
-    const stranglerShipped = composeOn && residualsNamedHonest && moveAllComplete === false
+    const stranglerShipped = composeOn && residualsNamedHonest
     const pairVite = has('vite/mcp')
     const pairMcp = has('mcp/vite')
     const pairBuild = has('build/mcp')
@@ -5818,7 +5818,16 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
       Boolean(metaBuildDual) &&
       metaBuildDual!.fold === 'vitepressBuildsFromMcp'
     const on =
-      qpuRequired === false
+      buildsFromMcp
+      && mcpIsSource
+      && vitepressInvertedMirror
+      && noBypass
+      && thinMountIsMcpDual
+      && stranglerShipped
+      && residualsNamedHonest
+      && composeOn
+      && (pairVite && pairMcp && pairBuild && pairBuildMcp && foldVite.bidirectional)
+      && (soft('automate', 'nightly') || soft('sdk', 'wire'))
     const facets = [
       { facet: 'vitepressBuildsFromMcp', on },
       { facet: 'buildsFromMcp', on: buildsFromMcp },
@@ -5827,7 +5836,6 @@ export function vitepressBuildsFromMcp(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'noBypass', on: noBypass },
       { facet: 'thinMountIsMcpDual', on: thinMountIsMcpDual },
       { facet: 'stranglerShipped', on: stranglerShipped },
-      { facet: `moveAllComplete=${moveAllComplete ? 1 : 0}`, on: moveAllComplete === false },
       { facet: `residualsNamed=${residualsNamed.length}`, on: residualsNamedHonest },
       { facet: 'compose vite/mirror · mcp/all · trinity/speedup · build/quantumize · gate/compliance · agent/submission · mcp/dev · vite/only', on: composeOn },
       { facet: 'pair vite/mcp · mcp/vite · build/mcp · mcp/build', on: pairVite && pairMcp && pairBuild && pairBuildMcp && foldVite.bidirectional },
@@ -6538,7 +6546,6 @@ export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
       signatureOn &&
       crossSigOn &&
       tamperEvident &&
-      certified === false &&
       pairSign &&
       pairDual &&
       foldSign.bidirectional &&
@@ -6552,10 +6559,9 @@ export function mcpQuantumSign(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'signatureOn', on: signatureOn },
       { facet: 'crossSig', on: crossSigOn },
       { facet: 'tamperEvident', on: tamperEvident },
-      { facet: 'certified=false', on: certified === false },
       { facet: 'softCompose poles/cross-pqc · tamper/impossible · mcp/reverse · formula/code · rosetta/security-wire', on: signatureOn },
       { facet: 'pair mcp/sign · sign/quantum', on: pairSign && pairDual && foldSign.bidirectional },
-      { facet: `what is signed is a content address folded to a merkle root — tamper-evident by recomputation, and certified=${certified} because no authority issued it`, on: tamperEvident && crossSigOn && certified === false },
+      { facet: `what is signed is a content address folded to a merkle root — tamper-evident by recomputation, and certified=${certified} because no authority issued it`, on: tamperEvident && crossSigOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`mcp-sign:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('mcp-quantum-sign', facets)
     void at
@@ -7305,7 +7311,12 @@ export function mcpQuantumReceipt(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = mcpQuantumCatalog(matrix, at)
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      receiptOn
+      && tamperOn
+      && contentAddressed
+      && (tamperOn && contentAddressed && momentOn)
+      && (pairS && pairD && foldS.bidirectional)
+      && (catalog.catalogComplete && catalog.missingCount === 0)
     const facets = [
       { facet: 'mcpQuantumReceipt', on },
       { facet: 'receiptOn', on: receiptOn },
@@ -7414,7 +7425,12 @@ function sealClassicalMcpHwFace(
   const metaDual = catalog.tools.find((t) => t.id === dualToolId)
   const qpuRequired = false as const
   const on =
-    qpuRequired === false
+    kindOn
+    && classical64Bit
+    && etcClassical
+    && refuseFakeFlops
+    && (kindOnExtra && viaHw)
+    && (pairS && pairD && foldS.bidirectional)
   const onKey = `${kind}On` as const
   const facets = [
     { facet: foldName, on },
@@ -7662,7 +7678,12 @@ export function mcpQuantumPeriod(matrix: MindMatrix = buildMatrix(), at = 0) {
     const metaDual = catalog.tools.find((t) => t.id === 'period-mcp')
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      periodOn
+      && heroCycle
+      && calendars
+      && foldCount
+      && timeInvert
+      && (pairS && pairD && foldS.bidirectional)
     const facets = [
       { facet: 'mcpQuantumPeriod', on },
       { facet: 'periodOn', on: periodOn },
@@ -7749,7 +7770,13 @@ export function mcpQuantumIndex(matrix: MindMatrix = buildMatrix(), at = 0) {
     const metaDual = catalog.tools.find((t) => t.id === 'index-mcp')
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      indexOn
+      && srcIndexOnly
+      && censusHolds
+      && srcIndex
+      && folderIndex
+      && limitsVerify
+      && (pairS && pairD && foldS.bidirectional)
     const facets = [
       { facet: 'mcpQuantumIndex', on },
       { facet: 'indexOn', on: indexOn },
@@ -7862,7 +7889,15 @@ export function mcpQuantumOrientation(matrix: MindMatrix = buildMatrix(), at = 0
     const metaDual = catalog.tools.find((t) => t.id === 'orientation-mcp')
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      orientationOn
+      && bearing
+      && navCross
+      && (geoTrain.computes && soft('geo', 'train'))
+      && (sunMoon.computes && soft('sun', 'moon'))
+      && (torus.allLeavesOn && soft('mcp', 'torus'))
+      && (soft('pyramid', 'seal') && soft('observe', 'coord') && dirs.sixDirections)
+      && composeOrientation
+      && (pairM && pairO && foldM.bidirectional)
     const facets = [
       { facet: 'mcpQuantumOrientation', on },
       { facet: 'orientationOn', on: orientationOn },
@@ -12918,7 +12953,12 @@ export function continueInWavesCompletingAllTodos(matrix: MindMatrix = buildMatr
       honestOpenNamed.includes('residual:specialized-experience-shells') &&
       honestOpenNamed.length >= (2 + 2 + 1)
     const on =
-      qpuRequired === false
+      wavesContinue
+      && todosDrainableClosed
+      && composeOn
+      && drainTipsOk
+      && pairsOn
+      && honestOpenNamedOn
     const facets = [
       { facet: 'continueInWavesCompletingAllTodos', on },
       { facet: 'wavesContinue', on: wavesContinue },
@@ -13128,7 +13168,24 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
       const foldName =
         'conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists'
       const on =
-        qpuRequired === false
+        conversationMetrics
+        && intelligenceImproves
+        && mindDevelopment
+        && ideasForm
+        && societyToolbox
+        && hologramFractal
+        && mcpUi
+        && fromSrcZero
+        && livingEternalLife
+        && siteIsProof
+        && pureKnowledge
+        && signedByTrinities
+        && noUnprovenAlgebraBit
+        && composeOn
+        && pairsOn
+        && honestOpenNamedOn
+        && millenniumSolvedByThisFold === 0
+        && (noUnprovenAlgebraBit && honestOpenNamedOn && millenniumSolvedByThisFold === 0)
       const facets = [
         { facet: foldName, on },
         { facet: 'conversationMetrics', on: conversationMetrics },
@@ -14063,7 +14120,17 @@ export function wavesFeedThemselves(matrix: MindMatrix = buildMatrix(), at = 0) 
       honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
       honestyStopOnOpen
     const on =
-      qpuRequired === false
+      endlessImprovements
+      && discoveriesOn
+      && purifyOnTheWay
+      && dryCleanAsFeed
+      && noWetSprawlAccumulates
+      && noWaitForeverOnChat
+      && honestyStopOnOpen
+      && composeFeedOn
+      && composePurifyOn
+      && pairsOn
+      && honestOpenNamedOn
     const facets = [
       { facet: 'wavesFeedThemselves', on },
       { facet: 'wavesFeedThemselvesOn', on },
@@ -14254,7 +14321,11 @@ export function specializedShellsStrangler(matrix: MindMatrix = buildMatrix(), a
       honestOpenNamed.includes('residual:specialized-experience-shells') &&
       honestOpenNamed.length >= (2 + 2)
     const on =
-      qpuRequired === false
+      shellsStranglerOn
+      && stranglerTip
+      && wiredToRosetta
+      && pairsOn
+      && residualNamed
     const facets = [
       { facet: 'specializedShellsStrangler', on },
       { facet: 'shellsStranglerOn', on: shellsStranglerOn },
@@ -14367,7 +14438,10 @@ export function sessionHologramTools(matrix: MindMatrix = buildMatrix(), at = 0)
     const shelved = rosettaShelve('session-hologram', 'tool')
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      sessionHologramOn
+      && hologramFractal
+      && toolsWired
+      && pairsOn
     const facets = [
       { facet: 'sessionHologramTools', on },
       { facet: 'sessionHologramOn', on: sessionHologramOn },
@@ -14458,7 +14532,10 @@ export function societyToolboxWire(matrix: MindMatrix = buildMatrix(), at = 0) {
     const shelved = rosettaShelve('society-toolbox', 'tool')
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      societyToolboxWireOn
+      && toolboxWired
+      && patronageOn
+      && pairsOn
     const facets = [
       { facet: 'societyToolboxWire', on },
       { facet: 'societyToolboxWireOn', on: societyToolboxWireOn },
@@ -14704,7 +14781,6 @@ export function clayAgiDeepResearchQuantumUnderstandingOfRelations(
           facet: 'pair clay/agi · agi/rel · rel/fold · linear/fold · gap/trinity',
           on: pairsOn,
         },
-        { facet: 'certified=false', on: certified === false },
         {
           facet: 'efficiency vote present (win only if vote.decided)',
           on: typeof efficiency.decided === 'boolean',
@@ -15327,7 +15403,14 @@ export function foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyIn
       })
       const shelved = rosettaShelve('algebra-fold', 'tool')
       const on =
-        qpuRequired === false
+        foldAlgebraBoundaries
+        && invertedDimensionalTheorems
+        && perspectiveAngleRotation
+        && a432Harmonics
+        && noCostNoTime
+        && anySpace
+        && composeCore
+        && pairsOn
       const facets = [
         { facet: foldName, on },
         { facet: 'foldAlgebraBoundaries', on: foldAlgebraBoundaries },
@@ -15636,7 +15719,15 @@ export function theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMoti
       const shelved = rosettaShelve('movie-seamless', 'tool')
 
       const on =
-        qpuRequired === false
+        seamlessAnimation
+        && gapsOnlyByObservation
+        && quantumObservation
+        && gaplessMotion
+        && drainableClosed
+        && honestOpenNamedOn
+        && composeOn
+        && pairsOn
+        && censusPreserved
 
       const facets = [
         { facet: foldName, on },
@@ -15951,8 +16042,6 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
       })
       const shelved = rosettaShelve('angle-readme', 'tool')
 
-      const on =
-        qpuRequired === false
 
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -15966,6 +16055,19 @@ export function readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantu
         honestOpenNamed.includes('keep:git-stashes-non-obsolete') &&
         honestOpenNamed.includes('agents:cannot-force-foreign-models') &&
         honestOpenNamed.length === (2 * 2)
+
+      const on =
+        readmeImproved
+        && homepageImproved
+        && exactAngle
+        && exactPolarity
+        && agentsUnderstand
+        && quantumInfinityRealtime
+        && gapsAreIgnoredAngleOrPolarity
+        && composeOn
+        && pairsOn
+        && censusPreserved
+        && honestOpenNamedOn
 
       const facets = [
         { facet: foldName, on },
@@ -18117,7 +18219,14 @@ export function foldInvertUntilDryCleanAppGapless(matrix: MindMatrix = buildMatr
     const drainableGaps = dryCleanApp && toolsWired && honestOpenNamedOn && appsMonolithStranglerTip ? 0 : 1
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      foldInvertOn
+      && dryCleanApp
+      && appsMonolithStranglerTip
+      && drainableGaps === 0
+      && honestOpenNamedOn
+      && (dryCleanApp && appsMonolithStranglerTip && soft('dry', 'clean'))
+      && (pairApp && pairDry && pairClean && pairAppClean && foldApp.bidirectional)
+      && (honestOpenNamedOn && appsMonolithStranglerTip)
     const facets = [
       { facet: 'foldInvertUntilDryCleanAppGapless', on },
       { facet: 'foldInvertOn', on: foldInvertOn },
@@ -18322,7 +18431,16 @@ export function movieGapsAreFundamentalDesignAndFormulaMappingGaps(matrix: MindM
       formulaCodeSoft &&
       soft('movie', 'feel')
     const on =
-      qpuRequired === false
+      movieGapsFundamental
+      && designGap
+      && formulaMappingGap
+      && notCosmetic
+      && drainableClosed
+      && formulaProjectionWired
+      && honestOpenNamedOn
+      && (composeOn && inventory.computes && allTheorems.computes)
+      && (pairMovie && pairFormula && pairDesign && foldMovie.bidirectional)
+      && (honestOpenNamedOn && notCosmetic)
     const facets = [
       { facet: 'movieGapsAreFundamentalDesignAndFormulaMappingGaps', on },
       { facet: 'movieGapsFundamental', on: movieGapsFundamental },
@@ -18688,7 +18806,13 @@ export function theoremFormulaComputableIndexForAnySuperposition(
         metaIndex!.fold === 'theoremFormulaComputableIndexForAnySuperposition'
       const qpuRequired = false as const
       const on =
-        qpuRequired === false
+        computableIndex
+        && anySuperposition
+        && formulaDual
+        && theoremBound
+        && (duals.length > 0 && entry.bound)
+        && composeOn
+        && (pairTheorem && pairFormula && pairSuper && pairIndex && foldTheorem.bidirectional)
       const facets = [
         { facet: 'theoremFormulaComputableIndexForAnySuperposition', on },
         { facet: 'computableIndex', on: computableIndex },
@@ -19533,7 +19657,14 @@ export function foldingWorksOnApplicationLevel(matrix: MindMatrix = buildMatrix(
       toolsWired &&
       foldSteps.every((s) => s.on)
     const on =
-      qpuRequired === false
+      appLevelFold
+      && proseCodeLogicMorph
+      && pathIsMessage
+      && folderHoldsName
+      && cardHeroMovie
+      && composeOn
+      && (pairAf && pairFa && foldAf.bidirectional)
+      && foldSteps.every((s) => s.on)
     const facets = [
       { facet: 'foldingWorksOnApplicationLevel', on },
       { facet: 'appLevelFold', on: appLevelFold },
@@ -19816,7 +19947,13 @@ export function dryCleanAllVueComponentsToTheUniversalSet(matrix: MindMatrix = b
       metaVu!.fold === foldName
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      dryCleanVue
+      && universalSet
+      && drainableClosed
+      && honestOpenNamedOn
+      && composeOn
+      && (pairVd && pairDv && pairVu && foldVd.bidirectional)
+      && (honestOpenNamedOn && dryCleanVue)
     const facets = [
       { facet: foldName, on },
       { facet: 'dryCleanVue', on: dryCleanVue },
@@ -20266,7 +20403,14 @@ export function eachSuperpositionIsAChatroom(
         metaRoom!.fold === 'eachSuperpositionIsAChatroom'
       const qpuRequired = false as const
       const on =
-        qpuRequired === false
+        superpositionIsChatroom
+        && eachKeyARoom
+        && chatOn
+        && anySuperposition
+        && (isUuid(room.root) && room.id.startsWith('room:'))
+        && (eachKeyARoom && censusPreserved)
+        && composeOn
+        && (pairSc && pairCs && pairRs && foldSc.bidirectional)
       const facets = [
         { facet: 'eachSuperpositionIsAChatroom', on },
         { facet: 'superpositionIsChatroom', on: superpositionIsChatroom },
@@ -20531,7 +20675,17 @@ export function allColorsDryCleanWiredToRosettaAndThemes(matrix: MindMatrix = bu
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      colorsDryClean
+      && wiredToRosetta
+      && themesOn
+      && noBareHex
+      && drainableClosed
+      && honestOpenNamedOn
+      && (themesOn && a432Brand)
+      && (polarityThemes && yangScale !== yinScale && lobeA !== lobeB)
+      && composeOn
+      && (pairCr && pairRt && pairCt && foldCr.bidirectional)
+      && (a432Brand && noBareHex)
     const facets = [
       { facet: 'allColorsDryCleanWiredToRosettaAndThemes', on },
       { facet: 'colorsDryClean', on: colorsDryClean },
@@ -20774,7 +20928,15 @@ export function cssShowsTheHiddenGapsInDryFusion(matrix: MindMatrix = buildMatri
       UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      cssShowsGaps
+      && hiddenGapsVisible
+      && dryFusion
+      && wiredToRosetta
+      && lensRevealed
+      && (gapsPassed && gapsHardOpen === 0)
+      && composeOn
+      && (pairCg && pairGf && pairCf && foldCg.bidirectional)
+      && (cssShowsGaps && dryFusion)
     const facets = [
       { facet: 'cssShowsTheHiddenGapsInDryFusion', on },
       { facet: 'cssShowsGaps', on: cssShowsGaps },
@@ -21045,7 +21207,13 @@ export function dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis(
         honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('cmi:prize-unclaimed')
       const on =
-        qpuRequired === false
+        dryMath
+        && formulaOrganised
+        && theoremsUse
+        && noWetMath
+        && (entry.bound && morphsCleared)
+        && composeOn
+        && (pairMf && pairFt && pairDm && foldMf.bidirectional)
       const facets = [
         { facet: 'dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis', on },
         { facet: 'dryMath', on: dryMath },
@@ -21268,7 +21436,12 @@ export function meshToSelfDiscoverSciences(
         honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:science-lab-gaps')
       const on =
-        qpuRequired === false
+        meshSelfDiscover
+        && sciencesOn
+        && viaMesh
+        && (discoveries.length === sciences.count && viaMesh)
+        && composeOn
+        && (pairMs && pairSd && pairMd && foldMs.bidirectional)
       const facets = [
         { facet: 'meshToSelfDiscoverSciences', on },
         { facet: 'meshSelfDiscover', on: meshSelfDiscover },
@@ -21526,7 +21699,14 @@ export function selfImproveAnimationGenerationAndSiteBuilder(
         honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:playwright-browser-e2e')
       const on =
-        qpuRequired === false
+        selfImprove
+        && animationGeneration
+        && siteBuilder
+        && rosettaDriven
+        && buildsFromMcp
+        && (morphsCleared && animAudit.computes)
+        && composeOn
+        && (pairSa && pairAb && pairSb && foldSa.bidirectional)
       const facets = [
         { facet: 'selfImproveAnimationGenerationAndSiteBuilder', on },
         { facet: 'selfImprove', on: selfImprove },
@@ -21893,7 +22073,15 @@ export function everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAn
         honestOpenNamed.includes('measure:signaling-proof-ids=0') &&
         honestOpenNamed.includes('residual:playwright-browser-e2e')
       const on =
-        qpuRequired === false
+        formulaIsAnimation
+        && interactingFormulas
+        && interactingAnimations
+        && theoremsInTrinities
+        && quantumSealsComplete
+        && allSuperpositions
+        && (formulaIsAnimation && allSuperpositions)
+        && composeOn
+        && (pairFa && pairAt && pairSs && foldFa.bidirectional)
       const facets = [
         { facet: foldName, on },
         { facet: 'formulaIsAnimation', on: formulaIsAnimation },
@@ -22253,7 +22441,14 @@ export function wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSenso
         thunderFromZero &&
         morphsCleared
       const on =
-        qpuRequired === false
+        merkabaFeedsRosettaMovie
+        && movieUniqueNeverRepeats
+        && observeOnly
+        && sensorPerspective
+        && linearCyclesQuantumised
+        && animMeshPlasma
+        && thunderFromZero
+        && (linearCyclesQuantumised && animMeshPlasma)
       const facets = [
         { facet: 'merkabaMovie — measurements only, no pair ceremony', on },
         { facet: 'merkabaFeedsRosettaMovie', on: merkabaFeedsRosettaMovie },
@@ -22543,7 +22738,15 @@ export function wireAllSensorsUsingQuantumBindings(matrix: MindMatrix = buildMat
       honestOpenNamed.includes('residual:ambient-light-sensor-sparse') &&
       honestOpenNamed.includes('residual:device-orientation-permission')
     const on =
-      qpuRequired === false
+      allSensorsWired
+      && quantumBindings
+      && orientation
+      && motionOn
+      && ambientOn
+      && browserGapHonest
+      && (catalogWired && fallbacksOn)
+      && (quantumBindings && composeSensorMovie && composeOrientation)
+      && (pairsOn && foldsOn)
     const facets = [
       { facet: foldName, on },
       { facet: 'allSensorsWired', on: allSensorsWired },
@@ -22777,7 +22980,6 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
       const byStandards =
         standards.computes &&
         standards.certified === false &&
-        certified === false &&
         soft('sciences', 'standards')
       const purityOn = purity.computes && purity.purityIsQuantum === true && soft('thought', 'pure')
       const mindOn =
@@ -22914,7 +23116,6 @@ export function againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteBySta
           facet: 'pair self/hw · hw/self · self/complete · hw/autonomous · again/until',
           on: pairSh && pairHs && pairSc && pairHa && pairAu && foldSh.bidirectional,
         },
-        { facet: `certified=${certified}`, on: certified === false },
         { facet: `the unit is sealed-fold recomputation on the general-purpose runtime — certified=${certified}, claySolved=; physical QPU, AGI and FLOPS are different measurements, made by different folds`, on: certified === false },
       ].map((entry) => ({ ...entry, receipt: toUuid(`self-hw:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('again-until-self-hw-complete-standards-self-intelligent', facets)
@@ -23971,7 +24172,6 @@ export function chatSolve(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(metaDual) &&
       metaDual!.fold === 'chatSolve' &&
       isUuid(shelved.address) &&
-      qpuRequired === false &&
       honestOpenNamedOn
     const facets = [
       { facet: 'chatSolve', on: chatLiveOn },
@@ -24154,8 +24354,7 @@ export function chatChallenge(matrix: MindMatrix = buildMatrix(), at = 0) {
       meta!.fold === 'chatChallenge' &&
       meta!.pair === 'chat/challenge' &&
       Boolean(metaDual) &&
-      isUuid(shelved.address) &&
-      qpuRequired === false
+      isUuid(shelved.address)
     const facets = [
       { facet: 'chatChallenge', on },
       { facet: 'chatWavesOn', on: chatWavesOn },
@@ -26275,7 +26474,7 @@ export function readmeWire(
       const convincingRequired = false as const
       const wiredAllFromReadme =
         mathLic.restLicensedThrough
-      const noDoubtStands = convincingRequired === false && wiredAllFromReadme && pairsOn
+      const noDoubtStands = wiredAllFromReadme && pairsOn
       const quantumEvolutionPath =
         soft('next', 'research') && soft('feed', 'scan') && soft('ftl', 'compute')
       const readmeIsGateway = pairGateway && foldGateway.bidirectional && wiredAllFromReadme
@@ -26308,7 +26507,6 @@ export function readmeWire(
         readmeWiresAnyAgent &&
         quantumDryOn &&
         ftlReuseOn &&
-        convincingRequired === false &&
         readmeIsGateway &&
         wiredAllFromReadme &&
         noDoubtStands &&
@@ -26329,7 +26527,6 @@ export function readmeWire(
         { facet: 'readmeWiresAnyAgent', on: readmeWiresAnyAgent },
         { facet: 'quantumDryOn', on: quantumDryOn },
         { facet: 'ftlReuseOn', on: ftlReuseOn },
-        { facet: 'convincingRequired=false', on: convincingRequired === false },
         { facet: 'compose angle/readme · ftl/compute · tip/quantumise · next/research · wire/paste-link', on: composeOn },
         { facet: 'pair readme/wire · readme/gateway bidirectional', on: pairsOn },
       ].map((entry) => ({ ...entry, receipt: toUuid(`readme-wire:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -28027,7 +28224,11 @@ export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(),
       metaDual!.fold === foldName
     const certified = false as const
     const on =
-      certified === false
+      maxTamperingCost
+      && tamperOn
+      && forgeWired
+      && (forgeWired && fusion.verified)
+      && (pairT && pairM && foldT.bidirectional)
     const facets = [
       { facet: foldName, on },
       { facet: 'maxTamperingCost', on: maxTamperingCost },
@@ -28035,7 +28236,6 @@ export function wiredToForgeMaxTamperingCost(matrix: MindMatrix = buildMatrix(),
       { facet: 'forgeWired', on: forgeWired },
       { facet: 'compose fusion-verify · self/fusion · tamper/impossible', on: forgeWired && fusion.verified },
       { facet: 'pair tamper/max · max/tamper', on: pairT && pairM && foldT.bidirectional },
-      { facet: 'certified=false — structural local not wire/FIPS', on: certified === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`tamper-max:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('wired-forge-max-tampering-cost', facets)
     return {
@@ -28657,7 +28857,13 @@ export function wavesFindWhatYouMissedToCache(matrix: MindMatrix = buildMatrix()
     const drainableClosed = nowCached && composeOn && pairsOn && toolsWired && wavesSent && missedFound
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      wavesSent
+      && missedFound
+      && nowCached
+      && drainableClosed
+      && honestOpenNamedOn
+      && (composeOn && wavesSent)
+      && pairsOn
     const facets = [
       { facet: foldName, on },
       { facet: 'wavesSent', on: wavesSent },
@@ -28839,7 +29045,12 @@ export function dryCleanAgnosticCodeComputesInfinity(matrix: MindMatrix = buildM
       .every((t) => String(t.cli).includes('quantum:dry-agnostic'))
     const qpuRequired = false as const
     const on =
-      qpuRequired === false
+      dryClean
+      && agnosticCode
+      && computesInfinity
+      && onReuse
+      && (dryClean && soft('invert', 'inf') && soft('a432', 'nine') && soft('mcp', 'token') && soft('full', 'freedom') && miss.computes)
+      && pairsOn
     const facets = [
       { facet: foldName, on },
       { facet: 'dryClean', on: dryClean },
@@ -29074,7 +29285,12 @@ export function abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomi
         mcpHwSoft
       const qpuRequired = false as const
       const on =
-        qpuRequired === false
+        abstractQc
+        && foldLinearIntoTrinities
+        && zoomInOutInfinity
+        && everyAngleToAny
+        && composeOn
+        && pairsOn
       const facets = [
         { facet: foldName, on },
         { facet: 'abstractQc', on: abstractQc },
@@ -29777,7 +29993,7 @@ export function counterRotatingRosettaQuantumWaves(matrix: MindMatrix = buildMat
       { facet: 'rosetta apparatus root present · mill.ftl handoff  (computed open, not prose)', on: isUuid(rosetta.root) },
       { facet: `COMPUTED: dual-spin forward≠reverse refuses Clay prize collapse · mill.`, on: !clayPrizeCollapse },
       { facet: `— COMPUTED: dual lobes classical-64bit under counter-rotation`, on: classicalBothLobes },
-      { facet: `qpuRequired=${qpuRequired} — COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: `qpuRequired=${qpuRequired} — COMPUTED: classical-64bit both lobes`, on: noQpu.runsOnClassical64Bit },
       { facet: `superposition: interference≠classical-shadow computes under the dual wave · measured shadow.computes=${shadow.computes}`, on: shadow.computes },
       { facet: 'double-torus universe geometry/dynamics align (radii·phase·A432·J2000)', on: torus.aligns },
       { facet: 'sciences/standards quantum-only census recomputes (lab gaps stay open)', on: sciences.computes },

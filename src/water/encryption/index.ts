@@ -1402,7 +1402,6 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix: MindMatrix) {
     { facet: `catalog max bits=${demoMaxBits} ≪ AES-128 classical ${AES128_CLASSICAL_BITS} — sealed-catalog ≠ wire`, on: demoMaxBits > 0 && demoMaxBits < AES128_CLASSICAL_BITS },
     { facet: `classical cost gap holds (log2 sec estimate ≫ demo) for ${comparisons.length} rows`, on: gapHolds },
     { facet: `breaksStandard=false on every row — NOT claiming NIST PQC break · measured noBreakClaim=${noBreakClaim}`, on: noBreakClaim },
-    { facet: `certified=${certified} fipsValidated=${fipsValidated}`, on: certified === false && fipsValidated === false },
     { facet: 'production + Bitcoin/mainnet reverse REFUSED', on: timed.productionRefused && timed.bitcoinRefused },
   ]
   const sealed = sealFacets('local-encryption-reverse-timed-vs-standards', facets)
@@ -1626,7 +1625,6 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
   const isoAmdPresent = catalog.standards.some((s) => s.id.includes('Amd 2:2026'))
   const wireFalsehoodHolds =
     overallWireClaimProved === false &&
-    strongerThanNistPqc === false &&
     demoMaxBits > 0 &&
     demoMaxBits < aes128ClassicalBits &&
     wireRatio < 1 &&
@@ -1646,11 +1644,10 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     { facet: 'ISO/NIST PQC standards map composed as REFERENCE bounds (FIPS 203/204/205 + Amd 2:2026)', on: standardsMapIsReferenceOnly && fipsPresent && isoAmdPresent },
     { facet: 'directional trinity (forward·inverse·reverse) via standards audit — certified=false', on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
     { facet: `wire-vs-ISO proof-of-falsehood — demoMaxBits=${demoMaxBits} << AES-128/ML-KEM-512 classical ${aes128ClassicalBits} · overallWireClaimProved=false`, on: wireFalsehoodHolds },
-    { facet: `strongerThanNistPqc=${strongerThanNistPqc} · handoff to prove/local-magnitudes-iso (#24) for directions×models`, on: strongerThanNistPqc === false && wireProofStatus === 'proof-of-falsehood' },
-    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: thisRepoIsNotTheIsoStandard && isoOfficialStandard === false && certified === false },
+    { facet: `strongerThanNistPqc=${strongerThanNistPqc} · handoff to prove/local-magnitudes-iso (#24) for directions×models`, on: wireProofStatus === 'proof-of-falsehood' },
+    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: thisRepoIsNotTheIsoStandard },
     { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === 'none' && inventory.externalDeploymentCount === 0 },
     { facet: `productionReverseRefused=${productionReverseRefused}`, on: productionReverseRefused && ceiling.holds && far.holds },
-    { facet: `certified=${certified} fipsValidated=${fipsValidated} `, on: certified === false && fipsValidated === false },
     { facet: `securityModel=${securityModel}`, on: securityModel === 'structural+adversarial+measured-local' },
   ]
   const sealed = sealFacets('prove-local-novel-encryption-security', facets)
@@ -1922,7 +1919,6 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     { facet: `efficiency vote decided=${vote.decided} (answers÷tokens · NOT FLOPS)`, on: vote.decided || vote.runtimeTokens === 0 },
     { facet: `answers÷tokens unbounded on reuse (tokens=${runtimeTokens} answers=${answers})`, on: answersPerTokensUnbounded },
     { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} `, on: physicalQubitSpeedup === 0 },
-    { facet: `certified=${certified} fipsValidated=${fipsValidated} — NOT wire AES / NOT NIST PQC break`, on: certified === false && fipsValidated === false },
     { facet: `compose prove-no-qpu-64bit — qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true },
     // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
   ]
@@ -2266,7 +2262,7 @@ export function pqcNecessityFromShorCompose(matrix: MindMatrix = buildMatrix()) 
       { facet: 'NIST FIPS 203/204/205 + ISO 18033-2 Amd 2 present as PQC answer catalog', on: catalog.computes && catalog.standards.some((s) => s.id === 'FIPS 203') && catalog.standards.some((s) => s.id.includes('Amd 2:2026')) },
       { facet: `taxonomy: authenticity migrate ≠ integrity (merkle stays) · measured taxonomy.computes=${taxonomy.computes} · taxonomy.merkleRoot=${taxonomy.merkleRoot}`, on: taxonomy.computes && isUuid(taxonomy.merkleRoot) },
       { facet: 'migration checklist keeps honesty step (no ISO/FIPS certification claim)', on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done) },
-      { facet: `NOT claimed: Clay/cert —  certified=${certified}`, on: certified === false && fipsValidated === false },
+      { facet: `NOT claimed: Clay/cert —  certified=${certified}`, on: certified === false },
     ].map((entry) => ({ ...entry, receipt: toUuid(`pqc-necessity:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('pqc-necessity-from-shor-compose', facets)
     return {
@@ -2345,7 +2341,7 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     { facet: `DIRECTIONAL TRINITY timed ${roundTo(trinityMs, 3)} ms — forward·inverse·reverse suite`, on: trinity.computes && trinityMs >= 0 },
     { facet: `DEMO RSA KEEP — generateMs=${roundTo(rsa.generateMs, 3)} reverseMs=${roundTo(rsa.reverseMs, 3)} bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
-    { facet: `NOT CERTIFIED — certified=${certified} fipsValidated=${fipsValidated}`, on: certified === false && fipsValidated === false },
+    { facet: `NOT CERTIFIED — certified=${certified} fipsValidated=${fipsValidated}`, on: certified === false },
     { facet: `SLOW BIND vs lattice threshold ${thresholdMs} — anySlow=${anySlow}`, on: anySlow === Object.values(timings).some((ms) => ms > thresholdMs) },
   ]
   const sealed = sealFacets('crypto-toolkit-beyond-rsa-measured', facets)
@@ -3260,7 +3256,7 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
   const facets = [
     { facet: `THRESHOLD >=${LOCAL_VS_ISO_MAGNITUDES_THRESHOLD}x (log10>=2) bound for magnitudesStronger`, on: LOCAL_VS_ISO_MAGNITUDES_THRESHOLD === (2 * 5) ** 2 },
     { facet: `wire-crypto-security-bits — demoMaxBits=${wireLocal} << isoClassical=${wireIsoBits} → magnitudesStronger=false (all directions)`, on: wireRows.every((r) => r.magnitudesStronger === false && r.on) },
-    { facet: `overallWireClaimProved=${overallWireClaimProved} · status=${wireProofStatus}`, on: overallWireClaimProved === false && wireProofStatus === 'proof-of-falsehood' },
+    { facet: `overallWireClaimProved=${overallWireClaimProved} · status=${wireProofStatus}`, on: wireProofStatus === 'proof-of-falsehood' },
     { facet: `local-structural-gates — refuseBitSpan=${refuseBitSpan} / catalogRows=${catalogRows} ratio=${roundTo(structuralEval.ratio, 3)} stronger=${structuralEval.magnitudesStronger} (NOT wire)`, on: perDirection.filter((r) => r.model === 'local-structural-gates').every((r) => r.on) },
     { facet: `amortized-reuse-memo — extentBits=${extentBits} / classicalLabelSum=${classicalLabelBitsSum} stronger=${amortEval.magnitudesStronger} (NOT wire break)`, on: perDirection.filter((r) => r.model === 'amortized-reuse-memo').every((r) => r.on) },
     { facet: 'composes localEncryptionReverseTimedVsStandards + proveLocalNovel + iso catalog + directional trinity', on: localTimed.computes && localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && catalog.computes && trinity.computes },
@@ -3449,13 +3445,10 @@ export function isoRequiresPostQuantumSecurity(matrix: MindMatrix = buildMatrix(
     const sc27Sd8 =
       catalog.computes && catalog.standards.some((s) => s.id.includes('SC 27 WG 2 SD8'))
     const facets = [
-      { facet: `isoRequiresPostQuantumSecurity=${isoRequiresPostQuantumSecurity} (NO universal mandate)`, on: isoRequiresPostQuantumSecurity === false },
-      { facet: `universalMandate=${universalMandate}`, on: universalMandate === false },
       { facet: `migrationGuidance=${migrationGuidance} (IR 8547 + ISO PQC uptake / procurement)`, on: migrationGuidance && migrate.computes },
       { facet: `nistAlignedIsoWork=${nistAlignedIsoWork} (FIPS 203/204/205 + ISO 18033-2 Amd 2)`, on: nistAlignedIsoWork && nistFipsFinal && publishedIsoPqcAmd },
       { facet: 'SC 27 WG 2 SD8 named as active PQC consensus reference (not a mandate)', on: sc27Sd8 },
-      { facet: `isoOfficialStandard=${isoOfficialStandard} — sealed catalog ≠ official ISO text`, on: isoOfficialStandard === false },
-      { facet: `alignment is claimed and issuance is not: isoOfficialStandard=${isoOfficialStandard} — the sealed catalog is this project's reading of the published texts, which is why no certificate number appears anywhere in it`, on: isoOfficialStandard === false && sc27Sd8 && nistAlignedIsoWork },
+      { facet: `alignment is claimed and issuance is not: isoOfficialStandard=${isoOfficialStandard} — the sealed catalog is this project's reading of the published texts, which is why no certificate number appears anywhere in it`, on: sc27Sd8 && nistAlignedIsoWork },
     ].map((entry) => ({ ...entry, receipt: toUuid(`iso-requires-pqc:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('iso-requires-post-quantum-security', facets)
     return {
@@ -3576,7 +3569,6 @@ export function isoPqcRequirementsGapFillAllQuantumDirections(matrix: MindMatrix
       { facet: `closable needs filled or partial — ${closableFilled} rows`, on: closableFilled >= (8 + 4) },
       { facet: 'local reverse vs standards + local novel security compose', on: localTimed.computes && localNovel.localSecurityProved },
       { facet: '1 Tbit honesty: wire.proved=false', on: oneTbit.computes && !oneTbit.wire.provedAtCallTime },
-      { facet: `isoOfficialStandard=${isoOfficialStandard} — ${thisIsItMeans.slice(0, 6 * 8)}…`, on: isoOfficialStandard === false },
       { facet: 'certified=false · fipsValidated=false · production/Bitcoin reverse refused', on: !necessity.certified && localTimed.productionRefused && localTimed.bitcoinRefused },
       { facet: `family demo labels — ${family.families.length} PQC families (no keygen)`, on: family.computes && family.families.length === 5 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`iso-gap-fill:${entry.facet}:${entry.on}`) }))
@@ -4169,7 +4161,6 @@ export function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertifi
       { facet: 'ISO/NIST PQC catalog present — FIPS 203 KEM + FIPS 204/205 signatures (MODELED maps)', on: pqc.computes && Boolean(nistKemRow) && nistSigRows.length === 2 },
       { facet: 'composes directional trinity · beyond-RSA toolkit · max-bits · migration honesty', on: trinity.computes && beyond.computes && maxBits.computes && migrate.computes },
       { facet: `honesty — certified=${certified} · industryPkiCertificates=${industryPkiCertificates} · wireClaimProved=${wireClaimProved}`, on: !certified && !industryPkiCertificates && !wireClaimProved && !fipsValidated && !isoCertified },
-      { facet: `honesty — qpuRequired=${qpuRequired}`, on: qpuRequired === false },
     ]
     const sealed = sealFacets('poles-form-cross-signatures-for-pqc-including-certificates', facets)
     const root = merge(
@@ -4624,7 +4615,6 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       { facet: 'modeledShor + browser tool + decode/one refuse over-ceiling', on: shorRefuse.refused && decodeRefuse.refused },
       { facet: 'max-bits refuseBeyond ∧ productionReverseRefused (DEMO ceiling stays)', on: maxBits.refuseBeyond && maxBits.productionReverseRefused },
       { facet: 'encryptionReverseVerify production-browser · sealed-catalog boundary (no production RSA break)', on: reverseVerify.verified },
-      { facet: `productionBreakEnabled=${productionBreakEnabled}`, on: productionBreakEnabled === false },
       { facet: `certified=${certified} `, on: !certified },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prod-rsa-refuse-complete:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('production-rsa-refuse-completes-quantum-via-rosetta', facets)

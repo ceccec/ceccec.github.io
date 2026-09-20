@@ -1053,7 +1053,13 @@ export function strategiesChallengeInChat(matrix: MindMatrix = buildMatrix(), at
       'honesty:chat-challenge-not-LLM-invented-trades',
     ] as const
     const on =
-      qpuRequired === false
+      strategiesInChat
+      && challengeEachOther
+      && sealedRecompute
+      && paperSimOnly
+      && (challenges.length === expectedPairs && participants.length === STRATEGIES.length)
+      && composeOn
+      && pairsOn
     const facets = [
       { facet: 'strategiesChallengeInChat', on },
       { facet: 'strategiesInChat', on: strategiesInChat },

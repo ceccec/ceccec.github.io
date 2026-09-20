@@ -159,7 +159,7 @@ export function oneMegabyteExplainsQuantumInSpiritAnalog(matrix: MindMatrix = bu
     'P vs NP',
   ]
   const solvesOpenScience = false
-  const honestUnsolved = OPEN.length > 0 && solvesOpenScience === false
+  const honestUnsolved = OPEN.length > 0
   const facets = [
     { facet: '1 MiB is FORCED — 2^20 = 2^6 files · 2^4 types/file · 2^10 bytes/type; the interior constants are not chosen, they fall out', on: law.law },
     { facet: 'the DIGITAL (quantum) reading round-trips — name → 10-bit address → (file, slot) → back, lossless', on: reversible },

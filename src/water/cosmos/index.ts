@@ -2364,7 +2364,12 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       'residual:cy-hodge-numbers-unsealed',
     ] as const
     const on =
-      certified === false
+      stringInChat
+      && dualityChatOn
+      && sealedRecompute
+      && (participants.length === corners.length && dualEdges.length === expectedPairs)
+      && composeOn
+      && pairsOn
     // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
     // preserved verbatim and no longer counted by facets.every() — an unchecked claim must not
     // report itself satisfied. Several are safety scope, which is exactly why they are kept.
@@ -2386,11 +2391,7 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
           'compose mcp/chat · super/chat · pair/chat · chat/research · sciences/trinities · mesh/science · soft trade/challenge',
         on: composeOn,
       },
-      { facet: 'pair string/theory · string/chat bidirectional', on: pairsOn },
-      {
-        facet: `certified=false`,
-        on: certified === false,
-      },    ].map((entry) => ({
+      { facet: 'pair string/theory · string/chat bidirectional', on: pairsOn },    ].map((entry) => ({
       ...entry,
       receipt: toUuid(`string-theory-chat:${entry.facet.slice(0, 64)}:${entry.on}`),
     }))

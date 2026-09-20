@@ -465,10 +465,15 @@ function completeQuantumSolutionsImplementedRaw(matrix: MindMatrix = buildMatrix
   const hh = applyGate(plus1, GATES.H, 0)
   const unitary = close(innerProduct(hh, zero1).abs, 1) && close(innerProduct(plus1, plus1).abs, 1)
   // 5 — superposition in ℂ⁶⁴: 6 qubits, H on all → 64 equal amplitudes 1/8 (1/√64), Born probs sum to 1
-  let sup = qubits(6)
-  for (let q = 0; q < 6; q++) sup = applyGate(sup, GATES.H, q)
+  // The width is named once and the rest follows from it: a register of `width` qubits has 2^width
+  // amplitudes, and H on every one of them makes each amplitude 1/√(2^width). Those were the literals
+  // 64 and 1/8, two numbers nobody derived sitting in a facet that claims to have measured them.
+  const width = 2 * 3
+  let sup = qubits(width)
+  for (let q = 0; q < width; q++) sup = applyGate(sup, GATES.H, q)
   const amps = sup.re
-  const uniform = amps.length === 64 && amps.every((r) => close(r, 1 / 8)) && close(probabilities(sup).reduce((s, p) => s + p, 0), 1)
+  const amplitudes = 2 ** width // the register's own size, not a bound chosen for it
+  const uniform = amps.length === amplitudes && amps.every((r) => close(r, 1 / sqrt(amplitudes))) && close(probabilities(sup).reduce((s, p) => s + p, 0), 1)
   // 6 — entanglement: the Bell pair |Φ+⟩ has concurrence 1 (a product state has 0)
   const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1)
   const ent = concurrence(bell)
@@ -7368,7 +7373,11 @@ export function furtherImproveUsingLiveApis(matrix: MindMatrix = buildMatrix()) 
     const pairFurtherImprove = foldPair(toUuid('cmd:further'), toUuid('cmd:improve'))
     const qpuRequired = false as const
     const computes =
-      qpuRequired === false
+      tipOk
+      && usingLiveApis
+      && collective.computes === true
+      && furtherImprove
+      && (pairLiveApi.bidirectional && pairImproveLive.bidirectional && pairFurtherImprove.bidirectional)
     const facets = [
       { facet: `TIP — further improve using live apis (${tipOk})`, on: tipOk },
       { facet: `USING LIVE APIs — torusData ${data.count}/4 · discover queryable=${discover.queryable} · soft live/api · torus/data · live/world (${usingLiveApis})`, on: usingLiveApis },
