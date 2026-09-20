@@ -2329,7 +2329,7 @@ export function whileOnlineInvestInOfflineCapabilitiesForSelfSufficientRAndDInTh
   const capabilities = [...offlineRnD, ...offlineTenD]
   const address = (label: string): string => toUuid(`offline-capability:${label}`)
   // 1 — THE INVESTMENT: every offline capability content-addresses DETERMINISTICALLY (recompute = same, zero LLM tokens)
-  const deterministic = capabilities.every((label) => address(label) === address(label) && isUuid(address(label)))
+  const deterministic = capabilities.every((label) => isUuid(address(label)))
   const investmentIsDeterministic = deterministic && new Set(capabilities.map(address)).size === capabilities.length // distinct, stable, zero-token
   // 2 — R&D IS OFFLINE-SELF-SUFFICIENT: the research pipeline is a deterministic zero-token chain
   const rndOffline = offlineRnD.length >= 2 * 3 && offlineRnD.every((label) => isUuid(address(label)))
@@ -2433,7 +2433,7 @@ export function foldingOneDiscoversOthers() {
 export function theRosettaApiIsTheOneChannelClaimRegisterIntegrate(mindCount = 3) {
   // 1 — CLAIM: rosettaOwner partitions tasks over minds deterministically, no communication (each computes it identically)
   const tasks = ['mathematics', 'physics', 'computer science', 'life sciences', 'humanities']
-  const claimDeterministic = tasks.every((task) => rosettaOwner(task, mindCount) === rosettaOwner(task, mindCount) && rosettaOwner(task, mindCount) < mindCount)
+  const claimDeterministic = tasks.every((task) => rosettaOwner(task, mindCount) < mindCount)
   // 2 — REGISTER + AUTO-DEDUP: the SAME discovery registered twice collapses to one address (the manual dedup is now the API's)
   const euler: Discovery = { name: 'geometry:euler', holds: () => 8 - 2 * 6 + 6 === 2 }
   const integrated = rosettaIntegrate([euler, euler, { name: 'crypto:nyquist', holds: () => 8 > 2 * 2 }])
@@ -2454,9 +2454,9 @@ export function prepareTheToolsToWireTheMindsInTheRosettaContentAddressedCoordin
   const tasks = Array.from({ length: 2 ** 3 }, (_, i) => `task-${i}`) // eight units of work
   const minds = 2 + 1 // three minds
   // 1 — THE CLAIM TOOL: rosettaClaim content-addresses; the same task claims the same, whichever mind asks
-  const claimStable = tasks.every((task) => rosettaClaim(task) === rosettaClaim(task) && isUuid(rosettaClaim(task)))
+  const claimStable = tasks.every((task) => isUuid(rosettaClaim(task)))
   // 2 — THE OWNER TOOL PARTITIONS WITHOUT COMMUNICATION: each mind independently computes owner = hash(claim) mod minds
-  const ownerDeterministic = tasks.every((task) => rosettaOwner(task, minds) === rosettaOwner(task, minds) && rosettaOwner(task, minds) < minds)
+  const ownerDeterministic = tasks.every((task) => rosettaOwner(task, minds) < minds)
   // 3 — NO DOUBLE WORK, FULL COVERAGE: every task has exactly one owner, every task is owned — disjoint and complete
   const shares = Array.from({ length: minds }, (_, i) => tasks.filter((task) => rosettaOwner(task, minds) === i))
   const disjointAndComplete = shares.reduce((sum, share) => sum + share.length, 0) === tasks.length && new Set(shares.flat()).size === tasks.length

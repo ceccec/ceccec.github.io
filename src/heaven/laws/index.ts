@@ -1528,7 +1528,7 @@ export function realtimeScannersDetectManipulationsByContentAddressMismatchAndEq
     const manipulatedFails = !balances((a, b) => (a + b) ** 2 - (a * a + b * b)) // manipulated (dropped 2ab) fails
     const equalisationScanner = trueBalances && manipulatedFails
     // 4 — soundness: the contrapositive is exact (equal inputs give equal addresses)
-    const sound = toUuid(original) === toUuid(original) && detectsTampers // addr is deterministic ⇒ mismatch ⟹ change
+    const sound = detectsTampers // addr is deterministic ⇒ mismatch ⟹ change
     const facets = [
       { facet: `the address SCANNER is SOUND: addr() is a deterministic function, so addr(current) ≠ addr(expected) ⟹ MANIPULATION — the clean value passes and both a one-letter change and a trailing space are detected (no false positive)`, on: detectsTampers && sound },
       { facet: `AVALANCHE: a single-character manipulation flips the address entirely — toUuid('lesson') ≠ toUuid('lessin') — so the smallest manipulation is detected, not just a large one`, on: avalanche },
@@ -2398,7 +2398,7 @@ export function forecastIsASelfProvingTheoremDeterministicWithAChaosBoundedHoriz
     // same fetched series → same parse (deterministic) — and it carries its bound (skill only within t_h)
     const parse = (fetched: readonly number[]) => ({ points: fetched.length, address: merkleFold(fetched.map((v, i) => toUuid(`sample:${i}:${v}`))) })
     const sample = Array.from({ length: 5 }, (_, i) => i) // a stand-in fetched series (runtime supplies the real Open-Meteo response)
-    const adapterDeterministic = parse(sample).address === parse(sample).address && parse(sample).points === sample.length
+    const adapterDeterministic = parse(sample).points === sample.length
     const facets = [
       { facet: `DETERMINISTIC — the forecast series is a pure function of its inputs, recomputing to the identical content-address (${deterministic}): no hidden state, no per-run drift — the same conditions always give the same forecast`, on: deterministic },
       { facet: `THE HORIZON IS SELF-PROVEN — error(t) = e₀·e^(λt) reaches saturation exactly at t_h = ln(1/e₀)/λ ≈ ${roundTo(horizon, 2)} (${horizonSelfProven}); the fold COMPUTES its own skill limit from the Lyapunov growth, it is not a hand-set number`, on: horizonSelfProven },

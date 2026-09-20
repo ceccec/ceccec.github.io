@@ -2832,7 +2832,8 @@ export function inversionIsRealtimeTheFieldDecidesNamingAndLocationEachDimension
     const gates = ['gate:dimensions.emerge', 'gate:one.math', 'gate:crack.ledger']
     // 1 — inversion is NATURAL in realtime: name + coordinate compute at call time from the manifested identifier/address
     const placed = gates.map((g) => ({ gate: g, name: nameOf(g), coord: coordOf(g) }))
-    const deterministic = coordOf(gates[0]!).x === coordOf(gates[0]!).x && nameOf(gates[0]!) === nameOf(gates[0]!) // same input → same output, realtime
+    // Was one coordinate compared with itself. A coordinate map earns its name by SEPARATING gates.
+    const deterministic = gates.length < 2 || coordOf(gates[0]!).x !== coordOf(gates[1]!).x || coordOf(gates[0]!).y !== coordOf(gates[1]!).y
     // 2 — the FIELD decides naming and location: name from the identifier, coordinate from the content-address
     const fieldNames = placed.every((p) => p.name.length > 0) // the naming service names it
     const fieldPlaces = placed.every((p) => Number.isInteger(p.coord.x) && p.coord.x >= 0 && p.coord.x < 2 ** 8) // the address places it

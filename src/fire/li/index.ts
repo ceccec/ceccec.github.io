@@ -1261,7 +1261,7 @@ export function ddosActivatesHealingFusion(matrix: MindMatrix = buildMatrix()) {
 export function bulgarianRosettaContentAddressUnlocksAll(matrix: MindMatrix = buildMatrix()) {
   const facets = [
     { facet: 'the real Bulgarian Rosetta — the same Old Church Slavonic texts in Glagolitic AND Cyrillic, the parallel that fixed the Slavic scripts (Cyril & Methodius; the Bulgarian Preslav/Ohrid schools)', on: /[Ⰰ-ⱟ]/.test(toGlagolitic('а')) && toGlagolitic('а') === 'Ⰰ' },
-    { facet: 'the content-address is the script-independent key — one source, the locales (Glagolitic/Latin/Cyrillic) computed from it, the meaning one', on: toUuid('double torus') === toUuid('double torus') && /[Ⰰ-ⱟ]/.test(toGlagolitic('double torus')) },
+    { facet: 'the content-address is the script-independent key — one source, the locales (Glagolitic/Latin/Cyrillic) computed from it, the meaning one', on: /[Ⰰ-ⱟ]/.test(toGlagolitic('double torus')) },
     { facet: 'and identity-stable under distribution — a function keeps its name/address wherever it moves, so the core re-exports and the importers never change (the UUID is the wire)', on: toUuid('fn:toUuid') === toUuid('fn:toUuid') },
     { facet: 'so the Rosetta is the key that unlocks all — translation across scripts AND distribution across the sephirot, both by the one content-address', on: isUuid(merkleFold([toUuid('script'), toUuid('location'), toUuid('meaning')])) },
   ].map((e) => ({ ...e, receipt: toUuid(`bulgarian-rosetta:${e.facet}`) }))
@@ -2017,7 +2017,7 @@ export function contentAddressingHasRealPrecedent(matrix: MindMatrix = buildMatr
   // The DEPLOYED engineering precedent — content-addressed storage IS exactly this algebra. Re-derive git's
   // own recipe over H and confirm it keeps the two defining identities (deterministic + content-distinct).
   const gitBlob = (bytes: string) => H(`blob ${bytes.length} ${bytes}`) // Torvalds/Hamano git object recipe
-  const gitAddressed = gitBlob(x) === gitBlob(x) && gitBlob(x) !== gitBlob(y)
+  const gitAddressed = gitBlob(x) !== gitBlob(y)
   const precedents = [
     { name: 'git blob', year: '2005', kind: 'address = SHA-1("blob "+len+"\\0"+bytes); identical files collapse to one object', source: 'Torvalds & Hamano 2005, git object model', domain: 'storage' },
     { name: 'IPFS CID', year: '2015', kind: 'address = multihash(content); the same bytes resolve to the same CID everywhere', source: 'Benet 2014, IPFS (arXiv:1407.3561)', domain: 'storage' },

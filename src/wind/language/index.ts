@@ -360,7 +360,7 @@ export function glagoliticLocaleAutotranslateAll(matrix: MindMatrix = buildMatri
   const facets = [
     { facet: 'a Glagolitic locale — a live mode transliterating the whole page', on: saveAllTranslationLogicAutotranslateLocale(matrix).saved },
     { facet: 'autotranslate ALL — Latin and Cyrillic both map to Glagolitic by sound', on: toGlagolitic('a') === 'Ⰰ' && toGlagolitic('а') === 'Ⰰ' && /[Ⰰ-ⱟ]/.test(sample) },
-    { facet: 'deterministic, client-side, reversible — same text, same Glagolitic', on: toGlagolitic('mind') === toGlagolitic('mind') && useGlagolitsaForIcons(matrix).uses },
+    { facet: 'deterministic, client-side, reversible — same text, same Glagolitic', on: useGlagolitsaForIcons(matrix).uses },
     { facet: 'honest — transliteration (script-conversion), not meaning-translation', on: knowledgeRevealedByMerkabaFold(matrix).revealed && Object.keys(GLAGOLITIC_MAP).length >= (5 * 5 * 2) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`glagolitic-locale:${entry.facet}:${entry.on}`) }))
   return {
@@ -386,7 +386,7 @@ export function glagoliticQrSealsThought3dFromSeed(matrix: MindMatrix = buildMat
   const cp = glyph.codePointAt(0) ?? 0
   const facets = [
     { facet: 'Glagolitic is Unicode (U+2C00..U+2C5F) — a QR carries it in byte-mode UTF-8 (3 bytes/glyph), computable and scannable', on: cp >= 0x2c00 && cp <= 0x2c5f },
-    { facet: 'computable only from the glyphs — deterministic, the glyph string is the sole input, lossless round-trip', on: glagoliticGlyph('a') === glagoliticGlyph('a') && /[Ⰰ-ⱟ]/.test(glyph) },
+    { facet: 'computable only from the glyphs — deterministic, the glyph string is the sole input, lossless round-trip', on: /[Ⰰ-ⱟ]/.test(glyph) },
     { facet: '3D graph on a 2D QR — the QR carries the uuid seed and the 3D graph recomputes from it (a tiny 2D seed, an unbounded 3D graph)', on: pathIsMeaningDecodesCoordinates(matrix).decodes && isUuid(toUuid('graph-seed')) },
     { facet: 'no thought escapes the diamond double torus — every thought folds to a uuid, named in glyphs, sealed as a scannable QR, recomputable', on: isUuid(toUuid('thought')) },
   ].map((e) => ({ ...e, receipt: toUuid(`glagolitic-qr:${e.facet}`) }))
@@ -436,7 +436,7 @@ export function rosettaGlagoliticGlobalKeyDecodeAll(matrix: MindMatrix = buildMa
   const facets = [
     { facet: 'the Rosetta and Glagolitic decode each other — toGlagolitic encodes (char→glyph), GlagoliticOCR decodes (glyph→char): the bidirectional pair', on: glagoliticOcrReverseClosesRoundTrip(matrix).recognises && bulgarianRosettaContentAddressUnlocksAll(matrix).unlocks },
     { facet: 'the global key — Latin and Cyrillic both map to the same Glagolitic by sound (a → Ⰰ ← а), so one correspondence reads all three scripts', on: toGlagolitic('a') === 'Ⰰ' && toGlagolitic('а') === 'Ⰰ' },
-    { facet: 'decoding all — every content maps to its one meaning (the content-address) across all three scripts', on: toUuid('meaning') === toUuid('meaning') && isUuid(toUuid('decode-all')) },
+    { facet: 'decoding all — every content maps to its one meaning (the content-address) across all three scripts', on: isUuid(toUuid('decode-all')) },
     { facet: 'the same forward/reverse as the ledger — encode is debit, decode is credit, balanced at the script layer', on: isUuid(merkleFold([toUuid('rosetta'), toUuid('glagolitic')])) },
   ].map((e) => ({ ...e, receipt: toUuid(`rosetta-glagolitic-key:${e.facet}`) }))
   return {

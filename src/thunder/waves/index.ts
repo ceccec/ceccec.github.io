@@ -399,9 +399,10 @@ export function endlessWaves(count = (64 * 4), matrix: MindMatrix = buildMatrix(
     }
     seen.add(wave)
   }
+  // Was wave 0 compared with itself. The wave sequence earns its name by SEPARATING: two waves are two
+  // addresses. Sameness on one input is purity, which verify:purity holds corpus-wide.
   const deterministic =
-    creationWave(0, matrix).uuid === creationWave(0, matrix).uuid &&
-    creationWave(count - 1, matrix).uuid === creationWave(count - 1, matrix).uuid
+    creationWave(0, matrix).uuid !== creationWave(1, matrix).uuid
   const endless = isUuid(creationWave(1_000_000_000, matrix).uuid) // a wave a billion out is still computable
   return {
     tested: distinct && deterministic && endless,

@@ -321,7 +321,9 @@ export function quantumCodeSubcategoriesAwaitTheirRoutes(codeFiles: readonly str
  */
 export function terseMethodsCollideProseDoesNot() {
   const shared = 'HARMONY ≠ TRUTH'
-  const collides = toUuid(shared) === toUuid(shared) // same content ⇒ same address ⇒ one payload
+  // Was the address compared with itself. One payload not two requires that DIFFERENT content take a
+  // different address — otherwise dedup would merge things that are not the same.
+  const collides = toUuid(shared) !== toUuid(`${shared}·`)
   const proseA = toUuid('the wavefunction of the universe is a proposal, not a derivation')
   const proseB = toUuid('the universe wavefunction is proposed, and not derived from the equation')
   const proseNeverCollides = proseA !== proseB // same claim, distinct words ⇒ distinct addresses ⇒ redundancy
@@ -449,9 +451,11 @@ export function splitNeededAtAllTimesThroughRealtimeMetrics() {
 }
 
 export function quantumiseRegexToPassComputationally() {
-  const deterministic = /^a+$/.test('aaa') === /^a+$/.test('aaa') // same pattern + input → same result
+  // Was a regex test compared with itself. A pattern is worth checking when it SEPARATES: it matches what
+  // it should and refuses what it should not.
+  const deterministic = /^a+$/.test('aaa') && !/^a+$/.test('aab')
   const verdict = (pattern: RegExp, input: string) => toUuid(`regex:${pattern.source}:${input}:${pattern.test(input)}`) // content-address the match
-  const contentAddressed = verdict(/^a+$/, 'aaa') === verdict(/^a+$/, 'aaa') && verdict(/^a+$/, 'aab') !== verdict(/^a+$/, 'aaa')
+  const contentAddressed = verdict(/^a+$/, 'aab') !== verdict(/^a+$/, 'aaa')
   // Linear-time (DFA) regex handles a large input in O(n) — no backtracking.
   const big = 'a'.repeat(2 ** (2 * 7)) // 16k chars
   const linearPasses = /^a+$/.test(big) === true && /^a+$/.test(`${big}b`) === false
@@ -488,7 +492,7 @@ export function constantsCollapseToShortestName() {
   const allCollide = names.every(() => addressByValue(value) === addressByValue(value)) // every name → one address
   const attractor = [...names].sort((a, b) => a.length - b.length)[0]! // shortest name is the attractor
   const longestName = [...names].sort((a, b) => b.length - a.length)[0]!
-  const collapses = attractor.length < longestName.length && addressByValue(value) === addressByValue(value)
+  const collapses = attractor.length < longestName.length
   const facets = [
     { facet: `THE ADDRESS IS THE VALUE — a constant addresses by its VALUE, not its name: every name of ${value} (${names.join(', ')}) content-addresses to ONE slot (${allCollide}), so the names are aliases, not separate things`, on: allCollide },
     { facet: `THE SHORTEST NAME WINS — among the names of a value the shortest is the ATTRACTOR ("${attractor}"), longer names collapse to it (naming gravity); "${longestName}" → "${attractor}"`, on: collapses },
@@ -3985,7 +3989,7 @@ export function thinkingMeansLackOfLocalToolsDeliberationIsTheDetectorOfAMissing
   const options = 3 // the M options I was deliberating (run the build · convert the waves · invert the pages)
   const deliberationSteps = options, toolSteps = 1 // weighing M options is O(M); a tool call is O(1)
   const thinkingIsTheGap = deliberationSteps > toolSteps // deliberation costs more than a tool call — the gap a tool closes
-  const builtToolIsReproducible = merkleFold([toUuid('tool:decides')]) === merkleFold([toUuid('tool:decides')]) // once built, the decision content-addresses — deliberation → 0
+  const builtToolIsReproducible = merkleFold([toUuid('tool:decides')]) !== merkleFold([toUuid('tool:decides·')]) // once built, the decision content-addresses — deliberation → 0
   const detectsMissingTool = thinkingIsTheGap && tooledDecisionIsOneCall && builtToolIsReproducible
   const facets = [
     { facet: `A TOOLED DECISION COSTS ONE CALL, NOT DELIBERATION: a decision with a local tool (which primitive is canonical → computeCodeGravity, ${gravity.length} pulls, each addressed) returns a signed, reproducible answer in ONE call (${tooledDecisionIsOneCall}) — no weighing, no judgment; the tool decides`, on: tooledDecisionIsOneCall },

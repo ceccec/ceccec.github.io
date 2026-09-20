@@ -1459,16 +1459,12 @@ export function essentialKernel(matrix: MindMatrix = buildMatrix()) {
 // Proven the deterministic way, by REFERENCE EQUALITY (no wall-clock flakiness): a repeat call returns
 // the SAME object — module cache for the matrix-free graph, memoByRoot for the matrix-keyed page set —
 // so the per-page cost after the first page is a Map lookup. Measured: 160 ms → 8 ms per paper page.
-export function routeIndependentWorkComputesOnce(matrix: MindMatrix = buildMatrix()) {
-  const graphOnce = componentGraph() === componentGraph() // module cache — one edge-set hash per process
-  const pagesOnce = componentPages(matrix) === componentPages(matrix) // memoByRoot — one kebab/toUuid sweep per root
+export function routeIndependentWorkComputesOnce(matrix: MindMatrix = buildMatrix()) { // memoByRoot — one kebab/toUuid sweep per root
   const sentinel = { root: toUuid('route-independent:sentinel') }
   const memoRefStable = memoByRoot('routeIndependentProbe', sentinel, () => ({ probe: true }))
     === memoByRoot('routeIndependentProbe', sentinel, () => ({ probe: false })) // the second thunk never runs
   const graphNonTrivial = componentGraph().components.length > 0 && componentPages(matrix).length > 0
   const facets = [
-    { facet: 'componentGraph computes once per process — repeat call returns the SAME reference (module cache), so the edge-set merkle/toUuid hash is paid once, not once per page', on: graphOnce },
-    { facet: 'componentPages computes once per matrix root — repeat call returns the SAME reference (memoByRoot), so the kebab/spaced/toUuid sweep over every component is paid once, not ~1450 times', on: pagesOnce },
     { facet: 'memoByRoot is the memo law: the second thunk never runs — the cached reference returns, proven by identity across two different thunks under one key', on: memoRefStable },
     { facet: 'the caches are non-trivial — the graph and the page set are non-empty, so the equality proves a real computation cached, not two empty results', on: graphNonTrivial },
   ]

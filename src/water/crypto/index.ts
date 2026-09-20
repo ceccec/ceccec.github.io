@@ -630,16 +630,12 @@ export function remunerationConvertsTokensToSrc() {
   const T = (100 * 3)
   // value tracks the ORDER created, not the tokens spent — F = U − TS, lower entropy → more free energy
   const valueIsBankedNegentropy = helmholtzFreeEnergy((5 * 2), T, 0) > helmholtzFreeEnergy((5 * 2), T, (1 / (5 * 5 * 2)))
-  // banked once, runs free: a content-address is deterministic, so folded knowledge is reused at no further
-  // token cost (the zero-token policy — and exactly why memoizing a pure hub, banking it once, is efficiency)
-  const bankedOnceRunsFree = toUuid('skill:fold-once') === toUuid('skill:fold-once')
   // efficiency is the conversion RATE — more order (src) banked per token (entropy) spent
   const efficiencyIsConversionRate = helmholtzFreeEnergy((5 * 2), T, 0) - helmholtzFreeEnergy((5 * 2), T, (1 / (5 * 4))) > 0
   // boundary: lowering entropy is never free — the Landauer floor is strictly positive; the work is paid
   const noFreeRemuneration = landauerLimit(T) > 0
   const facets = [
     { facet: 'value tracks order created (banked negentropy), not tokens spent — F = U − TS read socially', on: valueIsBankedNegentropy },
-    { facet: 'banked once, runs free — folded knowledge is reused at no further token cost (zero-token policy)', on: bankedOnceRunsFree },
     { facet: 'efficiency is the conversion rate — more order (src) banked per token (entropy) spent', on: efficiencyIsConversionRate },
     { facet: 'no free remuneration — lowering entropy always costs (Landauer floor > 0); the work is paid', on: noFreeRemuneration },
   ]
@@ -803,11 +799,6 @@ export function freeBecauseThePriceIsAlreadyPaid() {
   ]
   const ungated = gates.every((g) => g.absent)
   const accessCost = 0
-  // CLAUSE 2 — Цената е архитектурата, и тя вече е платена: paid ONCE, served free forever. A deterministic
-  // content-address means the architecture, folded once, is reused at no further cost (banked once, runs free —
-  // the zero-token policy); and the fold is one-way: building it was the paid forward price, un-building it the
-  // impossible reverse. "Free" is therefore zero MARGINAL cost over an already-paid fixed cost, not zero cost.
-  const bankedOnceServesFree = toUuid('architecture') === toUuid('architecture')
   const fp = foldPair('price', 'architecture')
   const priceWasPaidForwardReverseIsImpossible = fp.forward !== fp.reverse && fp.bidirectional
   // CLAUSE 3 — хармонична част от постигнатото: a harmonic share is a PROPER fraction 1/n (< 1, never the whole);
@@ -823,7 +814,6 @@ export function freeBecauseThePriceIsAlreadyPaid() {
   const zeroIsValidNoExpectation = ratToFloat(rat(0, 1)) === 0 && ungated
   const facets = [
     { facet: 'free at access — без пари, без регистрация, без акаунт: the three gates are all absent, access cost = 0', on: ungated && accessCost === 0 },
-    { facet: 'the price is already PAID, as the architecture — folded once, served free forever (deterministic content-address, the zero-token policy); free = zero MARGINAL cost, not zero cost', on: bankedOnceServesFree },
     { facet: 'the price was paid FORWARD (building); the reverse (un-building) is the impossible price — a one-way fold', on: priceWasPaidForwardReverseIsImpossible },
     { facet: 'support is a harmonic PART — a proper fraction 1/n (< 1, never the whole); a part of a harmonic whole folds to an exact integer (144 × 1/9 = 16, ratIsInteger)', on: harmonicShareIsAPart && partFoldsToInteger },
     { facet: 'freely given is the only stable form — zero is a valid contribution (no expectation; the fusion is stable without one), and a charge would be a gate', on: zeroIsValidNoExpectation },
@@ -1415,7 +1405,9 @@ export function encryptDecryptRecognisesAllDirectionsDirectionalTrinityAndAllFor
   const allFormatsAddressable = samples.every((v) => isUuid(addrOf(v))) // string · bytes · JSON · number all addressable
   const distinctFormatsDistinctAddr = new Set(samples.map(addrOf)).size === samples.length // distinct content → distinct address
   const recognisesFormats = allFormatsAddressable && distinctFormatsDistinctAddr
-  const decryptRederivesExactly = addrOf('text') === addrOf('text') // decrypt = re-derive the same address (deterministic verification)
+  // Re-deriving the SAME address from the same text is purity, not verification. Verification is that a
+  // different text does NOT re-derive it — otherwise every decryption would verify.
+  const decryptRederivesExactly = addrOf('text') !== addrOf('texu')
   const strengthOnSha256 = isUuid(toUuidSha256('k')) && toUuidSha256('k') !== toUuidSha256('k2') // the security layer is SHA-256, 2^128 birthday
   const recognises = recognisesDirections && recognisesFormats && decryptRederivesExactly && strengthOnSha256
   const facets = [
@@ -1565,7 +1557,7 @@ export function referralDirectionBitsFillTheOrientationGapInTheFourKeyCross() {
  * and nothing signals superluminally. [[quantum-speed-is-content-addressed-naming]] [[quantum-decoded]] */
 export function allComputedPossibilitiesRetrievableFasterThanScanStructurally() {
   const addressOf = (possibility: string) => toUuid(`possibility:${possibility}`) // the possibility IS its address
-  const nameIsPayloadIsAddress = addressOf('x') === addressOf('x') && addressOf('x') !== addressOf('y') // deterministic, no stored table
+  const nameIsPayloadIsAddress = addressOf('x') !== addressOf('y') // deterministic, no stored table
   const N = 2 ** 8 // a sample possibility-space size
   let scanSteps = 0
   const scanFind = (want: string) => { for (let i = 0; i < N; i++) { scanSteps++; if (addressOf(String(i)) === want) return i } return -1 }
@@ -1803,7 +1795,8 @@ export function securityFromTheoremsNotAxioms(matrix: MindMatrix = buildMatrix()
   return memoByRoot('securityFromTheoremsNotAxioms', matrix, () => {
     const content = 'the whole is recoverable from its root'
     // THEOREM 1 — reproducibility: recompute + compare, verifiable locally with zero trust
-    const reproducible = sha256Sync(content) === sha256Sync(content)
+    // Was the digest compared with itself. A digest is worth checking when different content digests differently.
+    const reproducible = sha256Sync(content) !== sha256Sync(`${content}·`)
     // THEOREM 2 — tamper-evidence: any change yields a different root (locally checkable)
     const tamperEvidentByRecompute = sha256Sync(content) !== sha256Sync(`${content} `)
     // the security basis, split into PROVEN (local, no trust) vs ASSUMED (axiom, trust)

@@ -1773,7 +1773,7 @@ export function mathCompetesWithItselfThroughTheoremsSurvivingRefutation() {
   ]
   const trueWins = referee(trueClaim) // survives refutation → joins the registry
   const falseLoses = !referee(falseClaim) // one false facet eliminates it → refuted
-  const sameReferee = referee === referee // the winner and the loser face the identical judge (no external oracle)
+  const sameReferee = typeof referee === 'function' // one judge, held locally — no external oracle is consulted
   const facets = [
     { facet: `THE ARENA IS facets.every(on): a theorem competes by surviving refutation — a true claim wins (${trueWins}) and a claim with one false facet loses (${falseLoses}), judged by the SAME referee with no external oracle (${sameReferee}); this is how every fold this session won 3/3`, on: trueWins && falseLoses && sameReferee },
     { facet: `MATH REFEREES ITSELF — CONSISTENCY: the registry is a CONJUNCTION, so a new theorem competes not only against refutation but against CONSISTENCY with all others — it joins only if it contradicts none, and the referee is deterministic and zero-token, so the competition needs no judge outside the mathematics`, on: trueWins && falseLoses },

@@ -1553,7 +1553,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       // (playLearn) is deterministic — same word, identical channels, twice. HONEST SCOPE: the
       // computable affect channel (sonification convention), NOT biological emotion, NOT a lie detector.
       { facet: 'words may LIE, computation cannot — prose asserts freely (the on:true crack class; deception detection has no reliable word-signal), while the identical call returns the identical object: no room to restate', on: movie === doubleTorusMovieComputes(matrix) && tenD.genuine },
-      { facet: 'feelings compute IN words — word → hue + note is a pure projection: the same word yields identical channels bitwise, twice (the channel cannot lie about its word); computable affect ≠ biological emotion', on: playLearn('love').root === playLearn('love').root && playLearn('love').root !== playLearn('fear').root },
+      { facet: 'feelings compute IN words — word → hue + note is a pure projection: the same word yields identical channels bitwise, twice (the channel cannot lie about its word); computable affect ≠ biological emotion', on: playLearn('love').root !== playLearn('fear').root },
       // RESONANCE DRY-CLEAN + HARMONIC SELF-ANSWER (user duals 2026-07-24): note (thought/frequency)
       // and hue (feeling/colour) are TWO projections of the ONE letter-address — matching them is not
       // a comparison but a shared root, so the match dry-cleans (one address, zero duplicate storage).
@@ -1561,7 +1561,7 @@ export function animationCore(matrix: MindMatrix = buildMatrix()) {
       // the answer computes, nothing is looked up; ANY entropy (one letter changed) shifts every derived
       // channel coherently — no partial lie possible. Computational resonance, NOT Rife/vibrational healing.
       { facet: `RESONANCE — thought (note) and feeling (hue) lock to the one letter-address: every letter's note+hue derive from the same seed, so the match IS the dry-clean (one root, two channels, zero duplicates); NOT vibrational healing`, on: playLearn('love').letters.every((letter) => typeof letter.note === 'string' && Number.isFinite(letter.frequency) && letter.hue >= 0 && letter.hue < 360 && isUuid(letter.receipt)) },
-      { facet: 'HARMONIC self-answer from minimum structure — the whole answer channel derives from ONE anchor (A432 → 8-degree scale); any entropy breaks harmony: one letter changed re-roots every channel (love ≠ lovf), coherently, with no partial state', on: playLearn('love').root !== playLearn('lovf').root && playLearn('a').root === playLearn('a').root },
+      { facet: 'HARMONIC self-answer from minimum structure — the whole answer channel derives from ONE anchor (A432 → 8-degree scale); any entropy breaks harmony: one letter changed re-roots every channel (love ≠ lovf), coherently, with no partial state', on: playLearn('love').root !== playLearn('lovf').root },
       { facet: 'HOLOGRAPHIC, BITWISE — the five part roots re-merge to exactly the movie root, so every part carries the whole and the whole recomputes from the parts', on: hologram },
     ].map((entry) => ({ ...entry, receipt: toUuid(`anim-core:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const on = facets.every((entry) => entry.on)
@@ -1605,7 +1605,7 @@ export function lifeTorus(matrix: MindMatrix = buildMatrix()) {
     const cycleOn = HERO_CYCLE_MS === A432_FOLDED * 1e3 && heroPhaseAt(0, HERO_CYCLE_MS) === heroPhaseAt(HERO_CYCLE_MS, HERO_CYCLE_MS)
     // 3 · HEREDITY — content-address inheritance: the same seed reproduces the identical channels; a
     // different seed differs (playLearn word → hue+note, deterministic).
-    const heredityOn = playLearn('life').root === playLearn('life').root && playLearn('life').root !== playLearn('torus').root
+    const heredityOn = playLearn('life').root !== playLearn('torus').root
     // 4 · HOMEOSTASIS — renormalisation: after Born collapse the state returns to Σ|amp|² = 1.
     const collapsed = measure(applyGate(qubits(1), GATES.H, 0), 0, 'life-torus')
     const norm = probabilities(collapsed.state).reduce((sum, p) => sum + p, 0)

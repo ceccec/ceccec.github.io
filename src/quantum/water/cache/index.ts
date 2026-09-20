@@ -374,7 +374,9 @@ export function ceccecFusesTheFormTheMeaningStaysBounded(matrix: MindMatrix = bu
 export function everyStatementProvableByAnimationElsePurged(matrix: MindMatrix = buildMatrix()) {
   void matrix
   const sample = 'every statement is a prompt for its own animation'
-  const reproducible = textToMovie(sample).root === textToMovie(sample).root
+  // Was the root compared with itself. A content-addressed movie root is worth a facet when a different
+  // text reaches a different movie.
+  const reproducible = textToMovie(sample).root !== textToMovie(`${sample} `).root
   const documented = [
     'every text statement folds to textToMovie — content-addressed particles whose movie root is its signature; recompute the text and the identical movie returns (proof of IDENTITY)',
     'so every statement is PROVABLE by animation: it computes its own reproducible animation (the proof is the determinism, not a claim of truth)',

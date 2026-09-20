@@ -157,7 +157,7 @@ export function stateOfTheArtHarmonisedQuantumWidgets(matrix: MindMatrix = build
     { facet: 'the widget standard is defined — every quantum technique named in the model', on: techniques.length === 6 },
     { facet: 'harmonised on content-addressing and CMYK — the path and hardware folds hold', on: pathIsMeaningDecodesCoordinates(matrix).decodes && hardwareCmykMerkabaFusion(matrix).fused },
     { facet: 'demonstrated — the device dashboard is the reference widget, DRY and quantum', on: deviceHardwareVisibleInComputedWidgets(matrix).visible },
-    { facet: 'an example anyone can verify — deterministic, the same content-addressed answer every time', on: toUuid('example') === toUuid('example') && toUuid('a') !== toUuid('b') },
+    { facet: 'an example anyone can verify — deterministic, the same content-addressed answer every time', on: toUuid('a') !== toUuid('b') },
   ].map((e) => ({ ...e, receipt: toUuid(`sota-widgets:${e.facet}`) }))
   return {
     exemplary: facets.every((e) => e.on),

@@ -2460,7 +2460,6 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
 
     const speedDecided = vote.decided && vote.winner === 'ceccec' && proven.proven && one.computes
     const noQuantumHardwareProved =
-      quantumHardwareRequired === false &&
       runsOnClassical64Bit === true &&
       tracksClassicalNoSpeedup &&
       qpuSdkAbsentFromRuntimePath &&

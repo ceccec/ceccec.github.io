@@ -1415,7 +1415,9 @@ export function fractalCompute(matrix: MindMatrix = buildMatrix()) {
     const inversionFromPeak = volumes.filter((entry) => entry.n >= peak.n).every((entry) => unitBallVolume(entry.n + 1) < entry.volume)
     // Realtime, zero remembered state: the seedless oscillation circuit recomputed gives the identical double.
     const phi = TAU / 16
-    const realtimeDeterministic = oscillationOnSimulator(TAU / 8, phi) === oscillationOnSimulator(TAU / 8, phi)
+    // Was one oscillation compared with itself — already removed once as an always-true limit, and the
+    // binding stayed. A seedless circuit is worth a facet when a different angle oscillates differently.
+    const realtimeDeterministic = oscillationOnSimulator(TAU / 8, phi) !== oscillationOnSimulator(TAU / 4, phi)
     // OBSERVATION CHANGES, AND CHANGES OBSERVATION (user duals 2026-07-24): H|0⟩ sits at exactly
     // half/half; the Born measurement COLLAPSES it (post ≠ pre, renormalised to certainty at the
     // observed outcome), and measuring the collapsed state repeats the first outcome exactly — the
@@ -2929,7 +2931,9 @@ export function trustAndDimensionRiseWithVerifiedRelationDensityAGapBreaksBothId
     const denseTrustStronger = verifiedRelations.length > certificateRelations // forging trust needs forging them ALL
     const certificateFreeForIntegrityOrdering = denseTrustStronger // integrity + tamper-evidence + ordering, no cert, realtime
     // the GAP density cannot fill: a public deterministic mesh proves WHAT, never WHO — identity needs an anchor
-    const adversaryRecomputes = toUuid('artifact-content') === toUuid('artifact-content') // public + deterministic ⇒ anyone mints a valid address
+    // Anyone can mint a valid address for content they hold — and, the part that matters, cannot mint this
+    // one for content they do not. The second is the refutable half.
+    const adversaryRecomputes = toUuid('artifact-content') !== toUuid('artifact-contenu')
     const meshProvesWhatNotWho = adversaryRecomputes // that very determinism gives integrity, not authenticity — it cannot bind WHO
     const identityNeedsAnchor = meshProvesWhatNotWho && certificateFreeForIntegrityOrdering // so "no certs" is FALSE at identity
     const facets = [

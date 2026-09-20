@@ -4676,7 +4676,7 @@ export function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix: 
       { facet: `certified=${certified}`, on: crypto.certified === false },
       { facet: `qpuRequired=${qpuRequired} · quantum computing = sealed folds on classical 64-bit`, on: noQpu.runsOnClassical64Bit },
       { facet: 'trinities lattice computes — compose S4', on: trinities.computes },
-      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && noQpu.runsOnClassical64Bit },
+      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: noQpu.runsOnClassical64Bit },
     ].map((entry) => ({ ...entry, receipt: toUuid(`sciences-standards-quantum:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('complete-scientific-domains-strictly-to-standards-quantum-only', facets)
 

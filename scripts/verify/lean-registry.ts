@@ -44,7 +44,15 @@ export function assertRegistrySealed(): void {
     throw new Error(`${broken.length} registry→Lean link(s) do not hold — a seal that names a missing theorem seals nothing`)
   }
   const unsealed = THEOREM_ATOM_SEED.filter((row) => !sealed.has(row.theorem)).map((row) => row.theorem)
-  console.log(ratchet('lean.registry-unsealed', unsealed.length, { evidence: () => unsealed.map((n) => `no kernel theorem decides: ${n}`) }))
+  // NEGATED, AND PRINTED SAYING SO — the same move independence.cross-checked made, for the same reason.
+  // This counted the UNSEALED rows, and a ratchet only falls, so every honest theorem added to the registry
+  // raised it and had to be paid for with a Lean proof or a floor move. It taxed growth: 96484f0f registered
+  // twenty rows that are proved, run and witnessed, and the gate read that as twenty steps backwards.
+  // What should ratchet is the quantity that is good news when it moves — the rows the kernel DECIDES — so
+  // that is what is stored, negated, and adding an unsealed row is free while unsealing a sealed one is not.
+  const sealedRows = THEOREM_ATOM_SEED.filter((row) => sealed.has(row.theorem)).length
+  console.log(`  ${unsealed.length} of ${THEOREM_ATOM_SEED.length} registry rows carry no kernel theorem — reported, not ratcheted`)
+  console.log(`  ${ratchet('lean.registry-sealed', -sealedRows, { evidence: () => [`${sealedRows} registry row(s) decided by the kernel, of ${THEOREM_ATOM_SEED.length} — this figure FELL, which for a negated ratchet means a seal was LOST, not gained`] })}  — stored negated, so ${sealedRows} sealed may only RISE`)
 
   // SEALED IN ALL LATTICE DIRECTIONS (user, 2026-09-14: "publish next release when all sealed literary in all lattice
   // directions" — chosen bar: every direction holds at least one registry row the kernel decides). A direction is the

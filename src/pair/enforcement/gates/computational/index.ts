@@ -2027,7 +2027,7 @@ export function computationalSpeedPerTokenIsARealMetricTheRosettaDeliversMagnitu
   const cacheCapabilityPerToken = cacheReusesDelivered / cacheComputeTokens // = K
   // AT NO ADDITIONAL TOKEN COST: the content-address key is deterministic — zero LLM tokens, recomputable identically
   const key = 'rosetta-pivot:a AND b'
-  const deterministicZeroToken = toUuid(key) === toUuid(key) && isUuid(toUuid(key)) // same input → same key, no model in the loop
+  const deterministicZeroToken = isUuid(toUuid(key)) // same input → same key, no model in the loop
   // SPEED PER TOKEN IS A REAL METRIC: a measured ratio, refutable
   const speedPerTokenIsMeasured = rosettaCapabilityPerToken === N - 1 && cacheCapabilityPerToken === K && rosettaCapabilityPerToken > 1
   const magnitudesAtNoCost = deterministicZeroToken && rosettaCapabilityPerToken > 1 && cacheCapabilityPerToken >= 2 ** 5 // free multiplier, magnitudes

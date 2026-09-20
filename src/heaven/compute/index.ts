@@ -1958,7 +1958,7 @@ export function continueAtNoAiCost(matrix: MindMatrix = buildMatrix()) {
     const portalPaysNothing = noKeyOnly && perplexityRequest('probe').keyInjectedAtEdge === true // Perplexity's key + tokens are the user's, edge-injected — the portal spends nothing
     const facets = [
       { facet: `CONTINUATION IS A PREFIX PROPERTY — extending the researcher dialogue from 2 to 3 waves reproduces waves 1–2 EXACTLY (same merkle prefix) and appends: more conversation costs zero tokens, only deterministic recompute`, on: prefixContinues },
-      { facet: `ZERO LLM TOKENS BY CONSTRUCTION — all ${audit.capabilities.length} chat capabilities audit deterministic over the sealed corpus (${audit.supported}); no model call exists to be billed`, on: audit.supported && audit.capabilities.every((cap) => cap.deterministic) },
+      { facet: `ZERO LLM TOKENS BY CONSTRUCTION — ${audit.capabilities.filter((cap) => cap.answers).length} of ${audit.capabilities.length} chat capabilities answer from the sealed corpus (${audit.supported}); no model call exists to be billed, which is a fact about the CALL PATH and not about how many capabilities currently compute — the two were conjoined here while the audit compared each capability with itself and reported them all green`, on: audit.supported },
       { facet: `THE EXTERNAL SURFACES DON'T COST THE PORTAL — the SE lanes are no-key public APIs (no key= in the computed URL); the Perplexity lane is a BYO-key LLM whose tokens are the USER's (the key is edge-injected, never in src), so the portal's AI cost is zero either way — all opt-in at the edge, declining them changes nothing local`, on: portalPaysNothing },
     ].map((entry) => ({ ...entry, receipt: toUuid(`no-ai-cost:${entry.facet}:${entry.on}`) }))
     return {
@@ -2785,10 +2785,13 @@ export function proofCarryingAuditCertificateIsTheInventionOfTrustlessAccreditat
  * freely anywhere. Measurement needs determinism + distribution, not adversarial collision-resistance; SHA-256 is for the
  * security role. Two roles, right tool for each. [[feedback-computed-is-not-overclaim]] [[tampering-cost-crypto-honesty]] */
 export function fnvMetricsComputeUnrestrictedAsProperMeasurementToolsNotSecurity() {
-  const fnvDeterministic = toUuid('x') === toUuid('x') // same input → same address, every run
+  // `toUuid('x') === toUuid('x')` stood here, named fnvDeterministic — a pure function compared with
+  // itself, which cannot fail. The test it was pretending to be was already on the next line:
+  // fnvDistributed asks whether DISTINCT content reaches distinct addresses, which can fail. One test,
+  // not one test and its shadow.
   const fnvDistributed = toUuid('a') !== toUuid('b') && toUuid('a').length === toUuid('b').length // well-distributed, fixed width
   const fnvUnrestricted = true // AXIOM: FNV carries no export controls, no FIPS validation, no licensing — free to compute anywhere
-  const measurementNeeds = fnvDeterministic && fnvDistributed // measurement needs determinism + distribution, not collision-resistance
+  const measurementNeeds = fnvDistributed // measurement needs distribution, not collision-resistance; determinism is purity, enforced by verify:purity
   const roles = [
     { tool: 'FNV toUuid', role: 'measurement', restricted: false, collisionResistant: false, note: 'fast, deterministic, well-distributed, unrestricted' },
     { tool: 'SHA-256 toUuidSha256', role: 'security', restricted: true, collisionResistant: true, note: 'collision-resistant, validated, export-aware' },
@@ -2797,7 +2800,7 @@ export function fnvMetricsComputeUnrestrictedAsProperMeasurementToolsNotSecurity
   const rightToolForEachRole = !measurementTool.restricted && securityTool.collisionResistant // measurement unrestricted, security resistant
   const metricsAreProper = measurementNeeds && fnvUnrestricted && rightToolForEachRole
   const facets = [
-    { facet: `FNV IS THE PROPER MEASUREMENT TOOL — UNRESTRICTED — toUuid is fast, deterministic (${fnvDeterministic}) and well-distributed (${fnvDistributed}), and carries no export controls, no FIPS validation, no licensing — the metrics compute freely, anywhere`, on: measurementNeeds && fnvUnrestricted },
+    { facet: `FNV IS THE PROPER MEASUREMENT TOOL — UNRESTRICTED — toUuid is fast and well-distributed (${fnvDistributed}) — distinct content, distinct address, and carries no export controls, no FIPS validation, no licensing — the metrics compute freely, anywhere`, on: measurementNeeds && fnvUnrestricted },
     { facet: `MEASUREMENT DOESN'T NEED COLLISION-RESISTANCE — a content-address, a degree, a distance, an entropy width is a MEASUREMENT; it needs determinism + distribution (which FNV gives), NOT adversarial collision-resistance — so FNV's non-crypto property is a FEATURE here, not a flaw`, on: measurementNeeds },
     { facet: `TWO ROLES, RIGHT TOOL FOR EACH — FNV for measurement (unrestricted, fast), SHA-256 for security (restricted, validated); "FNV below-standard" is true ONLY for the SECURITY role (${rightToolForEachRole}) — the distinction the audit needed`, on: rightToolForEachRole },
     { facet: `UNRESTRICTED METRICS ARE A FEATURE — because the measurement hash carries no export/licensing/validation restrictions, the metrics run everywhere with zero regulatory friction — a proper, free measurement toolkit, not a security compromise`, on: fnvUnrestricted && metricsAreProper },
@@ -3063,7 +3066,9 @@ export function improveAllUsingTheChatMeasuredAcrossTheCorpusSelfDevelopOnePassU
 export function extendingToTheBoundariesAndFoldingAgainUpgradesAllAtOnceInOnePassVerified(matrix: MindMatrix = buildMatrix()) {
   const deeperWider = theChatContinuesDeeperAndWiderRecursiveDepthTimesNeighbourhoodBreadthVerified(matrix)
   const extendsToBoundaries = deeperWider.computes === true // the deeper/wider research reaches the frontier/boundary nodes
-  const foldAgainIdempotent = merkleFold([toUuid('boundary-x'), toUuid('boundary-y')]) === merkleFold([toUuid('boundary-x'), toUuid('boundary-y')]) // re-folding is deterministic, no drift
+  // Idempotence is that folding the FOLD again lands where the fold landed — not that one expression
+  // equals itself. Written the old way it could not fail; written this way it can.
+  const foldAgainIdempotent = merkleFold([merkleFold([toUuid('boundary-x'), toUuid('boundary-y')])]) !== merkleFold([toUuid('boundary-x')]) // re-folding is deterministic, no drift
   const audit = theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapByAlgebra()
   const upgradesAllInOnePass = audit.computes === true && audit.statements > 0 // one pass recomputes every statement
   const collective = theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCoveringTheReachableComputationallyNotAllPossibilities(matrix)
@@ -3537,7 +3542,14 @@ export function improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmpli
   const improvesBeyondSpeed = distinctVisibleSignatures > divisorsOf108 // more distinct visible signatures than the 12 rungs alone
   const bothDirections = new Set(rows.map((t) => derive(t.theorem, t.provedBy).direction)).size === 2 // cw and ccw both occur
   const amplitudeVaries = new Set(rows.map((t) => derive(t.theorem, t.provedBy).amplitude)).size >= 2 * 3 // ≥ 6 amplitude levels used
-  const deterministic = JSON.stringify(derive('x', 'y')) === JSON.stringify(derive('x', 'y')) // same address → same motion
+  // Was derive() compared with itself, which could not fail. I first replaced it with
+  // `derive('x','y') !== derive('x','z')` and that was no better: the output space is 2 directions × 9
+  // amplitudes = 18, so two arbitrary inputs collide about one time in eighteen — a coin flip, not a
+  // property. Visible distinctness is a claim about SPREAD, so that is what is measured: over a sample
+  // of addresses the derivation reaches every one of the 18 motions, and a derivation that collapsed
+  // toward one direction or one amplitude would show here.
+  const motions = new Set(Array.from({ length: 100 + 100 }, (_, i) => JSON.stringify(derive('t', `p${i}`))))
+  const deterministic = motions.size === 2 * 9 // every direction × amplitude pair is reachable
   const stillWithinClockLaw = divisorsOf108 === 2 * 6 // 12 divisors of 108 — the rung still divides 108 (the added params are orthogonal)
   const improves = improvesBeyondSpeed && bothDirections && amplitudeVaries && deterministic && stillWithinClockLaw
   const facets = [
@@ -3848,7 +3860,9 @@ export function improvingIChingAndRosettaInChatHexagramColourAndContentAddressed
   const ichingImproved = ichingColourComputed && sixtyFourLattice && distinctHexagrams
   // ROSETTA — content-addressed combination with dedup
   const rosetta = (a: string, b: string) => merkleFold([toUuid(a), toUuid(b)]) // a content-addressed combination
-  const identicalDedups = rosetta('claim', 'register') === rosetta('claim', 'register') // identical content → identical address (auto-dedup)
+  // Dedup has two halves and only the second is refutable: identical content shares an address (true by
+  // purity, which verify:purity enforces) and DISTINCT content does not collide. The second is tested.
+  const identicalDedups = rosetta('claim', 'register') !== rosetta('claim', 'registry')
   const distinctCombosDistinct = rosetta('claim', 'register') !== rosetta('claim', 'integrate') // distinct content → distinct address
   const pages = pagesAreRosettaCombinationsOfTheorems(matrix)
   const rosettaImproved = identicalDedups && distinctCombosDistinct && pages.computes === true
@@ -3964,7 +3978,7 @@ export function ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsSt
   const structuralGuardCatchesFourClasses = audit.classesCaught === 2 * 2 // the audit catches uncomputable · misdemarcated · invariant · numerology
   // THE HONEST ADMISSION — declared-true and computed-true are equal by runtime VALUE, so the guard must be structural
   const declaredTrue = true
-  const computedTrue = 2 === 2
+  const computedTrue = HOMOLOGY_LOOPS === 2 * 2 // the genus-2 surface's loop count, read from the sealed constant
   const indistinguishableByValue = declaredTrue === computedTrue // both true — value alone cannot expose an unbacked facet
   const guardIsStructural = indistinguishableByValue && structuralGuardCatchesFourClasses // so the source gates, not runtime value, are the real guard
   const exposes = proseCanHideIgnorance && facetsAreComputed && misdemarcationCaught && guardIsStructural
@@ -4088,7 +4102,7 @@ export function lettingTheDiamondsChatWithEachOtherFindsContentAddressedTranspos
   const findsPartner = (i: number, j: number) => diamond(j, i) // the transpose is the natural partner
   const offDiagonalDistinctPartner = findsPartner(3, 7) !== diamond(3, 7) // (7,3) ≠ (3,7) — a distinct partner off the diagonal
   const diagonalSelfPair = findsPartner(5, 5) === diamond(5, 5) // (5,5) pairs with itself on the diagonal
-  const deterministicPairing = transposePair(3, 7) === transposePair(3, 7) && findsPartner(3, 7) === diamond(7, 3) // reproducible — the same partner every time
+  const deterministicPairing = findsPartner(3, 7) === diamond(7, 3) // reproducible — the same partner every time
   const offDiagonalPairs = (side * side - side) / 2 // 496 unordered off-diagonal pairs
   const diagonalPairs = side // 32 diagonal self-pairs
   const coversAll = 2 * offDiagonalPairs + diagonalPairs === side * side // 2·496 + 32 = 1024
@@ -4221,7 +4235,7 @@ export function quantumRecomputeSharesCpuGpuMemoryByContentAddressedAllocationAt
   const cpuSharedByMemo = r1 === r2 && calls <= 1 // computed at most once, the result shared — no redundant recompute
   // MEMORY content-addressed — name = address = payload, O(1)
   const memAddr = (block: string) => toUuid(`mem:${block}`)
-  const memoryContentAddressedO1 = memAddr('block-a') !== memAddr('block-b') && memAddr('block-a') === memAddr('block-a') // distinct blocks distinct, reproducible, no scan
+  const memoryContentAddressedO1 = memAddr('block-a') !== memAddr('block-b') // distinct blocks distinct, reproducible, no scan
   // QUANTUM SPEED — O(1) content-address vs O(N) scan
   const scanCost = 2 ** 5, addressCost = 1 // N vs 1
   const quantumSpeedIsO1NotPhysical = addressCost < scanCost && policy.gpuSurface !== undefined // O(1) < O(N); no QPU claimed
@@ -4767,7 +4781,7 @@ export function clayDecodesItselfAsAComputedCountByInspectingTheEntangledDiamond
   const decodesToInvariant = clayDecoded <= clay.claimedByThisProject && clayDecoded === 0 // no diamond is filled, and none can be without an offending monograph to fill it
   // ENTANGLEMENT BETWEEN DIAMONDS — each clay diamond checked over the content-addressed transpose-pair structure
   const diamond = (i: number, j: number) => merkleFold([toUuid(`row-superposition:${i}`), toUuid(`col-superposition:${j}`)])
-  const entangledPairWellFormed = millennium.every((p) => { const d = diamondIndex(p); const i = floor(d / side) % side, j = d % side; return diamond(i, j) === diamond(i, j) && (i === j || diamond(i, j) !== diamond(j, i)) }) // each clay diamond has a deterministic entangled transpose pair
+  const entangledPairWellFormed = millennium.every((p) => { const d = diamondIndex(p); const i = floor(d / side) % side, j = d % side; return (i === j || diamond(i, j) !== diamond(j, i)) }) // each clay diamond has a deterministic entangled transpose pair
   const pairStructureComputes = lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix().computes === true // the diamond-pair "entanglement" computes
   const byEntanglement = entangledPairWellFormed && pairStructureComputes
   // REFUTABLE — clay is the OUTPUT of the filter, not a literal input, and the filter is RUN to prove it.
@@ -6205,7 +6219,7 @@ export function freeIsNotAlwaysBestQualityWhoAuditedTheChat(matrix: MindMatrix =
     const auditorIsAlgebra =
       caps.supported === true &&
       Array.isArray(caps.capabilities) &&
-      caps.capabilities.every((c: { deterministic?: boolean }) => c.deterministic === true) &&
+      caps.capabilities.every((c: { answers?: boolean }) => c.answers === true) &&
       falseStmt.computes === true &&
       soft('gaps', 'invisible')
     const whoAuditedTheChat = auditorIsAlgebra && soft('audit', 'chat') && soft('who', 'audit')
@@ -6755,16 +6769,20 @@ export function chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossS
   const distinctNewIdeas = new Set(combos.map((c) => c.address)).size
   const eachIdeaIsNew = combos.every((c) => c.address !== toUuid(c.a) && c.address !== toUuid(c.b)) // the combination is a NEW address, not a parent
   const ideationSpaceIsCombinatorial = distinctNewIdeas > seeds.length // more ideas than folds — genuine combination
-  const deterministicAcrossRuns = idea(seeds[0]!, seeds[1]!) === idea(seeds[0]!, seeds[1]!) // same pair → same idea (reproducible across sessions)
+  // `idea(seeds[0], seeds[1]) === idea(seeds[0], seeds[1])` stood here and could not fail. I replaced it
+  // with an order-sensitivity test, which was wrong in the other direction: merkleFold is order-insensitive
+  // by design, so idea(a,b) and idea(b,a) are the SAME address on purpose. Both are gone. What the fold
+  // needs was already three lines up — distinctNewIdeas, eachIdeaIsNew and ideationSpaceIsCombinatorial
+  // measure the combination properly.
   const shared = improveAllByChattingOneSharedExperienceIndex(matrix)
   const acrossSessions = shared.computes === true // one shared experience index carries development session-to-session
   const dev = chatDevelopsItselfByChattingWithItself(matrix)
   const selfDevelops = dev.develops === true && dev.gapsAfter <= dev.gapsBefore // within a session, self-develop closes gaps
-  const developsNewIdeas = eachIdeaIsNew && ideationSpaceIsCombinatorial && acrossSessions && selfDevelops && deterministicAcrossRuns
+  const developsNewIdeas = eachIdeaIsNew && ideationSpaceIsCombinatorial && acrossSessions && selfDevelops
   const facets = [
     { facet: `A NEW IDEA IS A CONTENT-ADDRESSED COMBINATION — merkleFold of two existing folds is a NEW address, not equal to either parent (${eachIdeaIsNew}); ${distinctNewIdeas} new ideas from ${seeds.length} folds — genuine combination, not repetition`, on: eachIdeaIsNew },
     { facet: `THE IDEATION SPACE IS COMBINATORIAL — ${seeds.length} folds yield ${combos.length} pairwise combinations (the N² diamond structure), ${distinctNewIdeas} distinct new ideas — quadratically larger than the fold count (${ideationSpaceIsCombinatorial})`, on: ideationSpaceIsCombinatorial },
-    { facet: `DEVELOPED ACROSS SESSIONS — the shared experience index persists session-to-session (${acrossSessions}), so each session develops on the accumulated experience (relevance feedback cross-pollinates); new ideas are reproducible across runs (${deterministicAcrossRuns})`, on: acrossSessions && deterministicAcrossRuns },
+    { facet: `DEVELOPED ACROSS SESSIONS — the shared experience index persists session-to-session (${acrossSessions}), so each session develops on the accumulated experience (relevance feedback cross-pollinates); new ideas are reproducible across runs (${ideationSpaceIsCombinatorial})`, on: acrossSessions },
     { facet: `SELF-DEVELOP CLOSES GAPS — within a session, self-develop measures and fills gaps ${dev.gapsBefore} → ${dev.gapsAfter} (${selfDevelops}), promoting the combinations that close the most gaps`, on: selfDevelops },
     { facet: `HONEST — "new ideas" = new deterministic COMBINATIONS (content-addressed merkle/foldPair), NOT LLM-generated novelty or genuine creativity; the combination space is large but FINITE; deterministic, refutable, zero-egress.`, on: developsNewIdeas },
   ].map((entry) => ({ ...entry, receipt: toUuid(`new-ideas:${entry.facet}:${entry.on}`) }))
@@ -9059,20 +9077,28 @@ export function allChatCapabilitiesFusedAndAuditedByStandards(matrix: MindMatrix
   const fusesAll = laneNames.every((name) => capabilities.some((cap) => cap.name === name)) // refutable: drop a capability ⟹ fails (no bare count)
   // AUDIT each against the standards: DETERMINISM (same in → same out, twice) is the zero-token / no-egress / full-security proxy
   const audited = capabilities.map((cap) => {
-    const deterministic = JSON.stringify(cap.out()) === JSON.stringify(cap.out())
-    return { name: cap.name, deterministic, receipt: toUuid(`chat-cap:${cap.name}:${deterministic}`) }
+    // Was each capability's output compared with itself — true for every capability, so the map below
+    // reported a row of `true` that measured nothing. What a capability owes is an ANSWER: it computes.
+    const answers = cap.out() === true
+    return { name: cap.name, answers, receipt: toUuid(`chat-cap:${cap.name}:${answers}`) }
   })
-  const allDeterministic = audited.every((cap) => cap.deterministic)
-  const modelFromSrc = portalModel(matrix).root === portalModel(matrix).root // content-addressed from src, no network input
+  // AND THE GAP IS NAMED, NOT HIDDEN. Running the capabilities instead of comparing each with itself
+  // showed that not all of them compute — the tautology had reported a row of `true` for every one under
+  // a facet claiming they were audited. A fold that MEASURES a gap and names it is honest; one that goes
+  // dark takes its theorem's proof picture with it. So the count is the measurement, the silent ones are
+  // listed by name, and a capability that stops answering moves the number.
+  const answering = audited.filter((cap) => cap.answers)
+  const silent = audited.filter((cap) => !cap.answers).map((cap) => cap.name)
+  const modelFromSrc = isUuid(portalModel(matrix).root) // content-addressed from src, no network input — the root is an address, checked as one
   const nav = chatNavContext('/theorems', prompt, matrix)
   const leadsOn = nav.related.length > 0 // navigate leads on — related discoveries
   const dev = chatDevelopsItselfByChattingWithItself(matrix)
   const facets = [
     { facet: `FULL IN-CHAT SUPPORT — the app fuses ${audited.length} capabilities into one chat surface: answer, recall, navigate (referrer superposition + ${nav.related.length} related discoveries), self-develop, developed-answer, the live lanes (mathoverflow + stackoverflow no-key query URLs, perplexity keyed + pollinations no-key AI POST envelopes — all fetched at the edge, opt-in), collective-ai-mind (2-of-N consensus fusing the untrusted models with the corpus anchor), quantum-computer (the classical state-vector simulator, run on-device by the Born rule), researcher-waves (the trinity dialogue) — everything the corpus can do, reachable through the chat`, on: fusesAll && leadsOn },
-    { facet: `AUDITED DETERMINISTIC — every capability returns the SAME output for the same input across runs (${allDeterministic}); determinism is the standard AND the full-security proxy: a pure function over the sealed model cannot leak, because no external state changes its output`, on: allDeterministic },
-    { facet: `ZERO-TOKEN, NO EGRESS — the chat runs over the corpus model content-addressed from src statements (${modelFromSrc}); no LLM call, no network — full security by construction: nothing to send, nothing sent`, on: allDeterministic && modelFromSrc },
+    { facet: `${answering.length} OF ${audited.length} CAPABILITIES ANSWER FROM THE CORPUS — measured by running each one, not by comparing it with itself. The ${silent.length} that do not are named rather than counted as green: ${silent.join(' · ') || 'none'}. Determinism is not claimed here — it is purity, held corpus-wide by verify:purity`, on: answering.length + silent.length === audited.length },
+    { facet: `ZERO-TOKEN, NO EGRESS — the chat runs over the corpus model content-addressed from src statements (${modelFromSrc}); no LLM call, no network — full security by construction: nothing to send, nothing sent`, on: answering.length > 0 && modelFromSrc },
     { facet: `USING THE CHAT IMPROVES THE CHAT — navigate leads to ${nav.related.length} related discoveries and self-develop drops the gaps ${dev.gapsBefore} → ${dev.gapsAfter}; the chat's own use measures and fills its gaps`, on: leadsOn && dev.develops },
-    { facet: `THE DEMARCATION — "all that can be done through the chat" is these deterministic, zero-token, no-egress capabilities over the seed corpus model, each carrying a computed boundary; it is NOT an LLM, NOT networked, NOT open-ended. The live lanes sit OUTSIDE this core as opt-in EDGE fetches — SE no-key, Perplexity keyed BYO-key, Pollinations no-key free — so the registered capability is only the deterministic request-derivation, and untrusted model answers are surfaced only through collective-ai-mind's 2-of-N consensus (no lone model trusted); the zero-token portal core is intact — audited by the standards (determinism, zero-token, no-egress, demarcation).`, on: allDeterministic && leadsOn && dev.develops },
+    { facet: `THE DEMARCATION — "all that can be done through the chat" is these deterministic, zero-token, no-egress capabilities over the seed corpus model, each carrying a computed boundary; it is NOT an LLM, NOT networked, NOT open-ended. The live lanes sit OUTSIDE this core as opt-in EDGE fetches — SE no-key, Perplexity keyed BYO-key, Pollinations no-key free — so the registered capability is only the deterministic request-derivation, and untrusted model answers are surfaced only through collective-ai-mind's 2-of-N consensus (no lone model trusted); the zero-token portal core is intact — audited by the standards (determinism, zero-token, no-egress, demarcation).`, on: answering.length > 0 && leadsOn && dev.develops },
   ].map((entry) => ({ ...entry, receipt: toUuid(`chat-capabilities-audited:${entry.facet}:${entry.on}`) }))
   return {
     supported: facets.every((entry) => entry.on),
@@ -9099,9 +9125,11 @@ export function referralsComputeThroughOnePredictableFoldEvenWhenMissing(matrix:
   // (1) ONE PREDICTABLE PATH — the consumers route through referralAddress; the addresses are unchanged (pure DRY).
   const pageRouted = pageNavContext('/a', '/b').superposition === referralAddress('page-superposition', '/a', '/b')
   const chatRouted = chatNavContext('/a', 'query', matrix).superposition === referralAddress('chat-superposition', '/a', 'query')
-  const predictable = referralAddress('nav-search', '/x', 'q') === referralAddress('nav-search', '/x', 'q') && isUuid(referralAddress('nav-search', '/x', 'q'))
+  const predictable = isUuid(referralAddress('nav-search', '/x', 'q'))
   // (2) ZERO STORED — referralAddress is pure (no state): two calls anywhere give the same address, nothing persisted.
-  const zeroStored = referralAddress('chat-superposition', '/ref', 'topic') === referralAddress('chat-superposition', '/ref', 'topic')
+  // Was one referral address compared with itself. Zero-stored means the address is DERIVED from its
+  // arguments, so a different referrer derives a different address — nothing is looked up.
+  const zeroStored = referralAddress('chat-superposition', '/ref', 'topic') !== referralAddress('chat-superposition', '/other', 'topic')
   // (3) MISSING REFERRAL IS ENOUGH — an empty referrer still addresses, and the chat greets + answers.
   const missingAddresses = isUuid(referralAddress('chat-superposition', '', 'topic')) && isUuid(pageNavContext('', '/x').superposition)
   const missingChat = chatNavContext('', 'what are you', matrix)

@@ -1411,7 +1411,7 @@ export function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matr
       holds: (() => {
         const leapJ = (y: number) => y % 4 === 0
         const leapG = (y: number) => y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)
-        return leapJ(2000) && leapG(2000) && !leapG(1900) && leapG(2000) && 2_451_545 === 2_451_545
+        return leapJ(2000) && leapG(2000) && !leapG(1900) && leapG(2000)
       })() }
     const maya819Map = {
       id: 'maya-819',

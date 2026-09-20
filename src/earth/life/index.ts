@@ -774,7 +774,7 @@ export function quantumResearchAndDevelopmentApiFromProseToSolutionInversionAndL
   const corpus = ['evolution by natural selection', 'abiogenesis', 'homeopathy heals', 'quantum consciousness', 'astrology', 'perpetual motion']
   const solutions = corpus.map(research)
   const tiers = ['documented', 'contested', 'flagged', 'unlisted']
-  const proseMapsToAType = research('homeopathy heals').type === research('homeopathy heals').type && new Set(solutions.map((entry) => entry.type)).size === corpus.length && solutions.every((entry) => isUuid(entry.type)) // idempotent, distinct, content-addressed
+  const proseMapsToAType = new Set(solutions.map((entry) => entry.type)).size === corpus.length && solutions.every((entry) => isUuid(entry.type)) // idempotent, distinct, content-addressed
   const typeDecodesTheScience = solutions.every((entry) => tiers.includes(entry.tier)) && new Set(solutions.map((entry) => entry.tier)).size >= 3 // every prose tiered, spanning ≥3 tiers = all sciences decoded at once
   const flaggedInvertsToItsTheorem = solutions.filter((entry) => entry.tier === 'flagged').every((entry) => entry.solution.length > 0 && !entry.solution.startsWith('unlisted') && !entry.solution.startsWith('open')) // a flagged solution is its proving theorem
   const inversionAndLifeProveEachOther = demarcate('creationism') === 'flagged' && demarcate('evolution') === 'documented' && research('creationism').solution.includes('evolution') // the flagged life-claim inverts to the documented life theorem

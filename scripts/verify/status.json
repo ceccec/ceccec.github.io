@@ -1,5 +1,5 @@
 {
-  "axiom-index.unplaced": 671,
+  "axiom-index.placed": -65,
   "axiom-index.unresearched": 2,
   "bagua.parallel-tables": 7,
   "build.app-chunk-kilobytes": 649,
@@ -20,7 +20,7 @@
   "independence.cross-checked": -473,
   "lean-arbiter.census-contradictions": 0,
   "lean.lattice-unsealed-directions": 0,
-  "lean.registry-unsealed": 720,
+  "lean.registry-sealed": -31,
   "limits.always-true": 5,
   "limits.weakest-bar": 60,
   "movie.animation-clocks": 3,

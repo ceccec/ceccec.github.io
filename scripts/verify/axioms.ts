@@ -156,8 +156,12 @@ export function assertAxiomIndex(): void {
   console.log(`  ${String(fam.unplaced).padStart(4)}  UNPLACED — the fold references none of the indexed artefacts.`)
   console.log(`         NOT a claim of axiom-freedom: an axiom the index has not named cannot be found by looking for the names it has.`)
   console.log(`         Axiom-freedom is decided on the Lean side, per theorem, and reported by verify:lean.`)
-  console.log(ratchet('axiom-index.unplaced', fam.unplaced, { evidence: () => [`${fam.unplaced} fold(s) reference none of the indexed artefacts — see the family table above; axiom-freedom is decided per theorem by verify:lean, not here`] }))
-  void total
+  // NEGATED for the same reason as lean.registry-sealed and independence.cross-checked: this counted the
+  // UNPLACED folds, so every registry row added without an indexed artefact raised it. Fifteen of the twenty
+  // rows 96484f0f added were exactly that, and the gate read honest growth as regression. What ratchets now
+  // is the count PLACED — the folds that do reference an indexed artefact — which only good work raises.
+  const placed = total - fam.unplaced
+  console.log(`  ${ratchet('axiom-index.placed', -placed, { evidence: () => [`${placed} fold(s) of ${total} reference an indexed artefact — this figure FELL, which for a negated ratchet means placement was LOST, not gained`] })}  — stored negated, so ${placed} placed may only RISE`)
 }
 
 /**

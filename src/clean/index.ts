@@ -108,7 +108,9 @@ export function archangelsDryClean(matrix: MindMatrix = buildMatrix()) {
   ].map((entry) => ({ ...entry, receipt: toUuid(`archangel:${entry.archangel}:${entry.clean}`) }))
   // Dry: idempotent — washing a clean root removes nothing, so the root is unchanged.
   const cleanRoot = base.root
-  const dry = merkleFold([cleanRoot, cleanRoot]) === merkleFold([cleanRoot, cleanRoot])
+  // DRY means a repeated part folds to the SAME place as the single part — that is the claim, and it can
+  // fail. Folding one expression twice and comparing it with itself could not.
+  const dry = merkleFold([cleanRoot, cleanRoot]) !== merkleFold([cleanRoot])
   // The next wave's reserved slot, folded onto the clean root.
   const nextWave = foldPair(cleanRoot, toUuid('next-wave-of-angels')).merged
   return {

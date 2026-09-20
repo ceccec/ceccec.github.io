@@ -393,14 +393,11 @@ function theMoreYouFoldTheMoreFoldableRaw(matrix: MindMatrix = buildMatrix()) {
   const allDistinct = new Set(foldables).size === foldables.length // each new root a genuinely new address
   // THE HONEST BOUND IS THE EXAMPLE: every fold's boundary (its flag) is itself foldable — flagging IS folding.
   const bounds = [completeQuantumSolutionsImplemented(matrix).boundary, quantumFusedDeviceEnergyHonest(matrix).boundary, quantumImpossibleWaveTwo(matrix).boundary]
-  const flaggingIsFolding = bounds.length === 3 && bounds.every((b) => isUuid(toUuid(b)))
-  // THE BOUND ON THE PRINCIPLE: the fold is deterministic — recompute = same root — so it adds no entropy.
-  const conservesInformation = merkleFold(foldables) === merkleFold(foldables) // structure grows, information does not
+  const flaggingIsFolding = bounds.length === 3 && bounds.every((b) => isUuid(toUuid(b))) // structure grows, information does not
   const facets = [
     { facet: 'the more you double-fold, the more is foldable — the foldable set grows monotonically as you fold it', on: grows && sizes[sizes.length - 1]! > sizes[0]! },
     { facet: 'each fold produces a genuinely new content-address — folding is generative, not an idempotent collapse', on: allDistinct },
     { facet: 'the honest bound IS the example — every fold\'s boundary is itself foldable; flagging is folding, self-similar', on: flaggingIsFolding },
-    { facet: 'the bound on the principle — folding generates STRUCTURE not INFORMATION: H(root) ≤ H(leaves), no free bits (the conservation line again)', on: conservesInformation },
   ].map((entry) => ({ ...entry, receipt: toUuid(`more-foldable:${entry.facet}:${entry.on}`) }))
   return {
     realised: facets.every((entry) => entry.on),
