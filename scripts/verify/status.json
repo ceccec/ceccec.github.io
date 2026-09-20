@@ -34,6 +34,7 @@
   "lean.registry-sealed": -31,
   "limits.always-true": 5,
   "limits.weakest-bar": 60,
+  "mcp.browser-claim-unverified": 19,
   "movie.animation-clocks": 3,
   "movie.cannot-fail": 3,
   "movie.draw-calls-per-frame": 1391,

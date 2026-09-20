@@ -899,7 +899,7 @@
     "crypto:decode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:decode",
     "crypto:inverse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:inverse",
     "paper:lean-latex": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-latex.ts writeLeanLatex",
-    "verify:lean-latex": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-latex.ts assertLeanLatexAgrees",
+    "verify:lean-latex": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-latex.ts assertLeanLatexAndTheDocumentProveEachOther",
     "verify:lean-arbiter": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-arbiter.ts assertLeanArbitrates",
     "verify:prior-art": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/prior-art.ts assertPriorArtLedger",
     "verify:mcp-transport": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/mcp-transport.ts assertMcpTransport",

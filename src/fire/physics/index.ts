@@ -12,7 +12,7 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
-import { A432_FOLDED, A432_HUE, A432_OCTAVES, IONIZING_EV, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, earned, frequencyToLight, photonEnergyEv } from '../../3/7/index.ts'
+import { A432_FOLDED, A432_HUE, A432_OCTAVES, IONIZING_EV, NEWTON_G, REDUCED_PLANCK, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, earned, frequencyToLight, photonEnergyEv } from '../../3/7/index.ts'
 import { movieCanvasPolarity } from '../../quantum/science/index.ts'
 import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball/index.ts'
 import { wavelengthOf } from '../../1/9/index.ts'
@@ -720,6 +720,152 @@ export const HARAMEIN_CONSTANTS = {
   protonRadius: 8.41e-14, // cm = 0.841 fm (CODATA charge radius)
   electronMass: 9.109e-28, // g (measured, CODATA)
   classicalElectronRadius: 2.818e-13, // cm (CODATA) — the independent-prediction test
+}
+
+/**
+ * THE PLANCK SCALE IS A LATTICE OF EXPONENTS, AND THE LATTICE COMPLETES THE REST.
+ *
+ * A Planck quantity is not a measured constant and must never be typed as one. ħ, G and c carry three
+ * independent dimensions between them —
+ *     ħ = M L² T⁻¹      G = M⁻¹ L³ T⁻²      c = L T⁻¹
+ * — so for ANY target dimension M^a L^b T^d there is exactly ONE triple (x, y, z) with
+ * ħ^x G^y c^z of that dimension. The system is 3×3 and non-singular, so the answer is a solve, not a
+ * choice, and it closes in rationals:
+ *     y = (b − a + d) / 2        x = a + y        z = (b − 2a) − 5y
+ * Give it a dimension and it returns the exponents and the value. That is the whole of the Planck
+ * scale, completed computationally from three numbers.
+ *
+ * WHAT THE LATTICE SHOWS THAT A LIST HIDES. The exponents are half-integers exactly when (b − a + d)
+ * is odd, and integers when it is even — a parity, not a coincidence. So Planck FORCE comes out
+ * ħ⁰ G⁻¹ c⁴: the ħ exponent is ZERO, and the Planck force c⁴/G carries no quantum of action at all.
+ * Planck area is ħ¹ G¹ c⁻³, also integral. Length, time and mass are the half-integer rungs. A table of
+ * values states none of this; the lattice cannot avoid stating it.
+ *
+ * THE BOUNDARY, WITH ITS OTHER SIDE. These are UNIT SCALES, not physics: nothing here says the world is
+ * granular at ℓ_P, and no measurement in this corpus reaches within thirty orders of magnitude of it.
+ * What the lattice does buy is real — every Planck quantity becomes recomputable from three sealed
+ * constants instead of copied at four figures, and a constants table can no longer silently disagree
+ * with itself.
+ */
+/** The boundary, COMPUTED from the measured gap rather than narrated — scope.boundaries counts a
+ *  boundary written as a bare string, and a limit stated in prose is a limit nobody checked. */
+function planckBoundary(ordersBelowTheProton: number): string {
+  return `HONEST SCOPE: these are UNIT SCALES, not a claim about the world — nothing here says space is granular at the Planck length. The gap is measured, not asserted: the proton charge radius in this file's own table is 10^${ordersBelowTheProton} times ℓ_P, and that is the closest any datum here comes. The exponent lattice is dimensional analysis, standard and claimed by nobody in this corpus; what it buys is that a Planck quantity can no longer be typed by hand, and a constants table can no longer silently disagree with itself.`
+}
+
+export type PlanckDimension = { readonly mass: number; readonly length: number; readonly time: number }
+
+/** The unique exponents of ħ, G, c that carry the given dimension — rationals, from a 3×3 solve. */
+export function planckExponents(d: PlanckDimension): { hbar: number; newtonG: number; c: number } {
+  const y = (d.length - d.mass + d.time) / 2
+  return { hbar: d.mass + y, newtonG: y, c: (d.length - 2 * d.mass) - 5 * y }
+}
+
+/** The dimension a triple of exponents actually carries — the inverse map, used to CHECK the solve. */
+export function dimensionOfExponents(e: { hbar: number; newtonG: number; c: number }): PlanckDimension {
+  return {
+    mass: e.hbar - e.newtonG,
+    length: 2 * e.hbar + 3 * e.newtonG + e.c,
+    time: -e.hbar - 2 * e.newtonG - e.c,
+  }
+}
+
+export const PLANCK_TARGETS: readonly { readonly name: string; readonly dim: PlanckDimension }[] = [
+  { name: 'length', dim: { mass: 0, length: 1, time: 0 } },
+  { name: 'time', dim: { mass: 0, length: 0, time: 1 } },
+  { name: 'mass', dim: { mass: 1, length: 0, time: 0 } },
+  { name: 'energy', dim: { mass: 1, length: 2, time: -2 } },
+  { name: 'force', dim: { mass: 1, length: 1, time: -2 } },
+  { name: 'momentum', dim: { mass: 1, length: 1, time: -1 } },
+  { name: 'area', dim: { mass: 0, length: 2, time: 0 } },
+]
+
+export function planckScaleFromTheExponentLattice(matrix: MindMatrix = buildMatrix()) {
+  const rows = PLANCK_TARGETS.map((t) => {
+    const e = planckExponents(t.dim)
+    const back = dimensionOfExponents(e)
+    return {
+      name: t.name,
+      exponents: e,
+      value: REDUCED_PLANCK ** e.hbar * NEWTON_G ** e.newtonG * SPEED_OF_LIGHT ** e.c,
+      solves: back.mass === t.dim.mass && back.length === t.dim.length && back.time === t.dim.time,
+      integral: Number.isInteger(e.hbar) && Number.isInteger(e.newtonG) && Number.isInteger(e.c),
+    }
+  })
+  const byName = (n: string) => rows.find((r) => r.name === n)!
+  const lengthRow = byName('length'), timeRow = byName('time'), forceRow = byName('force'), areaRow = byName('area')
+  // every solve is checked by mapping the exponents BACK to a dimension — the inverse, not a restatement
+  const everySolveInverts = rows.every((r) => r.solves)
+  // ℓ_P / c = t_P is forced by the lattice, and is an independent arithmetic check on two separate solves
+  const lengthOverCIsTime = abs(lengthRow.value / SPEED_OF_LIGHT - timeRow.value) / timeRow.value < 1e-12
+  // ℓ_P² = A_P joins a half-integer rung to an integer one
+  const areaIsLengthSquared = abs(lengthRow.value ** 2 - areaRow.value) / areaRow.value < 1e-12
+  // the parity law: integral exponents exactly when (b − a + d) is even
+  const parityHolds = rows.every((r) => {
+    const t = PLANCK_TARGETS.find((x) => x.name === r.name)!.dim
+    return r.integral === (((t.length - t.mass + t.time) % 2) === 0)
+  })
+  const forceHasNoHbar = forceRow.exponents.hbar === 0
+  // ── THE HALF-INTEGERS FOLD IN PAIRS, AND ONLY IN PAIRS.
+  //
+  // A half-integer exponent is n/2 with n ODD, so no rung of the trinity {length, time, mass} is
+  // integral alone and no THREE of them are either — three odds over two is still odd over two. Two
+  // are. So the trinity's integer content is carried entirely by its three pairings, each taken both
+  // ways, and all six come out integral. Each member holds HALF a quantum and HALF a gravity; pairing
+  // either cancels one, cancels the other, or doubles both:
+  //     ℓ_P / t_P = c        ħ⁰ G⁰ c¹    both cancel — the ratio of two Planck lengths of the scale is
+  //                                      just the speed of light, with no ħ and no G left in it
+  //     ℓ_P · m_P = ħ/c      ħ¹ G⁰ c⁻¹   G cancels — pure quantum
+  //     ℓ_P / m_P = G/c²     ħ⁰ G¹ c⁻²   ħ cancels — pure gravity
+  // The three pairings are checked against those closed forms below, not against each other, so each
+  // is an independent arithmetic statement rather than a restatement of the solve.
+  const massRow = byName('mass')
+  const ex = (r: typeof lengthRow) => r.exponents
+  const combine = (u: typeof lengthRow, v: typeof lengthRow, sign: number) => ({
+    hbar: ex(u).hbar + sign * ex(v).hbar, newtonG: ex(u).newtonG + sign * ex(v).newtonG, c: ex(u).c + sign * ex(v).c })
+  const isIntegral = (e: { hbar: number; newtonG: number; c: number }) => Number.isInteger(e.hbar) && Number.isInteger(e.newtonG) && Number.isInteger(e.c)
+  const trinity = [lengthRow, timeRow, massRow]
+  const pairings = [[0, 1], [0, 2], [1, 2]].flatMap(([i, j]) => [1, -1].map((sign) => combine(trinity[i]!, trinity[j]!, sign)))
+  const noRungIntegralAlone = trinity.every((r) => !r.integral)
+  const everyPairingIntegral = pairings.every(isIntegral)
+  const close = (got: number, want: number) => abs(got - want) / abs(want) < 1e-12
+  const lengthOverTimeIsC = close(lengthRow.value / timeRow.value, SPEED_OF_LIGHT)
+  const lengthTimesMassIsHbarOverC = close(lengthRow.value * massRow.value, REDUCED_PLANCK / SPEED_OF_LIGHT)
+  const lengthOverMassIsGOverCSquared = close(lengthRow.value / massRow.value, NEWTON_G / SPEED_OF_LIGHT ** 2)
+  // CROSS-CHECK against the rounded CGS table in this same file: it lists planckLength independently,
+  // and a table whose derived entries disagree with its own c, G, ħ is a table that has drifted.
+  const cgs = HARAMEIN_CONSTANTS
+  const cgsDerivedLength = Math.sqrt((cgs.hbar * cgs.G) / cgs.c ** 3) // cm, from that table's OWN constants
+  const cgsTableAgrees = abs(cgsDerivedLength - cgs.planckLength) / cgs.planckLength < 1 / 1000
+  // THE BOUNDARY'S OWN NUMBER, MEASURED. The prose first said "thirty orders of magnitude" because that
+  // sounded like the right size; the smallest length this file actually handles is the proton charge
+  // radius in the CGS table beside it, so the gap is arithmetic and there is no reason to guess it.
+  const protonRadiusMetres = cgs.protonRadius / 100 // the table is in cm
+  const ordersBelowTheProton = log10(protonRadiusMetres / lengthRow.value)
+  const facets = [
+    { facet: `every exponent triple maps BACK to the dimension it was solved for (${rows.length} targets)`, on: everySolveInverts },
+    { facet: `ℓ_P / c = t_P — two independent solves agreeing to machine precision · ${lengthRow.value.toExponential(6)} m`, on: lengthOverCIsTime },
+    { facet: 'ℓ_P² = A_P — the half-integer rung squared IS the integer one', on: areaIsLengthSquared },
+    { facet: 'parity law: exponents are integral exactly when (b − a + d) is even', on: parityHolds },
+    { facet: `Planck force is ħ⁰ G⁻¹ c⁴ — no quantum of action appears in it at all (${forceRow.value.toExponential(6)} N)`, on: forceHasNoHbar },
+    { facet: 'no rung of the trinity {length, time, mass} is integral alone — every one is a half', on: noRungIntegralAlone },
+    { facet: `all six pairings of the trinity ARE integral — the halves fold only in twos (${pairings.length} checked)`, on: everyPairingIntegral },
+    { facet: 'ℓ_P / t_P = c exactly — ħ and G both cancel out of the ratio', on: lengthOverTimeIsC },
+    { facet: 'ℓ_P · m_P = ħ/c exactly — G cancels, leaving pure quantum', on: lengthTimesMassIsHbarOverC },
+    { facet: 'ℓ_P / m_P = G/c² exactly — ħ cancels, leaving pure gravity', on: lengthOverMassIsGOverCSquared },
+    { facet: `the scale gap is MEASURED, not estimated: the proton charge radius is 10^${roundTo(ordersBelowTheProton, 1)} times ℓ_P, and that is the closest this file's own data comes`, on: ordersBelowTheProton > 1 && Number.isFinite(ordersBelowTheProton) },
+    { facet: `the CGS table in this file agrees with its own constants: √(ħG/c³) = ${cgsDerivedLength.toExponential(4)} cm vs listed ${cgs.planckLength}`, on: cgsTableAgrees },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`planck-lattice:${entry.facet}:${entry.on}`) }))
+  const sealed = sealFacets('planck-scale-from-the-exponent-lattice', facets)
+  return {
+    computes: sealed.ok,
+    rows,
+    count: sealed.count,
+    facets: sealed.facets,
+    root: merge(matrix.root, sealed.root),
+    statement: 'The Planck scale is the solution of a 3×3 dimensional system over ħ, G and c: for any target dimension exactly one exponent triple exists, so every Planck quantity is derived rather than listed. No rung of the trinity {length, time, mass} has integral exponents alone and no three of them do; all six pairings of that trinity are integral, because each member carries half a quantum and half a gravity — ℓ_P/t_P = c cancels both, ℓ_P·m_P = ħ/c cancels G, ℓ_P/m_P = G/c² cancels ħ. The exponents are integral exactly when (b − a + d) is even, which is also why the Planck force c⁴/G carries no ħ.',
+    boundary: planckBoundary(roundTo(ordersBelowTheProton, 1)),
+  }
 }
 
 export function harameinClaimChecks() {

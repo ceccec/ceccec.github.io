@@ -13,6 +13,10 @@
  * which is exactly what it would be at the other end of the pipe.
  */
 
+import { ratchet } from './status.ts'
+import { quantumCliToolsCatalog } from '../../src/quantum/apps/index.ts'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { conceptCommands } from '../../src/heaven/atoms/index.ts'
 import { mcpToolManifest, mcpToolName, conceptCommandOfToolName } from '../../src/learning/index.ts'
@@ -61,7 +65,53 @@ export function handshake(root: string = process.cwd()): Handshake {
 }
 
 /** The tool surface the manifest advertises must be the surface the server serves. */
+/**
+ * A TOOL THE SURFACE CALLS BROWSER-RUNNABLE MUST AT LEAST BE LOADABLE IN A BROWSER.
+ *
+ * Every row of the CLI/MCP catalogue carries `browserRunnable: boolean` and a `browserGap: string`,
+ * both TYPED BY HAND. 548 of 584 say true. Nothing ever checked them, so the number says what someone
+ * believed when the row was written — the assert-not-measure defect, sitting on the surface other
+ * agents read to decide what they can run.
+ *
+ * The check is deliberately narrow and sound in one direction only: if a tool's barrel has a TOP-LEVEL
+ * `import … from 'node:fs'` (or path/child_process/os), that module eager-binds and throws the moment a
+ * browser imports it — src/water/stack/index.ts:3 says exactly this in its own first line, which is why
+ * that file carefully has none. So `browserRunnable: true` over such a barrel is refutable and refuted.
+ * The converse is NOT checked here: a node-free barrel does not prove the fold runs in a browser, and
+ * claiming it would be the same unmeasured optimism in the other direction. Ten rows declare `false`
+ * over node-free barrels and are left alone — their stated gaps are about needing CI, npm or a token,
+ * which is a runtime capability question this check cannot settle.
+ *
+ * Comments are stripped before looking. The first version of this counted 39 because its regex matched
+ * the very comment warning against the import it was looking for.
+ */
+const NODE_IMPORT = /^\s*import\s[^'"]*['"]node:(fs|path|child_process|os)['"]/m
+const stripNonCode = (src: string): string =>
+  src.replace(/\/\*[\s\S]*?\*\//g, ' ').split('\n').map((l) => l.replace(/\/\/.*$/, ' ')).join('\n')
+
+export function browserClaimsContradictedByTheBarrel(root: string = process.cwd()): string[] {
+  const catalogue = quantumCliToolsCatalog() as unknown as { tools: readonly { id: string; barrel: string; browserRunnable: boolean }[] }
+  const cache = new Map<string, boolean>()
+  const barrelNeedsNode = (barrel: string): boolean => {
+    if (cache.has(barrel)) return cache.get(barrel)!
+    let needs = false
+    try { needs = NODE_IMPORT.test(stripNonCode(readFileSync(join(root, barrel, 'index.ts'), 'utf8'))) } catch { needs = false }
+    cache.set(barrel, needs)
+    return needs
+  }
+  return catalogue.tools
+    .filter((t) => t.browserRunnable && barrelNeedsNode(t.barrel))
+    .map((t) => `${t.id} — declared browserRunnable, but ${t.barrel}/index.ts imports node at top level, so the module throws on import in a browser`)
+}
+
+export function assertBrowserClaimsAreLoadable(): void {
+  const contradicted = browserClaimsContradictedByTheBarrel()
+  for (const c of contradicted.slice(0, 8)) console.log(`  ${c}`)
+  console.log(ratchet('mcp.browser-claim-unverified', contradicted.length, { evidence: () => contradicted }))
+}
+
 export function assertMcpTransport(): void {
+  assertBrowserClaimsAreLoadable() // the surface may not promise a browser what the barrel cannot load
   const h = handshake()
   console.log(`mcp stdio: ${h.lines} line(s) on stdout, every one parsed as JSON — ${h.serverName}`)
   console.log(`  tools/list served ${h.tools.length}: ${h.tools.join(', ')}`)

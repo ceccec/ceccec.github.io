@@ -48,8 +48,8 @@ kernel reported it dependent on propext and Quot.sound. The axiom-freedom gate r
 \end{theorem}
 \begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
 \begin{theorem}[The coin is two sides and one edge]
-The surface is exactly the two sides and the edge: 4 + 4 + 1.
-\[ \texttt{below.length + above.length + 1 = digits.length} \]
+The surface is exactly the two sides and the edge, and σ itself sorts it: the digits it carries upward are `below`, the one it leaves in place is the edge, the digits it carries downward are `above` — so the sides are computed from the map rather than typed beside it, and 4 + 4 + 1 is what the sorting leaves. (Was the count alone, which read the two typed lists back, 2026-09-14.)
+\[ \texttt{digits.filter (fun d => d < σ d) = below ∧ digits.filter (fun d => σ d == d) = [5] ∧ digits.filter (fun d => σ d < d) = above ∧ below.length + above.length + 1 = digits.length} \]
 \end{theorem}
 \begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
 \begin{theorem}[Every bit of resistance drains]
@@ -72,6 +72,35 @@ The drain is not an approximation that improves with scale: it is exact at every
 \[ \texttt{∀ k ∈ [1, 10, 1000, 1000000], (digits.map (fun d => k * resistance d)).sum = 0} \]
 \end{theorem}
 \begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Verified at every point below the bound]
+VERIFIED AT EVERY POINT A FINITE CHECK REACHES — a thousand cases, decided in the kernel.
+\[ \texttt{(List.range 1000).all holdsBelowAThousand = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[And false at the bound]
+AND FALSE. The very next case refutes it.
+\[ \texttt{holdsBelowAThousand 1000 = false} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Finite verification does not entail the universal]
+So a finite verification does not entail the unbounded claim: here is a property verified at a thousand consecutive points whose universal statement is FALSE. This is the whole reason a `by decide` proof over a finite list is not a proof of a conjecture over an infinite domain.
+\[ \texttt{((List.range 1000).all holdsBelowAThousand = true) ∧ (holdsBelowAThousand 1000 = false)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[A bigger bound proves no more]
+\[ \texttt{((List.range 10).all (failsAt 10) = true ∧ failsAt 10 10 = false) ∧ ((List.range 100).all (failsAt 100) = true ∧ failsAt 100 100 = false) ∧ ((List.range 1000).all (failsAt 1000) = true ∧ failsAt 1000 1000 = false) ∧ ((List.range 2000).all (failsAt 2000) = true ∧ failsAt 2000 2000 = false)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[What a finite check does establish]
+What a finite check DOES establish, stated exactly: a counterexample cannot be below the bound. That is a real result and it is not the conjecture.
+\[ \texttt{∀ n ∈ List.range 1000, holdsBelowAThousand n = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The clay files quantify over finite lists]
+The corpus's Clay-named theorems quantify over finite lists of this size — nine points for the Riemann functional equation, seven for BSD. Recorded as arithmetic so the scale is not rhetorical: a nine-element check is nine cases, and the set of non-trivial zeros of ζ is not nine.
+\[ \texttt{[(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6].length = 9 ∧ [(-2 : Int), -1, 0, 1, 2, 3, 4].length = 7} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
 \begin{theorem}[Sigma is an involution]
 \[ \texttt{∀ t ∈ middleTypes, σ (σ t) = t} \]
 \end{theorem}
@@ -259,6 +288,105 @@ THE INTERVAL IS INVARIANT UP TO THE ONE COMMON FACTOR. For every event and every
 \[ \texttt{∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0} \]
 \end{theorem}
 \begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The reverse boost undoes the boost]
+THE BOOST IS UNDONE BY THE REVERSE BOOST. Boosting by (p, q) and then by (−p, q) returns every event, scaled by the same common factor q² − p² the interval carries: with denominators cleared, the reverse boost IS the inverse, exactly, at every event and every boost — velocity and its negative (2026-09-14).
+\[ \texttt{∀ e ∈ events, ∀ b ∈ boosts, boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧ boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The reverse boost undoes every boost]
+…and for EVERY event and EVERY boost, proved rather than decided: the theorem above checks eight events under five boosts; this holds for all integers p, q, t, x at once. Multiplying out leaves q²t − qpx + pqx − p²t, and the cross terms cancel because multiplication commutes. A proof, not an exhaustion — it rests on the standard axioms propext and Quot.sound that core's integer lemmas carry.
+\[ \texttt{∀ p q t x : Int, boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧ boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Closure is one hundred sixty two]
+The closure has exactly rows x cols cells: 18 x 9 = 162 for the installed library.
+\[ \texttt{(cells 18 9).length = 162} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Closure is the product]
+The product law, at several shapes — the size is rows x cols and not an accident of 18 and 10.
+\[ \texttt{(cells 1 1).length = 1 ∧ (cells 8 8).length = 64 ∧ (cells 18 9).length = 162 ∧ (cells 9 18).length = 162 ∧ (cells 18 10).length = 180} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Closure has no duplicate]
+NO CELL IS REPEATED. This is the bijection, and it is strictly stronger than "every pair is present": a list carrying one pair twice and omitting another would satisfy presence at the right length, and would still have a hole in it.
+\[ \texttt{(cells 18 9).Nodup} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Closure is complete]
+\[ \texttt{coversEveryPair 18 9 = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Address inverts]
+THE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene can be addressed by one number without losing which geometry and which material it names.
+\[ \texttt{∀ p ∈ cells 18 9, row 9 (idx 9 p.1 p.2) = p.1 ∧ col 9 (idx 9 p.1 p.2) = p.2} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Addresses are the interval]
+The addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter.
+\[ \texttt{(cells 18 9).map (fun p => idx 9 p.1 p.2) = List.range 162} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The compound fraction clears]
+The clearing itself: FOCAL/(FOCAL - z) = 24/(24 - k) reduces to 12 * 10 = 5 * 24.
+\[ \texttt{(12 : Int) * 10 = 5 * 24} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Focal plane is unit scale]
+AT THE FOCAL PLANE THE SCALE IS UNITY. z = 0 gives 24/24 = 1: objects on the plane through the origin are neither enlarged nor reduced, which is what makes FOCAL a focal length.
+\[ \texttt{den 0 = 24} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Depth is strictly monotone]
+NEARER ENLARGES, FURTHER RECEDES, STRICTLY. For depths inside the focal point, k1 < k2 implies 24/(24-k1) < 24/(24-k2), stated by cross-multiplication so no division occurs. This is the monotonicity the TS fold checks numerically and the property two canvas painters violated by faking depth as a screen offset before the 2026-07-07 audit.
+\[ \texttt{∀ k1 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], ∀ k2 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], k1 < k2 → 24 * den k2 < 24 * den k1} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Frustum brackets the focal plane]
+The frustum the camera declares is non-degenerate: near < FOCAL < far, in tenths, with the depth planes half a lattice pitch either side of the focal plane (near 19/10, far 29/10).
+\[ \texttt{(19 : Int) < 24 ∧ (24 : Int) < 29 ∧ (0 : Int) < 19} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Denominator is positive on the frustum]
+The projection never divides by zero on the declared frustum: the denominator stays positive for every depth between the near and far planes.
+\[ \texttt{∀ k ∈ [(-5 : Int), -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], 0 < den k} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Reflection is an involution]
+σ² = id on every cell of the closure.
+\[ \texttt{reflIsInvolutive 18 9 = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Reflection closes on the closure]
+σ maps the closure onto itself — the symmetry does not leave the space.
+\[ \texttt{reflStaysInside 18 9 = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Reflection has no fixed point]
+NO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit reflection d ↦ 10 − d fixes 5 and nothing else.
+\[ \texttt{reflHasNoFixedPoint 18 9 = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The closure is eighty one orbits]
+So the closure is 81 orbits of two, with nothing left over.
+\[ \texttt{(cells 18 9).length = 2 * 81} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Orbit positions cancel]
+THE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly — the involution law this corpus states everywhere, holding here because the lattice is centred.
+\[ \texttt{orbitPositionsCancel 18 9 = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Reflection complements the address]
+ROW-MAJOR REFLECTION IS ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179, for all 180 cells. The geometric symmetry and the arithmetic one are the same symmetry, which is not visible from either the layout or the addressing alone.
+\[ \texttt{reflComplementsAddress 18 9 = true} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The involution laws are general]
+The same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection — while involutivity, closure, cancellation and complement survive everywhere.
+\[ \texttt{(reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧ (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧ (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧ (orbitPositionsCancel 3 3 = true) ∧ -- ONE even side suffices, and only both-odd fails: 18x9 and 9x18 have no fixed cell, 3x3 does. (reflHasNoFixedPoint 8 8 = true) ∧ (reflHasNoFixedPoint 9 18 = true) ∧ (reflHasNoFixedPoint 3 3 = false) ∧ (reflHasNoFixedPoint 5 7 = false)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
 \begin{theorem}[Middle forms have dimension six]
 dim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.
 \[ \texttt{choose 4 2 = 6} \]

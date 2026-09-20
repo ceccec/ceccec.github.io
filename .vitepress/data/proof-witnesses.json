@@ -257,7 +257,7 @@
    1573
   ],
   "holds": true,
-  "caption": "the first 64 of 1881 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1882 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
  },
  "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
   "form": "bars",
@@ -1352,7 +1352,7 @@
  "THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input": {
   "form": "bars",
   "values": [
-   1789930000000,
+   1789940000000,
    41,
    21,
    85,
@@ -1682,7 +1682,7 @@
    194,
    166,
    164,
-   160,
+   161,
    155,
    137,
    136,
