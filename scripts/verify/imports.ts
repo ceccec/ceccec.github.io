@@ -18,6 +18,7 @@
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
+import { stripNonCode } from './corpus.ts'
 import { ratchet, everyRatchet } from './status.ts'
 
 /** Directory names never walked. Matched as SEGMENTS, not substrings: this repository
@@ -61,12 +62,8 @@ function sources(root: string, dirs: readonly string[]): string[] {
  * `export { x } from '../../a/b'`, and `twin.includes("from '../../src/1/9'")` in a gate
  * that checks for an import as text.
  */
-function stripNonCode(line: string): string {
-  const noBlock = line.replace(/\/\*[\s\S]*?\*\//g, ' ')
-  const noLine = noBlock.replace(/\/\/.*$/, ' ')
-  // a specifier nested inside another quoted string is data, not an import
-  return noLine.replace(/"[^"]*'[^']*'[^"]*"/g, ' ').replace(/`[^`]*`/g, ' ')
-}
+// stripNonCode moved to ./corpus.ts — it was defined here and again in mcp-transport.ts while the gate
+// that needed it most (guards.ts, the caps scanner) had none. One definition, imported by each.
 
 /** Relative specifiers only — bare package names are the resolver's business, not ours. */
 function specifiers(text: string): { spec: string; line: number }[] {

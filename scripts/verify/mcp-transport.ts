@@ -15,6 +15,7 @@
 
 import { ratchet } from './status.ts'
 import { quantumCliToolsCatalog } from '../../src/quantum/apps/index.ts'
+import { stripNonCode } from './corpus.ts'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
@@ -86,8 +87,7 @@ export function handshake(root: string = process.cwd()): Handshake {
  * the very comment warning against the import it was looking for.
  */
 const NODE_IMPORT = /^\s*import\s[^'"]*['"]node:(fs|path|child_process|os)['"]/m
-const stripNonCode = (src: string): string =>
-  src.replace(/\/\*[\s\S]*?\*\//g, ' ').split('\n').map((l) => l.replace(/\/\/.*$/, ' ')).join('\n')
+// stripNonCode is shared — see ./corpus.ts for why three gates needed it and two had private copies.
 
 export function browserClaimsContradictedByTheBarrel(root: string = process.cwd()): string[] {
   const catalogue = quantumCliToolsCatalog() as unknown as { tools: readonly { id: string; barrel: string; browserRunnable: boolean }[] }

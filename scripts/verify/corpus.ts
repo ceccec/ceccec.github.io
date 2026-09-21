@@ -130,3 +130,28 @@ export function eachFacet(
     walk(sf)
   }
 }
+
+/**
+ * COMMENTS ARE NOT CODE, AND THREE GATES LEARNED THAT THE HARD WAY IN ONE DAY.
+ *
+ * A scanner that reads raw source counts the prose ABOUT a construct as an instance of it. Measured,
+ * all three on 2026-09-20/21:
+ *   · a browser-capability check matched `import … from 'node:fs'` inside the very comment warning
+ *     against that import, and reported 39 tools as lying when the true number was 19;
+ *   · the crack ledger counted a numeric literal quoted in a doc comment;
+ *   · caps.in-facet-folds counted `.length === 2` written inside a comment explaining why a literal
+ *     length test is wrong — the comment arguing against the defect was scored as the defect.
+ *
+ * Two private copies of this stripper already existed (scripts/verify/imports.ts and
+ * mcp-transport.ts) while the gate that needed it most had none, which is the one-math defect this
+ * corpus gates for everywhere else. One definition now, imported by each.
+ *
+ * It is line-oriented and deliberately conservative: block comments, line comments, a specifier
+ * nested inside another quoted string, and template literals. It does NOT parse — anything needing
+ * real structure should use the TypeScript AST (canon.ts does) rather than a regex over text.
+ */
+export function stripNonCode(line: string): string {
+  const noBlock = line.replace(/\/\*[\s\S]*?\*\//g, ' ')
+  const noLine = noBlock.replace(/\/\/.*$/, ' ')
+  return noLine.replace(/"[^"]*'[^']*'[^"]*"/g, ' ').replace(/`[^`]*`/g, ' ')
+}

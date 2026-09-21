@@ -15,6 +15,7 @@
  */
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
+import { stripNonCode } from './corpus.ts'
 import { ratchet, everyRatchet } from './status.ts'
 
 const sources = (root: string): string[] => {
@@ -38,7 +39,8 @@ export function findGuards(root: string = process.cwd()): Guard[] {
   for (const file of sources(root)) {
     const rel = relative(root, file).replace(/\\/g, '/')
     const text = readFileSync(file, 'utf8')
-    text.split('\n').forEach((line, i) => {
+    // comments stripped first: the prose ABOUT a bound is not a bound (see stripNonCode in corpus.ts)
+    text.split('\n').map(stripNonCode).forEach((line, i) => {
       const browser = line.match(/typeof window !== 'undefined'\)\s*return\s+(.+?)\s*$/)
       if (browser && /^(\[\]|null|undefined|0|''|""|false|\{\})/.test(browser[1]!)) {
         found.push({ file: rel, line: i + 1, kind: 'browser-degrades', text: line.trim().slice(0, 120) })
@@ -80,7 +82,9 @@ export function findCaps(root: string = process.cwd()): { file: string; caps: nu
     for (const d of text.matchAll(/^(?:export\s+)?const\s+([A-Za-z_$][\w$]*)\s*(?::\s*number)?\s*=\s*(-?[0-9][0-9_]*)\s*$/gm)) {
       named.set(d[1]!, Number(d[2]!.replace(/_/g, '')))
     }
-    text.split('\n').forEach((line, i) => {
+    // comments stripped first: the prose ABOUT a bound is not a bound. A comment explaining why a
+    // literal length test is wrong was itself scored as a literal length test (see corpus.ts).
+    text.split('\n').map(stripNonCode).forEach((line, i) => {
       // A BOUND THAT DECIDES WHAT IS PRINTED DECIDES NOTHING. `unit.length > 100 ? `${unit.slice(0, 100)}…`` picks an
       // ellipsis; `if (rows.length > 12) { …write('+N more') }` picks how much of a list to show. Neither is a claim a
       // facet leans on — string truncation was already excluded here for that reason, but the LIST form was not, so
