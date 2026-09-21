@@ -12,13 +12,13 @@ import { GATES, applyGate, bellPair, caEvolve, caStep, cnot, complete, composeHa
 // EMF-around-device → A432 balancing-field fold: EXACT EM constants/conversions (no re-derivation), the decoded
 // EM spectrum + EM simulators (reuse, not re-infer), the sampling-theorem bridge, the single-source A432 colour,
 // the honest healing boundary, and the one open-graph animation surface — all consumed, never duplicated.
-import { A432_FOLDED, A432_HUE, A432_OCTAVES, IONIZING_EV, NEWTON_G, REDUCED_PLANCK, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, earned, frequencyToLight, photonEnergyEv } from '../../3/7/index.ts'
+import { A432_FOLDED, A432_HUE, A432_OCTAVES, BOLTZMANN, ELECTRONVOLT, IONIZING_EV, NEWTON_G, REDUCED_PLANCK, REQUIRED_ANALOG_CHANNELS, SPEED_OF_LIGHT, SQRT2, a432Base, earned, frequencyToLight, photonEnergyEv } from '../../3/7/index.ts'
 import { movieCanvasPolarity } from '../../quantum/science/index.ts'
 import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball/index.ts'
 import { wavelengthOf } from '../../1/9/index.ts'
 import { isIonizing } from '../../9/1/index.ts'
 import { electromagneticExperiments, electromagneticRadiationDecoded } from '../../quantum/fire/experiments/index.ts'
-import { planeWaveField, planeWaveIntensity } from '../../quantum/fire/simulations/index.ts'
+import { planeWaveField, planeWaveIntensity, VACUUM_PERMITTIVITY } from '../../quantum/fire/simulations/index.ts'
 import { foldingLinearGivesAnalog } from '../../earth/world/index.ts'
 import { healingModelsHonestBoundary } from '../../water/cosmos/index.ts'
 import { microdata } from '../../mountain/og/index.ts'
@@ -832,6 +832,30 @@ export function planckScaleFromTheExponentLattice(matrix: MindMatrix = buildMatr
   const lengthOverTimeIsC = close(lengthRow.value / timeRow.value, SPEED_OF_LIGHT)
   const lengthTimesMassIsHbarOverC = close(lengthRow.value * massRow.value, REDUCED_PLANCK / SPEED_OF_LIGHT)
   const lengthOverMassIsGOverCSquared = close(lengthRow.value / massRow.value, NEWTON_G / SPEED_OF_LIGHT ** 2)
+  // ── THE GAPS AROUND THE MECHANICAL LATTICE, AND WHAT CLOSING THEM BUYS.
+  //
+  // ħ, G and c span exactly three dimensions — mass, length, time — so the 3×3 solve above reaches
+  // every MECHANICAL Planck quantity and no others. Temperature and charge are not missing by
+  // oversight; they are outside the span. Each needs exactly one more constant, and that is the whole
+  // pattern: one new base dimension, one new constant.
+  //     Θ  needs k_B     T_P = m_P c² / k_B
+  //     Q  needs ε₀      q_P = √(4πε₀ħc)
+  //
+  // THE CHARGE GAP PAYS FOR ITSELF. Closing it produces a DIMENSIONLESS number — the fine-structure
+  // constant α = e²/(4πε₀ħc) — and a dimensionless number is the only kind that can be checked against
+  // the world without choosing units. It is measured independently to ten digits, so it cannot be tuned
+  // to agree: four constants sealed in three different files either land on it or they do not.
+  const planckTemperature = (massRow.value * SPEED_OF_LIGHT ** 2) / BOLTZMANN
+  const fourPiEps0HbarC = 2 * TAU * VACUUM_PERMITTIVITY * REDUCED_PLANCK * SPEED_OF_LIGHT // 4πε₀ħc, τ = 2π
+  const planckCharge = sqrt(fourPiEps0HbarC)
+  const fineStructure = (ELECTRONVOLT * ELECTRONVOLT) / fourPiEps0HbarC // e²/(4πε₀ħc); ELECTRONVOLT is e in coulombs, SI-exact
+  // CODATA 2022: α⁻¹ = 137.035999177(21). A MEASURED datum, not derived here — the point is that this
+  // corpus's own constants reproduce it, so it is the comparison and never an input.
+  const CODATA_INVERSE_FINE_STRUCTURE = 137.035999177
+  const alphaAgreesWithMeasurement = abs(1 / fineStructure - CODATA_INVERSE_FINE_STRUCTURE) / CODATA_INVERSE_FINE_STRUCTURE < 1e-8
+  // q_P/e = 1/√α is exact algebra, not a coincidence: both sides are √(4πε₀ħc)/e. It is checked anyway,
+  // because an identity that fails is arithmetic gone wrong somewhere upstream.
+  const chargeRatioIsInverseRootAlpha = abs(planckCharge / ELECTRONVOLT - 1 / sqrt(fineStructure)) / (1 / sqrt(fineStructure)) < 1e-12
   // CROSS-CHECK against the rounded CGS table in this same file: it lists planckLength independently,
   // and a table whose derived entries disagree with its own c, G, ħ is a table that has drifted.
   const cgs = HARAMEIN_CONSTANTS
@@ -854,6 +878,10 @@ export function planckScaleFromTheExponentLattice(matrix: MindMatrix = buildMatr
     { facet: 'ℓ_P · m_P = ħ/c exactly — G cancels, leaving pure quantum', on: lengthTimesMassIsHbarOverC },
     { facet: 'ℓ_P / m_P = G/c² exactly — ħ cancels, leaving pure gravity', on: lengthOverMassIsGOverCSquared },
     { facet: `the scale gap is MEASURED, not estimated: the proton charge radius is 10^${roundTo(ordersBelowTheProton, 1)} times ℓ_P, and that is the closest this file's own data comes`, on: ordersBelowTheProton > 1 && Number.isFinite(ordersBelowTheProton) },
+    { facet: `Θ is outside the ħ·G·c span and needs exactly one more constant: T_P = m_P c²/k_B = ${planckTemperature.toExponential(6)} K`, on: Number.isFinite(planckTemperature) && planckTemperature > massRow.value },
+    { facet: `Q likewise needs ε₀: q_P = √(4πε₀ħc) = ${planckCharge.toExponential(6)} C`, on: Number.isFinite(planckCharge) && planckCharge > ELECTRONVOLT },
+    { facet: `the charge gap yields a DIMENSIONLESS number — α⁻¹ = ${roundTo(1 / fineStructure, 6)} against the measured 137.035999177, from four constants sealed in three files`, on: alphaAgreesWithMeasurement },
+    { facet: 'q_P/e = 1/√α exactly — the same √(4πε₀ħc) read two ways', on: chargeRatioIsInverseRootAlpha },
     { facet: `the CGS table in this file agrees with its own constants: √(ħG/c³) = ${cgsDerivedLength.toExponential(4)} cm vs listed ${cgs.planckLength}`, on: cgsTableAgrees },
   ].map((entry) => ({ ...entry, receipt: toUuid(`planck-lattice:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('planck-scale-from-the-exponent-lattice', facets)

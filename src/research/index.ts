@@ -7282,12 +7282,27 @@ export function manageComputationalDrift(matrix: MindMatrix = buildMatrix(), at 
     const withinBound = driftTotal <= driftBound
 
     const facets = [
-      { facet: 'detectsDrift', on: rows.length >= (2 * 3) && rows.some((r) => r.drift > 0 || r.id === 'refuse-beyond-ceiling') },
+      // THE COUNT WAS OF A ROSTER THAT SHRANK, AND THE FOLD HAS BEEN FALSE EVER SINCE.
+      //
+      // This read `rows.length >= 6` and there are five. Six is what the roster held when the bound was
+      // written (771956d5): the missing row is `millennium-clay-numeric`, removed in the clay purge —
+      // correctly, because measuring Clay as a count is the very thing that purge existed to remove, and
+      // the standing rule is never to reintroduce a count-out-of-seven. The row went and the number
+      // stayed, so manageComputationalDrift has computed FALSE since that day, and with it
+      // driftInvertedIsTrinityGateway and clayIsGravityRosettaOneRayThisDimensionRestBeyond. Nothing
+      // objected, because no gate requires a fold to compute.
+      //
+      // The claim is DETECTION, not census. A roster may honestly shrink; what must not change is that
+      // the fold enumerates its drift rows and finds drift among them. Empty the rows, or make every one
+      // driftless with the refuse ceiling gone, and this goes dark.
+      { facet: 'detectsDrift', on: rows.length > 0 && rows.every((r) => Number.isFinite(r.drift)) && rows.some((r) => r.drift > 0 || r.id === 'refuse-beyond-ceiling') },
       { facet: 'boundsDrift', on: withinBound && driftBound === DIMENSION_GATES },
       { facet: 'routesViaTrinity', on: routedTrinity >= 1 },
       { facet: 'routesViaWave', on: routedWave >= 1 },
       { facet: 'routesViaRefuse', on: routedRefuse >= 1 },
-      { facet: 'routesViaBound', on: routedBound >= (2) },
+      // ...and its three siblings all require ONE. The 2 here was the second bound-routed row —
+      // millennium-clay-numeric — counted before it was purged. One route, one witness, like the others.
+      { facet: 'routesViaBound', on: routedBound >= 1 },
       { facet: 'everyRowManaged', on: managedCount === rows.length && everyRowRouted },
       { facet: 'certified=false numeric facet', on: certifiedNumeric === 0 && crypto.certified === false },
       { facet: 'refuseBeyond', on: refuseBeyondHolds },
