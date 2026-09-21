@@ -63,6 +63,25 @@ export function show() {
     }
   }
 
+  // A GATE EXERCISING A FOLD IS NOT AN `on:` PREDICATE, AND WAS COUNTED AS NOTHING AT ALL.
+  //
+  // The walk above reads `src` only, and the cross-check test above looks only for a fold's name inside
+  // an `on:` expression. Gates in scripts/verify do not write `on:` — they call the fold and refuse on
+  // what it returns. So a fold held to account by a gate on the commit path read here as "asserted only
+  // by its own facets, and nothing else", which is the opposite of true.
+  //
+  // This is deliberately a SEPARATE figure and not added to `crossed`. Being called by a gate is weaker
+  // than being named in another fold's predicate — the gate may only be reading the fold, not constraining
+  // it — and merging the two would raise a ratchet by widening what it measures rather than by the corpus
+  // improving. That is the same move as seeding a floor, wearing better clothes.
+  const gateFiles: string[] = []
+  const walkGates = (d: string) => { for (const e of readdirSync(d, { withFileTypes: true })) {
+    if (e.isDirectory()) { if (!e.name.startsWith('.')) walkGates(join(d, e.name)) }
+    else if (e.name.endsWith('.ts')) gateFiles.push(join(d, e.name)) } }
+  walkGates(join('scripts', 'verify'))
+  const gateText = gateFiles.map((f) => readFileSync(f, 'utf8')).join('\n')
+  const gateExercised = [...folds.keys()].filter((name) => new RegExp(`\\b${name}\\s*\\(`).test(gateText)).length
+
   let selfOnly = 0, crossed = 0
   const examples: string[] = []
   for (const [name, home] of folds) {
@@ -77,6 +96,8 @@ export function show() {
   console.log(`  constrained by a predicate      ${crossed}  in another file`)
   console.log(`  ${ratchet('independence.cross-checked', -crossed, { evidence: () => [`${crossed} fold(s) constrained by a predicate in another file, of ${folds.size} carrying facets — this figure FELL, which for a negated ratchet means cross-checking was lost, not gained`] })}  — stored negated, so ${crossed} cross-checked may only RISE`)
   console.log(`  asserted only by their own      ${selfOnly}  facets, and nothing else`)
+  console.log(`  called by a commit-path gate    ${gateExercised}  in scripts/verify (a separate, weaker bond — never added to the figure above)`)
+  console.log(`  ${ratchet('independence.gate-exercised', -gateExercised, { evidence: () => [`${gateExercised} fold(s) of ${folds.size} are called by a gate in scripts/verify — this figure FELL, which for a negated ratchet means a gate stopped exercising a fold`] })}  — stored negated, so ${gateExercised} exercised may only RISE`)
   console.log(`\nself-asserted sample:`)
   for (const e of examples) console.log('   ', e)
 }

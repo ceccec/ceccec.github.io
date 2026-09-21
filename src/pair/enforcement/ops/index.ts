@@ -175,10 +175,25 @@ export async function runVerifyStructureExit(root: string): Promise<number> {
       .slice(0, 8)
       .map((v) => `${v.file}: ${v.spec}`)
       .join('; ')
-    const crackSample = s.hardcodedCracks
-      .slice(0, 4)
-      .map((o) => `${o.file}:${o.literal}`)
-      .join('; ')
+    // EVERY LEDGER DRIFT, NOT THE FIRST FOUR OFFENDERS.
+    //
+    // This took the first four offenders of any kind. Offenders come file by file, and a single drifting
+    // file contributes its drift plus its unaccounted literals — so one file's residue filled the sample
+    // and every OTHER file's drift was invisible. You fixed one, re-ran, and a new one appeared; a stale
+    // count could sit behind another file's for as long as that file kept drifting. src/3/7 was carrying
+    // exactly such a count, and it surfaced only when the file ahead of it in the walk went clean.
+    //
+    // A ledger drift or stale row is actionable and the set of them is bounded by the ledger, so list
+    // them ALL. The unaccounted literals are the open-ended part and keep a sample.
+    const ledgerOffenders = s.hardcodedCracks.filter((o) => o.literal.startsWith('ledger-'))
+    const literalOffenders = s.hardcodedCracks.filter((o) => !o.literal.startsWith('ledger-'))
+    const shownLiterals = literalOffenders.slice(0, 4)
+    const hiddenLiterals = literalOffenders.length - shownLiterals.length
+    const crackSample = [
+      ...ledgerOffenders.map((o) => `${o.file}:${o.literal}`),
+      ...shownLiterals.map((o) => `${o.file}:${o.literal}`),
+      ...(hiddenLiterals > 0 ? [`…${hiddenLiterals} more unaccounted literal(s)`] : []),
+    ].join('; ')
     process.stderr.write(
       `✗ verify:structure — strict gates: imports=${s.imports.length} oneMath=${s.oneMath.length} importGaps=${s.importGaps.length} indexOnly=${s.indexOnly.length} vitepress=${s.vitepressIndex.filter((v) => !v.transitional).length} nonTs=${s.nonTs.length} hyphen=${s.hyphenFolders.length} memoClock=${s.memoClock.length} shell=${s.scriptShellViolations.length} cracks=${s.hardcodedCracks.length} pairs=${s.pairsPaired} merkle=${s.merkleOk} digit=${s.digitPassed}${importSample ? `\n   ${importSample}` : ''}${oneMathSample ? `\n   one-math: ${oneMathSample}` : ''}${crackSample ? `\n   cracks: ${crackSample}` : ''}\n`,
     )

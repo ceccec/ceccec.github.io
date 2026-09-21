@@ -29,6 +29,7 @@
   "guards.no-filesystem-empty": 3,
   "imports.unresolved": 6,
   "independence.cross-checked": -473,
+  "independence.gate-exercised": -22,
   "lean-arbiter.census-contradictions": 0,
   "lean.lattice-unsealed-directions": 0,
   "lean.registry-sealed": -31,
