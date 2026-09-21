@@ -17,12 +17,13 @@
  * The homes are bundled once with esbuild from an entry written here from the registry itself, because Node's own type
  * stripping cannot load them (a type is imported without `type`) — so no list of modules is kept by hand.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
+import { docsBuildTimingPath } from '../../src/pair/enforcement/script/shell/index.ts'
 import { THEOREM_WITNESS_NAMES, type ProofWitness } from '../../src/thunder/waves/index.ts'
 
 export const WITNESS_FILE = '.vitepress/data/proof-witnesses.json'
@@ -125,12 +126,44 @@ export async function writeProofWitnesses(): Promise<void> {
   const run = spawnSync('node', ['--experimental-strip-types', 'src/pair/enforcement/script/cli/bootstrap/index.ts', 'run', 'scripts/verify/witnesses.ts', 'writeSecondDerivation'], { cwd: root, encoding: 'utf8', timeout: 1_800_000 })
   if (run.status !== 0) throw new Error(`the second derivation failed: ${(run.stderr || run.stdout || '').slice(-400)}`)
   const second = JSON.parse(readFileSync(join(root, SECOND_RUN), 'utf8')) as Record<string, ProofWitness>
-  const witnesses = Object.fromEntries(Object.entries(first).filter(([theorem, w]) => JSON.stringify(second[theorem]) === JSON.stringify(w)))
+
+  // TWO DERIVATIONS RUN BACK TO BACK AGREE ABOUT THE LAST BUILD, WHICH IS NOT AGREEMENT ABOUT src.
+  //
+  // The pair above catches a witness that is unstable run to run. It cannot catch one that is stable
+  // for as long as the build output does not change and then moves the moment it does — and those are
+  // the ones that refuse a land. Measured on this tree: all 184 committed witnesses derived, then one
+  // `npm run docs:build` later exactly one did not — "robotics decoded is a feedback control loop —
+  // fused: the build reports stats in realtime". Its proof reads slowBuildIsQuantumGapGate, whose gap
+  // list GROWS when a docs-build timing receipt exists, and whose own facet says in as many words that
+  // wall clock is a noisy sensor. A witness drawn from a noisy sensor cannot gate a commit.
+  //
+  // So there is a third derivation, in its own process, with the one build artefact those folds read
+  // moved aside. A witness that changes when the last build's timing receipt is absent is a reading of
+  // the build and not of the corpus, and it is left out with the run-to-run unstable ones. The receipt
+  // is restored in a finally, so a failed derivation cannot leave the tree short a build artefact.
+  const timingReceipt = docsBuildTimingPath(root)
+  const stashed = `${timingReceipt}.witness-probe`
+  const hadReceipt = existsSync(timingReceipt)
+  if (hadReceipt) renameSync(timingReceipt, stashed)
+  let third: Record<string, ProofWitness>
+  try {
+    const noBuild = spawnSync('node', ['--experimental-strip-types', 'src/pair/enforcement/script/cli/bootstrap/index.ts', 'run', 'scripts/verify/witnesses.ts', 'writeSecondDerivation'], { cwd: root, encoding: 'utf8' })
+    if (noBuild.status !== 0) throw new Error(`the build-free derivation failed: ${(noBuild.stderr || noBuild.stdout || '').slice(-400)}`)
+    third = JSON.parse(readFileSync(join(root, SECOND_RUN), 'utf8')) as Record<string, ProofWitness>
+  } finally {
+    if (hadReceipt) renameSync(stashed, timingReceipt)
+  }
+
+  const agrees = (theorem: string, w: ProofWitness, other: Record<string, ProofWitness>): boolean =>
+    JSON.stringify(other[theorem]) === JSON.stringify(w)
+  const witnesses = Object.fromEntries(Object.entries(first)
+    .filter(([theorem, w]) => agrees(theorem, w, second) && agrees(theorem, w, third)))
   const unstable = Object.keys(first).filter((theorem) => !(theorem in witnesses))
+  const buildBound = Object.keys(first).filter((theorem) => !(theorem in witnesses) && agrees(theorem, first[theorem]!, second))
   mkdirSync(join(root, '.vitepress/data'), { recursive: true })
   writeFileSync(join(root, WITNESS_FILE), JSON.stringify(witnesses, null, 1) + '\n')
   console.log(`witnesses: ${Object.keys(witnesses).length} theorems drawn from their own proof's numbers → ${WITNESS_FILE}` +
-    (unstable.length ? ` · ${unstable.length} left out because their numbers changed between runs: ${unstable.slice(0, 4).join(' · ')}` : ''))
+    (unstable.length ? ` · ${unstable.length} left out (${buildBound.length} of them read the last build, not src): ${unstable.slice(0, 4).join(' · ')}` : ''))
 }
 
 /** verify:witnesses — every committed witness must still derive exactly as committed. */

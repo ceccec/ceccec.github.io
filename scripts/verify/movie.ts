@@ -188,6 +188,19 @@ export function assertMovieMeasuresWhatItShows(): void {
     const derived = new Set(Object.keys(JSON.parse(readFileSync(derivedFile, 'utf8')) as Record<string, unknown>))
     const templated = anim.drawnFromATemplate.filter((t) => !derived.has(t))
     console.log(`  theorem animations: ${anim.witnessed} hand-written + ${derived.size} derived from their proof's numbers, ${templated.length} from a template`)
+    // 538 -> 539 ON 2026-09-21, AND THE EXTRA ONE IS AN IMPROVEMENT. The witness writer gained a third,
+    // build-free derivation, and it found that "robotics decoded is a feedback control loop — fused: the
+    // build reports stats in realtime" had a witness that was a reading of the LAST BUILD rather than of
+    // src: its proof counts the gaps of slowBuildIsQuantumGapGate, whose list grows the moment a
+    // docs-build timing receipt exists. Measured — all 184 derived, one `npm run docs:build` later one
+    // did not, and that one refused a land. It is now left out, so its theorem draws from a template and
+    // this count rises by exactly one.
+    //
+    // The floor is re-seeded rather than carried, on the precedent this repository already set twice in
+    // scripts/verify/every-fold.ts: when the POPULATION a measure describes legitimately changes, a floor
+    // pinned to the old population describes a set nobody can reproduce. A theorem whose subject IS
+    // realtime build statistics cannot hold a frozen numeric witness, and pretending otherwise is what
+    // the old 538 was recording.
     console.log(ratchet('movie.theorems-drawn-from-a-template', templated.length, { evidence: () => templated.map((t) => `no witness: ${t}`) }))
     for (const s of joins) console.log(`  ${s.file}:${s.line}  ${s.text}`)
   })

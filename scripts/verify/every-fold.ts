@@ -82,7 +82,16 @@ export function treeDigest(root: string): string {
   const h = createHash('sha256')
   // `.lake` is Lake's build output under src/heaven/compute — 122MB of oleans that verify:lean and
   // verify:sparkle rebuild earlier in the same chain; build products are not the subject any more than dist is.
-  const walk = (dir: string, skip: RegExp = /^(node_modules|dist|receipts|\.git|\.lake)$/) => {
+  //
+  // AND NEITHER IS `cache`, WHICH WAS MISSING FROM THAT LIST AND MADE THIS GATE REFUSE AT RANDOM.
+  // .vitepress/cache/quantum-esbuild is where every gate's esbuild bundle lands, and the gates in
+  // verify:stream run CONCURRENTLY — so a sibling warming its own bundle rewrote the tree while this
+  // walk was measuring it, and the census reported "CHANGED THE TREE while measuring it" over a digest
+  // difference that was one cache file. It refused a land that way today, having passed the identical
+  // tree standalone minutes earlier. The same sentence above already gives the rule; cache was simply
+  // never added to it. src, scripts and the .vitepress SOURCES are the subject; what the gates compile
+  // in order to read them is not.
+  const walk = (dir: string, skip: RegExp = /^(node_modules|dist|cache|receipts|\.git|\.lake)$/) => {
     let entries
     try { entries = readdirSync(dir, { withFileTypes: true }) } catch { return }
     for (const e of entries.sort((a, b) => a.name.localeCompare(b.name))) {

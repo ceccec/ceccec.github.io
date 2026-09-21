@@ -903,18 +903,6 @@
   "holds": true,
   "caption": "the quantities everyAnimationIsItselfAUniqueTheorem computes for this theorem (total, uniqueTheorems, rungOnly, withPhase), drawn from its own run — no other proof returns them"
  },
- "robotics decoded is a feedback control loop — fused: the build reports stats in realtime and stops non-harmonic tasks": {
-  "form": "bars",
-  "values": [
-   16,
-   4,
-   12,
-   4,
-   3
-  ],
-  "holds": true,
-  "caption": "the quantities decodeRoboticsAndFuseToQuantumWorkAsAControlLoop computes for this theorem (senses, setpoints, interlocks, noisySensors, dof), drawn from its own run — no other proof returns them"
- },
  "quantum crypto fusion: dynamic inversion of one of four keys at scale — computed improvement, integrity by the related": {
   "form": "bars",
   "values": [
