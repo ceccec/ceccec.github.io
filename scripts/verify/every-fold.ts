@@ -182,7 +182,38 @@ export function main() {
       const f0 = Date.now()
       try { r = (v as () => unknown)(); called++ } catch { threw++; continue }
       const fms = Date.now() - f0
-      if (fms > 2000) console.log(`  SLOW FOLD ${mod} ${name}: ${fms}ms`)
+      // WHERE THE TIME ACTUALLY IS, MEASURED 2026-09-21 — so the next person optimising does not start
+      // with parallelism, which is spent.
+      //
+      //   verify:stream   1096s of gate time in a 324s wall = 3.38x achieved parallelism. The corpus's
+      //                   own trinity ceiling for embarrassingly-parallel work is <=3x, so this is AT
+      //                   the proved bound and more workers buy nothing.
+      //   this gate       298s of that 324s wall. It IS the critical path, so even infinite parallelism
+      //                   cannot take the suite below 298s — at most 8% remains on that road.
+      //   inside it       152 folds carry 138s (4 over 5s = 45s); the other ~2030 folds carry ~160s at
+      //                   ~79ms each, which is the floor of building facets and folding receipts.
+      //   the single      counterRotatingRosettaQuantumWaves — 15.2s cold, 0ms warm — 5.1% of the whole
+      //   largest atom    critical path. It is reached from deathBoundsLifeNotCancer, a three-facet fold
+      //                   about homeostasis, through deathTerminalEndProductive, inverseAndNewGapsEmerge
+      //                   and readmeIsHomeHero10DAnimatedSvgInGithub. The hero SVG itself is 44ms; all
+      //                   of the rest is that one rosetta fold. It is also the fold that heads the
+      //                   memoByRoot re-entry cycle, so the corpus's heaviest computation and its one
+      //                   silent-wrong-value risk are the same subtree.
+      //
+      // SHARDING THIS GATE IS RULED OUT, not untried: the second pass below measures ORDER DEPENDENCE
+      // across folds that share memo state in one process. Splitting the walk across processes changes
+      // both the order and the sharing, which moves the very reading the pass exists to take — the same
+      // moving-denominator defect the notes at the end of this file already record twice.
+      //
+      // THE THRESHOLD HID THE SHAPE OF THE COST IT WAS MEASURING. At a fixed 2000ms this printed
+      // eleven folds carrying 63s of a 298s gate, and said nothing about where the other 235s went —
+      // so the only actionable reading was of the 21% that happened to clear the bar. FOLD_SLOW_MS
+      // turns the profiler up without editing the gate; the default stays 2000 so ordinary runs are
+      // unchanged. (The gate is the critical path of verify:stream — 298s of a 324s wall at 3.38x
+      // achieved parallelism — so parallelism can buy at most 8% more and every further second has
+      // to come from here.)
+      const SLOW_MS = Number(process.env.FOLD_SLOW_MS ?? '2000')
+      if (fms > SLOW_MS) console.log(`  SLOW FOLD ${mod} ${name}: ${fms}ms`)
       if (!r || typeof r !== 'object') continue
       const fs = (r as any).facets
       if (!Array.isArray(fs) || !fs.length) continue
