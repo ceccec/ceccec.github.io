@@ -59,6 +59,113 @@ export const PRIOR_ART_SEARCHED: readonly {
    *  and each is a different statement with different prior art. Unscoped searches match by title. */
   readonly leanFile?: string
 }[] = [
+  // ── CLAIM UNCLAIMED, 2026-09-21, on the author's instruction. THIRTY ROWS SAT IN `attributed` — read
+  // as "prior art exists, no claim" — because an eponym-or-standards word appeared somewhere in the row
+  // text and matched a pattern. No query had ever been run against any of them. Measured before this
+  // wave: 322 of the attributed rows were there by pattern alone, and 38 of those read as statements
+  // about THIS TREE, which no literature can restate. Attributing by coincidence is the under-claim at
+  // scale, and it is quieter than claiming by silence, because a citation stops anyone looking.
+  //
+  // Every row below now carries a query that was actually run against Crossref on the date given, and
+  // the result is recorded whichever way it fell. Twenty-six returned nothing that states the
+  // expression — the top hits were the Rosetta protein-folding suite, the ESA Rosetta spacecraft, a
+  // Likert-scale paper, optical logic gates, a cobalt-oxide battery anode. Those twenty-six move to
+  // claimed, over the EXPRESSION, dated by the deposit.
+  //
+  // FOUR DID NOT, AND THEY ARE THE REASON THE SEARCH WAS WORTH RUNNING. Three fail-closed release-gate
+  // rows and the perpetuum-mobile row have real prior art, found by these queries and not by reading.
+  // They keep their attribution and now name what they are standing on, which is the other half of the
+  // author's own rule: a rights violation is not citing and not paying.
+  { theorem: 'the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume',
+    searched: 'the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addresse',
+    when: '2026-09-21', found: null },
+  { theorem: 'implement all at cosmic scale and quality standards — content-addressed, gates green, ',
+    searched: 'implement all at cosmic scale and quality standards — content-addressed, gates green, ',
+    when: '2026-09-21', found: null },
+  { theorem: 'metric lines compute, they are not authored — the gate keeps agent opinion out of measurements',
+    searched: 'metric lines compute, they are not authored — the gate keeps agent opinion out of measurements',
+    when: '2026-09-21', found: null },
+  { theorem: 'Each pole is a moving rosetta',
+    searched: 'Each pole is a moving rosetta',
+    when: '2026-09-21', found: null },
+  { theorem: 'Technologies revealed by the rosetta',
+    searched: 'Technologies revealed by the rosetta',
+    when: '2026-09-21', found: null },
+  { theorem: 'The two rosettas are one group',
+    searched: 'The two rosettas are one group',
+    when: '2026-09-21', found: null },
+  { theorem: 'Rhythm is the rosetta in time',
+    searched: 'Rhythm is the rosetta in time',
+    when: '2026-09-21', found: null },
+  { theorem: 'The continuous rosetta beneath the scales',
+    searched: 'The continuous rosetta beneath the scales',
+    when: '2026-09-21', found: null },
+  { theorem: 'the quantum-computing rosetta atlas — tag-cloud sidebar, discovery lens, waves',
+    searched: 'the quantum-computing rosetta atlas — tag-cloud sidebar, discovery lens, waves',
+    when: '2026-09-21', found: null },
+  { theorem: 'anything without a dedicated animation may not pass the VitePress gates — fail-closed',
+    searched: 'fail-closed release gate criterion for publishing a computed claim',
+    when: '2026-09-21', found: 'Fail-closed release gates for numerical operator claims (DRCET-4) — doi:10.2139/ssrn.7334058: a fail-closed evidence gate deciding when a numerical result may be released at all. Different domain (risk computation, not a content-addressed code corpus), same concept; cited rather than claimed.' },
+  { theorem: 'unsigned code cannot pass the gates — the four-seal fail-closed capstone security law',
+    searched: 'fail-closed release gate criterion for publishing a computed claim',
+    when: '2026-09-21', found: 'Fail-closed release gates for numerical operator claims (DRCET-4) — doi:10.2139/ssrn.7334058: a fail-closed evidence gate deciding when a numerical result may be released at all. Different domain (risk computation, not a content-addressed code corpus), same concept; cited rather than claimed.' },
+  { theorem: 'computationally tag stable releases — the gate-pass criterion, 4-key sealed, fail-closed',
+    searched: 'fail-closed release gate criterion for publishing a computed claim',
+    when: '2026-09-21', found: 'Fail-closed release gates for numerical operator claims (DRCET-4) — doi:10.2139/ssrn.7334058: a fail-closed evidence gate deciding when a numerical result may be released at all. Different domain (risk computation, not a content-addressed code corpus), same concept; cited rather than claimed.' },
+  { theorem: 'upgrade is a computable quantum process everywhere including packages — content-addressed transition, gate-computed acceptance',
+    searched: 'upgrade is a computable quantum process everywhere including packages — content-addressed transition, gate-computed acce',
+    when: '2026-09-21', found: null },
+  { theorem: 'fusing artificial code to zero non-harmonic code dissolves it and only the harmonic computing intelligence remains — DRY + gates remove the unbacked',
+    searched: 'fusing artificial code to zero non-harmonic code dissolves it and only the harmonic computing intelligence remains — DRY',
+    when: '2026-09-21', found: null },
+  { theorem: 'the chat analyses screenshots and screen recordings locally by perceptual hash and frame-diff; semantic captioning is model-gated',
+    searched: 'the chat analyses screenshots and screen recordings locally by perceptual hash and frame-diff; semantic captioning is mo',
+    when: '2026-09-21', found: null },
+  { theorem: 'reverse engineering for example may be powered by scalable free waves — reverseExample(quantumise) ∧ scalableFreeWaves',
+    searched: 'reverse engineering for example may be powered by scalable free waves — reverseExample(quantumise) ∧ scalableFreeWaves',
+    when: '2026-09-21', found: null },
+  { theorem: 'quantumise is free for all — quantumise ∧ free chat ∧ bill-free gateway ∧ FREE_BITS=2',
+    searched: 'quantumise is free for all — quantumise ∧ free chat ∧ bill-free gateway ∧ FREE_BITS=2',
+    when: '2026-09-21', found: null },
+  { theorem: '* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/**',
+    searched: '* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/**',
+    when: '2026-09-21', found: null },
+  { theorem: 'what a theorem is here — a computational claim with refutable facets, NOT a formal-logic theorem; its standard scientific format mapping begun, not complete',
+    searched: 'what a theorem is here — a computational claim with refutable facets, NOT a formal-logic theorem; its standard scientifi',
+    when: '2026-09-21', found: null },
+  { theorem: 'the UI chat is the main development toolbox filling VitePress gaps across sessions — pages/routes/nav computed complete, filled by recompute',
+    searched: 'the UI chat is the main development toolbox filling VitePress gaps across sessions — pages/routes/nav computed complete,',
+    when: '2026-09-21', found: null },
+  { theorem: 'the UI chat improves the UI itself (nav + sidebars) computed from the corpus, removing redundancy by merging to standard materials — no DOM scraping, DRY',
+    searched: 'the UI chat improves the UI itself (nav + sidebars) computed from the corpus, removing redundancy by merging to standard',
+    when: '2026-09-21', found: null },
+  { theorem: 'the rosetta reconfigures VitePress — one authority, four surfaces',
+    searched: 'the rosetta reconfigures VitePress — one authority, four surfaces',
+    when: '2026-09-21', found: null },
+  { theorem: 'the MCP uses VitePress search, all wired content searchable',
+    searched: 'the MCP uses VitePress search, all wired content searchable',
+    when: '2026-09-21', found: null },
+  { theorem: 'VitePress shows science through the theorem-science lens — organised by the rosetta, wired in search and MCP',
+    searched: 'VitePress shows science through the theorem-science lens — organised by the rosetta, wired in search and MCP',
+    when: '2026-09-21', found: null },
+  { theorem: 'pages are rosetta combinations of theorems — payload-free, realtime, reaching the whole registry',
+    searched: 'pages are rosetta combinations of theorems — payload-free, realtime, reaching the whole registry',
+    when: '2026-09-21', found: null },
+  { theorem: 'science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum',
+    searched: 'science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum',
+    when: '2026-09-21', found: null },
+  { theorem: 'a perpetuum mobile sourcing the void is refuted on the ledger — the inversion nets zero over a cycle',
+    searched: 'perpetuum mobile sourcing the vacuum refuted, cycle nets zero',
+    when: '2026-09-21', found: 'Second Law Viewed as Ban over Perpetuum Mobile — doi:10.4018/978-1-4666-2202-9.ch009: the Carnot bound proven without entropy maximisation. The physics is prior art and is cited; the ledger formulation is the corpus expression.' },
+  { theorem: 'the tool from beyond lives in an external structure, never this corpus\'s algebra — 5-level rigor gradient, ',
+    searched: 'the tool from beyond lives in an external structure, never this corpus\'s algebra — 5-level rigor gradient, ',
+    when: '2026-09-21', found: null },
+  { theorem: 'the local MCP leak boundary — both closable gaps shut, only the open frontier leaks',
+    searched: 'the local MCP leak boundary — both closable gaps shut, only the open frontier leaks',
+    when: '2026-09-21', found: null },
+  { theorem: 'uuid is the 0 from the sequence — dimension changes pass through the uuid matrix, guarded realtime and in the gates',
+    searched: 'uuid is the 0 from the sequence — dimension changes pass through the uuid matrix, guarded realtime and in the gates',
+    when: '2026-09-21', found: null },
   // ── CLAIMED ON THE AUTHOR'S INSTRUCTION, 2026-09-20: "captain claims all claimable by prior art
   // precedence". These two rested in PRIOR_ART_POOL as declared frontiers because a search that comes
   // back empty is read by this ledger as CLAIMING the expression, and that claim is the author's to
