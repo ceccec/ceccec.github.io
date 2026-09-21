@@ -33,8 +33,21 @@ const DOI = /10\.\d{4,9}\/[^\s'"`,;)\]]+/
  * whether or not a DOI was written beside it, and this list is what stops a blanket claim. It is
  * an AXIOM, not a theorem: it is enumerated here rather than derived, and it fails SAFE — a name
  * added to it can only move a row out of the claimable set, never into it.
+ *
+ * WHICH MEANS A BARE ORDINARY WORD IN THIS LIST IS A STANDING MISATTRIBUTION. `Cover` was here for
+ * Thomas Cover, of Cover & Thomas — and "cover" is ordinary English. It fired on nineteen rows, and all
+ * nineteen were the common word: "Coverage covered=10 partial=10 gap=6", "the 56 spreads exact-cover
+ * the 35 lines", "provedBy coverage 623/623", "covering all 32²=1024 directional pairwise pairs". Not
+ * one of them referenced information theory. Nineteen of the author's own rows were recorded as another
+ * person's prior art because they contain the word "cover", and a citation stops anyone looking.
+ *
+ * So the entry now requires the citation form the man is actually named by. Tightening an entry moves
+ * rows INTO the claimable set, which is the unsafe direction — so it is done only on inspection of
+ * every row the token touched, never on the shape of the word. Checked the same way and KEPT as
+ * genuine: Bell (Bell state, Bell bounds, Bell numbers), Simon (Simon's algorithm), Church
+ * (Church-Turing-Deutsch), stabilis (orbit-stabiliser, stabiliser codes), Born (the Born rule).
  */
-const EXTERNAL = /\b(Tsirelson|Pauli|no-cloning|Hong[–-]Ou[–-]Mandel|GHZ|Mermin|Hopfield|Perelman|Ricci|Bell|CHSH|Grover|Shor|Deutsch|Jozsa|Simon|Born|Merkle|FNV|SHA-?\d|AES|RSA|Diffie|Hellman|Euler|Fibonacci|Riemann|Hodge|Poincar|Navier|Stokes|Yang|Mills|Birch|Swinnerton|Noether|Galois|Fourier|Laplace|Gauss|Newton|Planck|Schr[oö]dinger|Heisenberg|Dirac|Maxwell|Boltzmann|Shannon|Turing|Church|Kolmogorov|Nyquist|Chebyshev|Hamming|Reed[- ]Solomon|Lagrange|Jacobi|Hilbert|Banach|Cantor|Zeno|Meeus|CODATA|NIST|FIPS|ISO|IEC|RFC|IEEE|Nobel|Cover|Gardner|Wootters|Zurek|Clay|Millennium|Mathlib|Lean|Minkowski|genus-2|homology|Betti|Ricci|so\(\d\)|ℤ\/\d|n-ball|n-cube|bit-flip|phase-flip|stabilis|Hadamard|Toffoli|CNOT|Bloch|Wigner|Lindblad|Virasoro|Hurwitz|T-duality|Golod|Shafarevich|I Ching|Ifá|Glagolitic|tarot|mala|Hz)/i
+const EXTERNAL = /\b(Tsirelson|Pauli|no-cloning|Hong[–-]Ou[–-]Mandel|GHZ|Mermin|Hopfield|Perelman|Ricci|Bell|CHSH|Grover|Shor|Deutsch|Jozsa|Simon|Born|Merkle|FNV|SHA-?\d|AES|RSA|Diffie|Hellman|Euler|Fibonacci|Riemann|Hodge|Poincar|Navier|Stokes|Yang|Mills|Birch|Swinnerton|Noether|Galois|Fourier|Laplace|Gauss|Newton|Planck|Schr[oö]dinger|Heisenberg|Dirac|Maxwell|Boltzmann|Shannon|Turing|Church|Kolmogorov|Nyquist|Chebyshev|Hamming|Reed[- ]Solomon|Lagrange|Jacobi|Hilbert|Banach|Cantor|Zeno|Meeus|CODATA|NIST|FIPS|ISO|IEC|RFC|IEEE|Nobel|BM25|Okapi|Cover\\s*(&|and|\\u2013|-)\\s*Thomas|Thomas\\s+Cover|Gardner|Wootters|Zurek|Clay|Millennium|Mathlib|Lean|Minkowski|genus-2|homology|Betti|Ricci|so\(\d\)|ℤ\/\d|n-ball|n-cube|bit-flip|phase-flip|stabilis|Hadamard|Toffoli|CNOT|Bloch|Wigner|Lindblad|Virasoro|Hurwitz|T-duality|Golod|Shafarevich|I Ching|Ifá|Glagolitic|tarot|mala|Hz)/i
 
 /**
  * THE SEARCHES ACTUALLY PERFORMED, one row per search, with what was looked for and what came back.
@@ -59,6 +72,70 @@ export const PRIOR_ART_SEARCHED: readonly {
    *  and each is a different statement with different prior art. Unscoped searches match by title. */
   readonly leanFile?: string
 }[] = [
+  // ── CLAIM UNCLAIMED, second pass, 2026-09-21. `Cover` was in the eponym axiom for Thomas Cover, and
+  // "cover" is ordinary English: it had attributed nineteen rows, every one of them on the common word
+  // ("Coverage covered=10", "exact-cover the 35 lines", "provedBy coverage 623/623"). The entry now
+  // requires the citation form, which freed eighteen rows to `unclassified` — nothing external named
+  // YET, which is an open question and not a claim. These are the queries that answered it.
+  //
+  // Sixteen returned nothing stating the expression: Socratic Ignorance and Platonic Knowledge,
+  // R-diagonal pairs as free off-diagonal compressions, the postsynaptic targets of olfactory neurons,
+  // an R package for Singapore government APIs. Those are claimed. Two returned the real thing, and are
+  // attributed with what the query found.
+  { theorem: 'the local intelligence goes exactly as far as computation — and it measures where that is',
+    searched: 'the local intelligence goes exactly as far as computation — and it measures where that is',
+    when: '2026-09-21', found: null },
+  { theorem: 'emitted prose carries no judgment or expectation — the reader receives measurements, not appraisals',
+    searched: 'emitted prose carries no judgment or expectation — the reader receives measurements, not appraisals',
+    when: '2026-09-21', found: null },
+  { theorem: 'PG(3,2) has 240 parallelisms',
+    searched: 'parallelisms of PG(3,2), count of',
+    when: '2026-09-21', found: 'Rotational spreads and rotational parallelisms and oriented parallelisms of PG(3,2) — doi:10.1007/s00022-018-0466-7, J. Geometry: parallelisms of PG(3,2) are a studied object and the count is classical finite geometry, not a corpus result. Found by the query, not by reading.' },
+  { theorem: 'Nothing is static, all from the digits',
+    searched: 'Nothing is static, all from the digits',
+    when: '2026-09-21', found: null },
+  { theorem: 'save the missing theorems and animations — a computed graph & fractal-clock animation for every one',
+    searched: 'save the missing theorems and animations — a computed graph & fractal-clock animation for every one',
+    when: '2026-09-21', found: null },
+  { theorem: 'rename to the most-searched term per covered area — wired to public search APIs, aliased forward',
+    searched: 'rename to the most-searched term per covered area — wired to public search APIs, aliased forward',
+    when: '2026-09-21', found: null },
+  { theorem: 'VitePress search is fused to the private BM25 engine — one shared corpus',
+    searched: 'BM25 ranking fused to a static-site search index',
+    when: '2026-09-21', found: 'Okapi BM25 — doi:10.1145/3366030.3366107 (BM25-AH) and the Robertson/Sparck Jones probabilistic ranking it extends: the ranking function this row names as its engine is prior art. The fusion of it to the VitePress index is the corpus expression; the engine is cited.' },
+  { theorem: 'the statement audit analyses length and every aspect, proving the prose-sink gap by algebra — mean≫median, N over the 2^10-char budget',
+    searched: 'the statement audit analyses length and every aspect, proving the prose-sink gap by algebra — mean≫median, N over the 2^',
+    when: '2026-09-21', found: null },
+  { theorem: 'developing ignorance in chat maps the known-unknowns and experiments improve intelligence as coverage — never eliminating ignorance (Socratic loop)',
+    searched: 'developing ignorance in chat maps the known-unknowns and experiments improve intelligence as coverage — never eliminatin',
+    when: '2026-09-21', found: null },
+  { theorem: 'letting the diamonds chat with each other finds content-addressed transpose-pairs — each (i,j) pairs with (j,i); 496 off-diagonal + 32 diagonal cover all 1024',
+    searched: 'letting the diamonds chat with each other finds content-addressed transpose-pairs — each (i,j) pairs with (j,i); 496 off',
+    when: '2026-09-21', found: null },
+  { theorem: 'next in chat with diamonds — each diamond is an interaction of a row and column superposition; the chat composes two theorems and navigates the 32² matrix',
+    searched: 'next in chat with diamonds — each diamond is an interaction of a row and column superposition; the chat composes two the',
+    when: '2026-09-21', found: null },
+  { theorem: 'deep research known world projects (colliders/reactors) with real APIs, decoding science on the way — CERN Open Data real, reactor APIs limited, free-energy flagged',
+    searched: 'deep research known world projects (colliders/reactors) with real APIs, decoding science on the way — CERN Open Data rea',
+    when: '2026-09-21', found: null },
+  { theorem: 'the collective mind is collaborative teams developing through the chat, covering the reachable space computationally 100% — which is NOT 100% covered (all possibilities uncountably infinite)',
+    searched: 'the collective mind is collaborative teams developing through the chat, covering the reachable space computationally 100',
+    when: '2026-09-21', found: null },
+  { theorem: 'deep research with local tools improves all from quantum-statistics analysis and synthesis — the analyse→research→synthesise loop',
+    searched: 'deep research with local tools improves all from quantum-statistics analysis and synthesis — the analyse→research→synthe',
+    when: '2026-09-21', found: null },
+  { theorem: 'every theorem inverts into an invention, computed over the whole corpus — inversion → deployable artifact',
+    searched: 'every theorem inverts into an invention, computed over the whole corpus — inversion → deployable artifact',
+    when: '2026-09-21', found: null },
+  { theorem: 'the minimal corpus for all sciences is a seed, not a library — the next scale is holographic extent',
+    searched: 'the minimal corpus for all sciences is a seed, not a library — the next scale is holographic extent',
+    when: '2026-09-21', found: null },
+  { theorem: 'quantum folds realise more space — folding frees stored bytes and each reveals 2³⁰ of extent',
+    searched: 'quantum folds realise more space — folding frees stored bytes and each reveals 2³⁰ of extent',
+    when: '2026-09-21', found: null },
+  { theorem: 'The pyramids decode into theorems',
+    searched: 'The pyramids decode into theorems',
+    when: '2026-09-21', found: null },
   // ── CLAIM UNCLAIMED, 2026-09-21, on the author's instruction. THIRTY ROWS SAT IN `attributed` — read
   // as "prior art exists, no claim" — because an eponym-or-standards word appeared somewhere in the row
   // text and matched a pattern. No query had ever been run against any of them. Measured before this
@@ -2347,6 +2424,13 @@ export const ATTRIBUTION_COVERAGE: readonly {
   readonly coverage: 'covers' | 'partial' | 'weaker'
   readonly why: string
 }[] = [
+  // Two rows moved INTO `attributed` by the 2026-09-21 Cover pass, so their coverage is recorded here
+  // rather than left as an unexamined attribution — the instrument must pay for looking, not only for
+  // finding fault.
+  { theorem: 'PG(3,2) has 240 parallelisms', coverage: 'partial',
+    why: 'the citation establishes that parallelisms of PG(3,2) are a studied object with a classical theory — spreads, rotational and oriented parallelisms. The COUNT 240 is the corpus row and the paper found does not state it; whether 240 appears in the older literature on PG(3,2) parallelisms is the next query, not an assumption.' },
+  { theorem: 'VitePress search is fused to the private BM25 engine — one shared corpus', coverage: 'partial',
+    why: 'BM25 is cited as the ranking function and is fully prior art — Robertson and Sparck Jones, and the BM25-AH variant the query returned. What the citation does NOT cover is the row claim: fusing that engine to the VitePress index so one corpus serves both. The engine is attributed; the fusion is the corpus expression.' },
   { theorem: 'Frobenius number of (6,9,20) is 43', coverage: 'partial',
     why: 'the citation covers the Frobenius number as a concept; the VALUE 43 was computed here and appears in no source found. If the specific triple is unpublished, the row states a small original computation rather than a cited fact.' },
   { theorem: 'class equation on S₄ and A₅', coverage: 'partial',
