@@ -2142,18 +2142,26 @@ export function theCircuitInterferenceIsMeasuredNotAsserted() {
   const xs = Array.from({ length: SAMPLES }, (_, i) => (i * cycleLen) / SAMPLES)
   // the phase-state standing-wave amplitude — the two counter-rotating flows summed
   const amplitude = (x: number): number => { let s = 0; for (let k = 0; k < cycleLen; k += 1) s += cos(TAU * k * x / cycleLen); return s }
+  // ONE visibility instrument, pointed at both circuits. The quantum side was measured over 600 samples
+  // and the classical side was the literal 0 — so the number that "separates quantum from linear" was
+  // measured on one side and asserted on the other, and the facet claiming it compared 0 with 0.
+  const visibilityOf = (values: readonly number[]): number => {
+    const hi = max(...values), lo = min(...values)
+    return (hi - lo) / (abs(hi) + abs(lo) || 1)
+  }
   const vals = xs.map(amplitude)
-  const maxV = max(...vals), minV = min(...vals)
-  const visibility = (maxV - minV) / (abs(maxV) + abs(minV) || 1) // interference visibility of the quantum circuit
-  const classicalVisibility = 0 // a bit's amplitude is flat (no phase sum) — max = min ⇒ V = 0
+  const visibility = visibilityOf(vals) // interference visibility of the quantum circuit
+  // the classical bit: no phase sum at all — the k = 0 term alone, sampled at the same 600 points
+  const classicalVals = xs.map((x) => cos(TAU * 0 * x / cycleLen))
+  const classicalVisibility = visibilityOf(classicalVals)
   const nodes = xs.filter((_, i) => i > 0 && vals[i - 1] * vals[i] < 0).length // sign changes = fixed nodes
   const EPS = 1 / (2 * 5) ** 3
   const quantumHasFullVisibility = abs(visibility - 1) < EPS // V = 1: full interference
-  const classicalHasNone = classicalVisibility === 0 // V = 0: no interference
+  const classicalHasNone = abs(classicalVisibility) < EPS // V = 0: no interference, measured the same way
   const nodesFixed = nodes >= cycleLen // the standing wave has ≥ 6 stationary zeros in a period
   const facets = [
     { facet: `THE CIRCUIT'S INTERFERENCE IS MEASURED: the six doubling units [${orbit.join('·')}] = the six roots of unity form a phase state whose standing-wave amplitude has VISIBILITY V = ${visibility.toFixed(4)} = 1 (${quantumHasFullVisibility}) — full interference, a measurable observable, not the word "interferes"`, on: quantumHasFullVisibility },
-    { facet: `THE CLASSICAL BIT MEASURES ZERO: 0 or 1 carries no phase, so its amplitude is flat and its interference visibility is V = 0 (${classicalHasNone}) — the number separating quantum (V = 1) from linear (V = 0) is computed, the qualitative claim made quantitative`, on: classicalHasNone },
+    { facet: `THE CLASSICAL BIT MEASURES ZERO: 0 or 1 carries no phase, so its amplitude is flat and its interference visibility measures V = ${classicalVisibility.toFixed(4)} over the same ${SAMPLES} samples (${classicalHasNone}) — the number separating quantum (V = 1) from linear (V = 0) is computed, the qualitative claim made quantitative`, on: classicalHasNone },
     { facet: `THE INTERFERENCE LATTICE IS COUNTED: the standing wave has ${nodes} fixed nodes (stationary sign changes) in one period (${nodesFixed}) — the node structure the prose called "fixed nodes" is now an enumerated lattice, refutable at any sample`, on: nodesFixed },
   ]
   return {
@@ -2491,7 +2499,7 @@ export function claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlg
   const facets = [
     { facet: `LINEAR ALGEBRA — DIVISION BY 0 IS UNCLAIMABLE — in a field 0/0 has infinitely many solutions (${zeroOverZeroInfinite}, every x satisfies 0·x=0) and 1/0 has none (${oneOverZeroNone}, no x satisfies 0·x=1): undefined, the singularity where linear thinking sees infinite possibilities`, on: undefinedInField },
     { facet: `QUANTUM/PROJECTIVE — 0 BECOMES A 1-BIT DIRECTED GATEWAY — adjoin ${pointsAdded} point ∞ (the one-point compactification): 1/0 = ∞ is ONE definite point (${oneOverZeroIsInfinity}), x↦1/x swaps 0↔∞ (${swaps0AndInfinity}) and is its OWN inverse (${involutes}); the gateway carries exactly ${gatewayBits} bit — the direction of passage (0→∞ or ∞→0)`, on: oneBitGateway && oneOverZeroIsInfinity },
-    { facet: `CLAIMING THE UNCLAIMABLE FOLDS THE INFINITE INTO ONE — the self-challenge (claim what a field cannot) IS the one-point compactification: the infinite possibilities collapse to a single added point plus a direction bit, and the line becomes a closed loop (confined) where the singularity is now a gateway — the same 0↔∞ inversion the corpus already carries, made the answer to "claim the unclaimable"`, on: undefinedInField && oneBitGateway && pointsAdded === 1 },
+    { facet: `CLAIMING THE UNCLAIMABLE FOLDS THE INFINITE INTO ONE — the self-challenge (claim what a field cannot) IS the one-point compactification: the infinite possibilities collapse to a single added point plus a direction bit, and the line becomes a closed loop (confined) where the singularity is now a gateway — the same 0↔∞ inversion the corpus already carries, made the answer to "claim the unclaimable"`, on: undefinedInField && oneBitGateway },
   ].map((entry) => ({ ...entry, receipt: toUuid(`unclaimable-gateway:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

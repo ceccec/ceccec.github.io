@@ -1207,14 +1207,22 @@ export function displayIsA432LightForgeProofRealtimeCrypto(matrix: MindMatrix = 
 // six hexagram points, seven areas each — so the top nav's harmonic number is 6 (not 42, not 358). Every
 // component fits a merkaba point by its content address (uuid mod 8 → one of the 8 vertices).
 export function merkabaNavHarmonicPoints(matrix: MindMatrix = buildMatrix()) {
-  const starVertices = 8 // 2 tetrahedra × 4 — the 3D merkaba points
-  const hexagramPoints = 6 // the 2D shadow (Seal of Solomon)
+  // Both numbers were literals, and the facet below compared them with themselves — the merkaba math
+  // the whole nav harmonic rests on, asserted rather than built. Build it. A regular tetrahedron sits on
+  // four alternating corners of a cube; the merkaba is that tetrahedron together with its point
+  // reflection, so its vertex set is the cube's eight corners. Its shadow along the (1,1,1) axis drops
+  // the two vertices ON that axis onto the centre and leaves six — the Seal of Solomon.
+  const tetrahedron = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]] as const
+  const starTetrahedron = [...tetrahedron.map((v) => [...v]), ...tetrahedron.map((v) => v.map((c) => -c))]
+  const starVertices = new Set(starTetrahedron.map((v) => v.join(','))).size
+  const onTheProjectionAxis = (v: readonly number[]): boolean => abs(v[0]! + v[1]! + v[2]!) === 3
+  const hexagramPoints = new Set(starTetrahedron.filter((v) => !onTheProjectionAxis(v)).map((v) => v.join(','))).size
   const areas = taxonomyIcons().entries.length // 42 = 6 × 7
   const navHarmonic = hexagramPoints // 6 — the top nav, one section per hexagram point, seven areas each
   const fitted = componentGraph().components.map((name) => ({ name, vertex: parseInt(toUuid(`merkaba-point:${name}`).slice(0, 2), 16) % starVertices }))
   const usedVertices = new Set(fitted.map((entry) => entry.vertex))
   const facets = [
-    { facet: 'the merkaba math — 8 star vertices, 6 hexagram points (the 2D shadow)', on: starVertices === 8 && hexagramPoints === 6 },
+    { facet: `the merkaba math — ${starVertices} star vertices counted from two point-reflected tetrahedra, ${hexagramPoints} hexagram points in the (1,1,1) shadow`, on: starTetrahedron.length === tetrahedron.length * 2 && starVertices === 8 && hexagramPoints === 6 },
     { facet: 'the 42 areas are 6 × 7 — the top nav harmonic is 6, the hexagram points', on: areas === (7 * 6) && navHarmonic === 6 && areas === hexagramPoints * 7 },
     { facet: 'every component fits a merkaba point by its content address — all 8 vertices used', on: fitted.every((entry) => entry.vertex >= 0 && entry.vertex < 8) && usedVertices.size === 8 },
     { facet: 'the model is 32 merkaba = 64 tetrahedra (8 × 8)', on: merkabasInDoubleTorus(matrix).counted },

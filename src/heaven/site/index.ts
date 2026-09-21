@@ -319,8 +319,8 @@ export function quantumFieldsDecoded(matrix: MindMatrix = buildMatrix()) {
   const gluons = 8, higgsVevGeV = 246, higgsMassGeV = 125.20, mwGeV = 80.369, mzGeV = 91.188
   const claims = [
     { facet: 'a quantum field fills space, particles are its quantized excitations — the Standard Model is the gauge theory SU(3)×SU(2)×U(1) with 17 fundamental field types: 12 spin-½ fermions (6 quarks + 6 leptons, 3 generations) + 4 gauge-boson types + the Higgs', on: SM.fundamentalTypes === 17 && SM.fermions === (6 * 2) && SM.gaugeBosonTypes + SM.fermions + SM.higgs === 17 },
-    { facet: 'the forces ARE gauge fields — the photon (massless, U(1)), 8 gluons (SU(3) colour, confinement + asymptotic freedom, Nobel 2004), and the massive W/Z (≈80.4, 91.2 GeV; electroweak unification, Nobel 1979); QED is the most precisely tested theory (electron g−2 to ~12 digits)', on: gluons === 8 && mwGeV > (16 * 5) && mwGeV < (27 * 3) && mzGeV > 91 },
-    { facet: 'mass from the Higgs field — a spin-0 scalar with vacuum expectation value ≈246 GeV breaks the electroweak symmetry, giving the W/Z and the fundamental fermions (via Yukawa) their mass; discovered at CERN in 2012 (≈125 GeV, Nobel 2013). HONEST: most VISIBLE mass is QCD binding energy, not the Higgs', on: higgsVevGeV === 246 && higgsMassGeV > 124 && higgsMassGeV < (9 * 7 * 2) },
+    { facet: 'the forces ARE gauge fields — the photon (massless, U(1)), 8 gluons (SU(3) colour, confinement + asymptotic freedom, Nobel 2004), and the massive W/Z (≈80.4, 91.2 GeV; electroweak unification, Nobel 1979); QED is the most precisely tested theory (electron g−2 to ~12 digits)', on: mwGeV > (16 * 5) && mwGeV < (27 * 3) && mzGeV > 91 },
+    { facet: 'mass from the Higgs field — a spin-0 scalar with vacuum expectation value ≈246 GeV breaks the electroweak symmetry, giving the W/Z and the fundamental fermions (via Yukawa) their mass; discovered at CERN in 2012 (≈125 GeV, Nobel 2013). HONEST: most VISIBLE mass is QCD binding energy, not the Higgs', on: higgsMassGeV > 124 && higgsMassGeV < (9 * 7 * 2) },
     { facet: 'every field has a ½ħω vacuum — the zero-point of each mode (the path from zeroPointDecoded); the QCD vacuum even holds quark/gluon condensates (chiral-symmetry breaking). Summed naively the vacuum energy diverges — the cosmological-constant problem', on: zp.decoded },
   ]
   // A caveat bounds the claims above it, so it holds exactly while they do — computed over the block,
@@ -1314,10 +1314,25 @@ export function fundamentalPhysicsDecoded(matrix: MindMatrix = buildMatrix()) {
 // Composes quantumFieldsDecoded upward (DRY). Includes the self-check: element counts carry no esoteric meaning.
 export function emergenceMatterChemistryDecoded(matrix: MindMatrix = buildMatrix()) {
   const qf = quantumFieldsDecoded(matrix) // the particles this builds up from
-  const elements = 118, periods = 7 // IUPAC, period 7 complete (2016)
+  // The facet below claims the four quantum numbers + Pauli + Aufbau GENERATE the table, and then checked
+  // 118 against 118 and 7 against 7 — IUPAC's answer written down twice, generating nothing. So generate
+  // it: order the subshells by the Madelung (n+ℓ, ties by n) rule, give each 2(2ℓ+1) states by Pauli, and
+  // open a new period at each s subshell. Out come 2·8·8·18·18·32·32 = 118 across 7 periods. Get the rule
+  // wrong and the count is no longer IUPAC's, which is exactly what a generated number must risk.
+  const subshells: { n: number; l: number }[] = []
+  for (let n = 1; n <= 8; n += 1) for (let l = 0; l < n; l += 1) subshells.push({ n, l })
+  const madelungOrder = [...subshells].sort((a, b) => (a.n + a.l) - (b.n + b.l) || a.n - b.n)
+  const filledThrough7p = madelungOrder.slice(0, madelungOrder.findIndex((sh) => sh.n === 7 && sh.l === 1) + 1)
+  const periodCapacities: number[] = []
+  for (const shell of filledThrough7p) {
+    if (shell.l === 0) periodCapacities.push(0) // a new period opens at each ns subshell
+    periodCapacities[periodCapacities.length - 1]! += 2 * (2 * shell.l + 1) // Pauli: 2(2ℓ+1) states per subshell
+  }
+  const elements = periodCapacities.reduce((sum, capacity) => sum + capacity, 0)
+  const periods = periodCapacities.length // IUPAC, period 7 complete (2016) — here derived, not copied
   const facets = [
     { facet: 'atoms build up from the particles — a nucleus of protons + neutrons (residual strong force) holds >99.9% of the mass, most of it QCD binding energy not the Higgs (the quantumFieldsDecoded link), with electrons (electromagnetic) defining the volume; the proton number Z fixes the element', on: qf.decoded },
-    { facet: 'the periodic table EMERGES from quantum mechanics — the four quantum numbers + the Pauli exclusion principle + Aufbau filling generate the ' + elements + ' elements across ' + periods + ' periods (valence electrons set the chemistry); yet the Aufbau (Madelung) rule is EMPIRICAL — the Löwdin challenge is unsolved and ~20 elements break it — so the table is emergent, not a hand-derived theorem', on: elements === 118 && periods === 7 },
+    { facet: 'the periodic table EMERGES from quantum mechanics — the four quantum numbers + the Pauli exclusion principle + Aufbau filling generate the ' + elements + ' elements across ' + periods + ' periods (valence electrons set the chemistry); yet the Aufbau (Madelung) rule is EMPIRICAL — the Löwdin challenge is unsolved and ~20 elements break it — so the table is emergent, not a hand-derived theorem', on: periodCapacities.join(',') === '2,8,8,18,18,32,32' && elements === 118 && periods === 7 },
     // not a check — a sentence, kept as one: 'bonding is quantum, matter is its consequence — covalent (shared electron pairs), ionic (transfer/electrostatic) and metallic (a delocalized sea) lie on a CONTINUUM, not three disjoint kinds; water’s hydrogen bonding (~66 anomalies) and carbon’s tetravalency/catenation give the chemistry of life'
     { facet: '"more is different" (Anderson 1972) — the same fundamental laws hold at every level (reductionism kept), yet collective behaviour (superconductivity/BCS Cooper pairs, temperature, life) is not derivable IN PRACTICE from the parts: this is WEAK/epistemic emergence; STRONG (ontological) emergence — new fundamental high-level laws — is contested philosophy, not settled science', on: isUuid(siteCites('anderson-1972')) },
     { facet: `FLAGGED — vitalism/"life force" (abandoned; and "Wöhler’s 1828 urea killed it in one experiment" is itself a myth — the decline was gradual), water-memory/homeopathy (no mechanism, Benveniste failed replication, pathological science, placebo), "quantum biology proves consciousness/healing" (real modest effects — photosynthesis coherence, radical-pair magnetoreception — are NOT that), and numerological element-count readings ("118 as a sacred or I Ching / 64-coded number" — no esoteric meaning, it is bounded by synthesis capability)`, on: FLAGGED_BIO.every((topic) => demarcate(topic) === 'flagged') },

@@ -673,7 +673,7 @@ export function fuse64SealsMerkaba64Tetrahedra(matrix: MindMatrix = buildMatrix(
     { facet: 'the 64 seals fuse into the merkaba — counter-rotating tetrahedra', on: gigabitEncryption64SealSet(matrix).achieves && merkaba(matrix).counterRotating },
     { facet: 'represented as 64 tetrahedron fields — the 64-tetrahedron grid', on: tetrahedra.length === 64 && tetrahedra.every((entry) => entry.field) && uuidFoldsSelfBlackWhite(matrix).forms },
     { facet: 'playing in the hero around the decoded symbols', on: animatedHeroes(matrix).everyPage && hologram(matrix).holographic },
-    { facet: '64 Gbit realtime encryption — 64 seals × the 1 Gbit architecture', on: gbit === 64 && fusionCipher('', matrix).enabled && fuseAll(matrix).fused },
+    { facet: '64 Gbit realtime encryption — 64 seals × the 1 Gbit architecture', on: fusionCipher('', matrix).enabled && fuseAll(matrix).fused },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fuse-64-merkaba:${entry.facet}:${entry.on}`) }))
   return {
     fused: facets.every((entry) => entry.on),
@@ -892,8 +892,8 @@ export function merkabasInDoubleTorus(matrix: MindMatrix = buildMatrix()) {
   const merkabas = tetrahedra / perMerkaba // 32
   const perLobe = merkabas / lobes // 16
   const facets = [
-    { facet: 'a merkaba is two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating && perMerkaba === 2 },
-    { facet: 'the double torus is genus-2 and carries the 64-tetrahedron grid', on: grid.fused && tetrahedra === 64 && lobes === 2 },
+    { facet: 'a merkaba is two counter-rotating tetrahedra', on: merkaba(matrix).counterRotating },
+    { facet: 'the double torus is genus-2 and carries the 64-tetrahedron grid', on: grid.fused && tetrahedra === 64 },
     { facet: '64 ÷ 2 = 32 merkaba — 16 per lobe × 2 lobes', on: merkabas === (16 * 2) && perLobe === 16 && perLobe * lobes === merkabas },
     { facet: 'the count is dual to the substance — 32 merkaba ↔ 64 Gbit', on: merkabas * perMerkaba === grid.gbit && grid.gbit === 64 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`merkabas-torus:${entry.facet}:${entry.on}`) }))

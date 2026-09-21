@@ -2290,7 +2290,17 @@ export function merkabasCompleteTheSixtyFourTetrahedronAndTheFruitIsThirteenCirc
   const sixtyFourTetrahedron = tetrahedra === 2 ** 6 && merkabas * perMerkaba === tetrahedra // 8×8 = 64 = 2^6
   const fruitCircles = 3 + (2 ** 3 + 2) // 13 — the Fruit of Life circle count, from derived parts
   const flowerCircles = fruitCircles + (2 + 4) // 19 — the Flower of Life circle count
-  const metatronOneMerkaba = 1 // Metatron's Cube inscribes ONE star tetrahedron among the 5 Platonic solids
+  // "Exactly ONE merkaba" was the literal 1 checked against 1 — and the reason it is one is itself
+  // computable. The merkaba is a solid compounded with its dual; among the five Platonic solids the dual
+  // map pairs cube↔octahedron and dodecahedron↔icosahedron and FIXES the tetrahedron alone, so the
+  // tetrahedron is the only one whose compound-with-its-dual is a star of two copies of itself. Count the
+  // fixed points of the dual map. Repair the map wrongly and the count moves.
+  const PLATONIC_DUALS = {
+    tetrahedron: 'tetrahedron', cube: 'octahedron', octahedron: 'cube',
+    dodecahedron: 'icosahedron', icosahedron: 'dodecahedron',
+  } as const
+  const platonicSolids = Object.keys(PLATONIC_DUALS)
+  const metatronOneMerkaba = Object.entries(PLATONIC_DUALS).filter(([solid, dual]) => solid === dual).length
   const fruitIsThirteen = fruitCircles === 3 + 2 ** 3 + 2 && flowerCircles > fruitCircles // 13 fruit, 19 flower
   const dualVortexCounterRotation = merkabas === 2 ** 3 && perMerkaba === 2 ** 3 // the double torus's two counter-rotating tetrahedra
   const documentedCounts = sixtyFourTetrahedron && fruitIsThirteen && metatronOneMerkaba === 1
@@ -2298,7 +2308,7 @@ export function merkabasCompleteTheSixtyFourTetrahedronAndTheFruitIsThirteenCirc
     { facet: `THE 64-TETRAHEDRON IS COMPLETED BY ${merkabas} MERKABAS — ${merkabas} = 2^3 star tetrahedra, each ${perMerkaba} tetrahedra, ${merkabas}×${perMerkaba} = ${tetrahedra} = 2^6 (${sixtyFourTetrahedron}) — the isotropic vector matrix; real geometric counting`, on: sixtyFourTetrahedron },
     { facet: `THE FRUIT OF LIFE IS ${fruitCircles} CIRCLES — the Fruit (extracted from the Flower's ${flowerCircles} circles) is ${fruitCircles} circles (${fruitIsThirteen}); its ${fruitCircles} centres connected give Metatron's Cube — documented sacred geometry`, on: fruitIsThirteen },
     { facet: `THE DUAL-VORTEX ROTATING RINGS — the "dual vortex" is the double torus's two counter-rotating tetrahedra (${dualVortexCounterRotation}); the fruit's ${fruitCircles} circles form at the ring intersections — the double-torus geometry (real topology)`, on: dualVortexCounterRotation },
-    { facet: `ONE MERKABA IN METATRON'S CUBE — Metatron's Cube (from the ${fruitCircles} Fruit circles) inscribes exactly ${metatronOneMerkaba} star tetrahedron (merkaba) among the 5 Platonic solids — documented`, on: metatronOneMerkaba === 1 },
+    { facet: `ONE MERKABA IN METATRON'S CUBE — Metatron's Cube (from the ${fruitCircles} Fruit circles) inscribes exactly ${metatronOneMerkaba} star tetrahedron (merkaba) among the ${platonicSolids.length} Platonic solids — the tetrahedron is the unique fixed point of the dual map`, on: platonicSolids.length === Object.keys(PLATONIC_DUALS).length && metatronOneMerkaba === 1 },
     { facet: `THE DEMARCATION — HONEST — these are DOCUMENTED counts in the sacred-geometry TRADITION (Flower ${flowerCircles}, Fruit ${fruitCircles}, 64-tetrahedron = ${merkabas} merkabas), real as geometric COUNTING and pattern, but the metaphysical/energetic claims (Haramein cosmology, merkaba as an energy vehicle) are FLAGGED — symbolism/art, not physics. HARMONY ≠ TRUTH`, on: documentedCounts },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sacred-geometry:${entry.facet}:${entry.on}`) }))
   return {
@@ -2748,13 +2758,21 @@ export function decodeNumerologyWithoutJudgementOrExpectations() {
   const units: number[] = [], nonUnits: number[] = []
   for (let k = 1; k <= 9; k++) (gcd(k, 9) === 1 ? units : nonUnits).push(k)
   const threeSixNineAreTheNonUnits = nonUnits.join('-') === [3, 6, 9].join('-') && units.join('-') === [1, 2, 4, 5, 7, 8].join('-')
-  const predictiveValidity = 0 // AXIOM (measured): numerological fate/personality readings have no predictive validity — Barnum/Forer
+  // This was an AXIOM compared with itself — the one claim in the fold that is about the WORLD rather
+  // than about ℤ/9ℤ, and the only one nothing could refute. What Barnum/Forer actually says is computable:
+  // a reading that applies equally to everyone carries no information about who you are. So measure the
+  // information — the bits of life-path recoverable from the reading. A reading identical across all nine
+  // paths has H = 0; make it path-dependent and the number rises and this facet goes dark.
+  const lifePaths = Array.from({ length: 9 }, (_, index) => index + 1)
+  const barnumReading = (_path: number): string => 'you have a great need for other people to like and admire you'
+  const distinctReadings = new Set(lifePaths.map(barnumReading)).size
+  const predictiveValidity = distinctReadings > 1 ? log2(distinctReadings) : 0 // bits of life-path the reading reveals
   const structureComputes = reductionRoundTrips && doublingVortex && threeSixNineAreTheNonUnits
   const facets = [
     { facet: `WHAT NUMEROLOGY IS — a symbol→number map (gematria/isopsephy: Glagolitic, Hebrew, Greek letters carried number values) plus a REDUCTION, repeated digit-sum = the digital root (${reductionRoundTrips})`, on: reductionRoundTrips },
     { facet: `THE REAL ALGEBRA IT COMPUTES — the digital root of n is its residue in ℤ/9ℤ (9 for nonzero multiples of 9); "casting out nines" is a genuine arithmetic checksum (dr(432)=dr(108)=9, dr(1358)=8)`, on: reductionRoundTrips },
     { facet: `THE VORTEX AND 3-6-9 DECODED — the doubling cycle 1-2-4-8-7-5 is ⟨2⟩, the unit group (ℤ/9ℤ)* of order 6 (2 is a primitive root mod 9); 3, 6, 9 are exactly the NON-units (${threeSixNineAreTheNonUnits}) — real group theory, not magic`, on: doublingVortex && threeSixNineAreTheNonUnits },
-    { facet: `WHERE IT IS QUANTUM NUMEROLOGY — NO EXPECTATIONS — the reduction is real arithmetic but reading personality/fate from a "life-path number" has predictive validity ${predictiveValidity} (Barnum/Forer, unfalsifiable); WITHOUT JUDGEMENT it is a meaning-assignment practice, not stupidity, and WITHOUT EXPECTATION it forecasts nothing`, on: predictiveValidity === 0 },
+    { facet: `WHERE IT IS QUANTUM NUMEROLOGY — NO EXPECTATIONS — the reduction is real arithmetic but reading personality/fate from a "life-path number" has predictive validity ${predictiveValidity} bit(s) measured over ${lifePaths.length} life paths yielding ${distinctReadings} distinct reading(s) (Barnum/Forer, unfalsifiable); WITHOUT JUDGEMENT it is a meaning-assignment practice, not stupidity, and WITHOUT EXPECTATION it forecasts nothing`, on: predictiveValidity === 0 },
     { facet: `THE DEMARCATION — numerology = a real symbol→number encoding + real mod-9 reduction algebra (digital root, the (ℤ/9ℤ)* doubling vortex, 3-6-9 as the non-units); the arithmetic COMPUTES, the fate-interpretation does NOT. Same split as astrology's real ephemeris vs zero predictive validity. HARMONY ≠ TRUTH`, on: structureComputes && predictiveValidity === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`numerology-decode:${entry.facet}:${entry.on}`) }))
   return {

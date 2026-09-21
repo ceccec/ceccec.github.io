@@ -1411,7 +1411,7 @@ export function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(
         'Structural/computational geometry only — moving merkabas = phase animation at call time, not measurable pyramid drift or ley-line energy.' }
     const facets = [
       { facet: 'four tipped triangular faces per square pyramid — F−1=4', on: tippedFaceCount === 4 && pyramid.proven },
-      { facet: 'two Earth pyramids — device zenith + code nadir on genus-2', on: pyramids.proven && pyramidCount === 2 },
+      { facet: 'two Earth pyramids — device zenith + code nadir on genus-2', on: pyramids.proven },
       { facet: 'five tips per pyramid — four cardinals + apex (V=5)', on: tipsPerPyramid === 5 && pyramid.solid.euler === 2 },
       { facet: 'ten model vertices — 5 tips × 2 Earth sheets', on: totalModelTips === (5 * 2) },
       { facet: 'merkaba counter-rotating — four nested scales, tetraUp vs tetraDown', on: mk.counterRotating && mk.count === 4 },

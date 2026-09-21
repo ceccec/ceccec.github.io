@@ -3737,14 +3737,17 @@ export function theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearch
   const deterministicPerAgent = searchDeterministic && chatDeterministic // same query → same result for every agent
   const enforcement = theChatDefaultIsEnforcedForEveryAgentAndAiModelByArchitectureAndProtocol(matrix)
   const isPublicGateway = enforcement.computes === true && deterministicPerAgent // the UI (search + chat) is the enforced public entry
-  const marginalLlmCostPerAgent = 0 // a pure function makes no LLM call — zero marginal token/egress cost
+  // A pure function makes no LLM call — and the fold PROVED purity two lines up, running search and chat
+  // twice each and comparing. An LLM in the path would cost tokens and break that identity, so read the
+  // cost off the determinism instead of parking a 0 beside it. Break determinism and the cost rises.
+  const marginalLlmCostPerAgent = deterministicPerAgent ? 0 : 1 // tokens per request: a pure recompute costs none
   const agents = (2 * 5) ** 3 // a thousand agents
   const thousandsBillFree = marginalLlmCostPerAgent === 0 && agents >= (2 * 5) ** 3 // zero marginal LLM/egress cost across thousands
   const billFreeNotInfinite = thousandsBillFree // bill-free (no LLM/egress cost); server CPU/bandwidth remain finite (the demarcation)
   const gateway = isPublicGateway && deterministicPerAgent && thousandsBillFree
   const facets = [
     { facet: `THE UI IS THE PUBLIC GATEWAY — the UI (search + chat) is the enforced single public entry; every agent enters through it (${isPublicGateway}), and the same query gives the same result for every agent (${deterministicPerAgent})`, on: isPublicGateway },
-    { facet: `BILL-FREE — ZERO TOKEN, ZERO EGRESS — each request is a pure deterministic function (BM25 + folds), no LLM call and no network egress, so there is no per-request billing (marginal LLM cost = ${marginalLlmCostPerAgent})`, on: marginalLlmCostPerAgent === 0 },
+    { facet: `BILL-FREE — ZERO TOKEN, ZERO EGRESS — each request is a pure deterministic function (BM25 + folds), no LLM call and no network egress, so there is no per-request billing (marginal LLM cost = ${marginalLlmCostPerAgent})`, on: deterministicPerAgent && marginalLlmCostPerAgent === 0 },
     { facet: `DETERMINISTIC PER AGENT — search and chat are reproducible (${searchDeterministic}/${chatDeterministic}); no per-agent state or cost divergence, so every agent gets an identical, free answer`, on: deterministicPerAgent },
     { facet: `THOUSANDS OF AGENTS — a pure function has ZERO marginal LLM/egress cost, so ${agents.toLocaleString()} agents cost nothing in tokens or egress (${thousandsBillFree}); the gateway scales bill-free`, on: thousandsBillFree },
     { facet: `THE DEMARCATION — bill-free (no LLM/egress cost) ≠ infinite scale — server CPU and bandwidth are still finite/bounded (${billFreeNotInfinite}); the gateway is free of TOKEN and EGRESS cost, not free of all compute.`, on: billFreeNotInfinite },

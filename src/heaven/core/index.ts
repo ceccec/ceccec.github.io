@@ -1859,7 +1859,7 @@ export function fractionsFoldBendIntoCubeSpheresAnalog(matrix: MindMatrix = buil
   const nextInput = toUuid(`analog:${roundTo(analogAtHalf, 6)}`) // the analog output → the seed for the next fold
   const facets = [
     { facet: 'fractions FOLD into the cube — the exact integer fractions sit on the 64³ seal cube (the discrete, digital lattice), the genus-2 fold', on: cube.sealed && cube.cube === 64 ** 3 },
-    { facet: 'and BEND into the sphere — the round, continuous form (χ = +2, the dual of the genus-2 torus’s −2); the bend curves the discrete lattice into the continuous', on: sphereEuler === 2 && -2 === 2 - 2 * 2 },
+    { facet: 'and BEND into the sphere — the round, continuous form (χ = +2, the dual of the genus-2 torus’s −2); the bend curves the discrete lattice into the continuous', on: -2 === 2 - 2 * 2 },
     { facet: 'generating ANALOG output — a fractional sample index sinc-reconstructs the discrete into the continuous (Nyquist–Shannon): at index 3 it is the digit 8 exactly, at 3.5 a genuine interpolated analog value between the samples', on: abs(atInteger - 8) < 1e-9 && analogAtHalf !== 8 },
     { facet: 'USED AS INPUT for the next — the analog output is content-addressed into a new seed, the input for the next fold; the output of one is the input of another (the recursive pipeline, the feedback loop)', on: isUuid(nextInput) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cube-sphere-analog:${entry.facet}:${entry.on}`) }))

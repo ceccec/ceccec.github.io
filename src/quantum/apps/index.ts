@@ -1204,6 +1204,36 @@ const QUANTUM_CLI_TOOL_ROWS_STATIC: readonly QuantumCliToolSeed[] = [
   { id: 'ui-prose-duplication-removed', title: 'UI↔prose duplication removed — one statement owns meaning', fold: 'uiProseDuplicationRemoved', cli: 'npm run quantum:ui-prose-duplication', pair: 'ui/prose', route: '/quantum-tools#ui-prose-duplication', barrel: 'src/quantum/apps', boundary: 'Page-level chrome entropy kill post-#61 nav collapse — label OR prose, not both restating', browserRunnable: true, browserGap: '' },
 ] as const
 
+/**
+ * clayClaimsInThisFoldsOwnDescriptor — the honest replacement for `millenniumSolvedByThisFold = 0 as const`.
+ *
+ * Seven folds in this file carried that constant and a facet reading `on: millenniumSolvedByThisFold === 0`:
+ * a name initialised to 0, compared with 0, never reassigned. It asserted "this fold claims no Clay Millennium
+ * solution" — and no edit anywhere in the corpus could make it say otherwise. The refusal the author cares
+ * most about was the one thing in the file that could not be refuted.
+ *
+ * The evidence was already here. Every one of those folds publishes rows in QUANTUM_CLI_TOOL_ROWS_STATIC
+ * carrying its title and its boundary — the fold's own public prose, the text a reader is shown. Scan THAT
+ * with the clay axis the rest of the corpus already uses and the refusal becomes refutable: write a solution
+ * claim into a title or a boundary and the count rises and the facet goes dark.
+ *
+ * `rows` rides along with `claims` because a scan over no text computes 0 for a fold nobody describes —
+ * vacuously honest, which is the element-blind defect wearing the right answer's clothes. The facet asserts
+ * both: the fold IS described, and what describes it claims nothing.
+ */
+function clayClaimsInThisFoldsOwnDescriptor(fold: string): { readonly rows: number; readonly claims: number } {
+  const described = QUANTUM_CLI_TOOL_ROWS_STATIC.filter((row) => row.fold === fold)
+  return {
+    rows: described.length,
+    // EVERY ROW IS TERMINATED. Denial is sentence-scoped, and these boundaries end in phrases like
+    // "NOT CMI prize" with no full stop — so an unterminated join lets the NEXT row's prose fall inside
+    // the previous row's sentence and inherit its denial. Measured: appending "The P versus NP millennium
+    // problem solved by this fold." to the wave-token boundary scanned 0 until this terminator was added,
+    // and 1 after. A detector that launders the claim standing next to a disclaimer is not a detector.
+    claims: overclaimByFormulas('clay', described.map((row) => `${row.title}. ${row.boundary}.`).join(' ')),
+  }
+}
+
 /** Call-time catalog: mesh seeds + static rows. Lazy so CRYPTO_COMPARISON_MESH_NODES is initialized. */
 function quantumCliToolSeeds(): readonly QuantumCliToolSeed[] {
   return [
@@ -1601,12 +1631,17 @@ export function distributedReuseExtendsCapacity(matrix: MindMatrix = buildMatrix
     const localCatalogRoot = toolbox.root
     const reuseCapacity = sharedRoots.length
     const extendsCapacity = reuseCapacity === toolbox.total && toolbox.computes && isUuid(federatedCatalogRoot)
-    const physicalQubitSpeedup = 0 as const
+    // The number was declared here AND in STANDARD_TOOL_HONESTY — a duplicate of the corpus's single
+    // honesty source, and a duplicate cannot disagree with anything. Read the shared envelope, then measure
+    // what this fold SHIPS: every exported payload carries honesty.physicalQubitSpeedup, so count the ones
+    // that actually declare zero. Ship an envelope that does not and the facet goes dark.
+    const physicalQubitSpeedup = STANDARD_TOOL_HONESTY.physicalQubitSpeedup
+    const envelopesDeclaringNoQubitSpeedup = appA.filter((payload) => payload.envelope.honesty.physicalQubitSpeedup === 0).length
     const facets = [
       { facet: `federated round-trip — App A export ≡ App B import for ${reuseCapacity}/${toolbox.total} tools`, on: extendsCapacity },
       { facet: 'shared memo roots — identical envelope.root across apps', on: sharedRoots.every((p) => isUuid(p.envelope.root)) },
       { facet: 'federated catalog root content-addressed', on: isUuid(federatedCatalogRoot) && isUuid(localCatalogRoot) },
-      { facet: `physicalQubitSpeedup=${physicalQubitSpeedup}`, on: physicalQubitSpeedup === 0 },
+      { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} declared by ${envelopesDeclaringNoQubitSpeedup}/${appA.length} exported envelope(s)`, on: appA.length === toolbox.total && envelopesDeclaringNoQubitSpeedup === appA.length && physicalQubitSpeedup === 0 },
       { facet: 'capacityMeans = amortized sealed recompute + memoByRoot + distributed identical roots', on: STANDARD_TOOL_HONESTY.capacityMeans.includes('memoByRoot') },
       { facet: 'standardToolboxIoCatalog computes', on: toolbox.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`distributed-reuse-capacity:${entry.facet}:${entry.on}`) }))
@@ -4251,7 +4286,7 @@ export type RosettaCompletenessGapRow = {
 export type RosettaCompletenessHandoff = {
   readonly rosettaComplete: boolean
   readonly rosettaReady: boolean
-  readonly millenniumSolvedByThisFold: 0
+  readonly millenniumSolvedByThisFold: number
   readonly completenessPct: number
   readonly root: string
   readonly cli: string
@@ -4285,7 +4320,8 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
     const collider = __ns_wind_research.theoremParticleCollisionInverseReverse(matrix)
     const effReuse = __ns_wind_research.efficiencyScalesToInfinityAtNoCostOnReuse(matrix)
 
-    const millenniumSolvedByThisFold = 0 as const
+    const millenniumClaim = clayClaimsInThisFoldsOwnDescriptor('rosettaCompleteQuantumAllComputableDimensionsAndTheorems')
+    const millenniumSolvedByThisFold = millenniumClaim.claims
 
     const dimCovered = dims.emerged - dims.open.length
     const dimPct = dims.emerged > 0 ? round((100 * dimCovered) / dims.emerged) : 0
@@ -4389,7 +4425,7 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
       { facet: `theorem lattice march ${theoremLattice.count}/${theoremLattice.target} (overshoot OK — direction, not renumber)`, on: latticeOk },
       { facet: 'rosettaCoreApi + directional trinity + efficiency-on-reuse compute', on: core.computes && dir.computes && effReuse.on },
       { facet: 'first-in-corpus + theorem 10D + collider + sciences + waves + string-gaps compose', on: first.computes && tenD.computes && collider.computes && sciences.computes && waves.computes && stringGaps.inventoried },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} · mill.`, on: millenniumSolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} · mill. — clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
       { facet: `rosettaComplete=${rosettaComplete} → handoff.rosettaReady (millennium+FTL consume; not Clay/FTL solved)`, on: handoff.rosettaReady === rosettaComplete },
       { facet: 'efficiency vote surface present (decided optional — domain-bounded)', on: vote.facets.length > 0 },
       { facet: 'gaps table enumerates dim·theorem·linear·parallel·string·science', on: gaps.length === 6 },
@@ -4451,11 +4487,15 @@ export function millenniumChallengeHandoffFromRosettaComplete(
 ) {
   return memoByRoot(`millenniumChallengeHandoffFromRosettaComplete:${handoff.root}`, matrix, () => {
     const mill = __ns_wind_research.millenniumProblemsChallenge(matrix)
-    const millenniumSolvedByThisFold = 0 as const
+    // This fold publishes no catalog row, so the text it is judged on is the text it ships: its own
+    // statement and boundary, hoisted here so the scan reads the same prose the reader does.
+    const statement = `Millennium\u2190rosetta handoff \u2014 rosettaReady=${handoff.rosettaReady}.`
+    const boundary = 'Handoff only \u2014 NOT a Clay prize solution.'
+    const millenniumSolvedByThisFold = overclaimByFormulas('clay', `${statement} ${boundary}`)
     const facets = [
       { facet: 'consumes rosetta completeness handoff root', on: isUuid(handoff.root) },
       { facet: `rosettaReady=${handoff.rosettaReady} when rosettaComplete (not clay-solved)`, on: handoff.rosettaReady === handoff.rosettaComplete },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \u2014 scanned over this fold's own statement+boundary (${statement.length + boundary.length} chars)`, on: statement.length > 0 && boundary.length > 0 && millenniumSolvedByThisFold === 0 },
       { facet: 'millennium apparatus still MODELED CHALLENGE', on: mill.computes },
     ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-rosetta-handoff:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('millennium-challenge-handoff-from-rosetta-complete', facets)
@@ -4467,8 +4507,8 @@ export function millenniumChallengeHandoffFromRosettaComplete(
       handoffRoot: handoff.root,
       facets: sealed.facets,
       root: merge(mill.root, merkleFold([sealed.root, handoff.root])),
-      statement: `Millennium←rosetta handoff — rosettaReady=${handoff.rosettaReady}.`,
-      boundary: 'Handoff only — NOT a Clay prize solution.' }
+      statement,
+      boundary }
   })
 }
 
@@ -8917,7 +8957,8 @@ export function wavesMinimiseTokensAdvanceMillennium(matrix: MindMatrix = buildM
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'wave-token')
     const metaMill = catalog.tools.find((t) => t.id === 'mill-wave')
-    const millenniumSolvedByThisFold = 0 as const
+    const millenniumClaim = clayClaimsInThisFoldsOwnDescriptor('wavesMinimiseTokensAdvanceMillennium')
+    const millenniumSolvedByThisFold = millenniumClaim.claims
     const qpuRequired = false as const
     const on =
       token.qpuRequired === false
@@ -8930,7 +8971,7 @@ export function wavesMinimiseTokensAdvanceMillennium(matrix: MindMatrix = buildM
       { facet: 'answersOverTokens', on: answersOverTokens },
       { facet: `vote.decided=${vote.decided} efficiencyWinWhenDecided=${token.efficiencyWinWhenDecided ? 1 : 0}`, on: efficiencyOk },
       { facet: 'advancesMillennium', on: advancesMillennium },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} — clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
       {
         facet: 'compose waves/build · mcp/token · mill/session · collide/inf · journey/theorems · trinity/speedup · challenge/millennium',
         on:
@@ -12759,7 +12800,8 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
       const metaWave = toolsCat.tools.find((t) => t.id === 'wave-bill')
       const metaSelf = toolsCat.tools.find((t) => t.id === 'self-bill')
       const shelved = rosettaShelve('mcp-fill', 'tool')
-      const millenniumSolvedByThisFold = 0 as const
+      const millenniumClaim = clayClaimsInThisFoldsOwnDescriptor('scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill')
+      const millenniumSolvedByThisFold = millenniumClaim.claims
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -12801,7 +12843,7 @@ export function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWav
           on: pairsOn && soft('ai', 'bill'),
         },
         { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} — clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
         {
           facet: 'NOT wet pricing · NOT Clay/FTL fake-close',
           on: honestOpenNamedOn,
@@ -13174,7 +13216,8 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
       const metaMind = catalog.tools.find((t) => t.id === 'mind-site')
       const metaAlgebra = catalog.tools.find((t) => t.id === 'algebra-bit')
       const shelved = rosettaShelve('conv-metrics', 'tool')
-      const millenniumSolvedByThisFold = 0 as const
+      const millenniumClaim = clayClaimsInThisFoldsOwnDescriptor('conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists')
+      const millenniumSolvedByThisFold = millenniumClaim.claims
       const qpuRequired = false as const
       const honestOpenNamed = [
         'clay:millennium-open',
@@ -13231,7 +13274,7 @@ export function conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmen
         },
         { facet: 'pair conv/metrics · mind/site · proof/trinity · algebra/bit bidirectional', on: pairsOn },
         { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} — clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
         {
           facet: 'HONEST noUnprovenAlgebraBit=sealed formula↔code dual NOT all-math/Clay/AGI',
           on: noUnprovenAlgebraBit && honestOpenNamedOn && millenniumSolvedByThisFold === 0,
@@ -13463,7 +13506,8 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
     const metaDual = catalog.tools.find((t) => t.id === 'next-imagine')
     const nextImagineForkDissolved = !metaDual
     const shelved = rosettaShelve('imagine-next', 'tool')
-    const millenniumSolvedByThisFold = 0 as const
+    const millenniumClaim = clayClaimsInThisFoldsOwnDescriptor('imagineWhatNext')
+    const millenniumSolvedByThisFold = millenniumClaim.claims
     const qpuRequired = false as const
     const honestOpenNamed = [
       'clay:millennium-open',
@@ -13491,7 +13535,7 @@ export function imagineWhatNext(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'pair imagine/next · next/imagine bidirectional', on: pairsOn },
       { facet: 'next-imagine CLI fork dissolved → audit/plan pipeline', on: nextImagineForkDissolved },
       { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} — clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
       {
         facet: 'NOT wet fantasy · Clay/FTL/apps-monolith honest-open',
         on: honestOpenNamedOn,
@@ -23562,7 +23606,8 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
         freeBits === -EULER_CHI &&
         freeBits === 2 &&
         UNFOLDED_CENSUS === FOLDED_CENSUS + freeBits
-      const millenniumSolvedByThisFold = 0 as const
+      const millenniumClaim = clayClaimsInThisFoldsOwnDescriptor('gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist')
+      const millenniumSolvedByThisFold = millenniumClaim.claims
       const qpuRequired = false as const
       const pairGm = has('gate/mill')
       const pairMg = has('mill/gaps')
@@ -23635,7 +23680,7 @@ export function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist(
           facet: 'pair gate/mill · mill/gaps · gaps/exist',
           on: pairGm && pairMg && pairGe && foldGm.bidirectional && foldMg.bidirectional && foldGe.bidirectional,
         },
-        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+        { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} — clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
       ].map((entry) => ({ ...entry, receipt: toUuid(`gate-mill-gaps-exist:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('gates-know-until-millennium-gaps-exist', facets)
       return {

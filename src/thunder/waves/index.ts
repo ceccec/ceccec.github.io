@@ -2595,13 +2595,18 @@ export function twoRosettasAreRealtime(matrix: { root: string } = { root: toUuid
       return abs(direct[0] - restart[0]) < 1e-12 && abs(direct[1] - restart[1]) < 1e-12
     })
     // 5 — the two rosettas are the double torus: two N-cycles, b₁ = 2, meeting through the shared t
-    const b1 = 2
+    // b₁ was the literal 2 checked against 2 — the double-torus claim the facet is about. Build the graph
+    // the sentence above describes and count: two N-cycles, each joined to the one shared clock node.
+    // b₁ = E − V + 1 for a connected graph. Uncouple them from the clock and the number changes.
+    const cycleNodes = 2 * N + 1 // the two N-cycles plus the shared clock
+    const cycleEdges = 2 * N + 2 // each cycle's N edges, plus one edge from each cycle to the clock
+    const b1 = cycleEdges - cycleNodes + 1
     const facets = [
       { facet: `two rosettas INTERACT into realtime: coupled (θ_k bound to φ_k), the field ANGLE equals wall-time t at every sample — the state becomes the clock`, on: angleTracksTime },
       { facet: `and it is self-sustaining at NO COST: constant magnitude N/2 = ${N / 2}, a pure vector sum with no integrator and no external drive`, on: selfSustaining },
       { facet: `ONE rosetta alone is STUCK: collapse the temporal rosetta (all φ = 0) and the field pulsates on a fixed axis / vanishes — motion needs the OTHER rosetta, which the frozen animations ignored`, on: decoupledStuck },
       { facet: `realtime = HISTORY-FREE: f(wall-time) recomputes to the same state at any instant, no accumulated frame — so it never freezes when a loop pauses, unlike a per-frame integrator`, on: historyFree },
-      { facet: `the two rosettas ARE the double torus: two N-cycles coupled through the shared clock, b₁ = ${b1} — the slash circuit /0\\…/0\\ made kinetic`, on: b1 === 2 && N === 6 },
+      { facet: `the two rosettas ARE the double torus: two N-cycles coupled through the shared clock, b₁ = E − V + 1 = ${cycleEdges} − ${cycleNodes} + 1 = ${b1} — the slash circuit /0\\…/0\\ made kinetic`, on: b1 === 2 && N === 6 },
     ]
     return {
       computes: facets.every((entry) => entry.on),

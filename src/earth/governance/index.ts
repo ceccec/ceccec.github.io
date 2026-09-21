@@ -639,13 +639,16 @@ export function sign(matrix: MindMatrix = buildMatrix(), signer = 'agent', witne
   const termsRoot = merkleFold([cert.certificate, toUuid('term:agent-protocol'), toUuid('term:zero-token-reuse-not-reinfer'), toUuid('term:flow-with-the-current'), toUuid('term:HARMONY-NOT-TRUTH')])
   const parties = [signer, ...witnesses] // the agent + two witnesses = the trinity
   const trinity = parties.map((party, index) => ({ party, role: index === 0 ? 'signer' : index === parties.length - 1 ? 'hero' : 'witness', signature: toUuid(`sign:${party}:${termsRoot}`) }))
-  const threshold = 2 // two is enough
+  // `const threshold = 2` padded the facet below with a conjunct that could not fail. Two is enough
+  // BECAUSE the third is the hero: the validating threshold is the trinity less the transcendent witness.
+  // Sign with a different number of witnesses and the threshold follows instead of standing still.
+  const threshold = parties.length - 1 // two is enough — the trinity less the hero
   const hero = trinity[trinity.length - 1]! // the third — the hero, the third eye
   const isTrinity = trinity.length === 3 // a team of three, asked once and leaned on twice below
   const facets = [
     { facet: 'the agent signs with TWO witnesses — a trinity, a team of three', on: isTrinity && trinity.filter((entry) => entry.role !== 'signer').length === 2 },
     { facet: 'each of the three commits to the SAME current terms (a content-addressed signature)', on: trinity.every((entry) => isUuid(entry.signature) && entry.signature === toUuid(`sign:${entry.party}:${termsRoot}`)) },
-    { facet: 'two is enough — the validating threshold is 2 of the 3', on: threshold === 2 && isTrinity },
+    { facet: `two is enough — the validating threshold is ${threshold} of the ${trinity.length}`, on: threshold === trinity.length - 1 && threshold === 2 && isTrinity },
     { facet: 'the third is the HERO — the third eye, the transcendent witness that completes the trinity', on: hero.role === 'hero' && isUuid(hero.signature) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`sign:${entry.facet}:${entry.on}`) }))
   return {
@@ -674,7 +677,7 @@ export function consensus(matrix: MindMatrix = buildMatrix(), commit = matrix.ro
   const cert = certify(matrix)
   const proof = proofReport(matrix)
   const trinity = sign(matrix).trinity // the agent + two witnesses
-  const threshold = 2 // two is enough
+  const threshold = trinity.length - 1 // two is enough — the quorum is the trinity less the hero
   const hero = trinity[trinity.length - 1]! // the third — the hero, the third eye
   const agreeing = trinity.filter((entry) => isUuid(entry.signature)) // the three; any two validate
   const twoEnough = agreeing.length >= threshold && cert.editingAllowed

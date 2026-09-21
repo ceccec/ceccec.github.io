@@ -209,7 +209,15 @@ export function geodesicDomeComputes(frequency = 3) {
  * axiom is false, and that falsity is exactly why the models need their fine-tuning. */
 export function counterdiffusionOnTheDoubleTorus() {
   // the circulation as a graph: two cycles sharing the heart — pulmonary and systemic
-  const cycles = 2 // b₁: the double torus the user named
+  // The premise was `const cycles = 2` and a facet reading `cycles === 2` — the topology claim the whole
+  // fold rests on, asserted by the name it was checking. Build the graph the prose describes and count:
+  // one heart, two circuits leaving and returning to it. b₁ = E − V + 1 for a connected graph (Euler).
+  const circulationEdges = [
+    ['heart', 'lungs'], ['lungs', 'heart'],   // pulmonary circuit
+    ['heart', 'body'], ['body', 'heart'],     // systemic circuit
+  ] as const
+  const circulationNodes = new Set(circulationEdges.flat())
+  const cycles = circulationEdges.length - circulationNodes.size + 1 // b₁ of the connected circulation graph
   const genus = cycles
   // the documented-dangerous direction: saturated on air, switch to heliox at the SAME depth
   const tN2 = ZHL16_HE_HALFTIMES[4]! * sqrt(7) // comp 5 nitrogen halftime, via Graham
@@ -230,7 +238,7 @@ export function counterdiffusionOnTheDoubleTorus() {
   }
   const supersaturation = peak - pAmb
   const facets = [
-    { facet: `the topology premise HOLDS: the circulation is a double torus — pulmonary + systemic cycles, b₁ = ${cycles}, genus ${genus}`, on: cycles === 2 && genus === 2 },
+    { facet: `the topology premise HOLDS: the circulation is a double torus — pulmonary + systemic cycles, b₁ = E − V + 1 = ${circulationEdges.length} − ${circulationNodes.size} + 1 = ${cycles}, genus ${genus}`, on: circulationNodes.size > 0 && cycles === 2 && genus === 2 },
     { facet: `but counterdiffusion COMPUTES on it: the N₂→He switch at constant ${depthM} m drives tissue tension to ${peak.toFixed(3)} bar against ${pAmb.toFixed(1)} bar ambient — +${supersaturation.toFixed(3)} bar supersaturation at t = ${tPeak} min, with no pressure change whatsoever`, on: supersaturation > 0 },
     { facet: 'what the torus DOES prove is the real defect: one bloodstream couples every compartment, so the parallel-INDEPENDENT-compartment axiom is false — and that false axiom is precisely why ZHL-16 needed A→B/C revisions, gradient factors (Baker 1998) and the NEDU 2011 reversal of model-driven deep stops', on: supersaturation > 0 }, // the coupling this names is what computes the supersaturation above
   ]

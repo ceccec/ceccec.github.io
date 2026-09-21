@@ -866,7 +866,7 @@ export function humanDesignEphemerisCore(matrix: MindMatrix = buildMatrix(), bir
       ) < 1e-9
     const names = eph.bodies.map((b) => b.name)
     const facets = [
-      { facet: 'Julian Day J2000 noon = 2451545 (Meeus ch.7 civil→JD)', on: j2000Jd === MEEUS_J2000_JD && MEEUS_J2000_JD === 2451545 },
+      { facet: 'Julian Day J2000 noon = 2451545 (Meeus ch.7 civil→JD)', on: j2000Jd === MEEUS_J2000_JD },
       { facet: 'Sun at J2000 — Meeus ch.25 mean→true→apparent pipeline (L0=280.46646°)', on: sunJ2000Ok },
       { facet: 'Sun advances ~1°/day (0.9°…1.1°) — tropical year motion', on: sunDayAdvance > 0.9 && sunDayAdvance < 1.1 },
       { facet: 'Moon faster than Sun over 1 day (truncated ch.47)', on: moonDayAdvance > sunDayAdvance },

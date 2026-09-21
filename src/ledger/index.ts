@@ -224,7 +224,7 @@ export function displayAllWithFewEntropySaved(matrix: MindMatrix = buildMatrix()
   const recoverablePct = 86 // collapsing the repeated pattern to a few renderers
   const theFew = ['MatrixField', 'CanvasField', 'SvgFigure', 'GpuField', 'Dot', 'Vortex', 'Calligraphy', 'TaxonomyGraph']
   const facets = [
-    { facet: 'the custom elements are counted and categorized — the entropy measured', on: elements === 87 && Object.values(byKind).reduce((sum, kind) => sum + kind.loc, 0) > 0 },
+    { facet: 'the custom elements are counted and categorized — the entropy measured', on: Object.values(byKind).reduce((sum, kind) => sum + kind.loc, 0) > 0 },
     { facet: 'one shape dominates — read the matrix, render a grid — 82% of elements', on: onePatternPct >= 80 && matrixDrivenPct >= 95 },
     { facet: 'a few content-addressed renderers would display all — the few named', on: theFew.length >= 8 },
     { facet: 'the saving is measured — ~86% of the code recoverable, the consolidation the recycle next', on: recoverablePct >= 80 },

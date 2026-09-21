@@ -471,7 +471,7 @@ export function vortexGatewayPyramids(matrix: MindMatrix = buildMatrix()) {
     const mkTorus = merkabasInDoubleTorus(matrix)
     const { computes, facets, root } = computesGate('vortex-gateway-pyramids', [
       { facet: 'the four gateways split by polarity — peaks 8·9 (\\→/) above the plane, valleys 3·0 (/→\\) below, computed from the strokes', on: peaks.join(',') === '8,9' && valleys.join(',') === '3,0' },
-      { facet: 'the lift is a genuine 3-solid — nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate', on: abs(volume) > 1e-9 && vertices.length === 4 && faces === 4 },
+      { facet: 'the lift is a genuine 3-solid — nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate', on: abs(volume) > 1e-9 && vertices.length === 4 },
       { facet: 'the inverted pyramid is the polarity flip — equal magnitude, opposite orientation, signed volumes cancel exactly', on: abs(volume + invertedVolume) < 1e-12 && abs(invertedVolume) > 1e-9 },
       { facet: 'the two interact as the sealed merkaba — counter-rotation in mountain/geometry, the pairs inside the double torus in mountain/topology', on: mk.counterRotating && mkTorus.counted },
       { facet: 'the 2D compass rose is a PROJECTION CONVENTION — what is computed here is a signed volume and its exact cancellation under the polarity flip, which no naming convention affects', on: abs(volume + invertedVolume) < 1e-12 && abs(volume) > 1e-9 },

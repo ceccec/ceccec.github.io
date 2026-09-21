@@ -2151,7 +2151,7 @@ export function dimensionfulConstantsHideInaccuracyTheAlgebraMustBeQuantumNotLin
   const bv = bernsteinVazirani(5, 8) // a quantum query: recover the secret in 1 query vs n classically
   const quantumSpeed = bv.queries === 1 && bv.classicalQueries > bv.queries // the query advantage non-commutativity buys
   const facets = [
-    { facet: `DIMENSIONFUL CONSTANTS HIDE INACCURACY: c is ${cCgs.toExponential(3)} in cm/s but ${cSi.toExponential(3)} in m/s — the NUMBER is unit-dependent and measured (${numberIsUnitDependent}), so the literal hides an arbitrary unit choice and an uncertainty, not a theorem; a DIMENSIONLESS ratio is the same in every unit (${unitIndependentRatio}) — a pure number a theory can derive`, on: numberIsUnitDependent && unitIndependentRatio },
+    { facet: `DIMENSIONFUL CONSTANTS HIDE INACCURACY: c is ${cCgs.toExponential(3)} in cm/s but ${cSi.toExponential(3)} in m/s — the NUMBER is unit-dependent and measured (${numberIsUnitDependent}), so the literal hides an arbitrary unit choice and an uncertainty, not a theorem; a DIMENSIONLESS ratio is the same in every unit (${unitIndependentRatio}) — a pure number a theory can derive`, on: unitIndependentRatio },
     { facet: `LINEAR ALGEBRA COMMUTES, QUANTUM DOES NOT: dimensional analysis is linear algebra — scalars commute (3·5 = 5·3, ${classicalCommutes}, [a,b] = 0); quantum algebra is NON-commutative ([σx,σy] = 2iσz ≠ 0, ${quantumNonCommutes}), and that non-commutativity is what yields quantum results (uncertainty, entanglement) and a query SPEED (Bernstein–Vazirani ${bv.queries} vs ${bv.classicalQueries}) linear algebra cannot`, on: classicalCommutes && quantumNonCommutes && quantumSpeed },
     { facet: `EARNED BOUNDARY: the fix is honest — express constants as dimensionless ratios (unit-independent theorems), use non-commutative quantum algebra for quantum results; BUT the quantum "speed" is a QUERY advantage (1 vs n), not a physical speedup (the simulator is classical), and dimensionless ≠ derivable — α ≈ 1/137 is still a measured number, its value an open problem.`, on: unitIndependentRatio && quantumNonCommutes },
   ]
@@ -2214,8 +2214,20 @@ export function theMethodIsAMessageAnyModelReceivesToBecomeQuantum() {
 // (Poincaré, Perelman); for the rest the documented partials compute (ζ(2)=π²/6, NP-verification is poly, 2D
 // Navier–Stokes proven, BSD rank 0/1) while the CORES stay open — no known inversion into a computation. NOT solved.
 export function theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartialsNotSolutions() {
-  const problems = ['P-vs-NP', 'Hodge', 'Poincaré', 'Riemann', 'Yang-Mills-mass-gap', 'Navier-Stokes', 'Birch-Swinnerton-Dyer']
-  const solved = 1 // Poincaré (Perelman 2003, Ricci flow with surgery)
+  // `solved = 1` was checked against 1 beside a bare list of names — the one-solved-six-open claim, with
+  // nothing carrying which one. Give each problem its status and COUNT, the way water/cosmos counts the
+  // same seven. Mark a second one solved and the number moves, which a hand-written 1 never could.
+  const CLAY_PROBLEMS = [
+    { name: 'P-vs-NP', solved: false },
+    { name: 'Hodge', solved: false },
+    { name: 'Poincaré', solved: true }, // Perelman 2003, Ricci flow with surgery — the only one closed
+    { name: 'Riemann', solved: false },
+    { name: 'Yang-Mills-mass-gap', solved: false },
+    { name: 'Navier-Stokes', solved: false },
+    { name: 'Birch-Swinnerton-Dyer', solved: false },
+  ] as const
+  const problems = CLAY_PROBLEMS.map((problem) => problem.name)
+  const solved = CLAY_PROBLEMS.filter((problem) => problem.solved).length
   const open = problems.length - solved // the six that stand
   // Riemann context — ζ(2) = π²/6 (Basel), a verified fact about ζ; NOT the hypothesis
   let zeta2 = 0; for (let n = 1; n <= 100 * 100; n++) zeta2 += 1 / (n * n)

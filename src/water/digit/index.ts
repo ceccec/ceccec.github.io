@@ -1827,7 +1827,7 @@ export function sevenStarPliskaRosettaHarmonisesDigitDistribution(matrix: MindMa
     { facet: 'gcd(7,6)=1 — rosetta 7 coprime to doubling period (no aliasing)', on: rosettaCoprime6 === 1 },
     { facet: 'gcd(7,9)=1 — rosetta 7 coprime to digital root modulus (no aliasing)', on: rosettaCoprime9 === 1 },
     { facet: 'gcd(7,10)=1 — rosetta 7 coprime to station count (no aliasing)', on: rosettaCoprime10 === 1 },
-    { facet: '28 = 4×7 — Glagolitic letters divide exactly into 7 rosetta rays', on: lettersPerRay === 4 && GLAGOLITIC_LETTER_COUNT === 28 },
+    { facet: '28 = 4×7 — Glagolitic letters divide exactly into 7 rosetta rays', on: lettersPerRay === 4 },
     { facet: '28 is a perfect number (1+2+4+7+14=28)', on: isPerfectNumber },
     { facet: 'each rosetta ray has 4 distinct digital roots (gcd(7,9)=1 prevents repetition)', on: allRaysDistinct },
     { facet: 'rosetta cross-pairs 70 > iching cross-pairs 40 — fuller coverage of (category×station) space', on: rosettaCrossPairs > ichingCrossPairs },

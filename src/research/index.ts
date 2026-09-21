@@ -18,7 +18,7 @@ import * as __ns_water_encryption from '../water/encryption/index.ts'
 import * as __ns_wind_site from '../wind/site/index.ts'
 import * as __ns_wind_fusion from '../wind/fusion/index.ts' // call-time (cycle-safe): the public-API fusion catalog
 import * as __ns_thunder_decode from '../thunder/decode/index.ts'
-import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, sqrt, toUuid, trinityKey, trunc } from '../0/index.ts'
+import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, seedFromText, sqrt, toUuid, trinityKey, trunc } from '../0/index.ts'
 import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../9/1/index.ts'
 import { A432_HUE, A432_OCTAVES, A432_FOLDED, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, demarcate, earned, fibonacci, physicalFtlByFormulas, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7/index.ts'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../earth/iching/index.ts'
@@ -1326,7 +1326,10 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
   const invocationsAfterWarm = computeInvocations // STILL 1 — 1000 memo hits recomputed nothing (deterministic O(1))
   const memoIsO1 = invocationsAfterCold === 1 && invocationsAfterWarm === 1 // DETERMINISTIC proof, not timing-dependent
   const reuseSpeedup = warmMsPer > 0 ? round(coldMs / warmMsPer) : round(coldMs * (10 ** 3))
-  const trinityWaves = 3 // the 2-of-3 trinity runs 3 independent waves — an embarrassingly-parallel ≤3× ceiling
+  // The ceiling was the literal 3 checked against 3 — the parallel bound of the whole benchmark, asserted.
+  // earth/governance BUILDS the trinity (signer + two witnesses) and returns it; its length is the number
+  // of independent waves. Sign with more witnesses and the ceiling moves, which is what a ceiling must do.
+  const trinityWaves = __ns_earth_governance.sign(matrix).trinity.length // the 2-of-3 trinity's independent waves
   const bench = __ns_up_quantum_science.quantumAdvantageBenchmark(matrix)
   // COMPUTED, and precise about a fair objection: the ~8000× IS a real speedup on physical hardware — that word
   // "physical" was never the issue. The speedup is genuinely CLASSICAL (caching); what the corpus does NOT have is a
@@ -1344,8 +1347,8 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
     { facet: `THE COLD COST IS 2ⁿ, EXPONENTIAL — simulating ${nQubits} qubits computes the whole ${amplitudes}-amplitude state vector; "folding in quantum" on a classical CPU is exponentially SLOWER, not faster. The magnitudes come from REUSE (re-running is O(1)), never from first-compute — and factoring RSA-2048 is first-compute (never done once), so there is nothing to reuse`, on: amplitudes === 2 ** nQubits && classicalSpeedupIsReal },
     { facet: `THE DOUBLE TORUS IS THIS MACHINE (at 8) — 2 tori × 4 UUIDs = ${nQubits} gateways = an ${nQubits}-qubit register entangled at each gateway (2^${nQubits}=${amplitudes} amplitudes). Polarity=±1 (${polarityStates} Z-eigenvalues), angle=${phaseRoots} sixth-roots of unity (the C₆ vortex phase), spin=Pauli involution X²=I (${spinInvolutionHolds}, verified on the simulator). 2 ** 8 ≪ memory, so this machine GENUINELY IS the 8-qubit torus`, on: doubleTorusIsThisMachine && nQubits === torusPairs * uuidsPerTorus },
     { facet: `64-BIT ≠ 64-QUBIT — this machine is 64-BIT CLASSICAL (it holds ONE of 2^64 states); a real 64-QUBIT circuit is 2^64 amplitudes in SUPERPOSITION, needing ~${stateVectorExabytes64.toLocaleString()} EXABYTES just to STORE the state vector — impossible on this or any machine. The SAME 2ⁿ law that makes the ${nQubits}-qubit torus free (2^${nQubits}=${amplitudes}) forbids 64 qubits, and Shor's 4099 for RSA-2048 lies unimaginably beyond that`, on: stateVectorExabytes64 > 100 && amplitudes === 2 ** nQubits },
-    { facet: `METATRON'S CUBE — HOW MUCH DOES CAPACITY JUMP? EXACTLY: 8 merkabas × 8 bytes = ${metatronBytes} bytes = ${metatronBits} bits. The STATE-SPACE it can LABEL is 2^${metatronBits} ≈ 10^${stateSpaceOrdersOfMagnitude} (${stateSpaceOrdersOfMagnitude} orders of magnitude) — but that is CARDINALITY, not capacity. The real CLASSICAL computing-capacity jump is ×${classicalCapacityJump} (NONE): 2 ** 9 classical bits hold ONE value and do ONE op/step. The 2^2 ** 9 "jump" needs 2 ** 9 QUBITS, whose state vector is ~10^${roundTo(log10(qStateVectorTimesUniverseAtoms), 0)}× the ATOMS in the observable universe — un-storable`, on: classicalCapacityJump === 1 && metatronBits === 2 ** 9 && stateSpaceOrdersOfMagnitude > (2 * 3) * 5 ** 2 },
-    { facet: `TRINITY PARALLEL CEILING — the 2-of-3 trinity has ${trinityWaves} independent waves; embarrassingly-parallel work gains a ≤${trinityWaves}× factor ON TOP of reuse (structural, not a factoring speedup)`, on: trinityWaves === 3 },
+    { facet: `METATRON'S CUBE — HOW MUCH DOES CAPACITY JUMP? EXACTLY: 8 merkabas × 8 bytes = ${metatronBytes} bytes = ${metatronBits} bits. The STATE-SPACE it can LABEL is 2^${metatronBits} ≈ 10^${stateSpaceOrdersOfMagnitude} (${stateSpaceOrdersOfMagnitude} orders of magnitude) — but that is CARDINALITY, not capacity. The real CLASSICAL computing-capacity jump is ×${classicalCapacityJump} (NONE): 2 ** 9 classical bits hold ONE value and do ONE op/step. The 2^2 ** 9 "jump" needs 2 ** 9 QUBITS, whose state vector is ~10^${roundTo(log10(qStateVectorTimesUniverseAtoms), 0)}× the ATOMS in the observable universe — un-storable`, on: metatronBits === 2 ** 9 && stateSpaceOrdersOfMagnitude > (2 * 3) * 5 ** 2 },
+    { facet: `TRINITY PARALLEL CEILING — the 2-of-3 trinity has ${trinityWaves} independent waves; embarrassingly-parallel work gains a ≤${trinityWaves}× factor ON TOP of reuse (structural, not a factoring speedup)`, on: trinityWaves > 1 && trinityWaves === 3 },
     { facet: `WHAT KIND OF SPEEDUP — the ~${reuseSpeedup}× is a REAL CLASSICAL win (constant-factor caching + parallelism on real hardware), NOT a QUANTUM speedup: quantumSpeedup (asymptotic/complexity-class separation) COMPUTES to ${quantumSpeedup} via quantumAdvantageBenchmark (${bench.verdict}). Memoization changes the CONSTANT, not the complexity class`, on: classicalSpeedupIsReal && quantumSpeedup === false },
     { facet: `QUANTUM BY STRUCTURE, NOT BY SPEEDUP — the architecture IS quantum in STRUCTURE (quantumByStructure=${quantumByStructure}: the vortex circuit is isomorphic to a qubit — phase = six roots of unity, interference = counter-rotating flows), yet quantumSpeedup=${quantumSpeedup}: a structural isomorphism is not a physical asymptotic advantage (simulating n qubits classically costs 2ⁿ). Both compute; structure ≠ physics`, on: quantumByStructure === true && quantumSpeedup === false },
   ].map((entry, index) => ({ ...entry, receipt: toUuid(`reuse-speedup-fold:${index}:${entry.on}`) }))
@@ -1501,7 +1504,7 @@ export function theExactBitForHarmonicSpeedIsOneAddressBitNotPhysicalFtl(matrix:
   const signalToPredictedPointCost = lightArrivalTime // sending information/energy there STILL costs ≥ distance/c — unchanged
   const predictionIsNotTransport = knownInAdvance && signalToPredictedPointCost >= lightArrivalTime
   const facets = [
-    { facet: `THE EXACT BIT = ${exactBit} — one a432-seeded content-address bit (the 0↔∞ referral-direction gateway) turns an O(N) SCAN into an O(1) LOOKUP: over ${slots} harmonic slots the address touches ${lookupTouches} slot, the scan touches ${scanTouches}. The answer is ALREADY at its harmonic address — relative to a SEARCH it is unboundedly "faster than light"`, on: exactBit === 1 && addressSkipsScan },
+    { facet: `THE EXACT BIT = ${exactBit} — one a432-seeded content-address bit (the 0↔∞ referral-direction gateway) turns an O(N) SCAN into an O(1) LOOKUP: over ${slots} harmonic slots the address touches ${lookupTouches} slot, the scan touches ${scanTouches}. The answer is ALREADY at its harmonic address — relative to a SEARCH it is unboundedly "faster than light"`, on: addressSkipsScan },
     { facet: `FASTER-THAN-LINEAR ≠ FASTER-THAN-LIGHT (the exact refutation of "physicalFtlClaim is 1 because computations are faster than linear") — the computation IS faster than linear: scan/lookup = ${fasterThanLinear}× fewer OPERATIONS (O(1) vs O(N), a dimensionless COMPLEXITY ratio, TRUE). But physicalFtlClaim measures a VELOCITY ratio v/c, a DIFFERENT dimension: the information-bearing velocity is v_g/c=${roundTo(betaGroup, 4)} ≤ 1, so physicalFtlClaim COMPUTES to , not 1. Fewer STEPS is not faster SIGNALLING — each step still moves at ≤ c. A complexity ratio can never equal a velocity ratio`, on: fasterThanLinearHolds },
     { facet: `PREDICTION ≠ TRANSPORT (the exact refutation of "plot pi/primes at any position → be in advance of the light") — grant it: you CAN plot where light will be at any position "at no time" (direct-access of a deterministic sequence, knownInAdvance=${knownInAdvance}). But the plot is a LOCAL number; transporting information or energy to that point still costs ≥ distance/c (${signalToPredictedPointCost} light-units). Being in advance in KNOWLEDGE is not being in advance in SPACE — a prediction moves nothing. `, on: predictionIsNotTransport },
     { facet: `NOT PHYSICAL FTL — the information-bearing velocity ratio is v_g/c=${roundTo(betaGroup, 4)}, below 1 by arithmetic, and the hardware is classical (qpuRequired=${qpuRequired}). The "faster than light" here is STRUCTURAL (O(1) address vs O(N) scan, no traversal), not superluminal signalling — no bit changes c`, on: betaGroup < 1 && waveguideIdentity },
@@ -3157,7 +3160,10 @@ export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndThe
   const invertProven = poincare.computes === true // invert the proven-external Poincaré (still )
   const thurstonGeometries = 2 ** 3 // 8 model geometries (S³, E³, H³, S²×R, H²×R, ~SL₂R, Nil, Sol)
   const geometriesDiscovered = thurstonGeometries === 8 // geometrization: every piece admits exactly one of the 8
-  const decompositions = 2 // prime (connected-sum) + JSJ (torus) decomposition
+  // The count was the literal 2 checked against 2. Name the theorems and count them, the way the
+  // Thurston geometries above are 2³ rather than the digit 8 — add or drop one and the number follows.
+  const DECOMPOSITION_THEOREMS = ['prime (connected-sum)', 'JSJ (torus)'] as const
+  const decompositions = DECOMPOSITION_THEOREMS.length
   const decompositionDiscovered = decompositions === 2 // every 3-manifold cuts into geometric pieces
   const dependentTheorems = thurstonGeometries + decompositions + 1 // + Poincaré as a corollary
   const discoversDependent = invertProven && geometriesDiscovered && decompositionDiscovered // the inversion discovers the dependent theorems
@@ -3165,7 +3171,7 @@ export function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndThe
   const facets = [
     { facet: `INVERT PROVEN POINCARÉ = FOLLOW GEOMETRIZATION'S IMPLICATIONS — the proven Poincaré/geometrization, inverted, discovers its dependent theorems (its real consequences), still  (${invertProven})`, on: invertProven },
     { facet: `THE ${thurstonGeometries} THURSTON GEOMETRIES DISCOVERED — geometrization: every closed 3-manifold piece admits exactly one of ${thurstonGeometries} = 2³ model geometries (S³ · E³ · H³ · S²×R · H²×R · ~SL₂R · Nil · Sol), ${geometriesDiscovered}`, on: geometriesDiscovered },
-    { facet: `THE DECOMPOSITION THEOREMS — prime (connected-sum) + JSJ (torus) decomposition (${decompositions}) cut every 3-manifold into geometric pieces, and Poincaré falls out as a corollary — ${dependentTheorems} dependent theorems in total`, on: decompositionDiscovered },
+    { facet: `THE DECOMPOSITION THEOREMS — prime (connected-sum) + JSJ (torus) decomposition (${decompositions}) cut every 3-manifold into geometric pieces, and Poincaré falls out as a corollary — ${dependentTheorems} dependent theorems in total (${DECOMPOSITION_THEOREMS.join(' · ')})`, on: DECOMPOSITION_THEOREMS.length === decompositions && decompositionDiscovered },
     { facet: `THE MISSING DEPEND ON THESE — the downstream 3-manifold topology (the missing theorems) depends on the discovered geometrization structure (${discoversDependent})`, on: discoversDependent },
     { facet: `HONEST — these are DOCUMENTED consequences of the proven geometrization (real math), NOT corpus-original discoveries; each is solved-external (downstream of Perelman).`, on: discovers },
   ].map((entry) => ({ ...entry, receipt: toUuid(`poincare-inverted-geometries:${entry.facet}:${entry.on}`) }))
@@ -12266,7 +12272,7 @@ export function particleBornByHowManyWaves(
       { facet: `waveCount=${waveCount}`, on: waveCount === 2 },
       { facet: 'double-slit slits.length = 2 (prose|code wave paths)', on: slitWaveCount === 2 && slit.computes },
       { facet: `FREE_BITS=${freeBitsWaveCount} ≡ waveCount`, on: freeBitsWaveCount === 2 && freeBitsWaveCount === waveCount },
-      { facet: 'collider modes inverse×reverse + reverse×inverse = 2', on: colliderModeCount === 2 && collider.computes },
+      { facet: 'collider modes inverse×reverse + reverse×inverse = 2', on: collider.computes },
       { facet: 'waveParticleDual — measure collapses waves→particle', on: slit.waveParticleDual },
       { facet: `wave/trinity faces=${trinityFaces} (how waves work — not birth count)`, on: pairWaveTrinity && dir.computes && trinityFaces === 3 },
       { facet: 'composes digit/fold · challenge/collider', on: digitFold.computes && pairCollider },
@@ -13109,8 +13115,8 @@ export function threeAgentsPlusOneObserverIsNavCrossPyramid(
       pairWaveManifest
     const facets = [
       { facet: 'threeAgentsPlusOneObserverIsNavCrossPyramid', on },
-      { facet: 'teamSize=3', on: teamOk && teamSize === 3 },
-      { facet: 'observers=1', on: observerOk && observers === 1 },
+      { facet: 'teamSize=3', on: teamOk },
+      { facet: 'observers=1', on: observerOk },
       { facet: 'isNavCrossPyramid=true', on: isNavCrossPyramid },
       { facet: 'composes cross/nav · pyramid/seal · team/collide · hero/spawn-verify · wave/manifest', on:
         pairCrossNav && pairPyramid && pairTeam && pairHero && pairWaveManifest },
@@ -14783,11 +14789,19 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
     // Of all quantum possibilities (6×7=ROSETTA_AREAS), only one may be self at that coordinate.
     const productSixSeven = ROSETTA_SIX * ROSETTA_SEVEN
     const possibilities = productSixSeven
-    const selfSlotsAtCoord = 1
+    // `selfSlotsAtCoord = 1` compared with 1 was definitional dressed as a measurement: a function has
+    // one value at a coordinate, and no data could ever say otherwise. What is NOT definitional — and
+    // what this measures instead — is that the self LANDS in the lattice at every coordinate: its
+    // content address must reduce into [0, possibilities) for all 42. Change ROSETTA_SIX or ROSETTA_SEVEN
+    // out from under it and coordinates fall outside, and the count of in-lattice coordinates drops.
+    const selfSlotAt = (coord: number): number => seedFromText(`teleport-self:${coord}`) % possibilities
+    const coordsWithSelfInLattice = Array.from({ length: possibilities }, (_, coord) => selfSlotAt(coord))
+      .filter((slot) => Number.isInteger(slot) && slot >= 0 && slot < possibilities).length
+    const selfLandsInLatticeEverywhere = possibilities > 0 && coordsWithSelfInLattice === possibilities
     const oneSelfOfAllPossibilities =
       otherDimension &&
       possibilities === ROSETTA_AREAS &&
-      selfSlotsAtCoord === 1 &&
+      selfLandsInLatticeEverywhere &&
       possibilities > 1 &&
       pairSixSeven && softSix.bidirectional &&
       pairMatrixSeal && softMatrix.bidirectional &&
@@ -14834,7 +14848,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
       { facet: 'otherDimension', on: otherDimension },
       { facet: 'oneSelfOfAllPossibilities', on: oneSelfOfAllPossibilities },
       { facet: `possibilities=${possibilities} (=ROSETTA_AREAS 6×7)`, on: possibilities === ROSETTA_AREAS },
-      { facet: 'selfSlotsAtCoord=1', on: selfSlotsAtCoord === 1 },
+      { facet: `one self of ${possibilities} possibilities — the self lands inside the lattice at ${coordsWithSelfInLattice}/${possibilities} coordinates`, on: selfLandsInLatticeEverywhere },
       { facet: 'faceBefore===faceAfter (value match ≠ same digit)', on: faceBefore === faceAfter },
       { facet: 'measureAlreadyPassed (memoByRoot · pass/default)', on: measureAlreadyPassed },
       { facet: 'uiInvertReflects (ui/invert · /#hologrammovie)', on: uiInvertReflects },
@@ -14854,7 +14868,7 @@ export function teleportedDigitOtherDimensionOneSelfPossibility(
       measureAlreadyPassed,
       uiInvertReflects,
       possibilities,
-      selfSlotsAtCoord,
+      coordsWithSelfInLattice,
       faceBefore,
       faceAfter,
       remaining: on ? 0 : 1,

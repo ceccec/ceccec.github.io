@@ -2164,10 +2164,20 @@ export function coreMathFreeForAll(root: string = enforcementScanRoot()) {
       ? readFileSync(join(root, 'LICENSE.md'), 'utf8')
       : ''
   const counselResidueNamed = counselResidue.includes(licenseContact) && licenseFileText.length > counselResidue.length
+  const LICENCE_CONTACT_SURFACES = [
+    { surface: 'counsel residue', names: counselResidue.includes(licenseContact) },
+    { surface: 'LICENSE file', names: licenseFileText.includes(licenseContact) },
+  ] as const
+  const licenceSurfacesNamingTheContact = LICENCE_CONTACT_SURFACES.filter((row) => row.names).length
   const facets = [
     { facet: 'coreMathFreeForAll', on: coreMathFreeForAllOn },
     { facet: 'restLicensedThrough', on: restLicensedThrough },
-    { facet: `licenseContact=${licenseContact}`, on: licenseContact === 'license@psg.bg' },
+    // This compared the exported constant with its own literal value — the address a licensee is told to
+    // write to, checked against itself. What matters is whether that address is REACHABLE from what the
+    // corpus publishes, so count the licence surfaces that actually name it. Measured today: the counsel
+    // residue does, the repository's LICENSE file does NOT (stock CC BY-NC-ND text carries no contact).
+    // The gap is reported as a number here instead of hidden behind a tautology.
+    { facet: `licenseContact=${licenseContact} — named by ${licenceSurfacesNamingTheContact}/${LICENCE_CONTACT_SURFACES.length} licence surface(s): ${LICENCE_CONTACT_SURFACES.filter((row) => row.names).map((row) => row.surface).join(' · ') || 'none'}`, on: licenceSurfacesNamingTheContact >= 1 && licenseFileText.length > counselResidue.length },
     { facet: 'compose patent/canon FREE FOR ALL · legal/canon · readme/gateway', on: freeForAllPatent && gatewayWired },
     { facet: 'pair math/free · free/math · license/psg · psg/license', on: pairsOn },
     { facet: 'README states free-core vs license@psg.bg (sealed sync)', on: readmeStatesSplit || gatewayWired },

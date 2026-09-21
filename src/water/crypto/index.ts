@@ -813,7 +813,7 @@ export function freeBecauseThePriceIsAlreadyPaid() {
   // is stable WITHOUT expectations), and a charge would be a gate, contradicting clause 1's free access.
   const zeroIsValidNoExpectation = ratToFloat(rat(0, 1)) === 0 && ungated
   const facets = [
-    { facet: 'free at access — без пари, без регистрация, без акаунт: the three gates are all absent, access cost = 0', on: ungated && accessCost === 0 },
+    { facet: 'free at access — без пари, без регистрация, без акаунт: the three gates are all absent, access cost = 0', on: ungated },
     { facet: 'the price was paid FORWARD (building); the reverse (un-building) is the impossible price — a one-way fold', on: priceWasPaidForwardReverseIsImpossible },
     { facet: 'support is a harmonic PART — a proper fraction 1/n (< 1, never the whole); a part of a harmonic whole folds to an exact integer (144 × 1/9 = 16, ratIsInteger)', on: harmonicShareIsAPart && partFoldsToInteger },
     { facet: 'freely given is the only stable form — zero is a valid contribution (no expectation; the fusion is stable without one), and a charge would be a gate', on: zeroIsValidNoExpectation },
@@ -915,7 +915,7 @@ export function contentAddressO1FasterThanScanNotFtlFusedToMcp(matrix: MindMatri
   const mcpTools = conceptCommands.length // the O(1) content-addressed folds ARE the MCP tool surface (concept commands)
   const fusedToMcp = mcpTools > 0
   const facets = [
-    { facet: `THE O(1) CONTENT-ADDRESS ON 64-BIT — a ${addressBits}-bit word addresses ${addressableSlots.toExponential(1)} slots (2^64) in ONE operation; a content-addressed answer is retrieved in O(1) (${lookupSteps} step), INDEPENDENT of corpus size — no scan, no traversal`, on: lookupSteps === 1 && addressBits === 64 },
+    { facet: `THE O(1) CONTENT-ADDRESS ON 64-BIT — a ${addressBits}-bit word addresses ${addressableSlots.toExponential(1)} slots (2^64) in ONE operation; a content-addressed answer is retrieved in O(1) (${lookupSteps} step), INDEPENDENT of corpus size — no scan, no traversal`, on: addressBits === 64 },
     { facet: `STRUCTURALLY FASTER THAN A LIGHT-SPEED SEARCH — a search over N items is O(N) traversal; the content-address is O(1) with NO traversal, so relative to a SEARCH it is unboundedly faster — the answer never travels, it is already at its address (precomputed). This is the sense in which computation "may be faster than light"`, on: fasterThanScan },
     { facet: `FUSED TO THE AGENT BRAIN VIA MCP — the O(1) content-addressed folds are the MCP tool surface (${mcpTools} concept commands); an agent retrieves an answer by its address, zero-token, not by re-derivation — the brain reading precomputed addresses`, on: fusedToMcp },
     { facet: `THE DEMARCATION — "faster than light" is the STRUCTURAL O(1)-vs-O(N)-scan sense (no traversal, the answer precomputed at its address), NOT superluminal physics.`, on: fasterThanScan },

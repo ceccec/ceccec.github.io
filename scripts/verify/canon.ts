@@ -121,6 +121,39 @@ const unmovable = (
     const init = inits.get(e.text)
     return init ? unmovable(want, ts, init, inits, reassigned, new Set([...seen, e.text]), depth + 1) : false
   }
+  // `X === 432` WHERE X IS 432 IS A COMPARISON WITH ITSELF WEARING A NUMBER.
+  //
+  // canon.self-comparison matches the two operands' SOURCE TEXT, so it sees `f(x) === f(x)` and misses
+  // `A432_HZ === 432` where A432_HZ is `432 as const` in that same file — two spellings of one value.
+  // The unmovable predicate resolved identifiers already; it just never looked at `===`. Resolve both
+  // sides to a literal and compare the literals: equal means unmovably true, different means unmovably
+  // false, and anything that does not reduce to a literal is left alone.
+  if (ts.isBinaryExpression(e)
+    && (e.operatorToken.kind === ts.SyntaxKind.EqualsEqualsEqualsToken || e.operatorToken.kind === ts.SyntaxKind.ExclamationEqualsEqualsToken)) {
+    const literalOf = (x: Expr, guard: ReadonlySet<string>, d: number): string | null => {
+      if (d > 5 * 8) return null
+      if (ts.isParenthesizedExpression(x) || ts.isAsExpression(x)) return literalOf(x.expression, guard, d + 1)
+      if (ts.isNumericLiteral(x) || ts.isStringLiteralLike(x)) return `${x.kind}:${x.text}`
+      // BOOLEAN COMPARISONS ARE DELIBERATELY OUT OF SCOPE. `AUDIO_DEFAULT_ENABLED === false`, where the
+      // constant is `false as const` and EXPORTED, is an assertion about a default that flipping the
+      // default refutes — and canon.typed-boolean-conjunct already governs that shape, standing at 0.
+      // Including it here re-litigated a decision this corpus had already made, and would have forced
+      // 32 edits of which most would have been wrong. What has no governance is the NUMERIC case:
+      // `A432_HZ === 432` where A432_HZ is `432 as const` in the same file — two spellings of one
+      // literal, which no amount of changing the data can separate.
+      if (x.kind === ts.SyntaxKind.TrueKeyword || x.kind === ts.SyntaxKind.FalseKeyword) return null
+      if (ts.isIdentifier(x)) {
+        if (guard.has(x.text) || reassigned.has(x.text)) return null
+        const init = inits.get(x.text)
+        return init ? literalOf(init, new Set([...guard, x.text]), d + 1) : null
+      }
+      return null
+    }
+    const left = literalOf(e.left, seen, depth + 1), right = literalOf(e.right, seen, depth + 1)
+    if (left === null || right === null) return false
+    const equal = left === right
+    return want === (e.operatorToken.kind === ts.SyntaxKind.EqualsEqualsEqualsToken ? equal : !equal)
+  }
   return false
 }
 
@@ -147,8 +180,30 @@ export function findCanonBreaks(root: string = process.cwd()): {
     const inits = new Map<string, import('typescript').Expression>()
     const reassigned = new Set<string>()
     const bindings = (n: import('typescript').Node): void => {
-      if (ts.isVariableDeclaration(n) && n.name && ts.isIdentifier(n.name) && n.initializer) inits.set(n.name.text, n.initializer)
-      if (ts.isBinaryExpression(n) && n.operatorToken.kind === ts.SyntaxKind.EqualsToken && ts.isIdentifier(n.left)) reassigned.add(n.left.text)
+      // A NAME DECLARED TWICE IN ONE FILE RESOLVES TO NEITHER OF ITS INITIALISERS.
+      //
+      // `inits` is keyed by bare identifier over the WHOLE file, so two folds that both declare `types`
+      // — one as `TYPE_NAMES.length`, three as the literal 5 — collapse onto one entry and the last one
+      // wins. The detector then "resolved" a derived count to a literal belonging to a different
+      // function and reported a fold that computes correctly as unfalsifiable. Measured: it flagged
+      // thunder/decode's `types === 5`, where `types` is `TYPE_NAMES.length`, five lines above the facet.
+      // A shadowed name carries no single initialiser, so treat it exactly like a reassigned one.
+      if (ts.isVariableDeclaration(n) && n.name && ts.isIdentifier(n.name) && n.initializer) {
+        if (inits.has(n.name.text) && inits.get(n.name.text)!.getText() !== n.initializer.getText()) reassigned.add(n.name.text)
+        inits.set(n.name.text, n.initializer)
+      }
+      // A COUNTER IS REASSIGNED EVEN WHEN IT IS NEVER WRITTEN WITH `=`.
+      //
+      // This watched for EqualsToken alone, so `let colorLiterals = 0` followed by `colorLiterals += 1`
+      // inside a loop over the real CSS files still resolved to the literal 0 — and a facet reading
+      // `colorLiterals === 0`, the whole point of which is that the count came back empty from a scan of
+      // disk, was reported as a claim nothing could withdraw. Every compound assignment and every
+      // increment moves a name just as surely as `=` does.
+      if (ts.isBinaryExpression(n) && ts.isIdentifier(n.left)
+        && n.operatorToken.kind >= ts.SyntaxKind.FirstAssignment && n.operatorToken.kind <= ts.SyntaxKind.LastAssignment) reassigned.add(n.left.text)
+      if ((ts.isPostfixUnaryExpression(n) || ts.isPrefixUnaryExpression(n))
+        && (n.operator === ts.SyntaxKind.PlusPlusToken || n.operator === ts.SyntaxKind.MinusMinusToken)
+        && ts.isIdentifier(n.operand)) reassigned.add(n.operand.text)
       ts.forEachChild(n, bindings)
     }
     bindings(sf)
@@ -342,8 +397,30 @@ export function decorativeConjunctEdits(root: string = process.cwd()): { file: s
     const inits = new Map<string, import('typescript').Expression>()
     const reassigned = new Set<string>()
     const bindings = (n: import('typescript').Node): void => {
-      if (ts.isVariableDeclaration(n) && n.name && ts.isIdentifier(n.name) && n.initializer) inits.set(n.name.text, n.initializer)
-      if (ts.isBinaryExpression(n) && n.operatorToken.kind === ts.SyntaxKind.EqualsToken && ts.isIdentifier(n.left)) reassigned.add(n.left.text)
+      // A NAME DECLARED TWICE IN ONE FILE RESOLVES TO NEITHER OF ITS INITIALISERS.
+      //
+      // `inits` is keyed by bare identifier over the WHOLE file, so two folds that both declare `types`
+      // — one as `TYPE_NAMES.length`, three as the literal 5 — collapse onto one entry and the last one
+      // wins. The detector then "resolved" a derived count to a literal belonging to a different
+      // function and reported a fold that computes correctly as unfalsifiable. Measured: it flagged
+      // thunder/decode's `types === 5`, where `types` is `TYPE_NAMES.length`, five lines above the facet.
+      // A shadowed name carries no single initialiser, so treat it exactly like a reassigned one.
+      if (ts.isVariableDeclaration(n) && n.name && ts.isIdentifier(n.name) && n.initializer) {
+        if (inits.has(n.name.text) && inits.get(n.name.text)!.getText() !== n.initializer.getText()) reassigned.add(n.name.text)
+        inits.set(n.name.text, n.initializer)
+      }
+      // A COUNTER IS REASSIGNED EVEN WHEN IT IS NEVER WRITTEN WITH `=`.
+      //
+      // This watched for EqualsToken alone, so `let colorLiterals = 0` followed by `colorLiterals += 1`
+      // inside a loop over the real CSS files still resolved to the literal 0 — and a facet reading
+      // `colorLiterals === 0`, the whole point of which is that the count came back empty from a scan of
+      // disk, was reported as a claim nothing could withdraw. Every compound assignment and every
+      // increment moves a name just as surely as `=` does.
+      if (ts.isBinaryExpression(n) && ts.isIdentifier(n.left)
+        && n.operatorToken.kind >= ts.SyntaxKind.FirstAssignment && n.operatorToken.kind <= ts.SyntaxKind.LastAssignment) reassigned.add(n.left.text)
+      if ((ts.isPostfixUnaryExpression(n) || ts.isPrefixUnaryExpression(n))
+        && (n.operator === ts.SyntaxKind.PlusPlusToken || n.operator === ts.SyntaxKind.MinusMinusToken)
+        && ts.isIdentifier(n.operand)) reassigned.add(n.operand.text)
       ts.forEachChild(n, bindings)
     }
     bindings(sf)

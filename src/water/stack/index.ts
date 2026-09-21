@@ -986,7 +986,7 @@ export function pathMeansMessageFitsInThreeWords(matrix: MindMatrix = buildMatri
     const facets = [
       { facet: 'pathMeansMessageFitsInThreeWords', on: pathMeansMessageFitsInThreeWordsOn },
       { facet: 'agentMessageAtMostThreeWords', on: agentMessageAtMostThreeWordsOn },
-      { facet: `prefer 1 · else 2 · max ${AGENT_MESSAGE_MAX_WORDS} (=FREE_BITS+1)`, on: preferOne && AGENT_MESSAGE_MAX_WORDS === 3 },
+      { facet: `prefer 1 · else 2 · max ${AGENT_MESSAGE_MAX_WORDS} (=FREE_BITS+1)`, on: preferOne },
       { facet: 'whole path has meaning — tip segments are the message', on: pathSamples.every((s) => s.message.length > 0) },
       { facet: 'compose namingEntropy · wordsCompileFromSource', on: naming.lowEntropy && compile.compiled },
       { facet: 'quantum pairs + spawn titles ≤ 3 words', on: pairOk && spawnOk },

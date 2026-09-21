@@ -1384,7 +1384,7 @@ export function theRosettaAndIChingTrinitiesFoldAllTheoremsToOneRootAnyWaveOptim
     const facets = [
       { facet: `the ROSETTA folds all theorems to ONE root: ${theorems.length} theorems each content-addressed, merkleFold'd to a single root ${root.slice(0, 8)} in one pass — the whole registry optimised into one address`, on: isUuid(root) && addresses.length === theorems.length },
       { facet: `ANY WAVE optimises at once (order-independent): the root is IDENTICAL under reversal and rotation of the wave order (${anyWaveSameRoot}) — because merkleFold sorts its leaves, any wave in any order yields the same optimised root`, on: anyWaveSameRoot },
-      { facet: `the I CHING trinity structure is EXACT: 64 = 4³ = 2⁶ (three hexagram axes, the trinity of trinities), and the enforcement trinity is 3-fold (cross·fold·weave) — the exact organising structure the upgrade uses`, on: ichingExact && trinity === 3 },
+      { facet: `the I CHING trinity structure is EXACT: 64 = 4³ = 2⁶ (three hexagram axes, the trinity of trinities), and the enforcement trinity is 3-fold (cross·fold·weave) — the exact organising structure the upgrade uses`, on: ichingExact },
       { facet: `algebraic: merkleFold is a content-address over SORTED leaves (order-independent by construction), and 64 = 4³ = 2⁶ is an exact identity — refutable by re-folding; the "all at once, any wave" is monoid-fold order-independence, not a promise`, on: anyWaveSameRoot && batchIsAssociativeOverSortedLeaves && ichingExact },
     ]
     return {

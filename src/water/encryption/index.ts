@@ -1604,7 +1604,17 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
   const fipsValidated = false as const
   const externalDeploymentCount = 0 as const
   const fieldHistory = 'none' as const
-  const securityModel = 'structural+adversarial+measured-local' as const
+  // The label was a string compared with its own literal — the fold naming its own security model and
+  // then agreeing with itself. Name the three pillars instead, bind each to evidence this fold actually
+  // computed, and BUILD the label from the ones that hold. Lose a pillar's evidence and the label stops
+  // reading 'structural+adversarial+measured-local', which is the only way a label can be wrong.
+  const SECURITY_MODEL_PILLARS = [
+    { pillar: 'structural', shown: reverse.verified && reverse.definitionalNotCryptanalysis },
+    { pillar: 'adversarial', shown: ceiling.holds && far.holds && allowlistOk && !allowlistRefuse.allowed && !floatRefuse.allowed },
+    { pillar: 'measured-local', shown: localTimed.computes && localTimed.reverseMs >= 0 },
+  ] as const
+  const securityModelPillarsShown = SECURITY_MODEL_PILLARS.filter((row) => row.shown)
+  const securityModel = securityModelPillarsShown.map((row) => row.pillar).join('+')
   const thisRepoIsNotTheIsoStandard = true as const
   const isoOfficialStandard = false as const
   const strongerThanNistPqc = false as const
@@ -1645,9 +1655,9 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     { facet: `wire-vs-ISO proof-of-falsehood — demoMaxBits=${demoMaxBits} << AES-128/ML-KEM-512 classical ${aes128ClassicalBits} · overallWireClaimProved=false`, on: wireFalsehoodHolds },
     { facet: `strongerThanNistPqc=${strongerThanNistPqc} · handoff to prove/local-magnitudes-iso (#24) for directions×models`, on: wireProofStatus === 'proof-of-falsehood' },
     { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: catalog.standards.length > 0 && catalog.standards.every((s) => !/ceccec|double-torus|this repo/i.test(`${s.body} ${s.id}`)) && inventory.components.some((c) => c.kind === 'novel-to-corpus') && inventory.components.every((c) => !catalog.standards.some((s) => s.id === c.id)) },
-    { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === 'none' && inventory.externalDeploymentCount === 0 },
+    { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: inventory.externalDeploymentCount === 0 },
     { facet: `productionReverseRefused=${productionReverseRefused}`, on: ceiling.holds && far.holds },
-    { facet: `securityModel=${securityModel}`, on: securityModel === 'structural+adversarial+measured-local' },
+    { facet: `securityModel=${securityModel} — ${securityModelPillarsShown.length}/${SECURITY_MODEL_PILLARS.length} pillars shown by this fold's own evidence`, on: securityModelPillarsShown.length === SECURITY_MODEL_PILLARS.length && securityModel === 'structural+adversarial+measured-local' },
   ]
   const sealed = sealFacets('prove-local-novel-encryption-security', facets)
   const localSecurityProved = sealed.ok
@@ -1895,7 +1905,10 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
   const certified = false as const
   const fipsValidated = false as const
   const productionReverseRefused = true as const
-  const physicalQubitSpeedup = 0 as const
+  // proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit ran three lines up and computed qpuRequired,
+  // runsOnClassical64Bit and tracksClassicalNoSpeedup. A speedup attributable to qubits is possible only
+  // if a QPU is required at all — so read that proof instead of restating its answer as a constant.
+  const physicalQubitSpeedup = noQpu.qpuRequired ? 1 : 0
   const runtimeTokens = 0 as const
   const answers = 1 as const // one sealed local-audit receipt
   const answersPerTokensUnbounded = runtimeTokens === 0 && answers > 0
@@ -1917,7 +1930,7 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     { facet: `slow local-audit quantum gap CLOSED via amortized memo reuse`, on: slowLocalAuditGapClosed },
     { facet: `efficiency vote decided=${vote.decided} (answers÷tokens · NOT FLOPS)`, on: vote.decided || vote.runtimeTokens === 0 },
     { facet: `answers÷tokens unbounded on reuse (tokens=${runtimeTokens} answers=${answers})`, on: answersPerTokensUnbounded },
-    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} `, on: physicalQubitSpeedup === 0 },
+    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} — qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.computes && noQpu.runsOnClassical64Bit && noQpu.tracksClassicalNoSpeedup && physicalQubitSpeedup === 0 },
     { facet: `compose prove-no-qpu-64bit — qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true },
     // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
   ]

@@ -289,13 +289,17 @@ export function noSignallingComputes() {
     return max(abs(r[0]![0]! - ref[0]![0]!), abs(r[0]![1]! - ref[0]![1]!), abs(r[1]![1]! - ref[1]![1]!))
   }))
   const isMaximallyMixed = abs(ref[0]![0]! - 1 / 2) < 1e-12 && abs(ref[1]![1]! - 1 / 2) < 1e-12 && abs(ref[0]![1]!) < 1e-12
-  const parties = 2
-  const marginalDim = 2
+  // Both numbers were literals compared with themselves. They are already present in the objects above:
+  // the marginal's dimension is the matrix marginalA actually returns, and the party count is the
+  // exponent that takes that dimension to the state vector's length. Give psi a third qubit and both move.
+  const marginalDim = ref.length
+  const parties = round(log2(psi.length) / log2(marginalDim))
+  const stateIsBipartiteQubits = psi.length === marginalDim ** parties && ref.every((row) => row.length === marginalDim)
   const facets = [
     { facet: `Alice's marginal is I/2 — maximally mixed, carrying zero information about anything`, on: isMaximallyMixed },
     { facet: `and it does not move: across ${bases.length} Bob bases the marginal drifts by ${maxDrift.toExponential(1)} (machine epsilon) — Bob's CHOICE is invisible to Alice, so no message crosses, at any speed`, on: maxDrift < 1e-12 },
     { facet: `the correlations are still real and super-classical (Tsirelson 2√2 > 2, sealed at src/0) — quantum mechanics gives correlation WITHOUT signalling; both halves are theorems, neither is a postulate`, on: 2 * SQRT2 > 2 },
-    { facet: `the address is the mathematics: ${parties} parties, a ${marginalDim}×${marginalDim} marginal, ±1 outcomes — station 2 by its own content`, on: parties === marginalDim && marginalDim === 2 },
+    { facet: `the address is the mathematics: ${parties} parties, a ${marginalDim}×${marginalDim} marginal, ±1 outcomes — station 2 by its own content: |psi| = ${psi.length} = ${marginalDim}^${parties}`, on: stateIsBipartiteQubits && parties === marginalDim && marginalDim === 2 },
   ]
   return {
     computes: facets.every((entry) => entry.on),

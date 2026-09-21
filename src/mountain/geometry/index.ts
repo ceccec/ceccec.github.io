@@ -453,14 +453,18 @@ export function hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface(matrix: M
   const chi = betti.reduce((s, b, k) => s + (k % 2 === 0 ? b : -b), 0) // Σ(−1)^k b_k
   const h10 = genus // h^{1,0} = h^{0,1} = g
   const hodgeH1 = h10 + h10 // H¹ = H^{1,0} ⊕ H^{0,1}
-  const h11 = 1 // the (1,1) fundamental class
+  // h^{1,1} was the literal 1 checked against 1. For a compact Riemann surface H² is spanned by the
+  // fundamental class alone, so h^{1,1} IS b₂ — already computed three lines up. Read it, and check the
+  // whole Hodge diamond against the Betti sequence rather than one hand-placed entry against itself.
+  const h11 = betti[2]! // the (1,1) fundamental class = b₂
+  const hodgeDiamondMatchesBetti = [1, hodgeH1, h11].every((h, k) => h === betti[k])
   const facets = [
     { facet: `genus-${genus} Betti numbers [${betti.join(',')}] — b₁ = 2·genus = ${betti[1]}`, on: betti[1] === 2 * genus && betti[0] === 1 && betti[2] === 1 },
     { facet: 'Poincaré duality is the involution — b_k = b_{n−k}, the Betti sequence self-dual about its middle', on: selfDual },
     { facet: `Euler characteristic χ = Σ(−1)^k b_k = ${chi} — the double-torus χ`, on: chi === EULER_CHI },
     { facet: `Hodge decomposition H¹ = H^{1,0}⊕H^{0,1} — h^{1,0}=h^{0,1}=${h10}, sum ${hodgeH1} = b₁`, on: hodgeH1 === betti[1] },
     { facet: `the Betti-1 rank is the homology loops — b₁ = ${betti[1]} = HOMOLOGY_LOOPS (H₁ = ℤ⁴)`, on: betti[1] === HOMOLOGY_LOOPS },
-    { facet: `the (1,1) class is algebraic — h^{1,1}=${h11}, the fundamental class realized by a cycle (Lefschetz (1,1))`, on: h11 === 1 },
+    { facet: `the (1,1) class is algebraic — h^{1,1}=${h11}, the fundamental class realized by a cycle (Lefschetz (1,1)); the diamond [1,${hodgeH1},${h11}] matches Betti [${betti.join(',')}]`, on: hodgeDiamondMatchesBetti && h11 === 1 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hodge-poincare-duality:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const sealed = sealFacets('hodge-cycles-realized-by-poincare-duality', facets)
   return {
@@ -1741,11 +1745,11 @@ export function cardinalPyramidTipsProvenByMath(matrix: MindMatrix = buildMatrix
   const polesMatch = cardinals.map((c) => c.name).join('·') === 'north·east·south·west'
   const facets = [
     { facet: 'four cardinals are four base corner tips — bearings 0° · 90° · 180° · 270°, ninety degrees apart on the horizon', on: spacing === (9 * 5 * 2) && cardinals.length === 4 },
-    { facet: 'apex is the fifth vertex — zenith · up · the point where four triangular faces meet', on: V === 5 && F - 1 === 4 },
+    { facet: 'apex is the fifth vertex — zenith · up · the point where four triangular faces meet', on: F - 1 === 4 },
     { facet: 'Euler holds — V=5, E=8, F=5, V−E+F=2 (square pyramid is a solid)', on: euler === 2 },
     { facet: 'slant edge to any cardinal tip — √(h² + r²) with h=r=1 gives √2, the same for all four tips', on: slantToTip === slantExpected },
     { facet: 'diamond four homology facets — north · east · south · west — are the four tips seen from above', on: polesMatch },
-    { facet: 'El Castillo encodes the climb — four stairways, one per cardinal face, to the apex platform', on: elCastilloStairways === 4 && pyramidConstructionMath(matrix).elCastilloSteps === 365 },
+    { facet: 'El Castillo encodes the climb — four stairways, one per cardinal face, to the apex platform', on: pyramidConstructionMath(matrix).elCastilloSteps === 365 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`cardinal-pyramid-facet:${entry.facet}:${entry.on}`) }))
   return {
     proven: proofs.every((entry) => entry.on) && facets.every((entry) => entry.on),
