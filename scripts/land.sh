@@ -150,7 +150,31 @@ for _ in $(seq 1 40); do
   [ -n "$id" ] && break
   sleep 15
 done
-[ -n "$id" ] || { echo "✗ no deploy run appeared for $sha within ten minutes"; exit 1; }
+if [ -z "$id" ]; then
+  # A DELIBERATE SKIP MUST NOT READ LIKE A MISSING DEPLOY.
+  #
+  # deploy.yml carries paths-ignore — a ratchet-only commit (a verify floor, a prior-art row, the
+  # manifest) changes nothing the site serves, so Pages is not asked to spend five minutes producing
+  # byte-identical output. No run appears, and this printed the same ✗ as a deploy that genuinely
+  # failed to trigger. Once that ✗ is known to be routine it stops being read, and the next real
+  # missing deploy is waved through with it. So ask WHY there is no run before calling it a failure.
+  ignored=$(awk '/paths-ignore:/{f=1;next} f&&/^[[:space:]]*-[[:space:]]/{gsub(/^[[:space:]]*-[[:space:]]*.|.$/,"");print;next} f{exit}' .github/workflows/deploy.yml)
+  changed=$(git diff-tree --no-commit-id --name-only -r "$sha")
+  unignored=""
+  for f in $changed; do
+    skip=0
+    for pat in $ignored; do
+      case "$f" in $pat) skip=1; break;; esac
+    done
+    [ "$skip" = 1 ] || unignored="$unignored $f"
+  done
+  if [ -z "$(printf '%s' "$unignored" | tr -d ' ')" ]; then
+    echo "land: no deploy — every path in $(git rev-parse --short "$sha") is in deploy.yml paths-ignore, so Pages was never asked"
+    exit 0
+  fi
+  echo "✗ no deploy run appeared for $sha within ten minutes — and it was expected, these paths are not ignored:$unignored"
+  exit 1
+fi
 gh run watch "$id" --exit-status --interval 30 >/dev/null 2>&1
 verdict=$(gh run view "$id" --json conclusion,jobs -q '"\(.conclusion) — " + ([.jobs[] | "\(.name): \(.conclusion)"] | join(", "))')
 echo "land: deploy $id — $verdict"
