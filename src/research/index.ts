@@ -3035,7 +3035,17 @@ export function wireAndTestResonanceOnHerbalApisHonestlyDemarcated() {
   const modelA = resonanceModel('bisabolol')
   const deterministic = resonanceModel('bisabolol').fraction === modelA.fraction && modelA.fraction >= 0 && modelA.fraction < 1
   const noBuildTimeFetch = fetchHerbalTaxonomy('x') instanceof Promise // returns [] path without a fetch impl
-  const healingFrequencyRefuted = true // "herbs resonate at healing frequencies" has NO mechanism — flagged, like Rife
+  // WAS `= true`. The fold's whole demarcation rested on a boolean the fold assigned to itself, and the
+  // facet text around it already says 'pseudoscience' and 'no mechanism' — so scanning THAT text with a
+  // deny-marker detector would only have hidden the same tautology behind a scanner. What is refutable is
+  // the fold's own WIRING: no frequency-therapy source may appear among the APIs it builds, and the
+  // resonance it models must stay in the infrared molecular band. Add a bioresonance/Rife/solfeggio
+  // request builder to herbalApiRequests, or move resonanceModel's band to an audible "healing" one, and
+  // this facet goes dark.
+  const FREQUENCY_THERAPY_MARKERS = ['healing frequency', 'healing frequencies', 'rife', 'bioresonance', 'vibrational therapy', 'solfeggio', 'radionics']
+  const therapySources = requests.filter((request) =>
+    FREQUENCY_THERAPY_MARKERS.some((marker) => `${request.source} ${request.url} ${request.gives}`.toLowerCase().includes(marker)))
+  const healingFrequencyRefuted = therapySources.length === 0 && modelA.band.includes('infrared') && modelA.band.includes('molecular')
   const facets = [
     { facet: `WIRED TO REAL HERBAL/PLANT APIS — ${requests.length} keyless request builders (GBIF taxonomy, PubChem chemistry, Open Food Facts products), all https and opt-in (${apisValid}); the edge, no key bundled and no build-time fetch`, on: apisValid },
     { facet: `RESONANCE IS MOLECULAR (IR SPECTROSCOPY) — a herbal compound's real resonance is its vibrational modes in the INFRARED (measured by IR/Raman, a function of its bonds), modeled deterministically from the compound (fraction ${modelA.fraction.toFixed(4)}, ${modelA.band}) — the physics resonance, honest chemistry`, on: deterministic },
@@ -3655,8 +3665,10 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
     const stringQuantum = __ns_water_cosmos.stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix)
     const stringAlgebra = __ns_water_cosmos.stringTheoryAlgebraDecoded(matrix)
     const mill = millenniumProblemsChallenge(matrix)
-    // Composes with theoremProvenance (thunder/waves): humanityNovel stays 0 — no cycle import.
-    const humanityNovelStillZero = true
+    // THE CYCLE THE OLD COMMENT NAMED IS REAL — src/thunder/waves imports `* as __ns_waves_research` from
+    // this file and re-exports this very fold, so theoremProvenance cannot be imported back here. The old
+    // line drew the wrong conclusion from it and wrote `= true`. The number does not need that import: it
+    // is readable from the rows this fold itself builds — see `humanityNovelStillZero` below `novel`.
     const rayOf = (label: string) => __ns_water_digit.rosettaRayOf(label)
 
     const novelSeed: readonly Omit<TheoremAlgebraNoveltyRow, 'algebraRoot' | 'ray' | 'receipt' | 'novelty'>[] = [
@@ -3811,6 +3823,13 @@ export function theoremAlgebraFirstSealedInCorpus(matrix: MindMatrix = buildMatr
 
     const novel = rows.filter((r) => r.novelty)
     const classical = rows.filter((r) => !r.novelty)
+    // HUMANITY-NOVEL, READ RATHER THAN DECLARED. A novel-corpus row claims GLOBAL mathematical priority
+    // unless its own published boundary disclaims it; the humanity-novel count is the rows that do not.
+    // Delete "NOT global priority" (or "NOT a verified claim of global mathematical priority") from any
+    // novel row's boundary, or add a novel seed without it, and this stops being zero — the facet and the
+    // fold's `computes` both go dark. An empty novel list is not a pass either.
+    const humanityNovelRows = novel.filter((r) => !/not\b[^.]*\bglobal\b[^.]*\bpriority/i.test(r.boundary))
+    const humanityNovelStillZero = novel.length > 0 && humanityNovelRows.length === 0
     const novelHold = zeroDiv.holds && dirTrinity.computes && fInv.computes && infinityReuse.on && stringQuantum.computes
     const facets = [
       {
@@ -8433,6 +8452,11 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
       const earth = earthRealisedByComputingPolesAsPyramid(matrix)
       const pairFold = foldPair(toUuid('cmd:clay'), toUuid('cmd:gravity'))
       const pairRegistered = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('clay/gravity')
+      // The no-QPU claim is MEASURED by one fold in water/stack and read here, the same way this file
+      // already reads it at the clay-honesty and toolbox faces: runsOnClassical64Bit is isUuid of the
+      // sealed `n_qubit_dimension` statement (2^n amplitudes IS the simulation cost). Move or unseal that
+      // statement and every qpuRequired facet in the corpus, this one included, goes dark together.
+      const noQpu = __ns_up_stack_overflow.proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix, at)
 
       // This dimension = sealed src gravity (FREE_BITS · folder gravity · Clay presentation ray).
       const unlockedRayIndex = rosettaRayOf('clay')
@@ -8518,7 +8542,7 @@ export function clayIsGravityRosettaOneRayThisDimensionRestBeyond(
         {
           facet: `missing theorems decoded=${missingTheoremsDecoded} open=${missingTheoremsOpen}`,
           on: reverse.computes && missingTheoremsOpen >= 6 },
-        { facet: `qpuRequired=${qpuRequired}`, on: !qpuRequired },
+        { facet: `qpuRequired=${qpuRequired}`, on: noQpu.runsOnClassical64Bit },
         { facet: 'pair clay/gravity registered', on: pairRegistered && pairFold.bidirectional },
       ].map((entry) => ({ ...entry, receipt: toUuid(`clay-gravity:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('clay-is-gravity-rosetta-one-ray-this-dimension-rest-beyond', facets)
@@ -11439,7 +11463,14 @@ export function autosaveSessionByDefault(
     const pairBits = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('session/quantum-bits')
     const pairMill = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('mill/session')
     const pairLocal = (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('local/session')
-    const defaultOn = true as const
+    // WAS `true as const` — "on by default" asserted by a constant that was itself the default. "Default,
+    // not optional" is a property of the ENTRY POINTS: Function.length counts the parameters declared
+    // BEFORE the first default, so 0 means `autosaveSessionByDefault()` and the save wave it drives are
+    // both callable with nothing — there is no opt-in flag anyone can leave unset. Add a required
+    // `enabled` parameter to either, or drop a default, and this facet goes dark.
+    const defaultOn =
+      autosaveSessionByDefault.length === 0 &&
+      wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems.length === 0
     // Compose session surfaces by sealed root+pair (document/bits may WARN on wall-clock local-audit; not optional wet skip).
     const experimentsComposed = isUuid(experiments.root) && experiments.pair === 'document/experiments'
     const bitsComposed = isUuid(bits.root) && bits.pair === 'session/quantum-bits'

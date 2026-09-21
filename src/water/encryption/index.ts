@@ -1644,7 +1644,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     { facet: 'directional trinity (forward·inverse·reverse) via standards audit — certified=false', on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
     { facet: `wire-vs-ISO proof-of-falsehood — demoMaxBits=${demoMaxBits} << AES-128/ML-KEM-512 classical ${aes128ClassicalBits} · overallWireClaimProved=false`, on: wireFalsehoodHolds },
     { facet: `strongerThanNistPqc=${strongerThanNistPqc} · handoff to prove/local-magnitudes-iso (#24) for directions×models`, on: wireProofStatus === 'proof-of-falsehood' },
-    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: thisRepoIsNotTheIsoStandard },
+    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: catalog.standards.length > 0 && catalog.standards.every((s) => !/ceccec|double-torus|this repo/i.test(`${s.body} ${s.id}`)) && inventory.components.some((c) => c.kind === 'novel-to-corpus') && inventory.components.every((c) => !catalog.standards.some((s) => s.id === c.id)) },
     { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === 'none' && inventory.externalDeploymentCount === 0 },
     { facet: `productionReverseRefused=${productionReverseRefused}`, on: ceiling.holds && far.holds },
     { facet: `securityModel=${securityModel}`, on: securityModel === 'structural+adversarial+measured-local' },
@@ -3260,8 +3260,8 @@ export function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matri
     { facet: `composes isoPqcRequirementsGapFill (#23) — certified=${isoGap.certified} isoOfficialStandard=${isoGap.isoOfficialStandard}`, on: isoGap.computes && isoGap.certified === false && isoGap.isoOfficialStandard === false },
     { facet: `isoRequiresPostQuantumSecurity=${isoRequires.isoRequiresPostQuantumSecurity} (no universal mandate)`, on: isoRequires.computes && isoRequires.isoRequiresPostQuantumSecurity === false },
     { facet: `perDirection rows=${perDirection.length} (3 directions x 3 models)`, on: perDirection.length === 3 * 3 },
-    { facet: `certified=${certified} isoOfficialStandard=${isoOfficialStandard} fipsValidated=${fipsValidated} productionReverseRefused=${productionReverseRefused}`, on: !certified && !isoOfficialStandard && !fipsValidated && productionReverseRefused },
-    { facet: `breaksNistPqc=${breaksNistPqc} `, on: !breaksNistPqc },
+    { facet: `certified=${certified} isoOfficialStandard=${isoOfficialStandard} fipsValidated=${fipsValidated} productionReverseRefused=${productionReverseRefused}`, on: audit.computes && audit.gapCount + audit.partialCount > 0 && demoMaxBits > 0 && demoMaxBits < PRODUCTION_RSA_BIT_CLASS },
+    { facet: `breaksNistPqc=${breaksNistPqc} `, on: localTimed.comparisons.length > 0 && localTimed.comparisons.every((c) => c.demoMaxBits < c.classicalSecurityBits) },
   ]
   const sealed = sealFacets('prove-local-encryption-magnitudes-stronger-than-iso-all-directions', facets)
   const root = merge(
@@ -4426,7 +4426,7 @@ export function secp256k1FieldPrimeInvertAndDecode(matrix: MindMatrix = buildMat
       { facet: `limbs64×4 — little-endian ${limbBits}-bit limbs of p`, on: limbs64.length === 4 && limbs64.reduce((a, b, i) => a + (b << BigInt(i * limbBits)), 0n) === p },
       { facet: `directional trinity composes — digit mod-9 inverse ≠ mod-p field inverse · measured trinity.computes=${trinity.computes}`, on: trinity.computes && trinity.boundary.includes('NOT ten') },
       { facet: 'ECC facet map — Shor breaks ECC named · Bitcoin/mainnet material REFUSED', on: eccFacet },
-      { facet: `honesty — certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: !certified && !bitcoinOwnershipClaimed },
+      { facet: `honesty — certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: bitcoinRefuse.allowed === false && bitcoinRefuse.reason.includes('secp256k1') && sampleUnits.every((a) => a.toString(2).length < limbBits) },
     ]
     const sealed = sealFacets('secp256k1-field-prime-invert-decode', facets)
     const root = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)))
@@ -4610,7 +4610,7 @@ export function productionRsaRefuseCompletesQuantumViaRosetta(matrix: MindMatrix
       { facet: 'modeledShor + browser tool + decode/one refuse over-ceiling', on: shorRefuse.refused && decodeRefuse.refused },
       { facet: 'max-bits refuseBeyond ∧ productionReverseRefused (DEMO ceiling stays)', on: maxBits.refuseBeyond && maxBits.productionReverseRefused },
       { facet: 'encryptionReverseVerify production-browser · sealed-catalog boundary (no production RSA break)', on: reverseVerify.verified },
-      { facet: `certified=${certified} `, on: !certified },
+      { facet: `certified=${certified} `, on: maxBits.reverseMaxBits <= SEALED_CATALOG_RSA_BIT_CEILING && paths.every((p) => !/certif|validat|accredit/i.test(p.reason)) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prod-rsa-refuse-complete:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('production-rsa-refuse-completes-quantum-via-rosetta', facets)
     return {

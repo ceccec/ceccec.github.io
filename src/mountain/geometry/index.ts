@@ -2071,13 +2071,25 @@ export function earthRealisedByComputingPolesAsPyramid(matrix: MindMatrix = buil
       two.proven && two.device.apex.z === 1 && two.code.apex.z === -1 && two.fold.bidirectional
     const merkabaCounterRotate = mk.counterRotating && mk.scales.length === 4
     const bothEarthsShells = earths.counterRotating && earths.rotates
-    const navigationForecastResidualNamed = !navigationImplemented && !forecastImplemented
     const honestOpenNamed = [
       ...(navigationImplemented ? [] : ['residual:navigation-not-implemented']),
       ...(forecastImplemented ? [] : ['residual:forecasts-not-implemented']),
       'physical-earth-wgs84-oblate-spheroid-documented',
       'structural-isomorphism-not-lithosphere-claim',
     ] as const
+    // WAS `!navigationImplemented && !forecastImplemented` over two `false as const` — the residual
+    // claiming to be named by the very flags that spell it. The claim is "NOT fake-closed", so what has
+    // to hold is that the residual is still ON THE PUBLISHED LIST: honestOpenNamed is built by dropping a
+    // residual the moment its flag flips, so marking navigation or forecasts implemented removes the row
+    // and this facet goes dark — which is exactly the fake-close it exists to catch. Deleting either
+    // residual string from honestOpenNamed does the same.
+    // THE BOUND COMES FROM THE LIST, NOT FROM A TYPED COUNT. A literal length test beside a filter that
+    // names exactly two things is a cap nobody derived — caps.in-facet-folds counts it, and rightly:
+    // add a third residual here and the literal silently stops meaning "all of them".
+    const REQUIRED_RESIDUALS = ['residual:navigation-not-implemented', 'residual:forecasts-not-implemented'] as const
+    const residualsNamed = (honestOpenNamed as readonly string[])
+      .filter((name) => (REQUIRED_RESIDUALS as readonly string[]).includes(name))
+    const navigationForecastResidualNamed = residualsNamed.length === REQUIRED_RESIDUALS.length
     const facets = [
       { facet: `polesAsPyramid — N·E·S·W base tips · genus-2 Earth · pyramid+doubleTorus proven`, on: polesAsPyramid },
       { facet: `fourBaseTipsNESW — bearings ${expectedBearings.join('·')}° ninety degrees apart`, on: fourBaseTipsNESW && phaseLockCardinals },

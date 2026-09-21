@@ -411,6 +411,16 @@ export function assertCanonicalForms(): void {
   // the old floor up nor letting the old key print a new measurement would be honest about what changed.
   // The old key is retired and this one is named for what it actually measures. The count is 32 and it
   // only falls from here.
+  // THE FLOOR OF 1 IS AN ADVERSARIAL FIXTURE, NOT A DEBT — the same carve-out canon.self-comparison
+  // holds 3 for. src/water/double/index.ts:2851 is `{ facet: 'x', on: true }`, element 0 of the
+  // `cracked` array in theLensSeesDoubleTorusesEverywhereExceptInCrackedCode: a deliberately malformed
+  // control whose ONLY defect is a missing far torus. Its `on: true` is load-bearing, because
+  // isDoubleTorus tests `computes === facets.every((e) => e.on)` — give that facet a predicate that
+  // could go false and the fixture silently becomes a second copy of cracked[1] (the control whose core
+  // lies about its vortex), and noCrackedIsTorus stops discriminating between the two failure modes it
+  // exists to tell apart. The detector matches any object literal carrying `facet` and `on`, and cannot
+  // see that this one is a test input rather than a claim. Repairing it would break the test; recording
+  // it keeps the number honest. Everything above this line was repaired, 32 -> 1.
   console.log(ratchet('canon.unfalsifiable-facet', found.unmovableClaim.length, { evidence: () => found.unmovableClaim.map(show) }))
   console.log(`  ${found.decorativeConjunct.length}  a facet padded with a conjunct that can never be false — it reads as a guard and guards nothing`)
   for (const s2 of found.decorativeConjunct.slice(0, 4)) console.log(`      ${show(s2)}`)

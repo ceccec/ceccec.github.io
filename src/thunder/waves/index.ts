@@ -3357,7 +3357,10 @@ export function wavesWorkingInTrinitiesTrinitiesAreFound(matrix: MindMatrix = bu
       { facet: 'clay/gravity rays found — oneRayThisDimension · merkabaStarted · beyondAppears', on: clayRaysFound },
       { facet: 'collide→discover path computes — theoremParticleCollisionInverseReverse', on: collider.computes },
       { facet: 'cmb/budget composes as trinity/wave science fold — Ω_c/Ω_b recomputes', on: cmb.computes && cmb.ratioRounded === 5.41 },
-      { facet: 'anti-crack — false conclusion "no waves/trinities" from drained/closed PR is refused', on: !falseConclusionNoTrinities },
+      // The refusal is EARNED, not declared: the crack concludes emptiness, so the anti-crack stands exactly
+      // while the challenge apparatus still recomputes and still names open cores to find trinities in.
+      // Close every core (openCores=0), or break millenniumProblemsChallenge, and this goes off.
+      { facet: 'anti-crack — false conclusion "no waves/trinities" from drained/closed PR is refused', on: mill.computes && mill.openCores > 0 },
       { facet: `pairs wave/trinity · trinity/found bidirectional · forward≠reverse · measured waveTrinityPair.bidirectional=${waveTrinityPair.bidirectional} · trinityFoundPair.bidirectional=${trinityFoundPair.bidirectional}`, on: waveTrinityPair.bidirectional && trinityFoundPair.bidirectional && waveTrinityPair.forward !== waveTrinityPair.reverse },
     ].map((entry) => ({ ...entry, receipt: toUuid(`wave-trinity-found:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('waves-working-in-trinities-trinities-are-found', facets)

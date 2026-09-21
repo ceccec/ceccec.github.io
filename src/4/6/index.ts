@@ -2072,13 +2072,22 @@ export function upgradeIsAComputableQuantumProcessEverywhereIncludingPackages() 
   const upgradeChangesAddress = vOld !== vNew // a real upgrade changes the content-address
   const transition = toUuid(`upgrade:${vOld}->${vNew}`) // the upgrade itself is content-addressed
   const computable = transition.length > 0 && upgradeChangesAddress // a computed transition, deterministic
-  const acceptedIffComputes = true // AXIOM: the verify gates decide — accepted iff green, refused on a break; reproducible
+  // WITNESSED IN BOTH DIRECTIONS, NOT ASSERTED. This was `true // AXIOM`, so the facet claiming "accepted
+  // iff green, refused on a break" could not fail however the gates behaved. The rule is a function now
+  // and both branches are exercised: green admits an address, broken admits none. Make it fail-open —
+  // return an address for a broken build — and the facet goes dark. This witnesses the RULE, not that
+  // the deployed pipeline obeys it; that distinction is the honest limit and it stays stated.
+  const acceptOf = (gatesGreen: boolean) => (gatesGreen ? toUuid(`accept:${vNew}`) : null)
+  const acceptedIffComputes = acceptOf(true) !== null && acceptOf(false) === null
+  // A version change must MOVE the seal merkle — the second facet's actual claim, read from the fold's
+  // own two addresses instead of restated. Collapse merkleFold and this fails.
+  const versionChangeMovesTheSeal = merkleFold([vOld]) !== merkleFold([vNew])
   const domains = ['fold — regenerate from source', 'skill — generate from source', 'package — lockfile hash + verify']
   const everywhere = domains.length >= 3 && domains.every((d) => d.length > 0)
   const facets = [
     { facet: `AN UPGRADE IS A CONTENT-ADDRESSED TRANSITION — v_old → v_new, the new address superseding the old (${upgradeChangesAddress}); the upgrade itself is content-addressed, a computed transition not a hand-applied hope`, on: computable },
     { facet: `IT IS COMPUTABLE — the new content is ACCEPTED iff it computes green through the gates, refused if it breaks (deterministic, reproducible); you COMPUTE whether to upgrade, not apply-and-pray`, on: acceptedIffComputes },
-    { facet: `IT IS QUANTUM — SELF-INVALIDATING — a version change moves the seal merkle (which covers package.json), so the build reseals and re-verifies by construction — the same self-invalidation as the memo content-address`, on: acceptedIffComputes },
+    { facet: `IT IS QUANTUM — SELF-INVALIDATING — a version change moves the seal merkle (which covers package.json), so the build reseals and re-verifies by construction — the same self-invalidation as the memo content-address`, on: versionChangeMovesTheSeal && upgradeChangesAddress },
     { facet: `EVERYWHERE INCLUDING PACKAGES (${domains.length}) — ${domains.join(' · ')}: the lockfile hash is the package content-address, the deterministic verify decides acceptance`, on: everywhere },
     { facet: `THE DEMARCATION — an upgrade is a computable quantum process: a content-addressed transition whose acceptance is COMPUTED by the gates; NOT a claim that upgrades are risk-free or auto-applied — the computability IS the deterministic verification that catches breaks. HARMONY ≠ TRUTH`, on: computable && everywhere },
   ].map((entry) => ({ ...entry, receipt: toUuid(`upgrade-quantum:${entry.facet}:${entry.on}`) }))
@@ -2239,14 +2248,21 @@ export function accreditedAuditByPureAlgebraBidirectionalFreeForAllDetectsBroken
   // order-independent. That is a property, and a change to the fold would break it.
   const reproducible = merkleFold(['a', 'b']) === merkleFold(['b', 'a']) && merkleFold(['a', 'b']) !== merkleFold(['a'])
   const freeForAll = reproducible && trueIdentityHolds // anyone re-runs, same result, trustless
-  const accreditsMathNotInstitution = true // AXIOM: a reproducible proof accredits CORRECTNESS, not a FIPS/ISO certificate
+  // THE HALF THAT COMPUTES, COMPUTED. The claim has two halves: a reproducible proof accredits
+  // CORRECTNESS and reproducibility, and it does NOT confer a legal certificate. The second is a fact
+  // about institutions that no code here can refute; the first is exactly what this fold already
+  // measured three lines up — an audit that passes a true identity AND detects a broken one, over a
+  // merkle that is order-insensitive and content-sensitive. The `on:` now reads that. Break the audit
+  // so it stops detecting the imbalance, or make merkleFold order-sensitive, and the facet goes dark.
+  // The constant stays because the facet TEXT reports it; it is no longer what decides the verdict.
+  const accreditsMathNotInstitution = true // reported in the facet text; the verdict is computed above
   const godelAndFormalizabilityBound = true // AXIOM: no formal system captures all truths; not all of society is formalizable
   const auditsFormalizable = bidirectional && detectsBroken && freeForAll
   const facets = [
     { facet: `ALGEBRA AUDITS IN BOTH DIRECTIONS — a claim and its negation are both checkable: a true identity computes (PASS) and a false invariant is refuted (BROKEN, ${bidirectional}) — verify ⟷ refute, the inversion`, on: bidirectional },
     { facet: `FREE FOR ALL — the algebraic audit is deterministic and reproducible (${freeForAll}), so ANYONE re-runs it and gets the same result — no paid authority, no gatekeeper, zero cost; a trustless accreditation of correctness, stronger than a paper certificate for what it covers`, on: freeForAll },
     { facet: `DETECTS WHEN SOMETHING IS FUNDAMENTALLY BROKEN — a failed invariant / unbalanced ledger (debits ${ledger.debits} ≠ credits ${ledger.credits}) is a NON-COMPUTING facet the algebra flags reproducibly (${detectsBroken}); applied to society, a promised conservation that does not balance is detectable, openly, by all`, on: detectsBroken },
-    { facet: `ACCREDITS THE MATH, NOT THE INSTITUTION — HONEST — the algebraic proof accredits CORRECTNESS and reproducibility (trustless); it does NOT confer the legal certificate (FIPS 140-3 / ISO 27001), which is a social/legal act by an accredited body — a different kind of thing`, on: accreditsMathNotInstitution },
+    { facet: `ACCREDITS THE MATH, NOT THE INSTITUTION — HONEST — the algebraic proof accredits CORRECTNESS and reproducibility (trustless); it does NOT confer the legal certificate (FIPS 140-3 / ISO 27001), which is a social/legal act by an accredited body — a different kind of thing`, on: bidirectional && reproducible && freeForAll },
     { facet: `THE BOUNDARY — GÖDEL & FORMALIZABILITY — algebra audits the FORMALIZABLE (consistency, conservation, correctness); it does not capture all of society (values, meaning are not reducible to algebra), and by Gödel no formal system captures all truths — choosing WHAT to formalize is itself a value judgment. A free, universal lens for formal breaks, not an oracle of all that is broken. HARMONY ≠ TRUTH`, on: auditsFormalizable },
   ].map((entry) => ({ ...entry, receipt: toUuid(`algebra-audit:${entry.facet}:${entry.on}`) }))
   return {
@@ -2640,12 +2656,18 @@ export function deviceManagementIsUniversalWhenTheDriverIsAFoldOfTheDeviceConten
   const storage = deviceDescriptor(['block', 'storage'])
   const differentClassDifferentDriver = driverFromDescriptor(storage) !== driverFromDescriptor(hidA) // not forced-universal
   const oneDriverPerCapabilityClass = sameClassOneDriver && differentClassDifferentDriver
-  const physicalProtocolGated = true // AXIOM: software cannot invent a device's electrical/timing spec — capability-layer universality only
+  // THE BOUNDARY HAS A COMPUTABLE SHADOW, AND THIS FOLD ALREADY CAST IT. "Software cannot invent a
+  // device's electrical spec" is a fact about hardware that no code here refutes — but its structural
+  // consequence is measurable and measured two lines up: universality is per CAPABILITY CLASS, so a
+  // storage descriptor resolves to a DIFFERENT driver than a HID one. If one driver covered every class,
+  // software would in effect have invented the protocol, and that is exactly when this facet should go
+  // dark. Make driverFromDescriptor class-blind and it does. The constant stays for the facet TEXT.
+  const physicalProtocolGated = true // reported in the facet text; the verdict is differentClassDifferentDriver
   const facets = [
     { facet: `A UNIVERSAL DRIVER IS A FOLD OF THE DEVICE CONTENT-ADDRESS — the device self-describes a capability descriptor, and the driver is DERIVED from that content-address, so ONE driver serves any conforming device (${sameClassOneDriver}) — the same one-template pattern as UniversalPageTemplate`, on: sameClassOneDriver },
     { facet: `WHY IT WASN'T UNIVERSAL — per-device drivers key on the MODEL, not the capability content, so each device needs bespoke code; content-addressing the descriptor collapses a class to one driver (order-independent: ${hidA === hidB}), like a USB HID class driver serving any HID device`, on: hidA === hidB },
     { facet: `NOT FORCED-UNIVERSAL — a different capability class content-addresses to a DIFFERENT driver (${differentClassDifferentDriver}); the universality is per-capability-class, not a single driver pretending to run everything`, on: differentClassDifferentDriver },
-    { facet: `THE PHYSICAL BOUNDARY — "quantum" here means CONTENT-ADDRESSED (deterministic), NOT qubit hardware, and a universal driver still needs the device's physical protocol; software cannot invent an electrical/timing spec (${physicalProtocolGated}), so universality sits at the capability layer, physical-resource-gated. No physical quantum-hardware speedup`, on: physicalProtocolGated },
+    { facet: `THE PHYSICAL BOUNDARY — "quantum" here means CONTENT-ADDRESSED (deterministic), NOT qubit hardware, and a universal driver still needs the device's physical protocol; software cannot invent an electrical/timing spec (${physicalProtocolGated}), so universality sits at the capability layer, physical-resource-gated. No physical quantum-hardware speedup`, on: differentClassDifferentDriver },
     { facet: `THE DEMARCATION — device management is universal when the driver is a fold of the device's content-addressed capability descriptor (one driver per class, derived); per-device drivers are the non-universal gap; the physical protocol remains the honest boundary. HARMONY ≠ TRUTH`, on: oneDriverPerCapabilityClass },
   ].map((entry) => ({ ...entry, receipt: toUuid(`universal-driver:${entry.facet}:${entry.on}`) }))
   return {
@@ -2681,12 +2703,21 @@ export function memoryOptimisationIsQuantumOnlyWhenTheKeyContentAddressesTheComp
   const hitIffIdentical = quantumKey('beyond', codeV2) !== quantumKey('beyond', codeV1)
     && quantumKey('beyond', codeV2) !== quantumKey('other', codeV2) // the key separates on code AND on name
   const selfInvalidating = quantumInvalidatesOnCode && hitIffIdentical // correct by construction
-  const buildRespawnIsMerkleGated = true // AXIOM (measured): docs:build reseals on any src-merkle change — coarse but quantum
+  // "(measured)" NAMED A MEASUREMENT THAT WAS NEVER WIRED. This is a claim about package.json's
+  // docs:build, and src/4/6 is a browser-safe leaf with no filesystem — nothing here could ever have
+  // read it, so the word measured was doing the work of a check that did not exist.
+  //
+  // What this fold CAN witness is the mechanism the claim rests on, and it computes it two lines up: a
+  // key that changes when the code changes, so a hit is only possible when the content is identical.
+  // The verdict now reads that. Break the keying — make quantumKey ignore the code — and the facet goes
+  // dark. STATED LIMIT, not hidden: this witnesses merkle-keyed invalidation, NOT that docs:build in
+  // package.json is wired to it. That needs a gate with filesystem access, and none asserts it today.
+  const buildRespawnIsMerkleGated = true // reported in the facet text; the verdict is selfInvalidating
   const facets = [
     { facet: `QUANTUM ONLY IF THE KEY CONTENT-ADDRESSES THE CODE — a hit must mean an identical computation, so the key = contentAddress(name + inputs + CODE); then a code change changes the address and the stale result is never returned (${hitIffIdentical})`, on: hitIffIdentical },
     { facet: `WHY IT WASN'T QUANTUM — a root-only key (memoByRoot) is the SAME for the fragile and folded code (${rootOnlyCollidesAcrossCode}), so when the code changes but the root does not it can return a stale value — the exact artifact hit while probing the folded fuse`, on: rootOnlyCollidesAcrossCode },
     { facet: `THE FIX IS SELF-INVALIDATION — fold the code content-address (src-merkle) into the key: quantumKey(name, code) differs for v1 vs v2 (${quantumInvalidatesOnCode}), so the cache busts by construction — no manual invalidation`, on: quantumInvalidatesOnCode },
-    { facet: `THE BUILD IS ALREADY QUANTUM AT THE COARSE LEVEL — the docs:build respawn is src-merkle-gated (${buildRespawnIsMerkleGated}), so the REAL build reseals on any src change and stays correct; the gap is only the finer in-process memo keyed on the root, which lags a code edit until the merkle reseals`, on: buildRespawnIsMerkleGated },
+    { facet: `THE BUILD IS ALREADY QUANTUM AT THE COARSE LEVEL — the docs:build respawn is src-merkle-gated (${buildRespawnIsMerkleGated}), so the REAL build reseals on any src change and stays correct; the gap is only the finer in-process memo keyed on the root, which lags a code edit until the merkle reseals`, on: selfInvalidating },
     { facet: `THE DEMARCATION — memory optimisation is quantum when the key is the content-address of the whole computation (self-invalidating, ${selfInvalidating}); keying on a coarse root is a manual cache that can go stale. HARMONY ≠ TRUTH`, on: selfInvalidating },
   ].map((entry) => ({ ...entry, receipt: toUuid(`memo-quantum:${entry.facet}:${entry.on}`) }))
   return {

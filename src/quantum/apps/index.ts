@@ -7138,7 +7138,6 @@ export function mcpQuantumSolution(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('mill', 'once') &&
       soft('mcp', 'universe')
     const algebraicFormulas = solutionOn && soft('formula', 'code')
-    const notCmiPrizeClaim = true
     const pairS = has('mcp/solution')
     const pairD = has('solution/mcp')
     const foldS = foldPair(toUuid('cmd:mcp'), toUuid('cmd:solution'))
@@ -7146,6 +7145,22 @@ export function mcpQuantumSolution(matrix: MindMatrix = buildMatrix(), at = 0) {
     const catalog = quantumCliToolsCatalog(matrix, at)
     const meta = catalog.tools.find((t) => t.id === 'mcp-solution')
     const metaDual = catalog.tools.find((t) => t.id === 'solution-mcp')
+    // WAS `= true` — a Millennium-prize refusal nothing could withdraw, in the fold named "solution". It
+    // runs the shared clay overclaim scanner now, the same way agiNotClaimed does ~7500 lines below.
+    //
+    // THE TEXT FED IN IS THE CLAIM TEXT, NOT THE DISCLAIMER. The published `boundary` of this fold's own
+    // catalog rows says "NOT CMI prize", and 'not cmi' is a CLAY_OPEN_MARKER — feeding the boundary in
+    // would park a permanent denial beside every future claim and the "scan" would read 0 for anything.
+    // So the scanned text is title + cli + route + this fold's own derived claim line; the disclaimer
+    // stays in `boundary` where it belongs. The probe runs a planted Clay solution claim through the same
+    // predicate, so the zero is a READING and not a declaration.
+    const clayClaimText = catalog.tools
+      .filter((t) => t.fold === 'mcpQuantumSolution')
+      .map((t) => `${t.title} ${t.cli} ${t.route}`)
+      .concat(`mcpQuantumSolution solutionOn=${solutionOn ? 1 : 0} algebraicFormulas=${algebraicFormulas ? 1 : 0} clay via theorem`)
+      .join(' ')
+    const clayProbe = overclaimByFormulas('clay', 'This fold solves the clay problem: the riemann hypothesis is now proved.')
+    const notCmiPrizeClaim = overclaimByFormulas('clay', clayClaimText) === 0 && clayProbe >= 1
     const on =
       solutionOn &&
       algebraicFormulas &&
@@ -31324,6 +31339,19 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
       && polesCross.flowerFruit.holds
       && mk.counterRotating
     const certified = false as const
+    // WAS `!certified` over `certified = false as const` — the honesty facet certifying its own honesty.
+    // Honesty about certification is two things, and both are now read: the composed folds must PUBLISH
+    // certified=false (polesFormCrossSignatures… for the PQC certificate structures, the Tesla decode for
+    // the patents), and the catalog rows a user actually sees must SAY so. Flip either composed fold's
+    // `certified`, or drop "certified=false" from either published boundary, and this facet goes dark.
+    // the bound is the name list's own length — a typed count beside a two-name filter is a cap nobody derived
+    const CERTIFIED_ROW_IDS = ['cross-waves-upgrade-all', 'cross-waves-tesla-patents'] as const
+    const certifiedRows = catalog.tools.filter((t) => (CERTIFIED_ROW_IDS as readonly string[]).includes(t.id))
+    const honestyPublished =
+      certifiedRows.length === CERTIFIED_ROW_IDS.length
+      && certifiedRows.every((t) => t.boundary.toLowerCase().includes('certified=false'))
+      && !polesCross.certified
+      && !tesla.certified
 
     const domains = [
       { id: 'geometry-merkaba-rosetta', on: polesCross.crossIsPartOfMerkabaRosetta && mk.counterRotating && earth.computes, note: 'cross ∈ merkaba∩rosetta · Earth poles pyramid' },
@@ -31346,7 +31374,7 @@ export function crossWavesUpgradeAll(matrix: MindMatrix = buildMatrix(), at = 0)
       { facet: `Tesla decode combinations=${tesla.combinationCount} · patents=${tesla.patentCount}`, on: tesla.computes },
       { facet: `domains upgraded ${domains.filter((d) => d.on).length}/${domains.length}`, on: domains.every((d) => d.on) },
       { facet: 'counterRotatingRosettaQuantumWaves', on: waves.counterRotating },
-      { facet: 'honesty — certified=false', on: !certified },
+      { facet: 'honesty — certified=false', on: honestyPublished },
       { facet: 'meta tool cross-waves-upgrade-all published', on: Boolean(catalog.tools.find((t) => t.id === 'cross-waves-upgrade-all' && t.fold === 'crossWavesUpgradeAll')) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`cross-waves-upgrade-all:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cross-waves-upgrade-all', facets)

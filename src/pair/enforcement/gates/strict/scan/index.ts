@@ -2153,7 +2153,17 @@ export function coreMathFreeForAll(root: string = enforcementScanRoot()) {
     (/core math/i.test(readmeText) || /math\/free/i.test(readmeText))
   const coreMathFreeForAllOn = vaultOn && freeForAllPatent && pairsOn
   const restLicensedThrough = licenseContact === 'license@psg.bg' && pairsOn
-  const counselResidueNamed = true as const
+  // THE RESIDUE IS MEASURED, not declared. Two halves, both readable from the repo: the residue line is
+  // NAMED only while it actually points at the contact this fold licenses through, and "no agent-authored
+  // grant / full license text" holds only while the real licence text lives in the repo's own LICENSE file
+  // and is longer than this pointer — i.e. the fold points at counsel instead of writing the grant itself.
+  const counselResidue = 'jurisdictional grant text + commercial terms — contact license@psg.bg; counsel decides sufficiency' as const
+  const licenseFileText = existsSync(join(root, 'LICENSE'))
+    ? readFileSync(join(root, 'LICENSE'), 'utf8')
+    : existsSync(join(root, 'LICENSE.md'))
+      ? readFileSync(join(root, 'LICENSE.md'), 'utf8')
+      : ''
+  const counselResidueNamed = counselResidue.includes(licenseContact) && licenseFileText.length > counselResidue.length
   const facets = [
     { facet: 'coreMathFreeForAll', on: coreMathFreeForAllOn },
     { facet: 'restLicensedThrough', on: restLicensedThrough },
@@ -2169,7 +2179,7 @@ export function coreMathFreeForAll(root: string = enforcementScanRoot()) {
     coreMathFreeForAll: coreMathFreeForAllOn,
     restLicensedThrough,
     licenseContact,
-    counselResidue: 'jurisdictional grant text + commercial terms — contact license@psg.bg; counsel decides sufficiency' as const,
+    counselResidue,
     patent,
     vaultOn,
     pairsOn,
@@ -5758,7 +5768,22 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
   const usableToolsImproveOn = tipsOn.some((row) =>
     row.pair === 'ui/audit' || row.pair === 'tool/honest' || row.pair === 'e2e/feed' || row.pair === 'usable/all',
   )
-  const noLiveCrowdPanel = true
+  // THE RESIDUAL IS MEASURED, not declared: a live crowd panel needs a LIVE TRANSPORT, so the rendered
+  // surfaces are scanned for one. Wire a WebSocket / EventSource / socket.io / pusher panel into any
+  // .vitepress/theme surface and this goes off, naming the file — the residual stops being honest-open.
+  const liveTransport = /new WebSocket\(|new EventSource\(|socket\.io|pusher(?:js)?\b/i
+  const themeDir = join(root, '.vitepress/theme')
+  const livePanelFiles: string[] = []
+  const scanLiveSurfaces = (dir: string): void => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name === 'node_modules' || entry.name.startsWith('.')) continue
+      const p = join(dir, entry.name)
+      if (entry.isDirectory()) scanLiveSurfaces(p)
+      else if (/\.(vue|ts|mts|js|mjs)$/.test(entry.name) && liveTransport.test(readFileSync(p, 'utf8'))) livePanelFiles.push(relative(root, p))
+    }
+  }
+  if (existsSync(themeDir)) scanLiveSurfaces(themeDir)
+  const noLiveCrowdPanel = existsSync(themeDir) && livePanelFiles.length === 0
   const honestOpenNamed = [
     'residual:no-live-crowd-panel',
     ...(compose.toolHonest ? [] : ['residual:tool-honest-cli-missing']),

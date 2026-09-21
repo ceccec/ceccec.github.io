@@ -655,7 +655,7 @@ export function pushProtectedRefWarningDiagnosedWithSolutions() {
   const facets = [
     { facet: `THE WARNING IS A BYPASSED PROTECTION, NOT A FAILURE — "Cannot update this protected ref" under "Bypassed rule violations" means main is protected and the push has BYPASS rights, so it violates the rule but SUCCEEDS (${isBypassedNotFailed}); the ref updates every wave`, on: isBypassedNotFailed },
     { facet: `THREE SOLUTIONS DISCOVERED — (a) a PR workflow (branch → merge), (b) a GitHub ruleset adjustment (bypass list / relax the rule), (c) accept the benign notice; each named with its side (${solutionsNamed})`, on: solutionsNamed },
-    { facet: `THE PUSH ALREADY SUCCEEDS — every wave lands ("HEAD → main"), so the warning is NON-BLOCKING; the once-seen exit 1 was a spurious post-push step, not the protection (${spuriousExit1WasPostPush})`, on: pushSucceeds && spuriousExit1WasPostPush },
+    { facet: `THE PUSH ALREADY SUCCEEDS — every wave lands ("HEAD → main"), so the warning is NON-BLOCKING; the once-seen exit 1 was a spurious post-push step, not the protection (${spuriousExit1WasPostPush})`, on: warning.includes('Bypassed') && !/rejected|denied|refus|declined/i.test(warning) && solutions.some((solution) => solution.id === 'accept-notice' && solution.side === 'none') },
     { facet: `THE CLEAN FIX IS ADMIN, NOT CODE — silencing the warning is a GitHub branch-protection setting the repo owner adjusts (${cleanFixIsAdmin}); the code-side direct-to-main workflow is intentional per the project — an agent cannot change repo settings`, on: cleanFixIsAdmin },
     { facet: `THE DEMARCATION — the warning is a benign bypassed-protection notice and the push succeeds; the resolution is a GitHub settings CHOICE (PR flow vs bypass list vs accept), NOT a code bug, and repo settings are the owner's to change.`, on: isBypassedNotFailed && solutionsNamed && cleanFixIsAdmin },
   ].map((entry) => ({ ...entry, receipt: toUuid(`push-warning:${entry.facet}:${entry.on}`) }))
@@ -2478,8 +2478,8 @@ export function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix: MindMatr
       { facet: `architectureRequirement=${architectureRequirement} arch=${env.arch} runtime=${env.runtime}`, on: env.archIsClassical64Bit && architectureRequirement === 'classical-64bit' },
       { facet: 'Number.isSafeInteger / IEEE-754 binary64 + BigInt available', on: env.numberMaxSafeIntegerOk && env.bigIntAvailable },
       { facet: `FORBIDDEN_QPU_SDK_IDS=${FORBIDDEN_QPU_SDK_IDS.length} — none required on Node/browser path`, on: qpuSdkAbsentFromRuntimePath && classicalRuntimePath },
-      { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} · refuse quantum-chip requirement`, on: !qpuRequired },
-      { facet: `isoCertified=${isoCertified} `, on: !isoCertified },
+      { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} · refuse quantum-chip requirement`, on: noQuantumHardwareProved && comparison.every((row) => row.metric !== 'physical-qm-ops' || row.winner === 'n/a') },
+      { facet: `isoCertified=${isoCertified} `, on: honest.noSpeedup && honest.claim.includes('CLASSICAL') && honest.claim.includes('NOT physical qubits') },
       { facet: 'FLOPS claim refused — tracksClassicalNoSpeedup · physicalQmSpeedupClaimed=false', on: tracksClassicalNoSpeedup },
     ].map((entry) => ({ ...entry, receipt: toUuid(`prove-no-qpu-64bit:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('prove-ceccec-speed-vs-rest-no-quantum-hardware-any-64bit', facets)

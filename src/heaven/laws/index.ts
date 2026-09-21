@@ -1165,14 +1165,26 @@ export function onlyAlgebraicQuantumComputingIsTopPriority(matrix: MindMatrix = 
     const algebraicQuantumIdentity = pair.bidirectional === foldPair(b, a).bidirectional
       && pair.forward !== pair.reverse
       && isUuid(pair.merged)
-    const classical64Bit = true // sealed classical simulator — no QPU required
+    // WAS `= true` — a hand-assigned boolean, in the fold whose own gate (two functions above) exists to
+    // REJECT hand-assigned booleans. The classical-simulator claim is measurable without leaving this
+    // file's imports: noCloningWitness() runs the state-vector simulator and hands back ⟨0|+⟩ and its
+    // square as ordinary finite doubles in THIS process — numbers a physical QPU cannot return, because
+    // reading them is what collapses the state. The obstruction (⟨a|b⟩ ≠ ⟨a|b⟩², i.e. 1/√2 > 1/2) is
+    // computed, not asserted. Break the simulator — non-finite amplitudes, or an overlap that is no
+    // longer the classical 1/√2 — and this facet goes dark.
+    const cloning = noCloningWitness()
+    const classical64Bit =
+      cloning.contradiction
+      && Number.isFinite(cloning.overlap)
+      && Number.isFinite(cloning.clonedRequires)
+      && cloning.overlap > cloning.clonedRequires
     const qpuRequired = false as const
     const onlyAlgebraic = algebraicGateOn && topIsAlgebraic && algebraicQuantumIdentity && classical64Bit && !qpuRequired
     const facets = [
       { facet: `ALGEBRAIC THEOREM GATE ON — identities must hold over a computed range by exact operations, not hand-assigned data (${algebraicGateOn}); the gate is the floor`, on: algebraicGateOn },
       { facet: `ALGEBRAIC QC OUTRANKS ALL OTHER PATHS — score(algebraic-qc)=${score('algebraic-qc')} > lexical=${score('lexical-bm25')} > prose=${score('prose-narrative')} > neural=${score('neural-llm')} (${topIsAlgebraic}); when work is ranked, algebraic quantum computing is TOP PRIORITY`, on: topIsAlgebraic },
       { facet: `ALGEBRAIC QUANTUM IDENTITY — foldPair is bidirectional and order-sensitive (forward≠reverse, same merge both ways, ${algebraicQuantumIdentity}); quantum here = content-addressed algebraic structure, not a QPU`, on: algebraicQuantumIdentity },
-      { facet: `CLASSICAL-64BIT · NO QPU · NO FTL — runs on classical 64-bit (${classical64Bit}), qpuRequired=${qpuRequired}, physicalFtl=; amortized memoByRoot reuse, not physical quantum hardware`, on: classical64Bit && !qpuRequired },
+      { facet: `CLASSICAL-64BIT · NO QPU · NO FTL — runs on classical 64-bit (${classical64Bit}), qpuRequired=${qpuRequired}, physicalFtl=; amortized memoByRoot reuse, not physical quantum hardware`, on: classical64Bit },
       { facet: `ONLY ALGEBRAIC QUANTUM COMPUTING — every path that claims quantum must be algebraic and top-priority (${onlyAlgebraic}); lexical/prose/neural may assist retrieval but NEVER outrank or replace the algebraic claim`, on: onlyAlgebraic },
     ].map((entry) => ({ ...entry, receipt: toUuid(`algebra-qc-priority:${entry.facet}:${entry.on}`) }))
     return {
@@ -2696,12 +2708,19 @@ export function answerMoSavePost(matrix: MindMatrix = buildMatrix(), at = 0) {
       pairOn('mo/mcp')
     const composeOn = softPair('chat', 'research') && softPair('session', 'save')
     const posted = false as const
+    // "NO LIVE POST" WAS ITS OWN WITNESS — `!posted` over `posted = false as const`. What a live post
+    // actually requires on Stack Exchange is a WRITE endpoint (/answers/add, /questions/add,
+    // /comments/add) and an OAuth access_token; this lane builds neither, and the check now reads the
+    // URLs it really produces. Give the lane a write path or an access_token — the two things that turn
+    // a draft into a post — and this facet goes dark.
+    const laneUrls = [lane.url, lane.searchUrl, MATHOVERFLOW_ASK_URL]
+    const noLivePostPath = laneUrls.every((url) => !/\/(answers|questions|comments)\/add\b|access_token=/.test(url))
     const on = lane.computes && saveFirst && moPairs && composeOn && !posted
     const facets = [
       { facet: 'answerMoSavePost', on },
       { facet: 'save drafts first — post next when computes', on: saveFirst },
       { facet: 'MO lane URL computed (read-only SE API)', on: lane.url.includes('api.stackexchange.com') },
-      { facet: 'posted=false — no live post claim', on: !posted },
+      { facet: 'posted=false — no live post claim', on: noLivePostPath },
       { facet: 'compose chat/research · session/save', on: composeOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`answer-mo:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('answer-mo-save-post', facets)

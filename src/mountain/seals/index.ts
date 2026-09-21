@@ -1573,6 +1573,18 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       && catalogHasSecurity
       && catalogHasCollide
     const certified = false as const
+    // WAS `!certified` over `certified = false as const` — a security fold vouching for its own lack of
+    // certification. Two things are now read instead: the composed refusal fold must PUBLISH
+    // certified=false, and none of the security tool rows this fold shelves may advertise a certification
+    // to the reader. Flip productionRsaRefuseCompletesQuantumViaRosetta's `certified`, or publish a row
+    // whose title/boundary says ISO/FIPS/CC-EAL certified (or certified=true), and this facet goes dark.
+    const securityRowIds = ['production-rsa-refuse-rosetta', 'rosetta-security-gaps-wired', 'reverse-collide-discover-millennium']
+    const securityRows = catalog.tools.filter((t) => securityRowIds.includes(t.id))
+    const certificationAdvertised = securityRows.filter((t) => /\b(iso|fips|cc\s*eal)[ -]?certified\b|certified\s*=\s*true/i.test(`${t.title} ${t.boundary}`))
+    const notCertified =
+      securityRows.length === securityRowIds.length
+      && certificationAdvertised.length === 0
+      && !refuse.certified
     const facets = [
       { facet: `rosettaSecurityGapsWired — incompleteOpen=${incompleteOpen}`, on: rosettaSecurityGapsWiredOn && incompleteOpen === 0 },
       { facet: 'productionRsaRefuseCompletesQuantumViaRosetta computes · paths shelved', on: refuse.computes && refuseShelved },
@@ -1580,7 +1592,7 @@ export function rosettaSecurityGapsWired(matrix: MindMatrix = buildMatrix(), at 
       { facet: 'MCP conceptTools+trading:* REFUSE PRIMARY kept-intentional (honest dual)', on: conceptToolsHonest && tradingHonest && mcp.computes },
       { facet: 'reverseCollidesToDiscoverMillenniumTheorems shelved via catalog', on: reverseCollide.computes && catalogHasCollide },
       { facet: 'encryption↔rosetta refuse + security tools in quantumCliToolsCatalog', on: catalogHasRefuse && catalogHasSecurity },
-      { facet: `certified=${certified} `, on: !certified },
+      { facet: `certified=${certified} `, on: notCertified },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-security-gaps:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('rosetta-security-gaps-wired', facets)
     return {

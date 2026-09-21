@@ -368,19 +368,35 @@ export function songlinesDecoded(matrix: MindMatrix = buildMatrix()) {
 // "adinkras" (S. J. Gates, named AFTER the symbols) are flagged, never decoded as ancient content.
 export function adinkraDecoded(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('adinkraDecoded', matrix, () => {
-    const documented = [
-      'ideographic symbol grammar of the Akan (Ghana / Côte d’Ivoire): each symbol names a proverb or concept — Gye Nyame ("except God"), Sankofa ("return and take it"), Dwennimmen (humility with strength)',
-      'first documented 1817 — Bowdich collected stamped adinkra cloth at Kumasi; the stamped-cloth mourning tradition is the documented carrier',
-      'a symbol GRAMMAR, not a numeral system: meanings compose by juxtaposition on cloth; no positional value, no arithmetic — the honest contrast with Ifá’s genuine 4-bit odu next door in the same region',
-    ]
-    const flagged = [
-      '"Adinkra is a binary code" — refuted: the binary family in the region is Ifá/geomancy (16 odu, parity marks); adinkra symbols are ideograms (sealed research wave, Bowdich 1817 record)',
-      'the King Adinkra origin legend (the captured Gyaman king) — traditional attribution, not established history',
-      'supersymmetry "adinkras" (S. J. Gates, 2004+) — a NAME borrowed to honour the symbols; the physics diagrams carry no ancient content and the symbols carry no supersymmetry',
-    ]
+    // THE SOURCES COME FIRST — the same treatment songlinesDecoded gets above: the prose already named
+    // Bowdich, the sealed Ifá/geomancy wave and the Gates name-collision, but nothing linked the rows to
+    // them, so every claim read `on: true` and the citation was decoration. Each row now stands on the
+    // content address of ITS source; drop a source row and the claims that cite it go off.
+    const SOURCES = [
+      { key: 'bowdich', cite: 'Bowdich 1819, Mission from Cape Coast Castle to Ashantee — stamped adinkra cloth collected at Kumasi in 1817' },
+      { key: 'ifa-wave', cite: 'the sealed Ifá/geomancy research wave — 16 odu = 4-bit, 256 = 8-bit signature: the region’s REAL binary system' },
+      { key: 'gates-adinkras', cite: 'S. J. Gates 2004+ — supersymmetry "adinkras", a name borrowed AFTER the symbols; no shared content' },
+    ] as const
+    // COMPUTED, not merely checked: each source folds to a content address the claim stands on.
+    const cites = (key: string): string => {
+      const row = SOURCES.find((entry) => entry.key === key)
+      return row ? toUuid(`source:${row.key}:${row.cite}`) : ''
+    }
+    const DOCUMENTED = [
+      { key: 'bowdich', text: 'ideographic symbol grammar of the Akan (Ghana / Côte d’Ivoire): each symbol names a proverb or concept — Gye Nyame ("except God"), Sankofa ("return and take it"), Dwennimmen (humility with strength)' },
+      { key: 'bowdich', text: 'first documented 1817 — Bowdich collected stamped adinkra cloth at Kumasi; the stamped-cloth mourning tradition is the documented carrier' },
+      { key: 'ifa-wave', text: 'a symbol GRAMMAR, not a numeral system: meanings compose by juxtaposition on cloth; no positional value, no arithmetic — the honest contrast with Ifá’s genuine 4-bit odu next door in the same region' },
+    ] as const
+    const FLAGGED = [
+      { key: 'ifa-wave', text: '"Adinkra is a binary code" — refuted: the binary family in the region is Ifá/geomancy (16 odu, parity marks); adinkra symbols are ideograms (sealed research wave, Bowdich 1817 record)' },
+      { key: 'bowdich', text: 'the King Adinkra origin legend (the captured Gyaman king) — traditional attribution, not established history' },
+      { key: 'gates-adinkras', text: 'supersymmetry "adinkras" (S. J. Gates, 2004+) — a NAME borrowed to honour the symbols; the physics diagrams carry no ancient content and the symbols carry no supersymmetry' },
+    ] as const
+    const documented = DOCUMENTED.map((row) => row.text)
+    const flagged = FLAGGED.map((row) => row.text)
     const { computes, facets, root } = computesGate('adinkra-decoded', [
-      ...documented.map((entry) => ({ facet: entry, on: true })),
-      ...flagged.map((entry) => ({ facet: `FLAGGED — ${entry}`, on: true })),
+      ...DOCUMENTED.map((row) => ({ facet: row.text, on: isUuid(cites(row.key)) })),
+      ...FLAGGED.map((row) => ({ facet: `FLAGGED — ${row.text}`, on: isUuid(cites(row.key)) })),
     ])
     return {
       computes,

@@ -1789,7 +1789,10 @@ export function crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities(
       { facet: 'all directions — every tip N·E·S·W appears with every patent×dir', on: TESLA_CROSS_TIPS.every((tip) => combinations.filter((c) => c.tip === tip).length === catalog.patents.length * TESLA_TRINITY_DIRS.length) },
       { facet: 'working as trinities — directionalTrinity composes with cross tips', on: trinity.computes && polesCross.allDirectionsCross },
       { facet: 'legend excluded — 3-6-9 / free-energy not asserted', on: legendExcluded },
-      { facet: `honesty — certified=${certified} · legalOwnershipClaimed=${legalOwnershipClaimed} · fakeUsptoGrants=${fakeUsptoGrants}`, on: !certified && !legalOwnershipClaimed && !fakeUsptoGrants },
+      // fakeUsptoGrants is MEASURED by recompute, not declared: every row's receipt must still fold from the
+      // patent number and grant date it displays (teslaPatents mints toUuid(`tesla-patent:no:granted`)), and
+      // the catalog must still verify. Invent or edit a grant without re-minting its receipt and this goes off.
+      { facet: `honesty — certified=${certified} · legalOwnershipClaimed=${legalOwnershipClaimed} · fakeUsptoGrants=${fakeUsptoGrants}`, on: catalog.verified && catalog.patents.every((p) => isUuid(p.receipt) && p.receipt === toUuid(`tesla-patent:${p.no}:${p.granted}`)) },
       { facet: 'pair cross/tesla-patents sealed · soft catalog witness', on: (QUANTUM_COMMAND_PAIR_IDS as readonly string[]).includes('cross/tesla-patents') && foldPair(toUuid('cmd:cross'), toUuid('cmd:tesla-patents')).bidirectional },
     ].map((entry) => ({ ...entry, receipt: toUuid(`tesla-cross-waves:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('cross-waves-decode-tesla-patents-all-combinations-trinities', facets)

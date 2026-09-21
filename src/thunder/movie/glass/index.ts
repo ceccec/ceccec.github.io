@@ -202,7 +202,10 @@ export function startHereDecodedView(locale: string): DecodedComponentView {
     title: page ? pickLocale(loc, page.title.en, page.title.bg) : pickLocale(loc, 'Start here', 'Започни тук'),
     statement: page ? pickLocale(loc, page.description.en, page.description.bg) : undefined,
     boundary: page?.keywords?.[0] ? displayText(loc, page.keywords[0]) : undefined,
-    facets: agents.lessons.slice(0, 8).map((lesson) => ({ facet: displayText(loc, lesson.rule), on: true })),
+    // The badge is a VERDICT channel (ui-badge--on / --off), so it reads the education fold: a lesson is
+    // held exactly while the curriculum verifies (verifyRoot · zero coherence anomaly) AND its own receipt
+    // minted. Tamper the matrix, or lose a lesson receipt, and the row goes hollow with ok.
+    facets: agents.lessons.slice(0, 8).map((lesson) => ({ facet: displayText(loc, lesson.rule), on: agents.educated && isUuid(lesson.receipt) })),
     ok: agents.educated }
 }
 
@@ -212,7 +215,10 @@ export function tamperingCostDecodedView(): DecodedComponentView {
     title: 'Tampering cost',
     statement: fold.statement,
     boundary: fold.boundary,
-    facets: [...fold.documented.map((entry) => ({ facet: entry, on: true })), ...fold.flagged.map((entry) => ({ facet: entry, on: false }))],
+    // documented rows ride the fold's own verdict (fold.decoded — tamperEvident && !cryptographic && the
+    // crypto ledger balanced); flagged rows stay the off tone. Make the FNV fold claim cryptographic, or
+    // unbalance the crypto review, and the documented rows go hollow instead of asserting themselves.
+    facets: [...fold.documented.map((entry) => ({ facet: entry, on: fold.decoded })), ...fold.flagged.map((entry) => ({ facet: entry, on: false }))],
     ok: fold.documented.length > 0 }
 }
 
