@@ -191,7 +191,7 @@
  "rosters derive or ledger — a hand-list inside a fold is the hardcoded-value crack one level up": {
   "form": "bars",
   "values": [
-   1036,
+   1072,
    808,
    899,
    926,
@@ -908,8 +908,8 @@
   "values": [
    16,
    4,
-   14,
-   2,
+   12,
+   4,
    3
   ],
   "holds": true,
@@ -1352,7 +1352,7 @@
  "THE CHALLENGE, computed on LIVE data: feeding fresh live input to the local quantum fold yields NO quantum speedup — simulating Shor for a live n-bit number is ~2^(1.5n) times SLOWER than classical search, invariant to the input": {
   "form": "bars",
   "values": [
-   1790000000000,
+   1790010000000,
    41,
    21,
    85,
