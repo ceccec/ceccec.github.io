@@ -591,6 +591,7 @@
     "quantum:formulas": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/routes/corpus/index.ts runFormulaCollectionExit",
     "quantum:formula-census": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/routes/corpus/index.ts runFormulaCensusExit",
     "quantum:glyph-census": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/routes/corpus/index.ts runGlyphCensusExit",
+    "quantum:formula-relations": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/wind/routes/corpus/index.ts runCuratedRelationsExit",
     "quantum:mcp-fill": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runScanAndRecomputeMcpQuantumFillExit",
     "quantum:fill-mcp": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runScanAndRecomputeMcpQuantumFillExit",
     "quantum:wave-bill": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/apps/index.ts runScanAndRecomputeMcpQuantumFillExit",

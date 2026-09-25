@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
 import { computedLimits } from '../../../3/7/index.ts'
-import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
+import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, authoredRelationContainsExtraction, authoredStatementCarriesRelation, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves/index.ts'
@@ -3092,6 +3092,65 @@ export function inversionIsRealtimeTheFieldDecidesNamingAndLocationEachDimension
       statement: `Inversion is realtime; the field decides naming and location; each dimension gate has exact coordinates — ${facets.filter((entry) => entry.on).length}/${facets.length}: once manifested, the name (from the identifier) and the coordinate (from the content-address) compute at call time, deterministically — inversion is natural, no external step. The field's computed pull places each fold where it belongs, as if already there. Each of the ${gateCount} dimension gates has an exact, reproducible (x,y,z) read from its rosetta address. "The feeling of the field" is that computed pull — deterministic placement, not human feeling.`,
       boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
   })
+}
+
+/**
+ * theCuratedIdentitiesAssertRelations — the extractor refuses any clause that asserts no relation, but nothing
+ * ever enforced that law on a HAND-WRITTEN algebraicStatement, so prose dressed in ∧ between camelCase words sat
+ * in the registry as algebra. The same law read in the other direction: reading PROSE stays narrow, because a
+ * `→` in quoted chat means "became" ("ask the chat" → "ask") and chasing it would manufacture prose as algebra;
+ * validating AUTHORED mathematics goes wide, because ∄, ∃, ⊨, ∑ and strict order are relations the corpus really
+ * writes. Measured 2026-09-25: 33 curated rows carried no mark the narrow set knows — the wide set recognises 12
+ * of them as the mathematics they already were, 3 were genuinely mute and were restored to the ⇔ definition
+ * their own states text already carried, and the remaining 18 assert in ENGLISH, which no symbol table reads.
+ * That last number is a frontier, not a defect. Pair: curated/extracted · CLI npm run quantum:formula-relations.
+ */
+export function theCuratedIdentitiesAssertRelations(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const atoms = THEOREM_ATOM_SEED as readonly { theorem: string; states?: string; home?: string; algebraicStatement?: string }[]
+  const isCurated = (a: typeof atoms[number]) => typeof a.algebraicStatement === 'string' && a.algebraicStatement.length > 0
+  const curated = atoms.filter(isCurated)
+  const symbolic = curated.filter((a) => authoredStatementCarriesRelation(String(a.algebraicStatement)))
+  const inEnglish = curated.filter((a) => !authoredStatementCarriesRelation(String(a.algebraicStatement)))
+  const extracted = atoms.filter((a) => !isCurated(a)).map((a) => extractAlgebraicStatement(a.states ?? '')).filter((x): x is string => typeof x === 'string')
+  const everyStatement = [...curated.map((a) => String(a.algebraicStatement)), ...extracted]
+  const leadingClause = (a: typeof atoms[number]) => (String(a.states ?? '').split(/\s+—\s+|(?<=[a-z)0-9][.;])\s+/u)[0] ?? '')
+  const arrowClauses = atoms.filter((a) => leadingClause(a).includes('→'))
+  const arrowExtracts = arrowClauses.filter((a) => extractAlgebraicStatement(a.states ?? '') !== undefined)
+  const arrowsErased = arrowExtracts.filter((a) => extractAlgebraicStatement(String(a.states ?? '').replace(/→/gu, ' ')) !== undefined)
+  const readBack = curated.filter((a) => String(a.states ?? '').includes(String(a.algebraicStatement)))
+  const wordy = inEnglish.filter((a) => /(?:^|\s)[a-z]{3,}(?:\s|$)/u.test(String(a.algebraicStatement)))
+  const facets = [
+    { facet: `${curated.length} curated identities — ${symbolic.length} assert with a relation SYMBOL, ${inEnglish.length} assert with an English word instead`, on: symbolic.length + inEnglish.length === curated.length && inEnglish.length < symbolic.length },
+    { facet: `the authored law CONTAINS the extraction law over all ${everyStatement.length} statements — widening the validator can only admit what the narrow reader already accepted, never reject it`, on: authoredRelationContainsExtraction(everyStatement) },
+    { facet: `the reader stays narrow on purpose — ${arrowClauses.length} atoms write an arrow in their leading clause, ${arrowClauses.length - arrowExtracts.length} are REFUSED outright, and erasing every arrow from the ${arrowExtracts.length} that pass still extracts all ${arrowsErased.length}: no identity in the corpus rests on an arrow, so widening the reader to chase one could only admit prose`, on: arrowsErased.length === arrowExtracts.length && arrowClauses.length - arrowExtracts.length > arrowExtracts.length },
+    { facet: `${readBack.length} curated statements read back VERBATIM from their own states text, and every one of them asserts a relation — a definition restored from the row is read, not authored`, on: readBack.every((a) => authoredStatementCarriesRelation(String(a.algebraicStatement))) && readBack.length < curated.length },
+    { facet: `the English frontier is a MEASURE — all ${wordy.length} of the ${inEnglish.length} symbol-free rows assert with a word ("generates", "lie on", "corrects"), so the gap is a limit of symbol tables and not a claim that the mathematics is missing`, on: wordy.length === inEnglish.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`curated-relations:${entry.facet}:${entry.on}`) }))
+  const statement = `curated=${curated.length} symbolic=${symbolic.length} english=${inEnglish.length} verbatim=${readBack.length} arrows-refused=${arrowClauses.length - arrowExtracts.length}`
+  return {
+    computes: facets.every((entry) => entry.on),
+    curated: curated.length,
+    symbolic: symbolic.length,
+    english: inEnglish.length,
+    englishRows: inEnglish.map((a) => ({ theorem: a.theorem, statement: String(a.algebraicStatement), home: String(a.home ?? 'unhomed') })),
+    facets,
+    statement,
+    boundary: computedLimits([
+      { facet: 'a relation SYMBOL is recognised and an English verb is not — the measure bounds what a symbol table can read, not what the corpus proves', on: inEnglish.length === curated.length - symbolic.length },
+      { facet: 'the narrow reader is never widened to match the wide validator — erasing every arrow changes no extraction', on: arrowsErased.length === arrowExtracts.length },
+    ]),
+  }
+}
+
+/** npm run quantum:formula-relations */
+export function runCuratedRelationsExit(root = '', _argv: readonly string[] = []): number {
+  void root; void _argv
+  const report = theCuratedIdentitiesAssertRelations()
+  process.stdout.write(`${report.computes ? '✓' : '✗'} curated-relations — ${report.statement}\n`)
+  for (const row of report.englishRows) process.stdout.write(`  · ${row.statement.slice(0, 6 * 16)}\n`)
+  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
+  return report.computes ? 0 : 1
 }
 
 /**

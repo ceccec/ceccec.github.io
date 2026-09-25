@@ -30,7 +30,7 @@
   "guards.no-filesystem-empty": 3,
   "imports.unresolved": 6,
   "independence.cross-checked": -473,
-  "independence.gate-exercised": -22,
+  "independence.gate-exercised": -23,
   "lean-arbiter.census-contradictions": 0,
   "lean.lattice-unsealed-directions": 0,
   "lean.registry-sealed": -31,
@@ -61,6 +61,7 @@
   "tautology.self-proving": 1,
   "titles.algebra-gaps": 0,
   "titles.divergent": 0,
+  "titles.symbolless-identities": 18,
   "vue.undreived-paint": 0,
   "zenodo.metadata-drift": 0
 }

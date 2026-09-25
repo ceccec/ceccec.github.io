@@ -1280,6 +1280,24 @@ export function titleCarriesAlgebra(title: string): boolean {
 // pipes and markdown tables never match; ∣ is the typographic divides. Added 2026-07-28 (wave feeding wave:
 // the extractor upgrade frees rows the fill wave would otherwise curate by hand).
 const STATEMENT_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦∣]|\bmod\b|\biff\b| \| /u
+// AUTHORED_RELATION — the SAME law read in the other direction. The extractor above reads PROSE, so it stays
+// narrow on purpose: `<`/`>` read as brackets and `→` reads as "became" in quoted chat ("ask the chat" → "ask"),
+// and chasing those would manufacture prose as algebra. A curated algebraicStatement is already mathematics, so
+// validating it may see every relation the corpus actually writes — ∄, ∃, ∀, ⊨, ⊭, ∑, strict order. Measured
+// 2026-09-25: 33 of 217 curated statements carried no mark the narrow set knows, 21 under the wide one.
+// Both stay REGEX LITERALS so the alternation gate keeps reading them from source.
+const AUTHORED_RELATION = /[=≡≤≥≠⇔⇒∈∉⊂⊆∼≅≈↦∣<>∄∃∀⊨⊭⟺⟹≪≫⊕⊗∑Σ∏]|\bmod\b|\biff\b| \| /u
+/** authoredStatementCarriesRelation — a CURATED algebraicStatement must assert a relation, not name a subject.
+ * The extractor enforces this on what it reads; nothing enforced it on what a hand wrote, so prose dressed in
+ * ∧ between camelCase words passed as algebra. Refutable: the wide set CONTAINS the narrow one, so anything the
+ * extractor accepts this accepts too — widening can only admit, never reject. */
+export function authoredStatementCarriesRelation(statement: string): boolean {
+  return AUTHORED_RELATION.test(statement)
+}
+/** authoredRelationContainsExtraction — the containment itself, computed over the marks the narrow set names. */
+export function authoredRelationContainsExtraction(samples: readonly string[]): boolean {
+  return samples.every((sample) => !STATEMENT_RELATION.test(sample) || AUTHORED_RELATION.test(sample))
+}
 /** extractAlgebraicStatement — the FREE upgrade of a theorem's identity line (user, 2026-07-27: "let free chat
  * upgrade all"): when a registry row carries no curated algebraicStatement, its `states` text usually CONTAINS
  * the identity verbatim — extract the LEADING algebra-bearing clause, always a SUBSTRING of the proven text,
