@@ -53,6 +53,7 @@ export { doubleTorusEarthExchangeComputes, doubleTorusEarthHingeComputesAll, fia
 export { normalizeSslTestHostLabel, sslTestUiComplete } from '../../src/water/encryption'
 export { collectiveContentAddressedMeshComputes, goldFusionComputes, thunderGoldGraphComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphResearch } from '../../src/wind/fusion'
 export { catchAllRoutePaths, monographSliceFromRoute, vitepressAutomountPaths } from '../../src/wind/routes/automount'
+export { formulaRows, formulaTagIndex, formulaBySlug, theFormulaCensusPerWing, type FormulaRow, type FormulaTagGroup } from '../../src/wind/routes/corpus'
 export { CORPUS_GRID_PAGE_SIZE, computeUniversalPage, corpusCatchAllPaths, doubleTorusCorpusRouting, heroPreviewForRoute, openFrontierCardLinks, rayHubPart, rosettaBreadcrumbs, searchSectionsFor, theoremFigure, theoremPageBySlug, theoremPagePaths, theoremPageRows, theoremPapersLatestFirst, theoremTagIndex } from '../../src/wind/routes/corpus'
 export type { FigRole, TheoremFigureData, TheoremPageRow, TheoremTagGroup, UniversalPage } from '../../src/wind/routes/corpus'
 export { bulgarianHomeFromEnglish, githubPermalink, homeHero, localeNavLinks, localeSidebarKeys, revolutChannel, siteConfig, staticPages, vitepressDocsResearchImprovements, vitepressNativeDocsConfig } from '../../src/wind/site'

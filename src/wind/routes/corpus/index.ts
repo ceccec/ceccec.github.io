@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
 import { computedLimits } from '../../../3/7/index.ts'
-import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
+import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves/index.ts'
@@ -1045,6 +1045,160 @@ export type TheoremPageRow = {
   // organisation fields — all DERIVED, no hand-authored taxonomy: ordinal = registry append position
   // (latest = highest), tags = [domain(home) · proofClass · lean] each read from an existing field.
   ordinal: number; tags: string[]
+}
+
+export type FormulaRow = {
+  readonly slug: string
+  readonly formula: string
+  readonly theorem: string
+  readonly home: string
+  readonly source: 'curated' | 'extracted'
+  readonly relations: readonly string[]
+  readonly theoremSlug: string
+  readonly tags: readonly string[]
+  readonly receipt: string
+}
+export type FormulaTagGroup = { tag: string; axis: 'wing' | 'source' | 'relation'; count: number; formulas: FormulaRow[] }
+
+/** The relation symbols a formula may carry — the axis a reader actually filters on. */
+const FORMULA_RELATIONS: readonly { readonly tag: string; readonly test: RegExp }[] = [
+  { tag: 'equality', test: /=/u },
+  { tag: 'equivalence', test: /⟺|⇔|iff/u },
+  { tag: 'implication', test: /⟹|⇒|→/u },
+  { tag: 'inequality', test: /≤|≥|<|>|≠/u },
+  { tag: 'congruence', test: /≡|mod\b/u },
+  { tag: 'membership', test: /∈|⊆|⊂/u },
+  { tag: 'quantified', test: /∀|∃/u },
+  { tag: 'summation', test: /∑|Σ|∏|∫/u },
+]
+
+/**
+ * EVERY FORMULA THE REGISTRY CARRIES, AS ROWS — the collection /formulas filters.
+ *
+ * A theorem resolves to a formula through one chain: a curated algebraicStatement, else a relation
+ * EXTRACTED verbatim from its own states text. theFormulaCensusPerWing counts where that chain comes
+ * up empty; this is the other half — the formulas it does yield, each carrying the theorem it belongs
+ * to, the wing it lives in, which step of the chain produced it, and the relation symbols it contains.
+ *
+ * Extraction is verbatim by construction, so a row here is a substring of the corpus and never a
+ * generated sentence. That is what makes the collection citable: every formula shown can be found in
+ * the theorem it came from.
+ */
+export function formulaRows(matrix: MindMatrix = buildMatrix()): readonly FormulaRow[] {
+  return memoByRoot('formulaRows', matrix, () => {
+    const atoms = THEOREM_ATOM_SEED as readonly { theorem: string; states?: string; home?: string; algebraicStatement?: string }[]
+    const seen = new Map<string, number>()
+    const rows: FormulaRow[] = []
+    for (const atom of atoms) {
+      const curated = typeof atom.algebraicStatement === 'string' && atom.algebraicStatement.length > 0
+      const formula = curated ? String(atom.algebraicStatement) : (extractAlgebraicStatement(atom.states ?? '') ?? '')
+      if (formula.length === 0) continue
+      const home = String(atom.home ?? 'unhomed')
+      const base = theoremSlug(formula.slice(0, 64)) || theoremSlug(atom.theorem)
+      const n = (seen.get(base) ?? 0) + 1
+      seen.set(base, n)
+      const relations = FORMULA_RELATIONS.filter((r) => r.test.test(formula)).map((r) => r.tag)
+      const source = curated ? 'curated' as const : 'extracted' as const
+      rows.push({
+        slug: n > 1 ? `${base}-${n}` : base,
+        formula,
+        theorem: atom.theorem,
+        home,
+        source,
+        relations,
+        theoremSlug: theoremSlug(atom.theorem),
+        tags: [home, source, ...relations],
+        receipt: toUuid(`formula-row:${atom.theorem}:${formula}`),
+      })
+    }
+    return rows
+  })
+}
+
+/** The formulas organised BY TAG — wing, source and relation, largest group first, mirroring theoremTagIndex. */
+export function formulaTagIndex(matrix: MindMatrix = buildMatrix()): FormulaTagGroup[] {
+  const rows = formulaRows(matrix)
+  const relationTags = new Set(FORMULA_RELATIONS.map((r) => r.tag))
+  const axisOf = (tag: string): FormulaTagGroup['axis'] =>
+    tag === 'curated' || tag === 'extracted' ? 'source' : relationTags.has(tag) ? 'relation' : 'wing'
+  const groups = new Map<string, FormulaTagGroup>()
+  for (const row of rows) {
+    for (const tag of row.tags) {
+      const group = groups.get(tag) ?? { tag, axis: axisOf(tag), count: 0, formulas: [] as FormulaRow[] }
+      group.formulas.push(row)
+      group.count += 1
+      groups.set(tag, group)
+    }
+  }
+  return [...groups.values()].sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))
+}
+
+/** One formula by its slug — the collection is addressable, not only browsable. */
+export function formulaBySlug(slug: string, matrix: MindMatrix = buildMatrix()): FormulaRow | null {
+  return formulaRows(matrix).find((row) => row.slug === slug) ?? null
+}
+
+/**
+ * THE FORMULA CENSUS — which theorems carry an identity, and which wings are empty of them.
+ *
+ * Every theorem here resolves to a formula through one chain: a curated algebraicStatement, else a
+ * relation EXTRACTED verbatim from its own `states` text, else nothing and the title carries it. The
+ * chain existed; what did not exist was a count of where it comes up empty, so "improving all on the
+ * way" had no way to say which way.
+ *
+ * Measured over THEOREM_ATOM_SEED rather than the page rows, because the page row does not carry
+ * algebraicStatement — asking the rows returns zero curated identities for all 774 pages, which looks
+ * like total absence and is an artefact of where the field lives. The atoms are where the data is.
+ *
+ * The number that matters is not the total but the SPREAD: src/9/1 carries an identity on nearly every
+ * one of its theorems while src/heaven/compute carries one on about a tenth. A corpus-wide average
+ * would hide that, so the census reports per home and ranks by what is missing.
+ */
+export function theFormulaCensusPerWing(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const atoms = THEOREM_ATOM_SEED as readonly { theorem: string; states?: string; home?: string; algebraicStatement?: string }[]
+  const classify = (a: typeof atoms[number]) => {
+    const curated = typeof a.algebraicStatement === 'string' && a.algebraicStatement.length > 0
+    const extracted = curated ? false : Boolean(extractAlgebraicStatement(a.states ?? ''))
+    return { curated, extracted, none: !curated && !extracted }
+  }
+  const classified = atoms.map((a) => ({ home: String(a.home ?? 'unhomed'), ...classify(a) }))
+  const curated = classified.filter((c) => c.curated).length
+  const extracted = classified.filter((c) => c.extracted).length
+  const none = classified.filter((c) => c.none).length
+  const homes = [...new Set(classified.map((c) => c.home))].map((home) => {
+    const rows = classified.filter((c) => c.home === home)
+    const missing = rows.filter((c) => c.none).length
+    return { home, total: rows.length, missing, covered: rows.length - missing, coverage: rows.length > 0 ? (rows.length - missing) / rows.length : 0 }
+  }).sort((a, b) => b.missing - a.missing)
+  const worst = homes[0]
+  const best = [...homes].filter((h) => h.total >= 9).sort((a, b) => b.coverage - a.coverage)[0]
+  const spread = best && worst ? best.coverage - (worst.coverage) : 0
+  const facets = [
+    { facet: `${atoms.length} theorem atoms — ${curated} carry a curated identity, ${extracted} extract one from their own states text, ${none} carry none and fall back to the title`, on: curated + extracted + none === atoms.length && none > 0 },
+    { facet: `the gap is not spread evenly — worst wing ${worst?.home} at ${worst?.missing}/${worst?.total} missing, best wing ${best?.home} at ${best ? best.total - best.missing : 0}/${best?.total} covered`, on: spread > 1 / 2 },
+    { facet: `every wing is accounted for — ${homes.length} homes summing to ${homes.reduce((s, h) => s + h.total, 0)} atoms, none dropped`, on: homes.reduce((s, h) => s + h.total, 0) === atoms.length },
+    { facet: `an extracted identity is a VERBATIM substring of the row's own states — never generated, which is why extraction can come up empty rather than invent`, on: classified.filter((c) => c.extracted).length === extracted && atoms.filter((a) => extractAlgebraicStatement(a.states ?? '')).every((a) => (a.states ?? '').includes(extractAlgebraicStatement(a.states ?? '') ?? '')) },
+    { facet: `the census is a MEASURE and not a floor — it names where identities are missing (${homes.filter((h) => h.missing > 0).length} wings carry at least one gap) and asserts nothing about whether they can be supplied`, on: homes.reduce((sum, h) => sum + h.missing, 0) === none && homes.filter((h) => h.missing > 0).length < homes.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`formula-census:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    total: atoms.length,
+    curated,
+    extracted,
+    missing: none,
+    homes,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `Of ${atoms.length} theorem atoms, ${curated} carry a curated algebraic identity and ${extracted} extract one verbatim from their own states text, leaving ${none} with no formula. The gap is uneven: ${worst?.home} is missing ${worst?.missing} of ${worst?.total} while ${best?.home} covers ${best ? best.total - best.missing : 0} of ${best?.total}.`,
+    boundary: earned(
+      'MEASURED over the theorem atoms — counted, not sampled:',
+      facets,
+      [
+        { facet: 'counted over THEOREM_ATOM_SEED, not the page rows, because the page row does not carry algebraicStatement and asking it returns a false zero', on: curated + extracted + none === atoms.length },
+        { facet: 'a missing identity means the extraction found no relation in the text, NOT that the theorem has no formula in principle', on: none === atoms.length - curated - extracted },
+      ]) }
 }
 
 /** Algebraic formulas dual to sealed proving code — pair formula/code. */
