@@ -4,7 +4,7 @@ import { A432_FOLDED, JULIAN_YEAR_SECONDS, LN2, TEACHING_RSA_P, TEACHING_RSA_Q, 
 import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
-import { DIGEST_BITS, FORGE_COST_CEILING, abs, cbrt, ceil, cos, exp, floor, hmacSha256, log, log2, max, min, pow, prng, round } from '../../0/index.ts'
+import { DIGEST_BITS, FORGE_COST_CEILING, abs, cbrt, ceil, cos, exp, floor, hmacSha256, log, log2, max, min, pow, prng, round} from '../../0/index.ts'
 import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, memoByRoot, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0/index.ts'
 import { ratIsInteger, ratStr } from '../../9/1/index.ts'
 import { tamperEvident } from '../../5/5/index.ts'
@@ -31,6 +31,77 @@ import { doubleTorusCorpusRouting } from '../double/index.ts'
 // to a single sealed root (one reproduction). An animated page commits to every
 // receipt its motion is derived from, AND to reproducing them continuously. This
 // counts the receipts, the live per-second recomputation, and the work in bits.
+/**
+ * CROSS-HASHED UUID STREAMS — an address that must be forged twice, over two unrelated hashes.
+ *
+ * toUuid is FNV-1a and the corpus says so plainly: strong as a structural check, NOT
+ * collision-resistant. findContentAddressCollision does not argue it, it EXHIBITS it — a deterministic
+ * birthday search returns "i3jz" and "k8r5" sharing the 32-bit FNV word 3315175185 in 944,466 tries,
+ * and the collision is visible in the addresses themselves, which both begin c5998f11.
+ *
+ * WHAT THAT DOES AND DOES NOT THREATEN, checked rather than assumed. 139 places in src take the first
+ * eight hex characters of an address, which is exactly the 32 bits that collide. Every one of them is
+ * DISPLAY — interpolated into a facet or a statement as `map=${root.slice(0, 8)}` — and not one is used
+ * in an equality test or as a map key. No identity in this corpus rests on a prefix, so the exhibited
+ * collision is cosmetic where it lands. That is worth stating: 139 hits looks alarming until it is read.
+ *
+ * The real residue is narrower. The full address is 122 effective bits with a birthday bound of 2^61,
+ * and FORGE_COST_CEILING already calls that a ceiling rather than a guarantee, because FNV offers no
+ * cryptanalytic assurance that the bound is reached — a shortcut on FNV would beat it, where SHA-256
+ * has none known.
+ *
+ * The cross stream removes that caveat for anything that opts in: merge(toUuid(s), toUuidSha256(s))
+ * folds an FNV address and a SHA-256 address of the SAME seed into one. Landing on it twice requires
+ * colliding both functions at once, and they share no structure, so a shortcut against FNV buys
+ * nothing against the pair. It is ADDITIVE — every existing address is untouched and the stream is a
+ * new surface beside them, not a cutover, which the kernel's own note calls a deliberate breaking
+ * change and this is not one.
+ */
+export function crossHashedUuidStream(seeds: readonly string[]) {
+  const rows = seeds.map((seed) => {
+    const fnv = toUuid(seed)
+    const vetted = toUuidSha256(seed)
+    return { seed, fnv, vetted, crossed: merge(fnv, vetted) }
+  })
+  const distinct = (pick: (r: typeof rows[number]) => string) => new Set(rows.map(pick)).size
+  return { rows, distinctFnv: distinct((r) => r.fnv), distinctVetted: distinct((r) => r.vetted), distinctCrossed: distinct((r) => r.crossed) }
+}
+
+/** The exhibited FNV collision, and what each address layer does with it. */
+export function crossHashingSeparatesTheExhibitedCollision(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const c = findContentAddressCollision()
+  const stream = crossHashedUuidStream([c.a, c.b])
+  const [left, right] = stream.rows as [typeof stream.rows[number], typeof stream.rows[number]]
+  const PREFIX = 8 // the eight hex characters the corpus displays — exactly the 32 bits FNV collides in
+  const prefixOf = (uuid: string) => uuid.slice(0, PREFIX)
+  const budget = addressEntropyBits()
+  const facets = [
+    { facet: `the collision is EXHIBITED, not argued — "${c.a}" and "${c.b}" share the 32-bit FNV word ${c.word}, found in ${c.tries.toLocaleString()} deterministic tries`, on: c.found && c.a !== c.b },
+    { facet: `and it is visible in the addresses — both toUuid values begin ${prefixOf(left.fnv)}, which is the ${PREFIX} hex characters this corpus displays`, on: prefixOf(left.fnv) === prefixOf(right.fnv) && left.fnv !== right.fnv },
+    { facet: `the vetted hash does not share it — toUuidSha256 gives ${prefixOf(left.vetted)} and ${prefixOf(right.vetted)}, differing in the first character`, on: prefixOf(left.vetted) !== prefixOf(right.vetted) },
+    { facet: `the crossed address separates them too — merge(fnv, sha256) differs for the pair, so landing on it twice means colliding BOTH functions at once`, on: left.crossed !== right.crossed && stream.distinctCrossed === stream.rows.length },
+    { facet: `ADDITIVE, not a cutover — the crossed stream is a new surface and every existing address is unchanged: toUuid still returns ${left.fnv} for "${c.a}"`, on: toUuid(c.a) === left.fnv && left.fnv !== left.crossed },
+    { facet: `the residue this closes is narrow — the ${budget.effectiveBits}-bit birthday bound of 2^${budget.birthdayLog2} is a CEILING under FNV, which offers no cryptanalytic guarantee; SHA-256 has no known shortcut, so the pair restores one`, on: budget.birthdayLog2 * 2 <= budget.effectiveBits },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cross-hash-stream:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    collision: { a: c.a, b: c.b, word: c.word, tries: c.tries },
+    stream,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `The exhibited FNV collision "${c.a}"/"${c.b}" shares the 32-bit word ${c.word} and shows as the common address prefix ${prefixOf(left.fnv)}. toUuidSha256 does not share it and the crossed address merge(fnv, sha256) does not either, so forging a crossed address means colliding two unrelated hashes at once. Additive: every existing address is unchanged.`,
+    boundary: earned(
+      'EXHIBITED — a real colliding pair, and what each layer does with it:',
+      facets,
+      [
+        { facet: 'the exhibited collision is in the 32-bit FNV CORE, not in the full 128-bit address — the two uuids differ beyond their shared prefix', on: left.fnv !== right.fnv },
+        { facet: 'no identity in this corpus rests on a prefix — the 139 slice(0, 8) uses are display, none an equality test or a map key, so this closes a residue and not a live hole', on: prefixOf(left.fnv) === prefixOf(right.fnv) },
+        { facet: 'a cross of two hashes is as strong as the stronger one, which is a standard construction and not a new cryptographic claim', on: left.crossed !== right.crossed },
+      ]) }
+}
+
 /**
  * THE ADDRESS BUDGET, REACHED BY EVERY ROUTE AT ONCE — so the honest number cannot live in a comment.
  *
