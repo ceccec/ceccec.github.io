@@ -297,6 +297,103 @@ export function findCanonBreaks(root: string = process.cwd()): {
  *      how the first condition gets quietly satisfied and then quietly bypassed.
  * Floor 0. A new gate is enforced the moment it is chained, which is the only moment it can be.
  */
+/** A FACET THAT NAMES ONE PREDICATE AND GATES ON ANOTHER.
+ *
+ * Measured 2026-09-26 in src/heaven/core: a facet read `Symmetry holds: plaintext and recovered are
+ * identical`, its text interpolated `match=${symmetryHolds}`, and its `on` was `fullyReversible` — a
+ * property of foldPair, not a statement about the plaintext. symmetryHolds was FALSE. The facet was green,
+ * its own sentence was false, and no gate could see it: the claim is checkable, refutable and carries an
+ * `on`, so every existing canon rule passes it. What is wrong is the JOIN — the sentence is about one
+ * predicate and the verdict comes from a different one.
+ *
+ * The rule is exact rather than heuristic: flag a facet whose TEXT interpolates an identifier that resolves
+ * to a predicate — a const whose initialiser is a comparison or a logical expression — when that identifier
+ * appears nowhere in the facet's own `on`. A count or a name interpolated for display is not a predicate and
+ * is not flagged; only a boolean the sentence quotes and the verdict ignores.
+ */
+export function findFacetGatesElsewhere(root: string = process.cwd()): Site[] {
+  const ts = require('typescript') as typeof import('typescript')
+  const out: Site[] = []
+  for (const file of corpusFiles(root)) {
+    const sf = file.ast()
+    const at = (n: import('typescript').Node) => sf.getLineAndCharacterOfPosition(n.getStart(sf)).line + 1
+    // Predicates: a const bound to a comparison or a logical combination — the shape of a claim.
+    const predicates = new Set<string>()
+    const initIds = new Map<string, Set<string>>()
+    const namesIn = (n: import('typescript').Node): Set<string> => {
+      const found = new Set<string>()
+      const walk = (x: import('typescript').Node): void => {
+        if (ts.isIdentifier(x)) found.add(x.text)
+        ts.forEachChild(x, walk)
+      }
+      walk(n)
+      return found
+    }
+    const collect = (n: import('typescript').Node): void => {
+      if (ts.isVariableDeclaration(n) && n.name && ts.isIdentifier(n.name) && n.initializer) {
+        const init = n.initializer
+        const isComparison = ts.isBinaryExpression(init) && [
+          ts.SyntaxKind.EqualsEqualsEqualsToken, ts.SyntaxKind.ExclamationEqualsEqualsToken,
+          ts.SyntaxKind.LessThanToken, ts.SyntaxKind.GreaterThanToken,
+          ts.SyntaxKind.LessThanEqualsToken, ts.SyntaxKind.GreaterThanEqualsToken,
+          ts.SyntaxKind.AmpersandAmpersandToken, ts.SyntaxKind.BarBarToken,
+        ].includes(init.operatorToken.kind)
+        const isNegation = ts.isPrefixUnaryExpression(init) && init.operator === ts.SyntaxKind.ExclamationToken
+        const isTernaryBool = ts.isConditionalExpression(init)
+          && init.whenTrue.kind === ts.SyntaxKind.TrueKeyword && init.whenFalse.kind === ts.SyntaxKind.FalseKeyword
+        if (isComparison || isNegation || isTernaryBool) predicates.add(n.name.text)
+        // WHAT A GATE VARIABLE STANDS FOR. `on: reinventsInverse` where
+        // `reinventsInverse = scaleRoundTrips && baseRoundTrips` DOES gate on the predicates its sentence
+        // names — one indirection away. Without this the rule reported 154 sites and the first three
+        // checked by hand were all this shape, so the count was the instrument talking about itself.
+        // Initialisers are unioned rather than overwritten: a name declared twice contributes both, which
+        // errs toward calling a gate sufficient rather than inventing a defect.
+        if (ts.isIdentifier(n.name)) {
+          const prior = initIds.get(n.name.text) ?? new Set<string>()
+          for (const id of namesIn(n.initializer)) prior.add(id)
+          initIds.set(n.name.text, prior)
+        }
+      }
+      ts.forEachChild(n, collect)
+    }
+    collect(sf)
+    if (predicates.size === 0) continue
+    // Every facet object literal: the identifiers its STRINGS interpolate against the ones its `on` reaches.
+    const expand = (ids: Set<string>): Set<string> => {
+      const seen = new Set(ids)
+      const queue = [...ids]
+      while (queue.length > 0) {
+        const name = queue.pop() as string
+        for (const id of initIds.get(name) ?? []) if (!seen.has(id)) { seen.add(id); queue.push(id) }
+      }
+      return seen
+    }
+    const visit = (n: import('typescript').Node): void => {
+      if (ts.isObjectLiteralExpression(n)) {
+        const props = n.properties.filter(ts.isPropertyAssignment)
+        const facet = props.find((p) => p.name.getText(sf) === 'facet')
+        const on = props.find((p) => p.name.getText(sf) === 'on')
+        if (facet && on) {
+          // the sentence, plus any sibling string the facet carries with it (result, detail, says)
+          const text = props.filter((p) => ['facet', 'result', 'detail', 'says'].includes(p.name.getText(sf)))
+          const quoted = new Set<string>()
+          for (const t of text) for (const id of namesIn(t.initializer)) if (predicates.has(id)) quoted.add(id)
+          const gated = expand(namesIn(on.initializer))
+          const ignored = [...quoted].filter((id) => !gated.has(id))
+          if (ignored.length > 0) {
+            const gate = on.initializer.getText(sf).replace(/\s+/g, ' ').slice(0, 52)
+            const says = facet.initializer.getText(sf).replace(/\s+/g, ' ').slice(1, 74)
+            out.push({ file: file.rel, line: at(facet), text: `${says} — NAMES ${ignored.join(', ')} but GATES ON ${gate}` })
+          }
+        }
+      }
+      ts.forEachChild(n, visit)
+    }
+    visit(sf)
+  }
+  return out
+}
+
 export function findUnreachableGates(root: string = process.cwd()): string[] {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts: Record<string, string> }
   const chain = new Set(pkg.scripts['verify:all']!.split('&&').map((x) => x.trim().replace(/^npm run /, '')))
@@ -509,6 +606,9 @@ export function assertCanonicalForms(): void {
   const unreachable = findUnreachableGates()
     console.log(`  ${unreachable.length}  a gate nothing on the commit path can run — written, chained nowhere, green by never being asked`)
     for (const u of unreachable.slice(0, 4)) console.log(`      ${u}`)
-    console.log(ratchet('canon.gate-unreachable', unreachable.length, { evidence: () => unreachable }))
+    const gatesElsewhere = findFacetGatesElsewhere()
+  for (const g of gatesElsewhere.slice(0, 8)) console.log(`    ${g.file}:${g.line}  ${g.text}`)
+  console.log(ratchet('canon.facet-gates-elsewhere', gatesElsewhere.length, { evidence: () => gatesElsewhere.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
+  console.log(ratchet('canon.gate-unreachable', unreachable.length, { evidence: () => unreachable }))
   })
 }

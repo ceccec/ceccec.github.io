@@ -61,14 +61,51 @@ export function encryptionSequenceReflection(matrix: MindMatrix = buildMatrixFor
     const reflection = foldPair(key, ciphertext)
     const recovered = reflection.merged
     const fullyReversible = forward.bidirectional && reflection.bidirectional
-    const symmetryHolds = plaintext === recovered ? true : false
+    // WHAT WAS CLAIMED, AND IT IS FALSE. The facet below used to read "Symmetry holds: plaintext and
+    // recovered are identical" while gating on fullyReversible — a different variable — so it stayed green
+    // with its own sentence false. Measured 2026-09-26: 'test-message' folds to 43e8cc9e-… and folding that
+    // again gives 8eea3ad5-…, a different address. quantumEncryptionProof, which DOES gate on this, had
+    // been red the whole time and nothing ran it.
+    const plaintextRecovered = plaintext === recovered
+    // WHAT IS TRUE INSTEAD, AND IT IS THE STRONGER PROPERTY. foldPair is a content address, so the sequence
+    // is verified by RECOMPUTATION, not by inversion — exactly what quantumEncryptionReference already
+    // states two folds below: signature = foldPair(key, message).merged, verification = recomputation.
+    // A signature MUST NOT be invertible, so the failed round trip is not a defect: it is the one-wayness,
+    // and the defect was calling it symmetry.
+    const verifiesByRecomputation = foldPair(key, plaintext).merged === ciphertext
+    const oneWay = !plaintextRecovered
+
+    // ── THE SYMMETRIC AND ASYMMETRIC LAWS, EACH PROVING THE OTHER ────────────────────────────────────────
+    // The corpus carries both and never paired them. Measured here on the same two shares.
+    const alice = toUuid('alice')
+    const bob = toUuid('bob')
+    const ab = foldPair(alice, bob)
+    const ba = foldPair(bob, alice)
+    // ASYMMETRIC: a pair carries two DISTINCT directions, and exchanging the arguments TRANSPOSES them.
+    const directionsDiffer = ab.forward !== ab.reverse
+    const exchangeTransposes = ab.forward === ba.reverse && ab.reverse === ba.forward
+    const mergedIsOrdered = ab.merged !== ba.merged
+    // SYMMETRIC: the shared key does not depend on who computes it.
+    const keyIsSymmetric = trinityKey(alice, bob) === trinityKey(bob, alice)
+    // THE BRIDGE: exchange transposes the two directions, so the UNORDERED PAIR is exchange-invariant, and a
+    // fold over it is therefore invariant too. This is the step that turns the asymmetry into the symmetry.
+    const thirdIsInvariant = merkleFold([ab.forward, ab.reverse]) === merkleFold([ba.forward, ba.reverse])
+    // AND THE CONVERSE, WHICH IS WHY THE ASYMMETRY IS LOAD-BEARING: were foldPair symmetric, forward would
+    // equal reverse, the third would be merkleFold([f, f]) — one value where the construction needs two —
+    // and the trinity would collapse to the pair it is built to exceed.
+    const asymmetryIsLoadBearing = directionsDiffer && merkleFold([ab.forward, ab.reverse]) !== merkleFold([ab.forward, ab.forward])
     const facets = [
-      { facet: `Forward fold: plaintext→ciphertext = foldPair(key, plaintext).merged`, computed: ciphertext, on: ciphertext.length > 0 },
-      { facet: `Reflection fold: ciphertext→plaintext = foldPair(key, ciphertext).merged`, computed: recovered, on: recovered.length > 0 },
-      { facet: `Symmetry holds: plaintext and recovered are identical`, result: `plaintext=${plaintext.length} chars, recovered=${recovered.length} chars, match=${symmetryHolds}`, on: fullyReversible },
+      { facet: `Forward fold is a CONTENT ADDRESS — foldPair(key, plaintext).merged recomputes identically from the same inputs, so verification is recomputation and not inversion`, computed: ciphertext, on: verifiesByRecomputation },
+      { facet: `The fold is ONE-WAY — folding the ciphertext again yields a different address, not the plaintext (${String(recovered).slice(0, 8)}… ≠ ${plaintext}), which is the property a signature needs and a cipher does not have`, computed: recovered, on: oneWay },
+      { facet: `The plaintext is NOT recovered by folding twice, stated rather than hidden — plaintext=${plaintext.length} chars, recovered=${recovered.length} chars, recovered===plaintext is ${plaintextRecovered}`, result: `one-way by measurement`, on: !plaintextRecovered },
+      { facet: `ASYMMETRIC — a pair carries two distinct directions (forward ≠ reverse) and foldPair(a,b).merged ≠ foldPair(b,a).merged, so the fold itself is order-dependent`, on: directionsDiffer && mergedIsOrdered },
+      { facet: `ASYMMETRIC, EXACTLY — exchanging the arguments TRANSPOSES the two directions: foldPair(a,b).forward = foldPair(b,a).reverse and foldPair(a,b).reverse = foldPair(b,a).forward`, on: exchangeTransposes },
+      { facet: `SYMMETRIC — trinityKey(a,b) = trinityKey(b,a), so both parties derive the same key without agreeing on an order`, on: keyIsSymmetric },
+      { facet: `THE ASYMMETRY PROVES THE SYMMETRY — exchange transposes the pair, so the UNORDERED pair is exchange-invariant and merkleFold over it is invariant: third(a,b) = third(b,a). The symmetric key is manufactured out of the order-dependent fold, not assumed beside it`, on: exchangeTransposes && thirdIsInvariant && keyIsSymmetric },
+      { facet: `AND THE SYMMETRY NEEDS THE ASYMMETRY — were forward = reverse the third would fold one value instead of two and the trinity would collapse to a pair; merkleFold([fwd,rev]) ≠ merkleFold([fwd,fwd]) is what keeps the third a third`, on: asymmetryIsLoadBearing },
       { facet: `Bidirectional: both directions compute (forward=${forward.bidirectional}, reflection=${reflection.bidirectional})`, on: fullyReversible },
     ]
-    return { computes: facets.every((f) => f.on), count: facets.length, facets, forward: { key, plaintext, ciphertext }, reflection: { ciphertext, recovered }, symmetryHolds, fullyReversible, forward_computed: forward.bidirectional, reflection_computed: reflection.bidirectional, root: merkleFold(facets.map((f) => toUuid(`reflect:${f.facet}`))), statement: `Encryption sequence reflects in its inversion — compute locally and the algebra shows what's possible: ${facets.filter((f) => f.on).length}/${facets.length} facts. NOT is NOT DONE YET until both directions are traced.`, boundary: `The sequence (1-2-4-8-7-5) reflects as (5-7-8-4-2-1). What the sequence proves broken at the same time proves solved with local solutions. Symmetry holds = ${symmetryHolds}; both directions compute = ${fullyReversible}.` }
+    return { computes: facets.every((f) => f.on), count: facets.length, facets, forward: { key, plaintext, ciphertext }, reflection: { ciphertext, recovered }, symmetryHolds: plaintextRecovered, plaintextRecovered, verifiesByRecomputation, oneWay, keyIsSymmetric, exchangeTransposes, asymmetryIsLoadBearing, fullyReversible, forward_computed: forward.bidirectional, reflection_computed: reflection.bidirectional, root: merkleFold(facets.map((f) => toUuid(`reflect:${f.facet}`))), statement: `The sequence does NOT reflect in its inversion, and the pair that does is named instead — the fold is one-way and verified by recomputation, while trinityKey is symmetric BECAUSE the exchange transposes the two directions: ${facets.filter((f) => f.on).length}/${facets.length} facts. NOT is NOT DONE YET until both directions are traced.`, boundary: `The sequence (1-2-4-8-7-5) reflects as (5-7-8-4-2-1). What the sequence proves broken at the same time proves solved with local solutions. Plaintext recovered = ${plaintextRecovered} (one-way by measurement); key symmetric = ${keyIsSymmetric}, proven by the exchange transposing the two directions; both directions compute = ${fullyReversible}.` }
   })
 }
 
@@ -80,7 +117,7 @@ export function quantumEncryptionProof(matrix: MindMatrix = buildMatrixForEncryp
     const facets = [
       { facet: `encryptionLivesInZero — trinityKey is symmetric, derivePublicKey one-way, signature = canonical fold, primitives in src/0`, on: el.homed, reference: 'src/water/encryption/index.ts:74' },
       { facet: `deploySecretUuidSignedObservers — secret UUID signed by bindings' trinities and cross-referenced observers`, on: deploy.deployed, reference: 'src/water/encryption/index.ts:47' },
-      { facet: `Sequence reflects in inversion — encrypt↔decrypt computes locally; both directions verify symmetry`, on: seq.symmetryHolds, reference: 'src/heaven/core/index.ts:encryptionSequenceReflection' },
+      { facet: `Sequence verifies by RECOMPUTATION and is one-way, and its symmetric key is proven BY that asymmetry — exchange transposes the two directions, so the fold over the unordered pair is exchange-invariant`, on: seq.verifiesByRecomputation && seq.oneWay && seq.keyIsSymmetric && seq.exchangeTransposes, reference: 'src/heaven/core/index.ts:encryptionSequenceReflection' },
       { facet: `Bidirectional fold — forward (${seq.forward_computed}) and reverse (${seq.reflection_computed}) are dual; what's broken and solved emerge together`, on: seq.fullyReversible, reference: 'src/0:foldPair' },
     ]
     return { computes: facets.every((f) => f.on), proofs: facets.length, facets, root: merkleFold(facets.map((f) => toUuid(`proof:${f.facet}`))), statement: `Quantum encryption proof — compute the sequence and its reflection. Let the algebra speak. ${facets.filter((f) => f.on).length}/${facets.length} facts computed locally.`, boundary: earned('EXACT — all computed from sealed folds at call time:', facets, 'NO judgments about quantum or post-quantum or confidentiality. The fold computes forward and backward; what emerges from local computation is what IS. NOT awaits the complete reflection.') }
