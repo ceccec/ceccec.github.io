@@ -82,6 +82,24 @@ async function loadHomes(root: string): Promise<Record<string, Record<string, un
 export async function deriveProofWitnesses(root: string = process.cwd()): Promise<Record<string, ProofWitness>> {
   const hand = new Set(THEOREM_WITNESS_NAMES)
   const homes = await loadHomes(root)
+/** clockLike — A WITNESS GATED ON EQUALITY MUST NOT HARVEST A CLOCK.
+ *
+ * challengeQuantumSpeedupWithLiveData returns Date.now() as its live input, by design: the theorem is that
+ * feeding a fresh live number to the local fold yields no speedup. The harvester took it as a quantity,
+ * toPrecision(6) rounded it into a ~2.78-hour bucket, and the committed witness then drifted on the CLOCK:
+ * measured 2026-09-25, 1790360000000 → 1790370000000 with no code change, one field of one witness, and a
+ * landing refused for it. The two independent derivations could not catch it because both ran inside the
+ * same bucket and agreed — a nondeterminism check that samples twice in three hours cannot see a three-hour
+ * period.
+ *
+ * So the filter is on the VALUE, not on the agreement: a number within a year of now is a clock reading,
+ * and no theorem's substance is a clock reading. The invariant quantity this theorem actually claims is
+ * liveBits = floor(log2(liveInstant)) + 1 = 41, which does not move for the next few centuries.
+ * Refutable: a fold that returns a timestamp among its numbers now yields no witness rather than a witness
+ * that expires. */
+const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000
+const clockLike = (x: number): boolean => Math.abs(x - Date.now()) < ONE_YEAR_MS
+
   const runs: { theorem: string; provedBy: string; candidates: Candidate[] }[] = []
   const seen = new Map<string, number>()
   for (const row of THEOREM_ATOM_SEED) {
@@ -91,7 +109,14 @@ export async function deriveProofWitnesses(root: string = process.cwd()): Promis
     let out: unknown
     try { out = (prove as () => unknown)(); if (out instanceof Promise) out = await out } catch { continue }
     if (!verdictOf(out)) continue
-    const candidates = candidatesOf(out).filter((c) => new Set(c.data).size > 1)
+    // The clock reading is DROPPED from the series, not used to reject it: the same fold computes seven
+    // quantities that do not move (liveBits, classicalSearchBits, shorLogicalQubits, slowerByBits …), and
+    // throwing those away with the timestamp cost the theorem its witness and pushed it back onto a drawn
+    // template — movie.theorems-drawn-from-a-template 539 → 540, which is how the first attempt announced
+    // that it had removed more than the defect.
+    const candidates = candidatesOf(out)
+      .map((c) => ({ ...c, data: c.data.filter((x) => !clockLike(x)) }))
+      .filter((c) => new Set(c.data).size > 1)
     runs.push({ theorem: row.theorem, provedBy: row.provedBy, candidates })
     for (const s of new Set(candidates.map((c) => signature(c.data)))) seen.set(s, (seen.get(s) ?? 0) + 1)
   }

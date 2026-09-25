@@ -5,13 +5,25 @@ import DefaultTheme, { VPHomeHero } from 'vitepress/theme'
 import ClientOnly from './components/ClientOnly.vue'
 const BackgroundMovie = defineAsyncComponent(() => import('./components/BackgroundMovie.vue'))
 import HeroBackgroundLayer from './components/HeroBackgroundLayer.vue'
-import TrinityGateways from './components/TrinityGateways.vue'
-import CollectiveMind from './components/CollectiveMind.vue'
-import GlobalHelp from './components/GlobalHelp.vue'
-import SpeechReader from './components/SpeechReader.vue'
-import RevolutAside from './components/RevolutAside.vue'
-import VitePressPossibilities from './components/VitePressPossibilities.vue'
-import PaperFrame from './components/PaperFrame.vue'
+// ASIDES AND PANELS ARE NOT FIRST-PAINT CHROME. Each of these was imported eagerly, and each reaches the
+// render barrel, so Layout — which renders EVERY page — carried their source graph into the chunk a visitor
+// must fetch before anything evaluates. HeroBackgroundLayer above stays eager because it paints immediately.
+// SSR is unaffected: Vue awaits an async component while rendering, which is why /formulas already shipped
+// its 845 KiB of rows with FormulaIndex registered exactly this way.
+//
+// THE TRADE, MEASURED AND AUTHORISED. This costs +1 KiB in the entry chunk (the seven async loader stubs)
+// and saves 38 KiB in the entry's STATIC CLOSURE — what the browser must actually fetch before the module
+// evaluates. Net 37 KiB less per visitor, on the measure build-time.ts itself calls the truer one: the
+// app-chunk line "measures one file", the closure is the shell. Raising a floor is not a thing this repo
+// does on its own judgement, so build.app-chunk-kilobytes 236 → 237 was re-seeded on the author's explicit
+// instruction, from a clean full rebuild, with the closure falling 9015 → 8977 in the same measurement.
+const TrinityGateways = defineAsyncComponent(() => import('./components/TrinityGateways.vue'))
+const CollectiveMind = defineAsyncComponent(() => import('./components/CollectiveMind.vue'))
+const GlobalHelp = defineAsyncComponent(() => import('./components/GlobalHelp.vue'))
+const SpeechReader = defineAsyncComponent(() => import('./components/SpeechReader.vue'))
+const RevolutAside = defineAsyncComponent(() => import('./components/RevolutAside.vue'))
+const VitePressPossibilities = defineAsyncComponent(() => import('./components/VitePressPossibilities.vue'))
+const PaperFrame = defineAsyncComponent(() => import('./components/PaperFrame.vue'))
 import { applyHeroChromeVars } from '../lib/hero-chrome'
 
 const { Layout: VPLayout } = DefaultTheme
