@@ -42,7 +42,7 @@
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { ratchet } from './status.ts'
 
 /** What the build actually produced: the deterministic cause of its duration. */
@@ -64,13 +64,44 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
   if (existsSync(dist)) walk(dist)
   // The entry chunk every visitor loads, whatever page they land on: assets/app.<hash>.js.
   let appChunkKb = 0
+  let entryClosureKb = 0
+  let entryClosureFiles = 0
   const assets = join(dist, 'assets')
   if (existsSync(assets)) {
+    let entry = ''
     for (const e of readdirSync(assets)) {
-      if (/^app\.[A-Za-z0-9_-]+\.js$/.test(e)) appChunkKb = Math.round(statSync(join(assets, e)).size / 1024)
+      if (/^app\.[A-Za-z0-9_-]+\.js$/.test(e)) { entry = join(assets, e); appChunkKb = Math.round(statSync(entry).size / 1024) }
+    }
+    // WHAT A VISITOR ACTUALLY FETCHES BEFORE THE APP RUNS.
+    //
+    // appChunkKb above is app.<hash>.js and nothing else — its own bytes. But that file STATICALLY
+    // imports other chunks, and a static import is not optional: the browser must have every one of
+    // them before the module evaluates. Measured on this tree the entry file is 484 KiB and its static
+    // closure is 9.00 MiB across ten files, 19x larger, because one of them (the corpus graph pulled
+    // through the render barrel) is 7.94 MiB on its own. The ratchet guarding "the shell every visitor
+    // loads" was reading one nineteenth of the shell.
+    //
+    // Dynamic import() is deliberately NOT followed: it is the split working, and counting it would
+    // punish the very thing that fixes this.
+    if (entry) {
+      const seen = new Set<string>()
+      const queue = [entry]
+      while (queue.length > 0) {
+        const file = queue.pop()!
+        if (seen.has(file) || !existsSync(file)) continue
+        seen.add(file)
+        entryClosureKb += statSync(file).size
+        const text = readFileSync(file, 'utf8')
+        const specs = new Set<string>()
+        for (const m of text.matchAll(/(?<!\.)\b(?:import|export)\b[^;()]*?from\s*["']([^"']+)["']/g)) specs.add(m[1]!)
+        for (const m of text.matchAll(/^\s*import\s*["']([^"']+)["']/gm)) specs.add(m[1]!)
+        for (const spec of specs) if (spec.startsWith('.')) queue.push(join(dirname(file), spec))
+      }
+      entryClosureFiles = seen.size
+      entryClosureKb = Math.round(entryClosureKb / 1024)
     }
   }
-  return { pages, kilobytes: Math.round(bytes / 1024), appChunkKb }
+  return { pages, kilobytes: Math.round(bytes / 1024), appChunkKb, entryClosureKb, entryClosureFiles }
 }
 
 export type BuildTiming = {
@@ -115,4 +146,7 @@ export function assertBuildIsNotSlower(root: string = process.cwd()): void {
   }
   console.log(`  app entry chunk ${w.appChunkKb} KiB — the shell every visitor loads; this is what may not regress`)
   console.log(ratchet('build.app-chunk-kilobytes', w.appChunkKb, { root, evidence: () => [`app entry chunk ${w.appChunkKb} KiB in ${root}/.vitepress/dist/assets (app.*.js) — the shell every visitor loads, across ${w.pages} page(s) totalling ${w.kilobytes} KiB`] }))
+  console.log(`  entry STATIC CLOSURE ${w.entryClosureKb} KiB across ${w.entryClosureFiles} files — the app chunk PLUS every chunk it statically imports, which the browser must fetch before the module evaluates`)
+  console.log(`  the gap is ${Math.round(w.entryClosureKb / Math.max(1, w.appChunkKb))}x: the line above this one measures one file, and a static import is not optional`)
+  console.log(ratchet('build.entry-closure-kilobytes', w.entryClosureKb, { root, evidence: () => [`entry static closure ${w.entryClosureKb} KiB across ${w.entryClosureFiles} files from app.*.js`] }))
 }

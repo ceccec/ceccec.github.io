@@ -3,6 +3,7 @@
   "axiom-index.unresearched": 2,
   "bagua.parallel-tables": 7,
   "build.app-chunk-kilobytes": 484,
+  "build.entry-closure-kilobytes": 9224,
   "canon.decorative-conjunct": 0,
   "canon.element-blind-predicate": 0,
   "canon.empty-as-const-read": 0,

@@ -7,7 +7,7 @@ import { animatedHeroes, heroSvgFromUuid, holographic, oneHolographicTemplate, s
 import { floor, foldPair, isUuid, memoByRoot, merge, merkleFold, min, referralAddress, round, sealFacets, toUuid } from '../../0/index.ts'
 import { commandsRegistry, executeConceptCommand } from '../../thunder/commands/index.ts'
 import { allComputed, allComputedNoFiles, allComputedQuantumMathAnalog } from '../../wind/fusion/index.ts'
-import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, theoremPageRows } from '../../wind/routes/corpus/index.ts'
+import { everyPageGraphOfGraphsFractal, heroPreviewForRoute, monographs, ogBuildsNavigation, rosettaComputesNavigationAndContent, formulaRows, theoremPageRows } from '../../wind/routes/corpus/index.ts'
 import { TAU, CANONICAL_HOST, A432_FOLDED, FOLDED_CENSUS, ROSETTA_RAY_HUBS, UNFOLDED_CENSUS, earned } from '../../3/7/index.ts'
 import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture/index.ts'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement/index.ts'
@@ -880,6 +880,29 @@ export function jsonLdTemplate(page: JsonLdPageIdentity, matrix: MindMatrix = bu
         '@type': 'ListItem',
         position: position + 1,
         item: { '@type': 'ScholarlyArticle', name: row.theorem, headline: row.theorem, isAccessibleForFree: true, url: canonicalUrl('/theorems') } })) })
+  }
+  // The formula collection carries its identities as a DefinedTermSet — schema.org's own type for a set
+  // of defined terms, which is what 434 named identities are. It matters more here than elsewhere: the
+  // glyph census measured 11 of 15 glyphs used both applied and standing alone, so a machine reading a
+  // formula has only the glyph and no way to tell Ramanujan's tau from the divisor count. A DefinedTerm
+  // carries inDefinedTermSet and termCode, so the identity arrives with its wing and its source attached
+  // rather than as a bare string. Capped at the same 64 the theorem list uses; numberOfItems states all.
+  if (bareRoute === '/formulas') {
+    const rows = formulaRows(matrix)
+    const cap = 8 * 8
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'DefinedTermSet',
+      name: `${rows.length} algebraic identities from the theorem registry`,
+      url: canonicalUrl('/formulas'),
+      numberOfItems: rows.length,
+      hasDefinedTerm: rows.slice(0, cap).map((row) => ({
+        '@type': 'DefinedTerm',
+        name: row.formula,
+        termCode: row.slug,
+        inDefinedTermSet: canonicalUrl('/formulas'),
+        description: `${row.source} identity of “${row.theorem}” (${row.home})`,
+        url: canonicalUrl(`/theorems/${row.theoremSlug}`) })) })
   }
   // Learn portal (canonical /learn; academy/school are aliases) carries Course ItemList — not stale academy.md alone.
   const isLearnPortal =
