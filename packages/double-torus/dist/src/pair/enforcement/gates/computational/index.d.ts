@@ -666,4 +666,3 @@ export interface TheoremComputeAudit {
     computes: boolean;
 }
 export declare function auditTheoremsComputeWirelessly(root: string, theoremFiles: string[]): TheoremComputeAudit;
-export declare function theoremComputeGateMessage(audit: TheoremComputeAudit): string;

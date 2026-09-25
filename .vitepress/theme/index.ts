@@ -13,18 +13,20 @@ import './hero-glass.css'
 import './universal-page.css'
 import './computed-typography.css'
 // One VitePress component set — register from the shared barrel only.
-import {
-  ClientOnly,
-  UniversalPageTemplate,
-  ModelCardPages,
-  LeanTheoremIndex,
-  LeanTheoremPages,
-  TheoremPages,
-  DomainProofPages,
-  TheoremIndex,
-  SourceAtlas,
-  ThreeClosure,
-} from './components/index.ts'
+// NOT FROM THE BARREL — see the note in lib/register-components.ts. One static name out of
+// components/index.ts carries all 33 components, and nine of them import the render barrel, which is
+// how 8141 KiB of corpus reached the chunk every visitor loads first. ClientOnly stays eager: it is a
+// wrapper with no render-barrel import, and the page shells need it before they resolve.
+import ClientOnly from './components/ClientOnly.vue'
+const UniversalPageTemplate = defineAsyncComponent(() => import('./components/UniversalPageTemplate.vue'))
+const ModelCardPages = defineAsyncComponent(() => import('./components/ModelCardPages.vue'))
+const LeanTheoremIndex = defineAsyncComponent(() => import('./components/LeanTheoremIndex.vue'))
+const LeanTheoremPages = defineAsyncComponent(() => import('./components/LeanTheoremPages.vue'))
+const TheoremPages = defineAsyncComponent(() => import('./components/TheoremPages.vue'))
+const DomainProofPages = defineAsyncComponent(() => import('./components/DomainProofPages.vue'))
+const TheoremIndex = defineAsyncComponent(() => import('./components/TheoremIndex.vue'))
+const SourceAtlas = defineAsyncComponent(() => import('./components/SourceAtlas.vue'))
+const ThreeClosure = defineAsyncComponent(() => import('./components/ThreeClosure.vue'))
 
 export default {
   extends: DefaultTheme,

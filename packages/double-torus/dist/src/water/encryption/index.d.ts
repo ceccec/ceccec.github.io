@@ -1153,7 +1153,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         isoOfficialStandard: false;
         externalDeploymentCount: 0;
         fieldHistory: "none";
-        securityModel: "structural+adversarial+measured-local";
+        securityModel: string;
         reverseMs: number;
         aggregateOpsPerSec: number;
         demoMaxBits: number;
@@ -1812,7 +1812,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             isoOfficialStandard: false;
             externalDeploymentCount: 0;
             fieldHistory: "none";
-            securityModel: "structural+adversarial+measured-local";
+            securityModel: string;
             reverseMs: number;
             aggregateOpsPerSec: number;
             demoMaxBits: number;
@@ -2704,7 +2704,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
         answers: 1;
         runtimeTokens: 0;
         answersPerTokensUnbounded: boolean;
-        physicalQubitSpeedup: 0;
+        physicalQubitSpeedup: number;
         certified: false;
         fipsValidated: false;
         productionReverseRefused: true;
@@ -4365,7 +4365,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
             isoOfficialStandard: false;
             externalDeploymentCount: 0;
             fieldHistory: "none";
-            securityModel: "structural+adversarial+measured-local";
+            securityModel: string;
             reverseMs: number;
             aggregateOpsPerSec: number;
             demoMaxBits: number;
@@ -5305,7 +5305,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                 isoOfficialStandard: false;
                 externalDeploymentCount: 0;
                 fieldHistory: "none";
-                securityModel: "structural+adversarial+measured-local";
+                securityModel: string;
                 reverseMs: number;
                 aggregateOpsPerSec: number;
                 demoMaxBits: number;
@@ -8037,7 +8037,7 @@ export declare function runEncryptionToolInBrowser(modulus?: number | null, matr
         isoOfficialStandard: false;
         externalDeploymentCount: 0;
         fieldHistory: "none";
-        securityModel: "structural+adversarial+measured-local";
+        securityModel: string;
         reverseMs: number;
         aggregateOpsPerSec: number;
         demoMaxBits: number;
@@ -9018,7 +9018,7 @@ export declare function proveLocalNovelEncryptionSecurity(matrix?: MindMatrix): 
     isoOfficialStandard: false;
     externalDeploymentCount: 0;
     fieldHistory: "none";
-    securityModel: "structural+adversarial+measured-local";
+    securityModel: string;
     reverseMs: number;
     aggregateOpsPerSec: number;
     demoMaxBits: number;
@@ -9497,7 +9497,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
         isoOfficialStandard: false;
         externalDeploymentCount: 0;
         fieldHistory: "none";
-        securityModel: "structural+adversarial+measured-local";
+        securityModel: string;
         reverseMs: number;
         aggregateOpsPerSec: number;
         demoMaxBits: number;
@@ -11011,7 +11011,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
         isoOfficialStandard: false;
         externalDeploymentCount: 0;
         fieldHistory: "none";
-        securityModel: "structural+adversarial+measured-local";
+        securityModel: string;
         reverseMs: number;
         aggregateOpsPerSec: number;
         demoMaxBits: number;
@@ -11903,7 +11903,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
     answers: 1;
     runtimeTokens: 0;
     answersPerTokensUnbounded: boolean;
-    physicalQubitSpeedup: 0;
+    physicalQubitSpeedup: number;
     certified: false;
     fipsValidated: false;
     productionReverseRefused: true;
@@ -13796,7 +13796,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
         isoOfficialStandard: false;
         externalDeploymentCount: 0;
         fieldHistory: "none";
-        securityModel: "structural+adversarial+measured-local";
+        securityModel: string;
         reverseMs: number;
         aggregateOpsPerSec: number;
         demoMaxBits: number;
@@ -14736,7 +14736,7 @@ export declare function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirectio
             isoOfficialStandard: false;
             externalDeploymentCount: 0;
             fieldHistory: "none";
-            securityModel: "structural+adversarial+measured-local";
+            securityModel: string;
             reverseMs: number;
             aggregateOpsPerSec: number;
             demoMaxBits: number;
@@ -15755,7 +15755,7 @@ export declare function isoPqcRequirementsGapFillAllQuantumDirections(matrix?: M
         isoOfficialStandard: false;
         externalDeploymentCount: 0;
         fieldHistory: "none";
-        securityModel: "structural+adversarial+measured-local";
+        securityModel: string;
         reverseMs: number;
         aggregateOpsPerSec: number;
         demoMaxBits: number;

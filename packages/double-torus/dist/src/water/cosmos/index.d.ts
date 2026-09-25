@@ -1070,6 +1070,12 @@ export declare function stringTheoryMillenniumTheoremGapsInventory(matrix?: Mind
         gap: string;
         mapsTo: string;
     }[];
+    closedGaps: readonly {
+        id: string;
+        was: string;
+        closedBy: string;
+        numbers: string;
+    }[];
     algebraDecoded: boolean;
     count: number;
     facets: ({
@@ -1161,7 +1167,7 @@ export declare function stringTheoryInChat(matrix?: MindMatrix, at?: number): {
     superstringD: number;
     bosonicD: number;
     theoremGaps: number;
-    honestOpenNamed: ("residual:string-physics-unconfirmed" | "honesty:no-clay-prize-claim" | "honesty:no-nobel-claim" | "honesty:chat-recompute-not-LLM-physics-essay" | "residual:ads-cft-correlators-unsealed" | "residual:cy-hodge-numbers-unsealed")[];
+    honestOpenNamed: ("residual:string-physics-unconfirmed" | "honesty:no-clay-prize-claim" | "honesty:no-nobel-claim" | "honesty:chat-recompute-not-LLM-physics-essay" | "residual:ads-cft-correlators-unsealed" | "sealed:cy-hodge-numbers — quintic h^{1,1}=1 h^{2,1}=101 chi=-200, counted in calabiYauHodgeNumbersOfTheQuinticCounted")[];
     qpuRequired: false;
     certified: false;
     facets: ({

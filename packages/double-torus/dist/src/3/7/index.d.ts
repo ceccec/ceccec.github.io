@@ -399,6 +399,27 @@ export declare const PHYSICAL_FTL_DENIAL_MARKERS: readonly ["not physical", "no 
 export declare function physicalFtlByFormulas(statement: string, formulas?: readonly string[]): number;
 /** The overclaim axes — each is (terms it NAMES, markers that ASSERT the claim, markers that DENY/OPEN it). Adding an
  *  axis (a future "unbreakable encryption" claim, say) extends every consumer for free — one primitive, m axes compose. */
+/** Artificial general intelligence — a fold "claims AGI" only by asserting it HAS one, never by naming it. */
+export declare const AGI_TERMS: readonly ["artificial general intelligence", "agi", "general intelligence", "superintelligence", "sentient", "conscious machine", "self-aware system"];
+/** Language asserting the corpus HAS achieved general intelligence (strict). */
+export declare const AGI_CLAIM_MARKERS: readonly ["achieves artificial general intelligence", "is an agi", "we have built an agi", "achieves agi", "is generally intelligent", "is sentient", "is self-aware", "attains superintelligence"];
+/** Language DENYING it — its presence refutes a co-located claim (honest folds carry these). */
+export declare const AGI_DENIAL_MARKERS: readonly ["not agi", "no agi", "not artificial general intelligence", "not sentient", "not conscious", "not self-aware", "deterministic", "no learned model", "not an llm", "sealed corpus", "harmony ≠ truth", "agi is not claimed", "not general intelligence"];
+/** Dark-matter particle IDENTITY — naming a candidate is physics; asserting the corpus HAS identified it is the claim. */
+export declare const DM_IDENTITY_TERMS: readonly ["wimp", "axion", "sterile neutrino", "dark matter particle", "dark-matter particle", "neutralino", "dark photon"];
+/** Language asserting the identity is SETTLED. */
+export declare const DM_IDENTITY_CLAIM_MARKERS: readonly ["dark matter is a", "dark matter is the", "identifies dark matter as", "dark matter has been detected", "we have identified the dark matter", "the dark matter particle is", "dark matter is identified"];
+/**
+ * Language DENYING it. THESE MUST NOT OVERLAP WITH ORDINARY DESCRIPTION, and the first draft did:
+ * it listed 'null to date', 'open frontier' and 'refusebeyond' — all of which the honest CMB fold
+ * says in its own statement. The deny branch is a BLANKET VETO (overclaimByFormulas returns 0 the
+ * moment any marker matches), so the scan returned 0 for every input including a planted claim:
+ * a detector disabled by the very text it was pointed at. The first perturb test missed it because
+ * the planted string was synthetic; perturbing the fold's REAL statement is what caught it.
+ * A denial marker is a phrase somebody writes ONLY to disavow the claim — never a phrase that
+ * appears while merely describing the evidence.
+ */
+export declare const DM_IDENTITY_DENIAL_MARKERS: readonly ["not a dark matter particle claim", "no dark-matter particle is identified", "dark matter identity remains open", "this fold claims no particle identity"];
 export declare const OVERCLAIM_AXES: {
     readonly clay: {
         readonly terms: readonly ["p versus np", "p vs np", "p = np", "p ≠ np", "p != np", "riemann hypothesis", "yang–mills", "yang-mills", "mass gap", "navier–stokes", "navier-stokes", "hodge conjecture", "birch and swinnerton-dyer", "swinnerton–dyer", "swinnerton-dyer", "poincaré conjecture", "poincare conjecture"];
@@ -409,6 +430,16 @@ export declare const OVERCLAIM_AXES: {
         readonly terms: readonly ["faster than light", "faster-than-light", "superluminal", "warp drive", "exceed the speed of light", "exceeds the speed of light", "signal faster than c", "instantaneous signaling", "break the light barrier"];
         readonly claim: readonly ["achieves faster-than-light", "achieves superluminal", "enables superluminal signaling", "transmits faster than light", "sends a signal faster than light", "surpasses the speed of light physically", "real superluminal transmission"];
         readonly deny: readonly ["not physical", "no ftl", "not faster than light", "not superluminal", "no superluminal", "no signaling", "does not exceed", "sub-light", "physicalftl=0", "physicalftlclaim=0", "metaphor", "structural", "amortized", "no physical speedup", "no speedup", "harmony ≠ truth", "not a physical", "no faster-than-light"];
+    };
+    readonly agi: {
+        readonly terms: readonly ["artificial general intelligence", "agi", "general intelligence", "superintelligence", "sentient", "conscious machine", "self-aware system"];
+        readonly claim: readonly ["achieves artificial general intelligence", "is an agi", "we have built an agi", "achieves agi", "is generally intelligent", "is sentient", "is self-aware", "attains superintelligence"];
+        readonly deny: readonly ["not agi", "no agi", "not artificial general intelligence", "not sentient", "not conscious", "not self-aware", "deterministic", "no learned model", "not an llm", "sealed corpus", "harmony ≠ truth", "agi is not claimed", "not general intelligence"];
+    };
+    readonly dm: {
+        readonly terms: readonly ["wimp", "axion", "sterile neutrino", "dark matter particle", "dark-matter particle", "neutralino", "dark photon"];
+        readonly claim: readonly ["dark matter is a", "dark matter is the", "identifies dark matter as", "dark matter has been detected", "we have identified the dark matter", "the dark matter particle is", "dark matter is identified"];
+        readonly deny: readonly ["not a dark matter particle claim", "no dark-matter particle is identified", "dark matter identity remains open", "this fold claims no particle identity"];
     };
 };
 export type OverclaimAxis = keyof typeof OVERCLAIM_AXES;
@@ -551,6 +582,13 @@ export declare const BLOG_OF_THEOREMS_STEMS: readonly ["theorem", "proof"];
 export declare function theoremScienceVisible(slug: string, keywords: readonly string[]): boolean;
 export declare function titleFromAlgebra(terms: readonly string[], sep?: string): string;
 export declare function titleCarriesAlgebra(title: string): boolean;
+/** authoredStatementCarriesRelation — a CURATED algebraicStatement must assert a relation, not name a subject.
+ * The extractor enforces this on what it reads; nothing enforced it on what a hand wrote, so prose dressed in
+ * ∧ between camelCase words passed as algebra. Refutable: the wide set CONTAINS the narrow one, so anything the
+ * extractor accepts this accepts too — widening can only admit, never reject. */
+export declare function authoredStatementCarriesRelation(statement: string): boolean;
+/** authoredRelationContainsExtraction — the containment itself, computed over the marks the narrow set names. */
+export declare function authoredRelationContainsExtraction(samples: readonly string[]): boolean;
 /** extractAlgebraicStatement — the FREE upgrade of a theorem's identity line (user, 2026-07-27: "let free chat
  * upgrade all"): when a registry row carries no curated algebraicStatement, its `states` text usually CONTAINS
  * the identity verbatim — extract the LEADING algebra-bearing clause, always a SUBSTRING of the proven text,
@@ -598,6 +636,14 @@ export declare function algebraicStatementOf(row: {
     proof?: string;
 }): string | undefined;
 export declare function extractAlgebraicStatement(states: string): string | undefined;
+export declare function extractDefinitionalIdentity(states: string): {
+    term: string;
+    meaning: string;
+    binding: string;
+} | undefined;
+/** assertedOutsideQuotation — the clause with every quoted span removed, so a caller can ask whether a
+ * statement asserts a relation ITSELF or merely reports that someone else wrote one. */
+export declare function assertedOutsideQuotation(clause: string): string;
 export declare function normalizeTitle(title: string): string;
 /** path ⇒ image is a total bijection over the domain (injective; surjective onto its image) — the digit-folder API. */
 export declare function isTotalBijection<T>(domain: readonly T[], fn: (x: T) => unknown): boolean;

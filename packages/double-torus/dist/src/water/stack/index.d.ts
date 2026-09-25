@@ -53148,7 +53148,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
             isoOfficialStandard: false;
             externalDeploymentCount: 0;
             fieldHistory: "none";
-            securityModel: "structural+adversarial+measured-local";
+            securityModel: string;
             reverseMs: number;
             aggregateOpsPerSec: number;
             demoMaxBits: number;
@@ -54040,7 +54040,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
         answers: 1;
         runtimeTokens: 0;
         answersPerTokensUnbounded: boolean;
-        physicalQubitSpeedup: 0;
+        physicalQubitSpeedup: number;
         certified: false;
         fipsValidated: false;
         productionReverseRefused: true;
@@ -56599,7 +56599,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                 isoOfficialStandard: false;
                 externalDeploymentCount: 0;
                 fieldHistory: "none";
-                securityModel: "structural+adversarial+measured-local";
+                securityModel: string;
                 reverseMs: number;
                 aggregateOpsPerSec: number;
                 demoMaxBits: number;
@@ -57491,7 +57491,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
             answers: 1;
             runtimeTokens: 0;
             answersPerTokensUnbounded: boolean;
-            physicalQubitSpeedup: 0;
+            physicalQubitSpeedup: number;
             certified: false;
             fipsValidated: false;
             productionReverseRefused: true;

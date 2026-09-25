@@ -11783,7 +11783,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -11935,7 +11935,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -12051,7 +12051,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -12139,7 +12139,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -12291,7 +12291,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         designSunArcDeg: number;
                         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                         bodyCount: 13;
-                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                         starts: number[];
                         sample: {
                             gate: number;
@@ -12407,7 +12407,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -12597,7 +12597,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         designSunArcDeg: number;
                         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                         bodyCount: 13;
-                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                         starts: number[];
                         sample: {
                             gate: number;
@@ -12749,7 +12749,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                             designSunArcDeg: number;
                             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                             bodyCount: 13;
-                            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                             starts: number[];
                             sample: {
                                 gate: number;
@@ -12865,7 +12865,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                         designSunArcDeg: number;
                         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                         bodyCount: 13;
-                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                         starts: number[];
                         sample: {
                             gate: number;
@@ -13201,7 +13201,7 @@ export declare function humanDesignChartStructureAt(matrix?: MindMatrix, birthJd
         designSunArcDeg: number;
         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
         bodyCount: 13;
-        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
         starts: number[];
         sample: {
             gate: number;
@@ -13360,7 +13360,7 @@ export declare function humanDesignChartStructureFacetsAt(matrix?: MindMatrix, b
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -13476,7 +13476,7 @@ export declare function humanDesignChartStructureFacetsAt(matrix?: MindMatrix, b
         designSunArcDeg: number;
         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
         bodyCount: 13;
-        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
         starts: number[];
         sample: {
             gate: number;
@@ -13615,7 +13615,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -13767,7 +13767,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -13883,7 +13883,7 @@ export declare function humanDesignBodyGraphPanelComputes(matrix?: MindMatrix, b
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -14095,7 +14095,7 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -14247,7 +14247,7 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -14363,7 +14363,7 @@ export declare function humanDesignBodyGraphSvgW7(matrix?: MindMatrix, birthJd?:
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -20418,7 +20418,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -20570,7 +20570,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -20686,7 +20686,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
             designSunArcDeg: number;
             bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
             bodyCount: 13;
-            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+            gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
             starts: number[];
             sample: {
                 gate: number;
@@ -20774,7 +20774,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -20926,7 +20926,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -21042,7 +21042,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                 designSunArcDeg: number;
                 bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                 bodyCount: 13;
-                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                 starts: number[];
                 sample: {
                     gate: number;
@@ -21232,7 +21232,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;
@@ -21384,7 +21384,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                         designSunArcDeg: number;
                         bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                         bodyCount: 13;
-                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                        gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                         starts: number[];
                         sample: {
                             gate: number;
@@ -21500,7 +21500,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                     designSunArcDeg: number;
                     bodies: ("Jupiter" | "Saturn" | "Neptune" | "Mars" | "Sun" | "Venus" | "Mercury" | "Moon" | "Earth" | "North Node" | "South Node" | "Uranus" | "Pluto")[];
                     bodyCount: 13;
-                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 32 | 22 | 14 | 15 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
+                    gates: (2 | 16 | 9 | 5 | 4 | 7 | 1 | 8 | 3 | 6 | 27 | 54 | 64 | 20 | 46 | 61 | 53 | 10 | 11 | 13 | 17 | 12 | 19 | 18 | 51 | 23 | 35 | 22 | 14 | 15 | 32 | 42 | 63 | 41 | 49 | 30 | 55 | 37 | 36 | 25 | 21 | 24 | 45 | 52 | 39 | 62 | 56 | 31 | 33 | 44 | 28 | 50 | 57 | 48 | 47 | 40 | 59 | 29 | 26 | 58 | 38 | 60 | 43 | 34)[];
                     starts: number[];
                     sample: {
                         gate: number;

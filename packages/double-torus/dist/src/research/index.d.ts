@@ -1942,7 +1942,7 @@ export declare function decodeCatalogExtendsBeyondHerbsAtPostQuantumSpeed(): {
 export declare function invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndTheThreeManifoldDecompositionTheDependentTheorems(matrix?: MindMatrix): {
     computes: boolean;
     thurstonGeometries: number;
-    decompositions: number;
+    decompositions: 2;
     dependentTheorems: number;
     facets: {
         receipt: string;
@@ -4505,7 +4505,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                 computes: boolean;
                 rosettaComplete: boolean;
                 completenessPct: number;
-                millenniumSolvedByThisFold: 0;
+                millenniumSolvedByThisFold: number;
                 census: {
                     dimensionGates: number;
                     dimsHold: boolean;
@@ -4527,7 +4527,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                 millenniumHandoff: {
                     computes: boolean;
                     rosettaReady: boolean;
-                    millenniumSolvedByThisFold: 0;
+                    millenniumSolvedByThisFold: number;
                     millRoot: string;
                     handoffRoot: string;
                     facets: ({
@@ -5438,7 +5438,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
             isoOfficialStandard: false;
             externalDeploymentCount: 0;
             fieldHistory: "none";
-            securityModel: "structural+adversarial+measured-local";
+            securityModel: string;
             reverseMs: number;
             aggregateOpsPerSec: number;
             demoMaxBits: number;
@@ -7525,7 +7525,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                     computes: boolean;
                     rosettaComplete: boolean;
                     completenessPct: number;
-                    millenniumSolvedByThisFold: 0;
+                    millenniumSolvedByThisFold: number;
                     census: {
                         dimensionGates: number;
                         dimsHold: boolean;
@@ -7547,7 +7547,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                     millenniumHandoff: {
                         computes: boolean;
                         rosettaReady: boolean;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         millRoot: string;
                         handoffRoot: string;
                         facets: ({
@@ -8458,7 +8458,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                 isoOfficialStandard: false;
                 externalDeploymentCount: 0;
                 fieldHistory: "none";
-                securityModel: "structural+adversarial+measured-local";
+                securityModel: string;
                 reverseMs: number;
                 aggregateOpsPerSec: number;
                 demoMaxBits: number;
@@ -11088,7 +11088,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                     computes: boolean;
                     rosettaComplete: boolean;
                     completenessPct: number;
-                    millenniumSolvedByThisFold: 0;
+                    millenniumSolvedByThisFold: number;
                     census: {
                         dimensionGates: number;
                         dimsHold: boolean;
@@ -11110,7 +11110,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                     millenniumHandoff: {
                         computes: boolean;
                         rosettaReady: boolean;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         millRoot: string;
                         handoffRoot: string;
                         facets: ({
@@ -12021,7 +12021,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                 isoOfficialStandard: false;
                 externalDeploymentCount: 0;
                 fieldHistory: "none";
-                securityModel: "structural+adversarial+measured-local";
+                securityModel: string;
                 reverseMs: number;
                 aggregateOpsPerSec: number;
                 demoMaxBits: number;
@@ -14100,7 +14100,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -14122,7 +14122,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -15033,7 +15033,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -17539,7 +17539,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -17561,7 +17561,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -18472,7 +18472,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -20551,7 +20551,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -20573,7 +20573,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -21484,7 +21484,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -23667,7 +23667,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     computes: boolean;
                     rosettaComplete: boolean;
                     completenessPct: number;
-                    millenniumSolvedByThisFold: 0;
+                    millenniumSolvedByThisFold: number;
                     census: {
                         dimensionGates: number;
                         dimsHold: boolean;
@@ -23689,7 +23689,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     millenniumHandoff: {
                         computes: boolean;
                         rosettaReady: boolean;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         millRoot: string;
                         handoffRoot: string;
                         facets: ({
@@ -24600,7 +24600,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 isoOfficialStandard: false;
                 externalDeploymentCount: 0;
                 fieldHistory: "none";
-                securityModel: "structural+adversarial+measured-local";
+                securityModel: string;
                 reverseMs: number;
                 aggregateOpsPerSec: number;
                 demoMaxBits: number;
@@ -26679,7 +26679,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -26701,7 +26701,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -27612,7 +27612,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -28761,7 +28761,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     readonly path: "src/earth/iching";
                     readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
                 }];
-                removed: readonly [];
+                removed: readonly string[];
             };
             census: {
                 unfolded: number;
@@ -29140,7 +29140,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                 readonly path: "src/earth/iching";
                 readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
             }];
-            removed: readonly [];
+            removed: readonly string[];
         };
         census: {
             unfolded: number;
@@ -30290,7 +30290,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -30312,7 +30312,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -31223,7 +31223,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -33647,7 +33647,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -33669,7 +33669,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -34580,7 +34580,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -36659,7 +36659,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -36681,7 +36681,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -37592,7 +37592,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -43206,7 +43206,7 @@ export declare function runWavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems
 export declare function autosaveSessionByDefault(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     autosaveSessionByDefault: boolean;
-    defaultOn: true;
+    defaultOn: boolean;
     sessionTheoremCount: number;
     savedCount: number;
     millRegistryRoot: string;
@@ -44286,7 +44286,7 @@ export declare function teleportedDigitOtherDimensionOneSelfPossibility(matrix?:
     measureAlreadyPassed: boolean;
     uiInvertReflects: boolean;
     possibilities: number;
-    selfSlotsAtCoord: number;
+    coordsWithSelfInLattice: number;
     faceBefore: 1;
     faceAfter: 1;
     remaining: number;
@@ -47282,6 +47282,26 @@ export declare const PUBLICATION_CREDIT: {
      *
      * OAI-PMH cannot see this: a concept DOI returns idDoesNotExist, so a harvesting gate reports a false
      * absence. It has to be followed over HTTP, which scripts/verify/deposit-metadata.ts now does.
+     *
+     * AND THE CONTAMINATION IS NOT ONLY WHERE A READER LANDS — IT IS WHOSE CITATIONS COUNT AS WHOSE.
+     * Measured against DataCite on 2026-09-21: the concept record 21787143 now carries the TITLE
+     * "uuidna — content-addressed identity, honest by construction", and the chain holds NINETEEN
+     * versions. Zenodo's own documentation (support.zenodo.org/help/en-gb/25-citations) states that it
+     * "by default roll-up citations to all versions of your record in order to show its full impact",
+     * with a per-version view only behind a filter the reader must choose. So a citation of any one of
+     * those nineteen displays on all of them, in both directions, and this corpus's citation count is
+     * pooled with uuidna's whether anyone cites either. The same page states citations cannot be added
+     * or corrected by hand — "Can I manually add citations? No" — and that Zenodo's sources are NASA
+     * ADS, DataCite and Crossref EVENT Data, and Europe PMC, which is a different service from the
+     * Crossref metadata API this repository queries for prior art.
+     *
+     * There is therefore no fix on the citation side; only a deposit outside the chain is separable.
+     * Record 22352566 — "Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed
+     * Verification", the one CITATION.cff lists first — has NO concept chain (IsVersionOf is empty) and
+     * is clean. What every page emits is still repositoryDoi below, which is the Clay-titled record
+     * inside the shared chain. Moving page citations to the clean record is the author's call and not a
+     * bookkeeping one: 21787144 is his dated Clay precedence, and quietly dropping it from the surface
+     * would withdraw a claim he has not withdrawn.
      */
     readonly conceptDoi: "10.5281/zenodo.21787143";
     readonly licence: "CC-BY-NC-ND-4.0";

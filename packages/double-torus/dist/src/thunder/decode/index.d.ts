@@ -178,8 +178,8 @@ export declare function songlinesDecoded(matrix?: MindMatrix): {
 export declare function adinkraDecoded(matrix?: MindMatrix): {
     computes: boolean;
     decoded: boolean;
-    documented: string[];
-    flagged: string[];
+    documented: ("ideographic symbol grammar of the Akan (Ghana / Côte d’Ivoire): each symbol names a proverb or concept — Gye Nyame (\"except God\"), Sankofa (\"return and take it\"), Dwennimmen (humility with strength)" | "first documented 1817 — Bowdich collected stamped adinkra cloth at Kumasi; the stamped-cloth mourning tradition is the documented carrier" | "a symbol GRAMMAR, not a numeral system: meanings compose by juxtaposition on cloth; no positional value, no arithmetic — the honest contrast with Ifá’s genuine 4-bit odu next door in the same region")[];
+    flagged: ("\"Adinkra is a binary code\" — refuted: the binary family in the region is Ifá/geomancy (16 odu, parity marks); adinkra symbols are ideograms (sealed research wave, Bowdich 1817 record)" | "the King Adinkra origin legend (the captured Gyaman king) — traditional attribution, not established history" | "supersymmetry \"adinkras\" (S. J. Gates, 2004+) — a NAME borrowed to honour the symbols; the physics diagrams carry no ancient content and the symbols carry no supersymmetry")[];
     facets: ({
         facet: string;
         on: boolean;

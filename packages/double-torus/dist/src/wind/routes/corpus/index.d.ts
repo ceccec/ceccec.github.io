@@ -556,6 +556,120 @@ export type TheoremPageRow = {
     ordinal: number;
     tags: string[];
 };
+export type FormulaRow = {
+    readonly slug: string;
+    readonly formula: string;
+    readonly theorem: string;
+    readonly home: string;
+    readonly source: 'curated' | 'extracted';
+    readonly relations: readonly string[];
+    readonly theoremSlug: string;
+    readonly tags: readonly string[];
+    readonly receipt: string;
+};
+export type FormulaTagGroup = {
+    tag: string;
+    axis: 'wing' | 'source' | 'relation';
+    count: number;
+    formulas: FormulaRow[];
+};
+/**
+ * EVERY FORMULA THE REGISTRY CARRIES, AS ROWS — the collection /formulas filters.
+ *
+ * A theorem resolves to a formula through one chain: a curated algebraicStatement, else a relation
+ * EXTRACTED verbatim from its own states text. theFormulaCensusPerWing counts where that chain comes
+ * up empty; this is the other half — the formulas it does yield, each carrying the theorem it belongs
+ * to, the wing it lives in, which step of the chain produced it, and the relation symbols it contains.
+ *
+ * Extraction is verbatim by construction, so a row here is a substring of the corpus and never a
+ * generated sentence. That is what makes the collection citable: every formula shown can be found in
+ * the theorem it came from.
+ */
+export declare function formulaRows(matrix?: MindMatrix): readonly FormulaRow[];
+/** The formulas organised BY TAG — wing, source and relation, largest group first, mirroring theoremTagIndex. */
+export declare function formulaTagIndex(matrix?: MindMatrix): FormulaTagGroup[];
+/** One formula by its slug — the collection is addressable, not only browsable. */
+export declare function formulaBySlug(slug: string, matrix?: MindMatrix): FormulaRow | null;
+/**
+ * THE GLYPH CENSUS — one symbol, several functions, and no disambiguation for a machine.
+ *
+ * Collecting the identities made something visible that no single theorem could show: the corpus
+ * writes τ for four different things. Ramanujan's modular coefficient (τ(6) = τ(2)τ(3) = −6048), the
+ * divisor count (τ(432) = (4+1)(3+1) = 20, since 432 = 2⁴·3³), the spanning-tree count of a graph
+ * (τ(G) = any cofactor of the Laplacian), and the circle constant (the vortex step is τ/6 = π/3). All
+ * four are correct, standard mathematics. Two of them state the SAME law about different functions —
+ * τ(mn) = τ(m)τ(n) for the divisor count, τ(6) = τ(2)τ(3) for Ramanujan — so the collection holds two
+ * rows that read as one theorem about one function and are not.
+ *
+ * FOR A HUMAN THIS IS ORDINARY. Overloaded Greek is how mathematics is written, and context
+ * disambiguates: nobody reading the Ramanujan row thinks of divisors. The corpus's claim, though, is
+ * that the chat and the MCP COMPUTE from these identities, and a machine consuming /formulas has no
+ * context — only the glyph. So this counts the overload rather than calling it an error: which glyphs
+ * appear both applied to an argument and standing alone, and across how many wings.
+ *
+ * χ is the counter-example and the reason the measure is not vacuous: four wings, four formulas, one
+ * meaning throughout — the Euler characteristic, −2 on the genus-2 surface and 2 in the Platonic
+ * vertex-defect sum 2π·χ. A glyph CAN span the corpus and mean one thing.
+ */
+export declare function theGlyphCensusOverTheFormulas(matrix?: MindMatrix): {
+    computes: boolean;
+    census: {
+        glyph: "χ" | "τ" | "σ" | "φ" | "ζ" | "π" | "λ" | "μ" | "θ" | "η" | "ρ" | "ω" | "Σ" | "Δ" | "Γ" | "ε";
+        applied: number;
+        standing: number;
+        wings: number;
+        overloaded: boolean;
+    }[];
+    overloaded: ("χ" | "τ" | "σ" | "φ" | "ζ" | "π" | "λ" | "μ" | "θ" | "η" | "ρ" | "ω" | "Σ" | "Δ" | "Γ" | "ε")[];
+    duplicates: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * THE FORMULA CENSUS — which theorems carry an identity, and which wings are empty of them.
+ *
+ * Every theorem here resolves to a formula through one chain: a curated algebraicStatement, else a
+ * relation EXTRACTED verbatim from its own `states` text, else nothing and the title carries it. The
+ * chain existed; what did not exist was a count of where it comes up empty, so "improving all on the
+ * way" had no way to say which way.
+ *
+ * Measured over THEOREM_ATOM_SEED rather than the page rows, because the page row does not carry
+ * algebraicStatement — asking the rows returns zero curated identities for all 774 pages, which looks
+ * like total absence and is an artefact of where the field lives. The atoms are where the data is.
+ *
+ * The number that matters is not the total but the SPREAD: src/9/1 carries an identity on nearly every
+ * one of its theorems while src/heaven/compute carries one on about a tenth. A corpus-wide average
+ * would hide that, so the census reports per home and ranks by what is missing.
+ */
+export declare function theFormulaCensusPerWing(matrix?: MindMatrix): {
+    computes: boolean;
+    total: number;
+    curated: number;
+    extracted: number;
+    defined: number;
+    missing: number;
+    homes: {
+        home: string;
+        total: number;
+        missing: number;
+        covered: number;
+        coverage: number;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** Algebraic formulas dual to sealed proving code — pair formula/code. */
 export declare function theoremFormulaCodeDual(row: {
     readonly slug: string;
@@ -1473,6 +1587,40 @@ export declare function inversionIsRealtimeTheFieldDecidesNamingAndLocationEachD
     boundary: string;
 };
 /**
+ * theCuratedIdentitiesAssertRelations — the extractor refuses any clause that asserts no relation, but nothing
+ * ever enforced that law on a HAND-WRITTEN algebraicStatement, so prose dressed in ∧ between camelCase words sat
+ * in the registry as algebra. The same law read in the other direction: reading PROSE stays narrow, because a
+ * `→` in quoted chat means "became" ("ask the chat" → "ask") and chasing it would manufacture prose as algebra;
+ * validating AUTHORED mathematics goes wide, because ∄, ∃, ⊨, ∑ and strict order are relations the corpus really
+ * writes. Measured 2026-09-25: 33 curated rows carried no mark the narrow set knows — the wide set recognises 12
+ * of them as the mathematics they already were, 3 were genuinely mute and were restored to the ⇔ definition
+ * their own states text already carried, and the remaining 18 assert in ENGLISH, which no symbol table reads.
+ * That last number is a frontier, not a defect. Pair: curated/extracted · CLI npm run quantum:formula-relations.
+ */
+export declare function theCuratedIdentitiesAssertRelations(matrix?: MindMatrix): {
+    computes: boolean;
+    curated: number;
+    symbolic: number;
+    english: number;
+    englishRows: {
+        theorem: string;
+        statement: string;
+        home: string;
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: readonly {
+        facet: string;
+        on: boolean;
+    }[];
+};
+/** npm run quantum:formula-relations */
+export declare function runCuratedRelationsExit(root?: string, _argv?: readonly string[]): number;
+/**
  * deadGateway — USER LAW (2026-07-24): dead ends like no content or only an abstract are REAL research
  * and development GATEWAYS. The inversion of the followable-solutions law made generative: every
  * automount page is computed and classified — FULL (body machinery present) · ABSTRACT-ONLY (a
@@ -1506,6 +1654,18 @@ export declare function deadGateway(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/**
+ * THE NOVELTY SURFACE, RUNNABLE BY ANYONE — the combinatorial passes as public tools.
+ *
+ * The formula collection is a projection; what makes it worth running is what COMBINING its rows
+ * finds. These three are the passes that found something no single theorem could show: the census of
+ * where identities are missing, the collection itself, and the glyph pass that discovered τ carrying
+ * four distinct functions across seven wings. They take no argument and read no file, so a stranger
+ * runs them and gets the same answer the corpus gets.
+ */
+export declare function runFormulaCollectionExit(root?: string, _argv?: readonly string[]): number;
+export declare function runFormulaCensusExit(root?: string, _argv?: readonly string[]): number;
+export declare function runGlyphCensusExit(root?: string, _argv?: readonly string[]): number;
 /** npm run quantum:dead-gateway (dual gateway-dead) */
 export declare function runDeadGatewayExit(root?: string, _argv?: readonly string[]): number;
 /** animationsNaturalEntanglementsByTheorems — all animations' natural entanglements, addressed by theorems

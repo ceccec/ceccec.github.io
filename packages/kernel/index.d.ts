@@ -1063,7 +1063,32 @@ export declare function logInclusion(entries: readonly string[], index: number):
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function logConsistent(oldRoot: string, entries: readonly string[], oldSize: number): Promise<boolean>;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+/**
+ * THE SHA-256 COMPRESSION OVER BYTES — the core sha256Sync always was, now reachable.
+ *
+ * sha256Sync took a string, encoded it and returned hex, which is everything a content-address needs
+ * and not enough for anything built ON the hash: HMAC keys are arbitrary bytes, and HMAC's outer hash
+ * consumes the inner DIGEST as bytes, never as text. Routing a digest back through a string would
+ * re-encode it. So the compression is a function of bytes and the two string-shaped callers wrap it;
+ * sha256Sync below is now that wrapper and returns exactly what it returned before.
+ */
+export declare function sha256Bytes(input: Uint8Array): Uint8Array;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function sha256Sync(text: string): string;
+/**
+ * HMAC-SHA-256 — the keyed hash the corpus had no implementation of, built from the formula.
+ *
+ * doi:10.5281/zenodo.22895141 states it exactly: HMAC_H(K,m) = H((K′ XOR opad) ‖ H((K′ XOR ipad) ‖ m)),
+ * where K′ is the block-sized normalised key, ipad is 0x36 repeated and opad is 0x5c repeated. A key
+ * longer than the block is hashed first; a shorter one is zero-padded. That is RFC 2104, and it is
+ * written here rather than cited because the corpus had SHA-256, Ed25519 and Merkle proofs and no HMAC
+ * at all — the same report names PBKDF2, ChaCha20, Poly1305 and AEAD as also absent, and PBKDF2 is
+ * defined in terms of this one.
+ *
+ * The two pads are the reason HMAC is not H(K ‖ m): they make the inner and outer keys differ, which
+ * is what stops a length-extension of the inner hash from being a forgery of the outer.
+ */
+export declare function hmacSha256(key: string | Uint8Array, message: string | Uint8Array): string;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function toUuidSha256(seed: string): Uuid;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -1081,6 +1106,17 @@ export declare function addressEntropyBits(): {
     effectiveBits: number;
     birthdayLog2: number;
 };
+/**
+ * THE ONE SENTENCE A COST CLAIM MAY LEAN ON.
+ *
+ * "Maximum tampering cost" is a defined term here — MAX_TAMPERING_COST_PRINCIPLE claims it only when measured
+ * coverage closes at 1 and reciprocal entropy is 0 — and facets across the corpus were using it loosely, as a
+ * synonym for "content-addressed". Tamper-EVIDENCE is not tamper-RESISTANCE: that a change flips the address is
+ * what a hash does on its quietest day, while what a forgery COSTS is bounded by how hard the same address is to
+ * hit twice. This states that bound once, computed from the address's own entropy budget, so no facet has to
+ * restate it and none has to overstate it.
+ */
+export declare const FORGE_COST_CEILING: string;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function gcd(a: number, b: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */

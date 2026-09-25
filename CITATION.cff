@@ -43,7 +43,7 @@ identifiers:
       NOTE its concept DOI (10.5281/zenodo.21787143) is shared with two unrelated
       works and now resolves to the uuidna record, so cite this VERSION DOI and
       never that concept.
-version: "1.5.0"
+version: "1.6.0"
 repository-code: "https://github.com/ceccec/ceccec.github.io"
 url: "https://ceccec.psg.bg"
 repository-artifact: "https://github.com/ceccec/ceccec.github.io/releases/tag/v1.5.0"

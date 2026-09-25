@@ -1690,14 +1690,14 @@ export declare const agentModelBuildsItselfInWaves: typeof manualAgentsBehaveLik
  */
 /** Post-push wave resend recipe — push is not a terminal stop. */
 export declare const WAVES_AFTER_PUSH_RECIPE_STEPS: readonly ["npm run quantum:waves-feed", "npm run quantum:chat-challenge", "npm run quantum:pair-chat", "npm run quantum:match-wave"];
-export declare function pushInWaves(matrix?: MindMatrix, at?: number): {
+export declare function pushInWaves(matrix?: MindMatrix, at?: number, root?: string): {
     computes: boolean;
     pushInWaves: boolean;
     afterPushResendWaves: boolean;
     pushTriggersFeed: boolean;
     resendRecipeSteps: ("npm run quantum:pair-chat" | "npm run quantum:match-wave" | "npm run quantum:chat-challenge" | "npm run quantum:waves-feed")[];
     oneWavePerPush: boolean;
-    noForceMain: true;
+    noForceMain: boolean;
     certified: false;
     qpuRequired: false;
     pair: "waves/push";
@@ -1785,7 +1785,7 @@ export declare function pushAuditWave(matrix?: MindMatrix, at?: number, root?: s
         pushTriggersFeed: boolean;
         resendRecipeSteps: ("npm run quantum:pair-chat" | "npm run quantum:match-wave" | "npm run quantum:chat-challenge" | "npm run quantum:waves-feed")[];
         oneWavePerPush: boolean;
-        noForceMain: true;
+        noForceMain: boolean;
         certified: false;
         qpuRequired: false;
         pair: "waves/push";

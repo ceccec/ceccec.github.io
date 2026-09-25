@@ -401,7 +401,7 @@ export declare function folderGravityMeasuredByTheCode(root?: string, facts?: En
             readonly path: "src/earth/iching";
             readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
         }];
-        removed: readonly [];
+        removed: readonly string[];
     };
     census: {
         unfolded: number;
@@ -585,7 +585,7 @@ export declare function codebaseCompactedToMinimumTypesAndConstantsMatchingMatri
                 readonly path: "src/earth/iching";
                 readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
             }];
-            removed: readonly [];
+            removed: readonly string[];
         };
         census: {
             unfolded: number;

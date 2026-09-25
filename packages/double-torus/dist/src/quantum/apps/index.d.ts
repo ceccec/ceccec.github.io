@@ -2289,7 +2289,7 @@ export type RosettaCompletenessGapRow = {
 export type RosettaCompletenessHandoff = {
     readonly rosettaComplete: boolean;
     readonly rosettaReady: boolean;
-    readonly millenniumSolvedByThisFold: 0;
+    readonly millenniumSolvedByThisFold: number;
     readonly completenessPct: number;
     readonly root: string;
     readonly cli: string;
@@ -2304,7 +2304,7 @@ export declare function rosettaCompleteQuantumAllComputableDimensionsAndTheorems
     computes: boolean;
     rosettaComplete: boolean;
     completenessPct: number;
-    millenniumSolvedByThisFold: 0;
+    millenniumSolvedByThisFold: number;
     census: {
         dimensionGates: number;
         dimsHold: boolean;
@@ -2326,7 +2326,7 @@ export declare function rosettaCompleteQuantumAllComputableDimensionsAndTheorems
     millenniumHandoff: {
         computes: boolean;
         rosettaReady: boolean;
-        millenniumSolvedByThisFold: 0;
+        millenniumSolvedByThisFold: number;
         millRoot: string;
         handoffRoot: string;
         facets: ({
@@ -2391,7 +2391,7 @@ export declare function rosettaCompleteQuantumAllComputableDimensionsAndTheorems
 export declare function millenniumChallengeHandoffFromRosettaComplete(handoff: RosettaCompletenessHandoff, matrix?: MindMatrix): {
     computes: boolean;
     rosettaReady: boolean;
-    millenniumSolvedByThisFold: 0;
+    millenniumSolvedByThisFold: number;
     millRoot: string;
     handoffRoot: string;
     facets: ({
@@ -4305,7 +4305,7 @@ export declare function wavesMinimiseTokensAdvanceMillennium(matrix?: MindMatrix
     advancesMillennium: boolean;
     voteDecided: boolean;
     efficiencyWinWhenDecided: boolean;
-    millenniumSolvedByThisFold: 0;
+    millenniumSolvedByThisFold: number;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -4859,7 +4859,7 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
         computes: boolean;
         rosettaComplete: boolean;
         completenessPct: number;
-        millenniumSolvedByThisFold: 0;
+        millenniumSolvedByThisFold: number;
         census: {
             dimensionGates: number;
             dimsHold: boolean;
@@ -4881,7 +4881,7 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
         millenniumHandoff: {
             computes: boolean;
             rosettaReady: boolean;
-            millenniumSolvedByThisFold: 0;
+            millenniumSolvedByThisFold: number;
             millRoot: string;
             handoffRoot: string;
             facets: ({
@@ -5678,7 +5678,7 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             computes: boolean;
             rosettaComplete: boolean;
             completenessPct: number;
-            millenniumSolvedByThisFold: 0;
+            millenniumSolvedByThisFold: number;
             census: {
                 dimensionGates: number;
                 dimsHold: boolean;
@@ -5700,7 +5700,7 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             millenniumHandoff: {
                 computes: boolean;
                 rosettaReady: boolean;
-                millenniumSolvedByThisFold: 0;
+                millenniumSolvedByThisFold: number;
                 millRoot: string;
                 handoffRoot: string;
                 facets: ({
@@ -6850,7 +6850,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 computes: boolean;
                 rosettaComplete: boolean;
                 completenessPct: number;
-                millenniumSolvedByThisFold: 0;
+                millenniumSolvedByThisFold: number;
                 census: {
                     dimensionGates: number;
                     dimsHold: boolean;
@@ -6872,7 +6872,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 millenniumHandoff: {
                     computes: boolean;
                     rosettaReady: boolean;
-                    millenniumSolvedByThisFold: 0;
+                    millenniumSolvedByThisFold: number;
                     millRoot: string;
                     handoffRoot: string;
                     facets: ({
@@ -8678,7 +8678,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -8700,7 +8700,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -9611,7 +9611,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -12035,7 +12035,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -12057,7 +12057,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -12968,7 +12968,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -15047,7 +15047,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -15069,7 +15069,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -15980,7 +15980,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -18470,7 +18470,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -18492,7 +18492,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -19403,7 +19403,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -21482,7 +21482,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -21504,7 +21504,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -22415,7 +22415,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -24598,7 +24598,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -24620,7 +24620,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -25531,7 +25531,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -27610,7 +27610,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -27632,7 +27632,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -28543,7 +28543,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -29692,7 +29692,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         readonly path: "src/earth/iching";
                         readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
                     }];
-                    removed: readonly [];
+                    removed: readonly string[];
                 };
                 census: {
                     unfolded: number;
@@ -31510,7 +31510,7 @@ export declare function scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEn
     }[];
     honestOpenNamed: ("clay:millennium-open" | "measure:signaling-proof-ids=0" | "ai-bill:not-wet-pricing-api" | "mill:gaps-exist-until-discovered")[];
     honestOpenNamedCount: 4;
-    millenniumSolvedByThisFold: 0;
+    millenniumSolvedByThisFold: number;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -31622,7 +31622,7 @@ export declare function conversationsHaveQuantumMetricsImproveIntelligenceMindDe
     noUnprovenAlgebraBit: boolean;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "honesty:noUnprovenAlgebraBit-sealed-domain-only-NOT-all-math" | "honesty:NOT-AGI")[];
     honestOpenNamedCount: 6;
-    millenniumSolvedByThisFold: 0;
+    millenniumSolvedByThisFold: number;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -31687,7 +31687,7 @@ export declare function imagineWhatNext(matrix?: MindMatrix, at?: number): {
     toolsMissingDrainableClosed: boolean;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "residual:specialized-experience-shells" | "honesty:NOT-wet-fantasy")[];
     honestOpenNamedCount: 6;
-    millenniumSolvedByThisFold: 0;
+    millenniumSolvedByThisFold: number;
     qpuRequired: false;
     facets: ({
         receipt: string;
@@ -31982,7 +31982,7 @@ export declare function clayAgiDeepResearchQuantumUnderstandingOfRelations(matri
     linearFolded: boolean;
     gapsSeen: boolean;
     gapsAddressableByTrinities: boolean;
-    agiNotClaimed: true;
+    agiNotClaimed: boolean;
     certified: false;
     census: {
         unfolded: number;
@@ -34411,7 +34411,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     computes: boolean;
                     rosettaComplete: boolean;
                     completenessPct: number;
-                    millenniumSolvedByThisFold: 0;
+                    millenniumSolvedByThisFold: number;
                     census: {
                         dimensionGates: number;
                         dimsHold: boolean;
@@ -34433,7 +34433,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     millenniumHandoff: {
                         computes: boolean;
                         rosettaReady: boolean;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         millRoot: string;
                         handoffRoot: string;
                         facets: ({
@@ -36239,7 +36239,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -36261,7 +36261,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -37172,7 +37172,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -39596,7 +39596,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -39618,7 +39618,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -40529,7 +40529,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -42608,7 +42608,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -42630,7 +42630,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -43541,7 +43541,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -46031,7 +46031,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -46053,7 +46053,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -46964,7 +46964,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -49043,7 +49043,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     computes: boolean;
                                     rosettaComplete: boolean;
                                     completenessPct: number;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -49065,7 +49065,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     millenniumHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        millenniumSolvedByThisFold: 0;
+                                        millenniumSolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -49976,7 +49976,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 isoOfficialStandard: false;
                                 externalDeploymentCount: 0;
                                 fieldHistory: "none";
-                                securityModel: "structural+adversarial+measured-local";
+                                securityModel: string;
                                 reverseMs: number;
                                 aggregateOpsPerSec: number;
                                 demoMaxBits: number;
@@ -52159,7 +52159,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -52181,7 +52181,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -53092,7 +53092,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -55171,7 +55171,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -55193,7 +55193,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -56104,7 +56104,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -57253,7 +57253,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             readonly path: "src/earth/iching";
                             readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
                         }];
-                        removed: readonly [];
+                        removed: readonly string[];
                     };
                     census: {
                         unfolded: number;
@@ -58793,7 +58793,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -58815,7 +58815,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -59726,7 +59726,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -61805,7 +61805,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -61827,7 +61827,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -62738,7 +62738,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -65228,7 +65228,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -65250,7 +65250,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -66161,7 +66161,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -68240,7 +68240,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -68262,7 +68262,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -69173,7 +69173,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -71356,7 +71356,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -71378,7 +71378,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -72289,7 +72289,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -74368,7 +74368,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -74390,7 +74390,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -75301,7 +75301,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -76450,7 +76450,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         readonly path: "src/earth/iching";
                         readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
                     }];
-                    removed: readonly [];
+                    removed: readonly string[];
                 };
                 census: {
                     unfolded: number;
@@ -77380,7 +77380,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -77402,7 +77402,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -79208,7 +79208,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -79230,7 +79230,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -80141,7 +80141,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -82565,7 +82565,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -82587,7 +82587,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -83498,7 +83498,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -85577,7 +85577,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaComplete: boolean;
                                     completenessPct: number;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -85599,7 +85599,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     millenniumHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        millenniumSolvedByThisFold: 0;
+                                        millenniumSolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -86510,7 +86510,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 isoOfficialStandard: false;
                                 externalDeploymentCount: 0;
                                 fieldHistory: "none";
-                                securityModel: "structural+adversarial+measured-local";
+                                securityModel: string;
                                 reverseMs: number;
                                 aggregateOpsPerSec: number;
                                 demoMaxBits: number;
@@ -89000,7 +89000,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaComplete: boolean;
                                     completenessPct: number;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -89022,7 +89022,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     millenniumHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        millenniumSolvedByThisFold: 0;
+                                        millenniumSolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -89933,7 +89933,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 isoOfficialStandard: false;
                                 externalDeploymentCount: 0;
                                 fieldHistory: "none";
-                                securityModel: "structural+adversarial+measured-local";
+                                securityModel: string;
                                 reverseMs: number;
                                 aggregateOpsPerSec: number;
                                 demoMaxBits: number;
@@ -92012,7 +92012,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         computes: boolean;
                                         rosettaComplete: boolean;
                                         completenessPct: number;
-                                        millenniumSolvedByThisFold: 0;
+                                        millenniumSolvedByThisFold: number;
                                         census: {
                                             dimensionGates: number;
                                             dimsHold: boolean;
@@ -92034,7 +92034,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         millenniumHandoff: {
                                             computes: boolean;
                                             rosettaReady: boolean;
-                                            millenniumSolvedByThisFold: 0;
+                                            millenniumSolvedByThisFold: number;
                                             millRoot: string;
                                             handoffRoot: string;
                                             facets: ({
@@ -92945,7 +92945,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     isoOfficialStandard: false;
                                     externalDeploymentCount: 0;
                                     fieldHistory: "none";
-                                    securityModel: "structural+adversarial+measured-local";
+                                    securityModel: string;
                                     reverseMs: number;
                                     aggregateOpsPerSec: number;
                                     demoMaxBits: number;
@@ -95128,7 +95128,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -95150,7 +95150,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -96061,7 +96061,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -98140,7 +98140,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaComplete: boolean;
                                     completenessPct: number;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -98162,7 +98162,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     millenniumHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        millenniumSolvedByThisFold: 0;
+                                        millenniumSolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -99073,7 +99073,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 isoOfficialStandard: false;
                                 externalDeploymentCount: 0;
                                 fieldHistory: "none";
-                                securityModel: "structural+adversarial+measured-local";
+                                securityModel: string;
                                 reverseMs: number;
                                 aggregateOpsPerSec: number;
                                 demoMaxBits: number;
@@ -100222,7 +100222,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 readonly path: "src/earth/iching";
                                 readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
                             }];
-                            removed: readonly [];
+                            removed: readonly string[];
                         };
                         census: {
                             unfolded: number;
@@ -101762,7 +101762,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -101784,7 +101784,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -102695,7 +102695,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -104774,7 +104774,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -104796,7 +104796,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -105707,7 +105707,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -108197,7 +108197,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -108219,7 +108219,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -109130,7 +109130,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -111209,7 +111209,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     computes: boolean;
                                     rosettaComplete: boolean;
                                     completenessPct: number;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -111231,7 +111231,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     millenniumHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        millenniumSolvedByThisFold: 0;
+                                        millenniumSolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -112142,7 +112142,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 isoOfficialStandard: false;
                                 externalDeploymentCount: 0;
                                 fieldHistory: "none";
-                                securityModel: "structural+adversarial+measured-local";
+                                securityModel: string;
                                 reverseMs: number;
                                 aggregateOpsPerSec: number;
                                 demoMaxBits: number;
@@ -114325,7 +114325,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -114347,7 +114347,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -115258,7 +115258,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -117337,7 +117337,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -117359,7 +117359,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -118270,7 +118270,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -119419,7 +119419,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             readonly path: "src/earth/iching";
                             readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
                         }];
-                        removed: readonly [];
+                        removed: readonly string[];
                     };
                     census: {
                         unfolded: number;
@@ -120965,7 +120965,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -120987,7 +120987,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -121898,7 +121898,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -123977,7 +123977,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -123999,7 +123999,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -124910,7 +124910,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -127172,7 +127172,7 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 computes: boolean;
                 rosettaComplete: boolean;
                 completenessPct: number;
-                millenniumSolvedByThisFold: 0;
+                millenniumSolvedByThisFold: number;
                 census: {
                     dimensionGates: number;
                     dimsHold: boolean;
@@ -127194,7 +127194,7 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 millenniumHandoff: {
                     computes: boolean;
                     rosettaReady: boolean;
-                    millenniumSolvedByThisFold: 0;
+                    millenniumSolvedByThisFold: number;
                     millRoot: string;
                     handoffRoot: string;
                     facets: ({
@@ -128669,7 +128669,7 @@ export declare function gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGap
         freeBits: number;
     };
     censusPreserved: boolean;
-    millenniumSolvedByThisFold: 0;
+    millenniumSolvedByThisFold: number;
     qpuRequired: false;
     honestOpenNamed: ("residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "gaps:exist-until-millennium-discovered")[];
     honestOpenNamedCount: 4;
@@ -130572,7 +130572,7 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
     sessionSave: {
         computes: boolean;
         autosaveSessionByDefault: boolean;
-        defaultOn: true;
+        defaultOn: boolean;
         sessionTheoremCount: number;
         savedCount: number;
         millRegistryRoot: string;
@@ -133462,7 +133462,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         computes: boolean;
         rosettaComplete: boolean;
         completenessPct: number;
-        millenniumSolvedByThisFold: 0;
+        millenniumSolvedByThisFold: number;
         census: {
             dimensionGates: number;
             dimsHold: boolean;
@@ -133484,7 +133484,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
         millenniumHandoff: {
             computes: boolean;
             rosettaReady: boolean;
-            millenniumSolvedByThisFold: 0;
+            millenniumSolvedByThisFold: number;
             millRoot: string;
             handoffRoot: string;
             facets: ({
@@ -135400,7 +135400,7 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
         computes: boolean;
         rosettaComplete: boolean;
         completenessPct: number;
-        millenniumSolvedByThisFold: 0;
+        millenniumSolvedByThisFold: number;
         census: {
             dimensionGates: number;
             dimsHold: boolean;
@@ -135422,7 +135422,7 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
         millenniumHandoff: {
             computes: boolean;
             rosettaReady: boolean;
-            millenniumSolvedByThisFold: 0;
+            millenniumSolvedByThisFold: number;
             millRoot: string;
             handoffRoot: string;
             facets: ({
@@ -135965,7 +135965,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             computes: boolean;
             rosettaComplete: boolean;
             completenessPct: number;
-            millenniumSolvedByThisFold: 0;
+            millenniumSolvedByThisFold: number;
             census: {
                 dimensionGates: number;
                 dimsHold: boolean;
@@ -135987,7 +135987,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             millenniumHandoff: {
                 computes: boolean;
                 rosettaReady: boolean;
-                millenniumSolvedByThisFold: 0;
+                millenniumSolvedByThisFold: number;
                 millRoot: string;
                 handoffRoot: string;
                 facets: ({
@@ -136563,7 +136563,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             computes: boolean;
             rosettaComplete: boolean;
             completenessPct: number;
-            millenniumSolvedByThisFold: 0;
+            millenniumSolvedByThisFold: number;
             census: {
                 dimensionGates: number;
                 dimsHold: boolean;
@@ -136585,7 +136585,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             millenniumHandoff: {
                 computes: boolean;
                 rosettaReady: boolean;
-                millenniumSolvedByThisFold: 0;
+                millenniumSolvedByThisFold: number;
                 millRoot: string;
                 handoffRoot: string;
                 facets: ({
@@ -137384,7 +137384,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     computes: boolean;
                     rosettaComplete: boolean;
                     completenessPct: number;
-                    millenniumSolvedByThisFold: 0;
+                    millenniumSolvedByThisFold: number;
                     census: {
                         dimensionGates: number;
                         dimsHold: boolean;
@@ -137406,7 +137406,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     millenniumHandoff: {
                         computes: boolean;
                         rosettaReady: boolean;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         millRoot: string;
                         handoffRoot: string;
                         facets: ({
@@ -139212,7 +139212,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -139234,7 +139234,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -140145,7 +140145,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -142569,7 +142569,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -142591,7 +142591,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -143502,7 +143502,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -145581,7 +145581,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -145603,7 +145603,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -146514,7 +146514,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -149004,7 +149004,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -149026,7 +149026,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -149937,7 +149937,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -152016,7 +152016,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     computes: boolean;
                                     rosettaComplete: boolean;
                                     completenessPct: number;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     census: {
                                         dimensionGates: number;
                                         dimsHold: boolean;
@@ -152038,7 +152038,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     millenniumHandoff: {
                                         computes: boolean;
                                         rosettaReady: boolean;
-                                        millenniumSolvedByThisFold: 0;
+                                        millenniumSolvedByThisFold: number;
                                         millRoot: string;
                                         handoffRoot: string;
                                         facets: ({
@@ -152949,7 +152949,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 isoOfficialStandard: false;
                                 externalDeploymentCount: 0;
                                 fieldHistory: "none";
-                                securityModel: "structural+adversarial+measured-local";
+                                securityModel: string;
                                 reverseMs: number;
                                 aggregateOpsPerSec: number;
                                 demoMaxBits: number;
@@ -155132,7 +155132,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -155154,7 +155154,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -156065,7 +156065,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -158144,7 +158144,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -158166,7 +158166,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -159077,7 +159077,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -160226,7 +160226,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             readonly path: "src/earth/iching";
                             readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
                         }];
-                        removed: readonly [];
+                        removed: readonly string[];
                     };
                     census: {
                         unfolded: number;
@@ -161766,7 +161766,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -161788,7 +161788,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -162699,7 +162699,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -164778,7 +164778,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -164800,7 +164800,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -165711,7 +165711,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -168201,7 +168201,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -168223,7 +168223,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -169134,7 +169134,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -171213,7 +171213,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 computes: boolean;
                                 rosettaComplete: boolean;
                                 completenessPct: number;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 census: {
                                     dimensionGates: number;
                                     dimsHold: boolean;
@@ -171235,7 +171235,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 millenniumHandoff: {
                                     computes: boolean;
                                     rosettaReady: boolean;
-                                    millenniumSolvedByThisFold: 0;
+                                    millenniumSolvedByThisFold: number;
                                     millRoot: string;
                                     handoffRoot: string;
                                     facets: ({
@@ -172146,7 +172146,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             isoOfficialStandard: false;
                             externalDeploymentCount: 0;
                             fieldHistory: "none";
-                            securityModel: "structural+adversarial+measured-local";
+                            securityModel: string;
                             reverseMs: number;
                             aggregateOpsPerSec: number;
                             demoMaxBits: number;
@@ -174329,7 +174329,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         computes: boolean;
                         rosettaComplete: boolean;
                         completenessPct: number;
-                        millenniumSolvedByThisFold: 0;
+                        millenniumSolvedByThisFold: number;
                         census: {
                             dimensionGates: number;
                             dimsHold: boolean;
@@ -174351,7 +174351,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         millenniumHandoff: {
                             computes: boolean;
                             rosettaReady: boolean;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             millRoot: string;
                             handoffRoot: string;
                             facets: ({
@@ -175262,7 +175262,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     isoOfficialStandard: false;
                     externalDeploymentCount: 0;
                     fieldHistory: "none";
-                    securityModel: "structural+adversarial+measured-local";
+                    securityModel: string;
                     reverseMs: number;
                     aggregateOpsPerSec: number;
                     demoMaxBits: number;
@@ -177341,7 +177341,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             computes: boolean;
                             rosettaComplete: boolean;
                             completenessPct: number;
-                            millenniumSolvedByThisFold: 0;
+                            millenniumSolvedByThisFold: number;
                             census: {
                                 dimensionGates: number;
                                 dimsHold: boolean;
@@ -177363,7 +177363,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             millenniumHandoff: {
                                 computes: boolean;
                                 rosettaReady: boolean;
-                                millenniumSolvedByThisFold: 0;
+                                millenniumSolvedByThisFold: number;
                                 millRoot: string;
                                 handoffRoot: string;
                                 facets: ({
@@ -178274,7 +178274,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         isoOfficialStandard: false;
                         externalDeploymentCount: 0;
                         fieldHistory: "none";
-                        securityModel: "structural+adversarial+measured-local";
+                        securityModel: string;
                         reverseMs: number;
                         aggregateOpsPerSec: number;
                         demoMaxBits: number;
@@ -179423,7 +179423,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         readonly path: "src/earth/iching";
                         readonly reason: "canonical hexagram·trigram·bāguà home — ichingComputes + Klein/orbit theorems";
                     }];
-                    removed: readonly [];
+                    removed: readonly string[];
                 };
                 census: {
                     unfolded: number;

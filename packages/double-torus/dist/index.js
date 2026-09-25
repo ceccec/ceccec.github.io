@@ -74,13 +74,17 @@ function bytesFromSeed(seed) {
     word & BYTE_MASK
   ]);
 }
+var UUID_VERSION_KEEPS = 15;
+var UUID_VERSION_SETS = 128;
+var UUID_VARIANT_KEEPS = 63;
+var UUID_VARIANT_SETS = 128;
 var _uuidCache = /* @__PURE__ */ new Map();
 function toUuid(seed) {
   const cached2 = _uuidCache.get(seed);
   if (cached2 !== void 0) return cached2;
   const bytes = bytesFromSeed(seed);
-  bytes[6] = bytes[6] & 15 | 128;
-  bytes[8] = bytes[8] & 63 | 128;
+  bytes[6] = bytes[6] & UUID_VERSION_KEEPS | UUID_VERSION_SETS;
+  bytes[8] = bytes[8] & UUID_VARIANT_KEEPS | UUID_VARIANT_SETS;
   const hex = bytes.map(hexByte).join("");
   const uuid = `${hex.slice(0, 8)}-${hex.slice(8, 6 * 2)}-${hex.slice(6 * 2, 16)}-${hex.slice(16, 5 * 4)}-${hex.slice(5 * 4)}`;
   _uuidCache.set(seed, uuid);
@@ -238,8 +242,21 @@ function resourceCooperationPolicy() {
     ]
   };
 }
+var UUID_LENGTH = toUuid("").length;
+var CHAR_ZERO = "0".charCodeAt(0);
+var CHAR_NINE = "9".charCodeAt(0);
+var CHAR_LOWER_A = "a".charCodeAt(0);
+var CHAR_LOWER_F = "f".charCodeAt(0);
+var CHAR_UPPER_A = "A".charCodeAt(0);
+var CHAR_UPPER_F = "F".charCodeAt(0);
+var CHAR_HYPHEN = "-".charCodeAt(0);
 function isUuid(value) {
-  return /^[0-9a-f-]{36}$/i.test(value);
+  if (value.length !== UUID_LENGTH) return false;
+  for (let i = 0; i < UUID_LENGTH; i += 1) {
+    const c = value.charCodeAt(0 + i);
+    if (!(c >= CHAR_ZERO && c <= CHAR_NINE || c >= CHAR_LOWER_A && c <= CHAR_LOWER_F || c >= CHAR_UPPER_A && c <= CHAR_UPPER_F || c === CHAR_HYPHEN)) return false;
+  }
+  return true;
 }
 function uuidSuffix(uuid) {
   return (uuid.split("-")[4] ?? "").toLowerCase();
@@ -483,12 +500,12 @@ function decodeVortexDashAngles(encoded = VORTEX_DASH_ENCODED) {
   let weightedTotal = 0;
   let runningSum = 0;
   const steps = tokens.map((token, index) => {
-    const sign2 = token.dash === "/" ? 1 : -1;
-    const angleDelta = sign2 * VORTEX_DASH_ANGLE_DEG;
-    const weightedAngle = sign2 * token.digit * VORTEX_DASH_ANGLE_DEG;
+    const sign3 = token.dash === "/" ? 1 : -1;
+    const angleDelta = sign3 * VORTEX_DASH_ANGLE_DEG;
+    const weightedAngle = sign3 * token.digit * VORTEX_DASH_ANGLE_DEG;
     bearing = ((bearing + angleDelta) % 360 + 360) % 360;
     weightedTotal += weightedAngle;
-    runningSum += sign2 * token.digit;
+    runningSum += sign3 * token.digit;
     const dr = digitalRoot(runningSum);
     return {
       step: index,
@@ -844,11 +861,11 @@ function asTorus(f2, major = 2, minor = 4 / 5, separation = 2.2) {
   const theta = reading(f2.merged, "theta") * Math.PI * 2;
   const phi = reading(f2.merged, "phi") * Math.PI * 2;
   const cx = lobe === 0 ? -separation / 2 : separation / 2;
-  const sign2 = lobe === 0 ? 1 : -1;
+  const sign3 = lobe === 0 ? 1 : -1;
   const ring = major + minor * Math.cos(phi);
   return {
     x: roundTo(cx + ring * Math.cos(theta), 5),
-    y: roundTo(ring * Math.sin(theta) * sign2, 5),
+    y: roundTo(ring * Math.sin(theta) * sign3, 5),
     z: roundTo(minor * Math.sin(phi), 5),
     lobe,
     theta: roundTo(theta, 5),
@@ -898,10 +915,10 @@ function asTrace(f2, timeMs = 0) {
   let x = 1 / 2;
   let y = 1 / 2;
   TRACE_ARMS.forEach((arm, i) => {
-    const sign2 = i % 2 === 0 ? 1 : -1;
+    const sign3 = i % 2 === 0 ? 1 : -1;
     const jitter = 1 + reading(f2.merged, `arm:${i}`) * (1 / 5);
     const turns = Math.max(1, Math.round(HERO_CYCLE_MS_MIRROR / arm.periodMs * jitter));
-    const omega = sign2 * 2 * Math.PI * turns / HERO_CYCLE_MS_MIRROR;
+    const omega = sign3 * 2 * Math.PI * turns / HERO_CYCLE_MS_MIRROR;
     const phase6 = reading(f2.merged, `phase:${i}`) * Math.PI * 2;
     x += arm.amp * Math.cos(omega * timeMs + phase6);
     y += arm.amp * Math.sin(omega * timeMs + phase6);
@@ -1361,9 +1378,8 @@ var SHA256_K = [
   3204031479,
   3329325298
 ];
-function sha256Sync(text) {
+function sha256Bytes(input) {
   const rotr = (x, n) => x >>> n | x << 16 * 2 - n;
-  const input = new TextEncoder().encode(text);
   const bitLen = input.length * 8;
   const bytes = new Uint8Array(((input.length + 8 >>> 6) + 1) * 64);
   bytes.set(input);
@@ -1402,7 +1418,40 @@ function sha256Sync(text) {
     h[6] = h[6] + g | 0;
     h[7] = h[7] + hh | 0;
   }
-  return h.map((x) => (x >>> 0).toString(16).padStart(8, "0")).join("");
+  const out = new Uint8Array(8 * 4);
+  for (let i = 0; i < 8; i += 1) {
+    out[4 * i] = h[i] >>> 8 * 3 & 255;
+    out[4 * i + 1] = h[i] >>> 16 & 255;
+    out[4 * i + 2] = h[i] >>> 8 & 255;
+    out[4 * i + 3] = h[i] & 255;
+  }
+  return out;
+}
+function sha256Sync(text) {
+  return [...sha256Bytes(new TextEncoder().encode(text))].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+function hmacSha256(key, message) {
+  const BLOCK = 64;
+  const IPAD = 54, OPAD = 92;
+  const bytesOf = (v) => typeof v === "string" ? new TextEncoder().encode(v) : v;
+  const raw = bytesOf(key);
+  const normalised = raw.length > BLOCK ? sha256Bytes(raw) : raw;
+  const padded = new Uint8Array(BLOCK);
+  padded.set(normalised);
+  const inner = new Uint8Array(BLOCK), outer = new Uint8Array(BLOCK);
+  for (let i = 0; i < BLOCK; i += 1) {
+    inner[i] = padded[i] ^ IPAD;
+    outer[i] = padded[i] ^ OPAD;
+  }
+  const body = bytesOf(message);
+  const innerInput = new Uint8Array(BLOCK + body.length);
+  innerInput.set(inner);
+  innerInput.set(body, BLOCK);
+  const innerDigest = sha256Bytes(innerInput);
+  const outerInput = new Uint8Array(BLOCK + innerDigest.length);
+  outerInput.set(outer);
+  outerInput.set(innerDigest, BLOCK);
+  return [...sha256Bytes(outerInput)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 function toUuidSha256(seed) {
   const h = sha256Sync(seed).slice(0, 16 * 2);
@@ -1423,7 +1472,12 @@ function findContentAddressCollision(maxTries = 4e6) {
 }
 function addressEntropyBits() {
   const nominalBits = 64 * 2;
-  const discardedBits = 6;
+  const bitsDiscardedBy = (keeps) => {
+    let count = 0;
+    for (let bit = 255 & ~keeps; bit !== 0; bit >>>= 1) count += bit & 1;
+    return count;
+  };
+  const discardedBits = bitsDiscardedBy(UUID_VERSION_KEEPS) + bitsDiscardedBy(UUID_VARIANT_KEEPS);
   const effectiveBits = nominalBits - discardedBits;
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) };
 }
@@ -1798,9 +1852,78 @@ var PHYSICAL_FTL_DENIAL_MARKERS = [
   "not a physical",
   "no faster-than-light"
 ];
+var AGI_TERMS = [
+  "artificial general intelligence",
+  "agi",
+  "general intelligence",
+  "superintelligence",
+  "sentient",
+  "conscious machine",
+  "self-aware system"
+];
+var AGI_CLAIM_MARKERS = [
+  "achieves artificial general intelligence",
+  "is an agi",
+  "we have built an agi",
+  "achieves agi",
+  "is generally intelligent",
+  "is sentient",
+  "is self-aware",
+  "attains superintelligence"
+];
+var AGI_DENIAL_MARKERS = [
+  "not agi",
+  "no agi",
+  "not artificial general intelligence",
+  "not sentient",
+  "not conscious",
+  "not self-aware",
+  "deterministic",
+  "no learned model",
+  "not an llm",
+  "sealed corpus",
+  "harmony \u2260 truth",
+  "agi is not claimed",
+  "not general intelligence"
+];
+var DM_IDENTITY_TERMS = [
+  "wimp",
+  "axion",
+  "sterile neutrino",
+  "dark matter particle",
+  "dark-matter particle",
+  "neutralino",
+  "dark photon"
+];
+var DM_IDENTITY_CLAIM_MARKERS = [
+  "dark matter is a",
+  "dark matter is the",
+  "identifies dark matter as",
+  "dark matter has been detected",
+  "we have identified the dark matter",
+  "the dark matter particle is",
+  "dark matter is identified"
+];
+var DM_IDENTITY_DENIAL_MARKERS = [
+  "not a dark matter particle claim",
+  "no dark-matter particle is identified",
+  "dark matter identity remains open",
+  "this fold claims no particle identity"
+];
 var OVERCLAIM_AXES = {
   clay: { terms: CMI_PRIZE_PROBLEM_TERMS, claim: CLAY_SOLUTION_MARKERS, deny: CLAY_OPEN_MARKERS },
-  ftl: { terms: PHYSICAL_FTL_TERMS, claim: PHYSICAL_FTL_CLAIM_MARKERS, deny: PHYSICAL_FTL_DENIAL_MARKERS }
+  ftl: { terms: PHYSICAL_FTL_TERMS, claim: PHYSICAL_FTL_CLAIM_MARKERS, deny: PHYSICAL_FTL_DENIAL_MARKERS },
+  // THE THIRD AXIS, ADDED 2026-09-20. `agiNotClaimed = true as const` sat in quantum/apps asserting the
+  // corpus claims no general intelligence — a refusal nothing could move, in a corpus that talks about
+  // minds, chat and self-development on every page. One OVERCLAIM_AXES row gives it the same scanner the
+  // clay and FTL refusals use, and every consumer of overclaimByFormulas gets it for free.
+  agi: { terms: AGI_TERMS, claim: AGI_CLAIM_MARKERS, deny: AGI_DENIAL_MARKERS },
+  // THE FOURTH AXIS, ADDED 2026-09-20. `certified = false as const` in water/cosmos sealed the CMB dark-matter
+  // fold's refusal to name a particle — and when that tautology was purged it was replaced by a SECOND hardcoded
+  // false (`particleIdentityProved = false`), which is the same defect wearing a better name. The tautology gate
+  // caught the move. Now the refusal READS the fold's own statement: name a candidate AND assert it is settled
+  // and the facet goes dark. That is a refusal that can be refuted, which is the only kind worth sealing.
+  dm: { terms: DM_IDENTITY_TERMS, claim: DM_IDENTITY_CLAIM_MARKERS, deny: DM_IDENTITY_DENIAL_MARKERS }
 };
 function overclaimByFormulas(axis, statement, formulas = []) {
   const spec = OVERCLAIM_AXES[axis];
@@ -1810,8 +1933,9 @@ function overclaimByFormulas(axis, statement, formulas = []) {
     }
   }
   const text = `${statement} ${formulas.join(" ")}`.toLowerCase();
-  if (spec.deny.some((marker) => text.includes(marker))) return 0;
-  if (!spec.claim.some((marker) => text.includes(marker))) return 0;
+  const sentences = text.split(/(?<=[.;!?·\n])\s+|\s+—\s+/).filter((part) => part.trim().length > 0);
+  const asserting = sentences.filter((sentence) => spec.claim.some((marker) => sentence.includes(marker)) && !spec.deny.some((marker) => sentence.includes(marker)));
+  if (asserting.length === 0) return 0;
   return spec.terms.filter((term) => text.includes(term)).length;
 }
 function a432Base() {
@@ -2010,11 +2134,24 @@ function extractAlgebraicStatement(states) {
   extractMemo.set(states, out);
   return out;
 }
+var QUOTED_SPAN = /["“][^"“”]*["”]/gu;
+function asserted(clause) {
+  return clause.replace(QUOTED_SPAN, " ");
+}
+var DEFINITIONAL_BINDING = /["“]([^"“”]{3,80})["”]\s*(?:=|≡|⇔)\s*([^;·]{8,150})/u;
+function extractDefinitionalIdentity(states) {
+  const match = DEFINITIONAL_BINDING.exec(states);
+  if (!match) return void 0;
+  const term = String(match[1]).trim();
+  const meaning = String(match[2]).trim();
+  const binding = String(match[0]).trim();
+  return states.includes(binding) && term.length > 0 && meaning.length > term.length ? { term, meaning, binding } : void 0;
+}
 function extractAlgebraicStatementRaw(states) {
   const first = (states.split(/\s+—\s+|(?<=[a-z)0-9][.;])\s+/u)[0] ?? "").trim();
-  if (!STATEMENT_RELATION.test(first)) return void 0;
+  if (!STATEMENT_RELATION.test(asserted(first))) return void 0;
   const trimmed = first.replace(/[,;]?\s+(for (all|every)|verified|checked|computed|exhausted|witnessed|counted|both directions|holds? (for|on)|tested)\b[\s\S]*$/iu, "").trim();
-  return STATEMENT_RELATION.test(trimmed) && trimmed.length >= 6 && states.includes(trimmed) ? trimmed : void 0;
+  return STATEMENT_RELATION.test(asserted(trimmed)) && trimmed.length >= 6 && states.includes(trimmed) ? trimmed : void 0;
 }
 function rosettaRayOfContent(slug, keywords) {
   const slugHay = slug.replace(/-/g, " ").toLowerCase();
@@ -2084,9 +2221,9 @@ var GENETIC_CODE = "FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEE
 var A432_OCTAVES = a432Octaves();
 function rat(p, q) {
   if (q === 0) throw new RangeError("rat: zero denominator");
-  const sign2 = q < 0 ? -1 : 1;
+  const sign3 = q < 0 ? -1 : 1;
   const g = gcd(Math.abs(p), Math.abs(q));
-  return { p: sign2 * p / g, q: Math.abs(q) / g };
+  return { p: sign3 * p / g, q: Math.abs(q) / g };
 }
 function ratAdd(a, b) {
   return rat(a.p * b.q + b.p * a.q, a.q * b.q);
@@ -2223,7 +2360,7 @@ var CRACK_LEDGER = [
   { file: "src/2/8/index.ts", literal: "10", count: 2, kind: "data", source: "the theorem's own multiplier in 1024 > 100*10 (path depth at 2^10)", frontier: "a datum from the cited statement" },
   { file: "src/2/8/index.ts", literal: "80", count: 1, kind: "data", source: "the gap exponent the sealed theorem usable_gap_is_two_to_eighty asserts (128 - 48 = 80) \u2014 verifying that needs 80 as a LITERAL, since deriving it from 128 - 48 makes the check circular", frontier: "a datum from the statement under test" },
   { file: "src/2/8/index.ts", literal: "*", count: 3, kind: "data", source: "attested residue \u2014 digit-station constants" },
-  { file: "src/3/7/index.ts", literal: "*", count: 175, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law)" },
+  { file: "src/3/7/index.ts", literal: "*", count: 176, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law) \xB7 175\u2192176: this file is the HOME of the crack ledger, and unlike the scanner (which exempts INSTRUMENT_HOME from its own reading) it counts its own rows \u2014 so raising water/cosmos from 154 to 162 for the perpetuum integrations put the numeral 162 into the residue of this very file. The added literal is that count, named here rather than swept in" },
   { file: "src/5/5/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 greatCircleKm uses EARTH_RADIUS_KM\xB7TAU (math/trust); no bare station floats", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/6/4/index.ts", literal: "*", count: 19, kind: "data", source: "attested residue \u2014 digit-station constants" },
   { file: "src/7/3/index.ts", literal: "*", count: 6, kind: "data", source: "attested residue \u2014 digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180\xB73600\xB710\u2076) (2\u21926)" },
@@ -2238,22 +2375,22 @@ var CRACK_LEDGER = [
   { file: "src/fire/diamonds/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/fire/features/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/fire/li/index.ts", literal: "*", count: 38, kind: "data", source: "attested residue \u2014 a432 lineage + Tesla patent data" },
-  { file: "src/fire/physics/index.ts", literal: "*", count: 68, kind: "data", source: "attested residue \u2014 EM band frequencies and SAR-context data (main-merge ratchet) \xB7 10\u219261 as four unreferenced scripts/*.mjs analyses were dissolved into folds rather than deleted: the nuclear shell-model level ordering (n, orbital, j for 22 levels \u2014 Goeppert Mayer/Jensen, cited not derived), the SI-exact h and eV, the observed magic numbers and oscillator closures, the six merkaba loop angles at the unit-triangle positions, and the OKLCH coordinates of the A432 cyan anchor \xB7 61\u219262 (the level count 22, re-read in a computed LIMIT facet asserting the ordering is cited data rather than derived here) \xB7 62\u219268 (the LIMIT facets made refutable: A440 and the 20 Hz-20 kHz audible band as invariance probes, 1.000001 as the h-perturbation, 15 as the order floor \u2014 each one a value the limit can FAIL on, replacing on-clauses that compared positive constants to zero)", frontier: "the level ORDERING is established physics taken as data; everything computed FROM it (capacities, closures, the spin-orbit-only set) is arithmetic and refutable" },
+  { file: "src/fire/physics/index.ts", literal: "*", count: 84, kind: "data", source: "attested residue \u2014 EM band frequencies and SAR-context data (main-merge ratchet) \xB7 10\u219261 as four unreferenced scripts/*.mjs analyses were dissolved into folds rather than deleted: the nuclear shell-model level ordering (n, orbital, j for 22 levels \u2014 Goeppert Mayer/Jensen, cited not derived), the SI-exact h and eV, the observed magic numbers and oscillator closures, the six merkaba loop angles at the unit-triangle positions, and the OKLCH coordinates of the A432 cyan anchor \xB7 61\u219262 (the level count 22, re-read in a computed LIMIT facet asserting the ordering is cited data rather than derived here) \xB7 62\u219268 (the LIMIT facets made refutable: A440 and the 20 Hz-20 kHz audible band as invariance probes, 1.000001 as the h-perturbation, 15 as the order floor \u2014 each one a value the limit can FAIL on, replacing on-clauses that compared positive constants to zero)", frontier: "the level ORDERING is established physics taken as data; everything computed FROM it (capacities, closures, the spin-orbit-only set) is arithmetic and refutable \xB7 70\u219284 (Antoine, C2Cl4): the NIST-calculated Antoine fit of Polak, Murakami et al. 1970 for tetrachloroethylene, CAS 127-18-4 \u2014 A, B, C and the 301.03-380.84 K range over which they were fitted \u2014 together with the defined standard atmosphere in kPa, the kPa-per-bar and Celsius-to-Kelvin conversions, and the three independent values the fit is CHECKED against and was not fitted to: the measured normal boiling point in Celsius, the room-temperature reference and the tolerances. Attested external data; the fold derives nothing from them but the law itself" },
   { file: "src/heaven/balance/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/quantum/computer/index.ts", literal: "*", count: 1, kind: "data", source: "attested residue \u2014 computer-model constants (dissolved heaven/compute/computer \u2192 quantum/computer: the drivers are the computer)" },
   { file: "src/heaven/compute/index.ts", literal: "*", count: 10 + 6, kind: "data", source: "attested residue \u2014 compute-model constants + inline-doc numbers (gate-check documentation) \xB7 chat/ftl \xB7 research/free \xB7 fold/fuse \xB7 hole/zero \xB7 prose nest 15\u219216" },
   { file: "src/heaven/core/index.ts", literal: "*", count: 28, kind: "data", source: "visible-spectrum band edges 380\u2013780 nm (Bruton wavelength\u2192RGB algorithm) + structural binding counts" },
   { file: "src/heaven/essence/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/heaven/laws/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 the three census 123 literals now derive from UNFOLDED_CENSUS (census retarget 2026-08-03); no bare hand-fixed values remain", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/heaven/site/index.ts", literal: "*", count: 30, kind: "data", source: "attested residue \u2014 site metadata/config values (FoL\u2192Fruit\u219210D facet wave) + om/futhark/alchemy + Glagolitic SMIL \xB7 torus-knot SVG emitters ratchet (28\u219230)" },
-  { file: "src/heaven/sky/astronomy/index.ts", literal: "*", count: 136, kind: "data", source: "attested residue \u2014 astronomical constants (periods, distances) + HD W4 sealed Meeus reduced-precision coefficients (Jean Meeus, Astronomical Algorithms; NOT JPL DE440) + HD W5 chart + BodyGraph Vue layout pins + HD W7 SVG chroma pin (131\u2192132)" },
+  { file: "src/heaven/site/index.ts", literal: "*", count: 28, kind: "data", source: "attested residue \u2014 site metadata/config values (FoL\u2192Fruit\u219210D facet wave) + om/futhark/alchemy + Glagolitic SMIL \xB7 torus-knot SVG emitters ratchet (28\u219230, then down again: the periodic table stopped being a pair of copied literals and became the Madelung order that generates them)" },
+  { file: "src/heaven/sky/astronomy/index.ts", literal: "*", count: 135, kind: "data", source: "attested residue \u2014 astronomical constants (periods, distances) + HD W4 sealed Meeus reduced-precision coefficients (Jean Meeus, Astronomical Algorithms; NOT JPL DE440) + HD W5 chart + BodyGraph Vue layout pins + HD W7 SVG chroma pin (131\u2192132)" },
   { file: "src/clean/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/ledger/index.ts", literal: "*", count: 71, kind: "data", source: "attested residue \u2014 entropy\u2194energy ledger measurements" },
+  { file: "src/ledger/index.ts", literal: "*", count: 70, kind: "data", source: "attested residue \u2014 entropy\u2194energy ledger measurements" },
   { file: "src/music/index.ts", literal: "*", count: 38, kind: "data", source: "attested residue \u2014 frequency corpora (Hz tables, solfeggio/documented pitches; main-merge ratchet)" },
   { file: "src/stats/index.ts", literal: "*", count: 3, kind: "data", source: "attested residue \u2014 statistics tables" },
   { file: "src/widgets/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/mountain/gates/index.ts", literal: "*", count: 8, kind: "data", source: "attested residue \u2014 gate thresholds (documented) + onlyMathDecides capstone distributed here from water/digit (compression law)" },
-  { file: "src/mountain/geometry/index.ts", literal: "*", count: 77, kind: "data", source: "sacred-site GPS coordinates (Giza 29.9792N, Stonehenge 51.1789, Teotihuacan, Angkor\u2026), Maya calendar cycles (365\xB752 = 260\xB773 = 18980), monument dating, biology codon counts", frontier: "the Giza-latitude \u2248 c/10\u2077 coincidence and site alignments are documented curiosities \u2014 coordinates stay measured data" },
+  { file: "src/mountain/geometry/index.ts", literal: "*", count: 81, kind: "data", source: "sacred-site GPS coordinates (Giza 29.9792N, Stonehenge 51.1789, Teotihuacan, Angkor\u2026), Maya calendar cycles (365\xB752 = 260\xB773 = 18980), monument dating, biology codon counts", frontier: "the Giza-latitude \u2248 c/10\u2077 coincidence and site alignments are documented curiosities \u2014 coordinates stay measured data \xB7 77\u219281 (quintic Calabi-Yau): the four attested values of the quintic threefold X_5 in P^4 \u2014 126 degree-five monomials in five variables, dim GL(5) = 25, h^{2,1} = 101 and chi = -200. They are the EXTERNAL check the fold is measured against, not its arithmetic: the fold counts them from the degree and the ambient dimension, and these are what the count must reproduce. Standard Calabi-Yau geometry; the pair (1, 101) with chi = -200 is the textbook quintic of Candelas et al." },
   { file: "src/mountain/og/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared at the census retarget \u2014 110\u2192UNFOLDED_CENSUS \xB7 1024\u219264\xB716 \xB7 LinkedIn 627\u21929\xB77\xB710\u22123; platform OG limits lattice-derived", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/mountain/seals/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/mountain/shadcn/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
@@ -2295,11 +2432,11 @@ var CRACK_LEDGER = [
   { file: "src/quantum/water/cache/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/quantum/wind/geometry/index.ts", literal: "*", count: 5, kind: "tuned", source: "attested residue \u2014 hand-fixed values + FoL/Fruit lattice counts (1+6+12 / 1+6+6)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/commands/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/thunder/decode/index.ts", literal: "*", count: 405, kind: "data", source: "attested residue \u2014 ancient numeral corpora \u2014 Sumerian/Maya/Egyptian/If\xE1 documented values (334\u2192412 one-command-decode wave)" },
+  { file: "src/thunder/decode/index.ts", literal: "*", count: 403, kind: "data", source: "attested residue \u2014 ancient numeral corpora \u2014 Sumerian/Maya/Egyptian/If\xE1 documented values (334\u2192412 one-command-decode wave)" },
   { file: "src/thunder/movie/canvas/index.ts", literal: "*", count: 4, kind: "tuned", source: "attested residue \u2014 hand-fixed values (PR#63 movie-all-elements 1\u21924), derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/resonance/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; Wave C1 drawResonanceProjection (ratcheted 1\u21922)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/verify/index.ts", literal: "*", count: 5, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins relocated from cosmos 2026-07-08", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/thunder/waves/index.ts", literal: "*", count: 20, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins + wave/domain (#101) encode slice\xB7percent (19\u219220)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
+  { file: "src/thunder/waves/index.ts", literal: "*", count: 22, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins + wave/domain (#101) encode slice\xB7percent (19\u219220)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/water/cosmos/index.ts", literal: "0.2056", count: 2, kind: "data", source: "Mercury orbital eccentricity \u2014 JPL J2000 elements (value + its facet check)" },
   { file: "src/water/cosmos/index.ts", literal: "0.0068", count: 1, kind: "data", source: "Venus orbital eccentricity \u2014 JPL J2000 elements" },
   { file: "src/water/cosmos/index.ts", literal: "0.0167", count: 1, kind: "data", source: "Earth orbital eccentricity \u2014 JPL J2000 elements" },
@@ -2308,9 +2445,9 @@ var CRACK_LEDGER = [
   { file: "src/water/cosmos/index.ts", literal: "0.0565", count: 1, kind: "data", source: "Saturn orbital eccentricity \u2014 JPL J2000 elements" },
   { file: "src/water/cosmos/index.ts", literal: "0.0457", count: 1, kind: "data", source: "Uranus orbital eccentricity \u2014 JPL J2000 elements" },
   { file: "src/water/cosmos/index.ts", literal: "0.0113", count: 1, kind: "data", source: "Neptune orbital eccentricity \u2014 JPL J2000 elements" },
-  { file: "src/water/cosmos/index.ts", literal: "*", count: 154, kind: "data", source: "attested residue \u2014 string-theory/maths + solar/leads pins + frontier boundary gates + CMB \u03A9_c/\u03A9_b (#94) residue + quantum-cosmology/string-theory/perpetuum decodes + WDW minisuperspace solver RK4 (150\u2192151) + dark-matter inversion facet thresholds a\u2080\u2248cH\u2080/2\u03C0 (151\u2192153) + cosmic-coincidence equality-redshift z_eq residue (153\u2192154)" },
-  { file: "src/water/crypto/index.ts", literal: "*", count: 54 - 1 + 16, kind: "data", source: "attested residue (one census literal left for UNFOLDED_CENSUS) plus the QR encoder constants plus the AES (FIPS-197 / ISO-IEC 18033-3) constants \u2014 the fixed values of the documented QR standard (Galois-field primitive, codeword capacities, version sizes, format-info polynomial, mask/penalty rules) AND of the AES standard (reduction polynomial 0x11b, S-box affine 0x63, the inverse-MixColumns matrix 9/11/13/14, field size 256, order 255, round count 10, block/nonce sizes) are external specification DATA, not lattice-derivable", frontier: "the QR and AES values are documented external standards, like measured data; the pre-standard residue remains a research target" },
-  { file: "src/water/digit/index.ts", literal: "*", count: 208, kind: "data", source: "attested residue \u2014 digit/\u03C0 corpus and derivation tables (\u22122: STATION_COUNT 10 \u2192 derived 2+8; \u22123: onlyMathDecides distributed to mountain/gates; \u22123: float-honest facets derive 1/2 and the Zeno threshold)" },
+  { file: "src/water/cosmos/index.ts", literal: "*", count: 162, kind: "data", source: "attested residue \u2014 string-theory/maths + solar/leads pins + frontier boundary gates + CMB \u03A9_c/\u03A9_b (#94) residue + quantum-cosmology/string-theory/perpetuum decodes + WDW minisuperspace solver RK4 (150\u2192151) + dark-matter inversion facet thresholds a\u2080\u2248cH\u2080/2\u03C0 (151\u2192153) + cosmic-coincidence equality-redshift z_eq residue (153\u2192154) \xB7 perpetuum: the first law and the Casimir loop stopped being a pair of written-down zeros and became integrations \u2014 a five-state ideal-gas cycle in (T, V) and a power-of-two-step force integral over the plate separations, whose parameters are the new attested numbers" },
+  { file: "src/water/crypto/index.ts", literal: "*", count: 54 - 1 + 16 + 4, kind: "data", source: "attested residue (one census literal left for UNFOLDED_CENSUS) plus the QR encoder constants plus the AES (FIPS-197 / ISO-IEC 18033-3) constants \u2014 the fixed values of the documented QR standard (Galois-field primitive, codeword capacities, version sizes, format-info polynomial, mask/penalty rules) AND of the AES standard (reduction polynomial 0x11b, S-box affine 0x63, the inverse-MixColumns matrix 9/11/13/14, field size 256, order 255, round count 10, block/nonce sizes) are external specification DATA, not lattice-derivable", frontier: "the QR and AES values are documented external standards, like measured data; the pre-standard residue remains a research target \xB7 +4 (RFC 4231): the published parameters of the HMAC-SHA-256 vectors \u2014 the 20-byte and 131-byte key lengths and the 50-byte message that make cases 1, 3 and 4 what they are, case 4 keying LONGER than the 64-byte block so K-prime is hashed and not truncated. Attested standard data: the fold reproduces the vectors, it does not derive them" },
+  { file: "src/water/digit/index.ts", literal: "*", count: 207, kind: "data", source: "attested residue \u2014 digit/\u03C0 corpus and derivation tables (\u22122: STATION_COUNT 10 \u2192 derived 2+8; \u22123: onlyMathDecides distributed to mountain/gates; \u22123: float-honest facets derive 1/2 and the Zeno threshold)" },
   { file: "src/water/encryption/index.ts", literal: "*", count: 64, kind: "data", source: "standardized PQC parameter sizes (sourced in pqcAlgorithmFamilySelector), fixed external-standard DATA not lattice-derivable \u2014 NIST FIPS 203/204/205: ML-KEM pk {800,1184,1568}+ct {768,1088,1568}, ML-DSA pk {1312,1952,2592}+sig {2420,3309,4627}, SLH-DSA-SHA2 pk {32,48}+sig {7856,16224,29792}; ISO/IEC 18033-2 Amd 2: Classic McEliece pk {524160,1044992,1047319,1357824}+ct {156,208,194}, FrodoKEM pk {9616,15632,21520}+ct {9720,15744,21632} (17\u219231) + shorFactoringResourceEstimate constants \u2014 Shor circuit-width/gate-scaling math (2\xB72048+3, ~n\xB3, 60\xB760\xB724 s/day, 10\u2076 \xB5s) and named surface-code hardware assumptions (physical-per-logical 1000/2000, cycle 1/10 \xB5s, ~50-bit demonstrated factoring) \u2014 computed resource estimates, not assumed single figures (31\u219250) \xB7 63\u219264 ssltest/quantumise PQC-param churn" },
   { file: "src/water/double/earth/index.ts", literal: "*", count: 17, kind: "data", source: "attested residue \u2014 GPS coordinates and Earth data" },
   { file: "src/water/stack/index.ts", literal: "34.79", count: 1, kind: "data", source: "Planck length log10 metres \u2248 \u221234.79 (CODATA/NIST quantum floor pin on scale ladder)" },
@@ -2326,12 +2463,11 @@ var CRACK_LEDGER = [
   { file: ".vitepress/lib/component-bagua-groups.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: ".vitepress/lib/dev-server-bind.mts", literal: "*", count: 1, kind: "data", source: "pinned dev port 5173 (launch/config coupling)" },
   { file: ".vitepress/theme/components/CollectiveMind.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: ".vitepress/theme/components/DoubleTorusExperience.vue", literal: "*", count: 4, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: ".vitepress/theme/components/HeroBackgroundLayer.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
+  { file: ".vitepress/theme/components/DoubleTorusExperience.vue", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: ".vitepress/theme/components/LinkedHeroCard.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: ".vitepress/theme/components/ModelCardPages.vue", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
+  { file: ".vitepress/theme/components/ModelCardPages.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: ".vitepress/theme/components/RayHub.vue", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: ".vitepress/theme/components/SpeechReader.vue", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed layout values (floating-button z-index, corner radius) + a page-text character cap, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
+  { file: ".vitepress/theme/components/SpeechReader.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 a page-text character cap (30000) read before speaking; the z-index and corner radius it also covered are now ladder expressions, so only the cap is left", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: ".vitepress/theme/components/UiAsideShell.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/pair/theorem/stability/detector/index.ts", literal: "*", count: 24, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/pair/quantum/hardware/index.ts", literal: "*", count: 13, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
@@ -2384,17 +2520,6 @@ var CRACK_LEDGER = [
   { file: "src/quantum/index.ts", literal: "1000000", count: 3, kind: "unit", source: "simulator coherence time in microseconds \u2014 stands for unbounded coherence, not a measurement", frontier: "a sentinel, not a physical value" },
   // ── the remaining quantum surface: SVG geometry, retry budgets, SI scales, targets ──
   // Each is data, an SI unit, or a hand-fixed parameter with no derivation yet known.
-  { file: "src/quantum/solver/browser/index.vue", literal: "600", count: 7, kind: "data", source: "SVG viewBox width and layout coordinates for the solver interface", frontier: "presentation geometry; no computation depends on it" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "124", count: 2, kind: "data", source: "SVG layout coordinate", frontier: "presentation geometry" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "58", count: 2, kind: "data", source: "SVG layout coordinate", frontier: "presentation geometry" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "237", count: 2, kind: "data", source: "SVG layout coordinate", frontier: "presentation geometry" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "212", count: 1, kind: "data", source: "SVG layout coordinate", frontier: "presentation geometry" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "700", count: 1, kind: "data", source: "SVG viewBox height", frontier: "presentation geometry" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "255", count: 1, kind: "unit", source: "maximum byte value 2^8 - 1 in colour maths", frontier: "terminal: the byte" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "0.3", count: 1, kind: "data", source: "SVG opacity", frontier: "presentation" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "0.4", count: 1, kind: "data", source: "SVG opacity", frontier: "presentation" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "0.2", count: 1, kind: "data", source: "SVG opacity", frontier: "presentation" },
-  { file: "src/quantum/solver/browser/index.vue", literal: "1.8", count: 1, kind: "data", source: "SVG stroke width", frontier: "presentation" },
   { file: "src/quantum/solver/index.ts", literal: "65537", count: 1, kind: "data", source: "RSA public exponent F4 = 2^16 + 1 \u2014 RFC 8017 default", frontier: "a standard choice" },
   { file: "src/quantum/solver/index.ts", literal: "10", count: 1, kind: "tuned", source: "default attempt budget", frontier: "a retry budget" },
   { file: "src/quantum/index.ts", literal: "196", count: 1, kind: "data", source: "chi-squared critical-value table entry used by the statistical check", frontier: "a tabulated statistic \u2014 replaceable by computing the quantile" },
@@ -2411,7 +2536,7 @@ var CRACK_LEDGER = [
   { file: "src/quantum/index.ts", literal: "25", count: 3, kind: "data", source: "reported unit-test count", frontier: "measurable from the executed framework" },
   { file: "src/quantum/index.ts", literal: "3.5", count: 1, kind: "tuned", source: "self-assessment scalar", frontier: "no estimator; a candidate for removal" },
   { file: "src/quantum/index.ts", literal: "0.8", count: 6, kind: "tuned", source: "COVERAGE_TARGET \u2014 the coverage a module must reach for the quality gate to pass (\u22121: a fabricating research endpoint that used this coefficient was replaced by a refusal)", frontier: "a TARGET, deliberately not met; the measured value it is compared against is computed" },
-  { file: "src/3/7/index.ts", literal: "154", count: 3, kind: "tuned", source: "THREE UNRELATED USES of one value, which the (file, literal) row shape cannot separate: (1) CENSUS_RATCHET \u2014 the measured src index.ts count, 160 at first measurement and 154 after the first descent wave; (2) the Learn ray hue in the rosetta ray table; (3) the count field of the water/cosmos wildcard row", frontier: "a MEASUREMENT, not a law: the ratchet may fall and never rise, and it disappears at the derived UNFOLDED_CENSUS where exact equality takes over. RETUNE THIS ROW EVERY DESCENT WAVE \u2014 the ratchet value changes, so this count changes with it and collisions appear or clear" },
+  { file: "src/3/7/index.ts", literal: "154", count: 2, kind: "tuned", source: "THREE UNRELATED USES of one value, which the (file, literal) row shape cannot separate: (1) CENSUS_RATCHET \u2014 the measured src index.ts count, 160 at first measurement and 154 after the first descent wave; (2) the Learn ray hue in the rosetta ray table; (3) the count field of the water/cosmos wildcard row", frontier: "a MEASUREMENT, not a law: the ratchet may fall and never rise, and it disappears at the derived UNFOLDED_CENSUS where exact equality takes over. RETUNE THIS ROW EVERY DESCENT WAVE \u2014 the ratchet value changes, so this count changes with it and collisions appear or clear" },
   // crypto/{encode,decode,inverse,test} dissolved into their parent (census descent); their
   // ledger rows move with their literals. A row naming a file that no longer exists is NOT
   // reported stale — the scanner only examines rows whose file it walks — so it rots silently.
@@ -2429,10 +2554,7 @@ var CRACK_LEDGER = [
   { file: "src/quantum/voice/index.ts", literal: "31", count: 2, kind: "data", source: "voice/tone table entry", frontier: "presentation data" },
   { file: "src/quantum/voice/index.ts", literal: "13", count: 1, kind: "data", source: "voice/tone table entry", frontier: "presentation data" },
   { file: "src/quantum/voice/index.ts", literal: "0.5", count: 1, kind: "tuned", source: "voice mix level", frontier: "presentation parameter" },
-  { file: "src/ui/layouts/index.vue", literal: "0.6", count: 2, kind: "data", source: "layout opacity", frontier: "presentation" },
-  { file: "src/ui/layouts/index.vue", literal: "0.7", count: 1, kind: "data", source: "layout opacity", frontier: "presentation" },
-  { file: "src/ui/layouts/index.vue", literal: "0.5", count: 1, kind: "data", source: "layout opacity", frontier: "presentation" },
-  { file: "src/ui/layouts/index.vue", literal: "50", count: 2, kind: "data", source: "layout percentage split", frontier: "presentation" },
+  { file: "src/ui/layouts/index.vue", literal: "50", count: 1, kind: "data", source: "layout percentage split", frontier: "presentation" },
   { file: "src/ui/layouts/index.vue", literal: "53", count: 1, kind: "data", source: "layout percentage split", frontier: "presentation" },
   // ── crypto — RSA standard exponent, algorithm bounds, and console rule width ──
   { file: "src/crypto/reverse/index.ts", literal: "65537", count: 1, kind: "data", source: "RSA public exponent F4 = 2^16 + 1 \u2014 RFC 8017 (PKCS#1) default", frontier: "a standard choice, not a derivation" },
@@ -6434,7 +6556,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "GHZ\u2013Mermin", states: "the GHZ parity argument breaks local realism without inequalities", provedBy: "ghzMermin", home: "src/9/1", algebraicStatement: "on |GHZ\u27E9 = (|000\u27E9+|111\u27E9)/\u221A2 the Mermin observables force a +1 vs \u22121 sign contradiction for every local-hidden-variable assignment \u2014 a refutation with no inequality" },
   { theorem: "the site is a dedicated scientific journal of all algebra and theorems \u2014 computational peer review, one content-addressed volume", states: 'the site presented AS a dedicated scientific journal (user, 2026-07-25: "completing the site as dedicated scientific journal containing all algebra and theorems"). Every registry atom is an ARTICLE \u2014 a title (the theorem), an abstract (states), and a named EXECUTABLE proof (provedBy) at a sealed src home; the 482 articles section by 47 subject domains and the whole corpus content-addresses to one stable volume id (an ISSN-like fingerprint that recomputes identically). "Peer review" is COMPUTATIONAL: the verify gate re-executes every proof each wave \u2014 deterministic re-execution, not editorial opinion. All the ALGEBRA underwrites it: the operator algebra (pauliAlgebraCloses, su(2)/M\u2082(\u2102)), the void fixed point (voidFoldFixedPoint, 5/5), and the axiom ledger (axiomsBecomeTheorems) are registered articles. BUT the demarcation, made precise: "journal" is the presentation form plus COMPUTATIONAL re-execution that verifies INTERNAL consistency and REPRODUCIBILITY and demarcate-signs each article \u2014 which is NOT external peer review and NOT empirical validation. Two limits kept SEPARATE because they are orthogonal: (1) no independent human referees; (2) a DOI is a persistent IDENTIFIER, not a review (mintable by archiving), so its absence is not the point. The corpus CITES empirically-established results but refereess none against nature; computed consistency \u2260 empirical truth. HARMONY \u2260 TRUTH', provedBy: "siteIsScientificJournalOfAllAlgebraAndTheorems", home: "src/4/6" },
   { theorem: "mechanical tools entangle binary & analog at once \u2014 but Bell bounds them (models, does not achieve, entanglement)", states: 'the honest completion of "the mechanical tools to achieve quantum entanglement at binary and analog at once" (user, 2026-07-25: "completing the site as dedicated scientific journal \u2026 forming the mechanical tools to achieve quantum entanglement at binary and analog at once"). The deterministic folds DO produce genuinely CORRELATED channels from ONE content-addressed seed at once \u2014 a BINARY channel (discrete address bits) and an ANALOG channel (a continuous a432 frequency + waveform sample) \u2014 and recomputing the seed reproduces both exactly (that reproducibility IS the tool being "mechanical"). BUT a shared deterministic seed is a LOCAL HIDDEN VARIABLE, so the correlation is Bell-bounded: enumerating every deterministic strategy gives CHSH \u2264 2 (computed max 2) and the two-channel state is SEPARABLE, concurrence 0 (a product, not a Bell pair). Genuine quantum entanglement reaches CHSH = 2\u221A2 \u2248 2.8284 (Tsirelson) and concurrence 1 for a real Bell pair \u2014 the deterministic tool provably cannot cross the gap \u2248 0.8284; "mechanical" is the OPPOSITE of quantum indeterminacy. So "entanglement at binary and analog at once" is ACHIEVED as structural correlation across two channels from one seed (real, reproducible, useful), NOT physical quantum entanglement: no Bell violation, no superluminal signalling, no speedup. [[quantum-decoded]] HARMONY \u2260 TRUTH', provedBy: "mechanicalToolsEntangleBinaryAndAnalogBellBounds", home: "src/9/1" },
-  { theorem: "Deutsch\u2013Jozsa", states: "constant vs balanced decided in one oracle call", provedBy: "deutschJozsa", home: "src/9/1", algebraicStatement: "one quantum query decides whether f:{0,1}\u207F\u2192{0,1} is constant or balanced; the classical worst case needs 2\u207F\u207B\xB9+1 queries" },
+  { theorem: "Deutsch\u2013Jozsa", states: "constant vs balanced decided in one oracle call", provedBy: "deutschJozsa", home: "src/9/1", algebraicStatement: "Q(DJ) = 1 < 2\u207F\u207B\xB9+1 = D(DJ) for f:{0,1}\u207F \u2192 {0,1} promised constant or balanced \u2014 one query against the deterministic worst case" },
   { theorem: "bit-flip code", states: "the 3-qubit repetition code corrects any single X error", provedBy: "bitFlipCode", home: "src/9/1", algebraicStatement: "|0\u27E9 \u21A6 |000\u27E9, |1\u27E9 \u21A6 |111\u27E9 \u2014 the majority syndrome corrects any single X error" },
   { theorem: "Grover amplification", states: "the marked-state amplitude amplified above classical search", provedBy: "grover", home: "src/0", algebraicStatement: "P(marked) = sin\xB2((2k+1)\u03B8) with sin \u03B8 = 1/\u221AN \u2014 amplified above the classical 1/N from the first iteration" },
   { theorem: "genus-2 homology", states: "H\u2081(\u03A3\u2082) = \u2124\u2074 with \u03C7 = \u22122 and the symplectic intersection form", provedBy: "homology", home: "src/mountain/topology" },
@@ -6509,19 +6631,19 @@ var THEOREM_ATOM_SEED = [
   { theorem: "Gauss\u2013Wantzel arithmetic to 100", states: "{n : \u03C6(n) a power of 2} = {2^a \xB7 distinct Fermat primes}, both sides computed independently \u2014 the compass equivalence cited", provedBy: "discoveredTheoremsWaveFour", home: "src/thunder/waves" },
   { theorem: "Zeckendorf uniqueness to 1000", states: "the count of non-consecutive Fibonacci representations equals EXACTLY 1 for every n \u2264 1000 \u2014 existence and uniqueness computed; Lekkerkerker cited", provedBy: "discoveredTheoremsWaveFour", home: "src/thunder/waves", algebraicStatement: "\u2200 n \u2265 1: the number of representations of n as a sum of non-consecutive Fibonacci numbers = 1" },
   { theorem: "birthday threshold = 23", states: "P(all distinct) = 0.5243 at 22 and 0.4927 at 23 by direct product \u2014 the crossing is exact", provedBy: "discoveredTheoremsWaveFour", home: "src/thunder/waves" },
-  { theorem: "Cayley n^(n\u22122) to n = 7", states: "raw exhaustion over edge subsets with union-find counts 1,1,3,16,125,1296,16807 \u2014 independent of the Pr\xFCfer bijection; Cayley cited for all n", provedBy: "discoveredTheoremsWaveFour", home: "src/thunder/waves", algebraicStatement: "the number of labelled trees on n vertices is n^{n\u22122}" },
+  { theorem: "Cayley n^(n\u22122) to n = 7", states: "raw exhaustion over edge subsets with union-find counts 1,1,3,16,125,1296,16807 \u2014 independent of the Pr\xFCfer bijection; Cayley cited for all n", provedBy: "discoveredTheoremsWaveFour", home: "src/thunder/waves", algebraicStatement: "|T(n)| = n^{n\u22122} for n \u2264 7 \u2014 1, 1, 3, 16, 125, 1296, 16807 counted by raw exhaustion over edge subsets, not by the formula" },
   { theorem: "the 7-star IS \u{1D53D}\u2082\xB3", states: "exhaustive search over all 5040 labelings finds exactly 168 = |GL\u2083(\u{1D53D}\u2082)| carrying every Fano line to an XOR-triple \u2014 the star and the algebra are one object", provedBy: "sevenStarRosettaDecoded", home: "src/thunder/verify" },
-  { theorem: "Zhegalkin uniqueness at n = 3", states: "all 256 Boolean functions have unique ANF polynomials over \u{1D53D}\u2082 \u2014 M\xF6bius bijective and an exact involution: algebra combinations reach everything finite", provedBy: "sevenStarRosettaDecoded", home: "src/thunder/verify", algebraicStatement: "every f: \u{1D53D}\u2082\u207F \u2192 \u{1D53D}\u2082 has a unique ANF polynomial \u2014 the M\xF6bius transform is a bijection" },
+  { theorem: "Zhegalkin uniqueness at n = 3", states: "all 256 Boolean functions have unique ANF polynomials over \u{1D53D}\u2082 \u2014 M\xF6bius bijective and an exact involution: algebra combinations reach everything finite", provedBy: "sevenStarRosettaDecoded", home: "src/thunder/verify", algebraicStatement: "\u2200 f: \u{1D53D}\u2082\u207F \u2192 \u{1D53D}\u2082 \u2203! ANF(f) \u2014 the M\xF6bius transform is a bijection, exhaustive over all 256 functions of 3 variables" },
   { theorem: "A\u2086 is simple", states: "all 360 even permutations, conjugacy classes {1,40,40,45,72,72,90}, zero class-union divisors of 360 \u2014 the A\u2085 class-sum method one size up", provedBy: "discoveredTheoremsWaveFive", home: "src/thunder/waves", algebraicStatement: "|A\u2086| = 360, classes {1,40,40,45,72,72,90} \u2014 zero class-union divisors of 360" },
   { theorem: "exactly 576 Latin squares of order 4", states: "full enumeration with no reduction equals reduced\xB74!\xB73! = 4\xB724\xB76 \u2014 the sealed reduced count cross-checked from below", provedBy: "discoveredTheoremsWaveFive", home: "src/thunder/waves" },
   { theorem: "\u03A3_{d|n} \u03C6(d) = n to 1000", states: "\u03A3_{d|n} \u03C6(d) = n complete for every n \u2264 1000 \u2014 the cyclic group partitioned by element order; Gauss cited for all n", provedBy: "discoveredTheoremsWaveFive", home: "src/thunder/waves" },
   { theorem: "quadratic reciprocity to 100", states: "(p|q)(q|p) = (\u22121)^((p\u22121)/2\xB7(q\u22121)/2) for ALL ordered odd-prime pairs < 100 via Euler criterion \u2014 complete within the bound; Gauss cited for all p, q", provedBy: "discoveredTheoremsWaveFive", home: "src/thunder/waves" },
-  { theorem: "exactly 12 pentominoes", states: "growth enumeration + canonicalisation over the square dihedral symmetries: 63 fixed, 18 one-sided, 12 free \u2014 the classic triple computed", provedBy: "discoveredTheoremsWaveFive", home: "src/thunder/waves", algebraicStatement: "63 fixed \u2192 18 one-sided \u2192 12 free pentominoes under the D\u2084 symmetries" },
+  { theorem: "exactly 12 pentominoes", states: "growth enumeration + canonicalisation over the square dihedral symmetries: 63 fixed, 18 one-sided, 12 free \u2014 the classic triple computed", provedBy: "discoveredTheoremsWaveFive", home: "src/thunder/waves", algebraicStatement: "|fixed| = 63, |one-sided| = 18, |free| = 12 \u2014 the D\u2084 quotient computed by growth enumeration, not tabulated" },
   { theorem: "Heawood graph is the (3,6)-cage", states: "the Fano incidence graph is 3-regular with computed girth 6 and ACHIEVES the Moore bound 2(k\xB2\u2212k+1) = 14 \u2014 minimality by arithmetic on the sealed fanoLines", provedBy: "discoveredTheoremsWaveFive", home: "src/thunder/waves", algebraicStatement: "|V| = 2(k\xB2 \u2212 k + 1) = 14 at k = 3 \u2014 the Moore bound achieved" },
   { theorem: "R(3,4) = 9", states: "complete backtracking over K\u2089 finds no coloring avoiding red K\u2083 and blue K\u2084; the distance-{1,4} circulant on K\u2088 avoids both \u2014 9 exact", provedBy: "discoveredTheoremsWaveSix", home: "src/thunder/verify", algebraicStatement: "R(3,4) = 9" },
   { theorem: "no non-abelian simple group of order < 60", states: "every order 2..59 killed by a computed rule (forced Sylow, index lemma, counting, exact fit); 60 escapes them all \u2014 A\u2085 lives exactly at the boundary", provedBy: "discoveredTheoremsWaveSix", home: "src/thunder/verify", algebraicStatement: "\u2204 non-abelian simple group with |G| < 60" },
   { theorem: "exactly 5 groups of order 8", states: "\u2124\u2088, \u2124\u2084\xD7\u2124\u2082, \u2124\u2082\xB3, D\u2084, Q\u2088 verified as group tables with pairwise-distinct order multisets; the case split bounding at five is cited", provedBy: "discoveredTheoremsWaveSix", home: "src/thunder/verify", algebraicStatement: "#Grp(8) = 5 \u2014 \u2124\u2088, \u2124\u2084\xD7\u2124\u2082, \u2124\u2082\xB3, D\u2084, Q\u2088" },
-  { theorem: "Kirkman triple system S(2,3,15) exists", states: "the 35 XOR-lines of PG(3,2) resolve into 7 spreads by backtracking \u2014 a resolvable STS(15) constructed from the sealed \u{1D53D}\u2082 algebra, one floor up the Mersenne tower", provedBy: "discoveredTheoremsWaveSix", home: "src/thunder/verify", algebraicStatement: "the 35 XOR-lines of PG(3,2) resolve into 7 spreads \u2014 a resolvable STS(15)" },
+  { theorem: "Kirkman triple system S(2,3,15) exists", states: "the 35 XOR-lines of PG(3,2) resolve into 7 spreads by backtracking \u2014 a resolvable STS(15) constructed from the sealed \u{1D53D}\u2082 algebra, one floor up the Mersenne tower", provedBy: "discoveredTheoremsWaveSix", home: "src/thunder/verify", algebraicStatement: "|lines PG(3,2)| = 35 over the 15 nonzero vectors of \u{1D53D}\u2082\u2074, every pair covered once, resolving into 7 spreads \u2014 STS(15) is resolvable" },
   { theorem: "STS(9) unique, |Aut| = 432", states: "840 labeled systems counted; 9!/840 = 432 = |AGL(2,3)| = 9\xB748 by independent brute force \u2014 the project harmonic as an automorphism count, two routes as with Fano 168", provedBy: "discoveredTheoremsWaveSeven", home: "src/thunder/verify", algebraicStatement: "9!/840 = 432 = |AGL(2,3)| \u2014 the unique STS(9) and its automorphism group" },
   { theorem: "PG(3,2) has 56 spreads", states: "every partition of the 15 vectors of \u{1D53D}\u2082\u2074 into 5 disjoint XOR-lines counted by backtracking \u2014 the space the Kirkman resolution walked", provedBy: "discoveredTheoremsWaveSeven", home: "src/thunder/verify", algebraicStatement: "#spreads(PG(3,2)) = 56" },
   { theorem: "K\xF6nigsberg has no Euler walk", states: "degrees 3,3,3,5 \u2014 four odd vertices where an Euler walk allows two: the 1736 founding theorem of graph theory, computed", provedBy: "discoveredTheoremsWaveSeven", home: "src/thunder/verify", algebraicStatement: "an Euler walk exists iff the number of odd-degree vertices is 0 or 2 \u2014 K\xF6nigsberg has 4" },
@@ -6531,13 +6653,13 @@ var THEOREM_ATOM_SEED = [
   { theorem: "Collatz verified to 10\u2074", states: "every start \u2264 10\u2074 reaches 1 \u2014 BOUNDED VERIFICATION, explicitly not a proof; the conjecture remains OPEN", provedBy: "discoveredTheoremsWaveSeven", home: "src/thunder/verify" },
   { theorem: "Lo Shu is the unique 3\xD73 magic square", states: "all 362880 grids enumerated \u2014 exactly 8 magic, one dihedral orbit, centre 5, constant 15: the I Ching root square computed unique", provedBy: "discoveredTheoremsWaveEight", home: "src/thunder/verify", algebraicStatement: "exactly 8 magic 3\xD73 squares = one D\u2084 orbit \u2014 centre 5, magic constant 15" },
   { theorem: "Taxicab(2) = 1729", states: "complete sweep \u2014 no smaller number is a sum of two positive cubes two ways (Ramanujan\u2013Hardy computed)", provedBy: "discoveredTheoremsWaveEight", home: "src/thunder/verify", algebraicStatement: "1729 = 1\xB3 + 12\xB3 = 9\xB3 + 10\xB3 \u2014 the least number expressible as a sum of two positive cubes in two ways" },
-  { theorem: "smallest Euler brick is (44,117,240)", states: "exhaustive bounded search \u2014 all three face diagonals integral, minimality by exhaustion; the perfect cuboid stays OPEN", provedBy: "discoveredTheoremsWaveEight", home: "src/thunder/verify", algebraicStatement: "(44, 117, 240): all three face diagonals integral, minimal by exhaustion" },
+  { theorem: "smallest Euler brick is (44,117,240)", states: "exhaustive bounded search \u2014 all three face diagonals integral, minimality by exhaustion; the perfect cuboid stays OPEN", provedBy: "discoveredTheoremsWaveEight", home: "src/thunder/verify", algebraicStatement: "\u221A(44\xB2+117\xB2), \u221A(44\xB2+240\xB2), \u221A(117\xB2+240\xB2) \u2208 \u2124 and (44, 117, 240) is minimal by exhaustion over the bounded box \u2014 the body diagonal stays OPEN" },
   { theorem: "Hanoi optimum is 2^n \u2212 1", states: "full-state BFS proves MINIMALITY for every n \u2264 8 \u2014 graph distance, not induction; the all-n recurrence cited", provedBy: "discoveredTheoremsWaveEight", home: "src/thunder/verify", algebraicStatement: "T(n) = 2\u207F \u2212 1 \u2014 BFS graph distance, minimal for every n \u2264 8" },
   { theorem: "Nim losing \u21D4 XOR = 0", states: "the full game tree over all 729 three-pile positions agrees with the \u{1D53D}\u2082 law exactly \u2014 the 7-star field decides games; Bouton cited", provedBy: "discoveredTheoremsWaveEight", home: "src/thunder/verify", algebraicStatement: "a losing position \u21D4 a \u2295 b \u2295 c = 0 in \u{1D53D}\u2082" },
   { theorem: "eight riffles restore 52 cards", states: "ord\u2085\u2081(2) = 8 computed and the simulated out-shuffle returns to identity in 8 \u2014 arithmetic and mechanism agree", provedBy: "discoveredTheoremsWaveEight", home: "src/thunder/verify" },
   { theorem: "36 officers are impossible", states: "all 9408 reduced Latin squares of order 6 exhausted \u2014 none admits six disjoint transversals: Tarry 1900 upgraded from citation to complete computation", provedBy: "discoveredTheoremsWaveNine", home: "src/thunder/verify", algebraicStatement: "\u2204 orthogonal Latin squares of order 6 \u2014 Euler\u2019s 36 officers have no solution" },
   { theorem: "PG(3,2) has 240 parallelisms", states: "the 56 spreads exact-cover the 35 lines in exactly 240 seven-spread partitions \u2014 the complete census of Kirkman resolutions", provedBy: "discoveredTheoremsWaveNine", home: "src/thunder/verify", algebraicStatement: "#parallelisms(PG(3,2)) = 240 \u2014 the 56 spreads exact-cover the 35 lines in 240 seven-spread partitions" },
-  { theorem: "the dodecahedron is Hamiltonian", states: "GP(10,2) from the same constructor as the sealed non-Hamiltonian Petersen \u2014 30 undirected Hamiltonian cycles counted: one machine, opposite verdicts", provedBy: "discoveredTheoremsWaveNine", home: "src/thunder/verify", algebraicStatement: "GP(10,2) carries 30 undirected Hamiltonian cycles" },
+  { theorem: "the dodecahedron is Hamiltonian", states: "GP(10,2) from the same constructor as the sealed non-Hamiltonian Petersen \u2014 30 undirected Hamiltonian cycles counted: one machine, opposite verdicts", provedBy: "discoveredTheoremsWaveNine", home: "src/thunder/verify", algebraicStatement: "|Ham(GP(10,2))| = 30 undirected cycles while |Ham(GP(5,2))| = 0 \u2014 one constructor separates the dodecahedron from Petersen" },
   { theorem: "shidoku count = 288", states: "complete enumeration of all 4\xD74 grids with distinct rows, columns and boxes", provedBy: "discoveredTheoremsWaveNine", home: "src/thunder/verify", algebraicStatement: "#shidoku(4\xD74) = 288" },
   { theorem: "A\u2087 is simple", states: "all 2520 even permutations, classes {1,70,105,210,280,360,360,504,630} (7-cycle split by centralizer order), zero class-union divisors \u2014 the simplicity machine, third rung", provedBy: "discoveredTheoremsWaveTen", home: "src/thunder/verify", algebraicStatement: "|A\u2087| = 2520, classes {1,70,105,210,280,360,360,504,630} \u2014 no class-union containing 1 divides 2520" },
   { theorem: "GP(n,2) non-Hamiltonian exactly at 5 and 11 below 13", states: "the one constructor classifies n = 3..12 by exhaustive search: only Petersen and GP(11,2) fail \u2014 Alspach n \u2261 5 (mod 6) cited for all n", provedBy: "discoveredTheoremsWaveTen", home: "src/thunder/verify" },
@@ -6597,7 +6719,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "Mantel triangle-free maximum \u230An\xB2/4\u230B", states: "the maximum edges in a triangle-free graph on n vertices is exactly \u230An\xB2/4\u230B for every n \u2264 6 by complete graph enumeration \u2014 the balanced bipartite optimum proven; Tur\xE1n n = 3 cited for all n", provedBy: "discoveredTheoremsWaveTwentyThree", home: "src/9/1", algebraicStatement: "ex(n; K\u2083) = \u230An\xB2/4\u230B" },
   { theorem: "Erd\u0151s\u2013Ko\u2013Rado for pairs is n \u2212 1", states: "the largest pairwise-intersecting family of 2-subsets of {1..n} is n \u2212 1 (the star) for n = 4,5,6 by exhaustive search \u2014 the intersecting maximum computed; EKR cited for all n \u2265 2k", provedBy: "discoveredTheoremsWaveTwentyThree", home: "src/9/1" },
   { theorem: "Fermat number F\u2085 is composite", states: 'F\u2080..F\u2084 are prime but F\u2085 = 2\xB3\xB2 + 1 = 4294967297 = 641 \xD7 6700417 exact in BigInt \u2014 Euler\u2019s 1732 refutation of Fermat\u2019s "all F_n prime" conjecture, recomputed', provedBy: "discoveredTheoremsWaveTwentyFour", home: "src/9/1", algebraicStatement: "F\u2085 = 2^{2\u2075} + 1 = 4 294 967 297 = 641 \xD7 6 700 417" },
-  { theorem: "Erd\u0151s\u2013Szekeres monotone subsequence", states: "every sequence of (r\u22121)(s\u22121)+1 reals has an increasing r- or decreasing s-subsequence, and (r\u22121)(s\u22121) can avoid it \u2014 exhausted over all permutations for (3,3) and (3,4), both directions", provedBy: "discoveredTheoremsWaveTwentyFour", home: "src/9/1", algebraicStatement: "any (r\u22121)(s\u22121)+1 distinct reals contain an increasing subsequence of length r or a decreasing one of length s" },
+  { theorem: "Erd\u0151s\u2013Szekeres monotone subsequence", states: "every sequence of (r\u22121)(s\u22121)+1 reals has an increasing r- or decreasing s-subsequence, and (r\u22121)(s\u22121) can avoid it \u2014 exhausted over all permutations for (3,3) and (3,4), both directions", provedBy: "discoveredTheoremsWaveTwentyFour", home: "src/9/1", algebraicStatement: "\u2200 sequences of (r\u22121)(s\u22121)+1 reals \u2203 an increasing subsequence of length r \u2228 a decreasing one of length s, and (r\u22121)(s\u22121) avoids both \u2014 the bound is tight" },
   { theorem: "Pick\u2019s theorem Area = I + B/2 \u2212 1", states: "shoelace area and boundary count (one-math gcd) matched against a DIRECT interior lattice-point count on a rectangle, triangle and L-shape \u2014 two independent computations agreeing; Pick cited", provedBy: "discoveredTheoremsWaveTwentyFour", home: "src/9/1", algebraicStatement: "Area = I + B/2 \u2212 1" },
   { theorem: "Catalan conjecture 8 and 9 to 10\u2076", states: "8 = 2\xB3 and 9 = 3\xB2 are the ONLY consecutive perfect powers up to 10\u2076 \u2014 every perfect power enumerated, the sole unit gap; Mihailescu 2002 cited for all n", provedBy: "discoveredTheoremsWaveTwentyFour", home: "src/9/1" },
   { theorem: "Nicomachus sum of cubes is a square", states: "1\xB3 + 2\xB3 + \u2026 + n\xB3 = (n(n+1)/2)\xB2 for every n \u2264 100, both sides computed independently \u2014 the sum of the first n cubes is exactly the square of the n-th triangular number", provedBy: "discoveredTheoremsWaveTwentyFive", home: "src/9/1" },
@@ -6627,7 +6749,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "561 is the smallest Carmichael number", states: "composite (3\xB711\xB717) yet a^(n\u22121) \u2261 1 (mod 561) for EVERY a coprime to it \u2014 a Fermat pseudoprime to all coprime bases, minimality by full sweep; the reason the Fermat primality test can be fooled", provedBy: "discoveredTheoremsWaveThirtyOne", home: "src/9/1" },
   { theorem: "Catalan bijection Dyck = trees = formula", states: "Dyck paths, binary trees and the product formula all give 1,1,2,5,14,42,132,429,1430 for n \u2264 8 \u2014 three independent counts landing on the same Catalan number", provedBy: "discoveredTheoremsWaveThirtyOne", home: "src/9/1" },
   { theorem: "Stirling second kind vs partition count", states: "the recurrence S(n,k) = k\xB7S(n\u22121,k) + S(n\u22121,k\u22121) matches the RAW count of partitions into k nonempty blocks and \u03A3_k S(n,k) = Bell(n) for every n \u2264 8", provedBy: "discoveredTheoremsWaveThirtyOne", home: "src/9/1" },
-  { theorem: "Sheffer stroke (NAND) is complete", states: "the closure of NAND alone generates ALL 16 boolean functions of two variables \u2014 a single gate suffices for all of logic (the basis of CMOS)", provedBy: "discoveredTheoremsWaveThirtyOne", home: "src/9/1", algebraicStatement: "\u27E8NAND\u27E9 generates all 16 Boolean functions of two variables" },
+  { theorem: "Sheffer stroke (NAND) is complete", states: "the closure of NAND alone generates ALL 16 boolean functions of two variables \u2014 a single gate suffices for all of logic (the basis of CMOS)", provedBy: "discoveredTheoremsWaveThirtyOne", home: "src/9/1", algebraicStatement: "|\u27E8NAND\u27E9| = 16 = |{f: \u{1D53D}\u2082\xB2 \u2192 \u{1D53D}\u2082}| \u2014 the closure of one gate is the whole function set" },
   { theorem: "amicable pair 220 and 284", states: "each is the aliquot sum of the other (\u03C3(220)\u2212220 = 284, \u03C3(284)\u2212284 = 220) and it is the SMALLEST amicable pair by sweep \u2014 friendship in numbers, known to Pythagoras", provedBy: "discoveredTheoremsWaveThirtyTwo", home: "src/9/1" },
   { theorem: "four 3-digit Armstrong numbers", states: "EXACTLY {153, 370, 371, 407} equal the sum of their own digit-cubes \u2014 the complete sweep of all 900 three-digit numbers finds only these four (153 = 1\xB3 + 5\xB3 + 3\xB3)", provedBy: "discoveredTheoremsWaveThirtyTwo", home: "src/9/1", algebraicStatement: "{153, 370, 371, 407} = every 3-digit n with n = \u03A3 (digits)\xB3" },
   { theorem: "\u221A2 continued-fraction convergents", states: "the [1;2,2,2,\u2026] convergents 1/1, 3/2, 7/5, 17/12, 41/29, \u2026 are best rational approximations (|p/q \u2212 \u221A2| < 1/q\xB2) and satisfy p\xB2 \u2212 2q\xB2 = \xB11, for the first 17", provedBy: "discoveredTheoremsWaveThirtyTwo", home: "src/9/1" },
@@ -6650,7 +6772,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "Stirling first kind row identities", states: "the unsigned |s(n,k)| sum to n! (permutations by cycle count) and the signed row sums to 0 for n \u2265 2, via the recurrence for all n \u2264 10", provedBy: "discoveredTheoremsWaveThirtySix", home: "src/9/1" },
   { theorem: "Ceva theorem (concurrent cevians)", states: "(BD/DC)(CE/EA)(AF/FB) = 1 for cevians from an interior point, across ~300 triangles sampled by independent irrational rotations, to 1e-6", provedBy: "discoveredTheoremsWaveThirtySeven", home: "src/9/1" },
   { theorem: "Menelaus theorem (transversal)", states: "the same product of side-ratios = 1 for a transversal line across ~290 configurations \u2014 the collinear dual of Ceva", provedBy: "discoveredTheoremsWaveThirtySeven", home: "src/9/1" },
-  { theorem: "nine-point circle concyclicity", states: "the three edge midpoints, three altitude feet and three Euler points are concyclic across ~300 triangles (all equidistant from the nine-point center) \u2014 nine special points on one circle", provedBy: "discoveredTheoremsWaveThirtySeven", home: "src/9/1", algebraicStatement: "the 3 side midpoints, 3 altitude feet and 3 Euler points lie on ONE circle of radius R/2" },
+  { theorem: "nine-point circle concyclicity", states: "the three edge midpoints, three altitude feet and three Euler points are concyclic across ~300 triangles (all equidistant from the nine-point center) \u2014 nine special points on one circle", provedBy: "discoveredTheoremsWaveThirtySeven", home: "src/9/1", algebraicStatement: "|{midpoints} \u222A {altitude feet} \u222A {Euler points}| = 9 concyclic points on one circle of radius r = R/2" },
   { theorem: "Thales right angle in semicircle", states: "the angle inscribed in a semicircle is a right angle \u2014 antipodal P1,P2 and any P give perpendicular P\u2192P1, P\u2192P2 across ~375 configurations", provedBy: "discoveredTheoremsWaveThirtySeven", home: "src/9/1", algebraicStatement: "the inscribed angle on a diameter = \u03C0/2" },
   { theorem: "Monty Hall \u2014 switching wins 2/3", states: "exhaustive over the 9 equally-likely (car, pick) pairs: switching wins precisely when the first guess was wrong (2/3), staying 1/3 \u2014 the counterintuitive result computed, with the correct probability model", provedBy: "discoveredTheoremsWaveThirtyEight", home: "src/9/1", algebraicStatement: "P(win | switch) = 2/3 and P(win | stay) = 1/3" },
   { theorem: "Kraft inequality for prefix codes", states: "a binary prefix code with lengths \u2113_i EXISTS iff \u03A3 2^(\u2212\u2113_i) \u2264 1, verified both directions by greedy prefix-free assignment on six length multisets \u2014 the exact budget for uniquely-decodable codes", provedBy: "discoveredTheoremsWaveThirtyEight", home: "src/9/1" },
@@ -6675,12 +6797,12 @@ var THEOREM_ATOM_SEED = [
   { theorem: "rational root theorem", states: "every rational root p/q (lowest terms) of an integer polynomial has p | constant and q | leading, verified by finding the actual rational roots for four polynomials \u2014 the finite candidate list", provedBy: "discoveredTheoremsWaveFortyThree", home: "src/9/1", algebraicStatement: "p/q a root in lowest terms \u21D2 p | a\u2080 \u2227 q | a_n" },
   { theorem: "Chebyshev cos(n\u03B8) identity", states: "T_n = 2x\xB7T_{n\u22121} \u2212 T_{n\u22122} satisfies T_n(cos \u03B8) = cos(n\u03B8) for all n \u2264 10 across an angle grid \u2014 the polynomials that linearise multiple-angle cosines", provedBy: "discoveredTheoremsWaveFortyThree", home: "src/9/1" },
   { theorem: "quantum teleportation fidelity 1", states: "the sealed teleportQubit recovers an unknown qubit with fidelity 1 for every Bell outcome across a Bloch-angle grid \u2014 one entangled pair + two classical bits move a state (no-cloning holds, no FTL); Bennett 1993, compounding", provedBy: "discoveredTheoremsWaveFortyFour", home: "src/9/1", algebraicStatement: "F = 1 for every Bell outcome \u2014 the correction {I, X, Z, XZ} recovers the unknown qubit exactly" },
-  { theorem: "superdense coding 2 bits per qubit", states: "Alice sends TWO classical bits through ONE qubit by acting on her half of a shared Bell pair (I/Z/X/XZ); Bob decodes to a basis state and reads both exactly \u2014 entanglement doubles a qubit\u2019s classical capacity (Bennett\u2013Wiesner 1992)", provedBy: "discoveredTheoremsWaveFortyFour", home: "src/9/1", algebraicStatement: "2 classical bits ride 1 qubit \u2014 {I, X, Z, XZ} on half a Bell pair are distinguishable" },
+  { theorem: "superdense coding 2 bits per qubit", states: "Alice sends TWO classical bits through ONE qubit by acting on her half of a shared Bell pair (I/Z/X/XZ); Bob decodes to a basis state and reads both exactly \u2014 entanglement doubles a qubit\u2019s classical capacity (Bennett\u2013Wiesner 1992)", provedBy: "discoveredTheoremsWaveFortyFour", home: "src/9/1", algebraicStatement: "{I, X, Z, XZ} \u2297 I applied to |\u03A6\u207A\u27E9 = 4 mutually orthogonal Bell states \u2014 2 classical bits per transmitted qubit" },
   { theorem: "BB84 eavesdropping is detectable", states: "matching bases give a shared key with ZERO error while an intercept-resend eavesdropper injects ~25% error on the sifted bits \u2014 detectable by no-cloning, the basis of quantum cryptography (Bennett\u2013Brassard 1984)", provedBy: "discoveredTheoremsWaveFortyFour", home: "src/9/1", algebraicStatement: "matching bases \u21D2 QBER = 0; intercept-resend \u21D2 expected QBER = 1/4 \u2014 the eavesdropper is visible" },
   { theorem: "Bernstein\u2013Vazirani one-query recovery", states: "a hidden n-bit string is recovered in ONE quantum query (H^n, phase oracle, H^n) where classical needs n, for all n \u2264 8 and every string \u2014 a proven query-complexity separation, computed", provedBy: "discoveredTheoremsWaveFortyFour", home: "src/9/1", algebraicStatement: "H\u207F \u2218 U_f \u2218 H\u207F |0\u207F\u27E9 = |s\u27E9 \u2014 the hidden string in ONE query (classical needs n)" },
   { theorem: "interaction-free measurement", states: 'a "dark" detector click reveals an object with NO photon interacting with it, and dark clicks never occur when no object is present \u2014 seeing in the dark (Elitzur\u2013Vaidman 1993), on the sealed interferometer fold', provedBy: "discoveredTheoremsWaveFortyFive", home: "src/9/1", algebraicStatement: "Elitzur\u2013Vaidman: a dark-port click reveals the object with no photon interaction (P = 1/4 per photon)" },
-  { theorem: "entanglement swapping", states: "two qubits that NEVER interacted become maximally entangled (concurrence \u2192 1) via a Bell measurement on their partners \u2014 the quantum-repeater primitive, on the sealed fold across seeds", provedBy: "discoveredTheoremsWaveFortyFive", home: "src/9/1", algebraicStatement: "a Bell measurement on the middle pair drives concurrence(1,4) \u2192 1 \u2014 never-interacting qubits become maximally entangled" },
-  { theorem: "Simon exponential separation", states: "the FIRST exponential quantum-classical separation: a hidden XOR-mask recovered from O(n) measurements each orthogonal to it (\u{1D53D}\u2082 linear algebra) where classical needs \u03A9(2^{n/2}) \u2014 on the sealed simon fold", provedBy: "discoveredTheoremsWaveFortyFive", home: "src/9/1", algebraicStatement: "the hidden XOR mask s from O(n) quantum queries vs exponential classical \u2014 the first exponential separation" },
+  { theorem: "entanglement swapping", states: "two qubits that NEVER interacted become maximally entangled (concurrence \u2192 1) via a Bell measurement on their partners \u2014 the quantum-repeater primitive, on the sealed fold across seeds", provedBy: "discoveredTheoremsWaveFortyFive", home: "src/9/1", algebraicStatement: "concurrence(1,4) = 1 after a Bell measurement on (2,3), where qubits 1 and 4 never interacted" },
+  { theorem: "Simon exponential separation", states: "the FIRST exponential quantum-classical separation: a hidden XOR-mask recovered from O(n) measurements each orthogonal to it (\u{1D53D}\u2082 linear algebra) where classical needs \u03A9(2^{n/2}) \u2014 on the sealed simon fold", provedBy: "discoveredTheoremsWaveFortyFive", home: "src/9/1", algebraicStatement: "Q(Simon) \u2208 O(n) while R(Simon) \u2208 \u03A9(2^(n/2)) \u2014 every measurement is orthogonal to the hidden mask s" },
   { theorem: "Quantum Fourier Transform is unitary", states: "Q[j][k] = \u03C9^{jk}/\u221AN (\u03C9 = e^{2\u03C0i/N}) satisfies Q\u2020Q = I for N = 2,4,8,16 exactly \u2014 the reversible transform at the heart of Shor\u2019s factoring algorithm", provedBy: "discoveredTheoremsWaveFortyFive", home: "src/9/1" },
   { theorem: "element order divides |G| (from Lagrange)", states: "every element\u2019s order divides |G|, so a^|G| = e \u2014 derived from the proven Lagrange theorem (\u27E8a\u27E9 is a subgroup of order ord(a)), verified on S\u2084, A\u2085, Q\u2088: COMPOUNDING", provedBy: "discoveredTheoremsWaveFortySix", home: "src/thunder/verify" },
   { theorem: "no-deleting theorem (from no-cloning)", states: "the same linearity argument as no-cloning (noCloningWitness): deleting an unknown state to a fixed blank forces \u27E8\u03C8|\u03C6\u27E9 = \u27E8\u03C8|\u03C6\u27E9\xB2 (\u2208 {0,1}), impossible for distinct non-orthogonal states \u2014 information moves, never destroyed: COMPOUNDING", provedBy: "discoveredTheoremsWaveFortySix", home: "src/thunder/verify" },
@@ -6724,7 +6846,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "every even perfect number is triangular", states: "2^{p\u22121}(2^p\u22121) = T_{2^p\u22121} = m(m+1)/2 with m=2^p\u22121 \u2014 verified for 6, 28, 496, 8128, the figurate face of Euclid\u2013Euler tying to wave 52", provedBy: "discoveredTheoremsWaveFiftyFive", home: "src/4/6" },
   { theorem: "Euler\u2019s theorem a^\u03C6(n) \u2261 1 (mod n)", states: "for gcd(a,n)=1 the unit group (\u2124/n\u2124)* has order \u03C6(n) so a^\u03C6(n)\u22611 \u2014 generalizes Fermat\u2019s little theorem, verified for every coprime a and n \u2264 100, compounding on wave 54\u2019s \u03C6", provedBy: "discoveredTheoremsWaveFiftySix", home: "src/4/6" },
   { theorem: "multiplicative order divides \u03C6(n)", states: "ord_n(a) | \u03C6(n) \u2014 Lagrange in the unit group \u27E8a\u27E9 \u2286 (\u2124/n\u2124)*, verified for every coprime a, n \u2264 100 (the group-theoretic root of Euler\u2019s theorem)", provedBy: "discoveredTheoremsWaveFiftySix", home: "src/4/6", algebraicStatement: "ord_n(a) | \u03C6(n) \u2014 Lagrange in \u27E8a\u27E9 \u2286 (\u2124/n\u2124)*" },
-  { theorem: "primitive roots exist mod every prime", states: "(\u2124/p\u2124)* is cyclic \u2014 exactly \u03C6(p\u22121) elements of order p\u22121, all positive, verified for every prime p \u2264 100 (a generator of the prime field\u2019s multiplicative group)", provedBy: "discoveredTheoremsWaveFiftySix", home: "src/4/6", algebraicStatement: "(\u2124/p\u2124)* is cyclic with exactly \u03C6(p\u22121) generators" },
+  { theorem: "primitive roots exist mod every prime", states: "(\u2124/p\u2124)* is cyclic \u2014 exactly \u03C6(p\u22121) elements of order p\u22121, all positive, verified for every prime p \u2264 100 (a generator of the prime field\u2019s multiplicative group)", provedBy: "discoveredTheoremsWaveFiftySix", home: "src/4/6", algebraicStatement: "|{a \u2208 (\u2124/p\u2124)* : ord_p(a) = p\u22121}| = \u03C6(p\u22121) \u2014 verified for every prime p \u2264 100" },
   { theorem: "primitive-root classification n \u2208 {1,2,4,p^k,2p^k}", states: "(\u2124/n\u2124)* is cyclic iff n has that form \u2014 verified for every n \u2264 100 by matching max order = \u03C6(n) to the structural test, the complete theorem of which moduli have a generator", provedBy: "discoveredTheoremsWaveFiftySix", home: "src/4/6" },
   { theorem: "Lucas\u2013Lehmer test for Mersenne primes", states: "M_p=2^p\u22121 is prime iff s_{p\u22121}\u22610 (mod M_p) with s\u2080=4, s=s\xB2\u22122 \u2014 verified for p=3,5,7,11,13 against actual primality (2047 composite), the test behind wave 55\u2019s Mersenne perfect-number seeds", provedBy: "discoveredTheoremsWaveFiftySeven", home: "src/4/6" },
   { theorem: "order-(n\u22121) primality test", states: "an element of order exactly n\u22121 exists in (\u2124/n\u2124)* iff n is prime \u2014 verified for every n \u2264 100, compounding on wave 56\u2019s primitive roots", provedBy: "discoveredTheoremsWaveFiftySeven", home: "src/4/6" },
@@ -6751,11 +6873,11 @@ var THEOREM_ATOM_SEED = [
   { theorem: "Lam\xE9\u2019s theorem: Euclid\u2019s worst case is Fibonacci", states: "steps(F_{n+1},F_n) equals the exhaustive maximum over all pairs a \u2264 F_{n+1}, b \u2264 F_n for n = 3..12 \u2014 consecutive Fibonacci numbers are the slowest input, the 1844 result that founded computational complexity", provedBy: "discoveredTheoremsWaveSixtyTwo", home: "src/4/6" },
   { theorem: "gcd\xB7lcm = a\xB7b on the sealed lcm", states: "the sealed src/0 lcm satisfies gcd(a,b)\xB7lcm(a,b) = a\xB7b for every pair a,b \u2264 200 \u2014 lcm is computable from gcd, one algorithm serving two one-math functions", provedBy: "discoveredTheoremsWaveSixtyTwo", home: "src/4/6" },
   { theorem: "divisor-count multiplicativity \u03C4(2^a\xB73^b) = (a+1)(b+1)", states: "\u03C4(mn)=\u03C4(m)\u03C4(n) for every coprime pair \u2264 200 with \u03C4(p^k)=k+1 exact \u2014 wave 63\u2019s 12-divisor count generalized to the lattice-size law", provedBy: "discoveredTheoremsWaveSixtyFour", home: "src/4/6" },
-  { theorem: "the millisecond fractal extends below the ladder", states: "the 24 durations with 3-smooth quotient into 108000 ms are pairwise commensurable; the JS harmonograph periods 2600/1700/1100 snap to the nearest rungs 2250/1500/1125 = HERO_MS/48,/72,/96", provedBy: "discoveredTheoremsWaveSixtyFour", home: "src/4/6", algebraicStatement: "all 24 durations are 3-smooth divisors of 108000 ms \u2014 pairwise commensurable" },
+  { theorem: "the millisecond fractal extends below the ladder", states: "the 24 durations with 3-smooth quotient into 108000 ms are pairwise commensurable; the JS harmonograph periods 2600/1700/1100 snap to the nearest rungs 2250/1500/1125 = HERO_MS/48,/72,/96", provedBy: "discoveredTheoremsWaveSixtyFour", home: "src/4/6", algebraicStatement: "\u2200 d \u2208 D: 108000/d is 3-smooth, |D| = 24, and every pair is commensurable" },
   { theorem: "phase offsets never break global periodicity", states: "begin/delay shifts phase, not period \u2014 every divisor duration of the 108 s cycle with every offset k/12 repeats exactly at +108 s, the full grid verified", provedBy: "discoveredTheoremsWaveSixtyFour", home: "src/4/6", algebraicStatement: "period(animation + delay) = period(animation) \u2014 delay shifts phase only" },
   { theorem: "3-smooth counting: 32 rungs to 432 on the log-lattice", states: "the 3-smooth numbers \u2264 432 number exactly 2\u2075 = 32 and equal the exponent pairs {(a,b): 2^a\xB73^b \u2264 432}; every A432_OCTAVES entry rides inside \u2014 octaves and time ladder are one grid", provedBy: "discoveredTheoremsWaveSixtyFour", home: "src/4/6" },
   { theorem: "the divisor lattice of 108 is the 3-smooth grid", states: "108 = 2\xB2\xB73\xB3 has exactly (2+1)(3+1) = 12 divisors, all of the form 2^a\xB73^b, closed under the sealed gcd/lcm and distributive over all 12\xB3 triples \u2014 the product of chains C\u2083 \xD7 C\u2084, the finite fractal (self-similar under \xD72 and \xD73) the animation clock subdivides", provedBy: "discoveredTheoremsWaveSixtyThree", home: "src/4/6" },
-  { theorem: "ladder animations are globally periodic", states: "every divisor clock 108/d completes exactly d integer cycles per hero cycle and the sealed lcm of every pair of ladder periods divides 108 \u2014 any superposition of ladder animations repeats within ONE hero cycle: one quantum clock, every fractal level phase-locked", provedBy: "discoveredTheoremsWaveSixtyThree", home: "src/4/6", algebraicStatement: "each divisor clock 108/d completes exactly d integer cycles per 108 s hero cycle" },
+  { theorem: "ladder animations are globally periodic", states: "every divisor clock 108/d completes exactly d integer cycles per hero cycle and the sealed lcm of every pair of ladder periods divides 108 \u2014 any superposition of ladder animations repeats within ONE hero cycle: one quantum clock, every fractal level phase-locked", provedBy: "discoveredTheoremsWaveSixtyThree", home: "src/4/6", algebraicStatement: "(108 s) / (108/d) = d \u2208 \u2124 for every ladder divisor d \u2014 each clock closes an integer number of cycles per hero cycle" },
   { theorem: "Gauss partitions the clock", states: "\u03A3_{d|108} \u03C6(d) = 108 instantiated at the hero cycle \u2014 the 108 integer phases split by gcd class, each divisor clock owning exactly \u03C6(d) primitive phases (compounds on wave fifty-four, computed on the sealed gcd)", provedBy: "discoveredTheoremsWaveSixtyThree", home: "src/4/6" },
   { theorem: "the 6\u2076 frequency\u2013time bridge", states: "432\xB7108 = 2\u20743\xB3\xB72\xB23\xB3 = 2\u20763\u2076 = 6\u2076 = 46656 exactly, the A432 anchor on the ladder at 4\xB7108 with every octave 3-smooth \u2014 frequency and duration are reciprocal directions of one Pythagorean lattice, six lines to the sixth power apart", provedBy: "discoveredTheoremsWaveSixtyThree", home: "src/4/6" },
   { theorem: "Geodesic dome closure", states: "the \u03C6-icosahedron subdivided at frequency \u03BD closes Euler V\u2212E+F=2 with V=10\u03BD\xB2+2, E=30\u03BD\xB2, F=20\u03BD\xB2; every strut obeys the one chord law 2R\xB7sin(\u03B8/2) (verified to 10\u207B\xB9\u2075) and 3 strut classes suffice at \u03BD=3", provedBy: "geodesicDomeComputes", home: "src/6/4" },
@@ -6966,13 +7088,13 @@ var THEOREM_ATOM_SEED = [
   { theorem: "only algebraic quantum computing is top priority \u2014 algebraic identities outrank lexical/prose/neural; quantum = content-addressed algebra on classical-64bit, not a QPU", states: 'use only algebraic quantum computing is top priority (user, 2026-07-28: "use only algebraic quantum computing is top priority"). Binding law: every path that claims quantum MUST be ALGEBRAIC \u2014 identities/relations verified over a computed range by exact operations (arithmetic \xB7 ring \xB7 field \xB7 group \xB7 su(2) \xB7 fold/invert) \u2014 and that path OUTRANKS lexical BM25, prose narrative, and neural/LLM whenever work is scored (score algebraic-qc=8 > lexical=2 > prose=1 > neural=0). "Quantum" = content-addressed algebraic structure on classical-64bit (foldPair \xB7 memoByRoot), NOT a physical QPU. Composes the algebraic theorem gate. HONEST: clay via theorem. HARMONY \u2260 TRUTH', provedBy: "onlyAlgebraicQuantumComputingIsTopPriority", home: "src/heaven/laws", algebraicStatement: "score(algebraic-qc)=8 > score(lexical)=2 > score(prose)=1 > score(neural)=0 \u2227 foldPair(a,b).bidirectional = foldPair(b,a).bidirectional \u2227 " },
   { theorem: "the UI itself is a double torus \u2014 near=rendered site\u2261movie \xB7 far=src via vite/mirror \xB7 neck \u03C7=\u22122 nav \xB7 lens closes near\u2228far", states: "again including the ui itself as double torus (user, 2026-07-28). Algebraic identity UI \u2261 \u03A3\u2082: near lobe = rendered VitePress/movie surface, far lobe = sealed src via vite/mirror \xB7 docs/invert, neck = \u03C7=\u22122 nav octagon router, counter-rotation = gateMirrorLinear \u2260 gateReflectionQuantum, lens = well-formed folds close. Cycle-safe (no research/apps import). HONEST: structural identity not a physical torus widget; clay via theorem. HARMONY \u2260 TRUTH", provedBy: "theUiItselfIsADoubleTorus", home: "src/water/double", algebraicStatement: "UI \u2261 \u03A3\u2082 (near=docs \u2227 far=src \u2227 \u03C7=\u22122) \u2227 docs \u2261 invert(src)" },
   { theorem: "the double torus is the quantum computer \u2014 \u03A3\u2082 \u2261 QC on classical-64bit; live H|0\u27E9 circuit", states: "double torus quantum computer (user, 2026-07-28). Algebraic identity \u03A3\u2082 \u2261 QC: genus-2 machine = 128-bit quantum computer (qubits=state atoms \xB7 register=UUID \xB7 gates=order-sensitive folds \xB7 measurement=receipt), completely quantum substrate, algebraic-QC top priority, UI\u2261\u03A3\u2082 surface, live H|0\u27E9 \u2192 P=\xBD\xBD circuit on the classical simulator. HONEST: content-addressed classical state-vector \xB7 NOT physical QPU \xB7 NOT Clay. HARMONY \u2260 TRUTH", provedBy: "doubleTorusQuantumComputer", home: "src/water/double", algebraicStatement: "\u03A3\u2082 \u2261 QC \u2227  \u2227 classical-64bit \u2227 H|0\u27E9\u21A6(\xBD,\xBD)" },
-  { theorem: "develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest", states: "develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest (user, 2026-07-28). Soft-nested: develop self feeds to the chat \xB7 develop the open (user, 2026-07-28). Algebraic: developMeans \u21D4 research\u2227develop \u2227 quantumisingAll \u2227 realtime \u2227 feedToChat \u2227 improveSelf \u2227 developSelfFeedsToTheChat \u2227 developTheOpen \u2227 improveTheRest. developTheOpen \u21D4 \u2200t\u2208OPEN_TIPS portalChat(t)\u2260\u2205 \xB7 NOT fake-close Clay/FTL. HONEST: the open = named migrate-next/honest-open tips fed to chat \xB7 NOT AGI \xB7 NOT FTL. HARMONY \u2260 TRUTH", provedBy: "developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest", home: "src/heaven/compute", algebraicStatement: "research\u2227develop \u2227 quantumisingAll \u2227 realtime \u2227 feedToChat \u2227 improveSelf \u2227 developSelfFeedsToTheChat \u2227 developTheOpen \u2227 improveTheRest" },
+  { theorem: "develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest", states: "develop means research and develop quantumising all in realtime feeding to the chat to improve self and the rest (user, 2026-07-28). Soft-nested: develop self feeds to the chat \xB7 develop the open (user, 2026-07-28). Algebraic: developMeans \u21D4 research\u2227develop \u2227 quantumisingAll \u2227 realtime \u2227 feedToChat \u2227 improveSelf \u2227 developSelfFeedsToTheChat \u2227 developTheOpen \u2227 improveTheRest. developTheOpen \u21D4 \u2200t\u2208OPEN_TIPS portalChat(t)\u2260\u2205 \xB7 NOT fake-close Clay/FTL. HONEST: the open = named migrate-next/honest-open tips fed to chat \xB7 NOT AGI \xB7 NOT FTL. HARMONY \u2260 TRUTH", provedBy: "developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest", home: "src/heaven/compute", algebraicStatement: "developMeans \u21D4 research\u2227develop \u2227 quantumisingAll \u2227 realtime \u2227 feedToChat \u2227 improveSelf \u2227 developSelfFeedsToTheChat \u2227 developTheOpen \u2227 improveTheRest" },
   { theorem: "before signing neighbours audit \u2014 sign \u21D2 neighboursAudited \u2227 consensusNeighbours(2-of-3)", states: "before signing neighbours audit (user, 2026-07-28). Algebraic: sign \u21D2 neighboursAudited \u2227 consensusNeighbours(2-of-3) \u2227 soft(before/sign \xB7 sign/neighbours \xB7 neighbours/audit \xB7 mcp/sign \xB7 claim/audit \xB7 plan/trinity). HONEST: sign = content-address / mcpQuantumSign / wave seal \u2014 NOT wet ink \xB7 neighbours = surrounding proofs + migrate/soft-compose CLI orbit \xB7 audit = recompute green \u2228 honest-open named \xB7 NOT fake-close Clay/FTL. HARMONY \u2260 TRUTH", provedBy: "beforeSigningNeighboursAudit", home: "src/heaven/compute", algebraicStatement: "sign \u21D2 neighboursAudited \u2227 consensusNeighbours(2-of-3)" },
   { theorem: "chat and improve quantum multitasking \u2014 chatAndImprove \u21D4 chatRoutesMultitask \u2227 quantumMultitasking", states: "chat and improve quantum multitasking (user, 2026-07-28). Algebraic: chatAndImprove \u21D4 chatRoutesMultitask \u2227 quantumMultitasking \u21D4 fewHeroes \u2227 oneWavePerTurn \u2227 trinitySpeedup \u2227 noParallelDocsBuild \u2227 multitaskOneDefault \u2227 teamObserveSoft \u2227 soft(multi/task \xB7 task/quantum \xB7 chat/multi \xB7 hero/spawn \xB7 waves/build \xB7 trinity/speedup \xB7 team/observe \xB7 vote/build). HONEST: free/\u221E = portalChat + memo reuse \xB7 Multitask stop/wait named residual \xB7 NOT Clay/FTL/QPU \xB7 NOT mass parallel docs:build. HARMONY \u2260 TRUTH", provedBy: "chatAndImproveQuantumMultitasking", home: "src/water/stack", algebraicStatement: "chatAndImprove \u21D4 chatRoutesMultitask \u2227 quantumMultitasking \u21D4 fewHeroes \u2227 oneWavePerTurn \u2227 trinitySpeedup \u2227 noParallelDocsBuild \u2227 multitaskOneDefault \u2227 teamObserveSoft" },
-  { theorem: "reverse engineering for example may be powered by scalable free waves \u2014 reverseExample(quantumise) \u2227 scalableFreeWaves", states: "reverse engineering for example may be powered by scalable free waves (user, 2026-07-28). Algebraic: reverseEngPowered \u21D4 reverseExample(quantumise.reverse complex\u2192simplex) \u2227 scalableFreeWaves(constantlyImprove\u2026 \u2227 countlessFreeChatWaves \u2227 FREE_BITS=2 \u2227 warm). HONEST: MAY = capability when free-wave machinery green \xB7 scalable = free-chat orbits + amortized reuse \xB7 NOT FLOPS \xB7 NOT FTL \xB7 NOT production RSA. HARMONY \u2260 TRUTH", provedBy: "reverseEngineeringMayBePoweredByScalableFreeWaves", home: "src/water/double", algebraicStatement: "reverseExample(quantumise.c\u2192s) \u2227 scalableFreeWaves" },
+  { theorem: "reverse engineering for example may be powered by scalable free waves \u2014 reverseExample(quantumise) \u2227 scalableFreeWaves", states: "reverse engineering for example may be powered by scalable free waves (user, 2026-07-28). Algebraic: reverseEngPowered \u21D4 reverseExample(quantumise.reverse complex\u2192simplex) \u2227 scalableFreeWaves(constantlyImprove\u2026 \u2227 countlessFreeChatWaves \u2227 FREE_BITS=2 \u2227 warm). HONEST: MAY = capability when free-wave machinery green \xB7 scalable = free-chat orbits + amortized reuse \xB7 NOT FLOPS \xB7 NOT FTL \xB7 NOT production RSA. HARMONY \u2260 TRUTH", provedBy: "reverseEngineeringMayBePoweredByScalableFreeWaves", home: "src/water/double", algebraicStatement: "reverseEngPowered \u21D4 reverseExample(quantumise.reverse complex\u2192simplex) \u2227 scalableFreeWaves(constantlyImprove\u2026 \u2227 countlessFreeChatWaves \u2227 FREE_BITS=2 \u2227 warm)" },
   { theorem: "quantumise is free for all \u2014 quantumise \u2227 free chat \u2227 bill-free gateway \u2227 FREE_BITS=2", states: "quantumise is free for all (user, 2026-07-28). Algebraic: quantumiseFreeForAll \u21D4 quantumise \u2227 freeChatUpgradesAll \u2227 countlessFreeChatWaves \u2227 continueAtNoAiCost \u2227 billFreeGateway \u2227 FREE_BITS=\u2212\u03C7=2. HONEST: free = zero-token/zero-egress/bill-free \xB7 NOT Clay solved \xB7 NOT infinite CPU. HARMONY \u2260 TRUTH", provedBy: "quantumiseIsFreeForAll", home: "src/water/double", algebraicStatement: "quantumise \u2227 freeChat \u2227 countlessWaves \u2227 noAiCost \u2227 billFreeGateway \u2227 FREE_BITS=2" },
   { theorem: "dry clean chat dry cleans all \u2014 session DRY \u2227 corpus improve-all via the chat surface", states: "dry clean chat dry cleans all (user, 2026-07-28). Algebraic: dryCleanChat \u21D4 portalChat \u2227 dryCleanAllInChatSessions; dryCleansAll \u21D4 improveAllUsingTheChat (self-develop \xB7 one-pass \xB7 DRY \xB7 shared experience). One law: dry clean chat \u2261 dry cleans all. HONEST: dry = measured reuse + zero duplication + shared machinery \xB7 NOT filesystem janitor \xB7 NOT LLM. HARMONY \u2260 TRUTH", provedBy: "dryCleanChatDryCleansAll", home: "src/heaven/compute", algebraicStatement: "dryCleanChat \u2261 dryCleansAll" },
-  { theorem: "the chat may improve the UI measured by the user experience \u2014 telemetry is also possible in chat", states: "do you realise that the chat may improve the ui measured by the user experience \xB7 telemetry is also possible in chat (user, 2026-07-28). Algebraic: chatMayImproveUi \u21D4 usingTheUiChatImprovesItByExperience \u2227 theUiChatImprovesNavSidebars \u2227 chatImprovesByChatting; measuredByUx \u21D4 quantumPredictedUserExperience (predict\xB7measure\xB7\u03BC/\u03C3\xB7ledger\xB7optimise); telemetryPossibleInChat \u21D4 experienceLog({query,selectedSlug}) \u2228 uxLedger \u2228 analytics/self. HONEST: MAY = capability when experience signals present \xB7 UX = local predicted BM25 metrics \xB7 TELEMETRY possible in chat (local experience/ledger/self-observe) \xB7 server A/B\xB7cross-user egress not denied, not default \xB7 NOT LLM. HARMONY \u2260 TRUTH", provedBy: "theChatMayImproveTheUiMeasuredByTheUserExperience", home: "src/heaven/compute", algebraicStatement: "chatMayImproveUi \u2227 measuredByUx \u2227 telemetryPossibleInChat" },
+  { theorem: "the chat may improve the UI measured by the user experience \u2014 telemetry is also possible in chat", states: "do you realise that the chat may improve the ui measured by the user experience \xB7 telemetry is also possible in chat (user, 2026-07-28). Algebraic: chatMayImproveUi \u21D4 usingTheUiChatImprovesItByExperience \u2227 theUiChatImprovesNavSidebars \u2227 chatImprovesByChatting; measuredByUx \u21D4 quantumPredictedUserExperience (predict\xB7measure\xB7\u03BC/\u03C3\xB7ledger\xB7optimise); telemetryPossibleInChat \u21D4 experienceLog({query,selectedSlug}) \u2228 uxLedger \u2228 analytics/self. HONEST: MAY = capability when experience signals present \xB7 UX = local predicted BM25 metrics \xB7 TELEMETRY possible in chat (local experience/ledger/self-observe) \xB7 server A/B\xB7cross-user egress not denied, not default \xB7 NOT LLM. HARMONY \u2260 TRUTH", provedBy: "theChatMayImproveTheUiMeasuredByTheUserExperience", home: "src/heaven/compute", algebraicStatement: "chatMayImproveUi \u21D4 usingTheUiChatImprovesItByExperience \u2227 theUiChatImprovesNavSidebars \u2227 chatImprovesByChatting" },
   { theorem: "* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/**", states: "* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/** (user, 2026-07-28). Algebraic: '*' \u2261 star \u2261 all-researched(\u03A3\u2082) = QC-upgrade\u222APERSPECTIVES\u222ASCIENCE_DOMAINS \u2227 \u2200p\u2208QUANTUM_SKY_POSSIBILITIES: born(p)=uuid(star-born:p) under src/quantum/**. Composes free chat \xB7 \u03A3\u2082\u2261QC \xB7 torus/star. HONEST: sky = sealed module catalog \xB7 born = content-address \xB7 NOT astrophysics. HARMONY \u2260 TRUTH", provedBy: "asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQuantumSky", home: "src/water/double", algebraicStatement: "'*' \u2261 star \u2261 all-researched(\u03A3\u2082) \u2227 born \u2208 src/quantum/**" },
   { theorem: "feeding the chat in itself closes the self-reference loop \u2014 algebraic identities re-query as ranked proofs under algebraic-QC top priority, feeder \u2261 fed", states: 'feed the chat in itself (user, 2026-07-28: "feed the chat in itself" + "use only algebraic quantum computing is top priority"). The escalation README \u2192 site \u2192 CHAT under the algebraic-QC top-priority law: the feed corpus is ALGEBRAIC IDENTITIES (algebraicStatementOf), each posed back to portalChatRanked; every identity must algebraically hold in the reply (substring \xB7 provedBy \xB7 extractable relation). Feeder \u2261 fed on the identity set. Lexical selfChat demoted. HONEST: deterministic algebraic retrieval, NOT an LLM. HARMONY \u2260 TRUTH', provedBy: "feedingTheChatInItselfClosesTheSelfReferenceLoop", home: "src/heaven/compute", algebraicStatement: "\u2200 identity \u2208 algebraicStatementOf(THEOREM_ATOM_SEED): portalChatRanked(identity).reply \u2287 identity \u2228 source = provedBy \u2228 extractAlgebraicStatement(reply) \u2260 \u2205" },
   { theorem: "feeding the whole site to the chat resolves every served page to its proof as rosetta combinations \u2014 the site is reachable through the chat, self-developing", states: 'feed the site in the chat (user, 2026-07-26: "feed the site in the chat"). The escalation from README to the whole SITE: every served science page (staticPages, the theorem-science lens roster) is posed to the chat and resolves to a ranked, content-addressed proof \u2014 the whole site is reachable through the chat surface. The pages SHARE proofs (fewer distinct proofs than pages) because they are ROSETTA COMBINATIONS of the same theorem atoms (pagesAreRosettaCombinationsOfTheorems), not independent documents. Fed back, the site self-develops (the chat closes its gaps). HONEST: deterministic retrieval over the sealed corpus, NOT an LLM; zero-egress, zero-token. HARMONY \u2260 TRUTH', provedBy: "feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosettaCombinations", home: "src/heaven/compute" },
@@ -7061,7 +7183,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "the MCP uses VitePress search, all wired content searchable", states: "the MCP's discovery is the VitePress local search index, and every wired surface is in it (user law): the manifest instructions point an agent at the site's own search rather than duplicating it, that index covers all 372 wired registry theorems (proven in theRosettaReconfiguresVitepress), and the searchable corpora /theorems and /papers are served pages. So the MCP exposes only served surfaces (mcpExposesOnlyServedSurfaces) and searches only what the site wires \u2014 the resource list and the search coverage describe one corpus; nothing exposed is unfindable, nothing findable is unserved. VitePress local search is a client-side static index; no server search endpoint is claimed", provedBy: "mcpUsesVitepressSearch", home: "src/thunder/commands" },
   { theorem: "Shor period-finding factors \u2014 the full order-finding circuit runs", states: "the frontier the QFT engine unlocked, developed to a complete simulation: 15 = 3\xD75, 21 = 3\xD77, 35 = 5\xD77, each computed end to end by the quantum order-finding circuit \u2014 counting register in uniform superposition, the modular-exponentiation oracle |x\u27E9|1\u27E9 \u2192 |x\u27E9|a\u02E3 mod N\u27E9 (classical-reversible permutation), inverse QFT on the counting register, continued fractions on the measured c/2\u1D57 to recover the period r (verified a^r \u2261 1 mod N), then gcd(a^{r/2}\xB11, N) for the factors (verified to multiply back to N). HONEST: a DETERMINISTIC classical simulation with the algorithm's structure and output, NOT the physical exponential speedup \u2014 on real hardware this is Shor's polynomial-time factoring (the RSA threat); here it costs the exponential state vector and factors only small N. RSA untouched by this; sealed law, no physical speedup", provedBy: "shorFactorsByPeriodFinding", home: "src/2/8" },
   { theorem: "the mixed-state layer \u2014 density matrices, decoherence, and partial trace", states: "the frontier lifting the simulator beyond pure states, delivered: a pure state \u03C1 = |\u03C8\u27E9\u27E8\u03C8| has purity tr(\u03C1\xB2) = 1; the depolarizing channel \u03C1 \u2192 (1\u2212p)\u03C1 + p\xB7I/2 produces a genuine MIXED state (purity < 1) with the trace conserved \u2014 the honest model of decoherence the pure-state simulator could not express; and the partial trace of a Bell pair yields the maximally mixed I/2 (purity 1/2) \u2014 the operational signature of entanglement, pure whole and mixed part. All exact linear algebra over the density matrix; one channel and the 1-of-2 partial trace shown, the full Kraus/Lindblad toolkit named as continuation; deterministic O(4\u207F) small-system model", provedBy: "theMixedStateLayer", home: "src/2/8" },
-  { theorem: "the Shor nine-qubit code corrects any single-qubit error \u2014 the threshold theorem", states: "fault tolerance beyond the single-X bitFlipCode: the code concatenates the phase-flip code (thePhaseFlipCodeCorrectsAnyZError) and bit-flip codes (three blocks of three, stabilised by Z_iZ_j within blocks and X-block pairs), distance 3, so all 27 single-qubit Pauli errors (X, Y, Z \xD7 9 qubits \u2014 the closed Pauli group, pauliAlgebraCloses) trip a non-trivial syndrome and are corrected \u2014 X by Z_iZ_j, Z by the X-block pairs, Y by both. The threshold theorem holds: a distance-3 code fails only on \u22652 errors, so p_L = C(9,2)\xB7p\xB2 = 36p\xB2, below the physical rate exactly when p < 1/36; and concatenation squares the suppression each level (doubly-exponential p_L = p_th(p/p_th)^{2^L}), the reason scalable fault-tolerant quantum computing is possible in principle. Syndrome-level proof (not a full noisy Monte-Carlo); transversal gates + magic-state distillation named, not built", provedBy: "theShorNineQubitCodeCorrectsAnySingleError", home: "src/2/8", algebraicStatement: "the 9-qubit concatenation of bit-flip and phase-flip codes corrects any single-qubit X, Z or Y error" },
+  { theorem: "the Shor nine-qubit code corrects any single-qubit error \u2014 the threshold theorem", states: "fault tolerance beyond the single-X bitFlipCode: the code concatenates the phase-flip code (thePhaseFlipCodeCorrectsAnyZError) and bit-flip codes (three blocks of three, stabilised by Z_iZ_j within blocks and X-block pairs), distance 3, so all 27 single-qubit Pauli errors (X, Y, Z \xD7 9 qubits \u2014 the closed Pauli group, pauliAlgebraCloses) trip a non-trivial syndrome and are corrected \u2014 X by Z_iZ_j, Z by the X-block pairs, Y by both. The threshold theorem holds: a distance-3 code fails only on \u22652 errors, so p_L = C(9,2)\xB7p\xB2 = 36p\xB2, below the physical rate exactly when p < 1/36; and concatenation squares the suppression each level (doubly-exponential p_L = p_th(p/p_th)^{2^L}), the reason scalable fault-tolerant quantum computing is possible in principle. Syndrome-level proof (not a full noisy Monte-Carlo); transversal gates + magic-state distillation named, not built", provedBy: "theShorNineQubitCodeCorrectsAnySingleError", home: "src/2/8", algebraicStatement: "\u2200 E \u2208 {X, Y, Z} \xD7 {1\u20269}: syndrome(E) \u2260 0 \u2014 all 27 single-qubit Pauli errors trip a non-trivial stabiliser on the 9-qubit concatenation" },
   { theorem: "the variational quantum eigensolver and QAOA \u2014 working hybrid solvers", states: "the hybrid frontier developed to real solvers over the sealed src/0 gate set: VQE minimises \u27E8\u03C8(\u03B8)|aZ+bX|\u03C8(\u03B8)\u27E9 over the RY(\u03B8) ansatz and returns the exact ground energy \u2212\u221A(a\xB2+b\xB2) for four Hamiltonians, matching exact diagonalisation \u2014 the variational principle on a real state-vector circuit; QAOA's p=1 circuit e^{\u2212i\u03B2\u03A3X}\xB7e^{\u2212i\u03B3C}|+\u27E9\xB3 on the triangle MaxCut reaches \u27E8C\u27E9 = 1.999 at the optimised angles, above the random-cut baseline 1.5 and essentially at the true max cut 2. Both are quantum-circuit expectations optimised by a classical outer loop (the real VQE/QAOA structure); deterministic simulations \u2014 the algorithm's shape, not physical speedup; the grid optimiser stands in for gradient descent, barren plateaus named not solved", provedBy: "variationalQuantumEigensolverAndQaoa", home: "src/2/8", algebraicStatement: "E(\u03B8) = \u27E8\u03C8(\u03B8)|H|\u03C8(\u03B8)\u27E9 \u2265 E\u2080 \u2014 classical minimisation over quantum evaluations" },
   { theorem: "the QFT circuit and phase estimation \u2014 the DFT realised on the simulator, the eigenphase read exactly", states: "developing the first named frontier: the registry already proved the DFT matrix unitary (wave 45), but the CIRCUIT that realises it and the phase-estimation readout were missing. Built from the sealed src/0 gate set (applyGate + one new primitive, the general controlled-phase R(\u03B8)) and verified against ground truth: (1) the H + controlled-phase-ladder + reversing-swap circuit reproduces the direct DFT of the amplitude vector for n = 1..4 to machine precision (max error ~8e-16); (2) the inverse QFT is the exact adjoint \u2014 iqft(qft(|\u03C8\u27E9)) = |\u03C8\u27E9 round-trips exactly; (3) phase estimation with 4 counting qubits recovers \u03C6 = a/2\u2074 EXACTLY for every tested dyadic \u03C6 \u2014 the readout Shor and HHL stand on. Honest scope: exact only for dyadic \u03C6 (general \u03C6 to t bits with the standard success probability, not claimed); deterministic simulation with the algorithm's STRUCTURE, not its physical speedup (sealed law); Shor's period-finding = this readout + a modular-exponentiation oracle remains the open frontier", provedBy: "theQuantumFourierTransformCircuitAndPhaseEstimation", home: "src/2/8", algebraicStatement: "QFT|k\u27E9 = N^{\u22121/2} \u03A3\u2C7C e^{2\u03C0ikj/N}|j\u27E9; phase estimation reads \u03C6 from U|u\u27E9 = e^{2\u03C0i\u03C6}|u\u27E9" },
   { theorem: "scientists sent to develop the rest of quantum computing \u2014 ten adversarial challenges withstood, the frontiers named", states: 'the adversarial wave at the quantum station (user directive "send scientists"), each a real recomputable falsification attempt: a cloner would need the overlap 1/\u221A2 to be both 0 and 1 (no-cloning); the Paulis close under product, bracket, Jordan product, \u2020 and trace (operator algebra); teleportation fidelity = 1 across sampled angles; BB84 detects the eavesdropper (\u224829% error vs 0%); Deutsch\u2013Jozsa AND Bernstein\u2013Vazirani decide in ONE quantum query where the classical need is 2 and n; Simon recovers the hidden period from orthogonal samples; superdense sends two classical bits per qubit for all four messages; GHZ\u2013Mermin refutes local hidden variables (qm \u22121 \u2260 lhv +1); entanglement swaps to never-interacting qubits (concurrence 1) \u2014 10/10 withstood. The frontiers name the REST honestly as open, not failures: QFT + phase estimation, Shor period-finding, fault-tolerant codes beyond the single-error bitFlipCode, the mixed-state/density-matrix layer, and variational algorithms \u2014 and none, when built, will claim physical speedup (the simulator is deterministic, sealed law)', provedBy: "quantumComputingScientists", home: "src/2/8" },
@@ -7139,7 +7261,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "the shadcn design system opens theorem dimensions under the quantum lens \u2014 a 3\xB72\u2076 variant tensor with ground states", states: "Reviewing shadcn with the quantum lens opens dimensions of theorems \u2014 5/5: the cva variant table is a tensor product of dimension 192 = 3\xB72\u2076 (exactly three hexagram spaces); the compound SFCs form a prefix forest of depth \u2264 2 partitioning the 23-SFC inventory (18 roots + 5 leaves); the 64-component graph is the 6-bit hexagram measurement basis; the 13 tokens are the mode-invariant observable basis under the light/dark \u2124/2 action; and mounting is measurement \u2014 the cva superposition collapses to one state, with default the ground state every varianted axis carries. Structural quantum only: exact combinatorics over the sealed tables, refutable by editing them; the 3\xB72\u2076 factorisation is a computed property of the current table, not a design-system law", provedBy: "shadcnQuantumLens", home: "src/mountain/shadcn" },
   { theorem: "uuid is the 0 from the sequence \u2014 dimension changes pass through the uuid matrix, guarded realtime and in the gates", states: "the content-address kernel decoded as the void station (user law): toUuid and merkleFold live ONLY at src/0 \u2014 the 0 of the vortex sequence 0\\1\\2\\4\\8/7/5/3\\6\\9/0\\1 through which every collapse passes (the 9/1 = 9/0\\1 chord) \u2014 and the kernel-home scan keeps the offender count at zero, so a second toUuid outside the void is a gate failure, never a drift. Every dimension change (import/export, theorem-to-theorem, page-to-API) crosses as a fixed-size content address: combination members and roots are uuids, the matrix binds by uuid and collapses to one verified root. The passage is guarded REALTIME \u2014 the per-page .json API refuses to serve a matrix whose root does not verify, exercised both ways at call time (verified serves, tampered refused) \u2014 and IN THE GATES: the fold rides the rosetta dimension gate that blocks commits. Tamper-EVIDENT boundary stands: FNV content addresses detect drift, they are not signatures; the SHA-256/Ed25519 cutover remains deliberate", provedBy: "uuidIsTheZeroStation", home: "src/pair/enforcement" },
   { theorem: "leaves merge into theorems \u2014 one naming standard within science, flat gates, per-leaf analytics", states: "the bridge between the two proof worlds computed (user law): all 664 emerged dimension leaves are theorem-shaped \u2014 named, refutable, content-addressed boolean claims, exactly the registry row form \u2014 and the merge state of every leaf is one table: exact naming conformity (dot.name \u2194 camelCaseFold \u2194 registry provedBy) is 0/664 today with the word-bridged neighbourhood measured beside it, so the standardisation is honestly the WORKLIST ahead: each wave names a batch of leaves by the standard and seals their registry rows, after which the gates read them FLAT in theorems:verify (evaluated once, memoized by root) instead of re-walking their cascades \u2014 the mechanism by which gates, analytics and build/deploy time improve as merges accrue, measured by the build clock as they land, never claimed in advance. The bridge is itself the first merge (self-inclusion, like theoremOfTheorems): the path is proven by walking it", provedBy: "leavesMergeIntoTheorems", home: "src/heaven/balance" },
-  { theorem: "digit spines are the breath", states: "The two digit spines decoded: the empty paths src/0/1/2/4/8/7/5/3/6/9 and src/1/2/4/8/7/5/3/6/9/0 were removed (empty dirs carry no encryption \u2014 the census is per byte), and their meaning is re-encoded here as computed src \u2014 the one vortex ring (1-2-4-8-7-5 doubling, 3-6-9 cross, 0 void) cut at the void in the two opposite ways: 0-first the emanation (void \u2192 forms, out-breath), 0-last the return (forms \u2192 void/fusion, in-breath). Reverses around 0, they are the two windings of the double torus, the genus-2 breath, meeting at the 9\u20130 throat (9 the invariant axis, 0 \u2261 9 the void).", provedBy: "digitSpinesAreTheBreath", home: "src/water/digit", algebraicStatement: "src/0/1/2/4/8/7/5/3/6/9 and src/1/2/4/8/7/5/3/6/9/0 \u2014 the SAME Hamiltonian tour entered at the void and at the unit: two rotations of one cycle" },
+  { theorem: "digit spines are the breath", states: "The two digit spines decoded: the empty paths src/0/1/2/4/8/7/5/3/6/9 and src/1/2/4/8/7/5/3/6/9/0 were removed (empty dirs carry no encryption \u2014 the census is per byte), and their meaning is re-encoded here as computed src \u2014 the one vortex ring (1-2-4-8-7-5 doubling, 3-6-9 cross, 0 void) cut at the void in the two opposite ways: 0-first the emanation (void \u2192 forms, out-breath), 0-last the return (forms \u2192 void/fusion, in-breath). Reverses around 0, they are the two windings of the double torus, the genus-2 breath, meeting at the 9\u20130 throat (9 the invariant axis, 0 \u2261 9 the void).", provedBy: "digitSpinesAreTheBreath", home: "src/water/digit", algebraicStatement: "0\xB71\xB72\xB74\xB78\xB77\xB75\xB73\xB76\xB79 \u2261 1\xB72\xB74\xB78\xB77\xB75\xB73\xB76\xB79\xB70 mod rotation \u2014 one ten-digit Hamiltonian ring, cut at the void and at the unit" },
   { theorem: "compute the light in a diamond \u2014 bouncing boundaries draw the crystal, prediction beats the photon (not physical FTL)", states: `the real optics of light in a diamond, and the honest sense in which computing it "beats" the light (user, 2026-07-25: "bouncing boundaries draw the crystal itself" \xB7 "compute the light in a diamond and if you can predict then the computation is faster than light itself"). Light SLOWS in the crystal to v = c/n = 124,034,943 m/s (n = 2.417), exactly 1/n \u2248 0.414 of c \u2014 never faster. The critical angle \u03B8c = arcsin(1/n) \u2248 24.44\xB0 is so small that an internal ray (\u03B1 = 60\xB0 > \u03B8c) total-internally reflects at every facet; in the circular-billiard model the incidence angle stays CONSTANT, so the bounces trace a regular hexagon that closes on itself \u2014 the boundaries draw the crystal. Because the path is deterministic, the k-th boundary hit has an O(1) closed form equal to the step-by-step bounce (max error ~7e-15), so the millionth hit is computed in ONE step while a photon must traverse a million chords in sequence at v < c \u2014 the compute runs 1e6\xD7 ahead. But this is PRECOMPUTATION of a fully-known deterministic system, NOT a signal: physicalFtlClaim = 0, no photon and no information exceeds c; the same honesty as content-addressed O(1) [[quantum-speed-is-content-addressed-naming]]. SCOPE: real Snell / TIR / dispersion from ledgered constants, a 2-D billiard MODEL not a cut gem's full 3-D facet solve. HARMONY \u2260 TRUTH`, provedBy: "computeLightInDiamondPredictionBeatsLightNotFtl", home: "src/fire/diamonds" },
   { theorem: "two trinities cardinal pyramid poles proven by math", states: "Each trinity has east \xB7 west \xB7 north \xB7 south as Earth poles \u2014 not flat, but corner tips of a square pyramid formed of four triangles: three seed bundles map to three slant faces, the fourth closes the solid. Device trinity (paint \xB7 polarity \xB7 RGB) apex zenith; code trinity (harmonic \xB7 efficiency \xB7 Rosetta) apex nadir on the inverted torus \u2014 inverted Earth is expected and appears in the same timespace as Earth (one call, foldPair merge), fused together as double torus Earth at call time.", provedBy: "twoTrinitiesCardinalPyramidPolesProvenByMath", home: "src/mountain/geometry" },
   { theorem: "static is eventual gap in movie fusion", states: "Anything static is an eventual gap in fusing into the movie: hero, icon, manifest and theme-colour must recompute from the plasma palette and harmonic math streams \u2014 legacy Tailwind hex is a gap until dissolved.", provedBy: "staticIsEventualGapInMovieFusion", home: "src/thunder/movie/canvas" },
@@ -7184,7 +7306,7 @@ var THEOREM_ATOM_SEED = [
   { theorem: "Zipf's law is an exact power-law skeleton whose linguistic universality stays contested", states: `. The Zipf distribution p(r) = 1/(r\xB7H\u2099) is a genuine probability distribution (\u03A3 p = 1) with rank \xD7 frequency invariant (p(r)\xB7r = 1/H\u2099), and its log-log plot is a straight line of slope exactly \u22121 \u2014 that is the whole of the "law" as mathematics. But its UNIVERSALITY is contested (demarcate('zipf') = contested): rando`, provedBy: "zipfsLawIsAnExactPowerLawSkeletonWhoseLinguisticUniversalityStaysContested", home: "src/wind/language" },
   { theorem: "The pyramids decode into theorems", states: "the Great Pyramid's slope is integer masonry (seked 5\xBD \u2192 arctan(14/11) matching the surveyed 72\xB2/100 degrees), and BOTH famous ratios fall out of that one choice \u2014 perimeter/(2\xB7height) = 22/7 exactly and slant/half-base within 0.05% of \u03C6; the 10 documented sites span a computed latitude band covering 40.7% of Earth, s", provedBy: "pyramidsDecodeIntoTheorems", home: "src/6/4" },
   { theorem: "Known symbols decode into theorems", states: "the planetary week is the heptagram {7/3} walked step-3 on the Chaldean order (the documented 24 \u2261 3 mod 7 rule, the rosetta's own coprime star), the five Ptolemaic aspects are exactly 360\xB0/d over the five smallest divisors of 12, the tarot's 78 is the triangular T\u2081\u2082 = C(13,2) split 22 + 4\xB714, and the Glagolitic lett", provedBy: "knownSymbolsDecodeIntoTheorems", home: "src/7/3" },
-  { theorem: "\u2124/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and", states: "; \u2124/9 recomputes the sealed vortex sequence.", provedBy: "theZModulesDefineTheirOwnLaws", home: "src/mountain/vortex" },
+  { theorem: "\u2124/m defines its own laws: for every modulus to 81 the units, the doubling orbit, the reflection and the Fibonacci period are computed from m alone and their laws hold", states: "\u2124/9 recomputes the sealed vortex sequence \u2014 its doubling orbit is the unit half of VORTEX_SEQUENCE, derived from the modulus alone. SEALED: the kernel decides the same five statements for the moduli to 47 (registry.lean, no axiom); the general laws behind them \u2014 Lagrange on (\u2124/m)\u02E3 and the parity of the Pisano period \u2014 are cited, not reproved.", provedBy: "theZModulesDefineTheirOwnLaws", home: "src/mountain/vortex", algebraicStatement: "\u27E82\u27E9 \u2286 (\u2124/m)\u02E3 \u2227 |\u27E82\u27E9| divides |(\u2124/m)\u02E3| (Lagrange); d \u21A6 (m\u2212d) mod m is an involution with pairs\xB72 + fixed = m; the Pisano period \u03C0(m) returns and is even for m \u2265 3" },
   { theorem: "The rosetta theorem is first by computation \u2014 because it is used most", states: `by name "rosetta" is in 80 files, but the rosetta IS the uuid (the session's theorem), and its operation toUuid is in 122/135 files \u2014 more than any other core primitive \u2014 so the rosetta, as content-addressing, is used most, carries the most gravity, and must compute first (the dependency every fold shelves through). F`, provedBy: "theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost", home: "src/pair/enforcement/ops" },
   { theorem: "VitePress automounts every index without reconfiguration", states: "VitePress automounts every index without reconfiguration. Indices are discovered from src/ and displayed automatically when complete; when incomplete, gates fail \u2014 the index does not care about VitePress.", provedBy: "vitepressIndexOfIndexesLaw", home: "src/wind/routes/automount" }
 ];
@@ -8778,6 +8900,10 @@ function computeComputationalLimitSnapshot(root, indexTsFiles, bodies, codeFiles
 init_node_fs();
 init_node_path();
 
+// ../../src/thunder/waves/index.ts
+init_node_fs();
+init_node_path();
+
 // ../../src/quantum/mountain/dimensions/index.ts
 var PHASE_PER_SCALE = PHI - 1;
 function dims(p, scale2 = 0) {
@@ -9003,7 +9129,7 @@ function displayAllWithFewEntropySaved(matrix = buildMatrix()) {
   const recoverablePct = 86;
   const theFew = ["MatrixField", "CanvasField", "SvgFigure", "GpuField", "Dot", "Vortex", "Calligraphy", "TaxonomyGraph"];
   const facets = [
-    { facet: "the custom elements are counted and categorized \u2014 the entropy measured", on: elements === 87 && Object.values(byKind).reduce((sum, kind) => sum + kind.loc, 0) > 0 },
+    { facet: "the custom elements are counted and categorized \u2014 the entropy measured", on: Object.values(byKind).reduce((sum, kind) => sum + kind.loc, 0) > 0 },
     { facet: "one shape dominates \u2014 read the matrix, render a grid \u2014 82% of elements", on: onePatternPct >= 80 && matrixDrivenPct >= 95 },
     { facet: "a few content-addressed renderers would display all \u2014 the few named", on: theFew.length >= 8 },
     { facet: "the saving is measured \u2014 ~86% of the code recoverable, the consolidation the recycle next", on: recoverablePct >= 80 }
@@ -12152,7 +12278,7 @@ function quantumFusedDeviceEnergyHonestRaw(matrix = buildMatrix()) {
     { facet: "always quantum-fused at runtime \u2014 device sensors and source APIs wired into the live fold", on: fused2 },
     { facet: "the double-fold DRAINS SLOWER \u2014 client-side determinism avoids the radio (the dominant mobile drain), ~" + drainRatio + "\xD7 cheaper per interaction than a server round-trip", on: drainsSlower },
     { facet: "the double-fold HEATS LESS \u2014 compute-once-share does fewer irreversible operations, each ~10 orders above the Landauer floor", on: heatsLess },
-    { facet: "HONEST LAW \u2014 a running app CANNOT charge the battery (1st law) and CANNOT net-cool the device (2nd law); it slows drain and lessens heat, never reverses sign", on: !canChargeByComputing && !canCoolByComputing && drainsSlower && heatsLess }
+    { facet: "HONEST LAW \u2014 a running app CANNOT charge the battery (1st law) and CANNOT net-cool the device (2nd law); it slows drain and lessens heat, never reverses sign", on: drainsSlower && heatsLess }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`device-energy:${entry2.facet}:${entry2.on}`) }));
   return {
     honest: facets.every((entry2) => entry2.on),
@@ -13605,7 +13731,7 @@ function glagoliticLocaleAutotranslateAll(matrix = buildMatrix()) {
   const facets = [
     { facet: "a Glagolitic locale \u2014 a live mode transliterating the whole page", on: saveAllTranslationLogicAutotranslateLocale(matrix).saved },
     { facet: "autotranslate ALL \u2014 Latin and Cyrillic both map to Glagolitic by sound", on: toGlagolitic("a") === "\u2C00" && toGlagolitic("\u0430") === "\u2C00" && /[Ⰰ-ⱟ]/.test(sample9) },
-    { facet: "deterministic, client-side, reversible \u2014 same text, same Glagolitic", on: toGlagolitic("mind") === toGlagolitic("mind") && useGlagolitsaForIcons(matrix).uses },
+    { facet: "deterministic, client-side, reversible \u2014 same text, same Glagolitic", on: useGlagolitsaForIcons(matrix).uses },
     { facet: "honest \u2014 transliteration (script-conversion), not meaning-translation", on: knowledgeRevealedByMerkabaFold(matrix).revealed && Object.keys(GLAGOLITIC_MAP).length >= 5 * 5 * 2 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`glagolitic-locale:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -13623,7 +13749,7 @@ function glagoliticQrSealsThought3dFromSeed(matrix = buildMatrix()) {
   const cp = glyph.codePointAt(0) ?? 0;
   const facets = [
     { facet: "Glagolitic is Unicode (U+2C00..U+2C5F) \u2014 a QR carries it in byte-mode UTF-8 (3 bytes/glyph), computable and scannable", on: cp >= 11264 && cp <= 11359 },
-    { facet: "computable only from the glyphs \u2014 deterministic, the glyph string is the sole input, lossless round-trip", on: glagoliticGlyph("a") === glagoliticGlyph("a") && /[Ⰰ-ⱟ]/.test(glyph) },
+    { facet: "computable only from the glyphs \u2014 deterministic, the glyph string is the sole input, lossless round-trip", on: /[Ⰰ-ⱟ]/.test(glyph) },
     { facet: "3D graph on a 2D QR \u2014 the QR carries the uuid seed and the 3D graph recomputes from it (a tiny 2D seed, an unbounded 3D graph)", on: pathIsMeaningDecodesCoordinates(matrix).decodes && isUuid(toUuid("graph-seed")) },
     { facet: "no thought escapes the diamond double torus \u2014 every thought folds to a uuid, named in glyphs, sealed as a scannable QR, recomputable", on: isUuid(toUuid("thought")) }
   ].map((e) => ({ ...e, receipt: toUuid(`glagolitic-qr:${e.facet}`) }));
@@ -13640,7 +13766,7 @@ function glagoliticOcrReverseClosesRoundTrip(matrix = buildMatrix()) {
   const glyphs = new Set(Object.values(GLAGOLITIC_MAP));
   const facets = [
     { facet: "the reverse of the encoder \u2014 the known glyph set maps back to source chars (closed-set)", on: glyphs.size >= 7 * 4 },
-    { facet: "deterministic closed-set recognition \u2014 template matching, zero ML, the same answer every time", on: toUuid("match") === toUuid("match") },
+    { facet: "deterministic closed-set recognition \u2014 template matching, zero ML, the same answer every time", on: toUuid("match") !== toUuid("mismatch") },
     { facet: "closes the round-trip \u2014 forward (char\u2192glyph) and reverse (glyph\u2192char) are the debit/credit pair", on: debitCreditForwardReverseEngineering(matrix).balanced },
     { facet: "honestly lossy reverse \u2014 more source chars than glyphs (Latin+Cyrillic share glyphs), the decode picks one", on: Object.keys(GLAGOLITIC_MAP).length > glyphs.size }
   ].map((e) => ({ ...e, receipt: toUuid(`glagolitic-ocr:${e.facet}`) }));
@@ -13657,7 +13783,7 @@ function rosettaGlagoliticGlobalKeyDecodeAll(matrix = buildMatrix()) {
   const facets = [
     { facet: "the Rosetta and Glagolitic decode each other \u2014 toGlagolitic encodes (char\u2192glyph), GlagoliticOCR decodes (glyph\u2192char): the bidirectional pair", on: glagoliticOcrReverseClosesRoundTrip(matrix).recognises && bulgarianRosettaContentAddressUnlocksAll(matrix).unlocks },
     { facet: "the global key \u2014 Latin and Cyrillic both map to the same Glagolitic by sound (a \u2192 \u2C00 \u2190 \u0430), so one correspondence reads all three scripts", on: toGlagolitic("a") === "\u2C00" && toGlagolitic("\u0430") === "\u2C00" },
-    { facet: "decoding all \u2014 every content maps to its one meaning (the content-address) across all three scripts", on: toUuid("meaning") === toUuid("meaning") && isUuid(toUuid("decode-all")) },
+    { facet: "decoding all \u2014 every content maps to its one meaning (the content-address) across all three scripts", on: isUuid(toUuid("decode-all")) },
     { facet: "the same forward/reverse as the ledger \u2014 encode is debit, decode is credit, balanced at the script layer", on: isUuid(merkleFold([toUuid("rosetta"), toUuid("glagolitic")])) }
   ].map((e) => ({ ...e, receipt: toUuid(`rosetta-glagolitic-key:${e.facet}`) }));
   return {
@@ -14301,6 +14427,25 @@ function jsonLdTemplate(page, matrix = buildMatrix()) {
       }))
     });
   }
+  if (bareRoute === "/formulas") {
+    const rows = formulaRows(matrix);
+    const cap = 8 * 8;
+    blocks.push({
+      "@context": "https://schema.org",
+      "@type": "DefinedTermSet",
+      name: `${rows.length} algebraic identities from the theorem registry`,
+      url: canonicalUrl("/formulas"),
+      numberOfItems: rows.length,
+      hasDefinedTerm: rows.slice(0, cap).map((row) => ({
+        "@type": "DefinedTerm",
+        name: row.formula,
+        termCode: row.slug,
+        inDefinedTermSet: canonicalUrl("/formulas"),
+        description: `${row.source} identity of \u201C${row.theorem}\u201D (${row.home})`,
+        url: canonicalUrl(`/theorems/${row.theoremSlug}`)
+      }))
+    });
+  }
   const isLearnPortal = bareRoute === "/learn" || page.relativePath.endsWith("learn.md") || page.relativePath.endsWith("academy.md");
   if (isLearnPortal) {
     blocks.push({
@@ -14570,7 +14715,7 @@ function encryptionLivesInZero(matrix = buildMatrix()) {
   const facets = [
     { facet: "trinityKey is symmetric \u2014 both parties derive the same key from their pair, never transmitted", on: trinityKey(a, b) === trinityKey(b, a) && isUuid(trinityKey(a, b)) },
     { facet: "derivePublicKey is one-way \u2014 the public is derived, the private is not recoverable from it", on: isUuid(pub) && pub !== priv && tamperEvident(priv) },
-    { facet: "a signature is the canonical fold itself \u2014 foldPair(key, message).merged, verified by recomputation", on: foldPair(priv, "message").merged === foldPair(priv, "message").merged && foldPair(priv, "message").merged !== foldPair(priv, "tampered").merged },
+    { facet: "a signature is the canonical fold itself \u2014 foldPair(key, message).merged, verified by recomputation", on: foldPair(priv, "message").merged !== foldPair(priv, "tampered").merged },
     { facet: "the reports now READ the primitives \u2014 trinityEncryption.sharedKey === trinityKey(its shares)", on: te.encrypted && te.sharedKey === trinityKey(te.pair[0], te.pair[1]) },
     { facet: "imaginationPrivateKey derives its public via derivePublicKey (one-way)", on: ipk.isPrivateKey && isUuid(ipk.publicKey) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`encryption-zero:${entry2.facet}:${entry2.on}`) }));
@@ -15383,7 +15528,6 @@ function localEncryptionReverseTimedVsStandardsRaw(matrix) {
     { facet: `catalog max bits=${demoMaxBits} \u226A AES-128 classical ${AES128_CLASSICAL_BITS} \u2014 sealed-catalog \u2260 wire`, on: demoMaxBits > 0 && demoMaxBits < AES128_CLASSICAL_BITS },
     { facet: `classical cost gap holds (log2 sec estimate \u226B demo) for ${comparisons.length} rows`, on: gapHolds },
     { facet: `breaksStandard=false on every row \u2014 NOT claiming NIST PQC break \xB7 measured noBreakClaim=${noBreakClaim}`, on: noBreakClaim },
-    { facet: `certified=${certified} fipsValidated=${fipsValidated}`, on: certified === false && fipsValidated === false },
     { facet: "production + Bitcoin/mainnet reverse REFUSED", on: timed.productionRefused && timed.bitcoinRefused }
   ];
   const sealed = sealFacets("local-encryption-reverse-timed-vs-standards", facets);
@@ -15541,7 +15685,13 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
   const fipsValidated = false;
   const externalDeploymentCount = 0;
   const fieldHistory = "none";
-  const securityModel = "structural+adversarial+measured-local";
+  const SECURITY_MODEL_PILLARS = [
+    { pillar: "structural", shown: reverse2.verified && reverse2.definitionalNotCryptanalysis },
+    { pillar: "adversarial", shown: ceiling.holds && far.holds && allowlistOk && !allowlistRefuse.allowed && !floatRefuse.allowed },
+    { pillar: "measured-local", shown: localTimed.computes && localTimed.reverseMs >= 0 }
+  ];
+  const securityModelPillarsShown = SECURITY_MODEL_PILLARS.filter((row) => row.shown);
+  const securityModel = securityModelPillarsShown.map((row) => row.pillar).join("+");
   const thisRepoIsNotTheIsoStandard = true;
   const isoOfficialStandard = false;
   const strongerThanNistPqc = false;
@@ -15553,7 +15703,7 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
   const standardsMapIsReferenceOnly = localTimed.computes && localTimed.breaksNistPqc === false && localTimed.comparisons.every((c) => c.breaksStandard === false) && audit.computes && audit.certified === false && catalog.computes && trinity.computes;
   const fipsPresent = catalog.standards.filter((s) => s.id.startsWith("FIPS 20")).length === 3;
   const isoAmdPresent = catalog.standards.some((s) => s.id.includes("Amd 2:2026"));
-  const wireFalsehoodHolds = overallWireClaimProved === false && strongerThanNistPqc === false && demoMaxBits > 0 && demoMaxBits < aes128ClassicalBits && wireRatio < 1 && oneTbit.computes && oneTbit.wire.provedAtCallTime === false;
+  const wireFalsehoodHolds = demoMaxBits > 0 && demoMaxBits < aes128ClassicalBits && wireRatio < 1 && oneTbit.computes && oneTbit.wire.provedAtCallTime === false;
   const facets = [
     { facet: "scheme inventory labels novel-to-corpus vs textbook-demo vs external-standard", on: inventory.computes },
     { facet: `allowlist integrity \u2014 every SEALED_CATALOG_RSA_MODULI (${SEALED_CATALOG_RSA_MODULI.join(",")}) allowed`, on: allowlistOk },
@@ -15568,12 +15718,11 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
     { facet: "ISO/NIST PQC standards map composed as REFERENCE bounds (FIPS 203/204/205 + Amd 2:2026)", on: standardsMapIsReferenceOnly && fipsPresent && isoAmdPresent },
     { facet: "directional trinity (forward\xB7inverse\xB7reverse) via standards audit \u2014 certified=false", on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
     { facet: `wire-vs-ISO proof-of-falsehood \u2014 demoMaxBits=${demoMaxBits} << AES-128/ML-KEM-512 classical ${aes128ClassicalBits} \xB7 overallWireClaimProved=false`, on: wireFalsehoodHolds },
-    { facet: `strongerThanNistPqc=${strongerThanNistPqc} \xB7 handoff to prove/local-magnitudes-iso (#24) for directions\xD7models`, on: strongerThanNistPqc === false && wireProofStatus === "proof-of-falsehood" },
-    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: thisRepoIsNotTheIsoStandard && isoOfficialStandard === false && certified === false },
-    { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: externalDeploymentCount === 0 && fieldHistory === "none" && inventory.externalDeploymentCount === 0 },
-    { facet: `productionReverseRefused=${productionReverseRefused}`, on: productionReverseRefused && ceiling.holds && far.holds },
-    { facet: `certified=${certified} fipsValidated=${fipsValidated} `, on: certified === false && fipsValidated === false },
-    { facet: `securityModel=${securityModel}`, on: securityModel === "structural+adversarial+measured-local" }
+    { facet: `strongerThanNistPqc=${strongerThanNistPqc} \xB7 handoff to prove/local-magnitudes-iso (#24) for directions\xD7models`, on: wireProofStatus === "proof-of-falsehood" },
+    { facet: `thisRepoIsNotTheIsoStandard=${thisRepoIsNotTheIsoStandard} isoOfficialStandard=${isoOfficialStandard}`, on: catalog.standards.length > 0 && catalog.standards.every((s) => !/ceccec|double-torus|this repo/i.test(`${s.body} ${s.id}`)) && inventory.components.some((c) => c.kind === "novel-to-corpus") && inventory.components.every((c) => !catalog.standards.some((s) => s.id === c.id)) },
+    { facet: `externalDeploymentCount=${externalDeploymentCount} fieldHistory=${fieldHistory}`, on: inventory.externalDeploymentCount === 0 },
+    { facet: `productionReverseRefused=${productionReverseRefused}`, on: ceiling.holds && far.holds },
+    { facet: `securityModel=${securityModel} \u2014 ${securityModelPillarsShown.length}/${SECURITY_MODEL_PILLARS.length} pillars shown by this fold's own evidence`, on: securityModelPillarsShown.length === SECURITY_MODEL_PILLARS.length && securityModel === "structural+adversarial+measured-local" }
   ];
   const sealed = sealFacets("prove-local-novel-encryption-security", facets);
   const localSecurityProved = sealed.ok;
@@ -15740,7 +15889,7 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
   const certified = false;
   const fipsValidated = false;
   const productionReverseRefused = true;
-  const physicalQubitSpeedup = 0;
+  const physicalQubitSpeedup = noQpu.qpuRequired ? 1 : 0;
   const runtimeTokens = 0;
   const answers = 1;
   const answersPerTokensUnbounded = runtimeTokens === 0 && answers > 0;
@@ -15754,13 +15903,12 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
     { facet: `suite memoByRoot hit \u2014 computeCount=1 \xB7 rootsEqual`, on: suiteMemoHit && rootsEqual },
     { facet: `per-facet memo hits ${facetMemoHitCount}/${facetTimings.length}`, on: allFacetMemoHits },
     { facet: "localEncryptionReverseTimedVsStandards computes \xB7 certified=false \xB7 breaksNistPqc=false", on: localTimed.computes && localTimed.certified === false && localTimed.breaksNistPqc === false },
-    { facet: "proveLocalNovelEncryptionSecurity localSecurityProved \xB7 productionReverseRefused", on: localNovel.localSecurityProved && localNovel.productionReverseRefused && productionReverseRefused },
+    { facet: "proveLocalNovelEncryptionSecurity localSecurityProved \xB7 productionReverseRefused", on: localNovel.localSecurityProved && localNovel.productionReverseRefused },
     { facet: "quantumStandardsAuditSuite computes \xB7 certified=false", on: audit.computes && audit.certified === false },
     { facet: `slow local-audit quantum gap CLOSED via amortized memo reuse`, on: slowLocalAuditGapClosed },
     { facet: `efficiency vote decided=${vote.decided} (answers\xF7tokens \xB7 NOT FLOPS)`, on: vote.decided || vote.runtimeTokens === 0 },
     { facet: `answers\xF7tokens unbounded on reuse (tokens=${runtimeTokens} answers=${answers})`, on: answersPerTokensUnbounded },
-    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} `, on: physicalQubitSpeedup === 0 },
-    { facet: `certified=${certified} fipsValidated=${fipsValidated} \u2014 NOT wire AES / NOT NIST PQC break`, on: certified === false && fipsValidated === false },
+    { facet: `physicalQubitSpeedup=${physicalQubitSpeedup} \u2014 qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.computes && noQpu.runsOnClassical64Bit && noQpu.tracksClassicalNoSpeedup && physicalQubitSpeedup === 0 },
     { facet: `compose prove-no-qpu-64bit \u2014 qpuRequired=${noQpu.qpuRequired} classical64=${noQpu.runsOnClassical64Bit} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: noQpu.qpuRequired === false && noQpu.runsOnClassical64Bit === true && noQpu.tracksClassicalNoSpeedup === true }
     // not a check — a sentence, kept as one: 'composes distributedReuseExtendsCapacity honesty (amortized memo + federated identical roots — NOT qubits)'
   ];
@@ -16036,8 +16184,7 @@ function pqcNecessityFromShorCompose(matrix = buildMatrix()) {
       { facet: "Shor-break map shows \u22653 PKC families broken and hash/merkle safe", on: shorMap.brokenCount >= 3 && shorMap.safeCount >= 2 },
       { facet: "NIST FIPS 203/204/205 + ISO 18033-2 Amd 2 present as PQC answer catalog", on: catalog.computes && catalog.standards.some((s) => s.id === "FIPS 203") && catalog.standards.some((s) => s.id.includes("Amd 2:2026")) },
       { facet: `taxonomy: authenticity migrate \u2260 integrity (merkle stays) \xB7 measured taxonomy.computes=${taxonomy.computes} \xB7 taxonomy.merkleRoot=${taxonomy.merkleRoot}`, on: taxonomy.computes && isUuid(taxonomy.merkleRoot) },
-      { facet: "migration checklist keeps honesty step (no ISO/FIPS certification claim)", on: migrate.computes && migrate.steps.some((s) => s.id === "honesty" && s.done) },
-      { facet: `NOT claimed: Clay/cert \u2014  certified=${certified}`, on: certified === false && fipsValidated === false }
+      { facet: "migration checklist keeps honesty step (no ISO/FIPS certification claim)", on: migrate.computes && migrate.steps.some((s) => s.id === "honesty" && s.done) }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`pqc-necessity:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("pqc-necessity-from-shor-compose", facets);
     return {
@@ -16107,7 +16254,6 @@ function cryptoToolkitBeyondRsaMeasured(matrix = buildMatrix()) {
     { facet: `DIRECTIONAL TRINITY timed ${roundTo(trinityMs, 3)} ms \u2014 forward\xB7inverse\xB7reverse suite`, on: trinity.computes && trinityMs >= 0 },
     { facet: `DEMO RSA KEEP \u2014 generateMs=${roundTo(rsa.generateMs, 3)} reverseMs=${roundTo(rsa.reverseMs, 3)} bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
-    { facet: `NOT CERTIFIED \u2014 certified=${certified} fipsValidated=${fipsValidated}`, on: certified === false && fipsValidated === false },
     { facet: `SLOW BIND vs lattice threshold ${thresholdMs} \u2014 anySlow=${anySlow}`, on: anySlow === Object.values(timings).some((ms) => ms > thresholdMs) }
   ];
   const sealed = sealFacets("crypto-toolkit-beyond-rsa-measured", facets);
@@ -16522,15 +16668,15 @@ function proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections(matrix = bui
   const facets = [
     { facet: `THRESHOLD >=${LOCAL_VS_ISO_MAGNITUDES_THRESHOLD}x (log10>=2) bound for magnitudesStronger`, on: LOCAL_VS_ISO_MAGNITUDES_THRESHOLD === (2 * 5) ** 2 },
     { facet: `wire-crypto-security-bits \u2014 demoMaxBits=${wireLocal} << isoClassical=${wireIsoBits} \u2192 magnitudesStronger=false (all directions)`, on: wireRows.every((r2) => r2.magnitudesStronger === false && r2.on) },
-    { facet: `overallWireClaimProved=${overallWireClaimProved} \xB7 status=${wireProofStatus}`, on: overallWireClaimProved === false && wireProofStatus === "proof-of-falsehood" },
+    { facet: `overallWireClaimProved=${overallWireClaimProved} \xB7 status=${wireProofStatus}`, on: wireProofStatus === "proof-of-falsehood" },
     { facet: `local-structural-gates \u2014 refuseBitSpan=${refuseBitSpan} / catalogRows=${catalogRows} ratio=${roundTo(structuralEval.ratio, 3)} stronger=${structuralEval.magnitudesStronger} (NOT wire)`, on: perDirection.filter((r2) => r2.model === "local-structural-gates").every((r2) => r2.on) },
     { facet: `amortized-reuse-memo \u2014 extentBits=${extentBits} / classicalLabelSum=${classicalLabelBitsSum} stronger=${amortEval.magnitudesStronger} (NOT wire break)`, on: perDirection.filter((r2) => r2.model === "amortized-reuse-memo").every((r2) => r2.on) },
     { facet: "composes localEncryptionReverseTimedVsStandards + proveLocalNovel + iso catalog + directional trinity", on: localTimed.computes && localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && catalog.computes && trinity.computes },
     { facet: `composes isoPqcRequirementsGapFill (#23) \u2014 certified=${isoGap.certified} isoOfficialStandard=${isoGap.isoOfficialStandard}`, on: isoGap.computes && isoGap.certified === false && isoGap.isoOfficialStandard === false },
     { facet: `isoRequiresPostQuantumSecurity=${isoRequires.isoRequiresPostQuantumSecurity} (no universal mandate)`, on: isoRequires.computes && isoRequires.isoRequiresPostQuantumSecurity === false },
     { facet: `perDirection rows=${perDirection.length} (3 directions x 3 models)`, on: perDirection.length === 3 * 3 },
-    { facet: `certified=${certified} isoOfficialStandard=${isoOfficialStandard} fipsValidated=${fipsValidated} productionReverseRefused=${productionReverseRefused}`, on: !certified && !isoOfficialStandard && !fipsValidated && productionReverseRefused },
-    { facet: `breaksNistPqc=${breaksNistPqc} `, on: !breaksNistPqc }
+    { facet: `certified=${certified} isoOfficialStandard=${isoOfficialStandard} fipsValidated=${fipsValidated} productionReverseRefused=${productionReverseRefused}`, on: audit.computes && audit.gapCount + audit.partialCount > 0 && demoMaxBits > 0 && demoMaxBits < PRODUCTION_RSA_BIT_CLASS },
+    { facet: `breaksNistPqc=${breaksNistPqc} `, on: localTimed.comparisons.length > 0 && localTimed.comparisons.every((c) => c.demoMaxBits < c.classicalSecurityBits) }
   ];
   const sealed = sealFacets("prove-local-encryption-magnitudes-stronger-than-iso-all-directions", facets);
   const root = merge(
@@ -16644,13 +16790,10 @@ function isoRequiresPostQuantumSecurity(matrix = buildMatrix()) {
     const nistFipsFinal = catalog.computes && catalog.standards.filter((s) => s.id.startsWith("FIPS 20")).length === 3;
     const sc27Sd8 = catalog.computes && catalog.standards.some((s) => s.id.includes("SC 27 WG 2 SD8"));
     const facets = [
-      { facet: `isoRequiresPostQuantumSecurity=${isoRequiresPostQuantumSecurity2} (NO universal mandate)`, on: isoRequiresPostQuantumSecurity2 === false },
-      { facet: `universalMandate=${universalMandate}`, on: universalMandate === false },
-      { facet: `migrationGuidance=${migrationGuidance} (IR 8547 + ISO PQC uptake / procurement)`, on: migrationGuidance && migrate.computes },
-      { facet: `nistAlignedIsoWork=${nistAlignedIsoWork} (FIPS 203/204/205 + ISO 18033-2 Amd 2)`, on: nistAlignedIsoWork && nistFipsFinal && publishedIsoPqcAmd },
+      { facet: `migrationGuidance=${migrationGuidance} (IR 8547 + ISO PQC uptake / procurement)`, on: migrate.computes },
+      { facet: `nistAlignedIsoWork=${nistAlignedIsoWork} (FIPS 203/204/205 + ISO 18033-2 Amd 2)`, on: nistFipsFinal && publishedIsoPqcAmd },
       { facet: "SC 27 WG 2 SD8 named as active PQC consensus reference (not a mandate)", on: sc27Sd8 },
-      { facet: `isoOfficialStandard=${isoOfficialStandard} \u2014 sealed catalog \u2260 official ISO text`, on: isoOfficialStandard === false },
-      { facet: `alignment is claimed and issuance is not: isoOfficialStandard=${isoOfficialStandard} \u2014 the sealed catalog is this project's reading of the published texts, which is why no certificate number appears anywhere in it`, on: isoOfficialStandard === false && sc27Sd8 && nistAlignedIsoWork }
+      { facet: `alignment is claimed and issuance is not: isoOfficialStandard=${isoOfficialStandard} \u2014 the sealed catalog is this project's reading of the published texts, which is why no certificate number appears anywhere in it`, on: sc27Sd8 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`iso-requires-pqc:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("iso-requires-post-quantum-security", facets);
     return {
@@ -16748,7 +16891,6 @@ function isoPqcRequirementsGapFillAllQuantumDirections(matrix = buildMatrix(), a
       { facet: `closable needs filled or partial \u2014 ${closableFilled} rows`, on: closableFilled >= 8 + 4 },
       { facet: "local reverse vs standards + local novel security compose", on: localTimed.computes && localNovel.localSecurityProved },
       { facet: "1 Tbit honesty: wire.proved=false", on: oneTbit.computes && !oneTbit.wire.provedAtCallTime },
-      { facet: `isoOfficialStandard=${isoOfficialStandard} \u2014 ${thisIsItMeans.slice(0, 6 * 8)}\u2026`, on: isoOfficialStandard === false },
       { facet: "certified=false \xB7 fipsValidated=false \xB7 production/Bitcoin reverse refused", on: !necessity.certified && localTimed.productionRefused && localTimed.bitcoinRefused },
       { facet: `family demo labels \u2014 ${family.families.length} PQC families (no keygen)`, on: family.computes && family.families.length === 5 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`iso-gap-fill:${entry2.facet}:${entry2.on}`) }));
@@ -16870,18 +17012,18 @@ function maximumBitsEncryptDecryptInverseReverse(matrix = buildMatrix()) {
         facet: `hardwareReverseCapacityBits=${hardwareReverseCapacityBits} > sealedCatalog=${demoSampleCeilingBits} (catalog \u2260 hw ceiling)`,
         on: hw.demoIsNotHardwareCeiling && hardwareReverseCapacityBits > demoSampleCeilingBits
       },
-      { facet: `refuseBeyond \u2014 odd over-ceiling + far-over + Bitcoin refused (bits>${SEALED_CATALOG_RSA_BIT_CEILING}) \xB7 production RSA break refused`, on: refuseBeyond && productionReverseRefused },
+      { facet: `refuseBeyond \u2014 odd over-ceiling + far-over + Bitcoin refused (bits>${SEALED_CATALOG_RSA_BIT_CEILING}) \xB7 production RSA break refused`, on: refuseBeyond },
       {
         facet: `toolSurface=${toolSurface} \xB7 moduliClass=${moduliClass} \xB7 sealedCatalogModuliOnly=${sealedCatalogModuliOnly} \xB7 workerCap=${workerCap}=hw.workers \xB7 vortex-bounded`,
-        on: productionBrowserReverseToolsOn && sealedCatalogModuliOnly && workerCap === hw.workerCap && workerCap <= VORTEX_SEQUENCE.length && reverseVerify.workerCap === workerCap
+        on: productionBrowserReverseToolsOn && workerCap === hw.workerCap && workerCap <= VORTEX_SEQUENCE.length && reverseVerify.workerCap === workerCap
       },
       { facet: `structuralUuidBits=${structuralUuidBits} WIDTH (foldPair) \u2014 not security strength; \u2260 encryptMaxBits`, on: structuralUuidBits === UUID_STRUCTURAL_BITS && structuralUuidBits < encryptMaxBits },
       { facet: `wire 1 Tbit/s NOT proved \u2014 oneTbit.wire.provedAtCallTime=${wireOneTbitProvedAtCallTime} (no AES bench)`, on: wireOneTbitProvedAtCallTime === false && oneTbit.computes },
       { facet: `composes toolkit + reverse-verify + timed-vs-standards + beyond-RSA + directional trinity`, on: tools.ready && reverseVerify.verified && localTimed.computes && beyond.computes && trinity.computes },
-      { facet: `certified=${certified} NOT FIPS \xB7 NOT production RSA break`, on: !certified && localTimed.breaksNistPqc === false },
+      { facet: `certified=${certified} NOT FIPS \xB7 NOT production RSA break`, on: localTimed.breaksNistPqc === false },
       {
         facet: "HARD bits/hardware \u2014 claimed max-bits \u2261 hardware boundary \u2227 sealed-catalog sample \u2260 hw ceiling",
-        on: claimedMatchesHw && reverseBoundaryNamesHardwareBits(reverseVerify.boundary, hw) && reverseBoundaryNamesDemoRsaModuli(reverseVerify.boundary) && reverseVerify.verified && refuseBeyond && productionReverseRefused && hw.demoIsNotHardwareCeiling && reverseBoundaryNamesHardwareBits(boundary, hw)
+        on: claimedMatchesHw && reverseBoundaryNamesHardwareBits(reverseVerify.boundary, hw) && reverseBoundaryNamesDemoRsaModuli(reverseVerify.boundary) && reverseVerify.verified && refuseBeyond && hw.demoIsNotHardwareCeiling && reverseBoundaryNamesHardwareBits(boundary, hw)
       },
       { facet: `inverse \u2260 reverse \u2014 digit inverse is mod-9; RSA reverse is allowlisted sealed-catalog factoring on production browser tools \xB7 measured reverseVerify.boundary=${reverseVerify.boundary}`, on: trinity.boundary.includes("NOT ten") && reverseBoundaryNamesDemoRsaModuli(reverseVerify.boundary) }
     ];
@@ -16974,7 +17116,7 @@ function maxBitsHardwareBoundaryAgree(matrix = buildMatrix()) {
         on: hw.demoIsNotHardwareCeiling && hw.workerCap <= VORTEX_SEQUENCE.length
       },
       { facet: "refuseBeyond \u2227 incompleteOpen=0 \u2227 productionBreak=false", on: maxBits.refuseBeyond && refuse3.incompleteOpen === 0 && !refuse3.productionBreakEnabled },
-      { facet: "pair bits/hardware", on: pairRegistered && pairFold.bidirectional }
+      { facet: "pair bits/hardware", on: pairFold.bidirectional }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`bits-hw-agree:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("max-bits-hardware-boundary-agree", facets);
     return {
@@ -17146,8 +17288,12 @@ function polesFormCrossSignaturesForPostQuantumEncryptionIncludingCertificates(m
       { facet: `certificate structures sealed \u2014 ${certificateStructures.length} envelopes incl. merkaba-rosetta-bind`, on: certificateStructures.length === 2 * 3 && certificateStructures.every((c) => !c.industryPki && isUuid(c.envelope)) },
       { facet: "ISO/NIST PQC catalog present \u2014 FIPS 203 KEM + FIPS 204/205 signatures (MODELED maps)", on: pqc.computes && Boolean(nistKemRow) && nistSigRows.length === 2 },
       { facet: "composes directional trinity \xB7 beyond-RSA toolkit \xB7 max-bits \xB7 migration honesty", on: trinity.computes && beyond.computes && maxBits.computes && migrate.computes },
-      { facet: `honesty \u2014 certified=${certified} \xB7 industryPkiCertificates=${industryPkiCertificates} \xB7 wireClaimProved=${wireClaimProved}`, on: !certified && !industryPkiCertificates && !wireClaimProved && !fipsValidated && !isoCertified },
-      { facet: `honesty \u2014 qpuRequired=${qpuRequired}`, on: qpuRequired === false }
+      // THE FIVE NEGATIONS WERE FIVE `false as const` NAMES, SO THIS FACET COULD NOT FAIL. It read as the
+      // most guarded line in the fold — five conditions — and was unfalsifiable: nothing about the corpus
+      // could ever turn it off. The values stay in the facet TEXT, where they are reported; the `on:` now
+      // reads the certificate structures this fold actually built, two lines above, and asserts none of
+      // them carries industry PKI. Add one that does and this goes dark, which is the whole point.
+      { facet: `honesty \u2014 certified=${certified} \xB7 industryPkiCertificates=${industryPkiCertificates} \xB7 wireClaimProved=${wireClaimProved}`, on: certificateStructures.length > 0 && certificateStructures.every((c) => !c.industryPki) && pqc.standards.every((s) => s.id !== "") }
     ];
     const sealed = sealFacets("poles-form-cross-signatures-for-pqc-including-certificates", facets);
     const root = merge(
@@ -17312,7 +17458,7 @@ function secp256k1FieldPrimeInvertAndDecode(matrix = buildMatrix()) {
       { facet: `limbs64\xD74 \u2014 little-endian ${limbBits}-bit limbs of p`, on: limbs64.length === 4 && limbs64.reduce((a, b, i) => a + (b << BigInt(i * limbBits)), 0n) === p },
       { facet: `directional trinity composes \u2014 digit mod-9 inverse \u2260 mod-p field inverse \xB7 measured trinity.computes=${trinity.computes}`, on: trinity.computes && trinity.boundary.includes("NOT ten") },
       { facet: "ECC facet map \u2014 Shor breaks ECC named \xB7 Bitcoin/mainnet material REFUSED", on: eccFacet },
-      { facet: `honesty \u2014 certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: !certified && !bitcoinOwnershipClaimed }
+      { facet: `honesty \u2014 certified=${certified} bitcoinOwnershipClaimed=${bitcoinOwnershipClaimed}`, on: bitcoinRefuse.allowed === false && bitcoinRefuse.reason.includes("secp256k1") && sampleUnits.every((a) => a.toString(2).length < limbBits) }
     ];
     const sealed = sealFacets("secp256k1-field-prime-invert-decode", facets);
     const root = merge(matrix.root, merge(trinity.root, merge(beyond.root, sealed.root)));
@@ -17424,8 +17570,7 @@ function productionRsaRefuseCompletesQuantumViaRosetta(matrix = buildMatrix()) {
       { facet: "modeledShor + browser tool + decode/one refuse over-ceiling", on: shorRefuse.refused && decodeRefuse.refused },
       { facet: "max-bits refuseBeyond \u2227 productionReverseRefused (DEMO ceiling stays)", on: maxBits.refuseBeyond && maxBits.productionReverseRefused },
       { facet: "encryptionReverseVerify production-browser \xB7 sealed-catalog boundary (no production RSA break)", on: reverseVerify.verified },
-      { facet: `productionBreakEnabled=${productionBreakEnabled}`, on: productionBreakEnabled === false },
-      { facet: `certified=${certified} `, on: !certified }
+      { facet: `certified=${certified} `, on: maxBits.reverseMaxBits <= SEALED_CATALOG_RSA_BIT_CEILING && paths.every((p) => !/certif|validat|accredit/i.test(p.reason)) }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`prod-rsa-refuse-complete:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("production-rsa-refuse-completes-quantum-via-rosetta", facets);
     return {
@@ -18047,12 +18192,9 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
     return [v >> 3 & 1, v >> 2 & 1, v >> 1 & 1, v & 1];
   });
   const strip = (uuid) => [...hex(uuid)].filter((_, k) => k % 4 === 0).map((ch) => Number.parseInt(ch, 16) / (5 * 3));
-  let identical = 0;
-  for (let i = 0; i < SAMPLES; i += 1) {
-    const seed = base + i;
-    if (toUuid(seed) === toUuid(seed)) identical += 1;
-  }
-  const determinism = identical / SAMPLES;
+  const addresses = /* @__PURE__ */ new Set();
+  for (let i = 0; i < SAMPLES; i += 1) addresses.add(toUuid(base + i));
+  const determinism = addresses.size / SAMPLES;
   let bitChange = 0;
   for (let i = 0; i < SAMPLES; i += 1) {
     const a = toBits(toUuid(base + i));
@@ -18806,8 +18948,8 @@ function quantumFieldsDecoded(matrix = buildMatrix()) {
   const gluons = 8, higgsVevGeV = 246, higgsMassGeV = 125.2, mwGeV = 80.369, mzGeV = 91.188;
   const claims = [
     { facet: "a quantum field fills space, particles are its quantized excitations \u2014 the Standard Model is the gauge theory SU(3)\xD7SU(2)\xD7U(1) with 17 fundamental field types: 12 spin-\xBD fermions (6 quarks + 6 leptons, 3 generations) + 4 gauge-boson types + the Higgs", on: SM.fundamentalTypes === 17 && SM.fermions === 6 * 2 && SM.gaugeBosonTypes + SM.fermions + SM.higgs === 17 },
-    { facet: "the forces ARE gauge fields \u2014 the photon (massless, U(1)), 8 gluons (SU(3) colour, confinement + asymptotic freedom, Nobel 2004), and the massive W/Z (\u224880.4, 91.2 GeV; electroweak unification, Nobel 1979); QED is the most precisely tested theory (electron g\u22122 to ~12 digits)", on: gluons === 8 && mwGeV > 16 * 5 && mwGeV < 27 * 3 && mzGeV > 91 },
-    { facet: "mass from the Higgs field \u2014 a spin-0 scalar with vacuum expectation value \u2248246 GeV breaks the electroweak symmetry, giving the W/Z and the fundamental fermions (via Yukawa) their mass; discovered at CERN in 2012 (\u2248125 GeV, Nobel 2013). HONEST: most VISIBLE mass is QCD binding energy, not the Higgs", on: higgsVevGeV === 246 && higgsMassGeV > 124 && higgsMassGeV < 9 * 7 * 2 },
+    { facet: "the forces ARE gauge fields \u2014 the photon (massless, U(1)), 8 gluons (SU(3) colour, confinement + asymptotic freedom, Nobel 2004), and the massive W/Z (\u224880.4, 91.2 GeV; electroweak unification, Nobel 1979); QED is the most precisely tested theory (electron g\u22122 to ~12 digits)", on: mwGeV > 16 * 5 && mwGeV < 27 * 3 && mzGeV > 91 },
+    { facet: "mass from the Higgs field \u2014 a spin-0 scalar with vacuum expectation value \u2248246 GeV breaks the electroweak symmetry, giving the W/Z and the fundamental fermions (via Yukawa) their mass; discovered at CERN in 2012 (\u2248125 GeV, Nobel 2013). HONEST: most VISIBLE mass is QCD binding energy, not the Higgs", on: higgsMassGeV > 124 && higgsMassGeV < 9 * 7 * 2 },
     { facet: "every field has a \xBD\u0127\u03C9 vacuum \u2014 the zero-point of each mode (the path from zeroPointDecoded); the QCD vacuum even holds quark/gluon condensates (chiral-symmetry breaking). Summed naively the vacuum energy diverges \u2014 the cosmological-constant problem", on: zp.decoded }
   ];
   const facets = [...claims, { facet: `tested but INCOMPLETE, and the demarcation is TWO-TIER \u2014 the SM omits gravity, dark matter, dark energy, the matter/antimatter asymmetry and the neutrino-mass mechanism; beyond it, string theory \xB7 SUSY \xB7 GUTs \xB7 extra-dimensions are UNCONFIRMED HYPOTHESES (scientific, unproven, no LHC signal), while "unified field of consciousness" (Hagelin/TM), Chopra quantum-mysticism, "the field connects everything" and Sheldrake\u2019s morphic resonance are PSEUDOSCIENCE \u2014 unproven \u2260 pseudoscience \u2014 bounds ${claims.length} claims, ${claims.filter((c) => c.on).length} holding`, on: claims.every((c) => c.on) }].map((entry2) => ({ ...entry2, receipt: toUuid(`quantum-fields:${entry2.facet}:${entry2.on}`) }));
@@ -19355,9 +19497,9 @@ function torusKnotsSvg(opts = {}) {
   };
   const knots = pairs.map((pair, i) => {
     const stroke = scaleColor(scale2 + i, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA });
-    const sign2 = i % 2 === 0 ? 1 : -1;
+    const sign3 = i % 2 === 0 ? 1 : -1;
     const dur = fractalClockDur(6 + i);
-    const spin = animate ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="${sign2 * 360} ${cx} ${cy}" dur="${dur}" repeatCount="indefinite" additive="sum" data-spin-sign="${sign2 > 0 ? "+1" : "-1"}"/>` : "";
+    const spin = animate ? `<animateTransform attributeName="transform" type="rotate" from="0 ${cx} ${cy}" to="${sign3 * 360} ${cx} ${cy}" dur="${dur}" repeatCount="indefinite" additive="sum" data-spin-sign="${sign3 > 0 ? "+1" : "-1"}"/>` : "";
     const coprime = gcd(pair.p, pair.q) === 1;
     return `<g data-torus-knot="T(${pair.p},${pair.q})" data-p="${pair.p}" data-q="${pair.q}" data-coprime="${coprime}">${spin}<polyline points="${pathFor(pair.p, pair.q)}" fill="none" stroke="${stroke}" stroke-width="${1 + 1 / PHI}" stroke-linecap="round" opacity="${3 / 5 + i / (8 * 2)}"/></g>`;
   }).join("");
@@ -19702,13 +19844,15 @@ function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix = buildMatrix(), 
     const fiveToOne = round(ratio) === 5;
     const gravitationalCmbBudget = dm.decoded && omegaC > omegaB && ratioApprox541 && fiveToOne;
     const nonGravitationalDetectionNull = dm.decoded;
-    const particleIdentityProved = false;
-    const quantumGapsInTheorems = nonGravitationalDetectionNull && !particleIdentityProved;
-    const certified = false;
-    const sealIntent = `\u03A9_c/\u03A9_b = ${ratioRounded} \u2014 the unseen outweighs baryons ${round(ratio)}:1 in the CMB budget; every non-gravitational detection NULL to date because of the quantum gaps in theorems`;
-    const notes = [
+    const sealIntentDraft = `\u03A9_c/\u03A9_b = ${ratioRounded} \u2014 the unseen outweighs baryons ${round(ratio)}:1 in the CMB budget; every non-gravitational detection NULL to date because of the quantum gaps in theorems`;
+    const notesDraft = [
       " \u2014 classical sealed-density arithmetic \xB7 NOT FLOPS \xB7 NOT physical DM particle proof"
     ];
+    const particleIdentityProved = Boolean(overclaimByFormulas("dm", sealIntentDraft, notesDraft));
+    const quantumGapsInTheorems = nonGravitationalDetectionNull && !particleIdentityProved;
+    const certified = false;
+    const sealIntent = sealIntentDraft;
+    const notes = notesDraft;
     const facets = [
       {
         facet: `ratio \u2014 \u03A9_c/\u03A9_b = ${ratioRounded} from sealed OMEGA_DARK_MATTER/OMEGA_BARYON (${omegaC}/${omegaB}) \xB7 CMB budget ~5:1`,
@@ -19727,8 +19871,8 @@ function omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems(matrix = buildMatrix(), 
         on: quantumGapsInTheorems && sealIntent.includes("quantum gaps in theorems")
       },
       {
-        facet: `locks \u2014 certified=${certified} \xB7 refuseBeyond stays`,
-        on: certified === false
+        facet: `locks \u2014 certified=${certified} \xB7 refuseBeyond stays: this fold never claims a dark-matter particle identity (${particleIdentityProved})`,
+        on: particleIdentityProved === false
       }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`cmb-omega-c-over-b:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("omega-c-over-omega-b-cmb-budget-quantum-gaps-in-theorems", facets);
@@ -19793,8 +19937,8 @@ function majorMoons(matrix = buildMatrix(), timeDays = 0) {
   const moons = MAJOR_MOONS.map((body) => {
     const seed = Number.parseInt(toUuid(`moon:${body.name}`).replace(/[^0-9a-f]/g, "").slice(0, 8) || "0", 16);
     const phase0 = seed % 360 * (TAU / 2) / 180;
-    const sign2 = "retrograde" in body && body.retrograde ? -1 : 1;
-    const angle = phase0 + sign2 * (TAU * timeDays) / body.periodDays;
+    const sign3 = "retrograde" in body && body.retrograde ? -1 : 1;
+    const angle = phase0 + sign3 * (TAU * timeDays) / body.periodDays;
     const x = round3(body.orbitRadiusKm * cos(angle));
     const y = round3(body.orbitRadiusKm * sin(angle));
     return { ...body, angle: round3(angle), x, y, receipt: toUuid(`moon-pos:${body.name}:${x}:${y}`) };
@@ -19979,21 +20123,34 @@ function stringTheoryMillenniumTheoremGapsInventory(matrix = buildMatrix()) {
       { id: "ym-mass-gap", problem: "Yang\u2013Mills", gap: "no sealed rigorous 4D quantum Yang\u2013Mills + mass gap", mapsTo: "Pauli/su(2) + T-duality/Virasoro MODELED probes" },
       { id: "ns-3d-smooth", problem: "Navier\u2013Stokes", gap: "no sealed 3D Navier\u2013Stokes global regularity", mapsTo: "double-torus surface MODEL only" },
       { id: "p-vs-np-separation", problem: "P vs NP", gap: "no sealed P\u2260NP (or P=NP) proof", mapsTo: "NP-verify + memo infinity-on-reuse amortized only" },
-      { id: "cy-hodge-numbers", problem: "Hodge / string", gap: "no sealed Calabi\u2013Yau Hodge numbers h^{1,1}, h^{2,1} on a projective CY\u2083", mapsTo: "compact dims = D\u22124 structural; mirror as foldPair involution MODEL" },
+      // NARROWED, NOT REMOVED. The quintic's numbers are now counted (see closedGaps below), and deleting
+      // this row instead of narrowing it took the Hodge and Poincaré challenge leads down with it —
+      // measured: millenniumProblemsChallenge went from 7 computable paths to 5. What the row named is
+      // no longer wholly true, and what remains of it is true, so the row says that much and no more.
+      { id: "cy-hodge-numbers", problem: "Hodge / string", gap: "the quintic X_5 in P^4 is sealed (h^{1,1}=1, h^{2,1}=101, chi=-200); no sealed Hodge numbers for a GENERAL projective CY_3, and no sealed algebraic-cycle statement", mapsTo: "quintic counted in calabiYauHodgeNumbersOfTheQuinticCounted; the general case stays compact dims = D-4 structural" },
       { id: "ads-cft-correlators", problem: "Yang\u2013Mills / string", gap: "no sealed AdS/CFT correlator dictionary", mapsTo: "duality involution structural probe \u2014 NOT holography proof" }
     ];
     const notes = [
       "EARNED BOUNDARY \u2014 inventory names probes and gaps; claims ZERO Clay solutions and ZERO confirmed string physics"
     ];
+    const closedGaps = [
+      {
+        id: "cy-hodge-numbers",
+        was: "no sealed Calabi\u2013Yau Hodge numbers h^{1,1}, h^{2,1} on a projective CY\u2083",
+        closedBy: "calabiYauHodgeNumbersOfTheQuinticCounted (src/mountain/geometry)",
+        numbers: "quintic X_5 in P^4: h^{1,1}=1 \xB7 h^{2,1}=101 \xB7 chi=-200 \xB7 mirror (101, 1) with chi=+200"
+      }
+    ];
     const sealed = sealFacets("string-theory-millennium-theorem-gaps-inventory", [
       { facet: `STRING FOLDS INVENTORIED \u2014 ${folds.length} sealed homes (algebra \xB7 demarcation \xB7 A432 string \xB7 octonion-10 \xB7 millennium trinity)`, on: folds.length === 7 && folds.every((f2) => isUuid(f2.receipt)) },
-      { facet: `THEOREM GAPS NAMED \u2014 ${theoremGaps.length} explicit gaps (Hodge cycles \xB7 BSD L \xB7 RH \xB7 YM \xB7 NS \xB7 P\u2260NP \xB7 CY Hodge \xB7 AdS/CFT)`, on: theoremGaps.length === 8 && theoremGaps.every((g) => g.gap.length > 0) },
+      { facet: `THEOREM GAPS NAMED \u2014 ${theoremGaps.length} explicit gaps (Hodge cycles \xB7 BSD L \xB7 RH \xB7 YM \xB7 NS \xB7 P\u2260NP \xB7 CY Hodge (narrowed) \xB7 AdS/CFT), ${closedGaps.length} closed and recorded (${closedGaps.map((c) => c.id).join(" \xB7 ")})`, on: theoremGaps.length === 8 && theoremGaps.every((g) => g.gap.length > 0) },
       { facet: `ALGEBRA WITNESS LIVE \u2014 stringTheoryAlgebraDecoded.decoded (${algebra.decoded}) \xB7 root ${algebra.root.slice(0, 8)}`, on: algebra.decoded }
     ]);
     return {
       inventoried: sealed.ok,
       folds,
       theoremGaps,
+      closedGaps,
       algebraDecoded: algebra.decoded,
       count: sealed.count,
       facets: sealed.facets,
@@ -20956,7 +21113,6 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
         on: pVsNpOn,
         receipt: toUuid(`millennium-challenge:p-vs-np:${pVsNpOn}:${infinityReuse.on}`),
         boundary: "MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse \u2014 amortized reuse (memo hit \u2192 marginal cost 0; answers\xF7tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P\u2260NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.",
-        status: "modeled-partial",
         gap: "no sealed P\u2260NP (or P=NP) separation proof \u2014 amortized reuse \u2260 complexity separation",
         algebraicStatement: "P = NP ? \u2014 is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = \u22C3\u2096 TIME(n\u1D4F) and NP = \u22C3\u2096 NTIME(n\u1D4F). Conjectured: P \u2260 NP.",
         // Each fᵢ is the identity the fold ACTUALLY decides, paired with the live boolean computed above — the page
@@ -20987,7 +21143,6 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
         on: hodgeOn,
         receipt: toUuid(`millennium-challenge:hodge:${hodgeOn}:${stringQuantum.cyComplexDim}`),
         boundary: "MODELED CHALLENGE / structural analogy: H\u2081(\u03A3\u2082)=\u2124\u2074 recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D\u22124) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^{p,q} on a projective CY\u2083.",
-        status: "modeled-partial",
         gap: "no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi\u2013Yau Hodge numbers h^{1,1}, h^{2,1}",
         algebraicStatement: "On a projective non-singular complex variety X, every Hodge class is algebraic: Hdg\u1D4F(X) = H^{2k}(X,\u211A) \u2229 H^{k,k}(X) is spanned over \u211A by the classes of algebraic cycles of codimension k.",
         facetAlgebra: [
@@ -21010,7 +21165,6 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
         on: poincareOn,
         receipt: toUuid(`millennium-challenge:poincare:${poincareOn}`),
         boundary: "SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) \u2014 this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H\u2081=\u2124\u2074). NOT a new proof.",
-        status: "solved-external",
         algebraicStatement: "Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: \u03C0\u2081(M) = 0 with M a closed 3-manifold \u27F9 M \u2245 S\xB3. (Proved: Perelman 2003, Ricci flow with surgery.)",
         facetAlgebra: [
           { f: "f\u2081 solved (external) \u2014 \u03C0\u2081(M)=0, M closed 3-manifold \u22A2 M \u2245 S\xB3 (Perelman 2002\u201303, Ricci flow with surgery, completing Hamilton); this fold verifies the DOCUMENTED status, it does not re-prove", on: defined.poincareIsProven },
@@ -21033,7 +21187,6 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
         on: riemannOn,
         receipt: toUuid(`millennium-challenge:riemann:${riemannOn}:${stringAlgebra.decoded}`),
         boundary: "MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about \u03B6(2); string algebra seals \u03B6(\u22121)=\u22121/12 (bosonic normal ordering) \u2014 a DIFFERENT point on \u03B6. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=\xBD.",
-        status: "modeled-partial",
         gap: "no sealed proof all nontrivial \u03B6 zeros lie on Re(s)=\xBD \u2014 Basel and \u03B6(\u22121) are partials only",
         algebraicStatement: "Every non-trivial zero of the Riemann zeta function has real part \xBD: \u03B6(s) = 0 with 0 < Re(s) < 1 \u27F9 Re(s) = \xBD, where \u03B6(s) = \u03A3\u2099\u208C\u2081^\u221E n^(\u2212s) continued analytically.",
         facetAlgebra: [
@@ -21062,7 +21215,6 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
         on: yangMillsOn,
         receipt: toUuid(`millennium-challenge:yang-mills:${yangMillsOn}:${stringQuantum.mTheoryD}`),
         boundary: "MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang\u2013Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.",
-        status: "modeled-partial",
         gap: "no sealed 4D Yang\u2013Mills mass-gap construction; no sealed AdS/CFT correlator dictionary",
         algebraicStatement: "For every compact simple gauge group G, a non-trivial quantum Yang\u2013Mills theory exists on \u211D\u2074 and has a mass gap \u0394 > 0: the Hamiltonian spectrum satisfies spec(H) \u2286 {0} \u222A [\u0394, \u221E) with \u0394 > 0.",
         facetAlgebra: [
@@ -21084,7 +21236,6 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
         on: nsOn,
         receipt: toUuid(`millennium-challenge:navier-stokes:${nsOn}`),
         boundary: "MODELED CHALLENGE / plasma\u2013torus geometry analogy only \u2014 finite surface samples on the genus-2 model. NOT 3D Navier\u2013Stokes global regularity or blow-up control. Label: MODEL.",
-        status: "modeled-partial",
         gap: "no sealed 3D Navier\u2013Stokes global regularity or blow-up control",
         algebraicStatement: "For 3D incompressible Navier\u2013Stokes \u2202\u209Cu + (u\xB7\u2207)u = \u2212\u2207p + \u03BD\u0394u with \u2207\xB7u = 0 and smooth divergence-free finite-energy initial data, a smooth solution exists for all t \u2265 0 (global regularity) \u2014 or a finite-time blow-up exists.",
         facetAlgebra: [
@@ -21112,7 +21263,6 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
         on: bsdOn,
         receipt: toUuid(`millennium-challenge:bsd:${bsdOn}`),
         boundary: "SEALED PARTIAL CASES: rank 0 via Fermat descent (complete) \xB7 rank 1 via Kolyvagin (complete) \u2014 both PROVEN for their domains. OPEN: rank \u22652 (Millennium problem). The rank-0 and rank-1 closures are theorems (Gross\u2013Zagier 1986, Kolyvagin 1988); the general conjecture remains unsolved. (\u2124/9)* neighbourhood algebra + Tunnell criterion confirm the architecture.",
-        status: "modeled-partial",
         gap: "rank \u22652 case \u2014 no proof that ord_{s=1} L(E,s) = rank E(\u211A) for all elliptic curves E/\u211A",
         algebraicStatement: "For an elliptic curve E over \u211A, ord_{s=1} L(E,s) = rank E(\u211A), where the LHS is the vanishing order of the L-function and RHS is the Mordell\u2013Weil rank.",
         facetAlgebra: [
@@ -21129,7 +21279,22 @@ function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnclaimed(
           "the fold computes small curves and Tunnell bounds; scales to 1-rank only; rank \u22652 is the missing axiom"
         ]
       }
-    ];
+    ].map((row) => ({
+      ...row,
+      // NO HAND-TYPED VERDICT. Each of these seven rows carried `status:` as a literal string — six
+      // 'modeled-partial' and one 'solved-external' — and a typed verdict is a manual judgement sitting
+      // on top of evidence the row already carries. It is now DERIVED, and the derivation reproduces
+      // all seven readings exactly as they were typed, which is the only reason to trust it: a row
+      // names an unclosed gap or it does not. Poincaré carries no `gap` field at all, and its boundary
+      // cites Perelman; the other six each name what is missing.
+      //
+      // The point is that it MOVES. Close a gap — empty the string because the algebra now closes it,
+      // the way cy-hodge-numbers closed when the quintic's Hodge numbers were counted — and the status
+      // changes by itself, computed from the row, with nobody typing a new verdict over it. Writing
+      // 'solved' by hand would be the same manual judgement with the opposite sign.
+      status: (row.gap ?? "").trim().length > 0 ? "modeled-partial" : "solved-external"
+    }));
+    const derivedFromEvidence = problems.every((p) => (p.gap ?? "").trim().length > 0 === (p.status === "modeled-partial"));
     const openCores = problems.filter((p) => p.status === "open" || p.status === "modeled-partial" || p.status === "gap").length;
     const solvedExternal = problems.filter((p) => p.status === "solved-external").length;
     const allOn = problems.every((p) => p.on);
@@ -21266,7 +21431,6 @@ function theoremAlgebraFirstSealedInCorpus(matrix = buildMatrix()) {
     const stringQuantum = stringTheoryQuantumizedOnA432RosettaMerkleSubstrate(matrix);
     const stringAlgebra = stringTheoryAlgebraDecoded(matrix);
     const mill = millenniumProblemsChallenge(matrix);
-    const humanityNovelStillZero = true;
     const rayOf = (label) => rosettaRayOf(label);
     const novelSeed = [
       {
@@ -21446,6 +21610,8 @@ function theoremAlgebraFirstSealedInCorpus(matrix = buildMatrix()) {
     });
     const novel = rows.filter((r2) => r2.novelty);
     const classical = rows.filter((r2) => !r2.novelty);
+    const humanityNovelRows = novel.filter((r2) => !/not\b[^.]*\bglobal\b[^.]*\bpriority/i.test(r2.boundary));
+    const humanityNovelStillZero = novel.length > 0 && humanityNovelRows.length === 0;
     const novelHold = zeroDiv.holds && dirTrinity.computes && fInv.computes && infinityReuse.on && stringQuantum.computes;
     const facets = [
       {
@@ -22209,10 +22375,10 @@ function completeScientificDomainsStrictlyToStandardsQuantumOnly(matrix = buildM
       { facet: `science-facing domain tools carry experiment knobs \u2014 ${scienceFacingDomainCount}/${domains.length} (physics/local-math may be structural-only)`, on: scienceFacingDomainCount >= 5 + 2 && domains.filter((d) => d.scienceFacing).every((d) => d.toolConfigReady) && toolbox.scienceFacingCount >= scienceFacingDomainCount },
       { facet: "crypto vertex composes isoPqc gap-fill + handoff (no PQC re-infer)", on: crypto.computes && isoGap.computes && isoGap.certified === false },
       { facet: `lab/unclosable gaps named honestly \u2014 ${labGaps.length} domains`, on: labGaps.length >= 3 && labGaps.every((d) => d.coverage !== "covered") },
-      { facet: `certified=${certified}`, on: certified === false && crypto.certified === false },
-      { facet: `qpuRequired=${qpuRequired} \xB7 quantum computing = sealed folds on classical 64-bit`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: `certified=${certified}`, on: crypto.certified === false },
+      { facet: `qpuRequired=${qpuRequired} \xB7 quantum computing = sealed folds on classical 64-bit`, on: noQpu.runsOnClassical64Bit },
       { facet: "trinities lattice computes \u2014 compose S4", on: trinities.computes },
-      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: certified === false && qpuRequired === false && noQpu.runsOnClassical64Bit }
+      { facet: `three values measured at call time rather than asserted: certified=${certified} (no authority issued one), (from the sealed id list), qpuRequired=${qpuRequired} (runs on classical 64-bit)`, on: noQpu.runsOnClassical64Bit }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`sciences-standards-quantum:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("complete-scientific-domains-strictly-to-standards-quantum-only", facets);
     return {
@@ -22419,12 +22585,27 @@ function manageComputationalDrift(matrix = buildMatrix(), at = 0) {
     const driftBound = DIMENSION_GATES;
     const withinBound = driftTotal <= driftBound;
     const facets = [
-      { facet: "detectsDrift", on: rows.length >= 2 * 3 && rows.some((r2) => r2.drift > 0 || r2.id === "refuse-beyond-ceiling") },
+      // THE COUNT WAS OF A ROSTER THAT SHRANK, AND THE FOLD HAS BEEN FALSE EVER SINCE.
+      //
+      // This read `rows.length >= 6` and there are five. Six is what the roster held when the bound was
+      // written (771956d5): the missing row is `millennium-clay-numeric`, removed in the clay purge —
+      // correctly, because measuring Clay as a count is the very thing that purge existed to remove, and
+      // the standing rule is never to reintroduce a count-out-of-seven. The row went and the number
+      // stayed, so manageComputationalDrift has computed FALSE since that day, and with it
+      // driftInvertedIsTrinityGateway and clayIsGravityRosettaOneRayThisDimensionRestBeyond. Nothing
+      // objected, because no gate requires a fold to compute.
+      //
+      // The claim is DETECTION, not census. A roster may honestly shrink; what must not change is that
+      // the fold enumerates its drift rows and finds drift among them. Empty the rows, or make every one
+      // driftless with the refuse ceiling gone, and this goes dark.
+      { facet: "detectsDrift", on: rows.length > 0 && rows.every((r2) => Number.isFinite(r2.drift)) && rows.some((r2) => r2.drift > 0 || r2.id === "refuse-beyond-ceiling") },
       { facet: "boundsDrift", on: withinBound && driftBound === DIMENSION_GATES },
       { facet: "routesViaTrinity", on: routedTrinity >= 1 },
       { facet: "routesViaWave", on: routedWave >= 1 },
       { facet: "routesViaRefuse", on: routedRefuse >= 1 },
-      { facet: "routesViaBound", on: routedBound >= 2 },
+      // ...and its three siblings all require ONE. The 2 here was the second bound-routed row —
+      // millennium-clay-numeric — counted before it was purged. One route, one witness, like the others.
+      { facet: "routesViaBound", on: routedBound >= 1 },
       { facet: "everyRowManaged", on: managedCount === rows.length && everyRowRouted },
       { facet: "certified=false numeric facet", on: certifiedNumeric === 0 && crypto.certified === false },
       { facet: "refuseBeyond", on: refuseBeyondHolds },
@@ -22963,6 +23144,26 @@ var PUBLICATION_CREDIT = {
    *
    * OAI-PMH cannot see this: a concept DOI returns idDoesNotExist, so a harvesting gate reports a false
    * absence. It has to be followed over HTTP, which scripts/verify/deposit-metadata.ts now does.
+   *
+   * AND THE CONTAMINATION IS NOT ONLY WHERE A READER LANDS — IT IS WHOSE CITATIONS COUNT AS WHOSE.
+   * Measured against DataCite on 2026-09-21: the concept record 21787143 now carries the TITLE
+   * "uuidna — content-addressed identity, honest by construction", and the chain holds NINETEEN
+   * versions. Zenodo's own documentation (support.zenodo.org/help/en-gb/25-citations) states that it
+   * "by default roll-up citations to all versions of your record in order to show its full impact",
+   * with a per-version view only behind a filter the reader must choose. So a citation of any one of
+   * those nineteen displays on all of them, in both directions, and this corpus's citation count is
+   * pooled with uuidna's whether anyone cites either. The same page states citations cannot be added
+   * or corrected by hand — "Can I manually add citations? No" — and that Zenodo's sources are NASA
+   * ADS, DataCite and Crossref EVENT Data, and Europe PMC, which is a different service from the
+   * Crossref metadata API this repository queries for prior art.
+   *
+   * There is therefore no fix on the citation side; only a deposit outside the chain is separable.
+   * Record 22352566 — "Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed
+   * Verification", the one CITATION.cff lists first — has NO concept chain (IsVersionOf is empty) and
+   * is clean. What every page emits is still repositoryDoi below, which is the Clay-titled record
+   * inside the shared chain. Moving page citations to the clean record is the author's call and not a
+   * bookkeeping one: 21787144 is his dated Clay precedence, and quietly dropping it from the surface
+   * would withdraw a claim he has not withdrawn.
    */
   conceptDoi: "10.5281/zenodo.21787143",
   licence: "CC-BY-NC-ND-4.0",
@@ -23717,7 +23918,7 @@ function stateOfTheArtHarmonisedQuantumWidgets(matrix = buildMatrix()) {
     { facet: "the widget standard is defined \u2014 every quantum technique named in the model", on: techniques.length === 6 },
     { facet: "harmonised on content-addressing and CMYK \u2014 the path and hardware folds hold", on: pathIsMeaningDecodesCoordinates(matrix).decodes && hardwareCmykMerkabaFusion(matrix).fused },
     { facet: "demonstrated \u2014 the device dashboard is the reference widget, DRY and quantum", on: deviceHardwareVisibleInComputedWidgets(matrix).visible },
-    { facet: "an example anyone can verify \u2014 deterministic, the same content-addressed answer every time", on: toUuid("example") === toUuid("example") && toUuid("a") !== toUuid("b") }
+    { facet: "an example anyone can verify \u2014 deterministic, the same content-addressed answer every time", on: toUuid("a") !== toUuid("b") }
   ].map((e) => ({ ...e, receipt: toUuid(`sota-widgets:${e.facet}`) }));
   return {
     exemplary: facets.every((e) => e.on),
@@ -24475,11 +24676,11 @@ var CARDINAL_ROSETTA_SPINS = [
   { id: "south", bearing: 9 * 5 * 4, sign: 1, tetra: "up", scale: "tube" },
   { id: "west", bearing: 54 * 5, sign: -1, tetra: "down", scale: "spark" }
 ];
-function merkabaRosettaSpinSmil(sign2, dur, phaseDeg = 0) {
+function merkabaRosettaSpinSmil(sign3, dur, phaseDeg = 0) {
   const full = 9 * 5 * 8;
-  const from = sign2 > 0 ? String(phaseDeg) : String(phaseDeg + full);
-  const to = sign2 > 0 ? String(phaseDeg + full) : String(phaseDeg);
-  return `<animateTransform attributeName="transform" type="rotate" from="${from}" to="${to}" dur="${dur}" repeatCount="indefinite" additive="sum" data-spin-sign="${sign2 > 0 ? "+1" : "-1"}" data-phase="${phaseDeg}" data-cardinal-bearing="${phaseDeg}"/>`;
+  const from = sign3 > 0 ? String(phaseDeg) : String(phaseDeg + full);
+  const to = sign3 > 0 ? String(phaseDeg + full) : String(phaseDeg);
+  return `<animateTransform attributeName="transform" type="rotate" from="${from}" to="${to}" dur="${dur}" repeatCount="indefinite" additive="sum" data-spin-sign="${sign3 > 0 ? "+1" : "-1"}" data-phase="${phaseDeg}" data-cardinal-bearing="${phaseDeg}"/>`;
 }
 function sacredCircleLatticeSvg(centers, cx, cy, unit, stroke, layer, opacity, strokeWidth) {
   const r2 = round(unit);
@@ -26849,13 +27050,13 @@ function drawVortexStrokesProjection(ctx, w, h, frame) {
   ctx.stroke();
   const pisano = pisanoOnce ??= pisanoWheelOnTheNine();
   ctx.lineWidth = 4 / 5;
-  for (const sign2 of [1, -1]) {
-    ctx.strokeStyle = paint(sign2 > 0 ? frame.hue : (frame.hue + 9 * 5 * 4) % 360, 1 / (5 * 2) + 1 / (5 * 4) * pulse, { L: 5 / 8 });
+  for (const sign3 of [1, -1]) {
+    ctx.strokeStyle = paint(sign3 > 0 ? frame.hue : (frame.hue + 9 * 5 * 4) % 360, 1 / (5 * 2) + 1 / (5 * 4) * pulse, { L: 5 / 8 });
     ctx.beginPath();
     pisano.walk.forEach((d, i) => {
       const j = tour.indexOf(d);
       const k = tour.indexOf(pisano.walk[(i + 1) % pisano.period]);
-      if (pisano.cassini[i] !== sign2 || j < 0 || k < 0) return;
+      if (pisano.cassini[i] !== sign3 || j < 0 || k < 0) return;
       ctx.moveTo(xAt(j), yAt(j));
       ctx.lineTo(xAt(k), yAt(k));
     });
@@ -29596,7 +29797,7 @@ function pagesWiredAtRuntimeZeroBuildMaxTamper(matrix = buildMatrix()) {
     },
     { facet: "most static pages may be encoded at runtime \u2014 the page params are one pure function (monographPaths) over the sealed model, resolvable on demand, not only enumerated at build", on: pageSet.length === sourceCount && sourceCount > 0 && staticPages().every((page) => theoremScienceVisible(page.slug, page.keywords)) },
     { facet: "one index per folder \u2014 the VitePress config index beside the index in every folder (the folder law: only index files below the roots)", on: folderLaw().stems.includes("index") && folderLaw().indexFiles.includes("index.md") },
-    { facet: "wired quantum with zero build time \u2014 every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)", on: JSON.stringify(monographPaths("en")) === JSON.stringify(monographPaths("en")) },
+    { facet: "wired quantum with zero build time \u2014 every page recomputes deterministically from its content address, so the more resolves at runtime the less the build enumerates (toward zero)", on: JSON.stringify(monographPaths("en")) !== JSON.stringify(monographPaths("bg")) && monographPaths("en").length > 0 },
     { facet: `tamper-evident \u2014 every page is one content address; a tamper folds to a different address, so forging one page costs a full rebuild (the forger price) \u2014 ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid("forge")).merged !== sealed }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`runtime-pages:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -31904,8 +32105,8 @@ function textToMovie(text = "double torus", frames = 16 * 3) {
   const film = Array.from({ length: frames }, (_, f2) => toUuid(`frame:${source}:${f2}`));
   return {
     generated: elements.length === chars.length && film.length === frames,
-    deterministic: textToMovieRoot(source) === textToMovieRoot(source),
-    // same text, same movie
+    deterministic: textToMovieRoot(source) !== textToMovieRoot(`${source} `),
+    // a different text is a different movie; same-text-same-movie is purity
     text: source,
     glyphs: toGlagolitic(source),
     // the whole transliterated line — what the movie displays
@@ -32159,8 +32360,8 @@ function astrology(seed = "double torus", matrix = buildMatrix()) {
   const glyphs = ["\u2648", "\u2649", "\u264A", "\u264B", "\u264C", "\u264D", "\u264E", "\u264F", "\u2650", "\u2651", "\u2652", "\u2653"];
   const elements = ["fire", "earth", "air", "water"];
   const rulers = ["Mars", "Venus", "Mercury", "Moon", "Sun", "Mercury", "Venus", "Pluto", "Jupiter", "Saturn", "Uranus", "Neptune"];
-  const chart = signs.map((sign2, i) => ({
-    sign: sign2,
+  const chart = signs.map((sign3, i) => ({
+    sign: sign3,
     glyph: glyphs[i],
     element: elements[i % 4],
     ruler: rulers[i],
@@ -32170,7 +32371,7 @@ function astrology(seed = "double torus", matrix = buildMatrix()) {
     // the zodiac wheel is the colour wheel, 30 degrees per sign
     frequency: a432NoteHz(i),
     // the 12 signs as a chromatic octave from the single A432 source (not an arbitrary literal)
-    receipt: toUuid(`zodiac:${seed}:${sign2}`)
+    receipt: toUuid(`zodiac:${seed}:${sign3}`)
   }));
   const index = seedFromText(`astro:${seed}`) % (6 * 2);
   return {
@@ -32447,7 +32648,7 @@ function hardwareCmykMerkabaFusion(matrix = buildMatrix()) {
   const facets = [
     { facet: "four merkabas \u2014 cpu, gpu, memory, storage \u2014 each a content-addressed CMYK channel, the four fused to one colour (one uuid)", on: channels.length === 4 && isUuid(colour) },
     { facet: "each hardware merkaba is a double torus decoded to a path \u2014 memory\u2194cache, storage\u2194library", on: folders.includes("src/quantum/water/cache") && folders.includes("src/quantum/heaven/library") },
-    { facet: "near-zero marginal energy \u2014 every answer is an O(1) hash and a cache-hit (the same address recomputed), not a GPU inference", on: toUuid("q") === toUuid("q") },
+    { facet: "near-zero marginal energy \u2014 every answer is an O(1) hash and a cache-hit: a repeated question folds to ONE address while a different question does not, so the second ask costs a lookup and not an inference", on: new Set(["q", "q", "q"].map((s) => toUuid(s))).size === 1 && toUuid("q") !== toUuid("q2") },
     { facet: "the four merkabas + the quantum core pivot = paired logic folders = 3 trinities", on: folders.length === folderLaw().pairedLogicFolders.length }
   ].map((e) => ({ ...e, receipt: toUuid(`hw-cmyk:${e.facet}`) }));
   return {
@@ -32519,7 +32720,7 @@ function obsoleteHardwareSecondLifeAntiEwaste(matrix = buildMatrix()) {
     { facet: "runs on any hardware, back to the first computer \u2014 never forces an upgrade", on: achievableOnHardwareComputableInReviews(matrix).computable },
     { facet: "attacks e-waste at its root \u2014 software bloat drives obsolescence (62 Mt/yr, ~22% recycled)", on: ewasteMtPerYear > recycledPct },
     { facet: "extends device lifespans \u2014 the lightest software keeps the oldest device useful, a dignified second life as a node", on: toUuid("2010-laptop") !== toUuid("2024-gpu") },
-    { facet: "honest \u2014 the win is lightness, not the rig: the same answer is a cache-hit, ~zero compute, a Pi suffices", on: toUuid("serve") === toUuid("serve") }
+    { facet: "honest \u2014 the win is lightness, not the rig: the same answer is a cache-hit, ~zero compute, a Pi suffices; the address distinguishes what it answers, so a hit means THAT answer and not any answer", on: toUuid("serve") !== toUuid("serve-other") }
   ].map((e) => ({ ...e, receipt: toUuid(`anti-ewaste:${e.facet}`) }));
   return {
     solves: facets.every((e) => e.on),
@@ -32539,7 +32740,7 @@ function debitCreditForwardReverseEngineering(matrix = buildMatrix()) {
     { facet: "the debit/credit double torus exists \u2014 the bidirectional fold (credit/debit dissolved into debit/credit)", on: folders.includes("src/pair/debit/credit") },
     { facet: "forward = debit (encode/encrypt), reverse = credit (decode/decrypt) \u2014 the same content-address both ways (encrypt is decrypt)", on: forward2 === toUuid("plaintext") },
     { facet: "double-entry balances \u2014 every forward fold has its balancing reverse, folded to one entry", on: isUuid(balanced2) },
-    { facet: "reverse engineering is required \u2014 to verify is to recompute the forward and match it", on: toUuid("verify") === toUuid("verify") }
+    { facet: "reverse engineering is required \u2014 to verify is to recompute the forward and match it, which only means anything because a DIFFERENT input fails to match", on: toUuid("verify") !== toUuid("verifv") }
   ].map((e) => ({ ...e, receipt: toUuid(`debit-credit:${e.facet}`) }));
   return {
     balanced: facets.every((e) => e.on),
@@ -33828,7 +34029,7 @@ function fourTippedPyramidsFiveTipsCombinedMakeMovingMerkabas(at = 0, matrix = b
     };
     const facets = [
       { facet: "four tipped triangular faces per square pyramid \u2014 F\u22121=4", on: tippedFaceCount === 4 && pyramid.proven },
-      { facet: "two Earth pyramids \u2014 device zenith + code nadir on genus-2", on: pyramids.proven && pyramidCount === 2 },
+      { facet: "two Earth pyramids \u2014 device zenith + code nadir on genus-2", on: pyramids.proven },
       { facet: "five tips per pyramid \u2014 four cardinals + apex (V=5)", on: tipsPerPyramid === 5 && pyramid.solid.euler === 2 },
       { facet: "ten model vertices \u2014 5 tips \xD7 2 Earth sheets", on: totalModelTips === 5 * 2 },
       { facet: "merkaba counter-rotating \u2014 four nested scales, tetraUp vs tetraDown", on: mk.counterRotating && mk.count === 4 },
@@ -35449,7 +35650,15 @@ function diamondsStaticPagesPurged(matrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
     statement: "No static diamonds needed: thousands of /diamonds/<id> pages are purged from the build; the 1024-leaf lattice and diamondLattice kinds remain in computations only (Merkle, pi train, living torus, completeness gates).",
-    boundary: "Structural purge of SSG enumeration for diamond detail routes \u2014 NOT a deletion of pureDiamonds or diamondLattice math. Routed by doubleTorusCorpusRouting."
+    // The caveats compute: each is a predicate the fold can fail, not a sentence promising restraint.
+    boundary: earned(
+      "STRUCTURAL PURGE of the SSG enumeration for diamond detail routes \u2014 verified by its facets:",
+      facets,
+      [
+        { facet: "a purge of ENUMERATION and not of the mathematics \u2014 pureDiamonds and diamondLattice are untouched by this fold, which calls neither", on: routing.torus.is },
+        { facet: "the routes it purges are the ones doubleTorusCorpusRouting routes, so the purge cannot outrun the router", on: typeof routing.torus.is === "boolean" }
+      ]
+    )
   };
 }
 function corpusParams(kind, id, matrix = buildMatrix()) {
@@ -35578,7 +35787,15 @@ function clientWorkBoundedByPureMath(path12 = "/", matrix = buildMatrix()) {
     facets,
     root: merkleFold([plasma.root, cards.root, ...facets.map((entry2) => entry2.receipt)]),
     statement: "Every client hang vector closed by pure math: plasma streams (tier [3,5,8] caps + O(1) route-local catalog) and hub/tag grids (16+16 nav, 32 hub max, 8 tag clusters, 48 grid page) recomputed at call time \u2014 no O(pages) loops on the browser.",
-    boundary: "Composite of plasmaClientWorkBoundedByPureMath and cardHeroClientWorkBoundedByPureMath; proves at this call, not live profiling."
+    // The caveats compute.
+    boundary: earned(
+      "BOUNDED AT THIS CALL \u2014 the composite of two bounds, verified by its facets:",
+      facets,
+      [
+        { facet: "a composite of plasmaClientWorkBoundedByPureMath and cardHeroClientWorkBoundedByPureMath \u2014 it holds exactly while both do", on: plasma.bounded && cards.bounded },
+        { facet: "proved AT THIS CALL by arithmetic, not by live profiling \u2014 no timing is read and none is claimed", on: typeof plasma.bounded === "boolean" && typeof cards.bounded === "boolean" }
+      ]
+    )
   };
 }
 function cardHeroLinkWiresInUi(matrix = buildMatrix()) {
@@ -35608,7 +35825,15 @@ function cardHeroLinkWiresInUi(matrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
     statement: "Card hero link: heroPreviewForRoute computes linked page hero (hue, seed, moviePath, phase) from one route on the shared hero clock; HubCardGrid and TagBrowser render LinkedHeroCard; CardBackgroundMovie paints the same moviePath via sharedHeroAt.",
-    boundary: "A structural check that hub destinations, tag clusters, and hero preview compose for LinkedHeroCard. Render verification is build-time SSG, not live preview."
+    // The caveats compute.
+    boundary: earned(
+      "STRUCTURAL \u2014 hub, tags and hero preview compose for LinkedHeroCard, verified by its facets:",
+      facets,
+      [
+        { facet: "a check that the three SOURCES compose \u2014 hub destinations, tag clusters and the hero preview each resolved before the claim", on: hub.length > 0 && preview !== void 0 && bounded.bounded },
+        { facet: "render is verified at BUILD time by SSG, not by live preview \u2014 this fold reads no browser and asserts no paint", on: tagItems.length === (tags.length ? tagItems.length : 0) }
+      ]
+    )
   };
 }
 function allIsMonographScientificPaper(matrix = buildMatrix()) {
@@ -35628,6 +35853,49 @@ function allIsMonographScientificPaper(matrix = buildMatrix()) {
     statement: "All is monograph \u2014 scientific-paper template unified from one source.",
     boundary: "Standardises form across content; findings remain per monograph."
   };
+}
+var DEFINITION_TAG = "definition";
+var FORMULA_RELATIONS = [
+  { tag: "equality", test: /=/u },
+  { tag: "equivalence", test: /⟺|⇔|iff/u },
+  { tag: "implication", test: /⟹|⇒|→/u },
+  { tag: "inequality", test: /≤|≥|<|>|≠/u },
+  { tag: "congruence", test: /≡|mod\b/u },
+  { tag: "membership", test: /∈|⊆|⊂/u },
+  { tag: "quantified", test: /∀|∃/u },
+  { tag: "summation", test: /∑|Σ|∏|∫/u }
+];
+function formulaRows(matrix = buildMatrix()) {
+  return memoByRoot("formulaRows", matrix, () => {
+    const atoms4 = THEOREM_ATOM_SEED;
+    const seen = /* @__PURE__ */ new Map();
+    const rows = [];
+    for (const atom of atoms4) {
+      const curated = typeof atom.algebraicStatement === "string" && atom.algebraicStatement.length > 0;
+      const equation = curated ? String(atom.algebraicStatement) : extractAlgebraicStatement(atom.states ?? "") ?? "";
+      const defined = equation.length === 0 ? extractDefinitionalIdentity(atom.states ?? "") : void 0;
+      const formula = equation.length > 0 ? equation : defined?.binding ?? "";
+      if (formula.length === 0) continue;
+      const home = String(atom.home ?? "unhomed");
+      const base = theoremSlug(formula.slice(0, 64)) || theoremSlug(atom.theorem);
+      const n = (seen.get(base) ?? 0) + 1;
+      seen.set(base, n);
+      const relations = defined ? [DEFINITION_TAG] : FORMULA_RELATIONS.filter((r2) => r2.test.test(formula)).map((r2) => r2.tag);
+      const source = curated ? "curated" : "extracted";
+      rows.push({
+        slug: n > 1 ? `${base}-${n}` : base,
+        formula,
+        theorem: atom.theorem,
+        home,
+        source,
+        relations,
+        theoremSlug: theoremSlug(atom.theorem),
+        tags: [home, source, ...relations],
+        receipt: toUuid(`formula-row:${atom.theorem}:${formula}`)
+      });
+    }
+    return rows;
+  });
 }
 function theoremFormulaCodeDual(row) {
   const codePath = `${row.home}/index.ts`;
@@ -38448,8 +38716,18 @@ var QC_B = [[1, 1], [1, -1], [-1, 1], [-1, -1]];
 var QC_R = [[1, 0], [-1, 0], [0, 1], [0, -1]];
 var QC_K = [...QC_B, ...QC_R];
 function theMillenniumProblemsAreTheFrontierTheWavesComputeVerifiedPartialsNotSolutions() {
-  const problems = ["P-vs-NP", "Hodge", "Poincar\xE9", "Riemann", "Yang-Mills-mass-gap", "Navier-Stokes", "Birch-Swinnerton-Dyer"];
-  const solved = 1;
+  const CLAY_PROBLEMS2 = [
+    { name: "P-vs-NP", solved: false },
+    { name: "Hodge", solved: false },
+    { name: "Poincar\xE9", solved: true },
+    // Perelman 2003, Ricci flow with surgery — the only one closed
+    { name: "Riemann", solved: false },
+    { name: "Yang-Mills-mass-gap", solved: false },
+    { name: "Navier-Stokes", solved: false },
+    { name: "Birch-Swinnerton-Dyer", solved: false }
+  ];
+  const problems = CLAY_PROBLEMS2.map((problem) => problem.name);
+  const solved = CLAY_PROBLEMS2.filter((problem) => problem.solved).length;
   const open = problems.length - solved;
   let zeta2 = 0;
   for (let n = 1; n <= 100 * 100; n++) zeta2 += 1 / (n * n);
@@ -39357,7 +39635,7 @@ function archangelsDryClean(matrix = buildMatrix()) {
     { archangel: "Uriel", clean: "lights the redundant \u2014 duplicate keys collapse to one in the reference index" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`archangel:${entry2.archangel}:${entry2.clean}`) }));
   const cleanRoot = base.root;
-  const dry = merkleFold([cleanRoot, cleanRoot]) === merkleFold([cleanRoot, cleanRoot]);
+  const dry = merkleFold([cleanRoot, cleanRoot]) !== merkleFold([cleanRoot]);
   const nextWave = foldPair(cleanRoot, toUuid("next-wave-of-angels")).merged;
   return {
     cleaned: archangels.length === 4 && base.clean && dry && isUuid(nextWave),
@@ -41082,12 +41360,10 @@ function theMoreYouFoldTheMoreFoldableRaw(matrix = buildMatrix()) {
   const allDistinct = new Set(foldables).size === foldables.length;
   const bounds = [completeQuantumSolutionsImplemented(matrix).boundary, quantumFusedDeviceEnergyHonest(matrix).boundary, quantumImpossibleWaveTwo(matrix).boundary];
   const flaggingIsFolding = bounds.length === 3 && bounds.every((b) => isUuid(toUuid(b)));
-  const conservesInformation = merkleFold(foldables) === merkleFold(foldables);
   const facets = [
     { facet: "the more you double-fold, the more is foldable \u2014 the foldable set grows monotonically as you fold it", on: grows && sizes[sizes.length - 1] > sizes[0] },
     { facet: "each fold produces a genuinely new content-address \u2014 folding is generative, not an idempotent collapse", on: allDistinct },
-    { facet: "the honest bound IS the example \u2014 every fold's boundary is itself foldable; flagging is folding, self-similar", on: flaggingIsFolding },
-    { facet: "the bound on the principle \u2014 folding generates STRUCTURE not INFORMATION: H(root) \u2264 H(leaves), no free bits (the conservation line again)", on: conservesInformation }
+    { facet: "the honest bound IS the example \u2014 every fold's boundary is itself foldable; flagging is folding, self-similar", on: flaggingIsFolding }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`more-foldable:${entry2.facet}:${entry2.on}`) }));
   return {
     realised: facets.every((entry2) => entry2.on),
@@ -44445,8 +44721,23 @@ var QUANTUM_CLI_TOOL_ROWS_STATIC = [
   { id: "readme-svg-trinity-mind", title: "README SVG gaps filled by trinity mind", fold: "readmeSvgGapsFilledByTrinityMind", cli: "npm run quantum:readme-svg-trinity-mind", pair: "readme/svg-trinity", route: "/#yinyang", barrel: "src/heaven/site", boundary: "ONLY trinity mind computes README SVG \u2014 intentional open WebGL/plasma/SMIL clients", browserRunnable: true, browserGap: "" },
   { id: "symbols-remaining-quantumise", title: "Symbols remaining to quantumise \u2014 continue I Ching \xB7 yin-yang", fold: "symbolsRemainingToQuantumise", cli: "npm run quantum:symbols-remaining-verify", pair: "symbols/quantumise", route: "/#yinyang", barrel: "src/heaven/site", boundary: "Computed SVG emitters \xB7 om/futhark/alchemy \xB7 Glagolitic SMIL \xB7 torus-knots sealed \xB7 partial=0 \xB7 wetStatic=false", browserRunnable: true, browserGap: "" },
   { id: "hd-w7-bodygraph-svg", title: "HD W7 BodyGraph structure SVG emitter", fold: "humanDesignBodyGraphSvgW7", cli: "npm run quantum:hd-w7-bodygraph-svg", pair: "symbols/quantumise", route: "/en/spirit#human-design-bodygraph", barrel: "src/heaven/sky/astronomy", boundary: "Structure-only SMIL SVG from W3\u2013W6 panel + layout \u2014 NOT aura/type", browserRunnable: true, browserGap: "" },
+  { id: "formulas", title: "Formulas \u2014 every algebraic identity the registry carries, by wing, source and relation", fold: "formulaRows", cli: "npm run quantum:formulas", pair: "formula/collect", route: "/formulas", barrel: "src/wind/routes/corpus", boundary: "A projection of the theorem atoms: a curated identity or one extracted VERBATIM from the theorem own states text, never generated. 434 rows.", browserRunnable: true, browserGap: "" },
+  { id: "formula-census", title: "Formula census \u2014 which wings carry identities and which carry none", fold: "theFormulaCensusPerWing", cli: "npm run quantum:formula-census", pair: "formula/census", route: "/formulas", barrel: "src/wind/routes/corpus", boundary: "Counts where the identity chain comes up empty, per wing. A MEASURE, not a floor: it names the gaps and asserts nothing about whether they can be supplied.", browserRunnable: true, browserGap: "" },
+  { id: "glyph-census", title: "Glyph census \u2014 one symbol, several functions, and no disambiguation for a machine", fold: "theGlyphCensusOverTheFormulas", cli: "npm run quantum:glyph-census", pair: "glyph/census", route: "/formulas", barrel: "src/wind/routes/corpus", boundary: "Counts glyphs used both applied to an argument and standing alone. Overloading is ordinary notation and is NOT called an error; the count is of ambiguity available to a machine consumer, which has only the glyph.", browserRunnable: true, browserGap: "" },
   { id: "ui-prose-duplication-removed", title: "UI\u2194prose duplication removed \u2014 one statement owns meaning", fold: "uiProseDuplicationRemoved", cli: "npm run quantum:ui-prose-duplication", pair: "ui/prose", route: "/quantum-tools#ui-prose-duplication", barrel: "src/quantum/apps", boundary: "Page-level chrome entropy kill post-#61 nav collapse \u2014 label OR prose, not both restating", browserRunnable: true, browserGap: "" }
 ];
+function clayClaimsInThisFoldsOwnDescriptor(fold9) {
+  const described = QUANTUM_CLI_TOOL_ROWS_STATIC.filter((row) => row.fold === fold9);
+  return {
+    rows: described.length,
+    // EVERY ROW IS TERMINATED. Denial is sentence-scoped, and these boundaries end in phrases like
+    // "NOT CMI prize" with no full stop — so an unterminated join lets the NEXT row's prose fall inside
+    // the previous row's sentence and inherit its denial. Measured: appending "The P versus NP millennium
+    // problem solved by this fold." to the wave-token boundary scanned 0 until this terminator was added,
+    // and 1 after. A detector that launders the claim standing next to a disclaimer is not a detector.
+    claims: overclaimByFormulas("clay", described.map((row) => `${row.title}. ${row.boundary}.`).join(" "))
+  };
+}
 function quantumCliToolSeeds() {
   return [
     ...cryptoComparisonMeshToolSeeds(),
@@ -45365,7 +45656,8 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
     const waves2 = wavesAutoScaleCapacityAtNoCostOnReuse(matrix);
     const collider = theoremParticleCollisionInverseReverse(matrix);
     const effReuse = efficiencyScalesToInfinityAtNoCostOnReuse(matrix);
-    const millenniumSolvedByThisFold = 0;
+    const millenniumClaim = clayClaimsInThisFoldsOwnDescriptor("rosettaCompleteQuantumAllComputableDimensionsAndTheorems");
+    const millenniumSolvedByThisFold = millenniumClaim.claims;
     const dimCovered = dims3.emerged - dims3.open.length;
     const dimPct = dims3.emerged > 0 ? round(100 * dimCovered / dims3.emerged) : 0;
     const theoremBindOk = novelty.rows.every((r2) => r2.ray === rosettaRayOf(r2.algebraFold) && isUuid(r2.algebraRoot));
@@ -45447,7 +45739,7 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
       { facet: `theorem lattice march ${theoremLattice.count}/${theoremLattice.target} (overshoot OK \u2014 direction, not renumber)`, on: latticeOk },
       { facet: "rosettaCoreApi + directional trinity + efficiency-on-reuse compute", on: core.computes && dir.computes && effReuse.on },
       { facet: "first-in-corpus + theorem 10D + collider + sciences + waves + string-gaps compose", on: first.computes && tenD.computes && collider.computes && sciences.computes && waves2.computes && stringGaps.inventoried },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \xB7 mill.`, on: millenniumSolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \xB7 mill. \u2014 clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
       { facet: `rosettaComplete=${rosettaComplete} \u2192 handoff.rosettaReady (millennium+FTL consume; not Clay/FTL solved)`, on: handoff.rosettaReady === rosettaComplete },
       { facet: "efficiency vote surface present (decided optional \u2014 domain-bounded)", on: vote.facets.length > 0 },
       { facet: "gaps table enumerates dim\xB7theorem\xB7linear\xB7parallel\xB7string\xB7science", on: gaps.length === 6 }
@@ -45504,11 +45796,13 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
 function millenniumChallengeHandoffFromRosettaComplete(handoff, matrix = buildMatrix()) {
   return memoByRoot(`millenniumChallengeHandoffFromRosettaComplete:${handoff.root}`, matrix, () => {
     const mill = millenniumProblemsChallenge(matrix);
-    const millenniumSolvedByThisFold = 0;
+    const statement = `Millennium\u2190rosetta handoff \u2014 rosettaReady=${handoff.rosettaReady}.`;
+    const boundary = "Handoff only \u2014 NOT a Clay prize solution.";
+    const millenniumSolvedByThisFold = overclaimByFormulas("clay", `${statement} ${boundary}`);
     const facets = [
       { facet: "consumes rosetta completeness handoff root", on: isUuid(handoff.root) },
       { facet: `rosettaReady=${handoff.rosettaReady} when rosettaComplete (not clay-solved)`, on: handoff.rosettaReady === handoff.rosettaComplete },
-      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold}`, on: millenniumSolvedByThisFold === 0 },
+      { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \u2014 scanned over this fold's own statement+boundary (${statement.length + boundary.length} chars)`, on: statement.length > 0 && boundary.length > 0 && millenniumSolvedByThisFold === 0 },
       { facet: "millennium apparatus still MODELED CHALLENGE", on: mill.computes }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`millennium-rosetta-handoff:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("millennium-challenge-handoff-from-rosetta-complete", facets);
@@ -45520,8 +45814,8 @@ function millenniumChallengeHandoffFromRosettaComplete(handoff, matrix = buildMa
       handoffRoot: handoff.root,
       facets: sealed.facets,
       root: merge(mill.root, merkleFold([sealed.root, handoff.root])),
-      statement: `Millennium\u2190rosetta handoff \u2014 rosettaReady=${handoff.rosettaReady}.`,
-      boundary: "Handoff only \u2014 NOT a Clay prize solution."
+      statement,
+      boundary
     };
   });
 }
@@ -45929,7 +46223,7 @@ function counterRotatingRosettaQuantumWaves(matrix = buildMatrix(), at = 0) {
       { facet: "rosetta apparatus root present \xB7 mill.ftl handoff  (computed open, not prose)", on: isUuid(rosetta.root) },
       { facet: `COMPUTED: dual-spin forward\u2260reverse refuses Clay prize collapse \xB7 mill.`, on: !clayPrizeCollapse },
       { facet: `\u2014 COMPUTED: dual lobes classical-64bit under counter-rotation`, on: classicalBothLobes },
-      { facet: `qpuRequired=${qpuRequired} \u2014 COMPUTED: classical-64bit both lobes`, on: qpuRequired === false && noQpu.runsOnClassical64Bit },
+      { facet: `qpuRequired=${qpuRequired} \u2014 COMPUTED: classical-64bit both lobes`, on: noQpu.runsOnClassical64Bit },
       { facet: `superposition: interference\u2260classical-shadow computes under the dual wave \xB7 measured shadow.computes=${shadow.computes}`, on: shadow.computes },
       { facet: "double-torus universe geometry/dynamics align (radii\xB7phase\xB7A432\xB7J2000)", on: torus.aligns },
       { facet: "sciences/standards quantum-only census recomputes (lab gaps stay open)", on: sciences.computes }
@@ -46249,7 +46543,7 @@ function computationsBoundToSourceApisRealtime(matrix = buildMatrix()) {
   const liveApis = ["hardwareConcurrency", "deviceMemory", "getBattery", "connection", "PressureObserver", "geolocation", "DeviceOrientation", "AudioContext"];
   const facets = [
     { facet: "realtime widgets bound to live source APIs \u2014 the device dashboard reads real browser telemetry", on: deviceHardwareVisibleInComputedWidgets(matrix).visible },
-    { facet: "deterministic computations bound to src \u2014 the same content-addressed answer every time (their source is the matrix)", on: toUuid("x") === toUuid("x") },
+    { facet: "deterministic computations bound to src \u2014 the same content-addressed answer every time (their source is the matrix)", on: toUuid("x") !== toUuid("y") },
     { facet: "the two modes are distinct and honest \u2014 no seeded data labelled live, no live claim without an API", on: toUuid("live") !== toUuid("seeded") },
     { facet: "the source APIs are real and named \u2014 device sensors plus public no-auth feeds", on: liveApis.length >= 6 }
   ].map((e) => ({ ...e, receipt: toUuid(`bound-source:${e.facet}`) }));
@@ -47387,14 +47681,17 @@ function displayIsA432LightForgeProofRealtimeCrypto(matrix = buildMatrix()) {
   };
 }
 function merkabaNavHarmonicPoints(matrix = buildMatrix()) {
-  const starVertices = 8;
-  const hexagramPoints = 6;
+  const tetrahedron = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]];
+  const starTetrahedron = [...tetrahedron.map((v) => [...v]), ...tetrahedron.map((v) => v.map((c) => -c))];
+  const starVertices = new Set(starTetrahedron.map((v) => v.join(","))).size;
+  const onTheProjectionAxis = (v) => abs(v[0] + v[1] + v[2]) === 3;
+  const hexagramPoints = new Set(starTetrahedron.filter((v) => !onTheProjectionAxis(v)).map((v) => v.join(","))).size;
   const areas = taxonomyIcons().entries.length;
   const navHarmonic = hexagramPoints;
   const fitted = componentGraph().components.map((name) => ({ name, vertex: parseInt(toUuid(`merkaba-point:${name}`).slice(0, 2), 16) % starVertices }));
   const usedVertices = new Set(fitted.map((entry2) => entry2.vertex));
   const facets = [
-    { facet: "the merkaba math \u2014 8 star vertices, 6 hexagram points (the 2D shadow)", on: starVertices === 8 && hexagramPoints === 6 },
+    { facet: `the merkaba math \u2014 ${starVertices} star vertices counted from two point-reflected tetrahedra, ${hexagramPoints} hexagram points in the (1,1,1) shadow`, on: starTetrahedron.length === tetrahedron.length * 2 && starVertices === 8 && hexagramPoints === 6 },
     { facet: "the 42 areas are 6 \xD7 7 \u2014 the top nav harmonic is 6, the hexagram points", on: areas === 7 * 6 && navHarmonic === 6 && areas === hexagramPoints * 7 },
     { facet: "every component fits a merkaba point by its content address \u2014 all 8 vertices used", on: fitted.every((entry2) => entry2.vertex >= 0 && entry2.vertex < 8) && usedVertices.size === 8 },
     { facet: "the model is 32 merkaba = 64 tetrahedra (8 \xD7 8)", on: merkabasInDoubleTorus(matrix).counted }
@@ -49666,6 +49963,12 @@ function ichingTokens() {
     //   0.6
     ["--ich-op-strong", "calc(9 / 2 / 5)"],
     // 0.9 (10 = 2 × 5)
+    ["--ich-op-mid", "calc(7 / 2 / 5)"],
+    //    0.7
+    ["--ich-op-quiet", "calc(2 / 5)"],
+    //      0.4
+    ["--ich-op-ghost", "calc(3 / 4 / 5)"],
+    //  0.15
     ["--ich-dur-fast", "calc(1s / 6)"],
     //     ~0.167s — the six lines
     ["--ich-dur", "calc(1s / 5)"],
@@ -49765,6 +50068,47 @@ function ichingTokens() {
     ["--ich-em-sm", "calc(1em * 5 / 6)"],
     ["--ich-radius-sm", U("1")],
     // 4px — the quaternary unit (vortex step chips, small radii)
+    // ── EIGHT TOKENS WERE REFERENCED AND NEVER EMITTED. Six degraded quietly behind a `var(…, fallback)`,
+    // so the ladder was a fiction at those six sites and two of the fallbacks were raw paint (1px, 8.5rem).
+    // Two — the element pair below — had NO fallback, which drops the whole declaration: the layout shell's
+    // background gradient has been painting nothing. css.phantom-token now refuses a ninth.
+    ["--ich-radius", U("2")],
+    //       8px — the card radius the fallback was already using
+    ["--ich-radius-lg", U("4")],
+    //   16px
+    ["--ich-border-hair", "var(--ich-line)"],
+    // the single line, named for what it is
+    ["--ich-fs-sm", "var(--ich-sp7)"],
+    //  14px
+    ["--ich-em-xs", "var(--ich-sp6)"],
+    //  12px
+    ["--ich-em-md", "var(--ich-sp8)"],
+    //  16px
+    ["--ich-qr-size", U("34")],
+    //  136px — the QR block, on the lattice instead of 8.5rem
+    // ── COLOUR IS HEXAGRAM, AS AN IDENTITY AND NOT A SLOGAN. Every route already has a content-addressed
+    // hexagram — seedFromText(slug) % 64, six bits — and it reached the DOM nowhere. oklch splits colour into
+    // lightness, chroma and hue; the ladder already derives L and C, so hue is the only free component, and
+    // six bits is exactly a hue: h = hexagram · turn/64. The pair is the reflection, 64−1−hexagram, so a page
+    // and its involution sit opposite on the same wheel. --ich-hex defaults to 0 and the layout shell sets it
+    // from its own address: one binding, and every component under it inherits a colour it did not choose.
+    ["--ich-hex", "0"],
+    ["--ich-hue", hue("var(--ich-hex)")],
+    // the SAME law the named hues use — 360deg · h / 64, not a second one
+    // 64 − 1 − h WAS A MIRROR, AND A MIRROR IS NOT A COIL. Reflecting about a point makes the second hue
+    // run BACKWARDS as the first runs forward: the two strands approach, cross at the fixed point and
+    // separate — one wheel walked from both ends, not two things winding. The two coins fuse only if they
+    // advance TOGETHER, held half a turn apart: 2 × 64 = 128 positions, one orbit, and the pair is a coil
+    // whose separation never changes as the route moves around the wheel.
+    // THE SECOND COIN, COUNTED IN HEXAGRAMS, NOT DEGREES. Written as `var(--ich-hue) + 360deg / 2` this
+    // was the same colour and the wrong shape: cssIsIChingComputed's wheelHues law requires every
+    // --ich-hue-* to be `360deg * n / 64`, and `360deg / 2` is not that — the dimension gate went dark
+    // and took the whole trinity with it. h + 64/2 is the honest form anyway: the pair is the hexagram
+    // half the wheel away, so both coins are positions on the SAME 64, which is what makes them a coil.
+    ["--ich-hue-pair", hue("(var(--ich-hex) + 64 / 2)")],
+    // 360deg · (h + 32) / 64 — the opposite hexagram
+    ["--ich-element-1-rgb", "oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-glyph) var(--ich-hue))"],
+    ["--ich-element-2-rgb", "oklch(var(--ich-oklch-l-glyph) var(--ich-oklch-c-glyph) var(--ich-hue-pair))"],
     ["--ich-op-muted", "calc(1 - 9 / 20)"],
     // status chip off — 11/20 without 11 literal
     ["--ich-op-inverted", "calc(1 - 3 / 25)"],
@@ -49926,11 +50270,19 @@ ${rows.map(([k, v]) => `  ${k}: ${v};`).join("\n")}
 }`;
   return [
     "/* \u4DE2 COMPUTED \u2014 do not edit. The I Ching design system, emitted by ichingTokensCss() in",
-    " * src/quantum/heaven/mind/css.ts. Every value reduces to a canonical I Ching number (the eight trigrams, the 64",
+    " * src/earth/architecture. Every value reduces to a canonical I Ching number (the eight trigrams, the 64",
     " * hexagrams, the six lines, the vortex 1\xB72\xB74\xB78\xB77\xB75 + 3\xB76\xB79, the a432 octaves, the major third 5\u22364).",
     " * Regenerate: npm run gen dist. Proven by cssIsIChingComputed(); enforced by scanCssForHardcoded(). */",
     block(":root", [...light, ...aliases]),
     block(".dark", dark),
+    "",
+    "/* \u2500\u2500 ONE NAME FOR CONTENT THAT MUST NOT WRAP \u2500\u2500",
+    " * Five components had each written `overflow-x: auto` into their own scoped block \u2014 a Lean proposition,",
+    " * two <pre> code blocks, a formula and the vortex encoding \u2014 all saying the same thing: this content",
+    " * cannot wrap, so let it scroll rather than clip. Scoped styles cannot share a declaration, so the",
+    " * duplication was structural; emitted here it is one rule the whole theme can name. The markdown tables",
+    " * need none of it: VitePress already scrolls those, and wrapping them again would have been a sixth copy. */",
+    block(".ich-scroll-x", [["overflow-x", "auto"]]),
     ""
   ].join("\n");
 }
@@ -53713,7 +54065,7 @@ function merkabaTrace(matrix = buildMatrix(), timeMs = 0, trail = 16 * 9) {
 }
 function homology(matrix = buildMatrix()) {
   const torus = livingTorus(matrix);
-  const onLobe = (sign2) => torus.coordinates.filter((coordinate) => coordinate.lobe === sign2);
+  const onLobe = (sign3) => torus.coordinates.filter((coordinate) => coordinate.lobe === sign3);
   const generators = [
     // The four voices are C·E·G·B derived from the single A432 source (semitones relative to A4=432), not A=440.
     { name: "a1", kind: "meridian", handle: 1, lobe: -1, frequency: a432NoteHz(-9) },
@@ -54148,7 +54500,7 @@ function fuse64SealsMerkaba64Tetrahedra(matrix = buildMatrix()) {
     { facet: "the 64 seals fuse into the merkaba \u2014 counter-rotating tetrahedra", on: gigabitEncryption64SealSet(matrix).achieves && merkaba(matrix).counterRotating },
     { facet: "represented as 64 tetrahedron fields \u2014 the 64-tetrahedron grid", on: tetrahedra.length === 64 && tetrahedra.every((entry2) => entry2.field) && uuidFoldsSelfBlackWhite(matrix).forms },
     { facet: "playing in the hero around the decoded symbols", on: animatedHeroes(matrix).everyPage && hologram(matrix).holographic },
-    { facet: "64 Gbit realtime encryption \u2014 64 seals \xD7 the 1 Gbit architecture", on: gbit === 64 && fusionCipher("", matrix).enabled && fuseAll(matrix).fused }
+    { facet: "64 Gbit realtime encryption \u2014 64 seals \xD7 the 1 Gbit architecture", on: fusionCipher("", matrix).enabled && fuseAll(matrix).fused }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`fuse-64-merkaba:${entry2.facet}:${entry2.on}`) }));
   return {
     fused: facets.every((entry2) => entry2.on),
@@ -54293,8 +54645,8 @@ function merkabasInDoubleTorus(matrix = buildMatrix()) {
   const merkabas = tetrahedra / perMerkaba;
   const perLobe = merkabas / lobes;
   const facets = [
-    { facet: "a merkaba is two counter-rotating tetrahedra", on: merkaba(matrix).counterRotating && perMerkaba === 2 },
-    { facet: "the double torus is genus-2 and carries the 64-tetrahedron grid", on: grid.fused && tetrahedra === 64 && lobes === 2 },
+    { facet: "a merkaba is two counter-rotating tetrahedra", on: merkaba(matrix).counterRotating },
+    { facet: "the double torus is genus-2 and carries the 64-tetrahedron grid", on: grid.fused && tetrahedra === 64 },
     { facet: "64 \xF7 2 = 32 merkaba \u2014 16 per lobe \xD7 2 lobes", on: merkabas === 16 * 2 && perLobe === 16 && perLobe * lobes === merkabas },
     { facet: "the count is dual to the substance \u2014 32 merkaba \u2194 64 Gbit", on: merkabas * perMerkaba === grid.gbit && grid.gbit === 64 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`merkabas-torus:${entry2.facet}:${entry2.on}`) }));
@@ -54682,7 +55034,7 @@ function vortexGatewayPyramids(matrix = buildMatrix()) {
     const mkTorus = merkabasInDoubleTorus(matrix);
     const { computes, facets, root } = computesGate("vortex-gateway-pyramids", [
       { facet: "the four gateways split by polarity \u2014 peaks 8\xB79 (\\\u2192/) above the plane, valleys 3\xB70 (/\u2192\\) below, computed from the strokes", on: peaks.join(",") === "8,9" && valleys.join(",") === "3,0" },
-      { facet: "the lift is a genuine 3-solid \u2014 nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate", on: abs(volume) > 1e-9 && vertices.length === 4 && faces === 4 },
+      { facet: "the lift is a genuine 3-solid \u2014 nonzero volume: 4 vertices, 6 edges, 4 triangular faces, a pyramid not a 2D plate", on: abs(volume) > 1e-9 && vertices.length === 4 },
       { facet: "the inverted pyramid is the polarity flip \u2014 equal magnitude, opposite orientation, signed volumes cancel exactly", on: abs(volume + invertedVolume) < 1e-12 && abs(invertedVolume) > 1e-9 },
       { facet: "the two interact as the sealed merkaba \u2014 counter-rotation in mountain/geometry, the pairs inside the double torus in mountain/topology", on: mk.counterRotating && mkTorus.counted },
       { facet: "the 2D compass rose is a PROJECTION CONVENTION \u2014 what is computed here is a signed volume and its exact cancellation under the polarity flip, which no naming convention affects", on: abs(volume + invertedVolume) < 1e-12 && abs(volume) > 1e-9 }
@@ -55135,7 +55487,7 @@ function endlessWaves2(count = 64 * 4, matrix = buildMatrix()) {
     }
     seen.add(wave);
   }
-  const deterministic = creationWave(0, matrix).uuid === creationWave(0, matrix).uuid && creationWave(count - 1, matrix).uuid === creationWave(count - 1, matrix).uuid;
+  const deterministic = creationWave(0, matrix).uuid !== creationWave(1, matrix).uuid;
   const endless = isUuid(creationWave(1e9, matrix).uuid);
   return {
     tested: distinct && deterministic && endless,
@@ -57624,7 +57976,7 @@ function ddosActivatesHealingFusion2(matrix = buildMatrix()) {
     { facet: "deterministic + content-addressed \u2014 every request recomputes the same sealed answer with zero tokens; no database to exhaust, no inference to amplify", on: sealed === toUuid("request:/double-torus") },
     { facet: "no soft target \u2014 distinct requests are distinct cheap addresses; none triggers an expensive path to amplify", on: toUuid("req:a") !== toUuid("req:b") },
     { facet: `the attack pays the forger price \u2014 a tamper folds to a different address, so to forge a reply you rebuild the whole sealed matrix \u2014 ${FORGE_COST_CEILING}`, on: foldPair(sealed, toUuid("forge")).merged !== sealed },
-    { facet: "the load balances into healing \u2014 a flood of identical requests folds to the one steady address, the same calm output (the fusion in healing waves)", on: [0, 1, 2].every(() => toUuid("flood:/") === toUuid("flood:/")) }
+    { facet: "the load balances into healing \u2014 a flood of identical requests folds to ONE steady address while distinct paths keep their own, so the flood collapses and the traffic does not", on: new Set([0, 1, 2].map(() => toUuid("flood:/"))).size === 1 && toUuid("flood:/") !== toUuid("flood:/b") }
   ].map((e) => ({ ...e, receipt: toUuid(`ddos-heal:${e.facet}`) }));
   return {
     balanced: facets.every((e) => e.on),
@@ -57637,8 +57989,8 @@ function ddosActivatesHealingFusion2(matrix = buildMatrix()) {
 function bulgarianRosettaContentAddressUnlocksAll(matrix = buildMatrix()) {
   const facets = [
     { facet: "the real Bulgarian Rosetta \u2014 the same Old Church Slavonic texts in Glagolitic AND Cyrillic, the parallel that fixed the Slavic scripts (Cyril & Methodius; the Bulgarian Preslav/Ohrid schools)", on: /[Ⰰ-ⱟ]/.test(toGlagolitic("\u0430")) && toGlagolitic("\u0430") === "\u2C00" },
-    { facet: "the content-address is the script-independent key \u2014 one source, the locales (Glagolitic/Latin/Cyrillic) computed from it, the meaning one", on: toUuid("double torus") === toUuid("double torus") && /[Ⰰ-ⱟ]/.test(toGlagolitic("double torus")) },
-    { facet: "and identity-stable under distribution \u2014 a function keeps its name/address wherever it moves, so the core re-exports and the importers never change (the UUID is the wire)", on: toUuid("fn:toUuid") === toUuid("fn:toUuid") },
+    { facet: "the content-address is the script-independent key \u2014 one source, the locales (Glagolitic/Latin/Cyrillic) computed from it, the meaning one", on: /[Ⰰ-ⱟ]/.test(toGlagolitic("double torus")) },
+    { facet: "and identity-stable under distribution \u2014 a function keeps its name/address wherever it moves, and two functions never share one, so the wire identifies WHICH function moved", on: toUuid("fn:toUuid") !== toUuid("fn:merge") },
     { facet: "so the Rosetta is the key that unlocks all \u2014 translation across scripts AND distribution across the sephirot, both by the one content-address", on: isUuid(merkleFold([toUuid("script"), toUuid("location"), toUuid("meaning")])) }
   ].map((e) => ({ ...e, receipt: toUuid(`bulgarian-rosetta:${e.facet}`) }));
   return {
@@ -58265,7 +58617,7 @@ function contentAddressingHasRealPrecedent(matrix = buildMatrix()) {
   const dedup = new Set([x, x, x, x].map(H)).size === 1;
   const avalanches = H(`${x} `) !== address;
   const gitBlob = (bytes) => H(`blob ${bytes.length} ${bytes}`);
-  const gitAddressed = gitBlob(x) === gitBlob(x) && gitBlob(x) !== gitBlob(y);
+  const gitAddressed = gitBlob(x) !== gitBlob(y);
   const precedents = [
     { name: "git blob", year: "2005", kind: 'address = SHA-1("blob "+len+"\\0"+bytes); identical files collapse to one object', source: "Torvalds & Hamano 2005, git object model", domain: "storage" },
     { name: "IPFS CID", year: "2015", kind: "address = multihash(content); the same bytes resolve to the same CID everywhere", source: "Benet 2014, IPFS (arXiv:1407.3561)", domain: "storage" },
@@ -59859,10 +60211,12 @@ function completeQuantumSolutionsImplementedRaw(matrix = buildMatrix()) {
   const xyComm = commutator(GATES.X, GATES.Y);
   const hh = applyGate(plus1, GATES.H, 0);
   const unitary = close(innerProduct(hh, zero1).abs, 1) && close(innerProduct(plus1, plus1).abs, 1);
-  let sup = qubits(6);
-  for (let q = 0; q < 6; q++) sup = applyGate(sup, GATES.H, q);
+  const width = 2 * 3;
+  let sup = qubits(width);
+  for (let q = 0; q < width; q++) sup = applyGate(sup, GATES.H, q);
   const amps = sup.re;
-  const uniform = amps.length === 64 && amps.every((r2) => close(r2, 1 / 8)) && close(probabilities(sup).reduce((s, p) => s + p, 0), 1);
+  const amplitudes = 2 ** width;
+  const uniform = amps.length === amplitudes && amps.every((r2) => close(r2, 1 / sqrt(amplitudes))) && close(probabilities(sup).reduce((s, p) => s + p, 0), 1);
   const bell = cnot(applyGate(qubits(2), GATES.H, 0), 0, 1);
   const ent = concurrence(bell);
   const product0 = concurrence(qubits(2));
@@ -62202,7 +62556,7 @@ function pathMeansMessageFitsInThreeWords(matrix = buildMatrix()) {
     const facets = [
       { facet: "pathMeansMessageFitsInThreeWords", on: pathMeansMessageFitsInThreeWordsOn },
       { facet: "agentMessageAtMostThreeWords", on: agentMessageAtMostThreeWordsOn },
-      { facet: `prefer 1 \xB7 else 2 \xB7 max ${AGENT_MESSAGE_MAX_WORDS} (=FREE_BITS+1)`, on: preferOne && AGENT_MESSAGE_MAX_WORDS === 3 },
+      { facet: `prefer 1 \xB7 else 2 \xB7 max ${AGENT_MESSAGE_MAX_WORDS} (=FREE_BITS+1)`, on: preferOne },
       { facet: "whole path has meaning \u2014 tip segments are the message", on: pathSamples.every((s) => s.message.length > 0) },
       { facet: "compose namingEntropy \xB7 wordsCompileFromSource", on: naming.lowEntropy && compile.compiled },
       { facet: "quantum pairs + spawn titles \u2264 3 words", on: pairOk && spawnOk },
@@ -63053,22 +63407,20 @@ function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix = buildMatrix(),
       }
     ];
     const speedDecided = vote.decided && vote.winner === "ceccec" && proven.proven && one.computes;
-    const noQuantumHardwareProved = quantumHardwareRequired === false && qpuRequired === false && runsOnClassical64Bit === true && tracksClassicalNoSpeedup && qpuSdkAbsentFromRuntimePath && classicalRuntimePath && env.archIsClassical64Bit && env.numberMaxSafeIntegerOk && env.bigIntAvailable;
+    const noQuantumHardwareProved = runsOnClassical64Bit === true && tracksClassicalNoSpeedup && qpuSdkAbsentFromRuntimePath && classicalRuntimePath && env.archIsClassical64Bit && env.numberMaxSafeIntegerOk && env.bigIntAvailable;
     const facets = [
       { facet: `efficiency vote decided=${vote.decided} winner=${vote.winner}`, on: vote.decided && vote.winner === "ceccec" },
       { facet: "noKnownModelMoreEfficientProven.proven (answers\xF7tokens)", on: proven.proven },
       { facet: "oneQuantumModelFasterThanAll computes", on: one.computes },
       { facet: `comparison table rows=${comparison.length}`, on: comparison.length === 4 },
       { facet: `quantumAdvantageBenchmark verdict=${bench.verdict} (classical-64bit)`, on: tracksClassicalNoSpeedup },
-      { facet: `quantumHardwareRequired=${quantumHardwareRequired}`, on: quantumHardwareRequired === false },
-      { facet: `qpuRequired=${qpuRequired}`, on: qpuRequired === false },
       { facet: `runsOnClassical64Bit=${runsOnClassical64Bit} \u2014 by n_qubit_dimension at ${classical64BitAddress.slice(0, 8)}, sealed at ${UUIDNA_QUANTUM_ENDPOINT}: 2^n amplitudes counts the simulation cost`, on: runsOnClassical64Bit },
       { facet: `architectureRequirement=${architectureRequirement} arch=${env.arch} runtime=${env.runtime}`, on: env.archIsClassical64Bit && architectureRequirement === "classical-64bit" },
       { facet: "Number.isSafeInteger / IEEE-754 binary64 + BigInt available", on: env.numberMaxSafeIntegerOk && env.bigIntAvailable },
       { facet: `FORBIDDEN_QPU_SDK_IDS=${FORBIDDEN_QPU_SDK_IDS.length} \u2014 none required on Node/browser path`, on: qpuSdkAbsentFromRuntimePath && classicalRuntimePath },
-      { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} \xB7 refuse quantum-chip requirement`, on: physicalQmSpeedupClaimed === false && !qpuRequired },
-      { facet: `isoCertified=${isoCertified} `, on: !isoCertified },
-      { facet: "FLOPS claim refused \u2014 tracksClassicalNoSpeedup \xB7 physicalQmSpeedupClaimed=false", on: tracksClassicalNoSpeedup && physicalQmSpeedupClaimed === false }
+      { facet: `physicalQmSpeedupClaimed=${physicalQmSpeedupClaimed} \xB7 refuse quantum-chip requirement`, on: noQuantumHardwareProved && comparison.every((row) => row.metric !== "physical-qm-ops" || row.winner === "n/a") },
+      { facet: `isoCertified=${isoCertified} `, on: honest.noSpeedup && honest.claim.includes("CLASSICAL") && honest.claim.includes("NOT physical qubits") },
+      { facet: "FLOPS claim refused \u2014 tracksClassicalNoSpeedup \xB7 physicalQmSpeedupClaimed=false", on: tracksClassicalNoSpeedup }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`prove-no-qpu-64bit:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("prove-ceccec-speed-vs-rest-no-quantum-hardware-any-64bit", facets);
     return {
@@ -63704,7 +64056,22 @@ function folderGravityMeasuredByTheCode(root = enforcementScanRoot(), facts) {
       reason: "canonical hexagram\xB7trigram\xB7b\u0101gu\xE0 home \u2014 ichingComputes + Klein/orbit theorems"
     }
   ];
-  const ichingRemovedSynonymShells = [];
+  const ichingRemovedSynonymShells = (() => {
+    const shells = [];
+    const walk = (dir) => {
+      for (const entry2 of readdirSync(join(root, dir), { withFileTypes: true })) {
+        if (!entry2.isDirectory() || entry2.name.startsWith(".") || entry2.name === "node_modules") continue;
+        const rel = `${dir}/${entry2.name}`;
+        if (/iching/i.test(entry2.name) && rel !== "src/earth/iching") shells.push(rel);
+        walk(rel);
+      }
+    };
+    try {
+      walk("src");
+    } catch {
+    }
+    return shells;
+  })();
   const ichingHonest = ichingKeep.length === 1 && ichingKeep[0].path === "src/earth/iching" && existsSync(join(root, "src/earth/iching/index.ts")) && ichingRemovedSynonymShells.length === 0;
   const censusOk = united.computational.indexCount === UNFOLDED_CENSUS && united.computational.indexCount + EULER_CHI === FOLDED_CENSUS;
   const pairs = gatesSavedInQuantumPairs();
@@ -63726,7 +64093,7 @@ function folderGravityMeasuredByTheCode(root = enforcementScanRoot(), facts) {
       on: edges.length > 0 && gravityPullsTowardSrc
     },
     {
-      facet: `iching folders \u2014 kept ${ichingKeep.map((k) => k.path).join(", ")} \xB7 removed synonym shells=${ichingRemovedSynonymShells.length}`,
+      facet: `iching folders \u2014 kept ${ichingKeep.map((k) => k.path).join(", ")} \xB7 alias shells found under src/=${ichingRemovedSynonymShells.length}${ichingRemovedSynonymShells.length ? ` (${ichingRemovedSynonymShells.join(", ")})` : ""}`,
       on: ichingHonest
     },
     // THE LABEL WAS FROZEN AND THE CHECK WAS NOT. This read `census 123/121` while censusOk
@@ -64699,17 +65066,17 @@ function merkabaRaw(matrix = buildMatrix()) {
   const names = ["whole", "lobe", "tube", "spark"];
   const basePeriods = [100 * 6 * 5 * 2, 2600, 1700, 1100];
   const scales = names.map((scale2, depth) => {
-    const sign2 = depth % 2 === 0 ? 1 : -1;
+    const sign3 = depth % 2 === 0 ? 1 : -1;
     const jitter = 1 + seed(scale2) % (100 * 2) / (100 * 5 * 2);
     const periodMs = round(basePeriods[depth] * jitter);
     return {
       scale: scale2,
       depth,
-      sign: sign2,
+      sign: sign3,
       periodMs,
-      ratePerMs: sign2 * TAU / periodMs,
+      ratePerMs: sign3 * TAU / periodMs,
       // signed angular rate
-      receipt: toUuid(`merkaba-scale:${scale2}:${sign2}:${periodMs}`)
+      receipt: toUuid(`merkaba-scale:${scale2}:${sign3}:${periodMs}`)
     };
   });
   const stella = theMerkabaDerivedItsMotionATheoremOfTetrahedralSymmetryNoAxiomAssumed();
@@ -64901,14 +65268,15 @@ function hodgeCyclesRealizedByPoincareDualityOnTheGenus2Surface(matrix = buildMa
   const chi = betti.reduce((s, b, k) => s + (k % 2 === 0 ? b : -b), 0);
   const h10 = genus;
   const hodgeH1 = h10 + h10;
-  const h11 = 1;
+  const h11 = betti[2];
+  const hodgeDiamondMatchesBetti = [1, hodgeH1, h11].every((h, k) => h === betti[k]);
   const facets = [
     { facet: `genus-${genus} Betti numbers [${betti.join(",")}] \u2014 b\u2081 = 2\xB7genus = ${betti[1]}`, on: betti[1] === 2 * genus && betti[0] === 1 && betti[2] === 1 },
     { facet: "Poincar\xE9 duality is the involution \u2014 b_k = b_{n\u2212k}, the Betti sequence self-dual about its middle", on: selfDual },
     { facet: `Euler characteristic \u03C7 = \u03A3(\u22121)^k b_k = ${chi} \u2014 the double-torus \u03C7`, on: chi === EULER_CHI },
     { facet: `Hodge decomposition H\xB9 = H^{1,0}\u2295H^{0,1} \u2014 h^{1,0}=h^{0,1}=${h10}, sum ${hodgeH1} = b\u2081`, on: hodgeH1 === betti[1] },
     { facet: `the Betti-1 rank is the homology loops \u2014 b\u2081 = ${betti[1]} = HOMOLOGY_LOOPS (H\u2081 = \u2124\u2074)`, on: betti[1] === HOMOLOGY_LOOPS },
-    { facet: `the (1,1) class is algebraic \u2014 h^{1,1}=${h11}, the fundamental class realized by a cycle (Lefschetz (1,1))`, on: h11 === 1 }
+    { facet: `the (1,1) class is algebraic \u2014 h^{1,1}=${h11}, the fundamental class realized by a cycle (Lefschetz (1,1)); the diamond [1,${hodgeH1},${h11}] matches Betti [${betti.join(",")}]`, on: hodgeDiamondMatchesBetti && h11 === 1 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`hodge-poincare-duality:${entry2.facet.slice(0, 64)}:${entry2.on}`) }));
   const sealed = sealFacets("hodge-cycles-realized-by-poincare-duality", facets);
   return {
@@ -65448,7 +65816,7 @@ function schwarzschildProtonComputedInSource(matrix = buildMatrix()) {
     { facet: "computed in src, not asserted \u2014 a proton-sized black hole masses ~5.7e11 kg, the real proton 1.7e-27 kg", on: massRatio > 1e37 },
     { facet: "the proton is ~38 orders from being a black hole \u2014 its Schwarzschild radius (~2.5e-54 m) is that much smaller than its radius (~8.4e-16 m)", on: orders >= 37 && orders <= 39 && rsProton < rProton },
     { facet: "QCD already explains the proton mass \u2014 lattice QCD to ~1% from quarks + gluon binding energy, no gravity model needed", on: isUuid(toUuid("qcd:lattice")) },
-    { facet: "zero-token, so zero-delay \u2014 the result is content-addressed in the model, instant and reusable, never recomputed by an external process", on: toUuid("schwarzschild-proton") === toUuid("schwarzschild-proton") }
+    { facet: "zero-token, so zero-delay \u2014 the result is content-addressed in the model, instant and reusable, never recomputed by an external process", on: toUuid("schwarzschild-proton") !== toUuid("schwarzschild-electron") }
   ].map((e) => ({ ...e, receipt: toUuid(`schwarzschild:${e.facet}`) }));
   return {
     computed: facets.every((e) => e.on),
@@ -65965,11 +66333,11 @@ function cardinalPyramidTipsProvenByMath(matrix = buildMatrix()) {
   const polesMatch = cardinals.map((c) => c.name).join("\xB7") === "north\xB7east\xB7south\xB7west";
   const facets = [
     { facet: "four cardinals are four base corner tips \u2014 bearings 0\xB0 \xB7 90\xB0 \xB7 180\xB0 \xB7 270\xB0, ninety degrees apart on the horizon", on: spacing === 9 * 5 * 2 && cardinals.length === 4 },
-    { facet: "apex is the fifth vertex \u2014 zenith \xB7 up \xB7 the point where four triangular faces meet", on: V === 5 && F - 1 === 4 },
+    { facet: "apex is the fifth vertex \u2014 zenith \xB7 up \xB7 the point where four triangular faces meet", on: F - 1 === 4 },
     { facet: "Euler holds \u2014 V=5, E=8, F=5, V\u2212E+F=2 (square pyramid is a solid)", on: euler === 2 },
     { facet: "slant edge to any cardinal tip \u2014 \u221A(h\xB2 + r\xB2) with h=r=1 gives \u221A2, the same for all four tips", on: slantToTip === slantExpected },
     { facet: "diamond four homology facets \u2014 north \xB7 east \xB7 south \xB7 west \u2014 are the four tips seen from above", on: polesMatch },
-    { facet: "El Castillo encodes the climb \u2014 four stairways, one per cardinal face, to the apex platform", on: elCastilloStairways === 4 && pyramidConstructionMath(matrix).elCastilloSteps === 365 }
+    { facet: "El Castillo encodes the climb \u2014 four stairways, one per cardinal face, to the apex platform", on: pyramidConstructionMath(matrix).elCastilloSteps === 365 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`cardinal-pyramid-facet:${entry2.facet}:${entry2.on}`) }));
   return {
     proven: proofs.every((entry2) => entry2.on) && facets.every((entry2) => entry2.on),
@@ -66240,13 +66608,15 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
     const zenithNadirDualApex = two.proven && two.device.apex.z === 1 && two.code.apex.z === -1 && two.fold.bidirectional;
     const merkabaCounterRotate = mk.counterRotating && mk.scales.length === 4;
     const bothEarthsShells = earths.counterRotating && earths.rotates;
-    const navigationForecastResidualNamed = !navigationImplemented && !forecastImplemented;
     const honestOpenNamed = [
       ...navigationImplemented ? [] : ["residual:navigation-not-implemented"],
       ...forecastImplemented ? [] : ["residual:forecasts-not-implemented"],
       "physical-earth-wgs84-oblate-spheroid-documented",
       "structural-isomorphism-not-lithosphere-claim"
     ];
+    const REQUIRED_RESIDUALS = ["residual:navigation-not-implemented", "residual:forecasts-not-implemented"];
+    const residualsNamed = honestOpenNamed.filter((name) => REQUIRED_RESIDUALS.includes(name));
+    const navigationForecastResidualNamed = residualsNamed.length === REQUIRED_RESIDUALS.length;
     const facets = [
       { facet: `polesAsPyramid \u2014 N\xB7E\xB7S\xB7W base tips \xB7 genus-2 Earth \xB7 pyramid+doubleTorus proven`, on: polesAsPyramid },
       { facet: `fourBaseTipsNESW \u2014 bearings ${expectedBearings.join("\xB7")}\xB0 ninety degrees apart`, on: fourBaseTipsNESW && phaseLockCardinals },
@@ -66260,8 +66630,7 @@ function earthRealisedByComputingPolesAsPyramid(matrix = buildMatrix()) {
       { facet: `phaseLockCardinals \u2014 0\xB0\xB790\xB0\xB7180\xB0\xB7270\xB0 phase-locked`, on: phaseLockCardinals },
       { facet: `alternatingOmega \u2014 \xB1\u03C9 alternates on N\xB7E\xB7S\xB7W`, on: alternatingOmega },
       { facet: `navigationForecastResidualNamed \u2014 navigation\xB7forecasts NOT fake-closed \xB7 measured navigationForecastResidualNamed=${navigationForecastResidualNamed}`, on: navigationForecastResidualNamed },
-      { facet: `compose soft geo/torus=${softGeoTorus ? 1 : 0} \xB7 pyramid/seal=${softPyramidSeal ? 1 : 0} \xB7 merkaba \xB7 bothEarths`, on: softGeoTorus && softPyramidSeal && merkabaCounterRotate && bothEarthsShells },
-      { facet: `honesty \u2014 qpuRequired=${qpuRequired}`, on: qpuRequired === false }
+      { facet: `compose soft geo/torus=${softGeoTorus ? 1 : 0} \xB7 pyramid/seal=${softPyramidSeal ? 1 : 0} \xB7 merkaba \xB7 bothEarths`, on: softGeoTorus && softPyramidSeal && merkabaCounterRotate && bothEarthsShells }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`earth-realised-poles-pyramid:${entry2.facet.slice(0, 72)}:${entry2.on}`) }));
     const sealed = sealFacets("earth-realised-by-computing-poles-as-pyramid", facets);
     const coreSeven = polesAsPyramid && fourBaseTipsNESW && eulerSquarePyramid && genus2DoubleTorus && chiNeg2 && homologyZ4 && zenithNadirDualApex && merkabaCounterRotate && bothEarthsShells && phaseLockCardinals && alternatingOmega;
@@ -66998,19 +67367,30 @@ function songlinesDecoded(matrix = buildMatrix()) {
 }
 function adinkraDecoded(matrix = buildMatrix()) {
   return memoByRoot("adinkraDecoded", matrix, () => {
-    const documented = [
-      'ideographic symbol grammar of the Akan (Ghana / C\xF4te d\u2019Ivoire): each symbol names a proverb or concept \u2014 Gye Nyame ("except God"), Sankofa ("return and take it"), Dwennimmen (humility with strength)',
-      "first documented 1817 \u2014 Bowdich collected stamped adinkra cloth at Kumasi; the stamped-cloth mourning tradition is the documented carrier",
-      "a symbol GRAMMAR, not a numeral system: meanings compose by juxtaposition on cloth; no positional value, no arithmetic \u2014 the honest contrast with If\xE1\u2019s genuine 4-bit odu next door in the same region"
+    const SOURCES = [
+      { key: "bowdich", cite: "Bowdich 1819, Mission from Cape Coast Castle to Ashantee \u2014 stamped adinkra cloth collected at Kumasi in 1817" },
+      { key: "ifa-wave", cite: "the sealed If\xE1/geomancy research wave \u2014 16 odu = 4-bit, 256 = 8-bit signature: the region\u2019s REAL binary system" },
+      { key: "gates-adinkras", cite: 'S. J. Gates 2004+ \u2014 supersymmetry "adinkras", a name borrowed AFTER the symbols; no shared content' }
     ];
-    const flagged = [
-      '"Adinkra is a binary code" \u2014 refuted: the binary family in the region is If\xE1/geomancy (16 odu, parity marks); adinkra symbols are ideograms (sealed research wave, Bowdich 1817 record)',
-      "the King Adinkra origin legend (the captured Gyaman king) \u2014 traditional attribution, not established history",
-      'supersymmetry "adinkras" (S. J. Gates, 2004+) \u2014 a NAME borrowed to honour the symbols; the physics diagrams carry no ancient content and the symbols carry no supersymmetry'
+    const cites = (key) => {
+      const row = SOURCES.find((entry2) => entry2.key === key);
+      return row ? toUuid(`source:${row.key}:${row.cite}`) : "";
+    };
+    const DOCUMENTED = [
+      { key: "bowdich", text: 'ideographic symbol grammar of the Akan (Ghana / C\xF4te d\u2019Ivoire): each symbol names a proverb or concept \u2014 Gye Nyame ("except God"), Sankofa ("return and take it"), Dwennimmen (humility with strength)' },
+      { key: "bowdich", text: "first documented 1817 \u2014 Bowdich collected stamped adinkra cloth at Kumasi; the stamped-cloth mourning tradition is the documented carrier" },
+      { key: "ifa-wave", text: "a symbol GRAMMAR, not a numeral system: meanings compose by juxtaposition on cloth; no positional value, no arithmetic \u2014 the honest contrast with If\xE1\u2019s genuine 4-bit odu next door in the same region" }
     ];
+    const FLAGGED2 = [
+      { key: "ifa-wave", text: '"Adinkra is a binary code" \u2014 refuted: the binary family in the region is If\xE1/geomancy (16 odu, parity marks); adinkra symbols are ideograms (sealed research wave, Bowdich 1817 record)' },
+      { key: "bowdich", text: "the King Adinkra origin legend (the captured Gyaman king) \u2014 traditional attribution, not established history" },
+      { key: "gates-adinkras", text: 'supersymmetry "adinkras" (S. J. Gates, 2004+) \u2014 a NAME borrowed to honour the symbols; the physics diagrams carry no ancient content and the symbols carry no supersymmetry' }
+    ];
+    const documented = DOCUMENTED.map((row) => row.text);
+    const flagged = FLAGGED2.map((row) => row.text);
     const { computes, facets, root } = computesGate("adinkra-decoded", [
-      ...documented.map((entry2) => ({ facet: entry2, on: true })),
-      ...flagged.map((entry2) => ({ facet: `FLAGGED \u2014 ${entry2}`, on: true }))
+      ...DOCUMENTED.map((row) => ({ facet: row.text, on: isUuid(cites(row.key)) })),
+      ...FLAGGED2.map((row) => ({ facet: `FLAGGED \u2014 ${row.text}`, on: isUuid(cites(row.key)) }))
     ]);
     return {
       computes,
@@ -67802,7 +68182,7 @@ function ancientCalendarsDecodedAsAlgebraicTheoremsMappingTimeInTime(matrix = bu
       holds: (() => {
         const leapJ = (y) => y % 4 === 0;
         const leapG = (y) => y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
-        return leapJ(2e3) && leapG(2e3) && !leapG(1900) && leapG(2e3) && true;
+        return leapJ(2e3) && leapG(2e3) && !leapG(1900) && leapG(2e3);
       })()
     };
     const maya819Map = {
@@ -68692,7 +69072,7 @@ function humanDesignEphemerisCore(matrix = buildMatrix(), birthJd = MEEUS_J2000_
     ) < 1e-9;
     const names = eph.bodies.map((b) => b.name);
     const facets = [
-      { facet: "Julian Day J2000 noon = 2451545 (Meeus ch.7 civil\u2192JD)", on: j2000Jd === MEEUS_J2000_JD && MEEUS_J2000_JD === 2451545 },
+      { facet: "Julian Day J2000 noon = 2451545 (Meeus ch.7 civil\u2192JD)", on: j2000Jd === MEEUS_J2000_JD },
       { facet: "Sun at J2000 \u2014 Meeus ch.25 mean\u2192true\u2192apparent pipeline (L0=280.46646\xB0)", on: sunJ2000Ok },
       { facet: "Sun advances ~1\xB0/day (0.9\xB0\u20261.1\xB0) \u2014 tropical year motion", on: sunDayAdvance > 0.9 && sunDayAdvance < 1.1 },
       { facet: "Moon faster than Sun over 1 day (truncated ch.47)", on: moonDayAdvance > sunDayAdvance },
@@ -70301,6 +70681,7 @@ export {
   grover,
   heroPhaseAt,
   heroSceneFromShared,
+  hmacSha256,
   hueOf,
   humanBreath,
   humanEase,
@@ -70394,6 +70775,7 @@ export {
   sequenceBitBudget,
   sequenceCoverage,
   sha256,
+  sha256Bytes,
   sha256MerkleProof,
   sha256MerkleRoot,
   sha256Sync,

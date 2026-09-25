@@ -4776,7 +4776,7 @@ export declare function allChatCapabilitiesFusedAndAuditedByStandards(matrix?: M
     supported: boolean;
     capabilities: {
         name: string;
-        deterministic: boolean;
+        answers: boolean;
         receipt: string;
     }[];
     related: number;

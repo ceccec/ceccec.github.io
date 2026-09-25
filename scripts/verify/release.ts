@@ -9,11 +9,15 @@
  *
  * This runs the publish-time surface and nothing else. It is deliberately NOT in verify:all — it is
  * slow, and a commit gate that takes minutes gets bypassed, which is worse than a gate that is
- * scoped. It belongs in front of a release and in the nightly.
+ * scoped. It belongs in front of a release, and as of 2026-09-25 that is where it finally runs:
+ * publish-package.yml calls it before the publish step. Until then it belonged there in prose only
+ * and had zero callers, which is the same as not existing — a gate nothing invokes cannot refuse.
  *
- * It is expected to be RED today: the declaration graph has four folds whose inferred types cannot
- * be serialized, so packages/double-torus cannot be republished until they carry explicit return
- * types. That is the gate doing its job — the hole is old, the refusal is new.
+ * The note this header used to carry said it was expected to be RED, because four folds had inferred
+ * types that could not be serialized and held the declaration graph open. That was true when written
+ * and is not true now: measured 2026-09-25, 7/7 green, with the published-declaration step reporting
+ * bundler 0 · skipLibCheck 0 · nodenext 0 against the 10 · 0 · 338 that shipped in 1.4.0. The hole
+ * closed and the note outlived it — which is why a status claim belongs in the output, not the prose.
  */
 
 import { spawnSync } from 'node:child_process'

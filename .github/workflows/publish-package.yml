@@ -30,6 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The live-release check reads git tags, and a shallow checkout has none — it would report
+          # every published version as untagged and call the release incomplete.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -48,6 +52,14 @@ jobs:
           if (root.name !== '@ceccec/double-torus') { console.error('REFUSE: unexpected root package name', root.name); process.exit(1); }
           console.log('ok — publish surface is core math kernel only; sdk private; contact license@psg.bg for the rest');
           "
+      # THE PUBLISH-TIME GATE, IN FRONT OF THE PUBLISH. It was written for exactly this moment and ran
+      # nowhere: not here, not in land, not in a nightly. Seven steps that only fail at publish time —
+      # the Pages build verify:all never runs, the declaration graph that shipped 1.4.0 with four modules
+      # missing, the tarball contents, the dependency claims. Measured 7/7 green before wiring, so this
+      # blocks nothing that works and refuses the two failures this repository has actually had.
+      - name: Refuse to publish a tree that fails the publish-time gate
+        run: npm run verify:release
+
       - name: Publish to GitHub Packages (idempotent · dist-tag derived from the registry)
         run: |
           set -euo pipefail
@@ -103,3 +115,21 @@ jobs:
           npm publish --tag "${DIST_TAG}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # THE RELEASE IS NOT DONE WHEN THE TAG IS PUSHED — it is done when both permanent records hold it.
+      # A tag fans out to this workflow and to zenodo-publish.yml and neither ever reported back, so the
+      # repository could carry a version live in one record, in neither, or in both and no gate could tell
+      # the three apart. This reads both registries and the archive and refuses a tagged version that is
+      # missing from one. It also prints the LEADS: every disagreement between what this repo declares,
+      # what git tagged and what the records hold is what the next release should answer.
+      #
+      # The publish step above deletes `scripts` from the CHECKOUT's package.json before packing, so the
+      # file must come back before any npm run can find this gate again.
+      - name: Confirm the release is live in both records, and read back the leads
+        if: always()
+        run: |
+          set -euo pipefail
+          git checkout -- package.json
+          npm run verify:release-live
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

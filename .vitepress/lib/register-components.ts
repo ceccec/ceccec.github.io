@@ -2,19 +2,24 @@
 // Shared mounts come from the one VitePress component set (.vitepress/theme/components).
 import { defineAsyncComponent, defineComponent, h, ref, watch, type App, type Component } from 'vue'
 import { useRoute } from 'vitepress'
-import {
-  DecodedCard,
-  UiCardShell,
-  LinkedHeroCard,
-  HubCardGrid,
-  TagBrowser,
-  TrinityGateways,
-  GlobalHelp,
-  CollectiveMind,
-  RevolutAside,
-  TheoremSupport,
-  VitePressPossibilities,
-} from '../theme/components/index.ts'
+// NOT FROM THE BARREL. components/index.ts re-exports 33 components, so importing ONE name from it
+// statically pulls all 33 into whatever graph does the importing — and nine of them import the render
+// barrel, which is the corpus. Measured 2026-09-25: that single import shape put diamonds.js, 8141 KiB,
+// into the entry chunk's STATIC closure, 88% of the 9227 KiB a visitor must fetch before the app module
+// evaluates. Each component is now addressed by its own file and resolved when it is used. SSR is
+// unaffected: Vue awaits an async component while rendering, which is why /formulas already ships its
+// 845 KiB of rows with FormulaIndex registered exactly this way.
+const DecodedCard = defineAsyncComponent(() => import('../theme/components/DecodedCard.vue'))
+const UiCardShell = defineAsyncComponent(() => import('../theme/components/UiCardShell.vue'))
+const LinkedHeroCard = defineAsyncComponent(() => import('../theme/components/LinkedHeroCard.vue'))
+const HubCardGrid = defineAsyncComponent(() => import('../theme/components/HubCardGrid.vue'))
+const TagBrowser = defineAsyncComponent(() => import('../theme/components/TagBrowser.vue'))
+const TrinityGateways = defineAsyncComponent(() => import('../theme/components/TrinityGateways.vue'))
+const GlobalHelp = defineAsyncComponent(() => import('../theme/components/GlobalHelp.vue'))
+const CollectiveMind = defineAsyncComponent(() => import('../theme/components/CollectiveMind.vue'))
+const RevolutAside = defineAsyncComponent(() => import('../theme/components/RevolutAside.vue'))
+const TheoremSupport = defineAsyncComponent(() => import('../theme/components/TheoremSupport.vue'))
+const VitePressPossibilities = defineAsyncComponent(() => import('../theme/components/VitePressPossibilities.vue'))
 import { componentDisplayName, useSiteLocale } from './mounts'
 import { componentProjectionFor } from './hero-movie-paint'
 import { COMPONENT_FOLD_LOADERS, invokeFoldLoader, withCrosslinks, type DecodedFoldView } from './component-folds'

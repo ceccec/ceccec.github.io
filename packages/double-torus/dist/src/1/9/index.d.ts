@@ -4,6 +4,105 @@ export declare const forward = 2;
 export declare const reverse = 0;
 export declare const tensComplement = 9;
 export declare const doubling = 2;
+/**
+ * CROSS FORMULAS ARE COMBINATORIAL — the identities are ENUMERATED, not authored.
+ *
+ * A fold that states an identity has to be written, reviewed and trusted. A fold that COMPOSES the
+ * sealed maps and reports which compositions agree on every digit does not: the identities fall out of
+ * the enumeration, and a wrong one cannot survive because agreement is checked on all nine residues.
+ * This is the lattice-combination form of the same discipline — the statements are generated on the
+ * spot from the maps already in the kernel.
+ *
+ * Six maps on the nine digits, each already defined here or in src/0:
+ *   id       d ↦ d
+ *   reflect  d ↦ 10 − d          the folder pairing (1↔9, 2↔8, 3↔7, 4↔6, 5↔5)
+ *   negate   d ↦ dr(9 − d)       the ring's own additive inverse
+ *   double   d ↦ dr(2d)          the vortex step
+ *   square   d ↦ dr(d²)          the diagonal
+ *   inverse  d ↦ dr(d · dr(d²))  d³ folded — the cube
+ *
+ * n maps give n + n² = n(n+1) compositions to depth two, so six give 6 × 7 = 42 — the rosetta count,
+ * and not by coincidence: it is the same n(n+1) that makes 42 out of 6 and 7 everywhere else here.
+ *
+ * WHAT THE ENUMERATION FINDS, none of it written down in advance:
+ *   reflect∘reflect = negate∘negate = id     both pairings are involutions
+ *   square∘negate   = square                 the diagonal is fixed by the RING's negation — the fact
+ *                                            the neighbouring fold states, here DERIVED
+ *   negate∘double   = double∘negate          negation and the vortex step commute
+ *   inverse∘double  = negate∘inverse         a composite identity nobody stated
+ *   double                                   [2,4,6,8,1,3,5,7,9] — every residue once, so doubling is
+ *                                            a permutation of the ring (gcd(2,9) = 1)
+ *
+ * The clusters ARE the cross-proof: every member of a cluster computes the other members' values on
+ * all nine digits, so each is a check on the rest. Add a map and the lattice grows by n(n+1); break one
+ * and its cluster splits, which is what makes this refutable rather than decorative.
+ */
+export declare function crossFormulasAreCombinatorialOverTheNineRing(): {
+    computes: boolean;
+    mapCount: number;
+    formCount: number;
+    behaviourCount: number;
+    clusters: {
+        signature: string;
+        members: string[];
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * THE DIAGONAL OF THE 9-RING — it opens at 1, closes at 9, and touches only four of nine residues.
+ *
+ * The diagonal is the squaring map on the digit ring: d ↦ digitalRoot(d²), the entry the multiplication
+ * table shares with itself. Written out over d = 1..9 it reads
+ *
+ *   1 · 4 · 9 · 7 · 7 · 9 · 4 · 1 · 9
+ *
+ * and three things about it are exact rather than observed.
+ *
+ * IT TOUCHES FOUR OF NINE. The image is {1, 4, 7, 9} and nothing else — the quadratic residues of ℤ/9,
+ * with 0 read as 9 by the digital root. Four, and provably four: squaring identifies d with 9 − d, which
+ * partitions the nine digits into the four pairs {1,8} {2,7} {3,6} {4,5} with 9 left over, and 9 squares
+ * into the same class as 3 and 6. Four pairs, four values.
+ *
+ * THE INVOLUTION THAT FIXES IT IS NOT THE ONE THE FOLDERS ARE PAIRED BY, and that distinction is the
+ * whole point. The diagonal is invariant under d ↦ 9 − d, the RING's own negation, because
+ * (9 − d)² = 81 − 18d + d² ≡ d² (mod 9). It is NOT invariant under d ↦ 10 − d, which is how this
+ * corpus pairs its digit folders (1↔9, 2↔8, 3↔7, 4↔6, 5↔5, each summing to 10). Two involutions live
+ * on the same nine digits: one is arithmetic, one is architectural, and they are different maps.
+ *
+ * AND THE CLOSE REFLECTS THE OPEN. 9 ≡ 0 (mod 9), so 9 is the ring's ZERO — which is why the diagonal
+ * closes there and why 9 repeats, at d = 3, 6 and 9. Its mirror under the folder pairing is 10 − 9 = 1,
+ * the ring's ONE, where the diagonal opened. The additive identity reflects onto the multiplicative
+ * identity: the end of the diagonal is the mirror of its beginning, and that is not a coincidence of
+ * notation but the two involutions meeting on the same pair.
+ *
+ * The fold through zero is a half turn, and a half turn is counted two ways: 2 × 90° = 3 × 60° = 180°.
+ * The same angle reached in two and in three steps is why the pairs (which halve the ten) and the
+ * triads (which third the circle) describe one rotation and not two.
+ */
+export declare function theDiagonalOfTheNineRingOpensAtOneAndClosesAtItsMirror(): {
+    computes: boolean;
+    diagonal: number[];
+    image: number[];
+    opensAt: number;
+    closesAt: number;
+    repeatsAt: number[];
+    mirrorOfTheClose: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 /** Digit-1 vortex gate — period-6 doubling orbit under ×2 mod 9. */
 export declare function digitFold(): {
     valid: boolean;

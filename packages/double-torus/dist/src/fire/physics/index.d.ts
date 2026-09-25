@@ -465,6 +465,94 @@ export declare const HARAMEIN_CONSTANTS: {
     electronMass: number;
     classicalElectronRadius: number;
 };
+export type PlanckDimension = {
+    readonly mass: number;
+    readonly length: number;
+    readonly time: number;
+};
+/** The unique exponents of ħ, G, c that carry the given dimension — rationals, from a 3×3 solve. */
+export declare function planckExponents(d: PlanckDimension): {
+    hbar: number;
+    newtonG: number;
+    c: number;
+};
+/**
+ * THE ANTOINE EQUATION FOR TETRACHLOROETHYLENE — the constant K_eq replaced by the law it approximates.
+ *
+ * zenodo.org/records/22934883, the author's own record, names this as recommendation 1 and states the
+ * defect it fixes: "Real-world phase equilibrium (K_eq) varies dynamically with temperature T_dist and
+ * pressure P_tank via non-linear equations (e.g., Antoine Equation), which are currently simplified to
+ * constants." A partition constant that does not move with temperature is not an equilibrium; it is a
+ * number standing where an equilibrium should be — the same assert-instead-of-measure this corpus
+ * refuses everywhere else, arriving from the chemistry side.
+ *
+ * The law: log10(P / bar) = A − B / (T/K + C), with the NIST-calculated fit of Polak, Murakami et al.
+ * (1970) for C2Cl4, CAS 127-18-4, over 301.03–380.84 K.
+ *
+ * IT IS CHECKED AGAINST THREE THINGS IT WAS NOT FITTED TO, which is the only reason to trust a fit:
+ *   · extrapolated to the normal boiling point 394.25 K it gives 101.21 kPa against the defined
+ *     101.325 kPa — 0.11% high, from 13 K outside the fitted range.
+ *   · INVERTED for P = 1 atm it returns 121.14 °C against the measured 121.1 °C — 0.04 K.
+ *   · at 298.15 K it gives 2.48 kPa against a literature 2.4–2.5 kPa at 25 °C.
+ * The inversion is the strongest of the three: the fit was made from vapour pressures and the boiling
+ * point is an independent measurement, so the two cross-prove rather than restate each other.
+ *
+ * WHAT IS NOT CLAIMED. Antoine is an empirical correlation, not a theory of the liquid; outside its
+ * fitted range it is an extrapolation and is used here only to test it. No dry-cleaning process, plant
+ * or product is modelled, and the vapour–liquid ratio below is the ideal partition K = P_sat/P_total,
+ * which holds for a pure solvent and is not Raoult's law over a mixture with soil load.
+ */
+export declare function antoineVapourPressureOfTetrachloroethylene(matrix?: MindMatrix): {
+    computes: boolean;
+    pressureKpa: (kelvin: number) => number;
+    boilingPointK: (kpa: number) => number;
+    partitionAt: (kelvin: number, totalKpa?: number) => number;
+    normalBoilingKpa: number;
+    invertedBoilingC: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The dimension a triple of exponents actually carries — the inverse map, used to CHECK the solve. */
+export declare function dimensionOfExponents(e: {
+    hbar: number;
+    newtonG: number;
+    c: number;
+}): PlanckDimension;
+export declare const PLANCK_TARGETS: readonly {
+    readonly name: string;
+    readonly dim: PlanckDimension;
+}[];
+export declare function planckScaleFromTheExponentLattice(matrix?: MindMatrix): {
+    computes: boolean;
+    rows: {
+        name: string;
+        exponents: {
+            hbar: number;
+            newtonG: number;
+            c: number;
+        };
+        value: number;
+        solves: boolean;
+        integral: boolean;
+    }[];
+    count: number;
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function harameinClaimChecks(): {
     schwarzschildMass: number;
     schwarzschildOrdersOff: number;

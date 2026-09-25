@@ -28,13 +28,17 @@ function bytesFromSeed(seed) {
     word & BYTE_MASK
   ]);
 }
+var UUID_VERSION_KEEPS = 15;
+var UUID_VERSION_SETS = 128;
+var UUID_VARIANT_KEEPS = 63;
+var UUID_VARIANT_SETS = 128;
 var _uuidCache = /* @__PURE__ */ new Map();
 function toUuid(seed) {
   const cached = _uuidCache.get(seed);
   if (cached !== void 0) return cached;
   const bytes = bytesFromSeed(seed);
-  bytes[6] = bytes[6] & 15 | 128;
-  bytes[8] = bytes[8] & 63 | 128;
+  bytes[6] = bytes[6] & UUID_VERSION_KEEPS | UUID_VERSION_SETS;
+  bytes[8] = bytes[8] & UUID_VARIANT_KEEPS | UUID_VARIANT_SETS;
   const hex = bytes.map(hexByte).join("");
   const uuid = `${hex.slice(0, 8)}-${hex.slice(8, 6 * 2)}-${hex.slice(6 * 2, 16)}-${hex.slice(16, 5 * 4)}-${hex.slice(5 * 4)}`;
   _uuidCache.set(seed, uuid);
@@ -192,8 +196,21 @@ function resourceCooperationPolicy() {
     ]
   };
 }
+var UUID_LENGTH = toUuid("").length;
+var CHAR_ZERO = "0".charCodeAt(0);
+var CHAR_NINE = "9".charCodeAt(0);
+var CHAR_LOWER_A = "a".charCodeAt(0);
+var CHAR_LOWER_F = "f".charCodeAt(0);
+var CHAR_UPPER_A = "A".charCodeAt(0);
+var CHAR_UPPER_F = "F".charCodeAt(0);
+var CHAR_HYPHEN = "-".charCodeAt(0);
 function isUuid(value) {
-  return /^[0-9a-f-]{36}$/i.test(value);
+  if (value.length !== UUID_LENGTH) return false;
+  for (let i = 0; i < UUID_LENGTH; i += 1) {
+    const c = value.charCodeAt(0 + i);
+    if (!(c >= CHAR_ZERO && c <= CHAR_NINE || c >= CHAR_LOWER_A && c <= CHAR_LOWER_F || c >= CHAR_UPPER_A && c <= CHAR_UPPER_F || c === CHAR_HYPHEN)) return false;
+  }
+  return true;
 }
 function uuidSuffix(uuid) {
   return (uuid.split("-")[4] ?? "").toLowerCase();
@@ -854,7 +871,8 @@ function asTrace(f, timeMs = 0) {
   TRACE_ARMS.forEach((arm, i) => {
     const sign2 = i % 2 === 0 ? 1 : -1;
     const jitter = 1 + reading(f.merged, `arm:${i}`) * (1 / 5);
-    const omega = sign2 * 2 * Math.PI / (arm.periodMs * jitter);
+    const turns = Math.max(1, Math.round(HERO_CYCLE_MS_MIRROR / arm.periodMs * jitter));
+    const omega = sign2 * 2 * Math.PI * turns / HERO_CYCLE_MS_MIRROR;
     const phase = reading(f.merged, `phase:${i}`) * Math.PI * 2;
     x += arm.amp * Math.cos(omega * timeMs + phase);
     y += arm.amp * Math.sin(omega * timeMs + phase);
@@ -1314,9 +1332,8 @@ var SHA256_K = [
   3204031479,
   3329325298
 ];
-function sha256Sync(text) {
+function sha256Bytes(input) {
   const rotr = (x, n) => x >>> n | x << 16 * 2 - n;
-  const input = new TextEncoder().encode(text);
   const bitLen = input.length * 8;
   const bytes = new Uint8Array(((input.length + 8 >>> 6) + 1) * 64);
   bytes.set(input);
@@ -1355,7 +1372,40 @@ function sha256Sync(text) {
     h[6] = h[6] + g | 0;
     h[7] = h[7] + hh | 0;
   }
-  return h.map((x) => (x >>> 0).toString(16).padStart(8, "0")).join("");
+  const out = new Uint8Array(8 * 4);
+  for (let i = 0; i < 8; i += 1) {
+    out[4 * i] = h[i] >>> 8 * 3 & 255;
+    out[4 * i + 1] = h[i] >>> 16 & 255;
+    out[4 * i + 2] = h[i] >>> 8 & 255;
+    out[4 * i + 3] = h[i] & 255;
+  }
+  return out;
+}
+function sha256Sync(text) {
+  return [...sha256Bytes(new TextEncoder().encode(text))].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+function hmacSha256(key, message) {
+  const BLOCK = 64;
+  const IPAD = 54, OPAD = 92;
+  const bytesOf = (v) => typeof v === "string" ? new TextEncoder().encode(v) : v;
+  const raw = bytesOf(key);
+  const normalised = raw.length > BLOCK ? sha256Bytes(raw) : raw;
+  const padded = new Uint8Array(BLOCK);
+  padded.set(normalised);
+  const inner = new Uint8Array(BLOCK), outer = new Uint8Array(BLOCK);
+  for (let i = 0; i < BLOCK; i += 1) {
+    inner[i] = padded[i] ^ IPAD;
+    outer[i] = padded[i] ^ OPAD;
+  }
+  const body = bytesOf(message);
+  const innerInput = new Uint8Array(BLOCK + body.length);
+  innerInput.set(inner);
+  innerInput.set(body, BLOCK);
+  const innerDigest = sha256Bytes(innerInput);
+  const outerInput = new Uint8Array(BLOCK + innerDigest.length);
+  outerInput.set(outer);
+  outerInput.set(innerDigest, BLOCK);
+  return [...sha256Bytes(outerInput)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 function toUuidSha256(seed) {
   const h = sha256Sync(seed).slice(0, 16 * 2);
@@ -1376,10 +1426,16 @@ function findContentAddressCollision(maxTries = 4e6) {
 }
 function addressEntropyBits() {
   const nominalBits = 64 * 2;
-  const discardedBits = 6;
+  const bitsDiscardedBy = (keeps) => {
+    let count = 0;
+    for (let bit = 255 & ~keeps; bit !== 0; bit >>>= 1) count += bit & 1;
+    return count;
+  };
+  const discardedBits = bitsDiscardedBy(UUID_VERSION_KEEPS) + bitsDiscardedBy(UUID_VARIANT_KEEPS);
   const effectiveBits = nominalBits - discardedBits;
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) };
 }
+var FORGE_COST_CEILING = `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits, a birthday bound of 2^${addressEntropyBits().birthdayLog2} \u2014 the CEILING this hash offers, not a guarantee (findContentAddressCollision exhibits a real collision in its 32-bit FNV core; toUuidSha256 is the vetted path)`;
 function gcd(a, b) {
   a = Math.abs(Math.round(a));
   b = Math.abs(Math.round(b));
@@ -1526,6 +1582,7 @@ function transliterateByMap(text, map) {
 }
 export {
   DIGEST_BITS,
+  FORGE_COST_CEILING,
   GATES,
   ICHING_NUMBERS,
   MEMO_CAP,
@@ -1594,6 +1651,7 @@ export {
   gcd,
   gcdBigInt,
   grover,
+  hmacSha256,
   humanBreath,
   humanEase,
   hypot,
@@ -1660,6 +1718,7 @@ export {
   sequenceBitBudget,
   sequenceCoverage,
   sha256,
+  sha256Bytes,
   sha256MerkleProof,
   sha256MerkleRoot,
   sha256Sync,

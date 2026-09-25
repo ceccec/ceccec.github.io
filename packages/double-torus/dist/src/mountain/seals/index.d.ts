@@ -673,6 +673,12 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
             gap: string;
             mapsTo: string;
         }[];
+        closedGaps: readonly {
+            id: string;
+            was: string;
+            closedBy: string;
+            numbers: string;
+        }[];
         algebraDecoded: boolean;
         count: number;
         facets: ({

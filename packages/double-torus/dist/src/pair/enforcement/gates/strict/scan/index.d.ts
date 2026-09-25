@@ -3090,7 +3090,7 @@ export declare function geoGebraEncode(): {
     theoremAuditAligned: number;
     encodeNotTheorem: number;
     apps: ("geometry" | "probability" | "graphing" | "3d" | "cas" | "scientific")[];
-    objectFamilies: ("function" | "sphere" | "ray" | "line" | "path" | "cube" | "angle" | "vector" | "segment" | "axis" | "parallel" | "distance" | "region" | "list" | "point" | "plane" | "conic" | "ellipse" | "parabola" | "hyperbola" | "arc" | "polygon" | "numeric" | "cone" | "cylinder" | "prism" | "polyhedron" | "midpoint" | "intersect" | "perpendicular")[];
+    objectFamilies: ("function" | "cube" | "sphere" | "ray" | "line" | "path" | "angle" | "vector" | "segment" | "axis" | "parallel" | "distance" | "region" | "list" | "point" | "plane" | "conic" | "ellipse" | "parabola" | "hyperbola" | "arc" | "polygon" | "numeric" | "cone" | "cylinder" | "prism" | "polyhedron" | "midpoint" | "intersect" | "perpendicular")[];
     apiMethods: ("evalCommand" | "evalLaTeX" | "evalCommandCAS" | "getObjectType" | "getAllObjectNames" | "setCoords" | "getCoords" | "setValue" | "getValue" | "setUndoPoint" | "registerObjectUpdateListener" | "registerAddListener" | "registerRemoveListener" | "getXcoord" | "getYcoord" | "getZcoord" | "setVisible" | "deleteObject" | "renameObject" | "evalGeoGEBRA")[];
     catalog: {
         auditKind: TheoremAuditKind;

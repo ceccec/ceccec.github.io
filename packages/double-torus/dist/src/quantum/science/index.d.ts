@@ -4966,18 +4966,6 @@ export declare function improvementComesFromChallengingSelfConfirmingStructuresN
     statement: string;
     boundary: string;
 };
-export declare function aFlexibleEgoHasNoResistanceAndPurifiesInPlaceWithoutChangingTheMedia(): {
-    computes: boolean;
-    flexibleResistance: number;
-    rigidResistance: number;
-    purifiesInPlace: boolean;
-    facets: {
-        facet: string;
-        on: boolean;
-    }[];
-    statement: string;
-    boundary: string;
-};
 export declare function theWavesHandleAllSidesAtOnceAndBuildTimeExplainsAllWhenBuildIsThePrompt(): {
     computes: boolean;
     allSidesAgree: boolean;

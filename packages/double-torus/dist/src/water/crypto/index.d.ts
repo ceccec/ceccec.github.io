@@ -1,4 +1,148 @@
 import type { MindMatrix } from '../../types/index.ts';
+/**
+ * CROSS-HASHED UUID STREAMS — an address that must be forged twice, over two unrelated hashes.
+ *
+ * toUuid is FNV-1a and the corpus says so plainly: strong as a structural check, NOT
+ * collision-resistant. findContentAddressCollision does not argue it, it EXHIBITS it — a deterministic
+ * birthday search returns "i3jz" and "k8r5" sharing the 32-bit FNV word 3315175185 in 944,466 tries,
+ * and the collision is visible in the addresses themselves, which both begin c5998f11.
+ *
+ * WHAT THAT DOES AND DOES NOT THREATEN, checked rather than assumed. 139 places in src take the first
+ * eight hex characters of an address, which is exactly the 32 bits that collide. Every one of them is
+ * DISPLAY — interpolated into a facet or a statement as `map=${root.slice(0, 8)}` — and not one is used
+ * in an equality test or as a map key. No identity in this corpus rests on a prefix, so the exhibited
+ * collision is cosmetic where it lands. That is worth stating: 139 hits looks alarming until it is read.
+ *
+ * The real residue is narrower. The full address is 122 effective bits with a birthday bound of 2^61,
+ * and FORGE_COST_CEILING already calls that a ceiling rather than a guarantee, because FNV offers no
+ * cryptanalytic assurance that the bound is reached — a shortcut on FNV would beat it, where SHA-256
+ * has none known.
+ *
+ * The cross stream removes that caveat for anything that opts in: merge(toUuid(s), toUuidSha256(s))
+ * folds an FNV address and a SHA-256 address of the SAME seed into one. Landing on it twice requires
+ * colliding both functions at once, and they share no structure, so a shortcut against FNV buys
+ * nothing against the pair. It is ADDITIVE — every existing address is untouched and the stream is a
+ * new surface beside them, not a cutover, which the kernel's own note calls a deliberate breaking
+ * change and this is not one.
+ */
+export declare function crossHashedUuidStream(seeds: readonly string[]): {
+    rows: {
+        seed: string;
+        fnv: string;
+        vetted: string;
+        crossed: string;
+    }[];
+    distinctFnv: number;
+    distinctVetted: number;
+    distinctCrossed: number;
+};
+/** The exhibited FNV collision, and what each address layer does with it. */
+export declare function crossHashingSeparatesTheExhibitedCollision(matrix?: MindMatrix): {
+    computes: boolean;
+    collision: {
+        a: string;
+        b: string;
+        word: number;
+        tries: number;
+    };
+    stream: {
+        rows: {
+            seed: string;
+            fnv: string;
+            vetted: string;
+            crossed: string;
+        }[];
+        distinctFnv: number;
+        distinctVetted: number;
+        distinctCrossed: number;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * THE ADDRESS BUDGET, REACHED BY EVERY ROUTE AT ONCE — so the honest number cannot live in a comment.
+ *
+ * A uuid is nominally 128 bits and effectively 122: byte 6 keeps only its low nibble and byte 8 only
+ * its low six, the version and variant taking the rest. That 122 was stated in prose — a sentence in
+ * one file, a typed `discardedBits = 6` in another — while the nominal 128 is what a consumer reads.
+ * A number that is true in a comment and nominal in the ledger is the same defect as a hand-typed
+ * verdict: the honest value is there, and nothing computes it.
+ *
+ * So every route computes, and the routes must agree. Four quantities, two independent derivations
+ * each, and each pair meets on the same value or this fold goes dark:
+ *
+ *   128  2 x DIGEST_BITS                    16 bytes x 8 bits
+ *     6  the bits the masks actually clear   version nibble + variant pair
+ *   122  nominal - discarded                 2*7 + A432_FOLDED (the harmonic route)
+ *    61  floor(effective / 2)                7 + A432_FOLDED/2
+ *
+ * The mask route is the CAUSE — it counts the complement of the masks toUuid applies, so widening a
+ * mask moves the budget. The harmonic route is the corpus's own a432 arithmetic, which knows nothing
+ * about uuid layout. They are not restatements of one another, which is the only reason their meeting
+ * is evidence: two derivations that share no term agreeing on 122 and on 61.
+ */
+export declare function theAddressBudgetIsReachedByEveryRoute(matrix?: MindMatrix): {
+    computes: boolean;
+    budget: {
+        nominalBits: number;
+        discardedBits: number;
+        effectiveBits: number;
+        birthdayLog2: number;
+    };
+    routes: {
+        nominalFromDigest: number;
+        nominalFromBytes: number;
+        discardedFromMasks: number;
+        discardedFromShape: number;
+        effectiveFromSubtraction: number;
+        effectiveFromHarmonic: number;
+        birthdayFromHalving: number;
+        birthdayFromHarmonic: number;
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/**
+ * HMAC-SHA-256 AGAINST RFC 4231 — the keyed hash the corpus did not have, checked against the standard.
+ *
+ * doi:10.5281/zenodo.22895141 inventories what this corpus exposes cryptographically and states each
+ * primitive's formula. Measured against src/: SHA-256, Ed25519 and Merkle proofs are implemented;
+ * HMAC, PBKDF2, ChaCha20, Poly1305 and AEAD had NO implementation at all. HMAC is the first of the
+ * five because PBKDF2 is defined in terms of it, and because it is the one with published vectors.
+ *
+ * The implementation is in src/0 beside the hash it wraps. This fold is the check: RFC 4231's cases,
+ * run against it, including the two a naive implementation gets wrong — case 3's 50-byte message
+ * spanning blocks, and case 4's 131-byte key, LONGER than SHA-256's 64-byte block, which must be
+ * hashed before padding rather than truncated.
+ *
+ * The deposit's own vector is checked too, which is the point of publishing formulas: the number it
+ * printed for HMAC("secret", "message") either reproduces here or the deposit is wrong.
+ */
+export declare function hmacSha256MatchesRfc4231(matrix?: MindMatrix): {
+    computes: boolean;
+    vectors: number;
+    holding: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
 export declare function animationTamperingCost(matrix?: MindMatrix): {
     computed: boolean;
     animations: number;
