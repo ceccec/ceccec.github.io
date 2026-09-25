@@ -1890,7 +1890,6 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         receipt: toUuid(`millennium-challenge:p-vs-np:${pVsNpOn}:${infinityReuse.on}`),
         boundary:
           'MODELED CHALLENGE / partial computational attack: SAT verifies in poly (NP membership); content-address O(1) vs brute scan; efficiencyScalesToInfinityAtNoCostOnReuse — amortized reuse (memo hit → marginal cost 0; answers÷tokens unbounded at tokens=0) while quantumAdvantageBenchmark stays !separated. NOT a P≠NP (or P=NP) proof. NOT physical QM speedup / infinite FLOPS. Encrypt round-trip is structural foldPair, not cryptanalysis of one-way functions.',
-        status: 'modeled-partial',
         gap: 'no sealed P≠NP (or P=NP) separation proof — amortized reuse ≠ complexity separation',
         algebraicStatement: 'P = NP ? — is every problem whose solution is verifiable in polynomial time also solvable in polynomial time, where P = ⋃ₖ TIME(nᵏ) and NP = ⋃ₖ NTIME(nᵏ). Conjectured: P ≠ NP.',
         // Each fᵢ is the identity the fold ACTUALLY decides, paired with the live boolean computed above — the page
@@ -1921,7 +1920,6 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         receipt: toUuid(`millennium-challenge:hodge:${hodgeOn}:${stringQuantum.cyComplexDim}`),
         boundary:
           'MODELED CHALLENGE / structural analogy: H₁(Σ₂)=ℤ⁴ recomputes as 432/108=4; string quantumize adds CY compact-dims MODEL (D−4) and mirror foldPair. NOT a proof that Hodge classes equal algebraic cycles on projective varieties. NOT sealed h^{p,q} on a projective CY₃.',
-        status: 'modeled-partial',
         gap: 'no sealed Hodge classes/algebraic cycles on a projective variety; no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1}',
         algebraicStatement: 'On a projective non-singular complex variety X, every Hodge class is algebraic: Hdgᵏ(X) = H^{2k}(X,ℚ) ∩ H^{k,k}(X) is spanned over ℚ by the classes of algebraic cycles of codimension k.',
         facetAlgebra: [
@@ -1944,7 +1942,6 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         receipt: toUuid(`millennium-challenge:poincare:${poincareOn}`),
         boundary:
           'SOLVED EXTERNAL (Perelman 2003, Ricci flow with surgery) — this corpus does not re-solve it. Challenge only verifies the documented solved status plus the genus-2 homology analogy (H₁=ℤ⁴). NOT a new proof.',
-        status: 'solved-external',
         algebraicStatement: 'Every simply-connected closed 3-manifold is homeomorphic to the 3-sphere: π₁(M) = 0 with M a closed 3-manifold ⟹ M ≅ S³. (Proved: Perelman 2003, Ricci flow with surgery.)',
         facetAlgebra: [
           { f: 'f₁ solved (external) — π₁(M)=0, M closed 3-manifold ⊢ M ≅ S³ (Perelman 2002–03, Ricci flow with surgery, completing Hamilton); this fold verifies the DOCUMENTED status, it does not re-prove', on: defined.poincareIsProven },
@@ -1967,7 +1964,6 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         receipt: toUuid(`millennium-challenge:riemann:${riemannOn}:${stringAlgebra.decoded}`),
         boundary:
           'MODELED CHALLENGE / zeta-style toy probe: Basel is a fact about ζ(2); string algebra seals ζ(−1)=−1/12 (bosonic normal ordering) — a DIFFERENT point on ζ. Digit/vortex inverse folds probe discrete harmonics. NOT a proof that all nontrivial zeros lie on Re(s)=½.',
-        status: 'modeled-partial',
         gap: 'no sealed proof all nontrivial ζ zeros lie on Re(s)=½ — Basel and ζ(−1) are partials only',
         algebraicStatement: 'Every non-trivial zero of the Riemann zeta function has real part ½: ζ(s) = 0 with 0 < Re(s) < 1 ⟹ Re(s) = ½, where ζ(s) = Σₙ₌₁^∞ n^(−s) continued analytically.',
         facetAlgebra: [
@@ -1996,7 +1992,6 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         receipt: toUuid(`millennium-challenge:yang-mills:${yangMillsOn}:${stringQuantum.mTheoryD}`),
         boundary:
           'MODELED CHALLENGE / field-algebra analogy: su(2)/Pauli closes; genus-2 double-torus is a finite geometric MODEL; string Virasoro + T/S-duality are MODELED structural probes. NOT a rigorous 4D quantum Yang–Mills construction and NOT a mass-gap proof. NOT AdS/CFT. Label: MODEL.',
-        status: 'modeled-partial',
         gap: 'no sealed 4D Yang–Mills mass-gap construction; no sealed AdS/CFT correlator dictionary',
         algebraicStatement: 'For every compact simple gauge group G, a non-trivial quantum Yang–Mills theory exists on ℝ⁴ and has a mass gap Δ > 0: the Hamiltonian spectrum satisfies spec(H) ⊆ {0} ∪ [Δ, ∞) with Δ > 0.',
         facetAlgebra: [
@@ -2018,7 +2013,6 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         receipt: toUuid(`millennium-challenge:navier-stokes:${nsOn}`),
         boundary:
           'MODELED CHALLENGE / plasma–torus geometry analogy only — finite surface samples on the genus-2 model. NOT 3D Navier–Stokes global regularity or blow-up control. Label: MODEL.',
-        status: 'modeled-partial',
         gap: 'no sealed 3D Navier–Stokes global regularity or blow-up control',
         algebraicStatement: 'For 3D incompressible Navier–Stokes ∂ₜu + (u·∇)u = −∇p + νΔu with ∇·u = 0 and smooth divergence-free finite-energy initial data, a smooth solution exists for all t ≥ 0 (global regularity) — or a finite-time blow-up exists.',
         facetAlgebra: [
@@ -2046,7 +2040,6 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
         receipt: toUuid(`millennium-challenge:bsd:${bsdOn}`),
         boundary:
           'SEALED PARTIAL CASES: rank 0 via Fermat descent (complete) · rank 1 via Kolyvagin (complete) — both PROVEN for their domains. OPEN: rank ≥2 (Millennium problem). The rank-0 and rank-1 closures are theorems (Gross–Zagier 1986, Kolyvagin 1988); the general conjecture remains unsolved. (ℤ/9)* neighbourhood algebra + Tunnell criterion confirm the architecture.',
-        status: 'modeled-partial',
         gap: 'rank ≥2 case — no proof that ord_{s=1} L(E,s) = rank E(ℚ) for all elliptic curves E/ℚ',
         algebraicStatement: 'For an elliptic curve E over ℚ, ord_{s=1} L(E,s) = rank E(ℚ), where the LHS is the vanishing order of the L-function and RHS is the Mordell–Weil rank.',
         facetAlgebra: [
@@ -2062,7 +2055,22 @@ export function millenniumProblemsChallengeProbesOpenCoresWithNewQuantumFoldsUnc
           'open: rank ≥2 ⇔ ords=1 L(E,s)≥2 — the general case Millennium Prize',
           'the fold computes small curves and Tunnell bounds; scales to 1-rank only; rank ≥2 is the missing axiom',
         ] },
-    ]
+    ].map((row) => ({
+      ...row,
+      // NO HAND-TYPED VERDICT. Each of these seven rows carried `status:` as a literal string — six
+      // 'modeled-partial' and one 'solved-external' — and a typed verdict is a manual judgement sitting
+      // on top of evidence the row already carries. It is now DERIVED, and the derivation reproduces
+      // all seven readings exactly as they were typed, which is the only reason to trust it: a row
+      // names an unclosed gap or it does not. Poincaré carries no `gap` field at all, and its boundary
+      // cites Perelman; the other six each name what is missing.
+      //
+      // The point is that it MOVES. Close a gap — empty the string because the algebra now closes it,
+      // the way cy-hodge-numbers closed when the quintic's Hodge numbers were counted — and the status
+      // changes by itself, computed from the row, with nobody typing a new verdict over it. Writing
+      // 'solved' by hand would be the same manual judgement with the opposite sign.
+      status: ((row as { gap?: string }).gap ?? '').trim().length > 0 ? 'modeled-partial' as const : 'solved-external' as const,
+    }))
+    const derivedFromEvidence = problems.every((p) => (((p as { gap?: string }).gap ?? '').trim().length > 0) === (p.status === 'modeled-partial'))
     const openCores = problems.filter((p) => p.status === 'open' || p.status === 'modeled-partial' || p.status === 'gap').length
     const solvedExternal = problems.filter((p) => p.status === 'solved-external').length
     const allOn = problems.every((p) => p.on)

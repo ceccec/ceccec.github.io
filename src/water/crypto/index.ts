@@ -1,10 +1,10 @@
 // ☵ Kǎn · Water — cryptography & tamper-evidence: the content-address as a ledger (claim=credit, capability=debit), SHA-256/Ed25519 hardening, transparency log, red-team challenges. HONEST: tamper-EVIDENT, not unforgeable. Barrel-routed; folds.ts back-imports the gate folds.
 import { SIEGE_PER_WAVE, SIEGE_TOTAL_FORGES, SIEGE_WAVES } from '../../pair/enforcement/gates/computational/index.ts'
-import { JULIAN_YEAR_SECONDS, LN2, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, UNIVERSE_AGE_YEARS, complementIsInverse, earned, rat, ratMul, ratToFloat } from '../../3/7/index.ts'
+import { A432_FOLDED, JULIAN_YEAR_SECONDS, LN2, TEACHING_RSA_P, TEACHING_RSA_Q, UNFOLDED_CENSUS, UNIVERSE_AGE_YEARS, complementIsInverse, earned, rat, ratMul, ratToFloat } from '../../3/7/index.ts'
 import { conditionalEntropyBits, landauerLimit, TAU } from '../../3/7/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
-import { FORGE_COST_CEILING, abs, cbrt, ceil, cos, exp, floor, log, log2, max, min, pow, prng, round } from '../../0/index.ts'
+import { DIGEST_BITS, FORGE_COST_CEILING, abs, cbrt, ceil, cos, exp, floor, hmacSha256, log, log2, max, min, pow, prng, round } from '../../0/index.ts'
 import { addressEntropyBits, ed25519Sign, findContentAddressCollision, foldPair, isUuid, logConsistent, memoByRoot, merge, merkleFold, roundTo, sha256, sha256Sync, toUuid, toUuidSha256, transparencyLogRoot, verifySha256Proof, sealFacets, uuidPoint } from '../../0/index.ts'
 import { ratIsInteger, ratStr } from '../../9/1/index.ts'
 import { tamperEvident } from '../../5/5/index.ts'
@@ -31,6 +31,132 @@ import { doubleTorusCorpusRouting } from '../double/index.ts'
 // to a single sealed root (one reproduction). An animated page commits to every
 // receipt its motion is derived from, AND to reproducing them continuously. This
 // counts the receipts, the live per-second recomputation, and the work in bits.
+/**
+ * THE ADDRESS BUDGET, REACHED BY EVERY ROUTE AT ONCE — so the honest number cannot live in a comment.
+ *
+ * A uuid is nominally 128 bits and effectively 122: byte 6 keeps only its low nibble and byte 8 only
+ * its low six, the version and variant taking the rest. That 122 was stated in prose — a sentence in
+ * one file, a typed `discardedBits = 6` in another — while the nominal 128 is what a consumer reads.
+ * A number that is true in a comment and nominal in the ledger is the same defect as a hand-typed
+ * verdict: the honest value is there, and nothing computes it.
+ *
+ * So every route computes, and the routes must agree. Four quantities, two independent derivations
+ * each, and each pair meets on the same value or this fold goes dark:
+ *
+ *   128  2 x DIGEST_BITS                    16 bytes x 8 bits
+ *     6  the bits the masks actually clear   version nibble + variant pair
+ *   122  nominal - discarded                 2*7 + A432_FOLDED (the harmonic route)
+ *    61  floor(effective / 2)                7 + A432_FOLDED/2
+ *
+ * The mask route is the CAUSE — it counts the complement of the masks toUuid applies, so widening a
+ * mask moves the budget. The harmonic route is the corpus's own a432 arithmetic, which knows nothing
+ * about uuid layout. They are not restatements of one another, which is the only reason their meeting
+ * is evidence: two derivations that share no term agreeing on 122 and on 61.
+ */
+export function theAddressBudgetIsReachedByEveryRoute(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const budget = addressEntropyBits()
+  const UUID_BYTES = 16, BITS_PER_BYTE = 8
+  const VERSION_NIBBLE = 4, VARIANT_PAIR = 2 // what the uuid shape fixes, by name
+  const routes = {
+    nominalFromDigest: 2 * DIGEST_BITS,
+    nominalFromBytes: UUID_BYTES * BITS_PER_BYTE,
+    discardedFromMasks: budget.discardedBits,
+    discardedFromShape: VERSION_NIBBLE + VARIANT_PAIR,
+    effectiveFromSubtraction: 2 * DIGEST_BITS - budget.discardedBits,
+    effectiveFromHarmonic: 2 * 7 + A432_FOLDED,
+    birthdayFromHalving: floor((2 * DIGEST_BITS - budget.discardedBits) / 2),
+    birthdayFromHarmonic: 7 + A432_FOLDED / 2,
+  }
+  const agree = (a: number, b: number): boolean => a === b
+  const facets = [
+    { facet: `nominal ${routes.nominalFromDigest} — two routes: 2 x DIGEST_BITS and ${UUID_BYTES} bytes x ${BITS_PER_BYTE} bits`, on: agree(routes.nominalFromDigest, routes.nominalFromBytes) && budget.nominalBits === routes.nominalFromDigest },
+    { facet: `discarded ${routes.discardedFromMasks} — COUNTED from the bits toUuid's masks clear, and equal to the shape's version nibble plus variant pair`, on: agree(routes.discardedFromMasks, routes.discardedFromShape) },
+    { facet: `effective ${routes.effectiveFromSubtraction} — nominal less discarded, and independently 2*7 + A432_FOLDED, two derivations sharing no term`, on: agree(routes.effectiveFromSubtraction, routes.effectiveFromHarmonic) && budget.effectiveBits === routes.effectiveFromSubtraction },
+    { facet: `birthday 2^${routes.birthdayFromHalving} — half the EFFECTIVE width, not half the nominal, and independently 7 + A432_FOLDED/2`, on: agree(routes.birthdayFromHalving, routes.birthdayFromHarmonic) && budget.birthdayLog2 === routes.birthdayFromHalving },
+    { facet: `the honest width is NOT the nominal one — ${routes.effectiveFromSubtraction} < ${routes.nominalFromDigest}, and the birthday bound 2^${routes.birthdayFromHalving} is not 2^${DIGEST_BITS}; a consumer reading the nominal number reads ${routes.nominalFromDigest - routes.effectiveFromSubtraction} bits that are not there`, on: routes.effectiveFromSubtraction < routes.nominalFromDigest && routes.birthdayFromHalving < DIGEST_BITS },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`address-budget-routes:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    budget,
+    routes,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `The address budget is reached by two independent routes at every step: nominal ${routes.nominalFromDigest} as 2xDIGEST_BITS and as ${UUID_BYTES}x${BITS_PER_BYTE}; discarded ${routes.discardedFromMasks} counted from the masks and as version+variant; effective ${routes.effectiveFromSubtraction} by subtraction and as 2*7+A432_FOLDED; birthday 2^${routes.birthdayFromHalving} by halving and as 7+A432_FOLDED/2. The effective width is ${routes.nominalFromDigest - routes.effectiveFromSubtraction} bits below the nominal one, and the birthday bound is 2^${routes.birthdayFromHalving}, not 2^${DIGEST_BITS}.`,
+    boundary: earned(
+      'EXACT — four quantities, each computed twice by routes sharing no term:',
+      facets,
+      [
+        { facet: 'agreement of two derivations is evidence only because they share no term — the mask route counts uuid layout, the harmonic route counts a432 and knows nothing of uuids', on: agree(routes.effectiveFromSubtraction, routes.effectiveFromHarmonic) },
+        { facet: 'this bounds COLLISION work on a fair hash and says nothing about hash32, whose 32-bit core collides far below the budget (findContentAddressCollision exhibits one)', on: routes.birthdayFromHalving < routes.effectiveFromSubtraction },
+      ]) }
+}
+
+/**
+ * HMAC-SHA-256 AGAINST RFC 4231 — the keyed hash the corpus did not have, checked against the standard.
+ *
+ * doi:10.5281/zenodo.22895141 inventories what this corpus exposes cryptographically and states each
+ * primitive's formula. Measured against src/: SHA-256, Ed25519 and Merkle proofs are implemented;
+ * HMAC, PBKDF2, ChaCha20, Poly1305 and AEAD had NO implementation at all. HMAC is the first of the
+ * five because PBKDF2 is defined in terms of it, and because it is the one with published vectors.
+ *
+ * The implementation is in src/0 beside the hash it wraps. This fold is the check: RFC 4231's cases,
+ * run against it, including the two a naive implementation gets wrong — case 3's 50-byte message
+ * spanning blocks, and case 4's 131-byte key, LONGER than SHA-256's 64-byte block, which must be
+ * hashed before padding rather than truncated.
+ *
+ * The deposit's own vector is checked too, which is the point of publishing formulas: the number it
+ * printed for HMAC("secret", "message") either reproduces here or the deposit is wrong.
+ */
+export function hmacSha256MatchesRfc4231(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const bytesFromHex = (h: string): Uint8Array => new Uint8Array((h.match(/../g) ?? []).map((b) => parseInt(b, 16)))
+  const text = (t: string): Uint8Array => new TextEncoder().encode(t)
+  const RFC_4231 = [
+    { id: 'case 1 · 20-byte key', key: bytesFromHex('0b'.repeat(20)), message: text('Hi There'),
+      mac: 'b0344c61d8db38535ca8afceaf0bf12b881dc200c9833da726e9376c2e32cff7' },
+    { id: 'case 2 · short ASCII key', key: text('Jefe'), message: text('what do ya want for nothing?'),
+      mac: '5bdcc146bf60754e6a042426089575c75a003f089d2739839dec58b964ec3843' },
+    { id: 'case 3 · 50-byte message spanning blocks', key: bytesFromHex('aa'.repeat(20)), message: bytesFromHex('dd'.repeat(50)),
+      mac: '773ea91e36800e46854db8ebd09181a72959098b3ef8c122d9635514ced565fe' },
+    { id: 'case 4 · 131-byte key, hashed first', key: bytesFromHex('aa'.repeat(131)),
+      message: text('Test Using Larger Than Block-Size Key - Hash Key First'),
+      mac: '60e431591ee0b67f0d8a26aacbf5b77f8e0bc6213728c5140546040f0ee37f54' },
+  ] as const
+  const results = RFC_4231.map((v) => ({ id: v.id, holds: hmacSha256(v.key, v.message) === v.mac }))
+  const DEPOSIT = { key: 'secret', message: 'message', mac: '8b5f48702995c1598c573db1e21866a9b825d4a794d169d7060a03605796360b' } as const
+  const depositHolds = hmacSha256(DEPOSIT.key, DEPOSIT.message) === DEPOSIT.mac
+  const NIST_SHA256 = [
+    { input: 'abc', digest: 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad' },
+    { input: '', digest: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' },
+  ] as const
+  const hashUnchanged = NIST_SHA256.every((v) => sha256Sync(v.input) === v.digest)
+  const padsDiffer = hmacSha256('k', 'm') !== sha256Sync('km')
+  const facets = [
+    { facet: `RFC 4231 — ${results.filter((r) => r.holds).length}/${results.length} published vectors reproduce (${results.map((r) => `${r.id}:${r.holds}`).join(' · ')})`, on: results.every((r) => r.holds) },
+    { facet: `the long-key path is exercised, not assumed — case 4 keys 131 bytes against a 64-byte block, so K' is the HASH of the key and not a truncation`, on: results[3]!.holds },
+    { facet: `the deposit's own published vector reproduces — HMAC("${DEPOSIT.key}", "${DEPOSIT.message}") = ${DEPOSIT.mac.slice(0, 16)}...`, on: depositHolds },
+    { facet: `opening the hash up did not change it — NIST's SHA-256 vectors still hold through sha256Sync`, on: hashUnchanged },
+    { facet: `HMAC is not H(key || message) — the ipad/opad separation is what stops a length-extension of the inner hash forging the outer`, on: padsDiffer },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hmac-rfc4231:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    vectors: results.length,
+    holding: results.filter((r) => r.holds).length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `HMAC-SHA-256 reproduces ${results.filter((r) => r.holds).length} of ${results.length} RFC 4231 vectors, including the 131-byte key that must be hashed before padding and the 50-byte message that spans blocks, and it reproduces the vector published in doi:10.5281/zenodo.22895141.`,
+    boundary: earned(
+      'EXACT against published vectors — computed, not cited:',
+      facets,
+      [
+        { facet: 'vector agreement is CORRECTNESS on those inputs and nothing more — not constant-time execution, not key management, not protocol security', on: results.every((r) => r.holds) },
+        { facet: 'PBKDF2, ChaCha20, Poly1305 and AEAD remain unimplemented; this closes one of the five the deposit names', on: typeof hmacSha256 === 'function' },
+      ]) }
+}
+
 export function animationTamperingCost(matrix: MindMatrix = buildMatrix()) {
   const round = (value: number, digits: number) => roundTo(value, digits)
   const fps = (6 * 5 * 2)

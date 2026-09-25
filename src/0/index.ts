@@ -45,14 +45,27 @@ function bytesFromSeed(seed: string): number[] {
 // hashed millions of times as the folds recompute each other. Memoizing it by seed caches every dot
 // at the source: each unique address hashed once, reused everywhere. merge, merkleFold and
 // seedFromText all route through here, so one cache makes the whole cascade cheap (and realtime).
+/**
+ * THE SHAPE BITS, NAMED ONCE — because the entropy of an address is a function of them.
+ *
+ * A uuid is 128 bits of which some are not free: byte 6 keeps only its low nibble and byte 8 only its
+ * low six, the rest being the version and variant the shape fixes. addressEntropyBits() used to state
+ * the consequence as `discardedBits = 6` with the reason in a comment beside it — a typed number and a
+ * sentence, sitting two functions away from the masks that actually cause it, free to drift from them.
+ * Now the masks are named here, toUuid applies them, and the entropy COUNTS the bits they clear. Widen
+ * a mask and the effective width follows; nobody has to remember to edit a 6.
+ */
+const UUID_VERSION_KEEPS = 0x0f, UUID_VERSION_SETS = 0x80
+const UUID_VARIANT_KEEPS = 0x3f, UUID_VARIANT_SETS = 0x80
+
 const _uuidCache = new Map<string, string>()
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function toUuid(seed: string): string {
   const cached = _uuidCache.get(seed)
   if (cached !== undefined) return cached
   const bytes = bytesFromSeed(seed)
-  bytes[6] = (bytes[6] & 0x0f) | 0x80
-  bytes[8] = (bytes[8] & 0x3f) | 0x80
+  bytes[6] = (bytes[6] & UUID_VERSION_KEEPS) | UUID_VERSION_SETS
+  bytes[8] = (bytes[8] & UUID_VARIANT_KEEPS) | UUID_VARIANT_SETS
   const hex = bytes.map(hexByte).join('')
   const uuid = `${hex.slice(0, 8)}-${hex.slice(8, (6 * 2))}-${hex.slice((6 * 2), 16)}-${hex.slice(16, (5 * 4))}-${hex.slice((5 * 4))}`
   _uuidCache.set(seed, uuid)
@@ -1984,9 +1997,17 @@ const SHA256_K = [
 // The literal expressions are the ones already here — (16 * 2), (5 * 3), (9 * 2), (8 * 3) — so the
 // numeral ledger sees what it saw before. verify:hashes holds this function against Web Crypto over
 // every message length 0-129 and against the FIPS 180-4 examples on every run.
-export function sha256Sync(text: string): string {
+/**
+ * THE SHA-256 COMPRESSION OVER BYTES — the core sha256Sync always was, now reachable.
+ *
+ * sha256Sync took a string, encoded it and returned hex, which is everything a content-address needs
+ * and not enough for anything built ON the hash: HMAC keys are arbitrary bytes, and HMAC's outer hash
+ * consumes the inner DIGEST as bytes, never as text. Routing a digest back through a string would
+ * re-encode it. So the compression is a function of bytes and the two string-shaped callers wrap it;
+ * sha256Sync below is now that wrapper and returns exactly what it returned before.
+ */
+export function sha256Bytes(input: Uint8Array): Uint8Array {
   const rotr = (x: number, n: number) => (x >>> n) | (x << ((16 * 2) - n))
-  const input = new TextEncoder().encode(text)
   const bitLen = input.length * 8
   const bytes = new Uint8Array((((input.length + 8) >>> 6) + 1) * 64)
   bytes.set(input)
@@ -2012,7 +2033,51 @@ export function sha256Sync(text: string): string {
     h[0] = (h[0] + a) | 0; h[1] = (h[1] + b) | 0; h[2] = (h[2] + c) | 0; h[3] = (h[3] + d) | 0
     h[4] = (h[4] + e) | 0; h[5] = (h[5] + f) | 0; h[6] = (h[6] + g) | 0; h[7] = (h[7] + hh) | 0
   }
-  return h.map((x) => (x >>> 0).toString(16).padStart(8, '0')).join('')
+  const out = new Uint8Array(8 * 4)
+  for (let i = 0; i < 8; i += 1) {
+    out[4 * i] = (h[i]! >>> (8 * 3)) & 0xff
+    out[4 * i + 1] = (h[i]! >>> 16) & 0xff
+    out[4 * i + 2] = (h[i]! >>> 8) & 0xff
+    out[4 * i + 3] = h[i]! & 0xff
+  }
+  return out
+}
+
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function sha256Sync(text: string): string {
+  return [...sha256Bytes(new TextEncoder().encode(text))].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+/**
+ * HMAC-SHA-256 — the keyed hash the corpus had no implementation of, built from the formula.
+ *
+ * doi:10.5281/zenodo.22895141 states it exactly: HMAC_H(K,m) = H((K′ XOR opad) ‖ H((K′ XOR ipad) ‖ m)),
+ * where K′ is the block-sized normalised key, ipad is 0x36 repeated and opad is 0x5c repeated. A key
+ * longer than the block is hashed first; a shorter one is zero-padded. That is RFC 2104, and it is
+ * written here rather than cited because the corpus had SHA-256, Ed25519 and Merkle proofs and no HMAC
+ * at all — the same report names PBKDF2, ChaCha20, Poly1305 and AEAD as also absent, and PBKDF2 is
+ * defined in terms of this one.
+ *
+ * The two pads are the reason HMAC is not H(K ‖ m): they make the inner and outer keys differ, which
+ * is what stops a length-extension of the inner hash from being a forgery of the outer.
+ */
+export function hmacSha256(key: string | Uint8Array, message: string | Uint8Array): string {
+  const BLOCK = 64 // SHA-256's block, in bytes
+  const IPAD = 0x36, OPAD = 0x5c // RFC 2104
+  const bytesOf = (v: string | Uint8Array): Uint8Array => (typeof v === 'string' ? new TextEncoder().encode(v) : v)
+  const raw = bytesOf(key)
+  const normalised = raw.length > BLOCK ? sha256Bytes(raw) : raw // K′: hash a long key, zero-pad a short one
+  const padded = new Uint8Array(BLOCK)
+  padded.set(normalised)
+  const inner = new Uint8Array(BLOCK), outer = new Uint8Array(BLOCK)
+  for (let i = 0; i < BLOCK; i += 1) { inner[i] = padded[i]! ^ IPAD; outer[i] = padded[i]! ^ OPAD }
+  const body = bytesOf(message)
+  const innerInput = new Uint8Array(BLOCK + body.length)
+  innerInput.set(inner); innerInput.set(body, BLOCK)
+  const innerDigest = sha256Bytes(innerInput)
+  const outerInput = new Uint8Array(BLOCK + innerDigest.length)
+  outerInput.set(outer); outerInput.set(innerDigest, BLOCK)
+  return [...sha256Bytes(outerInput)].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 // A SHA-256 content-address in the same UUID shape as toUuid — the vetted, collision-resistant drop-in.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
@@ -2051,7 +2116,15 @@ export function findContentAddressCollision(maxTries = 4_000_000): { found: bool
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function addressEntropyBits(): { nominalBits: number; discardedBits: number; effectiveBits: number; birthdayLog2: number } {
   const nominalBits = (64 * 2)
-  const discardedBits = 6 // byte[6] top nibble (UUID version) + byte[8] top 2 bits (variant)
+  // COUNTED FROM THE MASKS toUuid ACTUALLY APPLIES, not typed beside a comment explaining it. A mask
+  // KEEPS the bits it sets, so the bits it discards are its complement within the byte — popcount of
+  // ~mask over eight bits. 0x0f keeps a nibble and discards four; 0x3f keeps six and discards two.
+  const bitsDiscardedBy = (keeps: number): number => {
+    let count = 0
+    for (let bit = 0xff & ~keeps; bit !== 0; bit >>>= 1) count += bit & 1
+    return count
+  }
+  const discardedBits = bitsDiscardedBy(UUID_VERSION_KEEPS) + bitsDiscardedBy(UUID_VARIANT_KEEPS)
   const effectiveBits = nominalBits - discardedBits
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) }
 }

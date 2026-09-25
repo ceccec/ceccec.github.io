@@ -5,7 +5,7 @@
 // Digit-1 gate (formerly src/0/1): period-6 orbit 1→2→4→8→7→5 under ×2 mod 9.
 
 import { REDUCED_PLANCK, SPEED_OF_LIGHT } from '../../3/7/index.ts'
-import { abs, atan2, ceil, cos, digitalRoot, floor, gcd, hypot, isUuid, log, log10, log2, max, merkleFold, min, round, roundTo, sin, sqrt, toUuid, topologicalOrder, transliterateByMap, trunc, vortexNext, vortexPrev } from '../../0/index.ts'
+import { abs, atan2, ceil, cos, digitalRoot, equilibrium360, floor, gcd, hypot, isUuid, log, log10, log2, max, merkleFold, min, round, roundTo, sin, sqrt, toUuid, topologicalOrder, transliterateByMap, trunc, vortexNext, vortexPrev } from '../../0/index.ts'
 import { piHexDigitAt, nthPrimeAt, primeCountUpTo } from '../../7/3/index.ts'
 import { PROTON_GYROMAGNETIC } from '../../6/4/index.ts'
 import { TAU, PHI } from '../../3/7/index.ts'
@@ -156,6 +156,15 @@ export function theDiagonalOfTheNineRingOpensAtOneAndClosesAtItsMirror() {
   // the angles are fractions of the turn, not typed degrees: a quarter twice, a sixth three times
   const QUARTER = 360 / 4, SIXTH = 360 / 6
   const halfTurn = 2 * QUARTER === 3 * SIXTH
+  // ONE LOBE IS A HALF TURN; THE DOUBLE TORUS CLOSES IT. The fold through zero is 180°, which is a
+  // half of the circle and not a closure — a genus-2 surface has TWO lobes, and the second half turn
+  // is the reverse one. src/0's equilibrium360 walks them independently (the doubling orbit forward,
+  // its reverse back) and reports the sum; this checks the two computations against each other rather
+  // than restating either, so the half turn found here has to be the lobe that fold measured.
+  const turn = equilibrium360()
+  const oneLobeIsAHalfTurn = 2 * QUARTER === turn.forward.deg && turn.forward.deg === turn.reverse.deg
+  const twoLobesClose = turn.forward.deg + turn.reverse.deg === turn.deg && turn.closed && turn.turns === 1
+  const lobes = turn.deg / (2 * QUARTER)
   const facets = [
     { facet: `the diagonal is d ↦ dr(d²) = [${diagonal.join('·')}] — the table's shared entry, written out`, on: diagonal.length === DIGITS.length },
     { facet: `it touches ${image.length} of ${DIGITS.length} residues — {${image.join(',')}}, the quadratic residues of ℤ/9 with 0 read as 9, and nothing else`, on: image.length === DIGITS.filter((d) => d < negate(d)).length && image.join(',') === '1,4,7,9' },
@@ -164,6 +173,7 @@ export function theDiagonalOfTheNineRingOpensAtOneAndClosesAtItsMirror() {
     { facet: `${closesAt} ≡ 0 (mod 9) is the ring's ZERO (${nineIsTheRingZero}), and its mirror ${PAIR_SUM}−${closesAt} = ${mirrorOfTheClose} is where the diagonal opened — the close reflects the open`, on: nineIsTheRingZero && closeReflectsTheOpen },
     { facet: `the folder pairs sum to ten — ${DIGITS.map((d) => `${d}↔${reflect(d)}`).slice(0, 5).join(' ')} — so 6 reflects 4 and 3 reflects 7 through the zero`, on: pairsSumToTen && folderPairing[5] === 4 && folderPairing[2] === 7 },
     { facet: `the fold through zero is a half turn counted two ways — 2×${QUARTER}° = 3×${SIXTH}° = ${2 * QUARTER}° — which is why the pairs and the triads describe one rotation`, on: halfTurn },
+    { facet: `and a half turn is ONE LOBE: the double torus closes the circle — equilibrium360 walks the orbit forward ${turn.forward.deg}° and reverse ${turn.reverse.deg}° to ${turn.deg}° in ${turn.turns} turn over ${lobes} lobes, netting ${turn.netErasure} erasure`, on: oneLobeIsAHalfTurn && twoLobesClose && lobes === 2 && turn.conserved },
   ].map((entry) => ({ ...entry, receipt: toUuid(`nine-ring-diagonal:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
