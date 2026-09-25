@@ -363,7 +363,7 @@ export function resolveZeitwerkRegistryEntry(slug: string, loader = automountZei
 export function zeitwerkPort(slug = 'automount') {
   const loader = configureZeitwerkLoader(createZeitwerkLoader('ceccec'), 'port')
 
-  const sampleCname = loader.cnameFor('automount', 'src/routes/automount/index.ts')
+  const sampleCname = loader.cnameFor('automount', 'src/wind/routes/automount/index.ts')
   const samplePath = loader.filepathFor('Automount', 'Routes')
   const camelized = loader.camelize('quantum-mind')
   const eager = loader.eagerLoad()

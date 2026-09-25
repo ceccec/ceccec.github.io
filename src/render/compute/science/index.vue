@@ -10,7 +10,7 @@ const panel = shallowRef(computerSciencePanelComputes())
 </script>
 
 <template>
-  <UiCard id="computer-science-panel" data-logic="src/render/compute/science/index.ts">
+  <UiCard id="computer-science-panel" data-logic="src/quantum/science/index.ts">
     <UiCardContent class="vp-doc cs-panel">
       <header>
         <h2>{{ panel.copy.title.en }}</h2>

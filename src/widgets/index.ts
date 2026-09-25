@@ -316,13 +316,13 @@ const QUANTUM_WIDGET_REGISTRY: readonly QuantumWidgetEntry[] = [
   { id: 'driver-status', title: 'Driver substrate status', component: 'src/render/compute/display/index.vue', barrel: 'src/water/stack', computesGate: 'compute.__ns_up_up_computer.drivers.computes', tier: 'core', receipt: toUuid('qwidget:driver-status') },
   { id: 'schumann-phase', title: 'Schumann phase', component: 'src/thunder/resonance/index.vue', barrel: 'src/thunder/resonance', computesGate: '__ns_up_up_resonance.computes', tier: 'modality', receipt: toUuid('qwidget:schumann-phase') },
   { id: 'gold-fusion-score', title: 'Gold fusion aggregate', component: 'src/fusion/gold/index.vue', barrel: 'src/fusion/gold', computesGate: 'fusion.__ns_up_up_fusion_gold.product', tier: 'modality', receipt: toUuid('qwidget:gold-fusion-score') },
-  { id: 'astronomy-orbit', title: 'Astronomy orbit mini', component: 'src/astronomy/index.vue', barrel: 'src/astronomy', computesGate: '__ns_up_up_astronomy.computes', tier: 'modality', receipt: toUuid('qwidget:astronomy-orbit') },
+  { id: 'astronomy-orbit', title: 'Astronomy orbit mini', component: 'src/heaven/sky/astronomy/index.vue', barrel: 'src/heaven/sky/astronomy', computesGate: '__ns_up_up_astronomy.computes', tier: 'modality', receipt: toUuid('qwidget:astronomy-orbit') },
   { id: 'quantum-dynamics', title: 'Quantum dynamics bars', component: 'src/quantum/dynamics/index.vue', barrel: 'src/quantum/dynamics', computesGate: 'quantum.__ns_up_dynamics.computes', tier: 'modality', receipt: toUuid('qwidget:quantum-dynamics') },
   { id: 'research-row', title: 'Research program row', component: 'src/research/index.vue', barrel: 'src/research', computesGate: '__ns_up_up_research.computes', tier: 'meta', receipt: toUuid('qwidget:research-row') },
-  { id: 'screensaver-toggle', title: 'Movie screensaver', component: 'src/plasma/ball/index.vue', barrel: 'src/plasma/ball', computesGate: 'screensaver.movie.computes', tier: 'preview', receipt: toUuid('qwidget:screensaver-toggle') },
+  { id: 'screensaver-toggle', title: 'Movie screensaver', component: 'src/fire/plasma/ball/index.vue', barrel: 'src/fire/plasma/ball', computesGate: 'screensaver.movie.computes', tier: 'preview', receipt: toUuid('qwidget:screensaver-toggle') },
   { id: 'display-probe', title: 'Display driver probe', component: 'src/render/compute/display/index.vue', barrel: 'src/heaven/compute/computer/substrate', computesGate: 'display.terminal.computes', tier: 'core', receipt: toUuid('qwidget:display-probe') },
   { id: 'power-draw', title: 'Power draw phase', component: 'src/power/index.vue', barrel: 'src/water/stack/driver-surface', computesGate: '__ns_up_up_stack_overflow.driver.computes', tier: 'core', receipt: toUuid('qwidget:power-draw') },
-  { id: 'plasma-preview', title: 'Plasma paint preview', component: 'src/plasma/ball/index.vue', barrel: 'src/plasma/ball', computesGate: '__ns_up_up_plasma_ball.ball.computes', tier: 'preview', receipt: toUuid('qwidget:plasma-preview') },
+  { id: 'plasma-preview', title: 'Plasma paint preview', component: 'src/fire/plasma/ball/index.vue', barrel: 'src/fire/plasma/ball', computesGate: '__ns_up_up_plasma_ball.ball.computes', tier: 'preview', receipt: toUuid('qwidget:plasma-preview') },
 ] as const
 
 export function quantumWidgetsRegistry(): readonly QuantumWidgetEntry[] {
