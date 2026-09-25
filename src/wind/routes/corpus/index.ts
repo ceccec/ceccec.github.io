@@ -1,6 +1,6 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
-import { computedLimits } from '../../../3/7/index.ts'
+import { computedLimits, foldVerdict} from '../../../3/7/index.ts'
 import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, assertedOutsideQuotation, extractDefinitionalIdentity, authoredRelationContainsExtraction, authoredStatementCarriesRelation, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
@@ -3159,7 +3159,7 @@ export function theCuratedIdentitiesAssertRelations(matrix: MindMatrix = buildMa
 export function runCuratedRelationsExit(root = '', _argv: readonly string[] = []): number {
   void root; void _argv
   const report = theCuratedIdentitiesAssertRelations()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} curated-relations — ${report.statement}\n`)
+  foldVerdict('curated-relations', report)
   for (const row of report.englishRows) process.stdout.write(`  · ${row.statement.slice(0, 6 * 16)}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -3242,7 +3242,7 @@ export function runFormulaCollectionExit(root = '', _argv: readonly string[] = [
 export function runFormulaCensusExit(root = '', _argv: readonly string[] = []): number {
   void root; void _argv
   const report = theFormulaCensusPerWing()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} formula-census — ${report.statement}\n`)
+  foldVerdict('formula-census', report)
   for (const h of report.homes.filter((x) => x.missing > 0).slice(0, 9)) {
     process.stdout.write(`  ${String(h.missing).padStart(4)}/${String(h.total).padStart(4)} missing  ${h.home}\n`)
   }
@@ -3253,7 +3253,7 @@ export function runFormulaCensusExit(root = '', _argv: readonly string[] = []): 
 export function runGlyphCensusExit(root = '', _argv: readonly string[] = []): number {
   void root; void _argv
   const report = theGlyphCensusOverTheFormulas()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} glyph-census — ${report.statement}\n`)
+  foldVerdict('glyph-census', report)
   process.stdout.write(`  glyph  applied  standing  wings  overloaded\n`)
   for (const g of report.census) {
     process.stdout.write(`    ${g.glyph}   ${String(g.applied).padStart(6)}  ${String(g.standing).padStart(8)}  ${String(g.wings).padStart(5)}  ${g.overloaded ? 'YES' : '-'}\n`)
@@ -3267,7 +3267,7 @@ export function runDeadGatewayExit(root = '', _argv: readonly string[] = []): nu
   void root
   void _argv
   const report = deadGateway()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} dead-gateway — ${report.statement}\n`)
+  foldVerdict('dead-gateway', report)
   for (const g of report.gateways) process.stdout.write(`  · ${g.kind} ${g.route} — ${g.title}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1

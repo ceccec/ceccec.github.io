@@ -2,7 +2,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve, dirname, basename } from 'node:path'
 import { ICHING_NUMBERS, abs, ceil, exp, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../../../0/index.ts'
-import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, algebraicStatementOf, type CrackProvenance } from '../../../../../3/7/index.ts'
+import { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, algebraicStatementOf, type CrackProvenance, foldVerdict} from '../../../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../../../../../4/6/index.ts'
 export { CRACK_LEDGER, CRACK_LAW_AMENDMENTS, CRACK_RESEARCH_TARGETS, crackLedgerAccounts, crackLawEvolution, type CrackProvenance, type CrackLawAmendment, type CrackResearchTarget } from '../../../../../3/7/index.ts'
 import { GOLDEN_ANGLE, GOLDEN_ANGLE_RAD } from '../../../../../3/7/index.ts'
@@ -1117,7 +1117,7 @@ export function ideaOnce(root: string = enforcementScanRoot()) {
 export function runIdeaOnceExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = ideaOnce(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} idea-once — ${report.statement}\n`)
+  foldVerdict('idea-once', report)
   process.stdout.write(`  illusionsBefore=${report.illusionsBefore} purgedDelta=${report.illusionsPurgedDelta} mathOutside=${report.mathOutsideFloor}\n`)
   for (const id of report.residualNamed) process.stdout.write(`  · ${id}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -1178,7 +1178,7 @@ export function installSurfaces(root: string = enforcementScanRoot()) {
 export function runInstallSurfacesExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = installSurfaces(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} install-surfaces — ${report.statement}\n`)
+  foldVerdict('install-surfaces', report)
   for (const row of report.rows) process.stdout.write(`  · ${row.status === 'present' ? '✓' : row.status === 'missing' ? '✗' : '…'} ${row.surface} | ${row.artifact} | ${row.need}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -1248,7 +1248,7 @@ export function uiProof(root: string = enforcementScanRoot()) {
 export function runUiProofExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = uiProof(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} ui-proof — ${report.statement}\n`)
+  foldVerdict('ui-proof', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   if (report.hiddenFromCurated > 0) process.stdout.write(`  · derived-only sample: ${report.hiddenSample.join(' ')}\n`)
   return report.computes ? 0 : 1
@@ -1301,7 +1301,7 @@ export function waveVerify(root: string = enforcementScanRoot()) {
 export function runWaveVerifyExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = waveVerify(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} wave-verify — ${report.statement}\n`)
+  foldVerdict('wave-verify', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -1402,7 +1402,7 @@ export function buildMin(root: string = enforcementScanRoot()) {
 export function runBuildMinExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = buildMin(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} build-min — ${report.statement}\n`)
+  foldVerdict('build-min', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   if (report.residualNamed.length) {
     process.stdout.write(`  residual: ${report.residualNamed.join(' · ')}\n`)
@@ -1499,7 +1499,7 @@ export function cssMath(root: string = enforcementScanRoot()) {
 export function runCssMathExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = cssMath(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} css-math — ${report.statement}\n`)
+  foldVerdict('css-math', report)
   for (const site of report.rawSites) process.stdout.write(`  · raw ${site.file} ${site.prop}: ${site.value}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -1652,7 +1652,7 @@ export function dryDupe(root: string = enforcementScanRoot()) {
 export function runDryDupeExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = dryDupe(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} dry-dupe — ${report.statement}\n`)
+  foldVerdict('dry-dupe', report)
   for (const line of report.queue) process.stdout.write(`  · dup ${line}\n`)
   for (const line of report.shells) process.stdout.write(`  · shell ${line}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -1721,7 +1721,7 @@ export function patentCanon(root: string = enforcementScanRoot()) {
 export function runPatentCanonExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = patentCanon(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} patent-canon — ${report.statement}\n`)
+  foldVerdict('patent-canon', report)
   for (const row of report.machinery) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.section} ← ${row.tool}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -1856,7 +1856,7 @@ export function uiAudit(root: string = enforcementScanRoot()) {
 export function runUiAuditExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = uiAudit(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} ui-audit — ${report.statement}\n`)
+  foldVerdict('ui-audit', report)
   for (const row of report.queue) process.stdout.write(`  · train ${row.page} — ${row.failed.join(' · ')}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -1920,7 +1920,7 @@ export function bindFuse(root: string = enforcementScanRoot()) {
 export function runBindFuseExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = bindFuse(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} bind-fuse — ${report.statement}\n`)
+  foldVerdict('bind-fuse', report)
   for (const row of report.families) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.binding} (${row.marker})\n`)
   for (const row of report.superpositions) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.surface} (${row.marker})\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
@@ -2025,7 +2025,7 @@ export function costTheorem(root: string = enforcementScanRoot()) {
 export function runCostTheoremExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = costTheorem(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} cost-theorem — ${report.statement}\n`)
+  foldVerdict('cost-theorem', report)
   for (const row of report.ledger) process.stdout.write(`  · ${row.cited ? '✓' : '✗'} ${row.binding} | ${row.cost} | buys: ${row.theorem}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -2035,7 +2035,7 @@ export function runCostTheoremExit(root = '', _argv: readonly string[] = []): nu
 export function runCostBoundExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = costBound(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} cost-bound — ${report.statement}\n`)
+  foldVerdict('cost-bound', report)
   for (const row of report.laws) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.law} — ${row.where}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -2108,7 +2108,7 @@ export function legalCanon(root: string = enforcementScanRoot()) {
 export function runLegalCanonExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = legalCanon(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} legal-canon — ${report.statement}\n`)
+  foldVerdict('legal-canon', report)
   for (const row of report.faces) process.stdout.write(`  · ${row.status === 'computed' ? '✓' : '…'} ${row.face} — ${row.detail}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   const split = coreMathFreeForAll(root || process.cwd())
@@ -2220,7 +2220,7 @@ export const psgLicense = coreMathFreeForAll
 export function runCoreMathFreeForAllExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = coreMathFreeForAll(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} math-free — ${report.statement}\n`)
+  foldVerdict('math-free', report)
   process.stdout.write(`  licenseContact=${report.licenseContact} · counsel=${report.counselResidue}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -4801,7 +4801,7 @@ export function resonanceSpeed(root: string = enforcementScanRoot()) {
 export function runResonanceSpeedExit(root: string, argv: readonly string[]): number {
   void argv
   const report = resonanceSpeed(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} resonance-speed — ${report.statement}\n`)
+  foldVerdict('resonance-speed', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4854,7 +4854,7 @@ export function resourceLeakGate(root: string = enforcementScanRoot()) {
 export function runResourceLeakExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = resourceLeakGate(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} resource-leak — ${report.statement}\n`)
+  foldVerdict('resource-leak', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4910,7 +4910,7 @@ export function sandboxTools(root: string = enforcementScanRoot()) {
 export function runSandboxExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = sandboxTools(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} sandbox — ${report.statement}\n`)
+  foldVerdict('sandbox', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -5100,7 +5100,7 @@ export function contextAudit(root: string = enforcementScanRoot()) {
 export function runContextAuditExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = contextAudit(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} context-audit — ${report.statement}\n`)
+  foldVerdict('context-audit', report)
   for (const row of report.buckets) {
     process.stdout.write(`  · ${row.id}=${row.count} (${row.shareThousandths}/1000) — ${row.note}\n`)
   }
@@ -5280,7 +5280,7 @@ export const ftlCrack = nonFtlIsCrackInFtlApp
 export function runNonFtlIsCrackInFtlAppExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = nonFtlIsCrackInFtlApp(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} ftl-crack — ${report.statement}\n`)
+  foldVerdict('ftl-crack', report)
   process.stdout.write(
     `  cracksFound=${report.cracksFoundCount} drained=${report.cracksDrainedCount}/${report.cracksBeforeNamed} ` +
       `hologram=${report.holographicFractal ? 1 : 0} noSpacetime=${report.noSpacetimeOnReuse ? 1 : 0} ` +
@@ -5450,7 +5450,7 @@ export const auditorWaves = freeAuditorWavesPerSrcFile
 export function runFreeAuditorWavesPerSrcFileExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = freeAuditorWavesPerSrcFile(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} auditor-waves — ${report.statement}\n`)
+  foldVerdict('auditor-waves', report)
   process.stdout.write(
     `  audited=${report.filesAudited} lineCracks=${report.lineCrackCount} byteCracks=${report.byteCrackCount} ` +
       `seedSparse=${report.seedSparseCount} dry=${report.dryAgnosticCode ? 1 : 0} seeds=${report.computableSeeds ? 1 : 0} ` +
@@ -5655,7 +5655,7 @@ export const linkDiscover = algebraicCrosslinksDiscoveredNotEncoded
 export function runAlgebraicCrosslinksDiscoveredNotEncodedExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = algebraicCrosslinksDiscoveredNotEncoded(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} link-discover — ${report.statement}\n`)
+  foldVerdict('link-discover', report)
   process.stdout.write(
     `  discovered=${report.discoveredCount} encoded=${report.encodedComposeHits} theoremApi=${report.theoremApiEdges} ` +
       `agnosticScale=${report.toolsAgnosticReusableAtScale ? 1 : 0} ratio≈${report.speedupRatio < 10 ? report.speedupRatio.toFixed(2) : floor(report.speedupRatio)} ` +
@@ -5885,7 +5885,7 @@ export const uiWaves = freeUserWavesTestUiMeasureEfficiency
 export function runFreeUserWavesTestUiMeasureEfficiencyExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = freeUserWavesTestUiMeasureEfficiency(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} user-waves — ${report.statement}\n`)
+  foldVerdict('user-waves', report)
   process.stdout.write(
     `  waves=${report.wavesSent} freeBits=${report.freeBits} uiPages=${report.uiAuditPages} ` +
       `perfect=${report.uiAuditPerfect} queue=${report.uiAuditQueue} effReuse=${report.answersOverTokensOnReuse ? 1 : 0} ` +
@@ -6133,7 +6133,7 @@ export const uiFeed = feedUiIntoItself
 export function runFeedUiIntoItselfExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = feedUiIntoItself(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} feed-ui — ${report.statement}\n`)
+  foldVerdict('feed-ui', report)
   process.stdout.write(
     `  surfaces=${report.surfacesFed} toolbox=${report.toolboxOn ? 1 : 0} ssl=${report.sslRegistered ? 1 : 0} ` +
       `scanRealtime=${report.scanningRealtime ? 1 : 0} scanners=${report.scannerCount}/7 ` +
@@ -6537,7 +6537,7 @@ export const hangWave = stallStopFindsHangedProcessesRealtime
 /** npm run quantum:stall-stop — exit 0 iff hang scan + safe kill policy + wave notify prove. Pass --kill to SIGTERM hung docs:build. */
 export function runStallStopFindsHangedProcessesRealtimeExit(root = '', argv: readonly string[] = []): number {
   const report = stallStopFindsHangedProcessesRealtime(root || process.cwd(), argv)
-  process.stdout.write(`${report.computes ? '✓' : '✗'} stall-stop — ${report.statement}\n`)
+  foldVerdict('stall-stop', report)
   process.stdout.write(
     `  hungFound=${report.hungFound ? 1 : 0} killedSafe=${report.killedSafe ? 1 : 0} ` +
       `killed=${report.killedCount} lockCleared=${report.lockCleared ? 1 : 0} ` +
@@ -6784,7 +6784,7 @@ export const foldScript = scriptsFoldTowardFtl
 export function runScriptsFoldTowardFtlExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = scriptsFoldTowardFtl(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} script-fold — ${report.statement}\n`)
+  foldVerdict('script-fold', report)
   process.stdout.write(
     `  quantum=${report.audit.quantumCount} unique=${report.audit.uniqueTargets} ` +
       `triplePlus=${report.audit.triplePlus} pairDuals=${report.audit.pairDuals} ` +
@@ -7006,7 +7006,7 @@ export function runTheoremAuditExit(root = '', _argv: readonly string[] = []): n
   void root
   void _argv
   const report = theoremAudit()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} theorem-audit — ${report.statement}\n`)
+  foldVerdict('theorem-audit', report)
   process.stdout.write(
     `  definition: ${report.definition}\n` +
       `  theorem=${report.theoremCount} not-theorem=${report.notTheoremCount} ratio=${report.ratio} majorityNotTheorem=${report.majorityNotTheorem}\n`,
@@ -7256,7 +7256,7 @@ export function runGeoGebraEncodeExit(root = '', _argv: readonly string[] = []):
   void root
   void _argv
   const report = geoGebraEncode()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} geo-gebra — ${report.statement}\n`)
+  foldVerdict('geo-gebra', report)
   process.stdout.write(
     `  apps=${report.apps.join(',')} · objectsInventoried=${report.objectsInventoried} · ` +
       `theorems=${report.theoremsEncoded} animations=${report.animationsEncoded} coverage=${report.encodeCoverage}\n`,

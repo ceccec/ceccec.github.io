@@ -4,7 +4,7 @@
 import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): widgets reaches back via the mind barrel; the seed reads at call time
 import * as __ns_up_lake_widgets from '../../widgets/index.ts'
-import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, overclaimByFormulas, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat } from '../../3/7/index.ts'
+import { A432_FOLDED, SQRT2, cfEval, claySolvedByFormulas, overclaimByFormulas, demarcate, rat, ratAdd, ratDiv, ratEq, ratMul, ratSub, ratToFloat, foldVerdict} from '../../3/7/index.ts'
 import { PROTON_MASS_MEV, REDUCED_PLANCK, SCHWINGER_FIELD_VM, WATER_DENSITY_FRESH, WATER_DENSITY_SALT, ZHL16_N2_HALFTIMES, ambientPressureBar, barPerMetre, bestMixFO2, buhlmannA, buhlmannB, buhlmannCeilingBar, buhlmannDivePlan, buhlmannGfCeilingBar, buhlmannGfDivePlan, equivalentNarcoticDepthM, gasReserveThirds, haldaneLoad, maxOperatingDepthM, seesawLightMassEv } from '../../3/7/index.ts'
 import { survive, fThetaPhiXyzDigitNIsTheInversePair } from '../../mountain/vortex/index.ts'
 // call-time namespace edge (cycle-safe): cosmos ⇄ digit already meet through heaven/site and earth/architecture
@@ -1562,7 +1562,7 @@ export function runFractalMapExit(root = '', _argv: readonly string[] = []): num
   void root
   void _argv
   const report = fractalMap()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} fractal-map — ${report.statement}\n`)
+  foldVerdict('fractal-map', report)
   for (const row of report.rows) process.stdout.write(`  · ${row.frontier} | pattern "${row.pattern}" true in ${row.dimension} | ${row.breakReads}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -1573,7 +1573,7 @@ export function runFractalComputeExit(root = '', _argv: readonly string[] = []):
   void root
   void _argv
   const report = fractalCompute()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} fractal-compute — ${report.statement}\n`)
+  foldVerdict('fractal-compute', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -3624,7 +3624,7 @@ export function runSciencePyramidExit(root = '', _argv: readonly string[] = []):
   void root
   void _argv
   const report = sciencePyramid()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} science-pyramid — ${report.statement}\n`)
+  foldVerdict('science-pyramid', report)
   for (const row of report.levels) process.stdout.write(`  · ${row.level} ⟶ ${row.boundaryCondition} | ${row.algebra}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1

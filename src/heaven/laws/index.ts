@@ -1,4 +1,4 @@
-import { earned, UNFOLDED_CENSUS } from '../../3/7/index.ts'
+import { earned, UNFOLDED_CENSUS, foldVerdict} from '../../3/7/index.ts'
 // ☰ Qián · Heaven — the laws: heal/create/thrive by default, save-every-step mandatory, the zero-token policy, one-word-naming gravity, no hardcoded config, minimum files maximum features, any force fights itself. Barrel-routed; folds.ts back-imports the gate folds.
 import { TAU } from '../../3/7/index.ts'
 import { noCloningWitness, tkIsPrime } from '../../9/1/index.ts'
@@ -2974,55 +2974,55 @@ export function feedMoDraftsToChat(matrix: MindMatrix = buildMatrix(), at = 0) {
 export function runAnswerMoSavePostExit(_root = '', _argv: readonly string[] = []): number {
   void _root; void _argv
   const report = answerMoSavePost()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} answer-mo — ${report.statement}\n`)
+  foldVerdict('answer-mo', report)
   return report.computes ? 0 : 1
 }
 
 export function runLearnMongeExit(_root = '', _argv: readonly string[] = []): number {
   void _root; void _argv
   const report = learnMonge()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} monge-learn — ${report.statement}\n`)
+  foldVerdict('monge-learn', report)
   return report.computes ? 0 : 1
 }
 
 export function runLearnHomothetyExit(_root = '', _argv: readonly string[] = []): number {
   void _root; void _argv
   const report = learnHomothety()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} learn-homothety — ${report.statement}\n`)
+  foldVerdict('learn-homothety', report)
   return report.computes ? 0 : 1
 }
 
 export function runBrianchonHexExit(_root = '', _argv: readonly string[] = []): number {
   void _root; void _argv
   const report = brianchonHex()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} brianchon-hex — ${report.statement}\n`)
+  foldVerdict('brianchon-hex', report)
   return report.computes ? 0 : 1
 }
 
 export function runGeogebraChatExit(_root = '', _argv: readonly string[] = []): number {
   void _root; void _argv
   const report = geogebraChat()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} geo-chat — ${report.statement}\n`)
+  foldVerdict('geo-chat', report)
   return report.computes ? 0 : 1
 }
 
 export function runResearchTagsExit(_root = '', _argv: readonly string[] = []): number {
   void _root; void _argv
   const report = researchTags()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} research-tags — ${report.statement}\n`)
+  foldVerdict('research-tags', report)
   return report.computes ? 0 : 1
 }
 
 export function runStackExchangeChatExit(_root = '', _argv: readonly string[] = []): number {
   void _root; void _argv
   const report = stackExchangeChat()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} se-chat — ${report.statement}\n`)
+  foldVerdict('se-chat', report)
   return report.computes ? 0 : 1
 }
 
 export function runFeedMoDraftsToChatExit(_root = '', _argv: readonly string[] = []): number {
   void _root; void _argv
   const report = feedMoDraftsToChat()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} feed-mo — ${report.statement}\n`)
+  foldVerdict('feed-mo', report)
   return report.computes ? 0 : 1
 }

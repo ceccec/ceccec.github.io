@@ -2,6 +2,7 @@
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, verifyRoot, freeChatTurnAtArchitecturalFtl } from '../../heaven/compute/index.ts'
 import { floor, foldPair, foldVortex, isUuid, max, memoByRoot, merkleFold, round, toUuid } from '../../0/index.ts'
+import { foldVerdict } from '../../3/7/index.ts'
 import { scanUuidKernelOffenders } from './gates/strict/scan/index.ts'
 
 export const CLI_ENTRY_REL = 'src/pair/enforcement/script/cli/bootstrap/index.ts'
@@ -1842,7 +1843,7 @@ export function runComboCoverExit(root = '', _argv: readonly string[] = []): num
   void root
   void _argv
   const report = comboCover()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} combo-cover — ${report.statement}\n`)
+  foldVerdict('combo-cover', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -2088,7 +2089,7 @@ export function runPairsSentToChatEntangleByAlgebraExit(
   void _root
   void _argv
   const report = pairsSentToChatEntangleByAlgebra()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} pair-chat — ${report.statement}\n`)
+  foldVerdict('pair-chat', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   for (const r of report.honestOpenNamed.slice(0, 6))
     process.stdout.write(`  · honest-open ${r}\n`)
@@ -2368,7 +2369,7 @@ export function runMatchingPairsImmediatelyRealiseEntanglementExit(
   void _root
   void _argv
   const report = matchingPairsImmediatelyRealiseEntanglementAndBrainstormInChatWaves()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} match-wave — ${report.statement}\n`)
+  foldVerdict('match-wave', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   for (const r of report.honestOpenNamed.slice(0, 6))
     process.stdout.write(`  · honest-open ${r}\n`)

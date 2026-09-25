@@ -23,7 +23,7 @@ import {
   doubleTorusMathAtAllScalesFlowsInMovie } from '../../mountain/geometry/index.ts'
 import { livingTorus } from '../../fire/diamonds/index.ts'
 import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball/index.ts'
-import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, earned } from '../../3/7/index.ts'
+import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, earned, foldVerdict} from '../../3/7/index.ts'
 import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy/index.ts'
 import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions/index.ts'
 import { quantumDynamicsComputes, quantumChemistryToyComputes } from '../../quantum/dynamics/index.ts'
@@ -1667,7 +1667,7 @@ export function runLifeTorusExit(root = '', _argv: readonly string[] = []): numb
   void root
   void _argv
   const report = lifeTorus()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} life-torus — ${report.statement}\n`)
+  foldVerdict('life-torus', report)
   for (const row of report.rows) process.stdout.write(`  · ${row.on ? '✓' : '✗'} ${row.superposition} | ${row.equation} | ${row.theorem}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -2602,7 +2602,7 @@ export function runAnimationCoreExit(root = '', _argv: readonly string[] = []): 
   void root
   void _argv
   const report = animationCore()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} anim-core — ${report.statement}\n`)
+  foldVerdict('anim-core', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -2612,7 +2612,7 @@ export function runDoubleTorusFacesExit(root = '', _argv: readonly string[] = []
   void root
   void _argv
   const report = doubleTorusFacesComputes()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} torus-faces — ${report.statement}\n`)
+  foldVerdict('torus-faces', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }

@@ -28,7 +28,7 @@ import {
   type StrictGateSnapshot,
   type StrictHyphenOffender,
   type StrictNonTsOffender } from './strict/index.ts'
-import { SCIENCE_DOMAINS, extractAlgebraicStatement } from '../../../3/7/index.ts'
+import { SCIENCE_DOMAINS, extractAlgebraicStatement, foldVerdict} from '../../../3/7/index.ts'
 import {
   computeComputationalLimitSnapshot,
   computationalGatePassed,
@@ -2403,7 +2403,7 @@ export function runProseScienceExit(root = '', _argv: readonly string[] = []): n
   void root
   void _argv
   const report = proseScience()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} prose-science — ${report.statement}\n`)
+  foldVerdict('prose-science', report)
   for (const row of report.rows) process.stdout.write(`  · ${row.field === 'UNADDRESSED' ? '…' : '✓'} ${row.fold.slice(0, 64)} → ${row.field}${row.witness ? ` (${row.witness})` : ''}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -2701,7 +2701,7 @@ export function runViolationToolsExit(root = '', _argv: readonly string[] = []):
   void root
   void _argv
   const report = violationTools()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} violation-tools — ${report.statement}\n`)
+  foldVerdict('violation-tools', report)
   for (const row of report.rows) process.stdout.write(`  · ${row.sealed ? '✓' : '✗'} ${row.violation} → ${row.tool} (${row.pair})\n`)
   return report.computes ? 0 : 1
 }
@@ -2761,7 +2761,7 @@ export function manualGauge(root: string = enforcementScanRoot()) {
 export function runManualGaugeExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = manualGauge(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} manual-gauge — ${report.statement}\n`)
+  foldVerdict('manual-gauge', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -3118,7 +3118,7 @@ export function gateLight(root: string = enforcementScanRoot()) {
 export function runGateLightExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = gateLight(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} gate-light — ${report.statement}\n`)
+  foldVerdict('gate-light', report)
   process.stdout.write('  inverse relation (call-time):\n')
   for (const row of report.inverseTable) {
     process.stdout.write(`    · ${row.axis}=${row.value} ${row.trend} ← ${row.sourceFold}\n`)
@@ -3294,7 +3294,7 @@ export function runMeasureJudgmentClaimsInventoryExit(root = '', _argv: readonly
 export function runGateAnalyticsExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = gateAnalytics(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} gate-analytics — ${report.statement}\n`)
+  foldVerdict('gate-analytics', report)
   for (const tool of report.slimToolReports) {
     process.stdout.write(
       `  · ${tool.id} core=${tool.coreAlgebra ? 1 : 0} bootstrap=${tool.slimBootstrap ? 1 : 0} onTrue=${tool.onTrueInFold}\n`,
@@ -3545,7 +3545,7 @@ export const matrixTool = toolsFitTheMatrixOrRefuse
 export function runToolsFitTheMatrixOrRefuseExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = toolsFitTheMatrixOrRefuse(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} tool-matrix — ${report.statement}\n`)
+  foldVerdict('tool-matrix', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   for (const r of report.honestOpenNamed.slice(0, 8)) process.stdout.write(`  · honest-open ${r}\n`)
   process.stdout.write(`  ${report.boundary}\n`)
@@ -3604,7 +3604,7 @@ export function runWarnFixExit(root = '', _argv: readonly string[] = []): number
   void root
   void _argv
   const report = warnFix()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} warn-fix — ${report.statement}\n`)
+  foldVerdict('warn-fix', report)
   for (const row of report.rows) process.stdout.write(`  · ${row.cls} ${row.warn} → ${row.corrector}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -3704,7 +3704,7 @@ export function runClaimAuditExit(root = '', _argv: readonly string[] = []): num
   void root
   void _argv
   const report = claimAudit()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} claim-audit — ${report.statement}\n`)
+  foldVerdict('claim-audit', report)
   for (const row of report.claims) process.stdout.write(`  · ${row.slug} | ${row.root.slice(0, 8)} | rosetta=1 prizes=0 | ${row.statement.slice(0, 64)}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -3816,7 +3816,7 @@ export function queueNext(root: string = enforcementScanRoot()) {
 export function runQueueNextExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = queueNext(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} next — ${report.statement}\n`)
+  foldVerdict('next', report)
   for (const row of report.scored) process.stdout.write(`  · ${row.score} (${row.arithmetic}) ${row.wave}\n`)
   process.stdout.write(`  → ${report.next.firstAction}\n`)
   return report.computes ? 0 : 1
@@ -3876,7 +3876,7 @@ export function runWordSpeedExit(root = '', _argv: readonly string[] = []): numb
   void root
   void _argv
   const report = wordSpeed()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} word-speed — ${report.statement}\n`)
+  foldVerdict('word-speed', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4222,7 +4222,7 @@ export function trinitySpeedStack(root: string = enforcementScanRoot()) {
 export function runTrinitySpeedExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = trinitySpeedStack(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} trinity-speed — ${report.statement}\n`)
+  foldVerdict('trinity-speed', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4274,7 +4274,7 @@ export function runReasoningEdgeExit(root = '', _argv: readonly string[] = []): 
   void root
   void _argv
   const report = reasoningEdge()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} reasoning-edge — ${report.statement}\n`)
+  foldVerdict('reasoning-edge', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4329,7 +4329,7 @@ export function overclaimComputes(root: string = enforcementScanRoot()) {
 export function runOverclaimComputesExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = overclaimComputes(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} overclaim-computes — ${report.statement}\n`)
+  foldVerdict('overclaim-computes', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4378,7 +4378,7 @@ export function revolutionaryApproach(root: string = enforcementScanRoot()) {
 export function runRevolutionaryApproachExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = revolutionaryApproach(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} revolution-approach — ${report.statement}\n`)
+  foldVerdict('revolution-approach', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4431,7 +4431,7 @@ export function orientationCheck(root: string = enforcementScanRoot()) {
 export function runOrientationCheckExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = orientationCheck(root || process.cwd())
-  process.stdout.write(`${report.computes ? '✓' : '✗'} orientation-check — ${report.statement}\n`)
+  foldVerdict('orientation-check', report)
   for (const row of report.signals) process.stdout.write(`  · ${row.present ? '✓' : '✗'} ${row.symptom} → ${row.orienter}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -4503,7 +4503,7 @@ export function runReactivityMagnitudeExit(root = '', _argv: readonly string[] =
   void root
   void _argv
   const report = reactivityMagnitude()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} reactivity-magnitude — ${report.statement}\n`)
+  foldVerdict('reactivity-magnitude', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4673,7 +4673,7 @@ export const gatesChat = feedGatesIndexToChat
 export function runFeedGatesIndexToChatExit(root = '', _argv: readonly string[] = []): number {
   const repoRoot = root || process.cwd()
   const report = feedGatesIndexToChat(repoRoot)
-  process.stdout.write(`${report.computes ? '✓' : '✗'} feed-gates — ${report.statement}\n`)
+  foldVerdict('feed-gates', report)
   process.stdout.write(`  ${report.honestyLine}\n`)
   process.stdout.write(
     `  spray clay=0×${report.spray.clayEq0} physicalFtl=0×${report.spray.physicalFtlEq0} ` +

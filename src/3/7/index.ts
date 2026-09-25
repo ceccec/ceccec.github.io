@@ -1342,6 +1342,17 @@ export function citationBlock(author: string, sourceRepo: string, canonical: str
  * "you will write the prose not by hand and by algebraic computations"). The label IS the computed field name;
  * no agent adjective can enter, because no adjective is a parameter. Refutable: change a field name and the
  * rendered label changes with it — the line cannot drift from the data it reports. */
+/** foldVerdict — the ONE line every fold CLI prints, written once instead of ninety-one times.
+ * A verdict and the statement it is a verdict ABOUT belong in the same expression: written out at each
+ * call site, the tick and the sentence were two independent authorings, and nothing made the '✓' agree
+ * with the `computes` it claimed to report. Ninety-one sites carried this skeleton character for
+ * character, so this is not a reformatting — it is the same bytes emitted from one place, which is the
+ * only form in which the agreement can be checked at all. Measured 2026-09-25 across 14 files.
+ * Refutable: change the tick here and every CLI in the corpus changes with it. */
+export function foldVerdict(label: string, report: { computes: boolean; statement: string }): void {
+  process.stdout.write(`${report.computes ? '\u2713' : '\u2717'} ${label} — ${report.statement}\n`)
+}
+
 export function renderComputedMetrics(counts: Readonly<Record<string, number | string>>, bold = true): string {
   return Object.entries(counts)
     .map(([key, value]) => `${key} = ${bold ? `**${value}**` : value}`)

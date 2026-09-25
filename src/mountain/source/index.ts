@@ -1,7 +1,7 @@
 // ☶ Gèn · Mountain — source of truth: memory in source as cross-folds, the present moment remains in source, computed wiring not imported, configs use the matrix, the site explains itself all-wired, autosave, MVC organisation receipt. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc model — this module is Model: pure computation about source structure, no UI, no routing.
 import * as __ns_up_up_earth_architecture from '../../earth/architecture/index.ts'
-import { rat, ratEq, ratMul, ratSub, UNFOLDED_CENSUS } from '../../3/7/index.ts'
+import { rat, ratEq, ratMul, ratSub, UNFOLDED_CENSUS, foldVerdict} from '../../3/7/index.ts'
 import * as __ns_up_up_heaven_core from '../../heaven/core/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, buildQuantumComputerOsApps, freeChatTurnAtArchitecturalFtl, isPerfectlySelfModeling, proofReport, reciprocity, verifyRoot } from '../../heaven/compute/index.ts'
@@ -750,7 +750,7 @@ export function runChatTranslatesAutonomouslyExit(_root = '', _argv: readonly st
   void _root
   void _argv
   const report = chatTranslatesAutonomously()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} chat-trans — ${report.statement}\n`)
+  foldVerdict('chat-trans', report)
   process.stdout.write(
     `  autonomousOn=${report.autonomousOn ? 1 : 0} chatDrives=${report.chatDrivesTranslate ? 1 : 0} ` +
       `bgDrainable=${report.bgGapsDrainableClosed ? 1 : 0} glaHonest=${report.glaParityHonest ? 1 : 0}\n`,
@@ -1107,7 +1107,7 @@ export function runChatWavesMostEfficientOfflineAnyLanguageModelExit(
   void _root
   void _argv
   const report = chatWavesMostEfficientOfflineAnyLanguageModel()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} trans-any — ${report.statement}\n`)
+  foldVerdict('trans-any', report)
   process.stdout.write(
     `  win=${report.mostEfficientModel} anyToAny=${report.anyToAnyOn ? 1 : 0} ` +
       `write=${report.writingOn ? 1 : 0} speech=${report.speechOn ? 1 : 0} waves=${report.wavesOn ? 1 : 0}\n`,
@@ -1472,7 +1472,7 @@ export function runChatMassiveWorldLanguageTranslationQualityExit(
   void _root
   void _argv
   const report = chatMassiveWorldLanguageTranslationQuality()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} trans-quality — ${report.statement}\n`)
+  foldVerdict('trans-quality', report)
   process.stdout.write(
     `  tongues=${report.tongueCount} pairs=${report.pairCount} ` +
       `mean=${report.meanCoverage.toFixed(3)} min=${report.minCoverage.toFixed(3)} ` +

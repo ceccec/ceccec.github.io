@@ -14,7 +14,7 @@ export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site/inde
 import { emergentDimensions } from '../../heaven/balance/index.ts'
 import { cloudflareBindings } from '../../heaven/core/index.ts'
 import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, isUuid, max, maxTamperingCostLog2, maxTamperingCostReached, memoByRoot, memoComputing, merge, merkleFold, min, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sealFacets, seedFromText, toUuid } from '../../0/index.ts'
-import { A432_FOLDED, A432_HUE, CANONICAL_HOST, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, type RosettaComputationType, overclaimByFormulas } from '../../3/7/index.ts'
+import { A432_FOLDED, A432_HUE, CANONICAL_HOST, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, type RosettaComputationType, overclaimByFormulas, foldVerdict} from '../../3/7/index.ts'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6/index.ts'
 import {
   rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit/index.ts'
@@ -9905,7 +9905,7 @@ export function runGatesRefuseProseOnlyExit(_root = '', _argv: readonly string[]
   void _root
   void _argv
   const report = gatesRefuseProseOnly()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} prose-hard — ${report.statement}\n`)
+  foldVerdict('prose-hard', report)
   process.stdout.write(
     `  proseOnlyRejected=${report.proseOnlyRejected ? 1 : 0} wetProseHard=${report.wetProseHard ? 1 : 0} ` +
       `formulaDual=${report.formulaDualRequired ? 1 : 0} probeOpen=${report.proseOnlyOpen} ` +
@@ -14022,7 +14022,7 @@ export const planAudit = auditPlanTip
 export function runAuditPlanTipExit(root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.', _argv: readonly string[] = []): number {
   void _argv
   const report = auditPlanTip(buildMatrix(), 0, root)
-  process.stdout.write(`${report.computes ? '✓' : '✗'} audit-plan — ${report.statement}\n`)
+  foldVerdict('audit-plan', report)
   process.stdout.write('--- pipeline (audit → plan/trinity → scored next tip) ---\n')
   process.stdout.write(`  audit: ${report.audit.statement}\n`)
   process.stdout.write(
@@ -25513,7 +25513,7 @@ export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typ
 export function runChatAuditExit(root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.', _argv: readonly string[] = []): number {
   void _argv
   const report = chatAudit(buildMatrix(), 0, root)
-  process.stdout.write(`${report.computes ? '✓' : '✗'} chat-audit — ${report.statement}\n`)
+  foldVerdict('chat-audit', report)
   process.stdout.write(`  anchor=${CHAT_WAVE_AUDIT_ANCHOR} head=${report.git.head} commits=${report.git.commitCount}\n`)
   process.stdout.write('  landed table:\n')
   for (const row of report.landedTable) {
@@ -26103,7 +26103,7 @@ export function runErpaxLearnExit(_root = '', _argv: readonly string[] = []): nu
   void _root
   void _argv
   const report = erpaxLearn()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} erpax-learn — ${report.statement}\n`)
+  foldVerdict('erpax-learn', report)
   for (const row of report.patterns) {
     process.stdout.write(`  · ${row.adopted ? '✓' : '…'} ${row.id}: ${row.erpaxPattern} · gap=${row.measuredGap}\n`)
   }
@@ -26485,7 +26485,7 @@ export function runCeccecErpaxExit(_root = '', _argv: readonly string[] = []): n
   void _root
   void _argv
   const report = ceccecErpaxCompete()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} ceccec-erpax — ${report.statement}\n`)
+  foldVerdict('ceccec-erpax', report)
   process.stdout.write('  competition scorecard (covered=1 partial=0.5 gap=0):\n')
   process.stdout.write('  | dimension | ceccec | erpax | LLM-linear | note |\n')
   process.stdout.write('  |---|:---:|:---:|:---:|---|\n')
@@ -26694,7 +26694,7 @@ export function runReadmeGatewayExit(root = '', _argv: readonly string[] = []): 
     }
   }
   const report = readmeWire(buildMatrix(), 0, { readmeBytes, readmeText })
-  process.stdout.write(`${report.computes ? '✓' : '✗'} readme-gateway — ${report.statement}\n`)
+  foldVerdict('readme-gateway', report)
   process.stdout.write(
     `  readmeIsGateway=${report.readmeIsGateway ? 1 : 0} wiredAll=${report.wiredAllFromReadme ? 1 : 0} ` +
       `noDoubt=${report.noDoubtStands ? 1 : 0} evolution=${report.quantumEvolutionPath ? 1 : 0} bytes=${report.chat.readmeBytes}\n`,
@@ -28686,7 +28686,7 @@ export const publishCi = npmPublishCi
 export function runNpmPublishCiExit(root = '', _argv: readonly string[] = []): number {
   void _argv
   const report = npmPublishCi(buildMatrix(), 0, root || (typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'))
-  process.stdout.write(`${report.computes ? '✓' : '✗'} npm-publish — ${report.statement}\n`)
+  foldVerdict('npm-publish', report)
   process.stdout.write(
     `  workflow=${report.workflowPath} · trigger=${report.trigger} · publishes=${report.publishes}@${report.packageVersion} · contact=${report.licenseContact}\n`,
   )

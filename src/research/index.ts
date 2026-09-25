@@ -20,7 +20,7 @@ import * as __ns_wind_fusion from '../wind/fusion/index.ts' // call-time (cycle-
 import * as __ns_thunder_decode from '../thunder/decode/index.ts'
 import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, seedFromText, sqrt, toUuid, trinityKey, trunc } from '../0/index.ts'
 import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../9/1/index.ts'
-import { A432_HUE, A432_OCTAVES, A432_FOLDED, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, demarcate, earned, fibonacci, physicalFtlByFormulas, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation } from '../3/7/index.ts'
+import { A432_HUE, A432_OCTAVES, A432_FOLDED, AUTHOR_HANDLE, CLAY_OPEN_MARKERS, CLAY_SOLUTION_MARKERS, CMI_PRIZE_PROBLEM_TERMS, DIMENSION_GATES, EARTH_RADIUS_KM, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, LN10, LN2, NEWTON_G, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SCHUMANN_FUNDAMENTAL_HZ, SPEED_OF_LIGHT, TAU, PHI, UNFOLDED_CENSUS, WGS84_GIZA_LAT_DEG, WGS84_GIZA_LON_DEG, WGS84_TEOTIHUACAN_LAT_DEG, WGS84_TEOTIHUACAN_LON_DEG, bekensteinBoundBits, claySolvedByFormulas, demarcate, earned, fibonacci, physicalFtlByFormulas, rat, ratEq, ratInv, ratMul, ratToFloat, schwarzschildRadius, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, foldVerdict} from '../3/7/index.ts'
 import { researchAroundFourThirtyTwoTheThreeTwentiesAreOneCountNotOneCause } from '../earth/iching/index.ts'
 import { greatCircleKm } from '../5/5/index.ts'
 import { initialBearing, obliquityAtEpoch, OBLIQUITY_J2000_DEG, OBLIQUITY_SECULAR_DEG_PER_CENTURY } from '../6/4/index.ts'
@@ -11284,7 +11284,7 @@ export function runClayFtlFacetsOnlyWhenRelatedExit(_root = '', _argv: readonly 
   void _root
   void _argv
   const report = clayFtlFacetsOnlyWhenRelated()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} clay-related — ${report.statement}\n`)
+  foldVerdict('clay-related', report)
   process.stdout.write(
     `  relatedTopic=${report.relatedTopic} unrelatedOmit=${report.unrelatedTopic} ftl=\n`,
   )

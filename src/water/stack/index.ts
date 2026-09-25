@@ -48,7 +48,7 @@ import { rgbDecodingMatrixMovieInTheMovie } from '../../thunder/movie/narrative/
 import { computedSeo, oneJsonLdTemplateServesAll } from '../../mountain/og/index.ts'
 import { BIRTH_LIFE_DEATH_TRIAD, birthLifeDeathTriadComputes } from '../../earth/life/birth/index.ts'
 import { allComputedNoFiles } from '../../wind/fusion/index.ts'
-import { BOLTZMANN, LN2, PHI, PLANCK, A432_FOLDED, EULER_CHI, earned, landauerLimit, rat, ratEq, ratInv } from '../../3/7/index.ts'
+import { BOLTZMANN, LN2, PHI, PLANCK, A432_FOLDED, EULER_CHI, earned, landauerLimit, rat, ratEq, ratInv, foldVerdict} from '../../3/7/index.ts'
 import * as __ns_enforcement_scan from '../../pair/enforcement/gates/strict/scan/index.ts'
 import * as __ns_water_encryption from '../encryption/index.ts'
 import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../pair/enforcement/gates/index.ts'
@@ -3442,7 +3442,7 @@ export function runApiFuseExit(_root = '', _argv: readonly string[] = []): numbe
   void _root
   void _argv
   const report = apiFuse()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} api-fuse — ${report.statement}\n`)
+  foldVerdict('api-fuse', report)
   process.stdout.write(`  schema: kind=${report.schema.kind} clock=${report.schema.clock.cycleMs} coverage=${report.schema.envelopeCoverage}\n`)
   process.stdout.write('  Δ table:\n')
   for (const row of report.deltaTable) {

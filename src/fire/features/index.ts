@@ -23,7 +23,7 @@ import { foldThoughts, mindsRealiseByObservingPath } from '../../mountain/source
 import { selfSufficientWave } from '../../mountain/geometry/index.ts'
 import { cryptoFuture } from '../../water/crypto/index.ts'
 import { backgroundMovie, cloudflareBindings, complete, completeQuantumSolutionsImplemented, computedSlugsFoldTheGraph, diamondCompleteness, everyDiamondIsGate, everyObjectSameSpinFoldLaw, evolutionCrossesQuantumThreshold, fuseAll, gatesBehaveAsMcp, numberLabel, proofBundle, result, trinityEncryption, zeroTokenUsagePolicy } from '../../quantum/heaven/mind/index.ts'
-import { LN2, TAU } from '../../3/7/index.ts'
+import { LN2, TAU, foldVerdict} from '../../3/7/index.ts'
 
 // Complete quantum-computer browser OS. The portal is a whole operating system that
 // runs in the browser: a kernel (the agnostic core), processes (components and
@@ -738,7 +738,7 @@ export function runTorusDataExit(root = '', _argv: readonly string[] = []): numb
   void root
   void _argv
   const report = torusData()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} torus-data — ${report.statement}\n`)
+  foldVerdict('torus-data', report)
   for (const row of report.rows) process.stdout.write(`  · ${row.source} | ${row.dimensionless} = ${row.value} | units: ${row.unitCarrying.join(', ')}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1

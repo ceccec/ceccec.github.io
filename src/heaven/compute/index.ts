@@ -12,7 +12,7 @@ import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddre
 import { sha256Sync, toUuidSha256 } from '../../0/index.ts'
 import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../4/6/index.ts'
 import { foldMagmaLaws } from '../../5/5/index.ts'
-import { A432_FOLDED, CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, demarcate, earned, extractAlgebraicStatement, landauerLimit, rat, ratAdd, ratEq, ratMul } from '../../3/7/index.ts'
+import { A432_FOLDED, CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, demarcate, earned, extractAlgebraicStatement, landauerLimit, rat, ratAdd, ratEq, ratMul, foldVerdict} from '../../3/7/index.ts'
 import { tamperEvident } from '../../5/5/index.ts'
 import { groupOrbit, MAX_TAMPERING_COST_PRINCIPLE, f2FieldCloses, pageNavContext } from '../../4/6/index.ts'
 import { digitFold, claimingTheUnclaimableDivisionByZeroIsAOneBitGatewayInQuantumAlgebra } from '../../1/9/index.ts'
@@ -5549,7 +5549,7 @@ export function runFreeChatDrivesArchitecturalFtlExit(_root = '', _argv: readonl
   void _root
   void _argv
   const report = freeChatDrivesArchitecturalFtl()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} chat-ftl — ${report.statement}\n`)
+  foldVerdict('chat-ftl', report)
   process.stdout.write(
     `  freeChatOn=${report.freeChatOn ? 1 : 0} architecturalFtl=${report.architecturalFtl ? 1 : 0} ` +
       `memoReuse=${report.memoReuse ? 1 : 0} ` +
@@ -5687,7 +5687,7 @@ export function runDeepResearchAtNoCostExit(_root = '', _argv: readonly string[]
   void _root
   void _argv
   const report = deepResearchAtNoCost()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} research-free — ${report.statement}\n`)
+  foldVerdict('research-free', report)
   process.stdout.write(
     `  deep=${report.deepResearchOn ? 1 : 0} noCost=${report.noCost ? 1 : 0} ` +
       `freeBits=${report.freeBits} zeroReuse=${report.zeroTokenOnReuse ? 1 : 0} ` +
@@ -5972,7 +5972,7 @@ export function runAllFoldsCompactFuseInCoordinatedChatWavesExit(
   void _root
   void _argv
   const report = allFoldsCompactFuseInCoordinatedChatWaves()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} fold-fuse — ${report.statement}\n`)
+  foldVerdict('fold-fuse', report)
   process.stdout.write(
     `  foldInto=${report.foldsFoldIntoEachOther ? 1 : 0} compact=${report.compactingOn ? 1 : 0} ` +
       `fuse=${report.fusingOn ? 1 : 0} coordChat=${report.coordinatedChatWaves ? 1 : 0} ` +
@@ -6164,7 +6164,7 @@ export function runImagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversed
   void _root
   void _argv
   const report = imagineGravityOfBlackHoleZeroQuantumiseAllToZeroWholeInversedIsHole()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} hole-zero — ${report.statement}\n`)
+  foldVerdict('hole-zero', report)
   process.stdout.write(
     `  gravity0=${report.blackHoleGravity0 ? 1 : 0} quantumise0=${report.quantumiseAllToZero ? 1 : 0} ` +
       `whole→hole=${report.wholeInversedIsHole ? 1 : 0} hole→whole=${report.holeInversedIsWhole ? 1 : 0} ` +

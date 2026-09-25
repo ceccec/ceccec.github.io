@@ -2,7 +2,7 @@
 // Export-import fusion: fused local exports only; vault imports are dependency edges only.
 
 import { phase, slip } from '../../6/4/index.ts'
-import { A432_FOLDED, A432_OCTAVES, BOLTZMANN, DIMENSION_GATES, FOLDED_CENSUS, HALF_TAU, NEWTON_G, PHI, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU, earned } from '../../3/7/index.ts'
+import { A432_FOLDED, A432_OCTAVES, BOLTZMANN, DIMENSION_GATES, FOLDED_CENSUS, HALF_TAU, NEWTON_G, PHI, REDUCED_PLANCK, SPEED_OF_LIGHT, TAU, earned, foldVerdict} from '../../3/7/index.ts'
 import { GATES, ICHING_NUMBERS, abs, applyGate, ceil, cos, digitalRoot, floor, foldFixedPoints, foldPair, gcd, hypot, imul, lcm, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, referralAddress, reflectThroughZero, round, roundTo, sealFacets, sha256MerkleProof, sqrt, toUuid } from '../../0/index.ts'
 import { sealFold, tkIsPrime } from '../../9/1/index.ts'
 // MAX_TAMPERING_COST_PRINCIPLE is hosted in the zero-import leaf src/3/7 (re-exported below) so it initialises
@@ -3988,7 +3988,7 @@ export function runTheoremFractionsExit(root = '', _argv: readonly string[] = []
   void root
   void _argv
   const report = theoremFractions()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} theorem-fractions — ${report.statement}\n`)
+  foldVerdict('theorem-fractions', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4053,7 +4053,7 @@ export function runTheoremSpeedExit(root = '', _argv: readonly string[] = []): n
   void root
   void _argv
   const report = theoremSpeed()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} theorem-speed — ${report.statement}\n`)
+  foldVerdict('theorem-speed', report)
   for (const row of report.sample) process.stdout.write(`  · ${row.address}… band ${row.band} — ${row.name}\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -4142,7 +4142,7 @@ export function runClayProbeExit(root: string, argv: readonly string[]): number 
   void root
   void argv
   const report = clayProbe()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} clay-probe — ${report.statement}\n`)
+  foldVerdict('clay-probe', report)
   for (const row of report.located) process.stdout.write(`  · γ = ${row.zero} (ref ${row.reference}, err ${roundTo(row.error, 6)})\n`)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
@@ -4204,7 +4204,7 @@ export function runAnimationFoldExit(root: string, argv: readonly string[]): num
   void root
   void argv
   const report = animationFoldTheorems()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} anim-fold — ${report.statement}\n`)
+  foldVerdict('anim-fold', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4263,7 +4263,7 @@ export async function runLinkProofExit(root: string, argv: readonly string[]): P
   void root
   void argv
   const report = await linkProof()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} link-proof — ${report.statement}\n`)
+  foldVerdict('link-proof', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4313,7 +4313,7 @@ export function runUnsolvedEngineExit(root = '', _argv: readonly string[] = []):
   void root
   void _argv
   const report = unsolvedEngine()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} unsolved-engine — ${report.statement}\n`)
+  foldVerdict('unsolved-engine', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4372,7 +4372,7 @@ export function runRiemannZeroCountExit(root = '', _argv: readonly string[] = []
   void root
   void _argv
   const report = riemannZeroCount()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} zero-count — ${report.statement}\n`)
+  foldVerdict('zero-count', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4485,7 +4485,7 @@ export function runRiemannZeroScanExit(root = '', _argv: readonly string[] = [])
   void root
   void _argv
   const report = riemannZeroScan()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} zero-scan — ${report.statement}\n`)
+  foldVerdict('zero-scan', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
@@ -4550,7 +4550,7 @@ export function runSuperpositionCompletenessExit(root = '', _argv: readonly stri
   void root
   void _argv
   const report = superpositionCompleteness()
-  process.stdout.write(`${report.computes ? '✓' : '✗'} superposition-complete — ${report.statement}\n`)
+  foldVerdict('superposition-complete', report)
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes ? 0 : 1
 }
