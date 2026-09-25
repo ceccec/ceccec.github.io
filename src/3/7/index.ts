@@ -1359,11 +1359,26 @@ export function extractAlgebraicStatement(states: string): string | undefined {
   extractMemo.set(states, out)
   return out
 }
+/** QUOTED_SPAN + asserted — the crack ledger's own law, applied where it was missing. stripStringsAndComments
+ * already holds that a numeral INSIDE a string is not a claim the code makes; the same is true of a relation
+ * inside a quotation. `the "1.644769 ≈ 1.644934" difference was the fingerprint of (TAU / 2)` asserts nothing
+ * — it REPORTS that someone wrote an approximation. Measured 2026-09-25: of 218 extracted identities exactly
+ * one rested on a quoted relation, and it is the only one this removes. The extracted TEXT is unchanged; only
+ * the admission test reads past the quotation marks. */
+const QUOTED_SPAN = /["“][^"“”]*["”]/gu
+function asserted(clause: string): string {
+  return clause.replace(QUOTED_SPAN, ' ')
+}
+/** assertedOutsideQuotation — the clause with every quoted span removed, so a caller can ask whether a
+ * statement asserts a relation ITSELF or merely reports that someone else wrote one. */
+export function assertedOutsideQuotation(clause: string): string {
+  return asserted(clause)
+}
 function extractAlgebraicStatementRaw(states: string): string | undefined {
   const first = (states.split(/\s+—\s+|(?<=[a-z)0-9][.;])\s+/u)[0] ?? '').trim()
-  if (!STATEMENT_RELATION.test(first)) return undefined
+  if (!STATEMENT_RELATION.test(asserted(first))) return undefined
   const trimmed = first.replace(/[,;]?\s+(for (all|every)|verified|checked|computed|exhausted|witnessed|counted|both directions|holds? (for|on)|tested)\b[\s\S]*$/iu, '').trim()
-  return STATEMENT_RELATION.test(trimmed) && trimmed.length >= 6 && states.includes(trimmed) ? trimmed : undefined
+  return STATEMENT_RELATION.test(asserted(trimmed)) && trimmed.length >= 6 && states.includes(trimmed) ? trimmed : undefined
 }
 export function normalizeTitle(title: string): string {
   return title.toLowerCase().replace(/[^a-z0-9]/g, '')

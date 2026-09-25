@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
 import { computedLimits } from '../../../3/7/index.ts'
-import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, authoredRelationContainsExtraction, authoredStatementCarriesRelation, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
+import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, assertedOutsideQuotation, authoredRelationContainsExtraction, authoredStatementCarriesRelation, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves/index.ts'
@@ -3119,13 +3119,13 @@ export function theCuratedIdentitiesAssertRelations(matrix: MindMatrix = buildMa
   const arrowExtracts = arrowClauses.filter((a) => extractAlgebraicStatement(a.states ?? '') !== undefined)
   const arrowsErased = arrowExtracts.filter((a) => extractAlgebraicStatement(String(a.states ?? '').replace(/→/gu, ' ')) !== undefined)
   const readBack = curated.filter((a) => String(a.states ?? '').includes(String(a.algebraicStatement)))
-  const wordy = inEnglish.filter((a) => /(?:^|\s)[a-z]{3,}(?:\s|$)/u.test(String(a.algebraicStatement)))
+  const quotedOnly = everyStatement.filter((st) => !authoredStatementCarriesRelation(assertedOutsideQuotation(st)))
   const facets = [
     { facet: `${curated.length} curated identities — ${symbolic.length} assert with a relation SYMBOL, ${inEnglish.length} assert with an English word instead`, on: symbolic.length + inEnglish.length === curated.length && inEnglish.length < symbolic.length },
     { facet: `the authored law CONTAINS the extraction law over all ${everyStatement.length} statements — widening the validator can only admit what the narrow reader already accepted, never reject it`, on: authoredRelationContainsExtraction(everyStatement) },
     { facet: `the reader stays narrow on purpose — ${arrowClauses.length} atoms write an arrow in their leading clause, ${arrowClauses.length - arrowExtracts.length} are REFUSED outright, and erasing every arrow from the ${arrowExtracts.length} that pass still extracts all ${arrowsErased.length}: no identity in the corpus rests on an arrow, so widening the reader to chase one could only admit prose`, on: arrowsErased.length === arrowExtracts.length && arrowClauses.length - arrowExtracts.length > arrowExtracts.length },
     { facet: `${readBack.length} curated statements read back VERBATIM from their own states text, and every one of them asserts a relation — a definition restored from the row is read, not authored`, on: readBack.every((a) => authoredStatementCarriesRelation(String(a.algebraicStatement))) && readBack.length < curated.length },
-    { facet: `the English frontier is a MEASURE — all ${wordy.length} of the ${inEnglish.length} symbol-free rows assert with a word ("generates", "lie on", "corrects"), so the gap is a limit of symbol tables and not a claim that the mathematics is missing`, on: wordy.length === inEnglish.length },
+    { facet: `every one of the ${everyStatement.length} identities asserts OUTSIDE quotation marks — a relation inside a quotation REPORTS that someone wrote one rather than making one, which is the crack ledger's own string law reaching the extractor at last; the corpus carried exactly ${quotedOnly.length} such rows once it did`, on: everyStatement.every((st) => authoredStatementCarriesRelation(assertedOutsideQuotation(st))) && everyStatement.length > curated.length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`curated-relations:${entry.facet}:${entry.on}`) }))
   const statement = `curated=${curated.length} symbolic=${symbolic.length} english=${inEnglish.length} verbatim=${readBack.length} arrows-refused=${arrowClauses.length - arrowExtracts.length}`
   return {
