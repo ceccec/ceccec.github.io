@@ -1,7 +1,7 @@
 // ☴ Xùn · Wind — corpus route enumerators (papers · references · diamonds · REST).
 // Rosetta census dissolve: papers + rest sub-barrels merged here (one routes/corpus home).
 import { computedLimits } from '../../../3/7/index.ts'
-import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, assertedOutsideQuotation, authoredRelationContainsExtraction, authoredStatementCarriesRelation, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
+import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, assertedOutsideQuotation, extractDefinitionalIdentity, authoredRelationContainsExtraction, authoredStatementCarriesRelation, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
 import * as __ns_up_up_thunder_waves from '../../../thunder/waves/index.ts'
@@ -1079,6 +1079,10 @@ export type FormulaRow = {
 export type FormulaTagGroup = { tag: string; axis: 'wing' | 'source' | 'relation'; count: number; formulas: FormulaRow[] }
 
 /** The relation symbols a formula may carry — the axis a reader actually filters on. */
+/** The DEFINITION relation — carried by a row whose identity binds its own name to a computed meaning.
+ * It is never auto-applied by a symbol test, because the `=` in a demarcation DEFINES rather than equates:
+ * tagging it `equality` would readmit through the relation axis exactly what the equation reader refuses. */
+const DEFINITION_TAG = 'definition'
 const FORMULA_RELATIONS: readonly { readonly tag: string; readonly test: RegExp }[] = [
   { tag: 'equality', test: /=/u },
   { tag: 'equivalence', test: /⟺|⇔|iff/u },
@@ -1109,13 +1113,18 @@ export function formulaRows(matrix: MindMatrix = buildMatrix()): readonly Formul
     const rows: FormulaRow[] = []
     for (const atom of atoms) {
       const curated = typeof atom.algebraicStatement === 'string' && atom.algebraicStatement.length > 0
-      const formula = curated ? String(atom.algebraicStatement) : (extractAlgebraicStatement(atom.states ?? '') ?? '')
+      const equation = curated ? String(atom.algebraicStatement) : (extractAlgebraicStatement(atom.states ?? '') ?? '')
+      // A row with no EQUATION may still carry a DEFINITION — its own text binding the theorem's name to a
+      // computed meaning. That binding is an identity in the language domain, so it enters the collection
+      // under its own relation and never under equality: the `=` there defines, it does not equate.
+      const defined = equation.length === 0 ? extractDefinitionalIdentity(atom.states ?? '') : undefined
+      const formula = equation.length > 0 ? equation : (defined?.binding ?? '')
       if (formula.length === 0) continue
       const home = String(atom.home ?? 'unhomed')
       const base = theoremSlug(formula.slice(0, 64)) || theoremSlug(atom.theorem)
       const n = (seen.get(base) ?? 0) + 1
       seen.set(base, n)
-      const relations = FORMULA_RELATIONS.filter((r) => r.test.test(formula)).map((r) => r.tag)
+      const relations = defined ? [DEFINITION_TAG] : FORMULA_RELATIONS.filter((r) => r.test.test(formula)).map((r) => r.tag)
       const source = curated ? 'curated' as const : 'extracted' as const
       rows.push({
         slug: n > 1 ? `${base}-${n}` : base,
@@ -1138,7 +1147,7 @@ export function formulaTagIndex(matrix: MindMatrix = buildMatrix()): FormulaTagG
   const rows = formulaRows(matrix)
   const relationTags = new Set(FORMULA_RELATIONS.map((r) => r.tag))
   const axisOf = (tag: string): FormulaTagGroup['axis'] =>
-    tag === 'curated' || tag === 'extracted' ? 'source' : relationTags.has(tag) ? 'relation' : 'wing'
+    tag === 'curated' || tag === 'extracted' ? 'source' : relationTags.has(tag) || tag === DEFINITION_TAG ? 'relation' : 'wing'
   const groups = new Map<string, FormulaTagGroup>()
   for (const row of rows) {
     for (const tag of row.tags) {
@@ -1241,11 +1250,13 @@ export function theFormulaCensusPerWing(matrix: MindMatrix = buildMatrix()) {
   const classify = (a: typeof atoms[number]) => {
     const curated = typeof a.algebraicStatement === 'string' && a.algebraicStatement.length > 0
     const extracted = curated ? false : Boolean(extractAlgebraicStatement(a.states ?? ''))
-    return { curated, extracted, none: !curated && !extracted }
+    const defined = !curated && !extracted && Boolean(extractDefinitionalIdentity(a.states ?? ''))
+    return { curated, extracted, defined, none: !curated && !extracted && !defined }
   }
   const classified = atoms.map((a) => ({ home: String(a.home ?? 'unhomed'), ...classify(a) }))
   const curated = classified.filter((c) => c.curated).length
   const extracted = classified.filter((c) => c.extracted).length
+  const defined = classified.filter((c) => c.defined).length
   const none = classified.filter((c) => c.none).length
   const homes = [...new Set(classified.map((c) => c.home))].map((home) => {
     const rows = classified.filter((c) => c.home === home)
@@ -1256,7 +1267,7 @@ export function theFormulaCensusPerWing(matrix: MindMatrix = buildMatrix()) {
   const best = [...homes].filter((h) => h.total >= 9).sort((a, b) => b.coverage - a.coverage)[0]
   const spread = best && worst ? best.coverage - (worst.coverage) : 0
   const facets = [
-    { facet: `${atoms.length} theorem atoms — ${curated} carry a curated identity, ${extracted} extract one from their own states text, ${none} carry none and fall back to the title`, on: curated + extracted + none === atoms.length && none > 0 },
+    { facet: `${atoms.length} theorem atoms — ${curated} carry a curated equation, ${extracted} extract one from their own states text, ${defined} bind their name to a computed meaning instead, ${none} carry neither and fall back to the title`, on: curated + extracted + defined + none === atoms.length && defined < none },
     { facet: `the gap is not spread evenly — worst wing ${worst?.home} at ${worst?.missing}/${worst?.total} missing, best wing ${best?.home} at ${best ? best.total - best.missing : 0}/${best?.total} covered`, on: spread > 1 / 2 },
     { facet: `every wing is accounted for — ${homes.length} homes summing to ${homes.reduce((s, h) => s + h.total, 0)} atoms, none dropped`, on: homes.reduce((s, h) => s + h.total, 0) === atoms.length },
     { facet: `an extracted identity is a VERBATIM substring of the row's own states — never generated, which is why extraction can come up empty rather than invent`, on: classified.filter((c) => c.extracted).length === extracted && atoms.filter((a) => extractAlgebraicStatement(a.states ?? '')).every((a) => (a.states ?? '').includes(extractAlgebraicStatement(a.states ?? '') ?? '')) },
@@ -1267,6 +1278,7 @@ export function theFormulaCensusPerWing(matrix: MindMatrix = buildMatrix()) {
     total: atoms.length,
     curated,
     extracted,
+    defined,
     missing: none,
     homes,
     facets,

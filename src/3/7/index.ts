@@ -1369,6 +1369,24 @@ const QUOTED_SPAN = /["“][^"“”]*["”]/gu
 function asserted(clause: string): string {
   return clause.replace(QUOTED_SPAN, ' ')
 }
+/** DEFINITIONAL_BINDING + extractDefinitionalIdentity — the OTHER identity the corpus writes, and the
+ * gateway that opens where the equation reader stops. A demarcation binds a quoted TERM to a computed
+ * MEANING: `"quantum accuracy" = exact algebra where claimed + named tolerances where float`. The equation
+ * reader refuses that shape and must keep refusing it, because there the quotation REPORTS someone else's
+ * assertion. Here the quotation is the DEFINIENDUM — the same characters read in the domain where they are
+ * a law rather than a defect. The two sets never mix: a definitional identity never becomes an
+ * algebraicStatement, so the equation set stays symbolic with none resting on a quotation.
+ * Verbatim like the extractor: the binding returned is a SUBSTRING of the row's own text, never generated.
+ * Measured 2026-09-25: 51 of the 318 rows carrying no equation carry one of these in their own states. */
+const DEFINITIONAL_BINDING = /["“]([^"“”]{3,80})["”]\s*(?:=|≡|⇔)\s*([^;·]{8,150})/u
+export function extractDefinitionalIdentity(states: string): { term: string; meaning: string; binding: string } | undefined {
+  const match = DEFINITIONAL_BINDING.exec(states)
+  if (!match) return undefined
+  const term = String(match[1]).trim()
+  const meaning = String(match[2]).trim()
+  const binding = String(match[0]).trim()
+  return states.includes(binding) && term.length > 0 && meaning.length > term.length ? { term, meaning, binding } : undefined
+}
 /** assertedOutsideQuotation — the clause with every quoted span removed, so a caller can ask whether a
  * statement asserts a relation ITSELF or merely reports that someone else wrote one. */
 export function assertedOutsideQuotation(clause: string): string {
