@@ -240,12 +240,35 @@ jobs:
           # here, at the last step, on a release that a previous attempt had already made. A publish step
           # that cannot be repeated is a publish step that cannot be recovered.
           #
-          # Direction: create when absent, upload assets to the existing release when present. --clobber so a
-          # regenerated MANIFEST or CHECKSUMS replaces the stale copy rather than erroring beside it.
+          # Direction: create when absent, and when present VERIFY rather than rewrite.
+          #
+          # --clobber was the whole of the re-run path and it cannot work: measured on the v1.5.0 re-run,
+          # 2026-09-13T20:45, `gh release upload ... --clobber` returned
+          #     HTTP 422: Cannot upload assets to an immutable release.
+          # A published GitHub release is immutable, so "replace the stale copy" names an operation the API
+          # refuses by design. The first run had already created the release and the deposit had already
+          # been made (record 22737368, 20:40:54Z) — so the release was COMPLETE and the workflow went red
+          # anyway, on a step trying to overwrite what was already right. That red run is what makes it look
+          # as though cutting a tag breaks the build.
+          #
+          # An immutable release cannot be rewritten, so the only honest question is whether it is already
+          # correct: compare the assets it carries against the ones expected. Complete → nothing to do, and
+          # the re-run succeeds because the state it wanted is the state that exists. Incomplete → say so and
+          # fail, because an immutable release missing an asset cannot be repaired by this workflow and
+          # pretending otherwise is how the 422 got written in the first place.
           ASSETS="CHECKSUMS.sha256 CITATION.cff MANIFEST.md RELEASE-AUDIT-uuidna.md HONESTY.md"
           if gh release view "${{ needs.prepare.outputs.version }}" >/dev/null 2>&1; then
-            echo "release ${{ needs.prepare.outputs.version }} exists — uploading assets to it rather than failing"
-            gh release upload "${{ needs.prepare.outputs.version }}" $ASSETS --clobber
+            HAVE="$(gh release view "${{ needs.prepare.outputs.version }}" --json assets -q '[.assets[].name] | join(" ")')"
+            MISSING=""
+            for a in $ASSETS; do
+              case " $HAVE " in *" $a "*) ;; *) MISSING="$MISSING $a" ;; esac
+            done
+            if [ -z "$MISSING" ]; then
+              echo "release ${{ needs.prepare.outputs.version }} already carries every asset ($HAVE) — nothing to upload, re-run is a no-op"
+            else
+              echo "release ${{ needs.prepare.outputs.version }} is missing:$MISSING — attempting upload (fails with HTTP 422 if the release is immutable, which is the truth and not a retry)"
+              gh release upload "${{ needs.prepare.outputs.version }}" $MISSING
+            fi
           else
             gh release create "${{ needs.prepare.outputs.version }}" \
               --title "Double Torus ${{ needs.prepare.outputs.version }}" \

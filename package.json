@@ -918,6 +918,7 @@
     "verify:titles": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/titles.ts assertTitleGaps",
     "verify:decisions": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/decisions.ts assertDecisionsReasoned",
     "verify:axioms": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/axioms.ts assertAxiomIndex",
+    "release:cut": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/release-cut.ts runReleaseCutExit",
     "verify:release-live": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/release-live.ts assertReleaseLive",
     "verify:citation": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/citation.ts assertCitationIsCurrent",
     "verify:three": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/three.ts assertThreeCoverage",
