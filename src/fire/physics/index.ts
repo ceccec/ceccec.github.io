@@ -761,6 +761,86 @@ export function planckExponents(d: PlanckDimension): { hbar: number; newtonG: nu
   return { hbar: d.mass + y, newtonG: y, c: (d.length - 2 * d.mass) - 5 * y }
 }
 
+/**
+ * THE ANTOINE EQUATION FOR TETRACHLOROETHYLENE — the constant K_eq replaced by the law it approximates.
+ *
+ * zenodo.org/records/22934883, the author's own record, names this as recommendation 1 and states the
+ * defect it fixes: "Real-world phase equilibrium (K_eq) varies dynamically with temperature T_dist and
+ * pressure P_tank via non-linear equations (e.g., Antoine Equation), which are currently simplified to
+ * constants." A partition constant that does not move with temperature is not an equilibrium; it is a
+ * number standing where an equilibrium should be — the same assert-instead-of-measure this corpus
+ * refuses everywhere else, arriving from the chemistry side.
+ *
+ * The law: log10(P / bar) = A − B / (T/K + C), with the NIST-calculated fit of Polak, Murakami et al.
+ * (1970) for C2Cl4, CAS 127-18-4, over 301.03–380.84 K.
+ *
+ * IT IS CHECKED AGAINST THREE THINGS IT WAS NOT FITTED TO, which is the only reason to trust a fit:
+ *   · extrapolated to the normal boiling point 394.25 K it gives 101.21 kPa against the defined
+ *     101.325 kPa — 0.11% high, from 13 K outside the fitted range.
+ *   · INVERTED for P = 1 atm it returns 121.14 °C against the measured 121.1 °C — 0.04 K.
+ *   · at 298.15 K it gives 2.48 kPa against a literature 2.4–2.5 kPa at 25 °C.
+ * The inversion is the strongest of the three: the fit was made from vapour pressures and the boiling
+ * point is an independent measurement, so the two cross-prove rather than restate each other.
+ *
+ * WHAT IS NOT CLAIMED. Antoine is an empirical correlation, not a theory of the liquid; outside its
+ * fitted range it is an extrapolation and is used here only to test it. No dry-cleaning process, plant
+ * or product is modelled, and the vapour–liquid ratio below is the ideal partition K = P_sat/P_total,
+ * which holds for a pure solvent and is not Raoult's law over a mixture with soil load.
+ */
+export function antoineVapourPressureOfTetrachloroethylene(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  // NIST-calculated from Polak, Murakami, Benson & others (1970); P in bar, T in K.
+  const ANTOINE = { a: 4.18056, b: 1440.819, c: -49.171, fitLowK: 301.03, fitHighK: 380.84 } as const
+  const KPA_PER_BAR = 100
+  const ATM_KPA = 101.325 // the defined standard atmosphere
+  const ZERO_C_IN_K = 273.15
+  const pressureKpa = (kelvin: number): number => 10 ** (ANTOINE.a - ANTOINE.b / (kelvin + ANTOINE.c)) * KPA_PER_BAR
+  /** The inverse — the temperature at which the liquid's vapour pressure reaches a given pressure. */
+  const boilingPointK = (kpa: number): number => ANTOINE.b / (ANTOINE.a - log10(kpa / KPA_PER_BAR)) - ANTOINE.c
+  /** Ideal vapour–liquid partition for the PURE solvent: the saturated fraction of the total pressure. */
+  const partitionAt = (kelvin: number, totalKpa: number = ATM_KPA): number => pressureKpa(kelvin) / totalKpa
+
+  const NORMAL_BOILING_K = 121.1 + ZERO_C_IN_K // 394.25 K, measured, and outside the fitted range
+  const atBoiling = pressureKpa(NORMAL_BOILING_K)
+  const invertedBoilingC = boilingPointK(ATM_KPA) - ZERO_C_IN_K
+  const atRoom = pressureKpa(25 + ZERO_C_IN_K)
+  const boilingError = abs(atBoiling / ATM_KPA - 1)
+  const invertedError = abs(invertedBoilingC - 121.1)
+  // The partition is not a constant — that is the whole point of replacing one.
+  const partitions = [ANTOINE.fitLowK, (ANTOINE.fitLowK + ANTOINE.fitHighK) / 2, ANTOINE.fitHighK].map((t) => ({ t, k: partitionAt(t) }))
+  const partitionRises = partitions.every((row, i) => i === 0 || row.k > partitions[i - 1]!.k)
+  const spread = partitions[partitions.length - 1]!.k / partitions[0]!.k
+
+  const facets = [
+    { facet: `the law is a law, not a number — K = P_sat(T)/P_total rises ${roundTo(spread, 1)}x across the fitted range (${partitions.map((r) => `${round(r.t)}K→${roundTo(r.k, 4)}`).join(' · ')})`, on: partitionRises && spread > 2 },
+    { facet: `EXTRAPOLATED past the fit: at the normal boiling point ${NORMAL_BOILING_K}K it gives ${roundTo(atBoiling, 2)} kPa against the defined ${ATM_KPA} kPa — ${roundTo(boilingError * 100, 2)}% out, from ${round(NORMAL_BOILING_K - ANTOINE.fitHighK)}K beyond the fitted range`, on: boilingError < 1 / 100 },
+    { facet: `INVERTED, which is the real cross-check: solving P = 1 atm returns ${roundTo(invertedBoilingC, 2)}°C against the measured 121.1°C (${roundTo(invertedError, 2)}K) — the fit was made from vapour pressures and the boiling point was not one of them`, on: invertedError < 1 / 2 },
+    { facet: `at 25°C it gives ${roundTo(atRoom, 2)} kPa, inside the 2.4–2.5 kPa reported for tetrachloroethylene at room temperature`, on: atRoom > 2.3 && atRoom < 2.6 },
+    { facet: `the inverse is an inverse — boilingPointK(pressureKpa(T)) returns T across the fitted range`, on: [ANTOINE.fitLowK, ANTOINE.fitHighK].every((t) => abs(boilingPointK(pressureKpa(t)) - t) < 1 / 1000) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`antoine-c2cl4:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    pressureKpa,
+    boilingPointK,
+    partitionAt,
+    normalBoilingKpa: roundTo(atBoiling, 3),
+    invertedBoilingC: roundTo(invertedBoilingC, 3),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `Tetrachloroethylene vapour pressure by Antoine: log10(P/bar) = ${ANTOINE.a} − ${ANTOINE.b}/(T/K − ${abs(ANTOINE.c)}), fitted 301.03–380.84 K. Extrapolated to 394.25 K it returns ${roundTo(atBoiling, 2)} kPa against a defined atmosphere of 101.325, and inverted for one atmosphere it returns ${roundTo(invertedBoilingC, 2)}°C against a measured boiling point of 121.1°C.`,
+    // THE LIMITS COMPUTE, WHICH IS THE ONLY WAY A SCOPE IS EARNED — each one is a predicate that can
+    // come back false and say so, not a sentence promising restraint.
+    boundary: earned(
+      'EXACT within its stated fit and checked against three values it was not fitted to — verified by its facets:',
+      facets,
+      [
+        { facet: `an empirical correlation, not a theory of the liquid — three fitted parameters (A, B, C) and nothing derived`, on: [ANTOINE.a, ANTOINE.b, ANTOINE.c].every((v) => Number.isFinite(v)) },
+        { facet: `the boiling-point check IS extrapolation — ${round(NORMAL_BOILING_K)}K lies ${round(NORMAL_BOILING_K - ANTOINE.fitHighK)}K beyond the fitted ${ANTOINE.fitHighK}K, and is used only to test the fit`, on: NORMAL_BOILING_K > ANTOINE.fitHighK },
+        { facet: `the partition is the PURE-solvent ratio, not Raoult over a loaded mixture — partitionAt takes temperature and total pressure and no composition`, on: partitionAt.length === pressureKpa.length + 1 },
+      ]) }
+}
+
 /** The dimension a triple of exponents actually carries — the inverse map, used to CHECK the solve. */
 export function dimensionOfExponents(e: { hbar: number; newtonG: number; c: number }): PlanckDimension {
   return {

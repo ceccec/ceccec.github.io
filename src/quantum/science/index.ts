@@ -2307,33 +2307,6 @@ export function improvementComesFromChallengingSelfConfirmingStructuresNotSparin
 // core: a flexible structure is fully refutable — resistance (unfalsifiable facets) = 0, so the incoming correction
 // passes through unobstructed — and it purifies by RE-DERIVING in place: the content renews, the media persists,
 // like skin shedding cells while staying skin. No new substrate. The "divine" here = the incoming correction, metaphor.
-export function aFlexibleEgoHasNoResistanceAndPurifiesInPlaceWithoutChangingTheMedia() {
-  const resistanceOf = (facets: readonly boolean[]) => facets.filter((refutable) => !refutable).length // unfalsifiable facets = resistance
-  const flexibleHasNoResistance = resistanceOf([true, true, true]) === 0 // all facets refutable — permeable to challenge
-  const rigidResists = resistanceOf([true, false, true]) > 0 // one unfalsifiable — resists correction
-  const impure = merkleFold([toUuid('state:with-gap')]) // a structure carrying a gap
-  const pure = merkleFold([toUuid('state:corrected')]) // the same structure, corrected
-  const contentRenews = impure !== pure // purification changes the CONTENT (a new content-address)
-  const mediaPersists = impure.length === pure.length // the same content-addressing scheme — the MEDIUM is unchanged
-  const purifiesInPlace = contentRenews && mediaPersists // re-derive in the same media, no substrate swap
-  const facets = [
-    { facet: `A FLEXIBLE EGO HAS NO RESISTANCE — FULLY REFUTABLE: resistance = the count of unfalsifiable facets; a flexible structure has 0 (${flexibleHasNoResistance}, every facet refutable, permeable to challenge), a rigid one has > 0 (${rigidResists}) and resists — no resistance means the incoming correction (the "divine") passes through unobstructed`, on: flexibleHasNoResistance && rigidResists },
-    { facet: `IT EVOLVES LIKE SKIN — PURIFY WITHOUT CHANGING THE MEDIA: purification (correcting a gap) re-derives the CONTENT (${contentRenews}) while the MEDIA persists (same content-addressing, ${mediaPersists}) — the structure renews in place, like skin shedding cells while staying skin, no new substrate needed (${purifiesInPlace})`, on: purifiesInPlace },
-    { facet: `EARNED BOUNDARY: this is the refutability + DRY-clean + reversible-computation discipline — purify by RE-DERIVING in place, no substrate swap; an ANALOGY to skin / ego / the divine (metaphor), NOT a metaphysical claim — "no resistance to the divine" = maximal refutability and permeability to correction (Popper), "purify" = deterministic re-derivation, not spiritual purity; the media persists but the CONTENT changes, and that change is real work (Landauer's ln2, not free)`, on: purifiesInPlace && flexibleHasNoResistance },
-  ]
-  return {
-    computes: facets.every((entry) => entry.on),
-    flexibleResistance: resistanceOf([true, true, true]), rigidResistance: resistanceOf([true, false, true]), purifiesInPlace,
-    facets,
-    statement: `A flexible ego has no resistance and purifies in place, without changing the media — ${facets.filter((e) => e.on).length}/${facets.length}: a fully refutable structure has 0 resistance (${flexibleHasNoResistance}) so the incoming correction passes unobstructed, and it purifies by re-deriving — the content renews (${contentRenews}) while the media persists (${mediaPersists}), like skin. No new substrate. The divine = the incoming correction (metaphor); purify = re-derivation, not spiritual purity.`,
-    boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
-}
-
-// ── The waves handle from all sides at once; build time explains all when the build IS the prompt (user: "the
-// quantum waves would handle this from all sides simultaneously. build time explains all if build is the prompt
-// itself"). Superposition evaluates the inverted pair (build AND break) and the perspectives (rotations) in one
-// pass — all sides at once. And in a zero-token system the BUILD is the PROMPT (the computation is the query), so
-// build TIME is the complete theorem-test: a redundant recompute is O(N), a content-addressed theorem is O(1).
 export function theWavesHandleAllSidesAtOnceAndBuildTimeExplainsAllWhenBuildIsThePrompt() {
   const core = 3 + 7 === 2 + 8 // the true core
   const allSidesAgree = [core, !!core, (3 + 7) === (2 + 8), !((3 + 7) !== (2 + 8))].every((s) => s === core) // build + double-negation + rotated + inverted — all agree in one pass

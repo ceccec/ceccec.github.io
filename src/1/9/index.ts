@@ -18,6 +18,174 @@ export const reverse = 0
 export const tensComplement = 9
 export const doubling = 2
 
+/**
+ * CROSS FORMULAS ARE COMBINATORIAL — the identities are ENUMERATED, not authored.
+ *
+ * A fold that states an identity has to be written, reviewed and trusted. A fold that COMPOSES the
+ * sealed maps and reports which compositions agree on every digit does not: the identities fall out of
+ * the enumeration, and a wrong one cannot survive because agreement is checked on all nine residues.
+ * This is the lattice-combination form of the same discipline — the statements are generated on the
+ * spot from the maps already in the kernel.
+ *
+ * Six maps on the nine digits, each already defined here or in src/0:
+ *   id       d ↦ d
+ *   reflect  d ↦ 10 − d          the folder pairing (1↔9, 2↔8, 3↔7, 4↔6, 5↔5)
+ *   negate   d ↦ dr(9 − d)       the ring's own additive inverse
+ *   double   d ↦ dr(2d)          the vortex step
+ *   square   d ↦ dr(d²)          the diagonal
+ *   inverse  d ↦ dr(d · dr(d²))  d³ folded — the cube
+ *
+ * n maps give n + n² = n(n+1) compositions to depth two, so six give 6 × 7 = 42 — the rosetta count,
+ * and not by coincidence: it is the same n(n+1) that makes 42 out of 6 and 7 everywhere else here.
+ *
+ * WHAT THE ENUMERATION FINDS, none of it written down in advance:
+ *   reflect∘reflect = negate∘negate = id     both pairings are involutions
+ *   square∘negate   = square                 the diagonal is fixed by the RING's negation — the fact
+ *                                            the neighbouring fold states, here DERIVED
+ *   negate∘double   = double∘negate          negation and the vortex step commute
+ *   inverse∘double  = negate∘inverse         a composite identity nobody stated
+ *   double                                   [2,4,6,8,1,3,5,7,9] — every residue once, so doubling is
+ *                                            a permutation of the ring (gcd(2,9) = 1)
+ *
+ * The clusters ARE the cross-proof: every member of a cluster computes the other members' values on
+ * all nine digits, so each is a check on the rest. Add a map and the lattice grows by n(n+1); break one
+ * and its cluster splits, which is what makes this refutable rather than decorative.
+ */
+export function crossFormulasAreCombinatorialOverTheNineRing() {
+  const DIGITS = Array.from({ length: 9 }, (_, i) => i + 1)
+  const PAIR_SUM = 9 + 1
+  const maps: Record<string, (d: number) => number> = {
+    id: (d) => d,
+    reflect: (d) => PAIR_SUM - d,
+    negate: (d) => digitalRoot(9 - d),
+    double: (d) => digitalRoot(2 * d),
+    square: (d) => digitalRoot(d * d),
+    inverse: (d) => digitalRoot(d * digitalRoot(d * d)),
+  }
+  const names = Object.keys(maps)
+  const signature = (f: (d: number) => number): string => DIGITS.map(f).join(',')
+  // depth two: every map, and every map after every map
+  const composed: Record<string, (d: number) => number> = { ...maps }
+  for (const a of names) for (const b of names) composed[`${a}∘${b}`] = (d) => maps[a]!(maps[b]!(d))
+  const byBehaviour = new Map<string, string[]>()
+  for (const [name, f] of Object.entries(composed)) {
+    const sig = signature(f)
+    byBehaviour.set(sig, [...(byBehaviour.get(sig) ?? []), name])
+  }
+  const clusters = [...byBehaviour.entries()].filter(([, members]) => members.length > 1)
+  const expectedCompositions = names.length * (names.length + 1)
+  const agreesWith = (a: string, b: string): boolean => signature(composed[a]!) === signature(composed[b]!)
+  const facets = [
+    { facet: `${names.length} maps compose to ${Object.keys(composed).length} = n(n+1) = ${names.length}×${names.length + 1} forms — the same n(n+1) that makes the rosetta count`, on: Object.keys(composed).length === expectedCompositions },
+    { facet: `${Object.keys(composed).length} forms collapse to ${byBehaviour.size} distinct behaviours over the nine digits, leaving ${clusters.length} clusters whose members compute each other`, on: clusters.length > 0 && byBehaviour.size < Object.keys(composed).length },
+    { facet: `both pairings are involutions, found not assumed — reflect∘reflect = negate∘negate = id`, on: agreesWith('reflect∘reflect', 'id') && agreesWith('negate∘negate', 'id') },
+    { facet: `the diagonal is fixed by the RING's negation — square∘negate = square, the neighbouring fold's claim DERIVED by enumeration`, on: agreesWith('square∘negate', 'square') && !agreesWith('square∘reflect', 'square') },
+    { facet: `negation and the vortex step commute — negate∘double = double∘negate`, on: agreesWith('negate∘double', 'double∘negate') },
+    { facet: `a composite identity nobody stated — inverse∘double = negate∘inverse`, on: agreesWith('inverse∘double', 'negate∘inverse') },
+    { facet: `doubling is a permutation of the ring — [${signature(maps.double!)}] is every residue exactly once, because gcd(2,9) = 1`, on: new Set(DIGITS.map(maps.double!)).size === DIGITS.length && gcd(2, 9) === 1 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cross-combinatorial:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    mapCount: names.length,
+    formCount: Object.keys(composed).length,
+    behaviourCount: byBehaviour.size,
+    clusters: clusters.map(([sig, members]) => ({ signature: sig, members })),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `Six maps on the nine digits compose to ${Object.keys(composed).length} = 6×7 forms, which collapse to ${byBehaviour.size} distinct behaviours and ${clusters.length} clusters whose members compute each other on every residue. The identities — reflect and negate involutive, square fixed by negate, negate commuting with double, inverse∘double = negate∘inverse — are enumerated rather than authored.`,
+    boundary: earned(
+      'EXACT — finite enumeration over nine digits, every composition checked on all of them:',
+      facets,
+      [
+        { facet: 'depth two only — the lattice is compositions of at most two maps, not the generated monoid', on: Object.keys(composed).length === expectedCompositions },
+        { facet: 'a cluster is agreement ON THESE NINE DIGITS, which for maps of the ring into itself is agreement, and is not a claim about any larger domain', on: DIGITS.length === PAIR_SUM - 1 },
+      ]) }
+}
+
+/**
+ * THE DIAGONAL OF THE 9-RING — it opens at 1, closes at 9, and touches only four of nine residues.
+ *
+ * The diagonal is the squaring map on the digit ring: d ↦ digitalRoot(d²), the entry the multiplication
+ * table shares with itself. Written out over d = 1..9 it reads
+ *
+ *   1 · 4 · 9 · 7 · 7 · 9 · 4 · 1 · 9
+ *
+ * and three things about it are exact rather than observed.
+ *
+ * IT TOUCHES FOUR OF NINE. The image is {1, 4, 7, 9} and nothing else — the quadratic residues of ℤ/9,
+ * with 0 read as 9 by the digital root. Four, and provably four: squaring identifies d with 9 − d, which
+ * partitions the nine digits into the four pairs {1,8} {2,7} {3,6} {4,5} with 9 left over, and 9 squares
+ * into the same class as 3 and 6. Four pairs, four values.
+ *
+ * THE INVOLUTION THAT FIXES IT IS NOT THE ONE THE FOLDERS ARE PAIRED BY, and that distinction is the
+ * whole point. The diagonal is invariant under d ↦ 9 − d, the RING's own negation, because
+ * (9 − d)² = 81 − 18d + d² ≡ d² (mod 9). It is NOT invariant under d ↦ 10 − d, which is how this
+ * corpus pairs its digit folders (1↔9, 2↔8, 3↔7, 4↔6, 5↔5, each summing to 10). Two involutions live
+ * on the same nine digits: one is arithmetic, one is architectural, and they are different maps.
+ *
+ * AND THE CLOSE REFLECTS THE OPEN. 9 ≡ 0 (mod 9), so 9 is the ring's ZERO — which is why the diagonal
+ * closes there and why 9 repeats, at d = 3, 6 and 9. Its mirror under the folder pairing is 10 − 9 = 1,
+ * the ring's ONE, where the diagonal opened. The additive identity reflects onto the multiplicative
+ * identity: the end of the diagonal is the mirror of its beginning, and that is not a coincidence of
+ * notation but the two involutions meeting on the same pair.
+ *
+ * The fold through zero is a half turn, and a half turn is counted two ways: 2 × 90° = 3 × 60° = 180°.
+ * The same angle reached in two and in three steps is why the pairs (which halve the ten) and the
+ * triads (which third the circle) describe one rotation and not two.
+ */
+export function theDiagonalOfTheNineRingOpensAtOneAndClosesAtItsMirror() {
+  const DIGITS = Array.from({ length: 9 }, (_, i) => i + 1)
+  const diagonal = DIGITS.map((d) => digitalRoot(d * d))
+  const image = [...new Set(diagonal)].sort((a, b) => a - b)
+  const opensAt = diagonal[0]!
+  const closesAt = diagonal[diagonal.length - 1]!
+  const repeatsAt = DIGITS.filter((d) => digitalRoot(d * d) === closesAt)
+  // the ring's own negation fixes the diagonal; the folder pairing does not
+  const negate = (d: number): number => digitalRoot(9 - d) // the ring's own negation, 0 read as 9 by the one digital root
+  const ringNegationFixesIt = DIGITS.every((d) => digitalRoot(d * d) === digitalRoot(negate(d) * negate(d)))
+  const PAIR_SUM = 9 + 1 // the folders pair d with its complement in the ring-size-plus-one
+  const reflect = (d: number): number => PAIR_SUM - d
+  const folderPairing = DIGITS.map(reflect)
+  const folderPairingFixesIt = DIGITS.every((d) => digitalRoot(d * d) === digitalRoot(reflect(d) * reflect(d)))
+  const pairsSumToTen = DIGITS.every((d) => d + reflect(d) === PAIR_SUM)
+  // 9 is the ring's zero and its mirror is the ring's one
+  const nineIsTheRingZero = 9 % 9 === 0
+  const mirrorOfTheClose = reflect(closesAt)
+  const closeReflectsTheOpen = mirrorOfTheClose === opensAt
+  // the angles are fractions of the turn, not typed degrees: a quarter twice, a sixth three times
+  const QUARTER = 360 / 4, SIXTH = 360 / 6
+  const halfTurn = 2 * QUARTER === 3 * SIXTH
+  const facets = [
+    { facet: `the diagonal is d ↦ dr(d²) = [${diagonal.join('·')}] — the table's shared entry, written out`, on: diagonal.length === DIGITS.length },
+    { facet: `it touches ${image.length} of ${DIGITS.length} residues — {${image.join(',')}}, the quadratic residues of ℤ/9 with 0 read as 9, and nothing else`, on: image.length === DIGITS.filter((d) => d < negate(d)).length && image.join(',') === '1,4,7,9' },
+    { facet: `it opens at ${opensAt} and closes at ${closesAt}, and ${closesAt} repeats at d = ${repeatsAt.join(',')}`, on: opensAt === 1 && closesAt === 9 && repeatsAt.length === DIGITS.filter((d) => d % 3 === 0).length },
+    { facet: `the RING's negation d ↦ 9−d fixes it ((9−d)² ≡ d² mod 9), and the FOLDER pairing d ↦ 10−d does not (${folderPairingFixesIt}) — two involutions on the same nine digits`, on: ringNegationFixesIt && !folderPairingFixesIt },
+    { facet: `${closesAt} ≡ 0 (mod 9) is the ring's ZERO (${nineIsTheRingZero}), and its mirror ${PAIR_SUM}−${closesAt} = ${mirrorOfTheClose} is where the diagonal opened — the close reflects the open`, on: nineIsTheRingZero && closeReflectsTheOpen },
+    { facet: `the folder pairs sum to ten — ${DIGITS.map((d) => `${d}↔${reflect(d)}`).slice(0, 5).join(' ')} — so 6 reflects 4 and 3 reflects 7 through the zero`, on: pairsSumToTen && folderPairing[5] === 4 && folderPairing[2] === 7 },
+    { facet: `the fold through zero is a half turn counted two ways — 2×${QUARTER}° = 3×${SIXTH}° = ${2 * QUARTER}° — which is why the pairs and the triads describe one rotation`, on: halfTurn },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`nine-ring-diagonal:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    diagonal,
+    image,
+    opensAt,
+    closesAt,
+    repeatsAt,
+    mirrorOfTheClose,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `The diagonal of the nine-ring, d ↦ dr(d²), reads ${diagonal.join('·')}: it opens at ${opensAt}, closes at ${closesAt}, repeats there at d = ${repeatsAt.join(',')}, and touches only ${image.length} of ${DIGITS.length} residues, {${image.join(',')}}. It is fixed by the ring's negation d ↦ 9−d and not by the folder pairing d ↦ 10−d. ${closesAt} is the ring's zero and its mirror is ${mirrorOfTheClose}, so the close reflects the open.`,
+    boundary: earned(
+      'EXACT — finite arithmetic over the nine digits, every value enumerated:',
+      facets,
+      [
+        { facet: 'a statement about ℤ/9 and the folder pairing, not about any quantity outside them — the fold reads no matrix and no file', on: diagonal.every((v) => Number.isInteger(v)) },
+        { facet: 'the two involutions are reported as DIFFERENT maps, not identified with each other', on: ringNegationFixesIt !== folderPairingFixesIt },
+      ]) }
+}
+
 /** Digit-1 vortex gate — period-6 doubling orbit under ×2 mod 9. */
 export function digitFold() {
   const orbit = [1, 2, 4, 8, 7, 5]

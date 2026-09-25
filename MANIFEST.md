@@ -10,7 +10,7 @@
 | Executed tests passing | 14 / 14 |
 | Benchmarks executed | 6 |
 | Benchmarks with no implementation | 5 — VQE, QAOA, HHL, Phase Estimation, Shor |
-| Export-reference coverage | 2.1% (37 of 1756 symbols, 26 modules) |
+| Export-reference coverage | 2.1% (37 of 1755 symbols, 26 modules) |
 | Checkable requirements met | 6 / 8 |
 | Requirements not determinable from source | 19 |
 | Readiness status | BLOCKED |

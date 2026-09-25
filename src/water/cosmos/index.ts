@@ -2172,7 +2172,11 @@ export function stringTheoryMillenniumTheoremGapsInventory(matrix: MindMatrix = 
       { id: 'ym-mass-gap', problem: 'Yang–Mills', gap: 'no sealed rigorous 4D quantum Yang–Mills + mass gap', mapsTo: 'Pauli/su(2) + T-duality/Virasoro MODELED probes' },
       { id: 'ns-3d-smooth', problem: 'Navier–Stokes', gap: 'no sealed 3D Navier–Stokes global regularity', mapsTo: 'double-torus surface MODEL only' },
       { id: 'p-vs-np-separation', problem: 'P vs NP', gap: 'no sealed P≠NP (or P=NP) proof', mapsTo: 'NP-verify + memo infinity-on-reuse amortized only' },
-      { id: 'cy-hodge-numbers', problem: 'Hodge / string', gap: 'no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1} on a projective CY₃', mapsTo: 'compact dims = D−4 structural; mirror as foldPair involution MODEL' },
+      // NARROWED, NOT REMOVED. The quintic's numbers are now counted (see closedGaps below), and deleting
+      // this row instead of narrowing it took the Hodge and Poincaré challenge leads down with it —
+      // measured: millenniumProblemsChallenge went from 7 computable paths to 5. What the row named is
+      // no longer wholly true, and what remains of it is true, so the row says that much and no more.
+      { id: 'cy-hodge-numbers', problem: 'Hodge / string', gap: 'the quintic X_5 in P^4 is sealed (h^{1,1}=1, h^{2,1}=101, chi=-200); no sealed Hodge numbers for a GENERAL projective CY_3, and no sealed algebraic-cycle statement', mapsTo: 'quintic counted in calabiYauHodgeNumbersOfTheQuinticCounted; the general case stays compact dims = D-4 structural' },
       { id: 'ads-cft-correlators', problem: 'Yang–Mills / string', gap: 'no sealed AdS/CFT correlator dictionary', mapsTo: 'duality involution structural probe — NOT holography proof' },
     ]
     // Sentences, not verdicts: these carried `on: true`, so nothing could withdraw them. They are
@@ -2182,14 +2186,26 @@ export function stringTheoryMillenniumTheoremGapsInventory(matrix: MindMatrix = 
       'EARNED BOUNDARY — inventory names probes and gaps; claims ZERO Clay solutions and ZERO confirmed string physics',
     ]
 
+    // A GAP THAT CLOSED, KEPT AS THE RECORD OF ITS CLOSING RATHER THAN DELETED. cy-hodge-numbers said
+    // there were no sealed Calabi–Yau Hodge numbers on a projective CY₃, and that was true: the corpus
+    // had compact dimensions D−4 as a structural count and mirror symmetry as a foldPair analogy, and
+    // neither is a Hodge number. Both numbers of the quintic are exact counts and are now counted —
+    // h^{1,1} = 1 by Lefschetz, h^{2,1} = 126 − 25 = 101 by counting deformations, χ = −200.
+    const closedGaps: readonly { id: string; was: string; closedBy: string; numbers: string }[] = [
+      { id: 'cy-hodge-numbers',
+        was: 'no sealed Calabi–Yau Hodge numbers h^{1,1}, h^{2,1} on a projective CY₃',
+        closedBy: 'calabiYauHodgeNumbersOfTheQuinticCounted (src/mountain/geometry)',
+        numbers: 'quintic X_5 in P^4: h^{1,1}=1 · h^{2,1}=101 · chi=-200 · mirror (101, 1) with chi=+200' },
+    ]
     const sealed = sealFacets('string-theory-millennium-theorem-gaps-inventory', [
       { facet: `STRING FOLDS INVENTORIED — ${folds.length} sealed homes (algebra · demarcation · A432 string · octonion-10 · millennium trinity)`, on: folds.length === 7 && folds.every((f) => isUuid(f.receipt)) },
-      { facet: `THEOREM GAPS NAMED — ${theoremGaps.length} explicit gaps (Hodge cycles · BSD L · RH · YM · NS · P≠NP · CY Hodge · AdS/CFT)`, on: theoremGaps.length === 8 && theoremGaps.every((g) => g.gap.length > 0) },
+      { facet: `THEOREM GAPS NAMED — ${theoremGaps.length} explicit gaps (Hodge cycles · BSD L · RH · YM · NS · P≠NP · CY Hodge (narrowed) · AdS/CFT), ${closedGaps.length} closed and recorded (${closedGaps.map((c) => c.id).join(' · ')})`, on: theoremGaps.length === 8 && theoremGaps.every((g) => g.gap.length > 0) },
       { facet: `ALGEBRA WITNESS LIVE — stringTheoryAlgebraDecoded.decoded (${algebra.decoded}) · root ${algebra.root.slice(0, 8)}`, on: algebra.decoded },    ])
     return {
       inventoried: sealed.ok,
       folds,
       theoremGaps,
+      closedGaps,
       algebraDecoded: algebra.decoded,
       count: sealed.count,
       facets: sealed.facets,
@@ -2387,7 +2403,7 @@ export function stringTheoryInChat(matrix: MindMatrix = buildMatrix(), at = 0) {
       'honesty:no-nobel-claim',
       'honesty:chat-recompute-not-LLM-physics-essay',
       'residual:ads-cft-correlators-unsealed',
-      'residual:cy-hodge-numbers-unsealed',
+      'sealed:cy-hodge-numbers — quintic h^{1,1}=1 h^{2,1}=101 chi=-200, counted in calabiYauHodgeNumbersOfTheQuinticCounted',
     ] as const
     const on =
       stringInChat

@@ -2630,39 +2630,3 @@ export function auditTheoremsComputeWirelessly(root: string, theoremFiles: strin
   }
 }
 
-export function theoremComputeGateMessage(audit: TheoremComputeAudit): string {
-  if (audit.computes) {
-    return `✓ All theorems compute — no hardcoded facets or magic numbers detected.`
-  }
-
-  const hardcodedOnTrue = audit.violations.filter((v) => v.type === 'hardcoded-on-true')
-  const hardcodedNumbers = audit.violations.filter((v) => v.type === 'hardcoded-number')
-
-  let msg = `✗ THEOREM HARDCODING VIOLATIONS: ${audit.total} found\n\n`
-
-  if (hardcodedOnTrue.length > 0) {
-    msg += `HARDCODED FACETS (${hardcodedOnTrue.length}):\n`
-    msg += `  Problem: 'on: true' hardcoding makes facets ALWAYS PASS — they prove nothing.\n`
-    msg += `  Rule: Every facet must be REFUTABLE — the 'on' value must be computed from a test.\n`
-    msg += `  Fix: Replace 'on: true' with a computed condition:\n`
-    msg += `    ✗ BAD:  { facet: 'test', on: true }\n`
-    msg += `    ✓ GOOD: { facet: 'test', on: testCondition() > 0 }\n\n`
-
-    const topFiles = [...new Set(hardcodedOnTrue.map((v) => v.file))].slice(0, 3)
-    msg += `  Top violators: ${topFiles.join(', ')}\n\n`
-  }
-
-  if (hardcodedNumbers.length > 0) {
-    msg += `HARDCODED NUMBERS (${hardcodedNumbers.length}):\n`
-    msg += `  Problem: Magic numbers hide computation and break when algebra changes.\n`
-    msg += `  Rule: Every constant in a theorem must be DERIVED from axioms/formulas.\n`
-    msg += `  Fix: Replace hardcoded numbers with computed functions.\n\n`
-  }
-
-  msg += `EDUCATION:\n`
-  msg += `  - Hardcoded logic = DECLARED HONESTY, the crack gates catch.\n`
-  msg += `  - Facets must COMPUTE from tests, never ASSERT as 'true'.\n`
-  msg += `  - Every claim proves itself through computation.\n`
-
-  return msg
-}
