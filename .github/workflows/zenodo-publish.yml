@@ -104,28 +104,30 @@ jobs:
       - name: Theorem verification
         run: npm run theorems:verify
 
-      # Autonomous: every sealed fold must still compute, and the executed test suite
-      # must still pass. A facet going off exits non-zero and blocks the release —
-      # no human review required for the claim surface to be checked.
-      - name: Sealed folds still compute
-        run: npm run verify:folds
+      # THE ROSTER DERIVES, AND THE TAG PATH NEVER GOT THAT FIX.
+      #
+      # This job gated the DOI on a HAND-LIST of nine scripts. Measured 2026-09-26: verify:all chains 55,
+      # five of the nine were already inside it, and FIFTY of its scripts ran nowhere on this path — so a
+      # tag minted a permanent record after nine checks while an ordinary commit needed fifty-five. land.sh
+      # solved exactly this for landing and wrote down why: "It was a hand-list of eight gates plus three
+      # path conditions, and verify:all is four of them. One roster now: whatever verify:all chains is what
+      # a landing runs." The tag is the one path where being wrong cannot be corrected afterwards, and it
+      # was the path still carrying the hand-list.
+      #
+      # The four steps above are KEPT because verify:all does not chain them: check:types, verify:structure,
+      # mission:gate and theorems:verify. The five that WERE inside it are gone, so a gate added to
+      # verify:all from now on gates the DOI too, with nobody remembering to add it here.
+      #
+      # Autonomous, which the removed steps' own comment said and this keeps: a facet going off exits
+      # non-zero and blocks the release, with no human review required for the claim surface to be checked.
+      - name: The whole roster, not a hand-list — whatever verify:all chains
+        run: npm run verify:all
 
-      # A folder rename once left a .vue importing a path that no longer existed. The dev
-      # server 500'd on every page while check:types and every other gate stayed green,
-      # because none of them resolve Vue imports. This one does.
-      - name: Every relative import resolves
-        run: npm run verify:imports
-
-      - name: No new tautological facets
-        run: npm run verify:tautology
-
-      - name: Run the verification suite against the real implementations
-        run: npm run verify:run
-
-      # The manifest is generated from the folds. If the committed file disagrees with
-      # what computes, the release is blocked — a figure cannot drift into the deposit.
-      - name: Manifest matches what computes
-        run: npm run manifest:check
+      # And the publish-time surface, which verify:all deliberately excludes for being slow: the Pages build
+      # it never runs, the declaration graph that shipped 1.4.0 with four modules missing, the tarball
+      # contents, the dependency claims. Measured 7/7 green before being wired, so it blocks nothing that works.
+      - name: The publish-time gate, in front of the deposit
+        run: npm run verify:release
 
       - name: Build distribution
         run: npm run docs:build
