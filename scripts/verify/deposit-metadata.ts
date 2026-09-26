@@ -30,7 +30,7 @@
  * credentials, never this script's.
  */
 
-import { readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const OAI = 'https://zenodo.org/oai2d'
@@ -341,6 +341,50 @@ export function citedDois(root: string = process.cwd()): CitedDoi[] {
   out.push({ doi: CONCEPT_DOI, where: 'recorded as the concept of the repository record', mustBeThisWork: false })
   const seen = new Set<string>()
   return out.filter((c) => (seen.has(`${c.doi}|${c.where}`) ? false : seen.add(`${c.doi}|${c.where}`)))
+}
+
+/** THE CORRECTION DEPOSIT STATES A COUNT, AND A MINTED COUNT CANNOT BE CORRECTED.
+ *
+ * src/research/zenodo-new-version.json is the deposit that corrects 10.5281/zenodo.21787144, and its TITLE
+ * carries the claim: N theorems, so many sorry, so many axioms. That title said 81 theorems while the Lean
+ * corpus held 84 — measured 2026-09-26, three short, because the corpus grew after the title was written. A
+ * stale number in a title is the one drift that cannot be repaired: a published deposit is immutable, so the
+ * claim would have been wrong in public, permanently, about the very thing it was correcting.
+ *
+ * So the stated accounting is checked against the files it describes. Block comments are stripped before
+ * counting, because three.lean's own header contains the words "no `sorry`" and a naive scan reads that as a
+ * sorry — the first count of this corpus reported 1 and there are none.
+ *
+ * This refuses rather than rewrites. The title is a CLAIM about a body of work and the author writes claims;
+ * a gate's job is to refuse to let one be minted while it is false.
+ */
+export function assertDepositCountsMatchTheProofs(root: string = process.cwd()): void {
+  const stripped = (text: string) =>
+    text.replace(/\/-[\s\S]*?-\//g, '').split('\n').map((line) => line.split('--')[0]).join('\n')
+  const dir = join(root, 'src/pair/formal/proofs')
+  if (!existsSync(dir)) { console.log('  no Lean proof corpus at src/pair/formal/proofs — NOT MEASURED, not passed'); return }
+  const files = readdirSync(dir).filter((f) => f.endsWith('.lean'))
+  let theorems = 0, sorries = 0, axioms = 0
+  for (const file of files) {
+    const code = stripped(readFileSync(join(dir, file), 'utf8'))
+    theorems += (code.match(/^theorem\b/gmu) ?? []).length
+    sorries += (code.match(/\bsorry\b/gu) ?? []).length
+    axioms += (code.match(/^axiom\b/gmu) ?? []).length
+  }
+  const depositPath = join(root, 'src/research/zenodo-new-version.json')
+  if (!existsSync(depositPath)) { console.log('  no correction deposit staged — nothing to check'); return }
+  const title = String((JSON.parse(readFileSync(depositPath, 'utf8')) as { metadata?: { title?: string } }).metadata?.title ?? '')
+  console.log(`  Lean corpus: ${theorems} theorem(s), ${sorries} sorry, ${axioms} axiom(s) across ${files.length} file(s)`)
+  console.log(`  deposit title: ${title.slice(0, 96)}`)
+  const stated = /(\d+)\s+theorems/u.exec(title)
+  if (!stated) { console.log('  the title states no theorem count — nothing to drift'); return }
+  if (Number(stated[1]) !== theorems) {
+    throw new Error(
+      `the correction deposit's title claims ${stated[1]} theorems and the Lean corpus holds ${theorems}. ` +
+      `A published deposit is immutable, so this would be wrong in public permanently — and it is the deposit ` +
+      `that exists to correct a record whose claims were withdrawn. Update the title, or the corpus, before minting.`)
+  }
+  console.log(`  the deposit's stated count matches the proofs it describes (${theorems})`)
 }
 
 /** PRECEDENCE IS A DATE ON A PUBLIC RECORD, RECOMPUTED — NOT A SENTENCE ABOUT ONE.
