@@ -5,16 +5,116 @@
  */
 import { DOCS_BUILD_ALLOW_ENV, MCP_CANONICAL_BUILD_GATE, MCP_DOCS_BUILD_BOOTSTRAP } from './bootstrap.ts'
 
-export const QUANTUM_DEV_STDIO_TOOL_IDS = [
-  'list_capabilities',
-  'next_leads',
-  'census_status',
-  'compute_from_source',
-  'fold_report',
-  'run_gate',
-  'run_wave',
-  'run_export',
+// Tool names follow MCP's common form: snake_case, inside the ^[a-zA-Z0-9_-]{1,64}$ every client accepts (the Claude
+// API refuses anything else). verify:mcp-transport holds every served name to ^[a-z][a-z0-9_]{0,63}$.
+export const QUANTUM_DEV_TOOL_DEFS = [
+  {
+    name: 'list_capabilities',
+    description:
+      // The count was written as 7 and adding next_leads made it 8, so it is read from the roster instead.
+      // NO COUNT IN THE PROSE. It was written as 7, went stale when next_leads made it 8, was changed to read
+      // the roster's length, and then could not: the roster is DERIVED from these defs, so reading its length
+      // here is a cycle at module initialisation. The count belongs in the payload, which already carries it
+      // as stdioCount — a number a caller can check beats a number a sentence asserts.
+      'Meta: browserAchievable matrix over every stdio tool, with the count returned as stdioCount (complements tools/list — not a synonym of tools/list names)',
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
+  {
+    // WHAT TO DO NEXT, WHICH THE SURFACE COULD NOT ANSWER. The other tools ACT — run a gate, run a wave,
+    // report a fold. None of them said what is open, so an agent driving this corpus had to be told. The
+    // union already computes (scripts/verify/next.ts reads the recorded floors and derives the gate that
+    // measures each from package.json); this serves it, so asking and acting are the same surface.
+    name: 'next_leads',
+    description:
+      'Every open lead: the recorded ratchet floors above zero, grouped by family, each with the gate that measures it. Sizes are measured; which lead blocks another is not known and is not claimed.',
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
+  {
+    name: 'census_status',
+    description: 'Census constants recomputed from the Fibonacci band ladder, plus the a432 gate count (not a live limits:verify audit)',
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
+  {
+    name: 'compute_from_source',
+    description: 'Pure compute: a432-hue | to-uuid | rosetta-ray',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        op: { type: 'string', description: 'a432-hue | to-uuid | rosetta-ray' },
+        seed: { type: 'string' },
+        name: { type: 'string' },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'fold_report',
+    description: 'Bootstrap fold <name> — sealed export report via CLI',
+    inputSchema: {
+      type: 'object',
+      properties: { fold: { type: 'string' }, name: { type: 'string' } },
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'run_gate',
+    description: `Run bootstrap gate. Canonical VitePress build = ${MCP_CANONICAL_BUILD_GATE} → ${MCP_DOCS_BUILD_BOOTSTRAP} (pair vite/mcp · npm docs:build thin dual). Requires ${DOCS_BUILD_ALLOW_ENV}=1`,
+    inputSchema: {
+      type: 'object',
+      properties: {
+        name: {
+          type: 'string',
+          description:
+            `check-types | limits-verify | mission-gate | verify-structure | ${MCP_CANONICAL_BUILD_GATE} | enforcement-trinity | limits-seal | rosetta-batch`,
+        },
+      },
+      required: ['name'],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'run_wave',
+    description: `ceccec-build-waves kind via bootstrap (rebuild→${MCP_CANONICAL_BUILD_GATE}/${MCP_DOCS_BUILD_BOOTSTRAP} needs ${DOCS_BUILD_ALLOW_ENV}=1)`,
+    inputSchema: {
+      type: 'object',
+      properties: {
+        kind: {
+          type: 'string',
+          description: 'origin | decode | design | learn | tune | edit | rebuild | verify',
+        },
+      },
+      required: ['kind'],
+      additionalProperties: false,
+    },
+  },
+  {
+    name: 'run_export',
+    description: 'Bootstrap run <entryRel> <exportName> [argv…]',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        entryRel: { type: 'string' },
+        exportName: { type: 'string' },
+        argv: { type: 'array', items: { type: 'string' } },
+      },
+      required: ['entryRel', 'exportName'],
+      additionalProperties: false,
+    },
+  },
 ] as const
+
+/** QUANTUM_DEV_STDIO_TOOL_IDS — DERIVED, so the two surfaces cannot disagree.
+ *
+ * This was a second hand-written list of the same names: TOOL_DEFS in bin/mcp.ts decided what tools/list
+ * serves, and this decided what list_capabilities reports browserAchievable for. Adding next_leads on
+ * 2026-09-26 updated one and not the other, so eight tools were answered while the capability matrix
+ * described seven — and two hand-written "7"s in descriptions went stale in the same edit. A gate was added to
+ * catch the disagreement, which is worth having, but catching a drift is not the same as making it impossible.
+ *
+ * One declaration now, and the roster reads its names. Adding a tool is ONE edit: append a def. The gate that
+ * compares the SERVED names against this roster stays, because it still checks something real — that the
+ * transport serves what was declared, which a filter or a dispatch typo could still break. */
+export const QUANTUM_DEV_STDIO_TOOL_IDS = QUANTUM_DEV_TOOL_DEFS.map((def) => def.name)
 
 /**
  * THE CENSUS IS RECOMPUTED HERE, NOT COPIED FROM src/3/7.

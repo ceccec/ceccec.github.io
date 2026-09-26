@@ -18,6 +18,7 @@ import {
 } from '../src/bootstrap.ts'
 import {
   QUANTUM_DEV_STDIO_TOOL_IDS,
+  QUANTUM_DEV_TOOL_DEFS as TOOL_DEFS,
   censusStatus,
   computeFromSourceLocal,
   listStdioCapabilities,
@@ -55,99 +56,7 @@ function respondError(id: string | number | null | undefined, message: string) {
   send({ jsonrpc: '2.0', id: id ?? null, error: { code: -32000, message } })
 }
 
-// Tool names follow MCP's common form: snake_case, inside the ^[a-zA-Z0-9_-]{1,64}$ every client accepts (the Claude
-// API refuses anything else). verify:mcp-transport holds every served name to ^[a-z][a-z0-9_]{0,63}$.
-const TOOL_DEFS = [
-  {
-    name: 'list_capabilities',
-    description:
-      // The count was written as 7 and adding next_leads made it 8, so it is read from the roster instead.
-      `Meta: browserAchievable matrix for the ${QUANTUM_DEV_STDIO_TOOL_IDS.length} stdio tools (complements tools/list — not a synonym of tools/list names)`,
-    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
-  },
-  {
-    // WHAT TO DO NEXT, WHICH THE SURFACE COULD NOT ANSWER. The other tools ACT — run a gate, run a wave,
-    // report a fold. None of them said what is open, so an agent driving this corpus had to be told. The
-    // union already computes (scripts/verify/next.ts reads the recorded floors and derives the gate that
-    // measures each from package.json); this serves it, so asking and acting are the same surface.
-    name: 'next_leads',
-    description:
-      'Every open lead: the recorded ratchet floors above zero, grouped by family, each with the gate that measures it. Sizes are measured; which lead blocks another is not known and is not claimed.',
-    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
-  },
-  {
-    name: 'census_status',
-    description: 'Census constants recomputed from the Fibonacci band ladder, plus the a432 gate count (not a live limits:verify audit)',
-    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
-  },
-  {
-    name: 'compute_from_source',
-    description: 'Pure compute: a432-hue | to-uuid | rosetta-ray',
-    inputSchema: {
-      type: 'object',
-      properties: {
-        op: { type: 'string', description: 'a432-hue | to-uuid | rosetta-ray' },
-        seed: { type: 'string' },
-        name: { type: 'string' },
-      },
-      additionalProperties: false,
-    },
-  },
-  {
-    name: 'fold_report',
-    description: 'Bootstrap fold <name> — sealed export report via CLI',
-    inputSchema: {
-      type: 'object',
-      properties: { fold: { type: 'string' }, name: { type: 'string' } },
-      additionalProperties: false,
-    },
-  },
-  {
-    name: 'run_gate',
-    description: `Run bootstrap gate. Canonical VitePress build = ${MCP_CANONICAL_BUILD_GATE} → ${MCP_DOCS_BUILD_BOOTSTRAP} (pair vite/mcp · npm docs:build thin dual). Requires ${DOCS_BUILD_ALLOW_ENV}=1`,
-    inputSchema: {
-      type: 'object',
-      properties: {
-        name: {
-          type: 'string',
-          description:
-            `check-types | limits-verify | mission-gate | verify-structure | ${MCP_CANONICAL_BUILD_GATE} | enforcement-trinity | limits-seal | rosetta-batch`,
-        },
-      },
-      required: ['name'],
-      additionalProperties: false,
-    },
-  },
-  {
-    name: 'run_wave',
-    description: `ceccec-build-waves kind via bootstrap (rebuild→${MCP_CANONICAL_BUILD_GATE}/${MCP_DOCS_BUILD_BOOTSTRAP} needs ${DOCS_BUILD_ALLOW_ENV}=1)`,
-    inputSchema: {
-      type: 'object',
-      properties: {
-        kind: {
-          type: 'string',
-          description: 'origin | decode | design | learn | tune | edit | rebuild | verify',
-        },
-      },
-      required: ['kind'],
-      additionalProperties: false,
-    },
-  },
-  {
-    name: 'run_export',
-    description: 'Bootstrap run <entryRel> <exportName> [argv…]',
-    inputSchema: {
-      type: 'object',
-      properties: {
-        entryRel: { type: 'string' },
-        exportName: { type: 'string' },
-        argv: { type: 'array', items: { type: 'string' } },
-      },
-      required: ['entryRel', 'exportName'],
-      additionalProperties: false,
-    },
-  },
-] as const
+
 
 async function callTool(requested: string, args: Record<string, unknown>) {
   // the kebab-case names this server listed before snake_case (census-status, run-gate, …) are still answered, unlisted
