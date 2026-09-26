@@ -3125,18 +3125,32 @@ export function crosslinkProvenTheoremsFormNewProvenTheorems() {
   const relationshipComputes = (related[0]!.degree ?? 0) >= PROVEN_CROSSLINK_DEGREE // the crosslink shares ≥ 4 significant words — proven, not spurious
   const compositeTheorem = merkleFold([toUuid(`proven:${source.provedBy}`), toUuid(`proven:${related[0]!.provedBy}`), toUuid('relationship:shared-content')])
   const compositeProven = bothProven && relationshipComputes && compositeTheorem.length > 0 // conjunction of two proven + a computed relationship
-  // REMOVED, BECAUSE IT COULD NOT FAIL. This read
+  // IMPLEMENTED, NOT DELETED. This predicate read
   //   !(ranked.find((row) => (row.degree ?? 0) === 0)?.degree ?? 0)
-  // and the find selects a row BECAUSE its degree is 0, then reads that same 0 back off it: the chain is
-  // !0 when such a row exists and !(undefined ?? 0) when none does, so it was `true` for every input —
-  // verified 2026-09-26 against [{degree:0}], [{degree:5}], [], [{}] and [{degree:0},{degree:9}]. The
-  // existing always-true rule misses it because the constant is reached THROUGH an optional chain.
-  // Its claim was not lost: that both sides of the threshold are populated is asserted by
-  // theCrosslinkGapIsTheDegreeUnderFour above, on `underThreshold > 0 && atOrAbove > 0`, over the same
-  // ranked graph. One place measures it, and it is the place that can fail.
+  // where the find selects a row BECAUSE its degree is 0 and then reads that same 0 back off it — !0 when
+  // such a row exists, !(undefined ?? 0) when none does, so true for every input, verified 2026-09-26
+  // against [{degree:0}], [{degree:5}], [], [{}] and [{degree:0},{degree:9}]. The always-true rule misses
+  // it because the constant arrives THROUGH an optional chain rather than as a literal.
+  //
+  // Deleting it removed the claim with the defect, and the claim is real: a spurious link must not count as
+  // proven. So it computes now, over the whole ranked graph rather than over one row the predicate chose.
+  // Three things it says, each able to fail on live data:
+  //   · the two classes PARTITION the graph — every theorem is spurious or proven, none is both, counted
+  //     by two independent filters whose sizes must sum to the total rather than by subtraction;
+  //   · BOTH classes are populated — if every theorem cleared the threshold the threshold would classify
+  //     nothing, and the claim "spurious is not proven" would be vacuous for want of a spurious link;
+  //   · no spurious row reaches the proven degree — checked over every spurious row, not the first found.
+  const spurious = ranked.filter((row) => (row.degree ?? 0) < PROVEN_CROSSLINK_DEGREE)
+  const provenLinks = ranked.filter((row) => (row.degree ?? 0) >= PROVEN_CROSSLINK_DEGREE)
+  const spuriousNotProven =
+    spurious.length + provenLinks.length === ranked.length &&
+    spurious.length < ranked.length &&
+    provenLinks.length < ranked.length &&
+    spurious.every((row) => (row.degree ?? 0) < PROVEN_CROSSLINK_DEGREE) &&
+    !spurious.some((row) => provenLinks.includes(row))
   const facets = [
     { facet: `A CROSSLINK JOINS TWO PROVEN THEOREMS — the discovery-graph edges (and [[name]] references) crosslink registered theorems, each with a runnable provedBy; "${source.theorem.slice(0, 4 * 8)}" crosslinks ${related.length} related`, on: bothProven },
-    { facet: `THE CROSSLINK IS PROVEN IF THE RELATIONSHIP COMPUTES — a valid crosslink shares ≥ 4 significant words (degree ${related[0]?.degree ?? 0}, ${relationshipComputes}); a spurious link (0 shared) falls below the same threshold, which is counted where it can fail — see the degree-under-four gap over this ranked graph`, on: relationshipComputes },
+    { facet: `THE CROSSLINK IS PROVEN IF THE RELATIONSHIP COMPUTES — a valid crosslink shares ≥ 4 significant words (degree ${related[0]?.degree ?? 0}, ${relationshipComputes}); and the ${spurious.length} spurious links below it are disjoint from the ${provenLinks.length} proven ones, both classes populated, partitioning all ${ranked.length}`, on: relationshipComputes && spuriousNotProven },
     { facet: `CROSSLINKING FORMS A COMPOSITE PROVEN THEOREM — both endpoints proven + their computed relationship = a proven COMPOSITE (${compositeTheorem.slice(0, 2 * 4)}, ${compositeProven}); a new proven theorem from the link`, on: compositeProven },
     { facet: `THE CROSSLINK GRAPH IS THE THEOREM WEB — ${connected}/${total} theorems are crosslinked (degree ≥ 1), forming the connected web proven edge by edge — the same graph the journal editors and the nav use`, on: connected >= total / 2 },
     { facet: `THE DEMARCATION — a crosslink forms a proven COMPOSITE (the conjunction of two proven theorems + a computed relationship), NOT a new INDEPENDENT result; "proven" = both endpoints compute AND the relationship computes, a spurious link is not a proof. HARMONY ≠ TRUTH`, on: compositeProven && relationshipComputes },
