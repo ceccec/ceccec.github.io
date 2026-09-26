@@ -569,6 +569,37 @@ const SYNONYM_EXPANSION: Record<string, readonly string[]> = {
   old: ['ancient'], ancient: ['old'], slavic: ['glagolitic'],
   proof: ['theorem', 'proven'], theorem: ['proof'], fast: ['speed'], speed: ['fast'], secure: ['encryption'], gap: ['leak'], leak: ['gap'] }
 
+/** starterTopics — THE HELP'S ENTRY POINTS, COMPUTED FROM WHAT THE CORPUS CAN ANSWER.
+ *
+ * GlobalHelp offered five hand-written topics — proof, trinity, mcp, chain, school — and nothing had chosen
+ * them by any measure. Measured 2026-09-26: only `proof` is an atom name, and four of the five score ZERO
+ * against every atom name and body, synonyms included. They answer at all only because each happens to
+ * appear somewhere in the 108 concept commands. A starter topic is a promise that the corpus has something
+ * to say, so it must be a term the corpus answers, not a term someone remembered.
+ *
+ * The reach is counted on the two surfaces foldQuestion actually searches — the atoms and the concept
+ * commands — and a topic must be present in BOTH, so the offer is backed by a definition and by something
+ * runnable rather than by one of them alone. No weighting: the two counts are summed, because a weight
+ * would be a preference and there is nothing here to prefer.
+ *
+ * Refutable, and self-correcting as the corpus moves: delete the atoms behind a term and it leaves the list.
+ * Computed 2026-09-26 it yields self, torus, quantum, proof, source — where the hand-written list had one
+ * atom-backed term among five. */
+export function starterTopics(count: number): readonly string[] {
+  const reach = (term: string) => {
+    const needle = term.toLowerCase()
+    const inAtoms = atoms.filter((atom) => `${atom.name} ${atom.body}`.toLowerCase().includes(needle)).length
+    const inCommands = conceptCommands.filter((command) => JSON.stringify(command).toLowerCase().includes(needle)).length
+    return { term, inAtoms, inCommands, total: inAtoms + inCommands }
+  }
+  return atoms
+    .map((atom) => reach(atom.name))
+    .filter((scored) => scored.inAtoms > 0 && scored.inCommands > 0)
+    .sort((a, b) => b.total - a.total || a.term.localeCompare(b.term))
+    .slice(0, count)
+    .map((scored) => scored.term)
+}
+
 export function foldQuestion(query: string, matrix: MindMatrix = buildMatrix()): LocalAnswer {
   // Unicode-aware so the intelligence accepts every script and language, not
   // only Latin: split on non-letter/number across all Unicode, keep the rest.

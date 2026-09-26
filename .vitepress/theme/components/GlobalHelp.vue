@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { foldQuestion } from '../../render'
+import { foldQuestion, starterTopics } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import type { LocalAnswer } from '../../render'
 import UiAsideShell from './UiAsideShell.vue'
 
-const STARTER_TOPICS = ['proof', 'trinity', 'mcp', 'chain', 'school'] as const
+// NOT A LIST SOMEONE REMEMBERED. Measured 2026-09-26, four of the five topics written here scored zero
+// against every atom name and body; they answered only through the concept commands. starterTopics ranks the
+// corpus's own concepts by the reach foldQuestion can actually find, so what is offered is answerable by
+// construction and moves when the corpus moves.
+const STARTER_TOPICS = starterTopics(5)
 
 const { pick, t, localize } = useSiteLocale()
 
