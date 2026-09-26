@@ -282,8 +282,30 @@ jobs:
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "Release: $URL"
 
+  # ── ZENODO MINTS THE DOI FROM THE GITHUB RELEASE, SO THIS JOB IS NO LONGER THE MINTING PATH ─────────────
+  #
+  # Zenodo's GitHub integration archives a repository on every published GitHub Release and mints the DOI
+  # itself, reading .zenodo.json from the root of the archive it is handed — which is why that file moved to
+  # the root in this commit. The release is already created by the github-release job above, so the trigger
+  # exists and the minting has an owner.
+  #
+  # WHAT THAT REMOVES, WHICH IS THE POINT. No long-lived ZENODO_API_TOKEN is read on a tag. No metadata is
+  # POSTed by a shell step that could send a stale file. And the HTTP 422 this workflow tripped over on the
+  # v1.5.0 re-run — "Cannot upload assets to an immutable release" — cannot recur on a path that uploads
+  # nothing: the integration takes the archive GitHub already made.
+  #
+  # SO THIS RUNS ONLY WHEN ASKED. On a tag push it is skipped, because running it would deposit a SECOND
+  # record for one release — two DOIs, neither wrong, both permanent. It stays available through
+  # workflow_dispatch for the case the integration is off or a deposit needs making by hand, which is a
+  # recovery path and not the normal one. The condition is the trigger itself rather than a flag, so there is
+  # nothing to remember to set.
+  #
+  # ENABLE ONCE, ON zenodo.org: Account → GitHub → flip ceccec/ceccec.github.io on. Until it is flipped a tag
+  # creates a GitHub Release and mints nothing, which is visible in verify:release-live as a version live on
+  # npm and absent from the archive — the gate that already reads both records.
   zenodo-deposit:
-    name: Deposit to Zenodo
+    name: Deposit to Zenodo (recovery only — the GitHub Release mints the DOI)
+    if: github.event_name == 'workflow_dispatch'
     needs: [prepare, github-release]
     runs-on: ubuntu-latest
     steps:
@@ -330,12 +352,12 @@ jobs:
             exit 0
           fi
 
-          # Metadata is generated from docs/.zenodo.json so there is exactly one
+          # Metadata is generated from .zenodo.json so there is exactly one
           # source of truth for the claim surface.
           jq --arg v "${VERSION#v}" \
              --arg rel "$RELEASE_URL" \
              '{metadata: (. + {version: $v} | del(.custom_fields, .creators_custom_metadata))}' \
-             docs/.zenodo.json > zenodo_metadata.json
+             .zenodo.json > zenodo_metadata.json
 
           echo "Deposit metadata:"
           jq -r '.metadata | {title, version, license, upload_type}' zenodo_metadata.json

@@ -1,7 +1,7 @@
 /**
  * THE DEPOSIT METADATA COMPUTES ITSELF — FRESH AT EVERY WRITE, NEVER TYPED.
  *
- * docs/.zenodo.json is the metadata EVERY Zenodo deposit of this work is built from: the release
+ * .zenodo.json (repository ROOT, where Zenodo's GitHub integration reads it) is the metadata EVERY Zenodo
  * workflow reads it, adds the tag version, and POSTs it. It was hand-written and last touched
  * 2026-08-20, and by the time this was added it had drifted on three separate facts at once —
  *   version           1.1.0   while package.json said 1.5.0, four minor versions behind
@@ -36,7 +36,17 @@ import { publicationAbstract } from '../../src/quantum/dist/readme/index.ts'
 import { PUBLICATION_CREDIT } from '../../src/research/index.ts'
 import { ratchet } from './status.ts'
 
-const OUT = 'docs/.zenodo.json'
+// THE LOCATION IS PART OF THE MECHANISM, NOT A PREFERENCE.
+//
+// Zenodo's GitHub integration reads `.zenodo.json` from the REPOSITORY ROOT of the release archive it is
+// handed. At docs/.zenodo.json the file is simply not seen, and a deposit made through the integration would
+// carry metadata Zenodo derived from the repository instead of the metadata computed here — the title, the
+// version, the creators and the licence all defaulted, on a record that cannot be edited afterwards.
+//
+// This mattered only while the DOI was minted by a workflow POSTing to /api/deposit/depositions, which read
+// whatever path it was told. Minting from the GitHub Release moves the read to Zenodo's side, and Zenodo looks
+// in one place. So the file moves to the root, and the one generator still writes it.
+const OUT = '.zenodo.json'
 const WORK_TITLE = 'Double Torus — A Deterministic Quantum Simulation Kernel with Content-Addressed Verification'
 
 /** The last commit date, YYYY-MM-DD — a fact in the repository, not a clock reading. */
