@@ -45,6 +45,30 @@ export function openLeads(root: string = process.cwd()): Lead[] {
     .map(([ratchet, open]) => ({ ratchet, open, family: ratchet.split('.')[0] ?? ratchet, gate: gateFor(ratchet, root) }))
 }
 
+/** runNextJsonExit — the same union, as one line of JSON, for a caller that is not a person.
+ *
+ * The human report and this share openLeads(): two renderings of one measurement, never two measurements.
+ * An agent asking what to do next reads this; the leads it returns are the recorded floors above zero and the
+ * gate that measures each, so acting on one means running that gate and watching its number fall. */
+export function runNextJsonExit(root: string = process.cwd()): number {
+  const leads = openLeads(root)
+  const families = [...new Set(leads.map((l) => l.family))].map((family) => {
+    const own = leads.filter((l) => l.family === family)
+    return { family, open: own.reduce((sum, l) => sum + l.open, 0), leads: own.sort((a, b) => b.open - a.open) }
+  }).sort((a, b) => b.open - a.open)
+  process.stdout.write(`${JSON.stringify({
+    ok: true,
+    ratchetsOpen: leads.length,
+    families: families.length,
+    unitsOfWork: leads.reduce((sum, l) => sum + l.open, 0),
+    evidenceHint: 'VERIFY_EVIDENCE=1 npm run <gate>',
+    externalRecordsNotRead: 'npm run verify:release-live',
+    blockingOrderNotKnown: 'sizes are measured; which lead blocks another is only found by trying',
+    byFamily: families,
+  })}\n`)
+  return 0
+}
+
 export function runNextExit(root: string = process.cwd()): number {
   const leads = openLeads(root)
   const families = [...new Set(leads.map((l) => l.family))]

@@ -7,6 +7,7 @@ import { DOCS_BUILD_ALLOW_ENV, MCP_CANONICAL_BUILD_GATE, MCP_DOCS_BUILD_BOOTSTRA
 
 export const QUANTUM_DEV_STDIO_TOOL_IDS = [
   'list_capabilities',
+  'next_leads',
   'census_status',
   'compute_from_source',
   'fold_report',
@@ -94,7 +95,9 @@ export function listStdioCapabilities() {
       browserGap:
         name === 'run_gate' || name === 'run_wave' || name === 'run_export'
           ? 'Node bootstrap spawn — CI/local only'
-          : '',
+          : name === 'next_leads'
+            ? 'Reads the recorded ratchet floors from disk — CI/local only'
+            : '',
     })),
     stdioCount: QUANTUM_DEV_STDIO_TOOL_IDS.length,
     designToolCount: QUANTUM_DEV_STDIO_TOOL_IDS.length,

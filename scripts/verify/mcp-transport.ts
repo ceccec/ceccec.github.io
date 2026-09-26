@@ -13,6 +13,7 @@
  * which is exactly what it would be at the other end of the pipe.
  */
 
+import { QUANTUM_DEV_STDIO_TOOL_IDS } from '../../packages/quantum-dev-sdk/src/pure.ts'
 import { ratchet } from './status.ts'
 import { quantumCliToolsCatalog } from '../../src/quantum/apps/index.ts'
 import { stripNonCode } from './corpus.ts'
@@ -115,6 +116,29 @@ export function assertMcpTransport(): void {
   const h = handshake()
   console.log(`mcp stdio: ${h.lines} line(s) on stdout, every one parsed as JSON — ${h.serverName}`)
   console.log(`  tools/list served ${h.tools.length}: ${h.tools.join(', ')}`)
+
+  // TWO ROSTERS OF THE SAME TOOLS, WITH NOTHING BINDING THEM.
+  //
+  // TOOL_DEFS in bin/mcp.ts is what tools/list serves; QUANTUM_DEV_STDIO_TOOL_IDS in src/pure.ts is what
+  // list_capabilities maps over to report browserAchievable. They were separate declarations of one fact, so
+  // adding next_leads to the served set left the capability matrix describing seven tools while eight were
+  // answered — and two hand-written "7"s in the descriptions went stale in the same edit. Measured 2026-09-26,
+  // which is the day the drift was introduced and caught.
+  //
+  // Neither list can derive from the other: pure.ts is stdio-safe with no sealed imports and bin/mcp.ts
+  // imports IT, so a reverse import would be a cycle. What can be checked is that they AGREE, which is what
+  // this does — the served names as a set against the declared roster, both directions named on failure.
+  const declared = [...QUANTUM_DEV_STDIO_TOOL_IDS] as string[]
+  const servedOnly = h.tools.filter((name) => !declared.includes(name))
+  const declaredOnly = declared.filter((name) => !h.tools.includes(name))
+  if (servedOnly.length > 0 || declaredOnly.length > 0) {
+    throw new Error(
+      `the served tools and the declared roster disagree — served-not-declared: ${servedOnly.join(', ') || 'none'} · ` +
+      `declared-not-served: ${declaredOnly.join(', ') || 'none'}. list_capabilities reports browserAchievable over the ` +
+      `declared roster, so a name in one list and not the other is a capability claim about a tool that is not there, ` +
+      `or a tool answered with no capability claim at all.`)
+  }
+  console.log(`  the served tools and the declared roster agree on all ${declared.length} names`)
 
   // THE SERVER'S OWN CENSUS MUST BE THE CORPUS'S. It shipped 110/108 to every client for as long
   // as the band ladder has had four bands, under a note claiming the constants came from src/3/7.

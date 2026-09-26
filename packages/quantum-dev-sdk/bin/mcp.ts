@@ -61,7 +61,18 @@ const TOOL_DEFS = [
   {
     name: 'list_capabilities',
     description:
-      'Meta: browserAchievable matrix for the 7 stdio tools (complements tools/list — not a synonym of tools/list names)',
+      // The count was written as 7 and adding next_leads made it 8, so it is read from the roster instead.
+      `Meta: browserAchievable matrix for the ${QUANTUM_DEV_STDIO_TOOL_IDS.length} stdio tools (complements tools/list — not a synonym of tools/list names)`,
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
+  {
+    // WHAT TO DO NEXT, WHICH THE SURFACE COULD NOT ANSWER. The other tools ACT — run a gate, run a wave,
+    // report a fold. None of them said what is open, so an agent driving this corpus had to be told. The
+    // union already computes (scripts/verify/next.ts reads the recorded floors and derives the gate that
+    // measures each from package.json); this serves it, so asking and acting are the same surface.
+    name: 'next_leads',
+    description:
+      'Every open lead: the recorded ratchet floors above zero, grouped by family, each with the gate that measures it. Sizes are measured; which lead blocks another is not known and is not claimed.',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
@@ -142,6 +153,15 @@ async function callTool(requested: string, args: Record<string, unknown>) {
   // the kebab-case names this server listed before snake_case (census-status, run-gate, …) are still answered, unlisted
   const name = requested.replace(/-/g, '_')
   if (name === 'list_capabilities') return listStdioCapabilities()
+  if (name === 'next_leads') {
+    const result = await runBootstrapCli(['run', 'scripts/verify/next.ts', 'runNextJsonExit'])
+    try {
+      const line = result.stdout.trim().split('\n').filter(Boolean).at(-1) ?? '{}'
+      return { ...JSON.parse(line), exitCode: result.exitCode }
+    } catch {
+      return { ok: false, exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr }
+    }
+  }
   if (name === 'census_status') return censusStatus()
   if (name === 'compute_from_source') {
     const op = String(args.op ?? 'a432-hue')
@@ -190,7 +210,7 @@ async function handle(msg: JsonRpc) {
       serverInfo: {
         name: 'quantum-dev',
         version: '0.1.0',
-        description: `7 tools · ${QUANTUM_DEV_STDIO_TOOL_IDS.join(', ')} · ${MCP_CANONICAL_BUILD_GATE} via run_gate · ${DOCS_BUILD_ALLOW_ENV}=1 · vite/mcp`,
+        description: `${QUANTUM_DEV_STDIO_TOOL_IDS.length} tools · ${QUANTUM_DEV_STDIO_TOOL_IDS.join(', ')} · ${MCP_CANONICAL_BUILD_GATE} via run_gate · ${DOCS_BUILD_ALLOW_ENV}=1 · vite/mcp`,
       },
     })
     return
