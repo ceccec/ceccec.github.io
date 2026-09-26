@@ -2200,10 +2200,21 @@ export function rosettaGuidedFolderMoveWaveOne(at = 0, matrix: MindMatrix = buil
   const applied = self.moveTable.filter((move) => move.applied && move.wave === 1)
   const pending = self.moveTable.filter((move) => move.wave === 2 && !move.applied)
   const facets = [
-    { facet: 'wave 1 — learning: src/learning → learning', on: applied.some((move) => move.to === 'src/learning/index.ts') },
-    { facet: 'wave 1 — ui: src/ui → wind/ui', on: applied.some((move) => move.to === 'src/wind/ui/index.ts') },
-    { facet: 'wave 1 — site: src/site → wind/site', on: applied.some((move) => move.to === 'src/wind/site/index.ts') },
-    { facet: 'wave 1 — types flattened: src/types', on: applied.some((move) => move.to === 'src/types/index.ts') },
+    // THESE TYPED THE DESTINATION THAT ROSETTA_CANONICAL_HOME ALREADY DECLARES, AND ONE OF THEM TYPED IT WRONG.
+    //
+    // The ui facet asserted `src/wind/ui/index.ts`, which is neither the canonical home (the map says
+    // `src/ui/index.ts`) nor a file in the tree. So it was FALSE, and `sealed` — facets.every(on) — has been
+    // false with it, on a fold whose verdict nothing reads. Measured 2026-09-26: five facets hold and this one
+    // does not. Its three siblings are true only because each happens to type the same string the map holds.
+    //
+    // A destination written twice can disagree with itself, so it is written once: the move table derives
+    // every `to` from ROSETTA_CANONICAL_HOME, and these facets now read the same map rather than repeating its
+    // values. The ui claim is not deleted and the wrong path is not merely corrected — the class is removed,
+    // because a facet that reads the declaration cannot contradict it.
+    ...(['learning', 'ui', 'site', 'types'] as const).map((tail) => {
+      const home = ROSETTA_CANONICAL_HOME[tail] ?? `src/${tail}/index.ts`
+      return { facet: `wave 1 — ${tail} at its canonical home ${home}`, on: applied.some((move) => move.to === home) }
+    }),
     { facet: 'wave 1 importer rule — corpus uses types + learning barrels', on: rosettaCanonicalImportPath('MindMatrix', 'src/routes/corpus/index.ts', at, matrix).spec === '../../types' },
     { facet: 'wave 2 applied — fusion · language at canonical cores', on: pending.length === 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-wave-one:${entry.facet}:${entry.on}`) }))
