@@ -376,15 +376,26 @@ export function assertDepositCountsMatchTheProofs(root: string = process.cwd()):
   const title = String((JSON.parse(readFileSync(depositPath, 'utf8')) as { metadata?: { title?: string } }).metadata?.title ?? '')
   console.log(`  Lean corpus: ${theorems} theorem(s), ${sorries} sorry, ${axioms} axiom(s) across ${files.length} file(s)`)
   console.log(`  deposit title: ${title.slice(0, 96)}`)
-  const stated = /(\d+)\s+theorems/u.exec(title)
-  if (!stated) { console.log('  the title states no theorem count — nothing to drift'); return }
-  if (Number(stated[1]) !== theorems) {
-    throw new Error(
-      `the correction deposit's title claims ${stated[1]} theorems and the Lean corpus holds ${theorems}. ` +
-      `A published deposit is immutable, so this would be wrong in public permanently — and it is the deposit ` +
-      `that exists to correct a record whose claims were withdrawn. Update the title, or the corpus, before minting.`)
+  // THE TITLE WAS NOT THE ONLY PLACE THE NUMBER WAS WRITTEN, WHICH IS HOW THE FIRST VERSION OF THIS GUARD
+  // MISSED IT. The title said 81 and so did the description, twice — "a machine-checked corpus of 81
+  // theorems" and "Of the 81 theorems". Checking the title alone would have passed a deposit that stated the
+  // wrong count in the body a reader actually reads. Every field that states a theorem count is checked.
+  const meta = (JSON.parse(readFileSync(depositPath, 'utf8')) as { metadata?: Record<string, unknown> }).metadata ?? {}
+  const statedIn: { field: string; count: number }[] = []
+  for (const [field, value] of Object.entries(meta)) {
+    if (typeof value !== 'string') continue
+    for (const m of value.matchAll(/(\d+)\s+theorems/gu)) statedIn.push({ field, count: Number(m[1]) })
   }
-  console.log(`  the deposit's stated count matches the proofs it describes (${theorems})`)
+  if (statedIn.length === 0) { console.log('  no field states a theorem count — nothing to drift'); return }
+  const wrong = statedIn.filter((s) => s.count !== theorems)
+  if (wrong.length > 0) {
+    throw new Error(
+      `the correction deposit states a theorem count that the Lean corpus does not hold (${theorems}): ` +
+      `${wrong.map((w) => `${w.field}=${w.count}`).join(', ')}. A published deposit is immutable, so this would be ` +
+      `wrong in public permanently — and it is the deposit that exists to correct an earlier record. ` +
+      `Update the metadata, or the corpus, before minting.`)
+  }
+  console.log(`  ${statedIn.length} field(s) state the count and all match the proofs (${theorems}): ${[...new Set(statedIn.map((s) => s.field))].join(', ')}`)
 }
 
 /** PRECEDENCE IS A DATE ON A PUBLIC RECORD, RECOMPUTED — NOT A SENTENCE ABOUT ONE.
