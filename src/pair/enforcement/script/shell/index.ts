@@ -573,14 +573,28 @@ export function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root = process.
     { facet: `THE JACOBIAN SINGULARITY IS THE INVERSION POLE — control is lost where det J = 0 (rank loss, non-invertible), the same 1/0 pole as z → 1/z at 0 → ∞ (${jacobianSingularityIsThePole}); DOF = ${dof} = the su(2) trinity, the minimal control basis`, on: jacobianSingularityIsThePole },
     { facet: `THE DEMARCATION — the fusion is the deterministic control-loop STRUCTURE (, ); it does NOT claim physical quantum-robotics speedup or a sentient robot — those are flagged. The build reports stats in realtime and stops non-harmonic tasks as a feedback controller.`, on: isControlLoop && stopsNonHarmonic && gate.qpuRequired === false },
   ].map((entry) => ({ ...entry, receipt: toUuid(`robotics-control-loop:${entry.facet}:${entry.on}`) }))
+  // WHAT FACET THREE ALREADY SAYS, NOW TRUE OF THIS FOLD'S NUMBERS TOO.
+  //
+  // "WALL-CLOCK IS A NOISY SENSOR — FILTERED, NOT A STOP" is stated above, and the fold nonetheless returned
+  // the noisy counts as bare top-level numbers beside its invariants. The witness harvester draws a numeric
+  // series from a fold's own output, so it drew the sensor readings: `senses` is gate.gaps.length and
+  // `noisySensors` is the WARN count, and BOTH grow once a docs-build timing receipt exists. The committed
+  // witness therefore moved with the last build instead of with the corpus; the harvester's third derivation,
+  // run with that receipt moved aside, correctly refused it; and the theorem lost its witness — which was
+  // answered on 2026-09-26 by raising movie.theorems-drawn-from-a-template to 539 rather than by fixing this.
+  //
+  // A loop's INVARIANTS are its setpoints and its degrees of freedom. Its READINGS are measurements of one
+  // run. Both are still reported and nothing is removed, but which is which now lives in the shape and not
+  // only in the prose: readings move under sensorReadings, where a caller drawing numbers cannot mistake a
+  // measurement of a build for a property of the theorem. And the setpoints are published as a series,
+  // because the declared thresholds ARE what defines a control loop — four constants, no timing among them.
   return {
     computes: facets.every((entry) => entry.on),
-    senses,
+    setpointValues: Object.values(gate.thresholds) as number[],
     setpoints,
-    interlocks,
-    noisySensors,
-    stopsNonHarmonic,
     dof,
+    sensorReadings: { senses, interlocks, noisySensors },
+    stopsNonHarmonic,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement: facets.map((entry) => entry.facet).join(' · '),
