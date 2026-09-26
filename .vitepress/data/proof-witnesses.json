@@ -713,15 +713,15 @@
  "private search ranked by Okapi BM25 — the industry-standard lexical ranking": {
   "form": "bars",
   "values": [
-   18.7731,
-   12.1749,
-   10.6887,
-   10.4621,
-   10.1892,
-   10.1808,
-   10.0027,
-   9.49322,
-   9.35918
+   18.7737,
+   12.1752,
+   10.6889,
+   10.4626,
+   10.1894,
+   10.1812,
+   10.0029,
+   9.49347,
+   9.35942
   ],
   "holds": true,
   "caption": "numbers privateSearchRanksByBM25IndustryStandard computes for this theorem (results[].score), drawn from its own run — no other proof returns them"
@@ -729,15 +729,15 @@
  "search improves by experience — private, deterministic relevance feedback over the BM25 index": {
   "form": "bars",
   "values": [
-   8.33688,
-   6.95236,
-   6.40027,
-   5.86698,
-   5.19779,
-   5.14758,
-   5.00787,
-   4.91352,
-   4.80523
+   8.33706,
+   6.95253,
+   6.40048,
+   5.86716,
+   5.198,
+   5.1477,
+   5.00802,
+   4.91372,
+   4.80543
   ],
   "holds": true,
   "caption": "numbers searchImprovesByExperiencePrivateRelevanceFeedback computes for this theorem (results[].score), drawn from its own run — no other proof returns them"
@@ -745,15 +745,15 @@
  "navigation is the search results plus the referrer — one index for search and navigation": {
   "form": "bars",
   "values": [
-   7.1078,
-   6.64526,
-   6.59935,
-   6.46256,
-   6.09845,
-   4.99597,
-   4.97904,
-   4.89991,
-   4.67271
+   7.10795,
+   6.64543,
+   6.59952,
+   6.46272,
+   6.09862,
+   4.99612,
+   4.9792,
+   4.90001,
+   4.67288
   ],
   "holds": true,
   "caption": "numbers navigationFromSearchResultsAndReferrer computes for this theorem (edges[].score), drawn from its own run — no other proof returns them"

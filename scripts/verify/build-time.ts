@@ -66,6 +66,8 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
   let appChunkKb = 0
   let entryClosureKb = 0
   let entryClosureFiles = 0
+  let corpusKb = 0
+  let machineryKb = 0
   const assets = join(dist, 'assets')
   if (existsSync(assets)) {
     let entry = ''
@@ -103,6 +105,13 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
         if (seen.has(file) || !existsSync(file)) continue
         seen.add(file)
         entryClosureKb += statSync(file).size
+        // THE SHELL AND THE CORPUS ARE TWO DIFFERENT THINGS AND ONLY ONE OF THEM SHOULD BE FLAT.
+        // Measured 2026-09-26: of 8982 KiB, the corpus chunk is 8146 and the machinery around it is 836. The
+        // corpus grows every time a theorem, an identity or a formula is added — which is the work — so a
+        // floor on the TOTAL refuses novelty and calls it a regression. It did exactly that three times in
+        // one day: two curated identities, a computed site formula, and a witness quantity.
+        if (/diamonds/.test(file)) corpusKb += statSync(file).size
+        else machineryKb += statSync(file).size
         const text = readFileSync(file, 'utf8')
         const specs = new Set<string>()
         for (const m of text.matchAll(/(?<!\.)\b(?:import|export)\b[^;()]*?from\s*["']([^"']+)["']/g)) specs.add(m[1]!)
@@ -113,7 +122,28 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
       entryClosureKb = Math.round(entryClosureKb / 1024)
     }
   }
-  return { pages, kilobytes: Math.round(bytes / 1024), appChunkKb, entryClosureKb, entryClosureFiles }
+  // The theorem count is read from the registry, so the density below is bytes of corpus per theorem the
+  // corpus actually carries — not per file, not per page.
+  const seedText = existsSync(join(root, 'src/4/6/index.ts')) ? readFileSync(join(root, 'src/4/6/index.ts'), 'utf8') : ''
+  const seedStart = seedText.indexOf('export const THEOREM_ATOM_SEED')
+  const seedBlock = seedStart >= 0 ? seedText.slice(seedStart, seedText.indexOf('\n]', seedStart)) : ''
+  const theorems = (seedBlock.match(/^\s*\{ theorem: /gmu) ?? []).length
+  return {
+    pages,
+    kilobytes: Math.round(bytes / 1024),
+    appChunkKb,
+    entryClosureKb,
+    entryClosureFiles,
+    machineryKb: Math.round(machineryKb / 1024),
+    corpusKb: Math.round(corpusKb / 1024),
+    theorems,
+    // HUNDREDS OF BYTES PER THEOREM, AND THE UNIT IS THE WHOLE POINT.
+    // KiB-per-theorem was the first attempt and it was no guard at all: 751 theorems × 1 KiB is 751 KiB of
+    // slack, so a perturbation padding ONE theorem by 118 KiB moved the corpus 8146 → 8264 and the ceiling
+    // stayed at 11. Hundreds of bytes is small against a theorem (which averages ~11,100 bytes) and large
+    // against the variation of adding one, so padding trips it and growth does not.
+    corpusHundredBytesPerTheorem: theorems > 0 ? Math.round(corpusKb / theorems / 100) : 0, // corpusKb is bytes at this point
+  }
 }
 
 export type BuildTiming = {
@@ -160,5 +190,16 @@ export function assertBuildIsNotSlower(root: string = process.cwd()): void {
   console.log(ratchet('build.app-chunk-kilobytes', w.appChunkKb, { root, evidence: () => [`app entry chunk ${w.appChunkKb} KiB in ${root}/.vitepress/dist/assets (app.*.js) — the shell every visitor loads, across ${w.pages} page(s) totalling ${w.kilobytes} KiB`] }))
   console.log(`  entry STATIC CLOSURE ${w.entryClosureKb} KiB across ${w.entryClosureFiles} files — the app chunk PLUS every chunk it statically imports, which the browser must fetch before the module evaluates`)
   console.log(`  the gap is ${Math.round(w.entryClosureKb / Math.max(1, w.appChunkKb))}x: the line above this one measures one file, and a static import is not optional`)
-  console.log(ratchet('build.entry-closure-kilobytes', w.entryClosureKb, { root, evidence: () => [`entry static closure ${w.entryClosureKb} KiB across ${w.entryClosureFiles} files from app.*.js`] }))
+  // ZERO RESISTANCE TO NOVELTY, AND STILL NO ROOM FOR BLOAT.
+  //
+  // The total is MEASURED and reported, never ratcheted: it is the sum of a shell that must stay flat and a
+  // corpus that is supposed to grow, so a floor on the sum makes adding a theorem indistinguishable from
+  // shipping a heavier shell. What ratchets instead are the two numbers that each mean one thing —
+  //   machineryKb        the shell every visitor loads, which no amount of new mathematics should change;
+  //   corpusKbPerTheorem the DENSITY, which holds when a theorem is added and rises when one gets fatter.
+  // Adding a theorem adds bytes AND a theorem, so the density is unmoved and nothing refuses. Adding
+  // machinery, or padding a theorem, still refuses — which is the whole of what the old floor was for.
+  console.log(`  entry closure ${w.entryClosureKb} KiB = ${w.machineryKb} KiB shell + ${w.corpusKb} KiB corpus over ${w.theorems} theorems — MEASURED, and only the parts below are ratcheted`)
+  console.log(ratchet('build.shell-machinery-kilobytes', w.machineryKb, { evidence: () => [`${w.machineryKb} KiB of shell in the entry closure across ${w.entryClosureFiles} files — the corpus chunk excluded, so this number does not move when a theorem is added`] }))
+  console.log(ratchet('build.corpus-hundred-bytes-per-theorem', w.corpusHundredBytesPerTheorem, { root, evidence: () => [`${w.corpusKb} KiB of corpus over ${w.theorems} theorems = ${w.corpusHundredBytesPerTheorem} hundred bytes each — a floor on the DENSITY, so adding a theorem is free and padding one is not`] }))
 }
