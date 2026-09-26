@@ -98,6 +98,16 @@ export function githubPackagesVersions(pkg: string): { versions: string[] } | { 
   return { versions: String(result.stdout ?? '').split('\n').map((v) => v.trim()).filter((v) => v.length > 0) }
 }
 
+/** npmLive — THE REGISTRY NO WORKFLOW WRITES TO, WHICH IS WHY IT IS READ SEPARATELY.
+ *
+ * Measured 2026-09-26: publish-package.yml is the only publish workflow and it targets npm.pkg.github.com;
+ * no NPM_TOKEN exists in any workflow, and the only secrets are GITHUB_TOKEN, GOOGLE_SITE_VERIFICATION and
+ * the two Zenodo tokens. npmjs nevertheless holds 1.4.0 (2026-07-22) and 1.5.0 (2026-09-13) — so those were
+ * published BY HAND. There are three publish surfaces, not two: GitHub Packages and Zenodo are automated by
+ * the tag, npmjs is not automated at all.
+ *
+ * So a version missing from npmjs is not evidence that a release failed; it is evidence that nobody ran the
+ * manual step. The gate reports it as a SURFACE, never as a gate on the tag, because a tag cannot write here. */
 export async function npmLive(pkg: string): Promise<{ versions: string[]; latest: string } | null> {
   const body = await getJson(`${NPM_REGISTRY}/${pkg.replace('/', '%2F')}`) as { versions?: Record<string, unknown>; 'dist-tags'?: Record<string, string> } | null
   if (!body?.versions) return null
@@ -159,7 +169,7 @@ export async function assertReleaseLive(root: string = process.cwd()): Promise<v
 
   console.log(`  package   ${pkg}`)
   console.log(`  concept   ${concept === null ? 'NOT FOUND in CITATION.cff' : `zenodo ${concept} (derived from CITATION.cff)`}`)
-  console.log(`  npm       ${npm === null ? `UNREACHABLE (${lastFailure}) — skipped, not passed` : `${npm.versions.join(', ')}  (latest ${npm.latest})`}`)
+  console.log(`  npmjs     (NOT written by any workflow — manual) ${npm === null ? `UNREACHABLE (${lastFailure}) — skipped, not passed` : `${npm.versions.join(', ')}  (latest ${npm.latest})`}`)
   console.log(`  zenodo    ${zenodo === null ? `UNREACHABLE (${lastFailure}) — skipped, not passed` : zenodo.join(', ')}`)
   console.log(`  gh-pkgs   ${'versions' in ghp ? ghp.versions.join(', ') : `UNCHECKED (${ghp.unchecked}) — not counted as absent`}`)
   console.log(`  declared  ${declared.map((d) => `${d.version} (${d.where})`).join(' · ')}`)

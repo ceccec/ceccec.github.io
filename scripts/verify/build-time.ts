@@ -83,6 +83,18 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
     //
     // Dynamic import() is deliberately NOT followed: it is the split working, and counting it would
     // punish the very thing that fixes this.
+    //
+    // AND THE FLOOR MOVES WITH CHUNK BOUNDARIES, NOT ONLY WITH THE CORPUS. Measured 2026-09-26 on a clean
+    // tree at 146b742f with .vitepress/cache and dist both deleted: 8980 against its own recorded floor of
+    // 8977, so HEAD failed a floor recorded against HEAD's own source. The breakdown says why — the closure
+    // was 12 files and is now 10: movie-canvas (10 KiB) left it, Badge (7 KiB) joined, and diamonds went
+    // 8142 → 8145. The corpus grew about thirty bytes in that span (repointed paths are longer, a tautology
+    // was removed); the three kilobytes are rollup redistributing code across chunk boundaries.
+    //
+    // The number is still the right thing to measure — a static import is not optional, and 8 MiB is what a
+    // visitor fetches. But it holds to a few kilobytes, not to one, and this session read three refusals as
+    // regressions caused by the change in hand before measuring HEAD itself and finding the same 8980.
+    // A floor recorded at KiB resolution against a chunker that moves KiB will keep doing that.
     if (entry) {
       const seen = new Set<string>()
       const queue = [entry]

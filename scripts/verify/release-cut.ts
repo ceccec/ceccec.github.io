@@ -56,7 +56,9 @@ export async function releaseReadiness(root: string = process.cwd()): Promise<{ 
     // SEALED — the merkle seal over src, .vitepress and package.json
     { condition: 'sealed', surface: 'repo', holds: gate('verify:hashes'), says: 'the seal covers the tree it claims to cover' },
     // THE SURFACES THE TAG WILL WRITE TO — a version already live must not be re-cut
-    { condition: 'unpublished', surface: 'npm', holds: npm === null ? null : !npm.versions.includes(version), says: npm === null ? 'registry unreachable — UNCHECKED, not green' : `${version} not yet on npm (has ${npm.versions.length})` },
+    // npmjs is NOT a surface the tag writes to — no workflow targets it and no NPM_TOKEN exists, so 1.4.0
+    // and 1.5.0 got there by hand. Reported so the manual step is visible, never gating the tag on it.
+    { condition: 'unpublished', surface: 'npmjs*', holds: npm === null ? null : !npm.versions.includes(version), says: npm === null ? 'registry unreachable — UNCHECKED, not green' : `${version} not yet on npmjs (has ${npm.versions.length}) — *manual, no workflow publishes here` },
     { condition: 'unpublished', surface: 'zenodo', holds: zenodo === null ? null : !zenodo.includes(version), says: zenodo === null ? 'archive unreachable — UNCHECKED, not green' : `${version} not yet archived (has ${zenodo.length})` },
     { condition: 'unpublished', surface: 'git', holds: !tagged.includes(version), says: `v${version} is not already a tag` },
   ]

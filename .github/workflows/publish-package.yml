@@ -133,3 +133,64 @@ jobs:
           npm run verify:release-live
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── THE THIRD PUBLISH SURFACE, WHICH HAD NO AUTOMATION AT ALL ────────────────────────────────────────────
+  #
+  # Measured 2026-09-26: this file was the ONLY publish workflow and it targets npm.pkg.github.com. No
+  # NPM_TOKEN exists in any workflow — the secrets are GITHUB_TOKEN, GOOGLE_SITE_VERIFICATION and the two
+  # Zenodo tokens. Yet registry.npmjs.org holds @ceccec/double-torus 1.4.0 (published 2026-07-22) and 1.5.0
+  # (2026-09-13), so both reached npmjs BY HAND. Three surfaces, and only two of them were automated: a tag
+  # wrote GitHub Packages and Zenodo, and somebody remembered npmjs or did not.
+  #
+  # NO TOKEN IS READ HERE, BY DESIGN. This uses npm trusted publishing: the runner's OIDC identity is the
+  # credential, which is why the job asks for `id-token: write` and nothing else. If npmjs has not been told
+  # to trust this workflow the publish fails saying so, and that refusal is the correct outcome — a missing
+  # trust relationship is a thing to configure once, not a reason to paste a long-lived token into a secret.
+  #
+  # CONFIGURE ONCE, ON npmjs.com: package @ceccec/double-torus → Settings → Trusted publishers → add this
+  # repository (ceccec/ceccec.github.io) and this workflow file (publish-package.yml). Until then this job
+  # refuses and the version stays manual, which the release readiness matrix already reports as manual.
+  npmjs-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm install --ignore-scripts --no-save --no-audit --no-fund
+      - name: Build the npmjs package from its own build script
+        run: npm run build --prefix packages/double-torus
+
+      # THE TAG MUST MATCH THIS PACKAGE, NOT THE ROOT. The two share one name across two registries and their
+      # versions have diverged before — the root said 1.5.0 while this said 1.6.0, which would have made a
+      # v1.6.0 tag refuse in the job above while being correct here. Each surface checks its own manifest.
+      - name: Refuse a tag that does not match packages/double-torus
+        run: |
+          set -euo pipefail
+          VERSION="$(node -p "require('./packages/double-torus/package.json').version")"
+          if [ "${GITHUB_REF_TYPE:-}" = 'tag' ]; then
+            TAG="${GITHUB_REF_NAME#v}"
+            if [ "$TAG" != "$VERSION" ]; then
+              echo "REFUSE: tag ${GITHUB_REF_NAME} does not match packages/double-torus ${VERSION}"
+              exit 1
+            fi
+          fi
+          echo "ok — publishing @ceccec/double-torus ${VERSION} to registry.npmjs.org"
+
+      - name: Publish to npmjs (idempotent · provenance from the runner identity)
+        run: |
+          set -euo pipefail
+          cd packages/double-torus
+          NAME="$(node -p "require('./package.json').name")"
+          VERSION="$(node -p "require('./package.json').version")"
+          # Already there → skip exit 0. npmjs versions are immutable, so a re-run must be a no-op and not
+          # an error; this is the same lesson the release workflow learned from HTTP 422 on an immutable release.
+          if npm view "${NAME}@${VERSION}" version --registry=https://registry.npmjs.org >/dev/null 2>&1; then
+            echo "SKIP: ${NAME}@${VERSION} already on npmjs — idempotent exit 0"
+            exit 0
+          fi
+          npm publish --access public --provenance
