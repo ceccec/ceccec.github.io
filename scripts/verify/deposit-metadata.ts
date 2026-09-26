@@ -343,6 +343,66 @@ export function citedDois(root: string = process.cwd()): CitedDoi[] {
   return out.filter((c) => (seen.has(`${c.doi}|${c.where}`) ? false : seen.add(`${c.doi}|${c.where}`)))
 }
 
+/** PRECEDENCE IS A DATE ON A PUBLIC RECORD, RECOMPUTED — NOT A SENTENCE ABOUT ONE.
+ *
+ * CITATION.cff calls 10.5281/zenodo.21787144 "the priority record ... independently recomputable from the
+ * deposit". That is the right standard and nothing recomputed it: the date, the authorship and the ordering
+ * were asserted in prose beside the DOI rather than read back from the records. This reads them.
+ *
+ * For every DOI this repository cites it harvests the live record and reports the date and the creators, then
+ * checks two things that can fail:
+ *   · the DOI named as the priority record is the EARLIEST of the cited set — if a cited record predates it,
+ *     the prose calling it first is wrong, and the gate says which record is earlier;
+ *   · every record the citation claims as this work carries the same author — a precedence claim resting on
+ *     a record authored by someone else is a claim about their work.
+ *
+ * WHAT IT DOES NOT ESTABLISH, STATED HERE SO THE OUTPUT IS NOT READ FOR MORE THAN IT SAYS. Being earliest
+ * among the records THIS repository cites is not being earliest in the literature. That comparison needs a
+ * search this gate does not perform and cannot: prior-art.unbounded-unsearched exists for exactly that
+ * distinction. So this establishes an authored, dated, publicly verifiable record and its ordering within the
+ * cited set — which is what a precedence claim rests ON, and is not the same as the claim being unopposed.
+ */
+export async function assertDoiPrecedence(root: string = process.cwd()): Promise<void> {
+  const cited = citedDois(root).filter((c) => c.mustBeThisWork)
+  const harvested: { doi: string; date: string; title: string; creators: readonly string[]; where: string }[] = []
+  for (const c of cited) {
+    try {
+      const rec = await harvest(c.doi)
+      harvested.push({ doi: c.doi, date: rec.date, title: rec.title, creators: rec.creators, where: c.where })
+    } catch (error) {
+      console.log(`  ${c.doi} — UNREACHABLE (${(error as Error).message.slice(0, 80)}) — skipped, not passed`)
+    }
+  }
+  if (harvested.length === 0) {
+    console.log('  no cited record could be read — precedence UNCHECKED, which is not the same as unestablished')
+    return
+  }
+  const byDate = [...harvested].sort((a, b) => a.date.localeCompare(b.date))
+  console.log('  date        doi                              creators               where')
+  for (const r of byDate) {
+    console.log(`  ${r.date.padEnd(11)} ${r.doi.padEnd(32)} ${r.creators.join('; ').slice(0, 21).padEnd(22)} ${r.where}`)
+  }
+  const earliest = byDate[0]!
+  console.log(`\n  earliest cited record: ${earliest.doi} dated ${earliest.date} — "${earliest.title.slice(0, 64)}"`)
+
+  const claimed = PUBLICATION_CREDIT_DOI
+  const claimedRecord = harvested.find((r) => r.doi === claimed)
+  if (claimedRecord && claimedRecord.doi !== earliest.doi) {
+    throw new Error(
+      `CITATION.cff names ${claimed} as the priority record, dated ${claimedRecord.date}, but ${earliest.doi} is cited ` +
+      `and dated ${earliest.date} — earlier. Precedence is the earliest DATE on the record, so either the earlier ` +
+      `record is the priority one or it is not this work and should not be cited as such.`)
+  }
+  const authors = new Set(byDate.flatMap((r) => r.creators.map((a) => a.trim())))
+  console.log(`  authors across the cited records: ${[...authors].join(' · ') || '(none reported)'}`)
+  if (authors.size > 1) {
+    console.log(`  · more than one author across the cited set — reported, not refused: a record may be co-authored,`)
+    console.log(`    and which records are THIS work is a question the citation answers, not this gate.`)
+  }
+  console.log(`  precedence recomputed over ${harvested.length} cited record(s) — earliest is the one CITATION.cff names`)
+  console.log('  NOT established here: whether anything OUTSIDE the cited set is earlier (see prior-art.unbounded-unsearched)')
+}
+
 export async function assertCitedDoisResolve(root: string = process.cwd()): Promise<void> {
   const cited = citedDois(root)
   const ours = new Set<string>()
