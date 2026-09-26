@@ -24,6 +24,12 @@
     ],
     "related_identifiers": [
       {
+        "identifier": "10.5281/zenodo.21787144",
+        "relation": "continues",
+        "resource_type": "publication-preprint",
+        "scheme": "doi"
+      },
+      {
         "identifier": "https://github.com/ceccec/ceccec.github.io",
         "relation": "isSupplementTo",
         "scheme": "url"
