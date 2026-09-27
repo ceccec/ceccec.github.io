@@ -14,6 +14,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { computedWebManifest } from '../../src/wind/site/index.ts'
+import { readmeMarkdown } from '../../src/quantum/dist/index.ts'
 import { toUuid } from '../../src/0'
 import { quantumTestFramework, quantumAlgorithmBenchmarks } from '../../src/quantum/testing'
 import { quantumTestCoverageReport } from '../../src/quantum/testing/coverage'
@@ -152,4 +153,28 @@ export function manifestDrift(): void {
   console.log(`${MANIFEST}: computed=${toUuid(computed).slice(0, 8)} committed=${toUuid(committed).slice(0, 8)} ${ok ? 'IN SYNC' : 'DRIFTED'}`)
   if (!ok) throw new Error(`${MANIFEST} has drifted — run \`npm run manifest\``)
   webManifestDrift() // one surface for "a generated artefact still equals its generator"
+  readmeDrift()
+}
+
+/** THE README HAD THE CONTRACT AND NOT THE CALL.
+ *
+ * readmeSignatureValid() has existed in src/quantum/dist/readme to check that the committed README.md equals
+ * the computed readmeMarkdown(). The comment at the top of this file says so — "the same contract
+ * readmeSignatureValid() already applies to README.md" — and that was the only thing applying it: measured
+ * 2026-09-27, the function is exported, re-exported through src/quantum/dist, referenced in two comments, and
+ * called by nothing. Third instance of that shape this week: verify:release had seven steps and zero callers,
+ * and verify:precedence was registered in package.json without being chained.
+ *
+ * The README had NOT drifted — committed and computed are byte-identical at 45,186 bytes, which is how an
+ * audit for redundant content came back clean. That was luck rather than a mechanism, and a guarantee nobody
+ * asks for is not a guarantee. The generated-artefact surface is this function, so the README joins it here:
+ * MANIFEST.md, the web manifest, and README.md all answer the same question in one place.
+ */
+export function readmeDrift(): void {
+  const path = join(process.cwd(), 'README.md')
+  const committed = existsSync(path) ? readFileSync(path, 'utf8') : ''
+  const computed = readmeMarkdown()
+  const ok = committed === computed
+  console.log(`README.md: computed=${toUuid(computed).slice(0, 8)} committed=${toUuid(committed).slice(0, 8)} ${ok ? 'IN SYNC' : 'DRIFTED'} (${computed.length} bytes)`)
+  if (!ok) throw new Error('README.md has drifted from readmeMarkdown() — run the readme sync; it is generated, not written')
 }

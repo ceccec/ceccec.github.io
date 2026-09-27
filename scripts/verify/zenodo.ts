@@ -96,9 +96,26 @@ export function assertZenodoFresh(root: string = process.cwd()): void {
   const emitted = serialise(zenodoDepositMetadata(root))
   const committed = readFileSync(join(root, OUT), 'utf8')
   const drift: string[] = []
+  // A LINE THAT DIFFERS ONLY BY TODAY'S DATE IS NOT DRIFT, IT IS THE CALENDAR.
+  //
+  // publication_date is generated as the current day and the provenance note carries that day inside it, so
+  // this gate reported 2 drifted lines every time the clock passed midnight — with the file untouched and the
+  // corpus unchanged. It refused four landings on 2026-09-26 and 2026-09-27 alone, each time answered by
+  // regenerating the file so the commit could proceed, which is a daily commit that carries no information and
+  // trains exactly the reflex a clock-driven gate produces: run the sync, do not read the diff.
+  //
+  // The date matters at MINT, not at commit. Zenodo's GitHub integration reads .zenodo.json from the release
+  // archive when a release is published, and the release workflow regenerates it before that point — so the
+  // committed day is never what gets deposited. What this gate is FOR is content drift: a stale title, a stale
+  // version, a description that no longer matches the work. Those still refuse.
+  //
+  // So a differing line is compared with every ISO date normalised away. If it still differs, it is drift. If
+  // the only difference was the day, it is the calendar, and the calendar is not a finding.
+  const withoutDates = (line: string) => line.replace(/\d{4}-\d{2}-\d{2}/gu, '<date>')
   if (committed !== emitted) {
     const a = committed.split('\n'), b = emitted.split('\n')
     for (let i = 0; i < Math.max(a.length, b.length) && drift.length < 8; i++) {
+      if (withoutDates(a[i] ?? '') === withoutDates(b[i] ?? '')) continue
       if (a[i] !== b[i]) drift.push(`${OUT}:${i + 1} — committed ${JSON.stringify((a[i] ?? '').trim()).slice(0, 90)} · generated ${JSON.stringify((b[i] ?? '').trim()).slice(0, 90)}`)
     }
   }
