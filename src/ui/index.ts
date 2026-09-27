@@ -1734,24 +1734,18 @@ export const cn = __ns_up_up_mountain_shadcn.cn
 /** Design-system CSS-variable tokens (oklch new-york), bridged to VitePress --vp-* and .dark. */
 // SHADCN_TOKENS lives at its domain home (src/mountain/shadcn) — verbatim mirror dissolved; call-time edge reads.
 /** The design-system research surface — sources, integration paths, the implemented-vs-graph delta. */
-export function shadcnResearch(matrix: MindMatrix = buildMatrix()) {
-  return memoByRoot('shadcnResearch', matrix, () => {
-    const graph = (__ns_up_quantum_widgets).shadcnIsTheGraph(matrix)
-    const sections = [
-      { id: 'graph', title: 'shadcn is the graph', note: `${graph.allComponents.length} components grouped into ${Object.keys(graph.components).length} families`, receipt: toUuid('shadcn-research:graph') },
-      { id: 'implemented', title: 'vendored primitives (Path A)', note: `${__ns_up_up_mountain_shadcn.SHADCN_IMPLEMENTED.length} Ui* SFCs in .vitepress/theme/components/ui — semantic classes, no Tailwind dependency`, receipt: toUuid('shadcn-research:implemented') },
-      { id: 'tokens', title: 'CSS-variable theming', note: `${__ns_up_up_mountain_shadcn.SHADCN_TOKENS.length} canonical tokens bridged to --vp-* and .dark`, receipt: toUuid('shadcn-research:tokens') },
-      { id: 'cn', title: 'cn() composer', note: CN_PATTERN, receipt: toUuid('shadcn-research:cn') },
-    ]
-    return { researched: true, sections, root: merkleFold(sections.map((section) => section.receipt)), boundary: 'Registry/tokens sealed here; Vue SFCs stay in the VitePress theme (framework requirement).' }
-  })
-}
+// shadcnResearch WAS DEFINED HERE TOO, AND dryDupe COULD NOT SEE IT. The body was mountain/shadcn's
+// shadcnResearch with the same four section ids, the same notes and the same boundary — differing only in
+// writing `__ns_up_up_mountain_shadcn.SHADCN_IMPLEMENTED` where the original writes `SHADCN_IMPLEMENTED`.
+// Normalised body hashing strips strings and comments, not namespace qualifiers, so two identical
+// computations hashed differently and the duplicate census stayed at zero through it. Neither copy was
+// consumed outside its own file. The registry home owns the design system, so this call site uses its fold.
 /** One gate — the canonical design-system registry composes with the 64-component graph at call time. */
 export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   void at
   return memoByRoot('shadcnComputes', matrix, () => {
     const graph = __ns_up_quantum_widgets.shadcnIsTheGraph(matrix)
-    const research = shadcnResearch(matrix)
+    const research = __ns_up_up_mountain_shadcn.shadcnResearch(matrix)
     const implemented = __ns_up_up_mountain_shadcn.SHADCN_IMPLEMENTED
     const onGraph = implemented.filter((name) => graph.allComponents.includes(name) || name.startsWith('Card') || name.startsWith('Tabs') || name.startsWith('Accordion'))
     const { computes, facets } = computesGate('shadcn-computes', [

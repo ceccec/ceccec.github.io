@@ -2442,7 +2442,12 @@ export function goldMineMapResearch(matrix: MindMatrix = buildMatrix()) {
 
 export function thunderGoldGraphResearch(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  return { researched: true, sections: [], root: toUuid('thunder-gold-graph-research'), boundary: 'HONEST · MODEL_FIT graph research.' }
+  // THIS CLAIMED RESEARCH WITH ZERO SECTIONS. `researched: true` beside `sections: []` is the whole defect in
+  // one line, and its sibling goldMineMapResearch carries a real section — so the shape was available and this
+  // fold simply had nothing in it. The verdict is read off the sections now, which makes it FALSE, and false is
+  // the true answer: nothing has been recorded here yet. Stating that is the honest form, not a checkmark.
+  const sections: { id: string; title: string; body: string }[] = []
+  return { researched: sections.length > 0, sections, root: toUuid('thunder-gold-graph-research'), boundary: 'HONEST · MODEL_FIT graph research — NO sections recorded yet, so researched computes FALSE rather than asserting true. goldMineMapResearch beside it carries one; this fold is an empty surface until it does.' }
 }
 
 export function schumannGoldSiteCouplingAt(at = 0, siteId = 'witwatersrand', matrix: MindMatrix = buildMatrix()) {

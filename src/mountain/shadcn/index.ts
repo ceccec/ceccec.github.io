@@ -49,7 +49,12 @@ export function shadcnResearch(matrix: MindMatrix = buildMatrix()) {
       { id: 'tokens', title: 'CSS-variable theming', note: `${SHADCN_TOKENS.length} canonical tokens bridged to --vp-* and .dark`, receipt: toUuid('shadcn-research:tokens') },
       { id: 'cn', title: 'cn() composer', note: CN_PATTERN, receipt: toUuid('shadcn-research:cn') },
     ]
-    return { researched: true, sections, root: merkleFold(sections.map((section) => section.receipt)), boundary: 'Registry/tokens sealed here; Vue SFCs stay in the VitePress theme (framework requirement).' }
+    // `researched: true` ASSERTED THE RESEARCH RATHER THAN READING IT. The four sections are computed —
+    // component counts, implemented SFCs, bridged tokens, the cn() pattern — and only the verdict was a
+    // literal, so the one field a caller reads was the one field nothing could refute. It now composes the
+    // graph fold's own verdict and requires every section to carry a note: empty the implemented list or drop
+    // a note and it goes false, which is what a research surface claiming to exist should have to survive.
+    return { researched: graph.graphed && sections.every((section) => section.note.trim().length > 0), sections, root: merkleFold(sections.map((section) => section.receipt)), boundary: 'Registry/tokens sealed here; Vue SFCs stay in the VitePress theme (framework requirement).' }
   })
 }
 
