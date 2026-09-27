@@ -195,7 +195,7 @@ export function findConstantChecks(root: string = process.cwd()): VacuousFacet[]
   const found: VacuousFacet[] = []
   // Method names that read a value without bringing anything new in: calling one keeps the closure closed.
   const CLOSED_METHODS = new Set(['includes', 'length', 'every', 'some', 'filter', 'map', 'indexOf', 'join', 'slice', 'size', 'has', 'startsWith', 'endsWith', 'test', 'toFixed', 'concat', 'at', 'find', 'findIndex', 'reduce', 'flat', 'sort', 'keys', 'values', 'entries', 'trim', 'split', 'replace', 'toLowerCase', 'toUpperCase', 'charAt', 'repeat', 'padStart', 'padEnd'])
-  const perFile = new Map<string, { fixed: Map<string, import('typescript').Node>; sf: import('typescript').SourceFile }>()
+  const perFile = new Map<string, { fixed: Map<string, import('typescript').Node>; sf: import('typescript').SourceFile; fixtureSpans: [number, number][] }>()
 
   eachFacet(root, ({ file, facet, on, line }) => {
     const sf = file.ast()
@@ -229,7 +229,31 @@ export function findConstantChecks(root: string = process.cwd()): VacuousFacet[]
         ts.forEachChild(n, collect)
       }
       collect(sf)
-      state = { fixed, sf }
+      // Unsoundness 7: A FACET-SHAPED OBJECT PASSED TO A FUNCTION IS A TEST INPUT, NOT A CLAIM.
+      // src/quantum/science builds `trueClaim` and `falseClaim` and feeds them to referee(), an arena whose
+      // job is to eliminate the false one — so `on: 3 + 7 === 2 + 9` is deliberately false, as a fixture.
+      // scan/index.ts passes facet literals straight into earned() the same way. canon.unfalsifiable-facet
+      // had already written this limitation down for its own detector; this one inherited it.
+      // Two shapes: the object sits lexically inside a call's arguments, or inside an array bound to a const
+      // that is later handed to a call. Collected as source spans, then tested against each facet's position.
+      const fixtureSpans: [number, number][] = []
+      const constArrays = new Map<string, [number, number]>()
+      const passedToCall = new Set<string>()
+      const findFixtures = (n: import('typescript').Node): void => {
+        if (ts.isCallExpression(n)) {
+          for (const arg of n.arguments) {
+            if (ts.isIdentifier(arg)) passedToCall.add(arg.text)
+            else fixtureSpans.push([arg.getStart(sf), arg.getEnd()])
+          }
+        }
+        if (ts.isVariableDeclaration(n) && ts.isIdentifier(n.name) && n.initializer && ts.isArrayLiteralExpression(n.initializer)) {
+          constArrays.set(n.name.text, [n.initializer.getStart(sf), n.initializer.getEnd()])
+        }
+        ts.forEachChild(n, findFixtures)
+      }
+      findFixtures(sf)
+      for (const [name, span] of constArrays) if (passedToCall.has(name)) fixtureSpans.push(span)
+      state = { fixed, sf, fixtureSpans }
       perFile.set(file.rel, state)
     }
 
@@ -259,6 +283,37 @@ export function findConstantChecks(root: string = process.cwd()): VacuousFacet[]
     }
     walk(on)
     if (mutable) return
+
+    const at = on.getStart(sf)
+    if (state.fixtureSpans.some(([from, to]) => at >= from && at <= to)) return
+
+    // Unsoundness 8: A CLOSED NUMERIC IDENTITY IS COMPLETE AS A CONSTANT, AND IS THE CORPUS'S OWN DEFINITION
+    // OF A THEOREM. `2 ** 3 - 2 ** 0 === 7` derives the octonion imaginary dimension; `3 + 7 === 2 + 8` and
+    // `61 === 64 - 3` are identities. There is nothing in the tree for them to read, and a check that
+    // computes the arithmetic IS the whole claim — "theorem = algebraic identity" is a standing law here.
+    // The law this gate enforces is therefore narrower than "the closure must be mutable": a claim ABOUT THE
+    // TREE must read the tree. What stays counted is a check whose only inputs are an AUTHORED COLLECTION —
+    // a list or string written so it could be asked — which is decoration however it is spelled.
+    const numericOnly = ((): boolean => {
+      let allNumeric = true
+      const check = (n: import('typescript').Node): void => {
+        if (!allNumeric) return
+        if (ts.isNumericLiteral(n)) return
+        if (ts.isBinaryExpression(n)) { check(n.left); check(n.right); return }
+        if (ts.isPrefixUnaryExpression(n)) { check(n.operand); return }
+        if (ts.isParenthesizedExpression(n) || ts.isAsExpression(n)) { check(n.expression); return }
+        if (ts.isIdentifier(n)) {
+          const init = state!.fixed.get(n.text)
+          if (init && (ts.isNumericLiteral(init) || ts.isPrefixUnaryExpression(init))) return
+          allNumeric = false
+          return
+        }
+        allNumeric = false
+      }
+      check(on)
+      return allNumeric
+    })()
+    if (numericOnly) return
 
     // Unsoundness 5: a constant with a life outside facet expressions IS the subject, and the facet moves
     // when it moves. Only a value that exists solely to be asked is decoration.

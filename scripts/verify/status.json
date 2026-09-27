@@ -39,7 +39,7 @@
   "lean.lattice-unsealed-directions": 0,
   "lean.registry-sealed": -31,
   "limits.always-true": 1,
-  "limits.constant-check": 32,
+  "limits.constant-check": 5,
   "limits.weakest-bar": 58,
   "mcp.browser-claim-unverified": 19,
   "movie.animation-clocks": 3,
