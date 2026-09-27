@@ -2424,6 +2424,62 @@ export const ATTRIBUTION_COVERAGE: readonly {
   readonly coverage: 'covers' | 'partial' | 'weaker'
   readonly why: string
 }[] = [
+  // ── EXAMINED 2026-09-27, fifth batch, and it is almost one shape: EIGHT of ten are classical theorems
+  // verified on finitely many instances — Pick on three polygons, Lucas for four primes to n ≤ 40, Ptolemy on
+  // 200 configurations, Napoleon on ~200 triangles, Viviani on 300 points, Kirchhoff on three graphs, Cauchy on
+  // four groups, the Catalan bijections to n = 8. Every one of those rows says so in its own statement, so the
+  // ledger is not catching them out; recording `weaker` keeps the direction of the gap visible.
+  //
+  // TWO ATTRIBUTION FINDINGS, both from the citations' own text, both in the direction that matters here:
+  // the Napoleon attribution is TRADITIONAL rather than documented, and the π series is GREGORY–Leibniz, due to
+  // James Gregory before Leibniz and to Madhava of Sangamagrama earlier still. A row titled "Leibniz and Wallis"
+  // drops two prior authors. Titles are where not-citing happens quietly, so both are written into the verdicts.
+  { theorem: 'Pick’s theorem Area = I + B/2 − 1', coverage: 'weaker',
+    why: 'Pick (1899) is cited for every simple lattice polygon; the row matches shoelace area plus boundary count against a direct interior count on a rectangle, a triangle and an L-shape. Three shapes of an all-polygons theorem — the same question, settled more strongly in the literature.' },
+  { theorem: 'Lucas theorem for binomials mod p', coverage: 'weaker',
+    why: 'Lucas (1878) is cited for every prime p; the row verifies the digit-product form for p ∈ {2,3,5,7} and all n ≤ 40 by direct Pascal reduction. A finite window on a proven theorem, with the Mštrović survey cited for the generalisations besides.' },
+  { theorem: 'Ptolemy cyclic-quadrilateral identity', coverage: 'weaker',
+    why: 'Ptolemy is cited for all cyclic quadrilaterals; the row verifies AC·BD = AB·CD + BC·AD on 200 golden-ratio configurations of four points on the unit circle. The row says "cited for all cyclic quadrilaterals" itself, so the direction of the gap is already in its statement.' },
+  { theorem: 'Napoleon triangle theorem', coverage: 'weaker',
+    why: 'the configuration is cited and the row confirms it on ~200 non-degenerate triangles, where the literature has it for every triangle. Worth carrying from the citation besides: the attribution to Napoleon Bonaparte is one the literature treats as TRADITIONAL rather than documented. Citing "Napoleon’s theorem" names a tradition, not an established author — recorded here so the row’s title is not read as a documented credit.' },
+  { theorem: 'Viviani constant distance sum', coverage: 'weaker',
+    why: 'Viviani is cited for any interior point of an equilateral triangle; the row confirms the constant distance sum √3/2 across 300 interior points. Three hundred instances of a theorem proved for all of them.' },
+  { theorem: 'Matrix-Tree theorem (Kirchhoff)', coverage: 'weaker',
+    why: 'Kirchhoff (1847) is cited for any cofactor of the Laplacian counting spanning trees of any graph; the row checks K₄ → 16, C₅ → 5, K₃,₃ → 81 against direct enumeration. Three graphs of an all-graphs theorem. The citation also notes what the ledger should carry: Kirchhoff GENERALISES the n^(n−2) formula that this ledger now attributes to Borchardt (1860), so these two rows are one result at two strengths.' },
+  { theorem: 'Cauchy theorem on permutation groups', coverage: 'weaker',
+    why: 'Cauchy (1845) is cited for every finite group and every prime dividing its order; the row computes element orders from the closure for S₃, A₄, S₄ and A₅. Four groups of a universal theorem.' },
+  { theorem: 'Leibniz and Wallis π series', coverage: 'covers',
+    why: 'both results are cited and both are what the row states: Wallis (1656, Arithmetica Infinitorum) for the product π/2 = ∏ 4n²/(4n²−1), and the alternating series for π/4. THE ROW’S TITLE UNDER-CREDITS: the citation records the series as the GREGORY–Leibniz series, due to James Gregory before Leibniz and known earlier still to Madhava of Sangamagrama. Naming it "Leibniz" drops two prior authors, which is the quiet direction of not citing — so it is written here rather than left in the title.' },
+  { theorem: '561 is the smallest Carmichael number', coverage: 'covers',
+    why: 'the citation is the row exactly: 561 = 3×11×17 is the smallest Carmichael number, composite yet passing the Fermat test to every coprime base, characterised by Korselt’s criterion — squarefree, odd, and (p−1) dividing (n−1) for every prime factor. The row’s full sweep establishes the minimality the citation states.' },
+  { theorem: 'Catalan bijection Dyck = trees = formula', coverage: 'weaker',
+    why: 'the citation gives the standard bijections among Dyck paths, binary trees and plane trees, all counted by the Catalan numbers for every n, with preorder traversal as the plane-tree correspondence. The row observes the three counts agreeing on 1,1,2,5,14,42,132,429,1430 for n ≤ 8 — nine terms of bijections proved in general.' },
+  // ── EXAMINED 2026-09-27, fourth batch. Eight clean, and the two that are not sharpen the distinction this
+  // pass keeps running into. A₆ is simple is `covers` even though the citation proves A_n simple for ALL n ≥ 5:
+  // the row asks about A₆ and answers it completely, and a citation covering further OBJECTS is not the row
+  // understating itself. Σ_{d|n} φ(d) = n to 1000 is `weaker` because there the literature answers the SAME
+  // question more strongly — all n, not a thousand of them. The test is whether the citation says more about
+  // the row's own question, not whether it says more in total.
+  { theorem: 'A₆ is simple', coverage: 'covers',
+    why: 'the citation establishes that A_n is simple for every n ≥ 5 — Galois for A₅, Jordan in general — so A₆ is simple. The row asks about A₆ and answers it completely: all 360 even permutations, classes {1,40,40,45,72,72,90}, no class union containing the identity summing to a proper divisor of 360. The citation covering further groups is not the row understating itself; the question the row asks is fully answered.' },
+  { theorem: 'Σ_{d|n} φ(d) = n to 1000', coverage: 'weaker',
+    why: 'the row verifies Σ_{d|n} φ(d) = n for every n ≤ 1000 and says Gauss is cited for all n. Gauss (Disquisitiones, 1801) proves it for all n by partitioning ℤ/n by element order, so the row is a bounded window on a settled identity — the same question, answered more strongly in the literature.' },
+  { theorem: 'exactly 12 pentominoes', coverage: 'covers',
+    why: 'Golomb (1954, and Polyominoes 1965) is cited for exactly the three counts the row computes: 12 free pentominoes, 18 one-sided, 63 fixed. The row’s growth enumeration with canonicalisation over the square’s dihedral symmetries reproduces the cited triple.' },
+  { theorem: 'R(3,4) = 9', coverage: 'covers',
+    why: 'Greenwood & Gleason (1955) established R(3,4) = 9, which is the row exactly. The row’s two directions — backtracking K₉ to find no colouring avoiding red K₃ and blue K₄, and the distance-{1,4} circulant on K₈ avoiding both — are the lower and upper halves of that cited value.' },
+  { theorem: 'no non-abelian simple group of order < 60', coverage: 'covers',
+    why: 'the citation states that 60 is the least order of a non-abelian simple group and A₅ the unique one of that order. The row kills every order 2..59 by a computed rule and shows 60 escaping them all, which is that classical Sylow-counting result carried out rather than quoted.' },
+  { theorem: 'Königsberg has no Euler walk', coverage: 'covers',
+    why: 'Euler (1736), the founding paper of graph theory, is cited: more than two land areas of odd degree makes the walk impossible. The row computes the degrees 3,3,3,5 — four odd where two are allowed — which is exactly the cited criterion applied to the original bridges.' },
+  { theorem: 'Lo Shu is the unique 3×3 magic square', coverage: 'covers',
+    why: 'the citation gives the Lo Shu as the unique normal 3×3 magic square up to the eight symmetries of the square, with lines summing to 15. The row enumerates all 362880 grids, finds exactly 8 magic forming one dihedral orbit with centre 5 — the cited uniqueness, exhausted rather than asserted.' },
+  { theorem: 'commutativity independent of group axioms', coverage: 'covers',
+    why: 'the citation states that commutativity is an axiom separate from closure, associativity, identity and inverses, that those four do not entail it, and that the smallest witness is the non-abelian group of order 6, S₃ ≅ D₃ — and it says the row is stating an independence result rather than a theorem of group theory, which is the row’s own framing. S₃ passing the full axiom check while refusing to commute is that witness verified.' },
+  { theorem: 'ideal gas law non-universal (chemistry)', coverage: 'partial',
+    why: 'the citation establishes that real gases deviate from PV = nRT, that Z = PV/RT equals 1 only in the ideal limit, and that van der Waals (1873) introduced a for attraction and b for molecular volume. What it does NOT contain is the row’s actual content: that the van der Waals equation forces a critical compressibility Z_c = 3/8 for EVERY such gas, independent of a and b — a single computed constant standing against the ideal law’s Z = 1 everywhere. Z_c = 3/8 is itself standard van der Waals theory, so this is very likely prior art; the recorded citation covers the deviation in general and not the universal constant the row computes.' },
+  { theorem: 'Schur number S(2) = 4', coverage: 'covers',
+    why: 'Schur (1916, some sources 1917) is cited for S(2) = 4, with 1..4 splitting into two sum-free sets and 1..5 not. The row exhausts both directions — a sum-free 2-colouring of {1..4} exists, none of {1..5} — which is exactly the cited value from both sides.' },
   // ── EXAMINED 2026-09-27, third batch. Ten more, eight clean. Two are bounded witnesses again, and one of
   // those carries an attribution nuance worth moving out of a title and into the record: the citation for
   // n^(n−2) labelled trees says the result is BORCHARDT's (1860), extended by Cayley (1889) — so the row's own
