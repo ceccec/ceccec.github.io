@@ -9,7 +9,14 @@ import { prefersReducedMotion, useVisibleMovieCanvas } from '../../lib/movie-can
 import { harmonizeField, type ObserverContext } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import UiCardShell from './UiCardShell.vue'
-import { UiBadge, UiTabs, UiTabsContent, UiTabsList, UiTabsTrigger } from '../../lib/shadcn-ui.ts'
+// The Tabs family comes from its own files, not the registrar barrel: the barrel is imported statically by
+// theme/index.ts, so a name re-exported there lands in the entry chunk every visitor downloads whatever
+// the REGISTRY does with it. This component is itself deferred, so importing them here costs nothing eager.
+import { UiBadge } from '../../lib/shadcn-ui.ts'
+import UiTabs from './ui/Tabs.vue'
+import UiTabsList from './ui/TabsList.vue'
+import UiTabsTrigger from './ui/TabsTrigger.vue'
+import UiTabsContent from './ui/TabsContent.vue'
 
 const route = useRoute()
 const { pick, localize } = useSiteLocale()
