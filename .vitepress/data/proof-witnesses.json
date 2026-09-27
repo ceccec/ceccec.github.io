@@ -191,7 +191,7 @@
  "rosters derive or ledger — a hand-list inside a fold is the hardcoded-value crack one level up": {
   "form": "bars",
   "values": [
-   1085,
+   1121,
    78,
    168,
    986,
@@ -1930,8 +1930,8 @@
  "DRY-clean completion is a computed signal — read the boolean, do not re-scan": {
   "form": "bars",
   "values": [
-   21,
-   4,
+   17,
+   0,
    17
   ],
   "holds": true,
