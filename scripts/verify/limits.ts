@@ -284,6 +284,21 @@ export function findConstantChecks(root: string = process.cwd()): VacuousFacet[]
     walk(on)
     if (mutable) return
 
+    // Unsoundness 9: `on: false` CANNOT FALSELY CLAIM ANYTHING, AND IS THIS CORPUS'S WAY OF RECORDING AN
+    // UNBUILT DIRECTIVE. The asymmetry is the whole point of the gate and I had it only half right: `on: true`
+    // asserts a sentence nothing checked, while `on: false` withholds the assertion — dryAnalyticsLedgerComponents
+    // says "Aspirational and honestly off" in its own boundary and keeps `dried` independent of those two facets,
+    // and the stdio-capability folds return `{ facet: 'known capability', on: false }` from an early-return
+    // FAILURE path, which is a report, not a claim. Counting those as decorations punishes exactly the honesty
+    // the corpus asks for elsewhere ("never a bare negative: reflect the limit into a lead").
+    const resolvesFalse = (n: import('typescript').Node): boolean => {
+      if (n.kind === ts.SyntaxKind.FalseKeyword) return true
+      if (ts.isParenthesizedExpression(n) || ts.isAsExpression(n)) return resolvesFalse(n.expression)
+      if (ts.isIdentifier(n)) { const init = state!.fixed.get(n.text); return init ? resolvesFalse(init) : false }
+      return false
+    }
+    if (resolvesFalse(on)) return
+
     const at = on.getStart(sf)
     if (state.fixtureSpans.some(([from, to]) => at >= from && at <= to)) return
 

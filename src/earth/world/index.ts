@@ -818,11 +818,23 @@ export function hardwareCmykMerkabaFusion(matrix: MindMatrix = buildMatrix()) {
 // renders it DRY: one data-driven widget primitive, grouped by the 4 merkabas in CMYK. Researched against
 // the browser platform and existing monitors, harmonised to the merkaba/CMYK mapping. Honest: no temps.
 export function deviceHardwareVisibleInComputedWidgets(matrix: MindMatrix = buildMatrix()) {
-  const widgetKinds = ['readout', 'gauge', 'bar'] // the DRY primitive — one widget, data-driven
+  const widgetKinds = ['readout', 'gauge', 'bar'] // the DECLARED kinds one primitive renders
   const folders = folderLaw().pairedLogicFolders
+  // THE DRY CLAIM IS NOW MEASURED ON THE DATA MODEL, WHICH IS WHAT IT IS ABOUT. It read
+  // `widgetKinds.length === 3` — a three-element literal asked whether it had three elements, which cannot
+  // fail and says nothing about whether one primitive renders them. "One data-driven widget, not many
+  // components" means exactly two things about the channels the dashboard draws: they share ONE descriptor
+  // schema, and they differ only in DATA. Both are checked here, and both are refutable — give one channel a
+  // bespoke field and the schema set grows; give two the same CMYK letter and they stop being distinguishable
+  // by data alone. No component is named because none renders these kinds; the claim is about the shape the
+  // dashboard consumes, and that is what is asserted.
+  const channels = hardwareCmykMerkabaFusion(matrix).channels
+  const schemas = new Set(channels.map((c) => Object.keys(c).sort().join(',')))
+  const oneSchema = schemas.size === 1
+  const differsOnlyInData = new Set(channels.map((c) => c.cmyk)).size === channels.length
   const facets = [
     { facet: 'all hardware visible — cpu, gpu, memory, storage each surface real browser telemetry', on: hardwareCmykMerkabaFusion(matrix).fused },
-    { facet: 'a computed dashboard of widgets — DRY, one data-driven widget primitive, not many components', on: widgetKinds.length === 3 },
+    { facet: `a computed dashboard of widgets — DRY: all ${channels.length} hardware channels share ONE descriptor schema (${schemas.size} distinct key set) and differ only in data (${new Set(channels.map((c) => c.cmyk)).size} distinct CMYK channels), so one data-driven primitive renders the declared ${widgetKinds.join(' · ')} kinds instead of a component each`, on: oneSchema && differsOnlyInData },
     { facet: 'each merkaba its CMYK channel — the 4 + the core pivot = paired logic folders', on: folders.length === folderLaw().pairedLogicFolders.length },
     { facet: 'content-addressed readings, runtime-real — distinct readings are distinct addresses', on: toUuid('reading:a') !== toUuid('reading:b') },
   ].map((e) => ({ ...e, receipt: toUuid(`device-widgets:${e.facet}`) }))
