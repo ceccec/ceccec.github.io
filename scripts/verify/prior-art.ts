@@ -2424,6 +2424,110 @@ export const ATTRIBUTION_COVERAGE: readonly {
   readonly coverage: 'covers' | 'partial' | 'weaker'
   readonly why: string
 }[] = [
+  // ── EXAMINED 2026-09-27, eighth batch — and with it EVERY attributed row that carried a citation from a real
+  // search now carries a verdict. All 84 examined: 33 covers, 44 weaker, 7 partial. What remains unexamined is
+  // the 274 attributed by PATTERN, where no query was ever run; those need searches, not judgements.
+  //
+  // THE SHARPEST ATTRIBUTION CASE IN THE LEDGER is here. "Burnside orbit-counting lemma" is NOT Burnside's:
+  // Cauchy stated it in 1845, Frobenius proved it, and Burnside quoted it in his 1897 Theory of Groups of Finite
+  // Order WITHOUT attribution, apparently believing it well known — and the name stuck to him. A title
+  // commemorating an unattributed quotation is not-citing in the most literal form available. That makes eleven
+  // titles in this registry naming a later author, with Chu (1303) for Vandermonde the largest gap at 469 years.
+  //
+  // THREE ROWS SHARE ONE CITATION THAT DISOWNS THEM. The DRCET-4 fail-closed-gate paper is cited for the
+  // animation gate, the four-seal unsigned-code law and the computed stable tag — and the citation says in its
+  // own words: different domain, same concept, cited rather than claimed. The concept is prior art; the 108 s
+  // fractal clock, the 4-key content-addressed seal and the src-merkle release identity are the corpus's own.
+  // Recording them `partial` is what stops a citation from reading as coverage it never claimed.
+  { theorem: 'Burnside orbit-counting lemma (from orbit-stabilizer)', coverage: 'weaker',
+    why: 'the lemma holds for every group action; the row verifies #orbits = (1/|G|)·Σ|Fix(g)| on S₄ and A₅. AND THE TITLE IS THE SHARPEST CASE IN THIS LEDGER: the citation states it is NOT Burnside’s. Cauchy (1845) stated it, Frobenius proved it, and Burnside quoted it in his 1897 Theory of Groups of Finite Order WITHOUT attribution, apparently believing it well known — and the name stuck to him. Correctly the Cauchy–Frobenius lemma. A title commemorating an unattributed quotation is not citing in the most literal sense available.' },
+  { theorem: 'order-p² groups are abelian (from p-group center)', coverage: 'weaker',
+    why: 'every group of order p² is abelian, for every prime p; the row verifies Z₄, V₄, Z₉ and Z₃×Z₃. Four groups of a general classification, and the row is explicit that it compounds on its own proven p-group centre theorem rather than re-deriving it.' },
+  { theorem: 'Legendre three-square theorem', coverage: 'weaker',
+    why: 'Legendre’s three-square theorem holds for every n and is formalised in the Archive of Formal Proofs; the row matches the brute three-square search against the 4^a(8b+7) exclusion for every n ≤ 500.' },
+  { theorem: 'partition recurrence from the pentagonal theorem', coverage: 'weaker',
+    why: 'Euler’s pentagonal number theorem gives the recurrence for all n, with signs and gaps set by the generalised pentagonal numbers; the row matches it against a brute partition DP for every n ≤ 60, reaching p(60) = 966467.' },
+  { theorem: 'Möbius identity Σ_{d|n} μ(d) = [n=1]', coverage: 'weaker',
+    why: 'Σ_{d|n} μ(d) = [n=1] holds for every n; the row verifies n ≤ 100. Worth keeping from the citation’s own candour: DLMF does not print the identity literally — it is 27.6.2 specialised to f ≡ 1 — so the citation is a specialisation of the source rather than a quotation of it.' },
+  { theorem: 'primitive roots exist mod every prime', coverage: 'weaker',
+    why: 'the row verifies that (ℤ/pℤ)* is cyclic with exactly φ(p−1) generators for every prime p ≤ 100. The literature is stronger twice over: Gauss (1801) proved existence for every prime — Euler introduced the notion — and the general criterion is that a primitive root exists mod n exactly for n = 1, 2, 4, p^k and 2p^k with p an odd prime.' },
+  { theorem: 'Midy’s theorem on repeating decimals', coverage: 'weaker',
+    why: 'Midy (1836) is cited for every prime p > 5 with even period, including the 1/7 example the row uses; the row verifies it in exact BigInt for every applicable p ≤ 100, riding ord_p(10) as the period.' },
+  { theorem: 'the unit group ℤ[√D]* is infinite', coverage: 'weaker',
+    why: 'the row verifies an infinite unit group for every non-square D ≤ 40, contrasting ℤ[i]’s four units and ℤ[ω]’s six. Dirichlet’s unit theorem is far stronger: the unit group of the ring of integers of ANY number field has rank r₁ + r₂ − 1, which is 1 for a real quadratic field and 0 for an imaginary one — so the row’s forty cases and its own contrast are both instances of one general rank formula.' },
+  { theorem: 'anything without a dedicated animation may not pass the VitePress gates — fail-closed', coverage: 'partial',
+    why: 'the citation (DRCET-4, doi:10.2139/ssrn.7334058) establishes the CONCEPT of a fail-closed evidence gate deciding when a numerical result may be released, and says so in its own words: different domain — risk computation, not a content-addressed code corpus — same concept, cited rather than claimed. What it does not cover is the row: that every page must carry a dedicated animation on a divisor rung of one 108 s fractal clock, period 108/d, recomputed and rejected by the gate. The concept is prior art; this mechanism is the corpus expression, and the citation is honest that it is not the same thing.' },
+  { theorem: 'unsigned code cannot pass the gates — the four-seal fail-closed capstone security law', coverage: 'partial',
+    why: 'the same DRCET-4 citation gives the fail-closed gate concept and explicitly marks itself a different domain. The row states the four-seal capstone: that unsigned or forged code cannot pass because the gate recomputes every atom’s 4-SEAL and fails closed, a valid seal being the 4-key content-address. Fail-closed gating is prior art; a 4-key content-addressed seal over a code corpus is not in the citation.' },
+  { theorem: 'computationally tag stable releases — the gate-pass criterion, 4-key sealed, fail-closed', coverage: 'partial',
+    why: 'the same DRCET-4 citation, the same honest note that the domain differs. The row states that a release is tagged STABLE by a COMPUTED criterion — the src merkle at a commit, so the same src yields the same release address and a stable tag is reproducible, tagged iff all gates pass. The concept of gating a release on evidence is cited; computing the release identity as a source merkle is the corpus expression.' },
+  { theorem: 'a perpetuum mobile sourcing the void is refuted on the ledger — the inversion nets zero over a cycle', coverage: 'covers',
+    why: 'the row’s substance is physics and the physics is cited: a perpetuum mobile is a closed cycle so ΔU = 0 by the first law, and net work from a single equilibrium reservoir is forbidden by the Kelvin statement — with the cited chapter (doi:10.4018/978-1-4666-2202-9.ch009) proving the Carnot bound without entropy maximisation. The citation notes the ledger FORMULATION is the corpus expression, which is presentation rather than a separate claim; what the row asserts about the world is entirely prior art, and it refutes rather than advances a claim.' },
+  // ── EXAMINED 2026-09-27, seventh batch: ten more, all `weaker`, all bounded verifications — Kraft on six
+  // length multisets, AM–GM to n ≤ 6, Cauchy–Schwarz to n ≤ 8, rearrangement to n ≤ 6, five geometric ratios,
+  // Kummer for m,n ≤ 40, sums of two squares to n ≤ 1000, Gray code to n ≤ 12, four polynomials, three p-groups.
+  //
+  // FOUR MORE TITLES THAT UNDER-CREDIT, taking the tally in this registry to TEN. Kraft is a whole chain: Kraft
+  // credits Redheffer, McMillan proved the uniquely-decodable case independently and credits Doob — and the row
+  // states McMillan's half under Kraft's name. Cauchy–Schwarz drops BUNYAKOVSKY, whose integral form (1859)
+  // predates Schwarz (1888). Fermat's two-squares theorem was STATED by Fermat and first PROVED by Euler. And the
+  // geometric series' finite form is EUCLID IX.35. With Chu (1303) for Vandermonde, Borchardt for Cayley,
+  // de Polignac for Legendre, Cauchy–Frobenius for Burnside, Gregory and Madhava for Leibniz, and Napoleon's
+  // undocumented attribution, the pattern is no longer incidental: the registry takes the common name, and the
+  // common name is the later and more famous author. Not citing is the violation; this is where it happens by
+  // default rather than by decision.
+  { theorem: 'Kraft inequality for prefix codes', coverage: 'weaker',
+    why: 'the inequality holds for every length multiset; the row verifies both directions by greedy prefix-free assignment on six of them. THE CITATION IS A CHAIN OF CREDIT: Kraft (1949) published it for prefix codes and himself attributes the underlying analysis to Raymond Redheffer; McMillan (1956) proved it independently for ALL uniquely decodable codes and credits the prefix version to a spoken observation by Joseph Doob in 1955. The row states the uniquely-decodable budget, which is McMillan’s half, under Kraft’s name alone.' },
+  { theorem: 'AM-GM inequality', coverage: 'weaker',
+    why: 'AM–GM holds for all positive reals at every n; the row verifies many tuples to n ≤ 6 with the equality case. The citation gives the first written proof as Cauchy (1821, Cours d’Analyse) by forward–backward induction — the argument now called Cauchy induction — so the general result the row samples is Cauchy’s.' },
+  { theorem: 'Cauchy-Schwarz inequality', coverage: 'weaker',
+    why: 'the inequality holds for all sequences; the row verifies many pairs to n ≤ 8 plus the proportional equality case. THE COMMON NAME DROPS A CONTRIBUTOR: Cauchy (1821) published it for sums, and Bunyakovsky (1859) and Schwarz (1888) published the integral form independently — the fuller Cauchy–Bunyakovsky–Schwarz is standard in the Russian and much of the European literature.' },
+  { theorem: 'rearrangement inequality', coverage: 'weaker',
+    why: 'Hardy, Littlewood and Pólya (1929) is cited for the general statement — a sum of products maximised when both sequences are similarly ordered, minimised when oppositely ordered. The row exhausts permutations to n ≤ 6.' },
+  { theorem: 'geometric series closed form', coverage: 'weaker',
+    why: 'the closed form holds for every ratio and the infinite form for every |r| < 1; the row verifies five ratios including a negative one. The citation places the FINITE form in Euclid IX.35, so the result is ancient and the row’s five cases are a sample of it.' },
+  { theorem: 'Kummer carry theorem', coverage: 'weaker',
+    why: 'Kummer (1852) is cited for every prime and every binomial; the row matches Legendre’s formula against a direct carry count for all m, n ≤ 40 and p ∈ {2,3,5,7}. The citation notes it directly REFINES the Legendre formula in the row beside it — which this ledger has also recorded as de Polignac’s — so the two are one result at two strengths.' },
+  { theorem: 'sum of two squares criterion (general n)', coverage: 'weaker',
+    why: 'the criterion holds for every n; the row checks both directions against direct search for all n ≤ 1000. The citation carries an attribution worth keeping: the prime case was STATED by Fermat and first PROVED by Euler, and the general-n criterion follows from the prime case with multiplicativity. Calling it Fermat’s Christmas theorem credits the man who stated it, not the one who proved it.' },
+  { theorem: 'reflected Gray code single-bit', coverage: 'weaker',
+    why: 'Frank Gray’s patent (filed 1947, granted 1953) is cited for the reflected binary code and its single-bit property at every n; the row verifies g(i) = i XOR (i>>1) is a permutation with the cyclic single-bit property for all n ≤ 12.' },
+  { theorem: 'rational root theorem', coverage: 'weaker',
+    why: 'the theorem bounds the rational roots of every integer polynomial; the row verifies it by finding the actual rational roots of four. Four polynomials of a universal sieve.' },
+  { theorem: 'p-group nontrivial center (from class equation)', coverage: 'weaker',
+    why: 'every nontrivial p-group has a nontrivial centre, for all p and all such groups; the row derives p | |Z| from the class equation and verifies it on Q₈, Z₈ and D₄. Three groups, and the row is explicit that it compounds on its own proven class equation rather than re-deriving it.' },
+  // ── EXAMINED 2026-09-27, sixth batch: ALL TEN are `weaker`, every one a bounded verification of a theorem
+  // the literature proves in general — de Bruijn to n ≤ 6, Chu–Vandermonde for m,n ≤ 12, the hockey stick for
+  // r ≤ 10 and n ≤ 20, orbit–stabiliser on two groups, Heron for integer sides ≤ 20, Bézout for pairs ≤ 60,
+  // Euclid's lemma to 50, Legendre to n ≤ 60, Ceva on ~300 triangles, Menelaus on ~290. This region of the
+  // registry IS that shape, and the rows say so themselves.
+  //
+  // THE TITLES ARE A PATTERN NOW, AND THE CITATIONS ARE COUNTING IT. Chu–Vandermonde appears in Chu Shih-chieh's
+  // Precious Mirror of the Four Elements in 1303 and was republished by Vandermonde in 1772 — the title under-
+  // credits by 469 YEARS. Legendre's formula is also de Polignac's. With Borchardt for Cayley, Cauchy–Frobenius
+  // for Burnside, Gregory and Madhava for Leibniz, and Napoleon's traditional-not-documented attribution, that is
+  // six titles in this registry naming the later and more famous author. Not citing is the violation, and the
+  // common name is where it happens by default rather than by decision.
+  { theorem: 'De Bruijn sequence exact-window', coverage: 'weaker',
+    why: 'the citation defines B(k,n) for every n and gives the Eulerian-circuit construction in the de Bruijn graph; the row constructs and window-verifies n ≤ 6. Six orders of a general construction.' },
+  { theorem: 'Vandermonde binomial identity', coverage: 'weaker',
+    why: 'the row verifies Σ_k C(m,k)C(n,p−k) = C(m+n,p) for all m, n ≤ 12 and every p, where the identity holds generally. AND THE TITLE UNDERSTATES BY 469 YEARS: the citation records it as properly CHU–Vandermonde — it appears in Chu Shih-chieh, The Precious Mirror of the Four Elements (1303), and was rediscovered and published by Alexandre-Théophile Vandermonde in 1772. Naming it for the rediscoverer alone drops the first author by four centuries.' },
+  { theorem: 'hockey-stick identity', coverage: 'weaker',
+    why: 'the diagonal sum Σ_{i=r}^{n} C(i,r) = C(n+1,r+1) is classical for all r and n; the row checks r ≤ 10 and n ≤ 20. A bounded window on a standard identity.' },
+  { theorem: 'orbit-stabilizer theorem', coverage: 'weaker',
+    why: 'the orbit–stabiliser theorem holds for every group action; the row confirms |orbit|·|stab| = |G| for S₄ and A₄. Two actions of a universal counting identity — and, as the citation notes, the identity from which the Cauchy–Frobenius lemma already in this ledger is proved.' },
+  { theorem: 'Heron formula vs coordinate area', coverage: 'weaker',
+    why: 'Heron’s formula holds for every triangle; the row matches it against the shoelace area for every INTEGER triangle with sides ≤ 20, and exhibits Heronian cases such as (3,4,5) → 6. A bounded family of a general result.' },
+  { theorem: 'Bézout identity via extended Euclid', coverage: 'weaker',
+    why: 'Bézout’s identity holds for all integers and the extended Euclidean algorithm computes the coefficients in general; the row produces (x,y) for every pair a, b ≤ 60. Sixty-one squared cases of an unbounded theorem.' },
+  { theorem: 'Euclid lemma p | ab ⇒ p | a or p | b', coverage: 'weaker',
+    why: 'Euclid’s lemma holds for every prime and every product; the row checks all a, b ≤ 50 against every prime p ≤ 50. Worth keeping from the citation: the modern proof runs through Bézout’s identity, which was unknown in Euclid’s time — so the row beside this one in the ledger is the tool its own standard proof now uses.' },
+  { theorem: 'Legendre prime-power formula for n!', coverage: 'weaker',
+    why: 'Legendre’s formula Σ⌊n/p^k⌋ gives the p-adic valuation of n! for all n and p; the row matches direct factorisation for n ≤ 60. The citation also sharpens the name: it is ALSO known as de Polignac’s formula, which the ledger counts as its third attribution sharper than the common name, after Borchardt for Cayley and Cauchy–Frobenius for Burnside.' },
+  { theorem: 'Ceva theorem (concurrent cevians)', coverage: 'weaker',
+    why: 'Ceva’s condition is necessary and sufficient for every triangle; the row confirms the product of side-ratios at 1 across ~300 triangles sampled by independent irrational rotations, to 1e-6. Three hundred configurations of a general theorem.' },
+  { theorem: 'Menelaus theorem (transversal)', coverage: 'weaker',
+    why: 'Menelaus holds for every transversal; the row confirms it across ~290 configurations as the collinear dual of Ceva. The citation adds the history the pairing rests on: Menelaus (70–130) was little known until Ceva rediscovered the result in the seventeenth century, so the two rows sitting beside each other here are historically linked and not merely formally dual.' },
   // ── EXAMINED 2026-09-27, fifth batch, and it is almost one shape: EIGHT of ten are classical theorems
   // verified on finitely many instances — Pick on three polygons, Lucas for four primes to n ≤ 40, Ptolemy on
   // 200 configurations, Napoleon on ~200 triangles, Viviani on 300 points, Kirchhoff on three graphs, Cauchy on
