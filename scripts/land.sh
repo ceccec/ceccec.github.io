@@ -105,6 +105,22 @@ if grep -qxF package.json <<<"$changed"; then
   npm run -s manifest > "$LOGS/manifest.log" 2>&1 || { echo "✗ npm run manifest — the last lines of $LOGS/manifest.log:"; tail -25 "$LOGS/manifest.log"; exit 1; }
   echo "✓ manifest regenerated from package.json"
 fi
+# REGENERATE THE GENERATED ARTEFACTS BEFORE THE GATES THAT CHECK THEM, NOT AFTER.
+# README.md is computed from src AND from the ratchet ledger, and manifest:check compares the committed file
+# to that computation. Step 3 below regenerates it — AFTER this gate batch — so any wave that moved a ratchet
+# refused here on a README that step 3 was about to fix. It cost three landings in one session: the Receipt
+# section went live, so 69→71 ratchets, then 836→728 kilobytes, each moved the README and each refused.
+# Running the same regeneration first makes the ordering consistent rather than lucky: manifest:check sits
+# 4th in verify:all and the build floors are recorded near the end, so the README this produces matches the
+# ledger as manifest:check reads it, and step 3 regenerates again afterwards to pick up whatever the later
+# gates tightened. The commit therefore carries a README computed from the FINAL ledger, which is the one a
+# fresh clone recomputes. Cheap to do twice; a refusal that a later step of the same script repairs is not.
+if ! node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify > "$LOGS/pre-gate-regen.log" 2>&1; then
+  echo "✗ land: the generated artefacts could not be regenerated before the gates — the last lines of $LOGS/pre-gate-regen.log:"
+  tail -25 "$LOGS/pre-gate-regen.log"
+  exit 1
+fi
+echo "✓ generated artefacts regenerated before the gates that check them"
 echo "land: $(wc -l <<<"$changed" | tr -d ' ') path(s) · gates: ${gates[*]}"
 for g in "${gates[@]}"; do
   # docs:build skips VitePress when the src+.vitepress merkle looks unchanged — and the trinity gate above seals that
@@ -119,6 +135,22 @@ for g in "${gates[@]}"; do
     exit 1
   fi
 done
+
+# THE BUILD FLOORS ARE ENFORCED HERE, AFTER THE BUILD — NOT INSIDE verify:stream, WHERE THEY READ THE LAST ONE.
+# verify:build-time only READS .vitepress/dist; it never builds. It runs inside verify:stream, which runs BEFORE
+# docs:build, so build.app-chunk-kilobytes and build.shell-machinery-kilobytes were measured against whatever
+# tree produced the dist still on disk — for a whole session, a dist two and a half hours old. The gate now
+# detects that and skips its ratchets loudly instead of recording another tree's numbers, which means the floors
+# are only ever enforced by this second call, where the dist is the one docs:build just produced.
+if [[ " ${gates[*]} " == *" docs:build "* ]]; then
+  if npm run -s verify:build-time > "$LOGS/verify-build-time-post.log" 2>&1; then
+    echo "✓ verify:build-time (on the dist docs:build just produced)"
+  else
+    echo "✗ verify:build-time — the build floors, measured on the fresh dist:"
+    tail -25 "$LOGS/verify-build-time-post.log"
+    exit 1
+  fi
+fi
 grep -hE "tightened, recorded" "$LOGS"/*.log 2>/dev/null | sed 's/^ */  ratchet /'
 
 # 3 — regenerate what the hook regenerates, before staging
@@ -129,8 +161,21 @@ if ! node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/i
 fi
 
 # 4 — commit, push, and check the landing by the refs themselves
-git add -u
+# `git add -u` HAD NO GUARD, AND THAT IS HOW A PARTIAL WAVE LANDED. 2026-09-27: a concurrent `git status`
+# took .git/index.lock while land was staging, `git add -u` failed, land carried on, and the commit held
+# only the two files that happened to be staged already — a regenerated README.md claiming 71 ratchets
+# while the code defining 71 stayed uncommitted, so a fresh clone would have failed manifest:check on main.
+# Every other git call in this script is guarded; this one was the exception, and it is the one that stages.
+git add -u || { echo "✗ land: git add -u failed — nothing committed (another git process may hold .git/index.lock)"; exit 1; }
 for p in ${ADD[@]+"${ADD[@]}"}; do git add -- "$p" || exit 1; done
+# THE INVARIANT IS THAT NOTHING TRACKED IS LEFT BEHIND, not that git add returned 0. A partial stage commits
+# a tree no gate ran against, which is strictly worse than not committing at all.
+left=$(git diff --name-only)
+if [ -n "$left" ]; then
+  echo "✗ land: tracked files are still unstaged after git add -u — refusing to land a partial wave:"
+  echo "$left" | sed 's/^/    /'
+  exit 1
+fi
 echo "land: staged —"; git diff --cached --stat | sed 's/^/  /'
 git commit -q -F "$MSG" || { echo "✗ the commit was refused (the hook's output is above)"; exit 1; }
 sha=$(git rev-parse HEAD)

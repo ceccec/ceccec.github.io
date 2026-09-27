@@ -1,4 +1,5 @@
 // ☱ Duì · Lake — music & sound: the a432 thread as real acoustics (harmonic series, just/equal temperament, the one shared audio engine, healing-frequency honesty, aksak rhythm), dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
+import { enforcementScanRoot } from '../pair/enforcement/gates/computational/index.ts'
 import * as __ns_up_up_vortex_math from '../mountain/vortex/index.ts'
 import { DIMENSION_GATES, LN2, UNFOLDED_CENSUS, rat, ratEq, vortexContinuedFrac, vortexHarmonicRatios } from '../3/7/index.ts'
 import * as __ns_up_up_thunder_trading from '../thunder/trading/index.ts'
@@ -1003,16 +1004,18 @@ export function soundWiredToOneSharedContext(matrix: MindMatrix = buildMatrix())
   return memoByRoot('soundWiredToOneSharedContext', matrix, () => soundWiredToOneSharedContextRaw(matrix))
 }
 /** Browser-safe root: bare `process` is undefined under the dev-client shim. */
-function scanRoot(): string {
-  return typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/'
-}
+// THE SCAN ROOT IS ONE FUNCTION, NOT FOUR. dryDupe measured this body at four addresses under four
+// names — routeScanRoot, scanRoot, enforcementScanRoot, repoRoot — byte-identical, each carrying its own
+// copy of the browser guard that is the only interesting thing in it. water/stack already documented
+// enforcementScanRoot as "the ONE browser-safe guard" and imported it; these three never collapsed onto
+// it. Code gravity: duplicates collapse to one API, so the guard is fixed in one place or in none.
 
 /**
  * Count the places an AudioContext is actually CONSTRUCTED, across src and the render
  * harness. Returns 0 under the browser shim (no fs), which is honest: nothing was scanned.
  */
 export function countAudioContextSites(): number {
-  const root = scanRoot()
+  const root = enforcementScanRoot()
   let n = 0
   const walk = (dir: string) => {
     let entries: string[] = []

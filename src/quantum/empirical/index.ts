@@ -14,6 +14,7 @@
 // implementation here reports measured:false rather than a plausible number.
 // [[hardcoded-value-is-a-crack]]
 
+import { enforcementScanRoot } from '../../pair/enforcement/gates/computational/index.ts'
 import { memoByRoot, toUuid } from '../../0/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
 import { quantumAlgorithmBenchmarks, quantumTestFramework, verifyAlgorithm } from '../testing/index.ts'
@@ -227,12 +228,14 @@ export type ProductionDeployment = {
   readonly receipt: string
 }
 
-function repoRoot(): string {
-  return typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/'
-}
+// THE SCAN ROOT IS ONE FUNCTION, NOT FOUR. dryDupe measured this body at four addresses under four
+// names — routeScanRoot, scanRoot, enforcementScanRoot, repoRoot — byte-identical, each carrying its own
+// copy of the browser guard that is the only interesting thing in it. water/stack already documented
+// enforcementScanRoot as "the ONE browser-safe guard" and imported it; these three never collapsed onto
+// it. Code gravity: duplicates collapse to one API, so the guard is fixed in one place or in none.
 
 function pathExists(rel: string): boolean {
-  return existsSync(join(repoRoot(), rel))
+  return existsSync(join(enforcementScanRoot(), rel))
 }
 
 function unverifiable(requirement: string, why: string): RequirementCheck {
@@ -260,7 +263,7 @@ export function productionDeploymentAssessment(matrix: MindMatrix = buildMatrix(
         requirement: 'CI/CD pipeline configured',
         met: pathExists('.github/workflows'),
         evidence: pathExists('.github/workflows')
-          ? `${readdirSync(join(repoRoot(), '.github/workflows')).length} workflow files`
+          ? `${readdirSync(join(enforcementScanRoot(), '.github/workflows')).length} workflow files`
           : 'no .github/workflows directory',
       },
       {

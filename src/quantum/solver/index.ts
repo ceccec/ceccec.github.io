@@ -7,6 +7,7 @@
  * No hardcoding. No demos. Real cryptographic recovery.
  */
 
+import { multiplicativeOrder } from '../../0/index.ts'
 import { prng, gcd, pow } from '../../0/index.ts'
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -180,16 +181,10 @@ export function recoverPrivateFromPublic(publicKey: PublicKey): PrivateKeyRecove
 
 // Utility functions
 
-function findOrder(a: number, n: number, maxOrder = n): number | null {
-  for (let r = 1; r < maxOrder; r++) {
-    let mod = 1
-    for (let i = 0; i < r; i++) {
-      mod = (mod * a) % n
-    }
-    if (mod === 1) return r
-  }
-  return null
-}
+// findOrder WAS DEFINED HERE, AND TWICE MORE. Byte-identical in crypto/reverse, quantum and
+// quantum/solver (dryDupe measured all three), each an r-loop recomputing a^r from 1 every
+// iteration — O(r²) for the multiplicative order, which the origin's ring algebra now names as
+// multiplicativeOrder and computes in O(r). Its `maxOrder` parameter was passed by no call site.
 
 function factorViaOrderFinding(n: number): [number, number] | null {
   const rand = prng(`solver:factor:${n}`) // seeded: same n, same trajectory, same receipt
@@ -200,7 +195,7 @@ function factorViaOrderFinding(n: number): [number, number] | null {
     const g = gcd(a, n)
     if (g > 1) return [g, n / g]
 
-    const r = findOrder(a, n)
+    const r = multiplicativeOrder(a, n)
     if (!r || r % 2 !== 0) continue
 
     let half_pow = 1

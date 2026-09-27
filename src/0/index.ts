@@ -1050,6 +1050,42 @@ export function clayReflection(): {
 // operation. Each src/d/index.ts is a thin caller: `digitStation(d, theorems)`. (everyDigitFoldsThroughOneStation.)
 export type DigitTheorem = { readonly problem: string; readonly title: string; readonly sealed: boolean }
 
+/**
+ * THE DIGIT'S SEAL AND ITS SENTENCE — WRITTEN ONCE FOR ALL NINE.
+ *
+ * Each of src/1..src/9 declared `root()` and `statement()` with byte-identical bodies over its own D,
+ * spectrum, polarities and base — eighteen declarations of two functions. dryDupe measured them as its
+ * last two true duplicate groups (16 copies) and could say no more, because a body hash cannot tell a
+ * template instantiated over nine different closures from nine copies of one computation. It was the
+ * former, which is why they were correct; it is still one rendering written nine times, and a change to
+ * the seal's shape had to be made in nine places or in none.
+ *
+ * WHAT DOES NOT MOVE. Every digit keeps its own D, theorems, spectrum and polarities, and keeps its own
+ * seal VALUE — this function is handed them and folds them, so digit 1 and digit 9 seal to what they
+ * sealed before. The reflection pairs (1↔9, 2↔8, 3↔7, 4↔6, 5↔5) live in `polarities.tensPair` and
+ * `ninePair`, which are computed per folder and only read here. Nothing is merged between folders and
+ * no folder loses a surface: `root` and `statement` are still its own exports. What moves is the shared
+ * rendering of a per-digit value, to the station in the origin that already computes that digit's base —
+ * the same place, and the same argument, as gcd/modUnits/multiplicativeOrder being the ring algebra's
+ * one home. Verified byte-for-byte: all nine roots and all nine statements are unchanged.
+ */
+export function digitSeal(
+  d: number,
+  base: { root: () => string; prove: () => { ok: boolean } },
+  spectrum: readonly { readonly k: number; readonly image: number }[],
+  polarities: { readonly tensPair: number; readonly ninePair: number; readonly forward: unknown; readonly reverse: unknown },
+): { root: () => string; statement: () => string } {
+  const root = (): string =>
+    merkleFold([
+      base.root(),
+      ...spectrum.map((r) => toUuid(`angle:${d}:${r.k}:${r.image}`)),
+      toUuid(`polarity:${d}:${polarities.tensPair}:${polarities.ninePair}:${polarities.forward}:${polarities.reverse}`),
+    ])
+  const statement = (): string =>
+    `digit ${d}: angles {${spectrum.map((r) => r.image).join(' ')}}, polarities σ=${polarities.tensPair}/ν=${polarities.ninePair} fwd=${polarities.forward}/rev=${polarities.reverse}, proven ${base.prove().ok}, seal ${root().slice(0, (6 * 2))}…`
+  return { root, statement }
+}
+
 export function digitStation(d: number, theorems: readonly DigitTheorem[] = []) {
   const reflect = reflectThroughZero(d)                 // σ, the `\` op — 10−d (180° fold)
   const reflections = { at180: reflect, at90: reflectFold(d, (9 * 5 * 2)), at60: reflectFold(d, (9 * 5 * 4) / 3) } // the fold family
@@ -2144,9 +2180,16 @@ export const FORGE_COST_CEILING =
   + 'the CEILING this hash offers, not a guarantee (findContentAddressCollision exhibits a real collision in its 32-bit FNV core; toUuidSha256 is the vetted path)'
 
 // ── Ring algebra — the algebra implicit in the digit folders, made explicit ──────────────────────
-// The digit folders hold the vortex ring (ℤ/9ℤ)* without naming it. These three primitives pull
-// that algebra out into the origin kernel: gcd is the Euclidean atom, modUnits is the group,
-// groupOrbit is the generator's path. groupOrbit(2, 9) = [1,2,4,8,7,5] — the vortex IS this.
+// The digit folders hold the vortex ring (ℤ/9ℤ)* without naming it. These primitives pull that
+// algebra out into the origin kernel: gcd is the Euclidean atom, modUnits is the group, groupOrbit
+// is the generator's path, and multiplicativeOrder is the LENGTH of that path. groupOrbit(2, 9) =
+// [1,2,4,8,7,5] — the vortex IS this, and multiplicativeOrder(2, 9) = 6 is its period.
+//
+// The order was the member this block named without defining. It was defined three times instead,
+// outside the kernel, as `findOrder` in crypto/reverse, quantum and quantum/solver — byte-identical
+// (dryDupe measured them), each an r-loop recomputing a^r from 1 on every iteration, so O(r²) work
+// for a quantity the orbit yields in O(r). Its third parameter `maxOrder` was passed by none of the
+// three call sites. One definition here, in the block whose comment already pointed at it.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function gcd(a: number, b: number): number {
   a = Math.abs(Math.round(a)); b = Math.abs(Math.round(b))
@@ -2161,6 +2204,38 @@ export function gcdBigInt(a: bigint, b: bigint): bigint {
 export function lcm(a: number, b: number): number {
   const g = gcd(a, b)
   return g === 0 ? 0 : Math.abs((a / g) * b)
+}
+/**
+ * The multiplicative order of `a` in (ℤ/nℤ)* — the least r > 0 with a^r ≡ 1 (mod n), or `null` when
+ * there is none, which is exactly when gcd(a, n) ≠ 1. Equivalently |groupOrbit(a, n)|: the identity is
+ * asserted where groupOrbit lives (src/4/6), verified over every pair with 2 ≤ n ≤ 60 — 1770 pairs, no
+ * disagreement, in both directions including the non-unit case where both sides are null.
+ *
+ * Iterative by construction: each step multiplies once, so the cost is the order itself and not its
+ * square.
+ *
+ * WHICH GUARD IS LOAD-BEARING WAS TESTED, NOT ASSUMED. This comment first claimed gcd was the guard and
+ * `r > m` merely a refusal to loop forever. Perturbation disagreed: with the gcd line replaced by
+ * `if (false)`, every check in oneMathManyPresentations stayed green — because a non-unit's powers are
+ * never ≡ 1, so the loop simply runs to the bound and returns null anyway. The bound is what makes
+ * termination and correctness unconditional; gcd decides the non-unit case in O(1) instead of O(n).
+ * Both stay, and neither is described as doing the other's work.
+ *
+ * @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational)
+ */
+export function multiplicativeOrder(a: number, n: number): number | null {
+  const m = Math.abs(Math.round(n))
+  if (m < 2) return null
+  const base = ((Math.round(a) % m) + m) % m
+  if (gcd(base, m) !== 1) return null
+  let mod = base
+  let r = 1
+  while (mod !== 1) {
+    mod = (mod * base) % m
+    r++
+    if (r > m) return null
+  }
+  return r
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function modUnits(n: number): number[] {

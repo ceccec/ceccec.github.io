@@ -30,21 +30,16 @@
  * Proof: rsa-is-factored-proof.mjs (published)
  */
 
+import { multiplicativeOrder } from '../../0/index.ts'
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { trinityKey, derivePublicKey, foldPair, toUuid, merkleFold, gcd, gcdBigInt, floor, ceil, sqrt, min, prng, log } from '../../0/index.ts'
 import { runProofExit } from '../../quantum/millennium/index.ts'
 
-function findOrder(a: number, n: number, maxOrder: number = n): number | null {
-  for (let r = 1; r < maxOrder; r++) {
-    let mod = 1
-    for (let i = 0; i < r; i++) {
-      mod = (mod * a) % n
-    }
-    if (mod === 1) return r
-  }
-  return null
-}
+// findOrder WAS DEFINED HERE, AND TWICE MORE. Byte-identical in crypto/reverse, quantum and
+// quantum/solver (dryDupe measured all three), each an r-loop recomputing a^r from 1 every
+// iteration — O(r²) for the multiplicative order, which the origin's ring algebra now names as
+// multiplicativeOrder and computes in O(r). Its `maxOrder` parameter was passed by no call site.
 
 function pollardRho(n: bigint): bigint | null {
   const rand = prng(`pollard-rho:${n.toString()}`) // seeded: same n, same trajectory, same receipt
@@ -163,7 +158,7 @@ export function shorsAlgorithm(n: number, maxAttempts: number = 10): [number, nu
     const g = gcd(a, n)
     if (g > 1) return [g, n / g]
 
-    const r = findOrder(a, n)
+    const r = multiplicativeOrder(a, n)
     if (!r || r % 2 !== 0) continue
 
     let half_pow = 1

@@ -45,6 +45,59 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { ratchet } from './status.ts'
 
+/**
+ * IS THE DIST THIS TREE'S, OR AN OLDER TREE'S? THIS GATE NEVER ASKED, AND THAT MADE ITS FLOORS FICTION.
+ *
+ * distWeight only READS .vitepress/dist — nothing here builds. In `land` the gate order is
+ * verify:stream (which contains this gate) and only THEN docs:build, so every build.* ratchet has always
+ * been measured against the dist left by an EARLIER tree. Run on its own it is worse: `npm run
+ * verify:build-time` in a working tree reports the last build's numbers with no hint they are not this
+ * tree's. 2026-09-27 I read three such reports as measurements of three different trees — a baseline with
+ * the wave stashed, the wave, and the wave minus a vendor import — and all three printed the identical
+ * 837 KiB with the identical chunk hash, because all three read one dist that was two and a half hours
+ * old. A gate cannot be wrong in a more expensive way than by answering confidently about the wrong tree.
+ *
+ * So the freshness is computed and the ratchets are SKIPPED, loudly, when the dist predates the sources.
+ * Skipped, not failed: refusing would make every land impossible, since land runs this before its build.
+ * Skipped, not passed quietly: a floor recorded from the wrong tree is the transient-state defect that
+ * has cost this corpus a witness, a seal and a day. land.sh now runs this gate again AFTER docs:build,
+ * where the dist is this tree's and the numbers mean what they say.
+ */
+export function distIsThisTree(root: string = process.cwd()): { fresh: boolean; distMs: number; newestSourceMs: number; newestSource: string; changed: number } {
+  const dist = join(root, '.vitepress', 'dist')
+  let distMs = 0
+  const walkDist = (dir: string) => {
+    if (!existsSync(dir)) return
+    for (const e of readdirSync(dir)) {
+      const p = join(dir, e)
+      const st = statSync(p)
+      if (st.isDirectory()) walkDist(p)
+      else if (st.mtimeMs > distMs) distMs = st.mtimeMs
+    }
+  }
+  walkDist(join(dist, 'assets'))
+  let newestSourceMs = 0
+  let newestSource = ''
+  let changed = 0
+  const walkSrc = (dir: string) => {
+    if (!existsSync(dir)) return
+    for (const e of readdirSync(dir)) {
+      // dist and cache are OUTPUT, and counting output as source makes everything look fresh forever.
+      if (e === 'dist' || e === 'cache' || e === 'node_modules' || e.startsWith('.')) continue
+      const p = join(dir, e)
+      const st = statSync(p)
+      if (st.isDirectory()) walkSrc(p)
+      else if (/\.(ts|vue|mts|css|json|md)$/.test(e)) {
+        if (st.mtimeMs > distMs) changed += 1
+        if (st.mtimeMs > newestSourceMs) { newestSourceMs = st.mtimeMs; newestSource = p.replace(`${root}/`, '') }
+      }
+    }
+  }
+  walkSrc(join(root, 'src'))
+  walkSrc(join(root, '.vitepress'))
+  return { fresh: distMs > 0 && newestSourceMs <= distMs, distMs, newestSourceMs, newestSource, changed }
+}
+
 /** What the build actually produced: the deterministic cause of its duration. */
 export function distWeight(root: string = process.cwd()): { pages: number; kilobytes: number; appChunkKb: number } {
   const dist = join(root, '.vitepress', 'dist')
@@ -184,6 +237,15 @@ export function assertBuildIsNotSlower(root: string = process.cwd()): void {
   console.log(`  ${perPage} KiB per page (mean) — MEASURED, not gated: a mean shifts whenever what you add is not average`)
   if (!w.appChunkKb) {
     console.log('  app entry chunk NOT FOUND in assets/ — NOT MEASURED rather than passed')
+    return
+  }
+  const fresh = distIsThisTree(root)
+  if (!fresh.fresh) {
+    const age = Math.round((fresh.newestSourceMs - fresh.distMs) / 60000)
+    console.log(`  ⚠ THE DIST IS NOT THIS TREE'S — ${fresh.changed} source file(s) are newer than the newest built asset, the most recent by ${age} minute(s) (${fresh.newestSource}).`)
+    console.log('    The numbers above describe the LAST build, not this tree. The build.* ratchets are SKIPPED rather than')
+    console.log('    recorded from another tree\'s output — run `npm run docs:build` and this gate again to measure this one.')
+    console.log('    (land runs this gate a second time after docs:build, which is where these floors are actually enforced.)')
     return
   }
   console.log(`  app entry chunk ${w.appChunkKb} KiB — the shell every visitor loads; this is what may not regress`)

@@ -70,6 +70,47 @@ security *property* of that atom (the log2 work to forge a content-addressed sea
 | `asMerkaba(f, t)` | geometry in motion — the star tetrahedron, `down = −up` counter-spun | faithful |
 | `asTrace(f, t)` | dynamics — the four-arm harmonograph; the dot the engine plots | faithful |
 
+### The ring algebra and the digit station
+Two blocks that live here and were not written down until the dry-clean wave found what they were missing.
+
+**The ring algebra** pulls `(ℤ/9ℤ)*` — the group the digit folders move in without naming — into the origin.
+`groupOrbit` stays in `src/4/6` (pi-train wave 5, tier A); everything the orbit is *measured by* is here, and
+`multiplicativeOrder` is the member the block named for a long time without defining. It was defined three
+times instead, outside the kernel, as `findOrder` in `crypto/reverse`, `quantum` and `quantum/solver` —
+byte-identical, each an r-loop recomputing aʳ from 1 on every step (O(r²) for something the orbit gives in
+O(r)), with a `maxOrder` parameter no call site passed.
+
+| export | what it is |
+|---|---|
+| `gcd(a, b)` / `gcdBigInt(a, b)` | the Euclidean atom. |
+| `lcm(a, b)` | `|ab| / gcd(a, b)`. |
+| `modUnits(n)` | the unit group of ℤ/n — the `i < n` with `gcd(i, n) = 1`. `|modUnits(n)| = φ(n)`. |
+| `multiplicativeOrder(a, n)` | the least `r > 0` with `aʳ ≡ 1 (mod n)`, or `null` — which happens exactly when `gcd(a, n) ≠ 1`. |
+
+The identity that ties it to the vortex: **`multiplicativeOrder(a, n) = |groupOrbit(a, n)|`** for every unit,
+`null` on both sides otherwise — checked over all 1770 pairs with `2 ≤ n ≤ 60`, no disagreement. It is asserted
+in `src/4/6` (where `groupOrbit` lives, because `src/0` imports nothing) and, origin-side, as a presentation of
+`oneMathManyPresentations`: 2 is a **primitive root** mod 9 (`multiplicativeOrder(2, 9) = |modUnits(9)| = 6`, so
+the orbit `1·2·4·8·7·5` visits every unit and misses nothing), **Lagrange** holds (every unit's order divides
+the group order), and the axis `3·6·9` has **no** order at all. The vortex is that orbit; 6 is its period.
+
+**The digit station** is what `src/1`…`src/9` are built out of. `digitStation(d, theorems)` computes the digit's
+reflections, vortex edge and base seal; `digitSeal(d, base, spectrum, polarities)` renders the two things every
+digit folder then publishes as its own.
+
+| export | what it is |
+|---|---|
+| `digitStation(d, theorems)` | the digit's base — fold family (180°/90°/60°), vortex op and edge, coverage, `prove`, `root`. |
+| `digitSeal(d, base, spectrum, polarities)` | `{ root, statement }` for that digit: the merkle fold over its base, angles and polarities, and the one sentence that reports them. |
+
+`digitSeal` exists because `root()` and `statement()` were declared nine times with byte-identical bodies, once
+per digit folder — eighteen declarations of two functions, so a change to the seal's shape had to be made in
+nine places or in none. **Every digit still owns its value**: it passes its own `D`, `spectrum`, `polarities`
+and `base`, and still exports its own `root` and `statement`. The reflection pairs (1↔9, 2↔8, 3↔7, 4↔6, 5↔5)
+live in `polarities.tensPair`/`ninePair`, computed per folder and only read here. All nine roots and all nine
+statements are byte-for-byte what they were before the move, and `canon.duplicate-body-groups` is recorded at
+zero so no tenth copy of anything can land.
+
 ### Wave 7 · uuid logic & maximum tampering cost
 The cost **math** is pure; the matrix-bound `proofReport` (in the core) only *measures* coverage and reciprocal
 entropy and **passes them in** — it owns the measurement, not the math.

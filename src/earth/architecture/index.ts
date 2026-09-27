@@ -1,4 +1,5 @@
 // ☷ Kūn · Earth — the folder architecture: the folded census (χ=−2 accounting), the folder law, distributed compute, the repo structure. Barrel-routed; folds.ts back-imports the gate folds.
+import { enforcementScanRoot } from '../../pair/enforcement/gates/computational/index.ts'
 import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): thunder/waves reaches back here via the mind barrel; the registry reads at call time
 import * as __ns_thunder_waves from '../../thunder/waves/index.ts'
@@ -1049,9 +1050,11 @@ export function noSiteFolderVitepressPages(matrix: MindMatrix = buildMatrix()) {
 // only because VitePress renders from a file tree; the intelligence does not need them.
 
 /** Browser-safe root: bare `process` is undefined under the dev-client shim. */
-function routeScanRoot(): string {
-  return typeof process !== 'undefined' && typeof process.cwd === 'function' ? process.cwd() : '/'
-}
+// THE SCAN ROOT IS ONE FUNCTION, NOT FOUR. dryDupe measured this body at four addresses under four
+// names — routeScanRoot, scanRoot, enforcementScanRoot, repoRoot — byte-identical, each carrying its own
+// copy of the browser guard that is the only interesting thing in it. water/stack already documented
+// enforcementScanRoot as "the ONE browser-safe guard" and imported it; these three never collapsed onto
+// it. Code gravity: duplicates collapse to one API, so the guard is fixed in one place or in none.
 
 /**
  * Count the dynamic route mounts actually present. Segment-matched exclusions, NOT
@@ -1059,7 +1062,7 @@ function routeScanRoot(): string {
  * substring test excludes every path in the tree and the walk never recurses.
  */
 export function countRouteMounts(): number {
-  const root = routeScanRoot()
+  const root = enforcementScanRoot()
   let n = 0
   const walk = (dir: string) => {
     let entries: string[] = []

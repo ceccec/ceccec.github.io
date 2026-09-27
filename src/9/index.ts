@@ -1,7 +1,7 @@
 // Digit 9 — sequence step `9/`, fold → 0 (the void seam 9→0→1). Frontier: open/contested problems the ring
 // reaches but has not sealed. Computes and seals its OWN physics: every angle and both polarities.
 
-import { digitStation, reflectFoldFamily, merkleFold, toUuid } from '../0/index.ts'
+import { digitSeal, digitStation, merkleFold, reflectFoldFamily, toUuid } from '../0/index.ts'
 
 const D = 9
 
@@ -28,15 +28,12 @@ export const unfold = base.unfold
 export const prove = base.prove
 export const coverage = base.coverage
 
-export function root(): string {
-  return merkleFold([
-    base.root(),
-    ...spectrum.map((r) => toUuid(`angle:${D}:${r.k}:${r.image}`)),
-    toUuid(`polarity:${D}:${polarities.tensPair}:${polarities.ninePair}:${polarities.forward}:${polarities.reverse}`),
-  ])
-}
-export function statement(): string {
-  return `digit ${D}: angles {${spectrum.map((r) => r.image).join(' ')}}, polarities σ=${polarities.tensPair}/ν=${polarities.ninePair} fwd=${polarities.forward}/rev=${polarities.reverse}, proven ${prove().ok}, seal ${root().slice(0, (6 * 2))}…`
-}
+// ONE RENDERING FOR ALL NINE DIGITS — digitSeal in src/0, beside the digitStation this folder already
+// calls. The two bodies that stood here were byte-identical across src/1..src/9 (dryDupe's last two true
+// duplicate groups, 16 copies); the VALUES stay this digit's own, folded from its own D, spectrum,
+// polarities and base, and both roots and statements are verified unchanged byte-for-byte.
+const seal = digitSeal(D, base, spectrum, polarities)
+export const root = seal.root
+export const statement = seal.statement
 export const mappings = { ...base.mappings, spectrum: spectrum.map((r) => ({ k: r.k, angleDeg: r.angleDeg, image: r.image, fixedPoints: r.fixedPoints })), polarities }
 export const digit = { theorems, spectrum, polarities, equilibrium, unfold, coverage, prove, root, statement, mappings }

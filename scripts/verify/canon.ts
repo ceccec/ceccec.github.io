@@ -51,6 +51,7 @@
  *    PHYSICAL_FTL_SIGNALING_PROOF_IDS: an array nothing can be added to, whose `.length` was published as
  *    a computed count. The declaration alone is fine; reading it as a quantity is not.
  */
+import { dryDupe } from '../../src/pair/enforcement/gates/strict/scan/index.ts'
 import { createRequire } from 'node:module'
 import { corpusFiles } from './corpus.ts'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
@@ -610,5 +611,21 @@ export function assertCanonicalForms(): void {
   for (const g of gatesElsewhere.slice(0, 8)) console.log(`    ${g.file}:${g.line}  ${g.text}`)
   console.log(ratchet('canon.facet-gates-elsewhere', gatesElsewhere.length, { evidence: () => gatesElsewhere.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
   console.log(ratchet('canon.gate-unreachable', unreachable.length, { evidence: () => unreachable }))
+
+    // ONE PAYLOAD, ONE ADDRESS — the content-address law applied to function bodies, which is canon and
+    // belongs on the commit path. dryDupe has measured this since it was written and NOTHING ratcheted it:
+    // npm run quantum:dry-dupe printed a number a person had to go and look at, which is the same shape as
+    // verify:release with no callers and `sealed` sitting false for weeks. It measured 4 true duplicate
+    // groups / 21 copies; the three findOrder bodies collapsed onto the origin's multiplicativeOrder, the
+    // three scan roots onto enforcementScanRoot, and the eighteen digit root/statement declarations onto
+    // digitSeal, so it measures 0 and 0. Recorded at zero, so a fifth copy of anything refuses the commit.
+    // The 17 twin-SHELL groups are NOT counted here: they are identical only after string-stripping, which
+    // is what an intended dual looks like, and dryDupe names them rather than queueing them. The evidence is
+    // dryDupe's own queue, which it caps at nine groups — the COUNT is exact, the listing is the first nine.
+    const dupe = dryDupe()
+    console.log(`  ${dupe.groups}  true duplicate body groups (${dupe.duplicateBodies} redundant copies) — the same computation at two addresses`)
+    for (const g of dupe.queue.slice(0, 4)) console.log(`      ${g}`)
+    console.log(ratchet('canon.duplicate-body-groups', dupe.groups, { evidence: () => dupe.queue }))
+    console.log(ratchet('canon.duplicate-body-copies', dupe.duplicateBodies, { evidence: () => dupe.queue }))
   })
 }

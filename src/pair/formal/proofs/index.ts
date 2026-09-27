@@ -1264,19 +1264,28 @@ export function buildReceiptLedger(root: string = typeof process !== 'undefined'
   readonly closed: number
   readonly open: number
   readonly openUnits: number
+  readonly secured: number
   readonly bounds: readonly { readonly name: string; readonly value: number }[]
   readonly gates: number
   readonly source: 'counted' | 'absent'
 } {
-  const absent = { ratchets: 0, closed: 0, open: 0, openUnits: 0, bounds: [] as const, gates: 0, source: 'absent' as const }
+  const absent = { ratchets: 0, closed: 0, open: 0, openUnits: 0, secured: 0, bounds: [] as const, gates: 0, source: 'absent' as const }
   const io = ledgerIo()
   if (!io) return absent
   const entries = Object.entries(readRatchetLedger(root)).filter(([, v]) => typeof v === 'number')
   if (!entries.length) return absent
-  // A NEGATIVE VALUE IS A FLOOR THAT MAY ONLY RISE — the ledger negates a count it wants growing so that one
-  // comparison ("never worse than recorded") serves both directions. Its MAGNITUDE is the work standing, which
-  // is why openUnits sums |v| and `closed` is the exact zero: nothing standing, the ratchet run to its end.
-  const magnitude = (v: number) => (v < 0 ? -v : v)
+  // THE LEDGER HAS THREE STATES AND THE FIRST VERSION OF THIS FOLD COLLAPSED TWO OF THEM.
+  //
+  // A negative value is a count the ledger wants GROWING — it stores the negation so that one comparison
+  // ("never worse than recorded") serves both directions. independence.gate-exercised = -24 means twenty-four
+  // gates are exercised and a twenty-fifth may join; it is an achievement already banked, not work standing.
+  // openUnits summed |v| over every non-zero entry, so those achievements were counted as open work and the
+  // README reported 37 open ratchets carrying 9249 units while `npm run next` — which filters v > 0 — ranked
+  // 33 carrying 8655. Two surfaces of one ledger disagreeing, from the one line that erased the sign.
+  //
+  //   closed   v === 0  nothing standing, the ratchet run to its end
+  //   open     v  >  0  work standing; exactly what openLeads ranks, so openUnits is next's own total
+  //   secured  v  <  0  a count that may only rise; the magnitude is what has been reached, not what is left
   let gates = 0
   try {
     const pkg = JSON.parse(io.fs.readFileSync(io.path.join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
@@ -1286,8 +1295,9 @@ export function buildReceiptLedger(root: string = typeof process !== 'undefined'
   return {
     ratchets: entries.length,
     closed: entries.filter(([, v]) => v === 0).length,
-    open: entries.filter(([, v]) => v !== 0).length,
-    openUnits: entries.reduce((n, [, v]) => n + magnitude(v), 0),
+    open: entries.filter(([, v]) => v > 0).length,
+    openUnits: entries.reduce((n, [, v]) => (v > 0 ? n + v : n), 0),
+    secured: entries.filter(([, v]) => v < 0).length,
     bounds: entries.filter(([k]) => k.startsWith('build.')).map(([name, value]) => ({ name, value })).sort((a, b) => (a.name < b.name ? -1 : 1)),
     gates,
     source: 'counted' as const,

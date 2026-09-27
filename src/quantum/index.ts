@@ -9,6 +9,7 @@
 // The render subfolders (the hero's dimensions) are: seed (page→identity), dimensions (the continuous phase), geometry
 // (the trinity of rotation + perspective), fractal (the self-similar arms), flower (the fruit of life),
 // calendars (the coupled-torus clock), architecture (the 9-folder ring), bursts (the tap payload).
+import { multiplicativeOrder } from '../0/index.ts'
 import { phase } from '../6/4/index.ts'
 import { dims, dimWalk } from './mountain/dimensions/index.ts'
 import { vortexStrokeKinds, twoBySevenPoints, theTenComplementFixesExactlyFive, pisanoWheelOnTheNine } from '../mountain/vortex/index.ts'
@@ -2599,17 +2600,10 @@ export function shorsAlgorithm(
 ): FactoringResult {
   // Shor's Algorithm: Real implementation with order-finding
 
-  // Classical order-finding: find smallest r where a^r ≡ 1 (mod n)
-  function findOrder(a: number, n: number, maxOrder: number = n): number | null {
-    for (let r = 1; r < maxOrder; r++) {
-      let mod = 1
-      for (let i = 0; i < r; i++) {
-        mod = (mod * a) % n
-      }
-      if (mod === 1) return r
-    }
-    return null
-  }
+// findOrder WAS DEFINED HERE, AND TWICE MORE. Byte-identical in crypto/reverse, quantum and
+// quantum/solver (dryDupe measured all three), each an r-loop recomputing a^r from 1 every
+// iteration — O(r²) for the multiplicative order, which the origin's ring algebra now names as
+// multiplicativeOrder and computes in O(r). Its `maxOrder` parameter was passed by no call site.
 
   // Main Shor loop: find factors via order-finding
   function shor(n: number, maxAttempts: number = 10): number[] | null {
@@ -2631,7 +2625,7 @@ export function shorsAlgorithm(
       if (g > 1) return [g, n / g]
 
       // Step 2: Find order r (quantum subroutine simulated classically)
-      const r = findOrder(a, n)
+      const r = multiplicativeOrder(a, n)
       if (!r || r % 2 !== 0) continue
 
       // Step 3: Check if a^(r/2) ≢ ±1 (mod n)

@@ -8,7 +8,7 @@ import type {
   DoubleTorusWire, ConsciousnessFlow, DoubleTorusFlow } from '../../types/index.ts'
 import { atoms } from '../atoms/index.ts'
 import { DIGEST_BITS, GATES, abs, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, cnot, computesGate, coverageCostLog2, floor, fold, foldPair, humanBreath, humanEase, isUuid, log10, log2, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sample, sealFacets, seedFromText, tamperCostLog2, toUuid, uuidHero, sqrt } from '../../0/index.ts'
-import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, prng, referralAddress } from '../../0/index.ts'
+import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, multiplicativeOrder, prng, referralAddress } from '../../0/index.ts'
 import { sha256Sync, toUuidSha256 } from '../../0/index.ts'
 import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../4/6/index.ts'
 import { foldMagmaLaws } from '../../5/5/index.ts'
@@ -871,8 +871,26 @@ export function oneMathManyPresentations(matrix: MindMatrix = buildMatrix()) {
   const merkabaIsProjection = asMerkaba(g, (100 * 5 * 2)).up.join(',') === merk.up.join(',')
   const traceIsProjection = asTrace(g, (100 * 5 * 2)).x === trace0.x && asTrace(g, (100 * 5 * 2)).y === trace0.y
   const sealAnchorsSource = seal.verifies && seal.root === f.merged // provenance returns EXACTLY the source address
+  // THE VORTEX CLAIM GETS ITS SCALAR. The boundary below has always said "×2 generates the orbit
+  // 1·2·4·8·7·5, the non-units 3·6·9 are the axis it never reaches" — a true sentence with nothing
+  // computing it. The origin's ring algebra now names the order of that orbit, so the claim is three
+  // checks over (ℤ/9ℤ): 2 is a PRIMITIVE ROOT (its order is the size of the whole unit group, so the
+  // orbit visits every unit and misses nothing), Lagrange holds (every unit's order DIVIDES the group
+  // order — a structural law, so a wrong order shows up here and not in a spot check), and a non-unit
+  // has NO order (null, never a number). groupOrbit itself is not called: it lives in src/4/6, which
+  // imports this module 122 times, and a call cycle here would return a silent wrong value with every
+  // gate still green. The |groupOrbit| = multiplicativeOrder identity is asserted where groupOrbit is.
+  const units9 = modUnits(3 * 3)
+  const orderOfTwo = multiplicativeOrder(2, 3 * 3)
+  const twoIsPrimitiveRoot = orderOfTwo === units9.length
+  const lagrangeHolds = units9.every((u) => {
+    const order = multiplicativeOrder(u, 3 * 3)
+    return order !== null && units9.length % order === 0
+  })
+  const axisHasNoOrder = [3, 6, 3 * 3].every((axis) => multiplicativeOrder(axis, 3 * 3) === null)
   const presentations = [
     { plane: 'algebra · the fold itself', fn: 'fold', kind: 'source', on: isUuid(f.merged) && oneAddress },
+    { plane: 'number theory · the order of the vortex orbit', fn: 'multiplicativeOrder', kind: 'exact', on: twoIsPrimitiveRoot && lagrangeHolds && axisHasNoOrder },
     { plane: 'number theory · (ℤ/9ℤ)', fn: 'asVortex', kind: 'exact', on: v.digit >= 1 && v.digit <= 9 && v.onAxis === [3, 6, 9].includes(v.digit) && vortexIsProjection },
     { plane: 'topology/geometry · genus-2', fn: 'asTorus', kind: 'faithful', on: Number.isFinite(torus.x) && (torus.lobe === 0 || torus.lobe === 1) && torusIsProjection },
     { plane: 'geometry in motion · star tetrahedron', fn: 'asMerkaba', kind: 'faithful', on: merk.counterRotating && merk.up.length === 4 && merk.down.length === 4 && merkabaIsProjection },
@@ -887,6 +905,14 @@ export function oneMathManyPresentations(matrix: MindMatrix = buildMatrix()) {
     presentations,
     exact: presentations.filter((entry) => entry.kind === 'exact').map((entry) => entry.fn), // asVortex, asMerkle
     faithful: presentations.filter((entry) => entry.kind === 'faithful').map((entry) => entry.fn), // asTorus, asMerkaba, asTrace
+    // Published separately because `coheres` alone cannot say which of the three failed, and they fail
+    // for different reasons: a wrong order breaks Lagrange, a changed generator breaks the primitive root,
+    // and an axis element acquiring an order would mean gcd stopped guarding the unit group.
+    vortexOrderOfTwo: orderOfTwo,
+    vortexUnitGroupSize: units9.length,
+    twoIsPrimitiveRoot,
+    lagrangeHolds,
+    axisHasNoOrder,
     importsNothing: true, // the fold and every projection live in src/0 and import nothing
     digit: v.digit,
     root: merge(f.merged, merkleFold(presentations.map((entry) => entry.receipt))),
