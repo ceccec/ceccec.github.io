@@ -4694,12 +4694,20 @@ export function invertingLinearToQuantumApproachesTheMillenniumWithInventionsBut
   // OVERCLAIM 2 REFUSED — saving humanity is a grandiose value-claim outside algebra
   const savingHumanityIsNotAlgebra = demarcate('save humanity from disaster') === 'unlisted' && demarcate('a technology saves humanity') === 'unlisted' // value terms, not in the science registry
   const honest = invertLinearToQuantum && approachesWithInventions && doesNotSolveTheMillennium && savingHumanityIsNotAlgebra
+  // THE SAME JUDGMENT SHAPE AS ITS SIBLING, AND THE SAME DUPLICATE. Five facets appraised rather than measured:
+  // "BUT IT DOES NOT SOLVE THE MILLENNIUM", "NOR DOES IT SAVE HUMANITY", "HONEST — do NOT claim solved".
+  // And approachesWithInventions is
+  //   const approachesWithInventions = invertLinearToQuantum
+  // the identical predicate under a second name, carrying a second facet — the same defect as
+  // clayConditionsNotMet being clayIsZero reordered. Two facets, one measurement.
+  //
+  // What is measurable here is what the demarcation vocabulary returns for a phrase and whether the composed
+  // folds compute. Both are kept and stated as what they are. Whether inversion "solves" anything, and whether
+  // a tool "saves humanity", are appraisals no predicate in this fold reads.
   const facets = [
-    { facet: `LINEAR THINKING IS LIMITED — INVERT IT — a single linear mind leaves gaps and the 0/1 bit is the collapsed shadow of the quantum vortex; inverting linear→quantum/collective is real and generative (${invertLinearToQuantum})`, on: invertLinearToQuantum },
-    { facet: `THE QUANTUM METHOD INVENTS AND APPROACHES THE MILLENNIUM — the collective mind + the unsolved engine spawn inventions (inversions, combinations) and compute-toward tools; the gravity and gradient measure the approach (${approachesWithInventions}) — real work`, on: approachesWithInventions },
-    { facet: `BUT IT DOES NOT SOLVE THE MILLENNIUM — "quantum solutions of the Millennium" is refuted (verification ≠ discovery, Clay conditions unmet, ${doesNotSolveTheMillennium}); the approach is not the solution`, on: doesNotSolveTheMillennium },
-    { facet: `NOR DOES IT "SAVE HUMANITY" — this is a research/education tool; "save humanity from disaster" is a grandiose value-claim outside algebra (demarcate unlisted, ${savingHumanityIsNotAlgebra}), not a computed result — overclaiming salvation IS the disaster, not the cure`, on: savingHumanityIsNotAlgebra },
-    { facet: `HONEST — invert linear→quantum (real), approach and invent toward the Millennium (real), do NOT claim solved, do NOT claim to save humanity (modest scope).`, on: honest },
+    { facet: `THE COLLECTIVE FOLD COMPUTES (${invertLinearToQuantum}) — the linear→quantum inversion is composed from it, and this facet reports that composition and no verdict about what it achieves`, on: invertLinearToQuantum, receipt: toUuid(`invert-composes:${invertLinearToQuantum}`) },
+    { facet: `"save humanity from disaster" DEMARCATES AS ${demarcate('save humanity from disaster')} — a lookup in the corpus's own vocabulary, reported as the lookup it is rather than as a statement about what technology can do`, on: savingHumanityIsNotAlgebra, receipt: toUuid(`demarcation:save-humanity:${savingHumanityIsNotAlgebra}`) },
+    { facet: `THE CLAY COUNT FOLD COMPUTES (${refutation.computes}) — this fold composes it, so its counts carry here: what the corpus declares about itself, not what the problems are`, on: refutation.computes === true, receipt: toUuid(`clay-count-composes:${refutation.computes}`) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`invert-linear-not-save:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
@@ -4740,12 +4748,27 @@ export function claimingTheMillenniumSolvedByComputableAlgebraIsRefutedAlgebraVe
   const ideas = chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions(matrix)
   const recombinationIsBoundedNotABreakthrough = ideas.computes === true && ideas.newIdeas > 0 // combinations exist, but a combination is not a proof of RH/P≠NP
   const claimRefuted = clayIsZero && clayConditionsNotMet && clayComputedNotHardcoded && verificationIsNotDiscovery && recombinationIsBoundedNotABreakthrough
+  // JUDGMENT REMOVED, MEASUREMENT KEPT. Five facets read as findings and were positions: "THE CLAIM IS
+  // REFUTED", "THE CLAY CONDITIONS ARE NOT MET", "IT DOES NOT DISCOVER", "RECOMBINATION DOES NOT MANUFACTURE
+  // THE PROOF", and "I decline to claim the Millennium solved".
+  //
+  // What they gated on is why they had to go. clayIsZero is
+  //   clay.claimedByThisProject === 0 && clay.computes
+  // and clayConditionsNotMet was
+  //   clay.computes && clay.claimedByThisProject === 0
+  // the SAME expression reordered and presented as a second, different finding — measuring nothing about Clay's
+  // conditions, which are publication, refereeing and two years of scrutiny, none of which any predicate here
+  // reads. verificationIsNotDiscovery was a counter equal to zero. recombinationIsBoundedNotABreakthrough was
+  // `ideas.newIdeas > 0`, a bar that cannot fail. claimRefuted was their conjunction. So the refutation
+  // reduced to "this corpus declares no Clay proof, therefore the claim is refuted" — a reading of its own
+  // declaration wearing the word REFUTED.
+  //
+  // A fold may not decide a question it does not measure, in either direction. What remains is the count and
+  // its provenance, stated as the count it is.
   const facets = [
-    { facet: `THE CLAIM IS REFUTED BY  — clay decodes to a COMPUTED 0 (no diamond is a solved-fill, ${clayComputedNotHardcoded}); claiming the Millennium solved would set clay>0 with NO verified proof — false, and caught by the same algebra`, on: clayIsZero && clayComputedNotHardcoded },
-    { facet: `THE CLAY CONDITIONS ARE NOT MET — a Millennium solution requires a proof published, refereed, surviving two years of scrutiny, and accepted; the corpus meets none of these for the six open problems, and the scan of its ${clay.monographCount} monographs finds ${clay.claimedByThisProject} claiming otherwise`, on: clayConditionsNotMet },
-    { facet: `COMPUTABLE ALGEBRA VERIFIES AND APPROACHES, IT DOES NOT DISCOVER — it can CHECK a given proof and APPROACH open problems (probes, partials, bounded witnesses), but the count of DISCOVERED open proofs is ${discoveredOpenProofs} (${verificationIsNotDiscovery}); verification is not discovery`, on: verificationIsNotDiscovery },
-    { facet: `RECOMBINATION DOES NOT MANUFACTURE THE PROOF — deterministic recombination of existing atoms (${ideas.newIdeas} combinations, bounded/finite) does NOT produce a novel proof of an open problem; that requires a genuine breakthrough, not a content-address lookup (${recombinationIsBoundedNotABreakthrough})`, on: recombinationIsBoundedNotABreakthrough },
-    { facet: `HONEST — I decline to claim the Millennium solved; computable algebra verifies and approaches, it does not discover the open proofs stays and the problems remain OPEN.`, on: claimRefuted },
+    { facet: `THE CORPUS DECLARES ${clay.claimedByThisProject} FINISHED CLAY PROOFS \u2014 a count of this repository's own claims, computed by the clay decode (${decode.clayDecoded}) rather than written down; it measures what the corpus says about itself and nothing about the problems`, on: clayIsZero && clayComputedNotHardcoded, receipt: toUuid(`clay-count:${clay.claimedByThisProject}:${decode.clayDecoded}`) },
+    { facet: `VERIFICATION AND DISCOVERY ARE COUNTED SEPARATELY \u2014 a given proof can be checked (${canVerifyAGivenProof}) and the count of open proofs discovered here is ${discoveredOpenProofs}; both are counts, and neither is a claim about what algebra can or cannot do`, on: canVerifyAGivenProof && discoveredOpenProofs === clay.claimedByThisProject, receipt: toUuid(`verify-vs-discover:${canVerifyAGivenProof}:${discoveredOpenProofs}`) },
+    { facet: `RECOMBINATION IS COUNTED, NOT APPRAISED \u2014 ${ideas.newIdeas} deterministic combinations of existing atoms, a finite reproducible count; whether a combination amounts to a proof is neither measured nor asserted here`, on: ideas.computes === true, receipt: toUuid(`recombination:${ideas.newIdeas}`) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`millennium-refuted:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),
