@@ -20,7 +20,7 @@
 - **The Clay problems are the reflection.** Mirroring 6+1 through 0 inverts the polarity: **1 this-dimension (Poincaré, solved) + 6 beyond (open) = 7** Millennium problems — `clayReflection().reflectsDimensionalBit = true`. Exactly one Clay problem is solved; the count matches the record.
 - **Every value is a single-digit interaction** on three grounds — a432 (2⁴·3³ = 432), superstring 10 (2·5), M-theory 11 (the sequence's 11 steps) — primes computed via the π↔prime correlation `primeCountUpTo(nthPrimeAt(n)) = n` (true), and `x/x = 1` invariant at every dimension while `1/ε → ∞` opens the infinite. No literal, no assumption that breaks under a change of dimension.
 
-A science portal: **751** registered theorems, **745** of them carrying an executable proof at a sealed home (6 still pending, named in the registry and checked by `verify:theorems`), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run.
+A science portal: **751** registered theorems, **745** of them carrying an executable proof at a sealed home (6 still pending, named in the registry and checked by `verify:theorems`), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run. The sitemap below serves **774** theorem papers, not 751: 751 of them carry a registry atom and **23** are card papers with a page and no atom, so the two counts a reader (or a crawler) meets are one partition — the same equality `seoOptimised` asserts over the `/theorems` structured data, computed by set difference against the registry seed rather than by subtracting one from the other.
 
 ## 2. Model
 
@@ -103,7 +103,7 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 
 ### What IS proved here — the involution of every problem, machine-checked
 
-**Decoded 7/7, and the proofs prove themselves.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all 7 (every one), machine-checked in plain Lean 4 (`src/pair/formal/proofs/*.lean`, verified by `npm run verify:lean`: 20 files green, no Mathlib, no `sorry`). Stronger than green: Lean's kernel reports every one of the 84 theorems *depends on no axiom* (`#print axioms` → "does not depend on any axioms") — `by decide` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed. The theorems prove themselves.
+**Decoded 7/7 — 12 involution files, 84 kernel theorems, counted from the sources.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all 7 (every one), machine-checked in plain Lean 4 (`src/pair/formal/proofs/*.lean`, verified by `npm run verify:lean`: 20 files green, no Mathlib, no `sorry`). Stronger than green: Lean's kernel reports every one of the 84 theorems *depends on no axiom* (`#print axioms` → "does not depend on any axioms") — `by decide` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed.
 
 - **Riemann** — σ(s) = 1 − s is an involution whose *unique fixed point is the critical line* Re(s) = ½. Proved.
   - `sigma_is_an_involution` — `∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/riemann-sigma-is-an-involution)
@@ -278,6 +278,10 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## Receipt
 
-The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.
+The root monograph is content-addressed — the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does. Below is what produced it: **57 gates** chained by `npm run verify:all`, and **69 ratchets** recording what each one measured. A ratchet may fall and never rise, so the ledger is the build's cost of doing business — and its own list of open work.
+
+- **32 of 69 ratchets stand at zero** — nothing left to solve on those axes. The other 37 carry **9248 units** still recorded; `npm run next` ranks exactly those into leads, so the receipt and the worklist are one number read two ways.
+- **The bundle every visitor downloads first is held at ≤ 237 KiB** (`build.app-chunk-kilobytes`, enforced by `npm run verify:build-time`). It is a ceiling, not a measurement: a build that exceeds it refuses the commit. It was 484 KiB until a barrel import of 33 components was made lazy.
+- **The gate machinery is held at ≤ 836 KiB** (`build.shell-machinery-kilobytes`) and the corpus at ≤ 111 **hundred bytes per theorem** (`build.corpus-hundred-bytes-per-theorem`) — the density unit is hundreds of bytes because KiB-per-theorem left enough slack that padding one theorem by 118 KB did not move it.
 
 - Receipt: fold `readmeMarkdown`

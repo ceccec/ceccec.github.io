@@ -24,7 +24,8 @@
 
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { everyRatchet } from './status.ts'
+import { readRatchetLedger } from '../../src/pair/formal/proofs/index.ts'
+import { everyRatchet, recordedFloors } from './status.ts'
 
 const ROOT = process.cwd()
 
@@ -89,7 +90,20 @@ export function assertEveryRatchetTicks(): void {
   everyRatchet(() => {
     const sites = ratchetSites()
     const closure = chainClosure()
-    const floors = JSON.parse(readFileSync(join(ROOT, 'scripts/verify/status.json'), 'utf8')) as Record<string, number>
+    const floors = readRatchetLedger(ROOT)
+    // THE TWO READERS OF ONE LEDGER MUST AGREE. status.ts keeps its own guarded read on purpose (importing
+    // the ops graph would load the corpus into all 57 gates); this is what makes that copy an invariant
+    // rather than a drift waiting to happen. Compared as sorted key=value pairs, so a lost or changed floor
+    // on either side is named here instead of being discovered when a gate quietly stops refusing.
+    const pairs = (m: Record<string, number>) => Object.entries(m).sort((a, b) => a[0].localeCompare(b[0])).map(([k, v]) => `${k}=${v}`)
+    const viaSrc = pairs(floors)
+    const viaStatus = pairs(recordedFloors(ROOT))
+    const readersAgree = viaSrc.length === viaStatus.length && viaSrc.every((line, i) => line === viaStatus[i])
+    if (!readersAgree) {
+      const only = (a: string[], b: string[]) => a.filter((x) => !b.includes(x))
+      throw new Error(`the two ledger readers disagree — src/pair/enforcement/ops#readRatchetLedger vs scripts/verify/status#recordedFloors. Only in src: ${only(viaSrc, viaStatus).join(', ') || '(none)'}; only in status: ${only(viaStatus, viaSrc).join(', ') || '(none)'}`)
+    }
+    console.log(`  ✓ both ledger readers return the same ${viaSrc.length} floors`)
 
     const unenforced: string[] = []
     const silent: string[] = []

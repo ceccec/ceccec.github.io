@@ -40,6 +40,20 @@ type Status = Record<string, number>
  * recorded yet. A parse error is a fact about the FILE. A detector that cannot tell them apart
  * is a detector emptied of what it detects.
  */
+/**
+ * DELIBERATELY NOT DELEGATED, AND THE REASON IS MEASURED. src/pair/enforcement/ops now owns the same
+ * guarded read (readRatchetLedger) because the README's build receipt is computed from src. Importing it
+ * here would be the DRY move and the wrong one: status.ts is imported by nearly all 57 gates, and ops
+ * pulls heaven/compute and the research graph, so every gate would load ~2 MB of corpus to read one
+ * integer — into a chain whose slow-build gate already measures ~100 s. The copy stays; what does not
+ * stay is the risk of it drifting, because assertEveryRatchetTicks asserts the two readers return the
+ * same ledger. A duplication that a gate compares is an invariant; one that nothing compares is a bug
+ * with a delay on it.
+ */
+export function recordedFloors(root: string): Status {
+  return read(root)
+}
+
 function read(root: string): Status {
   const p = join(root, STATUS)
   if (!existsSync(p)) return {}

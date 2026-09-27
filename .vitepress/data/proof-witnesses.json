@@ -1655,10 +1655,12 @@
   "values": [
    4,
    774,
+   751,
+   23,
    160
   ],
   "holds": true,
-  "caption": "the quantities seoOptimised computes for this theorem (targets, theoremCount, budget), drawn from its own run — no other proof returns them"
+  "caption": "the quantities seoOptimised computes for this theorem (targets, theoremCount, registeredCount, outsideRegistryCount, budget), drawn from its own run — no other proof returns them"
  },
  "pages are rosetta combinations of theorems — payload-free, realtime, reaching the whole registry": {
   "form": "bars",
@@ -1730,7 +1732,7 @@
    43,
    43,
    42,
-   41,
+   42,
    41,
    41,
    41,

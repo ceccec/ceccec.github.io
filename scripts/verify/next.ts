@@ -22,6 +22,7 @@
 
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { readRatchetLedger } from '../../src/pair/formal/proofs/index.ts'
 
 type Lead = { readonly family: string; readonly ratchet: string; readonly open: number; readonly gate: string; readonly kind: 'floor' | 'ceiling' }
 
@@ -60,7 +61,10 @@ export function ratchetKind(ratchet: string, gate: string, root: string = proces
 }
 
 export function openLeads(root: string = process.cwd()): Lead[] {
-  const status = JSON.parse(readFileSync(join(root, 'scripts/verify/status.json'), 'utf8')) as Record<string, number>
+  // ONE READER FOR THE LEDGER (src/pair/enforcement/ops). This parsed the file itself, unguarded: an absent
+  // ledger threw where {} is the honest answer, and a damaged one arrived as a bare SyntaxError with no
+  // instruction. The guard was written down once, in status.ts, and lost twice by copying the line.
+  const status = readRatchetLedger(root)
   return Object.entries(status)
     .filter(([, open]) => typeof open === 'number' && open > 0)
     .map(([ratchet, open]) => {

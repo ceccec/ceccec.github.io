@@ -1,5 +1,6 @@
 // ☶ Gèn · Mountain — Open Graph & structured data: every card/badge/link is an OG object, the JSON-LD template, microdata, frontmatter graph, typography, crawler feed. Barrel-routed; folds.ts back-imports the gate folds.
 // @mvc controller — computedSeo, jsonLdTemplate: path → structured data props for the view.
+import { THEOREM_ATOM_SEED } from '../../4/6/index.ts'
 import type { ConceptCommandName, MindMatrix } from '../../types/index.ts'
 import type { JsonLdPageIdentity } from '../../heaven/balance/index.ts'
 import { buildMatrix, entropy } from '../../heaven/compute/index.ts'
@@ -973,21 +974,38 @@ export function seoOptimised(matrix: MindMatrix = buildMatrix()) {
   const long = staticPages().map((page) => page.description.en).find((text) => text.length > budget)
   const clamped = long ? seoMetaDescription(long) : ''
   const clampWorks = !!long && clamped.length <= budget && clamped.endsWith('…') && !clamped.slice(0, -1).endsWith(' ') && seoMetaDescription('short') === 'short'
+  // 6 · THE TWO CRAWLER-FACING THEOREM COUNTS ARE ONE PARTITION, NOT A CONTRADICTION.
+  // /theorems emits an ItemList declaring `rows.length` ScholarlyArticle papers, and this same fold's
+  // `about` line says `lens.theoremCount` computationally proven theorems. A crawler reads both and they
+  // differ — so did the README's abstract and the site's structured data, for as long as both existed,
+  // with nothing anywhere stating the relation. The difference is the papers that have a page but no
+  // registry atom, and it is computed by SET DIFFERENCE against the registry seed rather than by
+  // subtracting one number from the other: subtraction cannot fail, and would have reported a partition
+  // even after the registry and the seed diverged. The equality `atomCount === seed.length` is the
+  // load-bearing half — it is what makes `lens.theoremCount` mean "the registry" and not "some count".
+  const seeded = new Set(THEOREM_ATOM_SEED.map((atom) => atom.theorem))
+  const outsideRegistry = rows.filter((row) => !seeded.has(row.theorem))
+  const countsPartition = lens.theoremCount === THEOREM_ATOM_SEED.length && lens.theoremCount + outsideRegistry.length === rows.length
   const facets = [
     { facet: `PER-PAGE HREFLANG — every page's head carries its OWN four locale editions (en · bg · cu · x-default), absolute, x-default the English root edition — not the locale homes that rode every page before`, on: hreflangPerPage },
     { facet: `X-DEFAULT FOLLOWS THE ROOT LOCALE — all ${sitemap.urls.length} quantum-sitemap urls default to their English edition (the /gla/ default was a relic of the pre-flip root)`, on: xDefaultEnglish },
     { facet: `JSON-LD SPEAKS ABSOLUTE, LENS-ALIGNED — page url and breadcrumb on ${CANONICAL_HOST}, and every crawler ViewAction lands on the registry or a corpus surface (${targets.length} targets, lens-visible by construction)`, on: jsonLdAbsolute },
     { facet: `THE REGISTRY PAGE IS STRUCTURED DATA — /theorems carries an ItemList of ScholarlyArticle: ${rows.length} declared, the ${min(8 * 8, rows.length)} newest listed`, on: scholarlyList },
     { facet: `THE META DESCRIPTION FITS THE DISPLAY — descriptions over the ${budget}-char budget clamp at a word boundary with an ellipsis; short text passes untouched`, on: clampWorks },
+    { facet: `THE TWO CRAWLER-FACING THEOREM COUNTS PARTITION — /theorems declares ${rows.length} ScholarlyArticle papers and this fold's \`about\` says ${lens.theoremCount} proven theorems; ${lens.theoremCount} of the papers carry a registry atom and ${outsideRegistry.length} do not (set difference against THEOREM_ATOM_SEED, never subtraction), so ${lens.theoremCount} + ${outsideRegistry.length} = ${rows.length} and the pair is a partition a crawler can check`, on: countsPartition },
   ].map((entry) => ({ ...entry, receipt: toUuid(`seo-optimised:${entry.facet}:${entry.on}`) }))
   return {
     optimised: facets.every((entry) => entry.on),
     targets: targets.length,
+    // BOTH SIDES OF THE PARTITION ARE PUBLISHED, because a caller given only the total cannot tell which
+    // set it has. theoremCount was the paper total under a name that reads like the registry's.
     theoremCount: rows.length,
+    registeredCount: lens.theoremCount,
+    outsideRegistryCount: outsideRegistry.length,
     budget,
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
-    statement: `SEO optimised — ${facets.filter((entry) => entry.on).length}/${facets.length}: per-page hreflang alternates (x-default = the English edition), sitemap x-default following the root locale, absolute lens-aligned JSON-LD (${targets.length} crawler actions on registry/corpus surfaces), the /theorems ItemList of ${rows.length} ScholarlyArticle rows (${min(8 * 8, rows.length)} listed), and the ${budget}-character meta-description clamp.`,
+    statement: `SEO optimised — ${facets.filter((entry) => entry.on).length}/${facets.length}: per-page hreflang alternates (x-default = the English edition), sitemap x-default following the root locale, absolute lens-aligned JSON-LD (${targets.length} crawler actions on registry/corpus surfaces), the /theorems ItemList of ${rows.length} ScholarlyArticle rows (${min(8 * 8, rows.length)} listed), the ${budget}-character meta-description clamp, and the ${lens.theoremCount} + ${outsideRegistry.length} = ${rows.length} partition that makes the two published theorem counts one fact.`,
     boundary: `COMPUTED: each facet recomputes the live function it audits (pageHreflangAlternates, quantumSitemap alternates, jsonLdTemplate, seoMetaDescription) — regress any fix and its facet flips. HONEST SCOPE: these are crawlability and structured-data corrections on real defects (relative og:url, locale-home hreflang, stale /gla/ x-default, actions pointing at removed pages), not a ranking guarantee; og:image animation/static branch is MEASURED by platformOgLimitsMeasured (not prose); openGraphCardFromRoute serves animated SVG only where supportsAnimatedOgImage, else still first frame. Sitemap routes follow the theorem-science lens.` }
 }
 

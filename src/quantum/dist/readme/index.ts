@@ -10,7 +10,7 @@ import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pa
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, renderComputedMetrics } from '../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED, riemannCriticalLineIsTheInvolutionFixedPoint } from '../../../4/6/index.ts'
 import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3/index.ts'
-import { LEAN_SEALED_REGISTRY, leanInvolutionCorpus, leanPageRows } from '../../../pair/formal/proofs/index.ts'
+import { LEAN_SEALED_REGISTRY, buildReceiptLedger, leanInvolutionCorpus, leanPageRows } from '../../../pair/formal/proofs/index.ts'
 import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos/index.ts'
 import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1/index.ts'
 import { portalChat, portalRecall } from '../../../heaven/compute/index.ts'
@@ -522,7 +522,12 @@ export function clayChallengesComputableMarkdownSection(
       // falsified both while every gate stayed green. leanInvolutionCorpus() reads the sources.
       const lean = leanInvolutionCorpus()
       return [
-        `**Decoded ${g.decoded}/${n}, and the proofs prove themselves.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all ${g.decoded}${decodedIsAll ? ' (every one)' : ''}, machine-checked in plain Lean 4 (\`src/pair/formal/proofs/*.lean\`, verified by \`npm run verify:lean\`: ${lean.files} files green, no Mathlib, no \`sorry\`). Stronger than green: Lean\'s kernel reports every one of the ${lean.involutionTheorems} theorems *depends on no axiom* (\`#print axioms\` → "does not depend on any axioms") — \`by decide\` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed. The theorems prove themselves.`,
+        // THE HEADING IS A RECEIPT, NOT AN APPRAISAL. It read "and the proofs prove themselves" — a judgment,
+        // beside a sentence that already carried the counted receipt (files green, theorems, no Mathlib, no
+        // sorry, no axiom). The rest of this block states each involution and the tactic that closed it; a
+        // reader can check every one of those and could check nothing at all about proofs proving themselves.
+        // Counted from leanInvolutionCorpus(), so improving the Lean corpus improves this line with no edit.
+        `**Decoded ${g.decoded}/${n} — ${lean.involutionFiles} involution files, ${lean.involutionTheorems} kernel theorems, counted from the sources.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all ${g.decoded}${decodedIsAll ? ' (every one)' : ''}, machine-checked in plain Lean 4 (\`src/pair/formal/proofs/*.lean\`, verified by \`npm run verify:lean\`: ${lean.files} files green, no Mathlib, no \`sorry\`). Stronger than green: Lean\'s kernel reports every one of the ${lean.involutionTheorems} theorems *depends on no axiom* (\`#print axioms\` → "does not depend on any axioms") — \`by decide\` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed.`,
         '',
         // THE PROOFS THEMSELVES, under the sentence that describes each. `Proved.` is a word; the rows below
         // are the propositions the Lean kernel accepted, read from the sources at write time with the tactic
@@ -740,7 +745,7 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
         // of them theorems about this very generator. The count is now split: registered vs
         // carrying an executable proof, both read from the seed, and verify:theorems recomputes
         // the pending set from source so this sentence cannot drift from the truth.
-        `A science portal: **${lens.theoremCount}** registered theorems, **${lens.theoremCount - THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length}** of them carrying an executable proof at a sealed home (${THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length} still pending, named in the registry and checked by \`verify:theorems\`), **${lens.visibleCount}** science pages, **${lens.rays.length}** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (\`src/\`); nothing needs a token to run.`,
+        `A science portal: **${lens.theoremCount}** registered theorems, **${lens.theoremCount - THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length}** of them carrying an executable proof at a sealed home (${THEOREM_ATOM_SEED.filter((atom) => atom.proofPending).length} still pending, named in the registry and checked by \`verify:theorems\`), **${lens.visibleCount}** science pages, **${lens.rays.length}** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (\`src/\`); nothing needs a token to run. The sitemap below serves **${theoremPagePaths(matrix).length}** theorem papers, not ${lens.theoremCount}: ${lens.theoremCount} of them carry a registry atom and **${theoremPagePaths(matrix).length - lens.theoremCount}** are card papers with a page and no atom, so the two counts a reader (or a crawler) meets are one partition — the same equality \`seoOptimised\` asserts over the \`/theorems\` structured data, computed by set difference against the registry seed rather than by subtracting one from the other.`,
       ]
     })(),
     '',
@@ -886,9 +891,43 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
     '',
     '## Receipt',
     '',
-    'The root monograph is itself content-addressed: the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does — the address is the proof, not a signature over prose.',
-    '',
+    // THE SECTION CALLED Receipt CARRIED NO MEASURED VALUE. It said the monograph was content-addressed and
+    // stopped — prose ABOUT being a receipt. A receipt states what was checked and what it cost, so this
+    // reads the ratchet ledger: every number below is a committed floor or ceiling with a gate behind it,
+    // and `npm run next` prints the same ledger as work to do. NOT the last build's measured bytes: README.md
+    // is regenerated BEFORE docs:build, so a dist-derived number here would describe the PREVIOUS build. The
+    // BOUND is the honest form — a claim the next build must keep passing, enforced by the gate that set it.
+    ...buildReceiptLines(),
     `- ${foldNameReceipt('readmeMarkdown')}`,
+  ]
+}
+
+/** The build receipt: the gate chain's width, the ledger's state, and the bounds it holds the build to.
+ *
+ * Each line is refutable by the gate named beside it. `closed` is the count of ratchets standing at exactly
+ * zero — nothing left to solve on that axis; `openUnits` is the total magnitude still recorded, which is the
+ * number `npm run next` ranks into leads. An absent or unparseable ledger is reported as absence rather than
+ * as a zero, for the same reason leanInvolutionCorpus reports its source: a reader who cannot tell a closed
+ * ledger from a missing one cannot tell this corpus from an empty directory. */
+function buildReceiptLines(): string[] {
+  const receipt = buildReceiptLedger()
+  if (receipt.source === 'absent') {
+    return [
+      'The ratchet ledger (`scripts/verify/status.json`) was not readable when this README was computed, so the build receipt is **absent** — not zero. Run `npm run verify:all` in a clone to produce it.',
+      '',
+    ]
+  }
+  const bound = (name: string) => receipt.bounds.find((b) => b.name === name)?.value
+  const chunk = bound('build.app-chunk-kilobytes')
+  const shell = bound('build.shell-machinery-kilobytes')
+  const density = bound('build.corpus-hundred-bytes-per-theorem')
+  return [
+    `The root monograph is content-addressed — the section schema, the corpus roots and every reported count fold to one receipt that reproduces from \`src\` and changes if any reported value does. Below is what produced it: **${receipt.gates} gates** chained by \`npm run verify:all\`, and **${receipt.ratchets} ratchets** recording what each one measured. A ratchet may fall and never rise, so the ledger is the build's cost of doing business — and its own list of open work.`,
+    '',
+    `- **${receipt.closed} of ${receipt.ratchets} ratchets stand at zero** — nothing left to solve on those axes. The other ${receipt.open} carry **${receipt.openUnits} units** still recorded; \`npm run next\` ranks exactly those into leads, so the receipt and the worklist are one number read two ways.`,
+    ...(chunk === undefined ? [] : [`- **The bundle every visitor downloads first is held at ≤ ${chunk} KiB** (\`build.app-chunk-kilobytes\`, enforced by \`npm run verify:build-time\`). It is a ceiling, not a measurement: a build that exceeds it refuses the commit. It was 484 KiB until a barrel import of 33 components was made lazy.`]),
+    ...(shell === undefined ? [] : [`- **The gate machinery is held at ≤ ${shell} KiB** (\`build.shell-machinery-kilobytes\`) and the corpus at ≤ ${density === undefined ? '—' : density} **hundred bytes per theorem** (\`build.corpus-hundred-bytes-per-theorem\`) — the density unit is hundreds of bytes because KiB-per-theorem left enough slack that padding one theorem by 118 KB did not move it.`]),
+    '',
   ]
 }
 

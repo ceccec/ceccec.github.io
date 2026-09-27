@@ -1212,6 +1212,89 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
 }
 
 /**
+ * THE RATCHET LEDGER, READ ONCE — AND THE BUILD RECEIPT COUNTED OFF IT.
+ *
+ * scripts/verify/status.json is the corpus's committed record of what is still open: one key per measured
+ * quantity, its value the floor that may fall and never rise. Three places read it — status.ts (the writer
+ * and guard), next.ts (openLeads), ratchets.ts (assertEveryRatchetTicks) — and only the first carried the
+ * guard that matters. The other two did `JSON.parse(readFileSync(...))` bare, so a damaged ledger reached
+ * them as a SyntaxError with no instruction and an ABSENT one as a throw where `{}` is the honest answer.
+ * Absent and unparseable are different facts; that was written down once and lost twice by copying the
+ * line instead of the fold. status.ts still keeps its copy on purpose — it is imported by nearly every
+ * gate, and pulling this module's graph into all of them to read one integer is the wrong trade — but
+ * assertEveryRatchetTicks now asserts the two readers return the same ledger, so the copy is an invariant
+ * and not a drift with a delay on it.
+ *
+ * buildReceiptLedger is why this sits beside leanInvolutionCorpus rather than in a gate: the README is
+ * computed from src, and the receipt it should carry is this ledger. NOT the last build's measured bytes.
+ * README.md is regenerated BEFORE docs:build, so any dist-derived number in it describes the PREVIOUS
+ * build — the stale-witness defect that cost a whole wave. A ratcheted BOUND is committed source with a
+ * gate behind it: printing 237 KiB as the held ceiling is a claim the build must keep passing, and a build
+ * that breaks it refuses the commit. A measurement goes stale in silence; a bound cannot.
+ */
+export const RATCHET_LEDGER = 'scripts/verify/status.json'
+
+function ledgerIo(): { fs: typeof import('node:fs'); path: typeof import('node:path') } | null {
+  const get = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule
+    : undefined
+  if (!get) return null
+  const fs = get('node:fs') as typeof import('node:fs') | undefined
+  const path = get('node:path') as typeof import('node:path') | undefined
+  return fs && path ? { fs, path } : null
+}
+
+export function readRatchetLedger(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): Record<string, number> {
+  const io = ledgerIo()
+  if (!io) return {}
+  const p = io.path.join(root, RATCHET_LEDGER)
+  if (!io.fs.existsSync(p)) return {}
+  const raw = io.fs.readFileSync(p, 'utf8')
+  try {
+    const parsed = JSON.parse(raw) as unknown
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error('not an object')
+    return parsed as Record<string, number>
+  } catch (e) {
+    throw new Error(`${RATCHET_LEDGER} exists but does not parse (${(e as Error).message}). Refusing to treat a damaged record as an empty one — restore it from git rather than reseeding.`)
+  }
+}
+
+export function buildReceiptLedger(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): {
+  readonly ratchets: number
+  readonly closed: number
+  readonly open: number
+  readonly openUnits: number
+  readonly bounds: readonly { readonly name: string; readonly value: number }[]
+  readonly gates: number
+  readonly source: 'counted' | 'absent'
+} {
+  const absent = { ratchets: 0, closed: 0, open: 0, openUnits: 0, bounds: [] as const, gates: 0, source: 'absent' as const }
+  const io = ledgerIo()
+  if (!io) return absent
+  const entries = Object.entries(readRatchetLedger(root)).filter(([, v]) => typeof v === 'number')
+  if (!entries.length) return absent
+  // A NEGATIVE VALUE IS A FLOOR THAT MAY ONLY RISE — the ledger negates a count it wants growing so that one
+  // comparison ("never worse than recorded") serves both directions. Its MAGNITUDE is the work standing, which
+  // is why openUnits sums |v| and `closed` is the exact zero: nothing standing, the ratchet run to its end.
+  const magnitude = (v: number) => (v < 0 ? -v : v)
+  let gates = 0
+  try {
+    const pkg = JSON.parse(io.fs.readFileSync(io.path.join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+    // The width of the computation graph, counted off the chain itself rather than typed beside it.
+    gates = (pkg.scripts?.['verify:all']?.match(/npm run /g) ?? []).length
+  } catch { gates = 0 }
+  return {
+    ratchets: entries.length,
+    closed: entries.filter(([, v]) => v === 0).length,
+    open: entries.filter(([, v]) => v !== 0).length,
+    openUnits: entries.reduce((n, [, v]) => n + magnitude(v), 0),
+    bounds: entries.filter(([k]) => k.startsWith('build.')).map(([name, value]) => ({ name, value })).sort((a, b) => (a.name < b.name ? -1 : 1)),
+    gates,
+    source: 'counted' as const,
+  }
+}
+
+/**
  * THE MACHINE-CHECKED THEOREMS, IN LATEX.
  *
  * leanInvolutionCorpus counts what verify:lean proved; this reads the same files for their CONTENT —
