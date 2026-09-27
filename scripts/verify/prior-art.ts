@@ -2424,6 +2424,37 @@ export const ATTRIBUTION_COVERAGE: readonly {
   readonly coverage: 'covers' | 'partial' | 'weaker'
   readonly why: string
 }[] = [
+  // ── EXAMINED 2026-09-27: twelve rows that already carried a recorded citation and lacked only the verdict.
+  // prior-art.coverage-unexamined stood at 358 of 635 attributed rows. Split: 84 of those already had a
+  // citation from a real search and needed only a judgement against the row; the other 274 were attributed by
+  // PATTERN — an eponym in the row text, no query ever run — and need searches, not verdicts. These twelve are
+  // from the 84. Each was judged against the row's own `states`, not its title, and that changed two of them:
+  // "ζ(−1) = −1/12" and "superstring D = 10 twice" read as textbook facts by title and as narrower, different
+  // derivations in their statements, which the recorded citations do not reach. Both are `partial`.
+  { theorem: 'hitting a prime is the inversion point — ℤ/pℤ is a field, inversion becomes total', coverage: 'covers',
+    why: 'the citation is the row: a residue inverts exactly when gcd(a, n) = 1, so at a prime every nonzero class inverts and ℤ/pℤ is a field, while at n = pq neither factor inverts. Fermat\'s little theorem giving x⁻¹ = x^(p−2) as one power map, and the 2..16 scan showing the invertible fraction reaching 1 exactly at the primes, are that same standard fact computed — not an addition to it.' },
+  { theorem: 'GHZ–Mermin', coverage: 'covers',
+    why: 'the row states the GHZ parity argument breaks local realism without inequalities, and that is precisely what the citation establishes — Mermin sharpened GHZ into an all-versus-nothing contradiction on a single run rather than a statistical inequality violation.' },
+  { theorem: 'unit group (ℤ/9)*', coverage: 'covers',
+    why: 'the citation gives the unit group of ℤ/9ℤ as {1,2,4,5,7,8}, cyclic of order 6. The row’s specific pairing — (2,5) and (4,7) nontrivial, {1,8} self-inverse, {3,6,9,0} non-units — follows immediately by 2·5 = 4·7 = 8·8 ≡ 1 (mod 9), which is reading that group, not extending it.' },
+  { theorem: 'non-integer dimension', coverage: 'covers',
+    why: 'the row computes similarity dimension log N / log r for Koch (1.26186) and Sierpiński (1.58496); the citation establishes that Hausdorff dimension need not be an integer and gives Koch as log 4 / log 3. For self-similar sets the two dimensions coincide, so both values are the cited fact. The citation’s own caution is worth carrying: the Mandelbrot BOUNDARY has Hausdorff dimension exactly 2, so fractal does not entail non-integer.' },
+  { theorem: 'AB/BA shared spectrum', coverage: 'covers',
+    why: 'Sylvester’s identity det(I+AB) = det(I+BA) is cited, and with it that AB and BA share nonzero eigenvalues with multiplicity — which is the content of the row’s p_AB(λ) = λ·p_BA(λ) in all coefficients. Faddeev–LeVerrier is the method of computing those coefficients, not a separate claim.' },
+  { theorem: 'Catalan heptagon', coverage: 'covers',
+    why: 'the citation states both halves of the row: Euler (1751) computed 42 triangulations of the heptagon, and Segner (1758) gave the convolution recurrence that produces 1,1,2,5,14,42.' },
+  { theorem: 'three cubes of 42', coverage: 'covers',
+    why: 'the row carries the exact three-cube decomposition of 42 and names Booker–Sutherland 2019, which is the citation. The BigInt arithmetic verifies a published solution; it does not claim it.' },
+  { theorem: 'ζ(−1) = −1/12', coverage: 'partial',
+    why: 'the citation establishes ζ(−1) = −1/12 as a value of Riemann’s analytic continuation, and rightly separates it from a sum of the naturals. But the ROW states something narrower and different: that the Abel partials of the Dirichlet eta function match x/(1+x)² pointwise, that η(−1) = 1/4, and that the eta relation divides by −3 to reach −1/12, with the string normal-ordering a = (D−2)/24 falling out as exact rationals. That eta route is not what the citation covers. The general fact is prior art; whether this particular derivation is, is the next query rather than an assumption either way.' },
+  { theorem: 'bosonic critical D = 26', coverage: 'covers',
+    why: 'the row derives D − 2 = 24 from the massless level-1 vector and notes the level-0 tachyon M²α′ = −1; the citation gives the critical dimension 26 from exactly that light-cone/conformal-anomaly counting in standard bosonic string theory. The tachyon is the same textbook spectrum, stated openly rather than hidden.' },
+  { theorem: 'superstring D = 10 twice', coverage: 'partial',
+    why: 'the citation derives d = 10 from the ghost central-charge balance (3/2)d − 26 + 11 = 0, which is one of the two routes the row names. What it does NOT cover is the row’s actual claim: that the NS zero-point condition (D−2)/16 = 1/2 gives the same dimension, so that TWO independent routes agree. The NS intercept argument is itself textbook, so this is very likely prior art too — but the recorded citation does not contain it, and the row is attributed on a citation that covers half of what it says.' },
+  { theorem: 'exactly 6 regular 4-polytopes', coverage: 'covers',
+    why: 'Schläfli’s 1852 classification is cited and lists exactly the six the row enumerates. The row’s route — Platonic cells with vertex figures under sin(π/p)sin(π/r) > cos(π/q) — is Schläfli’s own criterion, so the enumeration is the cited theorem carried out.' },
+  { theorem: 'Ramsey R(3,3) = 6', coverage: 'covers',
+    why: 'Greenwood & Gleason (1955) is cited for R(3,3) = 6. The row’s exhaustion of all 32768 two-colourings of K₆, and the K₅ pentagon/pentagram colouring with no monochromatic triangle, verify both halves of that published value.' },
   // Two rows moved INTO `attributed` by the 2026-09-21 Cover pass, so their coverage is recorded here
   // rather than left as an unexamined attribution — the instrument must pay for looking, not only for
   // finding fault.
