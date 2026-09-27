@@ -30,6 +30,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { ratchet, everyRatchet } from './status.ts'
+import { stripNonCode } from './corpus.ts'
 
 export type ClaimGap = { file: string; line: number; rule: 'spelled-comparison' | 'cost-vs-evidence'; label: string; on: string }
 
@@ -164,7 +165,27 @@ export function findUntriedClaims(root: string = process.cwd()): { published: nu
         const computes = [...body.matchAll(/(?<![\w$])on:\s*([^,\n]+)/g)]
           .map((x) => x[1]!.trim().replace(/[\]\)},\s]+$/, ''))
           .some((on) => !/^(?:true|false)$/.test(on))
-        if (computes) { refutable += 1; continue }
+        // A COMPOSITOR IS TRIED THROUGH WHAT IT COMPOSES, AND THIS COUNTED 56 OF THEM AS UNTRIED.
+        // piTrainFusionWaveTwelve has no facets of its own. It publishes
+        //     fused: w11.fused && w12.cut && fusion.fused
+        // over three folds that each carry their own refutable facets, so a single sub-facet going false takes
+        // its verdict with it — that is as refutable as a fold gets. Looking only for `on:` inside the body
+        // finds nothing there and files the statement as asserted with nothing that can fail, which is the
+        // opposite of true. Measured across the 436: 56 compose another fold's verdict field, and only 30
+        // return literals in every field — the genuine shape this floor is for.
+        //
+        // Same defect as canon.facet-gates-elsewhere, which needed the gate identifiers expanded one
+        // indirection out. Here the indirection is a member access: a verdict field read off another fold's
+        // result. Comments are stripped first, so prose ABOUT a verdict is not mistaken for composing one.
+        const VERDICT = /\b[\w$]+\.(?:fused|cut|computes|coheres|holds|proven|verified|sealed|dried|visible|optimised|green|tried|ok)\b/
+        // SCOPED TO THE RETURNED OBJECT, because the whole body over-credits. Testing the entire body moved 82
+        // folds to refutable where only 56 actually compose a verdict in what they publish: a fold that merely
+        // READS another fold's `.computes` while building a data field would have been credited for a
+        // refutability its own statement does not have. Over-crediting is the unsafe direction for a defect
+        // floor — it lowers the number without improving anything — so the test starts at the last `return {`.
+        const returned = body.slice(body.lastIndexOf('return {'))
+        const composes = VERDICT.test(returned.split('\n').map(stripNonCode).join('\n'))
+        if (computes || composes) { refutable += 1; continue }
         untried.push({ file: rel, line: text.slice(0, m.index!).split('\n').length, fold: folds[i]!.name, claim: value.replace(/\s+/g, ' ').slice(0, 110) })
       }
     }
