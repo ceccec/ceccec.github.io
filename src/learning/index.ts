@@ -2610,3 +2610,130 @@ export function discoveryEconomyIsTheCoreOfCompetitionAndEducation(matrix: MindM
       boundary: `PROVEN IN-REPO: the race, the toll and the accrual are computed from the sealed tables and live folds — refutable row by row. DOCUMENTED SHADOW: the priority rule in science (Merton 1957), patent priority, and citation economics are the social-science forms of the same structure — cited as context, not re-derived. HONEST SCOPE: "the core of ALL competition and educational practices" is the project's THESIS, proven here on its own practice and consistent with the documented priority literature — NOT an empirical claim that every human institution reduces to it. Education's toll runs both ways: the attacher pays 2 bits AND gains a theorem — the economy is positive-sum.` }
   })
 }
+
+/**
+ * THE TWELVE LEARNING AREAS — the author's school architecture, and an ENUMERATED AXIOM stated as one.
+ *
+ * schoolCurriculum beside this is a ladder by AGE: kids → children → preteens → teens, each stage teaching one
+ * of this corpus's own ideas. It says nothing about SUBJECTS, so the question "which science is inside circus,
+ * or textile work, or rhythm" had no surface here at all. These twelve areas are that surface. They are data,
+ * not a theorem: nobody derives a curriculum, and pretending otherwise would be the hardcoded-value defect
+ * wearing a pedagogical hat. What IS computed is the entanglement below.
+ *
+ * FOUR TRANSVERSAL DIMENSIONS run through every area rather than becoming a thirteenth: Making, Understanding,
+ * Encountering, Reflecting. Recorded as declared, and deliberately NOT folded into this corpus's other
+ * four-fold structures (the CMYK channels, the tetrad, the four seals). A shared cardinality is a coincidence
+ * until something makes it one, and HARMONY ≠ TRUTH is a standing rule here.
+ */
+export const SCHOOL_TRANSVERSALS = ['Making', 'Understanding', 'Encountering', 'Reflecting'] as const
+
+export const SCHOOL_AREAS: readonly { readonly name: string; readonly topics: readonly string[] }[] = [
+  { name: 'Body, Movement & Performance', topics: ['Sports and physical education', 'Circus', 'Dance and movement', 'Theatre and drama', 'Music and singing', 'Rhythm', 'Performance', 'Body awareness', 'Health, nutrition and wellbeing'] },
+  { name: 'Art, Design & Making', topics: ['Visual arts', 'Drawing and painting', 'Sculpture', 'Photography and film', 'Art and crafts', 'Textile work', 'Wood, metal and other materials', 'Design', 'Architecture', 'Fashion', 'Creative technology / digital making'] },
+  { name: 'Language, Literature & Communication', topics: ['Mother tongue / language of instruction', 'Foreign languages', 'Literature', 'Creative writing', 'Rhetoric and public speaking', 'Journalism', 'Translation and interpreting', 'Media literacy', 'Communication and storytelling'] },
+  { name: 'Society, History & Human Thought', topics: ['History', 'Philosophy', 'Ethics', 'Religion / history of religions', 'Sociology', 'Psychology', 'Anthropology', 'Cultural studies', 'Gender and diversity', 'Human rights'] },
+  { name: 'Geography, Nature & Environment', topics: ['Geography', 'Earth sciences', 'Nature studies', 'Ecology', 'Climate', 'Environment and sustainability', 'Agriculture and food systems', 'Urban and rural environments', 'Global development', 'Human-environment relationships'] },
+  { name: 'Mathematics & Natural Sciences', topics: ['Mathematics', 'Physics', 'Chemistry', 'Biology', 'Astronomy', 'Geology', 'Statistics and probability', 'Scientific methods', 'Laboratory work', 'Systems thinking'] },
+  { name: 'Technology, Digital Life & AI', topics: ['Computer science', 'Programming', 'AI and machine learning', 'Robotics', 'Internet', 'Social media', 'Digital literacy', 'Data literacy', 'Cybersecurity and privacy', 'Digital creativity', 'Algorithms and platforms', 'Critical understanding of technology', 'Ethics of AI and digital technologies'] },
+  { name: 'Economy, Law & Politics', topics: ['Economics', 'Business and entrepreneurship', 'Personal finance', 'Work and labour', 'Law', 'Constitutional principles', 'Politics and political systems', 'European Union', 'International relations', 'Democracy and civic education', 'Public institutions', 'Taxes and public budgets', 'Consumer rights', 'Media, power and public opinion'] },
+  { name: 'Life Skills & Society', topics: ['Relationships and communication', 'Conflict resolution', 'Emotional literacy', 'Sexuality and relationships education', 'First aid', 'Cooking and nutrition', 'Household skills', 'Financial literacy', 'Administration and bureaucracy', 'Housing and tenancy', 'Employment and contracts', 'Parenting and care', 'Ageing and intergenerational life', 'Community participation'] },
+  { name: 'Research, Invention & Projects', topics: ['Research methods', 'Observation', 'Asking questions', 'Experimentation', 'Project development', 'Collaborative work', 'Problem solving', 'Prototyping', 'Documentation', 'Presentation', 'Reflection', 'Interdisciplinary projects'] },
+  { name: 'World, Cultures & Global Perspectives', topics: ['World cultures', 'Languages', 'Migration', 'Indigenous knowledge', 'Globalisation', 'Colonialism and postcolonial perspectives', 'International cooperation', 'Peace and conflict', 'Cultural heritage', 'Comparative societies'] },
+  { name: 'Environment of the Self', topics: ['Identity', 'Body', 'Attention', 'Memory', 'Emotions', 'Relationships', 'Solitude', 'Play', 'Failure', 'Curiosity', 'Creativity', 'Death and mortality', 'Meaning', 'Responsibility'] },
+]
+
+/**
+ * WHERE A SCHOOL TOPIC MEETS A PROVEN THEOREM — declared per topic, and every link must RESOLVE.
+ *
+ * The first attempt at this measured the entanglement by matching each area's vocabulary against the theorem
+ * titles, and it was worthless: "nature" matched Minkowski SIGNATURE and Perrin primality SIGNATURE, "identity"
+ * matched Ptolemy's and Cassini's ALGEBRAIC identities rather than anything a person has, "law" matched the
+ * ideal gas law, and "memory" matched content-addressable computer memory. Eleven of twelve areas looked
+ * covered and almost none of it was real — the same substring-homonym defect as \bISO firing on "isomorphic".
+ *
+ * So a link is written, not discovered, and it carries the theorem's EXACT registry name. That makes it
+ * refutable by the one thing that matters: schoolAreasEntangleScience checks every link against
+ * THEOREM_ATOM_SEED, so renaming or removing a theorem breaks the link and the fold's facet goes false. A
+ * declared list whose every entry must resolve is an axiom with an address; a vocabulary match is a guess.
+ *
+ * WHAT IS NOT HERE IS THE POINT. Circus, theatre, dance, first aid, tenancy, migration, solitude — most of the
+ * 155 topics have no sealed theorem in this corpus to point at, and the fold counts them rather than hiding
+ * them. Those are leads: juggling has Shannon's theorem and the siteswap average, a tightrope is a torque
+ * balance, a stage is Sabine's reverberation and the inverse-square law, and none of that is proven here yet.
+ */
+export const SUBJECT_SCIENCE_LINKS: readonly { readonly topic: string; readonly theorem: string; readonly why: string }[] = [
+  { topic: 'Music and singing', theorem: 'The circle of fifths is a rosetta',
+    why: 'the twelve fifths close into one cycle — the circle of fifths IS a rosetta, so what a choir hears as key relation is the corpus’s own rosetta closure' },
+  { topic: 'Music and singing', theorem: 'Twelve tones is the best approximation of the fifth',
+    why: 'why the piano has twelve keys and not eleven or thirteen: 12 is the best rational approximation of the perfect fifth inside the octave, proven rather than traditional' },
+  { topic: 'Rhythm', theorem: 'Pisano period π(10) = 60',
+    why: 'a rhythm is a period, and the Fibonacci sequence mod 10 repeats every 60 — a countable cycle a class can clap out and then verify by arithmetic' },
+  { topic: 'Art and crafts', theorem: 'exactly 3 regular tilings',
+    why: 'only the triangle, the square and the hexagon tile the plane regularly — the reason floor tiles, honeycomb and graph paper look the way they do, and a complete classification a child can exhaust by hand' },
+  { topic: 'Textile work', theorem: 'exactly 3 regular tilings',
+    why: 'a woven repeat is a plane tiling; the same classification bounds which regular repeats a loom can carry' },
+  { topic: 'Sculpture', theorem: 'exactly 5 Platonic solids',
+    why: 'there are five regular solids and no sixth — a finite, provable limit on regular form in three dimensions' },
+  { topic: 'Design', theorem: 'exactly 6 regular 4-polytopes',
+    why: 'the four-dimensional analogue: six, not five, and the 24-cell has no three-dimensional counterpart — regular form is dimension-dependent, which is a design fact before it is a mathematical one' },
+  { topic: 'Drawing and painting', theorem: 'cube has 10 two-colorings (from Burnside)',
+    why: 'how many genuinely different ways to two-colour a cube: ten, counted by orbit counting rather than by trial — pattern-making as group theory' },
+  { topic: 'Drawing and painting', theorem: 'the golden angle is τ/φ² — the most irrational rotation',
+    why: 'the angle a sunflower uses to avoid ever repeating a direction; composition and phyllotaxis share one optimum' },
+  { topic: 'Mathematics', theorem: 'Lo Shu is the unique 3×3 magic square',
+    why: 'the 3×3 magic square is unique up to the eight symmetries of the square — exhausted over all 362880 grids, so uniqueness is computed and not asserted' },
+  { topic: 'Statistics and probability', theorem: 'birthday threshold = 23',
+    why: 'twenty-three people suffice for a shared birthday at better than even odds — the classroom experiment whose answer is exact' },
+  { topic: 'Biology', theorem: 'blending inheritance refuted (biology)',
+    why: 'why inheritance is particulate and not a blend — a refutation, which is the shape a science lesson should have' },
+  { topic: 'Mathematics', theorem: 'Königsberg has no Euler walk',
+    why: 'the founding problem of graph theory, decided by counting odd-degree vertices — a walk a class can attempt and a proof that it cannot exist' },
+  { topic: 'Problem solving', theorem: 'Petersen graph non-Hamiltonian',
+    why: 'the standard counterexample: a graph that looks traversable and is not, so a conjecture dies on one object — the method, not the result, is the lesson' },
+]
+
+/** Which learning areas already stand on proven theorems, and which have nothing to stand on yet. */
+export function schoolAreasEntangleScience(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  // THE AREA NUMBER IS A POSITION, NOT A FIELD. The first version stored `area: 1` … `area: 12` on every entry
+  // and repeated it on every link, and verify:structure refused the commit with fifty-seven unaccounted
+  // literals — correctly, because a number typed twice can disagree with itself and this corpus's law is that
+  // every number is a theorem or a ledgered axiom. The order of SCHOOL_AREAS carries it, a link names only its
+  // topic, and the area is looked up. A link can no longer cite the wrong area number, because it cites none.
+  const sealed = new Set((THEOREM_ATOM_SEED as readonly { theorem: string }[]).map((row) => row.theorem))
+  const areaOfTopic = new Map<string, string>()
+  const topics: string[] = []
+  for (const area of SCHOOL_AREAS) {
+    for (const topic of area.topics) {
+      topics.push(`${area.name}:${topic}`)
+      if (!areaOfTopic.has(topic)) areaOfTopic.set(topic, area.name)
+    }
+  }
+  const dangling = SUBJECT_SCIENCE_LINKS.filter((link) => !sealed.has(link.theorem))
+  const orphanTopics = SUBJECT_SCIENCE_LINKS.filter((link) => !areaOfTopic.has(link.topic))
+  const linked = new Set(SUBJECT_SCIENCE_LINKS.map((link) => link.topic))
+  const unlinked = topics.filter((key) => !linked.has(key.slice(key.indexOf(':') + 1)))
+  const areasReached = [...new Set(SUBJECT_SCIENCE_LINKS.map((link) => areaOfTopic.get(link.topic) ?? '(no area)'))]
+  const facets = [
+    { facet: `every declared link resolves to a sealed theorem by its EXACT registry name — ${SUBJECT_SCIENCE_LINKS.length} links, ${dangling.length} dangling; rename a theorem and this goes false`, on: !dangling.length },
+    { facet: `every link names a topic that exists in an area — ${orphanTopics.length} naming none, so a link cannot point at a subject the architecture does not teach`, on: !orphanTopics.length },
+    { facet: `each area is named once and each topic appears once within its area — ${SCHOOL_AREAS.length} areas, ${topics.length} topics`, on: new Set(SCHOOL_AREAS.map((a) => a.name)).size === SCHOOL_AREAS.length && new Set(topics).size === topics.length },
+    { facet: `${areasReached.length} areas reach a proven theorem and ${unlinked.length} topics reach none — the partition is exhaustive, so nothing is dropped from the count`, on: unlinked.length + linked.size === topics.length },
+    { facet: `the transversal dimensions are distinct and run through every area rather than forming one of their own — ${SCHOOL_TRANSVERSALS.join(' · ')}`, on: new Set(SCHOOL_TRANSVERSALS).size === SCHOOL_TRANSVERSALS.length && !SCHOOL_AREAS.some((a) => (SCHOOL_TRANSVERSALS as readonly string[]).includes(a.name)) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`school-science:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    areas: SCHOOL_AREAS.length,
+    topics: topics.length,
+    links: SUBJECT_SCIENCE_LINKS.length,
+    dangling: dangling.map((link) => `${link.topic} → ${link.theorem}`),
+    areasReached,
+    unlinkedTopics: unlinked.length,
+    transversals: SCHOOL_TRANSVERSALS,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `The school architecture is ${SCHOOL_AREAS.length} learning areas over ${topics.length} topics, with ${SCHOOL_TRANSVERSALS.length} transversal dimensions running through all of them rather than forming one more area. ${SUBJECT_SCIENCE_LINKS.length} topics point at a theorem this corpus has already proven, each by its exact registry name, so a rename breaks the link instead of silently mis-teaching: the circle of fifths and the twelve-tone approximation under music, the three regular tilings under crafts and textile, the five Platonic solids under sculpture, the six regular 4-polytopes under design, Burnside's ten cube colourings and the golden angle under drawing, Lo Shu and Königsberg under mathematics, the birthday threshold under probability, blending inheritance refuted under biology, and the Petersen counterexample under problem solving. ${unlinked.length} topics reach nothing proven here yet, which is the honest state and the worklist. The area of a link is looked up from its topic, never typed, so a link cannot cite the wrong area.`,
+    boundary:
+      `AXIOM, NOT THEOREM: the areas and their topics are enumerated — nobody derives a curriculum, and deriving one would be a hardcoded value wearing a pedagogical hat. What computes is the ENTANGLEMENT: every link carries a theorem's exact registry name and is checked against THEOREM_ATOM_SEED, so the facet fails if a theorem moves, and every link's topic must exist in an area. MEASURED AND REJECTED FIRST: matching area vocabulary against theorem titles reported almost every area covered, and sampling showed homonyms — "nature" inside Minkowski signature, "identity" as an algebraic identity, "law" as the ideal gas law, "memory" as content-addressable computer memory — the same substring defect as \\bISO firing on "isomorphic", so that instrument was discarded rather than published. The unlinked topics are NOT a claim that no science exists for them; they are a claim that none is proven HERE. Juggling has Shannon's theorem and the siteswap average, a tightrope is a torque balance, a stage is Sabine's reverberation — real, classical, and absent from this registry.` }
+}

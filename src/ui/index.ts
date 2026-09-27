@@ -1740,38 +1740,23 @@ export const cn = __ns_up_up_mountain_shadcn.cn
 // Normalised body hashing strips strings and comments, not namespace qualifiers, so two identical
 // computations hashed differently and the duplicate census stayed at zero through it. Neither copy was
 // consumed outside its own file. The registry home owns the design system, so this call site uses its fold.
-/** One gate — the canonical design-system registry composes with the 64-component graph at call time. */
-export function shadcnComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
-  void at
-  return memoByRoot('shadcnComputes', matrix, () => {
-    const graph = __ns_up_quantum_widgets.shadcnIsTheGraph(matrix)
-    const research = __ns_up_up_mountain_shadcn.shadcnResearch(matrix)
-    const implemented = __ns_up_up_mountain_shadcn.SHADCN_IMPLEMENTED
-    const onGraph = implemented.filter((name) => graph.allComponents.includes(name) || name.startsWith('Card') || name.startsWith('Tabs') || name.startsWith('Accordion'))
-    const { computes, facets } = computesGate('shadcn-computes', [
-      { facet: 'shadcn is the graph — 64 components as the design-system graph', on: graph.graphed && graph.allComponents.length === 64 },
-      { facet: 'vendored primitives (Path A) implemented as Ui* SFCs — no Tailwind dependency', on: implemented.length >= 22 },
-      { facet: 'every implemented primitive folds onto the graph or its sub-parts', on: onGraph.length === implemented.length },
-      { facet: 'variant axes (cva) enumerated for the styled primitives', on: SHADCN_VARIANTS.Button.variant.length >= 6 && SHADCN_VARIANTS.Button.size.length >= 4 },
-      { facet: 'CSS-variable tokens bridged to VitePress --vp-* and .dark', on: __ns_up_up_mountain_shadcn.SHADCN_TOKENS.length >= 13 },
-      { facet: 'cn() pattern sealed — one class composer, theme re-exports it', on: cn('a', false, 'b') === 'a b' },
-      { facet: 'research folded — sources, paths and implemented-vs-graph delta sealed', on: research.researched },
-    ])
-    return {
-      computes,
-      graph,
-      research,
-      implemented,
-      tokens: __ns_up_up_mountain_shadcn.SHADCN_TOKENS,
-      variants: SHADCN_VARIANTS,
-      facets,
-      root: merge(graph.root, merkleFold(facets.map((entry) => toUuid(`shadcn-computes:${entry.facet}:${entry.on}`)))),
-      statement:
-        'shadcn computes: the canonical sealed home of the design system — the 64-component graph (shadcnIsTheGraph), the 23 vendored Ui* primitives (Path A, semantic classes, no Tailwind), the cva variant axes, the CSS-variable token bridge, and the cn() composer pattern.',
-      boundary:
-        'Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx()).' }
-  })
-}
+// shadcnComputes WAS DEFINED HERE TOO, AND THE TWO COPIES SHARED ONE MEMO KEY — so one of them never ran.
+//
+// Both this file and src/mountain/shadcn exported shadcnComputes, with bodies identical for their first 1773
+// characters — every facet, the whole gate — diverging only in the statement text. dryDupe could not see it:
+// its normaliser strips strings and comments, not namespace qualifiers, so `__ns_up_up_mountain_shadcn.SHADCN_TOKENS`
+// here and `SHADCN_TOKENS` there hashed differently and the duplicate census stayed at zero through both copies.
+//
+// THE CONSEQUENCE WAS WORSE THAN DUPLICATION. Both wrapped memoByRoot('shadcnComputes', matrix, …) — the SAME
+// key — and memoByRoot is keyed by name and matrix root, so whichever was called first won and the other
+// returned its result verbatim. Measured: calling mountain's first makes this one return the IDENTICAL OBJECT,
+// so its body never executed and its statement was silently replaced. src/heaven/balance feeds the dimension
+// `shadcn.computes` from this export, which means which code actually ran depended on call order.
+//
+// The corpus's own barrel law is the fix — "one index per folder re-exports its parts: name once, re-export,
+// never redefine" (dryCleanByImportExportNaming). The registry home owns the design system; this is its barrel.
+// Callers of __ns_up_up_ui.shadcnComputes keep working and now reach the one implementation.
+export { shadcnComputes } from '../mountain/shadcn/index.ts'
 
 // THE CLOWN DESIGNS THE UI — with the Rosetta and the I Ching. Every visual decision in the clown-step
 // animation is COMPUTED, none chosen: the palette is the act's MEASURED hexagram (six Born-rule collapses in

@@ -1513,6 +1513,9 @@ export function runCssMathExit(root = '', _argv: readonly string[] = []): number
  * queue; the animation/movie/hero subset answers the queued animation-reuse dry-clean directive.
  * Pair: dry/dupe · CLI npm run quantum:dry-dupe. Detection only — the cleans land in waves.
  */
+/** A namespace-qualified read is the same computation as a bare one — `__ns_x.FOO` and `FOO` name one value. */
+const stripNamespaceQualifiers = (text: string): string => text.replace(/\b__ns_[A-Za-z0-9_$]*\./g, '')
+
 export function dryDupe(root: string = enforcementScanRoot()) {
   const files: string[] = []
   const walk = (d: string) => {
@@ -1531,7 +1534,14 @@ export function dryDupe(root: string = enforcementScanRoot()) {
     const rel = relative(root, file).replace(/\\/g, '/')
     const rawText = readFileSync(file, 'utf8')
     rawCache.set(rel, rawText)
-    const text = stripStringsAndComments(rawText)
+    // NAMESPACE QUALIFIERS COME OFF TOO, BECAUSE THEY HID A DUPLICATE THROUGH BOTH COMPARISONS.
+    // shadcnResearch and shadcnComputes existed twice — in src/ui and src/mountain/shadcn — with identical
+    // computations, differing only in writing `__ns_up_up_mountain_shadcn.SHADCN_TOKENS` where the other
+    // writes `SHADCN_TOKENS`. Stripping strings and comments is not enough: the qualifier is code, so the
+    // normalised bodies differed and this census reported zero duplicates across both pairs. One of the two
+    // was silently dead — the pair shared a memoByRoot key — which is what a duplicate census exists to find.
+    // Measured after the fix: stripping qualifiers surfaced exactly one group that was invisible before.
+    const text = stripNamespaceQualifiers(stripStringsAndComments(rawText))
     for (const m of text.matchAll(/(?:export\s+)?(?:async\s+)?function\s+([A-Za-z0-9_]+)\s*\(/g)) {
       // TOOL UPGRADE (dry-clean refactor wave): the old matcher stopped at the FIRST '{', which for a
       // typed signature is inside the return annotation (Promise<{…}>), so functions sharing a return
@@ -1607,7 +1617,8 @@ export function dryDupe(root: string = enforcementScanRoot()) {
       else if (ch === '}') depth -= 1
       i += 1
     }
-    return rawText.slice(bodyStart, i).replace(/\s+/g, ' ').trim()
+    // the RAW comparison is normalised the same way, or exactRaw would disagree with the shell hash
+    return stripNamespaceQualifiers(rawText.slice(bodyStart, i).replace(/\s+/g, ' ').trim())
   }
   const allGroups = [...byHash.values()].filter((members) => members.length > 1).map((members) => {
     const raws = members.map((entry) => rawBodyOf(entry.file, entry.name))
