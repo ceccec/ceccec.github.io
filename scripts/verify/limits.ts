@@ -167,6 +167,125 @@ export function findWeakestBarFacets(root: string = process.cwd()): VacuousFacet
   return found
 }
 
+/**
+ * THE ONE LAW THE OTHER RULES ARE SPECIAL CASES OF: A CHECK MUST READ SOMETHING THE TREE CAN CHANGE.
+ *
+ * `on: true`, `arr.includes('x')` over a literal array, `xs.length >= 0`, `registered === 18` — each was
+ * found and fixed as its own rule, and each is the same fact: the closure of the check reaches nothing that
+ * could ever differ, so the facet computes a constant and a constant cannot be a measurement. A facet's
+ * sentence and its check are meant to be two projections of ONE subject (the corpus's own
+ * oneMathManyPresentations); when the check's closure contains no part of the subject, the pair is a
+ * sentence with a checkmark beside it.
+ *
+ * FIVE UNSOUNDNESSES WERE MEASURED OUT OF THIS DETECTOR BEFORE ITS COUNT MEANT ANYTHING: 2573 → 294 → 264
+ * → 60 → 24. In order, it (1) read English words that happen to be corpus exports — fold, digit, path,
+ * entry, swap, gcd — as code claims; (2) stopped reachability at local consts, so a check delegating to
+ * allInRing() looked disjoint from what allInRing computes; (3) counted a sentence CITING a sibling fold
+ * ("illusionsMeetInTheirInverse computes") as claiming to check it, which is provenance and the corpus's
+ * idiom; (4) accepted `let brahmagupta = true` as the literal `true`, flagging a 10^4-grid verification loop
+ * as a constant — the same reassignment blindness this corpus had already recorded once; and (5) treated a
+ * NAMED constant that is the subject (AUDIO_DEFAULT_ENABLED, mwGeV) as decoration, when changing it does
+ * move the facet. Every one of those was a gap in the instrument, never in the tree.
+ *
+ * What is left counted: the closure resolves entirely to `const`-declared, never-assigned literals whose
+ * names have no life outside facet expressions — a value that exists only to be asked.
+ */
+export function findConstantChecks(root: string = process.cwd()): VacuousFacet[] {
+  const ts = require('typescript') as typeof import('typescript')
+  const found: VacuousFacet[] = []
+  // Method names that read a value without bringing anything new in: calling one keeps the closure closed.
+  const CLOSED_METHODS = new Set(['includes', 'length', 'every', 'some', 'filter', 'map', 'indexOf', 'join', 'slice', 'size', 'has', 'startsWith', 'endsWith', 'test', 'toFixed', 'concat', 'at', 'find', 'findIndex', 'reduce', 'flat', 'sort', 'keys', 'values', 'entries', 'trim', 'split', 'replace', 'toLowerCase', 'toUpperCase', 'charAt', 'repeat', 'padStart', 'padEnd'])
+  const perFile = new Map<string, { fixed: Map<string, import('typescript').Node>; sf: import('typescript').SourceFile }>()
+
+  eachFacet(root, ({ file, facet, on, line }) => {
+    const sf = file.ast()
+    let state = perFile.get(file.rel)
+    if (!state) {
+      const isFixedInit = (n: import('typescript').Node): boolean => {
+        if (ts.isStringLiteral(n) || ts.isNumericLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n)) return true
+        if (n.kind === ts.SyntaxKind.TrueKeyword || n.kind === ts.SyntaxKind.FalseKeyword || n.kind === ts.SyntaxKind.NullKeyword) return true
+        if (ts.isPrefixUnaryExpression(n)) return isFixedInit(n.operand)
+        if (ts.isAsExpression(n) || ts.isParenthesizedExpression(n)) return isFixedInit(n.expression)
+        if (ts.isArrayLiteralExpression(n)) return n.elements.every(isFixedInit)
+        if (ts.isObjectLiteralExpression(n)) return n.properties.every((pr) => ts.isPropertyAssignment(pr) && isFixedInit(pr.initializer))
+        return false
+      }
+      // Unsoundness 4: a name assigned anywhere is not fixed, whatever it was initialised to.
+      const assigned = new Set<string>()
+      const findAssignments = (n: import('typescript').Node): void => {
+        if (ts.isBinaryExpression(n) && ts.isIdentifier(n.left)
+            && [ts.SyntaxKind.EqualsToken, ts.SyntaxKind.PlusEqualsToken, ts.SyntaxKind.MinusEqualsToken,
+                ts.SyntaxKind.AsteriskEqualsToken, ts.SyntaxKind.BarBarEqualsToken,
+                ts.SyntaxKind.AmpersandAmpersandEqualsToken].includes(n.operatorToken.kind)) assigned.add(n.left.text)
+        if ((ts.isPostfixUnaryExpression(n) || ts.isPrefixUnaryExpression(n)) && ts.isIdentifier(n.operand)) assigned.add(n.operand.text)
+        ts.forEachChild(n, findAssignments)
+      }
+      findAssignments(sf)
+      const fixed = new Map<string, import('typescript').Node>()
+      const collect = (n: import('typescript').Node): void => {
+        if (ts.isVariableDeclaration(n) && ts.isIdentifier(n.name) && n.initializer && isFixedInit(n.initializer)
+            && !assigned.has(n.name.text)
+            && ts.isVariableDeclarationList(n.parent) && (n.parent.flags & ts.NodeFlags.Const) !== 0) fixed.set(n.name.text, n.initializer)
+        ts.forEachChild(n, collect)
+      }
+      collect(sf)
+      state = { fixed, sf }
+      perFile.set(file.rel, state)
+    }
+
+    const names: string[] = []
+    let mutable = false
+    const walk = (n: import('typescript').Node): void => {
+      if (mutable) return
+      if (ts.isCallExpression(n)) {
+        if (!ts.isPropertyAccessExpression(n.expression) || !CLOSED_METHODS.has(n.expression.name.text)) { mutable = true; return }
+        walk(n.expression.expression)
+        for (const a of n.arguments) walk(a)
+        return
+      }
+      // A PROPERTY NAME IS AN IDENTIFIER, AND THAT MADE THE DETECTOR BLIND TO EVERY `.length` CHECK.
+      // `arr.length === 3` walks into `arr` AND into `length`; `length` resolves to no fixed const, so the
+      // closure was declared mutable and the decoration waved through. Injecting exactly that shape as a
+      // perturbation is what exposed it — the count did not move, which is the only reason it was found.
+      // Only the object side of a property access is part of the closure; the member name is syntax.
+      if (ts.isPropertyAccessExpression(n)) { walk(n.expression); return }
+      if (ts.isElementAccessExpression(n)) { walk(n.expression); walk(n.argumentExpression); return }
+      if (ts.isIdentifier(n)) {
+        if (!state!.fixed.has(n.text)) { mutable = true; return }
+        names.push(n.text)
+        return
+      }
+      ts.forEachChild(n, walk)
+    }
+    walk(on)
+    if (mutable) return
+
+    // Unsoundness 5: a constant with a life outside facet expressions IS the subject, and the facet moves
+    // when it moves. Only a value that exists solely to be asked is decoration.
+    const unique = [...new Set(names)]
+    const hasOwnLife = (name: string): boolean => {
+      let all = 0
+      const count = (n: import('typescript').Node): void => { if (ts.isIdentifier(n) && n.text === name) all += 1; ts.forEachChild(n, count) }
+      count(state!.sf)
+      let inFacets = 0
+      const countInFacets = (n: import('typescript').Node): void => {
+        if (ts.isObjectLiteralExpression(n) && n.properties.some((pr) => ts.isPropertyAssignment(pr) && ts.isIdentifier(pr.name) && pr.name.text === 'facet')) {
+          const inner = (m: import('typescript').Node): void => { if (ts.isIdentifier(m) && m.text === name) inFacets += 1; ts.forEachChild(m, inner) }
+          inner(n)
+          return
+        }
+        ts.forEachChild(n, countInFacets)
+      }
+      countInFacets(state!.sf)
+      return all - inFacets - 1 > 0
+    }
+    if (unique.length > 0 && unique.every(hasOwnLife)) return
+
+    found.push({ file: file.rel, line, why: unique.length ? `closure is fixed: ${unique.join(', ')}` : 'closure is only literals', facet: facet.replace(/\s+/g, ' ').slice(1, 84) })
+  })
+  return found
+}
+
 export function assertFacetsCanFail(): void {
   everyRatchet(() => {
     const vacuous = findVacuousFacets()
@@ -182,5 +301,15 @@ export function assertFacetsCanFail(): void {
     const weak = findWeakestBarFacets()
     for (const w of weak.slice(0, 4)) console.log(`    ${w.file}:${w.line}  [${w.why}]  ${w.facet.slice(0, 62)}`)
     console.log(ratchet('limits.weakest-bar', weak.length, { evidence: () => weak.map((w) => `${w.file}:${w.line}  [${w.why}]  ${w.facet}`) }))
+
+    // THE GENERAL LAW, of which limits.always-true is the degenerate case: a check whose closure reaches
+    // nothing the tree can change computes a constant, and a constant cannot be a measurement. Ratcheted
+    // separately from always-true rather than replacing it — a floor already earned is not discarded to make
+    // a shorter list — and both fall on their own. Every instance here is a sentence the corpus believes and
+    // a check that cannot notice if it stops being true.
+    const constant = findConstantChecks()
+    console.log(`  ${constant.length}  a check whose closure reaches nothing the tree can change — the sentence is asserted, not measured`)
+    for (const c of constant.slice(0, 6)) console.log(`      ${c.file}:${c.line}  [${c.why}]  ${c.facet.slice(0, 58)}`)
+    console.log(ratchet('limits.constant-check', constant.length, { evidence: () => constant.map((c) => `${c.file}:${c.line}  [${c.why}]  ${c.facet}`) }))
   })
 }
