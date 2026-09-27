@@ -2424,6 +2424,58 @@ export const ATTRIBUTION_COVERAGE: readonly {
   readonly coverage: 'covers' | 'partial' | 'weaker'
   readonly why: string
 }[] = [
+  // ── EXAMINED 2026-09-27, third batch. Ten more, eight clean. Two are bounded witnesses again, and one of
+  // those carries an attribution nuance worth moving out of a title and into the record: the citation for
+  // n^(n−2) labelled trees says the result is BORCHARDT's (1860), extended by Cayley (1889) — so the row's own
+  // name, "Cayley n^(n−2)", under-credits the first author. Not citing is the violation, and a title is where
+  // that quietly happens.
+  { theorem: 'Graeco-Latin at 3,4,5 never 2', coverage: 'weaker',
+    why: 'the row verifies orthogonal pairs cell-by-cell at n = 3, 4, 5 and exhausts order 2 to find none. The citation carries the whole classification: Euler (1782) conjectured no Graeco-Latin square of order 4k+2, Tarry (1900) settled order 6 by exhaustion, and Bose, Shrikhande & Parker (1960) proved they exist at every other order — so 2 and 6 are the only exceptions. Four verified cases of a complete theorem.' },
+  { theorem: 'exactly 3 regular tilings', coverage: 'covers',
+    why: 'the citation states that the triangular, square and hexagonal tilings are the only regular tilings of the Euclidean plane. The row reaches exactly those three as the equality case (p−2)(q−2) = 4 of its Platonic sweep, which is the planar boundary of the same classical classification.' },
+  { theorem: 'no simple group of order 30', coverage: 'covers',
+    why: 'the citation is the row’s own argument: Sylow counting forces a normal subgroup at order 30, an instance of no non-abelian simple group having order below 60. The row’s n₅ ∈ {1,6} and n₃ ∈ {1,10}, with both maximal needing 44 > 29 elements, is that count carried out.' },
+  { theorem: 'Q₈ smallest Hamiltonian group', coverage: 'covers',
+    why: 'Dedekind (1897) and Baer are cited for the structure of Hamiltonian groups — every one is Q₈ × B × D — and for Q₈ of order 8 being the smallest, the only non-abelian Dedekind group of its order. The row’s six normal subgroups with ij ≠ ji, plus exhaustion down the smaller orders, verifies precisely that minimality.' },
+  { theorem: 'Petersen graph non-Hamiltonian', coverage: 'covers',
+    why: 'Petersen (1898) is cited and the graph is non-Hamiltonian, which is the row’s claim exactly. The citation’s further note — that deleting any vertex makes it Hamiltonian, so it is the smallest hypohamiltonian graph — is context around the cited fact rather than something the row understates.' },
+  { theorem: 'the Sothic cycle meshes the Egyptian civil year exactly — 1461 civil = 1460 Julian', coverage: 'covers',
+    why: 'the citation gives the Sothic cycle as 1461 Egyptian civil years of 365 days equal to 1460 Julian years, realigning with the heliacal rising of Sirius, described by Censorinus (238 CE) — which is the row. The 533 265 days is 1461 × 365 arithmetic, and the 12·30 + 5 epagomenal structure of the vague year is the standard Egyptian calendar. The 4241 BC long chronology stays flagged in the row, not carried by the citation.' },
+  { theorem: 'the Maya long count is positional base-20 with a true zero — 13 baktun = 1 872 000 days', coverage: 'covers',
+    why: 'the citation establishes the Long Count as positional base-20 with a true zero, notes the tun of 360 days breaking strict base-20, and gives one baktun as 144 000 days and 13 baktun as 1 872 000. The row states the same place structure and the same total, and flags the 2012 reading rather than asserting it.' },
+  { theorem: 'Sumer counts in base-60 — 3661 is 1:01:01 exactly', coverage: 'covers',
+    why: 'the citation gives sexagesimal counting from the Sumerians of the 3rd millennium BC, its survival in time and angle measure, and 3661 = 1·3600 + 1·60 + 1 exactly — the row’s [1,1,1]. It also gives the row’s framing: the many divisors are the usual explanation for the base, and 60 has twelve of them. Sitchin-class readings stay flagged in the row.' },
+  { theorem: 'birthday threshold = 23', coverage: 'covers',
+    why: 'the citation states that 23 people are where a shared birthday first exceeds one half, at about 50.7 percent, with von Mises (1939) and Feller. The row’s direct product — 0.5243 all-distinct at 22, 0.4927 at 23 — locates that crossing exactly, which is the cited fact computed.' },
+  { theorem: 'Cayley n^(n−2) to n = 7', coverage: 'weaker',
+    why: 'the row exhausts edge subsets with union-find to 1,1,3,16,125,1296,16807, verifying n^(n−2) up to n = 7 independently of the Prüfer bijection; the literature proves it for all n, with proofs by Prüfer, Joyal and Kirchhoff’s matrix-tree theorem. Worth carrying from the citation besides: the formula is due to BORCHARDT (1860) and was extended by Cayley (1889), so the row’s own name for it under-credits the first attribution — a citation nuance, recorded here rather than left in the title.' },
+  // ── EXAMINED 2026-09-27, second batch. Ten more of the 84. A pattern this batch that the first did not
+  // have: FIVE are bounded witnesses — n = 1..6, or n ≤ 32, of an identity the literature proves for all n —
+  // which is `weaker` by the ledger's own definition, the row stating less than the citation establishes. That
+  // is not a defect and each row says so itself; recording it keeps the direction of the gap visible, because
+  // under-crediting is the error the `weaker` bucket exists to name. One is `partial` for a reason worth
+  // keeping: its citation argues the row is general graph theory misread by a vocabulary heuristic, and that is
+  // true of the row's TITLE while its STATEMENT is about this registry's own wave sequence.
+  { theorem: 'Fano unique, |Aut| = 168', coverage: 'covers',
+    why: 'the citation gives Aut(Fano) ≅ PGL(3,2) ≅ PSL(2,7) of order 168 as classical finite geometry, and the uniqueness of S(2,3,7) with it. The row’s two routes — 30 labelled systems backtracked, |GL₃(𝔽₂)| = 168 brute-forced, and 7!/30 = 168 — are orbit–stabiliser applied to that cited group, computed rather than added.' },
+  { theorem: 'no projective plane of order 6', coverage: 'covers',
+    why: 'the row separates its own arithmetic from the cited theorem in its own words: it computes 6 ≡ 2 (mod 4) and that 6 is not a sum of two squares, then cites Bruck–Ryser (1949) to complete the impossibility, with Tarry (1900) for the 36 officers. The citation is exactly the step the row says it is taking from the literature.' },
+  { theorem: 'two groups of order 168', coverage: 'covers',
+    why: 'the citation establishes PSL(2,7) ≅ GL(3,2) of order 168, the unique simple group of that order, Klein 1878/79 — and states the row’s own framing back to it: two PRESENTATIONS agreeing in order, not two isomorphism classes. The computed 7(7²−1)/2 = 168 matching the brute-forced order is that isomorphism’s consequence.' },
+  { theorem: 'R(3,3,3) ≤ 17', coverage: 'weaker',
+    why: 'the row states R(3,3,3) ≤ 17, derived as 3(R(3,3)−1)+2 from its own proven R(3,3) = 6. Greenwood & Gleason (1955) — the cited paper — establishes EQUALITY, R(3,3,3) = 17. The row quotes as a bound what the literature settles exactly, so it under-credits the citation rather than over-credits it; the row is true and the literature is stronger.' },
+  { theorem: 'Hankel–Catalan determinants = 1', coverage: 'weaker',
+    why: 'the row verifies det[C_{i+j}] = 1 for n = 1..6 in exact BigInt and calls itself a bounded witness. The citation establishes the Catalan Hankel determinant as 1 for ALL n, with three independent classical proofs (Lindström–Gessel–Viennot over non-intersecting lattice paths, orthogonal polynomials and continued fractions, LU decomposition). Six exact cases of a proven general identity state less than the literature, which the row says plainly.' },
+  { theorem: 'Ramanujan 691 congruence', coverage: 'weaker',
+    why: 'the row checks τ(n) ≡ σ₁₁(n) (mod 691) for n = 1..6, noting σ₁₁(2) − τ(2) = 2073 = 3·691. Ramanujan (1916) proved the congruence for all n, equivalently Δ ≡ E₁₂ (mod 691), with 691 dividing the numerator of B₁₂. A bounded witness of a fully proven congruence.' },
+  { theorem: 'Catalan parity = Mersenne', coverage: 'weaker',
+    why: 'the row computes {n ≤ 32 : C_n odd} = {0,1,3,7,15,31} = {2^k − 1}. The citation establishes it for all n and gives the bijective proof — an involution on binary trees whose only fixed points are the complete trees, which exist precisely at n = 2^k − 1 (Koshy; OEIS A007013). The row is a finite window on a settled theorem, and says so.' },
+  { theorem: 'Motzkin Hankel determinants = 1', coverage: 'weaker',
+    why: 'det[M_{i+j}] = 1 verified for n = 1..6 against a citation that establishes the Motzkin Hankel determinant for all n by the same classical methods as the Catalan case. The row’s own point is that the method transfers to a second family; the transfer is in the literature, the six cases are the witness.' },
+  { theorem: 'reuse graph acyclic', coverage: 'partial',
+    why: 'the citation establishes the graph-theoretic fact — a digraph is acyclic exactly when a topological order exists, Kahn (1962) and the depth-first formulation — and argues that a vocabulary heuristic misreads this row as being about this repository. That is true of the row’s TITLE. Its STATEMENT is not: it says every wave after the first consumes only strictly earlier waves and the chain length equals the wave count, which is a property of THIS registry’s own wave sequence. General acyclicity is prior art; that this corpus’s reuse graph has it is a fact about this tree, and no literature restates it. The citation covers the theorem the row applies, not the claim the row makes.' },
+  { theorem: 'A₅ is simple', coverage: 'covers',
+    why: 'Galois (1832, published 1846) is cited for the simplicity of A₅ and for the unsolvability of the general quintic that follows. The row’s route — all 60 even permutations enumerated, conjugacy classes {1,12,12,15,20}, no union containing the identity summing to a proper divisor of 60 — is the standard class-equation proof of that cited theorem.' },
   // ── EXAMINED 2026-09-27: twelve rows that already carried a recorded citation and lacked only the verdict.
   // prior-art.coverage-unexamined stood at 358 of 635 attributed rows. Split: 84 of those already had a
   // citation from a real search and needed only a judgement against the row; the other 274 were attributed by
