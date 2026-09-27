@@ -59,6 +59,48 @@ const DOI = /10\.\d{4,9}\/[^\s'"`,;)\]]+/
 const EXTERNAL = /\b(Tsirelson|Pauli|no-cloning|Hong[–-]Ou[–-]Mandel|GHZ|Mermin|Hopfield|Perelman|Ricci|Bell|CHSH|Grover|Shor|Deutsch|Jozsa|Simon|Born|Merkle|FNV|SHA-?\d|AES|RSA|Diffie|Hellman|Euler|Fibonacci|Riemann|Hodge|Poincar|Navier|Stokes|Yang|Mills|Birch|Swinnerton|Noether|Galois|Fourier|Laplace|Gauss|Newton|Planck|Schr[oö]dinger|Heisenberg|Dirac|Maxwell|Boltzmann|Shannon|Turing|Church|Kolmogorov|Nyquist|Chebyshev|Hamming|Reed[- ]Solomon|Lagrange|Jacobi|Hilbert|Banach|Cantor|Zeno|Meeus|CODATA|NIST|FIPS|ISO\b|IEC|RFC|IEEE|Nobel|BM25|Okapi|Cover\\s*(&|and|\\u2013|-)\\s*Thomas|Thomas\\s+Cover|Gardner|Wootters|Zurek|Clay|Millennium|Mathlib|Lean|Minkowski|genus-2|homology|Betti|Ricci|so\(\d\)|ℤ\/\d|n-ball|n-cube|bit-flip|phase-flip|stabilis|Hadamard|Toffoli|CNOT|Bloch|Wigner|Lindblad|Virasoro|Hurwitz|T-duality|Golod|Shafarevich|I Ching|Ifá|Glagolitic|tarot|mala|Hz)/i
 
 /**
+ * A PRIZE IS NOT A RESULT. NEITHER IS A UNIT, NOR THE NAME OF A FIELD.
+ *
+ * EXTERNAL answers one question — does this row name something that exists outside the corpus — and that is
+ * the right question for a DOI or an author. It is the wrong question for some of its own tokens. `Clay` and
+ * `Millennium` name a PRIZE, `Nobel` another; `Hz` is a UNIT; `homology`, `genus-2`, `Betti`, `n-ball`,
+ * `n-cube`, `bit-flip`, `phase-flip`, `stabilis`, `no-cloning`, `T-duality` and `CNOT` are the vocabulary of
+ * fields, not authored results. A row mentioning the Clay prize is not thereby a restatement of anyone's
+ * theorem; a row measuring something in hertz has not been published by the SI.
+ *
+ * Measured over the 260 rows attributed by pattern: 23 rest ONLY on a prize or institution, 12 only on a bare
+ * technical term, 3 only on a unit. Thirty-eight rows are filed as "prior art exists" on a basis that cannot
+ * establish it. That is the ISO defect one level up — there the token matched the wrong STRING, here it
+ * answers the wrong QUESTION — and it is the same direction of harm, since `attributed` reads as prior art
+ * exists and a citation stops anyone looking.
+ *
+ * WHY A COUNT AND NOT A PURGE. Freeing a row from `attributed` costs a search or a declaration, by this
+ * file's own law — the only ways down from unclassified-undeclared. Thirty-eight of those is a wave, not an
+ * edit, so the finding is recorded as a floor that falls as the rows are searched rather than acted on
+ * silently. The tokens stay in EXTERNAL meanwhile: leaving a row attributed is the safe direction, and
+ * removing a token would move rows toward claimable, which this file does only on inspection.
+ *
+ * DERIVED, NOT A SECOND LIST. A row counts here when EXTERNAL matches it, no DOI is present, and removing
+ * these tokens from its text makes EXTERNAL stop matching — so the non-result token was its ONLY basis. No
+ * roster of "real" names is maintained anywhere, which is what keeps this from drifting out of step.
+ */
+const NON_RESULT = /\b(Clay|Millennium|Nobel|Hz|genus-2|homology|Betti|n-ball|n-cube|bit-flip|phase-flip|stabilis|no-cloning|T-duality|CNOT)\b/gi
+
+export function attributedOnANonResult(): string[] {
+  const rows = THEOREM_ATOM_SEED as readonly { theorem?: string; states?: string; algebraicStatement?: string }[]
+  const searched = new Set(PRIOR_ART_SEARCHED.map((r) => r.theorem))
+  const out: string[] = []
+  for (const r of rows) {
+    const name = String(r.theorem ?? '')
+    if (searched.has(name)) continue // a performed search outranks the pattern, in both directions
+    const text = `${name} ${r.states ?? ''} ${r.algebraicStatement ?? ''}`
+    if (DOI.test(text) || !EXTERNAL.test(text)) continue
+    if (!EXTERNAL.test(text.replace(NON_RESULT, ' '))) out.push(name)
+  }
+  return out
+}
+
+/**
  * THE SEARCHES ACTUALLY PERFORMED, one row per search, with what was looked for and what came back.
  *
  * `found` is the citation a search returned, or null for a search that returned nothing. Both are
@@ -3591,6 +3633,13 @@ export function assertPriorArtLedger(): void {
     console.log(`    by PATTERN ${String(byPattern).padStart(4)}  an eponym or standards word appeared in the row text; no query was ever run`)
     console.log(`               of those, ~${selfRef} read as statements about THIS TREE — filed as prior-art-exists though no literature can restate them. HEURISTIC, and no row moves on it.`)
     console.log(ratchet('prior-art.attributed-by-pattern', byPattern, { evidence: () => l.attributed.filter((n) => !searchedNames.has(n)).map((n) => `by pattern, no query ever run: ${n}`) }))
+    // THE REFINEMENT: of those pattern attributions, the ones whose only basis cannot establish prior art
+    // at all — a prize, a unit, or the name of a field. Counted, not purged: freeing a row costs a search or
+    // a declaration by this file's own law, so this is a floor that falls as they are searched.
+    const nonResult = attributedOnANonResult()
+    console.log(`  of the ${byPattern} pattern attributions, ${nonResult.length} rest ONLY on a prize, a unit or a bare technical term — a basis that cannot establish prior art`)
+    for (const n of nonResult.slice(0, 4)) console.log(`      ${n.slice(0, 96)}`)
+    console.log(ratchet('prior-art.attributed-on-a-non-result', nonResult.length, { evidence: () => nonResult }))
 
     if (staleCoverage.length) {
       throw new Error(

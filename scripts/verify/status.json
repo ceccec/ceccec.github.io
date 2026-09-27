@@ -51,6 +51,7 @@
   "paths.dead-scripts": 0,
   "paths.dead-strings": 47,
   "prior-art.attributed-by-pattern": 260,
+  "prior-art.attributed-on-a-non-result": 34,
   "prior-art.citation-unaddressed": 6,
   "prior-art.coverage-unexamined": 260,
   "prior-art.unanchored-hand-marks": 0,
