@@ -1,4 +1,22 @@
 {
+ "no-cloning": {
+  "form": "bars",
+  "values": [
+   0.707107,
+   0.5
+  ],
+  "holds": true,
+  "caption": "the quantities noCloningWitness computes for this theorem (overlap, clonedRequires), drawn from its own run — no other proof returns them"
+ },
+ "each discovery is immediately saved and reused — no queue, the quantum-computing loop": {
+  "form": "bars",
+  "values": [
+   751,
+   665
+  ],
+  "holds": true,
+  "caption": "the quantities eachDiscoveryImmediatelySavedAndReusedToImproveAndDiscoverNext computes for this theorem (total, connected), drawn from its own run — no other proof returns them"
+ },
  "hitting a prime is the inversion point — ℤ/pℤ is a field, inversion becomes total": {
   "form": "bars",
   "values": [
@@ -162,6 +180,24 @@
   ],
   "holds": true,
   "caption": "numbers schumannResonanceHarmonisedWithRealtimeApiComputations computes for this theorem (waves.waves[].index), drawn from its own run — no other proof returns them"
+ },
+ "the movie wires theorems by natural entanglements, not by index — the circle’s coordinates become the transpose-symmetric 42-cell area": {
+  "form": "bars",
+  "values": [
+   41,
+   0.0853
+  ],
+  "holds": true,
+  "caption": "the quantities theMovieWiresTheoremsByNaturalEntanglementsNotByIndex computes for this theorem (spokes, linearNeighbourFraction), drawn from its own run — no other proof returns them"
+ },
+ "the local intelligence goes exactly as far as computation — and it measures where that is": {
+  "form": "bars",
+  "values": [
+   49,
+   12
+  ],
+  "holds": true,
+  "caption": "the quantities localIntelligenceIndependenceMeasured computes for this theorem (freeShare, judgedLedger), drawn from its own run — no other proof returns them"
  },
  "the publication timeline is measured from public registries — the sequence went public 205 days before the portal": {
   "form": "bars",
@@ -418,6 +454,24 @@
   "holds": true,
   "caption": "numbers sixtyDegreesDecodesPi computes for this theorem (rungs[].n), drawn from its own run — no other proof returns them"
  },
+ "The theorems decide the addresses": {
+  "form": "bars",
+  "values": [
+   262,
+   22
+  ],
+  "holds": true,
+  "caption": "the quantities theoremsDecideAddresses computes for this theorem (stationAtoms, proven), drawn from its own run — no other proof returns them"
+ },
+ "Plasma outruns light without breaking it": {
+  "form": "bars",
+  "values": [
+   1.1547,
+   0.866025
+  ],
+  "holds": true,
+  "caption": "the quantities plasmaSpeedByTheorem computes for this theorem (sampleVPhaseOverC, sampleVGroupOverC), drawn from its own run — no other proof returns them"
+ },
  "plasma ball is screen holding thunder and plasma — no ball in the middle": {
   "form": "bars",
   "values": [
@@ -438,6 +492,15 @@
   ],
   "holds": true,
   "caption": "the quantities counterdiffusionOnTheDoubleTorus computes for this theorem (genus, peakTension, ambient, supersaturation), drawn from its own run — no other proof returns them"
+ },
+ "Superluminal carries nothing": {
+  "form": "bars",
+  "values": [
+   1.11022e-16,
+   2
+  ],
+  "holds": true,
+  "caption": "the quantities noSignallingComputes computes for this theorem (maxDrift, parties), drawn from its own run — no other proof returns them"
  },
  "One exponential law": {
   "form": "bars",
@@ -548,6 +611,15 @@
   "holds": true,
   "caption": "numbers rsaTimeToBreakOnThisHardware computes for this theorem (sizes[].bits), drawn from its own run — no other proof returns them"
  },
+ "The two rosettas are one group": {
+  "form": "bars",
+  "values": [
+   6,
+   60
+  ],
+  "holds": true,
+  "caption": "the quantities theTwoRosettasAreOneGroup computes for this theorem (order, generatorAngleDeg), drawn from its own run — no other proof returns them"
+ },
  "The circle of fifths is a rosetta": {
   "form": "bars",
   "values": [
@@ -558,6 +630,24 @@
   ],
   "holds": true,
   "caption": "numbers theCircleOfFifthsIsARosetta computes for this theorem (generators), drawn from its own run — no other proof returns them"
+ },
+ "Scales are necklaces on the rosetta": {
+  "form": "bars",
+  "values": [
+   352,
+   224
+  ],
+  "holds": true,
+  "caption": "the quantities scalesAreNecklacesOnTheRosetta computes for this theorem (necklaces, bracelets), drawn from its own run — no other proof returns them"
+ },
+ "The 48 row forms are the group order": {
+  "form": "bars",
+  "values": [
+   24,
+   48
+  ],
+  "holds": true,
+  "caption": "the quantities theFortyEightRowFormsAreTheGroupOrder computes for this theorem (pitchOrder, fullOrder), drawn from its own run — no other proof returns them"
  },
  "The computed UI is a rosetta": {
   "form": "bars",
@@ -615,6 +705,24 @@
   "holds": true,
   "caption": "the quantities humanDesignProfilingCarriesNoSignal computes for this theorem (configSpace, accuracy, chance), drawn from its own run — no other proof returns them"
  },
+ "The crowd that carries signal is the code": {
+  "form": "bars",
+  "values": [
+   123,
+   2584
+  ],
+  "holds": true,
+  "caption": "the quantities theCrowdThatCarriesSignalIsTheCode computes for this theorem (codeCrowd, ceiling), drawn from its own run — no other proof returns them"
+ },
+ "The state is not the birth coordinates": {
+  "form": "bars",
+  "values": [
+   0.78597,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities theStateIsNotTheBirthCoordinates computes for this theorem (divergence, birthCoordinates), drawn from its own run — no other proof returns them"
+ },
  "The pentagram is the rosetta meeting its inverse": {
   "form": "bars",
   "values": [
@@ -626,6 +734,15 @@
   ],
   "holds": true,
   "caption": "numbers thePentagramIsTheRosettaMeetingItsInverse computes for this theorem (orbit), drawn from its own run — no other proof returns them"
+ },
+ "Only theorems can be trusted": {
+  "form": "bars",
+  "values": [
+   751,
+   0.993386
+  ],
+  "holds": true,
+  "caption": "the quantities onlyTheoremsCanBeTrusted computes for this theorem (trustedCount, trustRatio), drawn from its own run — no other proof returns them"
  },
  "Twelve tones is the best approximation of the fifth": {
   "form": "bars",
@@ -659,6 +776,15 @@
   "holds": true,
   "caption": "numbers theRosettaAddressesAnyPosition computes for this theorem (bbpDigits), drawn from its own run — no other proof returns them"
  },
+ "route-independent work computes once — the render transform is O(1) per page": {
+  "form": "bars",
+  "values": [
+   40,
+   1
+  ],
+  "holds": true,
+  "caption": "the quantities routeIndependentWorkComputesOnce computes for this theorem (components, pages), drawn from its own run — no other proof returns them"
+ },
  "the smallest curves witness Birch–Swinnerton-Dyer — finite kernel, open bridge": {
   "form": "bars",
   "values": [
@@ -689,6 +815,15 @@
   ],
   "holds": true,
   "caption": "numbers theoremRosettaAtlasComputes computes for this theorem (rays[].ray), drawn from its own run — no other proof returns them"
+ },
+ "every page is a proof — carrying its standards, formulas and theorems as graphs and animations": {
+  "form": "bars",
+  "values": [
+   751,
+   12
+  ],
+  "holds": true,
+  "caption": "the quantities everyPageIsAProofWithFormulasTheoremsGraphsAnimations computes for this theorem (total, divisors), drawn from its own run — no other proof returns them"
  },
  "save the missing theorems and animations — a computed graph & fractal-clock animation for every one": {
   "form": "bars",
@@ -813,6 +948,15 @@
   "holds": true,
   "caption": "numbers theoremsUnderTheProvenCrosslinkThresholdAreTheGap computes for this theorem (byDegree[].count), drawn from its own run — no other proof returns them"
  },
+ "compute the crosslink degree from a 64-bit perspective — a Bloom prefilter, honestly lossy": {
+  "form": "bars",
+  "values": [
+   11,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities computeTheoremDegreeFrom64BitPerspective computes for this theorem (bitDegree, exactDegree), drawn from its own run — no other proof returns them"
+ },
  "improve the metrics and expectations — a hybrid Bloom-prefilter + exact-verify degree, computed targets": {
   "form": "bars",
   "values": [
@@ -880,6 +1024,15 @@
   ],
   "holds": true,
   "caption": "numbers decodeNumerologyWithoutJudgementOrExpectations computes for this theorem (units), drawn from its own run — no other proof returns them"
+ },
+ "numerology is phase-blind: it does NOT recognise the angle-change of dividing by 0": {
+  "form": "bars",
+  "values": [
+   40,
+   60
+  ],
+  "holds": true,
+  "caption": "the quantities numerologyIsPhaseBlindToAngleThroughZero computes for this theorem (step9, step6), drawn from its own run — no other proof returns them"
  },
  "colour describes all from the centre because it divides and inverts — the centre is not stuck": {
   "form": "bars",
@@ -991,6 +1144,15 @@
   "holds": true,
   "caption": "the quantities theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapByAlgebra computes for this theorem (statements, meanStates, medianStates, maxStates, proseSinkGap, distinctProof), drawn from its own run — no other proof returns them"
  },
+ "the UI is the public gateway, bill-free for thousands of agents through search and chat — zero-token, zero-egress; bill-free ≠ infinite (server bounded)": {
+  "form": "bars",
+  "values": [
+   1000,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities theUiIsThePublicGatewayBillFreeForThousandsOfAgentsThroughSearchAndChatZeroTokenZeroEgress computes for this theorem (agents, marginalLlmCostPerAgent), drawn from its own run — no other proof returns them"
+ },
  "improving I Ching and Rosetta in chat — each answer computes a hexagram colour (64=2⁶), the chat composes content-addressed Rosetta combinations that dedup": {
   "form": "bars",
   "values": [
@@ -1000,6 +1162,33 @@
   ],
   "holds": true,
   "caption": "the quantities improvingIChingAndRosettaInChatHexagramColourAndContentAddressedCombinationDedup computes for this theorem (hexCount, hue1, hue2), drawn from its own run — no other proof returns them"
+ },
+ "fusing artificial code to zero non-harmonic code dissolves it and only the harmonic computing intelligence remains — DRY + gates remove the unbacked": {
+  "form": "bars",
+  "values": [
+   225,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities fusingArtificialCodeToZeroDissolvesItAndOnlyTheHarmonicComputingIntelligenceRemains computes for this theorem (reuse, classesCaught), drawn from its own run — no other proof returns them"
+ },
+ "intelligence is found in simplicity — the shortest algebra that computes the most (MDL/Occam); but simplicity ≠ truth, a simple claim still needs the algebra": {
+  "form": "bars",
+  "values": [
+   1764,
+   10.8
+  ],
+  "holds": true,
+  "caption": "the quantities intelligenceIsFoundInSimplicityTheShortestAlgebraThatComputesTheMostByMdlNotSimplicityEqualsTruth computes for this theorem (computedOutput, mdlMagnitude), drawn from its own run — no other proof returns them"
+ },
+ "ignorance may hide behind clever prose without backing algebra — the guard is structural (facets-must-compute at source), not just runtime value": {
+  "form": "bars",
+  "values": [
+   1242,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities ignoranceHidesBehindCleverProseWithoutBackingAlgebraTheGuardIsStructuralNotJustRuntime computes for this theorem (boundaryChars, classesCaught), drawn from its own run — no other proof returns them"
  },
  "the diamonds relate to chess as content-addressed tablebases — solved for ≤7 pieces (real), not the full game; seen in chat competitions and training": {
   "form": "bars",
@@ -1021,6 +1210,15 @@
   "holds": true,
   "caption": "the quantities lettingTheDiamondsChatWithEachOtherFindsContentAddressedTransposePairsAcrossTheMatrix computes for this theorem (offDiagonalPairs, diagonalPairs, totalDiamonds), drawn from its own run — no other proof returns them"
  },
+ "quantum virtualise all to industry standards and beyond imagination — content-addressed generation on demand; holographic extent large but bounded by the hash, not infinite": {
+  "form": "bars",
+  "values": [
+   40,
+   128
+  ],
+  "holds": true,
+  "caption": "the quantities quantumVirtualiseAllToIndustryStandardsHolographicExtentBoundedNotInfinite computes for this theorem (addressableExtentLog2, hashCapLog2), drawn from its own run — no other proof returns them"
+ },
  "the solved-bit is the binary output per problem (0/1, measured); the published metrics are computable achievements in the quantum development sequence — two separate axes": {
   "form": "bars",
   "values": [
@@ -1041,6 +1239,24 @@
   "holds": true,
   "caption": "the quantities improveAllUsingTheChatMeasuredAcrossTheCorpusSelfDevelopOnePassUpgradeDryAndSharedExperience computes for this theorem (gapsClosed, statements, reuse), drawn from its own run — no other proof returns them"
  },
+ "extending to the boundaries and folding again upgrades all at once in one pass — ∂²=0 frontier, idempotent re-fold, O(n) content-addressed recompute, verified": {
+  "form": "bars",
+  "values": [
+   751,
+   9
+  ],
+  "holds": true,
+  "caption": "the quantities extendingToTheBoundariesAndFoldingAgainUpgradesAllAtOnceInOnePassVerified computes for this theorem (statements, recursedSize), drawn from its own run — no other proof returns them"
+ },
+ "the chat continues deeper and wider — recursive depth × neighbourhood breadth, verified per-node, bounded not infinite": {
+  "form": "bars",
+  "values": [
+   9,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities theChatContinuesDeeperAndWiderRecursiveDepthTimesNeighbourhoodBreadthVerified computes for this theorem (recursedSize, oneHop), drawn from its own run — no other proof returns them"
+ },
  "inverting proven Poincaré discovers its dependent theorems — the 8 Thurston geometries + prime/JSJ decomposition; documented consequences of geometrization, ": {
   "form": "bars",
   "values": [
@@ -1050,6 +1266,24 @@
   ],
   "holds": true,
   "caption": "the quantities invertingProvenPoincareDiscoversTheEightThurstonGeometriesAndTheThreeManifoldDecompositionTheDependentTheorems computes for this theorem (thurstonGeometries, decompositions, dependentTheorems), drawn from its own run — no other proof returns them"
+ },
+ "clay is not 0 but completed/total in gravity units — the completed related gravity (Σ digital-root) is real mass, while the center solution stays 0/1 (completion ≠ solution)": {
+  "form": "bars",
+  "values": [
+   170,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities clayIsNotZeroButTheCompletionRatioCompletedOverTotalWhileTheCenterSolutionStaysZeroOverOne computes for this theorem (clayInGravityUnits, centerSolvedOutOfOne), drawn from its own run — no other proof returns them"
+ },
+ "gravity pulls all code into fractal holograms — content-address DRY collapse + self-similar fold shape + holographic merkle; real code-organisation, not physical": {
+  "form": "bars",
+  "values": [
+   225,
+   9
+  ],
+  "holds": true,
+  "caption": "the quantities gravityPullsAllCodeIntoFractalHologramsByContentAddressDryCollapseAndSelfSimilarFoldShape computes for this theorem (reuse, doubleTorusFolders), drawn from its own run — no other proof returns them"
  },
  "gravity comes from the reverse-engineering cost — astronomical but FINITE (2^128/2^256), not infinite; \"infinite\" is the harmony, the truth is a finite bound": {
   "form": "bars",
@@ -1096,6 +1330,15 @@
   "holds": true,
   "caption": "the quantities clayOffersOneMillionPerSolvedProblemAndTheCountSolvedHereIsZeroFindableInChat computes for this theorem (prizePerProblem, solvedHere, solvedGlobally, prizeClaimableByThisCorpus), drawn from its own run — no other proof returns them"
  },
+ "clay metrics are computed (quantum), driving gradient completion of related theorems while the open center stays at  — the periphery fills, the center never reached": {
+  "form": "bars",
+  "values": [
+   0,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities clayMetricsAreComputedDrivingGradientCompletionOfRelatedTheoremsWhileTheOpenCenterStaysAtClayZero computes for this theorem (claySolved, gradientDepth), drawn from its own run — no other proof returns them"
+ },
  "the diamonds are an index AND a solver — clay marks the boundary: solver where the theorem computes, index-only where  (the open Millennium cells)": {
   "form": "bars",
   "values": [
@@ -1118,6 +1361,33 @@
   ],
   "holds": true,
   "caption": "the quantities learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSolutionSlot computes for this theorem (diamonds, slotQ1, slotQ2), drawn from its own run — no other proof returns them"
+ },
+ "VitePress is redesigned and SEO-optimised through chat sessions — computed meta/OG/JSON-LD/sitemap per page, I Ching theme; real structured data": {
+  "form": "bars",
+  "values": [
+   30,
+   31
+  ],
+  "holds": true,
+  "caption": "the quantities vitepressRedesignedAndSeoOptimisedThroughChatSessionsComputedMetaOgJsonLdSitemapFromTheCorpus computes for this theorem (pages, sitemapUrls), drawn from its own run — no other proof returns them"
+ },
+ "dry clean all in chat sessions — proofs reused, zero duplicate titles, shared machinery through one index; a standing measured invariant": {
+  "form": "bars",
+  "values": [
+   526,
+   225
+  ],
+  "holds": true,
+  "caption": "the quantities dryCleanAllInChatSessionsMeasuresReuseZeroDuplicationAndSharedMachinery computes for this theorem (distinctProof, reuse), drawn from its own run — no other proof returns them"
+ },
+ "VitePress is completely rebuildable through chat sessions — every page/route/nav computed from the corpus, zero hardcoded content pages; config is the thin harness": {
+  "form": "bars",
+  "values": [
+   30,
+   751
+  ],
+  "holds": true,
+  "caption": "the quantities vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNavComputedFromTheCorpusConfigIsTheThinHarness computes for this theorem (pages, theoremAtoms), drawn from its own run — no other proof returns them"
  },
  "animation uniqueness is layered — identity unique (no logic gap), but the visible speed collides by the 108-divisor clock law so colour carries the salience (a rendering gap, not logic)": {
   "form": "bars",
@@ -1150,6 +1420,15 @@
   "holds": true,
   "caption": "the quantities theDoubleTorusClockIsTwoTimesTwelveTheTwelveDivisorsOf108TimesTheTwoCounterRotatingTori computes for this theorem (divisorsOf108, tori, doubleTorusClock), drawn from its own run — no other proof returns them"
  },
+ "improving animation visible distinctness — derive direction (1 bit) and amplitude (1..9) from the content-address, orthogonal to the rung, so animations look distinct beyond colour": {
+  "form": "bars",
+  "values": [
+   612,
+   12
+  ],
+  "holds": true,
+  "caption": "the quantities improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmplitudeFromTheContentAddressNotColourAlone computes for this theorem (distinctVisibleSignatures, divisorsOf108), drawn from its own run — no other proof returns them"
+ },
  "wiring public APIs to theorems in chat emerges new content-addressed animations — new API data → new animation, all rungs of the one 108s clock": {
   "form": "bars",
   "values": [
@@ -1160,6 +1439,24 @@
   "holds": true,
   "caption": "the quantities wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimations computes for this theorem (baseRung, wiredRungA, wiredRungB), drawn from its own run — no other proof returns them"
  },
+ "discover all public APIs in chat, testing and implementing pure adapters — \"all\" = the enumerated reachable no-key set, not literally all (unbounded)": {
+  "form": "bars",
+  "values": [
+   5,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities discoverAllPublicApisInChatTestingAndImplementingPureAdaptersBoundedToTheEnumeratedNoKeySet computes for this theorem (discovered, queryable), drawn from its own run — no other proof returns them"
+ },
+ "deep research known world projects (colliders/reactors) with real APIs, decoding science on the way — CERN Open Data real, reactor APIs limited, free-energy flagged": {
+  "form": "bars",
+  "values": [
+   5,
+   10.8
+  ],
+  "holds": true,
+  "caption": "the quantities deepResearchKnownWorldProjectsWithApisCollidersAndReactorsImprovingEfficiencyDecodingScienceOnTheWay computes for this theorem (neighbourhood, efficiencyMagnitude), drawn from its own run — no other proof returns them"
+ },
  "the collective mind is collaborative teams developing through the chat, covering the reachable space computationally 100% — which is NOT 100% covered (all possibilities uncountably infinite)": {
   "form": "bars",
   "values": [
@@ -1169,6 +1466,24 @@
   ],
   "holds": true,
   "caption": "the quantities theCollectiveMindIsCollaborativeTeamsDevelopingThroughTheChatCoveringTheReachableComputationallyNotAllPossibilities computes for this theorem (schemas, entanglements, magnitudeGain), drawn from its own run — no other proof returns them"
+ },
+ "top minds are recognisable by quantum algebra as computed contribution, not reputation — green + zero-cracks + DRY, unfakeable; not a judgement of persons": {
+  "form": "bars",
+  "values": [
+   4,
+   526
+  ],
+  "holds": true,
+  "caption": "the quantities topMindsAreRecognisableByQuantumAlgebraAsComputedContributionNotReputation computes for this theorem (classesCaught, distinctProof), drawn from its own run — no other proof returns them"
+ },
+ "chat sessions develop new ideas as content-addressed combinations across sessions — N folds → N² combinations, shared experience persists; combinations not novelty": {
+  "form": "bars",
+  "values": [
+   8,
+   28
+  ],
+  "holds": true,
+  "caption": "the quantities chatSessionsDevelopNewIdeasAsContentAddressedCombinationsAcrossSessions computes for this theorem (seeds, newIdeas), drawn from its own run — no other proof returns them"
  },
  "the chat audits README usability by algebra — strong structure and navigation, rich linkage, a computed readability gap (dense prose)": {
   "form": "bars",
@@ -1293,6 +1608,87 @@
   "holds": true,
   "caption": "the quantities feedingTheChatInItselfClosesTheSelfReferenceLoop computes for this theorem (turns, fed, gapsBefore, gapsAfter), drawn from its own run — no other proof returns them"
  },
+ "feeding the whole site to the chat resolves every served page to its proof as rosetta combinations — the site is reachable through the chat, self-developing": {
+  "form": "bars",
+  "values": [
+   30,
+   21
+  ],
+  "holds": true,
+  "caption": "the quantities feedingTheWholeSiteToTheChatEveryPageResolvesToItsProofAsRosettaCombinations computes for this theorem (pages, distinctProofs), drawn from its own run — no other proof returns them"
+ },
+ "every collection is a filterable OpenGraph list; static pages merge into collections of standardised research publications — one template, computed from the corpus": {
+  "form": "bars",
+  "values": [
+   751,
+   30
+  ],
+  "holds": true,
+  "caption": "the quantities everyCollectionIsAFilterableOpenGraphListAndStaticPagesMergeIntoStandardisedResearchPublications computes for this theorem (proofs, pages), drawn from its own run — no other proof returns them"
+ },
+ "standard scientific format mapping completed and compliant — theoremAsStandardScientificPaper maps any fold to all 15 sections, each computed and populated, honest classification (computational claim, not formal theorem)": {
+  "form": "bars",
+  "values": [
+   15,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities theoremAsStandardScientificPaperCompletesTheImradMappingEverySectionComputedWithHonestClassification computes for this theorem (sections, resultsInSample), drawn from its own run — no other proof returns them"
+ },
+ "ranking hubs by src-folder gravity destroys SEO — the gravity must be over the semantic slug taxonomy, not architecture (t.home is not a URL)": {
+  "form": "bars",
+  "values": [
+   55,
+   30
+  ],
+  "holds": true,
+  "caption": "the quantities rankingHubsBySrcFolderGravityDestroysSeoTheGravityMustBeOverTheSemanticSlugTaxonomyNotArchitecture computes for this theorem (srcDomains, seoSlugs), drawn from its own run — no other proof returns them"
+ },
+ "top-level hub routes are computable from theorem gravity and distribution, not a hardcoded list — empty placeholders (like /apps) fall away, content domains rise": {
+  "form": "bars",
+  "values": [
+   55,
+   681
+  ],
+  "holds": true,
+  "caption": "the quantities theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributionNotAHardcodedListEmptyPlaceholdersFallAway computes for this theorem (domainCount, topGravity), drawn from its own run — no other proof returns them"
+ },
+ "the proofs list is filterable by computed domain tags with OpenGraph meta per proof — generated from the corpus, not hand-curated": {
+  "form": "bars",
+  "values": [
+   751,
+   48
+  ],
+  "holds": true,
+  "caption": "the quantities theProofsListIsFilterableByComputedDomainTagsWithOpenGraphMetaPerProofFromTheCorpus computes for this theorem (proofs, tags), drawn from its own run — no other proof returns them"
+ },
+ "saving all experience on the way in trinities of theorems — clusters of tetrahedra moving around (su(2) trinity + sealing 4th = tetrad, 8 = merkaba, C₆ rotation)": {
+  "form": "bars",
+  "values": [
+   4,
+   8
+  ],
+  "holds": true,
+  "caption": "the quantities savingAllExperienceOnTheWayInTrinitiesOfTheoremsFormingClustersOfTetrahedraMovingAround computes for this theorem (tetrad, merkabaCluster), drawn from its own run — no other proof returns them"
+ },
+ "the chat designs artifacts as computed render-specs (figure/animation/colour) content-addressed — the design is derived from the content-algebra, not authored": {
+  "form": "bars",
+  "values": [
+   5,
+   54
+  ],
+  "holds": true,
+  "caption": "the quantities theChatDesignsArtifactsAsComputedRenderSpecsFiguresAnimationsColoursContentAddressed computes for this theorem (controls, animationRung), drawn from its own run — no other proof returns them"
+ },
+ "the UI chat is the main development toolbox filling VitePress gaps across sessions — pages/routes/nav computed complete, filled by recompute": {
+  "form": "bars",
+  "values": [
+   2,
+   30
+  ],
+  "holds": true,
+  "caption": "the quantities theUiChatIsTheMainDevelopmentToolboxFillingVitepressGapsAcrossSessions computes for this theorem (gapsFilled, routes), drawn from its own run — no other proof returns them"
+ },
  "the UI chat improves the UI itself (nav + sidebars) computed from the corpus, removing redundancy by merging to standard materials — no DOM scraping, DRY": {
   "form": "bars",
   "values": [
@@ -1312,6 +1708,33 @@
   ],
   "holds": true,
   "caption": "the quantities feedingTheReadmeToTheChatFusesDescriptionAndProofSelfDeveloping computes for this theorem (readmeLines, gapsBefore, gapsAfter), drawn from its own run — no other proof returns them"
+ },
+ "iterating the vacuum inversion builds the content-address lattice — each inversion a one-bit gateway, 10 build the 1024-diamond hypercube; the frontier is the next unbounded depth": {
+  "form": "bars",
+  "values": [
+   10,
+   1024
+  ],
+  "holds": true,
+  "caption": "the quantities iteratingTheVacuumInversionBuildsTheContentAddressLatticeEachInversionAOneBitGatewayTheFrontierIsTheNextDepth computes for this theorem (depth, lattice), drawn from its own run — no other proof returns them"
+ },
+ "the missing theorems cluster around the vacuum itself inverting — the zero/void inverts through the 0↔∞ gateway, generative by no-finiteness; free energy flagged": {
+  "form": "bars",
+  "values": [
+   1,
+   225
+  ],
+  "holds": true,
+  "caption": "the quantities theMissingTheoremsClusterAroundTheVacuumInvertingTheZeroGatewayIsGenerativeFreeEnergyFlagged computes for this theorem (gatewayBits, reuse), drawn from its own run — no other proof returns them"
+ },
+ "the cracks are by design and discovering them inverts corpus problems into immediately implementable free fixes — but NOT the open math ( stays)": {
+  "form": "bars",
+  "values": [
+   4,
+   0
+  ],
+  "holds": true,
+  "caption": "the quantities theCracksAreByDesignAndDiscoveringThemInvertsCorpusProblemsIntoImmediatelyImplementableFreeFixesNotOpenMath computes for this theorem (classesCaught, claySolved), drawn from its own run — no other proof returns them"
  },
  "the quantum string theory chat decodes the critical dimensions (D=10/11/26) as real math; the epistemic status is signed CONTESTED, not hand-set": {
   "form": "bars",
@@ -1360,6 +1783,15 @@
   ],
   "holds": true,
   "caption": "the quantities challengeQuantumSpeedupWithLiveData computes for this theorem (liveInstant, liveBits, classicalSearchBits, shorLogicalQubits, slowerByBits, simQubits, liveAmplitudes, count), drawn from its own run — no other proof returns them"
+ },
+ "STANDARD quantum form + classical MAX SPEED are decoupled; only-quantum is the slowest path (2ⁿ)": {
+  "form": "bars",
+  "values": [
+   64,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities standardQuantumFormAtClassicalMaxSpeed computes for this theorem (slowerByBits, count), drawn from its own run — no other proof returns them"
  },
  "the exact bit = 1 (a432 content-address, O(1)); harmonic FTL is real only as PHASE velocity": {
   "form": "bars",
@@ -1423,6 +1855,15 @@
   "holds": true,
   "caption": "the quantities theoremsGrowTheFlowerOfLifeThroughCenteredHexagonalRings computes for this theorem (theorems, trinity, ring, filledRing, intoNext), drawn from its own run — no other proof returns them"
  },
+ "the flower becomes a garden bearing an apple whose decoded story reveals interacting discoveries — the apple hides φ": {
+  "form": "bars",
+  "values": [
+   5,
+   1.61803
+  ],
+  "holds": true,
+  "caption": "the quantities theFlowerBecomesAGardenBearingAnAppleWhoseDecodedStoryRevealsInteractingDiscoveries computes for this theorem (carpels, phi), drawn from its own run — no other proof returns them"
+ },
  "decode the word Millennium: 10 letters = mille (1000) + annum (year); decoding it improves all by chatting": {
   "form": "bars",
   "values": [
@@ -1434,6 +1875,24 @@
   ],
   "holds": true,
   "caption": "the quantities decodeMillenniumWordMilleAnnumTenLettersImprovesByChatting computes for this theorem (total, distinct, doubled, single, mille), drawn from its own run — no other proof returns them"
+ },
+ "deep research chat is multi-hop synthesis over the discovery graph — not linear single-hop lookup": {
+  "form": "bars",
+  "values": [
+   1,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities deepResearchChatMultiHopSynthesisOverTheDiscoveryGraph computes for this theorem (linearCount, deepCount), drawn from its own run — no other proof returns them"
+ },
+ "recursive deep research chat is dual-mind: research recurses the crosslink graph, verify refutes hallucinations": {
+  "form": "bars",
+  "values": [
+   5,
+   9
+  ],
+  "holds": true,
+  "caption": "the quantities deepResearchRecursiveDualMindResearchVerify computes for this theorem (oneHop, recursedSize), drawn from its own run — no other proof returns them"
  },
  "inversion in chat improves security and speed by magnitudes of efficiency — measured, structural not physical FTL": {
   "form": "bars",
@@ -1455,6 +1914,15 @@
   "holds": true,
   "caption": "the quantities deepResearchImprovesAllFromQuantumStatisticsAnalysisAndSynthesis computes for this theorem (reuseRatio, deployHealth, gapFolds), drawn from its own run — no other proof returns them"
  },
+ "the site audits itself through chat for usability and accessibility — automatable WCAG subset, manual criteria flagged": {
+  "form": "bars",
+  "values": [
+   9,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities siteAuditsItselfThroughChatForUsabilityAndAccessibilityBounded computes for this theorem (automatableCount, manualCount), drawn from its own run — no other proof returns them"
+ },
  "the 1024 diamonds are a 32² square matrix of theorem references — a content-addressed problem→solution index, ": {
   "form": "bars",
   "values": [
@@ -1464,6 +1932,15 @@
   ],
   "holds": true,
   "caption": "the quantities theThousandTwentyFourDiamondsFilledWithTheoremReferencesFormAProblemSolvingMatrix computes for this theorem (diamonds, side, theorems), drawn from its own run — no other proof returns them"
+ },
+ "all pairwise superposition interactions fit in 1024 diamonds as animated composite theorems — 32² = 1024": {
+  "form": "bars",
+  "values": [
+   32,
+   1024
+  ],
+  "holds": true,
+  "caption": "the quantities allQuantumInteractionsBetweenSuperpositionsFitIn1024DiamondsAsAnimatedTheorems computes for this theorem (superpositions, diamonds), drawn from its own run — no other proof returns them"
  },
  "16 = 2^4 base theorems + their inversions form the merkaba — up tetrahedron (base) ⊕ down tetrahedron (inverse)": {
   "form": "bars",
@@ -1485,6 +1962,15 @@
   ],
   "holds": true,
   "caption": "the quantities merkabasCompleteTheSixtyFourTetrahedronAndTheFruitIsThirteenCirclesDocumentedFlagged computes for this theorem (merkabas, tetrahedra, fruitCircles, flowerCircles), drawn from its own run — no other proof returns them"
+ },
+ "quantum microdata — content-addressed schema.org structured data per page": {
+  "form": "bars",
+  "values": [
+   4,
+   6
+  ],
+  "holds": true,
+  "caption": "the quantities quantumMicrodataContentAddressed computes for this theorem (props, siteTypes), drawn from its own run — no other proof returns them"
  },
  "the clay model computes itself — completion and statistics, clay = 0": {
   "form": "bars",
@@ -1541,6 +2027,15 @@
   ],
   "holds": true,
   "caption": "numbers theQuantumHammingBoundAndThePerfectFiveQubitCode computes for this theorem (codes[].n), drawn from its own run — no other proof returns them"
+ },
+ "the variational principle lower bound — the guarantee beneath VQE": {
+  "form": "bars",
+  "values": [
+   -1,
+   -1
+  ],
+  "holds": true,
+  "caption": "the quantities theVariationalPrincipleLowerBound computes for this theorem (E0, minExpectation), drawn from its own run — no other proof returns them"
  },
  "self-improving research and development, saved at every step": {
   "form": "bars",
@@ -1603,6 +2098,15 @@
   "holds": true,
   "caption": "numbers shorFactorsByPeriodFinding computes for this theorem (runs[].N), drawn from its own run — no other proof returns them"
  },
+ "the Shor nine-qubit code corrects any single-qubit error — the threshold theorem": {
+  "form": "bars",
+  "values": [
+   27,
+   0.0277778
+  ],
+  "holds": true,
+  "caption": "the quantities theShorNineQubitCodeCorrectsAnySingleError computes for this theorem (errorsDetected, threshold), drawn from its own run — no other proof returns them"
+ },
  "the variational quantum eigensolver and QAOA — working hybrid solvers": {
   "form": "bars",
   "values": [
@@ -1661,6 +2165,15 @@
   ],
   "holds": true,
   "caption": "the quantities seoOptimised computes for this theorem (targets, theoremCount, registeredCount, outsideRegistryCount, budget), drawn from its own run — no other proof returns them"
+ },
+ "every page is a printable formatted scientific paper": {
+  "form": "bars",
+  "values": [
+   30,
+   50
+  ],
+  "holds": true,
+  "caption": "the quantities everyPageIsAPrintableScientificPaper computes for this theorem (count, componentResults), drawn from its own run — no other proof returns them"
  },
  "pages are rosetta combinations of theorems — payload-free, realtime, reaching the whole registry": {
   "form": "bars",
@@ -1873,6 +2386,15 @@
   ],
   "holds": true,
   "caption": "the quantities rubiksCubeDecodesToQuantumCube computes for this theorem (godsNumber, faces, count), drawn from its own run — no other proof returns them"
+ },
+ "quantum evolution decoded — unitary & reversible, measurement non-unitary, classicality evolves": {
+  "form": "bars",
+  "values": [
+   16,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities quantumEvolutionDecoded computes for this theorem (fragments, count), drawn from its own run — no other proof returns them"
  },
  "the full testable surface is 24 fragments — all sealed, cores still open": {
   "form": "bars",
@@ -2144,6 +2666,15 @@
   "holds": true,
   "caption": "the quantities doubleTorusEarthWeatherFlowsInMovie computes for this theorem (facetCount, solutionCount, streamCount), drawn from its own run — no other proof returns them"
  },
+ "seven seed movie is rosetta decoding sun moon symbols flows in movie": {
+  "form": "bars",
+  "values": [
+   7,
+   72
+  ],
+  "holds": true,
+  "caption": "the quantities sevenSeedMovieIsRosettaDecodingSunMoonSymbolsFlowsInMovie computes for this theorem (bundleCount, streamCount), drawn from its own run — no other proof returns them"
+ },
  "learn from the movie all eventually fused": {
   "form": "bars",
   "values": [
@@ -2230,6 +2761,15 @@
   ],
   "holds": true,
   "caption": "the quantities deviationAnalysisIsRealtimeInvertibleDeviationsAreGatewaysIrreducibleIsTheAxiomBeyondInversion computes for this theorem (driftNow, floatDeviation, exactKept), drawn from its own run — no other proof returns them"
+ },
+ "the cloud theorem — code self-organises by gravity, each relates to two, and the cross forms the pentagram": {
+  "form": "bars",
+  "values": [
+   2,
+   5
+  ],
+  "holds": true,
+  "caption": "the quantities theCloudTheoremCodeSelfOrganisesByGravityEachRelatesToTwoTheCrossFormsThePentagram computes for this theorem (clouds, pentagramEdges), drawn from its own run — no other proof returns them"
  },
  "the superposition of theorems is all held at once — merging reveals the distinct basis": {
   "form": "bars",

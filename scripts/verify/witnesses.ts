@@ -51,7 +51,30 @@ function candidatesOf(out: unknown): Candidate[] {
   found.sort((a, b) => b.data.length - a.data.length)
   if (out && typeof out === 'object' && !Array.isArray(out)) {
     const fields = Object.entries(out as Record<string, unknown>).filter(([, x]) => typeof x === 'number' && Number.isFinite(x)) as [string, number][]
-    if (fields.length >= 3) found.push({ kind: 'fields', path: fields.map(([k]) => k).join(', '), data: fields.map(([, x]) => x) })
+    // THREE WAS A THRESHOLD, NOT A REASON, AND IT COST 100 THEOREMS THEIR OWN NUMBERS.
+    //
+    // Measured over the 538 theorems drawn from a template: 267 SHARE their provedBy with another theorem, so
+    // one fold proves up to seven of them and its numbers cannot tell them apart — the uniqueness rule below
+    // (`seen.get(signature) === 1`, "no other proof returns them") excludes those structurally, and no change
+    // here reaches them. Of the 271 that solely own their fold: 100 carry two or more numeric fields, 82 carry
+    // only `count`, 70 carry no number at all, 13 are not zero-argument folds (modUnits, chsh, unitBallVolume),
+    // and 6 have a series that collides corpus-wide. The 100 were excluded by `>= 3` alone.
+    //
+    // But the count that was easy to move is the one that must NOT move: going down to ONE field would hand 82
+    // theorems a "witness" that is `count`, the number of facets in their own fold — bookkeeping every fold
+    // carries, identical in shape across the corpus, drawn from no proof. The ratchet would fall by 82 while
+    // nothing had been drawn. Two is therefore the floor, and it is the floor for a reason and not by taste:
+    // it is the smallest number that can be a picture, and every one of those 82 carries exactly one field.
+    //
+    // A `quantities` filter excluding `count` stood here for one revision, and perturbation retired it: with
+    // the exclusion removed the derived count did not move, 244 to 244, because `fields.length >= 2` already
+    // rejects a lone `count` and `count` is the only bookkeeping name there is. A guard that cannot fire is
+    // the decoration this session spent the day removing, so it is not left in to look careful. If a second
+    // bookkeeping field is ever added, a witness could become bookkeeping — and the caption names its fields,
+    // so it would say so out loud.
+    if (fields.length >= 2) {
+      found.push({ kind: 'fields', path: fields.map(([k]) => k).join(', '), data: fields.map(([, x]) => x) })
+    }
   }
   return found
 }
