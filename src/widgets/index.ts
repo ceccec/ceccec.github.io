@@ -210,7 +210,39 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
   const allComponents = Object.values(components).flat()
   // the bridged tokens read from the design-system home (mountain/shadcn) at call time; only the PLANNED delta (sidebar + charts) is data here — logic:hunt mirror dissolved
   const tokens = [...__ns_up_mountain_shadcn.SHADCN_TOKENS, '--sidebar', '--sidebar-primary', '--sidebar-accent', '--chart-1', '--chart-2', '--chart-3', '--chart-4', '--chart-5']
+  // THE DEPENDENCY CLAIM WAS A LITERAL ARRAY CHECKED AGAINST ITS OWN LITERALS. `deps.includes('reka-ui')`
+  // asked whether a list written two lines above contained a string written into it, so the facet could not
+  // fail — and the claim it decorated was false: reka-ui has never been installed here (radix-vue was), and
+  // @lucide/vue is not installed either. Two of the five named packages do not exist in this repo, and a
+  // green checkmark said otherwise for as long as both lines did. This is the shape verify:limits catches as
+  // `on: true`; an includes() over a literal is the same thing wearing a method call.
+  //
+  // The list stays as the DECLARED stack — it is the design-system recipe, and naming what a path needs is
+  // the point of this fold — but what is asserted is now read off package.json, so the facet moves when the
+  // tree does. Browser-safe: this module is reachable from src/ui, so the read is guarded and absence is
+  // reported as absence rather than as an empty dependency set that would make every name look missing.
   const deps = ['reka-ui', 'class-variance-authority', 'clsx', 'tailwind-merge', '@lucide/vue']
+  const installed = ((): { names: readonly string[]; source: 'counted' | 'absent' } => {
+    const get = typeof process !== 'undefined'
+      ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => unknown }).getBuiltinModule
+      : undefined
+    const fs = get?.('node:fs') as typeof import('node:fs') | undefined
+    const path = get?.('node:path') as typeof import('node:path') | undefined
+    const root = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'
+    if (!fs || !path) return { names: [], source: 'absent' as const }
+    try {
+      const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')) as {
+        dependencies?: Record<string, string>
+        devDependencies?: Record<string, string>
+      }
+      return { names: Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }), source: 'counted' as const }
+    } catch { return { names: [], source: 'absent' as const } }
+  })()
+  const depsPresent = deps.filter((d) => installed.names.includes(d))
+  const depsMissing = deps.filter((d) => !installed.names.includes(d))
+  // cn() is the one piece this repo actually runs: cn = twMerge(clsx(...)). Both must be installed for the
+  // claim to hold, and uninstalling either refutes it.
+  const cnStackInstalled = installed.source === 'counted' && installed.names.includes('clsx') && installed.names.includes('tailwind-merge')
   const pathBDeps = ['tailwindcss', '@tailwindcss/vite', 'tw-animate-css'] // only if scoping real Tailwind (Path B)
   const paths = {
     A: "vendor the real shadcn .vue components, rewriting their Tailwind utility markup into the repo's own semantic classes — NO Tailwind dependency. The merkaba-recommended path, and what this repo already does (Button/Card/Badge).",
@@ -225,7 +257,7 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
   ]
   const facets = [
     { facet: 'vitepress is the framework, shadcn is the graph — 64 components as the design-system graph', on: allComponents.length === 64 },
-    { facet: 'not a component library — you own the code (open-code); reka-ui + cn() = twMerge(clsx())', on: deps.includes('reka-ui') && deps.includes('tailwind-merge') },
+    { facet: `not a component library — you own the code (open-code), and cn() = twMerge(clsx()) is the only part of the declared stack this repo runs: ${depsPresent.length}/${deps.length} of it is installed (${depsPresent.join(' · ') || 'none'})${depsMissing.length ? `, and ${depsMissing.join(' · ')} ${depsMissing.length === 1 ? 'is' : 'are'} NOT — named, because this facet compared a literal list to its own literals and reported green while two of the five were absent` : ''}${installed.source === 'absent' ? ' — UNREAD: package.json was not readable, so this is absence, not a measurement' : ''}`, on: cnStackInstalled },
     { facet: 'the tokens are CSS variables (oklch, new-york) — compatible with VitePress --vp-* and .dark', on: tokens.length >= (5 * 4) },
     { facet: 'two integration paths mapped, hazards named — A (semantic, no Tailwind, recommended) or B (scoped Tailwind)', on: !!paths.A && !!paths.B && caveats.length >= 6 },
     { facet: 'the bespoke 87 collapse onto the graph — the few renderers use shadcn primitives', on: displayAllWithFewEntropySaved(matrix).analyzed },
@@ -235,7 +267,10 @@ export function shadcnIsTheGraph(matrix: MindMatrix = buildMatrix()) {
     components,
     allComponents,
     tokens,
-    deps,
+    deps, // the DECLARED stack (the recipe), not a measurement — see depsPresent / depsMissing for what exists
+    depsPresent,
+    depsMissing,
+    depsSource: installed.source,
     pathBDeps,
     paths,
     caveats,

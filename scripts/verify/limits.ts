@@ -38,14 +38,27 @@ const require = createRequire(`${process.cwd()}/`)
 export type VacuousFacet = { file: string; line: number; why: string; facet: string }
 
 /** Decided from the syntax alone: is this expression true for every possible input? */
-function alwaysTrue(node: import('typescript').Node, sf: import('typescript').SourceFile, ts: typeof import('typescript')): string | null {
+function alwaysTrue(node: import('typescript').Node, sf: import('typescript').SourceFile, ts: typeof import('typescript'), literalArrays?: ReadonlySet<string>): string | null {
   if (node.kind === ts.SyntaxKind.TrueKeyword) return 'literal true'
+  // A LIST ASKED WHETHER IT CONTAINS A STRING WRITTEN INTO IT. `deps.includes('reka-ui')`, where `deps` is a
+  // const initialised to an array of literals in the same file, is `on: true` wearing a method call — and this
+  // detector walked straight past all three of them, because it only ever looked for the literal and for
+  // arithmetic. One of the three asserted a dependency that has never been installed in this repo; the other
+  // two decorated claims about CSS and about the home page that were both false when measured. The list is
+  // resolved per file, so `arr.includes(x)` on a value that is NOT a literal array is untouched — that is a
+  // real membership test.
+  if (literalArrays?.size && ts.isCallExpression(node) && ts.isPropertyAccessExpression(node.expression)
+      && node.expression.name.text === 'includes' && ts.isIdentifier(node.expression.expression)
+      && literalArrays.has(node.expression.expression.text) && node.arguments.length === 1
+      && (ts.isStringLiteral(node.arguments[0]!) || ts.isNumericLiteral(node.arguments[0]!))) {
+    return `literal array ${node.expression.expression.text}.includes(${node.arguments[0]!.getText(sf)})`
+  }
   if (!ts.isBinaryExpression(node)) return null
   const op = node.operatorToken.kind
   if (op === ts.SyntaxKind.AmpersandAmpersandToken) {
     // A conjunction is vacuous only when BOTH sides are — one real check redeems it.
-    const left = alwaysTrue(node.left, sf, ts)
-    const right = alwaysTrue(node.right, sf, ts)
+    const left = alwaysTrue(node.left, sf, ts, literalArrays)
+    const right = alwaysTrue(node.right, sf, ts, literalArrays)
     return left && right ? `${left} && ${right}` : null
   }
   if (op === ts.SyntaxKind.BarBarToken) {
@@ -56,8 +69,8 @@ function alwaysTrue(node: import('typescript').Node, sf: import('typescript').So
     // The short-circuit is an expression, not the literal, so the bare-`on: true` scan walked
     // straight past it while the sentence beside it kept claiming the check happened. A real
     // check on the left makes it look MORE careful, not less.
-    const left = alwaysTrue(node.left, sf, ts)
-    const right = alwaysTrue(node.right, sf, ts)
+    const left = alwaysTrue(node.left, sf, ts, literalArrays)
+    const right = alwaysTrue(node.right, sf, ts, literalArrays)
     return left ?? right ?? null
   }
   const text = (n: import('typescript').Node) => n.getText(sf)
@@ -86,8 +99,25 @@ export function findVacuousFacets(root: string = process.cwd()): VacuousFacet[] 
   // produced once now and addressed — see corpus.ts, and uuidna's produceOverVerify = 118.
   const ts = require('typescript') as typeof import('typescript')
   const found: VacuousFacet[] = []
+  // Per file, the consts whose initialiser is an array of literals — computed once, not per facet.
+  const literalArraysByFile = new Map<string, Set<string>>()
+  const literalArraysFor = (rel: string, sf: import('typescript').SourceFile): Set<string> => {
+    const cached = literalArraysByFile.get(rel)
+    if (cached) return cached
+    const names = new Set<string>()
+    const walk = (n: import('typescript').Node): void => {
+      if (ts.isVariableDeclaration(n) && ts.isIdentifier(n.name) && n.initializer
+          && ts.isArrayLiteralExpression(n.initializer) && n.initializer.elements.length > 0
+          && n.initializer.elements.every((e) => ts.isStringLiteral(e) || ts.isNumericLiteral(e))) names.add(n.name.text)
+      ts.forEachChild(n, walk)
+    }
+    walk(sf)
+    literalArraysByFile.set(rel, names)
+    return names
+  }
   eachFacet(root, ({ file, facet, on, line }) => {
-    const why = alwaysTrue(on, file.ast(), ts)
+    const sf = file.ast()
+    const why = alwaysTrue(on, sf, ts, literalArraysFor(file.rel, sf))
     if (why) found.push({ file: file.rel, line, why, facet: facet.replace(/\s+/g, ' ').slice(1, 84) })
   })
   return found

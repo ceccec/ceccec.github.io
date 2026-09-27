@@ -33,6 +33,24 @@ const sources = (root: string): string[] => {
 
 export type Guard = { file: string; line: number; kind: 'browser-degrades' | 'no-filesystem-empty'; text: string }
 
+/**
+ * Does this fallback expression SAY it did not measure? The one predicate behind guards.no-filesystem-empty.
+ *
+ * `returned` is the text after `return`; an identifier is resolved to its `const` initialiser in the same file
+ * (object literals across lines included, which is how a SEALED_* block is read). Honest: `measured: false` or
+ * `source: 'absent'`. Dishonest at any spelling: `measured: true` — a value carrying a claim of measurement
+ * into a branch where nothing was measured, which is the defect this gate was built for.
+ */
+function declaresNotMeasured(returned: string, text: string): boolean {
+  const id = returned.match(/^[A-Za-z_$][\w$]*/)?.[0]
+  const initialiser = id
+    ? new RegExp(`const ${id}\\s*=\\s*(\\{[\\s\\S]*?\\n\\s*\\}|[^\\n]*)`).exec(text)?.[1] ?? ''
+    : ''
+  const body = `${returned}\n${initialiser}`
+  if (/["']?measured["']?\s*:\s*true\b/.test(body)) return false
+  return /["']?measured["']?\s*:\s*false\b/.test(body) || /["']?source["']?\s*:\s*'absent'/.test(body)
+}
+
 /** A browser branch that returns EMPTY or a literal — not one that returns a computed alternative. */
 export function findGuards(root: string = process.cwd()): Guard[] {
   const found: Guard[] = []
@@ -45,18 +63,21 @@ export function findGuards(root: string = process.cwd()): Guard[] {
       if (browser && /^(\[\]|null|undefined|0|''|""|false|\{\})/.test(browser[1]!)) {
         found.push({ file: rel, line: i + 1, kind: 'browser-degrades', text: line.trim().slice(0, 120) })
       }
-      // Only a return of LESS counts: an empty list, a literal, a not-measured report. Returning the same
-      // measurement sealed at build (SEALED_…) is the fix, not the defect — UNLESS the sealed value claims its
-      // own measurement. A block carrying `measured: true` into a browser says a comparison happened there;
-      // nothing compared anything, and the seal has laundered an assertion into the shape of a cure. That is
-      // the defect this gate exists for, so a seal is accepted only while it asserts no measurement of its own.
+      // ONE QUESTION, NOT A DIALECT PER SITE. This asked whether the fallback was a `SEALED_*` constant and,
+      // if so, whether that block claimed `"measured": true` — so the only answer it could recognise as honest
+      // was a seal. Three sites in src answer honestly WITHOUT one, all three the same way (`source: 'absent'`),
+      // and the gate counted them as the defect; a fourth was about to be written and the reflex was to bolt on
+      // a second special case. Three dialects for one idea is the complexity, not the cure.
+      //
+      // The question is: DOES THE FALLBACK SAY IT DID NOT MEASURE? Nothing else matters. A returned identifier
+      // is resolved to its initialiser so `return absent` is read as the object it names; `measured: false` and
+      // `source: 'absent'` are both accepted because both say it plainly, and a value claiming `measured: true`
+      // is rejected however it is spelled — that is the original defect, a seal laundering an assertion into
+      // the shape of a cure, and it stays caught. What is left counted is a fallback that says nothing at all:
+      // a bare `[]` a caller cannot tell from a real empty result.
       const noFs = line.match(/if \(!(fs|path|fs \|\| !path)\)\s*return\s+(.+?)\s*$/)
-      if (noFs) {
-        const sealed = noFs[2]!.match(/SEALED_[A-Z0-9_]+/)
-        const claimsMeasured = sealed
-          ? new RegExp(`const ${sealed[0]} = \\{[\\s\\S]*?\\n\\s*\\}`).exec(text)?.[0]?.includes('"measured": true') ?? false
-          : false
-        if (!sealed || claimsMeasured) found.push({ file: rel, line: i + 1, kind: 'no-filesystem-empty', text: line.trim().slice(0, 120) })
+      if (noFs && !declaresNotMeasured(noFs[2]!, text)) {
+        found.push({ file: rel, line: i + 1, kind: 'no-filesystem-empty', text: line.trim().slice(0, 120) })
       }
     })
   }

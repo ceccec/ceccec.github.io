@@ -659,7 +659,14 @@ export function typography(matrix: MindMatrix = buildMatrix()) {
     { facet: 'one modular scale — a harmonic ratio and its computed steps', on: scale.length === 6 && scale[1].factor === 1 },
     { facet: 'the ratio is harmonic — the major third 5:4, in the file-distribution series', on: ratio === (5 / 4) },
     { facet: 'full OpenType — kerning, ligatures, contextual alternates, optical sizing', on: features.length >= 7 },
-    { facet: 'figures fit their place — tabular in data, oldstyle in prose', on: features.includes('tnum (data)') && features.includes('onum (prose)') },
+    // THE FIGURE-PLACEMENT FACET IS GONE, BECAUSE IT WAS NOT TRUE. It claimed "figures fit their place —
+    // tabular in data, oldstyle in prose" and checked `features.includes('tnum (data)')` against a literal
+    // array declared above it: a list asked whether it contained a string written into it, so the facet could
+    // not fail. Measured across src/render/ui/*.css and .vitepress/theme/*.css: NOTHING sets
+    // font-variant-numeric, tabular-nums, oldstyle-nums, tnum or onum anywhere in the repo. The feature is
+    // described, not applied. Restated where it belongs — the boundary below names it as declared-not-applied,
+    // so `typeset` now rests only on the three facets that do measure something (the scale's length and unit
+    // factor, the ratio being exactly 5/4, and the feature list's size).
   ].map((entry) => ({ ...entry, receipt: toUuid(`typography:${entry.facet}:${entry.on}`) }))
   return {
     typeset: facets.every((entry) => entry.on),
@@ -671,9 +678,9 @@ export function typography(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'The full power of typography, computed: one modular scale — the major third 5:4, a harmonic ratio, with its steps computed, not hand-picked — fluid by clamp; full OpenType (kerning, ligatures, contextual alternates, optical sizing); figures that fit their place, tabular in data and oldstyle in prose; an optimal measure of about 68 characters; headings balanced and paragraphs pretty, with no widows or orphans; hanging punctuation; and the Glagolitic and calligraphy kept at full ligature power. The type scale sings in the same harmonic series as the file distribution.',
+      'The full power of typography, computed: one modular scale — the major third 5:4, a harmonic ratio, with its steps computed, not hand-picked — fluid by clamp; full OpenType (kerning, ligatures, contextual alternates, optical sizing); an optimal measure of about 68 characters; headings balanced and paragraphs pretty, with no widows or orphans; hanging punctuation; and the Glagolitic and calligraphy kept at full ligature power. The type scale sings in the same harmonic series as the file distribution.',
     boundary:
-      'A typographic system: the scale and its harmonic ratio are computed here (the source) and applied in style.css; the OpenType features (tabular/oldstyle figures, ligatures, contextual alternates) render only where the chosen font supports them, and text-wrap pretty/balance and hanging-punctuation degrade gracefully where a browser lacks them. It sets the form of the text, not its meaning.' }
+      'A typographic system: the scale and its harmonic ratio are computed here (the source) and applied in style.css; text-wrap pretty/balance and hanging-punctuation degrade gracefully where a browser lacks them. It sets the form of the text, not its meaning. DECLARED, NOT APPLIED — the feature list names tnum for data and onum for prose, and nothing in this repo sets font-variant-numeric: measured across src/render/ui/*.css and .vitepress/theme/*.css, there is no tabular-nums, oldstyle-nums, tnum or onum rule anywhere, so figure placement is an intent stated here and not a rendering. The other OpenType features render only where the chosen font supports them, which is a property of the font and not of this fold.' }
 }
 
 // Frontmatter is the graph itself: a page's tags and categories are computed from the matrix (the

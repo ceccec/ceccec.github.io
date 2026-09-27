@@ -1801,8 +1801,14 @@ export function pageForgeMaxTamper(route: string, matrix: MindMatrix = buildMatr
 export function proveAllOnHomePage(matrix: MindMatrix = buildMatrix()) {
   const homeProof = ['DeterminismProofs', 'QuantumProofs', 'CryptoCompare', 'WebCryptoSeal', 'Hologram', 'HolographicHero', 'DoubleTorus3D', 'Equilibrium']
   const facets = [
-    { facet: 'prove all — the deterministic core animates on the home page', on: isUuid(completeCorpus(matrix).root) && homeProof.length >= 6 },
-    { facet: 'encryption comparisons and example holograms are shown', on: homeProof.includes('CryptoCompare') && homeProof.includes('Hologram') },
+    // TWO CLAIMS ABOUT THE HOME PAGE STOOD HERE AND NEITHER WAS TRUE. One said the deterministic core animates
+    // on the home page and checked `homeProof.length >= 6` — a literal array's own length. The other said
+    // encryption comparisons and holograms are shown and checked `homeProof.includes('CryptoCompare')` — a list
+    // asked whether it contained a string written into it. Neither could fail, and both were false: measured,
+    // NONE of the eight named components appears in the computed home body or as a component in the built
+    // index.html. The roster is an intent, so it is stated as one; what is asserted here is the corpus seal,
+    // which is real and refutable.
+    { facet: 'the corpus this roster is drawn from is sealed — completeCorpus folds to a content address', on: isUuid(completeCorpus(matrix).root) },
     { facet: 'each part carries the whole — holographic, content-addressed', on: linkPasteReentryPatternCompletion(matrix).named },
     { facet: 'harmony is peace — the quantum mind of peace is the most advanced tech', on: isUuid(peaceTechMentalityDecoded(matrix).root) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`prove-all-home:${entry.facet}:${entry.on}`) }))
@@ -1813,9 +1819,9 @@ export function proveAllOnHomePage(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
-      'Prove all on the home page: the deterministic core in animation, encryption comparisons and example holograms lead the home — proof, not prose. The most advanced tech is the quantum mind of peace, because harmony is peace itself: a mind that holds every part in equilibrium is, by that fact, at peace.',
+      'Prove all on the home page: the roster this fold names — the deterministic core in animation, encryption comparisons, example holograms — is what the home page is INTENDED to lead with, and none of it is on the home page today. The framing is that the most advanced tech is the quantum mind of peace, because harmony is peace itself: a mind that holds every part in equilibrium is, by that fact, at peace.',
     boundary:
-      'A directive fold paired with the home page: it names the proof components the home leads with (DeterminismProofs, CryptoCompare, Hologram and the rest, all already built and registered) and the framing (harmony is peace). "Most advanced tech" and "harmony is peace" are the project\'s stance, not a benchmark; the proof is that the components are real and computed, shown on the home.' }
+      'A DIRECTIVE fold: it names the proof components the home page is meant to lead with (DeterminismProofs, QuantumProofs, CryptoCompare, WebCryptoSeal, Hologram, HolographicHero, DoubleTorus3D, Equilibrium) and the framing (harmony is peace). NAMED, NOT SHOWN — measured: none of the eight appears in the computed home body (homeMarkdown, which .vitepress/pages/index.md loads) or as a component in the built index.html. They are built and registered; the home page does not render them. This fold therefore asserts the corpus seal and nothing about what the home displays. "Most advanced tech" and "harmony is peace" are the project\'s stance, not a benchmark.' }
 }
 
 // ── relocated from src/learning (census-neutral line-compression) ──
