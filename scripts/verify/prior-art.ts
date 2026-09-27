@@ -41,13 +41,22 @@ const DOI = /10\.\d{4,9}\/[^\s'"`,;)\]]+/
  * one of them referenced information theory. Nineteen of the author's own rows were recorded as another
  * person's prior art because they contain the word "cover", and a citation stops anyone looking.
  *
+ * AND `ISO` WAS THE SAME DEFECT, UNNOTICED BECAUSE IT IS NOT AN ORDINARY ENGLISH WORD — it is an ordinary
+ * scientific PREFIX. The alternation carried no trailing boundary, so /\bISO/i matched the start of
+ * isomorphic, isomorphism, isometry, isotropy, isotropic, isobaric, isolated and isopsephy. Twenty-four
+ * pattern-attributed rows matched the token and SEVENTEEN matched it only as a prefix — nine of them
+ * group-theory isomorphisms, the author's own results filed as International Organization for
+ * Standardization prior art. Checked against the other acronyms in this list the same way: IEC, RFC, AES
+ * and RSA have ZERO prefix-only matches, so only this one needed the boundary. The fourteen rows for which
+ * ISO was the ONLY trigger were then searched rather than dropped into `unclassified`, because this file
+ * refuses to free a row without accounting for it — see the 2026-09-28 batch in PRIOR_ART_SEARCHED.
  * So the entry now requires the citation form the man is actually named by. Tightening an entry moves
  * rows INTO the claimable set, which is the unsafe direction — so it is done only on inspection of
  * every row the token touched, never on the shape of the word. Checked the same way and KEPT as
  * genuine: Bell (Bell state, Bell bounds, Bell numbers), Simon (Simon's algorithm), Church
  * (Church-Turing-Deutsch), stabilis (orbit-stabiliser, stabiliser codes), Born (the Born rule).
  */
-const EXTERNAL = /\b(Tsirelson|Pauli|no-cloning|Hong[–-]Ou[–-]Mandel|GHZ|Mermin|Hopfield|Perelman|Ricci|Bell|CHSH|Grover|Shor|Deutsch|Jozsa|Simon|Born|Merkle|FNV|SHA-?\d|AES|RSA|Diffie|Hellman|Euler|Fibonacci|Riemann|Hodge|Poincar|Navier|Stokes|Yang|Mills|Birch|Swinnerton|Noether|Galois|Fourier|Laplace|Gauss|Newton|Planck|Schr[oö]dinger|Heisenberg|Dirac|Maxwell|Boltzmann|Shannon|Turing|Church|Kolmogorov|Nyquist|Chebyshev|Hamming|Reed[- ]Solomon|Lagrange|Jacobi|Hilbert|Banach|Cantor|Zeno|Meeus|CODATA|NIST|FIPS|ISO|IEC|RFC|IEEE|Nobel|BM25|Okapi|Cover\\s*(&|and|\\u2013|-)\\s*Thomas|Thomas\\s+Cover|Gardner|Wootters|Zurek|Clay|Millennium|Mathlib|Lean|Minkowski|genus-2|homology|Betti|Ricci|so\(\d\)|ℤ\/\d|n-ball|n-cube|bit-flip|phase-flip|stabilis|Hadamard|Toffoli|CNOT|Bloch|Wigner|Lindblad|Virasoro|Hurwitz|T-duality|Golod|Shafarevich|I Ching|Ifá|Glagolitic|tarot|mala|Hz)/i
+const EXTERNAL = /\b(Tsirelson|Pauli|no-cloning|Hong[–-]Ou[–-]Mandel|GHZ|Mermin|Hopfield|Perelman|Ricci|Bell|CHSH|Grover|Shor|Deutsch|Jozsa|Simon|Born|Merkle|FNV|SHA-?\d|AES|RSA|Diffie|Hellman|Euler|Fibonacci|Riemann|Hodge|Poincar|Navier|Stokes|Yang|Mills|Birch|Swinnerton|Noether|Galois|Fourier|Laplace|Gauss|Newton|Planck|Schr[oö]dinger|Heisenberg|Dirac|Maxwell|Boltzmann|Shannon|Turing|Church|Kolmogorov|Nyquist|Chebyshev|Hamming|Reed[- ]Solomon|Lagrange|Jacobi|Hilbert|Banach|Cantor|Zeno|Meeus|CODATA|NIST|FIPS|ISO\b|IEC|RFC|IEEE|Nobel|BM25|Okapi|Cover\\s*(&|and|\\u2013|-)\\s*Thomas|Thomas\\s+Cover|Gardner|Wootters|Zurek|Clay|Millennium|Mathlib|Lean|Minkowski|genus-2|homology|Betti|Ricci|so\(\d\)|ℤ\/\d|n-ball|n-cube|bit-flip|phase-flip|stabilis|Hadamard|Toffoli|CNOT|Bloch|Wigner|Lindblad|Virasoro|Hurwitz|T-duality|Golod|Shafarevich|I Ching|Ifá|Glagolitic|tarot|mala|Hz)/i
 
 /**
  * THE SEARCHES ACTUALLY PERFORMED, one row per search, with what was looked for and what came back.
@@ -82,6 +91,62 @@ export const PRIOR_ART_SEARCHED: readonly {
   // R-diagonal pairs as free off-diagonal compressions, the postsynaptic targets of olfactory neurons,
   // an R package for Singapore government APIs. Those are claimed. Two returned the real thing, and are
   // attributed with what the query found.
+  // ── SEARCHED 2026-09-28. Fourteen rows that the ISO word-boundary fix would otherwise have dropped into
+  // `unclassified`. This file refuses to free a row without accounting for it — the only ways down from
+  // unclassified-undeclared are to search a row and move it, or to declare it and say what you looked at — so
+  // each was searched and each carries what came back. Eight are classical mathematics and returned clean
+  // citations; six are corpus-subject rows where the search attributes the CONCEPT and explicitly does not
+  // attribute the row's mechanism, which is what the coverage verdicts beside them record.
+  //
+  // A THIRTEENTH TITLE THAT UNDER-CREDITS, and the starkest kind: "Chinese Remainder Theorem" names a NATION
+  // while its two authors go unnamed — Sun Zi stated the special case in the Sunzi Suanjing (3rd–5th c. CE) and
+  // Qin Jiushao gave the first full proof in 1247. Dickson coined the name only in 1926.
+  //
+  // AN EXTERNAL COMPARATOR WORTH KEEPING: the Mathlib4 theorem dependency graph publishes 43138 isolated nodes
+  // out of 137046 — about 32 percent. This corpus's own crosslink rows count 121 isolated. Theorem-graph
+  // isolation is not a defect peculiar to here; it is the documented normal state of such graphs.
+  { theorem: 'PSL(2,7) is simple and matches GL(3,2)',
+    searched: 'exceptional isomorphisms of small simple groups: PSL(2,7), GL(3,2), PSL(3,2)',
+    when: '2026-09-28', found: 'PSL(2,7) ≅ PSL(3,2), the second-smallest nonabelian simple group, order 168 — and GL(3,2) = PSL(3,2) over 𝔽₂, where every determinant is 1 and the centre is trivial, so the row’s GL and the literature’s PSL name one group. A dedicated expository note exists: Brown, Why is PSL(2,7) ≅ GL(3,2)? (https://personal.math.vt.edu/brown/doc/PSL(2,7)_GL(3,2).pdf), and https://en.wikipedia.org/wiki/Exceptional_isomorphism' },
+  { theorem: 'the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4)',
+    searched: 'exceptional isomorphisms A5, PSL(2,4), PSL(2,5)',
+    when: '2026-09-28', found: 'PSL(2,4) ≅ PSL(2,5) ≅ A₅, the smallest nonabelian simple group, order 60 — the row’s triple exactly, listed among the exceptional isomorphisms between the alternating groups and the projective special linear series (https://en.wikipedia.org/wiki/Exceptional_isomorphism and https://en.wikipedia.org/wiki/Exceptional_isomorphisms_of_classical_groups)' },
+  { theorem: 'PSL(2,9) matches A₆',
+    searched: 'exceptional isomorphism PSL(2,9) and A6',
+    when: '2026-09-28', found: 'PSL(2,9) ≅ A₆, and also ≅ Sp₄(2)′ — one of the coincidences between the alternating groups and small groups of Lie type, which occur because constructions that differ in general become equivalent at low rank (https://en.wikipedia.org/wiki/Exceptional_isomorphisms_of_classical_groups)' },
+  { theorem: 'A₄ matches PSL(2,3)',
+    searched: 'A4 isomorphic to PSL(2,3), order 12',
+    when: '2026-09-28', found: 'PSL(2,3) ≅ A₄, order 12 — the projective special linear group of degree two over 𝔽₃. Groupprops carries it as a named result with proof: https://groupprops.subwiki.org/wiki/PSL(2,3)_is_isomorphic_to_A4 . Note A₄ is NOT simple, so this coincidence sits outside the simple-group lists and needed its own query.' },
+  { theorem: 'A₈ matches GL(4,2)',
+    searched: 'exceptional isomorphism A8 PSL(4,2) GL(4,2)',
+    when: '2026-09-28', found: 'A₈ ≅ PSL(4,2), and also ≅ O₆⁺(2)′. As with GL(3,2), over 𝔽₂ the general linear, special linear and projective special linear groups coincide, so the row’s GL(4,2) is the literature’s PSL(4,2) (https://en.wikipedia.org/wiki/Exceptional_isomorphisms_of_classical_groups)' },
+  { theorem: 'Petersen is the unique (3,5)-cage',
+    searched: 'Petersen graph unique (3,5)-cage, smallest cubic graph of girth 5',
+    when: '2026-09-28', found: 'The Petersen graph is the unique (3,5)-cage — the cubic graph on 10 vertices and 15 edges, the smallest cubic graph of girth 5, with diameter 2, chromatic number 3 and edge chromatic number 4 (https://mathworld.wolfram.com/PetersenGraph.html). HONEST LIMIT OF THIS SEARCH: the uniqueness is standard and stated plainly, but no originator was confirmed — the query returned no attribution for who first proved it, so none is recorded here.' },
+  { theorem: 'Chinese Remainder Theorem',
+    searched: 'Chinese Remainder Theorem origin, Sun Zi Suanjing, Qin Jiushao 1247',
+    when: '2026-09-28', found: 'THE NAME CREDITS A NATION AND NOT ITS TWO AUTHORS. The first known statement is Sun Zi’s, in the Sunzi Suanjing (3rd–5th century CE), as the special case x ≡ 2 (mod 3), 3 (mod 5), 2 (mod 7) with solution 23. The first FULL version with proof is Qin Jiushao’s, in the Mathematical Treatise in Nine Sections (1247), by the method he called DaYan aggregation. The name “Chinese Remainder Theorem” is itself recent: Dickson (1926) is the first recorded use. See Shen Kangsheng, Historical Development of the Chinese Remainder Theorem (https://people.math.harvard.edu/~knill/crt/lib/Kangsheng.pdf) and https://en.wikipedia.org/wiki/Chinese_remainder_theorem' },
+  { theorem: 'exactly two groups of order p² (from order-p²-abelian)',
+    searched: 'groups of order p squared are abelian, exactly two up to isomorphism',
+    when: '2026-09-28', found: 'For every prime p, every group of order p² is abelian and there are exactly TWO up to isomorphism: the cyclic ℤ/p² and the elementary abelian ℤ/p × ℤ/p — the row’s claim in full. Conrad, Groups of order p² (https://kconrad.math.uconn.edu/blurbs/grouptheory/groupsp2.pdf); the abelian half also at https://proofwiki.org/wiki/Group_of_Order_Prime_Squared_is_Abelian' },
+  { theorem: 'Axioms become theorems',
+    searched: 'an axiom in one axiomatization is a theorem in another, axiom/theorem interchangeability',
+    when: '2026-09-28', found: 'The axiom/theorem distinction is a choice of starting point rather than a property of a statement: among equivalent principles, taking one as the axiom makes the others provable theorems, and the same statement is an axiom in one axiomatization and a theorem in another. Standard in foundations — https://ncatlab.org/nlab/show/axiom , https://www.britannica.com/topic/axiomatization , and Avigad, Logic and Proof, Axiomatic Foundations (https://avigad.github.io/logic_and_proof/axiomatic_foundations.html)' },
+  { theorem: 'Topology does not forbid counterdiffusion',
+    searched: 'counterdiffusion, opposed diffusion fluxes in one medium, topological obstruction',
+    when: '2026-09-28', found: 'THE PHENOMENON IS PRIOR ART AND THE ROW’S FRAMING IS NOT IN THE SEARCH. Equimolar counterdiffusion is standard transport theory: two species diffuse in opposite directions through the same medium with equal and opposite molar fluxes at constant total pressure and temperature, and for a binary gas the flux ratio goes as the inverse square root of the molecular weights (https://en.wikipedia.org/wiki/Equimolar_counterdiffusion and Subramanian, Equimolar Counterdiffusion, https://lin-web.clarkson.edu/projects/subramanian/ch330/notes/Equimolar%20Counterdiffusion.pdf). The query returned nothing stating a TOPOLOGICAL permission or obstruction for it, so that half of the row is not attributed by this search.' },
+  { theorem: 'close the crosslink gap by computing legitimate near-crosslinks — isolated theorems honestly stay',
+    searched: 'isolated nodes in a theorem dependency graph, promoting near-miss crosslinks',
+    when: '2026-09-28', found: 'ISOLATION IN A THEOREM DEPENDENCY GRAPH IS A DOCUMENTED PHENOMENON WITH A PUBLISHED MAGNITUDE. The Mathlib4 Theorem Dependency Graph (LeanDojo Benchmark 4, v10) has 137046 nodes and 304433 edges with 43138 ISOLATED nodes — about 32 percent — where an edge from A to B means A was used in the proof of B (https://data.mendeley.com/datasets/f53dn65y88/1); dependency graphs for interactive theorem provers are themselves a studied object (https://www.researchgate.net/publication/2396953_Dependency_Graphs_for_Interactive_Theorem_Provers). The query returned nothing on PROMOTING near-miss crosslinks, so the mechanism is not attributed by this search — only the graph and its isolation.' },
+  { theorem: 'crosslink gap full total and why not auto-advance — 202 under, 81 promotable, 121 isolated',
+    searched: 'isolated nodes in a theorem dependency graph, counts and auto-promotion',
+    when: '2026-09-28', found: 'Same search as the row beside it, same result: the Mathlib4 dependency graph publishes 43138 isolated nodes of 137046 — roughly 32 percent — which is an external comparator for this row’s 121 isolated (https://data.mendeley.com/datasets/f53dn65y88/1). The query returned nothing on an auto-advance criterion over such a graph, so the row’s counts and its refusal to auto-advance are not attributed by this search.' },
+  { theorem: 'conservative auto-advance is the one-link-from-proven set — corrected to 16, not 63',
+    searched: 'one link from proven, conservative promotion in a proof dependency graph',
+    when: '2026-09-28', found: 'The graph and its isolated nodes are prior art (Mathlib4 dependency graph, 43138 isolated of 137046 — https://data.mendeley.com/datasets/f53dn65y88/1). The query returned nothing stating a one-link-from-proven promotion rule, so the criterion in this row — and its correction from 63 to 16 — is not attributed by this search.' },
+  { theorem: 'saving all experience on the way in trinities of theorems — clusters of tetrahedra moving around (su(2) trinity + sealing 4th = tetrad, 8 = merkaba, C₆ rotation)',
+    searched: 'clustering knowledge-graph triples, reusing saved derivations as clusters',
+    when: '2026-09-28', found: 'CLUSTERING TRIPLES IN A KNOWLEDGE GRAPH IS PRIOR ART. Knowledge-graph embedding models are trained on sets of triples and the resulting vectors clustered (k-means) to obtain clusters, and documents are represented as triple sets to cluster what shares a common research object — see arXiv:2208.10328, arXiv:2601.08841 and the AmpliGraph clustering tutorial (https://docs.ampligraph.org/en/1.1.0/tutorials/ClusteringAndClassificationWithEmbeddings.html). The query returned nothing on grouping PROVEN THEOREMS into trinities or on a tetrahedral cluster geometry, so the row’s mechanism is not attributed by this search — only the technique it resembles.' },
   { theorem: 'the local intelligence goes exactly as far as computation — and it measures where that is',
     searched: 'the local intelligence goes exactly as far as computation — and it measures where that is',
     when: '2026-09-21', found: null },
@@ -2424,6 +2489,42 @@ export const ATTRIBUTION_COVERAGE: readonly {
   readonly coverage: 'covers' | 'partial' | 'weaker'
   readonly why: string
 }[] = [
+  // ── EXAMINED 2026-09-28: the fourteen rows the ISO word-boundary fix freed and the same-day searches
+  // re-attributed. Judged against each row's own statement, which changed two verdicts a title would have got
+  // wrong: the Chinese Remainder Theorem row verifies THREE moduli sets of a general isomorphism, and "exactly
+  // two groups of order p²" verifies p = 3 alone — both `weaker`. Five are `partial`, and four of those are the
+  // same shape: the search attributes the OBJECT (equimolar counterdiffusion; theorem dependency graphs and
+  // their isolated nodes; knowledge-graph triple clustering) and returns nothing for the row's mechanism. That
+  // split is the reason to search rather than to pattern-match — a citation for the graph would otherwise read
+  // as coverage of the promotion rule built on it.
+  { theorem: 'PSL(2,7) is simple and matches GL(3,2)', coverage: 'covers',
+    why: 'the isomorphism is cited and the row cites it rather than claiming it — Brown’s note is written on exactly this question, and over 𝔽₂ the row’s GL(3,2) and the literature’s PSL(3,2) are one group. The 168 fractional-linear permutations with class multiset {1,21,24,24,42,56} matching GL(3,2), and zero normal candidates, are that cited isomorphism and simplicity computed at class level.' },
+  { theorem: 'the exceptional triple A₅ ≅ PSL(2,5) ≅ PSL(2,4)', coverage: 'covers',
+    why: 'PSL(2,4) ≅ PSL(2,5) ≅ A₅ is cited as an exceptional isomorphism; the row builds all three from three different fields and finds the single class multiset {1,12,12,15,20}, witnessing at class level what the citation states.' },
+  { theorem: 'PSL(2,9) matches A₆', coverage: 'covers',
+    why: 'PSL(2,9) ≅ A₆ is cited; the row builds the 360 permutations of P¹(𝔽₉) over 𝔽₃[i] and matches the sealed A₆ class multiset {1,40,40,45,72,72,90} exactly.' },
+  { theorem: 'Petersen is the unique (3,5)-cage', coverage: 'covers',
+    why: 'the uniqueness is cited plainly — the Petersen graph is THE (3,5)-cage, 10 vertices, 15 edges, the smallest cubic graph of girth 5 — and the row computes it completely for that parameter pair: Moore arithmetic forcing ≥ 10 vertices, then a WLOG-rooted exhaustion finding four girth-5 completions, every one isomorphic to Kneser K(5,2). Complete for the case it states, not a sample of it. The search found no originator for the uniqueness, so none is credited.' },
+  { theorem: 'A₄ matches PSL(2,3)', coverage: 'covers',
+    why: 'PSL(2,3) ≅ A₄ is cited with its own proof page; the row enumerates both groups raw at order 12 with identical class multiset {1,3,4,4}. Note the coincidence sits outside the simple-group literature because A₄ is not simple — it needed a query of its own.' },
+  { theorem: 'A₈ matches GL(4,2)', coverage: 'covers',
+    why: 'A₈ ≅ PSL(4,2) is cited, and over 𝔽₂ that is the row’s GL(4,2); the row builds both order-20160 groups raw and finds the identical 14-class multiset.' },
+  { theorem: 'Chinese Remainder Theorem', coverage: 'weaker',
+    why: 'the theorem holds for ANY pairwise-coprime moduli; the row constructs the solution via modular inverses and verifies reconstruction of every residue class for THREE moduli sets. Three instances of a general isomorphism ℤ/Π ≅ ∏ ℤ/mᵢ. And the name credits a nation over its authors: Sun Zi stated the special case (Sunzi Suanjing, 3rd–5th c. CE), Qin Jiushao gave the first full proof (1247), and Dickson coined the name in 1926.' },
+  { theorem: 'exactly two groups of order p² (from order-p²-abelian)', coverage: 'weaker',
+    why: 'the classification holds for EVERY prime p — exactly two groups of order p², ℤ/p² and ℤ/p × ℤ/p, both abelian. The row verifies non-isomorphism for p = 3 alone, compounding on its own proven order-p²-abelian result. One prime of an all-primes theorem.' },
+  { theorem: 'Axioms become theorems', coverage: 'covers',
+    why: 'the principle is standard foundations and is cited: the axiom/theorem distinction is a choice of starting point, not a property of a statement, so among equivalent principles any one may be taken as the axiom and the rest become provable theorems. The row’s four illustrations are each independently classical — NAND functional completeness reaching all 16 two-valued tables, commutativity of + by Peano recursion, Kepler’s laws from one force, the light postulate. Calling it "the crack law generalized to knowledge" is this corpus’s framing of a standard fact, not a separate claim.' },
+  { theorem: 'Topology does not forbid counterdiffusion', coverage: 'partial',
+    why: 'the PHENOMENON is prior art and cited: equimolar counterdiffusion has two species diffusing oppositely through one medium with equal and opposite molar fluxes at constant pressure and temperature. What the search did NOT return is any statement of a topological permission or obstruction for it, which is what the row’s title asserts. The transport physics is attributed; the topological framing is not, and a query for it came back empty rather than confirming.' },
+  { theorem: 'close the crosslink gap by computing legitimate near-crosslinks — isolated theorems honestly stay', coverage: 'partial',
+    why: 'the OBJECT is prior art with a published magnitude: theorem dependency graphs are a studied structure, and the Mathlib4 graph carries 43138 isolated nodes of 137046 — about 32 percent — so isolation is the documented normal state of such a graph rather than a defect peculiar to here. The search returned nothing on computing or PROMOTING legitimate near-crosslinks, so the row’s mechanism is the corpus expression and only the graph is attributed.' },
+  { theorem: 'crosslink gap full total and why not auto-advance — 202 under, 81 promotable, 121 isolated', coverage: 'partial',
+    why: 'same citation, same split: the dependency graph and its isolated nodes are prior art — 43138 of 137046 in Mathlib4, against this row’s 121 isolated — and the query returned nothing on an auto-advance criterion over such a graph. The counts and the refusal to auto-advance are the corpus’s own; the graph is not.' },
+  { theorem: 'conservative auto-advance is the one-link-from-proven set — corrected to 16, not 63', coverage: 'partial',
+    why: 'the graph and its isolation are attributed as above; the search found nothing stating a one-link-from-proven promotion rule. The criterion, and its correction from 63 to 16, are the corpus expression — which is worth recording precisely because a citation for the graph would otherwise read as coverage of the rule.' },
+  { theorem: 'saving all experience on the way in trinities of theorems — clusters of tetrahedra moving around (su(2) trinity + sealing 4th = tetrad, 8 = merkaba, C₆ rotation)', coverage: 'partial',
+    why: 'the TECHNIQUE it resembles is prior art: knowledge-graph triples are embedded and then clustered, and documents are represented as triple sets so that what shares a research object clusters together. The search returned nothing on grouping PROVEN THEOREMS into trinities, nor on a tetrahedral cluster geometry with a sealing fourth. The clustering of triples is attributed; the trinity-and-tetrad mechanism is not.' },
   // ── EXAMINED 2026-09-27, eighth batch — and with it EVERY attributed row that carried a citation from a real
   // search now carries a verdict. All 84 examined: 33 covers, 44 weaker, 7 partial. What remains unexamined is
   // the 274 attributed by PATTERN, where no query was ever run; those need searches, not judgements.
