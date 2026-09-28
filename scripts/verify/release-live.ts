@@ -214,7 +214,20 @@ export async function assertReleaseLive(root: string = process.cwd()): Promise<v
     }
     const published = rows.filter((r) => r.onNpm).map((r) => r.version).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
     const floor = published[0] ?? ''
+    // THE VERSION BEING RELEASED RIGHT NOW IS IN FLIGHT, NOT INCOMPLETE — AND THIS GATE DEADLOCKED THE
+    // PUBLISH BY CONFLATING THEM. zenodo-publish.yml runs verify:all BEFORE it creates the GitHub Release,
+    // verify:all chains this gate, and this gate refused because the freshly cut tag was absent from both
+    // records. It was absent because the publish had not run; the publish could not run because the gate
+    // refused. A pre-publish gate that requires the publish to have already happened cannot ever pass, and
+    // three tag runs died on it.
+    //
+    // "Incomplete" means a release that FIRED AND NEVER ARRIVED, and that is only decidable once the
+    // version is no longer the one in flight. The declared version is therefore excluded while it is the
+    // newest tagged one — every older straggler still counts, which is what the floor is for, and the
+    // moment a newer version is declared this one becomes judgeable like any other.
+    const inFlight = declared[0]?.version ?? ''
     const incomplete = rows.filter((r) => r.tagged && !(r.onNpm && r.onZenodo)
+      && r.version !== inFlight
       && (floor.length === 0 || r.version.localeCompare(floor, undefined, { numeric: true }) >= 0))
     console.log(`  · the publish path begins at ${floor || '(unknown)'} — ${rows.filter((r) => r.tagged && floor.length > 0 && r.version.localeCompare(floor, undefined, { numeric: true }) < 0).length} older tags predate it and are not counted`)
     console.log(ratchet('release.incomplete-live', incomplete.length, { law: 'a version tagged and absent from a permanent record is a release that fired without arriving, which the records themselves can settle', evidence: () => incomplete.map((r) => `${r.version}: npm=${r.onNpm} zenodo=${r.onZenodo}`) }))

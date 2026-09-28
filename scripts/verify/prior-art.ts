@@ -3797,6 +3797,22 @@ export function assertPriorArtLedger(): void {
     const unaddressed = citationsWithoutAnAddress()
     console.log(`  citations that resolve to nothing: ${unaddressed.length} of ${PRIOR_ART_SEARCHED.filter((r) => typeof r.found === 'string').length} — a DOI or URL is the difference between a claim and a check`)
     for (const u of unaddressed.slice(0, 6)) console.log(`    ${u.theorem.slice(0, 78)}`)
+    // A THEOREM WITH NO ALGEBRAIC FORM CANNOT BE CROSS-FORMULATED, WHICH IS WHY THIS IS COUNTED HERE.
+    // Every cross-formula registered in this corpus was findable because BOTH sides carried symbols:
+    // Hardy-Weinberg against mass action, the merger rule against the heterozygote term, Euler-Lotka
+    // against a bond's yield, Euclid's recursion against six disciplines at once. A row whose claim lives
+    // only in prose can be read and agreed with, and it cannot be matched to another field's identity,
+    // because there is nothing to match — matching is done on the symbols, not on the sentence.
+    //
+    // 729 of 960 registered rows are in that state. The count is a floor that falls as rows are given the
+    // form that makes them comparable; it is never a demand to invent one, because a row whose subject has
+    // no algebraic content should stay prose rather than acquire decorative notation.
+    const withAlgebra = (THEOREM_ATOM_SEED as readonly { theorem?: string; algebraicStatement?: string }[])
+    const mute = withAlgebra.filter((r) => !r.algebraicStatement || r.algebraicStatement.trim() === '')
+    console.log(ratchet('theorems.without-algebraic-statement', mute.length, {
+      law: 'a claim stated only in prose cannot be matched against another domain, because cross-formulation is performed on symbols — so a row without an algebraic form is unreachable by the mechanism that finds identities',
+      evidence: () => mute.map((r) => String(r.theorem ?? '(unnamed)')),
+    }))
     console.log(ratchet('prior-art.citation-unaddressed', unaddressed.length, { law: 'a citation that resolves to nothing cannot be opened, so it is a claim about the literature rather than a reference to it', evidence: () => unaddressed.map((u) => `no DOI and no URL, so nothing to open: ${u.theorem} → ${u.found.slice(0, 110)}`) }))
     // A GAP IS AN UNCLASSIFIED ROW NOBODY HAS CHARACTERISED. A DECLARED FRONTIER IS NOT A GAP.
     //
