@@ -1185,7 +1185,10 @@ function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
   const root = merkleFold(structuralLeaves)
   const facets = [
     { facet: `local reverse timed — ${rows.length} allowlisted N, all factored`, on: allFactored && sync.computes },
-    { facet: `generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} (production browser · sealed-catalog)`, on: generate.ok && generateMs >= 0 && reverseMs >= 0 },
+    // A MEASURED DURATION MUST NOT REACH FACET TEXT, because sealFacets seals `${tag}:${facet}:${on}`
+    // and a stopwatch reading in an address makes the address a timestamp. generateMs and reverseMs are
+    // returned as fields and still print in `statement`, which is not receipt input.
+    { facet: `generate ok and both timings non-negative (production browser · sealed-catalog; the measured generateMs · reverseMs are reported as fields, never sealed here)`, on: generate.ok && generateMs >= 0 && reverseMs >= 0 },
     { facet: `aggregateOpsPerSec=${roundTo(aggregateOpsPerSec, 3)} (suite / wall-clock)`, on: aggregateOpsPerSec > 0 },
     { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: ceiling.holds },
     { facet: `far-over + Bitcoin/mainnet REFUSED`, on: far.holds },
@@ -1649,7 +1652,8 @@ function proveLocalNovelEncryptionSecurityRaw(matrix: MindMatrix) {
     { facet: 'encrypt↔decrypt round-trip on local teaching keys (foldPair + RSA Euler)', on: tools.ready && tools.roundTrip && tools.rsaRoundTrip },
     { facet: 'encryption reverse-verify on allowlisted N only (demo Shor + toolkit)', on: reverse.verified && reverse.demoReverse },
     { facet: 'recomputeMatch', on: reverse.recomputeMatch && reverse.definitionalNotCryptanalysis },
-    { facet: `timed local reverse — reverseMs=${roundTo(localTimed.reverseMs, 3)} ops/s=${roundTo(localTimed.aggregateOpsPerSec, 3)}`, on: localTimed.computes && localTimed.reverseMs >= 0 },
+    // Same law: the measured reverseMs and the ops/s derived from it are reported as fields, not sealed.
+    { facet: `timed local reverse computes with a non-negative reverseMs (the measured reverseMs · ops/s are reported as fields, never sealed into this receipt)`, on: localTimed.computes && localTimed.reverseMs >= 0 },
     { facet: 'ISO/NIST PQC standards map composed as REFERENCE bounds (FIPS 203/204/205 + Amd 2:2026)', on: standardsMapIsReferenceOnly && fipsPresent && isoAmdPresent },
     { facet: 'directional trinity (forward·inverse·reverse) via standards audit — certified=false', on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
     { facet: `wire-vs-ISO proof-of-falsehood — demoMaxBits=${demoMaxBits} << AES-128/ML-KEM-512 classical ${aes128ClassicalBits} · overallWireClaimProved=false`, on: wireFalsehoodHolds },
@@ -1921,7 +1925,22 @@ export function localAuditQuantumSpeedEfficiency(matrix: MindMatrix = buildMatri
     coldSuite.audit.root === warmSuite.audit.root
   const slowLocalAuditGapClosed = suiteMemoHit && rootsEqual && allFacetMemoHits && suiteWarmMs <= suiteColdMs
   const facets = [
-    { facet: `suite coldMs=${roundTo(suiteColdMs, 3)} warmMs=${roundTo(suiteWarmMs, 3)} speedup=${roundTo(suiteSpeedup, 3)}×`, on: suiteColdMs >= 0 && suiteWarmMs >= 0 && (suiteSpeedup >= 1 || (suiteMemoHit && suiteWarmMs <= suiteColdMs)) },
+    // FACET TEXT IS RECEIPT INPUT, SO A STOPWATCH READING MUST NOT APPEAR IN IT. sealFacets seals
+    // `${tag}:${facet}:${on}`, so this facet's three measured milliseconds went straight into a content
+    // address — and the damage was not local. localAudit's root folds into mcpQuantumHardware, which
+    // folds into mcpQuantumCpu and mcpQuantumGpu, which fold into cpuGpuSelfBalance: three runs of
+    // IDENTICAL code against an IDENTICAL tree sealed three different roots (7e1eee60, cff91cf3,
+    // 53635cad) while every printed metric stayed byte-identical (balanceIndex=1 cpuShare=0.498
+    // gpuShare=0.498). Nothing caught it, because the census's second pass compares off-facet COUNTS
+    // inside ONE process and these folds are memoByRoot-memoized — the second call returns the memo, so
+    // the root is identical by construction and the drift is only ever visible ACROSS processes.
+    //
+    // A content address over a duration is a timestamp, not an address. The CLAIM is what the receipt
+    // should seal — warm is not slower than cold — and the `on` expression below is unchanged and still
+    // refutable. The three measurements are NOT lost: suiteColdMs, suiteWarmMs and suiteSpeedup are
+    // already returned as fields (with coldMs/warmMs/speedup aliases) and still print in `statement`,
+    // which is not receipt input.
+    { facet: `suite warm is not slower than cold — speedup ≥ 1, or memoByRoot hit with warmMs ≤ coldMs (the measured coldMs · warmMs · speedup are reported as fields, never sealed into this receipt)`, on: suiteColdMs >= 0 && suiteWarmMs >= 0 && (suiteSpeedup >= 1 || (suiteMemoHit && suiteWarmMs <= suiteColdMs)) },
     { facet: `suite memoByRoot hit — computeCount=1 · rootsEqual`, on: suiteMemoHit && rootsEqual },
     { facet: `per-facet memo hits ${facetMemoHitCount}/${facetTimings.length}`, on: allFacetMemoHits },
     { facet: 'localEncryptionReverseTimedVsStandards computes · certified=false · breaksNistPqc=false', on: localTimed.computes && localTimed.certified === false && localTimed.breaksNistPqc === false },
