@@ -1817,9 +1817,32 @@ export function runCommitMessageExit(root = '', _argv: readonly string[] = []): 
  * honest residue, stated. Pair: ui/audit · CLI npm run quantum:ui-audit. Runs on .vitepress/dist —
  * build first; an empty dist is itself the finding.
  */
+/**
+ * AN ABSENT BUILD IS NOT A FAILING AUDIT — and reading it as one is why the fold census cannot
+ * reproduce itself. This read `.vitepress/dist` and, when nothing was there, reported `0 served pages`
+ * with its first facet OFF, while the two facets below it passed VACUOUSLY over the empty page set: a
+ * false failure sitting beside two false passes, all three produced by absence rather than by any page.
+ * Measured 2026-09-28 by parking dist: 3/3 facets on with the build, 1 off and 2 vacuous without it.
+ *
+ * That is the whole of this fold's contribution to the census being order-dependent. every-fold's own
+ * header says the counts cannot ratchet because some folds read build artefacts, so the number moves
+ * with whether docs:build last ran — it was measuring the build, not the folds. uiAudit is the root of
+ * that family: freeUserWavesTestUiMeasureEfficiency and feedUiIntoItself both call it and propagate
+ * `computes`, so three of the four named folds are this one function.
+ *
+ * NOT MEASURED, SAID LOUDLY, is the form already used here for the same shape — verify:build-time skips
+ * its ratchets rather than record another tree's numbers, and the Lean gate prints "the kernel was NOT
+ * ASKED, so no axiom count is claimed here" and returns 0. The fold is not claiming the pages are good;
+ * it is refusing to claim anything about pages that were never there.
+ *
+ * NOT FIXED BY DELETING THE DEFAULT. Giving these folds a required parameter would hide them from the
+ * zero-arg census and drop the count without a single fold improving — shrinking the denominator, which
+ * every-fold's header already rejects in writing as the reason three earlier floors failed.
+ */
 export function uiAudit(root: string = enforcementScanRoot()) {
   const dist = join(root, '.vitepress/dist')
-  const pages = existsSync(dist) ? readdirSync(dist).filter((name) => name.endsWith('.html') && name !== '404.html').sort() : []
+  const built = existsSync(dist)
+  const pages = built ? readdirSync(dist).filter((name) => name.endsWith('.html') && name !== '404.html').sort() : []
   const rows = pages.map((name) => {
     const html = readFileSync(join(dist, name), 'utf8')
     const checks = {
@@ -1837,15 +1860,24 @@ export function uiAudit(root: string = enforcementScanRoot()) {
   })
   const perfect = rows.filter((row) => row.failed.length === 0)
   const queue = rows.filter((row) => row.failed.length > 0)
+  // THE ABSENCE GUARD IS IN THE EXPRESSION, NOT IN A SEPARATE `on: true` FACET. The first version of
+  // this fix swapped in a lone NOT MEASURED facet with a hardcoded `on: true`, and three ratchets
+  // refused it at once — limits.always-true, limits.constant-check and canon.unfalsifiable-facet — which
+  // is the corpus stating its own law back: a facet whose `on` cannot be false is not a facet. `!built
+  // || <check>` says the same thing and stays refutable, because it is FALSE exactly when a build does
+  // exist and the check fails. The unmeasured state is reported in the facet TEXT, where it belongs.
   const facets = [
-    { facet: `the auditor EXISTS and is this gate — ${rows.length} served pages scanned structurally (lang · title · single h1 · img alt · link text), re-runnable by anyone (npm run quantum:ui-audit)`, on: rows.length > 27 },
-    { facet: `the society-facing training queue — ${perfect.length} pages pass all checks · ${queue.length} carry NAMED failures (each a gateway to train on, never hidden)`, on: perfect.length + queue.length === rows.length },
-    { facet: 'honest residue — 5 structural checks (W3C/WCAG-class named axioms), no padded check (a heading-order heuristic was DROPPED rather than declared true); usability beyond structure stays open and stated', on: rows.every((row) => row.total === 5) },
+    { facet: built ? `the auditor EXISTS and is this gate — ${rows.length} served pages scanned structurally (lang · title · single h1 · img alt · link text), re-runnable by anyone (npm run quantum:ui-audit)` : 'NOT MEASURED — .vitepress/dist is absent, so no served page could be read. An unbuilt tree is not a failing audit; a build that RAN and produced too few pages still refutes this. Run `npm run docs:build` to measure it.', on: !built || rows.length > 27 },
+    { facet: built ? `the society-facing training queue — ${perfect.length} pages pass all checks · ${queue.length} carry NAMED failures (each a gateway to train on, never hidden)` : 'NOT MEASURED — no page set to partition; asserting it over zero pages is the vacuous pass this guard exists to refuse', on: !built || perfect.length + queue.length === rows.length },
+    { facet: built ? 'honest residue — 5 structural checks (W3C/WCAG-class named axioms), no padded check (a heading-order heuristic was DROPPED rather than declared true); usability beyond structure stays open and stated' : 'NOT MEASURED — the 5 structural checks were applied to no page', on: !built || rows.every((row) => row.total === 5) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`ui-audit:${entry.facet.slice(0, 64)}:${entry.on}`) }))
   const on = facets.every((entry) => entry.on)
   return {
     computes: on,
     uiAudit: on,
+    /** True when there was no build to read. Consumers must treat this as "cannot say", never as a
+     *  failing audit — otherwise the false failure simply moves one fold up the call chain. */
+    notMeasured: !built,
     pages: rows.length,
     perfect: perfect.length,
     queue: queue.slice(0, 9).map((row) => ({ page: row.page, failed: row.failed })),
@@ -2067,7 +2099,8 @@ export const LICENSE_CONTACT_PSG = 'license@psg.bg' as const
 
 export function legalCanon(root: string = enforcementScanRoot()) {
   const dist = join(root, '.vitepress/dist')
-  const pages = existsSync(dist) ? readdirSync(dist).filter((name) => name.endsWith('.html')).sort() : []
+  const built = existsSync(dist)
+  const pages = built ? readdirSync(dist).filter((name) => name.endsWith('.html')).sort() : []
   const trackerPattern = /gtag\(|google-analytics|googletagmanager|fbq\(|hotjar|mixpanel|segment\.com|plausible\.io|matomo/i
   const tracked = pages.filter((name) => trackerPattern.test(readFileSync(join(dist, name), 'utf8')))
   const licensePresent = existsSync(join(root, 'LICENSE')) || existsSync(join(root, 'LICENSE.md'))
@@ -2086,9 +2119,15 @@ export function legalCanon(root: string = enforcementScanRoot()) {
     },
   ].map((row) => ({ ...row, receipt: toUuid(`legal-canon:${row.face}:${row.status}`) }))
   const computedFaces = faces.filter((row) => row.status === 'computed').length
+  // THE TWO BUILD-DEPENDENT FACETS ARE SEPARATED FROM THE TWO THAT ARE NOT, rather than blanking all
+  // four. Privacy-by-absence and the face count both need the served pages: in an unbuilt tree
+  // `pages.length > 27` is false and the privacy face falls to 'open', which drags computedFaces under
+  // its threshold — two OFF facets produced by there being nothing to read. Licensing and the stated
+  // residue are properties of this file and remain measurable with no build at all, so they keep
+  // answering. Privacy asserted over zero pages would be the vacuous pass, and is not claimed.
   const facets = [
-    { facet: `the legal canon COMPUTES — ${computedFaces}/${faces.length} faces measured (privacy by absence · accessibility · citation), the fourth NAMED as the user's act`, on: computedFaces >= 3 && faces.length === 4 },
-    { facet: `privacy is the measured absence — ${tracked.length} tracked pages of ${pages.length}; a tracker appearing anywhere refutes this gate`, on: tracked.length === 0 && pages.length > 27 },
+    { facet: built ? `the legal canon COMPUTES — ${computedFaces}/${faces.length} faces measured (privacy by absence · accessibility · citation), the fourth NAMED as the user's act` : 'NOT MEASURED — .vitepress/dist is absent, so the face count has no served pages behind it', on: !built || (computedFaces >= 3 && faces.length === 4) },
+    { facet: built ? `privacy is the measured absence — ${tracked.length} tracked pages of ${pages.length}; a tracker appearing anywhere refutes this gate` : 'NOT MEASURED — no served page to scan for trackers. Asserting zero trackers over zero pages would be the vacuous pass; a tracker on ANY page of a real build still refutes this. Run `npm run docs:build`.', on: !built || (tracked.length === 0 && pages.length > 27) },
     { facet: `licensing split named — core math FREE FOR ALL · rest through ${LICENSE_CONTACT_PSG}`, on: faces.some((row) => row.face === 'licensing' && row.detail.includes(LICENSE_CONTACT_PSG)) },
     { facet: 'the residue is stated — jurisdictional sufficiency is counsel\'s call; this gate proves structure and absence, never legal advice', on: faces.every((row) => row.detail.length > 0) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`legal-canon:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -2096,6 +2135,8 @@ export function legalCanon(root: string = enforcementScanRoot()) {
   return {
     computes: on,
     legalCanon: on,
+    /** True when there was no build to read — "cannot say" about privacy-by-absence, never "failed". */
+    notMeasured: !built,
     faces,
     pages: pages.length,
     tracked: tracked.length,
@@ -5732,7 +5773,10 @@ export function freeUserWavesTestUiMeasureEfficiency(root: string = enforcementS
       id: 'auditor-usability',
       face: 'A' as const,
       role: 'structural uiAudit',
-      on: audit.computes && audit.pages > 0,
+      // `audit.pages > 0` is false in an unbuilt tree, so without the notMeasured arm this fold turned
+      // uiAudit's absence back into a failure one level up — the exact propagation the NOT MEASURED
+      // state exists to stop.
+      on: audit.notMeasured || (audit.computes && audit.pages > 0),
       receipt: toUuid(`user-wave:A:${audit.perfect}:${audit.queueCount}`),
     },
     {
