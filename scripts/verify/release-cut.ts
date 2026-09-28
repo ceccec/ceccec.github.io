@@ -28,7 +28,7 @@ import { conceptRecordFromCitation, citationVersion, declaredVersions, npmLive, 
 type Cell = { readonly condition: string; readonly surface: string; readonly holds: boolean | null; readonly says: string }
 
 const git = (...args: string[]) => String(spawnSync('git', args, { encoding: 'utf8', timeout: 60_000 }).stdout ?? '').trim()
-const gate = (script: string) => spawnSync('npm', ['run', script], { encoding: 'utf8', timeout: 1_800_000 }).status === 0
+const gate = (script: string, args: readonly string[] = []) => spawnSync('npm', ['run', script, ...args], { encoding: 'utf8', timeout: 1_800_000 }).status === 0
 
 /**
  * THE GATES THE PUBLISH RUNS, READ FROM THE WORKFLOWS RATHER THAN LISTED HERE.
@@ -55,7 +55,7 @@ const gate = (script: string) => spawnSync('npm', ['run', script], { encoding: '
  * reproduction instruction for a reader, never executed. A detector's own count is a claim, so the body of
  * every heredoc is skipped and the count is nine.
  */
-export type PublishGate = { readonly gate: string; readonly workflow: string; readonly step: string }
+export type PublishGate = { readonly gate: string; readonly args: readonly string[]; readonly workflow: string; readonly step: string }
 
 const PUBLISHES = /npm\s+publish|pnpm\s+publish|gh\s+release\s+(create|upload)/
 
@@ -80,8 +80,14 @@ export function publishTimeGates(root: string = process.cwd()): PublishGate[] {
       if (named) { step = named[1] ?? ''; continue }
       if (PUBLISHES.test(line)) { published = true; continue }
       if (published) continue
-      const ran = /npm\s+run\s+([A-Za-z0-9:_-]+)/.exec(line)
-      if (ran?.[1]) found.push({ gate: ran[1], workflow: file, step })
+      // THE ARGUMENTS ARE PART OF THE COMMAND, AND DROPPING THEM INVENTED A FAILURE. The first version
+      // captured the script name alone, so `npm run build --prefix packages/double-torus` became
+      // `npm run build` — which does not exist at the root, because that build lives in the package. The
+      // matrix then refused a release on a red cell it had manufactured itself. A parser that rewrites the
+      // command it claims to be checking is worse than no parser: it was right to refuse what it ran, and
+      // what it ran was not what the publish runs.
+      const ran = /npm\s+run\s+([A-Za-z0-9:_-]+)((?:\s+[^\s|&;]+)*)/.exec(line)
+      if (ran?.[1]) found.push({ gate: ran[1], args: (ran[2] ?? '').trim().split(/\s+/).filter(Boolean), workflow: file, step })
     }
   }
   const seen = new Set<string>()
@@ -109,7 +115,7 @@ export async function releaseReadiness(root: string = process.cwd()): Promise<{ 
     // A PARSER THAT FINDS NOTHING MUST NOT READ AS GREEN: an empty set makes every derived cell vacuously
     // true and would certify a publish this matrix never tested, so the emptiness is its own red cell.
     { condition: 'tested', surface: 'workflows', holds: discovered.length > 0, says: discovered.length > 0 ? `${discovered.length} publish-time command(s) discovered from the tag-fired workflows — each is a cell below` : 'NO publish-time commands discovered — the workflow parser found nothing, so nothing below was tested' },
-    ...discovered.map((g): Cell => ({ condition: 'tested', surface: g.workflow.replace(/\.ya?ml$/, ''), holds: gate(g.gate), says: `npm run ${g.gate} — ${g.step}` })),
+    ...discovered.map((g): Cell => ({ condition: 'tested', surface: g.workflow.replace(/\.ya?ml$/, ''), holds: gate(g.gate, g.args), says: `npm run ${[g.gate, ...g.args].join(' ')} — ${g.step}` })),
     // STABLE — the tree is exactly what was measured, and it is the tree the world has
     { condition: 'stable', surface: 'git', holds: branch === 'main' && !dirty && head === upstream && head.length > 0, says: `on main=${branch === 'main'} clean=${!dirty} pushed=${head === upstream}` },
     { condition: 'stable', surface: 'repo', holds: new Set(declared.map((d) => d.version)).size === 1 && citation === version, says: `every package.json and CITATION.cff agree on ${version || '(none)'}` },
