@@ -266,7 +266,21 @@ export function findCanonBreaks(root: string = process.cwd()): {
         // reproduces. It is excluded by name, the same way this gate records its own test-input exception
         // below rather than repairing a test to flatter a count.
         const MEASURED = /(?:^|[a-z])(?:Ms|Ns)$|^(?:elapsed|speedup|coldMs|warmMs)|PerSec|[Tt]hroughput|aggregateOps/
-        const DERIVED_NOT_MEASURED = /^threshold(?:Ms)?$|A432|THRESHOLD/
+        // SIX NAMED EXCEPTIONS, EACH READ AND VERIFIED, because spelling cannot tell a unit from a sector.
+        // `dFromNs` in water/cosmos is NEVEU-SCHWARZ, not nanoseconds. The rest are derived constants whose
+        // own facets prove they are constants: cycleMs === A432_FOLDED * 1e3, spinPeriodMs === HERO_C…,
+        // claimedBitsPerSec === (2*5)**(3*4) which IS the SI definition of 1 Tbit/s, attemptsPerSecondLog2
+        // is a documented threat-model rate, speedupOrders is derived from published LLM FLOP counts. All
+        // six reproduce, so flagging them would send the next agent to repair working folds — this gate's
+        // own note on the `void <param>` detector says exactly why that costs more than it finds.
+        //
+        // A DATAFLOW VERSION WAS TRIED AND REVERTED. Keying on provenance — a name is time-derived when its
+        // initializer calls a clock or references such a name — sounds strictly better and measured 212
+        // against a true count near 28, because ts.isIdentifier also matches PROPERTY names, so the
+        // reference set was polluted and the fixpoint cascaded. An earlier draft of it also stopped this
+        // gate finishing inside its timeout. Spelling plus six verified exceptions is the honest instrument;
+        // the clever one was wrong in the other direction and by more.
+        const DERIVED_NOT_MEASURED = /^threshold(?:Ms)?$|A432|THRESHOLD|^cycleMs$|^spinPeriodMs$|^dFromNs$|^attemptsPerSecondLog2$|^claimedBitsPerSec$|^speedupOrders$/
         const facetProp = n.properties.find((p) => ts.isPropertyAssignment(p) && p.name && ts.isIdentifier(p.name) && p.name.text === 'facet')
         if (facetProp && ts.isPropertyAssignment(facetProp) && ts.isTemplateExpression(facetProp.initializer)) {
           const sealsTime = facetProp.initializer.templateSpans.some((span) => {
