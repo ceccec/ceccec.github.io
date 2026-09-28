@@ -30,6 +30,12 @@ export declare function encryptionSequenceReflection(matrix?: MindMatrix): {
         recovered: string;
     };
     symmetryHolds: boolean;
+    plaintextRecovered: boolean;
+    verifiesByRecomputation: boolean;
+    oneWay: boolean;
+    keyIsSymmetric: boolean;
+    exchangeTransposes: boolean;
+    asymmetryIsLoadBearing: boolean;
     fullyReversible: boolean;
     forward_computed: boolean;
     reflection_computed: boolean;

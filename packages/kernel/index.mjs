@@ -655,6 +655,15 @@ function clayReflection() {
     root: toUuid(`clay-reflect:${thisDimension}:${beyond}:${clay}`)
   };
 }
+function digitSeal(d, base, spectrum, polarities) {
+  const root = () => merkleFold([
+    base.root(),
+    ...spectrum.map((r) => toUuid(`angle:${d}:${r.k}:${r.image}`)),
+    toUuid(`polarity:${d}:${polarities.tensPair}:${polarities.ninePair}:${polarities.forward}:${polarities.reverse}`)
+  ]);
+  const statement = () => `digit ${d}: angles {${spectrum.map((r) => r.image).join(" ")}}, polarities \u03C3=${polarities.tensPair}/\u03BD=${polarities.ninePair} fwd=${polarities.forward}/rev=${polarities.reverse}, proven ${base.prove().ok}, seal ${root().slice(0, 6 * 2)}\u2026`;
+  return { root, statement };
+}
 function digitStation(d, theorems = []) {
   const reflect = reflectThroughZero(d);
   const reflections = { at180: reflect, at90: reflectFold(d, 9 * 5 * 2), at60: reflectFold(d, 9 * 5 * 4 / 3) };
@@ -1453,6 +1462,20 @@ function lcm(a, b) {
   const g = gcd(a, b);
   return g === 0 ? 0 : Math.abs(a / g * b);
 }
+function multiplicativeOrder(a, n) {
+  const m = Math.abs(Math.round(n));
+  if (m < 2) return null;
+  const base = (Math.round(a) % m + m) % m;
+  if (gcd(base, m) !== 1) return null;
+  let mod = base;
+  let r = 1;
+  while (mod !== 1) {
+    mod = mod * base % m;
+    r++;
+    if (r > m) return null;
+  }
+  return r;
+}
 function modUnits(n) {
   return Array.from({ length: n }, (_, i) => i).filter((i) => gcd(i, n) === 1);
 }
@@ -1629,6 +1652,7 @@ export {
   decodeVortexOperations,
   derivePublicKey,
   digit0,
+  digitSeal,
   digitStation,
   digitalRoot,
   dimensionalBit,
@@ -1681,6 +1705,7 @@ export {
   merkleFold,
   min,
   modUnits,
+  multiplicativeOrder,
   nextDuality,
   parseVortexDashEncoded,
   pbits,

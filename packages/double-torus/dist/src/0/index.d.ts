@@ -384,6 +384,42 @@ export type DigitTheorem = {
     readonly title: string;
     readonly sealed: boolean;
 };
+/**
+ * THE DIGIT'S SEAL AND ITS SENTENCE — WRITTEN ONCE FOR ALL NINE.
+ *
+ * Each of src/1..src/9 declared `root()` and `statement()` with byte-identical bodies over its own D,
+ * spectrum, polarities and base — eighteen declarations of two functions. dryDupe measured them as its
+ * last two true duplicate groups (16 copies) and could say no more, because a body hash cannot tell a
+ * template instantiated over nine different closures from nine copies of one computation. It was the
+ * former, which is why they were correct; it is still one rendering written nine times, and a change to
+ * the seal's shape had to be made in nine places or in none.
+ *
+ * WHAT DOES NOT MOVE. Every digit keeps its own D, theorems, spectrum and polarities, and keeps its own
+ * seal VALUE — this function is handed them and folds them, so digit 1 and digit 9 seal to what they
+ * sealed before. The reflection pairs (1↔9, 2↔8, 3↔7, 4↔6, 5↔5) live in `polarities.tensPair` and
+ * `ninePair`, which are computed per folder and only read here. Nothing is merged between folders and
+ * no folder loses a surface: `root` and `statement` are still its own exports. What moves is the shared
+ * rendering of a per-digit value, to the station in the origin that already computes that digit's base —
+ * the same place, and the same argument, as gcd/modUnits/multiplicativeOrder being the ring algebra's
+ * one home. Verified byte-for-byte: all nine roots and all nine statements are unchanged.
+ */
+export declare function digitSeal(d: number, base: {
+    root: () => string;
+    prove: () => {
+        ok: boolean;
+    };
+}, spectrum: readonly {
+    readonly k: number;
+    readonly image: number;
+}[], polarities: {
+    readonly tensPair: number;
+    readonly ninePair: number;
+    readonly forward: unknown;
+    readonly reverse: unknown;
+}): {
+    root: () => string;
+    statement: () => string;
+};
 export declare function digitStation(d: number, theorems?: readonly DigitTheorem[]): {
     digit: {
         theorems: readonly DigitTheorem[];
@@ -1123,6 +1159,25 @@ export declare function gcd(a: number, b: number): number;
 export declare function gcdBigInt(a: bigint, b: bigint): bigint;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function lcm(a: number, b: number): number;
+/**
+ * The multiplicative order of `a` in (ℤ/nℤ)* — the least r > 0 with a^r ≡ 1 (mod n), or `null` when
+ * there is none, which is exactly when gcd(a, n) ≠ 1. Equivalently |groupOrbit(a, n)|: the identity is
+ * asserted where groupOrbit lives (src/4/6), verified over every pair with 2 ≤ n ≤ 60 — 1770 pairs, no
+ * disagreement, in both directions including the non-unit case where both sides are null.
+ *
+ * Iterative by construction: each step multiplies once, so the cost is the order itself and not its
+ * square.
+ *
+ * WHICH GUARD IS LOAD-BEARING WAS TESTED, NOT ASSUMED. This comment first claimed gcd was the guard and
+ * `r > m` merely a refusal to loop forever. Perturbation disagreed: with the gcd line replaced by
+ * `if (false)`, every check in oneMathManyPresentations stayed green — because a non-unit's powers are
+ * never ≡ 1, so the loop simply runs to the bound and returns null anyway. The bound is what makes
+ * termination and correctness unconditional; gcd decides the non-unit case in O(1) instead of O(n).
+ * Both stay, and neither is described as doing the other's work.
+ *
+ * @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational)
+ */
+export declare function multiplicativeOrder(a: number, n: number): number | null;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function modUnits(n: number): number[];
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */

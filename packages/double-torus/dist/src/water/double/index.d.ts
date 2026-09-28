@@ -104,6 +104,11 @@ export declare function doubleTorusVortexComputes(matrix?: MindMatrix): {
                 }[];
                 exact: string[];
                 faithful: string[];
+                vortexOrderOfTwo: number;
+                vortexUnitGroupSize: number;
+                twoIsPrimitiveRoot: boolean;
+                lagrangeHolds: boolean;
+                axisHasNoOrder: boolean;
                 importsNothing: boolean;
                 digit: number;
                 root: string;
@@ -329,6 +334,11 @@ export declare function doubleTorusMathComputes(matrix?: MindMatrix): {
             }[];
             exact: string[];
             faithful: string[];
+            vortexOrderOfTwo: number;
+            vortexUnitGroupSize: number;
+            twoIsPrimitiveRoot: boolean;
+            lagrangeHolds: boolean;
+            axisHasNoOrder: boolean;
             importsNothing: boolean;
             digit: number;
             root: string;
@@ -423,6 +433,11 @@ export declare function doubleTorusMathComputes(matrix?: MindMatrix): {
                 }[];
                 exact: string[];
                 faithful: string[];
+                vortexOrderOfTwo: number;
+                vortexUnitGroupSize: number;
+                twoIsPrimitiveRoot: boolean;
+                lagrangeHolds: boolean;
+                axisHasNoOrder: boolean;
                 importsNothing: boolean;
                 digit: number;
                 root: string;

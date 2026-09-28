@@ -526,6 +526,7 @@ export declare function soundWiredToOneSharedContext(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** Browser-safe root: bare `process` is undefined under the dev-client shim. */
 /**
  * Count the places an AudioContext is actually CONSTRUCTED, across src and the render
  * harness. Returns 0 under the browser shim (no fs), which is honest: nothing was scanned.

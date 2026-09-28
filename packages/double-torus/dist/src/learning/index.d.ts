@@ -2200,3 +2200,65 @@ export declare function discoveryEconomyIsTheCoreOfCompetitionAndEducation(matri
     statement: string;
     boundary: string;
 };
+/**
+ * THE TWELVE LEARNING AREAS — the author's school architecture, and an ENUMERATED AXIOM stated as one.
+ *
+ * schoolCurriculum beside this is a ladder by AGE: kids → children → preteens → teens, each stage teaching one
+ * of this corpus's own ideas. It says nothing about SUBJECTS, so the question "which science is inside circus,
+ * or textile work, or rhythm" had no surface here at all. These twelve areas are that surface. They are data,
+ * not a theorem: nobody derives a curriculum, and pretending otherwise would be the hardcoded-value defect
+ * wearing a pedagogical hat. What IS computed is the entanglement below.
+ *
+ * FOUR TRANSVERSAL DIMENSIONS run through every area rather than becoming a thirteenth: Making, Understanding,
+ * Encountering, Reflecting. Recorded as declared, and deliberately NOT folded into this corpus's other
+ * four-fold structures (the CMYK channels, the tetrad, the four seals). A shared cardinality is a coincidence
+ * until something makes it one, and HARMONY ≠ TRUTH is a standing rule here.
+ */
+export declare const SCHOOL_TRANSVERSALS: readonly ["Making", "Understanding", "Encountering", "Reflecting"];
+export declare const SCHOOL_AREAS: readonly {
+    readonly name: string;
+    readonly topics: readonly string[];
+}[];
+/**
+ * WHERE A SCHOOL TOPIC MEETS A PROVEN THEOREM — declared per topic, and every link must RESOLVE.
+ *
+ * The first attempt at this measured the entanglement by matching each area's vocabulary against the theorem
+ * titles, and it was worthless: "nature" matched Minkowski SIGNATURE and Perrin primality SIGNATURE, "identity"
+ * matched Ptolemy's and Cassini's ALGEBRAIC identities rather than anything a person has, "law" matched the
+ * ideal gas law, and "memory" matched content-addressable computer memory. Eleven of twelve areas looked
+ * covered and almost none of it was real — the same substring-homonym defect as \bISO firing on "isomorphic".
+ *
+ * So a link is written, not discovered, and it carries the theorem's EXACT registry name. That makes it
+ * refutable by the one thing that matters: schoolAreasEntangleScience checks every link against
+ * THEOREM_ATOM_SEED, so renaming or removing a theorem breaks the link and the fold's facet goes false. A
+ * declared list whose every entry must resolve is an axiom with an address; a vocabulary match is a guess.
+ *
+ * WHAT IS NOT HERE IS THE POINT. Circus, theatre, dance, first aid, tenancy, migration, solitude — most of the
+ * 155 topics have no sealed theorem in this corpus to point at, and the fold counts them rather than hiding
+ * them. Those are leads: juggling has Shannon's theorem and the siteswap average, a tightrope is a torque
+ * balance, a stage is Sabine's reverberation and the inverse-square law, and none of that is proven here yet.
+ */
+export declare const SUBJECT_SCIENCE_LINKS: readonly {
+    readonly topic: string;
+    readonly theorem: string;
+    readonly why: string;
+}[];
+/** Which learning areas already stand on proven theorems, and which have nothing to stand on yet. */
+export declare function schoolAreasEntangleScience(matrix?: MindMatrix): {
+    computes: boolean;
+    areas: number;
+    topics: number;
+    links: number;
+    dangling: string[];
+    areasReached: string[];
+    unlinkedTopics: number;
+    transversals: readonly ["Making", "Understanding", "Encountering", "Reflecting"];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

@@ -517,6 +517,11 @@ export declare function proofRegistry(matrix?: MindMatrix): ({
         }[];
         exact: string[];
         faithful: string[];
+        vortexOrderOfTwo: number;
+        vortexUnitGroupSize: number;
+        twoIsPrimitiveRoot: boolean;
+        lagrangeHolds: boolean;
+        axisHasNoOrder: boolean;
         importsNothing: boolean;
         digit: number;
         root: string;

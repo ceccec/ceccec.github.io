@@ -277,6 +277,11 @@ export declare function quantumScienceComputes(matrix?: MindMatrix, at?: number)
                     }[];
                     exact: string[];
                     faithful: string[];
+                    vortexOrderOfTwo: number;
+                    vortexUnitGroupSize: number;
+                    twoIsPrimitiveRoot: boolean;
+                    lagrangeHolds: boolean;
+                    axisHasNoOrder: boolean;
                     importsNothing: boolean;
                     digit: number;
                     root: string;
@@ -742,6 +747,11 @@ export declare function quantumSciencePanelComputes(matrix?: MindMatrix, at?: nu
                         }[];
                         exact: string[];
                         faithful: string[];
+                        vortexOrderOfTwo: number;
+                        vortexUnitGroupSize: number;
+                        twoIsPrimitiveRoot: boolean;
+                        lagrangeHolds: boolean;
+                        axisHasNoOrder: boolean;
                         importsNothing: boolean;
                         digit: number;
                         root: string;

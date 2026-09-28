@@ -512,9 +512,21 @@ export async function runThinMount(entryRel: string, exportName: string, root: s
   if (typeof fn !== 'function') throw new Error(`export ${exportName} not found in ${entryRel}`)
   const compact = argv.includes('--compact')
   const passArgv = argv.filter((a) => a !== '--compact')
-  // Exit-style fns declare (root, argv) and receive them; fns with zero declared params (matrix folds,
-  // whose defaults build the matrix) run bare — the root string must never arrive as a MindMatrix.
-  const result = await (fn.length >= 1 ? fn(root, passArgv) : fn())
+  // EXIT-STYLE FNS DECLARE (root, argv) AND MUST RECEIVE THEM; matrix folds, whose defaults build the
+  // matrix, run bare — the root string must never arrive as a MindMatrix. That was the intent here and
+  // `fn.length >= 1` was the wrong instrument for it, because Function.length counts only the parameters
+  // BEFORE the first default. Every gate in this repository is declared `(root = process.cwd(), argv = [])`,
+  // so every one of them measured 0 and was called with NOTHING — 420 exported *Exit functions, each
+  // working only because its own default supplied the root, and each with an argv that was permanently
+  // empty. Nothing failed loudly: a flag simply had no effect. `npm run release:cut -- --push` printed
+  // "Nothing was pushed: ... it needs --push" while --push was on the command line, so the one manual
+  // confirmation in the release could never be given.
+  //
+  // The name is the contract and the name is what is read. Every *Exit export takes root first — measured,
+  // zero of them take a matrix — so `Exit` decides it, and fn.length only still admits the explicit
+  // (root, argv) spellings that already worked.
+  const exitStyle = /Exit$/.test(exportName) || fn.length >= 1
+  const result = await (exitStyle ? fn(root, passArgv) : fn())
   if (typeof result === 'number') return result
   if (result !== undefined && compact && typeof result === 'object') {
     process.stdout.write(`${compactFoldSummary(result as Record<string, unknown>)}\n`)

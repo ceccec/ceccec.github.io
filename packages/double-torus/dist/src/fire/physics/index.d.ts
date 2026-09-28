@@ -1033,3 +1033,79 @@ export declare function colourMapsAreTwoMapsAndOnlyOneRoundTrips(): {
     statement: string;
     boundary: string;
 };
+/**
+ * THE AVERAGING THEOREM, EXHAUSTED — AND CHECKED PAST ITS OWN WINDOW.
+ *
+ * A vanilla siteswap is juggleable exactly when i ↦ (i + s_i) mod n permutes ℤ/n, and then the ball count is
+ * the plain average of its digits. That the average is even an INTEGER is part of the claim and not an
+ * assumption, which is why it is a separate facet. Two independent routes agree: the digit average, and a
+ * simulation counting balls actually in flight at a late instant.
+ *
+ * THE SIMULATION WAS WRONG TWICE BEFORE IT AGREED, and both errors are worth keeping. The first counted only
+ * throws spanning beat 0 for beats below the period, so period 1 could never report more than one ball and [2]
+ * came back as 1. The second was off by exactly one everywhere — [3] gave 2 — because the ball thrown AT the
+ * instant of measurement is in hand and still one of the balls. A route that agrees with the theorem only after
+ * being repaired twice is worth more than one written to agree.
+ *
+ * PRIOR ART is Buhler, Eisenbud, Graham and Wright, Juggling Drops and Descents, Amer. Math. Monthly 101 (1994)
+ * 507–519, doi:10.1080/00029890.1994.11996984, who formalised patterns as permutations and gave exactly this
+ * validity condition. It is NOT Shannon's juggling theorem, which relates dwell, flight and vacant times to
+ * balls and hands and is a different result; conflating the two was an error of mine, corrected in the ledger.
+ *
+ * ONE THEOREM, ONE FOLD. This was half of a fold that proved two registry rows at once, and a fold that proves
+ * two theorems cannot give either of them a witness: `deriveProofWitnesses` requires the numbers drawn from a
+ * proof to be unique to one theorem, so both rows fell back to a title-keyword template. Splitting the proof is
+ * what earns each row its own numbers — the same structural defect as the 267 rows that still share a provedBy.
+ */
+export declare function siteswapAverageProven(matrix?: MindMatrix): {
+    computes: boolean;
+    juggleablePatterns: number;
+    nonIntegerAverages: number;
+    routesDisagree: number;
+    beyondWindowPatterns: number;
+    beyondWindowFailures: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * THE FIRST MOMENT VANISHES EXACTLY AT BALANCE, AND THE POLE IS INERTIA.
+ *
+ * Rotational equilibrium about a pivot holds exactly when the first moment vanishes, Σ m_i r_i = 0, which is the
+ * same statement as the centre of mass lying over the pivot — the two formulations are checked against each
+ * other over the whole (m, r) grid rather than argued.
+ *
+ * And the long pole a wire walker carries is not balance but INERTIA: mass m at ±d raises the moment of inertia
+ * by exactly 2md², so the same disturbing torque produces angular acceleration smaller by the factor
+ * I/(I + 2md²) — for a 2 kg pole at 3 m against a 60 kg·m² body, 0.625. That ratio is the pole's whole function
+ * and it is arithmetic, not lore.
+ *
+ * THE FIRST VERSION OF THAT CLAIM WAS A FLOAT IDENTITY AND THE FOLD REFUSED ITSELF ON IT. Asserting
+ *     (I / (I + 2md²)) × (I + 2md²) === I
+ * is exact in ℚ and FALSE in IEEE doubles for some of these triples, so `computes` went false on a claim that
+ * was right about arithmetic and wrong about the arithmetic being used. Restated in the form that can be checked
+ * exactly: adding the pole STRICTLY reduces the angular acceleration a given torque produces, and reduces it
+ * monotonically in reach. Both are integer comparisons of inertias —
+ *     α′ < α ⇔ I < I + 2md²,  and  α′(d₂) < α′(d₁) ⇔ d₁ < d₂
+ * — with no division anywhere, which is what makes the verification exact rather than nearly exact.
+ *
+ * SCOPE, as a fact about the subject rather than a disclaimer: this is elementary statics over a grid of masses
+ * and reaches. A real walker's recovery is neuromuscular control, which is not mechanics and is not modelled.
+ */
+export declare function poleInertiaProven(matrix?: MindMatrix): {
+    computes: boolean;
+    momentConfigs: number;
+    momentDisagreements: number;
+    poleTriples: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};

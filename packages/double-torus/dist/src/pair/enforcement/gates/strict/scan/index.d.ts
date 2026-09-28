@@ -941,14 +941,6 @@ export declare function cssMath(root?: string): {
 };
 /** npm run quantum:css-math (dual css-api) */
 export declare function runCssMathExit(root?: string, _argv?: readonly string[]): number;
-/**
- * dryDupe — USER DIRECTIVE (2026-07-24): improve dry clean. The improvement is MEASUREMENT by
- * content-address: every function body in src is normalised (strings/comments stripped, whitespace
- * folded) and hashed — identical hashes are the SAME payload stored at two addresses, exactly what the
- * content-address law forbids (one payload, one address). Duplicate groups are the computed clean
- * queue; the animation/movie/hero subset answers the queued animation-reuse dry-clean directive.
- * Pair: dry/dupe · CLI npm run quantum:dry-dupe. Detection only — the cleans land in waves.
- */
 export declare function dryDupe(root?: string): {
     computes: boolean;
     dryDupe: boolean;

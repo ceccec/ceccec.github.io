@@ -327,6 +327,11 @@ export declare function resonanceResearch(matrix?: MindMatrix): {
             }[];
             exact: string[];
             faithful: string[];
+            vortexOrderOfTwo: number;
+            vortexUnitGroupSize: number;
+            twoIsPrimitiveRoot: boolean;
+            lagrangeHolds: boolean;
+            axisHasNoOrder: boolean;
             importsNothing: boolean;
             digit: number;
             root: string;
@@ -1078,6 +1083,11 @@ export declare function resonanceSimulationPanelComputes(matrix?: MindMatrix, at
                     }[];
                     exact: string[];
                     faithful: string[];
+                    vortexOrderOfTwo: number;
+                    vortexUnitGroupSize: number;
+                    twoIsPrimitiveRoot: boolean;
+                    lagrangeHolds: boolean;
+                    axisHasNoOrder: boolean;
                     importsNothing: boolean;
                     digit: number;
                     root: string;
@@ -1762,6 +1772,11 @@ export declare function resonanceComputes(matrix?: MindMatrix, at?: number): {
                 }[];
                 exact: string[];
                 faithful: string[];
+                vortexOrderOfTwo: number;
+                vortexUnitGroupSize: number;
+                twoIsPrimitiveRoot: boolean;
+                lagrangeHolds: boolean;
+                axisHasNoOrder: boolean;
                 importsNothing: boolean;
                 digit: number;
                 root: string;

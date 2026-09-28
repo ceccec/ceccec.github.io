@@ -339,6 +339,11 @@ export declare function quantumStateEvolutionDecoded(at?: number, matrix?: MindM
             }[];
             exact: string[];
             faithful: string[];
+            vortexOrderOfTwo: number;
+            vortexUnitGroupSize: number;
+            twoIsPrimitiveRoot: boolean;
+            lagrangeHolds: boolean;
+            axisHasNoOrder: boolean;
             importsNothing: boolean;
             digit: number;
             root: string;
@@ -634,6 +639,11 @@ export declare function quantumDynamicsSimulationPanelComputes(matrix?: MindMatr
                     }[];
                     exact: string[];
                     faithful: string[];
+                    vortexOrderOfTwo: number;
+                    vortexUnitGroupSize: number;
+                    twoIsPrimitiveRoot: boolean;
+                    lagrangeHolds: boolean;
+                    axisHasNoOrder: boolean;
                     importsNothing: boolean;
                     digit: number;
                     root: string;
@@ -1111,6 +1121,11 @@ export declare function quantumDynamicsComputes(matrix?: MindMatrix, at?: number
                 }[];
                 exact: string[];
                 faithful: string[];
+                vortexOrderOfTwo: number;
+                vortexUnitGroupSize: number;
+                twoIsPrimitiveRoot: boolean;
+                lagrangeHolds: boolean;
+                axisHasNoOrder: boolean;
                 importsNothing: boolean;
                 digit: number;
                 root: string;

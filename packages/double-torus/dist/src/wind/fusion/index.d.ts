@@ -10324,6 +10324,11 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
                 }[];
                 exact: string[];
                 faithful: string[];
+                vortexOrderOfTwo: number;
+                vortexUnitGroupSize: number;
+                twoIsPrimitiveRoot: boolean;
+                lagrangeHolds: boolean;
+                axisHasNoOrder: boolean;
                 importsNothing: boolean;
                 digit: number;
                 root: string;
@@ -26525,6 +26530,11 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                     }[];
                     exact: string[];
                     faithful: string[];
+                    vortexOrderOfTwo: number;
+                    vortexUnitGroupSize: number;
+                    twoIsPrimitiveRoot: boolean;
+                    lagrangeHolds: boolean;
+                    axisHasNoOrder: boolean;
                     importsNothing: boolean;
                     digit: number;
                     root: string;
@@ -42203,6 +42213,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                     }[];
                     exact: string[];
                     faithful: string[];
+                    vortexOrderOfTwo: number;
+                    vortexUnitGroupSize: number;
+                    twoIsPrimitiveRoot: boolean;
+                    lagrangeHolds: boolean;
+                    axisHasNoOrder: boolean;
                     importsNothing: boolean;
                     digit: number;
                     root: string;
@@ -48421,6 +48436,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         }[];
                         exact: string[];
                         faithful: string[];
+                        vortexOrderOfTwo: number;
+                        vortexUnitGroupSize: number;
+                        twoIsPrimitiveRoot: boolean;
+                        lagrangeHolds: boolean;
+                        axisHasNoOrder: boolean;
                         importsNothing: boolean;
                         digit: number;
                         root: string;
@@ -52726,6 +52746,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         }[];
                         exact: string[];
                         faithful: string[];
+                        vortexOrderOfTwo: number;
+                        vortexUnitGroupSize: number;
+                        twoIsPrimitiveRoot: boolean;
+                        lagrangeHolds: boolean;
+                        axisHasNoOrder: boolean;
                         importsNothing: boolean;
                         digit: number;
                         root: string;
@@ -65447,6 +65472,11 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             }[];
                             exact: string[];
                             faithful: string[];
+                            vortexOrderOfTwo: number;
+                            vortexUnitGroupSize: number;
+                            twoIsPrimitiveRoot: boolean;
+                            lagrangeHolds: boolean;
+                            axisHasNoOrder: boolean;
                             importsNothing: boolean;
                             digit: number;
                             root: string;
@@ -74113,7 +74143,11 @@ export declare function goldMineMapResearch(matrix?: MindMatrix): {
 };
 export declare function thunderGoldGraphResearch(matrix?: MindMatrix): {
     researched: boolean;
-    sections: any[];
+    sections: {
+        id: string;
+        title: string;
+        body: string;
+    }[];
     root: string;
     boundary: string;
 };

@@ -87,6 +87,9 @@ export declare function shadcnIsTheGraph(matrix?: MindMatrix): {
     allComponents: string[];
     tokens: string[];
     deps: string[];
+    depsPresent: string[];
+    depsMissing: string[];
+    depsSource: "counted" | "absent";
     pathBDeps: string[];
     paths: {
         A: string;

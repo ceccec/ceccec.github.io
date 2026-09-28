@@ -23,6 +23,23 @@ export declare function foldPivots(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** starterTopics — THE HELP'S ENTRY POINTS, COMPUTED FROM WHAT THE CORPUS CAN ANSWER.
+ *
+ * GlobalHelp offered five hand-written topics — proof, trinity, mcp, chain, school — and nothing had chosen
+ * them by any measure. Measured 2026-09-26: only `proof` is an atom name, and four of the five score ZERO
+ * against every atom name and body, synonyms included. They answer at all only because each happens to
+ * appear somewhere in the 108 concept commands. A starter topic is a promise that the corpus has something
+ * to say, so it must be a term the corpus answers, not a term someone remembered.
+ *
+ * The reach is counted on the two surfaces foldQuestion actually searches — the atoms and the concept
+ * commands — and a topic must be present in BOTH, so the offer is backed by a definition and by something
+ * runnable rather than by one of them alone. No weighting: the two counts are summed, because a weight
+ * would be a preference and there is nothing here to prefer.
+ *
+ * Refutable, and self-correcting as the corpus moves: delete the atoms behind a term and it leaves the list.
+ * Computed 2026-09-26 it yields self, torus, quantum, proof, source — where the hand-written list had one
+ * atom-backed term among five. */
+export declare function starterTopics(count: number): readonly string[];
 export declare function foldQuestion(query: string, matrix?: MindMatrix): LocalAnswer;
 export declare function localMcpLexicalGapLeaksToModel(matrix?: MindMatrix): {
     measured: boolean;

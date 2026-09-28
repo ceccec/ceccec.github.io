@@ -230,12 +230,15 @@ export declare function slowBuildIsQuantumGapGate(root?: string): {
  * [[gate-complexity-collapses-to-one-content-addressed-root]] [[feedback-build-time-is-a-theorem-test]] */
 export declare function decodeRoboticsAndFuseToQuantumWorkAsAControlLoop(root?: string): {
     computes: boolean;
-    senses: number;
+    setpointValues: number[];
     setpoints: number;
-    interlocks: number;
-    noisySensors: number;
-    stopsNonHarmonic: boolean;
     dof: number;
+    sensorReadings: {
+        senses: number;
+        interlocks: number;
+        noisySensors: number;
+    };
+    stopsNonHarmonic: boolean;
     facets: {
         receipt: string;
         facet: string;

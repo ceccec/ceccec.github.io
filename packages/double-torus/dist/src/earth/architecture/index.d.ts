@@ -508,6 +508,7 @@ export declare function noSiteFolderVitepressPages(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+/** Browser-safe root: bare `process` is undefined under the dev-client shim. */
 /**
  * Count the dynamic route mounts actually present. Segment-matched exclusions, NOT
  * substring: this repository is named "ceccec.github.io", which contains ".git", so a

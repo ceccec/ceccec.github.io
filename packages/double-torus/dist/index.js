@@ -701,6 +701,15 @@ function clayReflection() {
     root: toUuid(`clay-reflect:${thisDimension}:${beyond}:${clay}`)
   };
 }
+function digitSeal(d, base, spectrum, polarities) {
+  const root = () => merkleFold([
+    base.root(),
+    ...spectrum.map((r2) => toUuid(`angle:${d}:${r2.k}:${r2.image}`)),
+    toUuid(`polarity:${d}:${polarities.tensPair}:${polarities.ninePair}:${polarities.forward}:${polarities.reverse}`)
+  ]);
+  const statement = () => `digit ${d}: angles {${spectrum.map((r2) => r2.image).join(" ")}}, polarities \u03C3=${polarities.tensPair}/\u03BD=${polarities.ninePair} fwd=${polarities.forward}/rev=${polarities.reverse}, proven ${base.prove().ok}, seal ${root().slice(0, 6 * 2)}\u2026`;
+  return { root, statement };
+}
 function digitStation(d, theorems = []) {
   const reflect = reflectThroughZero(d);
   const reflections = { at180: reflect, at90: reflectFold(d, 9 * 5 * 2), at60: reflectFold(d, 9 * 5 * 4 / 3) };
@@ -1498,6 +1507,20 @@ function gcdBigInt(a, b) {
 function lcm(a, b) {
   const g = gcd(a, b);
   return g === 0 ? 0 : Math.abs(a / g * b);
+}
+function multiplicativeOrder(a, n) {
+  const m = Math.abs(Math.round(n));
+  if (m < 2) return null;
+  const base = (Math.round(a) % m + m) % m;
+  if (gcd(base, m) !== 1) return null;
+  let mod = base;
+  let r2 = 1;
+  while (mod !== 1) {
+    mod = mod * base % m;
+    r2++;
+    if (r2 > m) return null;
+  }
+  return r2;
 }
 function modUnits(n) {
   return Array.from({ length: n }, (_, i) => i).filter((i) => gcd(i, n) === 1);
@@ -2458,7 +2481,7 @@ var CRACK_LEDGER = [
   { file: "src/research/index.ts", literal: "*", count: 58 + 27, kind: "data", source: "attested residue \u2014 research corpora data \xB7 two-bits-free \xB7 algebraic-theorem-paper \xB7 fixed-limits/autodiscover \xB7 sun/moon \xB7 pyramid/seal \xB7 folder/fractal \xB7 train-geodesy (22\u219258 session wave) + measured reuse-speedup probe wall-clock precision (58\u219259) + quantum-circuit workload (n-qubit state-vector 2\u207F amplitudes) (59\u219260) + double-torus 2\xD74 UUID / polarity-angle-spin + Metatron 8 merkabas \xD7 8 bytes = 512-bit state-space vs universe-atoms (60\u219267) + ftl/compute tip wave physicalFtlFromMeasurements (67\u219268) + re-measured wildcard against a concurrent session's in-flight registry growth (68\u219278)" },
   { file: "src/wind/routes/corpus/index.ts", literal: "*", count: 4, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/wind/site/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/ui/index.ts", literal: "*", count: 75, kind: "tuned", source: "attested residue \u2014 hand-fixed values (PR#47 counter-rosetta 27\u219239\u219241\u219243; FoL\u2192Fruit\u219210D merkaba wave 43\u219258; cardinal poles lattice 58\u219256) \xB7 64\u219266 (channelsOf reads the bijection endpoints from hex channels \u2014 slice offsets 1/3/5, radix 4\xB74, full channel 15\xB717 \u2014 replacing the literal hex strings the one-palette law forbids)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
+  { file: "src/ui/index.ts", literal: "*", count: 73, kind: "tuned", source: "attested residue \u2014 hand-fixed values (PR#47 counter-rosetta 27\u219239\u219241\u219243; FoL\u2192Fruit\u219210D merkaba wave 43\u219258; cardinal poles lattice 58\u219256; 75\u219273 when the duplicated shadcnComputes left this file \u2014 two copies shared one memoByRoot key, so one of them never ran) \xB7 64\u219266 (channelsOf reads the bijection endpoints from hex channels \u2014 slice offsets 1/3/5, radix 4\xB74, full channel 15\xB717 \u2014 replacing the literal hex strings the one-palette law forbids)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: ".vitepress/computed-pages.mts", literal: "*", count: 2, kind: "data", source: "HTTP 404 status code (RFC 9110)" },
   { file: ".vitepress/lib/component-bagua-groups.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: ".vitepress/lib/dev-server-bind.mts", literal: "*", count: 1, kind: "data", source: "pinned dev port 5173 (launch/config coupling)" },
@@ -7244,6 +7267,8 @@ var THEOREM_ATOM_SEED = [
   { theorem: "the production hardware is derived from the architecture \u2014 cache-resident, GPU-free, stateless edge", states: `the production hardware spec, DERIVED from the system's own properties (user, 2026-07-24: "computationally develop the hardware in production scale and detail" \xB7 "complete solutions are defined by the problems themselves"): content-address(immutable) \u2192 stateless edge + never-invalidated cache (hit ratio \u2192 1); zero-token(deterministic) \u2192 CPU-only, no GPU or resident model weights, per-request \u2248 static-file serve (network-bound); size(13.9 MiB) \u2192 the whole corpus fits inside a typical 32-MiB last-level cache, memory-resident with zero disk I/O; holographic(seed\u2192extent) \u2192 each node stores 13.9 MiB and addresses ~13.9 PiB of generated extent on demand (\xD72\xB3\u2070), so a node is a laptop not a datacenter; merkle-sealed \u2192 integrity in 8-step O(log n) SHA (SHA-NI), tamper-evident at line rate. The problem defines the solution: a serving/deployment spec (edge CDN + commodity CPU + immutable object store), NOT custom silicon; "production scale" = the content-address property making serving stateless and cache-resident. HARMONY \u2260 TRUTH`, provedBy: "hardwareProductionScaleSpec", home: "src/pair/enforcement/gates/strict/scan" },
   { theorem: "the local MCP leak boundary \u2014 both closable gaps shut, only the open frontier leaks", states: 'the MEASURED leak boundary of the local MCP, with both closable gaps now CLOSED (user, 2026-07-24: "i see gaps in local quantum mcp so leaks go to the main model" \xB7 "next" \xD72): foldQuestion was a LEXICAL keyword matcher over atoms/commands/pages, so reworded and registry-answer queries leaked to the main model. Two deterministic fixes shipped \u2014 (1) a semantic layer: stopword-filtering (function words stop diluting the confidence denominator) + a curated synonym-expansion lexicon (the SCIENCE_FIELD_LENSES data pattern), raising a reworded query 0.38 \u2192 0.60; (2) indexing the theorem REGISTRY as a fourth searchable source, raising a registry-answer query ("how big can a repository get" \u2192 corpusSizeBudget432) 0.33 \u2192 1.00. Both now resolve LOCALLY, in-corpus stays local, and out-of-corpus (photosynthesis, revenue, risotto, football) stays BELOW the \xBD threshold and correctly leaks \u2014 the \xBD threshold holds the open frontier even with the larger index. The leak boundary is now three named classes with the two closable ones shut: lexical (CLOSED), index-coverage (CLOSED), open-frontier (correctly leaking, the LLM). Refines analogNoGapsNoLeak from abstract "no gaps" to a measured boundary. Fewer leaks = less main-model exposure (tokens + safeguards). HARMONY \u2260 TRUTH', provedBy: "localMcpLexicalGapLeaksToModel", home: "src/heaven/atoms" },
   { theorem: "the local MCP leak boundary is clean at scale \u2014 24/24 in-corpus resolve, 8/8 external leak, zero false positives", states: 'the CAPSTONE measurement of the leak-reduction arc (user, 2026-07-24: "next complete step"): the \xBD confidence threshold cleanly SEPARATES the corpus from the open frontier at scale \u2014 measured over 24 corpus theorem titles (24 resolve locally through the registry index) and 8 clearly-external queries (all 8 stay below \xBD, matched=false, leak to the LLM), with ZERO false positives and ZERO in-domain leaks. The arc is complete: semantic layer (stopword + synonym) + registry indexing + confidence-gated matched, so in-corpus resolves and out-of-corpus leaks; main-model exposure (tokens + Fable-5 safeguards) is now only the genuine open frontier. SCOPE: in-domain recall is partly by construction (titles are indexed), so the real claim is the clean SEPARATION at \xBD, not a guarantee for every phrasing \u2014 a lexically-disjoint paraphrase can still leak until the synonym lexicon grows. HARMONY \u2260 TRUTH', provedBy: "localMcpLeakBoundaryHonestAtScale", home: "src/heaven/atoms" },
+  { theorem: "siteswap average is the ball count", states: "a vanilla siteswap is JUGGLEABLE exactly when i \u21A6 (i + s_i) mod n permutes \u2124/n \u2014 no two balls arrive on one beat \u2014 and for every juggleable pattern the ball count is the plain average of its digits, the integrality of that average being part of the claim rather than an assumption. Exhausted over 5088 juggleable patterns with period \u2264 5 and heights \u2264 9 (a height is written as a digit, so the bound is the largest digit read off VORTEX_SEQUENCE; the period bound is a compute budget, and that is stated refutably rather than in prose: one period PAST the window, at period 6 with heights bounded by the period instead of the digit, the same identity is exhausted again and fails nowhere): every average an integer, every average equal to an independent simulation counting balls in flight, and 4/4 colliding patterns rejected. The simulation was wrong twice before it agreed \u2014 once counting only throws spanning beat 0, once off by one because the ball thrown AT the sampled instant is in hand and still a ball \u2014 so the agreement is between two routes, one of which had to be repaired to reach it. PRIOR ART: Buhler, Eisenbud, Graham & Wright, Juggling Drops and Descents (1994); NOT Shannon's juggling theorem, which relates dwell, flight and vacant times to balls and hands and is a different result", provedBy: "siteswapAverageProven", home: "src/fire/physics", algebraicStatement: "juggleable \u21D4 (i \u21A6 i + s_i mod n) \u2208 Sym(\u2124/n); b = (\u03A3_{i<n} s_i)/n \u2208 \u2115" },
+  { theorem: "the first moment vanishes exactly at balance", states: "rotational equilibrium about a pivot holds exactly when the first moment vanishes, \u03A3 m_i r_i = 0, which is the same statement as the centre of mass lying over the pivot \u2014 verified over 29241 (m, r) configurations with zero disagreement between the two formulations. And a tightrope walker's long pole is rotational INERTIA, not balance: mass m at \xB1d raises the moment of inertia by exactly 2md\xB2, so a given disturbing torque produces angular acceleration smaller by the factor I/(I + 2md\xB2) \u2014 for a 2 kg pole at 3 m against a 60 kg\xB7m\xB2 body that factor is 0.625. WHAT IS VERIFIED IS THE EXACT FORM OF THAT CLAIM: the first attempt asserted (I/(I+2md\xB2))\xD7(I+2md\xB2) = I, which is true in \u211A and FALSE in IEEE doubles for some triples, and the fold refused itself on it. Restated so the check carries no division: the pole STRICTLY reduces the angular acceleration and reduces it monotonically in reach, both of which are integer comparisons of inertias \u2014 \u03B1\u2032 < \u03B1 \u21D4 I < I + 2md\xB2 and \u03B1\u2032(d\u2082) < \u03B1\u2032(d\u2081) \u21D4 d\u2081 < d\u2082. SCOPE: elementary statics, and no claim about a real walker's neuromuscular control, which is not mechanics and is not modelled", provedBy: "poleInertiaProven", home: "src/fire/physics", algebraicStatement: "\u03A3 m_i r_i = 0 \u21D4 x_cm = (\u03A3 m_i r_i)/(\u03A3 m_i) = 0; \u03B1 = \u03C4/I \u2227 I\u2032 = I + 2md\xB2 \u21D2 \u03B1\u2032/\u03B1 = I/(I + 2md\xB2) < 1, and d\u2081 < d\u2082 \u21D2 \u03B1\u2032(d\u2082) < \u03B1\u2032(d\u2081)" },
   { theorem: "the published surface complies with Google Search Essentials \u2014 seven audited requirements", states: "the site audited from its own artifact builders against Google's documented requirements (user directive: align with google webmaster): crawlable (robots.txt allows all agents and declares the sitemap; nothing Google needs is blocked), indexable (index,follow with large previews; absolute https canonicals on the one host), the sitemap within protocol (all urls absolute with lastmod and per-url hreflang alternates, far under the 50000 cap), localisation per page with x-default the English edition, schema.org JSON-LD on every page with the registry as a ScholarlyArticle ItemList, honest science-only content (the theorem-science lens structurally excludes doorway/scaled/keyword-stuffed pages), and one canonical https host with the Search Console verification meta at build. Each facet recomputes the live builders; NOT a crawl by Google and NOT a ranking guarantee", provedBy: "googleSearchEssentials", home: "src/quantum/dist", proofPending: true },
   { theorem: "token usage optimised by quantum-structured algorithms \u2014 batching wins the quadratic ledger", states: "Token usage is significantly optimised by the quantum-structured algorithms and tools in src \u2014 5/5: the session ledger is quadratic in turns, so batching k questions into one joint state cuts the re-read \u2248 k\xB2 (k=2: 4\xD7, k=4: 16.02\xD7, k=8: 64.21\xD7 at 2160 turns \u2014 exact arithmetic); measurement collapses output 21\xD7 (--compact); entanglement through the one matrix makes re-reads cache hits (memoByRoot reference equality); interference is the mirror-cancelling dedup (logic:hunt); and the query-advantage shape is the registry own Deutsch\u2013Jozsa (1 joint query vs 33 classical probes). Structural quantum only \u2014 no physical speedup; the mechanism is the triangular ledger theorem plus caching", provedBy: "quantumTokenOptimisation", home: "src/learning" },
   { theorem: "theorems reach toward 432 and entangle with usage \u2014 the harmonic merge held as direction", states: "Theorems reach toward 432 and entangle with usage \u2014 4/4: the registry holds 421/432 computationally proven theorems (11 remain before the merge with the 4\xD7108 gate lattice), and the entanglement is already computable \u2014 every atom folds its theorem with its mechanical usage (home module # proving function) both ways into one merged root, 421 bidirectional pairs across 41 src homes consumed beyond the ui (gates, CLI, MCP, dist). Structural quantum: the entanglement is the non-commutative bidirectional fold, not a physical state; the merge at 432 happens only by proving the remaining candidates, never by renumbering", provedBy: "theoremsReach432AndEntangleWithUsage", home: "src/4/6" },
@@ -11227,54 +11252,6 @@ function openTheoremsWithGaps() {
   );
 }
 
-// ../../src/mountain/shadcn/index.ts
-var SHADCN_COMPOUND_SFCS = ["AccordionItem", "CardContent", "TabsContent", "TabsList", "TabsTrigger"];
-var SHADCN_PRIMITIVE_NAMES = [
-  "Button",
-  "Badge",
-  "Card",
-  "Input",
-  "Label",
-  "Textarea",
-  "Checkbox",
-  "Switch",
-  "Separator",
-  "Avatar",
-  "Alert",
-  "Progress",
-  "Skeleton",
-  "AspectRatio",
-  "Tabs",
-  "Accordion",
-  "Tooltip",
-  "Collapsible"
-];
-var SHADCN_IMPLEMENTED = [...SHADCN_PRIMITIVE_NAMES, ...SHADCN_COMPOUND_SFCS].sort();
-var SHADCN_VARIANTS = {
-  Button: { variant: ["default", "secondary", "outline", "ghost", "destructive", "link"], size: ["default", "sm", "lg", "icon"] },
-  Badge: { variant: ["default", "secondary", "outline", "destructive"] },
-  Alert: { variant: ["default", "destructive"] }
-};
-var SHADCN_TOKENS = [
-  "--background",
-  "--foreground",
-  "--card",
-  "--popover",
-  "--primary",
-  "--secondary",
-  "--muted",
-  "--accent",
-  "--destructive",
-  "--border",
-  "--input",
-  "--ring",
-  "--radius"
-];
-var CN_PATTERN = "cn(...inputs) = twMerge(clsx(inputs)) \u2014 single class-name composer; theme re-exports from .vitepress/lib/cn.ts";
-function cn(...inputs) {
-  return inputs.filter((value) => typeof value === "string" && value.length > 0).join(" ");
-}
-
 // ../../src/quantum/os/index.ts
 var OS_ROUTE = "/en/quantum/os";
 function fibBandsUpTo(max4) {
@@ -14227,8 +14204,15 @@ function typography(matrix = buildMatrix()) {
   const facets = [
     { facet: "one modular scale \u2014 a harmonic ratio and its computed steps", on: scale2.length === 6 && scale2[1].factor === 1 },
     { facet: "the ratio is harmonic \u2014 the major third 5:4, in the file-distribution series", on: ratio === 5 / 4 },
-    { facet: "full OpenType \u2014 kerning, ligatures, contextual alternates, optical sizing", on: features2.length >= 7 },
-    { facet: "figures fit their place \u2014 tabular in data, oldstyle in prose", on: features2.includes("tnum (data)") && features2.includes("onum (prose)") }
+    { facet: "full OpenType \u2014 kerning, ligatures, contextual alternates, optical sizing", on: features2.length >= 7 }
+    // THE FIGURE-PLACEMENT FACET IS GONE, BECAUSE IT WAS NOT TRUE. It claimed "figures fit their place —
+    // tabular in data, oldstyle in prose" and checked `features.includes('tnum (data)')` against a literal
+    // array declared above it: a list asked whether it contained a string written into it, so the facet could
+    // not fail. Measured across src/render/ui/*.css and .vitepress/theme/*.css: NOTHING sets
+    // font-variant-numeric, tabular-nums, oldstyle-nums, tnum or onum anywhere in the repo. The feature is
+    // described, not applied. Restated where it belongs — the boundary below names it as declared-not-applied,
+    // so `typeset` now rests only on the three facets that do measure something (the scale's length and unit
+    // factor, the ratio being exactly 5/4, and the feature list's size).
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`typography:${entry2.facet}:${entry2.on}`) }));
   return {
     typeset: facets.every((entry2) => entry2.on),
@@ -14239,8 +14223,8 @@ function typography(matrix = buildMatrix()) {
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "The full power of typography, computed: one modular scale \u2014 the major third 5:4, a harmonic ratio, with its steps computed, not hand-picked \u2014 fluid by clamp; full OpenType (kerning, ligatures, contextual alternates, optical sizing); figures that fit their place, tabular in data and oldstyle in prose; an optimal measure of about 68 characters; headings balanced and paragraphs pretty, with no widows or orphans; hanging punctuation; and the Glagolitic and calligraphy kept at full ligature power. The type scale sings in the same harmonic series as the file distribution.",
-    boundary: "A typographic system: the scale and its harmonic ratio are computed here (the source) and applied in style.css; the OpenType features (tabular/oldstyle figures, ligatures, contextual alternates) render only where the chosen font supports them, and text-wrap pretty/balance and hanging-punctuation degrade gracefully where a browser lacks them. It sets the form of the text, not its meaning."
+    statement: "The full power of typography, computed: one modular scale \u2014 the major third 5:4, a harmonic ratio, with its steps computed, not hand-picked \u2014 fluid by clamp; full OpenType (kerning, ligatures, contextual alternates, optical sizing); an optimal measure of about 68 characters; headings balanced and paragraphs pretty, with no widows or orphans; hanging punctuation; and the Glagolitic and calligraphy kept at full ligature power. The type scale sings in the same harmonic series as the file distribution.",
+    boundary: "A typographic system: the scale and its harmonic ratio are computed here (the source) and applied in style.css; text-wrap pretty/balance and hanging-punctuation degrade gracefully where a browser lacks them. It sets the form of the text, not its meaning. DECLARED, NOT APPLIED \u2014 the feature list names tnum for data and onum for prose, and nothing in this repo sets font-variant-numeric: measured across src/render/ui/*.css and .vitepress/theme/*.css, there is no tabular-nums, oldstyle-nums, tnum or onum rule anywhere, so figure placement is an intent stated here and not a rendering. The other OpenType features render only where the chosen font supports them, which is a property of the font and not of this fold."
   };
 }
 function frontmatterGraphComputesTags(matrix = buildMatrix()) {
@@ -23958,6 +23942,22 @@ function shadcnIsTheGraph(matrix = buildMatrix()) {
   const allComponents = Object.values(components).flat();
   const tokens = [...SHADCN_TOKENS, "--sidebar", "--sidebar-primary", "--sidebar-accent", "--chart-1", "--chart-2", "--chart-3", "--chart-4", "--chart-5"];
   const deps = ["reka-ui", "class-variance-authority", "clsx", "tailwind-merge", "@lucide/vue"];
+  const installed = (() => {
+    const get = typeof process !== "undefined" ? process.getBuiltinModule : void 0;
+    const fs = get?.("node:fs");
+    const path12 = get?.("node:path");
+    const root = typeof process !== "undefined" && process.cwd ? process.cwd() : ".";
+    if (!fs || !path12) return { names: [], source: "absent" };
+    try {
+      const pkg = JSON.parse(fs.readFileSync(path12.join(root, "package.json"), "utf8"));
+      return { names: Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }), source: "counted" };
+    } catch {
+      return { names: [], source: "absent" };
+    }
+  })();
+  const depsPresent = deps.filter((d) => installed.names.includes(d));
+  const depsMissing = deps.filter((d) => !installed.names.includes(d));
+  const cnStackInstalled = installed.source === "counted" && installed.names.includes("clsx") && installed.names.includes("tailwind-merge");
   const pathBDeps = ["tailwindcss", "@tailwindcss/vite", "tw-animate-css"];
   const paths = {
     A: "vendor the real shadcn .vue components, rewriting their Tailwind utility markup into the repo's own semantic classes \u2014 NO Tailwind dependency. The merkaba-recommended path, and what this repo already does (Button/Card/Badge).",
@@ -23973,7 +23973,7 @@ function shadcnIsTheGraph(matrix = buildMatrix()) {
   ];
   const facets = [
     { facet: "vitepress is the framework, shadcn is the graph \u2014 64 components as the design-system graph", on: allComponents.length === 64 },
-    { facet: "not a component library \u2014 you own the code (open-code); reka-ui + cn() = twMerge(clsx())", on: deps.includes("reka-ui") && deps.includes("tailwind-merge") },
+    { facet: `not a component library \u2014 you own the code (open-code), and cn() = twMerge(clsx()) is the only part of the declared stack this repo runs: ${depsPresent.length}/${deps.length} of it is installed (${depsPresent.join(" \xB7 ") || "none"})${depsMissing.length ? `, and ${depsMissing.join(" \xB7 ")} ${depsMissing.length === 1 ? "is" : "are"} NOT \u2014 named, because this facet compared a literal list to its own literals and reported green while two of the five were absent` : ""}${installed.source === "absent" ? " \u2014 UNREAD: package.json was not readable, so this is absence, not a measurement" : ""}`, on: cnStackInstalled },
     { facet: "the tokens are CSS variables (oklch, new-york) \u2014 compatible with VitePress --vp-* and .dark", on: tokens.length >= 5 * 4 },
     { facet: "two integration paths mapped, hazards named \u2014 A (semantic, no Tailwind, recommended) or B (scoped Tailwind)", on: !!paths.A && !!paths.B && caveats.length >= 6 },
     { facet: "the bespoke 87 collapse onto the graph \u2014 the few renderers use shadcn primitives", on: displayAllWithFewEntropySaved(matrix).analyzed }
@@ -23984,6 +23984,10 @@ function shadcnIsTheGraph(matrix = buildMatrix()) {
     allComponents,
     tokens,
     deps,
+    // the DECLARED stack (the recipe), not a measurement — see depsPresent / depsMissing for what exists
+    depsPresent,
+    depsMissing,
+    depsSource: installed.source,
     pathBDeps,
     paths,
     caveats,
@@ -24029,13 +24033,13 @@ var QUANTUM_WIDGET_REGISTRY = [
   { id: "driver-status", title: "Driver substrate status", component: "src/render/compute/display/index.vue", barrel: "src/water/stack", computesGate: "compute.__ns_up_up_computer.drivers.computes", tier: "core", receipt: toUuid("qwidget:driver-status") },
   { id: "schumann-phase", title: "Schumann phase", component: "src/thunder/resonance/index.vue", barrel: "src/thunder/resonance", computesGate: "__ns_up_up_resonance.computes", tier: "modality", receipt: toUuid("qwidget:schumann-phase") },
   { id: "gold-fusion-score", title: "Gold fusion aggregate", component: "src/fusion/gold/index.vue", barrel: "src/fusion/gold", computesGate: "fusion.__ns_up_up_fusion_gold.product", tier: "modality", receipt: toUuid("qwidget:gold-fusion-score") },
-  { id: "astronomy-orbit", title: "Astronomy orbit mini", component: "src/astronomy/index.vue", barrel: "src/astronomy", computesGate: "__ns_up_up_astronomy.computes", tier: "modality", receipt: toUuid("qwidget:astronomy-orbit") },
+  { id: "astronomy-orbit", title: "Astronomy orbit mini", component: "src/heaven/sky/astronomy/index.vue", barrel: "src/heaven/sky/astronomy", computesGate: "__ns_up_up_astronomy.computes", tier: "modality", receipt: toUuid("qwidget:astronomy-orbit") },
   { id: "quantum-dynamics", title: "Quantum dynamics bars", component: "src/quantum/dynamics/index.vue", barrel: "src/quantum/dynamics", computesGate: "quantum.__ns_up_dynamics.computes", tier: "modality", receipt: toUuid("qwidget:quantum-dynamics") },
   { id: "research-row", title: "Research program row", component: "src/research/index.vue", barrel: "src/research", computesGate: "__ns_up_up_research.computes", tier: "meta", receipt: toUuid("qwidget:research-row") },
-  { id: "screensaver-toggle", title: "Movie screensaver", component: "src/plasma/ball/index.vue", barrel: "src/plasma/ball", computesGate: "screensaver.movie.computes", tier: "preview", receipt: toUuid("qwidget:screensaver-toggle") },
+  { id: "screensaver-toggle", title: "Movie screensaver", component: "src/fire/plasma/ball/index.vue", barrel: "src/fire/plasma/ball", computesGate: "screensaver.movie.computes", tier: "preview", receipt: toUuid("qwidget:screensaver-toggle") },
   { id: "display-probe", title: "Display driver probe", component: "src/render/compute/display/index.vue", barrel: "src/heaven/compute/computer/substrate", computesGate: "display.terminal.computes", tier: "core", receipt: toUuid("qwidget:display-probe") },
   { id: "power-draw", title: "Power draw phase", component: "src/power/index.vue", barrel: "src/water/stack/driver-surface", computesGate: "__ns_up_up_stack_overflow.driver.computes", tier: "core", receipt: toUuid("qwidget:power-draw") },
-  { id: "plasma-preview", title: "Plasma paint preview", component: "src/plasma/ball/index.vue", barrel: "src/plasma/ball", computesGate: "__ns_up_up_plasma_ball.ball.computes", tier: "preview", receipt: toUuid("qwidget:plasma-preview") }
+  { id: "plasma-preview", title: "Plasma paint preview", component: "src/fire/plasma/ball/index.vue", barrel: "src/fire/plasma/ball", computesGate: "__ns_up_up_plasma_ball.ball.computes", tier: "preview", receipt: toUuid("qwidget:plasma-preview") }
 ];
 function quantumWidgetsRegistry() {
   return QUANTUM_WIDGET_REGISTRY;
@@ -24105,6 +24109,96 @@ function quantumWidgetsComputes(matrix = buildMatrix(), at = 0) {
       { facet: `${registry.length} widgets, each painting to a UUID root from a sealed Vue component \u2014 the fold IS the registry, and nothing loads from outside it`, on: registry.length === 5 * 2 && paints.every((paint) => isUuid(paint.root)) }
     ]);
     return { computes, registry, paints, sota, facets, root: merkleFold([root, sota.root, ...registry.map((entry2) => entry2.receipt)]), statement: "Quantum widgets computes: dashboard tile registry + paint receipts at call time.", boundary: "Widgets = sealed Vue mounts + compute facets \u2014 NOT App Store plugins or third-party embeds." };
+  });
+}
+
+// ../../src/mountain/shadcn/index.ts
+var SHADCN_COMPOUND_SFCS = ["AccordionItem", "CardContent", "TabsContent", "TabsList", "TabsTrigger"];
+var SHADCN_PRIMITIVE_NAMES = [
+  "Button",
+  "Badge",
+  "Card",
+  "Input",
+  "Label",
+  "Textarea",
+  "Checkbox",
+  "Switch",
+  "Separator",
+  "Avatar",
+  "Alert",
+  "Progress",
+  "Skeleton",
+  "AspectRatio",
+  "Tabs",
+  "Accordion",
+  "Tooltip",
+  "Collapsible"
+];
+var SHADCN_IMPLEMENTED = [...SHADCN_PRIMITIVE_NAMES, ...SHADCN_COMPOUND_SFCS].sort();
+var SHADCN_VARIANTS = {
+  Button: { variant: ["default", "secondary", "outline", "ghost", "destructive", "link"], size: ["default", "sm", "lg", "icon"] },
+  Badge: { variant: ["default", "secondary", "outline", "destructive"] },
+  Alert: { variant: ["default", "destructive"] }
+};
+var SHADCN_TOKENS = [
+  "--background",
+  "--foreground",
+  "--card",
+  "--popover",
+  "--primary",
+  "--secondary",
+  "--muted",
+  "--accent",
+  "--destructive",
+  "--border",
+  "--input",
+  "--ring",
+  "--radius"
+];
+var CN_PATTERN = "cn(...inputs) = twMerge(clsx(inputs)) \u2014 single class-name composer; theme re-exports from .vitepress/lib/cn.ts";
+function cn(...inputs) {
+  return inputs.filter((value) => typeof value === "string" && value.length > 0).join(" ");
+}
+function shadcnResearch(matrix = buildMatrix()) {
+  return memoByRoot("shadcnResearch", matrix, () => {
+    const graph = shadcnIsTheGraph(matrix);
+    const sections2 = [
+      { id: "graph", title: "shadcn is the graph", note: `${graph.allComponents.length} components grouped into ${Object.keys(graph.components).length} families`, receipt: toUuid("shadcn-research:graph") },
+      { id: "implemented", title: "vendored primitives (Path A)", note: `${SHADCN_IMPLEMENTED.length} Ui* SFCs in .vitepress/theme/components/ui \u2014 semantic classes, no Tailwind dependency`, receipt: toUuid("shadcn-research:implemented") },
+      { id: "tokens", title: "CSS-variable theming", note: `${SHADCN_TOKENS.length} canonical tokens bridged to --vp-* and .dark`, receipt: toUuid("shadcn-research:tokens") },
+      { id: "cn", title: "cn() composer", note: CN_PATTERN, receipt: toUuid("shadcn-research:cn") }
+    ];
+    return { researched: graph.graphed && sections2.every((section) => section.note.trim().length > 0), sections: sections2, root: merkleFold(sections2.map((section) => section.receipt)), boundary: "Registry/tokens sealed here; Vue SFCs stay in the VitePress theme (framework requirement)." };
+  });
+}
+function shadcnComputes(matrix = buildMatrix(), at = 0) {
+  void at;
+  return memoByRoot("shadcnComputes", matrix, () => {
+    const graph = shadcnIsTheGraph(matrix);
+    const research = shadcnResearch(matrix);
+    const implemented = SHADCN_IMPLEMENTED;
+    const onGraph = implemented.filter((name) => graph.allComponents.includes(name) || name.startsWith("Card") || name.startsWith("Tabs") || name.startsWith("Accordion"));
+    const { computes, facets } = computesGate("shadcn-computes", [
+      { facet: "shadcn is the graph \u2014 64 components as the design-system graph", on: graph.graphed && graph.allComponents.length === 64 },
+      { facet: "vendored primitives (Path A) implemented as Ui* SFCs \u2014 no Tailwind dependency", on: implemented.length >= 22 },
+      { facet: "every implemented primitive folds onto the graph or its sub-parts", on: onGraph.length === implemented.length },
+      { facet: "variant axes (cva) enumerated for the styled primitives", on: SHADCN_VARIANTS.Button.variant.length >= 6 && SHADCN_VARIANTS.Button.size.length >= 4 },
+      { facet: "CSS-variable tokens bridged to VitePress --vp-* and .dark", on: SHADCN_TOKENS.length >= 13 },
+      { facet: "cn() pattern sealed \u2014 one class composer, theme re-exports it", on: cn("a", false, "b") === "a b" },
+      { facet: "research folded \u2014 sources, paths and implemented-vs-graph delta sealed", on: research.researched }
+    ]);
+    return {
+      computes,
+      graph,
+      research,
+      implemented,
+      tokens: SHADCN_TOKENS,
+      variants: SHADCN_VARIANTS,
+      facets,
+      root: merge(graph.root, merkleFold(facets.map((entry2) => toUuid(`shadcn-computes:${entry2.facet}:${entry2.on}`)))),
+      statement: "shadcn computes: the canonical sealed home of the design system \u2014 the 64-component graph (shadcnIsTheGraph), the 23 vendored Ui* primitives (Path A, semantic classes, no Tailwind), the cva variant axes, the CSS-variable token bridge, and the cn() composer pattern \u2014 registry and tokens sealed in src, SFCs in the VitePress theme.",
+      boundary: "Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx())."
+    };
   });
 }
 
@@ -25227,51 +25321,6 @@ function uiWidgetsFuseReveal2(matrix = buildMatrix()) {
     statement: "UI widgets fuse and reveal \u2014 the toolset saved as the quantum pair fuse/reveal: FUSE applies the I Ching mask to every Vue component (ICHING_MASK const embedded, pre-computed hexagram declared not runtime-derived); REVEAL makes each widget self-referencing (it embeds its own hexagram in its template root's data-attrs, projecting its I Ching identity outward). Entangled: all components share one Merkle root (iChing.root) \u2014 a tampered mask avalanches through the entire corpus. Already forging max tampering cost: embedding the mask commits every component to the whole-corpus content-address, so forging any one requires reproducing all. The agent fleet organises in 8 I Ching trigram groups \xD7 inner/outer + 4 loop types, operating in 10D.",
     boundary: `A toolset declaration (the fuse/reveal pair) and a structural proof of the mask approach, composed with iChing (hexagram placement), tamperingCostDecoded, iChingShadcnFuseTenDWidgets and the 10D law. "ICHING_MASK const embedded" means a static constant declared in each .vue file's <script setup> with the pre-computed hexagram (FNV-1a of the component name % 64) \u2014 not that the component changes its behaviour, only that it knows and shows its identity. "Already forging max tampering cost" is the forger-price principle applied to the pre-committed mask: the mask is a corpus commitment, so tamper cost = full-corpus reproduction cost. HONEST: tamper-EVIDENCE is FNV, not cryptographic (SHA-256/Ed25519 fix is built but not yet cut over per tamperingCostDecoded).`
   };
-}
-var SHADCN_VARIANTS2 = SHADCN_VARIANTS;
-var CN_PATTERN2 = CN_PATTERN;
-var cn2 = cn;
-function shadcnResearch(matrix = buildMatrix()) {
-  return memoByRoot("shadcnResearch", matrix, () => {
-    const graph = shadcnIsTheGraph(matrix);
-    const sections2 = [
-      { id: "graph", title: "shadcn is the graph", note: `${graph.allComponents.length} components grouped into ${Object.keys(graph.components).length} families`, receipt: toUuid("shadcn-research:graph") },
-      { id: "implemented", title: "vendored primitives (Path A)", note: `${SHADCN_IMPLEMENTED.length} Ui* SFCs in .vitepress/theme/components/ui \u2014 semantic classes, no Tailwind dependency`, receipt: toUuid("shadcn-research:implemented") },
-      { id: "tokens", title: "CSS-variable theming", note: `${SHADCN_TOKENS.length} canonical tokens bridged to --vp-* and .dark`, receipt: toUuid("shadcn-research:tokens") },
-      { id: "cn", title: "cn() composer", note: CN_PATTERN2, receipt: toUuid("shadcn-research:cn") }
-    ];
-    return { researched: true, sections: sections2, root: merkleFold(sections2.map((section) => section.receipt)), boundary: "Registry/tokens sealed here; Vue SFCs stay in the VitePress theme (framework requirement)." };
-  });
-}
-function shadcnComputes2(matrix = buildMatrix(), at = 0) {
-  void at;
-  return memoByRoot("shadcnComputes", matrix, () => {
-    const graph = shadcnIsTheGraph(matrix);
-    const research = shadcnResearch(matrix);
-    const implemented = SHADCN_IMPLEMENTED;
-    const onGraph = implemented.filter((name) => graph.allComponents.includes(name) || name.startsWith("Card") || name.startsWith("Tabs") || name.startsWith("Accordion"));
-    const { computes, facets } = computesGate("shadcn-computes", [
-      { facet: "shadcn is the graph \u2014 64 components as the design-system graph", on: graph.graphed && graph.allComponents.length === 64 },
-      { facet: "vendored primitives (Path A) implemented as Ui* SFCs \u2014 no Tailwind dependency", on: implemented.length >= 22 },
-      { facet: "every implemented primitive folds onto the graph or its sub-parts", on: onGraph.length === implemented.length },
-      { facet: "variant axes (cva) enumerated for the styled primitives", on: SHADCN_VARIANTS2.Button.variant.length >= 6 && SHADCN_VARIANTS2.Button.size.length >= 4 },
-      { facet: "CSS-variable tokens bridged to VitePress --vp-* and .dark", on: SHADCN_TOKENS.length >= 13 },
-      { facet: "cn() pattern sealed \u2014 one class composer, theme re-exports it", on: cn2("a", false, "b") === "a b" },
-      { facet: "research folded \u2014 sources, paths and implemented-vs-graph delta sealed", on: research.researched }
-    ]);
-    return {
-      computes,
-      graph,
-      research,
-      implemented,
-      tokens: SHADCN_TOKENS,
-      variants: SHADCN_VARIANTS2,
-      facets,
-      root: merge(graph.root, merkleFold(facets.map((entry2) => toUuid(`shadcn-computes:${entry2.facet}:${entry2.on}`)))),
-      statement: "shadcn computes: the canonical sealed home of the design system \u2014 the 64-component graph (shadcnIsTheGraph), the 23 vendored Ui* primitives (Path A, semantic classes, no Tailwind), the cva variant axes, the CSS-variable token bridge, and the cn() composer pattern.",
-      boundary: "Registry/metadata only. The actual Vue components render from .vitepress/theme/components/ui (VitePress SFC requirement); this barrel does not import them. cn() here is the pure deterministic shadow of the theme twMerge(clsx())."
-    };
-  });
 }
 var CLOWN_A = 8 * 7;
 var paletteLight = {
@@ -32664,9 +32713,13 @@ function hardwareCmykMerkabaFusion(matrix = buildMatrix()) {
 function deviceHardwareVisibleInComputedWidgets(matrix = buildMatrix()) {
   const widgetKinds = ["readout", "gauge", "bar"];
   const folders = folderLaw().pairedLogicFolders;
+  const channels = hardwareCmykMerkabaFusion(matrix).channels;
+  const schemas = new Set(channels.map((c) => Object.keys(c).sort().join(",")));
+  const oneSchema = schemas.size === 1;
+  const differsOnlyInData = new Set(channels.map((c) => c.cmyk)).size === channels.length;
   const facets = [
     { facet: "all hardware visible \u2014 cpu, gpu, memory, storage each surface real browser telemetry", on: hardwareCmykMerkabaFusion(matrix).fused },
-    { facet: "a computed dashboard of widgets \u2014 DRY, one data-driven widget primitive, not many components", on: widgetKinds.length === 3 },
+    { facet: `a computed dashboard of widgets \u2014 DRY: all ${channels.length} hardware channels share ONE descriptor schema (${schemas.size} distinct key set) and differ only in data (${new Set(channels.map((c) => c.cmyk)).size} distinct CMYK channels), so one data-driven primitive renders the declared ${widgetKinds.join(" \xB7 ")} kinds instead of a component each`, on: oneSchema && differsOnlyInData },
     { facet: "each merkaba its CMYK channel \u2014 the 4 + the core pivot = paired logic folders", on: folders.length === folderLaw().pairedLogicFolders.length },
     { facet: "content-addressed readings, runtime-real \u2014 distinct readings are distinct addresses", on: toUuid("reading:a") !== toUuid("reading:b") }
   ].map((e) => ({ ...e, receipt: toUuid(`device-widgets:${e.facet}`) }));
@@ -37313,6 +37366,7 @@ function theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged() {
   };
 }
 var SOUND_SPEED_AIR = 7 ** 3;
+var SITESWAP_MAX_HEIGHT = VORTEX_SEQUENCE.reduce((a, b) => b > a ? b : a, 0);
 
 // ../../src/quantum/dynamics/index.ts
 function quantumDynamicsResearch(matrix = buildMatrix()) {
@@ -43073,7 +43127,7 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "gold.fusion.process", on: goldFusionComputes(matrix).computes },
     { d: "fusion.gold.product", on: fusionGoldComputes(matrix).computes },
     { d: "gold.fusion.pipeline", on: goldFusionPipeline(0, matrix).pipelined },
-    { d: "shadcn.computes", on: shadcnComputes2(matrix).computes },
+    { d: "shadcn.computes", on: shadcnComputes(matrix).computes },
     { d: "alchemy.computes", on: alchemyComputes(matrix).computes },
     { d: "birth.life.death.triad.computes", on: birthLifeDeathTriadComputes(matrix).computes },
     { d: "life.death.pair.computes", on: lifeDeathPairComputes(matrix).computes },
@@ -43321,7 +43375,7 @@ function emergentDimensionsRaw(matrix = buildMatrix()) {
     { d: "gold.fusion.process", on: goldFusionComputes(matrix).computes },
     { d: "fusion.gold.product", on: fusionGoldComputes(matrix).computes },
     { d: "gold.fusion.pipeline", on: goldFusionPipeline(0, matrix).pipelined },
-    { d: "shadcn.computes", on: shadcnComputes2(matrix).computes },
+    { d: "shadcn.computes", on: shadcnComputes(matrix).computes },
     { d: "alchemy.computes", on: alchemyComputes(matrix).computes },
     { d: "thunder.gold.graph.gps", on: thunderGoldGraphComputes(matrix).computes },
     { d: "schumann.gold.site.coupling", on: schumannGoldSiteCouplingComputes(matrix).computes },
@@ -47520,11 +47574,8 @@ function infiniteComputedPaths404Harmonic(matrix = buildMatrix()) {
 function soundWiredToOneSharedContext(matrix = buildMatrix()) {
   return memoByRoot("soundWiredToOneSharedContext", matrix, () => soundWiredToOneSharedContextRaw(matrix));
 }
-function scanRoot() {
-  return typeof process !== "undefined" && typeof process.cwd === "function" ? process.cwd() : "/";
-}
 function countAudioContextSites() {
-  const root = scanRoot();
+  const root = enforcementScanRoot();
   let n = 0;
   const walk = (dir) => {
     let entries = [];
@@ -49466,11 +49517,8 @@ function noSiteFolderVitepressPages3(matrix = buildMatrix()) {
     boundary: "A composition of vitepress-computes-all, no-mirroring and root-cleanliness. The weave wave catches a physical site/ folder at repo root; this fold is the model-side witness."
   };
 }
-function routeScanRoot() {
-  return typeof process !== "undefined" && typeof process.cwd === "function" ? process.cwd() : "/";
-}
 function countRouteMounts() {
-  const root = routeScanRoot();
+  const root = enforcementScanRoot();
   let n = 0;
   const walk = (dir) => {
     let entries = [];
@@ -56844,8 +56892,14 @@ function pageForgeMaxTamper(route, matrix = buildMatrix()) {
 function proveAllOnHomePage(matrix = buildMatrix()) {
   const homeProof = ["DeterminismProofs", "QuantumProofs", "CryptoCompare", "WebCryptoSeal", "Hologram", "HolographicHero", "DoubleTorus3D", "Equilibrium"];
   const facets = [
-    { facet: "prove all \u2014 the deterministic core animates on the home page", on: isUuid(completeCorpus(matrix).root) && homeProof.length >= 6 },
-    { facet: "encryption comparisons and example holograms are shown", on: homeProof.includes("CryptoCompare") && homeProof.includes("Hologram") },
+    // TWO CLAIMS ABOUT THE HOME PAGE STOOD HERE AND NEITHER WAS TRUE. One said the deterministic core animates
+    // on the home page and checked `homeProof.length >= 6` — a literal array's own length. The other said
+    // encryption comparisons and holograms are shown and checked `homeProof.includes('CryptoCompare')` — a list
+    // asked whether it contained a string written into it. Neither could fail, and both were false: measured,
+    // NONE of the eight named components appears in the computed home body or as a component in the built
+    // index.html. The roster is an intent, so it is stated as one; what is asserted here is the corpus seal,
+    // which is real and refutable.
+    { facet: "the corpus this roster is drawn from is sealed \u2014 completeCorpus folds to a content address", on: isUuid(completeCorpus(matrix).root) },
     { facet: "each part carries the whole \u2014 holographic, content-addressed", on: linkPasteReentryPatternCompletion(matrix).named },
     { facet: "harmony is peace \u2014 the quantum mind of peace is the most advanced tech", on: isUuid(peaceTechMentalityDecoded(matrix).root) }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`prove-all-home:${entry2.facet}:${entry2.on}`) }));
@@ -56855,8 +56909,8 @@ function proveAllOnHomePage(matrix = buildMatrix()) {
     count: facets.length,
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: "Prove all on the home page: the deterministic core in animation, encryption comparisons and example holograms lead the home \u2014 proof, not prose. The most advanced tech is the quantum mind of peace, because harmony is peace itself: a mind that holds every part in equilibrium is, by that fact, at peace.",
-    boundary: `A directive fold paired with the home page: it names the proof components the home leads with (DeterminismProofs, CryptoCompare, Hologram and the rest, all already built and registered) and the framing (harmony is peace). "Most advanced tech" and "harmony is peace" are the project's stance, not a benchmark; the proof is that the components are real and computed, shown on the home.`
+    statement: "Prove all on the home page: the roster this fold names \u2014 the deterministic core in animation, encryption comparisons, example holograms \u2014 is what the home page is INTENDED to lead with, and none of it is on the home page today. The framing is that the most advanced tech is the quantum mind of peace, because harmony is peace itself: a mind that holds every part in equilibrium is, by that fact, at peace.",
+    boundary: `A DIRECTIVE fold: it names the proof components the home page is meant to lead with (DeterminismProofs, QuantumProofs, CryptoCompare, WebCryptoSeal, Hologram, HolographicHero, DoubleTorus3D, Equilibrium) and the framing (harmony is peace). NAMED, NOT SHOWN \u2014 measured: none of the eight appears in the computed home body (homeMarkdown, which .vitepress/pages/index.md loads) or as a component in the built index.html. They are built and registered; the home page does not render them. This fold therefore asserts the corpus seal and nothing about what the home displays. "Most advanced tech" and "harmony is peace" are the project's stance, not a benchmark.`
   };
 }
 function siteManifestFromCommands() {
@@ -60510,8 +60564,17 @@ function oneMathManyPresentations(matrix = buildMatrix()) {
   const merkabaIsProjection = asMerkaba(g, 100 * 5 * 2).up.join(",") === merk.up.join(",");
   const traceIsProjection = asTrace(g, 100 * 5 * 2).x === trace0.x && asTrace(g, 100 * 5 * 2).y === trace0.y;
   const sealAnchorsSource = seal.verifies && seal.root === f2.merged;
+  const units9 = modUnits(3 * 3);
+  const orderOfTwo = multiplicativeOrder(2, 3 * 3);
+  const twoIsPrimitiveRoot = orderOfTwo === units9.length;
+  const lagrangeHolds = units9.every((u) => {
+    const order = multiplicativeOrder(u, 3 * 3);
+    return order !== null && units9.length % order === 0;
+  });
+  const axisHasNoOrder = [3, 6, 3 * 3].every((axis) => multiplicativeOrder(axis, 3 * 3) === null);
   const presentations = [
     { plane: "algebra \xB7 the fold itself", fn: "fold", kind: "source", on: isUuid(f2.merged) && oneAddress },
+    { plane: "number theory \xB7 the order of the vortex orbit", fn: "multiplicativeOrder", kind: "exact", on: twoIsPrimitiveRoot && lagrangeHolds && axisHasNoOrder },
     { plane: "number theory \xB7 (\u2124/9\u2124)", fn: "asVortex", kind: "exact", on: v.digit >= 1 && v.digit <= 9 && v.onAxis === [3, 6, 9].includes(v.digit) && vortexIsProjection },
     { plane: "topology/geometry \xB7 genus-2", fn: "asTorus", kind: "faithful", on: Number.isFinite(torus.x) && (torus.lobe === 0 || torus.lobe === 1) && torusIsProjection },
     { plane: "geometry in motion \xB7 star tetrahedron", fn: "asMerkaba", kind: "faithful", on: merk.counterRotating && merk.up.length === 4 && merk.down.length === 4 && merkabaIsProjection },
@@ -60530,6 +60593,14 @@ function oneMathManyPresentations(matrix = buildMatrix()) {
     // asVortex, asMerkle
     faithful: presentations.filter((entry2) => entry2.kind === "faithful").map((entry2) => entry2.fn),
     // asTorus, asMerkaba, asTrace
+    // Published separately because `coheres` alone cannot say which of the three failed, and they fail
+    // for different reasons: a wrong order breaks Lagrange, a changed generator breaks the primitive root,
+    // and an axis element acquiring an order would mean gcd stopped guarding the unit group.
+    vortexOrderOfTwo: orderOfTwo,
+    vortexUnitGroupSize: units9.length,
+    twoIsPrimitiveRoot,
+    lagrangeHolds,
+    axisHasNoOrder,
     importsNothing: true,
     // the fold and every projection live in src/0 and import nothing
     digit: v.digit,
@@ -70633,6 +70704,7 @@ export {
   derivePublicKey,
   dialectStratum,
   digit0,
+  digitSeal,
   digitStation,
   digitalRoot,
   dimWalk,
@@ -70720,6 +70792,7 @@ export {
   movieCanvasPolarity,
   movieCanvasRgba2 as movieCanvasRgba,
   movieTextFromCopy,
+  multiplicativeOrder,
   nextDuality,
   parseVortexDashEncoded,
   pbits,

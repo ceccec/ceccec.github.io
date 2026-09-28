@@ -507,6 +507,42 @@ export declare function leanInvolutionCorpus(root?: string): {
     readonly source: 'counted' | 'sealed' | 'absent';
 };
 /**
+ * THE RATCHET LEDGER, READ ONCE — AND THE BUILD RECEIPT COUNTED OFF IT.
+ *
+ * scripts/verify/status.json is the corpus's committed record of what is still open: one key per measured
+ * quantity, its value the floor that may fall and never rise. Three places read it — status.ts (the writer
+ * and guard), next.ts (openLeads), ratchets.ts (assertEveryRatchetTicks) — and only the first carried the
+ * guard that matters. The other two did `JSON.parse(readFileSync(...))` bare, so a damaged ledger reached
+ * them as a SyntaxError with no instruction and an ABSENT one as a throw where `{}` is the honest answer.
+ * Absent and unparseable are different facts; that was written down once and lost twice by copying the
+ * line instead of the fold. status.ts still keeps its copy on purpose — it is imported by nearly every
+ * gate, and pulling this module's graph into all of them to read one integer is the wrong trade — but
+ * assertEveryRatchetTicks now asserts the two readers return the same ledger, so the copy is an invariant
+ * and not a drift with a delay on it.
+ *
+ * buildReceiptLedger is why this sits beside leanInvolutionCorpus rather than in a gate: the README is
+ * computed from src, and the receipt it should carry is this ledger. NOT the last build's measured bytes.
+ * README.md is regenerated BEFORE docs:build, so any dist-derived number in it describes the PREVIOUS
+ * build — the stale-witness defect that cost a whole wave. A ratcheted BOUND is committed source with a
+ * gate behind it: printing 237 KiB as the held ceiling is a claim the build must keep passing, and a build
+ * that breaks it refuses the commit. A measurement goes stale in silence; a bound cannot.
+ */
+export declare const RATCHET_LEDGER = "scripts/verify/status.json";
+export declare function readRatchetLedger(root?: string): Record<string, number>;
+export declare function buildReceiptLedger(root?: string): {
+    readonly ratchets: number;
+    readonly closed: number;
+    readonly open: number;
+    readonly openUnits: number;
+    readonly secured: number;
+    readonly bounds: readonly {
+        readonly name: string;
+        readonly value: number;
+    }[];
+    readonly gates: number;
+    readonly source: 'counted' | 'absent';
+};
+/**
  * THE MACHINE-CHECKED THEOREMS, IN LATEX.
  *
  * leanInvolutionCorpus counts what verify:lean proved; this reads the same files for their CONTENT —

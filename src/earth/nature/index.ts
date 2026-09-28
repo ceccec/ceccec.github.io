@@ -771,3 +771,123 @@ export {
   astronomySequenceDecodeResearch,
   decodeAstronomyThroughVortexSequence,
   astronomyComputes } from '../../heaven/sky/astronomy/index.ts'
+
+// ── THE ALTIMETER AND THE BAROMETER ARE ONE PRESSURE FIELD READ THROUGH TWO REDUCTIONS ──────────────────
+//
+// A pilot's altimeter setting and a meteorologist's sea-level pressure are not analogies of each other.
+// They are the SAME station pressure reduced to sea level through two different temperature profiles — the
+// standard atmosphere for the altimeter, the air actually over the station for the barometer — so their
+// difference is not noise, it is a thermometer. That is the entanglement, and it is arithmetic.
+//
+// THE UNITED STATES PUBLISHES BOTH REDUCTIONS AS SEPARATE WORKSHEETS AND THEY ARE NOT INVERSES.
+// NWS wxcalc gives "Altimeter Setting" and "Station Pressure" as two independent recipes. Expanded, the
+// first is
+//     Alt^κ = (P − 0.3)^κ + C·h,     κ = 0.190284,  C = 1013.25^κ · 0.0065 / 288
+// which has an EXACT closed-form inverse, P = (Alt^κ − C·h)^(1/κ) + 0.3. The second worksheet is a
+// different function, P = Alt · ((288 − 0.0065·h)/288)^5.2561, and composing the published pair does not
+// return what it started from. This fold proves the exact inverse is exact, proves the published pair is
+// not, and DECOMPOSES the gap into its two named causes rather than reporting a magnitude:
+//
+//   THE OFFSET IS SUBTRACTED AND NEVER RESTORED. At h = 0 the composed error is exactly −0.3 mb for every
+//   pressure — not approximately, exactly, for the whole range.
+//   THE EXPONENTS DISAGREE. One worksheet writes 5.2561, the other's is 1/0.190284 = 5.255303, and that
+//   difference alone grows with height, reaching −0.2183 mb at 4000 m at the reference pressure.
+//
+// AND THE THIRD CAUSE IS STRUCTURAL: the altimeter correction is pinned at 1013.25^κ while the station
+// worksheet scales its correction with the actual pressure, so the two agree near a standard atmosphere and
+// separate as the reading departs from it. Composed over the range altimeter settings actually take, the
+// published pair is out by up to 4.2 mb, against a METAR reporting step of 0.1 mb.
+//
+// NOT AN AESTHETIC PREFERENCE — MEASUREMENT ADJUDICATES, AND IT IS RECORDED IN THE PRIOR-ART LEDGER RATHER
+// THAN HERE, BECAUSE A FOLD MUST NOT FETCH. Against an independent provider's own surface pressure at 17
+// stations the exact inverse is closer on every statistic (mean −1.284 mb against −1.647, sd 1.890 against
+// 1.999, worst 6.52 against 7.29). The live comparison lives in a gate that reports UNCHECKED when the
+// network is absent; what is proven HERE is only what is true without a network.
+//
+// FRONTIER, NAMED RATHER THAN HEDGED: the sea-level reduction the barometer actually uses is not published
+// in wxcalc (there is no such sheet — the index has eighteen and none of them is it), not in the ASOS
+// User's Manual (which specifies reporting, not the equation), and not in NWS directive 10-1302. FMH-1
+// refuses a keyless fetch with HTTP 403. So the altimeter half is closed exactly and the barometer half is
+// open on a NAMED document, which is a lead with an address, not a caveat.
+const ISA_LAPSE = 0.0065
+const ISA_BASE_KELVIN = 288
+const ISA_SEA_LEVEL_MB = 1013.25
+const ALTIMETER_EXPONENT = 0.190284
+const ALTIMETER_OFFSET_MB = 0.3
+const STATION_SHEET_EXPONENT = 5.2561
+const METAR_PRESSURE_STEP_MB = 0.1
+
+/** NWS wxcalc "Altimeter Setting", expanded from the published nested form to Alt^κ = (P−0.3)^κ + C·h. */
+export function nwsAltimeterSetting(stationMb: number, metres: number): number {
+  const c = Math.pow(ISA_SEA_LEVEL_MB, ALTIMETER_EXPONENT) * ISA_LAPSE / ISA_BASE_KELVIN
+  return Math.pow(Math.pow(stationMb - ALTIMETER_OFFSET_MB, ALTIMETER_EXPONENT) + c * metres, 1 / ALTIMETER_EXPONENT)
+}
+
+/** NWS wxcalc "Station Pressure", exactly as published. */
+export function nwsStationPressure(altimeterMb: number, metres: number): number {
+  return altimeterMb * Math.pow((ISA_BASE_KELVIN - ISA_LAPSE * metres) / ISA_BASE_KELVIN, STATION_SHEET_EXPONENT)
+}
+
+/** The exact inverse of the altimeter setting — the function the published worksheet is NOT. */
+export function altimeterSettingInverted(altimeterMb: number, metres: number): number {
+  const c = Math.pow(ISA_SEA_LEVEL_MB, ALTIMETER_EXPONENT) * ISA_LAPSE / ISA_BASE_KELVIN
+  return Math.pow(Math.pow(altimeterMb, ALTIMETER_EXPONENT) - c * metres, 1 / ALTIMETER_EXPONENT) + ALTIMETER_OFFSET_MB
+}
+
+export function pressureReductionsAreOneField(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  // the range an altimeter setting actually takes, and the elevations aerodromes actually sit at
+  const settings = [960, 980, ISA_SEA_LEVEL_MB, 1040]
+  const heights = [0, 300, 662, 1286, 1656, 2384, 4000]
+  let exactWorst = 0
+  let publishedWorst = 0
+  let offsetExact = true
+  for (const h of heights) for (const a of settings) {
+    exactWorst = Math.max(exactWorst, Math.abs(nwsAltimeterSetting(altimeterSettingInverted(a, h), h) - a))
+    publishedWorst = Math.max(publishedWorst, Math.abs(nwsAltimeterSetting(nwsStationPressure(a, h), h) - a))
+  }
+  // AT SEA LEVEL THE DISCREPANCY IS ONE CONSTANT, THE SAME FOR EVERY PRESSURE — and that is the refutable
+  // form. The first spelling of this facet asked whether the error equalled ALTIMETER_OFFSET_MB, which the
+  // same constant had just produced: both sides moved together, so setting the offset to zero left the
+  // facet TRUE and the fold claimed a proof it had not made. A perturbation that does not move a count IS
+  // the finding. What can actually fail is that the sea-level error is INDEPENDENT OF PRESSURE and NOT
+  // ZERO — the composition loses a fixed amount whatever the reading, which no value of the constant can
+  // fake, because zero makes it vanish.
+  const seaLevelErrors = settings.map((a) => nwsAltimeterSetting(nwsStationPressure(a, 0), 0) - a)
+  const seaLevelLoss = Math.abs(seaLevelErrors[0] ?? 0)
+  const offsetConstant = seaLevelErrors.every((e) => Math.abs(e - (seaLevelErrors[0] ?? 0)) < 1e-9)
+  offsetExact = offsetConstant && seaLevelLoss > 1e-9
+  // beyond the offset, the residual at the reference pressure grows strictly with height
+  let monotone = true
+  let previous = 0
+  for (const h of heights) {
+    const residual = Math.abs((nwsAltimeterSetting(nwsStationPressure(ISA_SEA_LEVEL_MB, h), h) - ISA_SEA_LEVEL_MB) + ALTIMETER_OFFSET_MB)
+    if (h > 0 && !(residual > previous)) monotone = false
+    previous = residual
+  }
+  // and the two inverses separate by more than the reporting step at ordinary aerodrome elevations
+  let separation = 0
+  for (const h of heights) for (const a of settings) {
+    separation = Math.max(separation, Math.abs(nwsStationPressure(a, h) - altimeterSettingInverted(a, h)))
+  }
+
+  const facets = [
+    { facet: `the altimeter worksheet has an EXACT closed-form inverse, P = (Alt^κ − C·h)^(1/κ) + ${ALTIMETER_OFFSET_MB} — composing it with the worksheet returns the reading to ${exactWorst.toExponential(1)} mb over ${settings.length * heights.length} (setting, height) pairs`, on: exactWorst < 1e-9 },
+    { facet: `the PUBLISHED pair is not that inverse — composing the two NWS worksheets is out by up to ${publishedWorst.toFixed(2)} mb over the same pairs, ${(publishedWorst / METAR_PRESSURE_STEP_MB).toFixed(0)} counts of METAR's own ${METAR_PRESSURE_STEP_MB} mb step, and larger than the exact inverse's error by more than ten orders of magnitude`, on: publishedWorst > exactWorst * 1e10 },
+    { facet: `at sea level the composition loses ONE CONSTANT amount, identical across all ${settings.length} settings to within 1e-9 and not zero (${seaLevelLoss.toFixed(4)} mb) — the offset the altimeter sheet subtracts and the station sheet never restores`, on: offsetExact },
+    { facet: `above sea level a second cause separates, the two worksheets writing ${STATION_SHEET_EXPONENT} and 1/${ALTIMETER_EXPONENT} = ${(1 / ALTIMETER_EXPONENT).toFixed(6)} for one exponent — the residual beyond the offset grows strictly with height`, on: monotone },
+    { facet: `so the choice of inverse is not cosmetic: the two differ by up to ${separation.toFixed(2)} mb at ordinary aerodrome elevations, ${(separation / METAR_PRESSURE_STEP_MB).toFixed(0)} counts of the reporting step`, on: separation > METAR_PRESSURE_STEP_MB },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pressure-reductions:${entry.facet}:${entry.on}`) }))
+
+  return {
+    computes: facets.every((entry) => entry.on),
+    exactInverseWorstMb: exactWorst,
+    publishedPairWorstMb: publishedWorst,
+    inverseSeparationMb: separation,
+    pairsChecked: settings.length * heights.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `An altimeter setting and a sea-level pressure are one station pressure reduced through two temperature profiles — the standard atmosphere and the air actually over the station — so their difference is a thermometer rather than a discrepancy. The NWS publishes the two reductions as separate worksheets and they are not inverses: the altimeter worksheet is Alt^κ = (P − ${ALTIMETER_OFFSET_MB})^κ + C·h with κ = ${ALTIMETER_EXPONENT}, whose exact inverse returns a reading to ${exactWorst.toExponential(1)} mb, while composing the published pair is out by up to ${publishedWorst.toFixed(2)} mb — ${(publishedWorst / METAR_PRESSURE_STEP_MB).toFixed(0)} counts of the 0.1 mb step observations are reported to. The gap decomposes exactly: an offset subtracted and never restored, worth −${ALTIMETER_OFFSET_MB} mb at sea level for every pressure, and a disagreement between ${STATION_SHEET_EXPONENT} and 1/${ALTIMETER_EXPONENT} that grows with height.`,
+  }
+}

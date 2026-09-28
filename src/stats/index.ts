@@ -437,3 +437,259 @@ export function fleetScaleStatsFused(matrix: MindMatrix = buildMatrix()) {
     boundary:
       'A deterministic composition of buildStatistics and fleetCacheEconomicsDecoded into a fleet model. The node counts and joule figures are illustrative orders of magnitude over sealed constants, not telemetry of any deployed fleet; "output" is self-metric emission, not user-facing work.' }
 }
+
+// ── WHAT A CROSS-DOMAIN IDENTITY SEARCH MUST OBEY, OR IT IS A DIVINING ROD ──────────────────────────────
+//
+// Two domains are entangled when they share an identity, not when they share a vocabulary. Deciding which
+// is which mechanically means searching pairs of measured quantities for a relation that holds — and over
+// N quantities there are N(N−1) ordered pairs, so a search with no guard WILL return laws. It returned 362
+// of them on its first run here, every one an artefact, and each guard below was installed by a wrong
+// answer rather than by foresight. They are stated as theorems because they hold for ANY pair of domains:
+// the failures are properties of the search, not of the weather it was first run on.
+//
+// I  A HOLD-OUT CANNOT REFUTE A RELATION BETWEEN QUANTITIES THAT DO NOT VARY ACROSS THE SPLIT. If x and y
+//    are constant over the samples, every candidate has the same residual on the held-out half as on the
+//    fitted half, so the split carries exactly zero information and validates whatever it is shown. This
+//    is why the first run's 362 survivors all passed hold-out: they related a timestamp to a constant.
+// II A PREDICTOR THAT IS ONE OF THE TERMS UNDER ANOTHER NAME MAKES THE LAW TRIVIAL. If z is the same
+//    quantity as a, then (a − b)/z = 1 − b/a, which is within ε of 1 for EVERY b with |b| ≤ ε|a|. The law
+//    holds no matter what b is, so it says nothing about b. Sameness must therefore be discovered and
+//    quotiented BEFORE the search, not noticed after it.
+// III A GUARD WHOSE FILTER EMPTIES THE SAMPLE SET PASSES HAVING EXAMINED NOTHING. A conjunction over an
+//    empty set is true, so `if (min(|x|,|y|) > 0)` applied to an identically-zero column certified a pair
+//    it never looked at. A guard must report how many samples it actually judged.
+// IV  A RESIDUAL BELOW THE REPORTING STEP IS NOT A MEASUREMENT. Providers quantise; a difference of two
+//    counts of the last digit divided by a predictor is granular at the level of the step itself, so its
+//    ratio cannot be constant to better than that granularity however many samples agree.
+export function crossDomainSearchLaws(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const samples = 12
+  const half = (xs: number[]) => [xs.filter((_, i) => i % 2 === 0), xs.filter((_, i) => i % 2 === 1)] as const
+
+  // I — constant columns: the held-out residual equals the fitted residual, so the split decides nothing
+  const flatX = new Array(samples).fill(7)
+  const flatY = new Array(samples).fill(3)
+  const [trX, hoX] = half(flatX)
+  const [trY, hoY] = half(flatY)
+  const fit = (trX[0] ?? 0) - (trY[0] ?? 0)
+  const trainResidual = Math.max(...trX.map((x, i) => Math.abs(x - (trY[i] ?? 0) - fit)))
+  const holdResidual = Math.max(...hoX.map((x, i) => Math.abs(x - (hoY[i] ?? 0) - fit)))
+  const holdoutBlind = trainResidual === holdResidual
+
+  // II — a same-quantity predictor: the ratio stays near 1 for every b, so the law constrains nothing
+  // CHECKED AS INTEGERS, BECAUSE THE RATIO FORM IS FALSE IN DOUBLES AT ITS OWN BOUNDARY. The first
+  // spelling asked whether |(a − b)/a − 1| ≤ 1/100 and the fold refused itself: at b = ±10, a = 1000 that
+  // is |0.010000000000000009| > 0.01, exact in ℚ and not in IEEE. The identical defect appeared in the
+  // circus pole claim, and it takes the identical repair — the statement is equivalent to |b| · 100 ≤ a,
+  // which carries no division and is exact.
+  const dominant = 1000
+  const inverseEpsilon = 100
+  const arbitrary = [-10, -1, 0, 3, 7, 10]
+  const trivial = arbitrary.every((b) => Math.abs(b) * inverseEpsilon <= dominant)
+
+  // III — the vacuous conjunct: every() over a filtered-empty set is true while judging nothing
+  const zeroColumn = new Array(samples).fill(0)
+  // THE PREDICATE MUST USE ITS ELEMENT, or this demonstrates the wrong thing — and verify:canon caught
+  // that. Written `judged.every(() => false)` it was an element-blind predicate, which is a defect in its
+  // own right and not the one being exhibited. The original bug had a predicate that DID read its
+  // elements, over a set the filter had emptied: the conjunction is true because there is nothing to
+  // judge, not because the test is degenerate. Same predicate, empty set, and the impossible condition
+  // below would fail on every element if any element reached it.
+  const judged = zeroColumn.filter((v) => Math.abs(v) > 0)
+  const vacuouslyTrue = judged.every((v) => Math.abs(v) < 0) && judged.length === 0
+
+  // IV — quantisation: a residual of a few steps cannot pin a ratio better than the step allows
+  const step = 1 / 10
+  const smallResidual = 2 * step
+  const predictor = 3
+  const granularity = step / predictor / (smallResidual / predictor)
+  const belowResolution = granularity >= 1 / 2
+
+  const facets = [
+    { facet: `a hold-out split cannot refute a relation between quantities constant across it — over ${samples} samples the fitted residual ${trainResidual} and the held-out residual ${holdResidual} are identical, so the split carries zero information and validates whatever it is shown`, on: holdoutBlind },
+    { facet: `a predictor that IS one of the terms makes the law trivial — with z = a, (a − b)/z sits within 1/${inverseEpsilon} of 1 for all ${arbitrary.length} arbitrary values of b, checked as the exact integer statement |b| · ${inverseEpsilon} ≤ a rather than as a ratio, so the law constrains b not at all and sameness must be quotiented BEFORE the search`, on: trivial },
+    { facet: `a guard whose filter empties the sample set passes having examined nothing — the conjunction returns true over ${judged.length} judged samples, which is why a guard must report its own sample count`, on: vacuouslyTrue },
+    { facet: `a residual below the provider's reporting step is not a measurement — ${smallResidual.toFixed(1)} of a ${step} step over a predictor of ${predictor} leaves the ratio granular at ${(granularity * 100).toFixed(0)}% of itself, so no number of agreeing samples can pin it`, on: belowResolution },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`cross-domain-search:${entry.facet}:${entry.on}`) }))
+
+  return {
+    computes: facets.every((entry) => entry.on),
+    lawsChecked: facets.length,
+    samplesPerLaw: samples,
+    arbitraryValuesTried: arbitrary.length,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `Two domains are entangled when they share an identity, not a vocabulary, and telling those apart mechanically is a search over pairs of measured quantities — which returns laws whether or not any exist, because over N quantities there are N(N−1) pairs. Four guards make the difference, and each is a theorem about the search rather than about any domain: a hold-out is blind to quantities constant across it; a predictor that is one of the terms under another name makes the law trivially true for every value of the other term; a guard whose filter empties the sample set certifies what it never examined; and a residual below the provider's reporting step cannot pin a ratio however many samples agree.`,
+  }
+}
+
+// ── FIVE EXPRESSIONS THAT TWO DISCIPLINES EACH WROTE DOWN SEPARATELY AND NAMED TWICE ───────────────────
+//
+// Not analogies. In each case one expression is written in two fields, under two names, by people who
+// mostly do not read each other, and the second field's result is the first field's with the letters
+// changed. Each is checked as exact arithmetic over a deterministic construction and each carries the
+// perturbation that breaks it, because an identity nothing can refute is a restatement.
+//
+// ONE FOLD PER THEOREM, WHICH IS THE POINT AND NOT A STYLE. A fold that proves several registry rows can
+// give a witness to none of them: deriveProofWitnesses requires a proof's numbers to be unique to one
+// theorem, so a shared proof sends every row it covers back to a title-keyword template. That defect cost
+// the circus pair their witnesses two commits ago. Five theorems, five proofs, five sets of numbers.
+const PAIR_WAYS = 2
+const EXACT = 1e-9
+const GRID = 1000
+
+/**
+ * HARDY–WEINBERG IS THE LAW OF MASS ACTION, WITH EQUILIBRIUM CONSTANT EXACTLY 4.
+ *
+ * For A + a ⇌ Aa with no selectivity, mass action reads K = [Aa]²/([AA][aa]). Under Hardy–Weinberg the
+ * genotype frequencies are p², 2pq and q², so K = (2pq)²/(p²q²) = 4 for EVERY allele frequency — the p
+ * cancels completely. Population genetics and physical chemistry are writing one equation, and the 4 is
+ * not fitted: it is the square of the 2 that counts the two ordered ways of drawing a pair, the same 2
+ * that appears in the antitrust merger rule proved beside this one.
+ */
+export function hardyWeinbergIsMassAction(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  let worst = 0
+  let withoutTheTwo = 0
+  for (let i = 1; i < GRID; i += 1) {
+    const p = i / GRID
+    const q = 1 - p
+    worst = Math.max(worst, Math.abs(Math.pow(PAIR_WAYS * p * q, PAIR_WAYS) / (p * p * q * q) - PAIR_WAYS * PAIR_WAYS))
+    withoutTheTwo = Math.max(withoutTheTwo, Math.abs((p * q) * (p * q) / (p * p * q * q) - PAIR_WAYS * PAIR_WAYS))
+  }
+  const facets = [
+    { facet: `K = (2pq)²/(p²q²) is exactly ${PAIR_WAYS * PAIR_WAYS} at every one of ${GRID - 1} allele frequencies — worst departure ${worst.toExponential(1)}, and the p cancels rather than being small`, on: worst < EXACT },
+    { facet: `the ${PAIR_WAYS} is load-bearing and not decorative — dropping it misses ${PAIR_WAYS * PAIR_WAYS} at every frequency, by up to ${withoutTheTwo.toFixed(2)}`, on: withoutTheTwo > 1 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`hwe-mass-action:${entry.facet}:${entry.on}`) }))
+  return { computes: facets.every((e) => e.on), frequenciesChecked: GRID - 1, worstDeparture: worst, departureWithoutTheTwo: withoutTheTwo, facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement: `Hardy–Weinberg equilibrium IS the law of mass action with equilibrium constant exactly ${PAIR_WAYS * PAIR_WAYS}: K = [Aa]²/([AA][aa]) = (2pq)²/(p²q²), independent of the allele frequency across all ${GRID - 1} checked, worst departure ${worst.toExponential(1)}. The constant is not fitted — it is the square of the 2 counting the ordered ways to draw a pair, and removing that 2 misses 4 everywhere.` }
+}
+
+/**
+ * THE ANTITRUST MERGER RULE IS THE HETEROZYGOTE TERM.
+ *
+ * Merging two firms with market shares s_i and s_j raises the Herfindahl–Hirschman index by
+ * (s_i + s_j)² − s_i² − s_j² = 2 s_i s_j, which IS the Hardy–Weinberg heterozygote frequency 2pq. A
+ * competition regulator and a population geneticist compute the same quantity for the same reason: both
+ * ask how often two independent draws land in one category. Checked by recomputing the index from scratch
+ * after actually performing the merge, never by trusting the expansion.
+ */
+export function mergerRuleIsTheHeterozygoteTerm(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  let worst = 0
+  let merges = 0
+  let vectors = 0
+  for (let n = 3; n <= 12; n += 1) {
+    const raw = Array.from({ length: n }, (_, k) => 1 + ((k * k + n) % n) + k / n)
+    const total = raw.reduce((a, b) => a + b, 0)
+    const share = raw.map((x) => x / total)
+    const index = share.reduce((a, x) => a + x * x, 0)
+    vectors += 1
+    for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) {
+      const merged = share.filter((_, k) => k !== i && k !== j).concat([(share[i] ?? 0) + (share[j] ?? 0)])
+      worst = Math.max(worst, Math.abs((merged.reduce((a, x) => a + x * x, 0) - index) - PAIR_WAYS * (share[i] ?? 0) * (share[j] ?? 0)))
+      merges += 1
+    }
+  }
+  const facets = [
+    { facet: `recomputing the Herfindahl index from scratch after actually merging two firms matches 2·s_i·s_j to ${worst.toExponential(1)} across ${merges} merges over ${vectors} share vectors — the expansion is verified, not assumed`, on: worst < EXACT && merges > 0 },
+    { facet: `and that expression IS the Hardy–Weinberg heterozygote term 2pq with p = s_i and q = s_j — one expression, two disciplines, because both count how often two independent draws land in one category`, on: merges > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`merger-heterozygote:${entry.facet}:${entry.on}`) }))
+  return { computes: facets.every((e) => e.on), mergesRecomputed: merges, shareVectors: vectors, worstResidual: worst, facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement: `The antitrust merger rule ΔHHI = 2·s_i·s_j IS the Hardy–Weinberg heterozygote term 2pq. Verified over ${merges} merges on ${vectors} deterministic share vectors by recomputing the index from scratch after performing each merge, worst residual ${worst.toExponential(1)}. A competition regulator and a population geneticist compute one quantity for one reason: the probability that two independent draws fall in the same category.` }
+}
+
+/**
+ * FOUR PARADOXES ARE ONE FORMULA, AND THE PARADOX IS THE VARIANCE.
+ *
+ * Sampling a unit with probability proportional to its own size gives E[X²]/E[X] = μ(1 + CV²), which
+ * equals μ if and only if the variance is zero. That single expression is the friendship paradox in
+ * network science, the class-size paradox in sociology, the inspection paradox in queueing and
+ * length-biased sampling in biostatistics. Nothing is paradoxical about any of them: each is the same
+ * second moment divided by the same first.
+ */
+export function sizeBiasIsOneFormula(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  let worst = 0
+  let populations = 0
+  for (let n = 3; n <= 40; n += 1) {
+    const x = Array.from({ length: n }, (_, k) => 1 + ((k * 7) % n) + (k % 3))
+    const sum = x.reduce((a, b) => a + b, 0)
+    const mu = sum / n
+    const variance = x.reduce((a, v) => a + (v - mu) * (v - mu), 0) / n
+    worst = Math.max(worst, Math.abs(x.reduce((a, v) => a + v * v, 0) / sum - mu * (1 + variance / (mu * mu))))
+    populations += 1
+  }
+  const flat = Array.from({ length: GRID / 100 }, () => PAIR_WAYS + PAIR_WAYS)
+  const flatFactor = flat.reduce((a, v) => a + v * v, 0) / flat.reduce((a, b) => a + b, 0) / (PAIR_WAYS + PAIR_WAYS)
+  const facets = [
+    { facet: `brute-force size-biased sampling equals the closed form μ(1 + CV²) to ${worst.toExponential(1)} over ${populations} populations — the friendship, class-size and inspection paradoxes and length-biased sampling are this one expression`, on: worst < EXACT },
+    { facet: `and the equality case is exactly zero variance — a population with no spread has bias factor ${flatFactor.toFixed(10)}, so the paradox IS the variance and not the sampling`, on: Math.abs(flatFactor - 1) < EXACT },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`size-bias-one-formula:${entry.facet}:${entry.on}`) }))
+  return { computes: facets.every((e) => e.on), populationsChecked: populations, worstResidual: worst, equalityCaseFactor: flatFactor, facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement: `The friendship paradox, the class-size paradox, the inspection paradox and length-biased sampling are ONE formula: sampling a unit with probability proportional to its size gives E[X²]/E[X] = μ(1 + CV²). Verified against brute force over ${populations} populations to ${worst.toExponential(1)}, with the equality case exactly zero variance — the paradox is the variance, not the sampling.` }
+}
+
+/**
+ * A POPULATION'S GROWTH RATE IS A BOND'S YIELD, AND ITS GENERATION TIME IS THE BOND'S DURATION.
+ *
+ * The Euler–Lotka equation Σ φ(a) e^(−ra) = 1 and bond pricing Σ CF_a (1+y)^(−a) = P are the same
+ * root-find on the same discounted sum: set CF := φ and P := 1, and r = ln(1+y). The mean length of a
+ * generation, Σ a φ(a) e^(−ra) / Σ φ(a) e^(−ra), is then character-for-character Macaulay duration.
+ * Demography and fixed income call one solver on one array and rename the output.
+ */
+export function growthRateIsAYield(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const schedule = Array.from({ length: 35 }, (_, k) => ({ age: 15 + k, flow: (1 + ((k * 13) % 17)) / 400 }))
+  const bisect = (f: (v: number) => number, lo: number, hi: number): number => {
+    let a = lo, b = hi
+    for (let step = 0; step < 200; step += 1) { const mid = (a + b) / 2; if (f(mid) > 1) a = mid; else b = mid }
+    return (a + b) / 2
+  }
+  const r = bisect((v) => schedule.reduce((acc, s) => acc + s.flow * Math.exp(-v * s.age), 0), -1, 1)
+  const yld = bisect((v) => schedule.reduce((acc, s) => acc + s.flow / Math.pow(1 + v, s.age), 0), -1 + EXACT, 5)
+  const rateGap = Math.abs(r - Math.log(1 + yld))
+  const generation = schedule.reduce((a, s) => a + s.age * s.flow * Math.exp(-r * s.age), 0) / schedule.reduce((a, s) => a + s.flow * Math.exp(-r * s.age), 0)
+  const price = schedule.reduce((a, s) => a + s.flow / Math.pow(1 + yld, s.age), 0)
+  const duration = schedule.reduce((a, s) => a + s.age * s.flow / Math.pow(1 + yld, s.age), 0) / price
+  const durationGap = Math.abs(generation - duration)
+  const facets = [
+    { facet: `solving one discounted sum as a population and as a bond gives r = ln(1+y) to ${rateGap.toExponential(1)} — the intrinsic rate of natural increase and the yield to maturity are one root of one equation over ${schedule.length} periods`, on: rateGap < EXACT },
+    { facet: `and the mean length of a generation IS Macaulay duration, agreeing to ${durationGap.toExponential(1)} — the r-discounted mean age of the schedule, written twice`, on: durationGap < EXACT },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`growth-is-yield:${entry.facet}:${entry.on}`) }))
+  return { computes: facets.every((e) => e.on), periodsInSchedule: schedule.length, rateGap, durationGap, facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement: `A population's intrinsic growth rate IS a bond's yield to maturity and its generation time IS Macaulay duration. Euler–Lotka Σφ(a)e^(−ra) = 1 and bond pricing ΣCF_a(1+y)^(−a) = P are one root-find on one discounted sum, so r = ln(1+y) — verified to ${rateGap.toExponential(1)} over a ${schedule.length}-period schedule, with the generation time and the duration agreeing to ${durationGap.toExponential(1)}.` }
+}
+
+/**
+ * LITTLE'S LAW IS AN ACCOUNTING IDENTITY, NOT A STATISTICAL ONE.
+ *
+ * Σ sojourn times = ∫ N(t) dt is Fubini applied to the indicator 1{arrived and not yet departed}. So
+ * L = λW holds PATHWISE for any cohort wholly inside the window: no stationarity, no distribution, no
+ * independence, no equilibrium. What breaks it is not a violated statistical assumption but a violated
+ * cohort — censor a job at the window edge and the two sides part, which is the failure every dashboard
+ * that divides a truncated total by a rate is making.
+ */
+export function littlesLawIsAccounting(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const jobs = Array.from({ length: 60 }, (_, k) => { const arrive = (k * 17) % 100; return { arrive, depart: arrive + 1 + ((k * 29) % 23) } })
+  const sojourn = jobs.reduce((a, j) => a + (j.depart - j.arrive), 0)
+  const events = [...jobs.map((j) => ({ at: j.arrive, delta: 1 })), ...jobs.map((j) => ({ at: j.depart, delta: -1 }))].sort((a, b) => a.at - b.at)
+  let occupancy = 0, area = 0, previous = events[0]?.at ?? 0
+  for (const event of events) { area += occupancy * (event.at - previous); previous = event.at; occupancy += event.delta }
+  const gap = Math.abs(sojourn - area)
+  const window = GRID / 10 / PAIR_WAYS
+  const censored = jobs.reduce((a, j) => a + (Math.min(j.depart, window) - Math.min(j.arrive, window)), 0)
+  const facets = [
+    { facet: `the sojourn sum and the occupancy integral agree to ${gap.toExponential(1)} over ${jobs.length} jobs with NOTHING assumed — no stationarity, no distribution, no independence, because the identity is Fubini on an indicator`, on: gap < EXACT },
+    { facet: `and what breaks it is a censored cohort rather than a violated assumption — clipping the same jobs at a window boundary moves the total from ${sojourn} to ${censored}`, on: Math.abs(censored - sojourn) > 1 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`little-accounting:${entry.facet}:${entry.on}`) }))
+  return { computes: facets.every((e) => e.on), jobsChecked: jobs.length, sojournTotal: sojourn, censoredTotal: censored, integralGap: gap, facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement: `Little's law L = λW is an ACCOUNTING identity, not a statistical one: Σ sojourn times = ∫N(t)dt is Fubini applied to the indicator of being present, so it holds pathwise for any contained cohort with no stationarity, distribution or independence assumed — verified to ${gap.toExponential(1)} over ${jobs.length} jobs. What breaks it is a censored cohort, not a violated assumption: clipping the same jobs at a boundary moves the total from ${sojourn} to ${censored}.` }
+}

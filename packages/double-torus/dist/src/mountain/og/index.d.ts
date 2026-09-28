@@ -368,6 +368,8 @@ export declare function seoOptimised(matrix?: MindMatrix): {
     optimised: boolean;
     targets: number;
     theoremCount: number;
+    registeredCount: number;
+    outsideRegistryCount: number;
     budget: number;
     facets: {
         receipt: string;

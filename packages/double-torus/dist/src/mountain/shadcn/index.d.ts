@@ -68,6 +68,9 @@ export declare function shadcnComputes(matrix?: MindMatrix, at?: number): {
         allComponents: string[];
         tokens: string[];
         deps: string[];
+        depsPresent: string[];
+        depsMissing: string[];
+        depsSource: "counted" | "absent";
         pathBDeps: string[];
         paths: {
             A: string;
