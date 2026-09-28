@@ -3,7 +3,7 @@ import { UNFOLDED_CENSUS } from '../3/7/index.ts'
 import { HARMONICS_LADDER_LENGTH } from '../pair/enforcement/gates/computational/index.ts'
 import type { MindMatrix } from '../types/index.ts'
 import { buildMatrix, coverage, entropy, fleetCacheEconomicsDecoded } from '../heaven/compute/index.ts'
-import { abs, exp, floor, foldPair, gcd, log, max, measure, merge, merkleFold, min, pow, roundTo, toUuid } from '../0/index.ts'
+import { abs, exp, floor, foldPair, gcd, log, log2, max, measure, merge, merkleFold, min, pow, round, roundTo, toUuid } from '../0/index.ts'
 import { areaPairs } from '../mountain/geometry/index.ts'
 import { atoms, conceptCommands } from '../heaven/atoms/index.ts'
 import { pureDiamonds, quantumFoldedBlockchains } from '../fire/diamonds/index.ts'
@@ -803,7 +803,7 @@ export function euclidIsSixDisciplines(matrix: MindMatrix = buildMatrix()) {
   const cf = (x: number, terms: number) => {
     const out: number[] = []
     let a = x, b = 1
-    for (let i = 0; i < terms && b > 1e-12; i += 1) { const q = Math.floor(a / b); out.push(q); const r = a - q * b; a = b; b = r }
+    for (let i = 0; i < terms && b > 1e-12; i += 1) { const q = floor(a / b); out.push(q); const r = a - q * b; a = b; b = r }
     return out
   }
   const denominators = (terms: readonly number[]) => {
@@ -812,10 +812,10 @@ export function euclidIsSixDisciplines(matrix: MindMatrix = buildMatrix()) {
     for (const t of terms) { const q = t * q1 + q0; q0 = q1; q1 = q; out.push(q) }
     return out
   }
-  const fifth = denominators(cf(Math.log2(3 / 2), 9))
+  const fifth = denominators(cf(log2(3 / 2), 9))
   const year = denominators(cf(24219 / 100000, 6))
   // the mechanical word: the rhythm, the Sturmian word and the rasterised line are one construction
-  const mechanical = (n: number, k: number) => Array.from({ length: n }, (_, i) => Math.floor(((i + 1) * k) / n) - Math.floor((i * k) / n))
+  const mechanical = (n: number, k: number) => Array.from({ length: n }, (_, i) => floor(((i + 1) * k) / n) - floor((i * k) / n))
   // A NECKLACE, NOT A STRING — AND THE FIRST VERSION OF THIS FACET FORGOT THAT AND REFUSED ITSELF.
   // The mechanical word for E(3,8) comes out 00100101 while the tresillo is written 10010010, and those
   // are the same rhythm started on a different beat. A Euclidean rhythm is defined up to rotation, so
@@ -833,7 +833,7 @@ export function euclidIsSixDisciplines(matrix: MindMatrix = buildMatrix()) {
     const a = rows[rows.length - 2] ?? [], b = rows[rows.length - 1] ?? []
     if (b.every((v) => v === 0)) break
     const next: number[] = []
-    for (let i = 1; i < Math.max(a.length, b.length); i += 1) next.push(((b[0] ?? 0) * (a[i] ?? 0) - (a[0] ?? 0) * (b[i] ?? 0)) / (b[0] ?? 1))
+    for (let i = 1; i < max(a.length, b.length); i += 1) next.push(((b[0] ?? 0) * (a[i] ?? 0) - (a[0] ?? 0) * (b[i] ?? 0)) / (b[0] ?? 1))
     rows.push(next.length ? next : [0])
   }
   const column = rows.map((r) => r[0] ?? 0).filter((v) => v !== 0)
@@ -869,14 +869,14 @@ export function euclidIsSixDisciplines(matrix: MindMatrix = buildMatrix()) {
  */
 export function circleOfFifthsDoesNotClose(matrix: MindMatrix = buildMatrix()) {
   void matrix
-  const num = Math.pow(3, 12), den = Math.pow(2, 12) * Math.pow(2, 7)
+  const num = pow(3, 12), den = pow(2, 12) * pow(2, 7)
   const comma = num / den
-  const cents = 1200 * Math.log2(comma)
-  const temperedFifth = Math.pow(2, 7 / 12)
-  const shortfall = 1200 * Math.log2(temperedFifth / (3 / 2))
+  const cents = 1200 * log2(comma)
+  const temperedFifth = pow(2, 7 / 12)
+  const shortfall = 1200 * log2(temperedFifth / (3 / 2))
   const facets = [
-    { facet: `twelve perfect fifths are not seven octaves — (3/2)¹²/2⁷ = ${comma.toFixed(10)}, which is not 1, and the excess is the Pythagorean comma at ${cents.toFixed(4)} cents`, on: Math.pow(3, 12) !== Math.pow(2, 19) && cents > 0 },
-    { facet: `and the tempered fifth is not the perfect fifth either — 2^(7/12) falls ${Math.abs(shortfall).toFixed(4)} cents short of 3/2, which is the compromise twelve-tone equal temperament exists to make`, on: temperedFifth < 3 / 2 && shortfall < 0 },
+    { facet: `twelve perfect fifths are not seven octaves — (3/2)¹²/2⁷ = ${comma.toFixed(10)}, which is not 1, and the excess is the Pythagorean comma at ${cents.toFixed(4)} cents`, on: pow(3, 12) !== pow(2, 19) && cents > 0 },
+    { facet: `and the tempered fifth is not the perfect fifth either — 2^(7/12) falls ${abs(shortfall).toFixed(4)} cents short of 3/2, which is the compromise twelve-tone equal temperament exists to make`, on: temperedFifth < 3 / 2 && shortfall < 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pythagorean-comma:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((e) => e.on),
@@ -885,7 +885,7 @@ export function circleOfFifthsDoesNotClose(matrix: MindMatrix = buildMatrix()) {
     facets,
     root: merkleFold(facets.map((e) => e.receipt)),
     statement:
-      `The circle of fifths does not close: (3/2)¹² / 2⁷ = 531441/524288, the Pythagorean comma, ${cents.toFixed(4)} cents of excess after twelve fifths. Equal temperament does not resolve it by making the fifth perfect — 2^(7/12) is ${Math.abs(shortfall).toFixed(4)} cents flat of 3/2 — it distributes the comma. Both figures are exact consequences of the two ratios and neither is a matter of tuning taste.`,
+      `The circle of fifths does not close: (3/2)¹² / 2⁷ = 531441/524288, the Pythagorean comma, ${cents.toFixed(4)} cents of excess after twelve fifths. Equal temperament does not resolve it by making the fifth perfect — 2^(7/12) is ${abs(shortfall).toFixed(4)} cents flat of 3/2 — it distributes the comma. Both figures are exact consequences of the two ratios and neither is a matter of tuning taste.`,
   }
 }
 
@@ -907,11 +907,11 @@ export function gregorianIsNotABestApproximation(matrix: MindMatrix = buildMatri
   const persian = err(31, 128)
   let better = 0
   for (let q = 1; q < 400; q += 1) {
-    const p = Math.round(YEAR_FRACTION * q)
-    if (Math.abs(p / q - YEAR_FRACTION) < Math.abs(97 / 400 - YEAR_FRACTION)) better += 1
+    const p = round(YEAR_FRACTION * q)
+    if (abs(p / q - YEAR_FRACTION) < abs(97 / 400 - YEAR_FRACTION)) better += 1
   }
   const facets = [
-    { facet: `the rule in use errs ${gregorian.toFixed(3)} s/yr while 31/128 errs ${persian.toFixed(3)} — about ${Math.abs(gregorian / persian).toFixed(0)}× more accurate on a denominator ${(400 / 128).toFixed(1)}× smaller`, on: Math.abs(persian) < Math.abs(gregorian) },
+    { facet: `the rule in use errs ${gregorian.toFixed(3)} s/yr while 31/128 errs ${persian.toFixed(3)} — about ${abs(gregorian / persian).toFixed(0)}× more accurate on a denominator ${(400 / 128).toFixed(1)}× smaller`, on: abs(persian) < abs(gregorian) },
     { facet: `and it is not a rare near-miss — ${better} denominators below 400 are strictly closer to the tropical year than 97/400`, on: better > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gregorian-not-best:${entry.facet}:${entry.on}`) }))
   return {
@@ -949,12 +949,12 @@ export function lyndonWordsAreIrreduciblePolynomials(matrix: MindMatrix = buildM
   }
   const viaMobius = (n: number) => {
     let s = 0
-    for (let d = 1; d <= n; d += 1) if (n % d === 0) s += mobius(d) * Math.pow(2, n / d)
+    for (let d = 1; d <= n; d += 1) if (n % d === 0) s += mobius(d) * pow(2, n / d)
     return s / n
   }
   const lyndonByBrute = (n: number) => {
     let count = 0
-    for (let bits = 0; bits < Math.pow(2, n); bits += 1) {
+    for (let bits = 0; bits < pow(2, n); bits += 1) {
       const w = Array.from({ length: n }, (_, i) => (bits >> i) & 1).join('')
       let least = true
       for (let r = 1; r < n; r += 1) if (w.slice(r) + w.slice(0, r) < w) { least = false; break }
@@ -969,7 +969,7 @@ export function lyndonWordsAreIrreduciblePolynomials(matrix: MindMatrix = buildM
   // all necklaces, not only the primitive ones — the identity must break
   const allNecklaces = (n: number) => {
     let s = 0
-    for (let k = 0; k < n; k += 1) s += Math.pow(2, gcd(k, n))
+    for (let k = 0; k < n; k += 1) s += pow(2, gcd(k, n))
     return s / n
   }
   const perturbed = [2, 4, 12]

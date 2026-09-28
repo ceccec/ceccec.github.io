@@ -750,7 +750,7 @@ export declare function bulgarianHeritageEightfold(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
-export { GOLD_MINE_MAP_HINGE, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphPaintSamples, thunderGoldGraphComputes, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes } from '../../wind/fusion/index.ts';
+export { goldMineMapHinge, goldMineMapCatalog, goldMineMapFitsPerfectlyInModel, undiscoveredGoldConcentrationCandidatesFromMap, goldMineMapComputes, thunderGoldGraphFromPreciseGpsCoordinates, thunderGoldGraphPaintSamples, thunderGoldGraphComputes, schumannGoldSiteCouplingAt, schumannGoldSiteCouplingComputes } from '../../wind/fusion/index.ts';
 export declare function magneticDeclinationAtSite(latDeg: number, lonDeg: number): {
     declinationDeg: number;
     poleLatDeg: number;

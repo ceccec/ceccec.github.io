@@ -333,3 +333,209 @@ export declare function littlesLawIsAccounting(matrix?: MindMatrix): {
     root: string;
     statement: string;
 };
+export declare const LIVE_CONNECTORS: readonly [{
+    readonly key: "metar";
+    readonly url: "https://aviationweather.gov/api/data/metar?ids=KJFK&format=json";
+    readonly crossChecks: "airport conditions at a timestamp — and it decodes ITSELF, since rawOb carries A2973, SLP067 and T01670161 beside the parsed altim, slp and temp";
+    readonly limit: "100 requests per minute, max 400 entries per response (documented)";
+    readonly licence: "US Government public domain";
+    readonly reproducible: "versioned — a date= query is a ROLLING 30-day fixture and ages out";
+}, {
+    readonly key: "open-meteo-archive";
+    readonly url: "https://archive-api.open-meteo.com/v1/archive";
+    readonly crossChecks: "temperature, precipitation, wind and elevation at a place and past date — refutes invented historical weather";
+    readonly limit: "10000/day, 5000/hour, 600/minute (documented)";
+    readonly licence: "CC BY 4.0 data, but the FREE TIER EXCLUDES commercial use, adverts and subscriptions";
+    readonly reproducible: "fixture beyond ~1 week — the last 5 days are ERA5T and get revised";
+}, {
+    readonly key: "nist-codata";
+    readonly url: "https://physics.nist.gov/cuu/Constants/Table/allascii.txt";
+    readonly crossChecks: "any stated physical constant, its uncertainty, and whether it is EXACT — refutes a constant that drifted from CODATA";
+    readonly limit: "not documented";
+    readonly licence: "NIST public domain";
+    readonly reproducible: "fixture — versioned by the CODATA adjustment named in its header";
+}, {
+    readonly key: "usgs-earthquake";
+    readonly url: "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson";
+    readonly crossChecks: "magnitude, magnitude TYPE, depth, epicentre and origin time; /count gives an aggregate as one integer";
+    readonly limit: "20000 results per query (documented); request rate not documented";
+    readonly licence: "US Government public domain";
+    readonly reproducible: "versioned — an event id is stable but `updated` moves on revision";
+}, {
+    readonly key: "jpl-horizons";
+    readonly url: "https://ssd.jpl.nasa.gov/api/horizons.api";
+    readonly crossChecks: "planetary and lunar position, velocity and range at any epoch — refutes almost any quantitative astronomical claim";
+    readonly limit: "ONE REQUEST AT A TIME, no concurrency (documented); application User-Agent required";
+    readonly licence: "not documented; no non-commercial clause found";
+    readonly reproducible: "fixture — byte-stable, pinned by a named planetary ephemeris";
+}, {
+    readonly key: "crossref";
+    readonly url: "https://api.crossref.org/works/";
+    readonly crossChecks: "DOI to title, journal, volume, page and year — refutes a fabricated or mismatched citation";
+    readonly limit: "10 requests/second, reported live in x-rate-limit-limit; a mailto User-Agent earns the polite pool";
+    readonly licence: "metadata largely uncopyrightable; some abstracts are not";
+    readonly reproducible: "versioned — bibliographic core stable, citation counts are NOT and must never be cross-checked";
+}, {
+    readonly key: "oeis";
+    readonly url: "https://oeis.org/search?q=id:A000045&fmt=json";
+    readonly crossChecks: "an integer sequence BOTH ways — id to terms, and terms to id, which refutes a claim that a computed sequence is novel";
+    readonly limit: "not documented for the JSON endpoint";
+    readonly licence: "CC BY-SA 4.0 — share-alike, NOT non-commercial; scraping without consent is prohibited";
+    readonly reproducible: "fixture — sequence data and b-files are effectively permanent; the NAME is editable";
+}, {
+    readonly key: "noaa-tides";
+    readonly url: "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=ceccec&begin_date=20240101&end_date=20240101&datum=MLLW&station=8518750&time_zone=GMT&units=metric&interval=hilo&format=json";
+    readonly crossChecks: "the strongest self-contained pair here — product=predictions is a harmonic MODEL and product=water_level the MEASUREMENT at the same station, so the residual is the storm surge";
+    readonly limit: "throttled, not numeric; per-request spans capped (6-min <= 1 month, hourly <= 1 year)";
+    readonly licence: "US Government public domain";
+    readonly reproducible: "fixture for past dates when the quality flag is v (verified)";
+}, {
+    readonly key: "bgs-geomag";
+    readonly url: "https://geomag.bgs.ac.uk/web_service/GMModels/igrf/13/";
+    readonly crossChecks: "magnetic declination, inclination and field intensity for a place, altitude and epoch — pairs against a USGS observatory measurement, which agreed to ~0.4%";
+    readonly limit: "not documented";
+    readonly licence: "IGRF, WMM and WMMHR unrestricted; BGGM is subscriber-only";
+    readonly reproducible: "fixture — a closed-form spherical-harmonic evaluation pinned by model revision in the URL";
+}, {
+    readonly key: "opentargets";
+    readonly url: "https://api.platform.opentargets.org/api/v4/graphql";
+    readonly method: "POST";
+    readonly body: "{\"query\":\"{ target(ensemblId: \\\"ENSG00000139618\\\") { id approvedSymbol biotype } }\"}";
+    readonly crossChecks: "an Ensembl gene id to its approved symbol and biotype — refutes a gene named wrongly in a claim; GET returns HTTP 400, so a GET-only probe reports this live service dead";
+    readonly limit: "not documented";
+    readonly licence: "CC0 for Open Targets data; individual source datasets keep their own terms";
+    readonly reproducible: "versioned — a target record is stable but moves with each platform release";
+}, {
+    readonly key: "gnomad";
+    readonly url: "https://gnomad.broadinstitute.org/api";
+    readonly method: "POST";
+    readonly body: "{\"query\":\"{ gene(gene_symbol: \\\"BRCA2\\\", reference_genome: GRCh38) { gene_id symbol chrom } }\"}";
+    readonly crossChecks: "population genotype counts and gene coordinates — the source that showed Hardy-Weinberg holding at K = 3.9952 within one ancestry and breaking under pooling";
+    readonly limit: "not documented";
+    readonly licence: "open data, no key and no account";
+    readonly reproducible: "versioned — keyed by the dataset release, e.g. gnomad_r4";
+}];
+/**
+ * THE REGISTRY IS ONLY WORTH HAVING IF EVERY ROW CARRIES WHAT A CALLER NEEDS TO CALL IT SAFELY.
+ *
+ * This asserts the shape rather than the network: every connector names a reachable-looking https endpoint,
+ * says what it can REFUTE, states a limit or admits none is documented, names a licence, and declares its
+ * reproducibility class. Nothing here contacts a server — a fold that fetches is not deterministic, cannot
+ * be content-addressed, and would make this a measurement of the network rather than of the registry.
+ * The live probe belongs in a gate that reports UNCHECKED when it is offline.
+ */
+export declare function liveConnectorsRegistered(matrix?: MindMatrix): {
+    computes: boolean;
+    connectors: 11;
+    commerciallyRestricted: number;
+    registry: {
+        key: "metar" | "open-meteo-archive" | "nist-codata" | "usgs-earthquake" | "jpl-horizons" | "crossref" | "oeis" | "noaa-tides" | "bgs-geomag" | "opentargets" | "gnomad";
+        url: "https://aviationweather.gov/api/data/metar?ids=KJFK&format=json" | "https://archive-api.open-meteo.com/v1/archive" | "https://physics.nist.gov/cuu/Constants/Table/allascii.txt" | "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson" | "https://ssd.jpl.nasa.gov/api/horizons.api" | "https://api.crossref.org/works/" | "https://oeis.org/search?q=id:A000045&fmt=json" | "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=ceccec&begin_date=20240101&end_date=20240101&datum=MLLW&station=8518750&time_zone=GMT&units=metric&interval=hilo&format=json" | "https://geomag.bgs.ac.uk/web_service/GMModels/igrf/13/" | "https://api.platform.opentargets.org/api/v4/graphql" | "https://gnomad.broadinstitute.org/api";
+        method: string;
+        body: string;
+    }[];
+    reproducibilityClasses: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * ONE REMAINDER SEQUENCE, SIX DISCIPLINES, AND NOBODY CALLS IT THE SAME THING.
+ *
+ * (a, b) → (b, a mod b) is Euclid's algorithm. Run it on log₂(3/2) and the convergent denominators are the
+ * equal temperaments a musician actually builds — 12, 41, 53. Run it on the tropical year and they are the
+ * calendars a civilisation actually adopts — 4 for Julian, 33 for Persian, 128 for the rule that beats
+ * Gregorian. Run it on (k, n) and the floor-difference word is the Euclidean rhythm a drummer plays, the
+ * Sturmian word a number theorist studies and the line Bresenham rasterises. Run it on the even and odd
+ * parts of a polynomial and the quotients are the Routh array a control engineer reads for stability AND
+ * the element values of the Cauer ladder a filter designer builds — the same list of rationals, twice.
+ *
+ * THE LAST PAIR IS THE SHARPEST because nothing about a tuning system suggests a filter: the consecutive
+ * ratios of the Routh first column ARE the inductances and capacitances, so a polynomial being stable and
+ * its network being realisable from passive parts are one computation with two names.
+ */
+export declare function euclidIsSixDisciplines(matrix?: MindMatrix): {
+    computes: boolean;
+    temperamentDenominators: number;
+    calendarDenominators: number;
+    routhColumnEntries: number;
+    ladderElements: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * THE CIRCLE OF FIFTHS DOES NOT CLOSE, AND THE GAP IS EXACT.
+ *
+ * Twelve perfect fifths are not seven octaves. (3/2)¹² = 531441/4096 against 2⁷ = 128, a ratio of
+ * 531441/524288 — the Pythagorean comma, 23.46 cents. Equal temperament's fifth is not the perfect fifth
+ * either: 2^(7/12) = 1.4983… falls 1.955 cents short of 3/2. Both are exact rational facts, and the whole
+ * of tuning theory is what to do about them.
+ */
+export declare function circleOfFifthsDoesNotClose(matrix?: MindMatrix): {
+    computes: boolean;
+    commaCents: number;
+    temperedShortfallCents: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * THE GREGORIAN CALENDAR IS NOT A BEST RATIONAL APPROXIMATION, AND 49 SMALLER RULES BEAT IT.
+ *
+ * 97/400 errs +26.78 seconds per year against the mean tropical year. 31/128 errs −0.216 — about 124 times
+ * more accurate on a denominator three times smaller — and it is a continued-fraction convergent, which
+ * 97/400 is not. Searching every denominator below 400 finds 49 strictly better than the rule in use. The
+ * Gregorian cycle is a decimal-friendly compromise, which is a real virtue and a different one from being
+ * the best rational approximation it is usually described as.
+ */
+export declare function gregorianIsNotABestApproximation(matrix?: MindMatrix): {
+    computes: boolean;
+    gregorianErrorSeconds: number;
+    persianErrorSeconds: number;
+    betterDenominators: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * LYNDON WORDS, IRREDUCIBLE POLYNOMIALS AND THE FREE LIE ALGEBRA ARE ONE COUNT.
+ *
+ * The aperiodic binary necklaces of length n, the monic irreducible polynomials of degree n over GF(2),
+ * and the dimension of the degree-n part of the free Lie algebra on two generators are the same integer —
+ * (1/n)·Σ_{d|n} μ(d)·2^(n/d). Combinatorics on words, finite-field coding theory and Lie theory each
+ * derived it without reference to the others; an LFSR designer picking feedback taps and a combinatorialist
+ * counting necklaces are consulting one sequence.
+ *
+ * APERIODICITY IS THE WHOLE OF IT: counting ALL necklaces instead of the primitive ones breaks the identity
+ * immediately, at n = 2 (3 against 1) and never recovers.
+ */
+export declare function lyndonWordsAreIrreduciblePolynomials(matrix?: MindMatrix): {
+    computes: boolean;
+    lengthsChecked: number;
+    lengthsAgreeing: number;
+    perturbationsBreaking: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
