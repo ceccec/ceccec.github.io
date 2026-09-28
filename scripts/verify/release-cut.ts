@@ -20,7 +20,7 @@
  * not a different one.
  */
 
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { conceptRecordFromCitation, citationVersion, declaredVersions, npmLive, zenodoLive, taggedVersions } from './release-live.ts'
@@ -29,6 +29,64 @@ type Cell = { readonly condition: string; readonly surface: string; readonly hol
 
 const git = (...args: string[]) => String(spawnSync('git', args, { encoding: 'utf8', timeout: 60_000 }).stdout ?? '').trim()
 const gate = (script: string) => spawnSync('npm', ['run', script], { encoding: 'utf8', timeout: 1_800_000 }).status === 0
+
+/**
+ * THE GATES THE PUBLISH RUNS, READ FROM THE WORKFLOWS RATHER THAN LISTED HERE.
+ *
+ * v1.6.0 was cut against this matrix showing eight green cells, and both publishing workflows refused
+ * within two minutes. The `tested` cell ran verify:release, which is what publish-package.yml runs;
+ * zenodo-publish.yml runs mission:gate, check:types, verify:structure, theorems:verify, verify:all and
+ * docs:build, and NONE of those were in the matrix, in verify:stream, or in land. The matrix tested ONE of
+ * the publish's NINE pre-publish commands, so `green` was computed over the wrong set and the tag was cut
+ * on a tree the publish had already decided against. Nothing was published — the Zenodo run died before
+ * Create GitHub Release, so that step and the deposit were skipped — which is the only reason it was
+ * recoverable.
+ *
+ * ADDING mission:gate TO A LIST HERE WOULD FIX THIS INSTANCE AND ROT THE SAME WAY. A hand list that
+ * describes another file is the defect this repository keeps finding in its own instruments: the ISO word
+ * boundary, run_gate's eight aliases, `registered === 18`, gateToBootstrap's twenty unrunnable names. So
+ * the set is DERIVED. Every workflow a version tag fires is walked job by job, step by step, in order, and
+ * each `npm run <script>` appearing BEFORE that job's first publishing step is a command the publish runs
+ * before it publishes. Steps after it are post-publish verification — verify:release-live confirms the
+ * release is LIVE in both records, and running it here would contradict the `unpublished` cells.
+ *
+ * HEREDOC BODIES ARE NOT COMMANDS, AND THE FIRST VERSION OF THIS COUNTED ONE. It reported ten, including an
+ * `npm run verify` that is a line of a fenced code block inside the heredoc writing the release notes — a
+ * reproduction instruction for a reader, never executed. A detector's own count is a claim, so the body of
+ * every heredoc is skipped and the count is nine.
+ */
+export type PublishGate = { readonly gate: string; readonly workflow: string; readonly step: string }
+
+const PUBLISHES = /npm\s+publish|pnpm\s+publish|gh\s+release\s+(create|upload)/
+
+export function publishTimeGates(root: string = process.cwd()): PublishGate[] {
+  const dir = join(root, '.github/workflows')
+  let files: string[] = []
+  try { files = readdirSync(dir).filter((f) => f.endsWith('.yml') || f.endsWith('.yaml')) } catch { return [] }
+  const found: PublishGate[] = []
+  for (const file of files.sort()) {
+    let text = ''
+    try { text = readFileSync(join(dir, file), 'utf8') } catch { continue }
+    if (!/^on:/m.test(text) || !/^\s+tags:\s*$|^\s+tags:\s*\[/m.test(text)) continue
+    let step = ''
+    let published = false
+    let heredoc: string | null = null
+    for (const line of text.split('\n')) {
+      if (heredoc !== null) { if (line.trim() === heredoc) heredoc = null; continue }
+      const opens = /<<-?\s*'?([A-Za-z_][A-Za-z0-9_]*)'?/.exec(line)
+      if (opens) { heredoc = opens[1] ?? null; continue }
+      if (/^  [A-Za-z0-9_-]+:\s*$/.test(line)) { published = false; step = ''; continue }
+      const named = /^\s*-\s*name:\s*(.+?)\s*$/.exec(line)
+      if (named) { step = named[1] ?? ''; continue }
+      if (PUBLISHES.test(line)) { published = true; continue }
+      if (published) continue
+      const ran = /npm\s+run\s+([A-Za-z0-9:_-]+)/.exec(line)
+      if (ran?.[1]) found.push({ gate: ran[1], workflow: file, step })
+    }
+  }
+  const seen = new Set<string>()
+  return found.filter((g) => (seen.has(g.gate) ? false : (seen.add(g.gate), true)))
+}
 
 export async function releaseReadiness(root: string = process.cwd()): Promise<{ cells: Cell[]; version: string; green: boolean }> {
   const declared = declaredVersions(root)
@@ -45,9 +103,13 @@ export async function releaseReadiness(root: string = process.cwd()): Promise<{ 
   const head = git('rev-parse', 'HEAD')
   const upstream = git('rev-parse', '@{upstream}')
 
+  const discovered = publishTimeGates(root)
   const cells: Cell[] = [
-    // TESTED — the gates, and the publish-time surface verify:all never runs
-    { condition: 'tested', surface: 'repo', holds: gate('verify:release'), says: 'the publish-time gate — the Pages build, the declaration graph, the tarball, the dependency claims' },
+    // TESTED — every command the publish runs before it publishes, discovered from the workflows.
+    // A PARSER THAT FINDS NOTHING MUST NOT READ AS GREEN: an empty set makes every derived cell vacuously
+    // true and would certify a publish this matrix never tested, so the emptiness is its own red cell.
+    { condition: 'tested', surface: 'workflows', holds: discovered.length > 0, says: discovered.length > 0 ? `${discovered.length} publish-time command(s) discovered from the tag-fired workflows — each is a cell below` : 'NO publish-time commands discovered — the workflow parser found nothing, so nothing below was tested' },
+    ...discovered.map((g): Cell => ({ condition: 'tested', surface: g.workflow.replace(/\.ya?ml$/, ''), holds: gate(g.gate), says: `npm run ${g.gate} — ${g.step}` })),
     // STABLE — the tree is exactly what was measured, and it is the tree the world has
     { condition: 'stable', surface: 'git', holds: branch === 'main' && !dirty && head === upstream && head.length > 0, says: `on main=${branch === 'main'} clean=${!dirty} pushed=${head === upstream}` },
     { condition: 'stable', surface: 'repo', holds: new Set(declared.map((d) => d.version)).size === 1 && citation === version, says: `every package.json and CITATION.cff agree on ${version || '(none)'}` },

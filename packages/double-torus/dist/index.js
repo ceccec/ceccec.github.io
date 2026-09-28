@@ -56220,7 +56220,7 @@ var THEOREM_WITNESSES = {
   },
   "Fermat number F\u2085 is composite": () => {
     const fermat = Array.from({ length: 6 }, (_, k) => 2 ** 2 ** k + 1);
-    const values = fermat.map((f2) => Math.log2(f2));
+    const values = fermat.map((f2) => log2(f2));
     const euler = 5 * 2 ** 7 + 1;
     return { form: "bars", values, marks: [5], holds: fermat.slice(0, 5).every((f2) => tkIsPrime(f2)) && fermat[5] % euler === 0, caption: "the Fermat numbers 2^(2^k) + 1 on a log scale: 3, 5, 17, 257, 65537 are prime, and the marked F\u2085 = 641 \xD7 6700417" };
   },

@@ -193,15 +193,21 @@ export function compileLean(root: string = process.cwd()): LeanResult[] {
 }
 
 export function assertLeanCompiles(): void {
-  let available = true
-  try {
-    execFileSync('lean', ['--version'], { stdio: 'pipe' })
-  } catch {
-    available = false
-  }
-  if (!available) {
-    // Unmeasured is its own outcome — never silently a pass.
-    console.log('lean not on PATH — NOT MEASURED in this environment, no claim made')
+  // BOTH BINARIES, BECAUSE THIS PROBED ONE AND SPAWNED THE OTHER. The skip below is exactly right and
+  // it asked only whether `lean` was on PATH — while leanCommand reaches for `lake`, since the corpus
+  // carries Lake packages and a package needs `lake build` before `lake env lean` can resolve an import.
+  // A runner with `lean` and no `lake` therefore passed the availability check and then died inside
+  // compileLean with `spawnSync lake ENOENT`, which is not a refusal a proof earned: it took down
+  // verify:all, and verify:all is what zenodo-publish.yml runs before it creates the release. That is
+  // how a missing build tool became a failed publish, twice.
+  //
+  // Unmeasured is its own outcome — never silently a pass — so the skip names WHICH tool is absent
+  // rather than reporting a generic one, and it still makes no claim about the mathematics.
+  const missing = (['lean', 'lake'] as const).filter((cmd) => {
+    try { execFileSync(cmd, ['--version'], { stdio: 'pipe' }); return false } catch { return true }
+  })
+  if (missing.length > 0) {
+    console.log(`${missing.join(' and ')} not on PATH — NOT MEASURED in this environment, no claim made`)
     return
   }
 

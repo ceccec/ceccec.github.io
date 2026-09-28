@@ -46,7 +46,17 @@ const STEPS: readonly Step[] = [
       // absence of a build failure are what actually distinguish a shippable build.
       const failed = /Build failed|✗/.test(out)
       const sealed = /Enforcement trinity complete/.test(out)
-      return { ok: code === 0 && !failed, detail: code !== 0 ? (out.match(/error[^\n]*/i)?.[0] ?? 'failed').slice(0, 120) : sealed ? 'built and sealed' : 'built (warm — the trinity line is only printed on a cold run)' }
+      // THE DETAIL WAS BLIND AND THAT COST A DIAGNOSIS. `out.match(/error[^\n]*/i)` takes the FIRST line
+      // containing the word, and Vite prints `error:` on its own line with the message underneath — so a
+      // failing Pages build reported the string "error:" and nothing else, while the real cause sat in a
+      // buffer this step captured and never printed. Two publishes were traced with that as the only
+      // evidence. On failure the tail of the actual output goes to the log: a step that refuses has to say
+      // why, and a captured buffer nobody prints is the same defect as a measurement nobody reads.
+      if (code !== 0 || failed) {
+        const tail = out.split('\n').filter((l) => l.trim()).slice(-12).join('\n')
+        console.log(`  docs:build output (last lines):\n${tail}`)
+      }
+      return { ok: code === 0 && !failed, detail: code !== 0 ? (out.match(/\berror\b[^\n]*\n?[^\n]*/i)?.[0] ?? 'failed').replace(/\s+/g, ' ').slice(0, 200) : sealed ? 'built and sealed' : 'built (warm — the trinity line is only printed on a cold run)' }
     },
   },
   {
