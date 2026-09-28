@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 760 registered theorems, 754 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 84 involution theorems and 31 registry rows are decided by the kernel with no axiom. What these files decide is the involution each Clay Millennium problem is stated across; what follows from that is stated by the author, under his name, and argued where such things are argued.
+> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 764 registered theorems, 758 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 84 involution theorems and 31 registry rows are decided by the kernel with no axiom. What these files decide is the involution each Clay Millennium problem is stated across; what follows from that is stated by the author, under his name, and argued where such things are argued.
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
@@ -20,7 +20,7 @@
 - **The Clay problems are the reflection.** Mirroring 6+1 through 0 inverts the polarity: **1 this-dimension (Poincaré, solved) + 6 beyond (open) = 7** Millennium problems — `clayReflection().reflectsDimensionalBit = true`. Exactly one Clay problem is solved; the count matches the record.
 - **Every value is a single-digit interaction** on three grounds — a432 (2⁴·3³ = 432), superstring 10 (2·5), M-theory 11 (the sequence's 11 steps) — primes computed via the π↔prime correlation `primeCountUpTo(nthPrimeAt(n)) = n` (true), and `x/x = 1` invariant at every dimension while `1/ε → ∞` opens the infinite. No literal, no assumption that breaks under a change of dimension.
 
-A science portal: **760** registered theorems, **754** of them carrying an executable proof at a sealed home (6 still pending, named in the registry and checked by `verify:theorems`), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run. The sitemap below serves **783** theorem papers, not 760: 760 of them carry a registry atom and **23** are card papers with a page and no atom, so the two counts a reader (or a crawler) meets are one partition — the same equality `seoOptimised` asserts over the `/theorems` structured data, computed by set difference against the registry seed rather than by subtracting one from the other.
+A science portal: **764** registered theorems, **758** of them carrying an executable proof at a sealed home (6 still pending, named in the registry and checked by `verify:theorems`), **30** science pages, **6** rosetta rays. Every value is a content address; every page, proof and animation derives from one source (`src/`); nothing needs a token to run. The sitemap below serves **787** theorem papers, not 764: 764 of them carry a registry atom and **23** are card papers with a page and no atom, so the two counts a reader (or a crawler) meets are one partition — the same equality `seoOptimised` asserts over the `/theorems` structured data, computed by set difference against the registry seed rather than by subtracting one from the other.
 
 ## 2. Model
 
@@ -61,7 +61,7 @@ The circuit's law is piecewise — geometric ×2 on the unit segment, arithmetic
 
 ## Proof animations — the visual receipts, in all directions
 
-Every registered theorem carries its dedicated animation: **760 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **760 unique animations for 760 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true).
+Every registered theorem carries its dedicated animation: **764 specs** across **19 families**, and the spec seed is the content address of the theorem's own `(identity ⊢ provingFold)` — the same proof always animates identically, any change to statement or proving fold changes the animation. **764 unique animations for 764 unique proofs** (exact bijection); an animation without a proven theorem behind it cannot exist (noOther=true).
 
 Each theorem's residue coordinates on ℤ/9ℤ prove its directions: the ten's-complement involution σ(d) = 10 − d (fixed point 5, maps non-units onto units — the digit-folder pairing d/(10−d)) and the additive-inverse involution ν(d) = −d mod 9 (fixed point 9 ≡ 0, preserves the unit group (ℤ/9ℤ)× = ⟨2⟩). Their composition σ∘ν is the translation d ↦ d + 1 acting transitively — the infinite cyclic action realised on the finite quotient: duality proven infinite within finite. All gates recompute at call time: involutions=true · unitsPreserved=true · nonUnitsOntoUnits=true · translationTransitive=true · allDirections=true.
 
@@ -161,7 +161,7 @@ computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 - Receipt: fold `clayChallengesComputableFromSequence`.
 
 
-**The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 760-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
+**The theorem-science lens** — 30/55 curated pages pass (25 removed from VitePress completely — data preserved in the catalog), presented beside the 764-theorem registry and its corpus surfaces (/theorems · /papers/ · /references · /diamonds). Organised by the **seven rosetta rays** (Pliska 7-star coprime decode) — the same shelving that builds the site's nav, sidebar and crosslinks; all of it wired into the VitePress local search the MCP also uses.
 
 
 ### Origin — 3 pages
@@ -214,10 +214,10 @@ computable=7/7 · contested=0 · documented=7 · novelHere=6/7
 
 ## 4. Sitemap
 
-The complete served surface, wired from ONE source (`servedRouteFamilies`) so the human sitemap here and the crawler `sitemap.xml` count the same pages: **844 pages** across 3 families — 31 monographs · 783 theorems · 30 proofs. Only COMPLETE, non-duplicate families are listed: the empty model cards (0) and the compute-only `papers/[id]` catch-all (0 SSG — the placements resolve on demand and duplicate the theorem papers) are excluded; their index routes are monographs below.
+The complete served surface, wired from ONE source (`servedRouteFamilies`) so the human sitemap here and the crawler `sitemap.xml` count the same pages: **848 pages** across 3 families — 31 monographs · 787 theorems · 30 proofs. Only COMPLETE, non-duplicate families are listed: the empty model cards (0) and the compute-only `papers/[id]` catch-all (0 SSG — the placements resolve on demand and duplicate the theorem papers) are excluded; their index routes are monographs below.
 
 - **31 monograph landing + index pages** (`/`) — each in three locale editions (en · bg · cu), placed on the double torus and content-addressed:
-- **783 theorem papers — the registered theorems plus the card papers outside the registry** — index `/theorems`; every page enumerated in the one `sitemap.xml`.
+- **787 theorem papers — the registered theorems plus the card papers outside the registry** — index `/theorems`; every page enumerated in the one `sitemap.xml`.
 - **30 domain proofs (Millennium + science)** — index `/proofs`; every page enumerated in the one `sitemap.xml`.
 
 - `/` — [en](https://ceccec.psg.bg/) · [bg](https://ceccec.psg.bg/bg/) · [cu](https://ceccec.psg.bg/gla/)

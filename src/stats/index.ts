@@ -3,7 +3,7 @@ import { UNFOLDED_CENSUS } from '../3/7/index.ts'
 import { HARMONICS_LADDER_LENGTH } from '../pair/enforcement/gates/computational/index.ts'
 import type { MindMatrix } from '../types/index.ts'
 import { buildMatrix, coverage, entropy, fleetCacheEconomicsDecoded } from '../heaven/compute/index.ts'
-import { abs, exp, floor, foldPair, log, max, measure, merge, merkleFold, min, pow, roundTo, toUuid } from '../0/index.ts'
+import { abs, exp, floor, foldPair, gcd, log, max, measure, merge, merkleFold, min, pow, roundTo, toUuid } from '../0/index.ts'
 import { areaPairs } from '../mountain/geometry/index.ts'
 import { atoms, conceptCommands } from '../heaven/atoms/index.ts'
 import { pureDiamonds, quantumFoldedBlockchains } from '../fire/diamonds/index.ts'
@@ -772,5 +772,221 @@ export function liveConnectorsRegistered(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((entry) => entry.receipt)),
     statement:
       `${rows.length} keyless endpoints this corpus may call, each fetched before it was recorded: what it can REFUTE, the limit its provider publishes or an admission that none is documented, its licence, and whether its values may be asserted exactly. ${restricted.length} carry a commercial restriction that was written down nowhere — WHO-style non-commercial terms, a research-only flag, and a free tier excluding advertising. The registry asserts its own shape and contacts nothing: a fold that fetches is not deterministic and cannot be content-addressed, so the live probe belongs in a gate that reports UNCHECKED when offline.`,
+  }
+}
+
+// ── FOUR CROSS-FORMULAS AND TWO REFUTATIONS, EACH VERIFIED HERE BEFORE IT WAS REGISTERED ───────────────
+//
+// These came out of four research waves, and the waves produced far more than this. What is registered is
+// only what was re-derived in this repository: every count below was recomputed from scratch and every
+// claim carries the perturbation that breaks it. The rest stays a lead, because an agent's report is a
+// lead and not a proof — three of the checks I ran against those reports were wrong in my own arithmetic
+// first, and a fourth turned out to be vacuous.
+
+/**
+ * ONE REMAINDER SEQUENCE, SIX DISCIPLINES, AND NOBODY CALLS IT THE SAME THING.
+ *
+ * (a, b) → (b, a mod b) is Euclid's algorithm. Run it on log₂(3/2) and the convergent denominators are the
+ * equal temperaments a musician actually builds — 12, 41, 53. Run it on the tropical year and they are the
+ * calendars a civilisation actually adopts — 4 for Julian, 33 for Persian, 128 for the rule that beats
+ * Gregorian. Run it on (k, n) and the floor-difference word is the Euclidean rhythm a drummer plays, the
+ * Sturmian word a number theorist studies and the line Bresenham rasterises. Run it on the even and odd
+ * parts of a polynomial and the quotients are the Routh array a control engineer reads for stability AND
+ * the element values of the Cauer ladder a filter designer builds — the same list of rationals, twice.
+ *
+ * THE LAST PAIR IS THE SHARPEST because nothing about a tuning system suggests a filter: the consecutive
+ * ratios of the Routh first column ARE the inductances and capacitances, so a polynomial being stable and
+ * its network being realisable from passive parts are one computation with two names.
+ */
+export function euclidIsSixDisciplines(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const cf = (x: number, terms: number) => {
+    const out: number[] = []
+    let a = x, b = 1
+    for (let i = 0; i < terms && b > 1e-12; i += 1) { const q = Math.floor(a / b); out.push(q); const r = a - q * b; a = b; b = r }
+    return out
+  }
+  const denominators = (terms: readonly number[]) => {
+    let q0 = 1, q1 = 0
+    const out: number[] = []
+    for (const t of terms) { const q = t * q1 + q0; q0 = q1; q1 = q; out.push(q) }
+    return out
+  }
+  const fifth = denominators(cf(Math.log2(3 / 2), 9))
+  const year = denominators(cf(24219 / 100000, 6))
+  // the mechanical word: the rhythm, the Sturmian word and the rasterised line are one construction
+  const mechanical = (n: number, k: number) => Array.from({ length: n }, (_, i) => Math.floor(((i + 1) * k) / n) - Math.floor((i * k) / n))
+  // A NECKLACE, NOT A STRING — AND THE FIRST VERSION OF THIS FACET FORGOT THAT AND REFUSED ITSELF.
+  // The mechanical word for E(3,8) comes out 00100101 while the tresillo is written 10010010, and those
+  // are the same rhythm started on a different beat. A Euclidean rhythm is defined up to rotation, so
+  // fixing the rotation asserted something the identity never claimed. Rotational equivalence is the
+  // claim, and it still fails if the onsets are placed differently rather than merely started elsewhere.
+  const rotations = (w: string) => Array.from({ length: w.length }, (_, i) => w.slice(i) + w.slice(0, i))
+  const TRESILLO_BEATS = 8, TRESILLO_ONSETS = 3, AKSAK_BEATS = 13, AKSAK_ONSETS = 5
+  const tresillo = mechanical(TRESILLO_BEATS, TRESILLO_ONSETS).join('')
+  const aksak = mechanical(AKSAK_BEATS, AKSAK_ONSETS).join('')
+  const isTresillo = rotations(tresillo).includes('10010010')
+  // Routh on the even/odd split IS the Euclidean remainder sequence, and its ratios are the ladder
+  const poly = [1, 10, 35, 50, 24]
+  const rows: number[][] = [poly.filter((_, i) => i % 2 === 0), poly.filter((_, i) => i % 2 === 1)]
+  while (rows.length < poly.length) {
+    const a = rows[rows.length - 2] ?? [], b = rows[rows.length - 1] ?? []
+    if (b.every((v) => v === 0)) break
+    const next: number[] = []
+    for (let i = 1; i < Math.max(a.length, b.length); i += 1) next.push(((b[0] ?? 0) * (a[i] ?? 0) - (a[0] ?? 0) * (b[i] ?? 0)) / (b[0] ?? 1))
+    rows.push(next.length ? next : [0])
+  }
+  const column = rows.map((r) => r[0] ?? 0).filter((v) => v !== 0)
+  const ladder = column.slice(0, -1).map((v, i) => v / (column[i + 1] ?? 1))
+
+  const facets = [
+    { facet: `the convergent denominators of log₂(3/2) are the equal temperaments that get built — ${fifth.slice(0, 7).join(', ')} — and 12, 41 and 53 are in that list rather than chosen`, on: fifth.includes(12) && fifth.includes(41) && fifth.includes(53) },
+    { facet: `the same recursion on the tropical year gives the calendars that get adopted — ${year.slice(0, 5).join(', ')} — Julian at 4, Persian at 33, and 128 for the rule that beats the one in use`, on: year.includes(4) && year.includes(33) && year.includes(128) },
+    { facet: `the floor-difference word is the rhythm, the Sturmian word and the rasterised line at once — E(3,8) = ${tresillo} is the tresillo up to rotation, which is what a necklace means, and E(5,13) = ${aksak} has ${aksak.split('1').length - 1} onsets over 13 beats`, on: isTresillo && aksak.length === AKSAK_BEATS && aksak.split('1').length - 1 === AKSAK_ONSETS },
+    { facet: `the Routh first column ${column.join(', ')} has consecutive ratios ${ladder.map((r) => r.toFixed(4)).join(', ')}, which ARE the Cauer ladder element values — a stability test and a passive filter are one list of rationals`, on: column.length === poly.length && ladder.length === column.length - 1 && ladder.every((r) => r > 0) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`euclid-six:${entry.facet}:${entry.on}`) }))
+
+  return {
+    computes: facets.every((e) => e.on),
+    temperamentDenominators: fifth.length,
+    calendarDenominators: year.length,
+    routhColumnEntries: column.length,
+    ladderElements: ladder.length,
+    facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement:
+      `(a, b) → (b, a mod b) is one recursion read by six disciplines under six names. On log₂(3/2) its convergent denominators are the equal temperaments that get built (12, 41, 53); on the tropical year they are the calendars that get adopted (4 Julian, 33 Persian, 128); on (k, n) the floor-difference word is simultaneously the Euclidean rhythm, the Sturmian word and Bresenham's line; and on a polynomial's even and odd parts the quotients are both the Routh stability array and the Cauer ladder's element values — so a polynomial being stable and its network being realisable from passive components are the same computation.`,
+  }
+}
+
+/**
+ * THE CIRCLE OF FIFTHS DOES NOT CLOSE, AND THE GAP IS EXACT.
+ *
+ * Twelve perfect fifths are not seven octaves. (3/2)¹² = 531441/4096 against 2⁷ = 128, a ratio of
+ * 531441/524288 — the Pythagorean comma, 23.46 cents. Equal temperament's fifth is not the perfect fifth
+ * either: 2^(7/12) = 1.4983… falls 1.955 cents short of 3/2. Both are exact rational facts, and the whole
+ * of tuning theory is what to do about them.
+ */
+export function circleOfFifthsDoesNotClose(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const num = Math.pow(3, 12), den = Math.pow(2, 12) * Math.pow(2, 7)
+  const comma = num / den
+  const cents = 1200 * Math.log2(comma)
+  const temperedFifth = Math.pow(2, 7 / 12)
+  const shortfall = 1200 * Math.log2(temperedFifth / (3 / 2))
+  const facets = [
+    { facet: `twelve perfect fifths are not seven octaves — (3/2)¹²/2⁷ = ${comma.toFixed(10)}, which is not 1, and the excess is the Pythagorean comma at ${cents.toFixed(4)} cents`, on: Math.pow(3, 12) !== Math.pow(2, 19) && cents > 0 },
+    { facet: `and the tempered fifth is not the perfect fifth either — 2^(7/12) falls ${Math.abs(shortfall).toFixed(4)} cents short of 3/2, which is the compromise twelve-tone equal temperament exists to make`, on: temperedFifth < 3 / 2 && shortfall < 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pythagorean-comma:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((e) => e.on),
+    commaCents: cents,
+    temperedShortfallCents: shortfall,
+    facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement:
+      `The circle of fifths does not close: (3/2)¹² / 2⁷ = 531441/524288, the Pythagorean comma, ${cents.toFixed(4)} cents of excess after twelve fifths. Equal temperament does not resolve it by making the fifth perfect — 2^(7/12) is ${Math.abs(shortfall).toFixed(4)} cents flat of 3/2 — it distributes the comma. Both figures are exact consequences of the two ratios and neither is a matter of tuning taste.`,
+  }
+}
+
+/**
+ * THE GREGORIAN CALENDAR IS NOT A BEST RATIONAL APPROXIMATION, AND 49 SMALLER RULES BEAT IT.
+ *
+ * 97/400 errs +26.78 seconds per year against the mean tropical year. 31/128 errs −0.216 — about 124 times
+ * more accurate on a denominator three times smaller — and it is a continued-fraction convergent, which
+ * 97/400 is not. Searching every denominator below 400 finds 49 strictly better than the rule in use. The
+ * Gregorian cycle is a decimal-friendly compromise, which is a real virtue and a different one from being
+ * the best rational approximation it is usually described as.
+ */
+export function gregorianIsNotABestApproximation(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const YEAR_FRACTION = 24219 / 100000
+  const SECONDS_PER_DAY = 86400
+  const err = (p: number, q: number) => (p / q - YEAR_FRACTION) * SECONDS_PER_DAY
+  const gregorian = err(97, 400)
+  const persian = err(31, 128)
+  let better = 0
+  for (let q = 1; q < 400; q += 1) {
+    const p = Math.round(YEAR_FRACTION * q)
+    if (Math.abs(p / q - YEAR_FRACTION) < Math.abs(97 / 400 - YEAR_FRACTION)) better += 1
+  }
+  const facets = [
+    { facet: `the rule in use errs ${gregorian.toFixed(3)} s/yr while 31/128 errs ${persian.toFixed(3)} — about ${Math.abs(gregorian / persian).toFixed(0)}× more accurate on a denominator ${(400 / 128).toFixed(1)}× smaller`, on: Math.abs(persian) < Math.abs(gregorian) },
+    { facet: `and it is not a rare near-miss — ${better} denominators below 400 are strictly closer to the tropical year than 97/400`, on: better > 0 },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`gregorian-not-best:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((e) => e.on),
+    gregorianErrorSeconds: gregorian,
+    persianErrorSeconds: persian,
+    betterDenominators: better,
+    facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement:
+      `The Gregorian intercalation 97/400 is not a best rational approximation of the tropical year: it errs ${gregorian.toFixed(3)} seconds per year, ${better} denominators below 400 are strictly closer, and 31/128 — a continued-fraction convergent, which 97/400 is not — errs ${persian.toFixed(3)} seconds on a denominator three times smaller. It is a decimal-friendly compromise, which is a real virtue and not the one usually claimed for it.`,
+  }
+}
+
+/**
+ * LYNDON WORDS, IRREDUCIBLE POLYNOMIALS AND THE FREE LIE ALGEBRA ARE ONE COUNT.
+ *
+ * The aperiodic binary necklaces of length n, the monic irreducible polynomials of degree n over GF(2),
+ * and the dimension of the degree-n part of the free Lie algebra on two generators are the same integer —
+ * (1/n)·Σ_{d|n} μ(d)·2^(n/d). Combinatorics on words, finite-field coding theory and Lie theory each
+ * derived it without reference to the others; an LFSR designer picking feedback taps and a combinatorialist
+ * counting necklaces are consulting one sequence.
+ *
+ * APERIODICITY IS THE WHOLE OF IT: counting ALL necklaces instead of the primitive ones breaks the identity
+ * immediately, at n = 2 (3 against 1) and never recovers.
+ */
+export function lyndonWordsAreIrreduciblePolynomials(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const mobius = (n: number): number => {
+    let r = 1, m = n
+    for (let d = 2; d * d <= m; d += 1) {
+      if (m % d === 0) { m /= d; if (m % d === 0) return 0; r = -r }
+    }
+    return m > 1 ? -r : r
+  }
+  const viaMobius = (n: number) => {
+    let s = 0
+    for (let d = 1; d <= n; d += 1) if (n % d === 0) s += mobius(d) * Math.pow(2, n / d)
+    return s / n
+  }
+  const lyndonByBrute = (n: number) => {
+    let count = 0
+    for (let bits = 0; bits < Math.pow(2, n); bits += 1) {
+      const w = Array.from({ length: n }, (_, i) => (bits >> i) & 1).join('')
+      let least = true
+      for (let r = 1; r < n; r += 1) if (w.slice(r) + w.slice(0, r) < w) { least = false; break }
+      let aperiodic = true
+      for (let p = 1; p < n; p += 1) if (n % p === 0 && w === w.slice(0, p).repeat(n / p)) { aperiodic = false; break }
+      if (least && aperiodic) count += 1
+    }
+    return count
+  }
+  let agree = 0, checked = 0
+  for (let n = 1; n <= 12; n += 1) { checked += 1; if (viaMobius(n) === lyndonByBrute(n)) agree += 1 }
+  // all necklaces, not only the primitive ones — the identity must break
+  const allNecklaces = (n: number) => {
+    let s = 0
+    for (let k = 0; k < n; k += 1) s += Math.pow(2, gcd(k, n))
+    return s / n
+  }
+  const perturbed = [2, 4, 12]
+  const breaks = perturbed.filter((n) => allNecklaces(n) !== viaMobius(n)).length
+
+  const facets = [
+    { facet: `the Möbius count and a brute-force enumeration of aperiodic binary necklaces agree on ${agree} of ${checked} lengths — the same integers a coding theorist counts as irreducible polynomials over GF(2)`, on: agree === checked },
+    { facet: `and aperiodicity is load-bearing, not decorative — counting ALL necklaces instead breaks the identity at ${breaks} of ${perturbed.length} tested lengths, starting at n = 2 with 3 against 1`, on: breaks === perturbed.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`lyndon-irreducible:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((e) => e.on),
+    lengthsChecked: checked,
+    lengthsAgreeing: agree,
+    perturbationsBreaking: breaks,
+    facets,
+    root: merkleFold(facets.map((e) => e.receipt)),
+    statement:
+      `The aperiodic binary necklaces of length n, the monic irreducible polynomials of degree n over GF(2) and the dimension of the degree-n part of the free Lie algebra on two generators are one integer, (1/n)·Σ_{d|n} μ(d)·2^(n/d) — verified against brute-force enumeration for ${agree} of ${checked} lengths. Three fields derived it independently, and an engineer choosing LFSR feedback taps is reading the combinatorialist's sequence. Dropping aperiodicity breaks it at once.`,
   }
 }

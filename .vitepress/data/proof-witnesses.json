@@ -11,8 +11,8 @@
  "each discovery is immediately saved and reused — no queue, the quantum-computing loop": {
   "form": "bars",
   "values": [
-   760,
-   675
+   764,
+   681
   ],
   "holds": true,
   "caption": "the quantities eachDiscoveryImmediatelySavedAndReusedToImproveAndDiscoverNext computes for this theorem (total, connected), drawn from its own run — no other proof returns them"
@@ -55,9 +55,9 @@
  "the site is a dedicated scientific journal of all algebra and theorems — computational peer review, one content-addressed volume": {
   "form": "bars",
   "values": [
-   760,
+   764,
    56,
-   535
+   539
   ],
   "holds": true,
   "caption": "the quantities siteIsScientificJournalOfAllAlgebraAndTheorems computes for this theorem (articleCount, sectionCount, distinctProofs), drawn from its own run — no other proof returns them"
@@ -185,7 +185,7 @@
   "form": "bars",
   "values": [
    41,
-   0.0843
+   0.0852
   ],
   "holds": true,
   "caption": "the quantities theMovieWiresTheoremsByNaturalEntanglementsNotByIndex computes for this theorem (spokes, linearNeighbourFraction), drawn from its own run — no other proof returns them"
@@ -299,7 +299,7 @@
   "form": "bars",
   "values": [
    12,
-   28,
+   29,
    36,
    56,
    56,
@@ -324,10 +324,10 @@
    10,
    52,
    9,
-   8,
+   9,
    4,
    8,
-   11,
+   12,
    10,
    4,
    7,
@@ -336,7 +336,7 @@
    11,
    9,
    6,
-   7,
+   8,
    3,
    7
   ],
@@ -738,8 +738,8 @@
  "Only theorems can be trusted": {
   "form": "bars",
   "values": [
-   760,
-   0.993464
+   764,
+   0.993498
   ],
   "holds": true,
   "caption": "the quantities onlyTheoremsCanBeTrusted computes for this theorem (trustedCount, trustRatio), drawn from its own run — no other proof returns them"
@@ -819,7 +819,7 @@
  "every page is a proof — carrying its standards, formulas and theorems as graphs and animations": {
   "form": "bars",
   "values": [
-   760,
+   764,
    12
   ],
   "holds": true,
@@ -828,9 +828,9 @@
  "save the missing theorems and animations — a computed graph & fractal-clock animation for every one": {
   "form": "bars",
   "values": [
-   760,
+   764,
    5,
-   755
+   759
   ],
   "holds": true,
   "caption": "the quantities saveTheMissingTheoremsAndAnimations computes for this theorem (total, withFigure, missing), drawn from its own run — no other proof returns them"
@@ -840,7 +840,7 @@
   "values": [
    0.8,
    1,
-   760
+   764
   ],
   "holds": true,
   "caption": "the quantities improveWritingAndSpeechFromComputationalExperience computes for this theorem (writingRatio, speechRatio, experience), drawn from its own run — no other proof returns them"
@@ -848,15 +848,15 @@
  "private search ranked by Okapi BM25 — the industry-standard lexical ranking": {
   "form": "bars",
   "values": [
-   18.8919,
-   12.2489,
-   10.7599,
-   10.5404,
-   10.2632,
-   10.2535,
-   10.0638,
-   9.56193,
-   9.42815
+   18.9322,
+   12.2765,
+   10.7865,
+   10.5661,
+   10.2919,
+   10.2771,
+   10.0861,
+   9.58712,
+   9.45348
   ],
   "holds": true,
   "caption": "numbers privateSearchRanksByBM25IndustryStandard computes for this theorem (results[].score), drawn from its own run — no other proof returns them"
@@ -864,15 +864,15 @@
  "search improves by experience — private, deterministic relevance feedback over the BM25 index": {
   "form": "bars",
   "values": [
-   8.3864,
-   7.00093,
-   6.44653,
-   5.91026,
-   5.23438,
-   5.17319,
-   5.03434,
-   4.94892,
-   4.8429
+   8.4046,
+   7.01882,
+   6.46276,
+   5.92569,
+   5.24632,
+   5.1819,
+   5.04308,
+   4.96033,
+   4.85552
   ],
   "holds": true,
   "caption": "numbers searchImprovesByExperiencePrivateRelevanceFeedback computes for this theorem (results[].score), drawn from its own run — no other proof returns them"
@@ -880,15 +880,15 @@
  "navigation is the search results plus the referrer — one index for search and navigation": {
   "form": "bars",
   "values": [
-   7.15624,
-   6.69188,
-   6.6451,
-   6.50786,
-   6.14372,
-   5.03621,
-   5.01921,
-   4.92586,
-   4.71038
+   7.1744,
+   6.70893,
+   6.6618,
+   6.52451,
+   6.16015,
+   5.05068,
+   5.03365,
+   4.93525,
+   4.72351
   ],
   "holds": true,
   "caption": "numbers navigationFromSearchResultsAndReferrer computes for this theorem (edges[].score), drawn from its own run — no other proof returns them"
@@ -896,9 +896,9 @@
  "VitePress search is fused to the private BM25 engine — one shared corpus": {
   "form": "bars",
   "values": [
-   760,
-   760,
-   783
+   764,
+   764,
+   787
   ],
   "holds": true,
   "caption": "the quantities vitepressSearchFusedToPrivateBm25Engine computes for this theorem (coveredDocs, totalDocs, servedPages), drawn from its own run — no other proof returns them"
@@ -919,9 +919,9 @@
  "the scientific journal publishes only articles approved by their related theorems as editors": {
   "form": "bars",
   "values": [
-   675,
-   85,
-   760,
+   681,
+   83,
+   764,
    0.89
   ],
   "holds": true,
@@ -931,7 +931,7 @@
   "form": "bars",
   "values": [
    5,
-   675,
+   681,
    4
   ],
   "holds": true,
@@ -940,10 +940,10 @@
  "theorems under the proven-crosslink threshold are the gap — 202/550 linked to fewer than 4": {
   "form": "bars",
   "values": [
-   85,
-   62,
+   83,
+   63,
    34,
-   20
+   21
   ],
   "holds": true,
   "caption": "numbers theoremsUnderTheProvenCrosslinkThresholdAreTheGap computes for this theorem (byDegree[].count), drawn from its own run — no other proof returns them"
@@ -980,12 +980,12 @@
  "crosslink gap full total and why not auto-advance — 202 under, 81 promotable, 121 isolated": {
   "form": "bars",
   "values": [
-   760,
+   764,
    201,
-   80,
-   62,
-   18,
-   121
+   79,
+   60,
+   19,
+   122
   ],
   "holds": true,
   "caption": "the quantities crosslinkGapFullTotalAndWhyNotAutoAdvance computes for this theorem (total, under, promotable, autoSafe, needsAuthoring, isolated), drawn from its own run — no other proof returns them"
@@ -993,11 +993,11 @@
  "conservative auto-advance is the one-link-from-proven set — corrected to 16, not 63": {
   "form": "bars",
   "values": [
-   760,
-   559,
+   764,
+   563,
    201,
-   20,
-   181
+   21,
+   180
   ],
   "holds": true,
   "caption": "the quantities conservativeAutoAdvanceIsTheOneLinkFromProvenSetCorrected computes for this theorem (total, proven, under, oneLinkFromProven, needsMultiple), drawn from its own run — no other proof returns them"
@@ -1047,8 +1047,8 @@
  "every animation is itself a unique theorem — content-addressed, refutable, bijective with the corpus": {
   "form": "bars",
   "values": [
-   760,
-   760,
+   764,
+   764,
    12,
    107
   ],
@@ -1134,12 +1134,12 @@
  "the statement audit analyses length and every aspect, proving the prose-sink gap by algebra — mean≫median, N over the 2^10-char budget": {
   "form": "bars",
   "values": [
-   760,
+   764,
    528,
    508,
    1908,
-   75,
-   535
+   76,
+   539
   ],
   "holds": true,
   "caption": "the quantities theStatementAuditAnalysesLengthAndAspectsProvingTheProseSinkGapByAlgebra computes for this theorem (statements, meanStates, medianStates, maxStates, proseSinkGap, distinctProof), drawn from its own run — no other proof returns them"
@@ -1233,7 +1233,7 @@
   "form": "bars",
   "values": [
    2,
-   760,
+   764,
    225
   ],
   "holds": true,
@@ -1242,7 +1242,7 @@
  "extending to the boundaries and folding again upgrades all at once in one pass — ∂²=0 frontier, idempotent re-fold, O(n) content-addressed recompute, verified": {
   "form": "bars",
   "values": [
-   760,
+   764,
    9
   ],
   "holds": true,
@@ -1374,7 +1374,7 @@
  "dry clean all in chat sessions — proofs reused, zero duplicate titles, shared machinery through one index; a standing measured invariant": {
   "form": "bars",
   "values": [
-   535,
+   539,
    225
   ],
   "holds": true,
@@ -1384,7 +1384,7 @@
   "form": "bars",
   "values": [
    30,
-   760
+   764
   ],
   "holds": true,
   "caption": "the quantities vitepressIsCompletelyRebuildableThroughChatSessionsPagesRoutesNavComputedFromTheCorpusConfigIsTheThinHarness computes for this theorem (pages, theoremAtoms), drawn from its own run — no other proof returns them"
@@ -1392,10 +1392,10 @@
  "animation uniqueness is layered — identity unique (no logic gap), but the visible speed collides by the 108-divisor clock law so colour carries the salience (a rendering gap, not logic)": {
   "form": "bars",
   "values": [
-   760,
-   760,
+   764,
+   764,
    12,
-   760
+   764
   ],
   "holds": true,
   "caption": "the quantities animationUniquenessIsADiagnosticNonUniqueAnimationsRevealGapsInLogicAndAlgebraTheCorpusIsUnique computes for this theorem (theorems, distinctIdentity, distinctRung, distinctFigure), drawn from its own run — no other proof returns them"
@@ -1403,9 +1403,9 @@
  "the animation generator now emits the double-torus channels (direction cw/ccw + amplitude) from independent address halves — real visible distinctness (559 vs 107), not just proven": {
   "form": "bars",
   "values": [
-   596,
+   599,
    107,
-   760
+   764
   ],
   "holds": true,
   "caption": "the quantities theAnimationGeneratorNowEmitsTheDoubleTorusChannelsDirectionAndAmplitudeRealisingRealVisibleDistinctness computes for this theorem (signaturesWith, signaturesWithout, theorems), drawn from its own run — no other proof returns them"
@@ -1423,7 +1423,7 @@
  "improving animation visible distinctness — derive direction (1 bit) and amplitude (1..9) from the content-address, orthogonal to the rung, so animations look distinct beyond colour": {
   "form": "bars",
   "values": [
-   619,
+   620,
    12
   ],
   "holds": true,
@@ -1471,7 +1471,7 @@
   "form": "bars",
   "values": [
    4,
-   535
+   539
   ],
   "holds": true,
   "caption": "the quantities topMindsAreRecognisableByQuantumAlgebraAsComputedContributionNotReputation computes for this theorem (classesCaught, distinctProof), drawn from its own run — no other proof returns them"
@@ -1490,7 +1490,7 @@
   "values": [
    275,
    528,
-   75
+   76
   ],
   "holds": true,
   "caption": "the quantities theChatAuditsReadmeUsabilityByAlgebraStrongStructureAndNavigationReadabilityGap computes for this theorem (sections, meanStates, proseSinkGap), drawn from its own run — no other proof returns them"
@@ -1570,7 +1570,7 @@
   "form": "bars",
   "values": [
    225,
-   760,
+   764,
    2
   ],
   "holds": true,
@@ -1579,8 +1579,8 @@
  "the chat may improve the UI measured by the user experience — telemetry is also possible in chat": {
   "form": "bars",
   "values": [
-   5.871,
-   0.886,
+   5.886,
+   0.888,
    2
   ],
   "holds": true,
@@ -1620,7 +1620,7 @@
  "every collection is a filterable OpenGraph list; static pages merge into collections of standardised research publications — one template, computed from the corpus": {
   "form": "bars",
   "values": [
-   760,
+   764,
    30
   ],
   "holds": true,
@@ -1656,7 +1656,7 @@
  "the proofs list is filterable by computed domain tags with OpenGraph meta per proof — generated from the corpus, not hand-curated": {
   "form": "bars",
   "values": [
-   760,
+   764,
    50
   ],
   "holds": true,
@@ -1846,11 +1846,11 @@
  "theorems grow the flower of life through centered hexagonal rings — the corpus count is how far the flower has grown": {
   "form": "bars",
   "values": [
-   760,
-   2280,
+   764,
+   2292,
    27,
    2269,
-   11
+   23
   ],
   "holds": true,
   "caption": "the quantities theoremsGrowTheFlowerOfLifeThroughCenteredHexagonalRings computes for this theorem (theorems, trinity, ring, filledRing, intoNext), drawn from its own run — no other proof returns them"
@@ -1907,7 +1907,7 @@
  "deep research with local tools improves all from quantum-statistics analysis and synthesis — the analyse→research→synthesise loop": {
   "form": "bars",
   "values": [
-   0.703947,
+   0.705497,
    0.84375,
    5
   ],
@@ -1928,7 +1928,7 @@
   "values": [
    1024,
    32,
-   760
+   764
   ],
   "holds": true,
   "caption": "the quantities theThousandTwentyFourDiamondsFilledWithTheoremReferencesFormAProblemSolvingMatrix computes for this theorem (diamonds, side, theorems), drawn from its own run — no other proof returns them"
@@ -1946,8 +1946,8 @@
   "form": "bars",
   "values": [
    16,
-   744,
-   760
+   748,
+   764
   ],
   "holds": true,
   "caption": "the quantities sixteenBaseTheoremsAndTheirInversionsFormTheMerkaba computes for this theorem (base, inversions, total), drawn from its own run — no other proof returns them"
@@ -2158,8 +2158,8 @@
   "form": "bars",
   "values": [
    4,
-   783,
-   760,
+   787,
+   764,
    23,
    160
   ],
@@ -2179,9 +2179,9 @@
   "form": "bars",
   "values": [
    30,
-   3405,
-   783,
-   783
+   3417,
+   787,
+   787
   ],
   "holds": true,
   "caption": "the quantities pagesAreRosettaCombinationsOfTheorems computes for this theorem (pageCount, memberEdges, reachedTheorems, registrySize), drawn from its own run — no other proof returns them"
@@ -2255,14 +2255,14 @@
    39
   ],
   "holds": true,
-  "caption": "the first 64 of 1139 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1140 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
  },
  "science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum": {
   "form": "bars",
   "values": [
    63,
    58,
-   662,
+   666,
    0,
    0,
    0,
@@ -2297,10 +2297,10 @@
  "pages consolidate by theorem gravity — 29 sitemap pages carry the meaning of 16": {
   "form": "bars",
   "values": [
-   309,
+   310,
    49,
    140,
-   783,
+   787,
    28
   ],
   "holds": true,
@@ -2481,6 +2481,46 @@
   "holds": true,
   "caption": "the quantities siteswapAverageProven computes for this theorem (juggleablePatterns, nonIntegerAverages, routesDisagree, beyondWindowPatterns, beyondWindowFailures), drawn from its own run — no other proof returns them"
  },
+ "one remainder sequence is six disciplines": {
+  "form": "bars",
+  "values": [
+   9,
+   6,
+   5,
+   4
+  ],
+  "holds": true,
+  "caption": "the quantities euclidIsSixDisciplines computes for this theorem (temperamentDenominators, calendarDenominators, routhColumnEntries, ladderElements), drawn from its own run — no other proof returns them"
+ },
+ "the circle of fifths does not close": {
+  "form": "bars",
+  "values": [
+   23.46,
+   -1.955
+  ],
+  "holds": true,
+  "caption": "the quantities circleOfFifthsDoesNotClose computes for this theorem (commaCents, temperedShortfallCents), drawn from its own run — no other proof returns them"
+ },
+ "the Gregorian calendar is not a best rational approximation": {
+  "form": "bars",
+  "values": [
+   26.784,
+   -0.216,
+   49
+  ],
+  "holds": true,
+  "caption": "the quantities gregorianIsNotABestApproximation computes for this theorem (gregorianErrorSeconds, persianErrorSeconds, betterDenominators), drawn from its own run — no other proof returns them"
+ },
+ "Lyndon words are irreducible polynomials are free-Lie dimensions": {
+  "form": "bars",
+  "values": [
+   12,
+   12,
+   3
+  ],
+  "holds": true,
+  "caption": "the quantities lyndonWordsAreIrreduciblePolynomials computes for this theorem (lengthsChecked, lengthsAgreeing, perturbationsBreaking), drawn from its own run — no other proof returns them"
+ },
  "Hardy-Weinberg equilibrium is the law of mass action": {
   "form": "bars",
   "values": [
@@ -2576,11 +2616,11 @@
  "theorems reach toward 432 and entangle with usage — the harmonic merge held as direction": {
   "form": "bars",
   "values": [
-   760,
+   764,
    432,
    0,
    57,
-   760
+   764
   ],
   "holds": true,
   "caption": "the quantities theoremsReach432AndEntangleWithUsage computes for this theorem (count, target, remaining, homes, pairs), drawn from its own run — no other proof returns them"
@@ -2729,7 +2769,7 @@
  "readme svg gaps filled by trinity mind": {
   "form": "bars",
   "values": [
-   760,
+   764,
    7,
    3,
    11
@@ -2952,9 +2992,9 @@
  "Audit all theorem titles with the quantum SEO lens": {
   "form": "bars",
   "values": [
-   760,
-   504,
-   0.337
+   764,
+   505,
+   0.339
   ],
   "holds": true,
   "caption": "the quantities auditTheoremTitlesWithTheQuantumSeoLens computes for this theorem (total, flagged, passRate), drawn from its own run — no other proof returns them"
@@ -2962,8 +3002,8 @@
  "Improve science by claiming refutable theorems to replace weaker current ones": {
   "form": "bars",
   "values": [
-   760,
-   760,
+   764,
+   764,
    0,
    1,
    1,
@@ -2975,8 +3015,8 @@
  "The rosetta is the uuid itself": {
   "form": "bars",
   "values": [
-   760,
-   1520,
+   764,
+   1528,
    20,
    432
   ],
