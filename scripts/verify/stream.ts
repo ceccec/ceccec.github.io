@@ -131,6 +131,23 @@ function transcript(file: string, gate: string, out: string): void {
  * AND THE RECEIPT IS THE SAFETY NET: if running in parallel changes any verdict, the address changes
  * and says so against the serial receipts already stored for this tree.
  */
+/**
+ * The newest receipt over THIS tree in which THIS gate came back clean, or null. Reading a receipt is the
+ * whole of it: the archive already records `{ tree, results: [{ gate, verdict }] }` and nothing consulted it.
+ */
+function priorClean(dir: string, tree: string, gate: string): string | null {
+  let files: string[] = []
+  try { files = readdirSync(dir).filter((f) => f.startsWith(`${tree}-`) && f.endsWith('.json')) } catch { return null }
+  for (const f of files.sort().reverse()) {
+    try {
+      const r = JSON.parse(readFileSync(join(dir, f), 'utf8')) as { address?: string; results?: { gate: string; verdict: string; reproduced?: boolean }[] }
+      const hit = (r.results ?? []).find((x) => x.gate === gate && x.verdict === 'clean' && !x.reproduced)
+      if (hit) return String(r.address ?? f.slice(0, 16))
+    } catch { /* a malformed receipt reproduces nothing */ }
+  }
+  return null
+}
+
 async function runPool(gates: readonly string[], dir: string, width: number, transcriptFile: string): Promise<Result[]> {
   const results = new Array<Result>(gates.length)
   let next = 0
@@ -141,6 +158,25 @@ async function runPool(gates: readonly string[], dir: string, width: number, tra
       const gate = gates[i]!
       const t0 = Date.now()
       const at = treeDigest(ROOT)
+      // A TREE ALREADY VERIFIED IS NOT VERIFIED AGAIN, AND THE KEY IS SOUND BECAUSE OF WHAT treeDigest
+      // COVERS. Measured on this corpus: 57 gates take 818 seconds, 37 of them cost within 15% of their
+      // first run on the SAME tree, and a release cut re-runs the whole roster on the exact commit the
+      // land certified minutes earlier — 818 of a 917-second cut spent recomputing a settled answer.
+      //
+      // The reuse is safe only because the digest is over src, scripts AND the .vitepress sources, so a
+      // changed GATE moves the tree exactly as a changed subject does. A cache keyed on the subject alone
+      // would let an edited gate be skipped against an unmoved tree, which is how an instrument stops
+      // measuring while still reporting green — the defect this repository keeps finding in itself.
+      //
+      // A REPRODUCTION IS NAMED AS ONE, NEVER PRESENTED AS A FRESH RUN. The verdict carries the receipt it
+      // came from, the summary counts them separately, and VERIFY_FRESH=1 runs everything regardless.
+      const reused = process.env.VERIFY_FRESH === '1' ? null : priorClean(dir, at, gate)
+      if (reused) {
+        const r = { gate, verdict: 'clean' as const, code: 0, ms: 0, detail: `reproduced from receipt ${reused}`, tree: at, reproduced: true }
+        results[i] = r
+        console.log(`  = ${gate.padEnd(30)} ${'reproduced'.padEnd(9)} ${'0'.padStart(4)}s from ${reused}`)
+        continue
+      }
       const out = await new Promise<{ status: number | null; text: string; err?: string }>((resolve) => {
         const child = spawn('npm', ['run', gate], { cwd: ROOT })
         let text = ''
@@ -292,7 +328,9 @@ export async function runVerificationStream(): Promise<void> {
   const file = join(dir, `${before}-${address}-${runId}.json`)
   writeFileSync(file, `${JSON.stringify(receipt, null, 2)}\n`)
 
+  const reproduced = results.filter((r) => (r as { reproduced?: boolean }).reproduced).length
   console.log(`\n  ${clean}/${gates.length} clean · ${violated.length} violated · ${notRun.length} NOT RUN`)
+  if (reproduced > 0) console.log(`  ${reproduced} of those were REPRODUCED from a receipt over this same tree, not re-run — VERIFY_FRESH=1 runs everything`)
   console.log(`  receipt ${address} over tree ${before}${before === after ? '' : ` — TREE MOVED to ${after} during the run`}`)
   console.log(`  ${file.replace(`${ROOT}/`, '')} — consume this, do not read a log tail`)
   console.log(`  transcript of THIS run only: ${transcriptFile.replace(`${ROOT}/`, '')}`)

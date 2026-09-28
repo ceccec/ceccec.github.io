@@ -2310,7 +2310,25 @@ export function chatThroughStackOverflow(prompt: string, items: readonly MathOve
 // that may be used to save a lot of tokens"). Either way the PORTAL spends zero tokens ([[zero-token-policy]]); src
 // computes the request ENVELOPE only; the fetch (and, for a keyed provider, the Bearer key) live at the EDGE, never here.
 export const CECCEC_PROXY_ORIGIN = 'https://ceccec.psg.bg'
-export const AI_PROVIDERS = {
+/**
+ * HOISTED, BECAUSE THE PREVIOUS CONST CRASHED THE PRODUCTION BUILD FROM INSIDE A CYCLE.
+ *
+ * docs:build failed with `Cannot access 'aiProviders()' before initialization` — the second binding in this
+ * graph to do so, after GOLD_MINE_MAP_HINGE, which is exactly what was predicted when that one was hoisted
+ * rather than the cycle broken: a hoist fixes one binding, and the next re-exported const in the same loop
+ * takes its turn. src/quantum/apps re-exports this and the bundler flattens a re-export into a direct
+ * variable reference, so whichever module the merged graph evaluates first can reach it before its
+ * initialiser runs.
+ *
+ * AND IT IS NONDETERMINISTIC, WHICH IS THE PART WORTH RECORDING. On this same commit the Zenodo workflow's
+ * docs:build PASSED while publish-package's failed. Same tree, two runs, different answers — because the
+ * crash depends on evaluation order, and order is not fixed. A test that passes is therefore not evidence
+ * the binding is safe; only hoisting is.
+ *
+ * A function declaration is initialised before any module body runs, so no order can reach it too early.
+ */
+export function aiProviders() {
+  return {
   perplexity: { api: 'https://api.perplexity.ai/chat/completions', site: 'https://www.perplexity.ai', model: 'sonar', keyed: true },
   pollinations: { api: 'https://text.pollinations.ai/openai', site: 'https://pollinations.ai', model: 'openai', keyed: false },
   // proxy — the SITE itself as a no-key AI proxy: an OPTIONAL edge relay (Cloudflare Workers AI binding, wrangler.jsonc)
@@ -2318,28 +2336,29 @@ export const AI_PROVIDERS = {
   // only — the default GitHub Pages deploy is static; the direct no-key free lane already delivers no-local-cost AI today.
   proxy: { api: `${CECCEC_PROXY_ORIGIN}/api/ai`, site: CECCEC_PROXY_ORIGIN, model: 'collective', keyed: false },
 } as const
-export type AiProvider = keyof typeof AI_PROVIDERS
+}
+export type AiProvider = keyof ReturnType<typeof aiProviders>
 
 // Back-compat aliases — perplexity was the first provider sealed; keep the named constants pointing at the registry.
-export const PERPLEXITY_API = AI_PROVIDERS.perplexity.api
-export const PERPLEXITY_SITE = AI_PROVIDERS.perplexity.site
-export const PERPLEXITY_MODEL = AI_PROVIDERS.perplexity.model
+export const PERPLEXITY_API = aiProviders().perplexity.api
+export const PERPLEXITY_SITE = aiProviders().perplexity.site
+export const PERPLEXITY_MODEL = aiProviders().perplexity.model
 
 /** provider human search URL — the escalation surface (hands the question to the provider's own UI). */
-export function aiProviderUrl(provider: AiProvider, prompt = ''): string { return `${AI_PROVIDERS[provider].site}/search?q=${encodeURIComponent(prompt.trim())}` }
+export function aiProviderUrl(provider: AiProvider, prompt = ''): string { return `${aiProviders()[provider].site}/search?q=${encodeURIComponent(prompt.trim())}` }
 export function perplexityUrl(prompt = ''): string { return aiProviderUrl('perplexity', prompt) }
 
 /** The computed OpenAI-shape POST envelope for an AI provider — endpoint + method + JSON body, and (keyed only) WHERE the
  * key goes; keyInjectedAtEdge=true means the edge composes `Authorization: Bearer <key>`, false means NO auth at all.
  * src holds no key value in EITHER case. */
-export function aiRequest(prompt: string, provider: AiProvider = 'perplexity', model: string = AI_PROVIDERS[provider].model): {
+export function aiRequest(prompt: string, provider: AiProvider = 'perplexity', model: string = aiProviders()[provider].model): {
   readonly url: string; readonly method: 'POST'; readonly authHeader: 'Authorization'; readonly authScheme: 'Bearer'; readonly keyInjectedAtEdge: boolean; readonly body: string
 } {
   const body = JSON.stringify({ model, messages: [{ role: 'user', content: prompt.trim() }] })
-  return { url: AI_PROVIDERS[provider].api, method: 'POST', authHeader: 'Authorization', authScheme: 'Bearer', keyInjectedAtEdge: AI_PROVIDERS[provider].keyed, body }
+  return { url: aiProviders()[provider].api, method: 'POST', authHeader: 'Authorization', authScheme: 'Bearer', keyInjectedAtEdge: aiProviders()[provider].keyed, body }
 }
 export function perplexityRequest(prompt: string, model: string = PERPLEXITY_MODEL) { return aiRequest(prompt, 'perplexity', model) }
-export function freeAiRequest(prompt: string, model: string = AI_PROVIDERS.pollinations.model) { return aiRequest(prompt, 'pollinations', model) }
+export function freeAiRequest(prompt: string, model: string = aiProviders().pollinations.model) { return aiRequest(prompt, 'pollinations', model) }
 
 /** A raw OpenAI-shape chat response — only the fields the adapter reads; everything optional (untrusted input). Both
  * Perplexity and Pollinations return this shape (choices[0].message.content, optional citations). */
@@ -2356,8 +2375,8 @@ export type PerplexityResponse = OpenAiChatResponse // back-compat alias
  * no one; (2) the answer is the EXTERNAL LLM's, labeled by provider + model + citations + content-address, never the
  * portal's claim, its citations UNVERIFIED ([[citation-rot]]); (3) the corpus leads when it can answer. A LONE external
  * answer is never trusted — see [[collectiveAiMind]], which fuses providers into a 2-of-N consensus. */
-export function chatThroughAi(prompt: string, provider: AiProvider = 'perplexity', response: OpenAiChatResponse | null = null, model: string = AI_PROVIDERS[provider].model, matrix: MindMatrix = buildMatrix()) {
-  const meta = AI_PROVIDERS[provider]
+export function chatThroughAi(prompt: string, provider: AiProvider = 'perplexity', response: OpenAiChatResponse | null = null, model: string = aiProviders()[provider].model, matrix: MindMatrix = buildMatrix()) {
+  const meta = aiProviders()[provider]
   const local = portalChatRanked(prompt, matrix)
   const request = aiRequest(prompt, provider, model)
   const discovery = researchAndDiscoverBeforeAnswering(prompt, matrix)
@@ -2396,7 +2415,7 @@ export function chatThroughAi(prompt: string, provider: AiProvider = 'perplexity
 /** chatThroughPerplexity — the keyed provider (BYO-key). Thin wrapper over chatThroughAi('perplexity'). */
 export function chatThroughPerplexity(prompt: string, response: OpenAiChatResponse | null = null, model: string = PERPLEXITY_MODEL, matrix: MindMatrix = buildMatrix()) { return chatThroughAi(prompt, 'perplexity', response, model, matrix) }
 /** chatThroughFreeAi — the NO-KEY provider (Pollinations, free public endpoint). Thin wrapper over chatThroughAi('pollinations'). */
-export function chatThroughFreeAi(prompt: string, response: OpenAiChatResponse | null = null, model: string = AI_PROVIDERS.pollinations.model, matrix: MindMatrix = buildMatrix()) { return chatThroughAi(prompt, 'pollinations', response, model, matrix) }
+export function chatThroughFreeAi(prompt: string, response: OpenAiChatResponse | null = null, model: string = aiProviders().pollinations.model, matrix: MindMatrix = buildMatrix()) { return chatThroughAi(prompt, 'pollinations', response, model, matrix) }
 
 /** collectiveAiMind — untrusted external models made trustworthy by a QUANTUM WAVE: fuse the local corpus + N external
  * providers into ONE collective answer where 2-of-N AGREEMENT is the trust/security mechanism (user, 2026-07-27: "as those
@@ -2473,8 +2492,8 @@ export function siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPubli
   const collective = collectiveAiMind(prompt, {}, matrix) // the fusion primitive (corpus anchor with no edge responses yet)
   const quantum = quantumCircuitSimulatorInChat(matrix) // the free, zero-token quantum-circuit SIMULATOR
   const proxyNoKey = proxyReq.keyInjectedAtEdge === false && proxyReq.url === `${CECCEC_PROXY_ORIGIN}/api/ai` && !/pplx-[a-z0-9]|sk-[a-z0-9]/i.test(JSON.stringify(proxyReq))
-  const freeNoKeyToday = freeReq.keyInjectedAtEdge === false && freeReq.url === AI_PROVIDERS.pollinations.api
-  const publicApiLanes = [MATHOVERFLOW_SITE, STACKOVERFLOW_SITE, AI_PROVIDERS.pollinations.site] // the no-key public surfaces
+  const freeNoKeyToday = freeReq.keyInjectedAtEdge === false && freeReq.url === aiProviders().pollinations.api
+  const publicApiLanes = [MATHOVERFLOW_SITE, STACKOVERFLOW_SITE, aiProviders().pollinations.site] // the no-key public surfaces
   const facets = [
     { facet: `NO LOCAL AI COST — the no-key free lane answers at zero cost in the browser TODAY (${freeNoKeyToday}: ${freeReq.url}, no key), and the site can front it as an OPTIONAL edge proxy (${proxyReq.url}, no key — ${proxyNoKey}); a visitor spends no key and no tokens either way`, on: freeNoKeyToday && proxyNoKey },
     { facet: `THE PROXY FANS OUT + FUSES — the edge relays to the free upstream(s) and returns the collectiveAiMind consensus (${collective.computes}), so no single upstream is trusted; the proxy is a CONTRACT reusing the shipped free lane + collective mind, not a new trust`, on: collective.computes === true },
@@ -10072,7 +10091,7 @@ export function selfSufficientIntelligenceKernel(matrix: MindMatrix = buildMatri
 // Consolidated access patterns for heaven compute module (core infrastructure)
 export const compute = {
   ai: {
-    providers: AI_PROVIDERS,
+    providers: aiProviders(),
     request: aiRequest,
     providerUrl: aiProviderUrl,
   },
