@@ -45,8 +45,19 @@ export async function readConnectors(root: string = process.cwd()): Promise<Read
         ...(post && row.body ? { body: row.body } : {}),
         headers: { 'user-agent': 'ceccec.github.io connector probe (ceci@psg.bg)',
           ...(post ? { 'content-type': 'application/json' } : {}) } })
+      // "NOT YOU" IS NOT "NOT THERE", AND THIS GATE FAILED A RELEASE BY CONFLATING THEM. Wired into
+      // verify:all, it refused the publish on `oeis HTTP 403` from a GitHub runner — and OEIS documents
+      // that it prohibits scraping, so a datacentre IP being turned away is the service working as
+      // specified. A 401, 403 or 429 is a statement about the CALLER: this identity, this address, this
+      // rate. It carries no information about whether the resource exists or answers correctly, so it is
+      // UNCHECKED for the same reason a transport failure is — the corpus could not ask from here.
+      //
+      // A 404 or a 5xx is different: the server accepted the question and said the thing is missing or
+      // broken, which is a definite answer about the resource and stays a refusal.
+      const blocked = res.status === 401 || res.status === 403 || res.status === 429
       readings.push({ key: row.key, url: row.url,
-        state: res.status < 400 ? 'reachable' : 'refused', detail: `HTTP ${res.status}` })
+        state: res.status < 400 ? 'reachable' : blocked ? 'unchecked' : 'refused',
+        detail: blocked ? `HTTP ${res.status} — the endpoint declined THIS caller, which says nothing about the resource` : `HTTP ${res.status}` })
     } catch (e) {
       readings.push({ key: row.key, url: row.url, state: 'unchecked', detail: (e as Error).message.slice(0, 60) })
     }
