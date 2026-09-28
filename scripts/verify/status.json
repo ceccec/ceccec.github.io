@@ -12,7 +12,7 @@
   "canon.empty-as-const-read": 0,
   "canon.facet-gates-elsewhere": 11,
   "canon.facet-missing-on": 0,
-  "canon.gate-unreachable": 2,
+  "canon.gate-unreachable": 1,
   "canon.generated-unverified": 0,
   "canon.self-comparison": 3,
   "canon.typed-boolean-conjunct": 0,

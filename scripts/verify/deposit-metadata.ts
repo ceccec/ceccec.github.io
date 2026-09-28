@@ -83,6 +83,11 @@ export type HarvestedRecord = {
   readonly creators: readonly string[]
   readonly rights: readonly string[]
   readonly date: string
+  /** dc:identifier + dc:relation — where a record says what it belongs to. The ONE field that can
+   *  distinguish this repository's work from the same author's other work: the creator cannot, because
+   *  he wrote uuidna and the Clay paper too. Measured 2026-09-28: record 22737368 (the head of concept
+   *  22352566) carries a ceccec.github.io reference; uuidna's 22256708 carries none. */
+  readonly links: readonly string[]
 }
 
 function dcAll(xml: string, tag: string): string[] {
@@ -120,7 +125,15 @@ export async function harvest(doi: string): Promise<HarvestedRecord> {
     creators: dcAll(xml, 'creator'),
     rights: dcAll(xml, 'rights'),
     date: dcAll(xml, 'date')[0] ?? '',
+    links: [...dcAll(xml, 'identifier'), ...dcAll(xml, 'relation')],
   }
+}
+
+/** Does this record say it belongs to THIS repository? The only non-circular anchor available:
+ *  creators cannot separate this corpus from the author's other deposits, because he wrote those too. */
+export function recordClaimsThisRepository(rec: HarvestedRecord): boolean {
+  const hay = [...rec.links, rec.description].join(' ')
+  return hay.includes('ceccec.github.io') || hay.includes('github.com/ceccec/ceccec')
 }
 
 /**
@@ -331,8 +344,16 @@ export type CitedDoi = { readonly doi: string; readonly where: string; readonly 
 export function citedDois(root: string = process.cwd()): CitedDoi[] {
   const cff = readFileSync(join(root, 'CITATION.cff'), 'utf8')
   const out: CitedDoi[] = []
-  for (const m of cff.matchAll(/10\.5281\/zenodo\.\d+/g)) {
-    out.push({ doi: m[0], where: 'CITATION.cff', mustBeThisWork: true })
+  // ONLY THE STRUCTURED identifiers: BLOCK IS A CITATION. A blind regex over the whole file read the
+  // CAUTIONARY NOTE at CITATION.cff:43 — "NOTE its concept DOI (10.5281/zenodo.21787143) is shared with
+  // two unrelated works" — as a DOI this repository puts in front of readers, and demanded it be this
+  // work. The file was WARNING about that DOI and the gate cited it on the author's behalf, then failed
+  // him for it. It also contradicted this function's own line below, which records the concept DOI with
+  // mustBeThisWork: false; both entries survived the dedupe because their `where` differs.
+  // A DOI is cited when it appears as a `value:` under `identifiers:`, and nowhere else.
+  const identifiersBlock = /^identifiers:\n((?:[ \t]+.*\n|\n)*)/m.exec(cff)?.[1] ?? ''
+  for (const m of identifiersBlock.matchAll(/^\s*value:\s*["']?(10\.5281\/zenodo\.\d+)["']?\s*$/gm)) {
+    out.push({ doi: m[1]!, where: 'CITATION.cff', mustBeThisWork: true })
   }
   // The DOI rendered in the credit block on every page — the one a reader actually clicks.
   out.push({ doi: PUBLICATION_CREDIT_DOI, where: 'the site-wide citation block', mustBeThisWork: true })
@@ -478,7 +499,18 @@ export async function assertCitedDoisResolve(root: string = process.cwd()): Prom
       console.log(`  ${c.doi} — NOT RESOLVED (${(e as Error).message}) · ${c.where}`)
       continue
     }
-    const isThisWork = record === zenodoRecordId(PUBLICATION_CREDIT_DOI)
+    // A WORK IS A VERSION CHAIN, NOT ONE RECORD. This compared the resolved record against the single
+    // id inside PUBLICATION_CREDIT_DOI (21787144, the withdrawn Clay paper), so the CURRENT kernel
+    // record — 22737368, the head of the concept DOI this repository actually cites — was reported as
+    // "A DIFFERENT WORK". It is this work, at a newer version, which is the entire purpose of a concept
+    // DOI. Two kinds of identifier, two different soundness tests:
+    //   a VERSION DOI is immutable and must resolve to its own record id — nothing can move under it;
+    //   a CONCEPT DOI has a head that moves, so the head must say it belongs to this repository.
+    // The second is what catches the real failure: 21787143's head moved to uuidna's record.
+    const self = zenodoRecordId(c.doi)
+    const isThisWork = record === self
+      ? true                                              // version DOI resolved to itself
+      : recordClaimsThisRepository(await harvest(`10.5281/zenodo.${record}`))
     if (isThisWork) ours.add(c.doi)
     console.log(`  ${c.doi} → record ${record} · ${c.where}`)
     console.log(`      ${isThisWork ? 'this work' : 'A DIFFERENT WORK'}: ${title.slice(0, 92)}`)
