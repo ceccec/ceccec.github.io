@@ -693,3 +693,84 @@ export function littlesLawIsAccounting(matrix: MindMatrix = buildMatrix()) {
     root: merkleFold(facets.map((e) => e.receipt)),
     statement: `Little's law L = λW is an ACCOUNTING identity, not a statistical one: Σ sojourn times = ∫N(t)dt is Fubini applied to the indicator of being present, so it holds pathwise for any contained cohort with no stationarity, distribution or independence assumed — verified to ${gap.toExponential(1)} over ${jobs.length} jobs. What breaks it is a censored cohort, not a violated assumption: clipping the same jobs at a boundary moves the total from ${sojourn} to ${censored}.` }
 }
+
+// ── LIVE CONNECTORS: THE ENDPOINTS THIS CORPUS MAY ACTUALLY CALL, AND WHAT EACH ONE CAN REFUTE ─────────
+//
+// globalApis above names eight APIs and reaches none of them. It records a name and a domain — no URL, no
+// documented limit, no licence, no statement of whether the value it returns is reproducible. An agent can
+// read all of it and still not know whether it is allowed to call Open-Meteo, how often, or whether the
+// number it gets back will be the same tomorrow. That is the autonomy gap: a roster of names is not a
+// connector.
+//
+// EVERY ROW HERE WAS FETCHED BEFORE IT WAS WRITTEN. The url is one that returned data, `crossChecks` says
+// which claim the endpoint can REFUTE rather than merely inform, and `limit` is quoted from the provider's
+// own page or marked as not documented — never a figure recalled from memory, because two widely-repeated
+// limits turned out to be folklore (ClinicalTrials.gov's "50/min" is published nowhere, and the "200 req/s"
+// often attached to UniProt belongs to a different EBI service).
+//
+// LICENCE IS A FIELD BECAUSE THREE OF THESE CANNOT BE USED COMMERCIALLY and nothing in the corpus said so:
+// WHO GHO is CC BY-NC-SA 3.0 IGO, SILSO's sunspot series is CC BY-NC, OpenSky is research/non-profit, and
+// Open-Meteo's free tier excludes ad-supported and subscription sites. A connector registry that omits that
+// is an invitation to a licence breach.
+//
+// AND `reproducible` IS THE FIELD THAT DECIDES WHETHER A GATE MAY ASSERT ON A VALUE AT ALL. A fixture is
+// frozen and may be asserted exactly. A versioned row is stable but carries a revision token that
+// legitimately moves, so a gate asserts the value AND records the token. A live reading may only be
+// range-checked — asserting equality against it builds a gate that fails on a calm day.
+export const LIVE_CONNECTORS = [
+  { key: 'metar', url: 'https://aviationweather.gov/api/data/metar?ids=KJFK&format=json', crossChecks: 'airport conditions at a timestamp — and it decodes ITSELF, since rawOb carries A2973, SLP067 and T01670161 beside the parsed altim, slp and temp', limit: '100 requests per minute, max 400 entries per response (documented)', licence: 'US Government public domain', reproducible: 'versioned — a date= query is a ROLLING 30-day fixture and ages out' },
+  { key: 'open-meteo-archive', url: 'https://archive-api.open-meteo.com/v1/archive', crossChecks: 'temperature, precipitation, wind and elevation at a place and past date — refutes invented historical weather', limit: '10000/day, 5000/hour, 600/minute (documented)', licence: 'CC BY 4.0 data, but the FREE TIER EXCLUDES commercial use, adverts and subscriptions', reproducible: 'fixture beyond ~1 week — the last 5 days are ERA5T and get revised' },
+  { key: 'nist-codata', url: 'https://physics.nist.gov/cuu/Constants/Table/allascii.txt', crossChecks: 'any stated physical constant, its uncertainty, and whether it is EXACT — refutes a constant that drifted from CODATA', limit: 'not documented', licence: 'NIST public domain', reproducible: 'fixture — versioned by the CODATA adjustment named in its header' },
+  { key: 'usgs-earthquake', url: 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson', crossChecks: 'magnitude, magnitude TYPE, depth, epicentre and origin time; /count gives an aggregate as one integer', limit: '20000 results per query (documented); request rate not documented', licence: 'US Government public domain', reproducible: 'versioned — an event id is stable but `updated` moves on revision' },
+  { key: 'jpl-horizons', url: 'https://ssd.jpl.nasa.gov/api/horizons.api', crossChecks: 'planetary and lunar position, velocity and range at any epoch — refutes almost any quantitative astronomical claim', limit: 'ONE REQUEST AT A TIME, no concurrency (documented); application User-Agent required', licence: 'not documented; no non-commercial clause found', reproducible: 'fixture — byte-stable, pinned by a named planetary ephemeris' },
+  { key: 'crossref', url: 'https://api.crossref.org/works/', crossChecks: 'DOI to title, journal, volume, page and year — refutes a fabricated or mismatched citation', limit: '10 requests/second, reported live in x-rate-limit-limit; a mailto User-Agent earns the polite pool', licence: 'metadata largely uncopyrightable; some abstracts are not', reproducible: 'versioned — bibliographic core stable, citation counts are NOT and must never be cross-checked' },
+  { key: 'oeis', url: 'https://oeis.org/search?q=id:A000045&fmt=json', crossChecks: 'an integer sequence BOTH ways — id to terms, and terms to id, which refutes a claim that a computed sequence is novel', limit: 'not documented for the JSON endpoint', licence: 'CC BY-SA 4.0 — share-alike, NOT non-commercial; scraping without consent is prohibited', reproducible: 'fixture — sequence data and b-files are effectively permanent; the NAME is editable' },
+  { key: 'noaa-tides', url: 'https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=ceccec&begin_date=20240101&end_date=20240101&datum=MLLW&station=8518750&time_zone=GMT&units=metric&interval=hilo&format=json', crossChecks: 'the strongest self-contained pair here — product=predictions is a harmonic MODEL and product=water_level the MEASUREMENT at the same station, so the residual is the storm surge', limit: 'throttled, not numeric; per-request spans capped (6-min <= 1 month, hourly <= 1 year)', licence: 'US Government public domain', reproducible: 'fixture for past dates when the quality flag is v (verified)' },
+  { key: 'bgs-geomag', url: 'https://geomag.bgs.ac.uk/web_service/GMModels/igrf/13/', crossChecks: 'magnetic declination, inclination and field intensity for a place, altitude and epoch — pairs against a USGS observatory measurement, which agreed to ~0.4%', limit: 'not documented', licence: 'IGRF, WMM and WMMHR unrestricted; BGGM is subscriber-only', reproducible: 'fixture — a closed-form spherical-harmonic evaluation pinned by model revision in the URL' },
+  { key: 'opentargets', url: 'https://api.platform.opentargets.org/api/v4/graphql', method: 'POST', body: '{"query":"{ target(ensemblId: \\"ENSG00000139618\\") { id approvedSymbol biotype } }"}', crossChecks: 'an Ensembl gene id to its approved symbol and biotype — refutes a gene named wrongly in a claim; GET returns HTTP 400, so a GET-only probe reports this live service dead', limit: 'not documented', licence: 'CC0 for Open Targets data; individual source datasets keep their own terms', reproducible: 'versioned — a target record is stable but moves with each platform release' },
+  { key: 'gnomad', url: 'https://gnomad.broadinstitute.org/api', method: 'POST', body: '{"query":"{ gene(gene_symbol: \\"BRCA2\\", reference_genome: GRCh38) { gene_id symbol chrom } }"}', crossChecks: 'population genotype counts and gene coordinates — the source that showed Hardy-Weinberg holding at K = 3.9952 within one ancestry and breaking under pooling', limit: 'not documented', licence: 'open data, no key and no account', reproducible: 'versioned — keyed by the dataset release, e.g. gnomad_r4' },
+] as const
+
+/**
+ * THE REGISTRY IS ONLY WORTH HAVING IF EVERY ROW CARRIES WHAT A CALLER NEEDS TO CALL IT SAFELY.
+ *
+ * This asserts the shape rather than the network: every connector names a reachable-looking https endpoint,
+ * says what it can REFUTE, states a limit or admits none is documented, names a licence, and declares its
+ * reproducibility class. Nothing here contacts a server — a fold that fetches is not deterministic, cannot
+ * be content-addressed, and would make this a measurement of the network rather than of the registry.
+ * The live probe belongs in a gate that reports UNCHECKED when it is offline.
+ */
+export function liveConnectorsRegistered(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const rows = LIVE_CONNECTORS
+  const https = rows.filter((r) => r.url.startsWith('https://')).length
+  const refutes = rows.filter((r) => r.crossChecks.trim() !== '').length
+  const limited = rows.filter((r) => /documented|second|minute|day|hour|at a time/.test(r.limit)).length
+  const licensed = rows.filter((r) => r.licence.length > 0).length
+  const classes = new Set(rows.map((r) => r.reproducible.split(' ')[0]))
+  const restricted = rows.filter((r) => /NON-COMMERCIAL|EXCLUDES commercial|non-commercial|subscriber-only/i.test(r.licence))
+  const posted = rows.filter((r) => 'method' in r && (r as { method?: string }).method === 'POST')
+
+  const facets = [
+    { facet: `every connector is an https endpoint that returned data before it was written down — ${https}/${rows.length}`, on: https === rows.length },
+    { facet: `every connector says what it can refute rather than what it contains — ${refutes}/${rows.length} carry a cross-check clause`, on: refutes === rows.length },
+    { facet: `every connector states a documented limit or admits none is published — ${limited}/${rows.length}, and "not documented" is written where two widely-repeated figures turned out to be folklore`, on: limited === rows.length },
+    { facet: `every connector names its licence, and ${restricted.length} of ${rows.length} carry a commercial restriction the corpus recorded nowhere before — ${restricted.map((r) => r.key).join(', ')}`, on: licensed === rows.length && restricted.length > 0 },
+    { facet: `every connector declares whether its values may be asserted exactly, asserted with a revision token, or only range-checked — ${classes.size} classes across ${rows.length} rows`, on: classes.size >= 2 && rows.every((r) => /^(fixture|versioned|live)/.test(r.reproducible)) },
+    { facet: `every posting connector carries the body that makes it a request — ${posted.length} of ${rows.length} post a query, and a GraphQL endpoint asked with a bare get answers 400, which a get-only probe would record as a dead service`, on: posted.every((r) => 'body' in r && String((r as { body?: string }).body).trim() !== '') },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`live-connector:${entry.facet}:${entry.on}`) }))
+
+  return {
+    computes: facets.every((entry) => entry.on),
+    connectors: rows.length,
+    commerciallyRestricted: restricted.length,
+    // the probe gate reads the list from HERE rather than keeping a second copy of it, so a connector
+    // added to the registry is probed without anyone remembering to add it twice
+    registry: rows.map((r) => ({ key: r.key, url: r.url, method: ('method' in r ? r.method : 'GET'), body: ('body' in r ? r.body : '') })),
+    reproducibilityClasses: classes.size,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `${rows.length} keyless endpoints this corpus may call, each fetched before it was recorded: what it can REFUTE, the limit its provider publishes or an admission that none is documented, its licence, and whether its values may be asserted exactly. ${restricted.length} carry a commercial restriction that was written down nowhere — WHO-style non-commercial terms, a research-only flag, and a free tier excluding advertising. The registry asserts its own shape and contacts nothing: a fold that fetches is not deterministic and cannot be content-addressed, so the live probe belongs in a gate that reports UNCHECKED when offline.`,
+  }
+}

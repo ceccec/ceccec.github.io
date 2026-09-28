@@ -71,6 +71,16 @@ async function callTool(requested: string, args: Record<string, unknown>) {
       return { ok: false, exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr }
     }
   }
+  if (name === 'live_connectors') {
+    const r = await runBootstrapCli(['run', 'src/stats/index.ts', 'liveConnectorsRegistered'])
+    try { return JSON.parse(r.stdout.slice(r.stdout.indexOf('{'))) } catch { return { ok: false, exitCode: r.exitCode, stderr: r.stderr } }
+  }
+  if (name === 'release_readiness') {
+    // NO --push, EVER, FROM A TOOL CALL. The matrix reports; cutting a tag fires a publish and an
+    // immutable deposit, and that decision is the author's at a terminal, not a tool's.
+    const r = await runBootstrapCli(['run', 'scripts/verify/release-cut.ts', 'runReleaseCutExit'])
+    return { report: r.stdout, exitCode: r.exitCode }
+  }
   if (name === 'census_status') return censusStatus()
   if (name === 'compute_from_source') {
     const op = String(args.op ?? 'a432-hue')

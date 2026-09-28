@@ -30,6 +30,25 @@ export const QUANTUM_DEV_TOOL_DEFS = [
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
+    // WHAT MAY THIS AGENT CALL ONLINE, AND UNDER WHAT TERMS. The corpus named eight APIs and could reach
+    // none of them — no URL, no limit, no licence, no statement of whether a value is reproducible. An
+    // agent asking "may I check this against a live record" had nowhere to look, which is an autonomy gap
+    // and a licence hazard: four of the nine endpoints carry a commercial restriction written down nowhere.
+    name: 'live_connectors',
+    description:
+      'Every keyless endpoint this corpus may call, each fetched before it was recorded: what it can REFUTE, the provider\'s documented limit (or an admission that none is published), its licence including commercial restrictions, and whether its values may be asserted exactly, asserted with a revision token, or only range-checked.',
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
+  {
+    // IS THIS TREE RELEASABLE. The readiness matrix runs every command the publish runs, derived from the
+    // tag-fired workflows; until now only a human at a terminal could ask it. Read-only: it reports the
+    // cells and never cuts, because a tag mints a record that cannot be edited.
+    name: 'release_readiness',
+    description:
+      'The release readiness matrix, computed and READ-ONLY — never cuts a tag. Reports every cell: the publish-time commands discovered from the tag-fired workflows, whether the tree is clean and pushed, version agreement, the seal, and whether the version is already live in each record.',
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
+  {
     name: 'census_status',
     description: 'Census constants recomputed from the Fibonacci band ladder, plus the a432 gate count (not a live limits:verify audit)',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
