@@ -54,14 +54,6 @@ export function ratEq(a: Rational, b: Rational): boolean {
   return a.num === b.num && a.den === b.den
 }
 
-export function ratToString(r: Rational): string {
-  return r.den === 1n ? r.num.toString() : `${r.num}/${r.den}`
-}
-
-export function ratSquare(r: Rational): Rational {
-  return ratMul(r, r)
-}
-
 
 // ───── module: symbolic ─────
 // Wave 34b: Exact Symbolic Expressions
@@ -118,10 +110,6 @@ export function symSub(left: SymbolicExpr, right: SymbolicExpr): SymbolicExpr {
 
 export function symMul(left: SymbolicExpr, right: SymbolicExpr): SymbolicExpr {
   return { type: 'mul', left, right }
-}
-
-export function symExp(base: SymbolicExpr, exp: SymbolicExpr): SymbolicExpr {
-  return { type: 'exp', base, exp }
 }
 
 export function symSquare(expr: SymbolicExpr): SymbolicExpr {
@@ -691,22 +679,6 @@ export const all_theorems_exact = [
   bsd_exact,
 ]
 
-export function theoremToLatex(theorem: ExactTheoremState): string {
-  return `
-\\textbf{${theorem.name}}
-
-\\textit{Canonical:} ${theorem.canonical_description}
-
-\\textit{Off-canonical:} ${theorem.off_canonical_description}
-
-\\textit{Amplitude:} \\alpha = ${symToLatex(theorem.alpha_symbolic)}
-
-\\textit{Coherence:} |\\alpha|^2 = ${symToLatex(theorem.coherence_exact)}
-
-\\textit{Derivation:} ${theorem.derivation}
-  `
-}
-
 
 // ───── module: formalProof ─────
 // Wave 34d: Formal Zero-Deviation Proof
@@ -858,56 +830,5 @@ export function proveZeroDeviation(theorem: ExactTheoremState): ZeroDeviationPro
 
     qed: measurement_def.equality && !escape_proof.escape_possible,
   }
-}
-
-/**
- * SUMMARY: Zero Deviation for All 6 Theorems
- */
-export function proveAllTheoremsZeroDeviation(
-  theorems: ExactTheoremState[]
-): {
-  total_theorems: number
-  zero_deviation_count: number
-  all_proven: boolean
-  report: string
-}[] {
-  return theorems.map((theorem) => {
-    const proof = proveZeroDeviation(theorem)
-    // Box template: dynamically compute width from actual border
-    const boxTemplate = '════════════════════════════════════════════'
-    const borderCharCount = boxTemplate.length // Derived from template length, not hardcoded
-    const boxWidth = borderCharCount + 4 // Add 2 for each ║ side margin
-    const nameColumnWidth = boxWidth - 2 // Account for spacing and borders
-
-    return {
-      total_theorems: 1,
-      zero_deviation_count: proof.qed ? 1 : 0,
-      all_proven: proof.qed,
-      report: `
-╔${boxTemplate}╗
-║ ${theorem.name.padEnd(nameColumnWidth)} ║
-╚${boxTemplate}╝
-
-QUANTUM STATE:
-  α² = ${proof.alpha_squared_theoretical}
-  β² = 1 - α²
-
-MEASUREMENT:
-  P(canonical) = |α|² (by postulate)
-  P(off-canonical) = |β|²
-
-DEVIATION PROOF:
-  Theoretical P(canonical) = ${proof.alpha_squared_theoretical}
-  Measured P(canonical) = ${proof.collapse_probability_measured}
-  Deviation = ${proof.deviation} ✓ EXACTLY ZERO
-
-CONCLUSION:
-  ✓ ${theorem.name} PROVEN
-  ✓ Zero deviation (exact, no error correction needed)
-  ✓ Topological protection prevents escape
-
-      `,
-    }
-  })
 }
 

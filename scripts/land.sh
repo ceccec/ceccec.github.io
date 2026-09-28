@@ -122,6 +122,15 @@ if ! node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/i
 fi
 echo "✓ generated artefacts regenerated before the gates that check them"
 echo "land: $(wc -l <<<"$changed" | tr -d ' ') path(s) · gates: ${gates[*]}"
+
+# --add PATHS ARE STAGED HERE, BEFORE THE GATES, BECAUSE THE GATES JUDGE THE TREE AND NOT THE FLAGS.
+# Line 54 already excludes --add paths from land.sh's OWN untracked check, so the flag looked like it
+# meant "this file is part of the landing". It did not: staging happened only at commit time, and
+# `guard` — a separate gate that knows nothing about ADD — refused a new scripts/verify/*.ts as
+# UNTRACKED, dead in a fresh clone. The flag has to make the tree true before anything reads it,
+# otherwise every new file added through --add fails a gate that is correctly describing the tree.
+for p in ${ADD[@]+"${ADD[@]}"}; do [ -e "$p" ] && { git add -- "$p" || exit 1; }; done
+
 for g in "${gates[@]}"; do
   # docs:build skips VitePress when the src+.vitepress merkle looks unchanged — and the trinity gate above seals that
   # merkle first, so inside a landing the site was never really built and its dead-link check never ran (a37f6e51

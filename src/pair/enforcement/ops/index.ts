@@ -621,12 +621,6 @@ export async function runPrecommitRosettaExit(root: string): Promise<number> {
 
 export const runPrecommitIchingExit = runPrecommitRosettaExit
 
-export async function runMissionVerifyExit(root: string): Promise<number> {
-  const gate = await runMissionGateExit(root)
-  if (gate !== 0) return gate
-  return runPrecommitRosettaExit(root)
-}
-
 export interface SolveResult {
   removed: string[]
   protectedCount: number

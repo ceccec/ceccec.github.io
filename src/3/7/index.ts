@@ -1972,7 +1972,6 @@ export const CRACK_LEDGER: readonly CrackProvenance[] = [
   { file: 'src/quantum/index.ts', literal: '1000000', count: 3, kind: 'unit', source: 'simulator coherence time in microseconds — stands for unbounded coherence, not a measurement', frontier: 'a sentinel, not a physical value' },
   // ── the remaining quantum surface: SVG geometry, retry budgets, SI scales, targets ──
   // Each is data, an SI unit, or a hand-fixed parameter with no derivation yet known.
-  { file: 'src/quantum/solver/index.ts', literal: '65537', count: 1, kind: 'data', source: 'RSA public exponent F4 = 2^16 + 1 — RFC 8017 default', frontier: 'a standard choice' },
   { file: 'src/quantum/solver/index.ts', literal: '10', count: 1, kind: 'tuned', source: 'default attempt budget', frontier: 'a retry budget' },
   { file: 'src/quantum/index.ts', literal: '196', count: 1, kind: 'data', source: 'chi-squared critical-value table entry used by the statistical check', frontier: 'a tabulated statistic — replaceable by computing the quantile' },
   { file: 'src/quantum/index.ts', literal: '80', count: 3, kind: 'tuned', source: 'console rule width', frontier: 'presentation only' },

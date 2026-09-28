@@ -84,28 +84,6 @@ export function proveMillenniumProblems(): ProofCertificate[] {
 }
 
 /**
- * Batch proof: given list of theorem names, prove each via involution
- */
-export function proveTheoremBatch(theoremNames: string[]): {
-  proven: ProofCertificate[]
-  unrecognized: string[]
-} {
-  const proven: ProofCertificate[] = []
-  const unrecognized: string[] = []
-
-  for (const name of theoremNames) {
-    const proof = proveTheorem(name)
-    if (proof) {
-      proven.push(proof)
-    } else {
-      unrecognized.push(name)
-    }
-  }
-
-  return { proven, unrecognized }
-}
-
-/**
  * Summary: current involution-based proof capability
  */
 export function solutionCapabilitySummary(): {

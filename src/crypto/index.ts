@@ -115,15 +115,6 @@ export function decodeSignature(privateKey: string, message: string, signature: 
   }
 }
 
-export function verifyPublicKeyDerivation(publicKey: string, identity: string): { valid: boolean; reason: string } {
-  return {
-    // isUuid checks the 36-char UUID SHAPE, not just its length — a 36-character
-    // string of arbitrary characters passed the previous test.
-    valid: isUuid(publicKey) && isUuid(identity),
-    reason: 'Public key and identity are fold-derived UUIDs (shape-checked via isUuid)',
-  }
-}
-
 export type DecodedTransaction = {
   from: string
   to: string

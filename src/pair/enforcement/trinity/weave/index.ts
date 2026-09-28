@@ -143,19 +143,6 @@ export function auditFold(): { findings: Finding[]; report: string[] } {
   return { findings, report }
 }
 
-/** Fold — computed model seal + tripwire (forced-false gate must fail). Standalone wave runner. */
-export function runFold(root: string): number {
-  void root
-  const { findings, report } = auditFold()
-  if (findings.length) {
-    console.error(`Fold wave failed: ${findings.length} finding(s). Harmonic path:`)
-    for (const failure of findings) console.error(`  ✗ ${failure.detail}`)
-    return 1
-  }
-  for (const line of report) console.log(line)
-  return 0
-}
-
 
 export function auditWeave(root: string, facts?: EnforcementFacts): { findings: Finding[]; report: string[] } {
 const report: string[] = []

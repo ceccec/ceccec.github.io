@@ -179,36 +179,6 @@ export interface ChatResponse {
 }
 
 /**
- * Interactive query handler: parse natural language → invoke computation
- */
-export function handleChatQuery(query: string): ChatResponse {
-  // Parse query for theorem names, involution types, operations
-  const theoremMatch = query.match(/\[([^\]]+)\]/g) || []
-  const theorems = theoremMatch.map((m) => m.replace(/\[|\]/g, ''))
-
-  // Determine query type
-  let type: ChatQuery['type'] = 'show_involution'
-  if (query.includes('relate') || query.includes('connection'))
-    type = 'relate_theorems'
-  if (query.includes('find') || query.includes('which'))
-    type = 'find_by_involution'
-  if (query.includes('prove')) type = 'prove_conjecture'
-  if (query.includes('boundary') || query.includes('edge'))
-    type = 'explore_boundary'
-
-  // Route to specialized handler
-  const handlers: Record<ChatQuery['type'], (theorems: string[]) => ChatResponse> = {
-    show_involution: handleShowInvolution,
-    relate_theorems: handleRelateTheorems,
-    find_by_involution: handleFindByInvolution,
-    prove_conjecture: handleProveConjecture,
-    explore_boundary: handleExploreBoundary,
-  }
-
-  return handlers[type](theorems)
-}
-
-/**
  * Handler 1: Show me the involution of [theorem]
  */
 function handleShowInvolution(theorems: string[]): ChatResponse {
@@ -800,31 +770,6 @@ export function computeTheoremStatus(theoremSource: string): 'proven' | 'open' |
 }
 
 /**
- * Recompute all theorem demarcations from source, not hand-set.
- * This is the COMPUTED demarcate() replacement.
- */
-export function recomputeDemarcationRegistry(theoremSources: Map<string, string>) {
-  const registry = {
-    proven: [] as string[],
-    open: [] as string[],
-    flagged: [] as string[],
-    undeclared: [] as string[],
-  }
-
-  for (const [id, source] of theoremSources) {
-    const status = computeTheoremStatus(source)
-    registry[status].push(id)
-  }
-
-  const totalTheorems = theoremSources.size
-  return {
-    registry,
-    signature: toUuid(JSON.stringify(registry)).slice(0, 8),
-    proof: `Demarcation recomputed from ${totalTheorems} theorem sources via involution signature matching`,
-  }
-}
-
-/**
  * Demarcate function: NOW COMPUTED, not hardcoded
  * Replaces the old demarcate() that had hardcoded ['evolution', 'quantum mechanics', ...]
  */
@@ -977,22 +922,6 @@ export function demarcationVerificationGate(theoremRegistry: Map<string, Demarca
     proof: `Gap validation: ${validation.gap} undeclared of ${validation.total} total`,
     severity: validation.passed ? 'pass' as const : 'fail' as const,
   }
-}
-
-/**
- * Report: print demarcation validation result
- */
-export function reportDemarcationVerification(theoremRegistry: Map<string, DemarcationAtom>) {
-  const gate = demarcationVerificationGate(theoremRegistry)
-
-  if (gate.passed) {
-    process.stdout.write(`✓ demarcation/verify — ${gate.message}\n`)
-  } else {
-    process.stderr.write(`✗ demarcation/verify — ${gate.message}\n`)
-    process.stderr.write(`   ${gate.gap} theorems missing computed status\n`)
-  }
-
-  return gate.passed ? 0 : 1
 }
 
 
@@ -1439,12 +1368,6 @@ function generateSecurityFingerprint(filePath: string, content: string, gateRule
   }
 }
 
-export function verifySecurityIntegrity(fp1: SecurityFingerprint, fp2: SecurityFingerprint): boolean {
-  if (fp1.gateHash !== fp2.gateHash) return false
-  if (fp1.signature !== fp2.signature) return false
-  return true
-}
-
 export interface Violation {
   type: string
   severity: 'error' | 'warn' | 'info'
@@ -1543,42 +1466,6 @@ export function computeComplianceScore(violations: Violation[]): ComplianceScore
   }
 }
 
-export async function runQuantumGateWithFTL(files: string[]): Promise<{
-  summary: ComplianceScore
-  violations: Violation[]
-  executionTimeMs: number
-  cacheHitRate: number
-}> {
-  const startTime = Date.now()
-  const allViolations: Violation[] = []
-  let cacheHits = 0
-
-  for (const filePath of files) {
-    const content = require('fs').readFileSync(filePath, 'utf-8')
-
-    const cached = gateCache.get(filePath)
-    if (cached && Date.now() - cached.timestamp < cached.ttl) {
-      cacheHits++
-      allViolations.push(...cached.violations)
-    } else {
-      const violations = cachedGateVerify(filePath, content)
-      allViolations.push(...violations)
-    }
-  }
-
-  const trueViolations = filterViolationsByConfidence(allViolations)
-  const summary = computeComplianceScore(allViolations)
-  const executionTimeMs = Date.now() - startTime
-  const cacheHitRate = files.length > 0 ? cacheHits / files.length : 0
-
-  return {
-    summary,
-    violations: trueViolations,
-    executionTimeMs,
-    cacheHitRate,
-  }
-}
-
 
 // ───── module: honestDemarcation ─────
 // Honest Demarcation: Update gate to recognize structural insights vs formal proofs
@@ -1620,21 +1507,6 @@ export interface HonestTheorem {
   gaps: string[] // Explicit list of what's missing
   leanProofPath?: string // Path to Lean stub if exists
   formalProofStatus: 'no-attempt' | 'scaffold-only' | 'partial' | 'complete'
-}
-
-/**
- * Map old (false) status to new (honest) status
- */
-export function downgradeToHonestStatus(oldStatus: string): HonestDemarcationStatus {
-  const mapping: Record<string, HonestDemarcationStatus> = {
-    'proven': 'structurally_supported', // Honest downgrade
-    'sealed': 'formally_scaffolded', // Has formal structure
-    'open': 'open',
-    'flagged': 'flagged',
-    'undeclared': 'undeclared',
-    'conjectured': 'conjectured',
-  }
-  return mapping[oldStatus] || 'undeclared'
 }
 
 /**
@@ -1831,35 +1703,6 @@ export function validateHonestDemarcation(theorem: HonestTheorem): {
   }
 }
 
-/**
- * Gate pass: all theorems must have honest demarcation
- */
-export function runHonestDemarcationGate(theorems: HonestTheorem[]): {
-  passed: boolean
-  summary: string
-  invalids: string[]
-} {
-  const invalids: string[] = []
-
-  for (const t of theorems) {
-    const result = validateHonestDemarcation(t)
-    if (!result.valid) {
-      invalids.push(`${t.theorem}: ${result.errors.join('; ')}`)
-    }
-  }
-
-  const summary =
-    invalids.length === 0
-      ? `✓ All ${theorems.length} theorems have honest demarcation`
-      : `✗ ${invalids.length}/${theorems.length} theorems fail honest demarcation check`
-
-  return {
-    passed: invalids.length === 0,
-    summary,
-    invalids,
-  }
-}
-
 
 // ───── module: predictiveCrackDetection ─────
 // Predictive Crack Detection: Avoid errors before they happen
@@ -1980,50 +1823,6 @@ export function predictCracksFromSequencePatterns(): PredictedCrack[] {
 }
 
 /**
- * Preventive scanning: before committing code, predict cracks
- * Uses mathematical invariants to catch violations early
- */
-export function scanForPredictedCracks(codeSnippet: string): PredictedCrack[] {
-  const found: PredictedCrack[] = []
-
-  // Scan 1: Literal numbers (hardcode detection)
-  const literalPattern = /:\s*[0-9]+(?![\d_])|=\s*[0-9]+(?![\d_])/g
-  const matches = codeSnippet.match(literalPattern)
-  if (matches && matches.length > 3) {
-    found.push({
-      type: 'hardcodedValue',
-      location: 'multiple numeric literals in snippet',
-      severity: 'high',
-      pattern: 'More than 3 numeric literals suggest hardcoding cluster',
-      prediction: 'verify:structure gate will flag as cracks',
-      preventionRule: 'Replace literals with computed values from algebra',
-    })
-  }
-
-  // Scan 2: Import paths (depth validation)
-  const importPattern = /from\s+['"]\.+\/[^'"]+['"]/g
-  const imports = codeSnippet.match(importPattern) || []
-  // Depth threshold derived from harmonic gate (involution ratio)
-  const harmonyDepthThreshold = ceil(1 / harmonic.computeGateThreshold(harmonic.harmonicPalette.primary.frequencyHz))
-  for (const imp of imports) {
-    const dots = (imp.match(/\.\.\//g) || []).length
-    // Heuristic: if exceeds harmonic depth ratio, likely wrong
-    if (dots >= harmonyDepthThreshold) {
-      found.push({
-        type: 'importDepth',
-        location: imp,
-        severity: 'high',
-        pattern: 'Import traverses 5+ levels; exceeds harmonic folder nesting',
-        prediction: 'Module resolution fails at type check time',
-        preventionRule: `Reduce path depth; move source or target file`,
-      })
-    }
-  }
-
-  return found
-}
-
-/**
  * Intelligent consciousness at FTL: continuously predict ahead
  * Learn from past cracks, extrapolate patterns, prevent next ones
  */
@@ -2032,48 +1831,6 @@ export interface FTLPredictiveState {
   nextPredictedCrackType: string // What's most likely next
   confidence: number // 0-1, how certain
   preventionStrategy: string // What rule to enforce NOW
-}
-
-export function computeFTLPredictiveState(
-  pastCracks: Array<{ type: string; timestamp: string }>
-): FTLPredictiveState {
-  // Analyze past cracks: count by type
-  const patterns = new Map<string, number>()
-  for (const crack of pastCracks) {
-    patterns.set(crack.type, (patterns.get(crack.type) || 0) + 1)
-  }
-
-  // Predict next: most common type + golden ratio extrapolation
-  let maxCount = 0,
-    nextType = 'unknown'
-  for (const [type, count] of patterns) {
-    if (count > maxCount) {
-      maxCount = count
-      nextType = type
-    }
-  }
-
-  // Confidence: how well does Fibonacci fit the pattern count?
-  const fibCount = fibonacci(floor(log(maxCount) / log(phi)))
-  const confidence = 1 - abs(fibCount - maxCount) / maxCount
-
-  // Prevention strategy: what gate to strengthen NEXT?
-  const strategies: Record<string, string> = {
-    hardcodedValue:
-      'Enforce: every numeric value must pass isComputedNotHardcoded() gate before commit',
-    importDepth:
-      'Enforce: import path depth must satisfy depth(target) ≤ depth(source) + 1',
-    gap: 'Enforce: theorem count must maintain fractal divisibility (N = Σφⁿ)',
-    orphan: 'Enforce: every fold must have ≥1 edge (incoming or outgoing)',
-    cycle: 'Enforce: acyclic import graph; detect cycles in pre-commit hook',
-  }
-
-  return {
-    pastCrackPatterns: patterns,
-    nextPredictedCrackType: nextType,
-    confidence,
-    preventionStrategy: strategies[nextType] || 'Unknown crack type',
-  }
 }
 
 
@@ -2653,182 +2410,6 @@ export function applyHonestDemarcation(
   }
 }
 
-/**
- * Batch upgrade: transform entire THEOREM_ATOM_SEED
- *
- * To use in src/4/6/index.ts:
- *
- * export const THEOREM_ATOM_SEED_UPDATED = THEOREM_ATOM_SEED.map(theorem =>
- *   applyHonestDemarcation(theorem, UPGRADE_MAPPING)
- * )
- */
-
-export function upgradeTheoremRegistry(
-  oldSeed: readonly any[],
-  upgradeMap: Record<string, Partial<HonestTheoremRecord>>
-): HonestTheoremRecord[] {
-  return oldSeed.map((theorem) => applyHonestDemarcation(theorem, upgradeMap))
-}
-
-/**
- * Validation: verify the upgraded registry meets honest standards
- */
-export function validateHonestRegistry(registry: HonestTheoremRecord[]): {
-  valid: boolean
-  issues: string[]
-  summary: string
-} {
-  const issues: string[] = []
-
-  for (const t of registry) {
-    // Rule 1: formally_proven must have confidence 1.0
-    if (t.honestStatus === 'formally_proven' && t.confidence !== 1.0) {
-      issues.push(`${t.theorem}: formally_proven but confidence ${t.confidence} ≠ 1.0`)
-    }
-
-    // Rule 2: proven (confidence=1) but no formalization attempt = issue
-    if (t.confidence > 0 && t.formalProofStatus === 'no-attempt') {
-      issues.push(`${t.theorem}: high confidence (${t.confidence}) but no formalization started`)
-    }
-
-    // Rule 3: conjectured should have gaps
-    if (t.honestStatus === 'conjectured' && t.gaps.length === 0) {
-      issues.push(`${t.theorem}: marked conjectured but no gaps listed`)
-    }
-
-    // Rule 4: gaps should be non-empty for non-proven theorems
-    if (
-      t.honestStatus !== 'formally_proven' &&
-      t.honestStatus !== 'undeclared' &&
-      t.gaps.length === 0
-    ) {
-      issues.push(
-        `${t.theorem}: status "${t.honestStatus}" implies gaps, but none listed`
-      )
-    }
-  }
-
-  const summary =
-    issues.length === 0
-      ? `✓ All ${registry.length} theorems pass honest demarcation validation`
-      : `✗ ${issues.length} validation issues found`
-
-  return {
-    valid: issues.length === 0,
-    issues,
-    summary,
-  }
-}
-
-/**
- * Statistics: how many theorems at each status level
- */
-export function registryStatistics(registry: HonestTheoremRecord[]): {
-  formallylProven: number
-  formallylScaffolded: number
-  structurallySupported: number
-  conjectured: number
-  open: number
-  flagged: number
-  undeclared: number
-} {
-  return {
-    formallylProven: registry.filter((t) => t.honestStatus === 'formally_proven')
-      .length,
-    formallylScaffolded: registry.filter(
-      (t) => t.honestStatus === 'formally_proven' && t.formalProofStatus !== 'complete'
-    ).length,
-    structurallySupported: registry.filter(
-      (t) => t.honestStatus === 'structurally_supported'
-    ).length,
-    conjectured: registry.filter((t) => t.honestStatus === 'conjectured').length,
-    open: registry.filter((t) => t.honestStatus === 'open').length,
-    flagged: registry.filter((t) => t.honestStatus === 'flagged').length,
-    undeclared: registry.filter((t) => t.honestStatus === 'undeclared').length,
-  }
-}
-
-/**
- * COLLECTIVE CONFIDENCE via σ-involution closure
- *
- * Emerges from: how complete is the involution algebra?
- * Not from: averaging individual confidences.
- *
- * Closure rank = min(theorems_present, their_σ_duals_present) / total_theorem_pairs
- * Result: 0 (incomplete algebra) or 1 (closed involution).
- */
-export function collectiveConfidenceFromInvolutionClosure(
-  registry: HonestTheoremRecord[]
-): {
-  closure: number // 0-1: how complete is the σ-involution algebra?
-  presentPairs: number // How many (T, σ(T)) pairs are both in registry?
-  totalPairs: number // How many (T, σ(T)) pairs exist?
-  missingDuals: string[] // Theorems whose σ(T) is not registered
-  collectiveProven: boolean // closure === 1 (fully closed algebra)
-} {
-  const theoremNames = new Set(registry.map((t) => t.theorem))
-  const pairsFound = new Map<string, { present: boolean; dual_present: boolean }>()
-
-  // Scan for all pairs (T, σ(T))
-  for (const t of registry) {
-    const dual = t.involutionDual
-    if (!dual) continue // Skip if dual not defined
-
-    const pairKey = [t.theorem, dual].sort().join('←→') // Canonical pair representation
-    if (pairsFound.has(pairKey)) continue
-
-    const dualExists = theoremNames.has(dual)
-    pairsFound.set(pairKey, {
-      present: true,
-      dual_present: dualExists,
-    })
-  }
-
-  const missingDuals = Array.from(theoremNames)
-    .filter((name) => {
-      const t = registry.find((r) => r.theorem === name)
-      return t?.involutionDual && !theoremNames.has(t.involutionDual)
-    })
-
-  const totalPairs = pairsFound.size
-  const presentPairs = Array.from(pairsFound.values()).filter(
-    (p) => p.present && p.dual_present
-  ).length
-
-  const closure = totalPairs === 0 ? 1 : presentPairs / totalPairs
-
-  return {
-    closure,
-    presentPairs,
-    totalPairs,
-    missingDuals,
-    collectiveProven: closure === 1, // Binary: either closed or not
-  }
-}
-
-/**
- * Apply involution-aware demarcation (enhanced version with dual tracking)
- */
-export function applyInvolutionAwareDemarcation(
-  theorem: any,
-  upgradeMap: Record<string, Partial<HonestTheoremRecord>>,
-  involutionPairs: Record<string, { dual: string; kind: string }>
-): HonestTheoremRecord {
-  const upgrade = upgradeMap[theorem.theorem]
-  const invPair = involutionPairs[theorem.theorem]
-
-  return {
-    ...theorem,
-    honestStatus: upgrade?.honestStatus || 'undeclared',
-    confidence: upgrade?.confidence ?? harmonic.confidenceUnknown(),
-    gaps: upgrade?.gaps || [],
-    formalProofPath: upgrade?.formalProofPath,
-    formalProofStatus: upgrade?.formalProofStatus || 'no-attempt',
-    involutionDual: invPair?.dual,
-    involutionKind: invPair?.kind as any,
-  }
-}
-
 
 // ───── module: wave17ProseConsolidation ─────
 // Wave 17: Consolidate non-computational prose into quantum computation layer
@@ -2855,45 +2436,6 @@ export interface ProseConsolidationPlan {
   descriptionPerField: number // 6 levels × 7 facets per level
   totalComputed: number // 7 fields × 6 levels × 7 facets = computed, not hardcoded
   consolidationRatio: number // computed from source/total ratio via harmonic scaling
-}
-
-/**
- * Computed description generator: from theorem identity → human-readable description
- * Rules:
- * 1. Extract algebraic statement from theorem σ-involution signature
- * 2. Map to SCIENCE_DOMAINS taxonomy (Physics, CS, Math, Bio, Earth, Humanities, Social)
- * 3. Generate prose at 6 levels: axiom → lemma → theorem → conjecture → open → flagged
- * 4. Reuse across 7 facets: proof, application, inverse, boundary, history, ethics, open-questions
- */
-export function describeTheoremByDomain(
-  theorem: { id: string; statement: string; domain: string; status: string }
-): { field: string; level: string; facet: string; description: string } {
-  // Map domain to SCIENCE_DOMAINS
-  const field = mapDomainToField(theorem.domain)
-  const level = theorem.status // 'axiom' | 'lemma' | 'theorem' | 'conjecture' | 'open' | 'flagged'
-
-  // Generate description from statement algebra
-  const templates: Record<string, string> = {
-    'Physics|theorem|proof': 'This fundamental theorem describes {statement} through the lens of physical law.',
-    'Physics|open|application': 'The conjecture {statement} remains open; its applications span {domain}.',
-    'Math|theorem|proof': 'The theorem states that {statement}. Proof: see involution structure σ² = identity.',
-    'CS|lemma|boundary': 'Intermediate result: {statement}. Critical for establishing the main theorem.',
-  }
-
-  const key = `${field}|${level}|proof` // Simplified for demo
-  const template = templates[key] || `[{field}/{level}] {statement}`
-
-  const description = template
-    .replace('{statement}', theorem.statement)
-    .replace('{domain}', theorem.domain)
-    .replace('{field}', field)
-
-  return {
-    field,
-    level,
-    facet: 'proof', // rotate through 7 facets
-    description,
-  }
 }
 
 /**

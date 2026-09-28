@@ -898,7 +898,7 @@
     "quantum:tool-matrix": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/gates/index.ts runToolsFitTheMatrixOrRefuseExit",
     "quantum:pair-chat": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runPairsSentToChatEntangleByAlgebraExit",
     "quantum:match-wave": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/pair/enforcement/index.ts runMatchingPairsImmediatelyRealiseEntanglementExit",
-    "crypto:reverse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:reverse",
+    "crypto:reverse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run src/quantum/solver/index.ts runCryptoReverseCliExit",
     "crypto:encode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:encode",
     "crypto:decode": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:decode",
     "crypto:inverse": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts crypto:inverse",

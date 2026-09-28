@@ -1245,7 +1245,24 @@ export declare function chatThroughStackOverflow(prompt: string, items?: readonl
     boundary: string;
 };
 export declare const CECCEC_PROXY_ORIGIN = "https://ceccec.psg.bg";
-export declare const AI_PROVIDERS: {
+/**
+ * HOISTED, BECAUSE THE PREVIOUS CONST CRASHED THE PRODUCTION BUILD FROM INSIDE A CYCLE.
+ *
+ * docs:build failed with `Cannot access 'aiProviders()' before initialization` — the second binding in this
+ * graph to do so, after GOLD_MINE_MAP_HINGE, which is exactly what was predicted when that one was hoisted
+ * rather than the cycle broken: a hoist fixes one binding, and the next re-exported const in the same loop
+ * takes its turn. src/quantum/apps re-exports this and the bundler flattens a re-export into a direct
+ * variable reference, so whichever module the merged graph evaluates first can reach it before its
+ * initialiser runs.
+ *
+ * AND IT IS NONDETERMINISTIC, WHICH IS THE PART WORTH RECORDING. On this same commit the Zenodo workflow's
+ * docs:build PASSED while publish-package's failed. Same tree, two runs, different answers — because the
+ * crash depends on evaluation order, and order is not fixed. A test that passes is therefore not evidence
+ * the binding is safe; only hoisting is.
+ *
+ * A function declaration is initialised before any module body runs, so no order can reach it too early.
+ */
+export declare function aiProviders(): {
     readonly perplexity: {
         readonly api: "https://api.perplexity.ai/chat/completions";
         readonly site: "https://www.perplexity.ai";
@@ -1265,7 +1282,7 @@ export declare const AI_PROVIDERS: {
         readonly keyed: false;
     };
 };
-export type AiProvider = keyof typeof AI_PROVIDERS;
+export type AiProvider = keyof ReturnType<typeof aiProviders>;
 export declare const PERPLEXITY_API: "https://api.perplexity.ai/chat/completions";
 export declare const PERPLEXITY_SITE: "https://www.perplexity.ai";
 export declare const PERPLEXITY_MODEL: "sonar";
