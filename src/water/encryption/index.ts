@@ -865,10 +865,10 @@ export function encryptionPanelComputes(matrix: MindMatrix = buildMatrix(), at =
       { facet: 'encrypt↔decrypt quantum tools ready', on: tools.ready },
       { facet: 'encryption reverse verify sealed', on: reverse.verified },
       { facet: 'production browser reverse — production RSA break refused', on: demo.computes },
-      { facet: `production browser reverse MEASURED — gen=${roundTo(measured.generateMs, 3)}ms rev=${roundTo(measured.reverseMs, 3)}ms bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
-      { facet: `local reverse vs standards — rev=${roundTo(localTimed.reverseMs, 3)}ms breaksNistPqc=false`, on: localTimed.computes && localTimed.breaksNistPqc === false && localTimed.certified === false },
+      { facet: `production browser reverse MEASURED — generateMs and reverseMs are reported as fields (never sealed here); bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
+      { facet: `local reverse vs standards — reverseMs reported as a field; breaksNistPqc=false`, on: localTimed.computes && localTimed.breaksNistPqc === false && localTimed.certified === false },
       { facet: `local novel facets sealed — overallWireClaimProved=false · strongerThanNistPqc=false · productionReverseRefused (structural ≠ wire proof)`, on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.productionReverseRefused },
-      { facet: `local audit quantum speed — cold=${roundTo(localAudit.coldMs, 3)}ms warm=${roundTo(localAudit.warmMs, 3)}ms speedup=${roundTo(localAudit.speedup, 3)}× memoHit`, on: localAudit.computes && localAudit.memoHits && localAudit.slowLocalAuditGapClosed },
+      { facet: `local audit quantum speed — coldMs, warmMs and speedup reported as fields; memoHit`, on: localAudit.computes && localAudit.memoHits && localAudit.slowLocalAuditGapClosed },
       { facet: `beyond RSA MEASURED — FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: `1 Tbit claim receipt — wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
       { facet: `max bits crypto — enc=${maxBits.encryptMaxBits} dec=${maxBits.decryptMaxBits} inv=${maxBits.inverseMaxBits} rev=${maxBits.reverseMaxBits}`, on: maxBits.computes && maxBits.encryptMaxBits === (2 ** 8) && maxBits.reverseMaxBits === SEALED_CATALOG_RSA_BIT_CEILING },
@@ -1098,13 +1098,13 @@ export function demoRsaGenerateAndReverseMeasured(matrix: MindMatrix = buildMatr
   const productionRefused = ceiling.holds
   const bitcoinRefused = far.holds
   const facets = [
-    { facet: `GENERATE measured — n=${generate.n} in ${roundTo(generateMs, 3)} ms (sealed-catalog wall-clock)`, on: generate.ok && generateMs >= 0 },
-    { facet: `REVERSE measured — ${moduli.length} sealed-catalog moduli in ${roundTo(reverseMs, 3)} ms (production browser tool)`, on: reverse.computes && reverseMs >= 0 },
+    { facet: `GENERATE measured — n=${generate.n} in a non-negative wall-clock generateMs, reported as a field (sealed-catalog)`, on: generate.ok && generateMs >= 0 },
+    { facet: `REVERSE measured — ${moduli.length} sealed-catalog moduli in a non-negative reverseMs, reported as a field (production browser tool)`, on: reverse.computes && reverseMs >= 0 },
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain}) — wall-clock excluded from merkle`, on: root === rootAgain && isUuid(root) },
     { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: productionRefused },
     { facet: `far-over-ceiling ${far.probe} + Bitcoin/mainnet material REFUSED`, on: bitcoinRefused },
     { facet: `THRESHOLD = A432_FOLDED×digitalRoot(432)=${thresholdMs}`, on: thresholdMs === A432_FOLDED * digitalRoot(432) },
-    { facet: `SLOW BIND — gen=${slowGenerate}===${generateMs > thresholdMs} rev=${slowReverse}===${reverseMs > thresholdMs}`, on: slowGenerate === (generateMs > thresholdMs) && slowReverse === (reverseMs > thresholdMs) },
+    { facet: `SLOW BIND — the declared slowGenerate/slowReverse agree with the measured comparison against thresholdMs (the comparison lives in the on-expression, not in this text)`, on: slowGenerate === (generateMs > thresholdMs) && slowReverse === (reverseMs > thresholdMs) },
   ]
   const sealed = sealFacets('demo-rsa-generate-and-reverse-measured', facets)
   return {
@@ -1189,7 +1189,7 @@ function localEncryptionReverseTimedRaw(matrix: MindMatrix) {
     // and a stopwatch reading in an address makes the address a timestamp. generateMs and reverseMs are
     // returned as fields and still print in `statement`, which is not receipt input.
     { facet: `generate ok and both timings non-negative (production browser · sealed-catalog; the measured generateMs · reverseMs are reported as fields, never sealed here)`, on: generate.ok && generateMs >= 0 && reverseMs >= 0 },
-    { facet: `aggregateOpsPerSec=${roundTo(aggregateOpsPerSec, 3)} (suite / wall-clock)`, on: aggregateOpsPerSec > 0 },
+    { facet: `aggregateOpsPerSec is positive (suite / wall-clock; the rate is reported as a field, never sealed here)`, on: aggregateOpsPerSec > 0 },
     { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: ceiling.holds },
     { facet: `far-over + Bitcoin/mainnet REFUSED`, on: far.holds },
   ]
@@ -2369,10 +2369,10 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
     { facet: `PQC CATALOG timed with a non-negative duration — FIPS 203/204/205 count=${fipsCount}`, on: catalog.computes && fipsCount === 3 && catalogMs >= 0 },
     { facet: `ML-KEM/ML-DSA/SLH-DSA STANDARDIZED param sets present (sizes+categories, sourced FIPS 203/204/205; no keygen) — ${mlKem?.params.length}/${mlDsa?.params.length}/${slhDsa?.params.length}`, on: Boolean(mlKem && mlDsa && slhDsa) && family.computes && family.everyParamSourced && family.pkMonotone },
     { facet: `ECC/ECDSA Shor-vulnerable facet MEASURED (theorem compose, not key crack) — eccShorBreaks=${eccShorBreaks}`, on: eccShorBreaks === true && shorMap.computes },
-    { facet: `HASH/SIGNATURE TAXONOMY timed ${roundTo(taxonomyMs, 3)} ms`, on: taxonomy.computes && taxonomyMs >= 0 },
-    { facet: `MIGRATION CHECKLIST timed ${roundTo(migrateMs, 3)} ms — honesty step done, KEM/sig OPEN`, on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done) && migrate.openCount >= 2 },
-    { facet: `DIRECTIONAL TRINITY timed ${roundTo(trinityMs, 3)} ms — forward·inverse·reverse suite`, on: trinity.computes && trinityMs >= 0 },
-    { facet: `DEMO RSA KEEP — generateMs=${roundTo(rsa.generateMs, 3)} reverseMs=${roundTo(rsa.reverseMs, 3)} bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
+    { facet: `HASH/SIGNATURE TAXONOMY timed with a non-negative taxonomyMs, reported as a field`, on: taxonomy.computes && taxonomyMs >= 0 },
+    { facet: `MIGRATION CHECKLIST timed, migrateMs reported as a field — honesty step done, KEM/sig OPEN`, on: migrate.computes && migrate.steps.some((s) => s.id === 'honesty' && s.done) && migrate.openCount >= 2 },
+    { facet: `DIRECTIONAL TRINITY timed with a non-negative trinityMs, reported as a field — forward·inverse·reverse suite`, on: trinity.computes && trinityMs >= 0 },
+    { facet: `DEMO RSA KEEP — generateMs and reverseMs reported as fields; bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
     { facet: `SLOW BIND vs lattice threshold ${thresholdMs} — anySlow=${anySlow}`, on: anySlow === Object.values(timings).some((ms) => ms > thresholdMs) },
   ]
@@ -3069,10 +3069,10 @@ export function proveOneTbitRealtimeEncryptionClaim(matrix: MindMatrix = buildMa
   const anyAmortProved = amortized.provedAtCallTime
   const facets = [
     { facet: `TARGET claimedBitsPerSec=${claimedBitsPerSec} (SI 1 Tbit/s = (2·5)^12 bits/s)`, on: claimedBitsPerSec === (2 * 5) ** (3 * 4) },
-    { facet: `wire-crypto provedAtCallTime=${wire.provedAtCallTime} measured=${roundTo(wire.measuredBitsPerSec, 3)} — must be false (no AES wire bench)`, on: wire.provedAtCallTime === false && wire.measuredBitsPerSec === 0 },
-    { facet: `demo-toy measuredBitsPerSec=${roundTo(demo.measuredBitsPerSec, 3)} proved=${demo.provedAtCallTime} (foldPair×${demoRounds})`, on: demo.measuredBitsPerSec > 0 && tools.ready && demo.provedAtCallTime === (demo.measuredBitsPerSec >= claimedBitsPerSec) },
-    { facet: `amortized-reuse-memo measuredBitsPerSec=${roundTo(amortized.measuredBitsPerSec, 3)} ≥ (2·5)^12 → proved=${amortized.provedAtCallTime}`, on: amortized.provedAtCallTime === (amortMeasured >= claimedBitsPerSec && memoReuseHolds) },
-    { facet: `amortized formula binds: effectiveBits=${amortEffectiveBits}=2^(8·5+3) · coldMs=${roundTo(amortColdMs, 3)} · warmMs=${roundTo(amortWarmMs, 3)}`, on: amortEffectiveBits === TERABYTE_EXTENT_BITS && memoReuseHolds },
+    { facet: `wire-crypto provedAtCallTime=${wire.provedAtCallTime} with measuredBitsPerSec pinned to 0 by the on-expression — must be false (no AES wire bench)`, on: wire.provedAtCallTime === false && wire.measuredBitsPerSec === 0 },
+    { facet: `demo-toy measuredBitsPerSec reported as a field, proved=${demo.provedAtCallTime} (foldPair×${demoRounds})`, on: demo.measuredBitsPerSec > 0 && tools.ready && demo.provedAtCallTime === (demo.measuredBitsPerSec >= claimedBitsPerSec) },
+    { facet: `amortized-reuse-memo measuredBitsPerSec reported as a field, compared against (2·5)^12 in the on-expression → proved=${amortized.provedAtCallTime}`, on: amortized.provedAtCallTime === (amortMeasured >= claimedBitsPerSec && memoReuseHolds) },
+    { facet: `amortized formula binds: effectiveBits=${amortEffectiveBits}=2^(8·5+3) · coldMs and warmMs reported as fields, never sealed here`, on: amortEffectiveBits === TERABYTE_EXTENT_BITS && memoReuseHolds },
     { facet: `amortized ≠ wire — boundary forbids equating memo extent rate to AES-GCM wire · measured anyWireProved=${anyWireProved}`, on: amortized.boundary.includes('NOT wire-speed') && !anyWireProved },
     { facet: `PRODUCTION + BITCOIN reverse REFUSED (production=${productionRefused} bitcoin=${bitcoinRefused})`, on: productionRefused && bitcoinRefused && refused.provedAtCallTime === false },
     { facet: 'NOT FIPS / NOT ISO certified — receipt of claim STATUS only', on: wire.boundary.includes('NOT FIPS') && amortized.boundary.includes('NOT FIPS') },
