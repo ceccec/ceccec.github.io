@@ -15,7 +15,7 @@ export { CANDIDATE_THEOREMS } from '../../4/6/index.ts'
 import { CANDIDATE_THEOREMS, THEOREM_ATOM_SEED } from '../../4/6/index.ts'
 import type { MindMatrix, WaveCoordination, WavePolarity, ChessPiece, QuantumChessGame, QuantumChessSquare, CoordinatedWave } from '../../types/index.ts'
 import { analogComputationDecoded, buildMatrix, proofReport } from '../../heaven/compute/index.ts'
-import { VORTEX_REVERSE, VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, seedFromText, sample, sealFacets, sin, sqrt, toUuid } from '../../0/index.ts'
+import { VORTEX_REVERSE, VORTEX_SEQUENCE, abs, antichainLevels, atan2, ceil, cos, createAnimationEngine, floor, foldPair, gcd, grover, hypot, isUuid, log2, max, memoByRoot, merge, merkleFold, min, prng, round, roundTo, sample, sealFacets, seedFromText, sin, sqrt, toUuid } from '../../0/index.ts'
 import { crossProduct7, fanoLines, stringTheoryAlgebraDecoded, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems } from '../../water/cosmos/index.ts'
 import { A432_HUE, DIMENSION_GATES, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT2, UNFOLDED_CENSUS, earned, frequencyToLight, rosettaRayOfContent } from '../../3/7/index.ts'
 import { groupOrbit, axiomsBecomeTheorems } from '../../4/6/index.ts'
@@ -2371,7 +2371,7 @@ const THEOREM_WITNESSES: Readonly<Record<string, () => ProofWitness>> = {
   },
   'Fermat number F₅ is composite': () => {
     const fermat = Array.from({ length: 6 }, (_, k) => 2 ** (2 ** k) + 1)
-    const values = fermat.map((f) => Math.log2(f))
+    const values = fermat.map((f) => log2(f))
     const euler = 5 * 2 ** 7 + 1 // Euler's divisor, of the form k·2⁷ + 1 he searched
     return { form: 'bars', values, marks: [5], holds: fermat.slice(0, 5).every((f) => tkIsPrime(f)) && fermat[5]! % euler === 0, caption: 'the Fermat numbers 2^(2^k) + 1 on a log scale: 3, 5, 17, 257, 65537 are prime, and the marked F₅ = 641 × 6700417' }
   },

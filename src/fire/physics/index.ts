@@ -939,7 +939,7 @@ export function planckScaleFromTheExponentLattice(matrix: MindMatrix = buildMatr
   // CROSS-CHECK against the rounded CGS table in this same file: it lists planckLength independently,
   // and a table whose derived entries disagree with its own c, G, ħ is a table that has drifted.
   const cgs = HARAMEIN_CONSTANTS
-  const cgsDerivedLength = Math.sqrt((cgs.hbar * cgs.G) / cgs.c ** 3) // cm, from that table's OWN constants
+  const cgsDerivedLength = sqrt((cgs.hbar * cgs.G) / cgs.c ** 3) // cm, from that table's OWN constants
   const cgsTableAgrees = abs(cgsDerivedLength - cgs.planckLength) / cgs.planckLength < 1 / 1000
   // THE BOUNDARY'S OWN NUMBER, MEASURED. The prose first said "thirty orders of magnitude" because that
   // sounded like the right size; the smallest length this file actually handles is the proton charge

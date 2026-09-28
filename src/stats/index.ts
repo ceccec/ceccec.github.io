@@ -3,7 +3,7 @@ import { UNFOLDED_CENSUS } from '../3/7/index.ts'
 import { HARMONICS_LADDER_LENGTH } from '../pair/enforcement/gates/computational/index.ts'
 import type { MindMatrix } from '../types/index.ts'
 import { buildMatrix, coverage, entropy, fleetCacheEconomicsDecoded } from '../heaven/compute/index.ts'
-import { abs, floor, foldPair, measure, merge, merkleFold, roundTo, toUuid } from '../0/index.ts'
+import { abs, exp, floor, foldPair, log, max, measure, merge, merkleFold, min, pow, roundTo, toUuid } from '../0/index.ts'
 import { areaPairs } from '../mountain/geometry/index.ts'
 import { atoms, conceptCommands } from '../heaven/atoms/index.ts'
 import { pureDiamonds, quantumFoldedBlockchains } from '../fire/diamonds/index.ts'
@@ -472,8 +472,8 @@ export function crossDomainSearchLaws(matrix: MindMatrix = buildMatrix()) {
   const [trX, hoX] = half(flatX)
   const [trY, hoY] = half(flatY)
   const fit = (trX[0] ?? 0) - (trY[0] ?? 0)
-  const trainResidual = Math.max(...trX.map((x, i) => Math.abs(x - (trY[i] ?? 0) - fit)))
-  const holdResidual = Math.max(...hoX.map((x, i) => Math.abs(x - (hoY[i] ?? 0) - fit)))
+  const trainResidual = max(...trX.map((x, i) => abs(x - (trY[i] ?? 0) - fit)))
+  const holdResidual = max(...hoX.map((x, i) => abs(x - (hoY[i] ?? 0) - fit)))
   const holdoutBlind = trainResidual === holdResidual
 
   // II — a same-quantity predictor: the ratio stays near 1 for every b, so the law constrains nothing
@@ -485,7 +485,7 @@ export function crossDomainSearchLaws(matrix: MindMatrix = buildMatrix()) {
   const dominant = 1000
   const inverseEpsilon = 100
   const arbitrary = [-10, -1, 0, 3, 7, 10]
-  const trivial = arbitrary.every((b) => Math.abs(b) * inverseEpsilon <= dominant)
+  const trivial = arbitrary.every((b) => abs(b) * inverseEpsilon <= dominant)
 
   // III — the vacuous conjunct: every() over a filtered-empty set is true while judging nothing
   const zeroColumn = new Array(samples).fill(0)
@@ -495,8 +495,8 @@ export function crossDomainSearchLaws(matrix: MindMatrix = buildMatrix()) {
   // elements, over a set the filter had emptied: the conjunction is true because there is nothing to
   // judge, not because the test is degenerate. Same predicate, empty set, and the impossible condition
   // below would fail on every element if any element reached it.
-  const judged = zeroColumn.filter((v) => Math.abs(v) > 0)
-  const vacuouslyTrue = judged.every((v) => Math.abs(v) < 0) && judged.length === 0
+  const judged = zeroColumn.filter((v) => abs(v) > 0)
+  const vacuouslyTrue = judged.every((v) => abs(v) < 0) && judged.length === 0
 
   // IV — quantisation: a residual of a few steps cannot pin a ratio better than the step allows
   const step = 1 / 10
@@ -555,8 +555,8 @@ export function hardyWeinbergIsMassAction(matrix: MindMatrix = buildMatrix()) {
   for (let i = 1; i < GRID; i += 1) {
     const p = i / GRID
     const q = 1 - p
-    worst = Math.max(worst, Math.abs(Math.pow(PAIR_WAYS * p * q, PAIR_WAYS) / (p * p * q * q) - PAIR_WAYS * PAIR_WAYS))
-    withoutTheTwo = Math.max(withoutTheTwo, Math.abs((p * q) * (p * q) / (p * p * q * q) - PAIR_WAYS * PAIR_WAYS))
+    worst = max(worst, abs(pow(PAIR_WAYS * p * q, PAIR_WAYS) / (p * p * q * q) - PAIR_WAYS * PAIR_WAYS))
+    withoutTheTwo = max(withoutTheTwo, abs((p * q) * (p * q) / (p * p * q * q) - PAIR_WAYS * PAIR_WAYS))
   }
   const facets = [
     { facet: `K = (2pq)²/(p²q²) is exactly ${PAIR_WAYS * PAIR_WAYS} at every one of ${GRID - 1} allele frequencies — worst departure ${worst.toExponential(1)}, and the p cancels rather than being small`, on: worst < EXACT },
@@ -589,7 +589,7 @@ export function mergerRuleIsTheHeterozygoteTerm(matrix: MindMatrix = buildMatrix
     vectors += 1
     for (let i = 0; i < n; i += 1) for (let j = i + 1; j < n; j += 1) {
       const merged = share.filter((_, k) => k !== i && k !== j).concat([(share[i] ?? 0) + (share[j] ?? 0)])
-      worst = Math.max(worst, Math.abs((merged.reduce((a, x) => a + x * x, 0) - index) - PAIR_WAYS * (share[i] ?? 0) * (share[j] ?? 0)))
+      worst = max(worst, abs((merged.reduce((a, x) => a + x * x, 0) - index) - PAIR_WAYS * (share[i] ?? 0) * (share[j] ?? 0)))
       merges += 1
     }
   }
@@ -620,14 +620,14 @@ export function sizeBiasIsOneFormula(matrix: MindMatrix = buildMatrix()) {
     const sum = x.reduce((a, b) => a + b, 0)
     const mu = sum / n
     const variance = x.reduce((a, v) => a + (v - mu) * (v - mu), 0) / n
-    worst = Math.max(worst, Math.abs(x.reduce((a, v) => a + v * v, 0) / sum - mu * (1 + variance / (mu * mu))))
+    worst = max(worst, abs(x.reduce((a, v) => a + v * v, 0) / sum - mu * (1 + variance / (mu * mu))))
     populations += 1
   }
   const flat = Array.from({ length: GRID / 100 }, () => PAIR_WAYS + PAIR_WAYS)
   const flatFactor = flat.reduce((a, v) => a + v * v, 0) / flat.reduce((a, b) => a + b, 0) / (PAIR_WAYS + PAIR_WAYS)
   const facets = [
     { facet: `brute-force size-biased sampling equals the closed form μ(1 + CV²) to ${worst.toExponential(1)} over ${populations} populations — the friendship, class-size and inspection paradoxes and length-biased sampling are this one expression`, on: worst < EXACT },
-    { facet: `and the equality case is exactly zero variance — a population with no spread has bias factor ${flatFactor.toFixed(10)}, so the paradox IS the variance and not the sampling`, on: Math.abs(flatFactor - 1) < EXACT },
+    { facet: `and the equality case is exactly zero variance — a population with no spread has bias factor ${flatFactor.toFixed(10)}, so the paradox IS the variance and not the sampling`, on: abs(flatFactor - 1) < EXACT },
   ].map((entry) => ({ ...entry, receipt: toUuid(`size-bias-one-formula:${entry.facet}:${entry.on}`) }))
   return { computes: facets.every((e) => e.on), populationsChecked: populations, worstResidual: worst, equalityCaseFactor: flatFactor, facets,
     root: merkleFold(facets.map((e) => e.receipt)),
@@ -650,13 +650,13 @@ export function growthRateIsAYield(matrix: MindMatrix = buildMatrix()) {
     for (let step = 0; step < 200; step += 1) { const mid = (a + b) / 2; if (f(mid) > 1) a = mid; else b = mid }
     return (a + b) / 2
   }
-  const r = bisect((v) => schedule.reduce((acc, s) => acc + s.flow * Math.exp(-v * s.age), 0), -1, 1)
-  const yld = bisect((v) => schedule.reduce((acc, s) => acc + s.flow / Math.pow(1 + v, s.age), 0), -1 + EXACT, 5)
-  const rateGap = Math.abs(r - Math.log(1 + yld))
-  const generation = schedule.reduce((a, s) => a + s.age * s.flow * Math.exp(-r * s.age), 0) / schedule.reduce((a, s) => a + s.flow * Math.exp(-r * s.age), 0)
-  const price = schedule.reduce((a, s) => a + s.flow / Math.pow(1 + yld, s.age), 0)
-  const duration = schedule.reduce((a, s) => a + s.age * s.flow / Math.pow(1 + yld, s.age), 0) / price
-  const durationGap = Math.abs(generation - duration)
+  const r = bisect((v) => schedule.reduce((acc, s) => acc + s.flow * exp(-v * s.age), 0), -1, 1)
+  const yld = bisect((v) => schedule.reduce((acc, s) => acc + s.flow / pow(1 + v, s.age), 0), -1 + EXACT, 5)
+  const rateGap = abs(r - log(1 + yld))
+  const generation = schedule.reduce((a, s) => a + s.age * s.flow * exp(-r * s.age), 0) / schedule.reduce((a, s) => a + s.flow * exp(-r * s.age), 0)
+  const price = schedule.reduce((a, s) => a + s.flow / pow(1 + yld, s.age), 0)
+  const duration = schedule.reduce((a, s) => a + s.age * s.flow / pow(1 + yld, s.age), 0) / price
+  const durationGap = abs(generation - duration)
   const facets = [
     { facet: `solving one discounted sum as a population and as a bond gives r = ln(1+y) to ${rateGap.toExponential(1)} — the intrinsic rate of natural increase and the yield to maturity are one root of one equation over ${schedule.length} periods`, on: rateGap < EXACT },
     { facet: `and the mean length of a generation IS Macaulay duration, agreeing to ${durationGap.toExponential(1)} — the r-discounted mean age of the schedule, written twice`, on: durationGap < EXACT },
@@ -682,12 +682,12 @@ export function littlesLawIsAccounting(matrix: MindMatrix = buildMatrix()) {
   const events = [...jobs.map((j) => ({ at: j.arrive, delta: 1 })), ...jobs.map((j) => ({ at: j.depart, delta: -1 }))].sort((a, b) => a.at - b.at)
   let occupancy = 0, area = 0, previous = events[0]?.at ?? 0
   for (const event of events) { area += occupancy * (event.at - previous); previous = event.at; occupancy += event.delta }
-  const gap = Math.abs(sojourn - area)
+  const gap = abs(sojourn - area)
   const window = GRID / 10 / PAIR_WAYS
-  const censored = jobs.reduce((a, j) => a + (Math.min(j.depart, window) - Math.min(j.arrive, window)), 0)
+  const censored = jobs.reduce((a, j) => a + (min(j.depart, window) - min(j.arrive, window)), 0)
   const facets = [
     { facet: `the sojourn sum and the occupancy integral agree to ${gap.toExponential(1)} over ${jobs.length} jobs with NOTHING assumed — no stationarity, no distribution, no independence, because the identity is Fubini on an indicator`, on: gap < EXACT },
-    { facet: `and what breaks it is a censored cohort rather than a violated assumption — clipping the same jobs at a window boundary moves the total from ${sojourn} to ${censored}`, on: Math.abs(censored - sojourn) > 1 },
+    { facet: `and what breaks it is a censored cohort rather than a violated assumption — clipping the same jobs at a window boundary moves the total from ${sojourn} to ${censored}`, on: abs(censored - sojourn) > 1 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`little-accounting:${entry.facet}:${entry.on}`) }))
   return { computes: facets.every((e) => e.on), jobsChecked: jobs.length, sojournTotal: sojourn, censoredTotal: censored, integralGap: gap, facets,
     root: merkleFold(facets.map((e) => e.receipt)),

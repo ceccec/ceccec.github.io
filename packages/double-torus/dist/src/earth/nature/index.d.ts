@@ -690,3 +690,23 @@ export declare function attestation(): {
     boundary: string;
 };
 export { computeAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodies, computeDiscoverExactMatchAllKnownCelestialBodiesDeepResearched, planetsGalaxyComputeItself, astronomyDecodedWithTheSequence, astronomySequenceDecodeResearch, decodeAstronomyThroughVortexSequence, astronomyComputes } from '../../heaven/sky/astronomy/index.ts';
+/** NWS wxcalc "Altimeter Setting", expanded from the published nested form to Alt^κ = (P−0.3)^κ + C·h. */
+export declare function nwsAltimeterSetting(stationMb: number, metres: number): number;
+/** NWS wxcalc "Station Pressure", exactly as published. */
+export declare function nwsStationPressure(altimeterMb: number, metres: number): number;
+/** The exact inverse of the altimeter setting — the function the published worksheet is NOT. */
+export declare function altimeterSettingInverted(altimeterMb: number, metres: number): number;
+export declare function pressureReductionsAreOneField(matrix?: MindMatrix): {
+    computes: boolean;
+    exactInverseWorstMb: number;
+    publishedPairWorstMb: number;
+    inverseSeparationMb: number;
+    pairsChecked: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};

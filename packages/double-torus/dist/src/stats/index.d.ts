@@ -210,3 +210,126 @@ export declare function fleetScaleStatsFused(matrix?: MindMatrix): {
     statement: string;
     boundary: string;
 };
+export declare function crossDomainSearchLaws(matrix?: MindMatrix): {
+    computes: boolean;
+    lawsChecked: number;
+    samplesPerLaw: number;
+    arbitraryValuesTried: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * HARDY–WEINBERG IS THE LAW OF MASS ACTION, WITH EQUILIBRIUM CONSTANT EXACTLY 4.
+ *
+ * For A + a ⇌ Aa with no selectivity, mass action reads K = [Aa]²/([AA][aa]). Under Hardy–Weinberg the
+ * genotype frequencies are p², 2pq and q², so K = (2pq)²/(p²q²) = 4 for EVERY allele frequency — the p
+ * cancels completely. Population genetics and physical chemistry are writing one equation, and the 4 is
+ * not fitted: it is the square of the 2 that counts the two ordered ways of drawing a pair, the same 2
+ * that appears in the antitrust merger rule proved beside this one.
+ */
+export declare function hardyWeinbergIsMassAction(matrix?: MindMatrix): {
+    computes: boolean;
+    frequenciesChecked: number;
+    worstDeparture: number;
+    departureWithoutTheTwo: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * THE ANTITRUST MERGER RULE IS THE HETEROZYGOTE TERM.
+ *
+ * Merging two firms with market shares s_i and s_j raises the Herfindahl–Hirschman index by
+ * (s_i + s_j)² − s_i² − s_j² = 2 s_i s_j, which IS the Hardy–Weinberg heterozygote frequency 2pq. A
+ * competition regulator and a population geneticist compute the same quantity for the same reason: both
+ * ask how often two independent draws land in one category. Checked by recomputing the index from scratch
+ * after actually performing the merge, never by trusting the expansion.
+ */
+export declare function mergerRuleIsTheHeterozygoteTerm(matrix?: MindMatrix): {
+    computes: boolean;
+    mergesRecomputed: number;
+    shareVectors: number;
+    worstResidual: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * FOUR PARADOXES ARE ONE FORMULA, AND THE PARADOX IS THE VARIANCE.
+ *
+ * Sampling a unit with probability proportional to its own size gives E[X²]/E[X] = μ(1 + CV²), which
+ * equals μ if and only if the variance is zero. That single expression is the friendship paradox in
+ * network science, the class-size paradox in sociology, the inspection paradox in queueing and
+ * length-biased sampling in biostatistics. Nothing is paradoxical about any of them: each is the same
+ * second moment divided by the same first.
+ */
+export declare function sizeBiasIsOneFormula(matrix?: MindMatrix): {
+    computes: boolean;
+    populationsChecked: number;
+    worstResidual: number;
+    equalityCaseFactor: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * A POPULATION'S GROWTH RATE IS A BOND'S YIELD, AND ITS GENERATION TIME IS THE BOND'S DURATION.
+ *
+ * The Euler–Lotka equation Σ φ(a) e^(−ra) = 1 and bond pricing Σ CF_a (1+y)^(−a) = P are the same
+ * root-find on the same discounted sum: set CF := φ and P := 1, and r = ln(1+y). The mean length of a
+ * generation, Σ a φ(a) e^(−ra) / Σ φ(a) e^(−ra), is then character-for-character Macaulay duration.
+ * Demography and fixed income call one solver on one array and rename the output.
+ */
+export declare function growthRateIsAYield(matrix?: MindMatrix): {
+    computes: boolean;
+    periodsInSchedule: number;
+    rateGap: number;
+    durationGap: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * LITTLE'S LAW IS AN ACCOUNTING IDENTITY, NOT A STATISTICAL ONE.
+ *
+ * Σ sojourn times = ∫ N(t) dt is Fubini applied to the indicator 1{arrived and not yet departed}. So
+ * L = λW holds PATHWISE for any cohort wholly inside the window: no stationarity, no distribution, no
+ * independence, no equilibrium. What breaks it is not a violated statistical assumption but a violated
+ * cohort — censor a job at the window edge and the two sides part, which is the failure every dashboard
+ * that divides a truncated total by a rate is making.
+ */
+export declare function littlesLawIsAccounting(matrix?: MindMatrix): {
+    computes: boolean;
+    jobsChecked: number;
+    sojournTotal: number;
+    censoredTotal: number;
+    integralGap: number;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};

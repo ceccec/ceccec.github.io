@@ -567,7 +567,7 @@ export function shorFactorsByPeriodFinding() {
     return { sparse, dense: W * T * T }
   }
   const LADDER_N = 3 * 5, LADDER_A = 7, LADDER_T = 8
-  const residueBits = Math.ceil(Math.log2(LADDER_N)) // 4 — the narrowest register that can hold 0..N−1
+  const residueBits = ceil(log2(LADDER_N)) // 4 — the narrowest register that can hold 0..N−1
   const handles = Array.from({ length: 8 - residueBits + 1 }, (_, i) => residueBits + i).map((w) => {
     const { sparse, dense } = termCounts(LADDER_N, LADDER_A, LADDER_T, w)
     return { bits: w, ratio: dense / sparse, lattice: 1 << w }

@@ -4,7 +4,7 @@ import { phase } from '../../6/4/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, reciprocity, verifyRoot } from '../../heaven/compute/index.ts'
 import { completeCorpus, monographs, onlyPageRouteForAll } from '../../wind/routes/corpus/index.ts'
-import { abs, computesGate, foldPair, isUuid, memoByRoot, merge, merkleFold, sealFacets, toUuid } from '../../0/index.ts'
+import { abs, computesGate, foldPair, isUuid, max, memoByRoot, merge, merkleFold, pow, sealFacets, toUuid } from '../../0/index.ts'
 import { imagination } from '../../mountain/source/index.ts'
 import { findQuestions, metatronsCube, planetIsComputable, selfInteraction, universalLanguage, torusUuid } from '../../fire/li/index.ts'
 import { doubleTorusFold, geodesicDome, torusBreathe } from '../../mountain/topology/index.ts'
@@ -819,19 +819,19 @@ const METAR_PRESSURE_STEP_MB = 0.1
 
 /** NWS wxcalc "Altimeter Setting", expanded from the published nested form to Alt^κ = (P−0.3)^κ + C·h. */
 export function nwsAltimeterSetting(stationMb: number, metres: number): number {
-  const c = Math.pow(ISA_SEA_LEVEL_MB, ALTIMETER_EXPONENT) * ISA_LAPSE / ISA_BASE_KELVIN
-  return Math.pow(Math.pow(stationMb - ALTIMETER_OFFSET_MB, ALTIMETER_EXPONENT) + c * metres, 1 / ALTIMETER_EXPONENT)
+  const c = pow(ISA_SEA_LEVEL_MB, ALTIMETER_EXPONENT) * ISA_LAPSE / ISA_BASE_KELVIN
+  return pow(pow(stationMb - ALTIMETER_OFFSET_MB, ALTIMETER_EXPONENT) + c * metres, 1 / ALTIMETER_EXPONENT)
 }
 
 /** NWS wxcalc "Station Pressure", exactly as published. */
 export function nwsStationPressure(altimeterMb: number, metres: number): number {
-  return altimeterMb * Math.pow((ISA_BASE_KELVIN - ISA_LAPSE * metres) / ISA_BASE_KELVIN, STATION_SHEET_EXPONENT)
+  return altimeterMb * pow((ISA_BASE_KELVIN - ISA_LAPSE * metres) / ISA_BASE_KELVIN, STATION_SHEET_EXPONENT)
 }
 
 /** The exact inverse of the altimeter setting — the function the published worksheet is NOT. */
 export function altimeterSettingInverted(altimeterMb: number, metres: number): number {
-  const c = Math.pow(ISA_SEA_LEVEL_MB, ALTIMETER_EXPONENT) * ISA_LAPSE / ISA_BASE_KELVIN
-  return Math.pow(Math.pow(altimeterMb, ALTIMETER_EXPONENT) - c * metres, 1 / ALTIMETER_EXPONENT) + ALTIMETER_OFFSET_MB
+  const c = pow(ISA_SEA_LEVEL_MB, ALTIMETER_EXPONENT) * ISA_LAPSE / ISA_BASE_KELVIN
+  return pow(pow(altimeterMb, ALTIMETER_EXPONENT) - c * metres, 1 / ALTIMETER_EXPONENT) + ALTIMETER_OFFSET_MB
 }
 
 export function pressureReductionsAreOneField(matrix: MindMatrix = buildMatrix()) {
@@ -843,8 +843,8 @@ export function pressureReductionsAreOneField(matrix: MindMatrix = buildMatrix()
   let publishedWorst = 0
   let offsetExact = true
   for (const h of heights) for (const a of settings) {
-    exactWorst = Math.max(exactWorst, Math.abs(nwsAltimeterSetting(altimeterSettingInverted(a, h), h) - a))
-    publishedWorst = Math.max(publishedWorst, Math.abs(nwsAltimeterSetting(nwsStationPressure(a, h), h) - a))
+    exactWorst = max(exactWorst, abs(nwsAltimeterSetting(altimeterSettingInverted(a, h), h) - a))
+    publishedWorst = max(publishedWorst, abs(nwsAltimeterSetting(nwsStationPressure(a, h), h) - a))
   }
   // AT SEA LEVEL THE DISCREPANCY IS ONE CONSTANT, THE SAME FOR EVERY PRESSURE — and that is the refutable
   // form. The first spelling of this facet asked whether the error equalled ALTIMETER_OFFSET_MB, which the
@@ -854,21 +854,21 @@ export function pressureReductionsAreOneField(matrix: MindMatrix = buildMatrix()
   // ZERO — the composition loses a fixed amount whatever the reading, which no value of the constant can
   // fake, because zero makes it vanish.
   const seaLevelErrors = settings.map((a) => nwsAltimeterSetting(nwsStationPressure(a, 0), 0) - a)
-  const seaLevelLoss = Math.abs(seaLevelErrors[0] ?? 0)
-  const offsetConstant = seaLevelErrors.every((e) => Math.abs(e - (seaLevelErrors[0] ?? 0)) < 1e-9)
+  const seaLevelLoss = abs(seaLevelErrors[0] ?? 0)
+  const offsetConstant = seaLevelErrors.every((e) => abs(e - (seaLevelErrors[0] ?? 0)) < 1e-9)
   offsetExact = offsetConstant && seaLevelLoss > 1e-9
   // beyond the offset, the residual at the reference pressure grows strictly with height
   let monotone = true
   let previous = 0
   for (const h of heights) {
-    const residual = Math.abs((nwsAltimeterSetting(nwsStationPressure(ISA_SEA_LEVEL_MB, h), h) - ISA_SEA_LEVEL_MB) + ALTIMETER_OFFSET_MB)
+    const residual = abs((nwsAltimeterSetting(nwsStationPressure(ISA_SEA_LEVEL_MB, h), h) - ISA_SEA_LEVEL_MB) + ALTIMETER_OFFSET_MB)
     if (h > 0 && !(residual > previous)) monotone = false
     previous = residual
   }
   // and the two inverses separate by more than the reporting step at ordinary aerodrome elevations
   let separation = 0
   for (const h of heights) for (const a of settings) {
-    separation = Math.max(separation, Math.abs(nwsStationPressure(a, h) - altimeterSettingInverted(a, h)))
+    separation = max(separation, abs(nwsStationPressure(a, h) - altimeterSettingInverted(a, h)))
   }
 
   const facets = [
