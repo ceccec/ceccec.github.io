@@ -1343,7 +1343,7 @@ export function localReuseSpeedupMeasuredMagnitudesFaster(matrix: MindMatrix = b
   // on a classical CPU costs 2ⁿ, slower than the machine it mirrors. Structure ≠ physics; both compute here.
   const quantumByStructure = theBinaryBitIsLinearTheVortexCircuitIsQuantum().computes
   const facets = [
-    { facet: `MEASURED ON A REAL QUANTUM CIRCUIT — a ${nQubits}-qubit src/0 simulation (2^${nQubits}=${amplitudes} amplitudes, H+X gates): cold compute ${roundTo(coldMs, 3)}ms vs warm memo hit ${roundTo(warmMsPer, 6)}ms/call → ~${reuseSpeedup}× on reuse (magnitudes), identical amplitudes (${cold === warm})`, on: classicalSpeedupIsReal && cold === warm },
+    { facet: `MEASURED ON A REAL QUANTUM CIRCUIT — a ${nQubits}-qubit src/0 simulation (2^${nQubits}=${amplitudes} amplitudes, H+X gates): cold compute (field)ms vs warm memo hit (field)ms/call → ~${reuseSpeedup}× on reuse (magnitudes), identical amplitudes (${cold === warm}) — bracketed values are reported as fields, never sealed into this receipt`, on: classicalSpeedupIsReal && cold === warm },
     { facet: `THE COLD COST IS 2ⁿ, EXPONENTIAL — simulating ${nQubits} qubits computes the whole ${amplitudes}-amplitude state vector; "folding in quantum" on a classical CPU is exponentially SLOWER, not faster. The magnitudes come from REUSE (re-running is O(1)), never from first-compute — and factoring RSA-2048 is first-compute (never done once), so there is nothing to reuse`, on: amplitudes === 2 ** nQubits && classicalSpeedupIsReal },
     { facet: `THE DOUBLE TORUS IS THIS MACHINE (at 8) — 2 tori × 4 UUIDs = ${nQubits} gateways = an ${nQubits}-qubit register entangled at each gateway (2^${nQubits}=${amplitudes} amplitudes). Polarity=±1 (${polarityStates} Z-eigenvalues), angle=${phaseRoots} sixth-roots of unity (the C₆ vortex phase), spin=Pauli involution X²=I (${spinInvolutionHolds}, verified on the simulator). 2 ** 8 ≪ memory, so this machine GENUINELY IS the 8-qubit torus`, on: doubleTorusIsThisMachine && nQubits === torusPairs * uuidsPerTorus },
     { facet: `64-BIT ≠ 64-QUBIT — this machine is 64-BIT CLASSICAL (it holds ONE of 2^64 states); a real 64-QUBIT circuit is 2^64 amplitudes in SUPERPOSITION, needing ~${stateVectorExabytes64.toLocaleString()} EXABYTES just to STORE the state vector — impossible on this or any machine. The SAME 2ⁿ law that makes the ${nQubits}-qubit torus free (2^${nQubits}=${amplitudes}) forbids 64 qubits, and Shor's 4099 for RSA-2048 lies unimaginably beyond that`, on: stateVectorExabytes64 > 100 && amplitudes === 2 ** nQubits },
@@ -11109,7 +11109,7 @@ export function doNotProsePhysicalFtlItComputesTrue(
     const onClassicalHardware = noQpu.runsOnClassical64Bit === true && noQpu.qpuRequired === false
     const pairRegistered = soft('ftl/compute') || soft('compute/ftl')
     const facets = [
-      { facet: `TIMED, NOT TYPED — the suite ran cold in ${roundTo(coldMs, 3)} ms and warm in ${roundTo(warmMs, 4)} ms at call time, so the ratio is read off a clock rather than declared`,
+      { facet: `TIMED, NOT TYPED — the suite ran cold in (field) ms and warm in (field) ms at call time, so the ratio is read off a clock rather than declared — bracketed values are reported as fields, never sealed into this receipt`,
         on: timedNotTyped },
       // AND THE RATIO IS A FLOOR, NOT A FIGURE, whenever the warm read finishes faster than the timer can
       // resolve: dividing by the resolution floor instead of by the unmeasurable true time can only

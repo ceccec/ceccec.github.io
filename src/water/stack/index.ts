@@ -2646,7 +2646,7 @@ export function qpuCpuGpu(matrix: MindMatrix = buildMatrix(), at = 0) {
     const facets = [
       { facet: `QPU ≡ CPU ∪ GPU — cpuOn=${cpu.kindOn} gpuOn=${gpu.kindOn} hwOn=${hw.hardwareOn}`, on: qpuEqualsCpuGpu },
       { facet: `quantumComputerComplete — faithfulSimulator=${honest.faithfulSimulator} tracksClassical=${noQpu.tracksClassicalNoSpeedup}`, on: quantumComputerComplete },
-      { facet: `apparentFtlSpeedup(audit)=${roundTo(apparentFtlAudit, 3)}× cold=${roundTo(localAudit.suiteColdMs, 3)}ms warm=${roundTo(localAudit.suiteWarmMs, 3)}ms`, on: apparentFtlAudit >= 1 || localAudit.suiteMemoHit },
+      { facet: `apparentFtlSpeedup(audit)=${roundTo(apparentFtlAudit, 3)}× cold=(field)ms warm=(field)ms — bracketed values are reported as fields, never sealed into this receipt`, on: apparentFtlAudit >= 1 || localAudit.suiteMemoHit },
       { facet: `holographic round-trip ${importFractal.roundTripCount}/${importFractal.roundTripTotal}`, on: importFractal.roundTripIdentity === true },
       { facet: `observerEvaluableMeasurements=${measure.observerEvaluableMeasurements}`, on: measure.observerEvaluableMeasurements },
       { facet: `architectureRequirement=${noQpu.architectureRequirement} runtime=${noQpu.environment.runtime}/${noQpu.environment.arch}`, on: noQpu.runsOnClassical64Bit },

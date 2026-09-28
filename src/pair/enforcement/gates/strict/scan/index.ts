@@ -6493,7 +6493,7 @@ export function stallStopFindsHangedProcessesRealtime(
       on: scanningRealtime,
     },
     {
-      facet: `hungFound=${hungFound ? 1 : 0} hangs=${hangs.length} (build-lock age=${lockAgeMs} alive=${lockHolderAlive ? 1 : 0})`,
+      facet: `hungFound=${hungFound ? 1 : 0} hangs=${hangs.length} (build-lock age=(field) alive=${lockHolderAlive ? 1 : 0}) — bracketed values are reported as fields, never sealed into this receipt`,
       on: scanningRealtime && typeof lockAgeMs === 'number',
     },
     {

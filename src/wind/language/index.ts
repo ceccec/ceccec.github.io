@@ -856,7 +856,7 @@ export function portAnyCodeInAnyLanguageAtOnceThroughTheRosettaPivotOfNAdaptersN
   const facets = [
     { facet: `ANY LANGUAGE PORTS TO ANY THROUGH ONE PIVOT — port('a && b', js→python) = 'a and b', and every one of the ${directedPairs} directed pairs resolves through the single canonical pivot (${ported && allPairsPort}): any code, any language, at once`, on: ported && allPairsPort },
     { facet: `THE PIVOT IS THE ROSETTA — equivalent logic in js, python and sql content-addresses to the SAME pivot UUID (${rosettaIdentity}): the rosetta identity is language-independent, so porting is content-addressing`, on: rosettaIdentity },
-    { facet: `O(N) ADAPTERS, NOT O(N²) — ${N} languages need ${adapters} adapters (to/from the pivot) covering all ${directedPairs} pairs (${oNnotNSquared}): a ${speedup}× saving over pairwise translators — the rosetta combination`, on: oNnotNSquared },
+    { facet: `O(N) ADAPTERS, NOT O(N²) — ${N} languages need ${adapters} adapters (to/from the pivot) covering all ${directedPairs} pairs (${oNnotNSquared}): a (field)× saving over pairwise translators — the rosetta combination`, on: oNnotNSquared },
     { facet: `PORTS ANY CODE AT ONCE, SPEEDING RESEARCH — one pivot + ${N} adapters ports any language's code into the pipeline with no pairwise transpilers (${portsAnyAtOnce}): the same O(n) rosetta speed-up as the crack detector and the wirings`, on: portsAnyAtOnce },
   ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-port:${entry.facet}:${entry.on}`) }))
   return {

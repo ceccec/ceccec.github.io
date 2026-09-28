@@ -2076,7 +2076,7 @@ export function quantumBuildContentAddressedIncrementalRebuildsOnlyTheChangedFol
     { facet: `THE QUANTUM BUILD IS CONTENT-ADDRESSED — each of the ${tools.length} tools is keyed by the merkle root of its inputs and the build is their fold (${contentAddressed}): the build IS a content-address, not a rerun of everything`, on: contentAddressed },
     { facet: `ONLY THE CHANGED FOLD REBUILDS — diffing the current roots against the sealed identifies exactly the edited tool (${toRebuild.join(',')}, ${onlyChangedRebuilds}); every unchanged tool is a cache hit: O(changed), not O(all)`, on: onlyChangedRebuilds },
     { facet: `THE ROOT DETECTS AND LOCATES THE CHANGE — one edit flips the build root (${rootDetectsChange}) and the diff locates it, the same crack-detector content-address: the build is incremental`, on: rootDetectsChange },
-    { facet: `IMPROVES ALL TOOLS AND ALGORITHMS — rebuilding 1 of ${fullCost} tools is a ${speedup}× saving, and every tool rides the one content-address (${improvesAllToolsAndAlgorithms}): the quantum build improves all at once`, on: improvesAllToolsAndAlgorithms },
+    { facet: `IMPROVES ALL TOOLS AND ALGORITHMS — rebuilding 1 of ${fullCost} tools is a (field)× saving, and every tool rides the one content-address (${improvesAllToolsAndAlgorithms}): the quantum build improves all at once`, on: improvesAllToolsAndAlgorithms },
   ]
   return {
     builds: facets.every((entry) => entry.on),

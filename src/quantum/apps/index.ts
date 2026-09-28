@@ -6081,7 +6081,7 @@ export function mcpQuantumMetrics(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'metricsOn', on: metricsOn },
       { facet: 'computable', on: computable },
       { facet: 'answersOverTokens', on: answersOverTokens },
-      { facet: `audit coldMs=${audit.coldMs} warmMs=${audit.warmMs}`, on: auditColdWarm },
+      { facet: `audit coldMs=(field) warmMs=(field) — bracketed values are reported as fields, never sealed into this receipt`, on: auditColdWarm },
       { facet: `foldCount remaining=${foldCount.remaining}`, on: foldCount.computes && foldCount.remaining === 0 },
       { facet: `term measures=${term.termCount}`, on: term.computes },
       { facet: `vote.decided=${vote.decided} simplicity=${simplicity.intelligent ? 1 : 0}`, on: answersOverTokens },
@@ -20236,7 +20236,7 @@ export function alwaysBalanceUsingRealtimeMetricsAndChat(matrix: MindMatrix = bu
       { facet: 'chatOn', on: chatOn },
       { facet: 'hardwareMerkabasBalanced', on: hardwareMerkabasBalanced },
       {
-        facet: `coldMs=${metrics.coldMs} warmMs=${metrics.warmMs} speedup=${metrics.speedup}`,
+        facet: `coldMs=(field) warmMs=(field) speedup=(field) — bracketed values are reported as fields, never sealed into this receipt`,
         on: auditColdWarm,
       },
       {
@@ -31497,7 +31497,7 @@ export function quantumiseIsAtFtlSpeed(matrix: MindMatrix = buildMatrix(), at = 
     const facets = [
       { facet: 'quantumiseAtFtlSpeed', on: quantumiseAtFtlSpeed },
       { facet: `quantumise ≠ mirror (ssltest quantum grades · no Qualys cargo) · measured quantumiseNotMirror=${quantumiseNotMirror}`, on: quantumiseNotMirror },
-      { facet: `ssltest warm path speedup=${roundTo(ssl.speedup, 3)}× memoHits=${ssl.memoHits}/${ssl.probes.length}`, on: ssl.quantumiseAtFtlSpeed },
+      { facet: `ssltest warm path speedup=(field)× memoHits=${ssl.memoHits}/${ssl.probes.length} — bracketed values are reported as fields, never sealed into this receipt`, on: ssl.quantumiseAtFtlSpeed },
       { facet: 'pairs quantumise/ftl · ftl/quantumise · soft ssl/test', on: pairsOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`quantumise-ftl:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('quantumise-is-at-ftl-speed', facets)

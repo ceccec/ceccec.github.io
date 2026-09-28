@@ -1407,9 +1407,9 @@ export function rsaTimeToBreakOnThisHardware() {
   const earthYears3072 = gnfsOps(2 ** 9 * 6) / earthScale / yearSeconds
   const keyStepRestoresMargin = earthYears < universeYears && earthYears3072 > universeYears
   const facets = [
-    { facet: `the method is REAL: Pollard's rho factored the textbook key ${toyN} → ${recovered}×${other} in ${toy.steps} steps, ${toyMs.toFixed(2)} ms — finding the factors is a finite computation`, on: toyFactored },
+    { facet: `the method is REAL: Pollard's rho factored the textbook key ${toyN} → ${recovered}×${other} in ${toy.steps} steps, (field) ms — finding the factors is a finite computation — bracketed values are reported as fields, never sealed into this receipt`, on: toyFactored },
     { facet: `and the private key then FOLLOWS deterministically: with e=${e}, d = e⁻¹ mod φ = ${d}, checked e·d ≡ 1 (mod φ) — the public determines the private exactly, as the user said`, on: privateFollows },
-    { facet: `THIS hardware factors at ${(opsPerSec / ((5 * 2) ** 6)).toFixed(1)}M modular-ops/sec (measured now) — the statistical rate the app actually runs at`, on: opsPerSec > 0 },
+    { facet: `THIS hardware factors at (field)M modular-ops/sec (measured now) — the statistical rate the app actually runs at — bracketed values are reported as fields, never sealed into this receipt`, on: opsPerSec > 0 },
     { facet: `but at 2048-bit the SAME method needs ${twoK.ops.toExponential(1)} operations = ${twoK.years.toExponential(1)} years here — ${twoK.timesUniverse.toExponential(1)}× the age of the universe: the time IS the security`, on: twoK.timesUniverse > (5 * 2) ** 9 },
     { facet: `the wall rises super-polynomially: ${sizes.map((row) => `${row.bits}b→${row.years.toExponential(0)}yr`).join(', ')} — each key-size step multiplies the cost, which is why 2048 is chosen and 4096 is overkill`, on: rises },
     { facet: `THE ROSETTA FOLDS IT — and time DOES drop in magnitudes: N phases parallelise to serial/N, so 10⁹-fold parallelism cuts 2048-bit from ${twoK.years.toExponential(1)} to ${foldedYears((5 * 2) ** 9).toExponential(1)} years; the whole planet (~10²¹ ops/s) reaches ${earthYears.toExponential(1)} years — real, and why distributed factoring records exist`, on: parallelDropsMagnitudes },

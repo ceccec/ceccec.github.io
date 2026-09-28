@@ -286,8 +286,24 @@ export function findCanonBreaks(root: string = process.cwd()): {
           const sealsTime = facetProp.initializer.templateSpans.some((span) => {
             let hit = false
             const scan = (e: import('typescript').Node): void => {
+              // NO EXCEPTION FOR A BARE LOCAL `speedup`, AND THE ATTEMPT IS THE LESSON. Three were read and
+              // all three were derived ratios that reproduce — `const speedup = 5` (a model parameter in the
+              // race-to-idle power analysis), `round(fullCost / rebuildCost)`,
+              // `roundTo(directedPairs / adapters, 2)` — so the name was excluded. The FOURTH, in
+              // quantum/science, is `const speedup = coldNs / max(warmNs, 1)`: a ratio of two clock readings,
+              // inside a facet that says THE COLLAPSE IS MEASURED. The exclusion made this gate report 0 while
+              // a real site remained — a false zero, which is worse than the six it was hiding. A rule verified
+              // on three cases and refuted by the fourth is not a rule. All four texts are cleaned instead:
+              // dropping a number from facet text costs nothing even when the number is derived.
+              //
+              // WIDENING THE FIELD BRANCH TO [Ss]peedup WAS TRIED AND REVERTED. It was meant to close a
+              // false negative — `suiteSpeedup` never matched, because ^speedup is anchored — and instead
+              // it matched nine BOOLEAN FLAGS whose names merely contain the word: .noSpeedup,
+              // .tracksClassicalNoSpeedup, .quantumSpeedup. A boolean is not a duration. The false negative
+              // costs nothing anyway: that site is already flagged through suiteColdMs and suiteWarmMs.
               if (ts.isIdentifier(e) && MEASURED.test(e.text) && !DERIVED_NOT_MEASURED.test(e.text)) hit = true
-              else if (ts.isPropertyAccessExpression(e) && MEASURED.test(e.name.text) && !DERIVED_NOT_MEASURED.test(e.name.text)) hit = true
+              else if (ts.isPropertyAccessExpression(e) && MEASURED.test(e.name.text)
+                && !DERIVED_NOT_MEASURED.test(e.name.text)) hit = true
               ts.forEachChild(e, scan)
             }
             scan(span.expression)
