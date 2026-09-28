@@ -169,9 +169,10 @@ export function findCanonBreaks(root: string = process.cwd()): {
   elementBlindPredicate: Site[]
   unmovableClaim: Site[]
   decorativeConjunct: Site[]
+  facetSealsAMeasurement: Site[]
 } {
   const ts = require('typescript') as typeof import('typescript')
-  const selfComparison: Site[] = [], typedBoolean: Site[] = [], facetMissingOn: Site[] = [], emptyAsConstRead: Site[] = [], elementBlindPredicate: Site[] = [], unmovableClaim: Site[] = [], decorativeConjunct: Site[] = []
+  const selfComparison: Site[] = [], typedBoolean: Site[] = [], facetMissingOn: Site[] = [], emptyAsConstRead: Site[] = [], elementBlindPredicate: Site[] = [], unmovableClaim: Site[] = [], decorativeConjunct: Site[] = [], facetSealsAMeasurement: Site[] = []
   for (const file of corpusFiles(root)) {
     const sf = file.ast()
     const src = file.text
@@ -244,6 +245,42 @@ export function findCanonBreaks(root: string = process.cwd()): {
         if (named.includes('facet') && !named.includes('on') && !spread && !named.some((x) => otherShape.includes(x))) {
           facetMissingOn.push({ file: file.rel, line: at(n), text: cut(n) })
         }
+        // A MEASURED DURATION IN FACET TEXT IS A STOPWATCH SEALED INTO A CONTENT ADDRESS.
+        //
+        // sealFacets seals `${tag}:${facet}:${on}`, so facet TEXT is receipt input. Rendering a measured
+        // millisecond — or a rate derived from one — into it makes the receipt a timestamp, and the damage
+        // is not local: localEncryptionReverseTimed's facet text moved its root through
+        // localAuditQuantumSpeedEfficiency, mcpQuantumHardware, mcpQuantumCpu/Gpu and into
+        // cpuGpuSelfBalance, which sealed three different roots (7e1eee60, cff91cf3, 53635cad) across
+        // three runs of identical code against an identical tree while every printed metric stayed
+        // byte-identical. Nothing caught it: every-fold's second pass compares off-facet COUNTS inside ONE
+        // process and these folds are memoByRoot-memoized, so the second call returns the memo and the
+        // root is identical BY CONSTRUCTION. The drift is only visible ACROSS processes.
+        //
+        // RATES COUNT. The first scan for this matched Ms/Ns/elapsed/speedup and reported 39 sites, having
+        // missed every opsPerSec / aggregateOps / throughput — derived from a duration and exactly as
+        // non-reproducible. That omission is why this detector names rates explicitly.
+        //
+        // NAMED EXCEPTION: a DERIVED threshold is not a measurement. thresholdMs is
+        // A432_FOLDED×digitalRoot(432) — a constant that happens to be denominated in milliseconds, and it
+        // reproduces. It is excluded by name, the same way this gate records its own test-input exception
+        // below rather than repairing a test to flatter a count.
+        const MEASURED = /(?:^|[a-z])(?:Ms|Ns)$|^(?:elapsed|speedup|coldMs|warmMs)|PerSec|[Tt]hroughput|aggregateOps/
+        const DERIVED_NOT_MEASURED = /^threshold(?:Ms)?$|A432|THRESHOLD/
+        const facetProp = n.properties.find((p) => ts.isPropertyAssignment(p) && p.name && ts.isIdentifier(p.name) && p.name.text === 'facet')
+        if (facetProp && ts.isPropertyAssignment(facetProp) && ts.isTemplateExpression(facetProp.initializer)) {
+          const sealsTime = facetProp.initializer.templateSpans.some((span) => {
+            let hit = false
+            const scan = (e: import('typescript').Node): void => {
+              if (ts.isIdentifier(e) && MEASURED.test(e.text) && !DERIVED_NOT_MEASURED.test(e.text)) hit = true
+              else if (ts.isPropertyAccessExpression(e) && MEASURED.test(e.name.text) && !DERIVED_NOT_MEASURED.test(e.name.text)) hit = true
+              ts.forEachChild(e, scan)
+            }
+            scan(span.expression)
+            return hit
+          })
+          if (sealsTime) facetSealsAMeasurement.push({ file: file.rel, line: at(n), text: cut(n) })
+        }
         const onProp = n.properties.find((p) => ts.isPropertyAssignment(p) && p.name && ts.isIdentifier(p.name) && p.name.text === 'on')
         if (named.includes('facet') && onProp && ts.isPropertyAssignment(onProp)
           && unmovableTrue(ts, onProp.initializer, inits, reassigned)) {
@@ -281,7 +318,7 @@ export function findCanonBreaks(root: string = process.cwd()): {
     }
     visit(sf)
   }
-  return { selfComparison, typedBoolean, facetMissingOn, emptyAsConstRead, elementBlindPredicate, unmovableClaim, decorativeConjunct }
+  return { selfComparison, typedBoolean, facetMissingOn, emptyAsConstRead, elementBlindPredicate, unmovableClaim, decorativeConjunct, facetSealsAMeasurement }
 }
 
 /**
@@ -611,6 +648,12 @@ export function assertCanonicalForms(): void {
   console.log(`  ${found.decorativeConjunct.length}  a facet padded with a conjunct that can never be false — it reads as a guard and guards nothing`)
   for (const s2 of found.decorativeConjunct.slice(0, 4)) console.log(`      ${show(s2)}`)
   console.log(ratchet('canon.decorative-conjunct', found.decorativeConjunct.length, { evidence: () => found.decorativeConjunct.map(show) }))
+  console.log(`  ${found.facetSealsAMeasurement.length}  a facet whose TEXT carries a measured duration or a rate derived from one — sealFacets seals the text, so the receipt is a timestamp and the address moves when nothing changed`)
+  for (const s3 of found.facetSealsAMeasurement.slice(0, 4)) console.log(`      ${show(s3)}`)
+  console.log(ratchet('canon.facet-seals-a-measurement', found.facetSealsAMeasurement.length, {
+    law: 'facet text is receipt input (sealFacets seals `${tag}:${facet}:${on}`), so it must not contain a measured duration or a rate derived from one — an address over a stopwatch is a timestamp, and it propagates: one leaf moved cpuGpuSelfBalance\'s root five folds away',
+    evidence: () => found.facetSealsAMeasurement.map(show),
+  }))
     const unverified = generatedArtefactsWithoutAVerifier()
   console.log(`  ${unverified.length}  a generated artefact nothing checks against its generator — "do not edit" enforced by nobody`)
   for (const u of unverified.slice(0, 4)) console.log(`      ${u}`)

@@ -2363,7 +2363,10 @@ export function cryptoToolkitBeyondRsaMeasured(matrix: MindMatrix = buildMatrix(
   const rootAgain = merkleFold(leaves)
 
   const facets = [
-    { facet: `PQC CATALOG timed ${roundTo(catalogMs, 3)} ms — FIPS 203/204/205 count=${fipsCount}`, on: catalog.computes && fipsCount === 3 && catalogMs >= 0 },
+    // The measured catalogMs is reported as a field and printed in `statement`; it is kept OUT of the
+    // facet text because sealFacets seals that text into the receipt. fipsCount is a COUNT of sealed
+    // standards, not a measurement, so it reproduces and stays.
+    { facet: `PQC CATALOG timed with a non-negative duration — FIPS 203/204/205 count=${fipsCount}`, on: catalog.computes && fipsCount === 3 && catalogMs >= 0 },
     { facet: `ML-KEM/ML-DSA/SLH-DSA STANDARDIZED param sets present (sizes+categories, sourced FIPS 203/204/205; no keygen) — ${mlKem?.params.length}/${mlDsa?.params.length}/${slhDsa?.params.length}`, on: Boolean(mlKem && mlDsa && slhDsa) && family.computes && family.everyParamSourced && family.pkMonotone },
     { facet: `ECC/ECDSA Shor-vulnerable facet MEASURED (theorem compose, not key crack) — eccShorBreaks=${eccShorBreaks}`, on: eccShorBreaks === true && shorMap.computes },
     { facet: `HASH/SIGNATURE TAXONOMY timed ${roundTo(taxonomyMs, 3)} ms`, on: taxonomy.computes && taxonomyMs >= 0 },
