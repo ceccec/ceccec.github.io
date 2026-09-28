@@ -338,7 +338,7 @@ export function assertScopesCompute(): void {
 
     const boundaries = findNarratedBoundaries()
     const labelled = boundaries.filter((b) => /HONEST SCOPE/.test(b.says))
-    console.log(`\nboundaries whose limits are prose rather than computation — ${ratchet('scope.boundaries', boundaries.length, { evidence: () => boundaries.map((b) => `${b.file}:${b.line}  ${b.says}`) })} · a CEILING, not a target`)
+    console.log(`\nboundaries whose limits are prose rather than computation — ${ratchet('scope.boundaries', boundaries.length, { law: 'a limit stated in prose cannot fail, so it certifies nothing — a boundary must be a facet its own computes consumes', evidence: () => boundaries.map((b) => `${b.file}:${b.line}  ${b.says}`) })} · a CEILING, not a target`)
     console.log(`  of those, ${labelled.length} still carry the HONEST SCOPE label — navigation only; deleting the label converts nothing`)
     for (const b of labelled.slice(0, 10)) console.log(`  ${b.file}:${b.line}  ${b.says}`)
     if (boundaries.length > 10) console.log(`  ...and ${boundaries.length - 10} more`)

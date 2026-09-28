@@ -201,7 +201,7 @@ export function assertMovieMeasuresWhatItShows(): void {
     // pinned to the old population describes a set nobody can reproduce. A theorem whose subject IS
     // realtime build statistics cannot hold a frozen numeric witness, and pretending otherwise is what
     // the old 538 was recording.
-    console.log(ratchet('movie.theorems-drawn-from-a-template', templated.length, { evidence: () => templated.map((t) => `no witness: ${t}`) }))
+    console.log(ratchet('movie.theorems-drawn-from-a-template', templated.length, { law: 'a theorem whose animation is drawn from a title keyword is not drawn from its proof, so the picture asserts what the proof was never asked', evidence: () => templated.map((t) => `no witness: ${t}`) }))
     for (const s of joins) console.log(`  ${s.file}:${s.line}  ${s.text}`)
   })
 }

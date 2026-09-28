@@ -59,6 +59,7 @@
   "prior-art.unbounded-unsearched": 0,
   "prior-art.unclassified-undeclared": 0,
   "purity.core-nondeterminism": 0,
+  "ratchets.mute": 70,
   "release.incomplete-live": 1,
   "release.open-leads": 2,
   "scope.boundaries": 2597,

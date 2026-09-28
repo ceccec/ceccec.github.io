@@ -158,6 +158,6 @@ export function assertGuardsAndCaps(): void {
     for (const entry of caps.slice(0, 5)) console.log(`  ${String(entry.caps).padStart(4)}  ${entry.file}`)
     console.log(ratchet('guards.browser-degrades', browser.length, { evidence: () => browser.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
     console.log(ratchet('guards.no-filesystem-empty', noFs.length, { evidence: () => noFs.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
-    console.log(ratchet('caps.in-facet-folds', capTotal, { evidence: () => caps.flatMap((entry) => entry.sites) }))
+    console.log(ratchet('caps.in-facet-folds', capTotal, { law: 'a threshold with no derivation is a hardcoded constant wearing a comparison — every bound in a facet must come from a theorem or a ledgered axiom', evidence: () => caps.flatMap((entry) => entry.sites) }))
   })
 }

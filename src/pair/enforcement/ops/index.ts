@@ -322,6 +322,64 @@ export function runRosettaDimensionsBatchExit(_root: string, argv: readonly stri
  * wildcard, stray literals listed WITH auto-suggested canonical compositions (search over products,
  * powers and sums of the lattice), decimals matched against 1/q and the φ/golden family. Replaces
  * the hand-run probe + hand-derivation chase that followed every wave. */
+/**
+ * THE LEDGER COUNT IS A MEASUREMENT, AND I TYPED IT BACK IN FOUR TIMES IN ONE SESSION.
+ *
+ * Every wave ends the same way: a gate prints `ledger-drift: *:24→23`, and a hand edits the row to 23 and
+ * runs again. The gate had already computed the number. cracks:measure replaced the hunt for WHICH literal
+ * was stray and suggested a canonical composition for it — it deliberately writes nothing — so the search
+ * is mechanised and the transcription is not. That is the manual work, and it is the whole of it.
+ *
+ * DOWNWARD ONLY, AND THAT ASYMMETRY IS THE POINT. A wildcard row reads "attested residue — exactly N
+ * unaccounted", so when the tree carries fewer literals than the row claims, writing the smaller number is
+ * transcribing a measurement and nothing is decided. When the tree carries MORE, something was added that
+ * nobody accounted for, and a tool that quietly raised the row would retire the ratchet the file exists to
+ * be: the count could climb one wave at a time and never be noticed. So a rise is reported and refused, and
+ * it stays a conscious act with a name attached.
+ */
+export async function runCrackReconcileExit(root: string, argv: readonly string[] = []): Promise<number> {
+  const scan = await importQuantumBundle('src/pair/enforcement/gates/strict/scan/index.ts', root) as {
+    scanCrackSurface: (root: string) => { file: string; literal: string; count: number }[]
+  }
+  const offenders = scan.scanCrackSurface(root)
+  const drift = new Map<string, { recorded: number; measured: number }>()
+  for (const o of offenders) {
+    // UNANCHORED, BECAUSE THE ANCHORED FORM MATCHED NOTHING AND THE TOOL REPORTED A CLEAN LEDGER OVER TWO
+    // DRIFTED ROWS. The scanner emits `ledger-drift:*:27→23` and the first version demanded the whole field
+    // be exactly that, so a tool written to remove hand-work silently did none — the failure mode it exists
+    // to replace, wearing its own name.
+    const m = /ledger-drift:\*:(\d+)\s*(?:→|->)\s*(\d+)/.exec(o.literal)
+    if (m) drift.set(o.file, { recorded: Number(m[1]), measured: Number(m[2]) })
+  }
+  if (drift.size === 0) {
+    process.stdout.write('✓ cracks:reconcile — every wildcard row already states what the tree measures\n')
+    return 0
+  }
+  const { readFileSync, writeFileSync } = await import('node:fs')
+  const { join } = await import('node:path')
+  const ledgerPath = join(root, 'src/3/7/index.ts')
+  let text = readFileSync(ledgerPath, 'utf8')
+  let written = 0
+  const risen: string[] = []
+  for (const [file, { recorded, measured }] of drift) {
+    if (measured > recorded) { risen.push(`${file} ${recorded}→${measured}`); continue }
+    // A PLAIN STRING, BECAUSE THE REGEX WAS ESCAPED THROUGH TWO LAYERS AND MATCHED NOTHING. The first
+    // version built the row pattern with new RegExp over a template literal, so `literal: '\\*'` reached the
+    // engine as an escaped backslash and the lookup silently failed on every row — the tool found both
+    // drifts, wrote neither, and reported a number that read like success. The row it needs is an exact
+    // substring, so it is matched as one.
+    const needle = `{ file: '${file}', literal: '*', count: ${recorded},`
+    if (!text.includes(needle)) { process.stderr.write(`  no wildcard row to write for ${file}\n`); continue }
+    text = text.replace(needle, `{ file: '${file}', literal: '*', count: ${measured},`)
+    written += 1
+    process.stdout.write(`  ${file}  ${recorded} → ${measured}  (transcribed, the tree carries fewer)\n`)
+  }
+  if (written > 0) writeFileSync(ledgerPath, text)
+  for (const r of risen) process.stderr.write(`✗ ${r} — the tree carries MORE than the row attests, and a rise is not transcription: account for the literal or name it\n`)
+  process.stdout.write(`cracks:reconcile — ${written} row(s) transcribed downward · ${risen.length} refused as rises\n`)
+  return risen.length > 0 ? 1 : 0
+}
+
 export async function runCrackMeasureExit(root: string, argv: readonly string[] = []): Promise<number> {
   const scan = await importQuantumBundle('src/pair/enforcement/gates/strict/scan/index.ts', root) as {
     scanCrackSurface: (root: string) => { file: string; literal: string; count: number }[]
@@ -825,6 +883,7 @@ export async function runCliExit(root: string, argv: string[] = []) {
     case 'iching:batch': return runRosettaBatchExit(root, rest)
     case 'diagnose': return runDiagnoseExit(root, rest)
     case 'cracks:measure': return runCrackMeasureExit(root, rest)
+    case 'cracks:reconcile': return runCrackReconcileExit(root, rest)
     case 'waves:run': return runIntelligenceWavesExit(root)
     case 'rosetta:diagnose':
     case 'iching:diagnose': return runRosettaDiagnoseExit(root, rest)

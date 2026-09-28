@@ -3777,7 +3777,7 @@ export function assertPriorArtLedger(): void {
     const unaddressed = citationsWithoutAnAddress()
     console.log(`  citations that resolve to nothing: ${unaddressed.length} of ${PRIOR_ART_SEARCHED.filter((r) => typeof r.found === 'string').length} — a DOI or URL is the difference between a claim and a check`)
     for (const u of unaddressed.slice(0, 6)) console.log(`    ${u.theorem.slice(0, 78)}`)
-    console.log(ratchet('prior-art.citation-unaddressed', unaddressed.length, { evidence: () => unaddressed.map((u) => `no DOI and no URL, so nothing to open: ${u.theorem} → ${u.found.slice(0, 110)}`) }))
+    console.log(ratchet('prior-art.citation-unaddressed', unaddressed.length, { law: 'a citation that resolves to nothing cannot be opened, so it is a claim about the literature rather than a reference to it', evidence: () => unaddressed.map((u) => `no DOI and no URL, so nothing to open: ${u.theorem} → ${u.found.slice(0, 110)}`) }))
     // A GAP IS AN UNCLASSIFIED ROW NOBODY HAS CHARACTERISED. A DECLARED FRONTIER IS NOT A GAP.
     //
     // `prior-art.unclassified` ratcheted the WHOLE bucket at a floor of 0, and that floor produced the

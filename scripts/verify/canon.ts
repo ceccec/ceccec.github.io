@@ -56,7 +56,7 @@ import { createRequire } from 'node:module'
 import { corpusFiles } from './corpus.ts'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, floorsWithoutLaw } from './status.ts'
 
 const require = createRequire(import.meta.url)
 type Site = { readonly file: string; readonly line: number; readonly text: string }
@@ -573,7 +573,18 @@ export function assertCanonicalForms(): void {
     console.log(ratchet('canon.empty-as-const-read', found.emptyAsConstRead.length, { evidence: () => found.emptyAsConstRead.map(show) }))
     console.log(`  ${found.unmovableClaim.length}  a claim gated on an unmovable \`true\` — a name that is never reassigned, so nothing can withdraw the claim`)
     for (const s of found.unmovableClaim.slice(0, 4)) console.log(`      ${show(s)}`)
-    console.log(ratchet('canon.element-blind-predicate', found.elementBlindPredicate.length, { evidence: () => found.elementBlindPredicate.map(show) }))
+    // A REFUSAL MUST NAME THE LAW IT DEFENDS, WHICH IS THIS FILE'S OWN ARGUMENT APPLIED TO FLOORS.
+    // canon deletes the conjunct that cannot fail, the facet whose `on` is typed, the boundary narrated in
+    // prose. A floor that can only report that a number rose is the same shape: it refuses without stating
+    // what property the rise violates, so the refusal cannot be argued with — and an unarguable refusal is
+    // as useless as an unfalsifiable claim. `ratchet` already refuses a floor with no evidence thunk; this
+    // asks the next question, and the count falls as floors learn to answer it.
+    const mute = floorsWithoutLaw()
+    console.log(ratchet('ratchets.mute', mute.length, {
+      law: 'a floor that cannot name the property its rise violates is an assertion, not a measurement — the same form this gate deletes in facets, boundaries and conjuncts',
+      evidence: () => mute.map((m) => `${m.file}  ${m.key}`),
+    }))
+    console.log(ratchet('canon.element-blind-predicate', found.elementBlindPredicate.length, { law: 'a predicate that ignores its element cannot be refuted by any element, so it certifies the set without reading it', evidence: () => found.elementBlindPredicate.map(show) }))
     // A NEW KEY, NOT A MOVED FLOOR — this file's own law, applied to itself.
   //
   // canon.unmovable-claim counted facets gated on an unmovable `true` using a predicate that could not

@@ -217,7 +217,7 @@ export async function assertReleaseLive(root: string = process.cwd()): Promise<v
     const incomplete = rows.filter((r) => r.tagged && !(r.onNpm && r.onZenodo)
       && (floor.length === 0 || r.version.localeCompare(floor, undefined, { numeric: true }) >= 0))
     console.log(`  · the publish path begins at ${floor || '(unknown)'} — ${rows.filter((r) => r.tagged && floor.length > 0 && r.version.localeCompare(floor, undefined, { numeric: true }) < 0).length} older tags predate it and are not counted`)
-    console.log(ratchet('release.incomplete-live', incomplete.length, { evidence: () => incomplete.map((r) => `${r.version}: npm=${r.onNpm} zenodo=${r.onZenodo}`) }))
+    console.log(ratchet('release.incomplete-live', incomplete.length, { law: 'a version tagged and absent from a permanent record is a release that fired without arriving, which the records themselves can settle', evidence: () => incomplete.map((r) => `${r.version}: npm=${r.onNpm} zenodo=${r.onZenodo}`) }))
     console.log(ratchet('release.open-leads', leads.length, { evidence: () => leads.map((l) => `[${l.source}] ${l.version} — ${l.lead}`) }))
   })
 }

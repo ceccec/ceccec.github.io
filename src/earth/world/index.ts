@@ -1098,7 +1098,7 @@ function bulgarianHeritageEightfoldRaw(matrix: MindMatrix = buildMatrix()) {
 
 // Gold + fusion lattice — canonical home src/fusion/gold/lattice.ts
 export {
-  GOLD_MINE_MAP_HINGE,
+  goldMineMapHinge,
   goldMineMapCatalog,
   goldMineMapFitsPerfectlyInModel,
   undiscoveredGoldConcentrationCandidatesFromMap,

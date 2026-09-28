@@ -20,7 +20,7 @@
  * The file is committed, so every tightening is a diff and every regression is a failed gate.
  */
 
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const STATUS = 'scripts/verify/status.json'
@@ -132,10 +132,38 @@ export function everyRatchet<T>(body: () => T): T {
   }
 }
 
+/**
+ * A FLOOR THAT CANNOT NAME ITS LAW IS AN ASSERTION, AND THIS FILE ALREADY KNEW THE ARGUMENT.
+ *
+ * `ratchet` refuses a floor with no evidence thunk — "a floor that cannot say what it counted cannot be
+ * acted on" — and that is the same objection one level up. Evidence says WHAT was counted; the law says WHY
+ * the count may not rise. Without it a refusal reports that a number moved, which is bookkeeping, and the
+ * corpus already deletes the unfalsifiable form of exactly this: a disclaimer that asserts rather than
+ * computes, a boundary narrated in prose, a facet whose `on` cannot fail.
+ *
+ * MEASURED STATICALLY, BECAUSE A CALL ONLY EVER SEES ITSELF. At runtime a ratchet knows its own name and
+ * nothing about its siblings, so the mute ones are counted by reading the calls: every `ratchet('key', …)`
+ * whose options carry no `law:`. The count is itself a floor, and it falls as floors learn to state what
+ * they defend — the same shape as the caveats that went 175 → 78.
+ */
+export function floorsWithoutLaw(root: string = process.cwd()): { key: string; file: string }[] {
+  const dir = join(root, 'scripts/verify')
+  const out: { key: string; file: string }[] = []
+  for (const file of readdirSync(dir).filter((f) => f.endsWith('.ts'))) {
+    const text = readFileSync(join(dir, file), 'utf8')
+    for (const m of text.matchAll(/ratchet\(\s*'([^']+)'\s*,([\s\S]{0,400}?)\)\s*[,)\n]/g)) {
+      const key = m[1] ?? ''
+      const opts = m[2] ?? ''
+      if (!/\blaw\s*:/.test(opts)) out.push({ key, file })
+    }
+  }
+  return out
+}
+
 export function ratchet(
   name: string,
   measured: number,
-  opts: { evidence: () => readonly string[]; root?: string },
+  opts: { evidence: () => readonly string[]; root?: string; law?: string },
 ): string {
   if (typeof opts?.evidence !== 'function') {
     throw new Error(`${name}: ratchet called with no evidence thunk. A floor that cannot say what it counted cannot be acted on when it breaks.`)

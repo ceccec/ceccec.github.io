@@ -2355,7 +2355,24 @@ export function cloudflareMeshTopologyFromSequence(matrix: MindMatrix = buildMat
 
 
 
-export const GOLD_MINE_MAP_HINGE = { lat: 42.6977, lon: 23.3219 } as const
+/**
+ * A HOISTED BINDING, BECAUSE A `const` IN A MODULE CYCLE IS WHAT THE PRODUCTION BUILD CRASHED ON.
+ *
+ * docs:build failed in CI three times with `Cannot access 'GOLD_MINE_MAP_HINGE' before initialization`
+ * while passing here every time. The cause is not this value: src/earth/world RE-EXPORTS it from this
+ * module and this module imports src0BlackHoleSimulationComputes back out of src/earth/world, and the
+ * bundler flattens a re-export into a direct variable reference. Whichever module the flattened graph
+ * evaluates first then reads a `const` whose initialiser has not run — the temporal dead zone, which only
+ * appears once the modules are hoisted and merged, which is why a dev run never sees it.
+ *
+ * THE CYCLE IS NOT REMOVED AND THIS DOES NOT PRETEND OTHERWISE. src/heaven/compute imports both sides and
+ * nearly everything imports src/heaven/compute, so the graph stays cyclic; moving one function would have
+ * lengthened the loop, not broken it. What a cycle cannot survive is a binding READ before it is
+ * initialised — and a function declaration is hoisted and fully initialised before any module body runs,
+ * so no evaluation order can reach it too early. The value is unchanged and the callers read it the same
+ * way, one call later.
+ */
+export function goldMineMapHinge() { return { lat: 42.6977, lon: 23.3219 } as const }
 export type GoldMineEvidenceTier = 'DOCUMENTED' | 'MODEL_FIT' | 'HYPOTHESIS'
 export type ThunderGoldGraphEdgeKind = 'harmonic' | 'geodesic'
 export type ThunderGoldGraphNode = { id: string; lat: number; lon: number; tier: GoldMineEvidenceTier; declinationDeg: number; receipt: string }
@@ -2370,8 +2387,9 @@ const MINES = [
 ]
 
 function fitRow(mine: { id: string; name: string; lat: number; lon: number }, at: number) {
-  const bearing = initialBearing(GOLD_MINE_MAP_HINGE.lat, GOLD_MINE_MAP_HINGE.lon, mine.lat, mine.lon)
-  const distKm = greatCircleKm(GOLD_MINE_MAP_HINGE.lat, GOLD_MINE_MAP_HINGE.lon, mine.lat, mine.lon)
+  const hinge = goldMineMapHinge()
+  const bearing = initialBearing(hinge.lat, hinge.lon, mine.lat, mine.lon)
+  const distKm = greatCircleKm(hinge.lat, hinge.lon, mine.lat, mine.lon)
   const vortexDigit = VORTEX_SEQUENCE[digitalRoot(round(distKm)) % VORTEX_SEQUENCE.length] ?? 9
   const phase = schumannPhaseAt(at)
   const navCrossFitScore = roundTo((seedFromText(`${mine.id}:nav`) % (100 * 5 * 2)) / (100 * 5 * 2), 4)
