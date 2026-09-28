@@ -59,9 +59,30 @@ export function lakePackageOf(file: string, stopAt: string): string | null {
 }
 
 const builtPackages = new Set<string>()
+
+/**
+ * THE TOOLCHAIN PROBE BELONGS AT THE SPAWN SITE, NOT AT ONE CALLER.
+ *
+ * assertLeanCompiles was taught to probe `lake` as well as `lean`, and it skipped correctly — the CI log
+ * shows `lean and lake not on PATH — NOT MEASURED`. Twenty seconds later verify:axioms died on
+ * `spawnSync lake ENOENT` anyway, because axioms.ts imports axiomFreedom, axiomFreedom calls leanCommand,
+ * and leanCommand runs `lake build` with nothing in front of it. Guarding the caller I could see left
+ * every other caller of the same chokepoint unguarded — which is the hand-list defect in another costume:
+ * the fix described one route and the spawn had two.
+ *
+ * So the question is asked where the process is actually started, and every caller inherits the answer.
+ */
+export function leanToolchainMissing(): string[] {
+  return (['lean', 'lake'] as const).filter((cmd) => {
+    try { execFileSync(cmd, ['--version'], { stdio: 'pipe' }); return false } catch { return true }
+  })
+}
+
 function leanCommand(file: string, root: string): { readonly cmd: string; readonly args: (extra: string) => string[]; readonly cwd: string } {
   const pkg = lakePackageOf(file, join(root, 'src'))
   if (!pkg) return { cmd: 'lean', args: (f) => [f], cwd: root }
+  const missing = leanToolchainMissing()
+  if (missing.length > 0) throw new Error(`lean-toolchain-missing: ${missing.join(' and ')}`)
   if (!builtPackages.has(pkg)) {
     execFileSync('lake', ['build'], { cwd: pkg, stdio: 'pipe', timeout: 900_000 })
     builtPackages.add(pkg)
@@ -105,8 +126,11 @@ function leanFiles(root: string): string[] {
  * rest on Classical.choice or, worse, sorryAx, which `#print axioms` would surface and a plain
  * compile would not.
  */
-export function axiomFreedom(file: string, root: string = process.cwd()): { total: number; axiomFree: number; standardOnly: number; standardUse: Record<string, number>; dependent: string[] } {
+export function axiomFreedom(file: string, root: string = process.cwd()): { total: number; axiomFree: number; standardOnly: number; standardUse: Record<string, number>; dependent: string[]; notMeasured?: boolean } {
   const text = readFileSync(file, 'utf8')
+  // A toolchain that is absent has said NOTHING about the axioms, which is not the same as zero axioms —
+  // the caller prints the skip and makes no claim, exactly as verify:lean does.
+  if (leanToolchainMissing().length > 0) return { total: 0, axiomFree: 0, standardOnly: 0, standardUse: {}, dependent: [], notMeasured: true }
   const via = leanCommand(file, root)
   // DIGITS ARE PART OF A NAMESPACE. This read [A-Za-z.]+, so `namespace Wave57` parsed as `Wave`, every
   // probe line asked for `Wave.first_descent_is_six`, lean answered unknownIdentifier seven times, the

@@ -25,7 +25,7 @@
 
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { axiomFreedom } from './lean.ts'
+import { axiomFreedom, leanToolchainMissing } from './lean.ts'
 import { ratchet, everyRatchet } from './status.ts'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 
@@ -136,6 +136,14 @@ export function assertAxiomIndex(): void {
 
     // EVERY AXIOM THE KERNEL REPORTS MUST BE INDEXED. An unexplained axiom is a hole, and this is where
     // one would show up: a proof that starts depending on something the index does not name.
+    // UNMEASURED IS NOT ZERO, AND THIS GATE WOULD HAVE PRINTED IT AS ZERO. Without the Lean toolchain
+    // axiomFreedom can ask the kernel nothing, and the line below would report "nothing — every theorem
+    // decided by computation" — a measurement of no axioms, made by a gate that ran no kernel. That is the
+    // asymmetry the whole chain exists to refuse, so the absence is named before the count is believed.
+    const toolchain = leanToolchainMissing()
+    if (toolchain.length > 0) {
+      console.log(`\n  ${toolchain.join(' and ')} not on PATH — the kernel was NOT ASKED, so no axiom count is claimed here`)
+    }
     const inUse = axiomsInUse()
     const named = new Set(FOUNDATIONAL.map((e) => e.name))
     const unindexed = [...inUse.keys()].filter((a) => !named.has(a))
