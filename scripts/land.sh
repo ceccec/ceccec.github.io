@@ -224,4 +224,14 @@ gh run watch "$id" --exit-status --interval 30 >/dev/null 2>&1
 verdict=$(gh run view "$id" --json conclusion,jobs -q '"\(.conclusion) — " + ([.jobs[] | "\(.name): \(.conclusion)"] | join(", "))')
 echo "land: deploy $id — $verdict"
 gh run list --branch main --limit 10 --json headSha,name,status,conclusion -q ".[] | select(.headSha == \"$sha\") | \"  \(.name): \(.status) \(.conclusion)\""
-case "$verdict" in success*) exit 0 ;; *) exit 1 ;; esac
+# A GREEN DEPLOY JOB IS NOT A WORKING SITE. The watch above answers "did the Pages run succeed"; it cannot
+# answer "does the deployed site serve what it published". A build can emit a sitemap and publish a route
+# that 404s, and the workflow stays green — which is the neighbour of the reason Pages was red here for a
+# month. So the live site is asked, using the routes the build itself emitted rather than a list kept here.
+# Unreachable is UNCHECKED and moves nothing; a 404 or 5xx on a published route is a real defect.
+case "$verdict" in
+  success*)
+    npm run -s verify:deploy-live || { echo "land: the deploy job was GREEN and the site does not serve what it published"; exit 1; }
+    exit 0 ;;
+  *) exit 1 ;;
+esac

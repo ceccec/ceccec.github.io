@@ -967,6 +967,7 @@
     "guard": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/guard.ts assertGuard",
     "verify:connectors": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/connectors.ts assertConnectorsReachable",
     "cracks:reconcile": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts cracks:reconcile",
-    "ci:explain": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/ci-explain.ts runCiExplainExit"
+    "ci:explain": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/ci-explain.ts runCiExplainExit",
+    "verify:deploy-live": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deploy-live.ts assertDeployServes"
   }
 }

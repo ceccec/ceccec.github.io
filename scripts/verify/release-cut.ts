@@ -28,6 +28,46 @@ import { conceptRecordFromCitation, citationVersion, declaredVersions, npmLive, 
 type Cell = { readonly condition: string; readonly surface: string; readonly holds: boolean | null; readonly says: string }
 
 const git = (...args: string[]) => String(spawnSync('git', args, { encoding: 'utf8', timeout: 60_000 }).stdout ?? '').trim()
+/**
+ * THE ROSTER IS NOT RUN TWICE OVER ONE TREE, AND THE CUT WAS DOING EXACTLY THAT.
+ *
+ * `verify:all` chains 57 gates and costs about 818 seconds. The land runs them, commits, and minutes later
+ * the cut runs them again over the identical commit — 818 of a 917-second cut spent recomputing a settled
+ * answer, which is most of what a release costs. verify:stream now reproduces a clean gate from a receipt
+ * over the same tree, but the cut does not go through the stream, so none of that reached the release path.
+ *
+ * It does now: if a receipt exists over THIS tree in which every gate came back clean, the roster is
+ * reproduced rather than re-run. The key is sound for the same reason it is sound in the stream — the tree
+ * digest covers src, scripts AND the .vitepress sources, so an edited gate moves the tree exactly as an
+ * edited subject does, and a stale gate can never be skipped against an unmoved tree.
+ *
+ * ONLY A FULLY CLEAN RECEIPT REPRODUCES. A receipt carrying a violation says the tree failed, and a cut
+ * must never read that as permission; it re-runs so the failure is seen live. And a reproduction says so in
+ * the cell rather than borrowing the word "green" from work it did not do.
+ */
+const rosterReproduced = (root: string): string | null => {
+  try {
+    // THE DIGEST IS COMPUTED THROUGH THE BOOTSTRAP, NOT BY IMPORTING THE MODULE. A direct require of
+    // every-fold.ts throws ERR_UNSUPPORTED_DIR_IMPORT — it imports src/0 as a directory, which only the
+    // bundler resolves — and the catch below would have swallowed that and returned null on every call.
+    // The reproduction would then never fire and the cut would look unchanged: a silent no-op wearing the
+    // name of an optimisation, which is the third time today a mechanism of mine failed by returning
+    // nothing quietly. It is spawned the way every other gate is, so it resolves the same way they do.
+    const probe = spawnSync('node', ['--experimental-strip-types',
+      'src/pair/enforcement/script/cli/bootstrap/index.ts', 'run', 'scripts/verify/every-fold.ts', 'treeDigest'],
+      { cwd: root, encoding: 'utf8', timeout: 300_000 })
+    const tree = (probe.stdout ?? '').trim().replace(/^"|"$/g, '')
+    if (!/^[0-9a-f]{8,}$/.test(tree)) return null
+    const dir = join(root, 'scripts/verify/receipts')
+    const files = readdirSync(dir).filter((f) => f.startsWith(`${tree}-`) && f.endsWith('.json'))
+    for (const f of files.sort().reverse()) {
+      const r = JSON.parse(readFileSync(join(dir, f), 'utf8')) as { address?: string; violated?: string[]; notRun?: string[]; gates?: number; clean?: number }
+      if ((r.violated?.length ?? 1) === 0 && (r.notRun?.length ?? 1) === 0 && (r.clean ?? 0) === (r.gates ?? -1)) return String(r.address ?? f.slice(0, 16))
+    }
+  } catch { /* no receipt, no reproduction — the roster runs */ }
+  return null
+}
+
 const gate = (script: string, args: readonly string[] = []) => spawnSync('npm', ['run', script, ...args], { encoding: 'utf8', timeout: 1_800_000 }).status === 0
 
 /**
@@ -115,7 +155,14 @@ export async function releaseReadiness(root: string = process.cwd()): Promise<{ 
     // A PARSER THAT FINDS NOTHING MUST NOT READ AS GREEN: an empty set makes every derived cell vacuously
     // true and would certify a publish this matrix never tested, so the emptiness is its own red cell.
     { condition: 'tested', surface: 'workflows', holds: discovered.length > 0, says: discovered.length > 0 ? `${discovered.length} publish-time command(s) discovered from the tag-fired workflows — each is a cell below` : 'NO publish-time commands discovered — the workflow parser found nothing, so nothing below was tested' },
-    ...discovered.map((g): Cell => ({ condition: 'tested', surface: g.workflow.replace(/\.ya?ml$/, ''), holds: gate(g.gate, g.args), says: `npm run ${[g.gate, ...g.args].join(' ')} — ${g.step}` })),
+    ...discovered.map((g): Cell => {
+      const reused = g.gate === 'verify:all' ? rosterReproduced(root) : null
+      return { condition: 'tested', surface: g.workflow.replace(/\.ya?ml$/, ''),
+        holds: reused !== null ? true : gate(g.gate, g.args),
+        says: reused !== null
+          ? `npm run ${g.gate} — REPRODUCED from receipt ${reused} over this exact tree, not re-run`
+          : `npm run ${[g.gate, ...g.args].join(' ')} — ${g.step}` }
+    }),
     // STABLE — the tree is exactly what was measured, and it is the tree the world has
     { condition: 'stable', surface: 'git', holds: branch === 'main' && !dirty && head === upstream && head.length > 0, says: `on main=${branch === 'main'} clean=${!dirty} pushed=${head === upstream}` },
     { condition: 'stable', surface: 'repo', holds: new Set(declared.map((d) => d.version)).size === 1 && citation === version, says: `every package.json and CITATION.cff agree on ${version || '(none)'}` },
