@@ -3041,8 +3041,22 @@ export function cpuGpuSelfBalance(matrix: MindMatrix = buildMatrix(), at = 0) {
     const memoReuse = localAudit.suiteMemoHit
       ? 1
       : localAudit.suiteWarmMs / max(localAudit.suiteColdMs, MS_FLOOR_QPU)
+    // THE GUARD CHECKED THE DENOMINATOR AND NOT THE NUMERATOR. `buildStepMs > 0` protects against a
+    // division by zero and says nothing about buildMs, which is NOT FINITE when there is no build to
+    // measure — so the true branch was taken and loadCpu came out NaN. That NaN then multiplied through
+    // cpuWeight into balanceIndex, cpuShare and gpuShare, taking 5 of this fold's 6 facets off.
+    //
+    // MEASURED, not inferred: with no .vitepress/dist this fold printed `loadCpu=NaN … cpuWeight=NaN`
+    // while heatNorm=0, memoReuse=1, queueNorm=0 and gpuWeight=1 were all finite. loadCpu was the only
+    // non-finite input. It was also the LAST of the build-dependence that stopped every-fold's counts
+    // from reproducing: 164 folds / 395 off facets with a build, 165 / 400 without, and diffing the two
+    // flagged lists showed this single fold was the entire difference.
+    //
+    // CPU_GPU_HALF is the fallback the expression already declared for "no build timing available";
+    // this only makes a non-finite buildMs take the branch that was written for exactly that case.
+    // dynamicMetricsOn — `metrics.every(Number.isFinite)` — was catching this correctly the whole time.
     const loadCpu =
-      buildMinReport && buildMinReport.ciBaseline.buildStepMs > 0
+      buildMinReport && buildMinReport.ciBaseline.buildStepMs > 0 && Number.isFinite(buildMinReport.buildMs)
         ? min(1, buildMinReport.buildMs / buildMinReport.ciBaseline.buildStepMs)
         : CPU_GPU_HALF
     const loadGpu = cooperation.policy.gpuSurface === 'browser-canvas-raf' ? 1 : 0
