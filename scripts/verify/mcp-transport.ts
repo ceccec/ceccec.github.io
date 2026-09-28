@@ -14,6 +14,8 @@
  */
 
 import { QUANTUM_DEV_STDIO_TOOL_IDS } from '../../packages/quantum-dev-sdk/src/pure.ts'
+import { gateToBootstrap } from '../../packages/quantum-dev-sdk/src/bootstrap.ts'
+import { openLeads } from './next.ts'
 import { ratchet } from './status.ts'
 import { quantumCliToolsCatalog } from '../../src/quantum/apps/index.ts'
 import { stripNonCode } from './corpus.ts'
@@ -111,8 +113,31 @@ export function assertBrowserClaimsAreLoadable(): void {
   console.log(ratchet('mcp.browser-claim-unverified', contradicted.length, { evidence: () => contradicted }))
 }
 
+/**
+ * THE LEAD SURFACE AND THE ACTION SURFACE MUST MEET, AND THEY DID NOT.
+ *
+ * next_leads is the MCP tool that tells a client what to do: every recorded floor above zero, each with the gate
+ * that measures it. run_gate is the tool that does it. Measured against each other for the first time: next_leads
+ * named 20 distinct gates across 33 open floors, run_gate accepted 8 fixed aliases, and the intersection was
+ * EMPTY. A client was told exactly what to run and could run none of it — verify:mcp-transport among them, so
+ * this gate could not be reached through the surface it audits.
+ *
+ * The cause was a hand-written allow-list drifting from what the repository measures, which is the defect this
+ * corpus refuses everywhere else. run_gate resolves derived now — an alias, or any verify script in either
+ * spelling — and this is the invariant that keeps the two in step: every gate the lead surface names must
+ * resolve through the action surface. Add a ratchet whose gate run_gate cannot reach and this refuses.
+ */
+export function assertLeadGatesAreRunnable(root: string = process.cwd()): void {
+  const leadGates = [...new Set(openLeads(root).map((lead) => lead.gate))].filter(Boolean).sort()
+  const unrunnable = leadGates.filter((gate) => !gateToBootstrap(gate, root))
+  console.log(`  mcp: next_leads names ${leadGates.length} gate(s) across the open floors — ${unrunnable.length} not runnable through run_gate`)
+  for (const gate of unrunnable) console.log(`      ${gate}`)
+  console.log(ratchet('mcp.lead-gates-unrunnable', unrunnable.length, { evidence: () => unrunnable.map((gate) => `next_leads names ${gate} and run_gate cannot resolve it`) }))
+}
+
 export function assertMcpTransport(): void {
   assertBrowserClaimsAreLoadable() // the surface may not promise a browser what the barrel cannot load
+  assertLeadGatesAreRunnable() // every gate next_leads names must be runnable through run_gate
   const h = handshake()
   console.log(`mcp stdio: ${h.lines} line(s) on stdout, every one parsed as JSON — ${h.serverName}`)
   console.log(`  tools/list served ${h.tools.length}: ${h.tools.join(', ')}`)

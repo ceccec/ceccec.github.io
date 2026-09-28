@@ -42,6 +42,7 @@
   "limits.constant-check": 0,
   "limits.weakest-bar": 58,
   "mcp.browser-claim-unverified": 19,
+  "mcp.lead-gates-unrunnable": 0,
   "movie.animation-clocks": 3,
   "movie.cannot-fail": 1,
   "movie.draw-calls-per-frame": 1391,

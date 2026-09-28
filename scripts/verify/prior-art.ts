@@ -133,6 +133,15 @@ export const PRIOR_ART_SEARCHED: readonly {
   // R-diagonal pairs as free off-diagonal compressions, the postsynaptic targets of olfactory neurons,
   // an R package for Singapore government APIs. Those are claimed. Two returned the real thing, and are
   // attributed with what the query found.
+  // ── SEARCHED 2026-09-28, the circus pair. Both registered the same day they were proven, so neither sat in
+  // `unclassified` waiting for a ledger pass. The averaging theorem has a clean single attribution; the statics
+  // half is textbook with no originator to name, which is recorded as such rather than left blank.
+  { theorem: 'siteswap average is the ball count',
+    searched: 'siteswap averaging theorem, number of balls equals the average of the throws',
+    when: '2026-09-28', found: 'THE AVERAGING THEOREM IS BUHLER, EISENBUD, GRAHAM & WRIGHT — Juggling Drops and Descents, American Mathematical Monthly 101 (1994) 507–519, doi:10.1080/00029890.1994.11996984 (https://www.tandfonline.com/doi/abs/10.1080/00029890.1994.11996984). They formalised juggling patterns as permutations of the integers, gave the validity condition this row uses, and introduced N(b,n) counting periodic patterns with n beats and b balls. The averaging statement itself — in a non-multiplex siteswap the average IS the ball count — is standard and stated plainly at https://en.wikipedia.org/wiki/Siteswap . NOT Shannon: Shannon\'s juggling theorem is (F+D)/(V+D) = B/H over dwell, flight and vacant times with B balls and H hands (http://lkozma.net/blog/shannons-juggling-theorem.html), a different result about TIMING rather than about which sequences are juggleable, and conflating the two was an error corrected here.' },
+  { theorem: 'the first moment vanishes exactly at balance',
+    searched: 'rotational equilibrium first moment zero, centre of mass over pivot, moment of inertia of a balance pole',
+    when: '2026-09-28', found: 'ELEMENTARY STATICS WITH NO SINGLE ORIGINATOR, which is why this row carries reference addresses and not an author. Rotational equilibrium requires the net torque to vanish, Στ = 0, and for parallel weights that is Σ mᵢrᵢ = 0 about the pivot — the definition of the centre of mass lying over it (https://en.wikipedia.org/wiki/Torque and https://en.wikipedia.org/wiki/Center_of_mass). The pole half is the parallel-axis contribution 2md² to the moment of inertia, with α = τ/I (https://en.wikipedia.org/wiki/Moment_of_inertia). Archimedes has the law of the lever, which is the same first moment, but the modern formulation is textbook rather than attributable to him.' },
   // ── SEARCHED 2026-09-28. Fourteen rows that the ISO word-boundary fix would otherwise have dropped into
   // `unclassified`. This file refuses to free a row without accounting for it — the only ways down from
   // unclassified-undeclared are to search a row and move it, or to declare it and say what you looked at — so
@@ -2531,6 +2540,11 @@ export const ATTRIBUTION_COVERAGE: readonly {
   readonly coverage: 'covers' | 'partial' | 'weaker'
   readonly why: string
 }[] = [
+  // ── EXAMINED 2026-09-28, the circus pair — judged the day they were registered.
+  { theorem: 'siteswap average is the ball count', coverage: 'weaker',
+    why: 'the averaging theorem holds for every period and every height; this row exhausts period ≤ 5 and heights ≤ 9, which is 5088 juggleable patterns and a compute budget rather than a limit. The citation proves it in general, so the row states less than the literature — and says so in its own boundary. What the row adds beyond the citation is the two-route agreement: the digit average against a simulation counting balls in flight, where the simulation had to be repaired twice before it agreed.' },
+  { theorem: 'the first moment vanishes exactly at balance', coverage: 'covers',
+    why: 'the citation is the row: Στ = 0 for parallel weights is Σ mᵢrᵢ = 0, which is the centre of mass over the pivot, and the pole\'s 2md² is the parallel-axis contribution with α = τ/I. The row\'s 29241-configuration check and its exact rational pole ratio are that textbook statics computed, not extended. No originator is credited because the search found none to credit — Archimedes\' lever is the same first moment, but the modern formulation is not attributable to him.' },
   // ── EXAMINED 2026-09-28: the fourteen rows the ISO word-boundary fix freed and the same-day searches
   // re-attributed. Judged against each row's own statement, which changed two verdicts a title would have got
   // wrong: the Chinese Remainder Theorem row verifies THREE moduli sets of a general isomorphism, and "exactly

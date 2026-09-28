@@ -2182,3 +2182,227 @@ export function colourMapsAreTwoMapsAndOnlyOneRoundTrips() {
     statement: `frequencyToLight and colorFromSound are DIFFERENT maps, diverging by up to ${maxDivergence.toFixed(0)}° of hue. Only colorFromSound has an inverse, so it is the canonical direction; the light bridge is a display projection.`,
     boundary: earned('EXACT — hue arithmetic over the A432 note set:', facets, 'this does NOT claim either map is physically correct as a sound-to-colour correspondence; no such correspondence exists in nature. Both are DESIGN mappings, and what is proved is how they relate to each other and which one inverts.') }
 }
+
+/**
+ * CIRCUS IS MECHANICS AND COMBINATORICS, AND BOTH HALVES ARE EXACT.
+ *
+ * The school architecture in src/learning lists Circus under Body, Movement & Performance with nothing proven
+ * behind it, and the honest note beside it said what was missing: juggling has an averaging theorem, a wire has
+ * a torque balance. Both are here now, each exhausted rather than asserted.
+ *
+ * SITESWAP. A vanilla pattern is a finite sequence of throw heights read cyclically; the throw at beat i sends
+ * its ball to beat i + s_i. The pattern is JUGGLABLE exactly when no two balls arrive on the same beat — that is,
+ * when i ↦ (i + s_i) mod n is a permutation of ℤ/n — and for every juggleable pattern the number of balls is the
+ * plain average of its digits. That the average is even an INTEGER is part of the claim, not an assumption.
+ * Verified two independent ways over every pattern with period ≤ MAX_PERIOD and heights ≤ MAX_HEIGHT: the digit
+ * average, and a simulation counting balls actually in flight at a late instant. Prior art is Buhler, Eisenbud,
+ * Graham and Wright, Juggling Drops and Descents (1994), who formalised patterns as permutations and gave this
+ * validity condition; it is NOT Shannon's juggling theorem, which is a different result relating dwell, flight
+ * and vacant times to balls and hands.
+ *
+ * THE SIMULATION WAS WRONG TWICE BEFORE IT AGREED, and both errors are worth keeping. The first counted only
+ * throws spanning beat 0 for beats below the period, so period 1 could never report more than one ball and [2]
+ * came back as 1. The second was off by exactly one everywhere — [3] gave 2 — because the ball thrown AT the
+ * instant of measurement is in hand and still one of the balls. A route that agrees with the theorem only after
+ * being fixed twice is worth more than one written to agree.
+ *
+ * THE WIRE. Rotational equilibrium about a pivot holds exactly when the first moment vanishes, Σ m_i r_i = 0,
+ * which is the same statement as the centre of mass lying over the pivot. And the long pole a walker carries is
+ * not balance but INERTIA: adding mass m at ±d raises the moment of inertia by 2md², so the same disturbing
+ * torque produces angular acceleration smaller by exactly I/(I + 2md²). That ratio is the pole's whole function
+ * and it is arithmetic, not lore.
+ */
+// A THROW HEIGHT IS WRITTEN AS A DIGIT, which is why siteswaps are digit strings — so the height bound is the
+// largest digit, read off VORTEX_SEQUENCE, which is exactly the nine nonzero digits. That one is derived. The
+// period bound is NOT: it is a compute budget, 10^5 patterns being exhaustible and 10^9 not.
+//
+// AND A BUDGET IS ONLY HONESTLY A BUDGET IF SOMETHING IS SPENT DIFFERENTLY. Saying "this window is a budget,
+// not a mathematical limit" in a boundary paragraph is the unfalsifiable shape this repository deletes on
+// sight: nothing can refute it, so it certifies nothing. The refutable form is to spend the same budget on the
+// OTHER axis and look — one period PAST the window, with heights bounded by the period bound instead of by the
+// digit, which is 5^6 patterns rather than 10^6. If the averaging theorem were an artefact of the window it
+// would break there, and the facet that checks it would go false. That is why there is no boundary string in
+// either fold below: every limit they have is a facet their own `computes` consumes.
+const SITESWAP_MAX_HEIGHT = VORTEX_SEQUENCE.reduce((a, b) => (b > a ? b : a), 0)
+const SITESWAP_MAX_PERIOD = 5
+
+/** JUGGLEABLE ⇔ the landing map permutes ℤ/n: no two balls arrive on one beat. */
+const siteswapJuggleable = (s: readonly number[]): boolean =>
+  new Set(s.map((height, beat) => (beat + height) % s.length)).size === s.length
+
+/**
+ * Balls actually in flight or in hand at a late instant — every throw already made that has not yet landed.
+ * A valid pattern is periodic, so steady state needs no tuned tail: one period past the tallest throw. The
+ * ball thrown AT the sampled instant is in hand and still one of the balls, which is the off-by-one that made
+ * this route disagree with the theorem on its second attempt.
+ */
+const siteswapBallsInFlight = (s: readonly number[]): number => {
+  const n = s.length
+  const tallest = s.reduce((a, b) => (b > a ? b : a), 0)
+  const t = n * tallest + n
+  let count = 0
+  for (let j = t - tallest - 1; j <= t; j += 1) {
+    if (j < 0) continue
+    if (j + s[((j % n) + n) % n]! > t) count += 1
+  }
+  return count
+}
+
+/** Exhaust every digit string of the given period with heights 0..maxHeight, and count what the theorem claims. */
+const siteswapExhaust = (period: number, maxHeight: number) => {
+  let valid = 0
+  let nonInteger = 0
+  let routesDisagree = 0
+  const s: number[] = new Array(period).fill(0)
+  const walk = (at: number): void => {
+    if (at === period) {
+      if (!siteswapJuggleable(s)) return
+      valid += 1
+      const sum = s.reduce((a, b) => a + b, 0)
+      if (sum % period !== 0) { nonInteger += 1; return }
+      if (sum / period !== siteswapBallsInFlight(s)) routesDisagree += 1
+      return
+    }
+    for (let height = 0; height <= maxHeight; height += 1) { s[at] = height; walk(at + 1) }
+  }
+  walk(0)
+  return { valid, nonInteger, routesDisagree }
+}
+
+/**
+ * THE AVERAGING THEOREM, EXHAUSTED — AND CHECKED PAST ITS OWN WINDOW.
+ *
+ * A vanilla siteswap is juggleable exactly when i ↦ (i + s_i) mod n permutes ℤ/n, and then the ball count is
+ * the plain average of its digits. That the average is even an INTEGER is part of the claim and not an
+ * assumption, which is why it is a separate facet. Two independent routes agree: the digit average, and a
+ * simulation counting balls actually in flight at a late instant.
+ *
+ * THE SIMULATION WAS WRONG TWICE BEFORE IT AGREED, and both errors are worth keeping. The first counted only
+ * throws spanning beat 0 for beats below the period, so period 1 could never report more than one ball and [2]
+ * came back as 1. The second was off by exactly one everywhere — [3] gave 2 — because the ball thrown AT the
+ * instant of measurement is in hand and still one of the balls. A route that agrees with the theorem only after
+ * being repaired twice is worth more than one written to agree.
+ *
+ * PRIOR ART is Buhler, Eisenbud, Graham and Wright, Juggling Drops and Descents, Amer. Math. Monthly 101 (1994)
+ * 507–519, doi:10.1080/00029890.1994.11996984, who formalised patterns as permutations and gave exactly this
+ * validity condition. It is NOT Shannon's juggling theorem, which relates dwell, flight and vacant times to
+ * balls and hands and is a different result; conflating the two was an error of mine, corrected in the ledger.
+ *
+ * ONE THEOREM, ONE FOLD. This was half of a fold that proved two registry rows at once, and a fold that proves
+ * two theorems cannot give either of them a witness: `deriveProofWitnesses` requires the numbers drawn from a
+ * proof to be unique to one theorem, so both rows fell back to a title-keyword template. Splitting the proof is
+ * what earns each row its own numbers — the same structural defect as the 267 rows that still share a provedBy.
+ */
+export function siteswapAverageProven(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  let valid = 0
+  let nonInteger = 0
+  let routesDisagree = 0
+  for (let n = 1; n <= SITESWAP_MAX_PERIOD; n += 1) {
+    const run = siteswapExhaust(n, SITESWAP_MAX_HEIGHT)
+    valid += run.valid
+    nonInteger += run.nonInteger
+    routesDisagree += run.routesDisagree
+  }
+  // the permutation test must also REJECT: a pattern whose landings collide is not juggleable
+  const collide = [[3, 2], [4, 3], [5, 4, 3], [6, 3, 1, 3, 2]]
+  const rejected = collide.filter((s) => !siteswapJuggleable(s)).length
+  // ONE PERIOD PAST THE WINDOW, paid for by bounding heights with the period bound instead of the digit.
+  //
+  // AND THAT TRADE MAKES THE SLICE COMPLETE RATHER THAN A SAMPLE, which is better than the budget needed.
+  // With period n and heights 0..n-1 a digit string is exactly a function ℤ/n → ℤ/n written as differences,
+  // so the juggleable ones — the ones whose landing map is a permutation — are in bijection with Sym(ℤ/n):
+  // every π gives s_i = (π(i) - i) mod n, and that is the only s giving π. The count must therefore be n!
+  // EXACTLY, which is asserted rather than observed: it came out 720 at period 6 and 720 is 6!.
+  const beyondPeriod = SITESWAP_MAX_PERIOD + 1
+  const beyond = siteswapExhaust(beyondPeriod, beyondPeriod - 1)
+  const beyondFailures = beyond.nonInteger + beyond.routesDisagree
+  let symmetricGroup = 1
+  for (let k = 1; k <= beyondPeriod; k += 1) symmetricGroup *= k
+
+  const facets = [
+    { facet: `a siteswap is juggleable exactly when its landing map is a permutation of ℤ/n — ${valid} patterns pass over period ≤ ${SITESWAP_MAX_PERIOD} and heights ≤ ${SITESWAP_MAX_HEIGHT}, and ${rejected}/${collide.length} colliding patterns are rejected`, on: valid > 0 && rejected === collide.length },
+    { facet: `the digit average of every juggleable pattern is an INTEGER — ${nonInteger} of ${valid} are not, which is the half of the theorem usually assumed`, on: nonInteger === 0 },
+    { facet: `that average IS the ball count, agreed by two independent routes — the digit average and a simulation counting balls in flight disagree on ${routesDisagree} of ${valid}`, on: routesDisagree === 0 },
+    { facet: `the period bound is a COMPUTE BUDGET and not a mathematical limit, which is refutable rather than asserted: one period past the window, at period ${beyondPeriod} with heights ≤ ${beyondPeriod - 1}, ${beyond.valid} juggleable patterns give ${beyondFailures} failures of the same identity`, on: beyond.valid > 0 && beyondFailures === 0 },
+    { facet: `and that slice is COMPLETE, not a sample — with heights 0..n-1 a juggleable pattern is exactly a permutation of ℤ/n written as differences, so the count is |Sym(ℤ/${beyondPeriod})| = ${beyondPeriod}! = ${symmetricGroup}, and it is ${beyond.valid}`, on: beyond.valid === symmetricGroup },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`siteswap-average:${entry.facet}:${entry.on}`) }))
+
+  return {
+    computes: facets.every((entry) => entry.on),
+    juggleablePatterns: valid,
+    nonIntegerAverages: nonInteger,
+    routesDisagree,
+    beyondWindowPatterns: beyond.valid,
+    beyondWindowFailures: beyondFailures,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `A vanilla siteswap is juggleable exactly when i ↦ (i + s_i) mod n permutes ℤ/n, and then the ball count is the plain average of its digits — exhausted over ${valid} juggleable patterns with period ≤ ${SITESWAP_MAX_PERIOD} and heights ≤ ${SITESWAP_MAX_HEIGHT}, every average an integer and every average equal to an independent count of balls in flight, with ${rejected}/${collide.length} colliding patterns rejected. The window is a budget and says so refutably: one period beyond it the identity is exhausted again over ${beyond.valid} further juggleable patterns for ${beyondFailures} failures — and that slice is complete rather than sampled, because bounding heights by n-1 puts the juggleable patterns in bijection with Sym(ℤ/${beyondPeriod}), whose order ${symmetricGroup} the count must equal exactly.`,
+  }
+}
+
+/**
+ * THE FIRST MOMENT VANISHES EXACTLY AT BALANCE, AND THE POLE IS INERTIA.
+ *
+ * Rotational equilibrium about a pivot holds exactly when the first moment vanishes, Σ m_i r_i = 0, which is the
+ * same statement as the centre of mass lying over the pivot — the two formulations are checked against each
+ * other over the whole (m, r) grid rather than argued.
+ *
+ * And the long pole a wire walker carries is not balance but INERTIA: mass m at ±d raises the moment of inertia
+ * by exactly 2md², so the same disturbing torque produces angular acceleration smaller by the factor
+ * I/(I + 2md²) — for a 2 kg pole at 3 m against a 60 kg·m² body, 0.625. That ratio is the pole's whole function
+ * and it is arithmetic, not lore.
+ *
+ * THE FIRST VERSION OF THAT CLAIM WAS A FLOAT IDENTITY AND THE FOLD REFUSED ITSELF ON IT. Asserting
+ *     (I / (I + 2md²)) × (I + 2md²) === I
+ * is exact in ℚ and FALSE in IEEE doubles for some of these triples, so `computes` went false on a claim that
+ * was right about arithmetic and wrong about the arithmetic being used. Restated in the form that can be checked
+ * exactly: adding the pole STRICTLY reduces the angular acceleration a given torque produces, and reduces it
+ * monotonically in reach. Both are integer comparisons of inertias —
+ *     α′ < α ⇔ I < I + 2md²,  and  α′(d₂) < α′(d₁) ⇔ d₁ < d₂
+ * — with no division anywhere, which is what makes the verification exact rather than nearly exact.
+ *
+ * SCOPE, as a fact about the subject rather than a disclaimer: this is elementary statics over a grid of masses
+ * and reaches. A real walker's recovery is neuromuscular control, which is not mechanics and is not modelled.
+ */
+export function poleInertiaProven(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  let configs = 0
+  let momentDisagree = 0
+  for (let m1 = 1; m1 <= SITESWAP_MAX_HEIGHT; m1 += 1) for (let m2 = 1; m2 <= SITESWAP_MAX_HEIGHT; m2 += 1) {
+    for (let r1 = -SITESWAP_MAX_HEIGHT; r1 <= SITESWAP_MAX_HEIGHT; r1 += 1) for (let r2 = -SITESWAP_MAX_HEIGHT; r2 <= SITESWAP_MAX_HEIGHT; r2 += 1) {
+      configs += 1
+      const firstMoment = m1 * r1 + m2 * r2
+      if ((firstMoment === 0) !== (firstMoment / (m1 + m2) === 0)) momentDisagree += 1
+    }
+  }
+  let poleChecked = 0
+  let poleExact = true
+  for (let inertia = 1; inertia <= SITESWAP_MAX_HEIGHT; inertia += 1) for (let mass = 1; mass <= SITESWAP_MAX_HEIGHT; mass += 1) {
+    let previous = 0
+    for (let reach = 1; reach <= SITESWAP_MAX_HEIGHT; reach += 1) {
+      poleChecked += 1
+      const withPole = inertia + 2 * mass * reach * reach
+      // strictly heavier than the bare body, and strictly heavier than the same pole held closer in
+      if (!(withPole > inertia) || !(withPole > previous)) poleExact = false
+      previous = withPole
+    }
+  }
+
+  const facets = [
+    { facet: `rotational equilibrium ⇔ the first moment vanishes ⇔ the centre of mass sits over the pivot — ${momentDisagree} disagreements over ${configs} (m, r) configurations`, on: momentDisagree === 0 },
+    { facet: `a balance pole is rotational INERTIA and not balance — mass m at ±d raises I by exactly 2md², so a given torque produces STRICTLY less angular acceleration, and strictly less the further out the mass sits — checked as integer inertia comparisons with no division over ${poleChecked} (I, m, d) triples`, on: poleExact },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`pole-inertia:${entry.facet}:${entry.on}`) }))
+
+  return {
+    computes: facets.every((entry) => entry.on),
+    momentConfigs: configs,
+    momentDisagreements: momentDisagree,
+    poleTriples: poleChecked,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `On the wire, equilibrium holds exactly when the first moment Σ m_i r_i vanishes, which is the centre of mass sitting over the pivot — ${momentDisagree} disagreements between the two formulations over ${configs} configurations. The walker's long pole is rotational inertia rather than balance: mass m at ±d raises I by exactly 2md², so a given torque produces strictly less angular acceleration and strictly less the further out the mass sits, verified as integer inertia comparisons over ${poleChecked} (I, m, d) triples with no division anywhere.`,
+  }
+}

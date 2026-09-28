@@ -4,7 +4,7 @@
  * Pair: sdk/wire · upgrade/local
  */
 import { spawn } from 'node:child_process'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -37,6 +37,20 @@ export const MCP_CANONICAL_BUILD_GATE = 'docs-build' as const
 /** Bootstrap subcommand shared by npm `docs:build` and MCP `run_gate docs-build` (thin dual, not bypass). */
 export const MCP_DOCS_BUILD_BOOTSTRAP = 'docs:build-seal' as const
 
+/**
+ * A GATE NAME IS EITHER ONE OF THESE ALIASES OR ANY `verify:*` SCRIPT — AND IT HAD TO BECOME THE SECOND.
+ *
+ * next_leads is the tool that tells a client what to do: every recorded floor above zero, with THE GATE THAT
+ * MEASURES IT. run_gate is the tool that does it. Measured against each other, they did not meet: next_leads
+ * named 20 distinct gates across 33 open floors and run_gate accepted EIGHT fixed aliases, none of which was
+ * any of the 20. Zero reachable. An MCP client was told precisely what to run and given no way to run any of
+ * it — including verify:mcp-transport, this surface's own transport gate.
+ *
+ * That is a hand-written list drifting from the thing it describes, which is the defect this corpus refuses
+ * everywhere else, so the allow-list is derived: an alias below, or the name of a verify script, in either the
+ * npm spelling (`verify:canon`) or the MCP spelling (`verify-canon`). The aliases stay because they are not
+ * all verify scripts — docs-build maps to a seal subcommand and carries its own env gate.
+ */
 export type GateName =
   | 'check-types'
   | 'limits-verify'
@@ -46,6 +60,8 @@ export type GateName =
   | 'enforcement-trinity'
   | 'limits-seal'
   | 'rosetta-batch'
+  | `verify:${string}`
+  | `verify-${string}`
 
 const GATE_TO_BOOTSTRAP: Record<GateName, readonly string[]> = {
   'check-types': ['check:types'],
@@ -135,8 +151,31 @@ export function runBootstrapCli(argv: readonly string[], opts?: RepoOpts): Promi
   })
 }
 
+/**
+ * Resolve a gate name to bootstrap argv: an alias, or a verify script named in either spelling.
+ *
+ * The script is checked against package.json when it is readable, so a typo is refused by name instead of
+ * running nothing and reporting success — a gate that cannot be found must say so, which is the whole reason
+ * this surface exists. When package.json cannot be read the name passes through and the bootstrap decides.
+ */
+export function gateToBootstrap(name: string, cwd?: string): readonly string[] | null {
+  const alias = (GATE_TO_BOOTSTRAP as Record<string, readonly string[] | undefined>)[name]
+  if (alias) return alias
+  const script = name.startsWith('verify:')
+    ? name
+    : /^verify-[a-z0-9-]+$/.test(name)
+      ? `verify:${name.slice('verify-'.length)}`
+      : null
+  if (!script) return null
+  try {
+    const pkg = JSON.parse(readFileSync(join(cwd ?? process.cwd(), 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+    if (pkg.scripts && !(script in pkg.scripts)) return null
+  } catch { /* unreadable package.json: let the bootstrap be the judge rather than guessing */ }
+  return [script]
+}
+
 export async function runGate(name: GateName, args: readonly string[] = [], opts?: RepoOpts): Promise<GateResult> {
-  const bootstrapArgs = GATE_TO_BOOTSTRAP[name]
+  const bootstrapArgs = gateToBootstrap(name, opts?.cwd)
   if (!bootstrapArgs) {
     return {
       exitCode: 1,

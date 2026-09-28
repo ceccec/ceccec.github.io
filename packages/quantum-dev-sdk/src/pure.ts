@@ -65,7 +65,7 @@ export const QUANTUM_DEV_TOOL_DEFS = [
         name: {
           type: 'string',
           description:
-            `check-types | limits-verify | mission-gate | verify-structure | ${MCP_CANONICAL_BUILD_GATE} | enforcement-trinity | limits-seal | rosetta-batch`,
+            `ANY verify script, in either spelling — verify:canon or verify-canon — plus these aliases: check-types | limits-verify | mission-gate | verify-structure | ${MCP_CANONICAL_BUILD_GATE} | enforcement-trinity | limits-seal | rosetta-batch. next_leads names the gate for every open floor and all of them are runnable here; a verify name that is not a script in package.json is refused by name rather than silently doing nothing.`,
         },
       },
       required: ['name'],

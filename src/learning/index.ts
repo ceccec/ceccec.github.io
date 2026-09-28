@@ -2688,6 +2688,12 @@ export const SUBJECT_SCIENCE_LINKS: readonly { readonly topic: string; readonly 
     why: 'why inheritance is particulate and not a blend — a refutation, which is the shape a science lesson should have' },
   { topic: 'Mathematics', theorem: 'Königsberg has no Euler walk',
     why: 'the founding problem of graph theory, decided by counting odd-degree vertices — a walk a class can attempt and a proof that it cannot exist' },
+  { topic: 'Circus', theorem: 'siteswap average is the ball count',
+    why: 'a juggling pattern is juggleable exactly when its landing map permutes ℤ/n, and then the ball count is the average of its digits — a performer already knows 531 is three balls, and this is why' },
+  { topic: 'Circus', theorem: 'the first moment vanishes exactly at balance',
+    why: 'the wire: equilibrium is Σ mᵢrᵢ = 0, and the long pole is rotational inertia rather than balance — it raises I by 2md² and slows the fall by exactly I/(I + 2md²)' },
+  { topic: 'Body awareness', theorem: 'the first moment vanishes exactly at balance',
+    why: 'standing, leaning and carrying are the same first moment about the feet — the centre of mass over the base, which is one equation a body can be taught to feel' },
   { topic: 'Problem solving', theorem: 'Petersen graph non-Hamiltonian',
     why: 'the standard counterexample: a graph that looks traversable and is not, so a conjecture dies on one object — the method, not the result, is the lesson' },
 ]
