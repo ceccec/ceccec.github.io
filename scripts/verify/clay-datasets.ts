@@ -7,7 +7,7 @@
  * blocked by a registry. Two coverages only fall: formulas without a refuting dataset, perspectives no formula reaches.
  */
 import { ratchet, everyRatchet } from './status.ts'
-import { CLAY_DATASETS, clayCrossDiscovery, datasetUrl, rosettaRotation } from '../../src/thunder/verify/testing/index.ts'
+import { CLAY_DATASETS, clayCrossDiscovery, datasetUrls, rosettaRotation } from '../../src/thunder/verify/testing/index.ts'
 import { DOUBLE_TORUS_PERSPECTIVES } from '../../src/water/double/index.ts'
 
 const UA = 'ceccec-double-torus verify (keyless, read-only)'
@@ -24,7 +24,7 @@ async function sample(url: string): Promise<string | null> {
 
 export async function assertClayDatasets(): Promise<void> {
   const fetched: Record<string, string | null> = {}
-  for (const d of CLAY_DATASETS) { const url = datasetUrl(d); fetched[url] = url ? await sample(url) : null }
+  for (const d of CLAY_DATASETS) for (const url of datasetUrls(d)) fetched[url] = await sample(url)
   everyRatchet(() => {
     const d = clayCrossDiscovery(fetched)
     const rot = rosettaRotation()

@@ -35,7 +35,7 @@ import { readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
 export { ICHING_NUMBERS } from '../../0/index.ts'
-export { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational/index.ts'
+
 
 // Folded census of the file distribution. The gapless-Fibonacci count is the
 // surface UNFOLDED — the genus-2 fundamental octagon laid flat, every file an

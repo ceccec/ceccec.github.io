@@ -51765,7 +51765,7 @@ function piSixDigitsDoubleCrossColour(matrix = buildMatrix()) {
 function sevenStarRosettaNaturalMotion(at) {
   const RAYS = 7;
   const LETTERS_PER_RAY = 4;
-  const GOLDEN_ANGLE5 = GOLDEN_ANGLE_RAD;
+  const GOLDEN_ANGLE4 = GOLDEN_ANGLE_RAD;
   const DOUBLING_PERIOD = 6;
   const DR_MODULUS = 9;
   const STATION_COUNT = 10;
@@ -51780,7 +51780,7 @@ function sevenStarRosettaNaturalMotion(at) {
     const radius = breathRadius;
     const letters = Array.from({ length: LETTERS_PER_RAY }, (__, k) => {
       const letterIndex = ray * LETTERS_PER_RAY + k;
-      const letterAngle = currentAngle + k / LETTERS_PER_RAY * GOLDEN_ANGLE5;
+      const letterAngle = currentAngle + k / LETTERS_PER_RAY * GOLDEN_ANGLE4;
       const letterRadius = 0.25 + 0.15 * humanEase((at / (5e3 + ray * 700) + k / LETTERS_PER_RAY) % 1);
       const digitalRootPosition = letterIndex % DR_MODULUS + 1;
       return { letterIndex, letterAngle, letterRadius, digitalRootPosition };
@@ -51796,7 +51796,7 @@ function sevenStarRosettaNaturalMotion(at) {
     breathRadius,
     breathPulse,
     proof: { coprime7_6, coprime7_9, coprime7_10, holds: coprime7_6 && coprime7_9 && coprime7_10 },
-    constants: { RAYS, LETTERS_PER_RAY, PHI, GOLDEN_ANGLE: GOLDEN_ANGLE5, DOUBLING_PERIOD, DR_MODULUS, STATION_COUNT },
+    constants: { RAYS, LETTERS_PER_RAY, PHI, GOLDEN_ANGLE: GOLDEN_ANGLE4, DOUBLING_PERIOD, DR_MODULUS, STATION_COUNT },
     root: toUuid(`seven-star-rosetta-motion:${coprime7_6}:${coprime7_9}:${coprime7_10}:${at}`)
   };
 }

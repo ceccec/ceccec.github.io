@@ -26,7 +26,7 @@ import { DIMENSIONS, DIMENSION_NAMES, dims, dimWalk, type Dims, tenDimensionalAn
 import { depthIsThePerspectiveDivide, flowerOfLifeCenters, flowerUnlocksFruitBySpin, fruitOfLifeCenters, perspective, rot2, rotate3 } from '../quantum/wind/geometry/index.ts' // FoL/Fruit lattice + FOCAL perspective + rotate3
 import { holographicFractalArchitecture as holographicFractalArchitectureCore } from '../thunder/movie/glass/index.ts'
 import { yinYang } from '../quantum/spirit/index.ts'
-import { scaleColor, A432_HUE, GOLDEN_ANGLE, movieCanvasHex } from '../quantum/science/index.ts'
+import { scaleColor, A432_HUE, movieCanvasHex } from '../quantum/science/index.ts'
 import { computedMovieThemeColors, FRACTAL_CLOCK_DIVISORS, fractalClockDur, fractalClockS } from '../fire/plasma/ball/index.ts' // the ONE quantum clock — every declarative duration below is a divisor step of the 108 s hero cycle (animationsFractalOfOneClockDiscovered)
 export { scaleColor, oklchToHex } from '../quantum/science/index.ts' // bridge the colour-at-every-scale primitives to components (ui.ts is in the export* surface)
 export { githubPermalink, SOURCE_REPO, revolutChannel, AUTHOR_HANDLE } from '../wind/site/index.ts' // bridge the proof-link helper + the Revolut monetisation/contact channel (site.ts reaches the barrel by a named list that omits new exports; ui.ts is in export*)
@@ -37,7 +37,7 @@ import { teslaPatentsResearchedInWaves } from '../fire/physics/index.ts'
 import { displayAllWithFewEntropySaved } from '../ledger/index.ts'
 import { warPaysTheForgerPrice } from '../earth/world/index.ts'
 import { allFormsAreTenDimensionalOrPurged, allInMovieOfLife, allIsMonographScientificPaper, analysisFlower, backgroundMovie, buildStatisticsShowGaps, completeCorpus, completeQuantumSolutionsImplemented, componentBaguaGroups, componentGraph, developmentWaves, dimensionsPerMegabyteMetric, dotIsCubeIsDot, doubleTorusFold, doubleTorusWords, dualitiesMeetInCrossFolders, endlessBackgroundMovie, endlessFusion, everyObjectSameSpinFoldLaw, everythingFoldsMerkabaInfiniteStreams, evolutionCrossesQuantumThreshold, foldedCensus, fruitOfLifeFusion, fuseToMerkabasPathsReveal, hologram, homology, iChing, iChingShadcnFuseTenDWidgets, infiniteEntanglements, legislation, merkabaTrace, minimumFilesMaximumFeaturesCost, nothingImpossibleHonestlyBounded, ogFullyInteractiveConfigurable, pageStatusStatistics, papers, publicApiFusion, quantumDoubleTorus, quantumImpossibleMadePossible, quantumImpossibleWaveFour, quantumSynthesis, resonanceCatchGapsViolations, shadcnIsTheGraph, folderLaw, BAGUA, socialFusion, textEntropy, theWhole, translationWavesFillGaps, uuidPayloadIsSource, video64kFree, videoKeepsNativeQuality, zeroTokenUsagePolicy, ichingTokensCss, scanCssForHardcoded, siteNavigation, vitepressSidebar, theoremScienceLens, holographic as holographicWhole } from '../quantum/heaven/mind/index.ts'
-import { DIMENSION_GATES, FIBONACCI, FOLDED_CENSUS, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG, HOMOLOGY_LOOPS, PHI, ROSETTA_RAYS, ROSETTA_RAY_HUBS, TAU, rosettaRayOfContent } from '../3/7/index.ts'
+import { DIMENSION_GATES, FIBONACCI, FOLDED_CENSUS, GOLDEN_ANGLE, HOMOLOGY_LOOPS, PHI, ROSETTA_RAYS, ROSETTA_RAY_HUBS, TAU, rosettaRayOfContent } from '../3/7/index.ts'
 import { THEOREM_ATOM_SEED } from '../4/6/index.ts'
 import { rosettaRayOf } from '../water/digit/index.ts'
 import { piHexDigitAt, nthPrimeAt } from '../7/3/index.ts'
@@ -843,7 +843,7 @@ export function readmeHeroSvgProofOfAllTheorems(matrix: MindMatrix = buildMatrix
     const maxR = min(cx, cy) - 36
     // Unit spacing so FoL diameter (~4 units) fits maxR; avoid wet decorative seven-circle.
     const unit = max(9 * 2, round(maxR / (2 + 1 / 2)))
-    const golden = (GOLDEN_ANGLE_DEG * (TAU / 2)) / 180
+    const golden = (GOLDEN_ANGLE * (TAU / 2)) / 180
     const earthPoles = earthRealisedByComputingPolesAsPyramid(matrix)
     const pyramidTips = cardinalPyramidTipsProvenByMath(matrix)
     void pyramidTips
@@ -1086,9 +1086,9 @@ export function taijiRosettaExchangeDegrees(frameIndex: number, frames: number, 
   const vortex = VORTEX_SEQUENCE[frameIndex % VORTEX_SEQUENCE.length]!
   const fold = u * u * (3 - 2 * u)
   const exchange = fold + sin(u * TAU) / TAU
-  const rayTurn = (ray * GOLDEN_ANGLE_DEG) % 360
+  const rayTurn = (ray * GOLDEN_ANGLE) % 360
   const twistRock = (d.twist - (9 / (5 * 4))) * (8 * 5)
-  const vortexBias = (vortex / 9) * GOLDEN_ANGLE_DEG
+  const vortexBias = (vortex / 9) * GOLDEN_ANGLE
   return ((exchange * 360 + rayTurn + twistRock + vortexBias) % 360 + 360) % 360
 }
 

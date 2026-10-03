@@ -11,6 +11,16 @@ import { CLAY_ORDER, CLAY_PROBLEMS } from '../../../research/index.ts'
 import { EARTH_RADIUS_KM, TAU, claySolvedByFormulas, physicalFtlByFormulas } from '../../../3/7/index.ts'
 import { greatCircleKm } from '../../../5/5/index.ts'
 import { HERO_CYCLE_MS } from '../../../fire/plasma/ball/index.ts'
+import { MEEUS_J2000_JD } from '../../../heaven/sky/astronomy/index.ts'
+import * as digit1 from '../../../1/index.ts'
+import * as digit2 from '../../../2/index.ts'
+import * as digit3 from '../../../3/index.ts'
+import * as digit4 from '../../../4/index.ts'
+import * as digit5 from '../../../5/index.ts'
+import * as digit6 from '../../../6/index.ts'
+import * as digit7 from '../../../7/index.ts'
+import * as digit8 from '../../../8/index.ts'
+import * as digit9 from '../../../9/index.ts'
 import type { MindMatrix } from '../../../types/index.ts'
 
 // A default is a ledgered axiom, never a bare literal: the type refuses any non-sealed number.
@@ -847,6 +857,8 @@ const digitInverse = (d: number) => digitalRoot(2 * 9 - d)
 const invertAngle = (t: number) => ((360 / 2 - t) % 360 + 360) % 360
 /** Five latitudes from the sealed circle: ±60°, ±30°, 0. */
 const LATITUDES = [-(360 / 6), -(360 / 6 / 2), 0, 360 / 6 / 2, 360 / 6] as const
+/** hue ↦ hue + 180° on the colour circle, defined once for the voice row. */
+const complementHue = (h: number) => (h + 360 / 2) % 360
 
 export const INVOLUTION_PATTERNS: readonly Involution[] = [
   { id: 'riemann-s-involution', domain: 'functional', pattern: 'σ: s ↔ (1−s)', fixedPoint: 'Re s = 1/2 (critical line)', verificationMethod: 'computation', status: 'open', statement: 'σ(s) = 1−s, σ² = id, unique fixed line Re s = ½ from the functional equation; that every non-trivial zero lies on it is the Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
@@ -878,6 +890,14 @@ export const INVOLUTION_PATTERNS: readonly Involution[] = [
   { id: 'merkaba-counter-rotation', perspective: 'merkaba', domain: 'functional', pattern: 'σ(ω) = −ω', fixedPoint: 'ω = 0', verificationMethod: 'computation', status: 'proved', statement: 'the two tetrahedra counter-rotate: σ negates the angular velocity, the same seam involution Navier–Stokes carries — decided on five rates', sigma: (w) => -w, samples: [-2, -1, 0, 1, 2], model: 'angular velocity of the merkaba' },
   { id: 'earth-hemisphere', perspective: 'earth', domain: 'topological', pattern: 'σ: north ↔ south', fixedPoint: 'the equator', verificationMethod: 'computation', status: 'proved', statement: 'both earths rotate within each other: the hemisphere exchange is the two-point reflection — decided', sigma: reflect(PAIR.length), samples: PAIR, model: 'north ↔ south' },
   { id: 'vite-mirror-lobes', perspective: 'vite-mirror', domain: 'computational', pattern: 'σ: near lobe (docs) ↔ far lobe (src)', fixedPoint: 'none — the seam', verificationMethod: 'computation', status: 'proved', statement: 'docs ≡ invert(src): the UI mirrors the carrier lobe for lobe — the two-point reflection, decided', sigma: reflect(PAIR.length), samples: PAIR, model: 'near ↔ far' },
+  { id: 'biology-watson-crick', perspective: 'biology', domain: 'algebraic', pattern: 'σ(b) = 3 − b on the bases A C G T', fixedPoint: 'none — every base pairs with another', verificationMethod: 'computation', status: 'proved', statement: 'the Watson–Crick complement A ↔ T, C ↔ G is the digit-inverse at scale four on the alphabetical bases: an involution with no fixed point, the heredity carrier of the biology life torus (matter, metabolism, sensing) — decided on the four bases', sigma: reflect(2 * 2), samples: [0, 1, 2, 3], model: 'the four bases A C G T as 0..3' },
+  { id: 'life-born-phase', perspective: 'life', domain: 'functional', pattern: 'σ(ψ) = −ψ with |ψ|² fixed', fixedPoint: 'ψ = 0', verificationMethod: 'computation', status: 'proved', statement: 'the Born rule is phase-blind: negating an amplitude leaves |ψ|², so every probability of the life torus (χ · clock · Born · H₁ — matter, metabolism, heredity, homeostasis, sensing, mind) is unchanged — the negation involution, decided on five amplitudes', sigma: (a) => -a, samples: [-2, -1, 0, 1, 2], model: 'real amplitudes ψ' },
+  { id: 'faces-near-far', perspective: 'faces', domain: 'topological', pattern: 'σ: near face ↔ far face of Σ₂', fixedPoint: 'none — the seam', verificationMethod: 'computation', status: 'proved', statement: 'navigation, site, mcp and multimedia are faces of the genus-2 surface; σ exchanges the near and the far face — the two-point reflection, decided', sigma: reflect(PAIR.length), samples: PAIR, model: 'near ↔ far face' },
+  { id: 'plasma-charge-conjugation', perspective: 'plasma', domain: 'functional', pattern: 'σ(q) = −q', fixedPoint: 'q = 0', verificationMethod: 'computation', status: 'proved', statement: 'the plasma ball on the thunder screen under charge conjugation: every filament’s charge negated, the neutral screen fixed — the negation involution, decided on five charges', sigma: (q) => -q, samples: [-2, -1, 0, 1, 2], model: 'charge of a filament' },
+  { id: 'dynamics-epoch-reflection', perspective: 'dynamics', domain: 'functional', pattern: 'σ(JD) = 2·J2000 − JD', fixedPoint: 'JD = J2000', verificationMethod: 'computation', status: 'proved', statement: 'dynamics, geometry and the universe align on J2000: reflecting a Julian day through the epoch is an involution with the epoch fixed — decided on five days around MEEUS_J2000_JD', sigma: (jd) => 2 * MEEUS_J2000_JD - jd, samples: [-2, -1, 0, 1, 2].map((k) => MEEUS_J2000_JD + k), model: 'Julian days around J2000' },
+  { id: 'voice-hue-complement', perspective: 'voice', domain: 'algebraic', pattern: 'σ(hue) = hue + 180°', fixedPoint: 'none on the circle', verificationMethod: 'computation', status: 'proved', statement: 'word ↦ (hue, note) in play-learn: the complementary hue is the involution of the colour circle with no fixed point — decided on the six hues of C₆', sigma: complementHue, samples: [0, 1, 2, 3, 4, 5].map((k) => k * (360 / 6)), model: 'hue on C₆ in degrees' },
+  { id: 'fusion-lobe-exchange', perspective: 'fusion', domain: 'topological', pattern: 'σ: lobe ↔ lobe of the reactor', fixedPoint: 'none — the seam', verificationMethod: 'computation', status: 'proved', statement: 'fusion ≡ on(torus-carrier): the reactor’s two lobes exchange under σ while the carrier stays on, vitepress and social alike — the two-point reflection, decided', sigma: reflect(PAIR.length), samples: PAIR, model: 'lobe ↔ lobe' },
+  { id: 'lens-near-far-torus', perspective: 'lens', domain: 'computational', pattern: 'σ: near torus ↔ far torus', fixedPoint: 'none — cracked code is close to neither', verificationMethod: 'computation', status: 'proved', statement: 'the lens sees every fold as near- or far-torus and swaps them; a fold the lens cannot place is cracked, not fixed — the two-point reflection, decided', sigma: reflect(PAIR.length), samples: PAIR, model: 'near ↔ far torus' },
 ]
 
 type InvolutionKind = 'involution' | 'scale-map'
@@ -1446,6 +1466,7 @@ export function doubleTorusReferrerDiscovery(edges: readonly ReferrerEdge[], fol
 export type DatasetState = 'held' | 'refuted' | 'unchecked'
 export type DatasetVerdict = { readonly state: DatasetState; readonly detail: string }
 const MIN_SAMPLE: number = 64 satisfies (typeof ICHING_NUMBERS)[number] // fewer rows than a bāguà squared is a glimpse, not a sample
+const MIN_PARTITION: number = 8 satisfies (typeof ICHING_NUMBERS)[number] // fewer node counts than a bāguà is a glimpse of a partition
 const linesOf = (text: string) => text.split('\n').map((l) => l.trim()).filter(Boolean)
 
 /** Odlyzko's zeros1: one imaginary part per line, increasing. N(T) = (T/τ)·log(T/τe) + 7/8 + S(T) with S(T) = O(log T) — range-checked. */
@@ -1488,6 +1509,26 @@ export function checkGoldbach(text: string): DatasetVerdict {
   const zero = rows.filter(([n, r]) => n! >= 2 && r === 0)
   return zero.length ? { state: 'refuted', detail: `no prime pair for 2n = ${zero.map(([n]) => 2 * n!).join(', ')}` } : { state: 'held', detail: `every even number from 4 to ${2 * rows[rows.length - 1]![0]!} has a prime pair (${rows.length} rows)` }
 }
+/** OEIS b-files joined under '## Axxxxxx' headers, in the row's order: planar graphs on n nodes (A005470), then planar graphs with
+ *  χ = 2, 3, 4 (A164099, A164100, A164101). For every n all four list, planar(n) = 1 + χ₂(n) + χ₃(n) + χ₄(n) — the one χ = 1 planar
+ *  graph is the edgeless one. A shortfall is a planar graph needing a fifth colour: the four-colour theorem, tested on public data. */
+export function checkPlanarChromaticPartition(text: string): DatasetVerdict {
+  const tables: Map<number, number>[] = []
+  for (const l of linesOf(text)) {
+    if (l.startsWith('## ')) { tables.push(new Map()); continue }
+    if (l.startsWith('#') || !tables.length) continue
+    const [n, a] = l.split(/\s+/).map(Number)
+    if (Number.isFinite(n) && Number.isFinite(a)) tables[tables.length - 1]!.set(n!, a!)
+  }
+  const [total, two, three, four] = tables
+  if (!total || !two || !three || !four) return { state: 'unchecked', detail: `${tables.length} of 4 b-files in the sample` }
+  const ns = [...total.keys()].filter((n) => two.has(n) && three.has(n) && four.has(n))
+  if (ns.length < MIN_PARTITION) return { state: 'unchecked', detail: `${ns.length} node counts shared by all four b-files — too few` }
+  const short = ns.filter((n) => total.get(n)! !== 1 + two.get(n)! + three.get(n)! + four.get(n)!)
+  return short.length
+    ? { state: 'refuted', detail: `planar graphs on n = ${short.join(', ')} nodes are not partitioned by χ ≤ 4 — a fifth colour is needed, or a table is wrong` }
+    : { state: 'held', detail: `planar graphs on ${ns[0]}…${ns[ns.length - 1]} nodes partition exactly by χ ∈ {1, 2, 3, 4} (${total.get(ns[ns.length - 1]!)} graphs at the top)` }
+}
 /** The datasets by CONNECTOR KEY in the keyless catalogue (src/stats · LIVE_CONNECTORS): the URL derives from the catalogued row —
  *  a b-file sequence is swapped into the row's b-file path, a sample size into its _limit — so one source names every endpoint
  *  and the MCP's live_connectors shows exactly what this gate reads. */
@@ -1507,16 +1548,23 @@ export const CLAY_DATASETS = [
   { involution: 'birch-swinnerton-dyer', connector: 'lmfdb-ec', limit: 100, exactness: 'exact on the catalogued range — rank = analytic rank', check: checkBsdRanks },
   { involution: 'twin-prime-gap', connector: 'oeis-bfile', sequence: 'A001223', exactness: 'exact parity; Cramér bound range-checked', check: checkPrimeGaps },
   { involution: 'goldbach-parity', connector: 'oeis-bfile', sequence: 'A045917', exactness: 'exact on the catalogued range — r(2n) ≥ 1', check: checkGoldbach },
+  { involution: 'four-color-planar', connector: 'oeis-bfile', sequences: ['A005470', 'A164099', 'A164100', 'A164101'], exactness: 'exact on the catalogued range — planar graphs on n nodes partition by χ ∈ {1, 2, 3, 4}', check: checkPlanarChromaticPartition },
 ] as const
 export type ClayDataset = (typeof CLAY_DATASETS)[number]
-export function datasetUrl(d: ClayDataset): string {
+export function datasetUrls(d: ClayDataset): readonly string[] {
   const row = LIVE_CONNECTORS.find((c) => c.key === d.connector)
-  if (!row) return ''
-  let url: string = row.url
-  if ('sequence' in d) url = url.replace(/A\d{6}\/b\d{6}/, `${d.sequence}/b${d.sequence.slice(1)}`)
-  if ('limit' in d) url = url.replace(/_limit=\d+/, `_limit=${d.limit}`)
-  return url
+  if (!row) return []
+  const derive = (sequence?: string) => {
+    let url: string = row.url
+    if (sequence) url = url.replace(/A\d{6}\/b\d{6}/, `${sequence}/b${sequence.slice(1)}`)
+    if ('limit' in d) url = url.replace(/_limit=\d+/, `_limit=${d.limit}`)
+    return url
+  }
+  // A ROW MAY NEED SEVERAL FILES: the four-colour partition reads four b-files, each derived from the one catalogued row.
+  if ('sequences' in d) return d.sequences.map(derive)
+  return [derive('sequence' in d ? d.sequence : undefined)]
 }
+export const datasetUrl = (d: ClayDataset): string => datasetUrls(d)[0] ?? ''
 const CLAY_OF: Readonly<Partial<Record<string, keyof typeof CLAY_PROBLEMS>>> = { 'riemann-s-involution': 'riemann', 'p-vs-np': 'pvnp', 'birch-swinnerton-dyer': 'bsd', hodge: 'hodge', 'navier-stokes': 'navierStokes', 'yang-mills': 'yangMills', poincare: 'poincare' }
 const NO_DATASET: Readonly<Record<string, string>> = {
   'p-vs-np': 'SAT benchmarks need a solver run — hardness-solver, opt-in, not a keyless read',
@@ -1524,6 +1572,13 @@ const NO_DATASET: Readonly<Record<string, string>> = {
   'navier-stokes': 'no dataset refutes a regularity statement',
   hodge: 'no public table pairs Hodge classes with algebraic cycles',
   poincare: 'proved — a theorem needs no dataset',
+  // ROTATED INTO THE DATA PERSPECTIVE AND FOUND WANTING — each reason names the source tried and why it cannot refute the row.
+  'fermat-exponent': 'OEIS A265731 lists the powers C^z = A^x + B^y but not the coprime triples — one column cannot test 1/p + 1/q + 1/r < 1',
+  'abc-coprimality': 'OEIS A130510 lists c of the abc-hits without a and b — rad(abc) is not computable from one column',
+  'knot-cobordism': 'OEIS A002863 counts prime knots per crossing number; σ pairs smooth structures, which no count refutes',
+  'langlands-dual-group': 'LMFDB keys modular forms by level and weight; σ swaps roots and coroots of a root datum no public table lists',
+  'homological-mirror-symmetry': 'the Kreuzer–Skarke Hodge-pair list is a bulk download, not a keyless API; h^{1,1} ↔ h^{2,1} is the test it would carry',
+  'graph-isomorphism-quasi-poly': 'a scale map, not an involution; T(n) ↔ 2^{poly(log n)} needs a solver run, not a keyless read',
 }
 const MIN_WORD: number = 4 satisfies (typeof ICHING_NUMBERS)[number] // a word shorter than the four-fold is a particle, not a perspective
 const wordsOf = (s: string) => new Set(s.toLowerCase().split(/[^a-zà-ÿ0-9]+/).filter((w) => w.length >= MIN_WORD))
@@ -1542,8 +1597,10 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
   const dataVerdict = (r: Involution): DatasetVerdict | null => {
     const ds = CLAY_DATASETS.find((d) => d.involution === r.id)
     if (!ds) return null
-    const text = fetched[datasetUrl(ds)]
-    return text ? ds.check(text) : { state: 'unchecked', detail: `${ds.connector} not fetched — zero-network by default` }
+    const urls = datasetUrls(ds)
+    const texts = urls.map((u) => fetched[u])
+    if (!urls.length || texts.some((t) => !t)) return { state: 'unchecked', detail: `${ds.connector} not fetched — zero-network by default` }
+    return ds.check('sequences' in ds ? texts.map((t, i) => `## ${ds.sequences[i]}\n${t}`).join('\n') : texts[0]!)
   }
   const rows = all.involutions.map((r) => {
     const own = wordsOf(`${r.id} ${r.pattern} ${r.statement} ${r.domain} ${r.model}`)
@@ -1611,3 +1668,23 @@ export async function runQuantumGetStatusExit(_root = '', argv: readonly string[
   return printJson(await quantumGetStatus({ ...input, credentials: { ...envCredentials(), ...(input.credentials ?? {}) } }))
 }
 export async function runLiveTestingExit(_root = '', _argv: readonly string[] = []): Promise<number> { return printJson(await liveApiTestSuite()) }
+
+// ---- THE PI-TRAIN READ. The nine digit roots (src/1 … src/9) compute and seal their own physics from src/0 and nothing imported
+// them: nine sealed measurements nobody read, which verify:referrers counted as dead logic. The referrer is this fold, which the
+// corpus chunk carries — read from water/digit the roots' side-effectful module bodies entered the SHELL (+2 KiB in spirit.js,
+// build.shell-machinery-kilobytes refused 633 > 630); mathematics changes the corpus, never the shell. Held as nine namespaces:
+// every root exports `digit`, and one name from nine sources reads as nine homes to the referrer gate.
+const TENS = 5 * 2 // the 180° fold pairs d with 10 − d; the 90° fold with 9 − d (mod 9) — src/0 reflectFold
+const DIGIT_ROOTS = [digit1.digit, digit2.digit, digit3.digit, digit4.digit, digit5.digit, digit6.digit, digit7.digit, digit8.digit, digit9.digit] as const
+export function piTrain() {
+  const rows = DIGIT_ROOTS.map((r, i) => ({ d: i + 1, tensPair: r.polarities.tensPair, ninePair: r.polarities.ninePair, root: r.root }))
+  const tens = rows.every((r) => r.d + r.tensPair === TENS)
+  const nines = rows.every((r) => (r.d + r.ninePair) % (TENS - 1) === 0)
+  const distinct = new Set(rows.map((r) => r.root)).size === rows.length
+  const facets = [
+    { facet: 'the 180° fold pairs every digit with its tens complement: d + σ(d) = 10 on all nine roots', on: tens },
+    { facet: 'the 90° fold pairs every digit with its nines complement: d + ν(d) ≡ 0 (mod 9) on all nine roots', on: nines },
+    { facet: 'the nine sealed roots are nine distinct Merkle roots', on: distinct },
+  ]
+  return { computes: facets.every((f) => f.on), facets, rows, statement: `The pi-train read from the nine digit roots: ${rows.filter((r) => r.d + r.tensPair === TENS).length} of 9 tens pairs and ${rows.filter((r) => (r.d + r.ninePair) % (TENS - 1) === 0).length} of 9 nines pairs hold on each root's own polarities; ${new Set(rows.map((r) => r.root)).size} distinct seals.` }
+}

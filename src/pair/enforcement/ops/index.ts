@@ -923,22 +923,25 @@ export async function runCliExit(root: string, argv: string[] = []) {
       return runThinMount('src/quantum/millennium/index.ts', 'runCryptoAssessExit', root, rest)
     case 'migration:plan':
       return runThinMount('src/quantum/millennium/index.ts', 'runMigrationPlanExit', root, rest)
+    // THE TABLE MOUNTED PATHS THAT DO NOT EXIST. crypto:encode/decode/inverse named src/crypto/<op>, reverse a folder, and the four
+    // solution:* commands a solution-cli.ts — eight commands that threw "bundle entry missing" on every call, while verify:referrers
+    // called the two folds they mean unreferred. Each names the index.ts that declares its export now.
     case 'crypto:encode':
-      return runThinMount('src/crypto/encode', 'runCryptoEncodeExit', root, rest)
+      return runThinMount('src/crypto/index.ts', 'runCryptoEncodeExit', root, rest)
     case 'crypto:decode':
-      return runThinMount('src/crypto/decode', 'runCryptoDecodeExit', root, rest)
+      return runThinMount('src/crypto/index.ts', 'runCryptoDecodeExit', root, rest)
     case 'crypto:reverse':
-      return runThinMount('src/crypto/reverse', 'runCryptoReverseExit', root, rest)
+      return runThinMount('src/crypto/index.ts', 'runCryptoReverseExit', root, rest)
     case 'crypto:inverse':
-      return runThinMount('src/crypto/inverse', 'runCryptoInverseExit', root, rest)
+      return runThinMount('src/crypto/index.ts', 'runCryptoInverseExit', root, rest)
     case 'solution:demo':
-      return runThinMount('src/quantum/solution/solution-cli.ts', 'runSolutionDemoExit', root, rest)
+      return runThinMount('src/quantum/solution/cli/index.ts', 'runSolutionDemoExit', root, rest)
     case 'solution:benchmark':
-      return runThinMount('src/quantum/solution/solution-cli.ts', 'runSolutionBenchmarkExit', root, rest)
+      return runThinMount('src/quantum/solution/cli/index.ts', 'runSolutionBenchmarkExit', root, rest)
     case 'solution:migration':
-      return runThinMount('src/quantum/solution/solution-cli.ts', 'runSolutionMigrationExit', root, rest)
+      return runThinMount('src/quantum/solution/cli/index.ts', 'runSolutionMigrationExit', root, rest)
     case 'solution:manifest':
-      return runThinMount('src/quantum/solution/solution-cli.ts', 'runSolutionManifestExit', root, rest)
+      return runThinMount('src/quantum/solution/cli/index.ts', 'runSolutionManifestExit', root, rest)
     default:
       process.stderr.write(`unknown: ${cmd}\n`)
       return 1

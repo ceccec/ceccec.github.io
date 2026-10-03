@@ -11,7 +11,16 @@ import { ratchet, everyRatchet } from './status.ts'
 import { doubleTorusReferrerDiscovery, type ReferrerEdge } from '../../src/thunder/verify/testing/index.ts'
 
 const ROOT = process.cwd()
-const IMPORT = /^(?:import|export)\s+(?:type\s+)?(?:\{([^}]*)\}|\*\s+as\s+\w+|\*)\s+from\s+'([^']+)'/gm
+// A DEFAULT IMPORT IS AN EDGE. pair/formal/proofs and gates/consolidated take `import harmonic from '…/ui/harmonic/index.ts'` and this
+// matched only `{…}`, `* as x` and `*` — ui/harmonic was called unreferred by two referrers. Groups: 1 named list, 2 default
+// binding, 3 the list after a default binding, 4 the source.
+const IMPORT = /^(?:import|export)\s+(?:type\s+)?(?:\{([^}]*)\}|\*\s+as\s+\w+|\*|(\w+)(?:\s*,\s*\{([^}]*)\})?)\s+from\s+'([^']+)'/gm
+// A DYNAMIC IMPORT IS AN EDGE. ops reaches gates/consolidated and trinity/weave with `await import('…/index.ts')` and this reader,
+// scanning static statements only, called both unreferred — two leads that were a blind spot of the instrument, not of the tree.
+const DYNAMIC = /\bimport\(\s*'([^']+)'\s*\)/g
+const MOUNT = /\brunThinMount\(\s*'(src\/[^']+)'\s*,\s*'(\w+)'/g
+// importQuantumBundle('src/…/index.ts') is the other spelling of a mount: waves:run reaches intelligence/harmonisation this way.
+const BUNDLE = /\bimportQuantumBundle\(\s*'(src\/[^']+\/index\.ts)'/g
 
 export function referrerEdges(root: string = ROOT): { edges: ReferrerEdge[]; folds: string[]; hasDual: (fold: string) => boolean } {
   const files: string[] = []
@@ -19,12 +28,47 @@ export function referrerEdges(root: string = ROOT): { edges: ReferrerEdge[]; fol
   walk(join(root, 'src'))
   const fold = (p: string) => relative(join(root, 'src'), dirname(p))
   const edges: ReferrerEdge[] = []
-  for (const f of files) {
+  // A FOLD IS REACHED BY MORE THAN A STATIC IMPORT FROM src. The bootstrap command table mounts an entry by path string
+  // (runThinMount), package.json run-scripts name an entry and its export, and scripts/ imports folds directly: each is a
+  // referrer, read here, so 'unreferred' means reachable by nothing — not unseen by one regex.
+  const scriptFiles: string[] = []
+  const walkScripts = (d: string) => { for (const e of readdirSync(d)) { const p = join(d, e); if (statSync(p).isDirectory()) walkScripts(p); else if (e.endsWith('.ts')) scriptFiles.push(p) } }
+  if (existsSync(join(root, 'scripts'))) walkScripts(join(root, 'scripts'))
+  const refOf = (f: string) => (f.startsWith(join(root, 'src')) ? fold(f) : relative(root, f))
+  const underSrc = (target: string) => target.endsWith('index.ts') && target.startsWith(join(root, 'src')) && existsSync(target)
+  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  for (const text of Object.values(pkg.scripts ?? {})) {
+    // The script's own entry is a referrer edge too: every `node … <entry>.ts` names the fold it starts (the bootstrap, for 63 of them).
+    const entry = /\bnode (?:--[\w-]+ )*(src\/\S+\/index\.ts)\b/.exec(text)
+    if (entry && underSrc(join(root, entry[1]!))) edges.push({ ref: 'package.json', to: fold(join(root, entry[1]!)), names: ['*'] })
+    const m = /\bbootstrap\/index\.ts run (src\/\S+\/index\.ts) (\w+)/.exec(text)
+    if (m && underSrc(join(root, m[1]!))) edges.push({ ref: 'package.json', to: fold(join(root, m[1]!)), names: [m[2]!] })
+  }
+  for (const f of [...files, ...scriptFiles]) {
     for (const m of readFileSync(f, 'utf8').matchAll(IMPORT)) {
-      const target = normalize(join(dirname(f), m[2]!))
+      const target = normalize(join(dirname(f), m[4]!))
       if (!target.endsWith('index.ts') || !target.startsWith(join(root, 'src'))) continue
-      const names = m[1] ? m[1].split(',').map((x) => x.trim().replace(/^type\s+/, '').split(/\s+as\s+/)[0]!).filter(Boolean) : ['*']
-      edges.push({ ref: fold(f), to: fold(target), names })
+      const list = m[1] ?? m[3]
+      const listed = list ? list.split(',').map((x) => x.trim().replace(/^type\s+/, '').split(/\s+as\s+/)[0]!).filter(Boolean) : []
+      const names = [...(m[2] ? ['default'] : []), ...listed]
+      if (!names.length) names.push('*')
+      edges.push({ ref: refOf(f), to: fold(target), names })
+    }
+    const text = readFileSync(f, 'utf8')
+    for (const m of text.matchAll(DYNAMIC)) {
+      const target = normalize(join(dirname(f), m[1]!))
+      if (!underSrc(target)) continue
+      edges.push({ ref: refOf(f), to: fold(target), names: ['*'] })
+    }
+    for (const m of text.matchAll(MOUNT)) {
+      const target = normalize(join(root, m[1]!))
+      if (!underSrc(target)) continue
+      edges.push({ ref: refOf(f), to: fold(target), names: [m[2]!] })
+    }
+    for (const m of text.matchAll(BUNDLE)) {
+      const target = normalize(join(root, m[1]!))
+      if (!underSrc(target)) continue
+      edges.push({ ref: refOf(f), to: fold(target), names: ['*'] })
     }
   }
   return { edges, folds: files.map(fold).sort(), hasDual: (fo) => existsSync(join(root, 'src', fo, 'index.vue')) }

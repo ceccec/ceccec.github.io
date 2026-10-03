@@ -272,7 +272,7 @@ export type ImportPathDistanceEdge = {
     readonly gapHops: number;
 };
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict/index.ts';
-export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict/index.ts';
+export { type HandList, type HandListMirror } from './strict/index.ts';
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict/index.ts';
 export { dryDupe, theoremAudit, geoGebraEncode, buildMin, mathAlgebra, invisibleGapsCaughtByGates, runInvisibleGapsCaughtByGatesExit, coreMathFreeForAll, mathFree, freeMath, licensePsg, psgLicense, LICENSE_CONTACT_PSG, runCoreMathFreeForAllExit, runMathFreeExit, runFreeMathExit, runLicensePsgExit, runPsgLicenseExit, legalCanon, patentCanon, } from './strict/scan/index.ts';
 export { FIBONACCI_BANDS, VAULT_STATION, NOT_LESS_NOT_MORE_LAW, COMPUTATIONAL_LIMITS_LAW, verifyGaplessCensus, verifyFoldedCensus, verifyDimensionGates, scanVaultViolations, scanLogicDisplayViolations, scanRenderIndexViolations, scanStaticPathViolations, displayUiPathFromLogicIndex, logicIndexRequiresDisplayGate, LOGIC_DISPLAY_PREFIX, UI_DISPLAY_PREFIX, MAX_RECURSION_DEPTH, displaySubpathFromLogicTail, mindRecursionDepth, RENDER_BARREL_ALLOWLIST, scanForbiddenFolderNameViolations, CANONICAL_ROOT_FOLDERS, scanRootDistributionViolations, scanDigitLatticeViolations, discoverSrcIndexes, scanIncompleteIndexViolations, vitepressAutomountPaths, type DiscoveredIndexEntry, computeComputationalLimitSnapshot, computationalGatePassed, computationalLimitsGapDetail, scanIChingDistribution, scanRosettaDistribution, ichingDistributionGuidance, rosettaCensusGuidance, verifyRosettaTaxonomy, auditComputationalGates, type ComputationalLimitSnapshot, type IChingDistributionSnapshot, type RosettaDistributionSnapshot } from './computational/index.ts';
@@ -3308,3 +3308,4 @@ export declare function feedGatesIndexToChat(root?: string): {
 export declare const gatesChat: typeof feedGatesIndexToChat;
 /** npm run quantum:feed-gates */
 export declare function runFeedGatesIndexToChatExit(root?: string, _argv?: readonly string[]): number;
+export { scanHandLists, handListMirrors } from './strict/scan/index.ts';

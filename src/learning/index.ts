@@ -40,7 +40,7 @@ import { proofAcknowledgmentFormatSaved } from '../wind/site/index.ts'
 import { quantumCoordinateNav } from '../fire/features/index.ts'
 import { openGraph } from '../quantum/icons/index.ts'
 import { navigationAroundHero } from '../ui/index.ts'
-import { BAGUA, backgroundMovie, componentPages, computedSlugsFoldTheGraph, digitFolders, foldPair, foldedCensus, goldenRatio, harmonicBands, holographic, homology, iChingDomainMap, livingTorus, memoByRoot, merkaba, merkleProof, noMirroringOneSourceAndMath, pureDiamonds, quantumProofs, recurrence, roundTo, seedFromText, selfBuild, shadcnIsTheGraph, templateDisplaysEveryOgObject, theWhole, vitepressConfigComputesAll } from '../quantum/heaven/mind/index.ts'
+import { BAGUA, backgroundMovie, componentPages, computedSlugsFoldTheGraph, digitFolders, foldPair, foldedCensus, goldenRatio, harmonicBands, holographic, homology, iChingDomainMap, livingTorus, merkaba, merkleProof, noMirroringOneSourceAndMath, pureDiamonds, quantumProofs, recurrence, roundTo, seedFromText, selfBuild, shadcnIsTheGraph, templateDisplaysEveryOgObject, theWhole, vitepressConfigComputesAll } from '../quantum/heaven/mind/index.ts'
 import { analogSpeech } from '../quantum/icons/index.ts'
 import { displayAllWithFewEntropySaved } from '../ledger/index.ts'
 import { everythingFoldsMerkabaInfiniteStreams, merkabasInDoubleTorus } from '../mountain/topology/index.ts'
@@ -1761,7 +1761,7 @@ export function ogBuildsNavigation(matrix: MindMatrix = buildMatrix()) {
  * (what a page IS), never the slug hash. Nav, sidebar, related sections, crosslinks and the RayHub
  * landing all consume THIS one fold — change the shelving here and every surface follows. */
 export function sciencePortalParts(matrix: MindMatrix = buildMatrix()) {
-  return rosettaMemoByRoot('sciencePortalParts', matrix, () => {
+  return memoByRoot('sciencePortalParts', matrix, () => {
   // staticPages() is the SERVED set (the theorem-science lens roster) — under the only-science law a
   // ray with no science member simply has no shelf: parts are the NON-EMPTY rays, ≤ 7 of them.
   const pages = staticPages()
@@ -2473,7 +2473,7 @@ export function everyElementIsALinkedNodeOrUseless(matrix: MindMatrix = buildMat
 
 // Rosetta gate — folded from dissolved src/rosetta (census-neutral swap for src/gold/fusion).
 import { ROSETTA_AREAS, ROSETTA_FOLD_LABEL } from '../pair/enforcement/gates/computational/index.ts'
-import { computesGate as rosettaComputesGate, isUuid as rosettaIsUuid, memoByRoot as rosettaMemoByRoot, merge as rosettaMerge, merkleFold as rosettaMerkleFold, toUuid as rosettaToUuid } from '../0/index.ts'
+import { computesGate as rosettaComputesGate, isUuid as rosettaIsUuid, memoByRoot, merge as rosettaMerge, merkleFold as rosettaMerkleFold, toUuid as rosettaToUuid } from '../0/index.ts'
 
 export {
   ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, rosettaComputesAll, rosettaComputesCensusDissolve,
@@ -2486,7 +2486,7 @@ export { publicAstronomyNewsCitation } from '../earth/world/index.ts'
 
 /** One gate — Glagolitic global key, 7-ray taxonomy, decode-all chain, and path response at call time. */
 export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/') {
-  return rosettaMemoByRoot(`rosettaComputes:${path}`, matrix, () => {
+  return memoByRoot(`rosettaComputes:${path}`, matrix, () => {
     const itself = __ns_up_water_digit.rosettaComputesItself(0, matrix)
     const core = __ns_up_quantum_apps.rosettaCoreApiSelfWires(0, matrix)
     const motion = __ns_up_water_digit.sevenStarRosettaNaturalMotion(0)
@@ -2525,7 +2525,7 @@ export function rosettaComputes(matrix: MindMatrix = buildMatrix(), path = '/en/
  *  the label. The round-trip is EXACT for all 64 hexagrams — the 7×10 grid covers 0..63 with no gap or excess,
  *  so the rosetta ray is a faithful state/result codec for the 6-qubit (64-hexagram) computational basis. */
 export function rosettaCodec(matrix: MindMatrix = buildMatrix()) {
-  return rosettaMemoByRoot('rosettaCodec', matrix, () => {
+  return memoByRoot('rosettaCodec', matrix, () => {
     const rays = __ns_up_water_digit.ROSETTA_RAYS
     const RAY_COUNT = rays.length // 7 — the canonical Rosetta rays
     const encode = (label: number) => {

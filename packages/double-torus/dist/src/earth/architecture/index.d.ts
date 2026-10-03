@@ -4,7 +4,6 @@ import { methodNameFromFolderTail } from '../../9/1/index.ts';
 import { type EightFoldScience } from '../../8/2/index.ts';
 import { type RosettaComputationType } from '../../water/digit/index.ts';
 export { ICHING_NUMBERS } from '../../0/index.ts';
-export { UNFOLDED_CENSUS } from '../../pair/enforcement/gates/computational/index.ts';
 export declare function foldedCensus(unfolded: number, matrix?: MindMatrix): {
     clean: boolean;
     unfolded: number;

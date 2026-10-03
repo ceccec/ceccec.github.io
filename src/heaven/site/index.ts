@@ -51,7 +51,7 @@ import { LUNAR_NODAL_PERIOD_YEARS, CRITICAL_MAGNETIC_FIELD_T, qcdMassFractionOfP
 import { speedOfSoundAir } from '../../8/2/index.ts'
 import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3/index.ts'
 import { carnotEfficiency, derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, uuidDuality } from '../../5/5/index.ts'
-import { DARK_ENERGY_EOS_W, FIBONACCI, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, PHI, radarRange, riseAzimuthDeg, TAU, GOLDEN_ANGLE as GOLDEN_ANGLE_DEG } from '../../3/7/index.ts'
+import { DARK_ENERGY_EOS_W, FIBONACCI, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, PHI, radarRange, riseAzimuthDeg, TAU, GOLDEN_ANGLE } from '../../3/7/index.ts'
 import { rnot, rtoffoli, ELECTRON_G_FACTOR_ANOMALY, composeHazard, rotatingField, powerSpectrum, rebreatherInertBar, zeroPointEnergy, casimirPressure, wavelengthOf, larmorFrequency } from '../../1/9/index.ts'
 import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8/index.ts'
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, soundPressureLevelDb } from '../../4/6/index.ts'
@@ -92,8 +92,8 @@ export { buildMatrix, verifyRoot, reciprocity, entropy, concentration, coherence
 
 
 // ☷ Kūn · Earth · receptive · lower·yin · hueShift — all vocab leaf re-exports, consolidated
-import { AREA_ICONS, AREA_LABELS, analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/icons/index.ts'
-export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, GOLDEN_ANGLE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/icons/index.ts'
+import { AREA_ICONS, AREA_LABELS, analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/icons/index.ts'
+export { analogSpeech, areaLabel, attestation, bulgarianAncientCivilisations, bulgarianEthnogenesis, bulgarianHeritage, bulgarianHistory, chakrasAura, charUuids, computerDesign, deviceSensors, dimensions, dualities, efficiency, emfApplications, frequencyToLight, A432_HUE, lobeHues, fuseTeslaPatents, geneticLinksChallengeHistory, glagoliticBulgarianReception, harmonicBands, herbalApis, humanDesign, humanize, iconGlyphs, iconSeal, lawfulHarmonise, lawfulImagine, lawfulSucceed, multidimensional, natureCommons, natureLaw, natureReview, openGraph, patentDiscovery, plainLanguage, playLearn, publicFrequencyApis, typographySeo, wordUuids, yinYang } from '../../quantum/icons/index.ts'
 
 // ☴ Xùn · Wind · gentle · lower·yin · spread — site meta: config, sitemap, static pages, monograph scaffolding
 import { quantumSitemap, professionals, siteConfig, staticPages, crawlerKnowledge, monographTemplate, monographAsScientificPaper, everyPageIsAPrintableScientificPaper as windSiteEveryPageIsAPrintableScientificPaper, theoremScienceLens as windSiteTheoremScienceLens } from '../../wind/site/index.ts'
@@ -724,7 +724,7 @@ export function baguaWheelSvg(opts: { size?: number; animate?: boolean; scale?: 
     }).join('')
     return `<g data-bagua="${b.pinyin}" data-bits="${b.bits}">${bars}</g>`
   }).join('')
-  const ring = scaleColor(scale, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })
+  const ring = scaleColor(scale, { seedHue: A432_HUE + GOLDEN_ANGLE, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Bāguà wheel — eight trigrams from sealed BAGUA" data-symbol="bagua" data-compute="BAGUA∧TAU" data-honesty="wetStatic=false;unicodeGlyphs=false">`,
     `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${ring}" stroke-width="1" opacity="${3 / 5}"/>`,
@@ -741,7 +741,7 @@ export function metatronCubeSvg(matrix: MindMatrix = buildMatrix(), opts: { size
   const cy = size / 2
   const unit = size / (2 * 2 + 1 / PHI)
   const stroke = scaleColor(0, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
-  const nodeFill = scaleColor(1, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 3 / 4, C: SVG_CHROMA })
+  const nodeFill = scaleColor(1, { seedHue: A432_HUE + GOLDEN_ANGLE, dark: true, L: 3 / 4, C: SVG_CHROMA })
   const xy = (n: { x: number; y: number }) => ({ x: cx + n.x * unit, y: cy + n.y * unit })
   const byId = new Map(cube.nodes.map((n) => [n.id, n]))
   const edges = cube.edges
@@ -898,7 +898,7 @@ export function omAumSvg(opts: { size?: number; animate?: boolean; scale?: numbe
   const cy = size / 2
   const R = size / (2 + 1 / PHI)
   const stroke = scaleColor(scale, { seedHue: A432_HUE, dark: true, L: 7 / 8, C: SVG_CHROMA })
-  const fill = scaleColor(scale + 1, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 3 / 4, C: SVG_CHROMA })
+  const fill = scaleColor(scale + 1, { seedHue: A432_HUE + GOLDEN_ANGLE, dark: true, L: 3 / 4, C: SVG_CHROMA })
   // Logarithmic spiral seed from PHI (Vogel-style); crescent = two offset arcs; bindu = centre.
   const spiralPts = Array.from({ length: 8 + 5 }, (_, i) => {
     const t = i / (8 + 2)
@@ -1042,7 +1042,7 @@ export function glagoliticLivingSmilSvg(opts: { size?: number; animate?: boolean
     : ''
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Living Glagolitic — sealed letters on TAU SMIL ring" data-symbol="glagolitic-glyphs" data-letters="${n}" data-sample-glyph="${sample}" data-compute="GLAGOLITIC_LETTERS∧glagoliticValue∧glagoliticGlyph∧TAU" data-honesty="livingSmil=true;wetStatic=false;labelLiteral=false">`,
-    `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${scaleColor(scale, { seedHue: A432_HUE + GOLDEN_ANGLE_DEG, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })}" stroke-width="0.8" opacity="${2 / 5}"/>`,
+    `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${scaleColor(scale, { seedHue: A432_HUE + GOLDEN_ANGLE, dark: true, L: 1 / 2, C: SVG_CHROMA / 2 })}" stroke-width="0.8" opacity="${2 / 5}"/>`,
     `<g opacity="${1 - 1 / (5 * 4)}">${pulse}<g>${spin}${cells}</g></g></svg>`,
   ].join('')
 }
@@ -1945,3 +1945,6 @@ export function finishTheAppInAllAspectsAtOnce(matrix: MindMatrix = buildMatrix(
       boundary: `COMPUTED: each lane is its own live fold's verdict or a registry-row presence check, folded at call time — refutable lane by lane. HONEST SCOPE: "finished" means every MEASURED aspect passes its computed gate today — the app remains living (the registry marches to 432, audits keep measuring, and the audit's residual findings — the model-page h1 gap, the shared-payload weight beyond the hash-map extraction — are the audit tool's open counts, tracked not hidden). Expert judgment beyond what these gates measure (visual taste, real assistive-tech testing) is NOT claimed.` }
   })
 }
+// ONE HOME FOR THE GOLDEN ANGLE. This surface re-exported it from quantum/icons while importing it from 3/7 — one name, two sources,
+// which verify:referrers reads as a definition with two homes. The re-export now names the home the import names.
+export { GOLDEN_ANGLE } from '../../3/7/index.ts'

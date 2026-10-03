@@ -117,7 +117,7 @@ export type ImportPathDistanceEdge = {
   readonly gapHops: number
 }
 export { MONOLITH_FILE_BYTES, MONOLITH_FILE_LAW, scanFileSizeOffenders, monolithFileGapDetail, FOLD_HOMES, foldsLiveAtTheirDomainHome, toolsSavedInSrcFirst, importsAreFoldersOnly, mathIsOneSource, foldersAreOneWordPerLevel, glagoliticLabelsAreComputed, unexpectedSituationsRefactorTools, srcFilesAreIndexOnly, scanOneMathOffenders, ONE_MATH_LAW, type OneMathOffender } from './strict/index.ts'
-export { scanHandLists, handListMirrors, type HandList, type HandListMirror } from './strict/index.ts'
+export { type HandList, type HandListMirror } from './strict/index.ts'
 export { scanAppHtml, appAuditSummary, type AppPageAudit } from './strict/index.ts'
 export {
   dryDupe,
@@ -4683,3 +4683,6 @@ export function runFeedGatesIndexToChatExit(root = '', _argv: readonly string[] 
   for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
   return report.computes && report.gatesFed && report.sprayLean ? 0 : 1
 }
+// ONE HOME FOR THE HAND-LIST SCAN. Imported from strict/scan and re-exported from strict — two sources for one name; the
+// re-export now names the fold that defines them.
+export { scanHandLists, handListMirrors } from './strict/scan/index.ts'
