@@ -36,7 +36,7 @@ type TestDefinition = {
   readonly api: string
   readonly endpoint: string
   readonly envVar?: string
-  readonly test: (fetch: typeof fetch | undefined, cred: string | undefined) => Promise<Partial<LiveTestResult>>
+  readonly test: (fetch: any, cred: string | undefined) => Promise<Partial<LiveTestResult>>
 }
 
 const TESTS: readonly TestDefinition[] = [
@@ -129,7 +129,7 @@ const TESTS: readonly TestDefinition[] = [
   },
 ]
 
-async function runTest(test: TestDefinition, fetch: typeof fetch | undefined): Promise<LiveTestResult> {
+async function runTest(test: TestDefinition, fetch: any): Promise<LiveTestResult> {
   const cred = test.envVar ? process.env[test.envVar] : undefined
   const result = await test.test(fetch, cred)
   return {
@@ -143,7 +143,7 @@ async function runTest(test: TestDefinition, fetch: typeof fetch | undefined): P
   }
 }
 
-export async function liveApiTestSuite(fetch?: typeof fetch): Promise<LiveTestReport> {
+export async function liveApiTestSuite(fetch?: any): Promise<LiveTestReport> {
   const results = await Promise.all(TESTS.map((t) => runTest(t, fetch)))
   const passed = results.filter((r) => r.success).length
   const failed = results.length - passed
