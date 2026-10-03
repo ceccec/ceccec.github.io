@@ -2,6 +2,9 @@
 // Test ALL formulas against remote APIs and datasets, discovering gaps.
 // Zero-network by default (opt-in); measures what happens when formulas meet real data.
 
+export { liveTestingGapsDiscoveredAndFixed } from './gaps.ts'
+export type { GapResolution } from './gaps.ts'
+
 import { memoByRoot, toUuid, merkleFold } from '../../0/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
 import { reviewEuPatent, reviewEuPatents } from '../../heaven/laws/index.ts'
