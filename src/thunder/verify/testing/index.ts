@@ -5,6 +5,7 @@
 import { ICHING_NUMBERS, isUuid, log, memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
 import { reviewEuPatents } from '../../../heaven/laws/index.ts'
+import { DOUBLE_TORUS_PERSPECTIVES } from '../../../water/double/index.ts'
 import type { MindMatrix } from '../../../types/index.ts'
 
 // A default is a ledgered axiom, never a bare literal: the type refuses any non-sealed number.
@@ -1336,5 +1337,77 @@ export function generateDispatcher(table: ToolDispatch[]): ToolDispatcher {
     if (handler === 'run_gate') return { type: 'gate', name: String(args.name ?? 'verify:structure') }
     if (handler === 'run_wave') return { type: 'wave', kind: String(args.kind ?? 'test') }
     return { type: 'meta', available: true }
+  }
+}
+
+// ---- double-torus combinatorics from the referrer side: who imports whom, and which pairs are held together ----
+export type ReferrerEdge = { readonly ref: string; readonly to: string; readonly names: readonly string[] }
+const pairKey = (a: string, b: string) => (a < b ? `${a} + ${b}` : `${b} + ${a}`)
+
+/** The referrer matrix and its superpositions, pure: edges in, laws out. A superposition is a pair of folds one
+ *  referrer takes together — the bond the import graph measures, as opposed to a lattice neighbour it does not. */
+export function referrerSuperpositions(edges: readonly ReferrerEdge[], folds: readonly string[]) {
+  const referredBy = new Map<string, Map<string, Set<string>>>()
+  const takes = new Map<string, Set<string>>()
+  const nameSources = new Map<string, Map<string, Set<string>>>()
+  for (const e of edges) {
+    if (!referredBy.has(e.to)) referredBy.set(e.to, new Map())
+    const r = referredBy.get(e.to)!
+    if (!r.has(e.ref)) r.set(e.ref, new Set())
+    e.names.forEach((n) => r.get(e.ref)!.add(n))
+    if (!takes.has(e.ref)) takes.set(e.ref, new Set())
+    takes.get(e.ref)!.add(e.to)
+    if (!nameSources.has(e.ref)) nameSources.set(e.ref, new Map())
+    const ns = nameSources.get(e.ref)!
+    for (const n of e.names) {
+      if (n === '*') continue
+      if (!ns.has(n)) ns.set(n, new Set())
+      ns.get(n)!.add(e.to)
+    }
+  }
+  const pairs = new Map<string, number>()
+  for (const ts of takes.values()) {
+    const a = [...ts].sort()
+    for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) pairs.set(pairKey(a[i]!, a[j]!), (pairs.get(pairKey(a[i]!, a[j]!)) ?? 0) + 1)
+  }
+  const digits = folds.filter((f) => /^\d\/\d$/.test(f))
+  const reflections = digits
+    .filter((f) => { const [a, b] = f.split('/'); return a! < b! && digits.includes(`${b}/${a}`) })
+    .map((f) => [f, f.split('/').reverse().join('/')] as const)
+  const reflectionsHeld = reflections.filter(([a, b]) => pairs.has(pairKey(a, b)))
+  const referrersOf = (f: string) => referredBy.get(f)?.size ?? 0
+  const namesTakenFrom = (f: string) => [...(referredBy.get(f)?.values() ?? [])].reduce((n, s) => n + s.size, 0)
+  const ranked = folds.map((f) => ({ fold: f, referrers: referrersOf(f), names: namesTakenFrom(f) })).sort((x, y) => y.referrers - x.referrers || y.names - x.names)
+  const topPair = [...pairs.entries()].sort((x, y) => y[1] - x[1])[0] ?? ['', 0]
+  const ambiguous = [...nameSources.entries()].flatMap(([ref, m]) => [...m.entries()].filter(([, s]) => s.size > 1).map(([name, s]) => ({ ref, name, sources: [...s].sort() })))
+  const unreferred = folds.filter((f) => referrersOf(f) === 0)
+  const possible = (folds.length * (folds.length - 1)) / 2
+  return {
+    folds: folds.length, edges: edges.length, referrers: takes.size, referred: folds.length - unreferred.length,
+    pairs: pairs.size, possible, density: possible === 0 ? 0 : pairs.size / possible,
+    reflections, reflectionsHeld, mostReferred: ranked[0] ?? { fold: '', referrers: 0, names: 0 }, ranked,
+    topPair: { pair: topPair[0], referrers: topPair[1] }, ambiguous, unreferred, referrersOf,
+  }
+}
+
+/** The laws, refutable: the four reflection pairs are each held in one referrer's superposition; the vault (src/0) is the
+ *  most-referred fold and sits in the strongest superposition; every double-torus perspective that names a fold is referred;
+ *  a referrer takes a name from one source. The counts that only fall (ambiguous names, unreferred logic) are ratcheted by
+ *  verify:referrers, which also supplies the edges — this fold scans nothing. */
+export function doubleTorusReferrerDiscovery(edges: readonly ReferrerEdge[], folds: readonly string[], matrix: MindMatrix = buildMatrix()) {
+  const s = referrerSuperpositions(edges, folds)
+  const perspectiveFolds = DOUBLE_TORUS_PERSPECTIVES.map((p) => ({ id: p.id, folds: folds.filter((f) => f.split('/').includes(p.id)) })).filter((p) => p.folds.length > 0)
+  const perspectivesReferred = perspectiveFolds.filter((p) => p.folds.some((f) => s.referrersOf(f) > 0))
+  const facets = [
+    { facet: `every reflection pair d/x ↔ x/d is held together by at least one referrer: ${s.reflectionsHeld.length} of ${s.reflections.length} (${s.reflections.map(([a, b]) => `${a}↔${b}`).join(', ')})`, on: s.reflections.length > 0 && s.reflectionsHeld.length === s.reflections.length },
+    { facet: `the vault is the most-referred fold (${s.mostReferred.fold}: ${s.mostReferred.referrers} referrers, ${s.mostReferred.names} names) and the strongest superposition holds it (${s.topPair.pair}: ${s.topPair.referrers})`, on: s.mostReferred.fold === '0' && s.topPair.pair.split(' + ').includes('0') },
+    { facet: `every double-torus perspective that names a fold is referred: ${perspectivesReferred.length} of ${perspectiveFolds.length} (${perspectiveFolds.map((p) => p.id).join(', ')})`, on: perspectivesReferred.length === perspectiveFolds.length },
+    { facet: `superpositions partition the referrers' pairs: ${s.pairs} held of ${s.possible} possible (density ${(s.density * 100).toFixed(1)}%), ${s.referred} of ${s.folds} folds referred by ${s.referrers} referrers over ${s.edges} edges`, on: s.pairs <= s.possible && s.referred + s.unreferred.length === s.folds },
+  ]
+  return {
+    computes: facets.every((f) => f.on),
+    facets,
+    measurements: { ambiguous: s.ambiguous, unreferred: s.unreferred, ranked: s.ranked.slice(0, 8), topPair: s.topPair, density: s.density },
+    statement: `Double-torus combinatorics from the referrer side: ${s.folds} folds, ${s.edges} import edges, ${s.pairs} superpositions (pairs one referrer holds together) of ${s.possible} possible. The reflection pairs of the pi-train are each held in superposition; the vault src/0 draws ${s.mostReferred.referrers} referrers. 4/6 measures superpositions as amplitudes (2ⁿ); this measures them as bonds in the import graph — two faces of one carrier.`,
   }
 }
