@@ -15,7 +15,10 @@ async function sample(url: string): Promise<string | null> {
   try {
     const r = await fetch(url, { headers: { 'User-Agent': UA, Range: 'bytes=0-60000' }, signal: AbortSignal.timeout(20_000) })
     if (!r.ok) return null
-    return await r.text()
+    const text = await r.text()
+    // A RANGED READ ENDS MID-LINE BY CONSTRUCTION. On 2026-10-03 the cut fell inside '3217…' in A002496 and the gate read 3217 as a term —
+    // a refutation the dataset never made. The partial last line of a 206 response is not a term and is dropped.
+    return r.status === 206 ? text.slice(0, text.lastIndexOf('\n') + 1) : text
   } catch { return null }
 }
 
