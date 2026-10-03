@@ -4,9 +4,9 @@
 
 import { memoByRoot, toUuid, merkleFold } from '../../0/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
+import { reviewEuPatents } from '../../heaven/laws/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { liveTestingGapsDiscoveredAndFixed, type GapResolution } from './gaps/index.ts'
-import { TESTS, type TestDefinition } from './tests/index.ts'
 
 export { liveTestingGapsDiscoveredAndFixed }
 export type { GapResolution }
@@ -30,6 +30,68 @@ export type LiveTestReport = {
   readonly gaps: readonly string[]
   readonly receipt: string
 }
+
+type TestDefinition = {
+  readonly name: string
+  readonly api: string
+  readonly endpoint: string
+  readonly envVar?: string
+  readonly test: (fetch: any, cred: string | undefined) => Promise<Partial<LiveTestResult>>
+}
+
+async function patentTest(fetch: any, token: string | undefined): Promise<Partial<LiveTestResult>> {
+  if (!fetch) return { success: false, message: 'opt-in: pass fetch to run' }
+  try {
+    const reviews = await reviewEuPatents(['EP3123456', 'EP2999999'], fetch, { token })
+    return { success: reviews.reviewed > 0, dataPoints: reviews.reviewed, message: `${reviews.reviewed}/${reviews.count} patents reviewed` }
+  } catch (e) {
+    return { success: false, message: `Error: ${String(e).slice(0, 32)}` }
+  }
+}
+
+async function quantumStub(): Promise<Partial<LiveTestResult>> {
+  return { success: false, message: 'Implementation pending', dataPoints: 0 }
+}
+
+async function citationTest(fetch: any): Promise<Partial<LiveTestResult>> {
+  if (!fetch) return { success: false, message: 'opt-in: pass fetch to run' }
+  try {
+    let verified = 0
+    const tests = [
+      () => fetch('https://api.arxiv.org/query?search_query=arxiv:2309.12345&max_results=1'),
+      () => fetch('https://zenodo.org/api/records/12345678'),
+      () => fetch('https://api.crossref.org/works/10.1038/nature12345'),
+    ]
+    for (const test of tests) {
+      try {
+        const r = await test()
+        if ((r as any).ok) verified++
+      } catch {}
+    }
+    return { success: verified > 0, dataPoints: verified, message: `${verified}/${tests.length} citations verified` }
+  } catch (e) {
+    return { success: false, message: `Error: ${String(e).slice(0, 32)}` }
+  }
+}
+
+async function zenodoTest(fetch: any): Promise<Partial<LiveTestResult>> {
+  if (!fetch) return { success: false, message: 'opt-in: pass fetch to run' }
+  try {
+    const r = await fetch('https://zenodo.org/api/records/21787144')
+    return { success: (r as any).ok, dataPoints: (r as any).ok ? 1 : 0, message: (r as any).ok ? 'Record verified' : `HTTP ${(r as any).status}` }
+  } catch (e) {
+    return { success: false, message: `Network error: ${String(e).slice(0, 32)}` }
+  }
+}
+
+const TESTS: readonly TestDefinition[] = [
+  { name: 'Patent Audit (EPO OPS + Google Patents)', api: 'EPO OPS', endpoint: 'ops.epo.org/3.2/rest-services', envVar: 'EPA_TOKEN', test: patentTest },
+  { name: 'Quantum: IBM Quantum', api: 'IBM', endpoint: 'quantum-api.ibm.com', envVar: 'IBM_TOKEN', test: quantumStub },
+  { name: 'Quantum: AWS Braket', api: 'AWS', endpoint: 'braket.amazonaws.com/tasks', envVar: 'AWS_ACCESS_KEY', test: quantumStub },
+  { name: 'Quantum: Azure Quantum', api: 'Azure', endpoint: 'quantum.azure.com', envVar: 'AZURE_TOKEN', test: quantumStub },
+  { name: 'Research Citations', api: 'Academic APIs', endpoint: 'api.arxiv.org, zenodo.org/api, api.crossref.org', test: citationTest },
+  { name: 'Zenodo Deposits', api: 'Zenodo', endpoint: 'zenodo.org/api/records', test: zenodoTest },
+]
 
 async function runTest(test: TestDefinition, fetch: any): Promise<LiveTestResult> {
   const cred = test.envVar ? process.env[test.envVar] : undefined
