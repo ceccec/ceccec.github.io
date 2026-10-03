@@ -318,6 +318,13 @@ export async function runVerificationStream(): Promise<void> {
   // no literal left to go stale.
   const file = join(dir, `${before}-${address}-${runId}.json`)
   writeFileSync(file, `${JSON.stringify(receipt, null, 2)}\n`)
+  // THE TRACKED SUMMARY the README reads. .vitepress/receipts is outside treeDigest's walk (so the receipt is never
+  // over itself) and not git-ignored (so a fresh clone reproduces the same README). No timestamp: the same tree
+  // measured twice writes the same bytes, and a changed line here is a changed measurement.
+  const summaryDir = join(ROOT, '.vitepress', 'receipts')
+  mkdirSync(summaryDir, { recursive: true })
+  const summary = { tree: before, address, gates: gates.length, clean, violated: violated.map((r) => r.gate), violatedLive: violatedLive.map((r) => r.gate), notRun: notRun.map((r) => r.gate), live: [...surfaceOf.values()].filter((v) => v === 'live').length }
+  writeFileSync(join(summaryDir, 'latest.json'), `${JSON.stringify(summary, null, 2)}\n`)
 
   const reproduced = results.filter((r) => (r as { reproduced?: boolean }).reproduced).length
   console.log(`\n  ${clean}/${gates.length} clean · ${violated.length} violated · ${notRun.length} NOT RUN`)

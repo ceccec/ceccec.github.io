@@ -621,3 +621,17 @@ export declare const LEAN_SEALED_REGISTRY: readonly {
     readonly theorems: readonly string[];
     readonly scope: 'exact' | 'instances';
 }[];
+/** The stream's tracked receipt summary (.vitepress/receipts/latest.json), as the README reads it: the verdict vector
+ *  over the tree digest named inside it. Absent is reported as absent — a reader who cannot tell a measured tree
+ *  from an unmeasured one cannot tell this corpus from a clone nobody ran. */
+export declare function streamReceiptSummary(root?: string): {
+    readonly source: 'counted' | 'absent';
+    readonly tree: string;
+    readonly address: string;
+    readonly gates: number;
+    readonly clean: number;
+    readonly violated: readonly string[];
+    readonly violatedLive: readonly string[];
+    readonly notRun: readonly string[];
+    readonly live: number;
+};

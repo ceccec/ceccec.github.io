@@ -10,7 +10,7 @@ import { agentsUseTrinitiesForQuantumSpeedupOnEveryBuildPath } from '../../../pa
 import { CANONICAL_HOST, PI_TRAIN_DIGITS, renderComputedMetrics } from '../../../3/7/index.ts'
 import { THEOREM_ATOM_SEED, riemannCriticalLineIsTheInvolutionFixedPoint } from '../../../4/6/index.ts'
 import { theSmallestCurvesWitnessBirchSwinnertonDyer } from '../../../7/3/index.ts'
-import { LEAN_SEALED_REGISTRY, buildReceiptLedger, leanInvolutionCorpus, leanPageRows } from '../../../pair/formal/proofs/index.ts'
+import { LEAN_SEALED_REGISTRY, buildReceiptLedger, leanInvolutionCorpus, leanPageRows, streamReceiptSummary } from '../../../pair/formal/proofs/index.ts'
 import { navierStokesFlowRegularityOnTheSeam } from '../../../water/cosmos/index.ts'
 import { yangMillsMassGapFromSelfAdjointClosure } from '../../../9/1/index.ts'
 import { portalChat, portalRecall } from '../../../heaven/compute/index.ts'
@@ -909,6 +909,20 @@ function theoremSections(core: TheoremCore, paperLink: (entry: RayPaper) => stri
  * number `npm run next` ranks into leads. An absent or unparseable ledger is reported as absence rather than
  * as a zero, for the same reason leanInvolutionCorpus reports its source: a reader who cannot tell a closed
  * ledger from a missing one cannot tell this corpus from an empty directory. */
+/** THE QUANTUM RECEIPT — the verdict vector verify:stream wrote over the tree it measured, content-addressed, read from
+ *  the tracked summary the stream leaves beside its archive. Every gate under the pattern package.json declares was
+ *  ASKED (an `&&` chain cannot say what it did not run); tree gates settle the land, live surfaces settle the tag.
+ *  The MCP door is the same runner: run_wave verify ≡ verify:stream, run_gate ≡ one gate. Absent is stated as absent. */
+function streamReceiptLines(): string[] {
+  const r = streamReceiptSummary()
+  if (r.source === 'absent') return ['**Quantum receipt — absent.** No stream receipt is tracked for this tree yet; `npm run verify:stream` (MCP: run_wave verify) writes it, and the next README computed from it names the tree.', '']
+  const treeRefused = r.violated.filter((g) => !r.violatedLive.includes(g))
+  return [
+    `**Quantum receipt \`${r.address}\` over tree \`${r.tree}\`** — ${r.gates} gates asked through one door (verify:stream ≡ MCP run_wave verify): ${r.clean} clean, ${treeRefused.length} tree gate${treeRefused.length === 1 ? '' : 's'} refused${treeRefused.length ? ` (${treeRefused.join(', ')})` : ''}, ${r.violatedLive.length} of ${r.live} live surface${r.live === 1 ? '' : 's'} refused${r.violatedLive.length ? ` (${r.violatedLive.join(', ')} — records the tag settles at release-cut, not the land)` : ''}, ${r.notRun.length} without a verdict. Reproduce: \`npm run verify:stream\` on the same tree writes the same address.`,
+    '',
+  ]
+}
+
 function buildReceiptLines(): string[] {
   const receipt = buildReceiptLedger()
   if (receipt.source === 'absent') {
@@ -922,6 +936,7 @@ function buildReceiptLines(): string[] {
   const shell = bound('build.shell-machinery-kilobytes')
   const density = bound('build.corpus-hundred-bytes-per-theorem')
   return [
+    ...streamReceiptLines(),
     `The root monograph is content-addressed — the section schema, the corpus roots and every reported count fold to one receipt that reproduces from \`src\` and changes if any reported value does. Below is what produced it: **${receipt.gates} gates** chained by \`npm run verify:all\`, and **${receipt.ratchets} ratchets** recording what each one measured. A ratchet may fall and never rise, so the ledger is the build's cost of doing business — and its own list of open work.`,
     '',
     // THE LEDGER'S THREE STATES, KEPT APART. An earlier version of this line summed |value| over every non-zero

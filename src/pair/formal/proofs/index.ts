@@ -1513,3 +1513,27 @@ export const LEAN_SEALED_REGISTRY: readonly { readonly theorem: string; readonly
   // enters the statement. Nothing linked it either.
   { theorem: "hexbit receipt beats rebuild", leanFile: "src/pair/lean/proofs/corpus.lean", theorems: ["hexbit_receipt_beats_rebuild", "hexbit_advantage_widens"], scope: 'instances' },
 ] as const
+
+/** The stream's tracked receipt summary (.vitepress/receipts/latest.json), as the README reads it: the verdict vector
+ *  over the tree digest named inside it. Absent is reported as absent — a reader who cannot tell a measured tree
+ *  from an unmeasured one cannot tell this corpus from a clone nobody ran. */
+export function streamReceiptSummary(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): {
+  readonly source: 'counted' | 'absent'
+  readonly tree: string
+  readonly address: string
+  readonly gates: number
+  readonly clean: number
+  readonly violated: readonly string[]
+  readonly violatedLive: readonly string[]
+  readonly notRun: readonly string[]
+  readonly live: number
+} {
+  const absent = { source: 'absent' as const, tree: '', address: '', gates: 0, clean: 0, violated: [] as const, violatedLive: [] as const, notRun: [] as const, live: 0 }
+  const io = ledgerIo()
+  if (!io) return absent
+  try {
+    const r = JSON.parse(io.fs.readFileSync(io.path.join(root, '.vitepress', 'receipts', 'latest.json'), 'utf8')) as Partial<Omit<ReturnType<typeof streamReceiptSummary>, 'source'>>
+    if (typeof r.tree !== 'string' || typeof r.address !== 'string') return absent
+    return { source: 'counted', tree: r.tree, address: r.address, gates: r.gates ?? 0, clean: r.clean ?? 0, violated: r.violated ?? [], violatedLive: r.violatedLive ?? [], notRun: r.notRun ?? [], live: r.live ?? 0 }
+  } catch { return absent }
+}

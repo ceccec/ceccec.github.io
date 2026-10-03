@@ -99,6 +99,9 @@ if grep -qE '\.lean$|^src/pair/formal/proofs/' <<<"$changed"; then
   changed=$(printf '%s\n%s\n' "$changed" .vitepress/data/lean-corpus.json | sort -u)
   ADD+=(.vitepress/data/lean-corpus.json)
 fi
+# The stream's tracked receipt summary is written by verify:stream DURING the gates and read by readmeMarkdown();
+# it is staged at commit (the second ADD pass runs after the gates) so a fresh clone computes the same README.
+ADD+=(.vitepress/receipts/latest.json)
 # Generated files are regenerated from their sources first, so their gates judge the tree being landed: MANIFEST.md
 # is written from package.json (manifest:check refuses a drifted one and names this command).
 if grep -qxF package.json <<<"$changed"; then

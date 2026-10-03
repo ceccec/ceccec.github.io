@@ -1,0 +1,16 @@
+{
+  "tree": "9cc8dac426c66bba",
+  "address": "d0c5991edb2814d7",
+  "gates": 63,
+  "clean": 61,
+  "violated": [
+    "verify:deposit-metadata",
+    "verify:release-live"
+  ],
+  "violatedLive": [
+    "verify:deposit-metadata",
+    "verify:release-live"
+  ],
+  "notRun": [],
+  "live": 8
+}
