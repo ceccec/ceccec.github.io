@@ -25,7 +25,7 @@
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { readRatchetLedger } from '../../src/pair/formal/proofs/index.ts'
-import { everyRatchet, recordedFloors } from './status.ts'
+import { everyRatchet, gateUniverse, recordedFloors } from './status.ts'
 
 const ROOT = process.cwd()
 
@@ -76,7 +76,7 @@ export function chainClosure(): Set<string> {
     seen.add(name)
     for (const m of (pkg[name] ?? '').matchAll(/npm run ([\w:.-]+)/g)) walk(m[1]!)
   }
-  walk('verify:all')
+  for (const g of gateUniverse(ROOT)) walk(g)
   return seen
 }
 

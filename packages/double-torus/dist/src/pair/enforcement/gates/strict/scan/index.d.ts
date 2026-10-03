@@ -1045,9 +1045,34 @@ export declare function runCommitMessageExit(root?: string, _argv?: readonly str
  * honest residue, stated. Pair: ui/audit · CLI npm run quantum:ui-audit. Runs on .vitepress/dist —
  * build first; an empty dist is itself the finding.
  */
+/**
+ * AN ABSENT BUILD IS NOT A FAILING AUDIT — and reading it as one is why the fold census cannot
+ * reproduce itself. This read `.vitepress/dist` and, when nothing was there, reported `0 served pages`
+ * with its first facet OFF, while the two facets below it passed VACUOUSLY over the empty page set: a
+ * false failure sitting beside two false passes, all three produced by absence rather than by any page.
+ * Measured 2026-09-28 by parking dist: 3/3 facets on with the build, 1 off and 2 vacuous without it.
+ *
+ * That is the whole of this fold's contribution to the census being order-dependent. every-fold's own
+ * header says the counts cannot ratchet because some folds read build artefacts, so the number moves
+ * with whether docs:build last ran — it was measuring the build, not the folds. uiAudit is the root of
+ * that family: freeUserWavesTestUiMeasureEfficiency and feedUiIntoItself both call it and propagate
+ * `computes`, so three of the four named folds are this one function.
+ *
+ * NOT MEASURED, SAID LOUDLY, is the form already used here for the same shape — verify:build-time skips
+ * its ratchets rather than record another tree's numbers, and the Lean gate prints "the kernel was NOT
+ * ASKED, so no axiom count is claimed here" and returns 0. The fold is not claiming the pages are good;
+ * it is refusing to claim anything about pages that were never there.
+ *
+ * NOT FIXED BY DELETING THE DEFAULT. Giving these folds a required parameter would hide them from the
+ * zero-arg census and drop the count without a single fold improving — shrinking the denominator, which
+ * every-fold's header already rejects in writing as the reason three earlier floors failed.
+ */
 export declare function uiAudit(root?: string): {
     computes: boolean;
     uiAudit: boolean;
+    /** True when there was no build to read. Consumers must treat this as "cannot say", never as a
+     *  failing audit — otherwise the false failure simply moves one fold up the call chain. */
+    notMeasured: boolean;
     pages: number;
     perfect: number;
     queue: {
@@ -1196,6 +1221,8 @@ export declare const LICENSE_CONTACT_PSG: "license@psg.bg";
 export declare function legalCanon(root?: string): {
     computes: boolean;
     legalCanon: boolean;
+    /** True when there was no build to read — "cannot say" about privacy-by-absence, never "failed". */
+    notMeasured: boolean;
     faces: {
         receipt: string;
         face: string;

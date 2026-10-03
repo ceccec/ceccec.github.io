@@ -30,6 +30,7 @@ import { appendFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } f
 import { join } from 'node:path'
 import { cpus } from 'node:os'
 import { treeDigest } from './every-fold.ts'
+import { universeGates } from './status.ts'
 
 const ROOT = process.cwd()
 
@@ -43,22 +44,7 @@ type Result = { readonly gate: string; readonly verdict: Verdict; readonly code:
  * ran — the failure this file exists to remove, reintroduced by the file itself.
  */
 export function chainGates(root: string = ROOT): readonly string[] {
-  const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
-  const chain: string = pkg.scripts?.['verify:all'] ?? ''
-  const out: string[] = []
-  const unread: string[] = []
-  for (const part of chain.split('&&')) {
-    const m = /^\s*npm run ([\w:-]+)\s*$/.exec(part)
-    if (m) out.push(m[1]!)
-    else unread.push(part.trim())
-  }
-  // A LINK THIS PARSER CANNOT READ IS A GATE NOBODY RUNS, AND DROPPING IT IS INVISIBLE. Perturbing
-  // the parser with `FOO=1 npm run c` parsed 2 of 3 and said nothing — a stream that reports clean
-  // over a gate it never saw, which is the whole defect this file was written to remove, arriving
-  // inside the file itself. An unreadable link is now a refusal, not a silence.
-  if (unread.length > 0) throw new Error(`${unread.length} link(s) of verify:all are not \`npm run <gate>\` and this parser cannot see them: ${unread.join(' | ')}`)
-  if (out.length === 0) throw new Error('verify:all parsed to zero gates — the chain shape changed and this parser is now blind')
-  return out
+  return universeGates(root).map((g) => g.gate)
 }
 
 /**
@@ -294,6 +280,9 @@ export async function runVerificationStream(): Promise<void> {
 
   const clean = results.filter((r) => r.verdict === 'clean').length
   const violated = results.filter((r) => r.verdict === 'violated')
+  const surfaceOf = new Map(universeGates(ROOT).map((g) => [g.gate, g.surface] as const))
+  const violatedTree = violated.filter((r) => surfaceOf.get(r.gate) !== 'live')
+  const violatedLive = violated.filter((r) => surfaceOf.get(r.gate) === 'live')
   const notRun = results.filter((r) => r.verdict === 'NOT RUN')
 
   // THE RECEIPT IS THE PRODUCT. Its address covers the verdict vector AND the tree, so a receipt
@@ -313,6 +302,8 @@ export async function runVerificationStream(): Promise<void> {
     gates: gates.length,
     clean,
     violated: violated.map((r) => r.gate),
+    violatedLive: violatedLive.map((r) => r.gate),
+    surfaces: Object.fromEntries(surfaceOf),
     notRun: notRun.map((r) => r.gate),
     results,
   }
@@ -330,6 +321,7 @@ export async function runVerificationStream(): Promise<void> {
 
   const reproduced = results.filter((r) => (r as { reproduced?: boolean }).reproduced).length
   console.log(`\n  ${clean}/${gates.length} clean · ${violated.length} violated · ${notRun.length} NOT RUN`)
+  if (violatedLive.length > 0) console.log(`  ${violatedLive.length} of the violated are LIVE SURFACES (${violatedLive.map((r) => r.gate).join(', ')}) — records the tag settles at release-cut, not the land`)
   if (reproduced > 0) console.log(`  ${reproduced} of those were REPRODUCED from a receipt over this same tree, not re-run — VERIFY_FRESH=1 runs everything`)
   console.log(`  receipt ${address} over tree ${before}${before === after ? '' : ` — TREE MOVED to ${after} during the run`}`)
   console.log(`  ${file.replace(`${ROOT}/`, '')} — consume this, do not read a log tail`)
@@ -341,7 +333,7 @@ export async function runVerificationStream(): Promise<void> {
     console.log(`  The other ${results.length - onMovedTree.length} ran against ${before} and stand.\n`)
   }
   if (notRun.length > 0) throw new Error(`${notRun.length} gate(s) gave NO VERDICT: ${notRun.map((r) => r.gate).join(', ')}`)
-  if (violated.length > 0) throw new Error(`${violated.length} gate(s) refused: ${violated.map((r) => r.gate).join(', ')}`)
+  if (violatedTree.length > 0) throw new Error(`${violatedTree.length} tree gate(s) refused: ${violatedTree.map((r) => r.gate).join(', ')}`)
 }
 
 /**

@@ -1288,9 +1288,11 @@ export function buildReceiptLedger(root: string = typeof process !== 'undefined'
   //   secured  v  <  0  a count that may only rise; the magnitude is what has been reached, not what is left
   let gates = 0
   try {
-    const pkg = JSON.parse(io.fs.readFileSync(io.path.join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
-    // The width of the computation graph, counted off the chain itself rather than typed beside it.
-    gates = (pkg.scripts?.['verify:all']?.match(/npm run /g) ?? []).length
+    const pkg = JSON.parse(io.fs.readFileSync(io.path.join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string>; config?: Record<string, string> }
+    // The width of the computation graph: the gate pattern package.json declares (config.gatePattern) applied to
+    // its own scripts, runners excluded — the same data the stream, canon and the ratchet walk read.
+    const pattern = new RegExp(String(pkg.config?.gatePattern ?? '^$')), runners = new RegExp(String(pkg.config?.gateRunners ?? '^$'))
+    gates = Object.keys(pkg.scripts ?? {}).filter((n) => pattern.test(n) && !runners.test(n)).length
   } catch { gates = 0 }
   return {
     ratchets: entries.length,

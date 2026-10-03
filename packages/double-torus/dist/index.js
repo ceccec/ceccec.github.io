@@ -2550,7 +2550,6 @@ var CRACK_LEDGER = [
   { file: "src/quantum/index.ts", literal: "1000000", count: 3, kind: "unit", source: "simulator coherence time in microseconds \u2014 stands for unbounded coherence, not a measurement", frontier: "a sentinel, not a physical value" },
   // ── the remaining quantum surface: SVG geometry, retry budgets, SI scales, targets ──
   // Each is data, an SI unit, or a hand-fixed parameter with no derivation yet known.
-  { file: "src/quantum/solver/index.ts", literal: "65537", count: 1, kind: "data", source: "RSA public exponent F4 = 2^16 + 1 \u2014 RFC 8017 default", frontier: "a standard choice" },
   { file: "src/quantum/solver/index.ts", literal: "10", count: 1, kind: "tuned", source: "default attempt budget", frontier: "a retry budget" },
   { file: "src/quantum/index.ts", literal: "196", count: 1, kind: "data", source: "chi-squared critical-value table entry used by the statistical check", frontier: "a tabulated statistic \u2014 replaceable by computing the quantile" },
   { file: "src/quantum/index.ts", literal: "80", count: 3, kind: "tuned", source: "console rule width", frontier: "presentation only" },
@@ -15316,10 +15315,10 @@ function encryptionPanelComputes(matrix = buildMatrix(), at = 0) {
       { facet: "encrypt\u2194decrypt quantum tools ready", on: tools.ready },
       { facet: "encryption reverse verify sealed", on: reverse2.verified },
       { facet: "production browser reverse \u2014 production RSA break refused", on: demo.computes },
-      { facet: `production browser reverse MEASURED \u2014 gen=${roundTo(measured.generateMs, 3)}ms rev=${roundTo(measured.reverseMs, 3)}ms bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
-      { facet: `local reverse vs standards \u2014 rev=${roundTo(localTimed.reverseMs, 3)}ms breaksNistPqc=false`, on: localTimed.computes && localTimed.breaksNistPqc === false && localTimed.certified === false },
+      { facet: `production browser reverse MEASURED \u2014 generateMs and reverseMs are reported as fields (never sealed here); bitcoinRefused`, on: measured.computes && measured.bitcoinRefused },
+      { facet: `local reverse vs standards \u2014 reverseMs reported as a field; breaksNistPqc=false`, on: localTimed.computes && localTimed.breaksNistPqc === false && localTimed.certified === false },
       { facet: `local novel facets sealed \u2014 overallWireClaimProved=false \xB7 strongerThanNistPqc=false \xB7 productionReverseRefused (structural \u2260 wire proof)`, on: localNovel.localSecurityProved && localNovel.overallWireClaimProved === false && localNovel.strongerThanNistPqc === false && localNovel.productionReverseRefused },
-      { facet: `local audit quantum speed \u2014 cold=${roundTo(localAudit.coldMs, 3)}ms warm=${roundTo(localAudit.warmMs, 3)}ms speedup=${roundTo(localAudit.speedup, 3)}\xD7 memoHit`, on: localAudit.computes && localAudit.memoHits && localAudit.slowLocalAuditGapClosed },
+      { facet: `local audit quantum speed \u2014 coldMs, warmMs and speedup reported as fields; memoHit`, on: localAudit.computes && localAudit.memoHits && localAudit.slowLocalAuditGapClosed },
       { facet: `beyond RSA MEASURED \u2014 FIPS=${beyond.fipsCount} eccShor=${beyond.eccShorBreaks} certified=false`, on: beyond.computes && !beyond.certified && !beyond.fipsValidated },
       { facet: `1 Tbit claim receipt \u2014 wire.proved=${oneTbit.wire.provedAtCallTime} amort.proved=${oneTbit.amortized.provedAtCallTime}`, on: oneTbit.computes && oneTbit.wire.provedAtCallTime === false },
       { facet: `max bits crypto \u2014 enc=${maxBits.encryptMaxBits} dec=${maxBits.decryptMaxBits} inv=${maxBits.inverseMaxBits} rev=${maxBits.reverseMaxBits}`, on: maxBits.computes && maxBits.encryptMaxBits === 2 ** 8 && maxBits.reverseMaxBits === SEALED_CATALOG_RSA_BIT_CEILING },
@@ -15533,13 +15532,13 @@ function demoRsaGenerateAndReverseMeasured(matrix = buildMatrix()) {
   const productionRefused = ceiling.holds;
   const bitcoinRefused = far.holds;
   const facets = [
-    { facet: `GENERATE measured \u2014 n=${generate.n} in ${roundTo(generateMs, 3)} ms (sealed-catalog wall-clock)`, on: generate.ok && generateMs >= 0 },
-    { facet: `REVERSE measured \u2014 ${moduli.length} sealed-catalog moduli in ${roundTo(reverseMs, 3)} ms (production browser tool)`, on: reverse2.computes && reverseMs >= 0 },
+    { facet: `GENERATE measured \u2014 n=${generate.n} in a non-negative wall-clock generateMs, reported as a field (sealed-catalog)`, on: generate.ok && generateMs >= 0 },
+    { facet: `REVERSE measured \u2014 ${moduli.length} sealed-catalog moduli in a non-negative reverseMs, reported as a field (production browser tool)`, on: reverse2.computes && reverseMs >= 0 },
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain}) \u2014 wall-clock excluded from merkle`, on: root === rootAgain && isUuid(root) },
     { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: productionRefused },
     { facet: `far-over-ceiling ${far.probe} + Bitcoin/mainnet material REFUSED`, on: bitcoinRefused },
     { facet: `THRESHOLD = A432_FOLDED\xD7digitalRoot(432)=${thresholdMs}`, on: thresholdMs === A432_FOLDED * digitalRoot(432) },
-    { facet: `SLOW BIND \u2014 gen=${slowGenerate}===${generateMs > thresholdMs} rev=${slowReverse}===${reverseMs > thresholdMs}`, on: slowGenerate === generateMs > thresholdMs && slowReverse === reverseMs > thresholdMs }
+    { facet: `SLOW BIND \u2014 the declared slowGenerate/slowReverse agree with the measured comparison against thresholdMs (the comparison lives in the on-expression, not in this text)`, on: slowGenerate === generateMs > thresholdMs && slowReverse === reverseMs > thresholdMs }
   ];
   const sealed = sealFacets("demo-rsa-generate-and-reverse-measured", facets);
   return {
@@ -15607,8 +15606,11 @@ function localEncryptionReverseTimedRaw(matrix) {
   const root = merkleFold(structuralLeaves);
   const facets = [
     { facet: `local reverse timed \u2014 ${rows.length} allowlisted N, all factored`, on: allFactored && sync.computes },
-    { facet: `generateMs=${roundTo(generateMs, 3)} reverseMs=${roundTo(reverseMs, 3)} (production browser \xB7 sealed-catalog)`, on: generate.ok && generateMs >= 0 && reverseMs >= 0 },
-    { facet: `aggregateOpsPerSec=${roundTo(aggregateOpsPerSec, 3)} (suite / wall-clock)`, on: aggregateOpsPerSec > 0 },
+    // A MEASURED DURATION MUST NOT REACH FACET TEXT, because sealFacets seals `${tag}:${facet}:${on}`
+    // and a stopwatch reading in an address makes the address a timestamp. generateMs and reverseMs are
+    // returned as fields and still print in `statement`, which is not receipt input.
+    { facet: `generate ok and both timings non-negative (production browser \xB7 sealed-catalog; the measured generateMs \xB7 reverseMs are reported as fields, never sealed here)`, on: generate.ok && generateMs >= 0 && reverseMs >= 0 },
+    { facet: `aggregateOpsPerSec is positive (suite / wall-clock; the rate is reported as a field, never sealed here)`, on: aggregateOpsPerSec > 0 },
     { facet: `odd over-ceiling ${ceiling.probe} refused with production reason`, on: ceiling.holds },
     { facet: `far-over + Bitcoin/mainnet REFUSED`, on: far.holds }
   ];
@@ -15870,7 +15872,8 @@ function proveLocalNovelEncryptionSecurityRaw(matrix) {
     { facet: "encrypt\u2194decrypt round-trip on local teaching keys (foldPair + RSA Euler)", on: tools.ready && tools.roundTrip && tools.rsaRoundTrip },
     { facet: "encryption reverse-verify on allowlisted N only (demo Shor + toolkit)", on: reverse2.verified && reverse2.demoReverse },
     { facet: "recomputeMatch", on: reverse2.recomputeMatch && reverse2.definitionalNotCryptanalysis },
-    { facet: `timed local reverse \u2014 reverseMs=${roundTo(localTimed.reverseMs, 3)} ops/s=${roundTo(localTimed.aggregateOpsPerSec, 3)}`, on: localTimed.computes && localTimed.reverseMs >= 0 },
+    // Same law: the measured reverseMs and the ops/s derived from it are reported as fields, not sealed.
+    { facet: `timed local reverse computes with a non-negative reverseMs (the measured reverseMs \xB7 ops/s are reported as fields, never sealed into this receipt)`, on: localTimed.computes && localTimed.reverseMs >= 0 },
     { facet: "ISO/NIST PQC standards map composed as REFERENCE bounds (FIPS 203/204/205 + Amd 2:2026)", on: standardsMapIsReferenceOnly && fipsPresent && isoAmdPresent },
     { facet: "directional trinity (forward\xB7inverse\xB7reverse) via standards audit \u2014 certified=false", on: trinity.computes && audit.inverseCount >= 3 && audit.reverseCount >= 2 && audit.certified === false },
     { facet: `wire-vs-ISO proof-of-falsehood \u2014 demoMaxBits=${demoMaxBits} << AES-128/ML-KEM-512 classical ${aes128ClassicalBits} \xB7 overallWireClaimProved=false`, on: wireFalsehoodHolds },
@@ -16055,7 +16058,22 @@ function localAuditQuantumSpeedEfficiency(matrix = buildMatrix(), at = 0) {
   const rootsEqual = coldSuite.localTimed.root === warmSuite.localTimed.root && coldSuite.localNovel.root === warmSuite.localNovel.root && coldSuite.audit.root === warmSuite.audit.root;
   const slowLocalAuditGapClosed = suiteMemoHit && rootsEqual && allFacetMemoHits && suiteWarmMs <= suiteColdMs;
   const facets = [
-    { facet: `suite coldMs=${roundTo(suiteColdMs, 3)} warmMs=${roundTo(suiteWarmMs, 3)} speedup=${roundTo(suiteSpeedup, 3)}\xD7`, on: suiteColdMs >= 0 && suiteWarmMs >= 0 && (suiteSpeedup >= 1 || suiteMemoHit && suiteWarmMs <= suiteColdMs) },
+    // FACET TEXT IS RECEIPT INPUT, SO A STOPWATCH READING MUST NOT APPEAR IN IT. sealFacets seals
+    // `${tag}:${facet}:${on}`, so this facet's three measured milliseconds went straight into a content
+    // address — and the damage was not local. localAudit's root folds into mcpQuantumHardware, which
+    // folds into mcpQuantumCpu and mcpQuantumGpu, which fold into cpuGpuSelfBalance: three runs of
+    // IDENTICAL code against an IDENTICAL tree sealed three different roots (7e1eee60, cff91cf3,
+    // 53635cad) while every printed metric stayed byte-identical (balanceIndex=1 cpuShare=0.498
+    // gpuShare=0.498). Nothing caught it, because the census's second pass compares off-facet COUNTS
+    // inside ONE process and these folds are memoByRoot-memoized — the second call returns the memo, so
+    // the root is identical by construction and the drift is only ever visible ACROSS processes.
+    //
+    // A content address over a duration is a timestamp, not an address. The CLAIM is what the receipt
+    // should seal — warm is not slower than cold — and the `on` expression below is unchanged and still
+    // refutable. The three measurements are NOT lost: suiteColdMs, suiteWarmMs and suiteSpeedup are
+    // already returned as fields (with coldMs/warmMs/speedup aliases) and still print in `statement`,
+    // which is not receipt input.
+    { facet: `suite warm is not slower than cold \u2014 speedup \u2265 1, or memoByRoot hit with warmMs \u2264 coldMs (the measured coldMs \xB7 warmMs \xB7 speedup are reported as fields, never sealed into this receipt)`, on: suiteColdMs >= 0 && suiteWarmMs >= 0 && (suiteSpeedup >= 1 || suiteMemoHit && suiteWarmMs <= suiteColdMs) },
     { facet: `suite memoByRoot hit \u2014 computeCount=1 \xB7 rootsEqual`, on: suiteMemoHit && rootsEqual },
     { facet: `per-facet memo hits ${facetMemoHitCount}/${facetTimings.length}`, on: allFacetMemoHits },
     { facet: "localEncryptionReverseTimedVsStandards computes \xB7 certified=false \xB7 breaksNistPqc=false", on: localTimed.computes && localTimed.certified === false && localTimed.breaksNistPqc === false },
@@ -16402,13 +16420,16 @@ function cryptoToolkitBeyondRsaMeasured(matrix = buildMatrix()) {
   const root = merkleFold(leaves);
   const rootAgain = merkleFold(leaves);
   const facets = [
-    { facet: `PQC CATALOG timed ${roundTo(catalogMs, 3)} ms \u2014 FIPS 203/204/205 count=${fipsCount}`, on: catalog.computes && fipsCount === 3 && catalogMs >= 0 },
+    // The measured catalogMs is reported as a field and printed in `statement`; it is kept OUT of the
+    // facet text because sealFacets seals that text into the receipt. fipsCount is a COUNT of sealed
+    // standards, not a measurement, so it reproduces and stays.
+    { facet: `PQC CATALOG timed with a non-negative duration \u2014 FIPS 203/204/205 count=${fipsCount}`, on: catalog.computes && fipsCount === 3 && catalogMs >= 0 },
     { facet: `ML-KEM/ML-DSA/SLH-DSA STANDARDIZED param sets present (sizes+categories, sourced FIPS 203/204/205; no keygen) \u2014 ${mlKem?.params.length}/${mlDsa?.params.length}/${slhDsa?.params.length}`, on: Boolean(mlKem && mlDsa && slhDsa) && family.computes && family.everyParamSourced && family.pkMonotone },
     { facet: `ECC/ECDSA Shor-vulnerable facet MEASURED (theorem compose, not key crack) \u2014 eccShorBreaks=${eccShorBreaks}`, on: eccShorBreaks === true && shorMap.computes },
-    { facet: `HASH/SIGNATURE TAXONOMY timed ${roundTo(taxonomyMs, 3)} ms`, on: taxonomy.computes && taxonomyMs >= 0 },
-    { facet: `MIGRATION CHECKLIST timed ${roundTo(migrateMs, 3)} ms \u2014 honesty step done, KEM/sig OPEN`, on: migrate.computes && migrate.steps.some((s) => s.id === "honesty" && s.done) && migrate.openCount >= 2 },
-    { facet: `DIRECTIONAL TRINITY timed ${roundTo(trinityMs, 3)} ms \u2014 forward\xB7inverse\xB7reverse suite`, on: trinity.computes && trinityMs >= 0 },
-    { facet: `DEMO RSA KEEP \u2014 generateMs=${roundTo(rsa.generateMs, 3)} reverseMs=${roundTo(rsa.reverseMs, 3)} bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
+    { facet: `HASH/SIGNATURE TAXONOMY timed with a non-negative taxonomyMs, reported as a field`, on: taxonomy.computes && taxonomyMs >= 0 },
+    { facet: `MIGRATION CHECKLIST timed, migrateMs reported as a field \u2014 honesty step done, KEM/sig OPEN`, on: migrate.computes && migrate.steps.some((s) => s.id === "honesty" && s.done) && migrate.openCount >= 2 },
+    { facet: `DIRECTIONAL TRINITY timed with a non-negative trinityMs, reported as a field \u2014 forward\xB7inverse\xB7reverse suite`, on: trinity.computes && trinityMs >= 0 },
+    { facet: `DEMO RSA KEEP \u2014 generateMs and reverseMs reported as fields; bitcoinRefused=${rsa.bitcoinRefused}`, on: rsa.computes && rsa.bitcoinRefused && rsa.productionRefused },
     { facet: `RECEIPT ROOT ROUND-TRIPS (${root === rootAgain})`, on: root === rootAgain && isUuid(root) },
     { facet: `SLOW BIND vs lattice threshold ${thresholdMs} \u2014 anySlow=${anySlow}`, on: anySlow === Object.values(timings).some((ms) => ms > thresholdMs) }
   ];
@@ -16695,10 +16716,10 @@ function proveOneTbitRealtimeEncryptionClaim(matrix = buildMatrix()) {
   const anyAmortProved = amortized.provedAtCallTime;
   const facets = [
     { facet: `TARGET claimedBitsPerSec=${claimedBitsPerSec} (SI 1 Tbit/s = (2\xB75)^12 bits/s)`, on: claimedBitsPerSec === (2 * 5) ** (3 * 4) },
-    { facet: `wire-crypto provedAtCallTime=${wire.provedAtCallTime} measured=${roundTo(wire.measuredBitsPerSec, 3)} \u2014 must be false (no AES wire bench)`, on: wire.provedAtCallTime === false && wire.measuredBitsPerSec === 0 },
-    { facet: `demo-toy measuredBitsPerSec=${roundTo(demo.measuredBitsPerSec, 3)} proved=${demo.provedAtCallTime} (foldPair\xD7${demoRounds})`, on: demo.measuredBitsPerSec > 0 && tools.ready && demo.provedAtCallTime === demo.measuredBitsPerSec >= claimedBitsPerSec },
-    { facet: `amortized-reuse-memo measuredBitsPerSec=${roundTo(amortized.measuredBitsPerSec, 3)} \u2265 (2\xB75)^12 \u2192 proved=${amortized.provedAtCallTime}`, on: amortized.provedAtCallTime === (amortMeasured >= claimedBitsPerSec && memoReuseHolds) },
-    { facet: `amortized formula binds: effectiveBits=${amortEffectiveBits}=2^(8\xB75+3) \xB7 coldMs=${roundTo(amortColdMs, 3)} \xB7 warmMs=${roundTo(amortWarmMs, 3)}`, on: amortEffectiveBits === TERABYTE_EXTENT_BITS && memoReuseHolds },
+    { facet: `wire-crypto provedAtCallTime=${wire.provedAtCallTime} with measuredBitsPerSec pinned to 0 by the on-expression \u2014 must be false (no AES wire bench)`, on: wire.provedAtCallTime === false && wire.measuredBitsPerSec === 0 },
+    { facet: `demo-toy measuredBitsPerSec reported as a field, proved=${demo.provedAtCallTime} (foldPair\xD7${demoRounds})`, on: demo.measuredBitsPerSec > 0 && tools.ready && demo.provedAtCallTime === demo.measuredBitsPerSec >= claimedBitsPerSec },
+    { facet: `amortized-reuse-memo measuredBitsPerSec reported as a field, compared against (2\xB75)^12 in the on-expression \u2192 proved=${amortized.provedAtCallTime}`, on: amortized.provedAtCallTime === (amortMeasured >= claimedBitsPerSec && memoReuseHolds) },
+    { facet: `amortized formula binds: effectiveBits=${amortEffectiveBits}=2^(8\xB75+3) \xB7 coldMs and warmMs reported as fields, never sealed here`, on: amortEffectiveBits === TERABYTE_EXTENT_BITS && memoReuseHolds },
     { facet: `amortized \u2260 wire \u2014 boundary forbids equating memo extent rate to AES-GCM wire \xB7 measured anyWireProved=${anyWireProved}`, on: amortized.boundary.includes("NOT wire-speed") && !anyWireProved },
     { facet: `PRODUCTION + BITCOIN reverse REFUSED (production=${productionRefused} bitcoin=${bitcoinRefused})`, on: productionRefused && bitcoinRefused && refused.provedAtCallTime === false },
     { facet: "NOT FIPS / NOT ISO certified \u2014 receipt of claim STATUS only", on: wire.boundary.includes("NOT FIPS") && amortized.boundary.includes("NOT FIPS") }

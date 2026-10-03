@@ -18,7 +18,6 @@ const discovery = liveTestingDiscovery()
 <style scoped>
 .testing-framework {
   padding: 1rem;
-  border: 1px solid #ccc;
 }
 .on {
   color: green;

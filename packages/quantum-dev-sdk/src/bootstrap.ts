@@ -89,7 +89,7 @@ const WAVE_TO_BOOTSTRAP: Record<WaveKind, readonly string[]> = {
   tune: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
   edit: ['check:types'],
   rebuild: [MCP_DOCS_BUILD_BOOTSTRAP],
-  verify: ['run', 'src/thunder/waves/index.ts', 'runManualAgentsBehaveLikeWavesExit'],
+  verify: ['run', 'scripts/verify/stream.ts', 'runVerificationStream'],
 }
 
 function resolveRoot(opts?: RepoOpts): string {

@@ -18,7 +18,6 @@ import { heroPhaseAt, HERO_CYCLE_MS } from '../plasma/ball/index.ts'
 import { wavelengthOf } from '../../1/9/index.ts'
 import { isIonizing } from '../../9/1/index.ts'
 import { electromagneticExperiments, electromagneticRadiationDecoded } from '../../quantum/fire/experiments/index.ts'
-import { planeWaveField, planeWaveIntensity, VACUUM_PERMITTIVITY } from '../../quantum/fire/simulations/index.ts'
 import { foldingLinearGivesAnalog } from '../../earth/world/index.ts'
 import { healingModelsHonestBoundary } from '../../water/cosmos/index.ts'
 import { microdata } from '../../mountain/og/index.ts'
@@ -32,6 +31,12 @@ import * as __ns_water_stack from '../../water/stack/index.ts'
 
 import { Discovery, agnosticToolbox, isTotalBijection, titleCarriesAlgebra, titleFromAlgebra } from '../../3/7/index.ts'
 import { resonantAmplitude } from '../../6/4/index.ts'
+import { hawkingTemperature } from '../../4/6/index.ts'
+import { unruhTemperature } from '../../5/5/index.ts'
+import { speedOfSoundAir } from '../../8/2/index.ts'
+import { speedInMedium } from '../../3/7/index.ts'
+import { SOLAR_MASS_KG } from '../../3/7/index.ts'
+import { planeWaveField, planeWaveIntensity, VACUUM_PERMITTIVITY } from '../../quantum/fire/experiments/index.ts'
 
 // Fill the gaps in quantum physics: every phenomenon the model needs to self-
 // compute, each bound to a measure it already computes over the UUID stream.
@@ -2406,3 +2411,28 @@ export function poleInertiaProven(matrix: MindMatrix = buildMatrix()) {
       `On the wire, equilibrium holds exactly when the first moment Σ m_i r_i vanishes, which is the centre of mass sitting over the pivot — ${momentDisagree} disagreements between the two formulations over ${configs} configurations. The walker's long pole is rotational inertia rather than balance: mass m at ±d raises I by exactly 2md², so a given torque produces strictly less angular acceleration and strictly less the further out the mass sits, verified as integer inertia comparisons over ${poleChecked} (I, m, d) triples with no division anywhere.`,
   }
 }
+
+// ---- temperature and speed are one measurement: the digit primitives crossed, nothing re-typed ----
+export function temperatureAndSpeedAreOneMeasurement(matrix: MindMatrix = buildMatrix()) {
+  const surfaceGravity = (massKg: number) => SPEED_OF_LIGHT ** 4 / (4 * NEWTON_G * massKg)
+  const rel = (a: number, b: number) => abs(a - b) / max(abs(a), abs(b))
+  const ulp = 8 * Number.EPSILON
+  const m = SOLAR_MASS_KG
+  const hawkingIsUnruhAtTheHorizon = rel(hawkingTemperature(m), unruhTemperature(surfaceGravity(m))) <= ulp
+  const hawkingScalesInverse = hawkingTemperature(2 * m) * (2 * m) === hawkingTemperature(m) * m
+  const v = speedOfSoundAir
+  const soundSquaredIsAffineInT = rel(v(54) ** 2 - v(0) ** 2, 2 * (v(27) ** 2 - v(0) ** 2)) <= ulp
+  const lightInVacuumIsC = speedInMedium(1) === SPEED_OF_LIGHT && speedInMedium(2) < SPEED_OF_LIGHT
+  const sealed = sealFacets('temperature-speed', [
+    { facet: 'Hawking is Unruh at the horizon: T_H(M) = T_U(κ) with κ = c⁴/4GM — the 4↔6 and 5↔5 primitives agree to within 8 ulp at one solar mass', on: hawkingIsUnruhAtTheHorizon },
+    { facet: 'T_H ∝ 1/M exactly: doubling the mass halves the temperature, bit for bit', on: hawkingScalesInverse },
+    { facet: 'sound speed squared is affine in temperature: 0→27 °C gains exactly half of 0→54 °C', on: soundSquaredIsAffineInT },
+    { facet: 'light in a medium of index 1 is c itself and every n > 1 is slower — physical FTL stays 0', on: lightInVacuumIsC },
+  ])
+  return {
+    computes: sealed.ok,
+    facets: sealed.facets,
+    statement: 'Temperature and speed are two faces of one measurement: a temperature is a rate read through ħ/k (Unruh T = ħa/2πck; Hawking is its value at a horizon’s surface gravity), and a speed is a temperature read through a medium (sound: v² affine in T; light: c/n). The primitives live in src/3/7, 4/6, 5/5 and 8/2; this fold only crosses them, and each cross is an identity the kernel can refute.',
+  }
+}
+

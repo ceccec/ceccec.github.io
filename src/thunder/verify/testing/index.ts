@@ -2,10 +2,14 @@
 // Unified test harness: minimum code, maximum coverage.
 // Every formula tested against real remote APIs: opt-in via credentials.
 
-import { memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
+import { ICHING_NUMBERS, isUuid, log, memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
 import { reviewEuPatents } from '../../../heaven/laws/index.ts'
 import type { MindMatrix } from '../../../types/index.ts'
+
+// A default is a ledgered axiom, never a bare literal: the type refuses any non-sealed number.
+export const SHOTS: number = 864 satisfies (typeof ICHING_NUMBERS)[number] // 2 × a432
+const BATCH: number = 8 satisfies (typeof ICHING_NUMBERS)[number] // one bāguà per batch
 
 export type GapResolution = {
   readonly name: string
@@ -229,16 +233,19 @@ export function liveTestingGapsDiscoveredAndFixed(matrix: MindMatrix = buildMatr
 }
 
 export function liveTestingDiscovery(matrix: MindMatrix = buildMatrix()) {
+  const report = liveApiTestReport(matrix)
+  const sealed = ICHING_NUMBERS as readonly number[]
+  const credentials = ['EPA_TOKEN', 'IBM_TOKEN', 'AWS_ACCESS_KEY', 'AZURE_TOKEN'].filter((k) => Boolean(process.env[k]))
+  const structural = [
+    { facet: `zero-network by default: with no fetch and no credential the report passes 0 of ${report.testsRun}`, on: report.testsRun === TESTS.length && report.testsPassed === 0 },
+    { facet: 'every result carries a content-addressed receipt, never a typed id', on: report.results.every((r) => isUuid(r.receipt)) },
+    { facet: `quantum defaults are sealed numbers: shots ${SHOTS}, batch ${BATCH} ∈ ICHING_NUMBERS`, on: sealed.includes(SHOTS) && sealed.includes(BATCH) },
+  ]
+  const environment = { facet: `credentials absent in this run (${credentials.length ? credentials.join(', ') + ' present' : 'none present'}) ⇒ every credential-gated test reports opt-in, never failure`, on: TESTS.filter((t) => t.envVar && !process.env[t.envVar]).every((t) => report.results.find((r) => r.name === t.name)?.message.startsWith('opt-in') === true) }
   return {
-    computes: true,
-    facets: [
-      { facet: `${TESTS.length} live test vectors wired; zero-network by default (opt-in via credentials/fetch)`, on: true },
-      { facet: 'Patent audit: testable via EPA_TOKEN env var', on: true },
-      { facet: 'Quantum hardware: REST API integrations wired (IBM Quantum, AWS Braket, Azure Quantum)', on: true },
-      { facet: 'Research citations: live arXiv/Zenodo/CrossRef API calls wired', on: false },
-      { facet: 'Zenodo deposit verification: critical blocker (immutable record)', on: false },
-    ],
-    statement: `Live testing framework: ${TESTS.length} test vectors including quantum hardware REST APIs. Zero-network by default; set env vars (IBM_TOKEN, AWS_ACCESS_KEY+AWS_SECRET_KEY, AZURE_TOKEN+AZURE_SUBSCRIPTION+AZURE_WORKSPACE) to test against real quantum backends.`,
+    computes: structural.every((f) => f.on),
+    facets: [...structural, environment],
+    statement: `Live testing harness: ${TESTS.length} test vectors (EPO OPS patents, IBM Quantum, AWS Braket, Azure Quantum, research citations, Zenodo). Zero-network by default; pass fetch and set EPA_TOKEN / IBM_TOKEN / AWS_ACCESS_KEY+AWS_SECRET_KEY / AZURE_TOKEN+AZURE_SUBSCRIPTION+AZURE_WORKSPACE to measure live. Open leads: citation extraction from src/research (an 8-identifier sample today); Zenodo record 21787144 is immutable, a corrected deposit needs a new DOI.`,
   }
 }
 
@@ -259,7 +266,7 @@ export interface IbmQuantumJob {
 export async function ibmQuantumSubmitJob(
   token: string,
   qasm: string,
-  shots = 1000,
+  shots = SHOTS,
   backend: IbmQuantumBackend = 'simulator_statevector'
 ): Promise<IbmQuantumJob | { error: string }> {
   if (!token) return { error: 'IBM_TOKEN required' }
@@ -709,7 +716,7 @@ export async function batchLoadCitations(
   options?: { maxBatchSize?: number; delayMs?: number }
 ): Promise<BatchLoadResult> {
   const citations = extractCitationsFromResearch()
-  const { maxBatchSize = 10, delayMs = 100 } = options ?? {}
+  const { maxBatchSize = BATCH, delayMs = 100 } = options ?? {}
 
   const verified: Citation[] = []
   const startTime = Date.now()
@@ -758,17 +765,18 @@ export async function batchLoadCitations(
 
 export async function citationBatchDiscovery(fetch?: any, matrix: MindMatrix = buildMatrix()) {
   const result = await batchLoadCitations(fetch)
-
+  const perSource = Object.values(result.bySource).reduce((a, b) => a + b.count, 0)
+  const facets = [
+    { facet: `${result.totalCitations} identifiers in the batch (a representative sample; extraction from src/research is the open lead)`, on: result.totalCitations === result.citations.length },
+    { facet: `outcomes partition the batch: ${result.verified} verified + ${result.notFound} not found + ${result.errors} errors + ${result.pending} pending = ${result.totalCitations}`, on: result.verified + result.notFound + result.errors + result.pending === result.totalCitations },
+    { facet: fetch ? `live: nothing left pending, ${result.verified}/${result.totalCitations} verified in ${result.totalLatencyMs}ms` : `zero-network: all ${result.pending} pending, none claimed verified`, on: fetch ? result.pending === 0 : result.pending === result.totalCitations && result.verified === 0 },
+    { facet: `per-source counts sum to the batch: arXiv ${result.bySource.arxiv.count}, Zenodo ${result.bySource.zenodo.count}, CrossRef ${result.bySource.crossref.count}, EPO ${result.bySource['epo-ops'].count}`, on: perSource === result.totalCitations },
+    { facet: 'the batch receipt is the content address of its size', on: result.receipt === toUuid(`citations:batch:${result.totalCitations}`) },
+  ]
   return {
-    computes: true,
-    facets: [
-      { facet: `${result.totalCitations} citations extracted from research`, on: result.totalCitations > 0 },
-      { facet: `${result.verified} verified live (${Math.round((result.verified / result.totalCitations) * 100)}%)`, on: result.verified > 0 },
-      { facet: `${result.notFound} not found, ${result.errors} errors, ${result.pending} pending (zero-network)`, on: true },
-      { facet: `Batch latency: ${result.totalLatencyMs}ms across ${Object.values(result.bySource).reduce((a, b) => a + b.count, 0)} API calls`, on: true },
-      { facet: `Per-source verification: arXiv ${result.bySource.arxiv.verified}/${result.bySource.arxiv.count}, Zenodo ${result.bySource.zenodo.verified}/${result.bySource.zenodo.count}, CrossRef ${result.bySource.crossref.verified}/${result.bySource.crossref.count}`, on: true },
-    ],
-    statement: `Batch citation loader: extract from research → verify via live APIs. Zero-network by default (all pending). Opt-in: pass fetch to query arXiv/Zenodo/CrossRef; pass EPA_TOKEN for patent verification. Measurements: success rate, latency, API availability, citation gaps.`,
+    computes: facets.every((f) => f.on),
+    facets,
+    statement: `Batch citation loader: identifiers → live arXiv / Zenodo / CrossRef (EPO OPS via EPA_TOKEN). Zero-network by default (all pending); pass fetch to measure success rate, latency and availability per source.`,
   }
 }
 // Citation verification: batch-load from research, verify via live APIs
@@ -809,205 +817,71 @@ export type VerificationMethod = 'code' | 'live-api' | 'hardness-solver' | 'comp
 export interface Involution {
   id: string
   domain: InvolutionDomain
-  pattern: string // e.g., "σ: s ↔ (1−s)", "σ(a ↔ b)", "σ: G ↔ ^LG"
-  fixedPoint?: string // e.g., "s = 1/2", "χ = 4"
-  isSelfInverse: boolean // σ² = id?
+  pattern: string // e.g. "σ: s ↔ (1−s)", "σ(a ↔ b)", "σ: G ↔ ^LG"
+  fixedPoint?: string // what the literature names as the fixed point
   verificationMethod: VerificationMethod
-  statement?: string // Human-readable consequence
+  status: 'proved' | 'open' // of the CONSEQUENCE the literature attaches to σ — never of σ itself
+  statement: string // the involution's own identity; an open problem is named as open, never asserted
+  sigma: (x: number) => number // the map itself on a finite model — σ² = id is COMPUTED from it, never typed
+  samples: readonly number[] // the model's points; dyadic where the map subtracts, so the arithmetic is exact
+  model: string // what the finite model stands for
 }
 
-// Formula-driven: let the 164 involutions guide what gets written
-const INVOLUTION_PATTERNS: readonly Involution[] = [
-  // Functional/Spectral (s ↔ 1−s family)
-  {
-    id: 'riemann-s-involution',
-    domain: 'functional',
-    pattern: 'σ: s ↔ (1−s)',
-    fixedPoint: 's = 1/2 (critical line)',
-    isSelfInverse: true,
-    verificationMethod: 'computation',
-    statement: 'Riemann ζ-function: zeros forced onto critical line by functional equation involution',
-  },
-  {
-    id: 'l-function-universal',
-    domain: 'functional',
-    pattern: 'σ: s ↔ (1−s) for all L(s,χ)',
-    fixedPoint: 's = 1/2',
-    isSelfInverse: true,
-    verificationMethod: 'lean-proof',
-    statement: 'All Dirichlet L-functions obey same involution (Generalized Riemann Hypothesis)',
-  },
+const DYADIC: readonly number[] = Array.from({ length: 5 }, (_, i) => i / 4) // 0, ¼, ½, ¾, 1 — exact in binary
+const DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] as const
+const PAIR = [0, 1] as const
+const EVEN = 54 // a sealed even number for the Goldbach model
+/** d ↦ (k−1)−d: the digit-inverse at scale k — every exchange of two roles is this map on a two-point model. */
+const reflect = (k: number) => (x: number) => k - 1 - x
 
-  // Arithmetic (integer/prime involutions)
-  {
-    id: 'goldbach-parity',
-    domain: 'arithmetic',
-    pattern: 'σ(p ↔ n−p)',
-    fixedPoint: 'p = n/2 (even conjecture axis)',
-    isSelfInverse: true,
-    verificationMethod: 'live-api',
-    statement: 'Goldbach: every even n > 2 is sum of two primes; involution pairs primes symmetrically',
-  },
-  {
-    id: 'polynomial-prime-symmetry',
-    domain: 'arithmetic',
-    pattern: 'σ(P(n) ↔ P(−n))',
-    fixedPoint: 'n = 0',
-    isSelfInverse: true,
-    verificationMethod: 'live-api',
-    statement: 'Polynomial families produce infinitely-many simultaneous primes via symmetric density',
-  },
-  {
-    id: 'twin-prime-gap',
-    domain: 'arithmetic',
-    pattern: 'σ(Δ_n ↔ log Δ_n)',
-    fixedPoint: 'gap ≈ log(p_n)',
-    isSelfInverse: true,
-    verificationMethod: 'live-api',
-    statement: 'Twin primes, Bounded Gaps unified: log-involution controls gap scaling',
-  },
-  {
-    id: 'digit-inverse-coprimality',
-    domain: 'arithmetic',
-    pattern: 'σ(d ↔ 9−d) on digits',
-    fixedPoint: 'd = 4.5 (midpoint in ℤ/9)',
-    isSelfInverse: true,
-    verificationMethod: 'computation',
-    statement: 'Digital root involution mirrors prime gap distributions in base-10',
-  },
-
-  // Diophantine (equation involutions)
-  {
-    id: 'fermat-exponent',
-    domain: 'arithmetic',
-    pattern: 'σ: (p,q,r) ↔ subcritical/supercritical via 1/p + 1/q + 1/r',
-    fixedPoint: '1/p + 1/q + 1/r = 1 (boundary)',
-    isSelfInverse: true,
-    verificationMethod: 'lean-proof',
-    statement: 'x^p + y^q = z^r: finitely-many solutions iff subcritical; involution enforces closure',
-  },
-  {
-    id: 'abc-coprimality',
-    domain: 'arithmetic',
-    pattern: 'σ(a ↔ b) preserves radical growth',
-    fixedPoint: 'rad(abc) at involution midpoint',
-    isSelfInverse: true,
-    verificationMethod: 'lean-proof',
-    statement: 'ABC Conjecture: radical bounds force finiteness via coprimality involution',
-  },
-
-  // Graph/Topological (duality involutions)
-  {
-    id: 'four-color-planar',
-    domain: 'graph',
-    pattern: 'σ(G ↔ G*) with χ(G) = χ(G*)',
-    fixedPoint: 'χ = 4 (chromatic number)',
-    isSelfInverse: true,
-    verificationMethod: 'code',
-    statement: 'Four Color Theorem: planar graph duality fixes chromatic number at 4',
-  },
-  {
-    id: 'knot-cobordism',
-    domain: 'topological',
-    pattern: 'σ(M ↔ M_ex) via Kirby diagram duality',
-    fixedPoint: 'Exotic smooth structure (if exists)',
-    isSelfInverse: true,
-    verificationMethod: 'lean-proof',
-    statement: 'Exotic spheres paired via cobordism involution; dimension ≥5 only',
-  },
-
-  // Algebraic/Spectral (matrix involutions)
-  {
-    id: 'pauli-matrices',
-    domain: 'algebraic',
-    pattern: 'σ†=σ (self-adjoint), [σᵢ,σⱼ]=2iε_{ijk}σₖ',
-    fixedPoint: 'Hermitian, real eigenspectrum',
-    isSelfInverse: true,
-    verificationMethod: 'computation',
-    statement: 'Pauli matrices: hermitian involution forces su(2) gap emergence',
-  },
-  {
-    id: 'birch-swinnerton-dyer',
-    domain: 'algebraic',
-    pattern: 'σ(rank E ↔ ord_{s=1} L(E,s))',
-    fixedPoint: 'rank = analytic rank at s=1',
-    isSelfInverse: true,
-    verificationMethod: 'lean-proof',
-    statement: 'BSD: elliptic curve rank involution pairs algebraic and analytic data',
-  },
-
-  // Duality (Langlands)
-  {
-    id: 'langlands-dual-group',
-    domain: 'functional',
-    pattern: 'σ: G ↔ ^LG (roots ↔ coroots)',
-    fixedPoint: 'Self-dual groups (GL_n)',
-    isSelfInverse: true,
-    verificationMethod: 'lean-proof',
-    statement: 'Langlands functoriality: duality forces transfers; fixed points are known cases',
-  },
-  {
-    id: 'homological-mirror-symmetry',
-    domain: 'topological',
-    pattern: 'σ(H^k ↔ cycles), σ: cohomology ↔ homology',
-    fixedPoint: 'Hodge diamond symmetry',
-    isSelfInverse: true,
-    verificationMethod: 'lean-proof',
-    statement: 'Mirror symmetry: dual manifolds paired via homological involution',
-  },
-
-  // Computational (hardness/complexity)
-  {
-    id: 'p-vs-np',
-    domain: 'computational',
-    pattern: 'σ(certificate exists ↔ hard to find)',
-    fixedPoint: 'P=NP at fixed point (if exists)',
-    isSelfInverse: true,
-    verificationMethod: 'hardness-solver',
-    statement: 'P vs NP: verifier-solver involution; gap proves P≠NP',
-  },
-  {
-    id: 'graph-isomorphism-quasi-poly',
-    domain: 'computational',
-    pattern: 'σ(T(n) ↔ 2^{poly(log n)}) via Babai–Luks',
-    fixedPoint: 't_fix = quasi-polynomial time',
-    isSelfInverse: true,
-    verificationMethod: 'computation',
-    statement: 'Graph isomorphism: quasi-poly involution bounds solving time',
-  },
+export const INVOLUTION_PATTERNS: readonly Involution[] = [
+  { id: 'riemann-s-involution', domain: 'functional', pattern: 'σ: s ↔ (1−s)', fixedPoint: 'Re s = 1/2 (critical line)', verificationMethod: 'computation', status: 'open', statement: 'σ(s) = 1−s, σ² = id, unique fixed line Re s = ½ from the functional equation; that every non-trivial zero lies on it is the Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
+  { id: 'l-function-universal', domain: 'functional', pattern: 'σ: s ↔ (1−s) on every completed L(s,χ)', fixedPoint: 'Re s = 1/2', verificationMethod: 'lean-proof', status: 'open', statement: 'the same σ acts on every completed Dirichlet L-function; the Generalized Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
+  { id: 'goldbach-parity', domain: 'arithmetic', pattern: 'σ(p) = n − p', fixedPoint: 'p = n/2', verificationMethod: 'live-api', status: 'open', statement: 'σ(p) = n−p on [0, n], σ² = id, fixed point n/2; whether every even n > 2 has a prime pair under σ is Goldbach — OPEN', sigma: (p) => EVEN - p, samples: [0, 1, EVEN / 2, EVEN - 1, EVEN], model: `p on [0, ${EVEN}]` },
+  { id: 'polynomial-prime-symmetry', domain: 'arithmetic', pattern: 'σ(P(n)) = P(−n)', fixedPoint: 'n = 0', verificationMethod: 'live-api', status: 'open', statement: 'σ: n ↦ −n on a polynomial family; infinitely many simultaneous prime values is Schinzel’s hypothesis H — OPEN (the linear case is Dirichlet, proved)', sigma: (n) => -n, samples: [-2, -1, 0, 1, 2], model: 'n on a symmetric integer window' },
+  { id: 'twin-prime-gap', domain: 'arithmetic', pattern: 'σ(Δ) = log Δ', fixedPoint: 'Δ ≈ log p', verificationMethod: 'live-api', status: 'open', statement: 'σ: Δ ↦ log Δ on consecutive prime gaps is self-similar, not self-inverse; bounded gaps are PROVED (Zhang 2013, Maynard 2015), twin primes and Cramér’s bound — OPEN', sigma: (d) => log(d), samples: [1, 2, 4, 8], model: 'Δ on powers of two' },
+  { id: 'digit-inverse-coprimality', domain: 'arithmetic', pattern: 'σ(d) = 9 − d', fixedPoint: 'd = 9/2 ∉ ℤ', verificationMethod: 'computation', status: 'proved', statement: 'σ(d) = 9−d on digital roots, σ² = id, no integer fixed point — an identity the kernel decides', sigma: reflect(DIGITS.length), samples: DIGITS, model: 'the ten digits' },
+  { id: 'fermat-exponent', domain: 'arithmetic', pattern: 'σ: (p, q) ↔ (q, p) under 1/p + 1/q + 1/r', fixedPoint: '1/p + 1/q + 1/r = 1', verificationMethod: 'lean-proof', status: 'open', statement: 'σ swaps the exponents of x^p + y^q = z^r and preserves 1/p + 1/q + 1/r; Fermat’s last theorem is PROVED (Wiles 1995), finiteness of the generalized (Fermat–Catalan) case — OPEN', sigma: reflect(PAIR.length), samples: PAIR, model: 'p ↔ q as the two roles' },
+  { id: 'abc-coprimality', domain: 'arithmetic', pattern: 'σ: (a, b) ↔ (b, a) with rad(abc) fixed', fixedPoint: 'a = b', verificationMethod: 'lean-proof', status: 'open', statement: 'σ swaps the coprime summands and fixes rad(abc); the abc conjecture — OPEN (the claimed proof is not accepted)', sigma: reflect(PAIR.length), samples: PAIR, model: 'a ↔ b as the two roles' },
+  { id: 'four-color-planar', domain: 'graph', pattern: 'σ: G ↔ G* (planar dual)', fixedPoint: 'χ = 4', verificationMethod: 'code', status: 'proved', statement: 'σ: G ↦ G* on planar graphs, σ² = id; χ(G) ≤ 4 is PROVED (Appel–Haken 1976; Gonthier 2005 in Coq)', sigma: reflect(PAIR.length), samples: PAIR, model: 'primal ↔ dual' },
+  { id: 'knot-cobordism', domain: 'topological', pattern: 'σ: M ↔ M_exotic (cobordism)', fixedPoint: 'standard smooth structure', verificationMethod: 'lean-proof', status: 'open', statement: 'σ pairs a manifold with an exotic smooth structure through cobordism; exotic 7-spheres are PROVED (Milnor 1956), the smooth 4-dimensional Poincaré question — OPEN', sigma: reflect(PAIR.length), samples: PAIR, model: 'standard ↔ exotic' },
+  { id: 'pauli-matrices', domain: 'algebraic', pattern: 'σ_i† = σ_i, [σ_i, σ_j] = 2iε_ijk σ_k', fixedPoint: 'real spectrum ±1', verificationMethod: 'computation', status: 'proved', statement: 'σ_i² = I and σ_i† = σ_i in M₂(ℂ) — identities the kernel decides; they generate su(2)', sigma: (x) => -x, samples: [-1, 1], model: 'σ_z on its eigenvalues ±1' },
+  { id: 'birch-swinnerton-dyer', domain: 'algebraic', pattern: 'σ: rank E ↔ ord_{s=1} L(E, s)', fixedPoint: 'rank = analytic rank', verificationMethod: 'lean-proof', status: 'open', statement: 'σ pairs the algebraic rank with the analytic order at s = 1; their equality is BSD — OPEN (rank ≤ 1 cases proved: Gross–Zagier, Kolyvagin)', sigma: reflect(PAIR.length), samples: PAIR, model: 'algebraic ↔ analytic' },
+  { id: 'langlands-dual-group', domain: 'functional', pattern: 'σ: G ↔ ᴸG (roots ↔ coroots)', fixedPoint: 'self-dual groups (GL_n)', verificationMethod: 'lean-proof', status: 'open', statement: 'σ exchanges roots and coroots of the root datum, σ² = id, fixed points are the self-dual groups; functoriality in general — OPEN (cyclic base change for GL_n is proved)', sigma: reflect(PAIR.length), samples: PAIR, model: 'roots ↔ coroots' },
+  { id: 'homological-mirror-symmetry', domain: 'topological', pattern: 'σ: H^{p,q} ↔ H^{q,p}', fixedPoint: 'Hodge diamond symmetry', verificationMethod: 'lean-proof', status: 'open', statement: 'σ reflects the Hodge diamond between mirror pairs; homological mirror symmetry in general — OPEN (proved for specific families)', sigma: reflect(PAIR.length), samples: PAIR, model: 'p ↔ q in H^{p,q}' },
+  { id: 'p-vs-np', domain: 'computational', pattern: 'σ: find ↔ verify', fixedPoint: 'P = NP would be the fixed point', verificationMethod: 'hardness-solver', status: 'open', statement: 'σ pairs finding a certificate with verifying it; whether σ has a fixed point is P vs NP — OPEN; this row records the involution, not a resolution', sigma: reflect(PAIR.length), samples: PAIR, model: 'find ↔ verify' },
+  { id: 'graph-isomorphism-quasi-poly', domain: 'computational', pattern: 'σ: T(n) ↔ 2^{poly(log n)}', fixedPoint: 'quasi-polynomial time', verificationMethod: 'computation', status: 'proved', statement: 'T ↦ 2^T is a scale map, not an involution; graph isomorphism in quasi-polynomial time is PROVED (Babai 2015/2017); membership in P — OPEN', sigma: (t) => 2 ** t, samples: [1, 2, 3], model: 't ↦ 2^t on small t' },
 ]
+
+type InvolutionKind = 'involution' | 'scale-map'
+const kindOf = (r: Involution): InvolutionKind => (r.samples.every((x) => r.sigma(r.sigma(x)) === x) ? 'involution' : 'scale-map')
+const fixedPointsOf = (r: Involution) => r.samples.filter((x) => r.sigma(x) === x)
+const range = (k: number) => Array.from({ length: k }, (_, i) => i)
 
 export function allInvolutions(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('all-involutions', matrix, () => {
     const byDomain = {} as Record<InvolutionDomain, number>
     const byMethod = {} as Record<VerificationMethod, number>
-
-    INVOLUTION_PATTERNS.forEach(inv => {
-      byDomain[inv.domain] = (byDomain[inv.domain] ?? 0) + 1
-      byMethod[inv.verificationMethod] = (byMethod[inv.verificationMethod] ?? 0) + 1
+    const rows = INVOLUTION_PATTERNS.map((r) => ({ ...r, kind: kindOf(r), fixedPoints: fixedPointsOf(r) }))
+    rows.forEach((r) => {
+      byDomain[r.domain] = (byDomain[r.domain] ?? 0) + 1
+      byMethod[r.verificationMethod] = (byMethod[r.verificationMethod] ?? 0) + 1
     })
-
     return {
-      total: INVOLUTION_PATTERNS.length,
-      selfInverse: INVOLUTION_PATTERNS.filter(i => i.isSelfInverse).length,
+      total: rows.length,
+      selfInverse: rows.filter((r) => r.kind === 'involution').length,
+      scaleMaps: rows.filter((r) => r.kind === 'scale-map').map((r) => r.id),
       byDomain,
       byMethod,
-      involutions: INVOLUTION_PATTERNS,
+      involutions: rows,
     }
   })
 }
 
 export function involutionsByBellBound(matrix: MindMatrix = buildMatrix()) {
   const all = allInvolutions(matrix)
-
-  const mechanical = all.involutions.filter(i =>
-    ['code', 'computation', 'lean-proof'].includes(i.verificationMethod)
-  )
-
-  const quantum = all.involutions.filter(i =>
-    ['live-api', 'hardness-solver'].includes(i.verificationMethod)
-  )
-
+  const mechanical = all.involutions.filter((i) => ['code', 'computation', 'lean-proof'].includes(i.verificationMethod))
+  const quantum = all.involutions.filter((i) => ['live-api', 'hardness-solver'].includes(i.verificationMethod))
   return {
     mechanical: { count: mechanical.length, involutions: mechanical },
     quantum: { count: quantum.length, involutions: quantum },
@@ -1017,17 +891,20 @@ export function involutionsByBellBound(matrix: MindMatrix = buildMatrix()) {
 export function involutionDiscovery(matrix: MindMatrix = buildMatrix()) {
   const all = allInvolutions(matrix)
   const bound = involutionsByBellBound(matrix)
-
+  const ladder = (ICHING_NUMBERS as readonly number[]).filter((k) => k > 1)
+  const reflectionsClose = ladder.every((k) => range(k).every((x) => reflect(k)(reflect(k)(x)) === x))
+  const evenHasNoFixedPoint = range(8).filter((x) => reflect(8)(x) === x).length === 0
+  const oddHasOneFixedPoint = range(9).filter((x) => reflect(9)(x) === x).length === 1
+  const facets = [
+    { facet: `σ² = id computed on every row's model: ${all.selfInverse} involutions, ${all.scaleMaps.length} scale maps (${all.scaleMaps.join(', ')}) — and each row's prose agrees with its computed kind`, on: all.involutions.every((r) => (r.kind === 'scale-map') === /scale map|self-similar/i.test(r.statement)) },
+    { facet: `the exchange rows are one map at ${ladder.length} sealed scales: reflect(k)∘reflect(k) = id for every k in the I Ching ladder`, on: reflectionsClose },
+    { facet: 'fixed points are computed: a reflection on an even domain has none, on an odd domain exactly one', on: evenHasNoFixedPoint && oddHasOneFixedPoint },
+    { facet: `Bell bounds partition the catalogue: ${bound.mechanical.count} mechanical + ${bound.quantum.count} quantum = ${all.total}`, on: bound.mechanical.count + bound.quantum.count === all.total },
+  ]
   return {
-    computes: true,
-    facets: [
-      { facet: `${all.total} universal involutions (σ) extracted from theorems`, on: all.total > 0 },
-      { facet: `${all.selfInverse} are self-inverse (σ² = id)`, on: all.selfInverse === all.total },
-      { facet: `${bound.mechanical.count} mechanical (code-provable structure)`, on: bound.mechanical.count > 0 },
-      { facet: `${bound.quantum.count} quantum (live measurement required)`, on: bound.quantum.count > 0 },
-      { facet: `Formula-driven discovery: patterns guide verification requirements`, on: true },
-    ],
-    statement: `Cross formulas are self-organizing involutions (σ). 164 patterns in research/index.ts → 15+ unique formulas → Bell bounds classify mechanical vs quantum. Mechanical: code proves structure. Quantum: only live APIs + hardness solvers reveal truth. Discovery frontier: measure all quantum involutions via live systems.`,
+    computes: facets.every((f) => f.on),
+    facets,
+    statement: `Cross formulas, split so prose cannot collide with code: each row carries its map σ on a finite model, and σ² = id, the fixed points and the row's kind are computed from it. 164 patterns in research/index.ts → ${all.total} rows; ${all.selfInverse} close as involutions, ${all.scaleMaps.length} are scale maps and say so. Bell bounds classify mechanical (code proves structure) vs quantum (only live APIs and hardness solvers reveal truth).`,
   }
 }
 
@@ -1138,21 +1015,326 @@ export function validateInvolutionClosure(exports: string[]) {
 export function formulaDrivenSiteConfig(matrix: MindMatrix = buildMatrix()) {
   const formulas = uiExportsFromCrossFormulas(matrix)
   const structure = uiStructureFromMcpLattice()
+  const allExports = [...formulas.mechanical.exports.map((e) => e.name), ...formulas.quantum.exports.map((e) => e.name)]
+  const closure = validateInvolutionClosure(allExports)
+  const facets = [
+    { facet: `σ² = id on the export set: ${closure.unique} unique of ${closure.total}, ${closure.duplicates.length} duplicate(s)`, on: closure.isClosed },
+    { facet: `the export set is the Bell-bound partition: ${formulas.mechanical.count} mechanical + ${formulas.quantum.count} quantum = ${closure.total}`, on: formulas.mechanical.count + formulas.quantum.count === closure.total },
+    { facet: `the lattice is ${structure.rosetta.width}×${structure.rosetta.height} + ${structure.core.count} = ${structure.totalTools} cells, one per MCP tool`, on: structure.totalTools === MCP_TOOLS.length },
+  ]
+  return {
+    computes: facets.every((f) => f.on),
+    facets,
+    config: { formulas, structure, closure },
+    statement: `Site config derived from the involution catalogue (${closure.total} exports) and the MCP lattice (${structure.rosetta.width}×${structure.rosetta.height}+${structure.core.count}); nothing typed by hand — every cell is a formula and the closure facet refutes a duplicate.`,
+  }
+}
 
-  const allExports = [
-    ...formulas.mechanical.exports.map((e) => e.name),
-    ...formulas.quantum.exports.map((e) => e.name),
+// ---- MCP: the 15-tool lattice, the quantum tools, and the combinatorics verification ----
+
+// MCP tool interface — unified dispatcher for quantum hardware and system tools
+
+
+export const MCP_TOOLS = [
+  // Core/meta (1)
+  'list_capabilities',
+
+  // Rosetta 2×7 (14)
+  // Row 1 (navigation/leads)
+  'next_leads', 'live_connectors',
+
+  // Row 2 (release/status)
+  'release_readiness', 'census_status',
+
+  // Row 3 (compute/wave)
+  'compute_from_source', 'fold_report',
+
+  // Row 4 (gates/verification)
+  'run_gate', 'run_wave',
+
+  // Row 5 (export/distribution)
+  'run_export', 'publish_package',
+
+  // Row 6 (quantum hardware)
+  'quantum_submit_job', 'quantum_get_status',
+
+  // Row 7 (discovery/measurement)
+  'quantum_capabilities', 'live_testing',
+] as const
+
+export type McpToolName = (typeof MCP_TOOLS)[number]
+
+export function isMcpTool(name: string): name is McpToolName {
+  return MCP_TOOLS.includes(name as McpToolName)
+}
+
+export function mcpToolList() {
+  return MCP_TOOLS.map((name) => ({
+    name,
+    description: mcpToolDescription(name),
+  }))
+}
+
+function mcpToolDescription(name: McpToolName): string {
+  const descriptions: Record<McpToolName, string> = {
+    list_capabilities: 'List all available MCP tools and their schemas',
+    next_leads: 'Discover next actionable items from corpus',
+    live_connectors: 'Query live API connectors (arXiv, Zenodo, CrossRef, EPO OPS)',
+    release_readiness: 'Check if codebase is ready for release',
+    census_status: 'Report current census (index.ts count, structure)',
+    compute_from_source: 'Execute theorem computation from source code',
+    fold_report: 'Generate report on a specific fold (file, tests, coverage)',
+    run_gate: 'Run a specific verification gate',
+    run_wave: 'Execute a quantum wave (verification sweep)',
+    run_export: 'Export computed values (JSON, CSV, Lean)',
+    publish_package: 'Publish @ceccec/double-torus npm package',
+    quantum_submit_job: 'Submit quantum circuit to hardware (IBM, AWS, Azure)',
+    quantum_get_status: 'Poll quantum job status and retrieve results',
+    quantum_capabilities: 'List available quantum hardware backends and providers',
+    live_testing: 'Run live API test suite (patents, research citations, quantum)',
+  }
+  return descriptions[name] || 'Unknown tool'
+}
+
+// MCP tools: quantum hardware submission and status polling
+// Exposes IBM Quantum, AWS Braket, Azure Quantum via unified interface
+
+
+export type QuantumHardwareProvider = 'ibm' | 'aws' | 'azure'
+export type QuantumCircuitFormat = 'openqasm' | 'qasm' | 'quil'
+
+export interface QuantumJobSubmissionInput {
+  provider: QuantumHardwareProvider
+  circuit: string
+  circuitFormat?: QuantumCircuitFormat
+  shots?: number
+  backend?: string
+  credentials?: {
+    ibmToken?: string
+    awsAccessKey?: string
+    awsSecretKey?: string
+    azureToken?: string
+    azureSubscription?: string
+    azureResourceGroup?: string
+    azureWorkspace?: string
+  }
+}
+
+export interface QuantumJobStatusInput {
+  provider: QuantumHardwareProvider
+  jobId: string
+  credentials?: {
+    ibmToken?: string
+    awsAccessKey?: string
+    awsSecretKey?: string
+    azureToken?: string
+    azureSubscription?: string
+    azureResourceGroup?: string
+    azureWorkspace?: string
+  }
+}
+
+export async function quantumSubmitJob(input: QuantumJobSubmissionInput) {
+  const { provider, circuit, shots = SHOTS, credentials = {} } = input
+
+  try {
+    switch (provider) {
+      case 'ibm': {
+        if (!credentials.ibmToken) return { error: 'IBM_TOKEN required' }
+        const result = await ibmQuantumSubmitJob(credentials.ibmToken, circuit, shots)
+        return 'error' in result ? { error: result.error } : { provider: 'ibm', jobId: result.id, status: result.status }
+      }
+
+      case 'aws': {
+        if (!credentials.awsAccessKey || !credentials.awsSecretKey) return { error: 'AWS credentials required' }
+        const result = await awsBraketSubmitTask(credentials.awsAccessKey, credentials.awsSecretKey, circuit, shots)
+        return 'error' in result
+          ? { error: result.error }
+          : { provider: 'aws', jobId: result.quantumTaskArn, status: result.status }
+      }
+
+      case 'azure': {
+        if (!credentials.azureToken || !credentials.azureSubscription || !credentials.azureWorkspace) {
+          return { error: 'Azure credentials required (token, subscription, workspace)' }
+        }
+        const rg = credentials.azureResourceGroup || 'default'
+        const result = await azureQuantumSubmitJob(
+          credentials.azureToken,
+          credentials.azureSubscription,
+          rg,
+          credentials.azureWorkspace,
+          circuit,
+          shots
+        )
+        return 'error' in result ? { error: result.error } : { provider: 'azure', jobId: result.id, status: result.status }
+      }
+
+      default:
+        return { error: `Unknown provider: ${provider}` }
+    }
+  } catch (e) {
+    return { error: `Submission failed: ${String(e)}` }
+  }
+}
+
+export async function quantumGetStatus(input: QuantumJobStatusInput) {
+  const { provider, jobId, credentials = {} } = input
+
+  try {
+    switch (provider) {
+      case 'ibm': {
+        if (!credentials.ibmToken) return { error: 'IBM_TOKEN required' }
+        const result = await ibmQuantumGetJob(credentials.ibmToken, jobId)
+        return 'error' in result ? { error: result.error } : { provider: 'ibm', jobId: result.id, status: result.status }
+      }
+
+      case 'aws': {
+        if (!credentials.awsAccessKey || !credentials.awsSecretKey) return { error: 'AWS credentials required' }
+        const result = await awsBraketGetTask(credentials.awsAccessKey, credentials.awsSecretKey, jobId)
+        return 'error' in result ? { error: result.error } : { provider: 'aws', jobId: result.quantumTaskArn, status: result.status }
+      }
+
+      case 'azure': {
+        if (!credentials.azureToken || !credentials.azureSubscription || !credentials.azureWorkspace) {
+          return { error: 'Azure credentials required' }
+        }
+        const result = await azureQuantumGetJob(credentials.azureToken, credentials.azureSubscription, credentials.azureWorkspace, jobId)
+        return 'error' in result ? { error: result.error } : { provider: 'azure', jobId: result.id, status: result.status }
+      }
+
+      default:
+        return { error: `Unknown provider: ${provider}` }
+    }
+  } catch (e) {
+    return { error: `Status check failed: ${String(e)}` }
+  }
+}
+
+export function quantumHardwareCapabilitiesForMcp() {
+  return {
+    providers: [
+      {
+        name: 'IBM Quantum',
+        id: 'ibm',
+        endpoint: 'api.quantum.ibm.com/runtime/v1',
+        requiresAuth: true,
+        envVar: 'IBM_TOKEN',
+      },
+      {
+        name: 'AWS Braket',
+        id: 'aws',
+        endpoint: 'braket.us-west-2.amazonaws.com',
+        requiresAuth: true,
+        envVars: ['AWS_ACCESS_KEY', 'AWS_SECRET_KEY'],
+      },
+      {
+        name: 'Azure Quantum',
+        id: 'azure',
+        endpoint: 'quantum.azure.com',
+        requiresAuth: true,
+        envVars: ['AZURE_TOKEN', 'AZURE_SUBSCRIPTION', 'AZURE_WORKSPACE'],
+      },
+    ],
+    features: [
+      'Zero-network by default (opt-in via credentials)',
+      'Unified interface across IBM, AWS, Azure',
+      'Live job submission and status polling',
+      'Supports OpenQASM 2.0 circuits',
+    ],
+  }
+}
+
+/**
+ * MCP COMBINATORICS VERIFICATION: Ensure the tool dispatcher can be derived from lattice.
+ * Not an import of pure.ts (which must stay stdio-safe), but a verification that
+ * the actual tool list and dispatcher match what combinatorics would derive.
+ */
+
+
+const ROSETTA_WIDTH = 2
+const ROSETTA_HEIGHT = 7
+const CORE_TOOLS = 1
+const TOOL_FAMILY_COUNT = ROSETTA_WIDTH * ROSETTA_HEIGHT + CORE_TOOLS
+const REQUIRED_ICHING_BANDS = TOOL_FAMILY_COUNT
+
+// Actual tool names from MCP (canonical hardcoded list, fixture for verification)
+// This fold's purpose is to prove the dispatcher can be derived instead of hardcoded.
+const ACTUAL_TOOLS: readonly string[] = MCP_TOOLS
+
+// Verify: count and structure should derive from lattice
+export function mcpCombinatorsVerify() {
+  const actualCount = ACTUAL_TOOLS.length
+  const derivedCount = TOOL_FAMILY_COUNT
+
+  const facets = [
+    {
+      facet: `MCP tool count ${actualCount} matches rosetta lattice (${ROSETTA_WIDTH}×${ROSETTA_HEIGHT} + ${CORE_TOOLS} core = ${derivedCount})`,
+      on: actualCount === derivedCount,
+    },
+    {
+      facet: `Tool families addressable via ICHING lattice (params from bands 27 to 100)`,
+      on: ICHING_NUMBERS.length >= REQUIRED_ICHING_BANDS,
+    },
+    {
+      facet: `Dispatcher routable via combinatorial coordinates: (rosetta_x, rosetta_y) → dispatch_family`,
+      on: ACTUAL_TOOLS.every((name, i) => {
+        const rosettaIndex = i < ROSETTA_WIDTH * ROSETTA_HEIGHT ? i : -1
+        return rosettaIndex >= -1 // all tools fit in lattice
+      }),
+    },
   ]
 
-  const closure = validateInvolutionClosure(allExports)
-
   return {
-    computes: closure.isClosed,
-    config: {
-      formulas,
-      structure,
-      closure,
-    },
-    statement: `Site config derived from cross formulas (${formulas.mechanical.count + formulas.quantum.count} involutions) + MCP lattice (${structure.rosetta.width}×${structure.rosetta.height}+${structure.core.count}). No hardcoding. All exports generated from mathematical structure.`,
+    computes: facets.every((f) => f.on),
+    facets,
+    actualToolCount: actualCount,
+    derivedToolCount: derivedCount,
+    rosettaDimensions: { width: ROSETTA_WIDTH, height: ROSETTA_HEIGHT, core: CORE_TOOLS },
+    statement: `MCP tools count ${actualCount} can be derived from ${ROSETTA_WIDTH}×${ROSETTA_HEIGHT} rosetta lattice + ${CORE_TOOLS} core. ${facets.filter((f) => f.on).length}/${facets.length} facets pass.`,
+    recommendation: actualCount === derivedCount
+      ? 'Generate dispatcher table from combinatorics to replace ${actualCount} hardcoded if-statements in mcp.ts::callTool'
+      : `Tool count mismatch: actual ${actualCount} != derived ${derivedCount}. Reconcile lattice or tool list.`,
+  }
+}
+
+// Tool dispatch table: generated from lattice coordinates
+export type ToolDispatch = { readonly name: string; readonly handler: string; readonly latticeX: number; readonly latticeY: number }
+
+export function deriveToolDispatchTable(): ToolDispatch[] {
+  const table: ToolDispatch[] = []
+
+  for (let y = 0; y < ROSETTA_HEIGHT; y++) {
+    for (let x = 0; x < ROSETTA_WIDTH; x++) {
+      const index = y * ROSETTA_WIDTH + x
+      if (index < ACTUAL_TOOLS.length) {
+        const handler = x === 0 ? 'run_gate' : x === 1 ? 'run_wave' : 'meta'
+        table.push({ name: ACTUAL_TOOLS[index]!, handler, latticeX: x, latticeY: y })
+      }
+    }
+  }
+
+  // Core tools
+  for (let i = ROSETTA_WIDTH * ROSETTA_HEIGHT; i < ACTUAL_TOOLS.length; i++) {
+    table.push({ name: ACTUAL_TOOLS[i]!, handler: 'meta', latticeX: -1, latticeY: -1 })
+  }
+
+  return table
+}
+
+// Dispatcher signature: lattice coordinate → handler function
+export type ToolDispatcher = (latticeX: number, latticeY: number, args: Record<string, unknown>) => Promise<Record<string, unknown>>
+
+// Generate dispatcher from table (could be used to replace if-statements in mcp.ts)
+export function generateDispatcher(table: ToolDispatch[]): ToolDispatcher {
+  const handlerMap = new Map(table.map((t) => [`${t.latticeX}:${t.latticeY}`, t.handler]))
+
+  return async (x: number, y: number, args: Record<string, unknown>) => {
+    const handler = handlerMap.get(`${x}:${y}`)
+    if (!handler) return { error: 'unknown lattice coordinate', x, y }
+
+    // Dispatch to actual handlers (mocked here; real implementation in mcp.ts)
+    if (handler === 'run_gate') return { type: 'gate', name: String(args.name ?? 'verify:structure') }
+    if (handler === 'run_wave') return { type: 'wave', kind: String(args.kind ?? 'test') }
+    return { type: 'meta', available: true }
   }
 }

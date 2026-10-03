@@ -60,13 +60,13 @@ untracked=$(git ls-files --others --exclude-standard | grep -vxF -f <(printf '%s
 # ratchets, hashes — could not run on any commit path at all. The pre-commit hook runs `verify`, which
 # is four of them. So the chain existed, and only a human typing `npm run verify:all` ever ran it;
 # HEAD itself was sitting on a red prior-art ratchet that no landing could have caught.
-# One roster now: whatever `verify:all` chains is what a landing runs. A gate added to the chain is
+# One roster now: the gate pattern package.json declares (config.gatePattern), which verify:stream derives. A gate added under the pattern is
 # enforced the moment it is added, and canon.gate-unreachable refuses a hand-list from coming back.
 # verify:stream, not the chain: it ASKS every gate regardless of what failed before it, derives the
 # roster from package.json itself, and refuses on a gate that gave no verdict as loudly as on one that
 # refused. It was written for exactly this and wired to nothing — the runner that fixes the `&&`
 # short-circuit sat unreachable while landings ran eight gates. Re-deriving the chain here would be a
-# second roster; there is one, and it lives in verify:all.
+# second roster; there is one, and it is the pattern in package.json that verify:stream reads (verify:all is its thin dual).
 # GUARD FIRST, CHAIN SECOND. uuidna's guard lessons state it as a law and this session paid to learn
 # it: three separate ten-minute verify:stream runs ended on the same two-second error, a new script in
 # package.json left untracked. `guard` checks that every script package.json names exists, is tracked

@@ -22,6 +22,8 @@
 
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import * as nodeFs from 'node:fs'
+import * as nodePath from 'node:path'
 
 const STATUS = 'scripts/verify/status.json'
 
@@ -206,4 +208,29 @@ export function ratchet(
     return `${name}: ${measured} (was ${recorded}) — tightened, recorded`
   }
   return `${name}: ${measured} (at the recorded floor)`
+}
+
+/** THE GATE UNIVERSE IS A PATTERN IN package.json (config.gatePattern), NOT A CHAIN. The 59-link `&&` chain was
+ *  a hand-list enforced equal to a pattern by canon.gate-unreachable; reading the pattern directly removes the copy.
+ *  The runners (config.gateRunners) are excluded: a runner that ran itself would recurse. */
+export function gateUniverse(root: string = process.cwd()): readonly string[] {
+  const pkg = JSON.parse(nodeFs.readFileSync(nodePath.join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string>; config?: Record<string, string> }
+  const pattern = new RegExp(String(pkg.config?.gatePattern ?? '^$'))
+  const runners = new RegExp(String(pkg.config?.gateRunners ?? '^$'))
+  return Object.keys(pkg.scripts ?? {}).filter((n) => pattern.test(n) && !runners.test(n)).sort()
+}
+
+export type GateSurface = 'tree' | 'live'
+/** The SECOND AXIS, derived from the gate's own source: a gate that reaches the network measures a live record
+ *  (a registry, an archive, a deployment), which the tag settles at release-cut; a tree gate measures the tree,
+ *  which the land settles. Neither is typed in a table — the source says which it is. */
+export function universeGates(root: string = process.cwd()): readonly { gate: string; surface: GateSurface; file: string | null }[] {
+  const pkg = JSON.parse(nodeFs.readFileSync(nodePath.join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
+  const live = /\bfetch\(|from 'node:(https?|dns|net)'/
+  return gateUniverse(root).map((gate) => {
+    const body = pkg.scripts?.[gate] ?? ''
+    const file = /scripts\/verify\/[\w-]+\.ts/.exec(body)?.[0] ?? /src\/(?!pair\/enforcement\/script\/cli\/bootstrap)[\w/-]+\/index\.ts/.exec(body)?.[0] ?? null
+    const src = file && nodeFs.existsSync(nodePath.join(root, file)) ? nodeFs.readFileSync(nodePath.join(root, file), 'utf8') : ''
+    return { gate, surface: live.test(src) ? 'live' : 'tree', file }
+  })
 }

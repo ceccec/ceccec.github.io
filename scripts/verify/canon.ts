@@ -57,6 +57,7 @@ import { corpusFiles } from './corpus.ts'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { ratchet, everyRatchet, floorsWithoutLaw } from './status.ts'
+import { gateUniverse } from './status.ts'
 
 const require = createRequire(import.meta.url)
 type Site = { readonly file: string; readonly line: number; readonly text: string }
@@ -464,7 +465,7 @@ export function findFacetGatesElsewhere(root: string = process.cwd()): Site[] {
 
 export function findUnreachableGates(root: string = process.cwd()): string[] {
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts: Record<string, string> }
-  const chain = new Set(pkg.scripts['verify:all']!.split('&&').map((x) => x.trim().replace(/^npm run /, '')))
+  const chain = new Set(gateUniverse(root))
   // ONE RULE, not a table of exceptions: a gate is reachable if the chain names it, or some RUNNER in the
   // repository does — a workflow or a shell script. That covers the honestly release-scoped gates without
   // a ledger to keep in step, and it refuses the case a ledger would have hidden: a gate declared

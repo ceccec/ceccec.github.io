@@ -1109,3 +1109,13 @@ export declare function poleInertiaProven(matrix?: MindMatrix): {
     root: string;
     statement: string;
 };
+export declare function temperatureAndSpeedAreOneMeasurement(matrix?: MindMatrix): {
+    computes: boolean;
+    facets: ({
+        facet: string;
+        on: boolean;
+    } & {
+        receipt: string;
+    })[];
+    statement: string;
+};

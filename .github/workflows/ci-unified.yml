@@ -1,127 +1,78 @@
 name: Unified CI — All Environments
 
+# One runner for every environment, on demand. Push-time deploy stays with deploy.yml and
+# waves-after-push.yml; tag-time publishing stays with publish-package.yml and
+# zenodo-publish.yml, both gated by release-cut (cut on green only). This workflow never
+# publishes: a tag fires npm AND an immutable DOI, so publishing is not re-implemented here.
+
 on:
-  push:
-    branches: [main]
-    tags: ['v*']
-    paths-ignore:
-      - 'scripts/verify/status.json'
-      - 'scripts/verify/prior-art.ts'
-      - 'MANIFEST.md'
-      - '.claude/**'
   workflow_dispatch:
     inputs:
       environment:
         description: 'Target environment'
         required: true
         type: choice
-        options:
-          - 'dev'
-          - 'staging'
-          - 'production'
-        default: 'production'
-      publish:
-        description: 'Publish artifacts (npm, Zenodo)'
+        options: [dev, staging, production]
+        default: production
+      deploy:
+        description: 'Also deploy the built site to Pages (production only)'
         required: false
         type: boolean
         default: false
 
 env:
   NODE_VERSION: 24
-  PNPM_VERSION: latest
+  PNPM_VERSION: 11.8.0
 
 jobs:
-  # Phase 1: Determine environment from branch/tag/input
-  setup:
-    runs-on: ubuntu-latest
-    outputs:
-      environment: ${{ steps.detect.outputs.environment }}
-      is-release: ${{ steps.detect.outputs.is-release }}
-      version: ${{ steps.detect.outputs.version }}
-    steps:
-      - id: detect
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "environment=${{ inputs.environment }}" >> $GITHUB_OUTPUT
-          elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-            echo "environment=production" >> $GITHUB_OUTPUT
-            echo "is-release=true" >> $GITHUB_OUTPUT
-            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-          else
-            echo "environment=production" >> $GITHUB_OUTPUT
-          fi
-
-  # Phase 2: Install & verify
   verify:
     runs-on: ubuntu-latest
-    needs: setup
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v5
         with:
           version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
-
       - run: pnpm install --frozen-lockfile
-
-      - name: Run core verifications
+      - name: Core verifications
         run: |
           npm run verify:structure
           npm run verify:imports
           npm run verify:barrel
           npm run verify:paths
           npm run verify:theorems
-
-      - name: Run full verification suite (prod only)
-        if: needs.setup.outputs.environment == 'production'
+      - name: Full verification suite (production only)
+        if: inputs.environment == 'production'
         run: npm run verify:all
 
-  # Phase 3: Build
   build:
     runs-on: ubuntu-latest
-    needs: [setup, verify]
-    outputs:
-      site-dir: ${{ runner.temp }}/site
-      package-path: ${{ runner.temp }}/package
+    needs: verify
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v5
         with:
           version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
-
       - run: pnpm install --frozen-lockfile
-
-      - name: Build site
-        run: npm run docs:build
-
-      - name: Build npm package
-        run: npm run build:package
-
-      - name: Upload site artifact
-        uses: actions/upload-artifact@v4
+      - run: npm run docs:build
+      - run: npm run build:package
+      - uses: actions/upload-artifact@v4
         with:
           name: site
           path: .vitepress/dist
           retention-days: 1
 
-      - name: Upload package artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: package
-          path: dist/package
-          retention-days: 1
-
-  # Phase 4a: Deploy to Pages (all environments)
   deploy-pages:
     runs-on: ubuntu-latest
-    needs: [setup, build]
+    needs: build
+    if: inputs.environment == 'production' && inputs.deploy
     permissions:
       pages: write
       id-token: write
@@ -133,122 +84,38 @@ jobs:
         with:
           name: site
           path: .vitepress/dist
-
-      - uses: actions/configure-pages@v4
-
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .vitepress/dist
-
       - id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
 
-  # Phase 4b: Publish npm package (release tags only)
-  publish-npm:
-    runs-on: ubuntu-latest
-    needs: [setup, build]
-    if: needs.setup.outputs.is-release == 'true' || inputs.publish
-    permissions:
-      packages: write
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: package
-          path: dist
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://npm.pkg.github.com'
-
-      - name: Check version matches tag
-        if: needs.setup.outputs.is-release == 'true'
-        run: |
-          TAG_VERSION="${{ needs.setup.outputs.version }}"
-          PKG_VERSION=$(jq -r .version dist/package.json)
-          if [[ "$TAG_VERSION" != "v$PKG_VERSION" ]]; then
-            echo "Version mismatch: tag=$TAG_VERSION vs package=$PKG_VERSION"
-            exit 1
-          fi
-
-      - name: Publish to GitHub Packages
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: dist
-
-  # Phase 4c: Publish to Zenodo (release tags only)
-  publish-zenodo:
-    runs-on: ubuntu-latest
-    needs: [setup, build]
-    if: needs.setup.outputs.is-release == 'true' || inputs.publish
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
-
-      - name: Publish to Zenodo
-        run: npm run zenodo:publish -- --version=${{ needs.setup.outputs.version }}
-        env:
-          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
-          ZENODO_SANDBOX: ${{ needs.setup.outputs.environment != 'production' }}
-
-  # Phase 5: Post-push waves (main branch only)
   waves:
     runs-on: ubuntu-latest
-    needs: [setup, deploy-pages]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: build
+    if: inputs.environment == 'production'
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v5
         with:
           version: ${{ env.PNPM_VERSION }}
-
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
-
       - run: pnpm install --frozen-lockfile
+      - run: npm run quantum:wave-verify
 
-      - name: Run post-push verification waves
-        run: npm run quantum:wave-verify
-
-  # Final: Report status
   status:
     runs-on: ubuntu-latest
-    needs: [setup, verify, build, deploy-pages, publish-npm, publish-zenodo, waves]
+    needs: [verify, build, deploy-pages, waves]
     if: always()
     steps:
-      - name: Report CI status
-        run: |
-          echo "Environment: ${{ needs.setup.outputs.environment }}"
-          echo "Is Release: ${{ needs.setup.outputs.is-release }}"
-          echo "Version: ${{ needs.setup.outputs.version }}"
-
-          if [[ "${{ needs.verify.result }}" != "success" ]]; then
-            echo "❌ Verification failed"
-            exit 1
-          fi
-
-          if [[ "${{ needs.build.result }}" != "success" ]]; then
-            echo "❌ Build failed"
-            exit 1
-          fi
-
-          if [[ "${{ needs.deploy-pages.result }}" != "success" ]]; then
-            echo "❌ Pages deployment failed"
-            exit 1
-          fi
-
-          echo "✅ CI passed for ${{ needs.setup.outputs.environment }}"
+      - run: |
+          echo "environment: ${{ inputs.environment }}  deploy: ${{ inputs.deploy }}"
+          for job in verify build; do
+            r="${{ needs.verify.result }}"; [ "$job" = build ] && r="${{ needs.build.result }}"
+            [ "$r" = success ] || { echo "$job: $r"; exit 1; }
+          done
+          echo "ok for ${{ inputs.environment }}"
