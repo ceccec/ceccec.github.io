@@ -1107,7 +1107,7 @@ export {
   thunderGoldGraphPaintSamples,
   thunderGoldGraphComputes,
   schumannGoldSiteCouplingAt,
-  schumannGoldSiteCouplingComputes } from '../../wind/index.ts'
+  schumannGoldSiteCouplingComputes } from '../../wind/fusion/index.ts'
 
 // ── Magnetic declination at a site — the centered-dipole model: declination ≈ the initial bearing from
 // the site to the geomagnetic north pole (the angle between true north and dipole north). Pole position

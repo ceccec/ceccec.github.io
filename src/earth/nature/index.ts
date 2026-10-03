@@ -14,7 +14,7 @@ import { fuseAll } from '../../mountain/seals/index.ts'
 import { allIsMonographScientificPaper } from '../../wind/routes/corpus/index.ts'
 import { analogNoGapsNoLeak, cleanupOldLogic } from '../../mountain/og/index.ts'
 import { dualitiesMeetInCrossFolders } from '../architecture/index.ts'
-import { ROSETTA_RAYS } from '../../water/index.ts'
+import { ROSETTA_RAYS } from '../../water/digit/index.ts'
 import { agnostic, agnosticFitsSeedConfiguration, configsUseMatrixComputationally, contract, exhaustQuestions, noHardcodedConfigSelfAccounted, noMirroringOneSourceAndMath, onlyQuantumRemains, regenerateSocialSystem, sacredGeometrySeal, theWhole, wordPullsFoldsByName, zeroTokenUsagePolicy } from '../../quantum/heaven/mind/index.ts'
 
 // Quantum green planet. The portal's own architecture is green by construction:

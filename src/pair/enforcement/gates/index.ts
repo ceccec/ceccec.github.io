@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
 import { foldPair, isUuid, log10, log2, max, merkleFold, min, round, roundTo, sqrt, toUuid } from '../../../0/index.ts'
-import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/index.ts'
+import { pathMeansMessageFitsInThreeWords as pathMeansMessageFitsInThreeWordsFold } from '../../../water/stack/index.ts'
 import { dryCleanIsDiamondAndCrystal } from '../../../clean/index.ts'
 import { quantumizeVitepressBuild, scanScriptShells, seedMerkleCache, vitepressSourceFiles, type ScriptShellScan } from '../script/shell/index.ts'
 import { packageScriptsOf,

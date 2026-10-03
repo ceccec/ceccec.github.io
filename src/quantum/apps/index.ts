@@ -7,7 +7,7 @@ import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper, fleetCacheEconomicsDecoded, proofReport, noQpuRequired, quantumCircuitSimulatorInChat, portalChat, portalChatRanked, freeChatTurnAtArchitecturalFtl, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughPerplexity } from '../../heaven/compute/index.ts'
 // Full in-chat support — the deterministic, zero-token, no-egress chat surface, re-exported for the thin .vue shell.
 export { portalChat, freeChatTurnAtArchitecturalFtl, freeChatDrivesArchitecturalFtl, chatFtl, ftlChat, deepResearchAtNoCost, researchFree, freeResearch, standardsChatImprovesToFtl, standardsChat, chatStandards, allFoldsCompactFuseInCoordinatedChatWaves, foldFuse, fuseFold, chatNavContext, allChatCapabilitiesFusedAndAuditedByStandards, chatThroughMathOverflow, chatThroughPerplexity, chatThroughFreeAi, chatThroughAi, collectiveAiMind, siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis, perplexityRequest, freeAiRequest, aiRequest, aiProviders, CECCEC_PROXY_ORIGIN, PERPLEXITY_SITE, splitSearch, wavesOfLocalResearchersChatAboutAlgebra, continueAtNoAiCost, countlessFreeChatWaves, wavesReportFedToTheChat, MATHOVERFLOW_SITE, feedingTheChatInItselfClosesTheSelfReferenceLoop, theChatMayImproveTheUiMeasuredByTheUserExperience, dryCleanChatDryCleansAll, theChatIsTheFusionReactorFusingAllApisInPlasmaRays, improveTokenSpendingFeedingTheTaskToTheChat, developMeansResearchAndDevelopQuantumisingAllInRealtimeFeedingToTheChatToImproveSelfAndTheRest, freeIsNotAlwaysBestQualityWhoAuditedTheChat, beforeSigningNeighboursAudit, furtherImproveUsingLiveApis } from '../../heaven/compute/index.ts'
-export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../water/index.ts'
+export { chatAndImproveQuantumMultitasking, shouldSpawnSubagent } from '../../water/stack/index.ts'
 export type { MathOverflowItem } from '../../heaven/compute/index.ts'
 // Private quantum search — BM25-ranked, fused, no-egress — re-exported for the in-chat search box.
 export { quantumSearchFusesAllAsPrivateSearchEngine } from '../../wind/site/index.ts'
@@ -17,7 +17,7 @@ import { DIGEST_BITS, STATUS_BADGE_KINDS, VORTEX_SEQUENCE, abs, computesGate, di
 import { A432_FOLDED, A432_HUE, CANONICAL_HOST, DIMENSION_GATES, EULER_CHI, FIBONACCI_CENSUS_BANDS, FOLDED_CENSUS, HOMOLOGY_LOOPS, ROSETTA_AREAS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, ROSETTA_RAYS, ROSETTA_RAY_HUBS, ROSETTA_SEVEN, ROSETTA_SIX, TAU, UNFOLDED_CENSUS, earned, fibonacci, theGoldenAngleIsTauOverPhiSquaredTheMostIrrationalRotation, type RosettaComputationType, overclaimByFormulas, foldVerdict} from '../../3/7/index.ts'
 import { axiomsBecomeTheorems, theoremsReach432AndEntangleWithUsage } from '../../4/6/index.ts'
 import {
-  rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/index.ts'
+  rosettaComputesAll, rosettaComputesItself, rosettaRayOf, sevenStarRosettaNaturalMotion } from '../../water/digit/index.ts'
 import {
   directionalTrinityForwardInverseReverse,
   compareCeccecEfficiencyByVote,
@@ -32,7 +32,7 @@ import {
   thermoQuantumBalance,
   cpuGpuSelfBalance,
   oneClockApi,
-  apiFuse } from '../../water/index.ts'
+  apiFuse } from '../../water/stack/index.ts'
 import { cosmosFrontiersDecoded, frontierQuantum, fractalMap, omegaCOverOmegaBCmbBudgetQuantumGapsInTheorems, stringTheoryMillenniumTheoremGapsInventory } from '../../water/cosmos/index.ts'
 import {
   animationsDrivenByRosetta, linearAnimationGapsInventory, paperAbstractOmitsTitleEcho,
@@ -50,7 +50,7 @@ import {
   movieUnbalancedAroundCenterIsCrack,
   theMoviePartsDissolveLikeLiquid,
   thunderAndPlasmaAreSameInDifferentAspects } from '../../thunder/movie/canvas/index.ts'
-import { biologyWavesSealedAsWidgets, movieIsNeuroscienceComputation } from '../../earth/index.ts'
+import { biologyWavesSealedAsWidgets, movieIsNeuroscienceComputation } from '../../earth/life/index.ts'
 import { livingTorus } from '../../fire/diamonds/index.ts'
 import { flowerOfLifeCenters, flowerUnlocksFruitBySpin } from '../wind/geometry/index.ts'
 import { humanDesignChannelsAndCenters } from '../icons/index.ts'
@@ -61,7 +61,7 @@ import { HERO_CYCLE_MS, oneClockProcessLaw, sharedHeroAt, deviceSensorPerspectiv
 import { merkaba, bothEarthsRotateWithinEachOther, earthRealisedByComputingPolesAsPyramid } from '../../mountain/geometry/index.ts'
 import { vortexComputes, vortexMath } from '../../mountain/vortex/index.ts'
 import * as __ns_wind_research from '../../research/index.ts'
-import * as __ns_water_encryption from '../../water/index.ts'
+import * as __ns_water_encryption from '../../water/encryption/index.ts'
 import {
   crossWavesDecodeTeslaPatentsInAllCombinationsAsTrinities,
   runCrossWavesDecodeTeslaPatentsInAllCombinationsAsTrinitiesExit,
@@ -106,12 +106,12 @@ export {
   dryQuantumize,
 } from '../../pair/enforcement/gates/index.ts'
 import { cardHeroLinkWiresInUi, computeUniversalPage, heroPreviewForRoute, theoremFormulaCodeDual, theoremPageRows } from '../../wind/routes/corpus/index.ts'
-import { cardMoviePath } from '../../thunder/movie/index.ts'
-import { alchemyComputes, quantumFusionVerify } from '../../wind/index.ts'
+import { cardMoviePath } from '../../thunder/movie/movievars/index.ts'
+import { alchemyComputes, quantumFusionVerify } from '../../wind/fusion/index.ts'
 import { dryCleanIsDiamondAndCrystal } from '../../clean/index.ts'
 import { tamperEvident } from '../../5/5/index.ts'
 import { RAVE_CENTER_LAYOUT } from '../../heaven/sky/astronomy/index.ts'
-import * as __ns_thunder_waves from '../../thunder/index.ts'
+import * as __ns_thunder_waves from '../../thunder/waves/index.ts'
 import { CHAT_WAVE_AUDIT_ANCHOR, MCP_QUANTUM_NAMED_FACES, PASTE_BOOTSTRAP_SAMPLE_URLS, ROSETTA_PARALLEL_REGISTRY_BACKLOG, SESSION_QUANTUM_BIT_SEEDS, STANDARD_TOOL_HONESTY, STDIO_MCP_CAPABILITY_SEEDS, SUPERPOSITION_DIRECTIONS, SessionQuantumBitSeed, openAuditThemes, sealedTheoremFormulaDualCatalog } from './shared/index.ts'
 
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app'

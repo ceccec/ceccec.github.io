@@ -1,5 +1,5 @@
 // ☲ Lí · Fire — physics: what 'quantum' actually means (Hilbert space, Born rule, the honest bound), Tesla's verified patents, EMF & public frequency APIs, dissolved out of the monolith. Cross-fold deps via the barrel; folds.ts back-imports the gate folds.
-import { codeRobustness } from '../../earth/index.ts'
+import { codeRobustness } from '../../earth/life/index.ts'
 import { admixToward, bumpEvolve, chsh, congruence, hopfieldRecall, hopfieldStore, injectError, markovEvolve, markovStep, phaseDrift, pmixEvolve, realign, stationary, survive } from '../../mountain/vortex/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, coherenceAnomaly, reciprocity, verifyRoot } from '../../heaven/compute/index.ts'
@@ -27,8 +27,8 @@ import { TAU, DIMENSION_GATES, FOLDED_CENSUS } from '../../3/7/index.ts'
 import { demarcate } from '../../3/7/index.ts'
 import { foldPair, sealFacets } from '../../0/index.ts'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement/index.ts'
-import * as __ns_water_encryption from '../../water/index.ts'
-import * as __ns_water_stack from '../../water/index.ts'
+import * as __ns_water_encryption from '../../water/encryption/index.ts'
+import * as __ns_water_stack from '../../water/stack/index.ts'
 
 import { Discovery, agnosticToolbox, isTotalBijection, titleCarriesAlgebra, titleFromAlgebra } from '../../3/7/index.ts'
 import { resonantAmplitude } from '../../6/4/index.ts'
