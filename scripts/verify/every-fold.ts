@@ -154,7 +154,7 @@ export function main() {
   const root = process.cwd()
   const digestBefore = treeDigest(root)
   const started = Date.now()
-  let called = 0, folds = 0, verdictFalse = 0, threw = 0, facetsOff = 0, aliased = 0
+  let called = 0, folds = 0, verdictFalse = 0, threw = 0, facetsOff = 0, aliased = 0, thrown = false
   const invoked = new Set<() => unknown>()
   const bad: string[] = []
   const flagged: { mod: string; name: string; off: number; fn: () => unknown }[] = []
@@ -189,7 +189,13 @@ export function main() {
       // true, unactionable, and printed to a stdout the fused runner then discarded. A module is not
       // a thing you can make faster; a fold is.
       const f0 = Date.now()
-      try { r = (v as () => unknown)(); called++ } catch { threw++; continue }
+      try { r = (v as () => unknown)(); called++ } catch (e) {
+        threw++
+        if (!thrown) console.log('  FOLDS THAT THROW')
+        thrown = true
+        console.log(`    ${mod}  ${name}`)
+        continue
+      }
       const fms = Date.now() - f0
       // WHERE THE TIME ACTUALLY IS, MEASURED 2026-09-21 — so the next person optimising does not start
       // with parallelism, which is spent.
