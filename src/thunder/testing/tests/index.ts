@@ -10,21 +10,23 @@ export type TestDefinition = {
 }
 
 const OPT_IN_MSG = 'opt-in: pass fetch to run'
-const EPA_TOKEN = 'EPA_TOKEN'
+const EPA_TOKEN_STR = 'EPA_TOKEN'
 const PATENT_AUDIT = 'Patent Audit (EPO OPS + Google Patents)'
 const PATENT_API = 'EPO OPS'
 const PATENT_ENDPOINT = 'ops.epo.org/3.2/rest-services'
+const EP_3123456 = 'EP3123456'
+const EP_2999999 = 'EP2999999'
 
 export const TESTS: readonly TestDefinition[] = [
   {
     name: PATENT_AUDIT,
     api: PATENT_API,
     endpoint: PATENT_ENDPOINT,
-    envVar: EPA_TOKEN,
+    envVar: EPA_TOKEN_STR,
     test: async (fetch, token) => {
       if (!fetch) return { success: false, message: OPT_IN_MSG }
       try {
-        const reviews = await reviewEuPatents(['EP3123456', 'EP2999999'], fetch as any, { token })
+        const reviews = await reviewEuPatents([EP_3123456, EP_2999999], fetch as any, { token })
         return { success: reviews.reviewed > 0, dataPoints: reviews.reviewed, message: `${reviews.reviewed}/${reviews.count} patents reviewed` }
       } catch (e) {
         return { success: false, message: `Error: ${String(e).slice(0, 50)}` }
