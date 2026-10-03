@@ -24,6 +24,7 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import * as nodeFs from 'node:fs'
 import * as nodePath from 'node:path'
+import { spawnSync as nodeSpawnSync } from 'node:child_process'
 
 const STATUS = 'scripts/verify/status.json'
 
@@ -233,4 +234,26 @@ export function universeGates(root: string = process.cwd()): readonly { gate: st
     const src = file && nodeFs.existsSync(nodePath.join(root, file)) ? nodeFs.readFileSync(nodePath.join(root, file), 'utf8') : ''
     return { gate, surface: live.test(src) ? 'live' : 'tree', file }
   })
+}
+
+export type StreamReceipt = { address: string; tree: string; gates: number; clean: number; violated: string[]; violatedLive: string[]; notRun: string[]; surfaces: Record<string, GateSurface> }
+const digestCache = new Map<string, string | null>()
+/** THE LATEST STREAM RECEIPT OVER THIS TREE — the live axis both publish guards read. The digest is computed
+ *  through the bootstrap, not by importing every-fold.ts (a direct import throws on the src/0 directory import
+ *  and a catch would turn that into a silent null). No receipt is returned as null, never as "clean". */
+export function latestReceipt(root: string = process.cwd()): StreamReceipt | null {
+  try {
+    if (!digestCache.has(root)) {
+      const probe = nodeSpawnSync('node', ['--experimental-strip-types', 'src/pair/enforcement/script/cli/bootstrap/index.ts', 'run', 'scripts/verify/every-fold.ts', 'treeDigest'], { cwd: root, encoding: 'utf8', timeout: 300_000 })
+      const tree = (probe.stdout ?? '').trim().replace(/^"|"$/g, '')
+      digestCache.set(root, /^[0-9a-f]{8,}$/.test(tree) ? tree : null)
+    }
+    const tree = digestCache.get(root)
+    if (!tree) return null
+    const dir = nodePath.join(root, 'scripts', 'verify', 'receipts') // segments, not a path literal: the directory is git-ignored and need not exist on a fresh clone
+    const files = nodeFs.readdirSync(dir).filter((f) => f.startsWith(`${tree}-`) && f.endsWith('.json')).sort().reverse()
+    if (files.length === 0) return null
+    const r = JSON.parse(nodeFs.readFileSync(nodePath.join(dir, files[0]!), 'utf8')) as Partial<StreamReceipt>
+    return { address: String(r.address ?? files[0]!.slice(0, 16)), tree, gates: r.gates ?? -1, clean: r.clean ?? 0, violated: r.violated ?? [], violatedLive: r.violatedLive ?? [], notRun: r.notRun ?? [], surfaces: r.surfaces ?? {} }
+  } catch { return null }
 }

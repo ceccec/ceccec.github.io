@@ -24,6 +24,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { conceptRecordFromCitation, citationVersion, declaredVersions, npmLive, zenodoLive, taggedVersions } from './release-live.ts'
+import { latestReceipt } from './status.ts'
 
 type Cell = { readonly condition: string; readonly surface: string; readonly holds: boolean | null; readonly says: string }
 
@@ -46,26 +47,19 @@ const git = (...args: string[]) => String(spawnSync('git', args, { encoding: 'ut
  * the cell rather than borrowing the word "green" from work it did not do.
  */
 const rosterReproduced = (root: string): string | null => {
-  try {
-    // THE DIGEST IS COMPUTED THROUGH THE BOOTSTRAP, NOT BY IMPORTING THE MODULE. A direct require of
-    // every-fold.ts throws ERR_UNSUPPORTED_DIR_IMPORT — it imports src/0 as a directory, which only the
-    // bundler resolves — and the catch below would have swallowed that and returned null on every call.
-    // The reproduction would then never fire and the cut would look unchanged: a silent no-op wearing the
-    // name of an optimisation, which is the third time today a mechanism of mine failed by returning
-    // nothing quietly. It is spawned the way every other gate is, so it resolves the same way they do.
-    const probe = spawnSync('node', ['--experimental-strip-types',
-      'src/pair/enforcement/script/cli/bootstrap/index.ts', 'run', 'scripts/verify/every-fold.ts', 'treeDigest'],
-      { cwd: root, encoding: 'utf8', timeout: 300_000 })
-    const tree = (probe.stdout ?? '').trim().replace(/^"|"$/g, '')
-    if (!/^[0-9a-f]{8,}$/.test(tree)) return null
-    const dir = join(root, 'scripts/verify/receipts')
-    const files = readdirSync(dir).filter((f) => f.startsWith(`${tree}-`) && f.endsWith('.json'))
-    for (const f of files.sort().reverse()) {
-      const r = JSON.parse(readFileSync(join(dir, f), 'utf8')) as { address?: string; violated?: string[]; notRun?: string[]; gates?: number; clean?: number }
-      if ((r.violated?.length ?? 1) === 0 && (r.notRun?.length ?? 1) === 0 && (r.clean ?? 0) === (r.gates ?? -1)) return String(r.address ?? f.slice(0, 16))
-    }
-  } catch { /* no receipt, no reproduction — the roster runs */ }
-  return null
+  // ONLY A FULLY CLEAN RECEIPT REPRODUCES — the receipt is read once, by status.latestReceipt, for this and the live cells.
+  const r = latestReceipt(root)
+  return r && r.violated.length === 0 && r.notRun.length === 0 && r.clean === r.gates ? r.address : null
+}
+/** THE LIVE AXIS OF THE CROSS. The stream refuses on TREE gates (what a land settles) and reports LIVE surfaces
+ *  (registries, archives, deployments — what the tag settles). Those surfaces gate the tag HERE, as cells: red if the
+ *  receipt refused them, UNCHECKED when there is no receipt over this tree — never green by absence. */
+const liveSurfaceCells = (root: string): Cell[] => {
+  const r = latestReceipt(root)
+  if (!r) return [{ condition: 'tested', surface: 'live', holds: null, says: 'no stream receipt over this tree — live surfaces UNCHECKED, not green (run verify:stream)' }]
+  const live = Object.entries(r.surfaces).filter(([, s]) => s === 'live').map(([g]) => g)
+  if (live.length === 0) return [{ condition: 'tested', surface: 'live', holds: null, says: `receipt ${r.address} names no live surface — the surface axis is UNCHECKED, not green` }]
+  return live.map((g) => ({ condition: 'tested', surface: 'live', holds: !r.violated.includes(g), says: `npm run ${g} — a live record the tag settles${r.violated.includes(g) ? ` — REFUSED in receipt ${r.address}` : ` — clean in receipt ${r.address}`}` }))
 }
 
 const gate = (script: string, args: readonly string[] = []) => spawnSync('npm', ['run', script, ...args], { encoding: 'utf8', timeout: 1_800_000 }).status === 0
@@ -163,6 +157,8 @@ export async function releaseReadiness(root: string = process.cwd()): Promise<{ 
           ? `npm run ${g.gate} — REPRODUCED from receipt ${reused} over this exact tree, not re-run`
           : `npm run ${[g.gate, ...g.args].join(' ')} — ${g.step}` }
     }),
+    // TESTED · LIVE — the surfaces the stream reports but does not refuse on; the tag is what they gate
+    ...liveSurfaceCells(root),
     // STABLE — the tree is exactly what was measured, and it is the tree the world has
     { condition: 'stable', surface: 'git', holds: branch === 'main' && !dirty && head === upstream && head.length > 0, says: `on main=${branch === 'main'} clean=${!dirty} pushed=${head === upstream}` },
     { condition: 'stable', surface: 'repo', holds: new Set(declared.map((d) => d.version)).size === 1 && citation === version, says: `every package.json and CITATION.cff agree on ${version || '(none)'}` },

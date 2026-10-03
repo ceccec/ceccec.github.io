@@ -24,6 +24,7 @@ import { spawnSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { measureBundle } from './purity.ts'
+import { latestReceipt } from './status.ts'
 
 type Step = { readonly name: string; readonly run: () => { ok: boolean; detail: string } }
 
@@ -136,6 +137,17 @@ const STEPS: readonly Step[] = [
       const kernel = readFileSync(join(process.cwd(), 'packages/kernel/index.mjs'), 'utf8')
       const unused = deps.filter((d) => !kernel.includes(d))
       return { ok: unused.length === 0, detail: unused.length ? `declared but unused by the artifact: ${unused.join(', ')}` : `${deps.length} declared, all reached` }
+    },
+  },
+  {
+    name: 'live surfaces, when the tag is what is running',
+    run: () => {
+      // The context is read from the environment the workflow provides, never from a flag a hand sets.
+      const atTag = (process.env.GITHUB_REF ?? '').startsWith('refs/tags/')
+      if (!atTag) return { ok: true, detail: 'not at a tag ref — live surfaces gate the tag (release-cut), not this tree' }
+      const r = latestReceipt(process.cwd())
+      if (!r) return { ok: false, detail: 'at a tag with no stream receipt over this tree — live surfaces unmeasured, not green' }
+      return { ok: r.violatedLive.length === 0, detail: r.violatedLive.length ? `refused live surface(s): ${r.violatedLive.join(', ')}` : `${Object.values(r.surfaces).filter((x) => x === 'live').length} live surface(s) clean in receipt ${r.address}` }
     },
   },
 ]
