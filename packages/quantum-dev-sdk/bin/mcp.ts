@@ -10,6 +10,7 @@ import {
   runExport,
   foldReport,
   runBootstrapCli,
+  runNpm,
   DOCS_BUILD_ALLOW_ENV,
   MCP_CANONICAL_BUILD_GATE,
   MCP_DOCS_BUILD_BOOTSTRAP,
@@ -58,11 +59,12 @@ function respondError(id: string | number | null | undefined, message: string) {
 
 
 
-async function callTool(requested: string, args: Record<string, unknown>) {
-  // the kebab-case names this server listed before snake_case (census-status, run-gate, …) are still answered, unlisted
-  const name = requested.replace(/-/g, '_')
-  if (name === 'list_capabilities') return listStdioCapabilities()
-  if (name === 'next_leads') {
+type Handler = (args: Record<string, unknown>) => unknown | Promise<unknown>
+/** THE DISPATCH IS A TABLE KEYED BY THE DERIVED DEFS, NOT AN IF-CHAIN. Every served name has exactly one handler; a def with
+ *  no handler, or a handler for no def, is a disagreement verify:mcp-transport surfaces by calling census_status over stdio. */
+const HANDLERS: Record<string, Handler> = {
+  list_capabilities: () => listStdioCapabilities(),
+  next_leads: async () => {
     const result = await runBootstrapCli(['run', 'scripts/verify/next.ts', 'runNextJsonExit'])
     try {
       const line = result.stdout.trim().split('\n').filter(Boolean).at(-1) ?? '{}'
@@ -70,19 +72,19 @@ async function callTool(requested: string, args: Record<string, unknown>) {
     } catch {
       return { ok: false, exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr }
     }
-  }
-  if (name === 'live_connectors') {
+  },
+  live_connectors: async () => {
     const r = await runBootstrapCli(['run', 'src/stats/index.ts', 'liveConnectorsRegistered'])
     try { return JSON.parse(r.stdout.slice(r.stdout.indexOf('{'))) } catch { return { ok: false, exitCode: r.exitCode, stderr: r.stderr } }
-  }
-  if (name === 'release_readiness') {
+  },
+  release_readiness: async () => {
     // NO --push, EVER, FROM A TOOL CALL. The matrix reports; cutting a tag fires a publish and an
     // immutable deposit, and that decision is the author's at a terminal, not a tool's.
     const r = await runBootstrapCli(['run', 'scripts/verify/release-cut.ts', 'runReleaseCutExit'])
     return { report: r.stdout, exitCode: r.exitCode }
-  }
-  if (name === 'census_status') return censusStatus()
-  if (name === 'compute_from_source') {
+  },
+  census_status: () => censusStatus(),
+  compute_from_source: async (args) => {
     const op = String(args.op ?? 'a432-hue')
     const seed = args.seed != null ? String(args.seed) : 'ceccec'
     const label = args.name != null ? String(args.name) : 'rosettaCoreApi'
@@ -102,22 +104,41 @@ async function callTool(requested: string, args: Record<string, unknown>) {
     } catch {
       return { ok: result.ok, exitCode: result.exitCode, stdout: result.stdout, stderr: result.stderr }
     }
-  }
-  if (name === 'fold_report') {
+  },
+  fold_report: (args) => {
     const fold = String(args.fold ?? args.name ?? '')
     if (!fold) return { ok: false, error: 'fold required' }
     return foldReport(fold)
-  }
-  if (name === 'run_gate') return runGate(String(args.name ?? '') as GateName)
-  if (name === 'run_wave') return runWave(String(args.kind ?? '') as WaveKind)
-  if (name === 'run_export') {
+  },
+  run_gate: (args) => runGate(String(args.name ?? '') as GateName),
+  run_wave: (args) => runWave(String(args.kind ?? '') as WaveKind),
+  run_export: (args) => {
     const entryRel = String(args.entryRel ?? '')
     const exportName = String(args.exportName ?? '')
     const argv = Array.isArray(args.argv) ? args.argv.map(String) : []
     if (!entryRel || !exportName) return { ok: false, error: 'entryRel and exportName required' }
     return runExport(entryRel, exportName, argv)
-  }
-  return { ok: false, error: `unknown tool ${name}` }
+  },
+  // the quantum and live tools route through the bootstrap's run to thin Exit wrappers in the fold — the server never loads it
+  quantum_capabilities: () => runExport('src/thunder/verify/testing/index.ts', 'runQuantumCapabilitiesExit'),
+  quantum_submit_job: (args) => runExport('src/thunder/verify/testing/index.ts', 'runQuantumSubmitJobExit', [JSON.stringify(args)]),
+  quantum_get_status: (args) => runExport('src/thunder/verify/testing/index.ts', 'runQuantumGetStatusExit', [JSON.stringify(args)]),
+  live_testing: () => runExport('src/thunder/verify/testing/index.ts', 'runLiveTestingExit'),
+  publish_package: async () => {
+    // BUILT, NEVER PUBLISHED. The tag is cut by release-cut on green, at a terminal; this produces what it would ship.
+    const kernel = await runNpm('build:package')
+    const core = await runNpm('build', ['--prefix', 'packages/double-torus'])
+    const tail = (r: { stdout: string }) => r.stdout.trim().split('\n').slice(-3)
+    return { ok: kernel.ok && core.ok, kernel: { exitCode: kernel.exitCode, tail: tail(kernel) }, core: { exitCode: core.exitCode, tail: tail(core) }, note: 'built, not published — release-cut cuts the tag on green only' }
+  },
+}
+
+async function callTool(requested: string, args: Record<string, unknown>) {
+  // the kebab-case names this server listed before snake_case (census-status, run-gate, …) are still answered, unlisted
+  const name = requested.replace(/-/g, '_')
+  const handler = HANDLERS[name]
+  if (!handler) return { ok: false, error: `unknown tool ${name}` }
+  return handler(args)
 }
 
 async function handle(msg: JsonRpc) {
@@ -136,7 +157,7 @@ async function handle(msg: JsonRpc) {
   }
   if (method === 'notifications/initialized' || method === 'initialized') return
   if (method === 'tools/list') {
-    respond(msg.id, { tools: TOOL_DEFS })
+    respond(msg.id, { tools: TOOL_DEFS.map(({ name, description, inputSchema }) => ({ name, description, inputSchema })) })
     return
   }
   if (method === 'tools/call') {

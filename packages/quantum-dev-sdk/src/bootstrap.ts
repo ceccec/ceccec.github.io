@@ -103,10 +103,20 @@ function resolveRoot(opts?: RepoOpts): string {
 /** Spawn bootstrap CLI — exact path npm scripts use. */
 export function runBootstrapCli(argv: readonly string[], opts?: RepoOpts): Promise<GateResult> {
   const cwd = resolveRoot(opts)
+  return spawnCollect(process.execPath, ['--experimental-strip-types', join(cwd, BOOTSTRAP_REL), ...argv], cwd, opts)
+}
+
+/** Run an npm script the way a workflow does — the publish-time builds, never a publish. */
+export function runNpm(script: string, args: readonly string[] = [], opts?: RepoOpts): Promise<GateResult> {
+  const cwd = resolveRoot(opts)
+  return spawnCollect(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['run', '-s', script, ...args], cwd, opts)
+}
+
+/** ONE SPAWN, ONE GateResult — the bootstrap and npm share it, so a second runner cannot drift from the first. */
+function spawnCollect(command: string, argv: readonly string[], cwd: string, opts?: RepoOpts): Promise<GateResult> {
   const started = Date.now()
-  const nodeArgs = ['--experimental-strip-types', join(cwd, BOOTSTRAP_REL), ...argv]
   return new Promise((resolve) => {
-    const child = spawn(process.execPath, nodeArgs, {
+    const child = spawn(command, argv, {
       cwd,
       env: { ...process.env, ...opts?.env },
       shell: false,
@@ -123,7 +133,7 @@ export function runBootstrapCli(argv: readonly string[], opts?: RepoOpts): Promi
         stdout,
         stderr,
         durationMs: Date.now() - started,
-        argv: nodeArgs,
+        argv,
       })
     }
     const timer =

@@ -1100,32 +1100,17 @@ export function formulaDrivenSiteConfig(matrix: MindMatrix = buildMatrix()) {
 // MCP tool interface — unified dispatcher for quantum hardware and system tools
 
 
-export const MCP_TOOLS = [
-  // Core/meta (1)
-  'list_capabilities',
-
-  // Rosetta 2×7 (14)
-  // Row 1 (navigation/leads)
-  'next_leads', 'live_connectors',
-
-  // Row 2 (release/status)
-  'release_readiness', 'census_status',
-
-  // Row 3 (compute/wave)
-  'compute_from_source', 'fold_report',
-
-  // Row 4 (gates/verification)
-  'run_gate', 'run_wave',
-
-  // Row 5 (export/distribution)
-  'run_export', 'publish_package',
-
-  // Row 6 (quantum hardware)
-  'quantum_submit_job', 'quantum_get_status',
-
-  // Row 7 (discovery/measurement)
-  'quantum_capabilities', 'live_testing',
+/** THE TRINITY FAMILIES, the fold's mirror of the SDK's placement (verify:mcp-transport holds the two equal and equal to the
+ *  served list): every tool is one role of one family. Five families × (research, edit, verify) = 15 = 2×7+1, the rosetta count. */
+export const MCP_TRINITY = ['research', 'edit', 'verify'] as const
+export const MCP_TRINITIES = [
+  { family: 'meta', research: 'list_capabilities', edit: 'run_export', verify: 'run_gate' },
+  { family: 'leads', research: 'next_leads', edit: 'run_wave', verify: 'census_status' },
+  { family: 'compute', research: 'fold_report', edit: 'compute_from_source', verify: 'live_testing' },
+  { family: 'quantum', research: 'quantum_capabilities', edit: 'quantum_submit_job', verify: 'quantum_get_status' },
+  { family: 'release', research: 'release_readiness', edit: 'publish_package', verify: 'live_connectors' },
 ] as const
+export const MCP_TOOLS = MCP_TRINITIES.flatMap((f) => MCP_TRINITY.map((role) => f[role]))
 
 export type McpToolName = (typeof MCP_TOOLS)[number]
 
@@ -1328,37 +1313,18 @@ const ACTUAL_TOOLS: readonly string[] = MCP_TOOLS
 
 // Verify: count and structure should derive from lattice
 export function mcpCombinatorsVerify() {
-  const actualCount = ACTUAL_TOOLS.length
-  const derivedCount = TOOL_FAMILY_COUNT
-
+  const families = MCP_TRINITIES.length, roles = MCP_TRINITY.length
+  const names = MCP_TOOLS as readonly string[]
   const facets = [
-    {
-      facet: `MCP tool count ${actualCount} matches rosetta lattice (${ROSETTA_WIDTH}×${ROSETTA_HEIGHT} + ${CORE_TOOLS} core = ${derivedCount})`,
-      on: actualCount === derivedCount,
-    },
-    {
-      facet: `Tool families addressable via ICHING lattice (params from bands 27 to 100)`,
-      on: ICHING_NUMBERS.length >= REQUIRED_ICHING_BANDS,
-    },
-    {
-      facet: `Dispatcher routable via combinatorial coordinates: (rosetta_x, rosetta_y) → dispatch_family`,
-      on: ACTUAL_TOOLS.every((name, i) => {
-        const rosettaIndex = i < ROSETTA_WIDTH * ROSETTA_HEIGHT ? i : -1
-        return rosettaIndex >= -1 // all tools fit in lattice
-      }),
-    },
+    { facet: `families × trinity is the rosetta count: ${families} × ${roles} = ${families * roles} = ${ROSETTA_WIDTH}×${ROSETTA_HEIGHT}+${CORE_TOOLS}`, on: families * roles === TOOL_FAMILY_COUNT },
+    { facet: 'every family is a complete trinity of distinct common-form names, so each tool has exactly one placement — the dispatcher is the cross, not a hand-list', on: new Set(names).size === names.length && MCP_TRINITIES.every((f) => MCP_TRINITY.every((r) => /^[a-z][a-z0-9_]{0,63}$/.test(f[r]))) },
+    { facet: `tool families addressable via the I Ching lattice (${ICHING_NUMBERS.length} bands ≥ ${REQUIRED_ICHING_BANDS})`, on: ICHING_NUMBERS.length >= REQUIRED_ICHING_BANDS },
   ]
-
   return {
     computes: facets.every((f) => f.on),
     facets,
-    actualToolCount: actualCount,
-    derivedToolCount: derivedCount,
-    rosettaDimensions: { width: ROSETTA_WIDTH, height: ROSETTA_HEIGHT, core: CORE_TOOLS },
-    statement: `MCP tools count ${actualCount} can be derived from ${ROSETTA_WIDTH}×${ROSETTA_HEIGHT} rosetta lattice + ${CORE_TOOLS} core. ${facets.filter((f) => f.on).length}/${facets.length} facets pass.`,
-    recommendation: actualCount === derivedCount
-      ? 'Generate dispatcher table from combinatorics to replace ${actualCount} hardcoded if-statements in mcp.ts::callTool'
-      : `Tool count mismatch: actual ${actualCount} != derived ${derivedCount}. Reconcile lattice or tool list.`,
+    families: MCP_TRINITIES.map((f) => f.family),
+    statement: `The MCP is ${families} trinity families — research · edit · verify — ${families * roles} tools, the rosetta count 2×7+1 as an identity. The SDK derives the served order and the dispatch table from the same families; verify:mcp-transport holds the served list, the SDK and this mirror equal.`,
   }
 }
 
@@ -1631,3 +1597,17 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
     statement: `Every formula from the Clay solutions (${clayRows.length} Clay rows, ${rows.length - clayRows.length} direct extensions) crossed with the ${perspectives.length} double-torus perspectives and with the public dataset that can refute it — ${CLAY_DATASETS.length} datasets named by connector key in the keyless catalogue (Odlyzko zeros, LMFDB curves, OEIS b-files), each a three-state verdict: held, refuted, or unchecked with its reason. Zero-network by default; the gate fetches by byte range and ratchets the two coverages that only fall.`,
   }
 }
+
+// ---- MCP exit wrappers: the server routes every quantum/live tool through the bootstrap run, so it never loads this fold ----
+const printJson = (value: unknown) => { console.log(JSON.stringify(value)); return 0 }
+const envCredentials = () => ({ ibmToken: process.env['IBM_TOKEN'], awsAccessKey: process.env['AWS_ACCESS_KEY'], awsSecretKey: process.env['AWS_SECRET_KEY'], azureToken: process.env['AZURE_TOKEN'], azureSubscription: process.env['AZURE_SUBSCRIPTION'], azureResourceGroup: process.env['AZURE_RESOURCE_GROUP'], azureWorkspace: process.env['AZURE_WORKSPACE'] })
+export function runQuantumCapabilitiesExit(_root = '', _argv: readonly string[] = []): number { return printJson(quantumHardwareCapabilitiesForMcp()) }
+export async function runQuantumSubmitJobExit(_root = '', argv: readonly string[] = []): Promise<number> {
+  const input = JSON.parse(argv[0] ?? '{}') as QuantumJobSubmissionInput
+  return printJson(await quantumSubmitJob({ ...input, credentials: { ...envCredentials(), ...(input.credentials ?? {}) } }))
+}
+export async function runQuantumGetStatusExit(_root = '', argv: readonly string[] = []): Promise<number> {
+  const input = JSON.parse(argv[0] ?? '{}') as QuantumJobStatusInput
+  return printJson(await quantumGetStatus({ ...input, credentials: { ...envCredentials(), ...(input.credentials ?? {}) } }))
+}
+export async function runLiveTestingExit(_root = '', _argv: readonly string[] = []): Promise<number> { return printJson(await liveApiTestSuite()) }

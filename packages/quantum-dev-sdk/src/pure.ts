@@ -7,9 +7,10 @@ import { DOCS_BUILD_ALLOW_ENV, MCP_CANONICAL_BUILD_GATE, MCP_DOCS_BUILD_BOOTSTRA
 
 // Tool names follow MCP's common form: snake_case, inside the ^[a-zA-Z0-9_-]{1,64}$ every client accepts (the Claude
 // API refuses anything else). verify:mcp-transport holds every served name to ^[a-z][a-z0-9_]{0,63}$.
-export const QUANTUM_DEV_TOOL_DEFS = [
+const TOOL_DEF_LIST = [
   {
     name: 'list_capabilities',
+    pure: true,
     description:
       // The count was written as 7 and adding next_leads made it 8, so it is read from the roster instead.
       // NO COUNT IN THE PROSE. It was written as 7, went stale when next_leads made it 8, was changed to read
@@ -50,11 +51,13 @@ export const QUANTUM_DEV_TOOL_DEFS = [
   },
   {
     name: 'census_status',
+    pure: true,
     description: 'Census constants recomputed from the Fibonacci band ladder, plus the a432 gate count (not a live limits:verify audit)',
     inputSchema: { type: 'object', properties: {}, additionalProperties: false },
   },
   {
     name: 'compute_from_source',
+    pure: true,
     description: 'Pure compute: a432-hue | to-uuid | rosetta-ray',
     inputSchema: {
       type: 'object',
@@ -68,6 +71,7 @@ export const QUANTUM_DEV_TOOL_DEFS = [
   },
   {
     name: 'fold_report',
+    pure: true,
     description: 'Bootstrap fold <name> — sealed export report via CLI',
     inputSchema: {
       type: 'object',
@@ -120,7 +124,54 @@ export const QUANTUM_DEV_TOOL_DEFS = [
       additionalProperties: false,
     },
   },
+  {
+    name: 'quantum_capabilities',
+    description: 'Research: the quantum hardware backends this corpus can address (IBM Quantum, AWS Braket, Azure Quantum) and the credential each needs — reported through the bootstrap from thunder/verify/testing; no network.',
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
+  {
+    name: 'quantum_submit_job',
+    description: 'Edit: submit an OpenQASM circuit to a quantum backend through the REST wrappers in thunder/verify/testing. Zero-network unless the provider credentials are set in the environment (IBM_TOKEN; AWS_ACCESS_KEY+AWS_SECRET_KEY; AZURE_TOKEN+AZURE_SUBSCRIPTION+AZURE_WORKSPACE).',
+    inputSchema: { type: 'object', properties: { provider: { type: 'string', description: 'ibm | aws | azure' }, circuit: { type: 'string' }, shots: { type: 'number' } }, required: ['provider', 'circuit'], additionalProperties: false },
+  },
+  {
+    name: 'quantum_get_status',
+    description: 'Verify: poll a submitted quantum job by provider and id through the same wrappers; the credential rule of quantum_submit_job applies.',
+    inputSchema: { type: 'object', properties: { provider: { type: 'string' }, jobId: { type: 'string' } }, required: ['provider', 'jobId'], additionalProperties: false },
+  },
+  {
+    name: 'live_testing',
+    description: 'Verify: the live-testing report of thunder/verify/testing — every test vector, zero-network by default, each result a content-addressed receipt; opt-in credentials turn vectors live.',
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
+  {
+    name: 'publish_package',
+    description: 'Edit: build the artifacts the tag would publish — the kernel (npm run build:package) and the npmjs package (packages/double-torus) — and report them. It never publishes and never tags: a tag fires npm and an immutable DOI, and release-cut cuts it on green only, at a terminal.',
+    inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+  },
 ] as const
+
+/** THE TRINITY FAMILIES — nothing placed by hand. Every tool is one role of one family: research reads a state, edit runs an
+ *  action through the bootstrap, verify measures. Five families × the trinity = 15 = 2×7+1, the rosetta count — an identity
+ *  listStdioCapabilities reports and verify:mcp-transport measures against the served list and the fold's mirror. */
+export const MCP_TRINITY = ['research', 'edit', 'verify'] as const
+export const MCP_FAMILIES = [
+  { family: 'meta', research: 'list_capabilities', edit: 'run_export', verify: 'run_gate' },
+  { family: 'leads', research: 'next_leads', edit: 'run_wave', verify: 'census_status' },
+  { family: 'compute', research: 'fold_report', edit: 'compute_from_source', verify: 'live_testing' },
+  { family: 'quantum', research: 'quantum_capabilities', edit: 'quantum_submit_job', verify: 'quantum_get_status' },
+  { family: 'release', research: 'release_readiness', edit: 'publish_package', verify: 'live_connectors' },
+] as const
+const byName = new Map<string, (typeof TOOL_DEF_LIST)[number]>(TOOL_DEF_LIST.map((d) => [d.name, d]))
+export const MCP_PLACEMENT = new Map<string, { family: string; role: (typeof MCP_TRINITY)[number] }>(
+  MCP_FAMILIES.flatMap((f) => MCP_TRINITY.map((role) => [f[role], { family: f.family, role }] as const)))
+/** The served order IS the cross: family-major, trinity-ordered. A family naming an undeclared tool throws here, at module
+ *  initialisation, so the server does not start — verify:mcp-transport reads that as a failed handshake, never as silence. */
+export const QUANTUM_DEV_TOOL_DEFS = MCP_FAMILIES.flatMap((f) => MCP_TRINITY.map((role) => {
+  const def = byName.get(f[role])
+  if (!def) throw new Error(`family ${f.family} names ${role} tool ${f[role]}, which no def declares`)
+  return def
+}))
 
 /** QUANTUM_DEV_STDIO_TOOL_IDS — DERIVED, so the two surfaces cannot disagree.
  *
@@ -200,24 +251,20 @@ export const computeFromSource = computeFromSourceLocal
 
 export function listStdioCapabilities() {
   return {
-    stdio: QUANTUM_DEV_STDIO_TOOL_IDS.map((name) => ({
-      name,
-      kind: 'stdio-mcp' as const,
-      browserAchievable:
-        name === 'list_capabilities' || name === 'census_status' || name === 'compute_from_source' || name === 'fold_report',
-      description:
-        name === 'list_capabilities'
-          ? 'Meta browserAchievable matrix (complements tools/list)'
-          : name === 'run_gate'
-            ? `Gates incl. canonical VitePress ${MCP_CANONICAL_BUILD_GATE} → ${MCP_DOCS_BUILD_BOOTSTRAP} (vite/mcp)`
-            : name,
-      browserGap:
-        name === 'run_gate' || name === 'run_wave' || name === 'run_export'
-          ? 'Node bootstrap spawn — CI/local only'
-          : name === 'next_leads'
-            ? 'Reads the recorded ratchet floors from disk — CI/local only'
-            : '',
-    })),
+    stdio: QUANTUM_DEV_TOOL_DEFS.map((def) => {
+      const place = MCP_PLACEMENT.get(def.name)!
+      const pure = 'pure' in def && def.pure === true
+      return {
+        name: def.name,
+        kind: 'stdio-mcp' as const,
+        family: place.family,
+        role: place.role,
+        browserAchievable: pure,
+        description: def.description,
+        browserGap: pure ? '' : place.role === 'research' ? 'Reads the repository through the bootstrap — CI/local only' : 'Node bootstrap spawn — CI/local only',
+      }
+    }),
+    trinity: { families: MCP_FAMILIES.length, roles: MCP_TRINITY.length, cross: MCP_FAMILIES.length * MCP_TRINITY.length, rosetta: 2 * 7 + 1, identity: MCP_FAMILIES.length * MCP_TRINITY.length === 2 * 7 + 1 },
     stdioCount: QUANTUM_DEV_STDIO_TOOL_IDS.length,
     designToolCount: QUANTUM_DEV_STDIO_TOOL_IDS.length,
     docsBuildFlag: `${DOCS_BUILD_ALLOW_ENV}=1`,
