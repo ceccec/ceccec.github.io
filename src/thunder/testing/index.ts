@@ -75,54 +75,196 @@ export async function testPatentApisLive(
 // Quantum hardware testing: Grover, DJ, Simon on IBM Quantum / AWS Braket / Azure Quantum.
 // Discovers: simulation vs hardware gap, actual success rates, query count differences.
 export async function testQuantumHardwareLive(
-  _opts: { ibmToken?: string; awsAccessKey?: string; azureToken?: string } = {}
+  opts: { ibmToken?: string; awsAccessKey?: string; azureToken?: string } = {}
 ): Promise<LiveTestResult[]> {
-  // All backends zero-network by default (opt-in via credentials)
-  return [
-    {
+  const results: LiveTestResult[] = []
+
+  // IBM Quantum (requires IBM token)
+  if (opts.ibmToken) {
+    try {
+      // Placeholder: actual implementation would call IBM REST API
+      // POST /qasms with circuit definition
+      // Retrieve job ID and poll for results
+      results.push({
+        name: 'Quantum: IBM Quantum',
+        api: 'IBM',
+        endpoint: 'quantum-api.ibm.com/api/Qasms',
+        success: false,
+        message: 'Implementation pending: requires IBM SDK and active hardware access',
+        dataPoints: 0,
+        receipt: toUuid('quantum-hw:ibm:pending'),
+      })
+    } catch {
+      results.push({
+        name: 'Quantum: IBM Quantum',
+        api: 'IBM',
+        endpoint: 'quantum-api.ibm.com/api/Qasms',
+        success: false,
+        message: 'Authentication or network error',
+        dataPoints: 0,
+        receipt: toUuid('quantum-hw:ibm:error'),
+      })
+    }
+  } else {
+    results.push({
       name: 'Quantum: IBM Quantum',
       api: 'IBM',
-      endpoint: 'quantum-api.ibm.com',
+      endpoint: 'quantum-api.ibm.com/api/Qasms',
       success: false,
-      message: 'opt-in: provide IBM credentials to run live hardware tests',
+      message: 'opt-in: set IBM_TOKEN env var to test live hardware',
       dataPoints: 0,
       receipt: toUuid('quantum-hw:ibm:unmeasured'),
-    },
-    {
+    })
+  }
+
+  // AWS Braket (requires AWS credentials)
+  if (opts.awsAccessKey) {
+    try {
+      // Placeholder: actual implementation would call AWS SDK
+      // Run quantum task on simulator or on-demand device
+      results.push({
+        name: 'Quantum: AWS Braket',
+        api: 'AWS',
+        endpoint: 'braket.amazonaws.com/tasks',
+        success: false,
+        message: 'Implementation pending: requires AWS SDK and device access',
+        dataPoints: 0,
+        receipt: toUuid('quantum-hw:aws:pending'),
+      })
+    } catch {
+      results.push({
+        name: 'Quantum: AWS Braket',
+        api: 'AWS',
+        endpoint: 'braket.amazonaws.com/tasks',
+        success: false,
+        message: 'Authentication or network error',
+        dataPoints: 0,
+        receipt: toUuid('quantum-hw:aws:error'),
+      })
+    }
+  } else {
+    results.push({
       name: 'Quantum: AWS Braket',
       api: 'AWS',
-      endpoint: 'braket.amazonaws.com',
+      endpoint: 'braket.amazonaws.com/tasks',
       success: false,
-      message: 'opt-in: provide AWS credentials to run live device tests',
+      message: 'opt-in: set AWS_ACCESS_KEY env var to test live devices',
       dataPoints: 0,
       receipt: toUuid('quantum-hw:aws:unmeasured'),
-    },
-    {
+    })
+  }
+
+  // Azure Quantum (requires Azure token)
+  if (opts.azureToken) {
+    try {
+      // Placeholder: actual implementation would call Azure SDK
+      // Submit circuit to IonQ or Rigetti backend
+      results.push({
+        name: 'Quantum: Azure Quantum',
+        api: 'Azure',
+        endpoint: 'quantum.azure.com/providers/ionq',
+        success: false,
+        message: 'Implementation pending: requires Azure SDK and backend selection',
+        dataPoints: 0,
+        receipt: toUuid('quantum-hw:azure:pending'),
+      })
+    } catch {
+      results.push({
+        name: 'Quantum: Azure Quantum',
+        api: 'Azure',
+        endpoint: 'quantum.azure.com/providers/ionq',
+        success: false,
+        message: 'Authentication or network error',
+        dataPoints: 0,
+        receipt: toUuid('quantum-hw:azure:error'),
+      })
+    }
+  } else {
+    results.push({
       name: 'Quantum: Azure Quantum',
       api: 'Azure',
-      endpoint: 'quantum.azure.com',
+      endpoint: 'quantum.azure.com/providers/ionq',
       success: false,
-      message: 'opt-in: provide Azure credentials for IonQ/Rigetti backends',
+      message: 'opt-in: set AZURE_TOKEN env var for IonQ/Rigetti backend access',
       dataPoints: 0,
       receipt: toUuid('quantum-hw:azure:unmeasured'),
-    },
-  ]
+    })
+  }
+
+  return results
 }
 
 // Research citation verification: arXiv, Zenodo, CrossRef.
 // Discovers: stale citations, dead links, metadata mismatches, citation currency.
 export async function testResearchCitationsLive(
-  _samples: number = 20,
-  _fetchImpl?: typeof fetch
+  samples: number = 20,
+  fetchImpl?: typeof fetch
 ): Promise<LiveTestResult> {
-  return {
-    name: 'Research Citation Verification',
-    api: 'arXiv + Zenodo + CrossRef',
-    endpoint: 'api.arxiv.org, zenodo.org/api, api.crossref.org',
-    success: false,
-    message: 'opt-in: pass a fetch to verify ~800 research events — zero-network by default',
-    dataPoints: 0,
-    receipt: toUuid('research-citations:unmeasured'),
+  if (!fetchImpl) {
+    return {
+      name: 'Research Citation Verification',
+      api: 'arXiv + Zenodo + CrossRef',
+      endpoint: 'api.arxiv.org, zenodo.org/api, api.crossref.org',
+      success: false,
+      message: 'opt-in: pass a fetch to verify ~800 research events — zero-network by default',
+      dataPoints: 0,
+      receipt: toUuid('research-citations:unmeasured'),
+    }
+  }
+  try {
+    // Sample test cases: known research IDs to verify against live sources
+    const testCases = [
+      { type: 'arxiv', id: '2309.12345', title: 'Quantum Algorithms' },
+      { type: 'zenodo', id: '12345678', doi: '10.5281/zenodo.12345678' },
+      { type: 'crossref', doi: '10.1038/nature12345' },
+    ].slice(0, samples)
+
+    let verified = 0
+    let failed = 0
+
+    for (const test of testCases) {
+      try {
+        let url = ''
+        if (test.type === 'arxiv') {
+          url = `https://api.arxiv.org/query?search_query=arxiv:${(test as any).id}&start=0&max_results=1`
+        } else if (test.type === 'zenodo') {
+          url = `https://zenodo.org/api/records/${(test as any).id}`
+        } else if (test.type === 'crossref') {
+          url = `https://api.crossref.org/works/${(test as any).doi}`
+        }
+
+        if (url) {
+          const response = await fetchImpl(url)
+          if (response.ok) {
+            verified++
+          } else {
+            failed++
+          }
+        }
+      } catch {
+        failed++
+      }
+    }
+
+    return {
+      name: 'Research Citation Verification',
+      api: 'arXiv + Zenodo + CrossRef',
+      endpoint: 'api.arxiv.org, zenodo.org/api, api.crossref.org',
+      success: verified > 0,
+      message: `${verified}/${samples} test citations verified; ${failed} failed or unreachable`,
+      dataPoints: verified,
+      receipt: toUuid(`research-citations:${verified}/${samples}`),
+    }
+  } catch (error) {
+    return {
+      name: 'Research Citation Verification',
+      api: 'arXiv + Zenodo + CrossRef',
+      endpoint: 'api.arxiv.org, zenodo.org/api, api.crossref.org',
+      success: false,
+      message: `Network error: ${String(error)}`,
+      dataPoints: 0,
+      receipt: toUuid('research-citations:error'),
+    }
   }
 }
 
