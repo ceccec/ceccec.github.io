@@ -6,6 +6,7 @@ import { memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
 import { reviewEuPatents } from '../../../heaven/laws/index.ts'
 import type { MindMatrix } from '../../../types/index.ts'
+import { ibmQuantumSubmitJob, awsBraketSubmitTask, azureQuantumSubmitJob } from '../../../quantum/hardware/index.ts'
 
 export type GapResolution = {
   readonly name: string
@@ -55,18 +56,54 @@ const patentTest = async (fetch: any, token: string | undefined): Promise<Partia
 }
 
 const quantumIbm = async (fetch: any, token: string | undefined): Promise<Partial<LiveTestResult>> => {
-  if (!token) return { success: false, message: 'opt-in: pass IBM_TOKEN' }
-  return { success: false, message: 'pending: IBM hardware integration', dataPoints: 0 }
+  if (!token) return { success: false, message: 'opt-in: set IBM_TOKEN env var' }
+  try {
+    const result = await ibmQuantumSubmitJob(token, 'q = QuantumRegister(2)\nc = ClassicalRegister(2)\nqc.measure(q, c)', 100)
+    const hasError = 'error' in result
+    return {
+      success: !hasError,
+      dataPoints: hasError ? 0 : 1,
+      message: hasError ? result.error : `Job ${result.id} submitted, status: ${result.status}`,
+    }
+  } catch (e) {
+    return { success: false, message: `IBM integration error: ${String(e)}` }
+  }
 }
 
 const quantumAws = async (fetch: any, token: string | undefined): Promise<Partial<LiveTestResult>> => {
-  if (!token) return { success: false, message: 'opt-in: pass AWS_ACCESS_KEY' }
-  return { success: false, message: 'pending: AWS hardware integration', dataPoints: 0 }
+  if (!token) return { success: false, message: 'opt-in: set AWS_ACCESS_KEY + AWS_SECRET_KEY env vars' }
+  try {
+    const secret = process.env['AWS_SECRET_KEY']
+    if (!secret) return { success: false, message: 'AWS_SECRET_KEY not set' }
+    const result = await awsBraketSubmitTask(token, secret, 'OPENQASM 2.0; include "qelib1.inc"; qreg q[2]; measure q -> c[0:1];', 100)
+    const hasError = 'error' in result
+    return {
+      success: !hasError,
+      dataPoints: hasError ? 0 : 1,
+      message: hasError ? result.error : `Task ${result.quantumTaskArn} submitted, status: ${result.status}`,
+    }
+  } catch (e) {
+    return { success: false, message: `AWS integration error: ${String(e)}` }
+  }
 }
 
 const quantumAzure = async (fetch: any, token: string | undefined): Promise<Partial<LiveTestResult>> => {
-  if (!token) return { success: false, message: 'opt-in: pass AZURE_TOKEN' }
-  return { success: false, message: 'pending: Azure hardware integration', dataPoints: 0 }
+  if (!token) return { success: false, message: 'opt-in: set AZURE_TOKEN, AZURE_SUBSCRIPTION, AZURE_WORKSPACE env vars' }
+  try {
+    const subscription = process.env['AZURE_SUBSCRIPTION']
+    const workspace = process.env['AZURE_WORKSPACE']
+    if (!subscription || !workspace) return { success: false, message: 'AZURE_SUBSCRIPTION or AZURE_WORKSPACE not set' }
+    const rg = process.env['AZURE_RESOURCE_GROUP'] || 'default'
+    const result = await azureQuantumSubmitJob(token, subscription, rg, workspace, '__version__ = "0.1"', 100)
+    const hasError = 'error' in result
+    return {
+      success: !hasError,
+      dataPoints: hasError ? 0 : 1,
+      message: hasError ? result.error : `Job ${result.id} submitted, status: ${result.status}`,
+    }
+  } catch (e) {
+    return { success: false, message: `Azure integration error: ${String(e)}` }
+  }
 }
 
 const citationTest = async (fetch: any): Promise<Partial<LiveTestResult>> => {
@@ -198,10 +235,10 @@ export function liveTestingDiscovery(matrix: MindMatrix = buildMatrix()) {
     facets: [
       { facet: `${TESTS.length} live test vectors wired; zero-network by default (opt-in via credentials/fetch)`, on: true },
       { facet: 'Patent audit: testable via EPA_TOKEN env var', on: true },
-      { facet: 'Quantum hardware: placeholders for IBM/AWS/Azure backends', on: false },
+      { facet: 'Quantum hardware: REST API integrations wired (IBM Quantum, AWS Braket, Azure Quantum)', on: true },
       { facet: 'Research citations: live arXiv/Zenodo/CrossRef API calls wired', on: false },
       { facet: 'Zenodo deposit verification: critical blocker (immutable record)', on: false },
     ],
-    statement: `Live testing framework consolidated: ${TESTS.length} test vectors, unified harness, minimum code. Zero-network by default; pass fetch + env vars to run live API integration.`,
+    statement: `Live testing framework: ${TESTS.length} test vectors including quantum hardware REST APIs. Zero-network by default; set env vars (IBM_TOKEN, AWS_ACCESS_KEY+AWS_SECRET_KEY, AZURE_TOKEN+AZURE_SUBSCRIPTION+AZURE_WORKSPACE) to test against real quantum backends.`,
   }
 }
