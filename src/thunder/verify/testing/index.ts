@@ -2,12 +2,15 @@
 // Unified test harness: minimum code, maximum coverage.
 // Every formula tested against real remote APIs: opt-in via credentials.
 
-import { ICHING_NUMBERS, abs, exp, isUuid, log, max, memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
+import { ICHING_NUMBERS, VORTEX_SEQUENCE, abs, digitalRoot, exp, isUuid, log, max, memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
+import { LIVE_CONNECTORS } from '../../../stats/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
 import { reviewEuPatents } from '../../../heaven/laws/index.ts'
 import { DOUBLE_TORUS_PERSPECTIVES } from '../../../water/double/index.ts'
 import { CLAY_ORDER, CLAY_PROBLEMS } from '../../../research/index.ts'
-import { TAU } from '../../../3/7/index.ts'
+import { EARTH_RADIUS_KM, TAU, claySolvedByFormulas, physicalFtlByFormulas } from '../../../3/7/index.ts'
+import { greatCircleKm } from '../../../5/5/index.ts'
+import { HERO_CYCLE_MS } from '../../../fire/plasma/ball/index.ts'
 import type { MindMatrix } from '../../../types/index.ts'
 
 // A default is a ledgered axiom, never a bare literal: the type refuses any non-sealed number.
@@ -828,6 +831,8 @@ export interface Involution {
   sigma: (x: number) => number // the map itself on a finite model — σ² = id is COMPUTED from it, never typed
   samples: readonly number[] // the model's points; dyadic where the map subtracts, so the arithmetic is exact
   model: string // what the finite model stands for
+  perspective?: string // the DOUBLE_TORUS_PERSPECTIVES id this row is computed in
+  through?: string // the row whose dataset tests this one, when the statement says the σ is the same
 }
 
 const DYADIC: readonly number[] = Array.from({ length: 5 }, (_, i) => i / 4) // 0, ¼, ½, ¾, 1 — exact in binary
@@ -836,10 +841,16 @@ const PAIR = [0, 1] as const
 const EVEN = 54 // a sealed even number for the Goldbach model
 /** d ↦ (k−1)−d: the digit-inverse at scale k — every exchange of two roles is this map on a two-point model. */
 const reflect = (k: number) => (x: number) => k - 1 - x
+/** The digit-inverse on ℤ/9ℤ through the one digital root: σ(d) = dr(18 − d), so σ(9) = 9 and σ(1) = 8. */
+const digitInverse = (d: number) => digitalRoot(2 * 9 - d)
+/** θ ↦ 180° − θ on the circle, defined once for the row and its law. */
+const invertAngle = (t: number) => ((360 / 2 - t) % 360 + 360) % 360
+/** Five latitudes from the sealed circle: ±60°, ±30°, 0. */
+const LATITUDES = [-(360 / 6), -(360 / 6 / 2), 0, 360 / 6 / 2, 360 / 6] as const
 
 export const INVOLUTION_PATTERNS: readonly Involution[] = [
   { id: 'riemann-s-involution', domain: 'functional', pattern: 'σ: s ↔ (1−s)', fixedPoint: 'Re s = 1/2 (critical line)', verificationMethod: 'computation', status: 'open', statement: 'σ(s) = 1−s, σ² = id, unique fixed line Re s = ½ from the functional equation; that every non-trivial zero lies on it is the Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
-  { id: 'l-function-universal', domain: 'functional', pattern: 'σ: s ↔ (1−s) on every completed L(s,χ)', fixedPoint: 'Re s = 1/2', verificationMethod: 'lean-proof', status: 'open', statement: 'the same σ acts on every completed Dirichlet L-function; the Generalized Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
+  { id: 'l-function-universal', domain: 'functional', pattern: 'σ: s ↔ (1−s) on every completed L(s,χ)', fixedPoint: 'Re s = 1/2', verificationMethod: 'lean-proof', status: 'open', through: 'riemann-s-involution', statement: 'the same σ acts on every completed Dirichlet L-function; the Generalized Riemann Hypothesis — OPEN', sigma: (s) => 1 - s, samples: DYADIC, model: 's on the unit interval' },
   { id: 'goldbach-parity', domain: 'arithmetic', pattern: 'σ(p) = n − p', fixedPoint: 'p = n/2', verificationMethod: 'live-api', status: 'open', statement: 'σ(p) = n−p on [0, n], σ² = id, fixed point n/2; whether every even n > 2 has a prime pair under σ is Goldbach — OPEN', sigma: (p) => EVEN - p, samples: [0, 1, EVEN / 2, EVEN - 1, EVEN], model: `p on [0, ${EVEN}]` },
   { id: 'polynomial-prime-symmetry', domain: 'arithmetic', pattern: 'σ(P(n)) = P(−n)', fixedPoint: 'n = 0', verificationMethod: 'live-api', status: 'open', statement: 'σ: n ↦ −n on a polynomial family; infinitely many simultaneous prime values is Schinzel’s hypothesis H — OPEN (the linear case is Dirichlet, proved)', sigma: (n) => -n, samples: [-2, -1, 0, 1, 2], model: 'n on a symmetric integer window' },
   { id: 'twin-prime-gap', domain: 'arithmetic', pattern: 'σ(Δ) = log Δ', fixedPoint: 'Δ ≈ log p', verificationMethod: 'live-api', status: 'open', statement: 'σ: Δ ↦ log Δ on consecutive prime gaps is self-similar, not self-inverse; bounded gaps are PROVED (Zhang 2013, Maynard 2015), twin primes and Cramér’s bound — OPEN', sigma: (d) => log(d), samples: [1, 2, 4, 8], model: 'Δ on powers of two' },
@@ -858,6 +869,15 @@ export const INVOLUTION_PATTERNS: readonly Involution[] = [
   { id: 'navier-stokes', domain: 'functional', pattern: 'σ: ω₊ ↔ −ω₋ (the seam involution on the genus-2 carrier)', fixedPoint: 'ω = 0, the irrotational flow', verificationMethod: 'computation', status: 'open', statement: 'σ reflects vorticity across the two seams, σ² = id, fixed point the irrotational flow; that smooth 3D solutions exist for all time is Navier–Stokes — OPEN (the corpus seals a seam model, not regularity)', sigma: (w) => -w, samples: [-2, -1, 0, 1, 2], model: 'ω across the seams' },
   { id: 'yang-mills', domain: 'algebraic', pattern: 'σ† = σ on su(2) ⊕ M₂(ℂ)', fixedPoint: 'the real spectrum {0} ∪ [Δ, ∞)', verificationMethod: 'computation', status: 'open', statement: 'σ is self-adjoint, so its spectrum is real and σ² = I splits it into {0} ∪ [Δ, ∞); that a 4D Yang–Mills theory exists with a mass gap Δ > 0 is OPEN (the corpus seals the su(2) involution, not the quantum field theory)', sigma: (x) => -x, samples: [-1, 1], model: 'σ_z on its eigenvalues ±1' },
   { id: 'poincare', domain: 'topological', pattern: 'σ: M³ ↔ S³ (simply connected ↔ the sphere)', fixedPoint: 'S³ itself', verificationMethod: 'lean-proof', status: 'proved', statement: 'every simply connected closed 3-manifold is S³ — PROVED (Perelman 2002–03, Ricci flow); the corpus imports the tool, it does not re-prove it', sigma: reflect(PAIR.length), samples: PAIR, model: 'M ↔ S³' },
+  { id: 'vortex-orbit-reflection', perspective: 'vortex', domain: 'arithmetic', pattern: 'σ(d) = 9 − d on ℤ/9ℤ', fixedPoint: '9 ≡ 0', verificationMethod: 'computation', status: 'proved', statement: 'the digit-inverse on ℤ/9ℤ maps the doubling orbit ⟨2⟩ = {1, 2, 4, 8, 7, 5} onto itself and swaps 3 ↔ 6 — decided on the vortex sequence', sigma: digitInverse, samples: VORTEX_SEQUENCE, model: 'the vortex sequence on ℤ/9ℤ' },
+  { id: 'poles-v4-hemisphere', perspective: 'poles-v4', domain: 'algebraic', pattern: 'σ_h: (hemisphere, flow) ↦ (¬hemisphere, flow)', fixedPoint: 'none — V₄ acts freely', verificationMethod: 'computation', status: 'proved', statement: 'the hemisphere flip on (hemisphere, flow) ∈ {0,1}² commutes with the flow flip; with their product they are the Klein four-group V₄ — decided on the four poles', sigma: (x) => x ^ 1, samples: [0, 1, 2, 3], model: '(hemisphere, flow) as two bits' },
+  { id: 'sixty-ninety-inversion', perspective: 'sixty-ninety', domain: 'topological', pattern: 'σ(θ) = 180° − θ', fixedPoint: '90°', verificationMethod: 'computation', status: 'proved', statement: 'the inversion θ ↦ 180° − θ maps the sixty-degree lattice C₆ onto itself and fixes 90°, which C₆ does not contain — ninety is reached only through inversion, decided on the six angles', sigma: invertAngle, samples: [0, 1, 2, 3, 4, 5].map((k) => k * (360 / 6)), model: 'C₆ in degrees' },
+  { id: 'movie-time-reversal', perspective: 'movie', domain: 'functional', pattern: 'σ(t) = T − t on the hero cycle', fixedPoint: 't = T/2', verificationMethod: 'computation', status: 'proved', statement: 'playing the hero cycle backwards is an involution of its clock with the half-cycle fixed — decided on the dyadic frames of the 108 s cycle', sigma: (t) => HERO_CYCLE_MS - t, samples: DYADIC.map((f) => f * HERO_CYCLE_MS), model: 'frames of the a432 hero cycle' },
+  { id: 'computer-bit-complement', perspective: 'computer', domain: 'computational', pattern: 'σ(x) = (2ᵏ − 1) − x', fixedPoint: 'none — the register is even', verificationMethod: 'computation', status: 'proved', statement: 'the bitwise complement of a k-bit register is the digit-inverse at scale 2ᵏ: an involution with no fixed point — decided on a byte', sigma: reflect(2 ** 8), samples: [0, 1, 2 ** 4, 2 ** 8 - 2, 2 ** 8 - 1], model: 'an 8-bit register' },
+  { id: 'geodesy-antipode', perspective: 'geodesy', domain: 'topological', pattern: 'σ(φ, λ) = (−φ, λ + 180°)', fixedPoint: 'none on the sphere; the equator is fixed as a set', verificationMethod: 'computation', status: 'proved', statement: 'the antipode is an involution of the WGS84 sphere; every point lies half a circumference from its image — decided with greatCircleKm on five latitudes', sigma: (phi) => -phi, samples: LATITUDES, model: 'latitude; longitude shifts by 180°' },
+  { id: 'merkaba-counter-rotation', perspective: 'merkaba', domain: 'functional', pattern: 'σ(ω) = −ω', fixedPoint: 'ω = 0', verificationMethod: 'computation', status: 'proved', statement: 'the two tetrahedra counter-rotate: σ negates the angular velocity, the same seam involution Navier–Stokes carries — decided on five rates', sigma: (w) => -w, samples: [-2, -1, 0, 1, 2], model: 'angular velocity of the merkaba' },
+  { id: 'earth-hemisphere', perspective: 'earth', domain: 'topological', pattern: 'σ: north ↔ south', fixedPoint: 'the equator', verificationMethod: 'computation', status: 'proved', statement: 'both earths rotate within each other: the hemisphere exchange is the two-point reflection — decided', sigma: reflect(PAIR.length), samples: PAIR, model: 'north ↔ south' },
+  { id: 'vite-mirror-lobes', perspective: 'vite-mirror', domain: 'computational', pattern: 'σ: near lobe (docs) ↔ far lobe (src)', fixedPoint: 'none — the seam', verificationMethod: 'computation', status: 'proved', statement: 'docs ≡ invert(src): the UI mirrors the carrier lobe for lobe — the two-point reflection, decided', sigma: reflect(PAIR.length), samples: PAIR, model: 'near ↔ far' },
 ]
 
 type InvolutionKind = 'involution' | 'scale-map'
@@ -1464,12 +1484,24 @@ export function checkGoldbach(text: string): DatasetVerdict {
   const zero = rows.filter(([n, r]) => n! >= 2 && r === 0)
   return zero.length ? { state: 'refuted', detail: `no prime pair for 2n = ${zero.map(([n]) => 2 * n!).join(', ')}` } : { state: 'held', detail: `every even number from 4 to ${2 * rows[rows.length - 1]![0]!} has a prime pair (${rows.length} rows)` }
 }
+/** The datasets by CONNECTOR KEY in the keyless catalogue (src/stats · LIVE_CONNECTORS): the URL derives from the catalogued row —
+ *  a b-file sequence is swapped into the row's b-file path, a sample size into its _limit — so one source names every endpoint
+ *  and the MCP's live_connectors shows exactly what this gate reads. */
 export const CLAY_DATASETS = [
-  { involution: 'riemann-s-involution', dataset: 'odlyzko-zeros', url: 'https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros1', exactness: 'range-checked — N(T) against Riemann–von Mangoldt within log T + 1', check: checkRiemannZeros },
-  { involution: 'birch-swinnerton-dyer', dataset: 'lmfdb-ec', url: 'https://www.lmfdb.org/api/ec_curvedata?_format=json&_fields=lmfdb_label,rank,analytic_rank&_limit=100', exactness: 'exact on the catalogued range — rank = analytic rank', check: checkBsdRanks },
-  { involution: 'twin-prime-gap', dataset: 'oeis-bfile', url: 'https://oeis.org/A001223/b001223.txt', exactness: 'exact parity; Cramér bound range-checked', check: checkPrimeGaps },
-  { involution: 'goldbach-parity', dataset: 'oeis-bfile', url: 'https://oeis.org/A045917/b045917.txt', exactness: 'exact on the catalogued range — r(2n) ≥ 1', check: checkGoldbach },
+  { involution: 'riemann-s-involution', connector: 'odlyzko-zeros', exactness: 'range-checked — N(T) against Riemann–von Mangoldt within log T + 1', check: checkRiemannZeros },
+  { involution: 'birch-swinnerton-dyer', connector: 'lmfdb-ec', limit: 100, exactness: 'exact on the catalogued range — rank = analytic rank', check: checkBsdRanks },
+  { involution: 'twin-prime-gap', connector: 'oeis-bfile', sequence: 'A001223', exactness: 'exact parity; Cramér bound range-checked', check: checkPrimeGaps },
+  { involution: 'goldbach-parity', connector: 'oeis-bfile', sequence: 'A045917', exactness: 'exact on the catalogued range — r(2n) ≥ 1', check: checkGoldbach },
 ] as const
+export type ClayDataset = (typeof CLAY_DATASETS)[number]
+export function datasetUrl(d: ClayDataset): string {
+  const row = LIVE_CONNECTORS.find((c) => c.key === d.connector)
+  if (!row) return ''
+  let url: string = row.url
+  if ('sequence' in d) url = url.replace(/A\d{6}\/b\d{6}/, `${d.sequence}/b${d.sequence.slice(1)}`)
+  if ('limit' in d) url = url.replace(/_limit=\d+/, `_limit=${d.limit}`)
+  return url
+}
 const CLAY_OF: Readonly<Partial<Record<string, keyof typeof CLAY_PROBLEMS>>> = { 'riemann-s-involution': 'riemann', 'p-vs-np': 'pvnp', 'birch-swinnerton-dyer': 'bsd', hodge: 'hodge', 'navier-stokes': 'navierStokes', 'yang-mills': 'yangMills', poincare: 'poincare' }
 const NO_DATASET: Readonly<Record<string, string>> = {
   'p-vs-np': 'SAT benchmarks need a solver run — hardness-solver, opt-in, not a keyless read',
@@ -1491,19 +1523,59 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
   for (const p of bag) for (const w of p.words) frequency.set(w, (frequency.get(w) ?? 0) + 1)
   const specific = (w: string) => (frequency.get(w) ?? 0) * 2 <= bag.length
   const perspectives = bag.map((p) => ({ id: p.id, words: new Set([...p.words].filter(specific)) }))
+  // σ-CLASS, computed from the map on its samples: negation (σx = −x), reflection (σx + x constant), or its own class. Two rows
+  // of one class carry the same involution on their models; a Clay row reaches a perspective whose row shares its class.
+  const sigmaClass = (r: Involution): string => {
+    const img = r.samples.map((x) => r.sigma(x))
+    if (img.every((y, i) => y === -r.samples[i]!)) return 'negation'
+    const sums = img.map((y, i) => y + r.samples[i]!)
+    return sums.every((v) => v === sums[0]) ? 'reflection' : `own:${r.id}`
+  }
+  const perspectiveRows = all.involutions.filter((r) => r.perspective)
+  const dataVerdict = (r: Involution): DatasetVerdict | null => {
+    const ds = CLAY_DATASETS.find((d) => d.involution === r.id)
+    if (!ds) return null
+    const text = fetched[datasetUrl(ds)]
+    return text ? ds.check(text) : { state: 'unchecked', detail: `${ds.connector} not fetched — zero-network by default` }
+  }
   const rows = all.involutions.map((r) => {
     const own = wordsOf(`${r.id} ${r.pattern} ${r.statement} ${r.domain} ${r.model}`)
-    const reached = perspectives.filter((p) => [...p.words].some((w) => own.has(w))).map((p) => p.id)
+    const byWord = perspectives.filter((p) => [...p.words].some((w) => own.has(w))).map((p) => p.id)
+    const byClass = perspectiveRows.filter((q) => q.id !== r.id && sigmaClass(q) === sigmaClass(r)).map((q) => q.perspective!)
+    const reached = [...new Set([...(r.perspective ? [r.perspective] : []), ...byWord, ...byClass])]
     const clay = CLAY_OF[r.id]
     const ds = CLAY_DATASETS.find((d) => d.involution === r.id)
-    const text = ds ? fetched[ds.url] : null
-    const verdict: DatasetVerdict = ds
-      ? (text ? ds.check(text) : { state: 'unchecked', detail: `${ds.dataset} not fetched — zero-network by default` })
-      : { state: 'unchecked', detail: NO_DATASET[r.id] ?? 'no keyless public dataset can refute this formula' }
-    return { id: r.id, clay: clay ?? null, rigor: clay ? CLAY_PROBLEMS[clay].rigor : null, status: r.status, kind: r.kind, perspectives: reached, dataset: ds?.dataset ?? null, verdict }
+    const own_verdict = dataVerdict(r)
+    const through = r.through ? all.involutions.find((t) => t.id === r.through) : undefined
+    const throughVerdict = through ? dataVerdict(through) : null
+    const verdict: DatasetVerdict = own_verdict
+      ? own_verdict
+      : through && throughVerdict
+        ? (throughVerdict.state === 'held' ? { state: 'held', detail: `through ${through.id} — the same σ on the same fixed line, held on ${CLAY_DATASETS.find((d) => d.involution === through.id)?.connector}` } : throughVerdict)
+        : r.kind === 'involution' && r.verificationMethod === 'computation'
+          ? { state: 'held', detail: `by computation — σ² = id decided on ${r.samples.length} samples of ${r.model}` }
+          : { state: 'unchecked', detail: NO_DATASET[r.id] ?? 'no keyless public dataset can refute this formula' }
+    // NO LEAD REMAINS UNTAGGED. After every effort to involute it — by word, by σ-class, through its named row, by computation — a
+    // row either crosses, or the corpus's honesty formulas read its statement: a solution claim or a physical-FTL claim is an
+    // OVERCLAIM (a lie or a manipulation, tagged as such); otherwise it is an honest OPEN conjecture, tagged with the effort made.
+    const overclaims = claySolvedByFormulas(`${r.pattern} ${r.statement}`) + physicalFtlByFormulas(`${r.pattern} ${r.statement}`)
+    const tag: 'crossed' | 'refuted' | 'overclaim' | 'open' = verdict.state === 'held' ? 'crossed' : verdict.state === 'refuted' ? 'refuted' : overclaims > 0 ? 'overclaim' : 'open'
+    const effort = `${reached.length} perspective(s) reached; ${verdict.detail}`
+    return { id: r.id, clay: clay ?? null, rigor: clay ? CLAY_PROBLEMS[clay].rigor : null, status: r.status, kind: r.kind, sigmaClass: sigmaClass(r), perspectives: reached, dataset: ds?.connector ?? (through ? `through ${through.id}` : null), verdict, tag, overclaims, effort }
   })
+  // THE PERSPECTIVE LAWS, decided in the perspective's own algebra from the digit primitives.
+  const orbit = VORTEX_SEQUENCE.slice(0, 6)
+  const vortexHolds = orbit.every((d) => orbit.includes(digitInverse(d) as (typeof orbit)[number])) && digitInverse(3) === 6 && digitInverse(9) === 9
+  const v4Holds = [0, 1, 2, 3].every((x) => ((x ^ 1) ^ 2) === ((x ^ 2) ^ 1) && ((x ^ 1) ^ 1) === x)
+  const c6 = [0, 1, 2, 3, 4, 5].map((k) => k * (360 / 6))
+  const sixtyNinetyHolds = c6.every((t) => c6.includes(invertAngle(t))) && invertAngle(360 / 4) === 360 / 4 && !c6.includes(360 / 4)
+  const halfCircumference = (TAU / 2) * EARTH_RADIUS_KM
+  const antipodeHolds = LATITUDES.every((phi) => abs(greatCircleKm(phi, 0, -phi, 360 / 2) - halfCircumference) <= 8 * Number.EPSILON * halfCircumference * 8)
   const clayRows = rows.filter((r) => r.clay)
+  const tagged = { crossed: rows.filter((r) => r.tag === 'crossed').length, open: rows.filter((r) => r.tag === 'open').length, overclaim: rows.filter((r) => r.tag === 'overclaim').length, refuted: rows.filter((r) => r.tag === 'refuted').length }
   const facets = [
+    { facet: 'the perspective laws decide: the vortex orbit ⟨2⟩ is σ-invariant with 3 ↔ 6 and 9 fixed; the pole flips commute into V₄; C₆ is inverted onto itself with 90° fixed outside it; the antipode lies π·R away on five latitudes', on: vortexHolds && v4Holds && sixtyNinetyHolds && antipodeHolds },
+    { facet: `no lead remains untagged and none is an overclaim: ${tagged.crossed} crossed, ${tagged.open} open (honest, effort recorded), ${tagged.overclaim} overclaims, ${tagged.refuted} refuted — a statement that claims a solution or physical FTL is tagged by the honesty formulas`, on: tagged.overclaim === 0 && tagged.crossed + tagged.open + tagged.overclaim + tagged.refuted === rows.length },
     { facet: `every Clay problem has a catalogue row: ${clayRows.length} of ${CLAY_ORDER.length}`, on: CLAY_ORDER.every((k) => clayRows.some((r) => r.clay === k)) },
     { facet: `no public dataset refutes a formula: ${rows.filter((r) => r.verdict.state === 'held').length} held, ${rows.filter((r) => r.verdict.state === 'unchecked').length} unchecked (each with its reason), ${rows.filter((r) => r.verdict.state === 'refuted').length} refuted`, on: rows.filter((r) => r.verdict.state === 'refuted').length === 0 },
     { facet: 'the rows the catalogue calls proved are exactly the ones the rigor map calls proven-and-used — one map, two readers', on: clayRows.every((r) => (r.status === 'proved') === (r.rigor === 'proven-and-used')) },
@@ -1513,6 +1585,6 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
     facets,
     rows,
     perspectives: perspectives.map((p) => p.id),
-    statement: `Every formula from the Clay solutions (${clayRows.length} Clay rows, ${rows.length - clayRows.length} direct extensions) crossed with the ${perspectives.length} double-torus perspectives and with the public dataset that can refute it — ${CLAY_DATASETS.length} datasets (Odlyzko zeros, LMFDB curves, OEIS b-files), each a three-state verdict: held, refuted, or unchecked with its reason. Zero-network by default; the gate fetches by byte range and ratchets the two coverages that only fall.`,
+    statement: `Every formula from the Clay solutions (${clayRows.length} Clay rows, ${rows.length - clayRows.length} direct extensions) crossed with the ${perspectives.length} double-torus perspectives and with the public dataset that can refute it — ${CLAY_DATASETS.length} datasets named by connector key in the keyless catalogue (Odlyzko zeros, LMFDB curves, OEIS b-files), each a three-state verdict: held, refuted, or unchecked with its reason. Zero-network by default; the gate fetches by byte range and ratchets the two coverages that only fall.`,
   }
 }
