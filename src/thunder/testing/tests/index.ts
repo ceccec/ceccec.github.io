@@ -1,5 +1,6 @@
 // Test definitions (parametric)
-import { toUuid, reviewEuPatents } from '../../../0/index.ts'
+import { toUuid } from '../../../0/index.ts'
+import { reviewEuPatents } from '../../../heaven/laws/index.ts'
 
 export type TestDefinition = {
   readonly name: string
