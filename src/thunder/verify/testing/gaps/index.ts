@@ -3,9 +3,9 @@
 // LEAVE NO GAPS: Identify every missing piece when formulas meet real data.
 // This fold documents what we discover and what we fix.
 
-import { memoByRoot, sealFacets, toUuid } from '../../../0/index.ts'
-import { buildMatrix } from '../../../heaven/compute/index.ts'
-import type { MindMatrix } from '../../../types/index.ts'
+import { memoByRoot, sealFacets, toUuid } from '../../../../0/index.ts'
+import { buildMatrix } from '../../../../heaven/compute/index.ts'
+import type { MindMatrix } from '../../../../types/index.ts'
 
 export type GapResolution = {
   readonly name: string
