@@ -39,14 +39,20 @@ type TestDefinition = {
   readonly test: (fetch: any, cred: string | undefined) => Promise<Partial<LiveTestResult>>
 }
 
+const OPT_IN_MSG = 'opt-in: pass fetch to run'
+const EPA_TOKEN_VAR = 'EPA_TOKEN'
+const PATENT_AUDIT = 'Patent Audit (EPO OPS + Google Patents)'
+const PATENT_API = 'EPO OPS'
+const PATENT_ENDPOINT = 'ops.epo.org/3.2/rest-services'
+
 const TESTS: readonly TestDefinition[] = [
   {
-    name: 'Patent Audit (EPO OPS + Google Patents)',
-    api: 'EPO OPS',
-    endpoint: 'ops.epo.org/3.2/rest-services',
-    envVar: 'EPA_TOKEN',
+    name: PATENT_AUDIT,
+    api: PATENT_API,
+    endpoint: PATENT_ENDPOINT,
+    envVar: EPA_TOKEN_VAR,
     test: async (fetch, token) => {
-      if (!fetch) return { success: false, message: 'opt-in: pass fetch to run' }
+      if (!fetch) return { success: false, message: OPT_IN_MSG }
       try {
         const reviews = await reviewEuPatents(['EP3123456', 'EP2999999'], fetch, { token })
         return { success: reviews.reviewed > 0, dataPoints: reviews.reviewed, message: `${reviews.reviewed}/${reviews.count} patents reviewed` }
