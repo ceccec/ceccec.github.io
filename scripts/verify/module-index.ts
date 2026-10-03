@@ -66,7 +66,7 @@ import * as m67 from '../../src/pair/enforcement/gates/strict'
 import * as m68 from '../../src/pair/enforcement/gates/strict/scan'
 import * as m69 from '../../src/pair/enforcement'
 import * as m70 from '../../src/pair/enforcement/ops'
-import * as m71 from '../../src/pair/enforcement/script/cli/bootstrap'
+import * as m71 from '../../src/pair/enforcement/script/cli'
 import * as m72 from '../../src/pair/enforcement/script/shell'
 import * as m73 from '../../src/pair/enforcement/trinity/weave'
 import * as m74 from '../../src/pair/exact/proof'
@@ -201,7 +201,7 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/pair/enforcement/gates/strict/scan/index.ts', m68 as unknown as Record<string, unknown>],
   ['src/pair/enforcement/index.ts', m69 as unknown as Record<string, unknown>],
   ['src/pair/enforcement/ops/index.ts', m70 as unknown as Record<string, unknown>],
-  ['src/pair/enforcement/script/cli/bootstrap/index.ts', m71 as unknown as Record<string, unknown>],
+  ['src/pair/enforcement/script/cli/index.ts', m71 as unknown as Record<string, unknown>],
   ['src/pair/enforcement/script/shell/index.ts', m72 as unknown as Record<string, unknown>],
   ['src/pair/enforcement/trinity/weave/index.ts', m73 as unknown as Record<string, unknown>],
   ['src/pair/exact/proof/index.ts', m74 as unknown as Record<string, unknown>],

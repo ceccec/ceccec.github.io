@@ -5,7 +5,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { join, relative } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-export const CLI_ENTRY_REL = 'src/pair/enforcement/script/cli/bootstrap/index.ts'
+export const CLI_ENTRY_REL = 'src/pair/enforcement/script/cli/index.ts'
 const require = createRequire(import.meta.url)
 const root = join(fileURLToPath(new URL('.', import.meta.url)), '../../../../../../')
 const cliRel = 'src/pair/enforcement/ops/index.ts'
