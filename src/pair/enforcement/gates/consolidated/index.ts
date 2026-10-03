@@ -321,7 +321,7 @@ function handleFindByInvolution(theorems: string[]): ChatResponse {
       theorem: m.theorem,
       sigma: m.algebraicStatement || '',
     })),
-    proofPath: 'src/quantum/endowment/theorems',
+    proofPath: 'src/quantum/heaven/mind/theorems',
     confidence: min(1, baseConfidence * (matches.length / max(1, matches.length))),
     followUpQuestions: matches
       .slice(0, 3)

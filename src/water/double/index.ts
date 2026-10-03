@@ -916,7 +916,6 @@ export const QUANTUM_SKY_POSSIBILITIES = [
   'quantum/apps',
   'quantum/computer',
   'quantum/dynamics',
-  'quantum/earth/heritage',
   'quantum/fire/experiments',
   'quantum/fire/forecasts',
   'quantum/fire/simulations',

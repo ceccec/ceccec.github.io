@@ -2384,7 +2384,7 @@ export declare function encryptionPanelComputes(matrix?: MindMatrix, at?: number
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -10020,7 +10020,7 @@ export declare function agentAssumeNothingMathProvesInTheMoment(matrix?: MindMat
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -11583,7 +11583,7 @@ export declare function localAuditQuantumSpeedEfficiency(matrix?: MindMatrix, at
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;

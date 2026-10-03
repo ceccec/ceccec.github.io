@@ -5290,7 +5290,7 @@ export declare function astronomyDecodedWithTheSequence(at?: number, matrix?: Mi
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -10487,7 +10487,7 @@ export declare function astronomySimulationPanelComputes(matrix?: MindMatrix, at
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -19132,7 +19132,7 @@ export declare function astronomyComputes(matrix?: MindMatrix, at?: number): {
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;

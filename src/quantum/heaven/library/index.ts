@@ -1541,4 +1541,4 @@ export function glyphUuidEncryptionMagnitude() {
 }
 
 /** @rosetta ✦₀ · Mountain · stillness (scripture/glyph library) */
-export const dual = 'src/quantum/earth/heritage'
+export const dual = 'src/quantum/icons'

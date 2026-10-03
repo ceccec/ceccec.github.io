@@ -1527,7 +1527,7 @@ export declare const DOUBLE_TORUS_QC_UPGRADE_WAVES: readonly [{
  * Each path is a star that may be born (content-addressed) when `*` researches via the double torus.
  * Keep in sync with index.ts|index.vue under src/quantum (measured census, not FLOPS).
  */
-export declare const QUANTUM_SKY_POSSIBILITIES: readonly ["quantum", "quantum/application", "quantum/apps", "quantum/computer", "quantum/dynamics", "quantum/earth/heritage", "quantum/fire/experiments", "quantum/fire/forecasts", "quantum/fire/simulations", "quantum/heaven/library", "quantum/heaven/mind", "quantum/dist", "quantum/dist/generators", "quantum/dist/readme", "quantum/icons", "quantum/spirit", "quantum/voice", "quantum/mountain/dimensions", "quantum/os", "quantum/research", "quantum/science", "quantum/water/cache", "quantum/wind/geometry"];
+export declare const QUANTUM_SKY_POSSIBILITIES: readonly ["quantum", "quantum/application", "quantum/apps", "quantum/computer", "quantum/dynamics", "quantum/fire/experiments", "quantum/fire/forecasts", "quantum/fire/simulations", "quantum/heaven/library", "quantum/heaven/mind", "quantum/dist", "quantum/dist/generators", "quantum/dist/readme", "quantum/icons", "quantum/spirit", "quantum/voice", "quantum/mountain/dimensions", "quantum/os", "quantum/research", "quantum/science", "quantum/water/cache", "quantum/wind/geometry"];
 /**
  * allDoubleTorusWavesUseTheFreeChat — USER LAW (2026-07-28): all waves use the free chat ·
  * double torus algebra/physics/biology/chemistry/* · all in quantum computer upgrade waves.
@@ -1702,7 +1702,7 @@ export declare function doubleTorusStar(matrix?: MindMatrix): {
     researchedDomains: 6;
     scienceDomains: 7;
     stars: {
-        path: "quantum" | "quantum/application" | "quantum/apps" | "quantum/computer" | "quantum/dynamics" | "quantum/earth/heritage" | "quantum/fire/experiments" | "quantum/fire/forecasts" | "quantum/fire/simulations" | "quantum/heaven/library" | "quantum/heaven/mind" | "quantum/dist" | "quantum/dist/generators" | "quantum/dist/readme" | "quantum/icons" | "quantum/spirit" | "quantum/voice" | "quantum/mountain/dimensions" | "quantum/os" | "quantum/research" | "quantum/science" | "quantum/water/cache" | "quantum/wind/geometry";
+        path: "quantum" | "quantum/application" | "quantum/apps" | "quantum/computer" | "quantum/dynamics" | "quantum/fire/experiments" | "quantum/fire/forecasts" | "quantum/fire/simulations" | "quantum/heaven/library" | "quantum/heaven/mind" | "quantum/dist" | "quantum/dist/generators" | "quantum/dist/readme" | "quantum/icons" | "quantum/spirit" | "quantum/voice" | "quantum/mountain/dimensions" | "quantum/os" | "quantum/research" | "quantum/science" | "quantum/water/cache" | "quantum/wind/geometry";
         born: string;
     }[];
     freeAnswer: string;
@@ -1745,7 +1745,7 @@ export declare function asteriskMeansAllResearchedByDoubleTorusBornLikeAStarInQu
     researchedDomains: 6;
     scienceDomains: 7;
     stars: {
-        path: "quantum" | "quantum/application" | "quantum/apps" | "quantum/computer" | "quantum/dynamics" | "quantum/earth/heritage" | "quantum/fire/experiments" | "quantum/fire/forecasts" | "quantum/fire/simulations" | "quantum/heaven/library" | "quantum/heaven/mind" | "quantum/dist" | "quantum/dist/generators" | "quantum/dist/readme" | "quantum/icons" | "quantum/spirit" | "quantum/voice" | "quantum/mountain/dimensions" | "quantum/os" | "quantum/research" | "quantum/science" | "quantum/water/cache" | "quantum/wind/geometry";
+        path: "quantum" | "quantum/application" | "quantum/apps" | "quantum/computer" | "quantum/dynamics" | "quantum/fire/experiments" | "quantum/fire/forecasts" | "quantum/fire/simulations" | "quantum/heaven/library" | "quantum/heaven/mind" | "quantum/dist" | "quantum/dist/generators" | "quantum/dist/readme" | "quantum/icons" | "quantum/spirit" | "quantum/voice" | "quantum/mountain/dimensions" | "quantum/os" | "quantum/research" | "quantum/science" | "quantum/water/cache" | "quantum/wind/geometry";
         born: string;
     }[];
     freeAnswer: string;

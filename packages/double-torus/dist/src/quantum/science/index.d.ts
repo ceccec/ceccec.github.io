@@ -1392,7 +1392,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -2313,7 +2313,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -3571,7 +3571,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;

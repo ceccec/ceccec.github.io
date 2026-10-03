@@ -257,7 +257,7 @@ export declare function navigation358(matrix?: MindMatrix): {
                 ray: number;
                 address: string;
             }[];
-            parallel: readonly [];
+            parallel: readonly string[];
             hubs: {
                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                 ray: number;
@@ -1579,7 +1579,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
                     ray: number;
                     address: string;
                 }[];
-                parallel: readonly [];
+                parallel: readonly string[];
                 hubs: {
                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                     ray: number;

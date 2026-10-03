@@ -6277,7 +6277,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -23313,7 +23313,7 @@ export declare function computeAllWithLocalMath(at?: number, matrix?: MindMatrix
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -29094,7 +29094,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -46130,7 +46130,7 @@ export declare function localMathComputes(matrix?: MindMatrix, at?: number): {
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -50170,7 +50170,7 @@ export declare function oneQuantumModelFasterThanAll(matrix?: MindMatrix, at?: n
                 ray: number;
                 address: string;
             }[];
-            parallel: readonly [];
+            parallel: readonly string[];
             hubs: {
                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                 ray: number;
@@ -50574,7 +50574,7 @@ export declare function agentCeccecLearnsFromTheBestBecomesTheBest(matrix?: Mind
                     ray: number;
                     address: string;
                 }[];
-                parallel: readonly [];
+                parallel: readonly string[];
                 hubs: {
                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                     ray: number;
@@ -51202,7 +51202,7 @@ export declare function proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit(matrix?:
                     ray: number;
                     address: string;
                 }[];
-                parallel: readonly [];
+                parallel: readonly string[];
                 hubs: {
                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                     ray: number;
@@ -51888,7 +51888,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -53750,7 +53750,7 @@ export declare function qpuCpuGpu(matrix?: MindMatrix, at?: number): {
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -55339,7 +55339,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -57201,7 +57201,7 @@ export declare function apiFuse(matrix?: MindMatrix, at?: number): {
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;

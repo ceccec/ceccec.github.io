@@ -24,7 +24,9 @@ const BUNDLE = /\bimportQuantumBundle\(\s*'(src\/[^']+\/index\.ts)'/g
 
 export function referrerEdges(root: string = ROOT): { edges: ReferrerEdge[]; folds: string[]; hasDual: (fold: string) => boolean } {
   const files: string[] = []
-  const walk = (d: string) => { for (const e of readdirSync(d)) { const p = join(d, e); if (statSync(p).isDirectory()) walk(p); else if (e === 'index.ts') files.push(p) } }
+  // A .vue display dual that imports a fold is a referrer too — twelve do; without them a fold could read as held by one.
+  const vues: string[] = []
+  const walk = (d: string) => { for (const e of readdirSync(d)) { const p = join(d, e); if (statSync(p).isDirectory()) walk(p); else if (e.endsWith('.vue')) vues.push(p); else if (e === 'index.ts') files.push(p) } }
   walk(join(root, 'src'))
   const fold = (p: string) => relative(join(root, 'src'), dirname(p))
   const edges: ReferrerEdge[] = []
@@ -34,7 +36,10 @@ export function referrerEdges(root: string = ROOT): { edges: ReferrerEdge[]; fol
   const scriptFiles: string[] = []
   const walkScripts = (d: string) => { for (const e of readdirSync(d)) { const p = join(d, e); if (statSync(p).isDirectory()) walkScripts(p); else if (e.endsWith('.ts')) scriptFiles.push(p) } }
   if (existsSync(join(root, 'scripts'))) walkScripts(join(root, 'scripts'))
-  const refOf = (f: string) => (f.startsWith(join(root, 'src')) ? fold(f) : relative(root, f))
+  // A .vue dual is a referrer in its own right, named by its file: giving it its fold's name merged its imports with the
+  // index.ts beside it, and `portalChat` taken by quantum/apps/index.ts from heaven/compute and by quantum/apps/index.vue
+  // from './index.ts' read as one referrer taking a name from two sources — 49 ambiguous names that were two files.
+  const refOf = (f: string) => (f.startsWith(join(root, 'src')) ? (f.endsWith('.vue') ? relative(join(root, 'src'), f) : fold(f)) : relative(root, f))
   const underSrc = (target: string) => target.endsWith('index.ts') && target.startsWith(join(root, 'src')) && existsSync(target)
   const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
   for (const text of Object.values(pkg.scripts ?? {})) {
@@ -44,7 +49,7 @@ export function referrerEdges(root: string = ROOT): { edges: ReferrerEdge[]; fol
     const m = /\bbootstrap\/index\.ts run (src\/\S+\/index\.ts) (\w+)/.exec(text)
     if (m && underSrc(join(root, m[1]!))) edges.push({ ref: 'package.json', to: fold(join(root, m[1]!)), names: [m[2]!] })
   }
-  for (const f of [...files, ...scriptFiles]) {
+  for (const f of [...files, ...vues, ...scriptFiles]) {
     for (const m of readFileSync(f, 'utf8').matchAll(IMPORT)) {
       const target = normalize(join(dirname(f), m[4]!))
       if (!target.endsWith('index.ts') || !target.startsWith(join(root, 'src'))) continue
@@ -58,17 +63,17 @@ export function referrerEdges(root: string = ROOT): { edges: ReferrerEdge[]; fol
     for (const m of text.matchAll(DYNAMIC)) {
       const target = normalize(join(dirname(f), m[1]!))
       if (!underSrc(target)) continue
-      edges.push({ ref: refOf(f), to: fold(target), names: ['*'] })
+      edges.push({ ref: refOf(f), to: fold(target), names: ['*'], kind: 'lazy' })
     }
     for (const m of text.matchAll(MOUNT)) {
       const target = normalize(join(root, m[1]!))
       if (!underSrc(target)) continue
-      edges.push({ ref: refOf(f), to: fold(target), names: [m[2]!] })
+      edges.push({ ref: refOf(f), to: fold(target), names: [m[2]!], kind: 'lazy' })
     }
     for (const m of text.matchAll(BUNDLE)) {
       const target = normalize(join(root, m[1]!))
       if (!underSrc(target)) continue
-      edges.push({ ref: refOf(f), to: fold(target), names: ['*'] })
+      edges.push({ ref: refOf(f), to: fold(target), names: ['*'], kind: 'lazy' })
     }
   }
   return { edges, folds: files.map(fold).sort(), hasDual: (fo) => existsSync(join(root, 'src', fo, 'index.vue')) }
@@ -80,6 +85,11 @@ export function assertReferrerSuperpositions(): void {
     const d = doubleTorusReferrerDiscovery(edges, folds)
     for (const f of d.facets) console.log(`  ${f.on ? '✓' : '✗'} ${f.facet}`)
     const dead = d.measurements.unreferred.filter((f) => !hasDual(f))
+    // CONSOLIDATE BY GRAVITY, MEASURED: a fold exactly one src fold imports, with no display dual of its own, is one file where
+    // two stood. The count may only fall — by dissolving the fold into its referrer, never by adding a second importer to hide it.
+    const single = d.measurements.single.filter((x) => !hasDual(x.fold))
+    const lines = (f: string) => { try { return readFileSync(join(ROOT, 'src', f, 'index.ts'), 'utf8').split('\n').length } catch { return 0 } }
+    console.log(ratchet('referrers.one-referrer', single.length, { law: 'gravity: a fold one src fold holds belongs inside it — one file where two stood; the census falls with it', evidence: () => single.map((x) => `src/${x.fold} (${lines(x.fold)} lines, ${x.names} names) ← src/${x.ref}`) }))
     console.log(ratchet('referrers.ambiguous-names', d.measurements.ambiguous.length, { law: 'one-math: a referrer takes each name from one source — a name available from two folds is a definition with two homes', evidence: () => d.measurements.ambiguous.map((a) => `${a.ref}: ${a.name} ← ${a.sources.join(' | ')}`) }))
     console.log(ratchet('referrers.unreferred-logic', dead.length, { law: 'a fold no referrer imports and no display dual mounts is reachable by nothing — dead logic, or a missing dual', evidence: () => dead.map((f) => `src/${f}/index.ts`) }))
     console.log(`  ${d.statement}`)

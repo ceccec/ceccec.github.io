@@ -73,15 +73,10 @@ import * as m74 from '../../src/pair/exact/proof'
 import * as m75 from '../../src/pair/formal/proofs'
 import * as m76 from '../../src/pair/intelligence/harmonisation'
 import * as m78 from '../../src/pair/quantum/hardware'
-import * as m80 from '../../src/pair/theorem/stability/detector'
 import * as m81 from '../../src/quantum/apps'
-import * as m82 from '../../src/quantum/apps/shared'
 import * as m83 from '../../src/quantum/chat'
 import * as m84 from '../../src/quantum/computer'
 import * as m85 from '../../src/quantum/dynamics'
-import * as m86 from '../../src/quantum/earth/heritage'
-import * as m87 from '../../src/quantum/empirical'
-import * as m88 from '../../src/quantum/endowment'
 import * as m89 from '../../src/quantum/fire/experiments'
 import * as m90 from '../../src/quantum/fire/forecasts'
 import * as m93 from '../../src/quantum/heaven/library'
@@ -95,7 +90,6 @@ import * as m103 from '../../src/quantum/os'
 import * as m104 from '../../src/quantum/portal'
 import * as m106 from '../../src/quantum/science'
 import * as m107 from '../../src/quantum/solution/cli'
-import * as m108 from '../../src/quantum/solution/crypto'
 import * as m109 from '../../src/quantum/solver'
 import * as m110 from '../../src/quantum/spirit'
 import * as m111 from '../../src/quantum/testing/coverage'
@@ -207,15 +201,10 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/pair/formal/proofs/index.ts', m75 as unknown as Record<string, unknown>],
   ['src/pair/intelligence/harmonisation/index.ts', m76 as unknown as Record<string, unknown>],
   ['src/pair/quantum/hardware/index.ts', m78 as unknown as Record<string, unknown>],
-  ['src/pair/theorem/stability/detector/index.ts', m80 as unknown as Record<string, unknown>],
   ['src/quantum/apps/index.ts', m81 as unknown as Record<string, unknown>],
-  ['src/quantum/apps/shared/index.ts', m82 as unknown as Record<string, unknown>],
   ['src/quantum/chat/index.ts', m83 as unknown as Record<string, unknown>],
   ['src/quantum/computer/index.ts', m84 as unknown as Record<string, unknown>],
   ['src/quantum/dynamics/index.ts', m85 as unknown as Record<string, unknown>],
-  ['src/quantum/earth/heritage/index.ts', m86 as unknown as Record<string, unknown>],
-  ['src/quantum/empirical/index.ts', m87 as unknown as Record<string, unknown>],
-  ['src/quantum/endowment/index.ts', m88 as unknown as Record<string, unknown>],
   ['src/quantum/fire/experiments/index.ts', m89 as unknown as Record<string, unknown>],
   ['src/quantum/fire/forecasts/index.ts', m90 as unknown as Record<string, unknown>],
   ['src/quantum/heaven/library/index.ts', m93 as unknown as Record<string, unknown>],
@@ -229,7 +218,6 @@ export const MODULES: ReadonlyArray<readonly [string, Record<string, unknown>]> 
   ['src/quantum/portal/index.ts', m104 as unknown as Record<string, unknown>],
   ['src/quantum/science/index.ts', m106 as unknown as Record<string, unknown>],
   ['src/quantum/solution/cli/index.ts', m107 as unknown as Record<string, unknown>],
-  ['src/quantum/solution/crypto/index.ts', m108 as unknown as Record<string, unknown>],
   ['src/quantum/solver/index.ts', m109 as unknown as Record<string, unknown>],
   ['src/quantum/spirit/index.ts', m110 as unknown as Record<string, unknown>],
   ['src/quantum/testing/coverage/index.ts', m111 as unknown as Record<string, unknown>],

@@ -16,7 +16,6 @@ import { planTrinity } from '../../pair/enforcement/gates/index.ts';
 export { queueNext } from '../../pair/enforcement/gates/index.ts';
 export { commandsAuditedForBestPlaceThenFullDryClean, runCmdPlaceExit, cmdPlace, placeAudit, dryFull, manualDryCleanWorkQuantumized, runManualDryCleanWorkQuantumizedExit, manualQuantum, workWave, dryQuantumize, } from '../../pair/enforcement/gates/index.ts';
 import * as __ns_thunder_waves from '../../thunder/waves/index.ts';
-import { SUPERPOSITION_DIRECTIONS } from './shared/index.ts';
 export type RosettaCoreSurfaceKind = 'compute' | 'tool' | 'route' | 'projection' | 'nav' | 'api' | 'app';
 export type RosettaCoreSurface = {
     readonly label: string;
@@ -42,7 +41,7 @@ export declare function rosettaCoreApi(at?: number, matrix?: MindMatrix): {
             ray: number;
             address: string;
         }[];
-        parallel: readonly [];
+        parallel: readonly string[];
         hubs: {
             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
             ray: number;
@@ -241,7 +240,7 @@ export declare function rosettaCoreApiSelfWires(at?: number, matrix?: MindMatrix
                 ray: number;
                 address: string;
             }[];
-            parallel: readonly [];
+            parallel: readonly string[];
             hubs: {
                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                 ray: number;
@@ -1370,7 +1369,7 @@ export declare function quantumAppsRegistry(matrix?: MindMatrix, at?: number): {
                 ray: number;
                 address: string;
             }[];
-            parallel: readonly [];
+            parallel: readonly string[];
             hubs: {
                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                 ray: number;
@@ -1602,7 +1601,7 @@ export declare function quantumAppsCoverHomeAnimations(matrix?: MindMatrix, at?:
                     ray: number;
                     address: string;
                 }[];
-                parallel: readonly [];
+                parallel: readonly string[];
                 hubs: {
                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                     ray: number;
@@ -1819,7 +1818,7 @@ export declare function quantumAppsComputes(matrix?: MindMatrix, at?: number): {
                     ray: number;
                     address: string;
                 }[];
-                parallel: readonly [];
+                parallel: readonly string[];
                 hubs: {
                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                     ray: number;
@@ -2018,7 +2017,7 @@ export declare function quantumAppsComputes(matrix?: MindMatrix, at?: number): {
                 ray: number;
                 address: string;
             }[];
-            parallel: readonly [];
+            parallel: readonly string[];
             hubs: {
                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                 ray: number;
@@ -2317,7 +2316,7 @@ export declare function rosettaCompleteQuantumAllComputableDimensionsAndTheorems
         latticePct: number;
         latticeRemaining: number;
         linearOpen: number;
-        parallelOpen: 0;
+        parallelOpen: number;
         scienceGapCount: number;
         slowOpen: number;
     };
@@ -4671,7 +4670,7 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
                 ray: number;
                 address: string;
             }[];
-            parallel: readonly [];
+            parallel: readonly string[];
             hubs: {
                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                 ray: number;
@@ -4872,7 +4871,7 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
             latticePct: number;
             latticeRemaining: number;
             linearOpen: number;
-            parallelOpen: 0;
+            parallelOpen: number;
             scienceGapCount: number;
             slowOpen: number;
         };
@@ -5490,7 +5489,7 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                     ray: number;
                     address: string;
                 }[];
-                parallel: readonly [];
+                parallel: readonly string[];
                 hubs: {
                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                     ray: number;
@@ -5691,7 +5690,7 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                 latticePct: number;
                 latticeRemaining: number;
                 linearOpen: number;
-                parallelOpen: 0;
+                parallelOpen: number;
                 scienceGapCount: number;
                 slowOpen: number;
             };
@@ -6662,7 +6661,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -6863,7 +6862,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     latticePct: number;
                     latticeRemaining: number;
                     linearOpen: number;
-                    parallelOpen: 0;
+                    parallelOpen: number;
                     scienceGapCount: number;
                     slowOpen: number;
                 };
@@ -8490,7 +8489,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -8691,7 +8690,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -10134,7 +10133,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -11847,7 +11846,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -12048,7 +12047,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -13491,7 +13490,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -14859,7 +14858,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -15060,7 +15059,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -16503,7 +16502,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -18282,7 +18281,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -18483,7 +18482,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -19926,7 +19925,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -21294,7 +21293,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -21495,7 +21494,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -22938,7 +22937,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -24410,7 +24409,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -24611,7 +24610,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -26054,7 +26053,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -27422,7 +27421,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -27623,7 +27622,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -29066,7 +29065,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -34223,7 +34222,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -34424,7 +34423,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         latticePct: number;
                         latticeRemaining: number;
                         linearOpen: number;
-                        parallelOpen: 0;
+                        parallelOpen: number;
                         scienceGapCount: number;
                         slowOpen: number;
                     };
@@ -36051,7 +36050,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -36252,7 +36251,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -37695,7 +37694,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -39408,7 +39407,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -39609,7 +39608,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -41052,7 +41051,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -42420,7 +42419,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -42621,7 +42620,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -44064,7 +44063,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -45843,7 +45842,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -46044,7 +46043,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -47487,7 +47486,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -48855,7 +48854,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -49056,7 +49055,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         latticePct: number;
                                         latticeRemaining: number;
                                         linearOpen: number;
-                                        parallelOpen: 0;
+                                        parallelOpen: number;
                                         scienceGapCount: number;
                                         slowOpen: number;
                                     };
@@ -50499,7 +50498,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                                 ray: number;
                                                 address: string;
                                             }[];
-                                            parallel: readonly [];
+                                            parallel: readonly string[];
                                             hubs: {
                                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                                 ray: number;
@@ -51971,7 +51970,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -52172,7 +52171,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -53615,7 +53614,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -54983,7 +54982,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -55184,7 +55183,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -56627,7 +56626,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -58605,7 +58604,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -58806,7 +58805,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -60249,7 +60248,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -61617,7 +61616,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -61818,7 +61817,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -63261,7 +63260,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -65040,7 +65039,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -65241,7 +65240,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -66684,7 +66683,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -68052,7 +68051,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -68253,7 +68252,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -69696,7 +69695,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -71168,7 +71167,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -71369,7 +71368,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -72812,7 +72811,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -74180,7 +74179,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -74381,7 +74380,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -75824,7 +75823,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -77192,7 +77191,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -77393,7 +77392,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -79020,7 +79019,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -79221,7 +79220,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -80664,7 +80663,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -82377,7 +82376,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -82578,7 +82577,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -84021,7 +84020,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -85389,7 +85388,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -85590,7 +85589,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         latticePct: number;
                                         latticeRemaining: number;
                                         linearOpen: number;
-                                        parallelOpen: 0;
+                                        parallelOpen: number;
                                         scienceGapCount: number;
                                         slowOpen: number;
                                     };
@@ -87033,7 +87032,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 ray: number;
                                                 address: string;
                                             }[];
-                                            parallel: readonly [];
+                                            parallel: readonly string[];
                                             hubs: {
                                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                                 ray: number;
@@ -88812,7 +88811,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -89013,7 +89012,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         latticePct: number;
                                         latticeRemaining: number;
                                         linearOpen: number;
-                                        parallelOpen: 0;
+                                        parallelOpen: number;
                                         scienceGapCount: number;
                                         slowOpen: number;
                                     };
@@ -90456,7 +90455,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 ray: number;
                                                 address: string;
                                             }[];
-                                            parallel: readonly [];
+                                            parallel: readonly string[];
                                             hubs: {
                                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                                 ray: number;
@@ -91824,7 +91823,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 ray: number;
                                                 address: string;
                                             }[];
-                                            parallel: readonly [];
+                                            parallel: readonly string[];
                                             hubs: {
                                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                                 ray: number;
@@ -92025,7 +92024,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             latticePct: number;
                                             latticeRemaining: number;
                                             linearOpen: number;
-                                            parallelOpen: 0;
+                                            parallelOpen: number;
                                             scienceGapCount: number;
                                             slowOpen: number;
                                         };
@@ -93468,7 +93467,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                     ray: number;
                                                     address: string;
                                                 }[];
-                                                parallel: readonly [];
+                                                parallel: readonly string[];
                                                 hubs: {
                                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                                     ray: number;
@@ -94940,7 +94939,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -95141,7 +95140,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -96584,7 +96583,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -97952,7 +97951,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -98153,7 +98152,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         latticePct: number;
                                         latticeRemaining: number;
                                         linearOpen: number;
-                                        parallelOpen: 0;
+                                        parallelOpen: number;
                                         scienceGapCount: number;
                                         slowOpen: number;
                                     };
@@ -99596,7 +99595,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 ray: number;
                                                 address: string;
                                             }[];
-                                            parallel: readonly [];
+                                            parallel: readonly string[];
                                             hubs: {
                                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                                 ray: number;
@@ -101574,7 +101573,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -101775,7 +101774,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -103218,7 +103217,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -104586,7 +104585,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -104787,7 +104786,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -106230,7 +106229,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -108009,7 +108008,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -108210,7 +108209,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -109653,7 +109652,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -111021,7 +111020,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -111222,7 +111221,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         latticePct: number;
                                         latticeRemaining: number;
                                         linearOpen: number;
-                                        parallelOpen: 0;
+                                        parallelOpen: number;
                                         scienceGapCount: number;
                                         slowOpen: number;
                                     };
@@ -112665,7 +112664,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                                 ray: number;
                                                 address: string;
                                             }[];
-                                            parallel: readonly [];
+                                            parallel: readonly string[];
                                             hubs: {
                                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                                 ray: number;
@@ -114137,7 +114136,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -114338,7 +114337,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -115781,7 +115780,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -117149,7 +117148,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -117350,7 +117349,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -118793,7 +118792,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -120777,7 +120776,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -120978,7 +120977,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -122421,7 +122420,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -123789,7 +123788,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -123990,7 +123989,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -125433,7 +125432,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -126984,7 +126983,7 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -127185,7 +127184,7 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                     latticePct: number;
                     latticeRemaining: number;
                     linearOpen: number;
-                    parallelOpen: 0;
+                    parallelOpen: number;
                     scienceGapCount: number;
                     slowOpen: number;
                 };
@@ -132587,7 +132586,7 @@ export declare function wavesFindWhatYouMissedToCache(matrix?: MindMatrix, at?: 
     drainableClosed: boolean;
     cachedTargets: {
         id: "session-theorem-formula" | "mcp-memoByRoot" | "theorem-formula-index" | "mcp-token-zero-reuse" | "session-autosave-memo";
-        pair: "session/save" | "theorem/index" | "mcp/cache" | "mcp/token" | "session/cache";
+        pair: "session/save" | "theorem/index" | "session/cache" | "mcp/cache" | "mcp/token";
         cached: boolean;
     }[];
     qpuRequired: false;
@@ -132932,7 +132931,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -133131,7 +133130,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
                     ray: number;
                     address: string;
                 }[];
-                parallel: readonly [];
+                parallel: readonly string[];
                 hubs: {
                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                     ray: number;
@@ -133475,7 +133474,7 @@ export declare function quantumAppsPanelComputes(matrix?: MindMatrix, at?: numbe
             latticePct: number;
             latticeRemaining: number;
             linearOpen: number;
-            parallelOpen: 0;
+            parallelOpen: number;
             scienceGapCount: number;
             slowOpen: number;
         };
@@ -135413,7 +135412,7 @@ export declare function scientificTerminologyIsQuantumComputableMeasurableCompar
             latticePct: number;
             latticeRemaining: number;
             linearOpen: number;
-            parallelOpen: 0;
+            parallelOpen: number;
             scienceGapCount: number;
             slowOpen: number;
         };
@@ -135978,7 +135977,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 latticePct: number;
                 latticeRemaining: number;
                 linearOpen: number;
-                parallelOpen: 0;
+                parallelOpen: number;
                 scienceGapCount: number;
                 slowOpen: number;
             };
@@ -136375,7 +136374,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     ray: number;
                     address: string;
                 }[];
-                parallel: readonly [];
+                parallel: readonly string[];
                 hubs: {
                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                     ray: number;
@@ -136576,7 +136575,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 latticePct: number;
                 latticeRemaining: number;
                 linearOpen: number;
-                parallelOpen: 0;
+                parallelOpen: number;
                 scienceGapCount: number;
                 slowOpen: number;
             };
@@ -137196,7 +137195,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -137397,7 +137396,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         latticePct: number;
                         latticeRemaining: number;
                         linearOpen: number;
-                        parallelOpen: 0;
+                        parallelOpen: number;
                         scienceGapCount: number;
                         slowOpen: number;
                     };
@@ -139024,7 +139023,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -139225,7 +139224,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -140668,7 +140667,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -142381,7 +142380,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -142582,7 +142581,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -144025,7 +144024,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -145393,7 +145392,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -145594,7 +145593,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -147037,7 +147036,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -148816,7 +148815,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -149017,7 +149016,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -150460,7 +150459,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -151828,7 +151827,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -152029,7 +152028,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         latticePct: number;
                                         latticeRemaining: number;
                                         linearOpen: number;
-                                        parallelOpen: 0;
+                                        parallelOpen: number;
                                         scienceGapCount: number;
                                         slowOpen: number;
                                     };
@@ -153472,7 +153471,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                                 ray: number;
                                                 address: string;
                                             }[];
-                                            parallel: readonly [];
+                                            parallel: readonly string[];
                                             hubs: {
                                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                                 ray: number;
@@ -154944,7 +154943,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -155145,7 +155144,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -156588,7 +156587,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -157956,7 +157955,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -158157,7 +158156,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -159600,7 +159599,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -161578,7 +161577,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -161779,7 +161778,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -163222,7 +163221,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -164590,7 +164589,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -164791,7 +164790,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -166234,7 +166233,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -168013,7 +168012,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -168214,7 +168213,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -169657,7 +169656,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -171025,7 +171024,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -171226,7 +171225,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     latticePct: number;
                                     latticeRemaining: number;
                                     linearOpen: number;
-                                    parallelOpen: 0;
+                                    parallelOpen: number;
                                     scienceGapCount: number;
                                     slowOpen: number;
                                 };
@@ -172669,7 +172668,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                             ray: number;
                                             address: string;
                                         }[];
-                                        parallel: readonly [];
+                                        parallel: readonly string[];
                                         hubs: {
                                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                             ray: number;
@@ -174141,7 +174140,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -174342,7 +174341,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -175785,7 +175784,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -177153,7 +177152,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -177354,7 +177353,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -178797,7 +178796,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -180582,3 +180581,288 @@ export declare function theoremToolboxCatalog(matrix: any, at?: number): {
     statement: string;
     boundary: string;
 };
+/** The parallel-registry backlog, MEASURED. It began as a hand list of eight synonym registries to collapse into
+ *  rosettaCoreApi and was drained to `[] as const` when they were shelved — after which four facets asserted "backlog
+ *  empty" on a constant nothing could refute (verify:canon empty-as-const-read, surfaced the day apps/shared dissolved
+ *  into this file and the declaration met its reader). Read now from the core's own two registries against each other:
+ *  a label the surface list enumerates twice is a synonym registered in parallel; a label ROSETTA_CORE_LABEL_KIND keys
+ *  but the surface list never enumerates is a registry beside the core. First reading: 6 (one duplicate, five keyed and
+ *  unenumerated), collapsed at the cause in the lists above; the measurement stays and can rise again. */
+export declare function rosettaParallelRegistryBacklog(): readonly string[];
+export declare const STANDARD_TOOL_HONESTY: StandardToolHonesty;
+export type SessionQuantumBitSeed = {
+    readonly id: string;
+    readonly chain: string;
+    readonly fold: string;
+    readonly pair: string;
+    readonly cli: string;
+    readonly route: string;
+    readonly status: SessionQuantumBitStatus;
+    readonly honesty: string;
+    readonly note: string;
+    readonly toolId: string;
+    readonly resolve: 'catalog' | 'collider' | 'beyond-rsa' | 'rosetta' | 'toolbox' | 'one-tbit' | 'local-timed' | 'iso-gap' | 'local-vs-iso' | 'local-novel' | 'doc-experiments' | 'slow-gap' | 'no-qpu' | 'local-audit' | 'session-tools' | 'trinity' | 'sciences-standards' | 'dry-clean' | 'folder-migrate' | 'local-session' | 'upgrade-local' | 'mcp-ui' | 'serialized';
+};
+/** Tip-chain session work as bit seeds — PR digits live in AGENTS.md only (stack tip includes local-audit-qe). */
+export declare const SESSION_QUANTUM_BIT_SEEDS: readonly SessionQuantumBitSeed[];
+/**
+ * Stdio MCP capabilities (packages/quantum-dev-sdk · .cursor/mcp.json) — design 0ccd9991.
+ * Pure compute rows are browser-achievable; spawn/gate rows stay Node with strangler plan.
+ */
+export declare const STDIO_MCP_CAPABILITY_SEEDS: readonly [{
+    readonly id: "census_status";
+    readonly browserAchievable: true;
+    readonly browserGap: "";
+    readonly stranglerPlan: "sealed — UNFOLDED_CENSUS/FOLDED_CENSUS/DIMENSION_GATES via runStdioMcpCapabilityInBrowser";
+    readonly fold: "censusStatus";
+    readonly description: "Report sealed census + a432 gate constants";
+}, {
+    readonly id: "compute_from_source";
+    readonly browserAchievable: true;
+    readonly browserGap: "";
+    readonly stranglerPlan: "sealed — A432_HUE · toUuid · rosettaRayOf pure recompute in browser";
+    readonly fold: "computeFromSource";
+    readonly description: "Pure compute_from_source (a432-hue · to-uuid · rosetta-ray)";
+}, {
+    readonly id: "list_capabilities";
+    readonly browserAchievable: true;
+    readonly browserGap: "";
+    readonly stranglerPlan: "sealed — listCapabilities() mirrors stdio tools/list in browser panel";
+    readonly fold: "listCapabilities";
+    readonly description: "Meta: browserAchievable matrix for 7 stdio tools (complements tools/list)";
+}, {
+    readonly id: "fold_report";
+    readonly browserAchievable: true;
+    readonly browserGap: "";
+    readonly stranglerPlan: "browser when fold id ∈ quantumCliToolsCatalog.browserRunnable; else Node bootstrap fold";
+    readonly fold: "foldReport";
+    readonly description: "Fold report for a sealed export name";
+}, {
+    readonly id: "run_gate";
+    readonly browserAchievable: false;
+    readonly browserGap: "spawns npm/Node gates (check:types · limits:verify · mission:gate · docs:build) — CI/local only";
+    readonly stranglerPlan: "show last gate receipt in UI when present; never fake trinity pass in browser";
+    readonly fold: "runGate";
+    readonly description: "Run sealed mission/gate npm scripts via bootstrap";
+}, {
+    readonly id: "run_wave";
+    readonly browserAchievable: false;
+    readonly browserGap: "wave workflows are Node shell mounts (.claude/workflows) — not browser-executable";
+    readonly stranglerPlan: "expose wave status facets from sealed selfBuild receipts in panel";
+    readonly fold: "runWave";
+    readonly description: "Run ceccec-build-waves kind via local workflow";
+}, {
+    readonly id: "run_export";
+    readonly browserAchievable: false;
+    readonly browserGap: "bootstrap run <entry> <exportName> needs Node module loader";
+    readonly stranglerPlan: "map exportName → browser runner when catalog browserRunnable; else residual";
+    readonly fold: "runExport";
+    readonly description: "Run sealed export via CLI bootstrap";
+}];
+export declare const PASTE_BOOTSTRAP_SAMPLE_URLS: readonly ["https://github.com/ceccec/ceccec.github.io", "https://github.com/ceccec/ceccec.github.io/tree/main/src/0", "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md", "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md", "git@github.com:ceccec/ceccec.github.io.git", "https://ceccec.psg.bg/", "https://ceccec.psg.bg/quantum-tools#toolbox-standard-io", "https://ceccec.psg.bg/mcp.json", "https://ceccec.psg.bg/agents.json", "https://ceccec.psg.bg/.well-known/ai-skills.json", "https://ceccec.psg.bg/llms.txt", "https://ceccec.psg.bg/en/#first-in-corpus"];
+/** Named drainable MCP quantum faces — catalog star inventory (pair + dual + CLI tool ids). */
+export declare const MCP_QUANTUM_NAMED_FACES: readonly [{
+    readonly fold: "mcpQuantumUi";
+    readonly pair: "mcp/ui";
+    readonly dual: "quantum/mcp";
+    readonly toolId: "mcp-quantum-ui";
+    readonly dualToolId: "quantum-mcp";
+}, {
+    readonly fold: "mcpQuantumMovie";
+    readonly pair: "mcp/movie";
+    readonly dual: "movie/mcp";
+    readonly toolId: "mcp-quantum-movie";
+    readonly dualToolId: "movie-mcp";
+}, {
+    readonly fold: "mcpInfiniteMovie";
+    readonly pair: "movie/inf";
+    readonly dual: "inf/movie";
+    readonly toolId: "movie-inf";
+    readonly dualToolId: "inf-movie";
+}, {
+    readonly fold: "mcpQuantumChat";
+    readonly pair: "mcp/chat";
+    readonly dual: "chat/quantum";
+    readonly toolId: "mcp-quantum-chat";
+    readonly dualToolId: "chat-quantum";
+}, {
+    readonly fold: "mcpQuantumConversation";
+    readonly pair: "mcp/conversation";
+    readonly dual: "conversation/mcp";
+    readonly toolId: "mcp-conversation";
+    readonly dualToolId: "conversation-mcp";
+}, {
+    readonly fold: "mcpQuantumObserve";
+    readonly pair: "mcp/observe";
+    readonly dual: "observe/chat";
+    readonly toolId: "mcp-observe";
+    readonly dualToolId: "observe-chat";
+}, {
+    readonly fold: "mcpQuantumMetrics";
+    readonly pair: "mcp/metrics";
+    readonly dual: "metrics/mcp";
+    readonly toolId: "mcp-metrics";
+    readonly dualToolId: "metrics-mcp";
+}, {
+    readonly fold: "mcpQuantumAnalysis";
+    readonly pair: "mcp/analysis";
+    readonly dual: "analysis/mcp";
+    readonly toolId: "mcp-analysis";
+    readonly dualToolId: "analysis-mcp";
+}, {
+    readonly fold: "mcpQuantumCatalog";
+    readonly pair: "mcp/catalog";
+    readonly dual: "catalog/mcp";
+    readonly toolId: "mcp-catalog";
+    readonly dualToolId: "catalog-mcp";
+}, {
+    readonly fold: "mcpRosettaStreamClusters";
+    readonly pair: "mcp/cluster";
+    readonly dual: "cluster/mcp";
+    readonly toolId: "mcp-cluster";
+    readonly dualToolId: "cluster-mcp";
+}, {
+    readonly fold: "mcpQuantumSign";
+    readonly pair: "mcp/sign";
+    readonly dual: "sign/quantum";
+    readonly toolId: "mcp-sign";
+    readonly dualToolId: "sign-quantum";
+}, {
+    readonly fold: "mcpQuantumDirs";
+    readonly pair: "mcp/dirs";
+    readonly dual: "dirs/mcp";
+    readonly toolId: "mcp-dirs";
+    readonly dualToolId: "dirs-mcp";
+}, {
+    readonly fold: "mcpQuantumInfinity";
+    readonly pair: "mcp/inf";
+    readonly dual: "inf/mcp";
+    readonly toolId: "mcp-inf";
+    readonly dualToolId: "inf-mcp";
+}, {
+    readonly fold: "mcpQuantumHardware";
+    readonly pair: "mcp/hw";
+    readonly dual: "hw/mcp";
+    readonly toolId: "mcp-hw";
+    readonly dualToolId: "hw-mcp";
+}, {
+    readonly fold: "mcpQuantumAnim";
+    readonly pair: "mcp/anim";
+    readonly dual: "anim/mcp";
+    readonly toolId: "mcp-anim";
+    readonly dualToolId: "anim-mcp";
+}, {
+    readonly fold: "mcpQuantumSolution";
+    readonly pair: "mcp/solution";
+    readonly dual: "solution/mcp";
+    readonly toolId: "mcp-solution";
+    readonly dualToolId: "solution-mcp";
+}, {
+    readonly fold: "mcpQuantumReceipt";
+    readonly pair: "mcp/receipt";
+    readonly dual: "receipt/mcp";
+    readonly toolId: "mcp-receipt";
+    readonly dualToolId: "receipt-mcp";
+}, {
+    readonly fold: "mcpQuantumCpu";
+    readonly pair: "mcp/cpu";
+    readonly dual: "cpu/mcp";
+    readonly toolId: "mcp-cpu";
+    readonly dualToolId: "cpu-mcp";
+}, {
+    readonly fold: "mcpQuantumGpu";
+    readonly pair: "mcp/gpu";
+    readonly dual: "gpu/mcp";
+    readonly toolId: "mcp-gpu";
+    readonly dualToolId: "gpu-mcp";
+}, {
+    readonly fold: "mcpQuantumMemory";
+    readonly pair: "mcp/memory";
+    readonly dual: "memory/mcp";
+    readonly toolId: "mcp-memory";
+    readonly dualToolId: "memory-mcp";
+}, {
+    readonly fold: "mcpQuantumStorage";
+    readonly pair: "mcp/storage";
+    readonly dual: "storage/mcp";
+    readonly toolId: "mcp-storage";
+    readonly dualToolId: "storage-mcp";
+}, {
+    readonly fold: "mcpQuantumCache";
+    readonly pair: "mcp/cache";
+    readonly dual: "cache/mcp";
+    readonly toolId: "mcp-cache";
+    readonly dualToolId: "cache-mcp";
+}, {
+    readonly fold: "mcpQuantumPeriod";
+    readonly pair: "mcp/period";
+    readonly dual: "period/mcp";
+    readonly toolId: "mcp-period";
+    readonly dualToolId: "period-mcp";
+}, {
+    readonly fold: "mcpQuantumIndex";
+    readonly pair: "mcp/index";
+    readonly dual: "index/mcp";
+    readonly toolId: "mcp-index";
+    readonly dualToolId: "index-mcp";
+}, {
+    readonly fold: "mcpQuantumOrientation";
+    readonly pair: "mcp/orientation";
+    readonly dual: "orientation/mcp";
+    readonly toolId: "mcp-orientation";
+    readonly dualToolId: "orientation-mcp";
+}, {
+    readonly fold: "mcpQuantumComplete";
+    readonly pair: "mcp/complete";
+    readonly dual: "complete/mcp";
+    readonly toolId: "mcp-complete";
+    readonly dualToolId: "complete-mcp";
+}, {
+    readonly fold: "mcpQuantumTokenOptimise";
+    readonly pair: "mcp/token";
+    readonly dual: "token/mcp";
+    readonly toolId: "mcp-token";
+    readonly dualToolId: "token-mcp";
+}, {
+    readonly fold: "mcpQuantumBindings";
+    readonly pair: "mcp/bindings";
+    readonly dual: "bindings/mcp";
+    readonly toolId: "mcp-bindings";
+    readonly dualToolId: "bindings-mcp";
+}, {
+    readonly fold: "mcpQuantumEfficiency";
+    readonly pair: "mcp/efficiency";
+    readonly dual: "efficiency/mcp";
+    readonly toolId: "mcp-efficiency";
+    readonly dualToolId: "efficiency-mcp";
+}, {
+    readonly fold: "mcpQuantumSecurity";
+    readonly pair: "mcp/security";
+    readonly dual: "security/mcp";
+    readonly toolId: "mcp-security";
+    readonly dualToolId: "security-mcp";
+}, {
+    readonly fold: "scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill";
+    readonly pair: "mcp/fill";
+    readonly dual: "fill/mcp";
+    readonly toolId: "mcp-fill";
+    readonly dualToolId: "fill-mcp";
+}];
+export declare function openAuditThemes(audit: ReturnType<typeof chatAudit>): readonly {
+    id: string;
+    weight: number;
+}[];
+export declare const SUPERPOSITION_DIRECTIONS: readonly ["forward", "inverse", "reverse", "superposition"];
+export declare function sealedTheoremFormulaDualCatalog(matrix: MindMatrix): {
+    slug: string;
+    theorem: string;
+    provedBy: string;
+    home: string;
+    formulas: readonly string[];
+    formulaSource: string;
+    pair: "formula/code";
+    bound: boolean;
+    receipt: string;
+}[];
+/** Anchor commit — tool/matrix seal; chat-wave audit window starts here. */
+export declare const CHAT_WAVE_AUDIT_ANCHOR = "1c2559f4";

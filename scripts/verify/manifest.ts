@@ -18,7 +18,7 @@ import { readmeMarkdown } from '../../src/quantum/dist/index.ts'
 import { toUuid } from '../../src/0'
 import { quantumTestFramework, quantumAlgorithmBenchmarks } from '../../src/quantum/testing'
 import { quantumTestCoverageReport } from '../../src/quantum/testing/coverage'
-import { productionDeploymentAssessment } from '../../src/quantum/empirical'
+import { productionDeploymentAssessment } from '../../src/quantum'
 import {
   theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge,
   rosettaRotationClosesAtSevenTransposeCoversThirtySix,
@@ -26,7 +26,7 @@ import {
   thePollutionIsTheFuelNotTheWater,
 } from '../../src/quantum/dynamics'
 import { driftDetectionMeasuresRatherThanDeclares } from '../../src/quantum'
-import { crossUuidIsAnAuthenticationTagNotASignature } from '../../src/quantum/solution/crypto'
+import { crossUuidIsAnAuthenticationTagNotASignature } from '../../src/quantum/solution/cli'
 import { censusIsDerivedFromHomologyAndTheDigitLattice } from '../../src/3/7'
 import { nuclearMagicNumbersAreSpinOrbitNotFiveArithmetic, fourThirtyTwoHertzIsAcousticNotNuclear, merkabaCounterRotationNullsTheAxis, colourMapsAreTwoMapsAndOnlyOneRoundTrips } from '../../src/fire/physics'
 

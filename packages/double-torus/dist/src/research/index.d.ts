@@ -4317,7 +4317,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                         ray: number;
                         address: string;
                     }[];
-                    parallel: readonly [];
+                    parallel: readonly string[];
                     hubs: {
                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                         ray: number;
@@ -4518,7 +4518,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                     latticePct: number;
                     latticeRemaining: number;
                     linearOpen: number;
-                    parallelOpen: 0;
+                    parallelOpen: number;
                     scienceGapCount: number;
                     slowOpen: number;
                 };
@@ -5961,7 +5961,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -7337,7 +7337,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -7538,7 +7538,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                         latticePct: number;
                         latticeRemaining: number;
                         linearOpen: number;
-                        parallelOpen: 0;
+                        parallelOpen: number;
                         scienceGapCount: number;
                         slowOpen: number;
                     };
@@ -8981,7 +8981,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -10900,7 +10900,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -11101,7 +11101,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                         latticePct: number;
                         latticeRemaining: number;
                         linearOpen: number;
-                        parallelOpen: 0;
+                        parallelOpen: number;
                         scienceGapCount: number;
                         slowOpen: number;
                     };
@@ -12544,7 +12544,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -13912,7 +13912,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -14113,7 +14113,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -15556,7 +15556,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -17351,7 +17351,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -17552,7 +17552,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -18995,7 +18995,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -20363,7 +20363,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -20564,7 +20564,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -22007,7 +22007,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;
@@ -23479,7 +23479,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -23680,7 +23680,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         latticePct: number;
                         latticeRemaining: number;
                         linearOpen: number;
-                        parallelOpen: 0;
+                        parallelOpen: number;
                         scienceGapCount: number;
                         slowOpen: number;
                     };
@@ -25123,7 +25123,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -26491,7 +26491,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -26692,7 +26692,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -28135,7 +28135,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -30102,7 +30102,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -30303,7 +30303,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -31746,7 +31746,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -33459,7 +33459,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -33660,7 +33660,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             latticePct: number;
                             latticeRemaining: number;
                             linearOpen: number;
-                            parallelOpen: 0;
+                            parallelOpen: number;
                             scienceGapCount: number;
                             slowOpen: number;
                         };
@@ -35103,7 +35103,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -36471,7 +36471,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -36672,7 +36672,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 latticePct: number;
                                 latticeRemaining: number;
                                 linearOpen: number;
-                                parallelOpen: 0;
+                                parallelOpen: number;
                                 scienceGapCount: number;
                                 slowOpen: number;
                             };
@@ -38115,7 +38115,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;

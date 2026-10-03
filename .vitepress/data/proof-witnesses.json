@@ -1589,7 +1589,7 @@
  "* means all researched by the double torus and born like a star in the sky of quantum possibilities in src/quantum/**": {
   "form": "bars",
   "values": [
-   23,
+   22,
    30,
    6,
    7
@@ -2196,7 +2196,7 @@
    164,
    161,
    155,
-   138,
+   139,
    136,
    125,
    125,
@@ -3133,10 +3133,10 @@
  "The rosetta theorem is first by computation — because it is used most": {
   "form": "bars",
   "values": [
-   135,
-   80,
-   122,
-   0.904
+   129,
+   77,
+   118,
+   0.915
   ],
   "holds": true,
   "caption": "the quantities theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost computes for this theorem (files, rosettaNamed, contentAddress, usedInMostFiles), drawn from its own run — no other proof returns them"
@@ -3144,9 +3144,9 @@
  "VitePress automounts every index without reconfiguration": {
   "form": "bars",
   "values": [
-   25,
+   22,
    0,
-   138
+   132
   ],
   "holds": true,
   "caption": "the quantities vitepressIndexOfIndexesLaw computes for this theorem (automount, incomplete, count), drawn from its own run — no other proof returns them"

@@ -66,6 +66,7 @@
   "purity.core-nondeterminism": 0,
   "ratchets.mute": 70,
   "referrers.ambiguous-names": 0,
+  "referrers.one-referrer": 4,
   "referrers.unreferred-logic": 3,
   "release.incomplete-live": 1,
   "release.open-leads": 2,

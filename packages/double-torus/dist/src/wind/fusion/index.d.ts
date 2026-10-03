@@ -13764,7 +13764,7 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
                             ray: number;
                             address: string;
                         }[];
-                        parallel: readonly [];
+                        parallel: readonly string[];
                         hubs: {
                             slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                             ray: number;
@@ -29970,7 +29970,7 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -45653,7 +45653,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                                 ray: number;
                                 address: string;
                             }[];
-                            parallel: readonly [];
+                            parallel: readonly string[];
                             hubs: {
                                 slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                 ray: number;
@@ -51876,7 +51876,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                                     ray: number;
                                     address: string;
                                 }[];
-                                parallel: readonly [];
+                                parallel: readonly string[];
                                 hubs: {
                                     slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                     ray: number;
@@ -68912,7 +68912,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                                         ray: number;
                                         address: string;
                                     }[];
-                                    parallel: readonly [];
+                                    parallel: readonly string[];
                                     hubs: {
                                         slug: "learn" | "reference" | "proof" | "explore" | "frontier" | "origin" | "apps";
                                         ray: number;

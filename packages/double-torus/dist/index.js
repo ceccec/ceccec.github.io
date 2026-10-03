@@ -966,7 +966,7 @@ function entry(url) {
 function uuidHero(uuid) {
   const hex = uuid.replace(/[^0-9a-f]/gi, "").padEnd(5 * 4, "0");
   const at = (start, len) => Number.parseInt(hex.slice(start, start + len) || "0", 16);
-  const round3 = (value) => Math.round(value * 100) / 100;
+  const round2 = (value) => Math.round(value * 100) / 100;
   const theta = at(4, 4) % 360 * Math.PI / (9 * 5 * 4);
   const phi = at(8, 4) % 360 * Math.PI / (9 * 5 * 4);
   return {
@@ -979,12 +979,12 @@ function uuidHero(uuid) {
     // the rotation of the second handle
     spinMs: 100 * 9 + at(6 * 2, 4) % (360 * 5 * 5),
     // the realtime rotation period
-    frequency: round3(432 * 2 ** ((at(16, 4) % (16 * 3) - 8 * 3) / (6 * 2))),
+    frequency: round2(432 * 2 ** ((at(16, 4) % (16 * 3) - 8 * 3) / (6 * 2))),
     // A432-sourced tone of the state — 12-TET about the 432 anchor (±2 octaves), never a raw A440/arbitrary literal
-    ax: round3(46 * Math.cos(theta)),
-    ay: round3(46 * Math.sin(theta)),
-    bx: round3(7 * 4 * Math.cos(phi)),
-    by: round3(7 * 4 * Math.sin(phi)),
+    ax: round2(46 * Math.cos(theta)),
+    ay: round2(46 * Math.sin(theta)),
+    bx: round2(7 * 4 * Math.cos(phi)),
+    by: round2(7 * 4 * Math.sin(phi)),
     glyph: "\u25C6",
     unique: isUuid(uuid)
   };
@@ -2383,7 +2383,7 @@ var CRACK_LEDGER = [
   { file: "src/2/8/index.ts", literal: "10", count: 2, kind: "data", source: "the theorem's own multiplier in 1024 > 100*10 (path depth at 2^10)", frontier: "a datum from the cited statement" },
   { file: "src/2/8/index.ts", literal: "80", count: 1, kind: "data", source: "the gap exponent the sealed theorem usable_gap_is_two_to_eighty asserts (128 - 48 = 80) \u2014 verifying that needs 80 as a LITERAL, since deriving it from 128 - 48 makes the check circular", frontier: "a datum from the statement under test" },
   { file: "src/2/8/index.ts", literal: "*", count: 3, kind: "data", source: "attested residue \u2014 digit-station constants" },
-  { file: "src/3/7/index.ts", literal: "*", count: 178, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law) \xB7 175\u2192176: this file is the HOME of the crack ledger, and unlike the scanner (which exempts INSTRUMENT_HOME from its own reading) it counts its own rows \u2014 so raising water/cosmos from 154 to 162 for the perpetuum integrations put the numeral 162 into the residue of this very file. The added literal is that count, named here rather than swept in \xB7 176\u2192177 (the earth/nature wildcard was raised from 1 to 10 for the pressure-reduction grid, so the numeral 10 entered this file\u2019s own residue; the seven NWS constants beside it are NAMED rows and add nothing here, which is the point of naming them \xB7 177\u2192178 (the stats wildcard went 8\u219223 for the five shared-identity folds, putting the numeral 23 into this file\u2019s residue); the live-connector registry moved the stats wildcard to 23 and this file held at 178 \u2014 the two length bars it first carried, 40 and 2, were replaced by emptiness tests that carry no number at all \xB7 23\u219259 for four cross-formula folds, and the rise was REFUSED by cracks:reconcile before it was written, which is the asymmetry that tool exists for: a fall is transcription and a rise is an account. The 36 are the inputs those proofs are run on \u2014 the tuning ratio 3/2 and the octave, the tropical-year fraction 24219/100000 and the seconds in a day, the intercalation denominators 400 and 128 under test, the polynomial (s+1)(s+2)(s+3)(s+4) whose Routh column is compared with its Cauer ladder, and the rhythm parameters (3,8) and (5,13). Each is DATA the identity is exercised on rather than a constant the identity depends on: change any of them and the theorem still holds on the new input, which is the test that separates a subject from a tuning" },
+  { file: "src/3/7/index.ts", literal: "*", count: 177, kind: "data", source: "the constants VAULT \u2014 CODATA/SI/harmonic values + the crack-provenance registry readings (research-target values, ledger counts) \xB7 165\u2192166 (gate/rosetta \xB7 pyramid/seal \xB7 folder/fractal ledger churn) \xB7 166\u2192168 (DIAMOND_REFRACTIVE_INDEX 2.417, DIAMOND_DISPERSION 0.044 \u2014 diamond optics named axioms) \xB7 168\u2192170 (GREAT_PYRAMID_HEIGHT_M 146.6, GREAT_PYRAMID_MASS_KG 5.9e9 \u2014 pyramid construction-physics axioms; HUMAN_SUSTAINED_POWER_W 75 already tallied) \xB7 170\u2192171 (water/encryption FIPS-param ledger-row count literal) \xB7 171\u2192172 (wind/research double-torus/Metatron ledger-count bump 60\u219267) \xB7 172\u2192171 (encryption wildcard 63\u219264 retune; vault count field swap) \xB7 171\u2192172 (heaven/compute chat/ftl wildcard 8\u219211) \xB7 apps frontier/neighbour per-literal rows (wildcard\u21920) \xB7 172\u2192173 (census retarget: UNFOLDED_CENSUS 110\u2192123 and FIBONACCI_CENSUS_BANDS gained the 4th string-dimensional band 13, net +1 residue \u2014 the QPU-inclusive corpus) \xB7 173\u2192172 (a432 derived: A432_OCTAVES [27..1728] \u2192 a432Octaves() = 3\xB3\xB72^k and A432_FOLDED 108 \u2192 a432Base()/HOMOLOGY_LOOPS retired the 1728 residue literal) \xB7 172\u2192176 (six new wave-55..60 wildcard count fields: 18, 8, 4, 41, 40, 44) \xB7 176\u2192211 (64 new repo-wide wildcard count fields sealing the remaining quantum/endowment + quantum self-development + UI residue) \xB7 211\u2192191 (removed 43 stale per-domain endowment ledger rows, replaced by one merged wildcard: 1466) \xB7 179\u2192178 (ui/harmonic wildcard row retired: its blanket count 18 was the retired literal, replaced by 7 named rows \u2014 12/21/250/25/280/1000/3600 \u2014 plus 5 rows for quantum/lattice-kem; both files now account exactly and left the offender list) \xB7 178\u2192179 (crypto rows added; count field 12 is a residue not previously present in this file) \xB7 179\u2192178 (the ui/layouts and voice wildcard rows retired in favour of named per-literal rows; the count field 28 was the retired residue) \xB7 178\u2192177 (15 leaf folders merged into their parents; duplicate ledger rows for the same file+literal consolidated into one summed row each, retiring 23 rows and one count residue) \xB7 180\u2192175 (census DERIVED: FIBONACCI_CENSUS_BANDS [55,34,21,13] and UNFOLDED_CENSUS 123 retired as literals \u2014 the ladder now computes from HOMOLOGY_LOOPS and DIGIT_LATTICE, leaving only the 5\xB72 of the reflection classes; CENSUS_RATCHET named separately below) \xB7 176\u2192177 (the fire/physics wildcard count field 62) \xB7 175\u2192178 (censusIsDerivedFromHomologyAndTheDigitLattice: the windows [1,5] [3,8] [7,10] [2,11] [6,13] are SAMPLE POINTS witnessing the Fibonacci partial-sum identity generally, so the census is an instance of a theorem and not a coincidence at one window) \xB7 175\u2192176 (amendment 13: the version literal of the wildcard-zero law) \xB7 175\u2192176: this file is the HOME of the crack ledger, and unlike the scanner (which exempts INSTRUMENT_HOME from its own reading) it counts its own rows \u2014 so raising water/cosmos from 154 to 162 for the perpetuum integrations put the numeral 162 into the residue of this very file. The added literal is that count, named here rather than swept in \xB7 176\u2192177 (the earth/nature wildcard was raised from 1 to 10 for the pressure-reduction grid, so the numeral 10 entered this file\u2019s own residue; the seven NWS constants beside it are NAMED rows and add nothing here, which is the point of naming them \xB7 177\u2192178 (the stats wildcard went 8\u219223 for the five shared-identity folds, putting the numeral 23 into this file\u2019s residue); the live-connector registry moved the stats wildcard to 23 and this file held at 178 \u2014 the two length bars it first carried, 40 and 2, were replaced by emptiness tests that carry no number at all \xB7 23\u219259 for four cross-formula folds, and the rise was REFUSED by cracks:reconcile before it was written, which is the asymmetry that tool exists for: a fall is transcription and a rise is an account. The 36 are the inputs those proofs are run on \u2014 the tuning ratio 3/2 and the octave, the tropical-year fraction 24219/100000 and the seconds in a day, the intercalation denominators 400 and 128 under test, the polynomial (s+1)(s+2)(s+3)(s+4) whose Routh column is compared with its Cauer ladder, and the rhythm parameters (3,8) and (5,13). Each is DATA the identity is exercised on rather than a constant the identity depends on: change any of them and the theorem still holds on the new input, which is the test that separates a subject from a tuning" },
   { file: "src/5/5/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 greatCircleKm uses EARTH_RADIUS_KM\xB7TAU (math/trust); no bare station floats", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/6/4/index.ts", literal: "*", count: 19, kind: "data", source: "attested residue \u2014 digit-station constants" },
   { file: "src/7/3/index.ts", literal: "*", count: 6, kind: "data", source: "attested residue \u2014 digit-station constants + IAU-exact astronomical unit 149597870700 and the parsec-definition megaparsec derivation (180\xB73600\xB710\u2076) (2\u21926)" },
@@ -2455,7 +2455,7 @@ var CRACK_LEDGER = [
   { file: "src/quantum/fire/experiments/index.ts", literal: "*", count: 25, kind: "data", source: "attested residue \u2014 EM band/physics demo data" },
   { file: "src/quantum/fire/forecasts/index.ts", literal: "*", count: 13, kind: "data", source: "attested residue \u2014 weather-model coefficients (documented physics)" },
   { file: "src/quantum/heaven/library/index.ts", literal: "*", count: 186, kind: "data", source: "attested residue \u2014 library catalogue data (works, dates, counts)" },
-  { file: "src/quantum/index.ts", literal: "*", count: 166, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; time/phase rates on the \u03C6-ladder; Wave B retired orphan hinge renderer; anim-convert ratchet; +1 from the drift-detection fold, whose sample sizes 0/1/2/5/18 witness that k(k\u22121) counts ordered pairs; 180\u2192176 as the four fabricating research endpoints were replaced by refusals \u2014 their Math.random() coefficients and typed-in accuracy/confidence went with them", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
+  { file: "src/quantum/index.ts", literal: "*", count: 169, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; time/phase rates on the \u03C6-ladder; Wave B retired orphan hinge renderer; anim-convert ratchet; +1 from the drift-detection fold, whose sample sizes 0/1/2/5/18 witness that k(k\u22121) counts ordered pairs; 180\u2192176 as the four fabricating research endpoints were replaced by refusals \u2014 their Math.random() coefficients and typed-in accuracy/confidence went with them \xB7 includes the quantum/empirical production-readiness thresholds dissolved here by gravity (0.95 PRODUCTION, 0.85 CONDITIONAL, 0.9 export-coverage target), whose own rows were folded into this wildcard because the file holds other occurrences of the same literals", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/quantum/dist/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/quantum/spirit/index.ts", literal: "*", count: 178, kind: "data", source: "attested residue \u2014 HD W3 Rave Mandala wheel + HD W5 sealed BodyGraph lattice (36 channel gate-pairs + 9-center gate homes; public structure tables, zero keynote prose; 62\u2192178)", frontier: "channel/center tables are documented BodyGraph combinatorics (data), not lattice-derivable; predictive claims stay flagged elsewhere" },
   { file: "src/quantum/os/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
@@ -2499,10 +2499,9 @@ var CRACK_LEDGER = [
   { file: ".vitepress/theme/components/RayHub.vue", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: ".vitepress/theme/components/SpeechReader.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 a page-text character cap (30000) read before speaking; the z-index and corner radius it also covered are now ladder expressions, so only the cap is left", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: ".vitepress/theme/components/UiAsideShell.vue", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed layout/animation values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: "src/pair/theorem/stability/detector/index.ts", literal: "*", count: 24, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: "src/pair/quantum/hardware/index.ts", literal: "*", count: 13, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
+  { file: "src/pair/quantum/hardware/index.ts", literal: "*", count: 37, kind: "tuned", source: "quantum-proof detector/hardware toolkit \u2014 example confidence and calibration values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   { file: "src/pair/intelligence/harmonisation/index.ts", literal: "*", count: 208, kind: "tuned", source: "wave 51-60 involution-discovery toolkit, merged into one barrel \u2014 example confidence/barrier values, patent dollar figures, timeline years, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
-  { file: "src/quantum/endowment/index.ts", literal: "*", count: 721, kind: "tuned", source: "endowment governance/patents/pricing toolkit \u2014 merged from 54 domain files (agent, analytics, archive, benchmark, biotechnology, ... universal); example barrier strengths, percentages, and dollar figures, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
+  { file: "src/quantum/heaven/mind/index.ts", literal: "*", count: 721, kind: "tuned", source: "endowment governance/patents/pricing toolkit \u2014 merged from 54 domain files (agent, analytics, archive, benchmark, biotechnology, ... universal); example barrier strengths, percentages, and dollar figures, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed" },
   // ── ui/harmonic — the A432 octave wheel: music-theory units, design hues, SI time scales ──
   // Replaces a blanket '*' attestation of 18 'tuned' uses. The three confidence literals it
   // covered are gone — they became 0 and 1 through the named confidenceUnknown/confidenceProven
@@ -2536,10 +2535,6 @@ var CRACK_LEDGER = [
   { file: "src/quantum/index.ts", literal: "3600", count: 1, kind: "unit", source: "seconds per hour \u2014 default maximum wait", frontier: "SI scale" },
   { file: "src/quantum/index.ts", literal: "60000", count: 1, kind: "unit", source: "milliseconds per minute \u2014 backoff ceiling", frontier: "SI scale, = 60 x 1000" },
   { file: "src/quantum/index.ts", literal: "1.5", count: 4, kind: "tuned", source: "exponential backoff multiplier", frontier: "a retry policy parameter" },
-  // ── quantum/empirical/production — readiness banding thresholds ──
-  { file: "src/quantum/empirical/index.ts", literal: "0.95", count: 1, kind: "tuned", source: "checkable-requirement ratio at or above which status reads READY", frontier: "a banding choice; the ratio it bands is measured" },
-  { file: "src/quantum/empirical/index.ts", literal: "0.85", count: 1, kind: "tuned", source: "ratio at or above which status reads CONDITIONAL", frontier: "a banding choice" },
-  { file: "src/quantum/empirical/index.ts", literal: "0.9", count: 1, kind: "tuned", source: "export-reference coverage target used as a pass/fail requirement", frontier: "a target, deliberately not met at present" },
   // ── quantum/devices — vendor device specifications as recorded in this module ──
   // HONEST SCOPE: these were transcribed into the module, not verified by this project
   // against current vendor documentation, and hardware specs change between revisions.
@@ -2573,10 +2568,10 @@ var CRACK_LEDGER = [
   { file: "src/crypto/index.ts", literal: "22", count: 1, kind: "tuned", source: "exponent of the trial-division bound 1 << 22 \u2014 the largest modulus this module will attempt (was crypto/inverse)", frontier: "a declared bound; raising it trades time, it does not extend the method" },
   { file: "src/crypto/index.ts", literal: "11", count: 5, kind: "data", source: "test vector: small prime used as a discrete-log modulus/generator fixture (was crypto/test)", frontier: "fixture input, chosen for hand-checkability" },
   { file: "src/crypto/index.ts", literal: "2753", count: 3, kind: "data", source: "test vector: RSA private exponent d for the textbook modulus 3233 = 53x61, e = 17 (was crypto/test)", frontier: "fixture output, verifiable by modular arithmetic" },
-  { file: "src/quantum/solution/crypto/index.ts", literal: "2048", count: 1, kind: "data", source: "RSA modulus length for the measured baseline \u2014 the NIST-recommended minimum for RSA signatures (SP 800-57, \u2265112-bit security)", frontier: "the comparison is timing only: RSA-2048 verifies from a public key and this scheme cannot, so the ratio is not a security ratio" },
-  { file: "src/quantum/solution/crypto/index.ts", literal: "40", count: 1, kind: "tuned", source: "replacement-scheme parameter", frontier: "a scheme parameter" },
-  { file: "src/quantum/solution/crypto/index.ts", literal: "60", count: 1, kind: "unit", source: "seconds per minute", frontier: "SI scale" },
-  { file: "src/quantum/solution/crypto/index.ts", literal: "80", count: 1, kind: "tuned", source: "console rule width", frontier: "presentation only" },
+  { file: "src/quantum/solution/cli/index.ts", literal: "2048", count: 1, kind: "data", source: "RSA modulus length for the measured baseline \u2014 the NIST-recommended minimum for RSA signatures (SP 800-57, \u2265112-bit security)", frontier: "the comparison is timing only: RSA-2048 verifies from a public key and this scheme cannot, so the ratio is not a security ratio" },
+  { file: "src/quantum/solution/cli/index.ts", literal: "40", count: 1, kind: "tuned", source: "replacement-scheme parameter", frontier: "a scheme parameter" },
+  { file: "src/quantum/solution/cli/index.ts", literal: "60", count: 1, kind: "unit", source: "seconds per minute", frontier: "SI scale" },
+  { file: "src/quantum/solution/cli/index.ts", literal: "80", count: 1, kind: "tuned", source: "console rule width", frontier: "presentation only" },
   { file: "src/quantum/solution/cli/index.ts", literal: "36", count: 1, kind: "unit", source: "UUID string length in characters", frontier: "terminal: the content-address format" },
   { file: "src/quantum/index.ts", literal: "12", count: 2, kind: "tuned", source: "fixed-point solver iteration cap", frontier: "a convergence budget" },
   { file: "src/quantum/testing/index.ts", literal: "0.5", count: 1, kind: "tuned", source: "marked-probability threshold a Grover run must exceed to count as found", frontier: "a pass criterion: above one half the marked state is the modal outcome" },
@@ -8272,9 +8267,9 @@ function yinYang() {
   const five = { tier: 5, name: "five elements (\u4E94\u884C)", members: ["wood", "fire", "earth", "metal", "water"] };
   const eight = { tier: 8, name: "eight trigrams (\u516B\u5366)", members: ["\u2630", "\u2631", "\u2632", "\u2633", "\u2634", "\u2635", "\u2636", "\u2637"] };
   const tiers = [three, five, eight];
-  const fibonacci4 = eight.members.length === five.members.length + three.members.length;
+  const fibonacci3 = eight.members.length === five.members.length + three.members.length;
   return {
-    complete: three.members.length === 3 && five.members.length === 5 && eight.members.length === 8 && fibonacci4,
+    complete: three.members.length === 3 && five.members.length === 5 && eight.members.length === 8 && fibonacci3,
     taiji: { symbol: "\u262F", source: "taiji (\u592A\u6781)" },
     tiers,
     root: merkleFold(tiers.flatMap((tier) => tier.members).map((member) => toUuid(`yinyang:${member}`))),
@@ -9498,7 +9493,7 @@ function quantumSolutions(matrix = buildMatrix()) {
   };
 }
 function quantumProofs(matrix = buildMatrix()) {
-  const round3 = (value, digits = 4) => roundTo(value, digits);
+  const round2 = (value, digits = 4) => roundTo(value, digits);
   const stream = (tag) => {
     let state = seedFromText(`qproof:${matrix.root}:${tag}`, 8) || 1;
     return () => {
@@ -9579,9 +9574,9 @@ function quantumProofs(matrix = buildMatrix()) {
       claim: "H|0> is an equal superposition; outcome frequencies converge to |amplitude|^2 = 1/2.",
       formula: "P(0) = |<0|H|0>|^2 = 1/2",
       predicted: 0.5,
-      measured: round3(bornMeasured),
+      measured: round2(bornMeasured),
       tol: 0.03,
-      series: [round3(bornMeasured), round3(1 - bornMeasured)],
+      series: [round2(bornMeasured), round2(1 - bornMeasured)],
       labels: ["|0\u27E9", "|1\u27E9"]
     },
     {
@@ -9591,9 +9586,9 @@ function quantumProofs(matrix = buildMatrix()) {
       claim: "In |\u03A6+\u27E9 each qubit is random (1/2) yet the two always agree: \u27E8Z0 Z1\u27E9 = 1.",
       formula: "|\u03A6+\u27E9 = (|00\u27E9 + |11\u27E9)/\u221A2  \u2192  \u27E8Z0 Z1\u27E9 = 1",
       predicted: 1,
-      measured: round3(correlation),
+      measured: round2(correlation),
       tol: 1e-3,
-      series: [round3(marginal), round3(correlation)],
+      series: [round2(marginal), round2(correlation)],
       labels: ["marginal", "correlation"]
     },
     {
@@ -9603,9 +9598,9 @@ function quantumProofs(matrix = buildMatrix()) {
       claim: "Coherent amplitudes add before squaring: bright and dark fringes, visibility 1.",
       formula: "I(x) = |a(e^{+id/2} + e^{-id/2})|^2 = 4a^2 cos^2(d/2)",
       predicted: 1,
-      measured: round3(visibility),
+      measured: round2(visibility),
       tol: 0.02,
-      series: fringe.map((value) => round3(value, 3)),
+      series: fringe.map((value) => round2(value, 3)),
       labels: []
     },
     {
@@ -9615,9 +9610,9 @@ function quantumProofs(matrix = buildMatrix()) {
       claim: "Gates are unitary: total probability stays exactly 1 through H and the CNOT chain.",
       formula: "\u03A3_i |amp_i|^2 = 1",
       predicted: 1,
-      measured: round3(norm),
+      measured: round2(norm),
       tol: 1e-6,
-      series: [round3(norm)],
+      series: [round2(norm)],
       labels: ["\u03A3 P"]
     },
     {
@@ -9627,9 +9622,9 @@ function quantumProofs(matrix = buildMatrix()) {
       claim: "Measuring projects the state; an immediate second measurement repeats the outcome.",
       formula: "P^2 = P  \u2192  repeat agreement = 1",
       predicted: 1,
-      measured: round3(repeatability),
+      measured: round2(repeatability),
       tol: 1e-3,
-      series: [round3(repeatability)],
+      series: [round2(repeatability)],
       labels: ["agreement"]
     },
     {
@@ -9639,10 +9634,10 @@ function quantumProofs(matrix = buildMatrix()) {
       claim: "A Gaussian packet and its momentum dual saturate the bound: \u03C3x \xB7 \u03C3p = 1/2.",
       formula: "\u03C3x \xB7 \u03C3p \u2265 \u0127/2, equality for a Gaussian",
       predicted: 0.5,
-      measured: round3(uncertainty),
+      measured: round2(uncertainty),
       tol: 0.05,
-      series: position.map((value) => round3(value / posMax, 3)),
-      seriesB: momentum.map((value) => round3(value / momMax, 3)),
+      series: position.map((value) => round2(value / posMax, 3)),
+      seriesB: momentum.map((value) => round2(value / momMax, 3)),
       labels: ["x", "p"]
     }
   ];
@@ -11425,9 +11420,9 @@ function openTheoremsWithGaps() {
 
 // ../../src/quantum/os/index.ts
 var OS_ROUTE = "/en/quantum/os";
-function fibBandsUpTo(max4) {
+function fibBandsUpTo(max3) {
   const f2 = [1, 1];
-  while (f2[f2.length - 1] + f2[f2.length - 2] <= max4) f2.push(f2[f2.length - 1] + f2[f2.length - 2]);
+  while (f2[f2.length - 1] + f2[f2.length - 2] <= max3) f2.push(f2[f2.length - 1] + f2[f2.length - 2]);
   return f2;
 }
 var CENSUS_FIBONACCI = (() => {
@@ -18360,7 +18355,7 @@ function determinismProofs(matrix = buildMatrix()) {
   return memoByRoot("determinismProofs", matrix, () => computeDeterminismProofs(matrix));
 }
 function computeDeterminismProofs(matrix = buildMatrix()) {
-  const round3 = (value, digits = 4) => roundTo(value, digits);
+  const round2 = (value, digits = 4) => roundTo(value, digits);
   const SAMPLES = 64 * 8;
   const base = "double-torus:proof:";
   const hex = (uuid) => uuid.replace(/-/g, "");
@@ -18423,7 +18418,7 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
       claim: "The same input always yields the same UUID \u2014 verify by recomputation, not permission.",
       formula: "toUuid(x) = toUuid(x), for all x",
       predicted: 1,
-      measured: round3(determinism),
+      measured: round2(determinism),
       tol: 1e-9,
       stripA: strip(toUuid(base + "demo")),
       stripB: strip(toUuid(base + "demo")),
@@ -18436,7 +18431,7 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
       claim: "Change one character and ~half the 128 output bits flip \u2014 any edit is unmissable.",
       formula: "mean Hamming(toUuid(x), toUuid(x\u2032)) / 128 \u2248 1/2",
       predicted: 1 / 2,
-      measured: round3(avalanche),
+      measured: round2(avalanche),
       tol: 3 / (5 * 5 * 2),
       bits: flipped,
       labels: ["128 bits"]
@@ -18449,7 +18444,7 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
       claim: "merge(a,b) differs from merge(b,a): the fold is non-commutative, both directions distinct.",
       formula: "merge(a,b) \u2260 merge(b,a)",
       predicted: 1,
-      measured: round3(orderSensitivity),
+      measured: round2(orderSensitivity),
       tol: 1e-9,
       stripA: stripAB,
       stripB: stripBA,
@@ -18462,7 +18457,7 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
       claim: "Every leaf carries an audit path that recomputes the root \u2014 inclusion provable without trusting the host.",
       formula: "fold(path(leaf)) = root",
       predicted: 1,
-      measured: round3(inclusion),
+      measured: round2(inclusion),
       tol: 1e-9,
       layers: foldLayers,
       labels: [`${leaves.length} leaves`]
@@ -18474,7 +18469,7 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
       claim: "Distinct seeds give distinct UUIDs across the whole pi-train \u2014 no two coordinates share a receipt.",
       formula: "|{toUuid(s) : s \u2208 set}| = |set|",
       predicted: 1,
-      measured: round3(uniqueness),
+      measured: round2(uniqueness),
       tol: 1e-9,
       points: scatter,
       labels: [`${ids.length} ids`]
@@ -18487,7 +18482,7 @@ function computeDeterminismProofs(matrix = buildMatrix()) {
       claim: "The same set folds to one root in any order \u2014 the fold is a function of the set, not the sequence.",
       formula: "fold(set) independent of order",
       predicted: 1,
-      measured: round3(setInvariance),
+      measured: round2(setInvariance),
       tol: 1e-9,
       stripA: rootStrip,
       stripB: rootStrip,
@@ -24795,7 +24790,7 @@ function pagesRenderInBaguaSets2(matrix = buildMatrix()) {
 function pagesRenderInBaguaSetsRaw(matrix = buildMatrix()) {
   const ich = iChing(matrix);
   const pages = staticPages();
-  const busiest = pages.reduce((max4, page) => page.components.length > max4.components.length ? page : max4, pages[0]);
+  const busiest = pages.reduce((max3, page) => page.components.length > max3.components.length ? page : max3, pages[0]);
   const busiestGroups = componentBaguaGroups(busiest.components);
   const conserved = pages.every((page) => {
     const grouped = componentBaguaGroups(page.components);
@@ -25693,10 +25688,6 @@ init_node_fs();
 init_node_fs();
 init_node_path();
 
-// ../../src/quantum/empirical/index.ts
-init_node_fs();
-init_node_path();
-
 // ../../src/quantum/portal/index.ts
 var portal = {
   stats: () => ({
@@ -26109,6 +26100,8 @@ var waves = {
 };
 
 // ../../src/quantum/index.ts
+init_node_fs();
+init_node_path();
 var PLASMA_TIERS = [3, 5, 8];
 function buildArchNodes() {
   const folders = folderLaw().pairedLogicFolders;
@@ -26805,14 +26798,14 @@ function qNormalizeVerts(raw) {
   return raw.map((v) => [v[0] / maxR, v[1] / maxR, v[2] / maxR]);
 }
 function qSolidEdges(verts) {
-  let min3 = Infinity;
+  let min2 = Infinity;
   for (let i = 0; i < verts.length; i += 1) for (let j = i + 1; j < verts.length; j += 1) {
     const d = qDist(verts[i], verts[j]);
-    if (d > 1e-6 && d < min3) min3 = d;
+    if (d > 1e-6 && d < min2) min2 = d;
   }
   const edges = [];
   for (let i = 0; i < verts.length; i += 1) for (let j = i + 1; j < verts.length; j += 1) {
-    if (qDist(verts[i], verts[j]) <= min3 * (27 / (5 * 5))) edges.push([i, j]);
+    if (qDist(verts[i], verts[j]) <= min2 * (27 / (5 * 5))) edges.push([i, j]);
   }
   return edges;
 }
@@ -29820,7 +29813,7 @@ function doubleTorusIsCompletelyQuantum(matrix = buildMatrix()) {
 
 // ../../src/water/crypto/index.ts
 function animationTamperingCost(matrix = buildMatrix()) {
-  const round3 = (value, digits) => roundTo(value, digits);
+  const round2 = (value, digits) => roundTo(value, digits);
   const fps = 6 * 5 * 2;
   const drivers = [
     { component: "LivingTorus", driver: "livingTorus", receipts: livingTorus(matrix).count, perFrame: livingTorus(matrix).count },
@@ -29846,7 +29839,7 @@ function animationTamperingCost(matrix = buildMatrix()) {
   const wiredAtoms = memoryAtoms + logicAtomsCount + imaginedAtoms + astrologyAtoms;
   const reproductions = receipts + sampleWork + wiredAtoms;
   const hashCalls = (receipts + wiredAtoms) * HASH32_PER_UUID * 2 + sampleWork * HASH32_PER_UUID;
-  const bits = round3(log2(hashCalls), 1);
+  const bits = round2(log2(hashCalls), 1);
   const preimageBitsPerReceipt = 64 * 2;
   return {
     computed: receipts > 0 && livePerSecond > 0,
@@ -41999,7 +41992,7 @@ function theMoreYouFoldTheMoreFoldable(matrix = buildMatrix()) {
 function theMoreYouFoldTheMoreFoldableRaw(matrix = buildMatrix()) {
   let foldables = [toUuid("fold:a"), toUuid("fold:b"), toUuid("fold:c")];
   const sizes = [foldables.length];
-  for (let round3 = 0; round3 < 5; round3++) {
+  for (let round2 = 0; round2 < 5; round2++) {
     foldables = [...foldables, merkleFold(foldables)];
     sizes.push(foldables.length);
   }
@@ -43377,11 +43370,11 @@ function threeEightFoldsTopNavRaw(matrix = buildMatrix()) {
 function iChingDomainMap(matrix = buildMatrix()) {
   void matrix;
   const domains = [
-    { bits: 0, module: "src/quantum/earth/heritage", dual: "src/quantum/earth/heritage", slugs: ["heritage", "hexagram-colour", "sixty-four", "proven-or-purged", "dot-cube"], summary: "Bulgarian history, Glagolitic, ethnogenesis, genetics \u2014 the land's memory." },
+    { bits: 0, module: "src/quantum/icons", dual: "src/quantum/icons", slugs: ["heritage", "hexagram-colour", "sixty-four", "proven-or-purged", "dot-cube"], summary: "Bulgarian history, Glagolitic, ethnogenesis, genetics \u2014 the land's memory." },
     { bits: 1, module: "src/quantum/science", dual: "src/world/science/quantum", slugs: ["science", "a432", "analog-field", "simulations", "vortex", "zero-division", "research"], summary: "EM spectrum, Tesla patents, frequencies, dynamic simulations \u2014 arousing discovery." },
     { bits: 2, module: "src/quantum/voice", dual: "src/water/double", slugs: ["voice", "explore", "commands", "console", "mcp", "show", "quantum-tools", "quantum-trading-hub"], summary: "Plain language, speech, UX, command flow \u2014 the communicative layer." },
     { bits: 3, module: "src/quantum/spirit", dual: "src/iching", slugs: ["spirit", "school", "academy", "governance", "society-merkaba"], summary: "Chakras, dualities, dimensions, joyous learning and fair life." },
-    { bits: 4, module: "src/quantum/icons", dual: "src/quantum/earth/heritage", slugs: ["icons", "sacred-geometry", "pauli-basis", "rgb-cmyk", "trinity-rgb"], summary: "Area icons, glyphs, computer architecture 3-5-8, harmonic bands \u2014 visual form." },
+    { bits: 4, module: "src/quantum/icons", dual: "src/quantum/icons", slugs: ["icons", "sacred-geometry", "pauli-basis", "rgb-cmyk", "trinity-rgb"], summary: "Area icons, glyphs, computer architecture 3-5-8, harmonic bands \u2014 visual form." },
     { bits: 5, module: "src/fire/li", dual: "src/fire/li", slugs: ["tampering-cost", "pi-trinity", "qubit-trinity", "hamming-address", "content-addressing", "genetic-code", "three-not-one", "quantum-encryption", "frontiers"], summary: "Pure computation: crypto, proofs, primitives \u2014 the clinging fire of truth." },
     { bits: 6, module: "src/earth/nature", dual: "src/world/nature/quantum", slugs: ["nature", "boundaries"], summary: "Natural law, the commons, society forms, gentle limits." },
     { bits: 7, module: "src/quantum/heaven/mind", dual: "src/heaven/essence", slugs: ["start", "quantum-mind", "architecture", "learn-developer", "kernel-zero", "digit-folders"], summary: "The mind hub: the creative origin, the matrix, the architecture." }
@@ -44264,28 +44257,6 @@ function essentialKernel(matrix = buildMatrix()) {
   };
 }
 
-// ../../src/quantum/apps/shared/index.ts
-var ROSETTA_PARALLEL_REGISTRY_BACKLOG = [];
-var STANDARD_TOOL_HONESTY = {
-  physicalQubitSpeedup: 0,
-  notFlops: true,
-  capacityMeans: "amortized sealed recompute + memoByRoot + distributed identical roots"
-};
-var PASTE_BOOTSTRAP_SAMPLE_URLS = [
-  "https://github.com/ceccec/ceccec.github.io",
-  "https://github.com/ceccec/ceccec.github.io/tree/main/src/0",
-  "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md",
-  "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md",
-  "git@github.com:ceccec/ceccec.github.io.git",
-  "https://ceccec.psg.bg/",
-  "https://ceccec.psg.bg/quantum-tools#toolbox-standard-io",
-  "https://ceccec.psg.bg/mcp.json",
-  "https://ceccec.psg.bg/agents.json",
-  "https://ceccec.psg.bg/.well-known/ai-skills.json",
-  `${CANONICAL_HOST}/llms.txt`,
-  `${CANONICAL_HOST}/en/#first-in-corpus`
-];
-
 // ../../src/quantum/apps/index.ts
 var ROSETTA_CORE_API_LABELS = [
   "rosettaCoreApi",
@@ -44353,7 +44324,6 @@ var ROSETTA_CORE_API_LABELS = [
   "deviceSensorPerspectiveAt",
   "deviceTouchPerspectiveAt",
   "quantumSensorBindingCatalog",
-  "wireAllSensorsUsingQuantumBindings",
   "movieObservationReceipt",
   "mcpQuantumInfinity",
   "mcpQuantumHardware",
@@ -44472,7 +44442,14 @@ var ROSETTA_CORE_API_LABELS = [
   "reverseCollidesViaInfinityGateway",
   "invertIsTheGateway",
   "wavesMinimiseTokensAdvanceMillennium",
-  "cursor"
+  "cursor",
+  // Five labels ROSETTA_CORE_LABEL_KIND gave a kind but this list never enumerated — a registry beside the core, found the
+  // day the backlog was measured instead of declared empty (rosettaParallelRegistryBacklog); enumerated here, not re-keyed.
+  "theoremAudit",
+  "geoGebraEncode",
+  "collidingParticlesCreates",
+  "findSeoViolations",
+  "seoViolationsInventory"
 ];
 var ROSETTA_CORE_LABEL_KIND = {
   rosettaComputesAll: "compute",
@@ -44678,7 +44655,7 @@ function rosettaCoreApi(at = 0, matrix = buildMatrix()) {
     };
     const inventory = {
       core: surfaces.map((s) => ({ label: s.label, kind: s.kind, ray: s.ray, address: s.address })),
-      parallel: ROSETTA_PARALLEL_REGISTRY_BACKLOG,
+      parallel: rosettaParallelRegistryBacklog(),
       hubs: ROSETTA_RAY_HUBS.map((h) => ({ slug: h.slug, ray: h.ray, route: h.route, hue: h.hue }))
     };
     const facets = [
@@ -47010,6 +46987,35 @@ function universeAlmostDescribedInTheoremsDiscoverRest(matrix = buildMatrix(), a
     };
   });
 }
+function rosettaParallelRegistryBacklog() {
+  const seen = /* @__PURE__ */ new Set();
+  const backlog = [];
+  for (const label of ROSETTA_CORE_API_LABELS) {
+    if (seen.has(label)) backlog.push(`${label} enumerated twice`);
+    seen.add(label);
+  }
+  for (const label of Object.keys(ROSETTA_CORE_LABEL_KIND)) if (!seen.has(label)) backlog.push(`${label} keyed by kind but never enumerated`);
+  return backlog;
+}
+var STANDARD_TOOL_HONESTY = {
+  physicalQubitSpeedup: 0,
+  notFlops: true,
+  capacityMeans: "amortized sealed recompute + memoByRoot + distributed identical roots"
+};
+var PASTE_BOOTSTRAP_SAMPLE_URLS = [
+  "https://github.com/ceccec/ceccec.github.io",
+  "https://github.com/ceccec/ceccec.github.io/tree/main/src/0",
+  "https://github.com/ceccec/ceccec.github.io/blob/main/AGENTS.md",
+  "https://raw.githubusercontent.com/ceccec/ceccec.github.io/main/README.md",
+  "git@github.com:ceccec/ceccec.github.io.git",
+  "https://ceccec.psg.bg/",
+  "https://ceccec.psg.bg/quantum-tools#toolbox-standard-io",
+  "https://ceccec.psg.bg/mcp.json",
+  "https://ceccec.psg.bg/agents.json",
+  "https://ceccec.psg.bg/.well-known/ai-skills.json",
+  `${CANONICAL_HOST}/llms.txt`,
+  `${CANONICAL_HOST}/en/#first-in-corpus`
+];
 
 // ../../src/thunder/trading/index.ts
 function realtimeSkills(matrix = buildMatrix()) {
@@ -47472,11 +47478,11 @@ function harmonicWeatherTradingOffline(at = 0, matrix = buildMatrix()) {
 init_node_fs();
 init_node_path();
 function rhythm(matrix = buildMatrix()) {
-  const round3 = (value, digits = 2) => roundTo(value, digits);
+  const round2 = (value, digits = 2) => roundTo(value, digits);
   const mk = merkaba(matrix);
   const seed = seedFromText(`rhythm:${matrix.root}`);
   const bpm = 16 * 6 + seed % (16 * 2);
-  const beatMs = round3(100 * 100 * 6 / bpm, 1);
+  const beatMs = round2(100 * 100 * 6 / bpm, 1);
   const ratios = [1, 2, 3, 5];
   const base = a432NoteHz(-(7 * 2));
   const partials = [1, 3 / 2, 2, 3];
@@ -47485,12 +47491,12 @@ function rhythm(matrix = buildMatrix()) {
     return {
       scale: mk.scales[i].scale,
       ratio,
-      periodMs: round3(beatMs / ratio, 1),
-      frequency: round3(base * partials[i], 2),
+      periodMs: round2(beatMs / ratio, 1),
+      frequency: round2(base * partials[i], 2),
       sign: mk.scales[i].sign,
       offBeat,
       // onset phases within one beat (0..1); off-beat voices shifted by half a step
-      onsets: Array.from({ length: ratio }, (_, k) => round3((k + (offBeat ? 1 / 2 : 0)) / ratio % 1, 4)),
+      onsets: Array.from({ length: ratio }, (_, k) => round2((k + (offBeat ? 1 / 2 : 0)) / ratio % 1, 4)),
       receipt: toUuid(`rhythm-voice:${mk.scales[i].scale}:${ratio}:${offBeat}`)
     };
   });
@@ -49744,7 +49750,7 @@ function folderLaw() {
     // the trunk: the Glagolitic root (default), the Latin /en/ and the Cyrillic /bg/ locale roots
     outsidePageTree: ["packages", "src"],
     // machinery, not page tree (mirrors config srcExclude; the wave checks they agree)
-    pairedLogicFolders: ["src/quantum/heaven/mind", "src/pair/cache/quantum", "src/quantum/water/cache", "src/pair/debit/credit", "src/quantum/heaven/library", "src/quantum/earth/heritage", "src/quantum/dist", "src/pair/enforcement"],
+    pairedLogicFolders: ["src/quantum/heaven/mind", "src/pair/cache/quantum", "src/quantum/water/cache", "src/pair/debit/credit", "src/quantum/heaven/library", "src/quantum/icons", "src/quantum/dist", "src/pair/enforcement"],
     // agnostic core + cache · debit/credit (credit/debit + ant search dissolved into the bidirectional debit/credit fold) · library · dist · enforcement pairs
     // Kind purity — no digits in word indices, no words in digit indices. Below src/, every folder's
     // subfolders share its kind: a WORD folder holds only word subfolders (the UI subtree), a DIGIT
@@ -57365,10 +57371,10 @@ function theoremScienceLens(matrix = buildMatrix()) {
   });
 }
 var CRAWLER_SOURCE = {
-  "Bulgarian history 681\u2013present": "src/quantum/earth/heritage/index.ts",
-  "Bulgarian ancient civilisations": "src/quantum/earth/heritage/index.ts",
-  "Bulgarian ethnogenesis": "src/quantum/earth/heritage/index.ts",
-  "Bulgarian genetics": "src/quantum/earth/heritage/index.ts",
+  "Bulgarian history 681\u2013present": "src/quantum/icons/index.ts",
+  "Bulgarian ancient civilisations": "src/quantum/icons/index.ts",
+  "Bulgarian ethnogenesis": "src/quantum/icons/index.ts",
+  "Bulgarian genetics": "src/quantum/icons/index.ts",
   Alphabets: "src/quantum/heaven/mind/language.ts",
   Glagolitic: "src/quantum/heaven/mind/language.ts",
   "Script, language and gene": "src/quantum/heaven/mind/language.ts",
@@ -58723,16 +58729,16 @@ function quantumSimulation(matrix = buildMatrix(), qubits6 = 3) {
 }
 function goldenRatio(matrix = buildMatrix()) {
   void matrix;
-  const round3 = (value, digits) => roundTo(value, digits);
-  const fibonacci4 = harmonicBands(100 * 5 * 4).fibonacci;
-  const convergents = fibonacci4.slice(1).map((value, i) => {
-    const ratio = value / fibonacci4[i];
-    return { a: value, b: fibonacci4[i], ratio: round3(ratio, 6), error: round3(abs(ratio - PHI), 9) };
+  const round2 = (value, digits) => roundTo(value, digits);
+  const fibonacci3 = harmonicBands(100 * 5 * 4).fibonacci;
+  const convergents = fibonacci3.slice(1).map((value, i) => {
+    const ratio = value / fibonacci3[i];
+    return { a: value, b: fibonacci3[i], ratio: round2(ratio, 6), error: round2(abs(ratio - PHI), 9) };
   });
   const last = convergents[convergents.length - 1];
   return {
     converges: last.error < 1e-6,
-    phi: round3(PHI, 8),
+    phi: round2(PHI, 8),
     limit: last.ratio,
     error: last.error,
     convergents,
@@ -58744,11 +58750,11 @@ function goldenRatio(matrix = buildMatrix()) {
 }
 function humanise2(matrix = buildMatrix()) {
   void matrix;
-  const round3 = (value, digits) => roundTo(value, digits);
+  const round2 = (value, digits) => roundTo(value, digits);
   const breaths = [0, 1, 2].map((i) => roundTo(100 * 7 * 6 * PHI ** i, 0));
-  const ease = [0, 1 / 4, 1 / 2, 3 / 4, 1].map((p) => round3(humanEase(p), 4));
+  const ease = [0, 1 / 4, 1 / 2, 3 / 4, 1].map((p) => round2(humanEase(p), 4));
   return {
-    humane: humanEase(0) === 0 && humanEase(1) === 1 && round3(humanEase(1 / 2), 6) === 1 / 2 && ease.every((value, i) => i === 0 || value >= ease[i - 1]),
+    humane: humanEase(0) === 0 && humanEase(1) === 1 && round2(humanEase(1 / 2), 6) === 1 / 2 && ease.every((value, i) => i === 0 || value >= ease[i - 1]),
     // monotonic, fixed ends, symmetric middle
     ease,
     breaths,
@@ -58883,10 +58889,10 @@ function fuseUxSensors(matrix = buildMatrix()) {
 }
 function complete358NextTrinity2(matrix = buildMatrix()) {
   const tiers = [3, 5, 8, 13, 7 * 3];
-  const fibonacci4 = tiers.slice(2).every((value, index) => value === tiers[index] + tiers[index + 1]);
+  const fibonacci3 = tiers.slice(2).every((value, index) => value === tiers[index] + tiers[index + 1]);
   const levels = tiers.map((tier) => ({ tier, unlocked: true, receipt: toUuid(`pyramid-level:${tier}`) }));
   return {
-    completes: fibonacci4 && dualities().fibonacci && trinityPyramidFusesDimensions2(matrix).forms,
+    completes: fibonacci3 && dualities().fibonacci && trinityPyramidFusesDimensions2(matrix).forms,
     ground: [3, 5, 8],
     nextTrinity: [13, 7 * 3],
     count: tiers.length,
@@ -61292,7 +61298,7 @@ function landauerFloorComputed(matrix = buildMatrix()) {
 }
 function fleetCacheEconomicsDecoded(matrix = buildMatrix()) {
   return memoByRoot("fleetCacheEconomicsDecoded", matrix, () => {
-    const floor3 = landauerFloorComputed(matrix);
+    const floor2 = landauerFloorComputed(matrix);
     const zero = zeroTokenUsagePolicy(matrix);
     const hitRatios = [0, 1 / 2, 9 / (5 * 2), 1 - 1 / 100, 1].map((hit) => {
       const missJoules = 1e-3, hitJoules = 1e-6;
@@ -61303,7 +61309,7 @@ function fleetCacheEconomicsDecoded(matrix = buildMatrix()) {
       { facet: "a cache HIT is a content-addressed lookup \u2014 zero-token reuse, the same root never recomputed", on: zero.holds },
       { facet: "identical inputs fold to identical roots \u2014 the hit set is shared across the whole fleet", on: isUuid(matrix.root) },
       { facet: "the per-request energy falls monotonically with the hit ratio (miss recompute \u226B hit lookup)", on: hitRatios.every((r2, i) => i === 0 || r2.expectedJoules <= hitRatios[i - 1].expectedJoules) },
-      { facet: "every operation is bounded below by the Landauer floor \u2014 economics never beats physics", on: floor3.decoded }
+      { facet: "every operation is bounded below by the Landauer floor \u2014 economics never beats physics", on: floor2.decoded }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`fleet-econ:${entry2.facet}:${entry2.on}`) }));
     return {
       decoded: facets.every((entry2) => entry2.on),
@@ -61311,7 +61317,7 @@ function fleetCacheEconomicsDecoded(matrix = buildMatrix()) {
       documented: ["Content-addressed caching: a hit reuses a sealed root at near-zero cost; a miss recomputes deterministically.", "The fleet shares one hit set because roots are content-addresses, not per-node keys."],
       flagged: ["Illustrative cost model from sealed constants \u2014 NOT live fleet telemetry. The joule figures are orders of magnitude, not measured."],
       facets,
-      root: merge(floor3.root, merkleFold(facets.map((entry2) => entry2.receipt))),
+      root: merge(floor2.root, merkleFold(facets.map((entry2) => entry2.receipt))),
       statement: "Fleet cache economics, decoded: a content-addressed cache hit reuses a sealed root at near-zero cost (zero-token reuse), a miss recomputes deterministically, and because identical inputs fold to identical roots the hit set is shared across the whole fleet \u2014 so the expected per-request energy falls monotonically with the hit ratio, bounded below by the Landauer floor.",
       boundary: "A deterministic cost MODEL composed from the zero-token policy and the Landauer floor. The hit-ratio energy figures are illustrative orders of magnitude, not live telemetry of any deployed fleet."
     };
@@ -73038,7 +73044,172 @@ function lawfulSucceed() {
   };
 }
 
-// ../../src/quantum/earth/heritage/index.ts
+// ../../src/quantum/icons/index.ts
+var AREA_ICONS4 = {
+  site: "\u{1F3DB}",
+  self: "\u262F",
+  agent: "\u{1F702}",
+  school: "\u{1F393}",
+  mcp: "\u{1F50C}",
+  chain: "\u26D3",
+  help: "\u2637",
+  fold: "\u{1F500}",
+  mind: "\u263F",
+  compute: "\u{1F5A7}",
+  ui: "\u{1F5A5}",
+  diamond: "\u25C8",
+  digit: "\u2635",
+  wave: "\u3030",
+  chess: "\u265B",
+  schemaOrg: "\u{1F516}",
+  traditions: "\u2638",
+  science: "\u2697",
+  artists: "\u{1F3A8}",
+  method: "\u{1F714}",
+  torus: "\u2297",
+  source: "\u{1F70D}",
+  repository: "\u{1F4E6}",
+  proof: "\u{1F50F}",
+  commands: "\u{1F4DC}",
+  music: "\u266B",
+  icon: "\u{1F5BC}",
+  babel: "\u2630",
+  utf: "\u{1F524}",
+  all: "\u221E",
+  state: "\u269B",
+  geometry: "\u25B3",
+  society: "\u{1F3D8}",
+  commons: "\u267B",
+  ancient: "\u2625",
+  reactor: "\u2622",
+  show: "\u2600",
+  patent: "\u26A1",
+  nature: "\u{1F33F}",
+  lawful: "\u2696",
+  computer: "\u{1F5B3}",
+  healing: "\u25CE",
+  energy: "\u{1F50B}"
+};
+var AREA_LABELS3 = {
+  site: { en: "Site", bg: "\u0421\u0430\u0439\u0442" },
+  self: { en: "Self", bg: "\u0421\u0435\u0431\u0435" },
+  agent: { en: "Agent", bg: "\u0410\u0433\u0435\u043D\u0442" },
+  school: { en: "School", bg: "\u0423\u0447\u0438\u043B\u0438\u0449\u0435" },
+  mcp: { en: "MCP", bg: "MCP" },
+  chain: { en: "Chain", bg: "\u0412\u0435\u0440\u0438\u0433\u0430" },
+  help: { en: "Help", bg: "\u041F\u043E\u043C\u043E\u0449" },
+  fold: { en: "Fold", bg: "\u0421\u0433\u044A\u0432\u0430\u043D\u0435" },
+  mind: { en: "Mind", bg: "\u0423\u043C" },
+  compute: { en: "Compute", bg: "\u0418\u0437\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435" },
+  ui: { en: "UI", bg: "\u0418\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441" },
+  diamond: { en: "Diamond", bg: "\u0414\u0438\u0430\u043C\u0430\u043D\u0442" },
+  digit: { en: "Digit", bg: "\u0426\u0438\u0444\u0440\u0430" },
+  wave: { en: "Wave", bg: "\u0412\u044A\u043B\u043D\u0430" },
+  chess: { en: "Chess", bg: "\u0428\u0430\u0445" },
+  schema: { en: "Schema", bg: "\u0421\u0445\u0435\u043C\u0430" },
+  schemaOrg: { en: "Schema.org", bg: "Schema.org" },
+  traditions: { en: "Traditions", bg: "\u0422\u0440\u0430\u0434\u0438\u0446\u0438\u0438" },
+  science: { en: "Science", bg: "\u041D\u0430\u0443\u043A\u0430" },
+  artists: { en: "Artists", bg: "\u0425\u0443\u0434\u043E\u0436\u043D\u0438\u0446\u0438" },
+  method: { en: "Method", bg: "\u041C\u0435\u0442\u043E\u0434" },
+  torus: { en: "Torus", bg: "\u0422\u043E\u0440" },
+  source: { en: "Source", bg: "\u0418\u0437\u0442\u043E\u0447\u043D\u0438\u043A" },
+  repository: { en: "Repository", bg: "\u0425\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0435" },
+  proof: { en: "Proof", bg: "\u0414\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0441\u0442\u0432\u043E" },
+  commands: { en: "Commands", bg: "\u041A\u043E\u043C\u0430\u043D\u0434\u0438" },
+  music: { en: "Music", bg: "\u041C\u0443\u0437\u0438\u043A\u0430" },
+  icon: { en: "Icon", bg: "\u0418\u043A\u043E\u043D\u0430" },
+  babel: { en: "Babel", bg: "\u0412\u0430\u0432\u0438\u043B\u043E\u043D" },
+  utf: { en: "UTF", bg: "UTF" },
+  all: { en: "All", bg: "\u0412\u0441\u0438\u0447\u043A\u043E" },
+  state: { en: "State", bg: "\u0421\u044A\u0441\u0442\u043E\u044F\u043D\u0438\u0435" },
+  geometry: { en: "Geometry", bg: "\u0413\u0435\u043E\u043C\u0435\u0442\u0440\u0438\u044F" },
+  society: { en: "Society", bg: "\u041E\u0431\u0449\u0435\u0441\u0442\u0432\u043E" },
+  commons: { en: "Commons", bg: "\u041E\u0431\u0449\u0438 \u0431\u043B\u0430\u0433\u0430" },
+  ancient: { en: "Ancient", bg: "\u0414\u0440\u0435\u0432\u043D\u0438" },
+  reactor: { en: "Reactor", bg: "\u0420\u0435\u0430\u043A\u0442\u043E\u0440" },
+  show: { en: "Show", bg: "\u041F\u043E\u043A\u0430\u0436\u0438" },
+  patent: { en: "Patent", bg: "\u041F\u0430\u0442\u0435\u043D\u0442" },
+  nature: { en: "Nature", bg: "\u041F\u0440\u0438\u0440\u043E\u0434\u0430" },
+  lawful: { en: "Lawful", bg: "\u0417\u0430\u043A\u043E\u043D\u043D\u043E" },
+  computer: { en: "Computer", bg: "\u041A\u043E\u043C\u043F\u044E\u0442\u044A\u0440" },
+  healing: { en: "Healing", bg: "\u0418\u0437\u0446\u0435\u043B\u0435\u043D\u0438\u0435" },
+  energy: { en: "Energy", bg: "\u0415\u043D\u0435\u0440\u0433\u0438\u044F" }
+};
+function harmonicBands(total) {
+  const n = max(0, floor(total));
+  const fibonacci3 = [1, 2];
+  while (fibonacci3[fibonacci3.length - 1] < max(n, 3) * 2) {
+    fibonacci3.push(fibonacci3[fibonacci3.length - 1] + fibonacci3[fibonacci3.length - 2]);
+  }
+  let best = null;
+  const reachable = /* @__PURE__ */ new Set();
+  for (let i = 0; i < fibonacci3.length; i += 1) {
+    let sum = 0;
+    for (let j = i; j < fibonacci3.length; j += 1) {
+      sum += fibonacci3[j];
+      if (sum > n * 3 + 3) break;
+      reachable.add(sum);
+      if (sum === n && (!best || j - i + 1 > best.bands.length)) best = { bands: fibonacci3.slice(i, j + 1) };
+    }
+  }
+  let target = n;
+  if (!best && n > 0) {
+    target = Number.POSITIVE_INFINITY;
+    for (const sum of reachable) if (sum >= n && sum < target) target = sum;
+  }
+  const bands = best ? best.bands.slice().reverse() : [];
+  const gapless = n === 0 || best !== null;
+  return {
+    gapless,
+    harmonic: gapless,
+    // the distribution is harmonic only when gapless
+    total: n,
+    bands,
+    scales: bands.length,
+    gaps: gapless ? 0 : target - n,
+    // files to add to reach a gapless run
+    target: gapless ? n : target,
+    fibonacci: fibonacci3,
+    root: merkleFold(bands.map((band, i) => toUuid(`harmonic-band:${i}:${band}`))),
+    statement: "Folder distribution as harmonic numbers at all scales, with no Fibonacci gaps: the file count is a run of consecutive Fibonacci numbers \u2014 the 3-5-8-13-21 sequence with nothing skipped \u2014 so every band is a harmonic number, the bands are adjacent scales, and they sum exactly to the whole.",
+    boundary: "A consecutive-Fibonacci (gapless) decomposition of a count. Not every count forms one; when it cannot, the computation reports the deficit to the nearest count that does \u2014 a named gap to fill, not a silent remainder. A self-similar structural description; the harmony is in the numbers."
+  };
+}
+function areaLabel2(area, lang = "en") {
+  if (lang.includes("universal") || lang.includes("sacred")) return AREA_ICONS4[area] ?? "\u25C7";
+  const label = AREA_LABELS3[area];
+  if (!label) return area;
+  return lang.startsWith("bg") ? label.bg : label.en;
+}
+function iconGlyphs() {
+  const solids = ["\u25B3", "\u25FB", "\u25C7", "\u2B20", "\u2B21"];
+  const areaIcons = Object.entries(AREA_ICONS4);
+  return {
+    grounded: areaIcons.length > 0,
+    count: areaIcons.length + solids.length,
+    root: merkleFold([
+      ...areaIcons.map(([area, icon]) => toUuid(`glyph:${area}:${icon}`)),
+      ...solids.map((solid) => toUuid(`solid:${solid}`))
+    ]),
+    statement: "The glyph set: every command-area icon plus the five Platonic-solid glyphs folded into one root.",
+    boundary: "A fold of the icon and solid glyphs. Structural bookkeeping, not an external claim."
+  };
+}
+function iconSeal() {
+  const artifacts = [
+    { path: "/icon.svg", role: "app icon" },
+    { path: "/site.webmanifest", role: "pwa manifest" },
+    { path: "/sw.js", role: "service worker" }
+  ].map((artifact) => ({ ...artifact, receipt: toUuid(`icon:${artifact.path}:${artifact.role}`) }));
+  return {
+    declared: artifacts.length === 3,
+    root: merkleFold(artifacts.map((artifact) => artifact.receipt)),
+    artifacts,
+    statement: "Icon usage adds to the tampering cost: the app icon, PWA manifest, and service worker are sealed artifacts folded into the proof.",
+    boundary: "The lib declares the visual artifacts; the build seal folds their actual file content into the seal root. Structural bookkeeping, not an external claim."
+  };
+}
 function bulgarianHeritage2() {
   const topics = [
     {
@@ -73153,174 +73324,7 @@ function glagoliticBulgarianReception() {
   };
 }
 
-// ../../src/quantum/icons/index.ts
-var AREA_ICONS4 = {
-  site: "\u{1F3DB}",
-  self: "\u262F",
-  agent: "\u{1F702}",
-  school: "\u{1F393}",
-  mcp: "\u{1F50C}",
-  chain: "\u26D3",
-  help: "\u2637",
-  fold: "\u{1F500}",
-  mind: "\u263F",
-  compute: "\u{1F5A7}",
-  ui: "\u{1F5A5}",
-  diamond: "\u25C8",
-  digit: "\u2635",
-  wave: "\u3030",
-  chess: "\u265B",
-  schemaOrg: "\u{1F516}",
-  traditions: "\u2638",
-  science: "\u2697",
-  artists: "\u{1F3A8}",
-  method: "\u{1F714}",
-  torus: "\u2297",
-  source: "\u{1F70D}",
-  repository: "\u{1F4E6}",
-  proof: "\u{1F50F}",
-  commands: "\u{1F4DC}",
-  music: "\u266B",
-  icon: "\u{1F5BC}",
-  babel: "\u2630",
-  utf: "\u{1F524}",
-  all: "\u221E",
-  state: "\u269B",
-  geometry: "\u25B3",
-  society: "\u{1F3D8}",
-  commons: "\u267B",
-  ancient: "\u2625",
-  reactor: "\u2622",
-  show: "\u2600",
-  patent: "\u26A1",
-  nature: "\u{1F33F}",
-  lawful: "\u2696",
-  computer: "\u{1F5B3}",
-  healing: "\u25CE",
-  energy: "\u{1F50B}"
-};
-var AREA_LABELS3 = {
-  site: { en: "Site", bg: "\u0421\u0430\u0439\u0442" },
-  self: { en: "Self", bg: "\u0421\u0435\u0431\u0435" },
-  agent: { en: "Agent", bg: "\u0410\u0433\u0435\u043D\u0442" },
-  school: { en: "School", bg: "\u0423\u0447\u0438\u043B\u0438\u0449\u0435" },
-  mcp: { en: "MCP", bg: "MCP" },
-  chain: { en: "Chain", bg: "\u0412\u0435\u0440\u0438\u0433\u0430" },
-  help: { en: "Help", bg: "\u041F\u043E\u043C\u043E\u0449" },
-  fold: { en: "Fold", bg: "\u0421\u0433\u044A\u0432\u0430\u043D\u0435" },
-  mind: { en: "Mind", bg: "\u0423\u043C" },
-  compute: { en: "Compute", bg: "\u0418\u0437\u0447\u0438\u0441\u043B\u0435\u043D\u0438\u0435" },
-  ui: { en: "UI", bg: "\u0418\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441" },
-  diamond: { en: "Diamond", bg: "\u0414\u0438\u0430\u043C\u0430\u043D\u0442" },
-  digit: { en: "Digit", bg: "\u0426\u0438\u0444\u0440\u0430" },
-  wave: { en: "Wave", bg: "\u0412\u044A\u043B\u043D\u0430" },
-  chess: { en: "Chess", bg: "\u0428\u0430\u0445" },
-  schema: { en: "Schema", bg: "\u0421\u0445\u0435\u043C\u0430" },
-  schemaOrg: { en: "Schema.org", bg: "Schema.org" },
-  traditions: { en: "Traditions", bg: "\u0422\u0440\u0430\u0434\u0438\u0446\u0438\u0438" },
-  science: { en: "Science", bg: "\u041D\u0430\u0443\u043A\u0430" },
-  artists: { en: "Artists", bg: "\u0425\u0443\u0434\u043E\u0436\u043D\u0438\u0446\u0438" },
-  method: { en: "Method", bg: "\u041C\u0435\u0442\u043E\u0434" },
-  torus: { en: "Torus", bg: "\u0422\u043E\u0440" },
-  source: { en: "Source", bg: "\u0418\u0437\u0442\u043E\u0447\u043D\u0438\u043A" },
-  repository: { en: "Repository", bg: "\u0425\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0435" },
-  proof: { en: "Proof", bg: "\u0414\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0441\u0442\u0432\u043E" },
-  commands: { en: "Commands", bg: "\u041A\u043E\u043C\u0430\u043D\u0434\u0438" },
-  music: { en: "Music", bg: "\u041C\u0443\u0437\u0438\u043A\u0430" },
-  icon: { en: "Icon", bg: "\u0418\u043A\u043E\u043D\u0430" },
-  babel: { en: "Babel", bg: "\u0412\u0430\u0432\u0438\u043B\u043E\u043D" },
-  utf: { en: "UTF", bg: "UTF" },
-  all: { en: "All", bg: "\u0412\u0441\u0438\u0447\u043A\u043E" },
-  state: { en: "State", bg: "\u0421\u044A\u0441\u0442\u043E\u044F\u043D\u0438\u0435" },
-  geometry: { en: "Geometry", bg: "\u0413\u0435\u043E\u043C\u0435\u0442\u0440\u0438\u044F" },
-  society: { en: "Society", bg: "\u041E\u0431\u0449\u0435\u0441\u0442\u0432\u043E" },
-  commons: { en: "Commons", bg: "\u041E\u0431\u0449\u0438 \u0431\u043B\u0430\u0433\u0430" },
-  ancient: { en: "Ancient", bg: "\u0414\u0440\u0435\u0432\u043D\u0438" },
-  reactor: { en: "Reactor", bg: "\u0420\u0435\u0430\u043A\u0442\u043E\u0440" },
-  show: { en: "Show", bg: "\u041F\u043E\u043A\u0430\u0436\u0438" },
-  patent: { en: "Patent", bg: "\u041F\u0430\u0442\u0435\u043D\u0442" },
-  nature: { en: "Nature", bg: "\u041F\u0440\u0438\u0440\u043E\u0434\u0430" },
-  lawful: { en: "Lawful", bg: "\u0417\u0430\u043A\u043E\u043D\u043D\u043E" },
-  computer: { en: "Computer", bg: "\u041A\u043E\u043C\u043F\u044E\u0442\u044A\u0440" },
-  healing: { en: "Healing", bg: "\u0418\u0437\u0446\u0435\u043B\u0435\u043D\u0438\u0435" },
-  energy: { en: "Energy", bg: "\u0415\u043D\u0435\u0440\u0433\u0438\u044F" }
-};
-function harmonicBands(total) {
-  const n = max(0, floor(total));
-  const fibonacci4 = [1, 2];
-  while (fibonacci4[fibonacci4.length - 1] < max(n, 3) * 2) {
-    fibonacci4.push(fibonacci4[fibonacci4.length - 1] + fibonacci4[fibonacci4.length - 2]);
-  }
-  let best = null;
-  const reachable = /* @__PURE__ */ new Set();
-  for (let i = 0; i < fibonacci4.length; i += 1) {
-    let sum = 0;
-    for (let j = i; j < fibonacci4.length; j += 1) {
-      sum += fibonacci4[j];
-      if (sum > n * 3 + 3) break;
-      reachable.add(sum);
-      if (sum === n && (!best || j - i + 1 > best.bands.length)) best = { bands: fibonacci4.slice(i, j + 1) };
-    }
-  }
-  let target = n;
-  if (!best && n > 0) {
-    target = Number.POSITIVE_INFINITY;
-    for (const sum of reachable) if (sum >= n && sum < target) target = sum;
-  }
-  const bands = best ? best.bands.slice().reverse() : [];
-  const gapless = n === 0 || best !== null;
-  return {
-    gapless,
-    harmonic: gapless,
-    // the distribution is harmonic only when gapless
-    total: n,
-    bands,
-    scales: bands.length,
-    gaps: gapless ? 0 : target - n,
-    // files to add to reach a gapless run
-    target: gapless ? n : target,
-    fibonacci: fibonacci4,
-    root: merkleFold(bands.map((band, i) => toUuid(`harmonic-band:${i}:${band}`))),
-    statement: "Folder distribution as harmonic numbers at all scales, with no Fibonacci gaps: the file count is a run of consecutive Fibonacci numbers \u2014 the 3-5-8-13-21 sequence with nothing skipped \u2014 so every band is a harmonic number, the bands are adjacent scales, and they sum exactly to the whole.",
-    boundary: "A consecutive-Fibonacci (gapless) decomposition of a count. Not every count forms one; when it cannot, the computation reports the deficit to the nearest count that does \u2014 a named gap to fill, not a silent remainder. A self-similar structural description; the harmony is in the numbers."
-  };
-}
-function areaLabel2(area, lang = "en") {
-  if (lang.includes("universal") || lang.includes("sacred")) return AREA_ICONS4[area] ?? "\u25C7";
-  const label = AREA_LABELS3[area];
-  if (!label) return area;
-  return lang.startsWith("bg") ? label.bg : label.en;
-}
-function iconGlyphs() {
-  const solids = ["\u25B3", "\u25FB", "\u25C7", "\u2B20", "\u2B21"];
-  const areaIcons = Object.entries(AREA_ICONS4);
-  return {
-    grounded: areaIcons.length > 0,
-    count: areaIcons.length + solids.length,
-    root: merkleFold([
-      ...areaIcons.map(([area, icon]) => toUuid(`glyph:${area}:${icon}`)),
-      ...solids.map((solid) => toUuid(`solid:${solid}`))
-    ]),
-    statement: "The glyph set: every command-area icon plus the five Platonic-solid glyphs folded into one root.",
-    boundary: "A fold of the icon and solid glyphs. Structural bookkeeping, not an external claim."
-  };
-}
-function iconSeal() {
-  const artifacts = [
-    { path: "/icon.svg", role: "app icon" },
-    { path: "/site.webmanifest", role: "pwa manifest" },
-    { path: "/sw.js", role: "service worker" }
-  ].map((artifact) => ({ ...artifact, receipt: toUuid(`icon:${artifact.path}:${artifact.role}`) }));
-  return {
-    declared: artifacts.length === 3,
-    root: merkleFold(artifacts.map((artifact) => artifact.receipt)),
-    artifacts,
-    statement: "Icon usage adds to the tampering cost: the app icon, PWA manifest, and service worker are sealed artifacts folded into the proof.",
-    boundary: "The lib declares the visual artifacts; the build seal folds their actual file content into the seal root. Structural bookkeeping, not an external claim."
-  };
-}
-
-// ../../src/quantum/endowment/index.ts
+// ../../src/quantum/heaven/mind/index.ts
 var scale = (mult, exp2) => mult * pow(10, exp2);
 var fundingSourceData = [
   {

@@ -435,6 +435,48 @@ export declare const LIVE_CONNECTORS: readonly [{
     readonly limit: "not documented";
     readonly licence: "open data, no key and no account";
     readonly reproducible: "versioned — keyed by the dataset release, e.g. gnomad_r4";
+}, {
+    readonly key: "pollinations-text";
+    readonly url: "https://text.pollinations.ai/models";
+    readonly crossChecks: "the models Pollinations serves to an ANONYMOUS caller (tier: \"anonymous\") — refutes a claim that a model is keyless there; measured 2026-10-03: one of one, openai-fast (GPT-OSS 20B); GET text.pollinations.ai/{prompt} and POST /openai (OpenAI-compatible) both answered without a key";
+    readonly limit: "anonymous tier: one request every 15 seconds (\"One request every 15s\", APIDOCS.md); registered users get higher limits";
+    readonly licence: "MIT — \"You're free to use, modify, and share this API under the MIT License\" (APIDOCS.md); the legacy text API answers with a deprecation notice";
+    readonly reproducible: "live — the anonymous roster moves and a completion is nondeterministic; only its shape (model id, usage) may be checked";
+}, {
+    readonly key: "pollinations-image";
+    readonly url: "https://image.pollinations.ai/models";
+    readonly crossChecks: "the image models served keyless (measured 2026-10-03: [\"sana\"]); GET image.pollinations.ai/prompt/{text} answered image/jpeg without a key — refutes a claim that keyless image generation is gone";
+    readonly limit: "anonymous tier: one request every 15 seconds (\"One request every 15s\", APIDOCS.md)";
+    readonly licence: "MIT (APIDOCS.md)";
+    readonly reproducible: "live — the roster moves; an image is nondeterministic";
+}, {
+    readonly key: "ovh-ai-endpoints";
+    readonly url: "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models";
+    readonly crossChecks: "the models OVHcloud AI Endpoints serves anonymously, with per-model pricing fields — refutes a claim that a model is or is not keyless there; POST …/v1/chat/completions with gpt-oss-20b answered without a key (2026-10-03), EU-hosted";
+    readonly limit: "\"Anonymous: 2 requests per minute, per IP and per model\" (AI Endpoints — Getting started); with a key \"400 requests per minute, per PCI project and per model\"";
+    readonly licence: "OVHcloud Specific Conditions for Public Cloud Services v26.0, Appendix 10: the Models are Third-Party Products under their own conditions (endpoints.ai.cloud.ovh.net/licences); \"OVHcloud has no knowledge of Inputs and Outputs, and OVHcloud does not reuse them in any way\"; Outputs are \"for information purposes only\"";
+    readonly reproducible: "live — the roster moves; a completion is nondeterministic";
+}, {
+    readonly key: "kilo-gateway";
+    readonly url: "https://api.kilo.ai/api/gateway/models";
+    readonly crossChecks: "the Kilo Gateway model catalogue, free models carrying the \":free\" suffix — refutes a claim that a model is free/keyless there; POST …/gateway/chat/completions with kilo-auto/free answered without a key (2026-10-03, routed to a stealth model)";
+    readonly limit: "\"The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)\" (kilo.ai/docs/gateway/authentication)";
+    readonly licence: "free models only without a key; no data-logging or licence statement on the authentication page — not documented there";
+    readonly reproducible: "live — the free pool and its routing move; a completion is nondeterministic";
+}, {
+    readonly key: "llm7";
+    readonly url: "https://api.llm7.io/v1/models";
+    readonly crossChecks: "the LLM7 model list with a tier per model (measured 2026-10-03: 68 models, 7 turbo, 61 pro) — refutes a claim about which tier is reachable; POST …/v1/chat/completions with a turbo model (DeepSeek-V4-Flash-0731) answered without a key";
+    readonly limit: "not documented for anonymous calls — docs.llm7.io/limits lists only the free-token and Pro tiers, yet the keyless call answered (2026-10-03)";
+    readonly licence: "TERMS.md: no resale, proxying, pooling or white-labelling without written approval; \"You retain all rights to prompts and outputs you lawfully supply or receive\"; as-is, no uptime guarantee";
+    readonly reproducible: "live — tiers and models move; a completion is nondeterministic";
+}, {
+    readonly key: "mymemory";
+    readonly url: "https://api.mymemory.translated.net/get?q=hello&langpair=en|bg";
+    readonly crossChecks: "a translation with a match score from the MyMemory memory plus machine translation — refutes a claimed translation only on an exact memory hit (match 1); a machine translation is a claim; measured 2026-10-03: \"здрасти\", match 0.99";
+    readonly limit: "\"Free, anonymous usage is limited to 5000 chars/day\"; \"Provide a valid email (de parameter) … and enjoy 50000 chars/day\" (doc/usagelimits.php)";
+    readonly licence: "Terms: \"Automated and systematic API access by machines is permitted\" unless it crawls the archive or disrupts the service; no resale of the service; \"Translated is entitled full ownership on Public Data\"; no licence is stated for returned translations";
+    readonly reproducible: "versioned — a memory hit is stable; the machine translation behind it moves";
 }];
 /**
  * THE REGISTRY IS ONLY WORTH HAVING IF EVERY ROW CARRIES WHAT A CALLER NEEDS TO CALL IT SAFELY.
@@ -445,13 +487,32 @@ export declare const LIVE_CONNECTORS: readonly [{
  * be content-addressed, and would make this a measurement of the network rather than of the registry.
  * The live probe belongs in a gate that reports UNCHECKED when it is offline.
  */
+export declare const KEYLESS_AI_NOT_CALLED: readonly [{
+    readonly provider: "DuckDuckGo Duck.ai (duckduckgo.com/duckchat)";
+    readonly reason: "the status endpoint answers keyless, but the Duck.ai terms forbid \"automated querying and developing or offering AI services\" — not an API";
+}, {
+    readonly provider: "Hack Club AI (ai.hackclub.com)";
+    readonly reason: "needs a key (sk-hc-v1-…) and a Hack Club sign-in; the keyless POST answered 404";
+}, {
+    readonly provider: "Hugging Face Inference (api-inference / router.huggingface.co)";
+    readonly reason: "the router answers 401 without a token; the legacy api-inference host did not answer at all";
+}, {
+    readonly provider: "mlvoca.com";
+    readonly reason: "answered 502 on probe; its page says \"Commercial use of this api is not allowed\"";
+}, {
+    readonly provider: "Puter.js";
+    readonly reason: "a browser SDK on a \"User-Pays\" model — the end user carries a Puter account; no keyless server-side endpoint is documented";
+}, {
+    readonly provider: "OpenClaw AI (L402 gateway)";
+    readonly reason: "described as 50,000 sats/day per IP then Lightning pay-per-token; no base URL was published where it could be fetched — unrecorded until fetched";
+}];
 export declare function liveConnectorsRegistered(matrix?: MindMatrix): {
     computes: boolean;
-    connectors: 14;
+    connectors: 20;
     commerciallyRestricted: number;
     registry: {
-        key: "metar" | "open-meteo-archive" | "nist-codata" | "usgs-earthquake" | "jpl-horizons" | "crossref" | "oeis" | "odlyzko-zeros" | "lmfdb-ec" | "oeis-bfile" | "noaa-tides" | "bgs-geomag" | "opentargets" | "gnomad";
-        url: "https://aviationweather.gov/api/data/metar?ids=KJFK&format=json" | "https://archive-api.open-meteo.com/v1/archive" | "https://physics.nist.gov/cuu/Constants/Table/allascii.txt" | "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson" | "https://ssd.jpl.nasa.gov/api/horizons.api" | "https://api.crossref.org/works/" | "https://oeis.org/search?q=id:A000045&fmt=json" | "https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros1" | "https://www.lmfdb.org/api/ec_curvedata?_format=json&_fields=lmfdb_label,rank,analytic_rank&_limit=5" | "https://oeis.org/A001223/b001223.txt" | "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=ceccec&begin_date=20240101&end_date=20240101&datum=MLLW&station=8518750&time_zone=GMT&units=metric&interval=hilo&format=json" | "https://geomag.bgs.ac.uk/web_service/GMModels/igrf/13/" | "https://api.platform.opentargets.org/api/v4/graphql" | "https://gnomad.broadinstitute.org/api";
+        key: "metar" | "open-meteo-archive" | "nist-codata" | "usgs-earthquake" | "jpl-horizons" | "crossref" | "oeis" | "odlyzko-zeros" | "lmfdb-ec" | "oeis-bfile" | "noaa-tides" | "bgs-geomag" | "opentargets" | "gnomad" | "pollinations-text" | "pollinations-image" | "ovh-ai-endpoints" | "kilo-gateway" | "llm7" | "mymemory";
+        url: "https://aviationweather.gov/api/data/metar?ids=KJFK&format=json" | "https://archive-api.open-meteo.com/v1/archive" | "https://physics.nist.gov/cuu/Constants/Table/allascii.txt" | "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson" | "https://ssd.jpl.nasa.gov/api/horizons.api" | "https://api.crossref.org/works/" | "https://oeis.org/search?q=id:A000045&fmt=json" | "https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros1" | "https://www.lmfdb.org/api/ec_curvedata?_format=json&_fields=lmfdb_label,rank,analytic_rank&_limit=5" | "https://oeis.org/A001223/b001223.txt" | "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=ceccec&begin_date=20240101&end_date=20240101&datum=MLLW&station=8518750&time_zone=GMT&units=metric&interval=hilo&format=json" | "https://geomag.bgs.ac.uk/web_service/GMModels/igrf/13/" | "https://api.platform.opentargets.org/api/v4/graphql" | "https://gnomad.broadinstitute.org/api" | "https://text.pollinations.ai/models" | "https://image.pollinations.ai/models" | "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models" | "https://api.kilo.ai/api/gateway/models" | "https://api.llm7.io/v1/models" | "https://api.mymemory.translated.net/get?q=hello&langpair=en|bg";
         method: string;
         body: string;
     }[];

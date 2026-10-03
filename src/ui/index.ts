@@ -3153,7 +3153,7 @@ export const vitepress = {
       rollupOptions: {
         output: {
           manualChunks: {
-            quantum: ['./src/quantum/endowment/index.ts']
+            quantum: ['./src/quantum/heaven/mind/index.ts']
           }
         }
       }

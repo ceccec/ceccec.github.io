@@ -1606,7 +1606,7 @@ export declare function rosettaSecurityGapsWired(matrix?: MindMatrix, at?: numbe
         pathRay: number;
         wired: boolean;
     }[];
-    parallelBacklogLength: 0;
+    parallelBacklogLength: number;
     certified: false;
     qpuRequired: false;
     facets: ({

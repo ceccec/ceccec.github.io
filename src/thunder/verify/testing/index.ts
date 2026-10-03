@@ -1391,7 +1391,7 @@ export function generateDispatcher(table: ToolDispatch[]): ToolDispatcher {
 }
 
 // ---- double-torus combinatorics from the referrer side: who imports whom, and which pairs are held together ----
-export type ReferrerEdge = { readonly ref: string; readonly to: string; readonly names: readonly string[] }
+export type ReferrerEdge = { readonly ref: string; readonly to: string; readonly names: readonly string[]; readonly kind?: 'static' | 'lazy' }
 const pairKey = (a: string, b: string) => (a < b ? `${a} + ${b}` : `${b} + ${a}`)
 
 /** The referrer matrix and its superpositions, pure: edges in, laws out. A superposition is a pair of folds one
@@ -1431,12 +1431,21 @@ export function referrerSuperpositions(edges: readonly ReferrerEdge[], folds: re
   const topPair = [...pairs.entries()].sort((x, y) => y[1] - x[1])[0] ?? ['', 0]
   const ambiguous = [...nameSources.entries()].flatMap(([ref, m]) => [...m.entries()].filter(([, s]) => s.size > 1).map(([name, s]) => ({ ref, name, sources: [...s].sort() })))
   const unreferred = folds.filter((f) => referrersOf(f) === 0)
+  // GRAVITY: a fold exactly one src fold imports is that referrer's by gravity — one file where two stood. The digit folders
+  // are the kernel and never candidates; a fold held only by package.json or scripts/ is a door, not a satellite.
+  // A fold held only LAZILY — `await import()`, runThinMount, importQuantumBundle — is a door its referrer keeps out of its own
+  // bundle on purpose; gravity speaks only for a static import.
+  const isSrcFold = (ref: string) => folds.includes(ref)
+  const heldStatically = (f: string) => edges.some((e) => e.to === f && e.kind !== 'lazy')
+  const single = folds
+    .filter((f) => !/^\d(\/\d)?$/.test(f) && referrersOf(f) === 1 && isSrcFold([...referredBy.get(f)!.keys()][0]!) && heldStatically(f))
+    .map((f) => ({ fold: f, ref: [...referredBy.get(f)!.keys()][0]!, names: namesTakenFrom(f) }))
   const possible = (folds.length * (folds.length - 1)) / 2
   return {
     folds: folds.length, edges: edges.length, referrers: takes.size, referred: folds.length - unreferred.length,
     pairs: pairs.size, possible, density: possible === 0 ? 0 : pairs.size / possible,
     reflections, reflectionsHeld, mostReferred: ranked[0] ?? { fold: '', referrers: 0, names: 0 }, ranked,
-    topPair: { pair: topPair[0], referrers: topPair[1] }, ambiguous, unreferred, referrersOf,
+    topPair: { pair: topPair[0], referrers: topPair[1] }, ambiguous, unreferred, single, referrersOf,
   }
 }
 
@@ -1457,7 +1466,7 @@ export function doubleTorusReferrerDiscovery(edges: readonly ReferrerEdge[], fol
   return {
     computes: facets.every((f) => f.on),
     facets,
-    measurements: { ambiguous: s.ambiguous, unreferred: s.unreferred, ranked: s.ranked.slice(0, 8), topPair: s.topPair, density: s.density },
+    measurements: { ambiguous: s.ambiguous, unreferred: s.unreferred, single: s.single, ranked: s.ranked.slice(0, 8), topPair: s.topPair, density: s.density },
     statement: `Double-torus combinatorics from the referrer side: ${s.folds} folds, ${s.edges} import edges, ${s.pairs} superpositions (pairs one referrer holds together) of ${s.possible} possible. The reflection pairs of the pi-train are each held in superposition; the vault src/0 draws ${s.mostReferred.referrers} referrers. 4/6 measures superpositions as amplitudes (2ⁿ); this measures them as bonds in the import graph — two faces of one carrier.`,
   }
 }

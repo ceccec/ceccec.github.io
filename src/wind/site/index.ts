@@ -1434,10 +1434,10 @@ export function revolutChannel() {
 
 // Each Library statement → the decode fold that proves it (file-level; the fold name is searchable within).
 const CRAWLER_SOURCE: Record<string, string> = {
-  'Bulgarian history 681–present': 'src/quantum/earth/heritage/index.ts',
-  'Bulgarian ancient civilisations': 'src/quantum/earth/heritage/index.ts',
-  'Bulgarian ethnogenesis': 'src/quantum/earth/heritage/index.ts',
-  'Bulgarian genetics': 'src/quantum/earth/heritage/index.ts',
+  'Bulgarian history 681–present': 'src/quantum/icons/index.ts',
+  'Bulgarian ancient civilisations': 'src/quantum/icons/index.ts',
+  'Bulgarian ethnogenesis': 'src/quantum/icons/index.ts',
+  'Bulgarian genetics': 'src/quantum/icons/index.ts',
   Alphabets: 'src/quantum/heaven/mind/language.ts',
   Glagolitic: 'src/quantum/heaven/mind/language.ts',
   'Script, language and gene': 'src/quantum/heaven/mind/language.ts',
