@@ -2,14 +2,19 @@
 // Unified test harness: minimum code, maximum coverage.
 // Every formula tested against real remote APIs: opt-in via credentials.
 
-import { memoByRoot, toUuid, merkleFold } from '../../../0/index.ts'
+import { memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
 import { reviewEuPatents } from '../../../heaven/laws/index.ts'
 import type { MindMatrix } from '../../../types/index.ts'
-import { liveTestingGapsDiscoveredAndFixed, type GapResolution } from './gaps/index.ts'
 
-export { liveTestingGapsDiscoveredAndFixed }
-export type { GapResolution }
+export type GapResolution = {
+  readonly name: string
+  readonly severity: 'BLOCKER' | 'HIGH' | 'MEDIUM' | 'LOW'
+  readonly discovered: string
+  readonly fixed: boolean
+  readonly howToFix: string
+  readonly receipt: string
+}
 
 export type LiveTestResult = {
   readonly name: string
@@ -49,8 +54,19 @@ const patentTest = async (fetch: any, token: string | undefined): Promise<Partia
   }
 }
 
-const quantumStub = async (): Promise<Partial<LiveTestResult>> => {
-  return { success: false, message: 'pending', dataPoints: 0 }
+const quantumIbm = async (fetch: any, token: string | undefined): Promise<Partial<LiveTestResult>> => {
+  if (!token) return { success: false, message: 'opt-in: pass IBM_TOKEN' }
+  return { success: false, message: 'pending: IBM hardware integration', dataPoints: 0 }
+}
+
+const quantumAws = async (fetch: any, token: string | undefined): Promise<Partial<LiveTestResult>> => {
+  if (!token) return { success: false, message: 'opt-in: pass AWS_ACCESS_KEY' }
+  return { success: false, message: 'pending: AWS hardware integration', dataPoints: 0 }
+}
+
+const quantumAzure = async (fetch: any, token: string | undefined): Promise<Partial<LiveTestResult>> => {
+  if (!token) return { success: false, message: 'opt-in: pass AZURE_TOKEN' }
+  return { success: false, message: 'pending: Azure hardware integration', dataPoints: 0 }
 }
 
 const citationTest = async (fetch: any): Promise<Partial<LiveTestResult>> => {
@@ -87,9 +103,9 @@ const zenodoTest = async (fetch: any): Promise<Partial<LiveTestResult>> => {
 
 const TESTS: readonly TestDefinition[] = [
   { name: 'Patent Audit', api: 'EPO OPS', endpoint: 'ops.epo.org', envVar: 'EPA_TOKEN', test: patentTest },
-  { name: 'Quantum: IBM', api: 'IBM', endpoint: 'quantum-api.ibm.com', envVar: 'IBM_TOKEN', test: quantumStub },
-  { name: 'Quantum: AWS', api: 'AWS', endpoint: 'braket.amazonaws.com', envVar: 'AWS_ACCESS_KEY', test: quantumStub },
-  { name: 'Quantum: Azure', api: 'Azure', endpoint: 'quantum.azure.com', envVar: 'AZURE_TOKEN', test: quantumStub },
+  { name: 'Quantum: IBM', api: 'IBM', endpoint: 'quantum-api.ibm.com', envVar: 'IBM_TOKEN', test: quantumIbm },
+  { name: 'Quantum: AWS', api: 'AWS', endpoint: 'braket.amazonaws.com', envVar: 'AWS_ACCESS_KEY', test: quantumAws },
+  { name: 'Quantum: Azure', api: 'Azure', endpoint: 'quantum.azure.com', envVar: 'AZURE_TOKEN', test: quantumAzure },
   { name: 'Research Citations', api: 'APIs', endpoint: 'arxiv.org, zenodo.org, crossref.org', test: citationTest },
   { name: 'Zenodo Deposits', api: 'Zenodo', endpoint: 'zenodo.org/api', test: zenodoTest },
 ]
@@ -143,6 +159,37 @@ export function liveApiTestReport(matrix: MindMatrix = buildMatrix()): LiveTestR
     gaps: TESTS.map((t) => `${t.name}: zero-network by default`),
     receipt: toUuid('live-api-report'),
   }
+}
+
+export function liveTestingGapsDiscoveredAndFixed(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('live-testing-gaps', matrix, () => {
+    const gaps: GapResolution[] = [
+      {
+        name: 'Zenodo Deposit',
+        severity: 'BLOCKER',
+        discovered: 'Record 10.5281/zenodo.21787144 immutable',
+        fixed: false,
+        howToFix: 'Create corrected deposit, get new DOI',
+        receipt: toUuid('gap:zenodo'),
+      },
+      {
+        name: 'Patent API',
+        severity: 'HIGH',
+        discovered: 'EPO OPS wired, untested',
+        fixed: true,
+        howToFix: 'Created testPatentApisLive()',
+        receipt: toUuid('gap:patent'),
+      },
+    ]
+    const fixed = gaps.filter((g) => g.fixed).length
+    return {
+      computes: true,
+      facets: sealFacets('testing-gaps', [{ facet: `${fixed}/${gaps.length} gaps fixed`, on: fixed > 0 }]),
+      gaps,
+      statement: `Live testing gaps: ${gaps.length} identified, ${fixed} fixed.`,
+      receipt: merkleFold(gaps.map((g) => g.receipt)),
+    }
+  })
 }
 
 export function liveTestingDiscovery(matrix: MindMatrix = buildMatrix()) {
