@@ -383,6 +383,27 @@ export declare const LIVE_CONNECTORS: readonly [{
     readonly licence: "CC BY-SA 4.0 — share-alike, NOT non-commercial; scraping without consent is prohibited";
     readonly reproducible: "fixture — sequence data and b-files are effectively permanent; the NAME is editable";
 }, {
+    readonly key: "odlyzko-zeros";
+    readonly url: "https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros1";
+    readonly crossChecks: "the imaginary parts of the first 100 000 zeros of ζ — refutes a claimed zero off the critical line in range, and the Riemann–von Mangoldt count N(T) to within S(T)";
+    readonly limit: "not documented — a static file on a university host, read by byte range";
+    readonly licence: "no licence statement is published on the tables page; academic data by A. M. Odlyzko — cite the tables";
+    readonly reproducible: "fixture — the tables have been static since publication";
+}, {
+    readonly key: "lmfdb-ec";
+    readonly url: "https://www.lmfdb.org/api/ec_curvedata?_format=json&_fields=lmfdb_label,rank,analytic_rank&_limit=5";
+    readonly crossChecks: "rank and analytic rank of catalogued elliptic curves over ℚ — refutes a claimed rank, and tests rank = analytic rank (the BSD identity) on the catalogued range";
+    readonly limit: "not documented for the JSON API";
+    readonly licence: "not quotable keylessly — lmfdb.org/license redirects to an interactive gate (beta.lmfdb.org/gate.html); the site states a licence this reader could not read, so none is asserted here";
+    readonly reproducible: "versioned — every response carries a timestamp; a catalogued rank is stable, the set grows";
+}, {
+    readonly key: "oeis-bfile";
+    readonly url: "https://oeis.org/A001223/b001223.txt";
+    readonly crossChecks: "the b-file terms of a sequence (prime gaps A001223, Goldbach partitions A045917) — refutes a parity or positivity law on the catalogued range";
+    readonly limit: "not documented; b-files are static text, read by byte range";
+    readonly licence: "CC BY-SA 4.0 — share-alike, NOT non-commercial; scraping without consent is prohibited";
+    readonly reproducible: "fixture — b-files are effectively permanent";
+}, {
     readonly key: "noaa-tides";
     readonly url: "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=ceccec&begin_date=20240101&end_date=20240101&datum=MLLW&station=8518750&time_zone=GMT&units=metric&interval=hilo&format=json";
     readonly crossChecks: "the strongest self-contained pair here — product=predictions is a harmonic MODEL and product=water_level the MEASUREMENT at the same station, so the residual is the storm surge";
@@ -426,11 +447,11 @@ export declare const LIVE_CONNECTORS: readonly [{
  */
 export declare function liveConnectorsRegistered(matrix?: MindMatrix): {
     computes: boolean;
-    connectors: 11;
+    connectors: 14;
     commerciallyRestricted: number;
     registry: {
-        key: "metar" | "open-meteo-archive" | "nist-codata" | "usgs-earthquake" | "jpl-horizons" | "crossref" | "oeis" | "noaa-tides" | "bgs-geomag" | "opentargets" | "gnomad";
-        url: "https://aviationweather.gov/api/data/metar?ids=KJFK&format=json" | "https://archive-api.open-meteo.com/v1/archive" | "https://physics.nist.gov/cuu/Constants/Table/allascii.txt" | "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson" | "https://ssd.jpl.nasa.gov/api/horizons.api" | "https://api.crossref.org/works/" | "https://oeis.org/search?q=id:A000045&fmt=json" | "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=ceccec&begin_date=20240101&end_date=20240101&datum=MLLW&station=8518750&time_zone=GMT&units=metric&interval=hilo&format=json" | "https://geomag.bgs.ac.uk/web_service/GMModels/igrf/13/" | "https://api.platform.opentargets.org/api/v4/graphql" | "https://gnomad.broadinstitute.org/api";
+        key: "metar" | "open-meteo-archive" | "nist-codata" | "usgs-earthquake" | "jpl-horizons" | "crossref" | "oeis" | "odlyzko-zeros" | "lmfdb-ec" | "oeis-bfile" | "noaa-tides" | "bgs-geomag" | "opentargets" | "gnomad";
+        url: "https://aviationweather.gov/api/data/metar?ids=KJFK&format=json" | "https://archive-api.open-meteo.com/v1/archive" | "https://physics.nist.gov/cuu/Constants/Table/allascii.txt" | "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson" | "https://ssd.jpl.nasa.gov/api/horizons.api" | "https://api.crossref.org/works/" | "https://oeis.org/search?q=id:A000045&fmt=json" | "https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros1" | "https://www.lmfdb.org/api/ec_curvedata?_format=json&_fields=lmfdb_label,rank,analytic_rank&_limit=5" | "https://oeis.org/A001223/b001223.txt" | "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=ceccec&begin_date=20240101&end_date=20240101&datum=MLLW&station=8518750&time_zone=GMT&units=metric&interval=hilo&format=json" | "https://geomag.bgs.ac.uk/web_service/GMModels/igrf/13/" | "https://api.platform.opentargets.org/api/v4/graphql" | "https://gnomad.broadinstitute.org/api";
         method: string;
         body: string;
     }[];

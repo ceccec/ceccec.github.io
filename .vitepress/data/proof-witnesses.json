@@ -2207,7 +2207,7 @@
    90,
    90,
    87,
-   85,
+   86,
    84,
    81,
    79,
@@ -2234,7 +2234,7 @@
    48,
    47,
    47,
-   46,
+   47,
    46,
    45,
    44,
@@ -2255,7 +2255,7 @@
    39
   ],
   "holds": true,
-  "caption": "the first 64 of 1141 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1142 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
  },
  "science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum": {
   "form": "bars",

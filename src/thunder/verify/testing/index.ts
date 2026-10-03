@@ -2,10 +2,12 @@
 // Unified test harness: minimum code, maximum coverage.
 // Every formula tested against real remote APIs: opt-in via credentials.
 
-import { ICHING_NUMBERS, isUuid, log, memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
+import { ICHING_NUMBERS, abs, exp, isUuid, log, max, memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
 import { reviewEuPatents } from '../../../heaven/laws/index.ts'
 import { DOUBLE_TORUS_PERSPECTIVES } from '../../../water/double/index.ts'
+import { CLAY_ORDER, CLAY_PROBLEMS } from '../../../research/index.ts'
+import { TAU } from '../../../3/7/index.ts'
 import type { MindMatrix } from '../../../types/index.ts'
 
 // A default is a ledgered axiom, never a bare literal: the type refuses any non-sealed number.
@@ -852,6 +854,10 @@ export const INVOLUTION_PATTERNS: readonly Involution[] = [
   { id: 'homological-mirror-symmetry', domain: 'topological', pattern: 'σ: H^{p,q} ↔ H^{q,p}', fixedPoint: 'Hodge diamond symmetry', verificationMethod: 'lean-proof', status: 'open', statement: 'σ reflects the Hodge diamond between mirror pairs; homological mirror symmetry in general — OPEN (proved for specific families)', sigma: reflect(PAIR.length), samples: PAIR, model: 'p ↔ q in H^{p,q}' },
   { id: 'p-vs-np', domain: 'computational', pattern: 'σ: find ↔ verify', fixedPoint: 'P = NP would be the fixed point', verificationMethod: 'hardness-solver', status: 'open', statement: 'σ pairs finding a certificate with verifying it; whether σ has a fixed point is P vs NP — OPEN; this row records the involution, not a resolution', sigma: reflect(PAIR.length), samples: PAIR, model: 'find ↔ verify' },
   { id: 'graph-isomorphism-quasi-poly', domain: 'computational', pattern: 'σ: T(n) ↔ 2^{poly(log n)}', fixedPoint: 'quasi-polynomial time', verificationMethod: 'computation', status: 'proved', statement: 'T ↦ 2^T is a scale map, not an involution; graph isomorphism in quasi-polynomial time is PROVED (Babai 2015/2017); membership in P — OPEN', sigma: (t) => 2 ** t, samples: [1, 2, 3], model: 't ↦ 2^t on small t' },
+  { id: 'hodge', domain: 'topological', pattern: 'σ: H^{k,k} ↔ algebraic cycles (Poincaré duality)', fixedPoint: 'a class that is its own dual', verificationMethod: 'lean-proof', status: 'open', statement: 'σ pairs a Hodge class with the cycle class Poincaré duality assigns it, σ² = id; that every rational (k,k)-class is algebraic is the Hodge conjecture — OPEN (the corpus seals the involution, not the conjecture)', sigma: reflect(PAIR.length), samples: PAIR, model: 'class ↔ cycle' },
+  { id: 'navier-stokes', domain: 'functional', pattern: 'σ: ω₊ ↔ −ω₋ (the seam involution on the genus-2 carrier)', fixedPoint: 'ω = 0, the irrotational flow', verificationMethod: 'computation', status: 'open', statement: 'σ reflects vorticity across the two seams, σ² = id, fixed point the irrotational flow; that smooth 3D solutions exist for all time is Navier–Stokes — OPEN (the corpus seals a seam model, not regularity)', sigma: (w) => -w, samples: [-2, -1, 0, 1, 2], model: 'ω across the seams' },
+  { id: 'yang-mills', domain: 'algebraic', pattern: 'σ† = σ on su(2) ⊕ M₂(ℂ)', fixedPoint: 'the real spectrum {0} ∪ [Δ, ∞)', verificationMethod: 'computation', status: 'open', statement: 'σ is self-adjoint, so its spectrum is real and σ² = I splits it into {0} ∪ [Δ, ∞); that a 4D Yang–Mills theory exists with a mass gap Δ > 0 is OPEN (the corpus seals the su(2) involution, not the quantum field theory)', sigma: (x) => -x, samples: [-1, 1], model: 'σ_z on its eigenvalues ±1' },
+  { id: 'poincare', domain: 'topological', pattern: 'σ: M³ ↔ S³ (simply connected ↔ the sphere)', fixedPoint: 'S³ itself', verificationMethod: 'lean-proof', status: 'proved', statement: 'every simply connected closed 3-manifold is S³ — PROVED (Perelman 2002–03, Ricci flow); the corpus imports the tool, it does not re-prove it', sigma: reflect(PAIR.length), samples: PAIR, model: 'M ↔ S³' },
 ]
 
 type InvolutionKind = 'involution' | 'scale-map'
@@ -1409,5 +1415,104 @@ export function doubleTorusReferrerDiscovery(edges: readonly ReferrerEdge[], fol
     facets,
     measurements: { ambiguous: s.ambiguous, unreferred: s.unreferred, ranked: s.ranked.slice(0, 8), topPair: s.topPair, density: s.density },
     statement: `Double-torus combinatorics from the referrer side: ${s.folds} folds, ${s.edges} import edges, ${s.pairs} superpositions (pairs one referrer holds together) of ${s.possible} possible. The reflection pairs of the pi-train are each held in superposition; the vault src/0 draws ${s.mostReferred.referrers} referrers. 4/6 measures superpositions as amplitudes (2ⁿ); this measures them as bonds in the import graph — two faces of one carrier.`,
+  }
+}
+
+// ---- the Clay cross: every formula from the Clay solutions, crossed with every perspective, tested on the public dataset that can refute it ----
+export type DatasetState = 'held' | 'refuted' | 'unchecked'
+export type DatasetVerdict = { readonly state: DatasetState; readonly detail: string }
+const MIN_SAMPLE: number = 64 satisfies (typeof ICHING_NUMBERS)[number] // fewer rows than a bāguà squared is a glimpse, not a sample
+const linesOf = (text: string) => text.split('\n').map((l) => l.trim()).filter(Boolean)
+
+/** Odlyzko's zeros1: one imaginary part per line, increasing. N(T) = (T/τ)·log(T/τe) + 7/8 + S(T) with S(T) = O(log T) — range-checked. */
+export function checkRiemannZeros(text: string): DatasetVerdict {
+  const g = linesOf(text).map(Number).filter((x) => Number.isFinite(x) && x > 0)
+  if (g.length < MIN_SAMPLE) return { state: 'unchecked', detail: `${g.length} zeros in the sample — too few to count` }
+  if (!g.every((x, i) => i === 0 || x > g[i - 1]!)) return { state: 'refuted', detail: 'the listed zeros are not increasing' }
+  const T = g[g.length - 1]!
+  const predicted = (T / TAU) * log(T / (TAU * exp(1))) + 7 / 8
+  const tolerance = log(T) + 1
+  const off = abs(g.length - predicted)
+  if (off > tolerance) return { state: 'refuted', detail: `N(T) = ${g.length} at T = ${T.toFixed(3)} is ${off.toFixed(2)} from Riemann–von Mangoldt ${predicted.toFixed(2)}, beyond log T + 1 = ${tolerance.toFixed(2)}` }
+  return { state: 'held', detail: `${g.length} zeros to T = ${T.toFixed(3)}, increasing; N(T) within ${off.toFixed(2)} of Riemann–von Mangoldt (tolerance log T + 1 = ${tolerance.toFixed(2)})` }
+}
+/** LMFDB ec_curvedata: rank = analytic rank on every catalogued curve returned — the BSD identity on the catalogued range. */
+export function checkBsdRanks(json: string): DatasetVerdict {
+  let rows: { lmfdb_label?: string; rank?: number; analytic_rank?: number }[] = []
+  try { rows = (JSON.parse(json) as { data?: typeof rows }).data ?? [] } catch { return { state: 'unchecked', detail: 'the response is not the LMFDB JSON form' } }
+  const both = rows.filter((r) => typeof r.rank === 'number' && typeof r.analytic_rank === 'number')
+  if (both.length === 0) return { state: 'unchecked', detail: 'no curve in the sample carries both ranks' }
+  const off = both.filter((r) => r.rank !== r.analytic_rank)
+  return off.length ? { state: 'refuted', detail: `rank ≠ analytic rank on ${off.map((r) => r.lmfdb_label).join(', ')}` } : { state: 'held', detail: `rank = analytic rank on all ${both.length} catalogued curves in the sample` }
+}
+/** OEIS A001223 b-file "n gap": every gap after 2→3 is even (σ: parity) and no gap below the last prime exceeds (log p)² — Cramér, range-checked. */
+export function checkPrimeGaps(text: string): DatasetVerdict {
+  const gaps = linesOf(text).map((l) => Number(l.split(/\s+/)[1])).filter((x) => Number.isFinite(x))
+  if (gaps.length < MIN_SAMPLE) return { state: 'unchecked', detail: `${gaps.length} gaps in the sample — too few` }
+  const odd = gaps.slice(1).filter((d) => d % 2 !== 0)
+  let p = 2, maxGap = 0
+  for (const d of gaps) { maxGap = max(maxGap, d); p += d }
+  const bound = log(p) ** 2
+  if (odd.length) return { state: 'refuted', detail: `${odd.length} odd gap(s) after the first` }
+  if (maxGap > bound) return { state: 'refuted', detail: `max gap ${maxGap} exceeds (log p)² = ${bound.toFixed(1)} below p = ${p}` }
+  return { state: 'held', detail: `${gaps.length} gaps: all even after 2→3; max gap ${maxGap} ≤ (log ${p})² = ${bound.toFixed(1)}` }
+}
+/** OEIS A045917 b-file "n r": r(2n) ≥ 1 for every n ≥ 2 — Goldbach on the catalogued range. */
+export function checkGoldbach(text: string): DatasetVerdict {
+  const rows = linesOf(text).map((l) => l.split(/\s+/).map(Number)).filter(([n, r]) => Number.isFinite(n) && Number.isFinite(r))
+  if (rows.length < MIN_SAMPLE) return { state: 'unchecked', detail: `${rows.length} rows in the sample — too few` }
+  const zero = rows.filter(([n, r]) => n! >= 2 && r === 0)
+  return zero.length ? { state: 'refuted', detail: `no prime pair for 2n = ${zero.map(([n]) => 2 * n!).join(', ')}` } : { state: 'held', detail: `every even number from 4 to ${2 * rows[rows.length - 1]![0]!} has a prime pair (${rows.length} rows)` }
+}
+export const CLAY_DATASETS = [
+  { involution: 'riemann-s-involution', dataset: 'odlyzko-zeros', url: 'https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros1', exactness: 'range-checked — N(T) against Riemann–von Mangoldt within log T + 1', check: checkRiemannZeros },
+  { involution: 'birch-swinnerton-dyer', dataset: 'lmfdb-ec', url: 'https://www.lmfdb.org/api/ec_curvedata?_format=json&_fields=lmfdb_label,rank,analytic_rank&_limit=100', exactness: 'exact on the catalogued range — rank = analytic rank', check: checkBsdRanks },
+  { involution: 'twin-prime-gap', dataset: 'oeis-bfile', url: 'https://oeis.org/A001223/b001223.txt', exactness: 'exact parity; Cramér bound range-checked', check: checkPrimeGaps },
+  { involution: 'goldbach-parity', dataset: 'oeis-bfile', url: 'https://oeis.org/A045917/b045917.txt', exactness: 'exact on the catalogued range — r(2n) ≥ 1', check: checkGoldbach },
+] as const
+const CLAY_OF: Readonly<Partial<Record<string, keyof typeof CLAY_PROBLEMS>>> = { 'riemann-s-involution': 'riemann', 'p-vs-np': 'pvnp', 'birch-swinnerton-dyer': 'bsd', hodge: 'hodge', 'navier-stokes': 'navierStokes', 'yang-mills': 'yangMills', poincare: 'poincare' }
+const NO_DATASET: Readonly<Record<string, string>> = {
+  'p-vs-np': 'SAT benchmarks need a solver run — hardness-solver, opt-in, not a keyless read',
+  'yang-mills': 'lattice glueball masses live in papers, not a keyless API',
+  'navier-stokes': 'no dataset refutes a regularity statement',
+  hodge: 'no public table pairs Hodge classes with algebraic cycles',
+  poincare: 'proved — a theorem needs no dataset',
+}
+const MIN_WORD: number = 4 satisfies (typeof ICHING_NUMBERS)[number] // a word shorter than the four-fold is a particle, not a perspective
+const wordsOf = (s: string) => new Set(s.toLowerCase().split(/[^a-zà-ÿ0-9]+/).filter((w) => w.length >= MIN_WORD))
+
+/** The cross, measured: rows = every formula (the Clay seven and the direct extensions); columns = the perspectives a row's own
+ *  words reach (common carrier words — the ones most perspectives share — are dropped, so a reach is specific), and the dataset
+ *  verdict. The facets state what data or the single rigor map can refute; coverage is RATCHETED by verify:clay-datasets. */
+export function clayCrossDiscovery(fetched: Readonly<Record<string, string | null>>, matrix: MindMatrix = buildMatrix()) {
+  const all = allInvolutions(matrix)
+  const bag = DOUBLE_TORUS_PERSPECTIVES.map((p) => ({ id: p.id, words: wordsOf(`${p.id} ${p.query}`) }))
+  const frequency = new Map<string, number>()
+  for (const p of bag) for (const w of p.words) frequency.set(w, (frequency.get(w) ?? 0) + 1)
+  const specific = (w: string) => (frequency.get(w) ?? 0) * 2 <= bag.length
+  const perspectives = bag.map((p) => ({ id: p.id, words: new Set([...p.words].filter(specific)) }))
+  const rows = all.involutions.map((r) => {
+    const own = wordsOf(`${r.id} ${r.pattern} ${r.statement} ${r.domain} ${r.model}`)
+    const reached = perspectives.filter((p) => [...p.words].some((w) => own.has(w))).map((p) => p.id)
+    const clay = CLAY_OF[r.id]
+    const ds = CLAY_DATASETS.find((d) => d.involution === r.id)
+    const text = ds ? fetched[ds.url] : null
+    const verdict: DatasetVerdict = ds
+      ? (text ? ds.check(text) : { state: 'unchecked', detail: `${ds.dataset} not fetched — zero-network by default` })
+      : { state: 'unchecked', detail: NO_DATASET[r.id] ?? 'no keyless public dataset can refute this formula' }
+    return { id: r.id, clay: clay ?? null, rigor: clay ? CLAY_PROBLEMS[clay].rigor : null, status: r.status, kind: r.kind, perspectives: reached, dataset: ds?.dataset ?? null, verdict }
+  })
+  const clayRows = rows.filter((r) => r.clay)
+  const facets = [
+    { facet: `every Clay problem has a catalogue row: ${clayRows.length} of ${CLAY_ORDER.length}`, on: CLAY_ORDER.every((k) => clayRows.some((r) => r.clay === k)) },
+    { facet: `no public dataset refutes a formula: ${rows.filter((r) => r.verdict.state === 'held').length} held, ${rows.filter((r) => r.verdict.state === 'unchecked').length} unchecked (each with its reason), ${rows.filter((r) => r.verdict.state === 'refuted').length} refuted`, on: rows.filter((r) => r.verdict.state === 'refuted').length === 0 },
+    { facet: 'the rows the catalogue calls proved are exactly the ones the rigor map calls proven-and-used — one map, two readers', on: clayRows.every((r) => (r.status === 'proved') === (r.rigor === 'proven-and-used')) },
+  ]
+  return {
+    computes: facets.every((f) => f.on),
+    facets,
+    rows,
+    perspectives: perspectives.map((p) => p.id),
+    statement: `Every formula from the Clay solutions (${clayRows.length} Clay rows, ${rows.length - clayRows.length} direct extensions) crossed with the ${perspectives.length} double-torus perspectives and with the public dataset that can refute it — ${CLAY_DATASETS.length} datasets (Odlyzko zeros, LMFDB curves, OEIS b-files), each a three-state verdict: held, refuted, or unchecked with its reason. Zero-network by default; the gate fetches by byte range and ratchets the two coverages that only fall.`,
   }
 }
