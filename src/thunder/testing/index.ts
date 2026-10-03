@@ -6,7 +6,7 @@ import { memoByRoot, toUuid, merkleFold } from '../../0/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
 import { reviewEuPatents } from '../../heaven/laws/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
-import { liveTestingGapsDiscoveredAndFixed, type GapResolution } from './gaps.ts'
+import { liveTestingGapsDiscoveredAndFixed, type GapResolution } from './gaps/index.ts'
 
 export { liveTestingGapsDiscoveredAndFixed }
 export type { GapResolution }
