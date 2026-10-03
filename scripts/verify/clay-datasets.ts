@@ -7,7 +7,7 @@
  * blocked by a registry. Two coverages only fall: formulas without a refuting dataset, perspectives no formula reaches.
  */
 import { ratchet, everyRatchet } from './status.ts'
-import { CLAY_DATASETS, clayCrossDiscovery, datasetUrl } from '../../src/thunder/verify/testing/index.ts'
+import { CLAY_DATASETS, clayCrossDiscovery, datasetUrl, rosettaRotation } from '../../src/thunder/verify/testing/index.ts'
 import { DOUBLE_TORUS_PERSPECTIVES } from '../../src/water/double/index.ts'
 
 const UA = 'ceccec-double-torus verify (keyless, read-only)'
@@ -24,6 +24,8 @@ export async function assertClayDatasets(): Promise<void> {
   for (const d of CLAY_DATASETS) { const url = datasetUrl(d); fetched[url] = url ? await sample(url) : null }
   everyRatchet(() => {
     const d = clayCrossDiscovery(fetched)
+    const rot = rosettaRotation()
+    console.log(`  ${rot.computes ? '✓' : '✗'} ${rot.statement}`)
     for (const r of d.rows) console.log(`  ${r.verdict.state === 'held' ? '✓' : r.verdict.state === 'refuted' ? '✗' : '·'} ${r.id}${r.clay ? ` [Clay ${r.clay} · ${r.rigor}]` : ''} · ${r.perspectives.length} perspective(s)${r.dataset ? ` · ${r.dataset}` : ''} — ${r.verdict.detail.slice(0, 120)}`)
     for (const f of d.facets) console.log(`  ${f.on ? '✓' : '✗'} ${f.facet}`)
     const noDataset = d.rows.filter((r) => r.verdict.state === 'unchecked' && !r.dataset)

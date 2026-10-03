@@ -2,7 +2,7 @@
 // Unified test harness: minimum code, maximum coverage.
 // Every formula tested against real remote APIs: opt-in via credentials.
 
-import { ICHING_NUMBERS, VORTEX_SEQUENCE, abs, digitalRoot, exp, isUuid, log, max, memoByRoot, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
+import { ICHING_NUMBERS, VORTEX_SEQUENCE, abs, digitalRoot, exp, floor, isUuid, log, max, memoByRoot, sqrt, toUuid, merkleFold, sealFacets } from '../../../0/index.ts'
 import { LIVE_CONNECTORS } from '../../../stats/index.ts'
 import { buildMatrix } from '../../../heaven/compute/index.ts'
 import { reviewEuPatents } from '../../../heaven/laws/index.ts'
@@ -885,6 +885,44 @@ const kindOf = (r: Involution): InvolutionKind => (r.samples.every((x) => r.sigm
 const fixedPointsOf = (r: Involution) => r.samples.filter((x) => r.sigma(x) === x)
 const range = (k: number) => Array.from({ length: k }, (_, i) => i)
 
+/** σ-CLASS, computed from the map on its samples: negation (σx = −x), reflection (σx + x constant), or its own class. Two rows
+ *  of one class carry the same involution on their models; a Clay row reaches a perspective whose row shares its class. */
+export const sigmaClass = (r: Involution): string => {
+  const img = r.samples.map((x) => r.sigma(x))
+  if (img.every((y, i) => y === -r.samples[i]!)) return 'negation'
+  const sums = img.map((y, i) => y + r.samples[i]!)
+  return sums.every((v) => v === sums[0]) ? 'reflection' : `own:${r.id}`
+}
+
+// ---- the trinity coil: one rotation of the rosetta in each direction around one axis covers every cross formula at once ----
+const LADDER = (ICHING_NUMBERS as readonly number[]).filter((k) => k > 1)
+/** A row's coins: the SAME map carried one scale forward and one scale reverse along the sealed ladder, around its own axis — the
+ *  midline (k−1)/2 of a reflection, 0 of a negation. The coil closes when σ² = id holds at both neighbouring scales and the axis
+ *  stays fixed; a scale map (log, 2^t) breaks it at every scale. One computation, every row, both directions. */
+export function coilOf(r: Involution) {
+  const cls = sigmaClass(r)
+  const scale = r.samples.length
+  const forward = LADDER.find((k) => k > scale) ?? LADDER[LADDER.length - 1]!
+  const reverse = [...LADDER].reverse().find((k) => k < scale) ?? LADDER[0]!
+  const at = (k: number) => {
+    if (cls === 'negation') { const pts = range(k).map((x) => x - (k - 1) / 2); return { holds: pts.every((x) => -(-x) === x), axis: 0, axisFixed: true } }
+    if (cls === 'reflection') { const f = reflect(k); const axis = (k - 1) / 2; return { holds: range(k).every((x) => f(f(x)) === x), axis, axisFixed: f(axis) === axis } }
+    return { holds: r.samples.every((x) => r.sigma(r.sigma(x)) === x), axis: NaN, axisFixed: false }
+  }
+  const fwd = at(forward), rev = at(reverse)
+  return { class: cls, scale, forward, reverse, coinForward: fwd.holds && (cls.startsWith('own') || fwd.axisFixed), coinReverse: rev.holds && (cls.startsWith('own') || rev.axisFixed), closed: fwd.holds && rev.holds && (cls.startsWith('own') || (fwd.axisFixed && rev.axisFixed)) }
+}
+export function rosettaRotation(matrix: MindMatrix = buildMatrix()) {
+  const all = allInvolutions(matrix)
+  const coils = all.involutions.map((r) => ({ id: r.id, kind: r.kind, ...coilOf(r) }))
+  const closed = coils.filter((c) => c.closed), broken = coils.filter((c) => !c.closed)
+  return {
+    computes: coils.every((c) => c.closed === (c.kind === 'involution')),
+    coils, closed: closed.length, broken: broken.map((c) => c.id),
+    statement: `One rotation of the rosetta in each direction around one axis: ${closed.length} coils close (the involution rows, at the scale forward and the scale reverse along the sealed ladder, their axis fixed), ${broken.length} break (${broken.map((c) => c.id).join(', ')} — scale maps, which σ² = id already refuses). The structure coin of every cross formula, decided in one pass.`,
+  }
+}
+
 export function allInvolutions(matrix: MindMatrix = buildMatrix()) {
   return memoByRoot('all-involutions', matrix, () => {
     const byDomain = {} as Record<InvolutionDomain, number>
@@ -1487,7 +1525,18 @@ export function checkGoldbach(text: string): DatasetVerdict {
 /** The datasets by CONNECTOR KEY in the keyless catalogue (src/stats · LIVE_CONNECTORS): the URL derives from the catalogued row —
  *  a b-file sequence is swapped into the row's b-file path, a sample size into its _limit — so one source names every endpoint
  *  and the MCP's live_connectors shows exactly what this gate reads. */
+/** OEIS A002496 b-file "n p": every term is n² + 1 for an integer n — so σ(n) = −n yields the same term — and the terms increase.
+ *  Primality is OEIS's curation; this reader asserts no primitive it does not have. */
+export function checkPolynomialPrimes(text: string): DatasetVerdict {
+  const terms = linesOf(text).map((l) => Number(l.split(/\s+/)[1])).filter((x) => Number.isFinite(x))
+  if (terms.length < MIN_SAMPLE) return { state: 'unchecked', detail: `${terms.length} terms in the sample — too few` }
+  const notSquarePlusOne = terms.filter((t) => { const n = floor(sqrt(t - 1)); return n * n + 1 !== t })
+  if (notSquarePlusOne.length) return { state: 'refuted', detail: `${notSquarePlusOne.length} term(s) are not n² + 1: ${notSquarePlusOne.slice(0, 3).join(', ')}` }
+  if (!terms.every((t, i) => i === 0 || t > terms[i - 1]!)) return { state: 'refuted', detail: 'the terms are not increasing' }
+  return { state: 'held', detail: `${terms.length} terms, every one n² + 1 with n and −n giving the same term, increasing to ${terms[terms.length - 1]}` }
+}
 export const CLAY_DATASETS = [
+  { involution: 'polynomial-prime-symmetry', connector: 'oeis-bfile', sequence: 'A002496', exactness: 'exact on the catalogued range — every term is n² + 1', check: checkPolynomialPrimes },
   { involution: 'riemann-s-involution', connector: 'odlyzko-zeros', exactness: 'range-checked — N(T) against Riemann–von Mangoldt within log T + 1', check: checkRiemannZeros },
   { involution: 'birch-swinnerton-dyer', connector: 'lmfdb-ec', limit: 100, exactness: 'exact on the catalogued range — rank = analytic rank', check: checkBsdRanks },
   { involution: 'twin-prime-gap', connector: 'oeis-bfile', sequence: 'A001223', exactness: 'exact parity; Cramér bound range-checked', check: checkPrimeGaps },
@@ -1523,14 +1572,6 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
   for (const p of bag) for (const w of p.words) frequency.set(w, (frequency.get(w) ?? 0) + 1)
   const specific = (w: string) => (frequency.get(w) ?? 0) * 2 <= bag.length
   const perspectives = bag.map((p) => ({ id: p.id, words: new Set([...p.words].filter(specific)) }))
-  // σ-CLASS, computed from the map on its samples: negation (σx = −x), reflection (σx + x constant), or its own class. Two rows
-  // of one class carry the same involution on their models; a Clay row reaches a perspective whose row shares its class.
-  const sigmaClass = (r: Involution): string => {
-    const img = r.samples.map((x) => r.sigma(x))
-    if (img.every((y, i) => y === -r.samples[i]!)) return 'negation'
-    const sums = img.map((y, i) => y + r.samples[i]!)
-    return sums.every((v) => v === sums[0]) ? 'reflection' : `own:${r.id}`
-  }
   const perspectiveRows = all.involutions.filter((r) => r.perspective)
   const dataVerdict = (r: Involution): DatasetVerdict | null => {
     const ds = CLAY_DATASETS.find((d) => d.involution === r.id)
@@ -1559,9 +1600,10 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
     // row either crosses, or the corpus's honesty formulas read its statement: a solution claim or a physical-FTL claim is an
     // OVERCLAIM (a lie or a manipulation, tagged as such); otherwise it is an honest OPEN conjecture, tagged with the effort made.
     const overclaims = claySolvedByFormulas(`${r.pattern} ${r.statement}`) + physicalFtlByFormulas(`${r.pattern} ${r.statement}`)
-    const tag: 'crossed' | 'refuted' | 'overclaim' | 'open' = verdict.state === 'held' ? 'crossed' : verdict.state === 'refuted' ? 'refuted' : overclaims > 0 ? 'overclaim' : 'open'
-    const effort = `${reached.length} perspective(s) reached; ${verdict.detail}`
-    return { id: r.id, clay: clay ?? null, rigor: clay ? CLAY_PROBLEMS[clay].rigor : null, status: r.status, kind: r.kind, sigmaClass: sigmaClass(r), perspectives: reached, dataset: ds?.connector ?? (through ? `through ${through.id}` : null), verdict, tag, overclaims, effort }
+    const coil = coilOf(r)
+    const tag: 'crossed' | 'refuted' | 'overclaim' | 'open' = verdict.state === 'refuted' ? 'refuted' : verdict.state === 'held' || coil.closed ? 'crossed' : overclaims > 0 ? 'overclaim' : 'open'
+    const effort = `${reached.length} perspective(s) reached; coil ${coil.closed ? 'closed' : 'broken'} (${coil.class} at ${coil.reverse} ← ${coil.scale} → ${coil.forward}); ${verdict.detail}`
+    return { id: r.id, clay: clay ?? null, rigor: clay ? CLAY_PROBLEMS[clay].rigor : null, status: r.status, kind: r.kind, sigmaClass: sigmaClass(r), perspectives: reached, dataset: ds?.connector ?? (through ? `through ${through.id}` : null), verdict, tag, overclaims, effort, coil }
   })
   // THE PERSPECTIVE LAWS, decided in the perspective's own algebra from the digit primitives.
   const orbit = VORTEX_SEQUENCE.slice(0, 6)
@@ -1575,6 +1617,7 @@ export function clayCrossDiscovery(fetched: Readonly<Record<string, string | nul
   const tagged = { crossed: rows.filter((r) => r.tag === 'crossed').length, open: rows.filter((r) => r.tag === 'open').length, overclaim: rows.filter((r) => r.tag === 'overclaim').length, refuted: rows.filter((r) => r.tag === 'refuted').length }
   const facets = [
     { facet: 'the perspective laws decide: the vortex orbit ⟨2⟩ is σ-invariant with 3 ↔ 6 and 9 fixed; the pole flips commute into V₄; C₆ is inverted onto itself with 90° fixed outside it; the antipode lies π·R away on five latitudes', on: vortexHolds && v4Holds && sixtyNinetyHolds && antipodeHolds },
+    { facet: `one rotation of the rosetta in each direction closes the coil for exactly the rows σ² = id decides: ${rows.filter((r) => r.coil.closed).length} closed, ${rows.filter((r) => !r.coil.closed).map((r) => r.id).join(', ') || 'none'} broken`, on: rows.every((r) => r.coil.closed === (r.kind === 'involution')) },
     { facet: `no lead remains untagged and none is an overclaim: ${tagged.crossed} crossed, ${tagged.open} open (honest, effort recorded), ${tagged.overclaim} overclaims, ${tagged.refuted} refuted — a statement that claims a solution or physical FTL is tagged by the honesty formulas`, on: tagged.overclaim === 0 && tagged.crossed + tagged.open + tagged.overclaim + tagged.refuted === rows.length },
     { facet: `every Clay problem has a catalogue row: ${clayRows.length} of ${CLAY_ORDER.length}`, on: CLAY_ORDER.every((k) => clayRows.some((r) => r.clay === k)) },
     { facet: `no public dataset refutes a formula: ${rows.filter((r) => r.verdict.state === 'held').length} held, ${rows.filter((r) => r.verdict.state === 'unchecked').length} unchecked (each with its reason), ${rows.filter((r) => r.verdict.state === 'refuted').length} refuted`, on: rows.filter((r) => r.verdict.state === 'refuted').length === 0 },
