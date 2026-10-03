@@ -177,11 +177,30 @@ export function gateToBootstrap(name: string, cwd?: string): readonly string[] |
       ? `verify:${name.slice('verify-'.length)}`
       : null
   if (!script) return null
+  let scripts: Record<string, string> | undefined
   try {
-    const pkg = JSON.parse(readFileSync(join(cwd ?? process.cwd(), 'package.json'), 'utf8')) as { scripts?: Record<string, string> }
-    if (pkg.scripts && !(script in pkg.scripts)) return null
-  } catch { /* unreadable package.json: let the bootstrap be the judge rather than guessing */ }
-  return [script]
+    scripts = (JSON.parse(readFileSync(join(cwd ?? process.cwd(), 'package.json'), 'utf8')) as { scripts?: Record<string, string> }).scripts
+  } catch { return [script] /* unreadable package.json: let the bootstrap be the judge rather than guessing */ }
+  return scriptArgv(script, scripts ?? {}, new Set())
+}
+
+/**
+ * THE SCRIPT'S OWN COMMAND IS THE ARGV. This resolved a verify name to `[name]` and handed it to the bootstrap, which
+ * runs subcommands, not npm scripts: the answer was `unknown: verify:clay-datasets` for 62 of the 64 verify scripts,
+ * while the transport gate read "resolvable" as "runnable" and its ratchet stood at 0. A client told by next_leads
+ * exactly which gate measures its lead could run none of them — the lists were rebuilt by hand outside the repo,
+ * which is the bypass the surface exists to make unnecessary. The argv is read from the script text: a bootstrap
+ * invocation yields the tokens after the bootstrap path, `npm run x` follows x, anything else is refused by name.
+ */
+const BOOTSTRAP_PREFIX = `node --experimental-strip-types ${BOOTSTRAP_REL} `
+function scriptArgv(script: string, scripts: Record<string, string>, seen: Set<string>): readonly string[] | null {
+  if (seen.has(script)) return null
+  seen.add(script)
+  const text = scripts[script]?.trim()
+  if (!text) return null
+  if (text.startsWith(BOOTSTRAP_PREFIX)) return text.slice(BOOTSTRAP_PREFIX.length).trim().split(/\s+/)
+  const chained = /^npm run (?:-s )?([\w:.-]+)$/.exec(text)
+  return chained ? scriptArgv(chained[1]!, scripts, seen) : null
 }
 
 export async function runGate(name: GateName, args: readonly string[] = [], opts?: RepoOpts): Promise<GateResult> {

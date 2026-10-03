@@ -20,7 +20,7 @@ import { openLeads } from './next.ts'
 import { ratchet } from './status.ts'
 import { quantumCliToolsCatalog } from '../../src/quantum/apps/index.ts'
 import { stripNonCode } from './corpus.ts'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { conceptCommands } from '../../src/heaven/atoms/index.ts'
@@ -130,8 +130,20 @@ export function assertBrowserClaimsAreLoadable(): void {
  */
 export function assertLeadGatesAreRunnable(root: string = process.cwd()): void {
   const leadGates = [...new Set(openLeads(root).map((lead) => lead.gate))].filter(Boolean).sort()
-  const unrunnable = leadGates.filter((gate) => !gateToBootstrap(gate, root))
-  console.log(`  mcp: next_leads names ${leadGates.length} gate(s) across the open floors — ${unrunnable.length} not runnable through run_gate`)
+  // RESOLVABLE WAS READ AS RUNNABLE. gateToBootstrap answered `[name]` for every verify script and this counted that
+  // as reachable; the bootstrap then answered `unknown:` for 62 of 64. Runnable is measured where the run happens:
+  // the resolved argv names an entry that exists and an export that entry declares. The one subcommand form
+  // (verify:structure) is the bootstrap's own and is trusted to its switch.
+  const runnable = (gate: string): boolean => {
+    const argv = gateToBootstrap(gate, root)
+    if (!argv) return false
+    if (argv[0] !== 'run') return true
+    const [, entry, exportName] = argv
+    if (!entry || !exportName || !existsSync(join(root, entry))) return false
+    return new RegExp(`^export\\s+(?:async\\s+)?(?:function|const)\\s+${exportName}\\b`, 'm').test(readFileSync(join(root, entry), 'utf8'))
+  }
+  const unrunnable = leadGates.filter((gate) => !runnable(gate))
+  console.log(`  mcp: next_leads names ${leadGates.length} gate(s) across the open floors — ${unrunnable.length} not runnable through run_gate (entry and export measured, not the name)`)
   for (const gate of unrunnable) console.log(`      ${gate}`)
   console.log(ratchet('mcp.lead-gates-unrunnable', unrunnable.length, { evidence: () => unrunnable.map((gate) => `next_leads names ${gate} and run_gate cannot resolve it`) }))
 }

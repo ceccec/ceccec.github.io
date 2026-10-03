@@ -202,6 +202,14 @@ export function ratchet(
     if (collecting) { collecting.push(refusal); return `${name}: ${measured} — REFUSED (above ${recorded}); held, reported at the end of this gate` }
     throw new Error(refusal)
   }
+  if (process.env.VERIFY_EVIDENCE === '1' && measured > 0) {
+    // THE HINT HAD NO READER. next_leads told every client `VERIFY_EVIDENCE=1 npm run <gate>` and nothing read the
+    // variable: evidence went out only on a regression, so an open floor sitting at its recorded value could not say
+    // what it counted through any door, and the lists were rebuilt by hand outside the repo. The flag reads here, once.
+    const lines = opts.evidence()
+    console.log(`  ${name} — ${lines.length} listed (VERIFY_EVIDENCE=1):`)
+    for (const l of lines) console.log(`    ${l}`)
+  }
   if (measured < recorded) {
     const before = { ...status }
     status[name] = measured

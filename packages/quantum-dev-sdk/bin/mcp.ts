@@ -110,7 +110,7 @@ const HANDLERS: Record<string, Handler> = {
     if (!fold) return { ok: false, error: 'fold required' }
     return foldReport(fold)
   },
-  run_gate: (args) => runGate(String(args.name ?? '') as GateName),
+  run_gate: (args) => runGate(String(args.name ?? '') as GateName, [], args.evidence === true ? { env: { VERIFY_EVIDENCE: '1' } } : undefined),
   run_wave: (args) => runWave(String(args.kind ?? '') as WaveKind),
   run_export: (args) => {
     const entryRel = String(args.entryRel ?? '')

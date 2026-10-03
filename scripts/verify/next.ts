@@ -98,7 +98,7 @@ export function runNextJsonExit(root: string = process.cwd()): number {
     unitsAreNotComparable: 'the total sums kilobytes, counts, densities and draw calls — family totals compare, the sum does not',
     families: families.length,
     unitsOfWork: floors.reduce((sum, l) => sum + l.open, 0),
-    evidenceHint: 'VERIFY_EVIDENCE=1 npm run <gate>',
+    evidenceHint: 'run_gate {name: <gate>, evidence: true} — or VERIFY_EVIDENCE=1 npm run <gate>',
     externalRecordsNotRead: 'npm run verify:release-live',
     blockingOrderNotKnown: 'sizes are measured; which lead blocks another is only found by trying',
     byFamily: families,
@@ -123,7 +123,7 @@ export function runNextExit(root: string = process.cwd()): number {
     console.log(`  ${group.family} — ${group.total}`)
     for (const lead of group.leads) console.log(`    ${String(lead.open).padStart(7)}  ${lead.ratchet.padEnd(38)} ${lead.gate}`)
   }
-  console.log(`\n  evidence for any one of them: VERIFY_EVIDENCE=1 npm run <gate>`)
+  console.log(`\n  evidence for any one of them: run_gate {name: <gate>, evidence: true} — or VERIFY_EVIDENCE=1 npm run <gate>`)
   console.log(`  the external records, which this does not read: npm run verify:release-live`)
   return 0
 }
