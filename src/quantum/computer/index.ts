@@ -1,5 +1,5 @@
 // Computer — canonical hardware substrate umbrella: cpu · gpu · memory · storage · bus · power · display · terminal.
-import * as __ns_up_stack_overflow from '../../water/stack/index.ts'
+import * as __ns_up_stack_overflow from '../../water/index.ts'
 import * as __ns_up_quantum_os from '../os/index.ts'
 import * as __ns_up_quantum_apps from '../apps/index.ts'
 import * as __ns_up_plasma_ball from '../../fire/plasma/ball/index.ts'
@@ -8,8 +8,8 @@ import * as __ns_up_pair_enforcement from '../../pair/enforcement/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, buildSequenceReducesComputations, hardwareSpecFromInvariants, maxEfficiencyCpuGpuMemoryStorageCooperation, verifyRoot } from '../../heaven/compute/index.ts'
 import { computesGate, floor, foldPair, isUuid, markovStep, memoByRoot, merge, merkleFold, min, resourceCooperationPolicy, roundTo, toUuid } from '../../0/index.ts'
-import type { DriverProbeReceipt } from '../../water/stack/index.ts'
-import { driverRuntime, nodeProbesEnabled } from '../../water/stack/index.ts'
+import type { DriverProbeReceipt } from '../../water/index.ts'
+import { driverRuntime, nodeProbesEnabled } from '../../water/index.ts'
 import { heroPhaseAt } from '../../fire/plasma/ball/index.ts'
 import { leanInvolutionCorpus } from '../../pair/formal/proofs/index.ts'
 

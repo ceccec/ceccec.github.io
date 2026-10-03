@@ -15,8 +15,8 @@ import { buildMatrix } from '../../compute/index.ts'
 import { VORTEX_SEQUENCE, abs, atan2, computesGate, cos, digitalRoot, floor, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../../0/index.ts'
 import { planetIsComputable, torusUuid } from '../../../fire/li/index.ts'
 import { majorMoons, solarSystem } from '../../../water/cosmos/index.ts'
-import { ROSETTA_RAYS } from '../../../water/digit/index.ts'
-import { allComputedNoFiles } from '../../../wind/fusion/index.ts'
+import { ROSETTA_RAYS } from '../../../water/index.ts'
+import { allComputedNoFiles } from '../../../wind/index.ts'
 import { animatedHeroes, freeAnimations } from '../../../ui/index.ts'
 import { atoms } from '../../atoms/index.ts'
 import { atomInclusionProof } from '../../../ledger/index.ts'
@@ -1500,7 +1500,7 @@ export function drawAstronomyProjection(
 // ── MERGED FROM src/heaven/sky/sun (census descent). Solar constants join the celestial fold that already computes the Meeus ephemeris.
 // ☉ Sun — canonical solar home: day phase, obliquity, Schumann day-side ionosphere, sealed solar constants.
 import * as __ns_up_plasma_ball from '../../../fire/plasma/ball/index.ts'
-import * as __ns_up_resonance from '../../../thunder/resonance/index.ts'
+import * as __ns_up_resonance from '../../../thunder/index.ts'
 import * as __ns_up_double_torus_earth from '../../../water/double/earth/index.ts'
 import { obliquityAtEpoch } from '../../../6/4/index.ts'
 /** Hero day phase — lazy require breaks plasma/sun cycles. */

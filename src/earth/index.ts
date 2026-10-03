@@ -18,7 +18,19 @@ export const EARTH_SCIENCE_TAILS = [
   'earth/architecture',
   'earth/civilisation',
   'earth/governance',
+  'earth/death',
+  'earth/iching',
 ] as const
+
+/** Barrel re-exports from all child folds (consolidated). */
+export * from './world/index.ts'
+export * from './nature/index.ts'
+export * from './architecture/index.ts'
+export * from './civilisation/index.ts'
+export * from './governance/index.ts'
+export * from './death/index.ts'
+export * from './iching/index.ts'
+export * from './life/index.ts'
 
 export type EarthScienceTail = (typeof EARTH_SCIENCE_TAILS)[number]
 
@@ -41,14 +53,14 @@ export {
   thunderGoldGraphPaintSamples,
   schumannGoldSiteCouplingAt,
   schumannGoldSiteCouplingComputes } from './world/index.ts'
-export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/fusion/index.ts'
-export { goldFusionComputes } from '../wind/fusion/index.ts'
+export { goldMineMapResearch, thunderGoldGraphResearch } from '../wind/index.ts'
+export { goldFusionComputes } from '../wind/index.ts'
 
 /** Re-export documented gravity decode — cosmology index, not live planet telemetry. */
 export { gravityDecoded } from '../heaven/site/index.ts'
 export {
   schumannResonanceHarmonisedWithRealtimeApiComputations,
-  harmoniseSchumannWithRealtimeApiComputations } from '../thunder/resonance/index.ts'
+  harmoniseSchumannWithRealtimeApiComputations } from '../thunder/index.ts'
 
 /** One gate — Earth science child barrels + dual-Earth nav/GPS compose at call time. */
 export function earthComputes(matrix: MindMatrix = buildMatrix()) {

@@ -1,11 +1,11 @@
 // Research — canonical home: program index, reproducibility gates, professional monograph rows.
-import * as __ns_up_stack_overflow from '../water/stack/index.ts'
+import * as __ns_up_stack_overflow from '../water/index.ts'
 import * as __ns_up_computer from '../quantum/computer/index.ts'
 import * as __ns_up_quantum_science from '../quantum/science/index.ts'
 import * as __ns_up_quantum_application from '../quantum/apps/index.ts'
 import * as __ns_up_pair_enforcement_gates_computational from '../pair/enforcement/gates/computational/index.ts'
 import * as __ns_mountain_vortex from '../mountain/vortex/index.ts'
-import * as __ns_water_digit from '../water/digit/index.ts'
+import * as __ns_water_digit from '../water/index.ts'
 import * as __ns_water_cosmos from '../water/cosmos/index.ts'
 import type { MindMatrix } from '../types/index.ts'
 import { buildMatrix, eachCardLinksToDedicatedScientificPaper } from '../heaven/compute/index.ts'
@@ -14,9 +14,9 @@ import {
   quantumCliToolsCatalog,
   type QuantumProjection } from '../quantum/apps/index.ts'
 import * as __ns_quantum_apps from '../quantum/apps/index.ts'
-import * as __ns_water_encryption from '../water/encryption/index.ts'
+import * as __ns_water_encryption from '../water/index.ts'
 import * as __ns_wind_site from '../wind/site/index.ts'
-import * as __ns_wind_fusion from '../wind/fusion/index.ts' // call-time (cycle-safe): the public-API fusion catalog
+import * as __ns_wind_fusion from '../wind/index.ts' // call-time (cycle-safe): the public-API fusion catalog
 import * as __ns_thunder_decode from '../thunder/decode/index.ts'
 import { DIGEST_BITS, GATES, VORTEX_SEQUENCE, abs, acos, antichainLevels, applyGate, ceil, computesGate, digitalRoot, doubleTorusSurface, floor, foldPair, isUuid, log, log10, log2, max, memoByRoot, merge, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, sealFacets, seedFromText, sqrt, toUuid, trinityKey, trunc } from '../0/index.ts'
 import { pauliAlgebraCloses, sixtyDegreesDecodesPi } from '../9/1/index.ts'
@@ -39,7 +39,7 @@ import {
   doubleTorusIsCompletelyQuantum,
   sixtyDegreeAngleReachesCardinalForFreeProvenByMath,
   universalNavigationalCrossInAllDimensions } from '../water/double/index.ts'
-import { ROSETTA_RAYS, rosettaRayOf } from '../water/digit/index.ts'
+import { ROSETTA_RAYS, rosettaRayOf } from '../water/index.ts'
 import { flowerUnlocksFruitBySpin, flowerOfLifeCenters, fruitOfLifeCenters } from '../quantum/wind/geometry/index.ts'
 import { folderGravityMeasuredByTheCode } from '../pair/enforcement/gates/index.ts'
 import { movieUnbalancedAroundCenterIsCrack } from '../thunder/movie/canvas/index.ts'

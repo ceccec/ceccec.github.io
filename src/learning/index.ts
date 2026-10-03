@@ -1,13 +1,13 @@
 import { A432_FOLDED, UNFOLDED_CENSUS } from '../3/7/index.ts'
 // ☴ Xùn · Wind — learning, agents & knowledge folds, dissolved out of the monolith. Independent; folds.ts back-imports the gate folds.
-import * as __ns_up_water_digit from '../water/digit/index.ts'
+import * as __ns_up_water_digit from '../water/index.ts'
 import * as __ns_up_quantum_apps from '../quantum/apps/index.ts'
 // call-time namespace edge (cycle-safe): enforcement reaches back here via the mind barrel; the workflow registry reads at call time
 import * as __ns_up_pair_enforcement from '../pair/enforcement/index.ts'
 import { deutschJozsa } from '../9/1/index.ts'
 // call-time namespace edge (cycle-safe): thunder/waves imports learning; nav reads the registry back at call time
-import * as __ns_thunder_waves from '../thunder/waves/index.ts'
-import * as __ns_up_language from '../wind/language/index.ts'
+import * as __ns_thunder_waves from '../thunder/index.ts'
+import * as __ns_up_language from '../wind/index.ts'
 import * as __ns_up_earth_architecture from '../earth/architecture/index.ts'
 import * as __ns_up_earth_world from '../earth/world/index.ts'
 import * as __ns_up_thunder_decode from '../thunder/decode/index.ts'
@@ -15,7 +15,7 @@ import { phase } from '../6/4/index.ts'
 import type { AgentEducation, AgentLesson, ConceptSiteSection, McpTool, McpToolManifest, MindMatrix, StaticPage, SchoolCurriculum, SchoolLesson } from '../types/index.ts'
 import { buildMatrix, coherenceAnomaly, verifyRoot, coverage, reciprocity, matrixMemo } from '../heaven/compute/index.ts'
 import { cos, floor, fold, isUuid, max, merge, merkleFold, min, round, sin, toUuid } from '../0/index.ts'
-import { movie } from '../thunder/movie/movielib/index.ts'
+import { movie } from '../thunder/movie/index.ts'
 import { AREA_ICONS, chakrasAura, efficiency, multidimensional } from '../quantum/icons/index.ts'
 import { atoms, conceptCommands } from '../heaven/atoms/index.ts'
 import { inverseShiftConsciousness, quantumSimulation, taxonomyIcons, universalLanguage } from '../fire/li/index.ts'
@@ -29,7 +29,7 @@ import { toGlagolitic } from '../quantum/heaven/library/index.ts'
 import { mcpCodebase, mcpUsesVitepressSearch } from '../thunder/commands/index.ts'
 import { completeCorpus, theoremRosettaSidebar, theRosettaReconfiguresVitepress } from '../wind/routes/corpus/index.ts'
 import { diamondLattice } from '../fire/diamonds/index.ts'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf, rosettaRayOfContent } from '../water/digit/index.ts'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, rosettaDecodesUrlPath, rosettaRayOf, rosettaRayOfContent } from '../water/index.ts'
 import { SESSION_SKILL_FNS } from '../2/8/index.ts'
 import { twoBitsAreTheDualityGateways } from '../2/8/index.ts'
 import { THEOREM_ATOM_SEED, CANDIDATE_THEOREMS } from '../4/6/index.ts'
@@ -2477,10 +2477,10 @@ import { computesGate as rosettaComputesGate, isUuid as rosettaIsUuid, memoByRoo
 
 export {
   ROSETTA_RAYS, ROSETTA_COMPUTATION_TYPES, ROSETTA_CORE_KINDS, rosettaComputesAll, rosettaComputesCensusDissolve,
-  rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion } from '../water/digit/index.ts'
+  rosettaComputesItself, rosettaDecodesUrlPath, rosettaRayOf, rosettaReuse, sevenStarRosettaNaturalMotion } from '../water/index.ts'
 export { rosettaCoreApi, rosettaCoreApiSelfWires, rosettaShelve, rosettaCoreApiSurface } from '../quantum/apps/index.ts'
-export { movieIsNeuroscienceComputation } from '../earth/life/index.ts'
-export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../wind/language/index.ts'
+export { movieIsNeuroscienceComputation } from '../earth/index.ts'
+export { rosettaGlagoliticGlobalKeyDecodeAll, rosettaImprovesDictationAndDialects } from '../wind/index.ts'
 export { rosettaIChingTrinityPlacesAllTools } from '../earth/architecture/index.ts'
 export { publicAstronomyNewsCitation } from '../earth/world/index.ts'
 

@@ -10,7 +10,7 @@ import { readFileSync, existsSync, writeFileSync, readdirSync, statSync, mkdirSy
 import { join, relative, dirname, resolve, basename } from 'node:path'
 import { componentGraph, harmonicBands, foldedCensus, folderLaw, jsonLdPathRules, buildEnforcementPipeline, zeroTokenPolicy, staticPages, quantumSitemap, doubleTorusWords, terabyteEncryptionInMegabyteCodebase, FOLD_HOMES, foldsLiveAtTheirDomainHome } from '../../../../quantum/heaven/mind/index.ts'
 import { displayDualDebtReceipt } from '../../../../earth/architecture/index.ts'
-import { monolithTargetVsCensusCapacity } from '../../../../water/stack/index.ts'
+import { monolithTargetVsCensusCapacity } from '../../../../water/index.ts'
 import type { AuditRoot, Finding } from '../../gates/index.ts'
 import type { EnforcementFacts } from '../../gates/index.ts'
 import { collectEnforcementFacts, readFact, stripComments, monolithFileGapDetail, computationalLimitsGapDetail, scanLogicDisplayViolations, displayUiPathFromLogicIndex, auditStrictGates, auditComputationalGates, scanRootDistributionViolations, scanDigitLatticeViolations, CANONICAL_ROOT_FOLDERS } from '../../gates/index.ts'

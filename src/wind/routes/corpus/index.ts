@@ -4,16 +4,16 @@ import { computedLimits, foldVerdict} from '../../../3/7/index.ts'
 import { CANONICAL_HOST, DIMENSION_GATES, ROSETTA_AREAS, ROSETTA_SEVEN, ROSETTA_SIX, SQRT2, TAU, algebraicStatementOf, assertedOutsideQuotation, extractDefinitionalIdentity, authoredRelationContainsExtraction, authoredStatementCarriesRelation, extractAlgebraicStatement, earned, entangledArmField, latticeArm, titleCarriesAlgebra } from '../../../3/7/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 // call-time namespace edge (cycle-safe): learning imports corpus; search corpus reads back at call time
-import * as __ns_up_up_thunder_waves from '../../../thunder/waves/index.ts'
+import * as __ns_up_up_thunder_waves from '../../../thunder/index.ts'
 import * as __ns_earth_architecture from '../../../earth/architecture/index.ts' // call-time (cycle-safe): the DOCUMENTED_HARMONICS census gate
 import { buildMatrix, cardScientificPaperRows } from '../../../heaven/compute/index.ts'
 import { abs, ceil, cos, digitalRoot, floor, isUuid, log, log10, log2, max, memoByRoot, merkleFold, min, round, sin, toUuid } from '../../../0/index.ts'
 import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6/index.ts'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site/index.ts'
-import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit/index.ts'
+import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/index.ts'
 import { conceptCommands } from '../../../heaven/atoms/index.ts'
 import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1/index.ts'
-import { cardMovieColorVars, cardMoviePath, cardMovieSeed } from '../../../thunder/movie/movievars/index.ts'
+import { cardMovieColorVars, cardMoviePath, cardMovieSeed } from '../../../thunder/movie/index.ts'
 import { heroMoviePhaseHue, heroPhaseAt, plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball/index.ts'
 import { allPagesForPlasmaWiring } from '../../../water/double/index.ts'
 import { cosmosFrontiersDecoded } from '../../../water/cosmos/index.ts'
@@ -982,7 +982,7 @@ export {
   homepage,
   pageStatusStatistics,
   proveAllOnHomePage } from '../../site/index.ts'
-export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../../water/digit/index.ts'
+export { rosettaCanonicalImportPath, rosettaComputesCensusDissolve, rosettaComputesItself, rosettaReuse, coreComputationalLogicSaved } from '../../../water/index.ts'
 
 /** All is monograph — every page is a scientific paper with one template. */
 export function allIsMonographScientificPaper(matrix: MindMatrix = buildMatrix()) {

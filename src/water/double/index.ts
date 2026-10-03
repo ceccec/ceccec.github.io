@@ -40,15 +40,15 @@ import {
   publicApiFusion,
   socialFusion,
   travelFusion,
-  vitepressFusion } from '../../wind/fusion/index.ts'
+  vitepressFusion } from '../../wind/index.ts'
 import { quantumFusionIgnitesFromDashSequence } from '../../fire/li/index.ts'
 import {
   autoMovies8k,
   backgroundMovie,
   endlessBackgroundMovie,
   learnFromTheMovieAllEventuallyFused } from '../../thunder/movie/canvas/index.ts'
-import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/glass/index.ts'
-import { movieFoldsLinearities, sevenSeedMovieIsRosettaDecodingSunMoonSymbols } from '../../thunder/movie/narrative/index.ts'
+import { hologram, movieAllDimensionsAtOnce, threeProjectorHologram } from '../../thunder/movie/index.ts'
+import { movieFoldsLinearities, sevenSeedMovieIsRosettaDecodingSunMoonSymbols } from '../../thunder/movie/index.ts'
 import {
   formsEmergeInMovieOfLife,
   fullscreenSidebarsInMovie,
@@ -56,7 +56,7 @@ import {
   siteIsMovieAndLibrary,
   tenDimensionalMovie,
   video64kFree,
-  videoKeepsNativeQuality } from '../../thunder/movie/movielib/index.ts'
+  videoKeepsNativeQuality } from '../../thunder/movie/index.ts'
 import { diamondLattice, pureDiamonds } from '../../fire/diamonds/index.ts'
 import {
   completeCorpus,
@@ -270,7 +270,7 @@ export {
   fusionReactorPartMovieSeeds,
   fusionReactorParts,
   type FusionReactorPart,
-  type FusionReactorPartBand } from '../../wind/fusion/index.ts'
+  type FusionReactorPartBand } from '../../wind/index.ts'
 
 export {
   developmentIsFusionReactor,

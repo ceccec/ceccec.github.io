@@ -1,6 +1,6 @@
 import { earned } from '../../3/7/index.ts'
-// Death — canonical compost/entropy/recycle/regeneration/terminal-end home (dual to src/life).
-import * as __ns_up_life from '../life/index.ts'
+// Death — canonical compost/entropy/recycle/regeneration/terminal-end home (dual to src/life — consolidated).
+import * as __ns_up_life from '../index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix, entropy } from '../../heaven/compute/index.ts'
 import { FORGE_COST_CEILING, GATES, applyGate, computesGate, floor, foldPair, isUuid, max, memoByRoot, merge, merkleFold, probabilities, qubits, round, toUuid, type QuantumState } from '../../0/index.ts'

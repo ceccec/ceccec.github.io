@@ -1,6 +1,6 @@
 // ☷ Kūn · Earth — double / torus / earth: weather, apple, pyramid tips on the genus-2 surface.
 import * as __ns_up_up_up_earth_world from '../../../earth/world/index.ts'
-import * as __ns_up_up_up_thunder_trading from '../../../thunder/trading/index.ts'
+import * as __ns_up_up_up_thunder_trading from '../../../thunder/index.ts'
 import { initialBearing, obliquityAtEpoch } from '../../../6/4/index.ts'
 import { greatCircleKm } from '../../../5/5/index.ts'
 import { hawkingTemperature } from '../../../4/6/index.ts'
@@ -10,7 +10,7 @@ import { VORTEX_DASH_ENCODED, VORTEX_SEQUENCE, abs, decodeVortexDashAngles, digi
 import { DIMENSION_NAMES } from '../../../quantum/mountain/dimensions/index.ts'
 import { earthNorthPoleCenterDotDecoded, earthSouthPoleBoundaryCircleDecoded, polarDiskChartAt, quantumDoubleTorus, torusBreathe } from '../../../mountain/topology/index.ts'
 // Cycle-safe binding for the Schumann resonance paint composed into the quantum globe (referenced at call time).
-import * as __ns_thunder_resonance from '../../../thunder/resonance/index.ts'
+import * as __ns_thunder_resonance from '../../../thunder/index.ts'
 import {
   doubleTorusEarthWeatherFlowsInMovie,
   doubleTorusSolutionsProvenByMath,

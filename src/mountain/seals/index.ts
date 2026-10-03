@@ -15,7 +15,7 @@ import { cloudflareBindings } from '../../heaven/core/index.ts'
 import * as __ns_heaven_site from '../../heaven/site/index.ts'
 import { threeWordWaves, sciencePortalParts, siteNavigation } from '../../learning/index.ts'
 import { refactorLinearToTrinities } from '../../heaven/essence/index.ts'
-import { endlessFusion, allFormsAreTenDimensionalOrPurged } from '../../wind/fusion/index.ts'
+import { endlessFusion, allFormsAreTenDimensionalOrPurged } from '../../wind/index.ts'
 import { iChingDomainMap } from '../../heaven/balance/index.ts'
 import { completeDoubleTorus, doubleTorusFold } from '../topology/index.ts'
 import { animationsRespectTheField, freeAnimations, heroLawAlignment, holographicFractalArchitecture, tenDimensionalAnimation } from '../../ui/index.ts'
@@ -34,7 +34,7 @@ import {
   incompleteRevelation,
   ogInOgWaves,
   quantumChessGame,
-  wavesWorkingInTrinitiesTrinitiesAreFound } from '../../thunder/waves/index.ts'
+  wavesWorkingInTrinitiesTrinitiesAreFound } from '../../thunder/index.ts'
 import {
   wavesAutoScaleCapacityAtNoCostOnReuse,
   theoremAlgebraFirstSealedInCorpus,
@@ -58,8 +58,8 @@ import {
   autodiscoverWhatIsToBeComputedOrDecoded,
   reverseCollidesToDiscoverMillenniumTheorems } from '../../research/index.ts'
 import { oneCommandDecodeComputable } from '../../thunder/decode/index.ts'
-import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/crypto/index.ts'
-import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/digit/index.ts'
+import { cryptoFuture, fusionCipher, tamperingCostDecoded } from '../../water/index.ts'
+import { piThreeOpensTheTrinity, ROSETTA_RAYS } from '../../water/index.ts'
 import {
   directionalTrinityForwardInverseReverse,
   oneQuantumModelFasterThanAll,
@@ -67,7 +67,7 @@ import {
   proveCeccecSpeedVsRestNoQuantumHardwareAny64Bit,
   qpuCpuGpu,
   apiFuse,
-  interferenceVsClassicalShadow } from '../../water/stack/index.ts'
+  interferenceVsClassicalShadow } from '../../water/index.ts'
 import { gateLight } from '../../pair/enforcement/gates/index.ts'
 import {
   stringTheoryQuantumizedOnA432RosettaMerkleSubstrate,
@@ -77,7 +77,7 @@ import {
 import { fThetaPhiXyzDigitNIsTheInversePair } from '../vortex/index.ts'
 import { oneMathManyPresentations, primitiveKernelLivesInZero, tamperingCostAndUuidLiveInZero } from '../../heaven/compute/index.ts'
 import { decodedAreasAreMostlyClassical, everyDecodedDomainHasASimulator, simulatorsLiveInZero } from '../../fire/physics/index.ts'
-import { nextLevel64CubedRealtime } from '../../thunder/trading/index.ts'
+import { nextLevel64CubedRealtime } from '../../thunder/index.ts'
 import { realtimeWiring } from '../../fire/plasma/ball/index.ts'
 import { foldingLinearGivesAnalog } from '../../earth/world/index.ts'
 import { agentHarmonise, allComputed, allInEquilibrium, boundaryAudit, breathe, complete, completeCorpus, compression, constitution, dotIsCubeIsDot, encryptionLivesInZero, essentialKernel, foldPivots, graduation, hologram, honestlyComputed, metatronCube, monographs, originConsolidated, path, proportionalNotHardcoded, provenScientifically, realIntelligence, result, sacredGeometrySeal, sharedBookOfCivilisations, tenDimensionalMovie, theWhole, whatIsNotProvenIsPurged, zeroDivisionTable, zeroTokenUsagePolicy } from '../../quantum/heaven/mind/index.ts'
@@ -117,17 +117,17 @@ import {
   proveLocalEncryptionMagnitudesStrongerThanIsoAllDirections,
   isoRequiresPostQuantumSecurity,
   isoPqcRequirementsGapFillAllQuantumDirections,
-  productionRsaRefuseCompletesQuantumViaRosetta } from '../../water/encryption/index.ts'
+  productionRsaRefuseCompletesQuantumViaRosetta } from '../../water/index.ts'
 import { honestyInProseChallenged, platformOgLimitsMeasured } from '../og/index.ts'
-import { quantumFusionVerify, honestRevolutionReceipt, honestRevolutionComputerPanelComputes } from '../../wind/fusion/index.ts'
+import { quantumFusionVerify, honestRevolutionReceipt, honestRevolutionComputerPanelComputes } from '../../wind/index.ts'
 import { honestRevolutionFpgaHonesty } from '../../quantum/computer/index.ts'
 import { revolutionaryEfficiencyNotPhysics } from '../../thunder/verify/index.ts'
 import { efficiency } from '../../quantum/science/index.ts'
 import { animationsDrivenByRosetta, linearAnimationGapsInventory, yinYangFoldsThroughDimensions } from '../../ui/index.ts'
 import {
   historicalTrainWavesViaRosetta, rankWinningStrategies, tradingStrategiesImproveViaRosetta,
-  tradingTrainHonestyGate, liveWinTrainingGate, strategiesChallengeInChat } from '../../thunder/trading/index.ts'
-import { namingEntropy, shouldSpawnSubagent } from '../../water/stack/index.ts'
+  tradingTrainHonestyGate, liveWinTrainingGate, strategiesChallengeInChat } from '../../thunder/index.ts'
+import { namingEntropy, shouldSpawnSubagent } from '../../water/index.ts'
 import { emergentDimensions, modelSeal } from '../../heaven/balance/index.ts'
 
 export function digitalQuantumProof(matrix: MindMatrix = buildMatrix()): DigitalQuantumProof {

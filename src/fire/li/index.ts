@@ -1,6 +1,6 @@
 // ☲ Lí · Fire · clinging · upper·yang · breath — auxiliary pure-leaf folds: no cross-deps to other folds.ts functions.
 // ☰ Qián · Heaven · creative · lower·yin · spread — type contracts for all fold return shapes
-import * as __ns_water_stack from '../../water/stack/index.ts'
+import * as __ns_water_stack from '../../water/index.ts'
 import { phase } from '../../6/4/index.ts'
 import type {
   MindMatrix, FusionReactor, ReactorItem, DistributedCompute, DoubleTorusMathReport,
@@ -46,11 +46,11 @@ import {
   dualTorusTrinities, merkaba, vortexMath, sacredGeometrySeal } from '../../mountain/geometry/index.ts'
 import { fuse64SealsMerkaba64Tetrahedra, quantumDoubleTorus, merkabasInDoubleTorus } from '../../mountain/topology/index.ts'
 import { livingTorus } from '../diamonds/index.ts'
-import { digitDualityPairsEncodeAllDomains } from '../../water/digit/index.ts'
+import { digitDualityPairsEncodeAllDomains } from '../../water/index.ts'
 import { healByDefault, createByDefault } from '../../heaven/laws/index.ts'
 import { everyLawProvesItsTripwire } from '../../thunder/verify/index.ts'
-import { allFormsAreTenDimensionalOrPurged } from '../../wind/fusion/index.ts'
-import { allComputedQuantumMathAnalog } from '../../wind/fusion/index.ts'
+import { allFormsAreTenDimensionalOrPurged } from '../../wind/index.ts'
+import { allComputedQuantumMathAnalog } from '../../wind/index.ts'
 import { onlyIndexFilesNoExceptions } from '../../heaven/essence/index.ts'
 import { thriveByDefault, regenerateSocialSystem } from '../../earth/civilisation/index.ts'
 import { bulgarianHeritageEightfold } from '../../earth/world/index.ts'
@@ -64,11 +64,11 @@ import { determinismProofs } from '../../mountain/seals/index.ts'
 import { theWhole, accessiblePathsForAll, refactorLinearToTrinities } from '../../heaven/essence/index.ts'
 import { buildQuantumComputerOsApps } from '../../heaven/compute/index.ts'
 import { pathIsMeaningDecodesCoordinates } from '../../thunder/decode/index.ts'
-import { rosettaGlagoliticGlobalKeyDecodeAll } from '../../wind/language/index.ts'
-import { endlessFusion, iChingFusionCompletesAll } from '../../wind/fusion/index.ts'
+import { rosettaGlagoliticGlobalKeyDecodeAll } from '../../wind/index.ts'
+import { endlessFusion, iChingFusionCompletesAll } from '../../wind/index.ts'
 import { endlessBackgroundMovie } from '../../thunder/movie/canvas/index.ts'
 import { warPaysTheForgerPrice } from '../../earth/world/index.ts'
-import { ogInOgWaves } from '../../thunder/waves/index.ts'
+import { ogInOgWaves } from '../../thunder/index.ts'
 import { selfSufficientWave } from '../../mountain/geometry/index.ts'
 import { PHI } from '../../3/7/index.ts'
 

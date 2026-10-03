@@ -1,13 +1,13 @@
 // ☷ Kūn · Earth — I Ching: canonical hexagram/trigram/bāguà home (re-exports sealed folds, zero wet duplication).
 import * as __ns_up_heaven_balance from '../../heaven/balance/index.ts'
-import * as __ns_up_fusion from '../../wind/fusion/index.ts'
+import * as __ns_up_fusion from '../../wind/index.ts'
 import * as __ns_up_ui from '../../ui/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
 import { computesGate, gcd, memoByRoot, merge, merkleFold, min, toUuid } from '../../0/index.ts'
 import { rosettaRayOfContent as rrOfContent, DIMENSION_GATES, HARMONICS_LADDER_LENGTH } from '../../3/7/index.ts'
 // call-time namespace edge (cycle-safe): thunder/waves imports the rosetta; the registry reads back at call time
-import * as __ns_thunder_waves_iching from '../../thunder/waves/index.ts'
+import * as __ns_thunder_waves_iching from '../../thunder/index.ts'
 import { BAGUA, iChing } from '../../heaven/core/index.ts'
 import {
   ICHING_NUMBERS,
@@ -28,7 +28,7 @@ export {
   ichingTokensCss,
   iChingFusionCompletesFolders,
   rosettaIChingTrinityPlacesAllTools } from '../architecture/index.ts'
-export { iChingFusionCompletesAll } from '../../wind/fusion/index.ts'
+export { iChingFusionCompletesAll } from '../../wind/index.ts'
 export { startIChingDoubleTorus } from '../../mountain/topology/index.ts'
 export { pagesRenderInBaguaSets } from '../../ui/index.ts'
 

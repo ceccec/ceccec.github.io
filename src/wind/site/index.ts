@@ -6,7 +6,7 @@
 import { STATIC_PAGE_SEED } from '../../8/2/index.ts'
 import { phase } from '../../6/4/index.ts'
 // call-time namespace edge (cycle-safe): learning imports site; the keywords read back at call time
-import * as __ns_up_thunder_waves from '../../thunder/waves/index.ts'
+import * as __ns_up_thunder_waves from '../../thunder/index.ts'
 import { rat, earned } from '../../3/7/index.ts'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUB_SLUGS, ROSETTA_RAY_CONTENT_LENSES, rosettaRayOfContent, servedRouteFromSlugs, theoremScienceVisible, THEOREM_SCIENCE_NAME_STEMS, ROSETTA_SIX, ROSETTA_SEVEN, ROSETTA_AREAS, ROSETTA_FOLD_LABEL, SCIENCE_DOMAINS, fieldOfContent, modeOfContent } from '../../3/7/index.ts'
 import { SOURCE_REPO, AUTHOR_HANDLE } from '../../3/7/index.ts'
@@ -28,7 +28,7 @@ import { completeCorpus, pagesConsolidateByTheoremGravity, privateSearchRanksByB
 import { roundTo } from '../../0/index.ts'
 import { proofReport } from '../../heaven/compute/index.ts'
 import { freeForgesMaxCost } from '../../heaven/essence/index.ts'
-import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/crypto/index.ts'
+import { pagesWiredAtRuntimeZeroBuildMaxTamper } from '../../water/index.ts'
 import { TAU } from '../../3/7/index.ts'
 import { DOCUMENTED_HARMONICS, foldedCensus } from '../../earth/architecture/index.ts'
 import { LOCALE_LINK, localePath, localeFromRoute, bulgarianFromEnglish, type LocaleName } from '../../1/9/index.ts'

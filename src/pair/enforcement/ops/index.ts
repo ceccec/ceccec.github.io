@@ -21,9 +21,9 @@ import { gatesHealSpottedCompromise } from '../../../mountain/gates/index.ts'
 import { saveAllTranslationLogicAutotranslateLocale } from '../../../mountain/og/index.ts'
 import { knowledgeRevealedByMerkabaFold } from '../../../mountain/topology/index.ts'
 import { commandsSavedInQuantumPairs } from '../../../thunder/commands/index.ts'
-import { sendWavesSealKnowledgeDecodeWorld } from '../../../thunder/waves/index.ts'
-import { rosettaReuse } from '../../../water/digit/index.ts'
-import { srcAllComputes } from '../../../water/stack/index.ts'
+import { sendWavesSealKnowledgeDecodeWorld } from '../../../thunder/index.ts'
+import { rosettaReuse } from '../../../water/index.ts'
+import { srcAllComputes } from '../../../water/index.ts'
 import { harmonicCountsProvenByMath } from '../../../earth/architecture/index.ts'
 import {
   collectEnforcementFacts,

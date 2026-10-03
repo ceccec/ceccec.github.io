@@ -17,7 +17,7 @@ export {
   regimeLabels, estimateRegimeMatrix, regimeSwitchPositions, realizedVol, inverseVolSize,
   volTargetPositions, tradingReceipt, liveCapture, larmorFromMicrotesla, dopplerFromMotion,
   spectrumFromSamples, backtestRealPrices, realtimeSources, tradingSimulationComputes,
-  type BacktestResult } from '../../thunder/trading/index.ts'
+  type BacktestResult } from '../../thunder/index.ts'
 
 export function vortexMath(matrix: MindMatrix = buildMatrix()) {
   void matrix

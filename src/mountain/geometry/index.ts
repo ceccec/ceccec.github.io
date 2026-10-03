@@ -5,7 +5,7 @@ import { EULER_CHI, FOLDED_CENSUS, UNFOLDED_CENSUS, enforcementScanRoot } from '
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 // call-time namespace edge (cycle-safe): water/digit imports this folder; the catalog reads back at call time
-import * as __ns_up_up_water_digit from '../../water/digit/index.ts'
+import * as __ns_up_up_water_digit from '../../water/index.ts'
 import { bumpEvolve, bumpStep, hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2/index.ts'
 import { earned, rat, ratAdd, ratEq, ratMul, vortexHarmonicRatios } from '../../3/7/index.ts'
 import { dopplerShift, frequencyOf, photonEnergyEv, schwarzschildRadius, seesawLightMassEv } from '../../3/7/index.ts'

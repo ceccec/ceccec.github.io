@@ -29,7 +29,7 @@ import {
   apiFuse,
   thermoQuantumBalance,
   oneClockApi,
-} from '../../../water/stack/index.ts'
+} from '../../../water/index.ts'
 import { gateLight } from '../../../pair/enforcement/gates/index.ts'
 import {
   efficiencyScalesToInfinityAtNoCostOnReuse,
@@ -39,7 +39,7 @@ import {
   societySupportsProjectViaTwoBitsFreeKnowledge,
   domainProofPagePaths, zeropointNodeReferenceLine, publicationTimelineMeasured, clayGraphOverAlgebraicMonographs, CLAY_ORDER } from '../../../research/index.ts'
 import { sequenceScientificDescription } from '../../../mountain/vortex/index.ts'
-import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../thunder/waves/index.ts'
+import { proofAnimations, vortexCircuitPiecewiseLaw } from '../../../thunder/index.ts'
 import { theoremPagePaths } from '../../../wind/routes/corpus/index.ts'
 import { counterRotatingRosettaQuantumWaves } from '../../apps/index.ts'
 import {
