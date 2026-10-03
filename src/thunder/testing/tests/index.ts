@@ -26,8 +26,8 @@ async function patentTest(fetch: any, token: string | undefined): Promise<any> {
   }
 }
 
-async function quantumTest(name: string, envVar: string, fetch: any, cred: string | undefined): Promise<any> {
-  return { success: false, message: cred ? PENDING : `opt-in: set ${envVar}`, dataPoints: 0 }
+async function quantumStub(fetch: any, cred: string | undefined): Promise<any> {
+  return { success: false, message: cred ? PENDING : 'opt-in', dataPoints: 0 }
 }
 
 async function citationTest(fetch: any, _cred: string | undefined): Promise<any> {
@@ -63,9 +63,9 @@ async function zenodoTest(fetch: any, _cred: string | undefined): Promise<any> {
 
 export const TESTS: readonly TestDefinition[] = [
   { name: 'Patent Audit (EPO OPS + Google Patents)', api: 'EPO OPS', endpoint: 'ops.epo.org/3.2/rest-services', envVar: 'EPA_TOKEN', test: patentTest },
-  { name: 'Quantum: IBM Quantum', api: 'IBM', endpoint: 'quantum-api.ibm.com', envVar: 'IBM_TOKEN', test: quantumTest },
-  { name: 'Quantum: AWS Braket', api: 'AWS', endpoint: 'braket.amazonaws.com/tasks', envVar: 'AWS_ACCESS_KEY', test: quantumTest },
-  { name: 'Quantum: Azure Quantum', api: 'Azure', endpoint: 'quantum.azure.com', envVar: 'AZURE_TOKEN', test: quantumTest },
+  { name: 'Quantum: IBM Quantum', api: 'IBM', endpoint: 'quantum-api.ibm.com', envVar: 'IBM_TOKEN', test: quantumStub },
+  { name: 'Quantum: AWS Braket', api: 'AWS', endpoint: 'braket.amazonaws.com/tasks', envVar: 'AWS_ACCESS_KEY', test: quantumStub },
+  { name: 'Quantum: Azure Quantum', api: 'Azure', endpoint: 'quantum.azure.com', envVar: 'AZURE_TOKEN', test: quantumStub },
   { name: 'Research Citations (arXiv + Zenodo + CrossRef)', api: 'Academic APIs', endpoint: 'api.arxiv.org, zenodo.org/api, api.crossref.org', test: citationTest },
   { name: 'Zenodo Deposits', api: 'Zenodo', endpoint: 'zenodo.org/api/records', test: zenodoTest },
 ]
