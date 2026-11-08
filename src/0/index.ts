@@ -10,13 +10,17 @@
 
 const BYTE_MASK = 0xff
 
+// One character into one lane's 32-bit state. A bijection on the state for every character (xor, an odd
+// multiplier, an xorshift) — which is why the lanes can be walked backwards and collided one at a time.
+function laneStep(h: number, code: number): number {
+  h = Math.imul((h ^ code) >>> 0, 0x01000193) >>> 0
+  return (h ^ (h >>> 13)) >>> 0
+}
+const laneStart = (seed: number): number => (0x811c9dc5 ^ seed) >>> 0
+
 function hash32(input: string, seed: number): number {
-  let h = (0x811c9dc5 ^ seed) >>> 0
-  for (let i = 0; i < input.length; i++) {
-    h ^= input.charCodeAt(i)
-    h = Math.imul(h, 0x01000193) >>> 0
-    h ^= h >>> 13
-  }
+  let h = laneStart(seed)
+  for (let i = 0; i < input.length; i++) h = laneStep(h, input.charCodeAt(i))
   h = Math.imul(h ^ (h >>> 16), 0x85ebca6b) >>> 0
   h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35) >>> 0
   return (h ^ (h >>> 16)) >>> 0
@@ -26,13 +30,12 @@ function hexByte(value: number): string {
   return value.toString(16).padStart(2, '0')
 }
 
+// The four lanes of a toUuid: the same input through hash32 four times, differing only in where each lane
+// starts. Four iterated 32-bit hashes side by side are not one 128-bit hash — forgeFloor() counts what they are.
+const LANE_SEEDS = [0, 0x9e3779b9, 0x243f6a88, 0xb7e15162] as const
+
 function bytesFromSeed(seed: string): number[] {
-  const words = [
-    hash32(seed, 0),
-    hash32(seed, 0x9e3779b9),
-    hash32(seed, 0x243f6a88),
-    hash32(seed, 0xb7e15162),
-  ]
+  const words = LANE_SEEDS.map((lane) => hash32(seed, lane))
   return words.flatMap((word) => [
     (word >>> (8 * 3)) & BYTE_MASK,
     (word >>> 16) & BYTE_MASK,
@@ -1395,9 +1398,88 @@ export function asTrace(f: Fold, timeMs = 0): { x: number; y: number } {
 // report (proofReport, in the core) measures those from the graph and PASSES them here — it does not own the
 // math. (tamperingCostAndUuidLiveInZero.)
 
-// Each content-address contributes a 64-bit digest to the forge floor (the cost is accounted in bits, log2).
+// HALF THE ADDRESS — the single-torus digest, 128 / 2 = 64 (dimensionalBit's 2⁶). A WIDTH, not a security
+// floor: it was read as the forge floor until a full toUuid collision was found at ~2^33 (forgeFloor). The
+// width keeps its value and every root folded from it; the cost now reads FORGE_FLOOR_BITS.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const DIGEST_BITS = 64
+export const DIGEST_BITS = addressEntropyBits().nominalBits / 2
+
+/**
+ * THE FORGE FLOOR, COUNTED FROM THE LANES — the cheapest known way to land two inputs on one address.
+ *
+ * toUuid is four iterated 32-bit lanes over the same input. The generic birthday bound of its 122 free bits
+ * (2^61) is a CEILING no attacker has to pay: Joux (Crypto 2004) collides one lane at its own birthday bound,
+ * chains laneBits/2 such collisions into 2^(laneBits/2) inputs that all agree on that lane, and birthdays the
+ * next lane among them — so all four lanes collide for (laneBits/2)^(lanes−1) · 2^(laneBits/2) lane steps.
+ * Every lane step is a bijection, so one lane's second preimage meets in the middle at 2^(laneBits/2) too.
+ * findLaneMulticollision exhibits the mechanism; a four-lane run (2^33.3 char-steps) gave two 23,328-char
+ * strings with one toUuid. FORGE_FLOOR_BITS is the collision floor, the cost of a forged twin.
+ */
+export function forgeFloor(): { lanes: number; laneBits: number; laneCollisionLog2: number; lanePreimageLog2: number; jouxCollisionLog2: number; birthdayCeilingLog2: number } {
+  const { nominalBits, birthdayLog2 } = addressEntropyBits()
+  const lanes = LANE_SEEDS.length
+  const laneBits = nominalBits / lanes
+  const laneCollisionLog2 = laneBits / 2
+  return {
+    lanes, laneBits, laneCollisionLog2,
+    lanePreimageLog2: laneBits / 2, // meet in the middle over a bijective step
+    jouxCollisionLog2: (lanes - 1) * Math.log2(laneCollisionLog2) + laneCollisionLog2,
+    birthdayCeilingLog2: birthdayLog2,
+  }
+}
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export const FORGE_FLOOR_BITS = forgeFloor().jouxCollisionLog2
+
+/**
+ * Joux multicollision on the first `lanes` lanes of toUuid, exhibited rather than argued. Two distinct inputs
+ * whose toUuid agree on the first `lanes` 32-bit words — all four words is a full collision (minutes); two is
+ * the gate's size (seconds). Deterministic: blocks come from a counter, so the same pair returns every run.
+ */
+const _multicollisionCache = new Map<number, { a: string; b: string; lanes: number; steps: number }>()
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function findLaneMulticollision(lanes = 2): { a: string; b: string; lanes: number; steps: number } {
+  const cached = _multicollisionCache.get(lanes)
+  if (cached) return cached
+  // 2^(laneBits/2 + 2) paths into a laneBits-bit lane: 2^(2·PATHS − laneBits − 1) = 2^3 ≈ 8 meets expected; a miss rebuilds
+  const PATHS = forgeFloor().laneBits / 2 + 2
+  let steps = 0, counter = 0
+  const run = (h: number, s: string): number => { for (let i = 0; i < s.length; i++) h = laneStep(h, s.charCodeAt(i)); steps += s.length; return h }
+  const pair = (lane: number, start: readonly number[]): [string, string] => {
+    if (lane === 0) {
+      const seen = new Map<number, string>()
+      for (;;) {
+        const block = (counter++).toString(9 * 4)
+        const h = run(start[0]!, block)
+        const prev = seen.get(h)
+        if (prev !== undefined) return [prev, block]
+        seen.set(h, block)
+      }
+    }
+    const segments: [string, string][] = []
+    let shared = start.slice(0, lane)
+    for (let i = 0; i < PATHS; i++) {
+      const p = pair(lane - 1, shared)
+      segments.push(p)
+      shared = shared.map((h) => run(h, p[0]))
+    }
+    const seen = new Map<number, number>()
+    let hit: [number, number] | null = null
+    const walk = (i: number, h: number, bits: number): void => {
+      if (hit) return
+      if (i === PATHS) { const prev = seen.get(h); if (prev !== undefined) hit = [prev, bits]; else seen.set(h, bits); return }
+      walk(i + 1, run(h, segments[i]![0]), bits)
+      walk(i + 1, run(h, segments[i]![1]), bits | (1 << i))
+    }
+    walk(0, start[lane]!, 0)
+    if (!hit) return pair(lane, start)
+    const spell = (bits: number): string => segments.map((p, i) => p[(bits >>> i) & 1]).join('')
+    return [spell(hit[0]), spell(hit[1])]
+  }
+  const [a, b] = pair(lanes - 1, LANE_SEEDS.slice(0, lanes).map(laneStart))
+  const found = { a, b, lanes, steps }
+  _multicollisionCache.set(lanes, found)
+  return found
+}
 
 // The extra forge cost (log2) coverage buys: at full coverage it is infinite — no forgery closes the seal;
 // below it, every unmet reciprocal check multiplies the work. Pure — coverage and the check count come in.
@@ -1406,10 +1488,10 @@ export function coverageCostLog2(coverage: number, checks: number): number {
   return coverage >= 1 ? Number.POSITIVE_INFINITY : -checks * Math.log2(1 - Math.min(Math.max(coverage, 0), 1))
 }
 
-// The total cost (log2) to forge a tampered build: the digest floor plus the coverage cost.
+// The total cost (log2) to forge a tampered build: the measured forge floor plus the coverage cost.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function tamperCostLog2(coverage: number, checks: number): number {
-  return DIGEST_BITS + coverageCostLog2(coverage, checks)
+  return FORGE_FLOOR_BITS + coverageCostLog2(coverage, checks)
 }
 
 // Maximum tampering cost is reached only when coverage closes at 1 AND reciprocal entropy is 0.
@@ -2151,7 +2233,7 @@ export function findContentAddressCollision(maxTries = 4_000_000): { found: bool
 // security strength; and hash32 has no cryptanalytic resistance, so the real forge cost is at or below 2^61.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function addressEntropyBits(): { nominalBits: number; discardedBits: number; effectiveBits: number; birthdayLog2: number } {
-  const nominalBits = (64 * 2)
+  const nominalBits = toUuid('').replace(/-/g, '').length * Math.log2(16) // hex digits of an emitted address × bits per hex digit
   // COUNTED FROM THE MASKS toUuid ACTUALLY APPLIES, not typed beside a comment explaining it. A mask
   // KEEPS the bits it sets, so the bits it discards are its complement within the byte — popcount of
   // ~mask over eight bits. 0x0f keeps a nibble and discards four; 0x3f keeps six and discards two.
@@ -2176,8 +2258,9 @@ export function addressEntropyBits(): { nominalBits: number; discardedBits: numb
  * restate it and none has to overstate it.
  */
 export const FORGE_COST_CEILING =
-  `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits, a birthday bound of 2^${addressEntropyBits().birthdayLog2} — `
-  + 'the CEILING this hash offers, not a guarantee (findContentAddressCollision exhibits a real collision in its 32-bit FNV core; toUuidSha256 is the vetted path)'
+  `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits promise a birthday bound of 2^${addressEntropyBits().birthdayLog2}, `
+  + `but ${forgeFloor().lanes} iterated ${forgeFloor().laneBits}-bit lanes collide by Joux multicollision at 2^${FORGE_FLOOR_BITS} — the FLOOR this hash offers `
+  + '(findLaneMulticollision exhibits it; a full four-lane collision was found at 2^33 char-steps; toUuidSha256 is the vetted path)'
 
 // ── Ring algebra — the algebra implicit in the digit folders, made explicit ──────────────────────
 // The digit folders hold the vortex ring (ℤ/9ℤ)* without naming it. These primitives pull that

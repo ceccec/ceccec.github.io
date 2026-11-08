@@ -901,7 +901,35 @@ export declare function asTrace(f: Fold, timeMs?: number): {
     y: number;
 };
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export declare const DIGEST_BITS = 64;
+export declare const DIGEST_BITS: number;
+/**
+ * THE FORGE FLOOR, COUNTED FROM THE LANES — the cheapest known way to land two inputs on one address.
+ *
+ * toUuid is four iterated 32-bit lanes over the same input. The generic birthday bound of its 122 free bits
+ * (2^61) is a CEILING no attacker has to pay: Joux (Crypto 2004) collides one lane at its own birthday bound,
+ * chains laneBits/2 such collisions into 2^(laneBits/2) inputs that all agree on that lane, and birthdays the
+ * next lane among them — so all four lanes collide for (laneBits/2)^(lanes−1) · 2^(laneBits/2) lane steps.
+ * Every lane step is a bijection, so one lane's second preimage meets in the middle at 2^(laneBits/2) too.
+ * findLaneMulticollision exhibits the mechanism; a four-lane run (2^33.3 char-steps) gave two 23,328-char
+ * strings with one toUuid. FORGE_FLOOR_BITS is the collision floor, the cost of a forged twin.
+ */
+export declare function forgeFloor(): {
+    lanes: number;
+    laneBits: number;
+    laneCollisionLog2: number;
+    lanePreimageLog2: number;
+    jouxCollisionLog2: number;
+    birthdayCeilingLog2: number;
+};
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare const FORGE_FLOOR_BITS: number;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function findLaneMulticollision(lanes?: number): {
+    a: string;
+    b: string;
+    lanes: number;
+    steps: number;
+};
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function coverageCostLog2(coverage: number, checks: number): number;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */

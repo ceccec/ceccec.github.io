@@ -1,12 +1,13 @@
 // src/0/index.ts
 var BYTE_MASK = 255;
+function laneStep(h, code) {
+  h = Math.imul((h ^ code) >>> 0, 16777619) >>> 0;
+  return (h ^ h >>> 13) >>> 0;
+}
+var laneStart = (seed) => (2166136261 ^ seed) >>> 0;
 function hash32(input, seed) {
-  let h = (2166136261 ^ seed) >>> 0;
-  for (let i = 0; i < input.length; i++) {
-    h ^= input.charCodeAt(i);
-    h = Math.imul(h, 16777619) >>> 0;
-    h ^= h >>> 13;
-  }
+  let h = laneStart(seed);
+  for (let i = 0; i < input.length; i++) h = laneStep(h, input.charCodeAt(i));
   h = Math.imul(h ^ h >>> 16, 2246822507) >>> 0;
   h = Math.imul(h ^ h >>> 13, 3266489909) >>> 0;
   return (h ^ h >>> 16) >>> 0;
@@ -14,13 +15,9 @@ function hash32(input, seed) {
 function hexByte(value) {
   return value.toString(16).padStart(2, "0");
 }
+var LANE_SEEDS = [0, 2654435769, 608135816, 3084996962];
 function bytesFromSeed(seed) {
-  const words = [
-    hash32(seed, 0),
-    hash32(seed, 2654435769),
-    hash32(seed, 608135816),
-    hash32(seed, 3084996962)
-  ];
+  const words = LANE_SEEDS.map((lane) => hash32(seed, lane));
   return words.flatMap((word) => [
     word >>> 8 * 3 & BYTE_MASK,
     word >>> 16 & BYTE_MASK,
@@ -888,12 +885,80 @@ function asTrace(f, timeMs = 0) {
   });
   return { x: roundTo(x, 5), y: roundTo(y, 5) };
 }
-var DIGEST_BITS = 64;
+var DIGEST_BITS = addressEntropyBits().nominalBits / 2;
+function forgeFloor() {
+  const { nominalBits, birthdayLog2 } = addressEntropyBits();
+  const lanes = LANE_SEEDS.length;
+  const laneBits = nominalBits / lanes;
+  const laneCollisionLog2 = laneBits / 2;
+  return {
+    lanes,
+    laneBits,
+    laneCollisionLog2,
+    lanePreimageLog2: laneBits / 2,
+    // meet in the middle over a bijective step
+    jouxCollisionLog2: (lanes - 1) * Math.log2(laneCollisionLog2) + laneCollisionLog2,
+    birthdayCeilingLog2: birthdayLog2
+  };
+}
+var FORGE_FLOOR_BITS = forgeFloor().jouxCollisionLog2;
+var _multicollisionCache = /* @__PURE__ */ new Map();
+function findLaneMulticollision(lanes = 2) {
+  const cached = _multicollisionCache.get(lanes);
+  if (cached) return cached;
+  const PATHS = forgeFloor().laneBits / 2 + 2;
+  let steps = 0, counter = 0;
+  const run = (h, s) => {
+    for (let i = 0; i < s.length; i++) h = laneStep(h, s.charCodeAt(i));
+    steps += s.length;
+    return h;
+  };
+  const pair = (lane, start) => {
+    if (lane === 0) {
+      const seen2 = /* @__PURE__ */ new Map();
+      for (; ; ) {
+        const block = (counter++).toString(9 * 4);
+        const h = run(start[0], block);
+        const prev = seen2.get(h);
+        if (prev !== void 0) return [prev, block];
+        seen2.set(h, block);
+      }
+    }
+    const segments = [];
+    let shared = start.slice(0, lane);
+    for (let i = 0; i < PATHS; i++) {
+      const p = pair(lane - 1, shared);
+      segments.push(p);
+      shared = shared.map((h) => run(h, p[0]));
+    }
+    const seen = /* @__PURE__ */ new Map();
+    let hit = null;
+    const walk = (i, h, bits) => {
+      if (hit) return;
+      if (i === PATHS) {
+        const prev = seen.get(h);
+        if (prev !== void 0) hit = [prev, bits];
+        else seen.set(h, bits);
+        return;
+      }
+      walk(i + 1, run(h, segments[i][0]), bits);
+      walk(i + 1, run(h, segments[i][1]), bits | 1 << i);
+    };
+    walk(0, start[lane], 0);
+    if (!hit) return pair(lane, start);
+    const spell = (bits) => segments.map((p, i) => p[bits >>> i & 1]).join("");
+    return [spell(hit[0]), spell(hit[1])];
+  };
+  const [a, b] = pair(lanes - 1, LANE_SEEDS.slice(0, lanes).map(laneStart));
+  const found = { a, b, lanes, steps };
+  _multicollisionCache.set(lanes, found);
+  return found;
+}
 function coverageCostLog2(coverage, checks) {
   return coverage >= 1 ? Number.POSITIVE_INFINITY : -checks * Math.log2(1 - Math.min(Math.max(coverage, 0), 1));
 }
 function tamperCostLog2(coverage, checks) {
-  return DIGEST_BITS + coverageCostLog2(coverage, checks);
+  return FORGE_FLOOR_BITS + coverageCostLog2(coverage, checks);
 }
 function maxTamperingCostReached(coverage, entropy) {
   return coverage >= 1 && entropy === 0;
@@ -1434,7 +1499,7 @@ function findContentAddressCollision(maxTries = 4e6) {
   return _collisionCache = { found: false, a: "", b: "", word: 0, tries: maxTries };
 }
 function addressEntropyBits() {
-  const nominalBits = 64 * 2;
+  const nominalBits = toUuid("").replace(/-/g, "").length * Math.log2(16);
   const bitsDiscardedBy = (keeps) => {
     let count = 0;
     for (let bit = 255 & ~keeps; bit !== 0; bit >>>= 1) count += bit & 1;
@@ -1444,7 +1509,7 @@ function addressEntropyBits() {
   const effectiveBits = nominalBits - discardedBits;
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) };
 }
-var FORGE_COST_CEILING = `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits, a birthday bound of 2^${addressEntropyBits().birthdayLog2} \u2014 the CEILING this hash offers, not a guarantee (findContentAddressCollision exhibits a real collision in its 32-bit FNV core; toUuidSha256 is the vetted path)`;
+var FORGE_COST_CEILING = `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits promise a birthday bound of 2^${addressEntropyBits().birthdayLog2}, but ${forgeFloor().lanes} iterated ${forgeFloor().laneBits}-bit lanes collide by Joux multicollision at 2^${FORGE_FLOOR_BITS} \u2014 the FLOOR this hash offers (findLaneMulticollision exhibits it; a full four-lane collision was found at 2^33 char-steps; toUuidSha256 is the vetted path)`;
 function gcd(a, b) {
   a = Math.abs(Math.round(a));
   b = Math.abs(Math.round(b));
@@ -1606,6 +1671,7 @@ function transliterateByMap(text, map) {
 export {
   DIGEST_BITS,
   FORGE_COST_CEILING,
+  FORGE_FLOOR_BITS,
   GATES,
   ICHING_NUMBERS,
   MEMO_CAP,
@@ -1665,6 +1731,7 @@ export {
   equilibrium360,
   exp,
   findContentAddressCollision,
+  findLaneMulticollision,
   floor,
   fold,
   foldFixedPoints,
@@ -1672,6 +1739,7 @@ export {
   foldModulus,
   foldPair,
   foldVortex,
+  forgeFloor,
   gcd,
   gcdBigInt,
   grover,

@@ -46,13 +46,14 @@ var init_node_path = __esm({
 
 // ../../src/0/index.ts
 var BYTE_MASK = 255;
+function laneStep(h, code) {
+  h = Math.imul((h ^ code) >>> 0, 16777619) >>> 0;
+  return (h ^ h >>> 13) >>> 0;
+}
+var laneStart = (seed) => (2166136261 ^ seed) >>> 0;
 function hash32(input, seed) {
-  let h = (2166136261 ^ seed) >>> 0;
-  for (let i = 0; i < input.length; i++) {
-    h ^= input.charCodeAt(i);
-    h = Math.imul(h, 16777619) >>> 0;
-    h ^= h >>> 13;
-  }
+  let h = laneStart(seed);
+  for (let i = 0; i < input.length; i++) h = laneStep(h, input.charCodeAt(i));
   h = Math.imul(h ^ h >>> 16, 2246822507) >>> 0;
   h = Math.imul(h ^ h >>> 13, 3266489909) >>> 0;
   return (h ^ h >>> 16) >>> 0;
@@ -60,13 +61,9 @@ function hash32(input, seed) {
 function hexByte(value) {
   return value.toString(16).padStart(2, "0");
 }
+var LANE_SEEDS = [0, 2654435769, 608135816, 3084996962];
 function bytesFromSeed(seed) {
-  const words = [
-    hash32(seed, 0),
-    hash32(seed, 2654435769),
-    hash32(seed, 608135816),
-    hash32(seed, 3084996962)
-  ];
+  const words = LANE_SEEDS.map((lane) => hash32(seed, lane));
   return words.flatMap((word) => [
     word >>> 8 * 3 & BYTE_MASK,
     word >>> 16 & BYTE_MASK,
@@ -934,12 +931,80 @@ function asTrace(f2, timeMs = 0) {
   });
   return { x: roundTo(x, 5), y: roundTo(y, 5) };
 }
-var DIGEST_BITS = 64;
+var DIGEST_BITS = addressEntropyBits().nominalBits / 2;
+function forgeFloor() {
+  const { nominalBits, birthdayLog2 } = addressEntropyBits();
+  const lanes = LANE_SEEDS.length;
+  const laneBits = nominalBits / lanes;
+  const laneCollisionLog2 = laneBits / 2;
+  return {
+    lanes,
+    laneBits,
+    laneCollisionLog2,
+    lanePreimageLog2: laneBits / 2,
+    // meet in the middle over a bijective step
+    jouxCollisionLog2: (lanes - 1) * Math.log2(laneCollisionLog2) + laneCollisionLog2,
+    birthdayCeilingLog2: birthdayLog2
+  };
+}
+var FORGE_FLOOR_BITS = forgeFloor().jouxCollisionLog2;
+var _multicollisionCache = /* @__PURE__ */ new Map();
+function findLaneMulticollision(lanes = 2) {
+  const cached2 = _multicollisionCache.get(lanes);
+  if (cached2) return cached2;
+  const PATHS = forgeFloor().laneBits / 2 + 2;
+  let steps = 0, counter = 0;
+  const run = (h, s) => {
+    for (let i = 0; i < s.length; i++) h = laneStep(h, s.charCodeAt(i));
+    steps += s.length;
+    return h;
+  };
+  const pair = (lane, start) => {
+    if (lane === 0) {
+      const seen2 = /* @__PURE__ */ new Map();
+      for (; ; ) {
+        const block = (counter++).toString(9 * 4);
+        const h = run(start[0], block);
+        const prev = seen2.get(h);
+        if (prev !== void 0) return [prev, block];
+        seen2.set(h, block);
+      }
+    }
+    const segments = [];
+    let shared = start.slice(0, lane);
+    for (let i = 0; i < PATHS; i++) {
+      const p = pair(lane - 1, shared);
+      segments.push(p);
+      shared = shared.map((h) => run(h, p[0]));
+    }
+    const seen = /* @__PURE__ */ new Map();
+    let hit = null;
+    const walk = (i, h, bits) => {
+      if (hit) return;
+      if (i === PATHS) {
+        const prev = seen.get(h);
+        if (prev !== void 0) hit = [prev, bits];
+        else seen.set(h, bits);
+        return;
+      }
+      walk(i + 1, run(h, segments[i][0]), bits);
+      walk(i + 1, run(h, segments[i][1]), bits | 1 << i);
+    };
+    walk(0, start[lane], 0);
+    if (!hit) return pair(lane, start);
+    const spell = (bits) => segments.map((p, i) => p[bits >>> i & 1]).join("");
+    return [spell(hit[0]), spell(hit[1])];
+  };
+  const [a, b] = pair(lanes - 1, LANE_SEEDS.slice(0, lanes).map(laneStart));
+  const found = { a, b, lanes, steps };
+  _multicollisionCache.set(lanes, found);
+  return found;
+}
 function coverageCostLog2(coverage7, checks) {
   return coverage7 >= 1 ? Number.POSITIVE_INFINITY : -checks * Math.log2(1 - Math.min(Math.max(coverage7, 0), 1));
 }
 function tamperCostLog2(coverage7, checks) {
-  return DIGEST_BITS + coverageCostLog2(coverage7, checks);
+  return FORGE_FLOOR_BITS + coverageCostLog2(coverage7, checks);
 }
 function maxTamperingCostReached(coverage7, entropy4) {
   return coverage7 >= 1 && entropy4 === 0;
@@ -1480,7 +1545,7 @@ function findContentAddressCollision(maxTries = 4e6) {
   return _collisionCache = { found: false, a: "", b: "", word: 0, tries: maxTries };
 }
 function addressEntropyBits() {
-  const nominalBits = 64 * 2;
+  const nominalBits = toUuid("").replace(/-/g, "").length * Math.log2(16);
   const bitsDiscardedBy = (keeps) => {
     let count = 0;
     for (let bit = 255 & ~keeps; bit !== 0; bit >>>= 1) count += bit & 1;
@@ -1490,7 +1555,7 @@ function addressEntropyBits() {
   const effectiveBits = nominalBits - discardedBits;
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) };
 }
-var FORGE_COST_CEILING = `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits, a birthday bound of 2^${addressEntropyBits().birthdayLog2} \u2014 the CEILING this hash offers, not a guarantee (findContentAddressCollision exhibits a real collision in its 32-bit FNV core; toUuidSha256 is the vetted path)`;
+var FORGE_COST_CEILING = `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits promise a birthday bound of 2^${addressEntropyBits().birthdayLog2}, but ${forgeFloor().lanes} iterated ${forgeFloor().laneBits}-bit lanes collide by Joux multicollision at 2^${FORGE_FLOOR_BITS} \u2014 the FLOOR this hash offers (findLaneMulticollision exhibits it; a full four-lane collision was found at 2^33 char-steps; toUuidSha256 is the vetted path)`;
 function gcd(a, b) {
   a = Math.abs(Math.round(a));
   b = Math.abs(Math.round(b));
@@ -61211,13 +61276,17 @@ function oneMathManyPresentations(matrix = buildMatrix()) {
 function tamperingCostAndUuidLiveInZero(matrix = buildMatrix()) {
   const proof = proofReport(matrix);
   const sample9 = merkabaFoldUrl("https://example.com/a/b");
+  const laneTwins = findLaneMulticollision(2);
+  const hexOf = (seed) => toUuid(seed).replace(/-/g, "");
   const facets = [
     { facet: "the cost MATH is pure and at the origin \u2014 coverageCostLog2(1,n)=\u221E, coverageCostLog2(0,n)=0", on: coverageCostLog2(1, 5 * 2) === Number.POSITIVE_INFINITY && coverageCostLog2(0, 5 * 2) === 0 },
-    { facet: "the forge floor is the digest \u2014 tamperCostLog2(0,n) = DIGEST_BITS", on: tamperCostLog2(0, 5 * 2) === DIGEST_BITS && DIGEST_BITS === 64 },
+    { facet: "the forge floor is MEASURED \u2014 tamperCostLog2(0,n) = FORGE_FLOOR_BITS, the Joux floor of the four iterated lanes, below the birthday ceiling", on: tamperCostLog2(0, 5 * 2) === FORGE_FLOOR_BITS && FORGE_FLOOR_BITS < forgeFloor().birthdayCeilingLog2 },
+    { facet: "the floor is exhibited, not argued \u2014 findLaneMulticollision returns two distinct inputs whose toUuid agree on exactly the first two lanes", on: laneTwins.a !== laneTwins.b && hexOf(laneTwins.a).slice(0, 16) === hexOf(laneTwins.b).slice(0, 16) && hexOf(laneTwins.a).slice(16) !== hexOf(laneTwins.b).slice(16) },
+    { facet: "DIGEST_BITS is half the address (128 / 2), a width and not the floor", on: DIGEST_BITS * 2 === addressEntropyBits().nominalBits && DIGEST_BITS !== FORGE_FLOOR_BITS },
     { facet: "max cost reached only at coverage=1 \u2227 entropy=0", on: maxTamperingCostReached(1, 0) === true && maxTamperingCostReached(1 - 1 / (100 * 5 * 2), 0) === false && maxTamperingCostReached(1, 1 / (5 * 2)) === false },
     { facet: "T_max is the one value: \u221E iff the seal closes, else the finite cost \u2014 proofReport and the build report both read it", on: maxTamperingCostLog2(true, 5) === Number.POSITIVE_INFINITY && maxTamperingCostLog2(false, 64) === 64 && proofReport(matrix).maxTamperingCostLog2 === maxTamperingCostLog2(proofReport(matrix).maxTamperingCostReached, proofReport(matrix).tamperCostLog2) },
     { facet: "the seal is tamper-evident \u2014 any tamper token changes the root", on: tamperEvident(matrix.root) },
-    { facet: "proofReport now MEASURES and passes params \u2014 its digest is the src/0 floor", on: proof.digestBits === DIGEST_BITS },
+    { facet: "proofReport now MEASURES and passes params \u2014 its digest is the src/0 half-address and its finite cost starts at the measured floor", on: proof.digestBits === DIGEST_BITS && proof.tamperCostLog2 >= FORGE_FLOOR_BITS },
     { facet: "all uuid logic at the origin \u2014 toUuid, merkabaFoldUrl (URL fold), uuidHero, the principle", on: isUuid(toUuid("x")) && isUuid(sample9) && merkabaFoldUrl("https://example.com/a/b") === sample9 && uuidHero(sample9).unique && MAX_TAMPERING_COST_PRINCIPLE.length > 0 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`tamper-uuid-zero:${entry2.facet}:${entry2.on}`) }));
   return {
@@ -61225,12 +61294,12 @@ function tamperingCostAndUuidLiveInZero(matrix = buildMatrix()) {
     station: "src/0",
     importsNothing: true,
     // the cost math and the uuid logic depend only on Math + each other, never the matrix
-    costMath: ["DIGEST_BITS", "coverageCostLog2", "tamperCostLog2", "maxTamperingCostReached", "maxTamperingCostLog2", "tamperEvident", "MAX_TAMPERING_COST_PRINCIPLE"],
+    costMath: ["FORGE_FLOOR_BITS", "forgeFloor", "findLaneMulticollision", "DIGEST_BITS", "coverageCostLog2", "tamperCostLog2", "maxTamperingCostReached", "maxTamperingCostLog2", "tamperEvident", "MAX_TAMPERING_COST_PRINCIPLE"],
     uuidLogic: ["toUuid", "isUuid", "seedFromText", "merge", "foldPair", "merkleFold", "Uuid", "merkabaFoldUrl", "entry", "uuidHero"],
     facets,
     root: merge(matrix.root, merkleFold(facets.map((entry2) => entry2.receipt))),
-    statement: "All uuid logic and the maximum tampering cost live in src/0. The content-address is the security model \u2014 toUuid is the atom of identity and the maximum tampering cost is the cost to forge a content-addressed seal \u2014 so both are homed at the origin. The cost math (DIGEST_BITS, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, tamperEvident, the principle) is pure: proofReport now only measures the matrix's coverage and reciprocal entropy and passes them in, owning the measurement not the math. The uuid logic at the origin spans the kernel (toUuid, isUuid, seedFromText, merge, foldPair, merkleFold) plus the Uuid type, the URL merkaba fold (merkabaFoldUrl), entry, and uuidHero \u2014 all importing nothing, the library and the core re-exporting them byte-for-byte.",
-    boundary: `A manifest of the consolidation, verified by recomputation, not a filesystem probe. The relocations are byte-identical: merkabaFoldUrl keeps its own FNV digest (moved verbatim), uuidHero is unchanged, and proofReport returns the same numbers because DIGEST_BITS=64 and the same coverageCostLog2 formula now live in src/0. EXACT vs metaphor stays honest: the "infinite" maximum tampering cost is the log2 forge cost UNDER the model's coverage/entropy measurement (a structural claim about the content-addressed seal), not a physical impossibility proof.`
+    statement: "All uuid logic and the maximum tampering cost live in src/0. The content-address is the security model \u2014 toUuid is the atom of identity and the maximum tampering cost is the cost to forge a content-addressed seal \u2014 so both are homed at the origin. The cost math (FORGE_FLOOR_BITS from forgeFloor, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, tamperEvident, the principle) is pure: proofReport now only measures the matrix's coverage and reciprocal entropy and passes them in, owning the measurement not the math. The uuid logic at the origin spans the kernel (toUuid, isUuid, seedFromText, merge, foldPair, merkleFold) plus the Uuid type, the URL merkaba fold (merkabaFoldUrl), entry, and uuidHero \u2014 all importing nothing, the library and the core re-exporting them byte-for-byte.",
+    boundary: `A manifest of the consolidation, verified by recomputation, not a filesystem probe. The relocations are byte-identical: merkabaFoldUrl keeps its own FNV digest (moved verbatim), uuidHero is unchanged, and proofReport's finite cost reads FORGE_FLOOR_BITS (the Joux floor, 2^28) and no longer DIGEST_BITS=64, the half-address width it was mistaken for until a full toUuid collision was found at ~2^33. The finite forge cost is that of a forged twin: tamper-EVIDENT, not tamper-resistant. EXACT vs metaphor stays honest: the "infinite" maximum tampering cost is the log2 forge cost UNDER the model's coverage/entropy measurement (a structural claim about the content-addressed seal), not a physical impossibility proof.`
   };
 }
 function maxEfficiencyCpuGpuMemoryStorageCooperation(matrix = buildMatrix()) {
@@ -73503,6 +73572,7 @@ export {
   DIGEST_BITS,
   FOCAL,
   FORGE_COST_CEILING,
+  FORGE_FLOOR_BITS,
   GATES,
   GENRES,
   HEALING_PAIRS,
@@ -73610,6 +73680,7 @@ export {
   fThetaPhiXyzDigitNIsTheInversePair,
   fieldLayers,
   findContentAddressCollision,
+  findLaneMulticollision,
   floor,
   fold,
   foldFixedPoints,
@@ -73617,6 +73688,7 @@ export {
   foldModulus,
   foldPair,
   foldVortex,
+  forgeFloor,
   fuseAll,
   gcd,
   gcdBigInt,

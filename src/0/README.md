@@ -116,9 +116,12 @@ The cost **math** is pure; the matrix-bound `proofReport` (in the core) only *me
 entropy and **passes them in** — it owns the measurement, not the math.
 | export | what it is |
 |---|---|
-| `DIGEST_BITS` (= 64) | the forge floor per content-address, in bits (log2). |
+| `DIGEST_BITS` (= 64) | half the address, `nominalBits / 2` — the single-torus digest WIDTH. Not a security floor. |
+| `forgeFloor()` | the forge floor counted from the lanes: 4 iterated 32-bit lanes, lane collision 2^16, Joux four-lane collision `(32/2)³·2¹⁶ = 2^28`, against the 2^61 birthday CEILING of the 122 free bits. |
+| `FORGE_FLOOR_BITS` (= 28) | the measured floor the cost reads. A full four-lane `toUuid` collision was found at 2^33.3 char-steps (two 23,328-char strings, one uuid). |
+| `findLaneMulticollision(lanes=2)` | the floor exhibited, not argued — two inputs whose `toUuid` agree on the first `lanes` words (two lanes ≈ 3 s; four ≈ 24 min). |
 | `coverageCostLog2(coverage, checks)` | the forge cost coverage buys: `∞` at full coverage, else `−checks·log2(1−coverage)`. |
-| `tamperCostLog2(coverage, checks)` | `DIGEST_BITS + coverageCostLog2(…)` — total log2 cost to forge a tampered build. |
+| `tamperCostLog2(coverage, checks)` | `FORGE_FLOOR_BITS + coverageCostLog2(…)` — total log2 cost to forge a tampered build. |
 | `maxTamperingCostReached(coverage, entropy)` | the seal-closed predicate: `coverage ≥ 1 ∧ entropy === 0`. |
 | `maxTamperingCostLog2(sealClosed, finiteCostLog2)` | **T_max** — the value the principle names: `∞` once the seal closes, else the finite cost. The single definition `proofReport` and the build report both read (neither hard-codes ∞). |
 | `tamperEvident(root)` | folding any tamper token into an address always changes it. |
