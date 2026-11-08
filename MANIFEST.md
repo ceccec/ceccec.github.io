@@ -30,17 +30,17 @@
 
 | Fold | Facets on | Root |
 |---|---|---|
-| `vortex-axis-bridge` | 5 / 5 | `ac4c464a-7355-8d40-a86e-aace39ebd46f` |
-| `rosetta-rotation` | 4 / 4 | `fda1617c-1c0b-846d-acdd-28a17df43895` |
-| `water-involution` | 5 / 5 | `179f1240-b038-8e31-b46e-ab20a5f17e4f` |
-| `pollution-is-fuel` | 4 / 4 | `fe71e40d-cba5-82f0-8e6f-fd0f62815da1` |
-| `drift-measures` | 6 / 6 | `9262ddc3-e406-8c74-8c15-8734be01e91c` |
-| `cross-uuid-is-a-mac` | 6 / 6 | `6a6c4572-6374-8c6e-a5e5-40f6b0c3ea02` |
-| `census-derived` | 8 / 8 | `4a3831b1-16d6-8259-8e00-87aed7ae7852` |
-| `magic-numbers` | 4 / 4 | `ddb89223-5efe-86c1-bc98-c9c63d90f96d` |
-| `432-acoustic` | 4 / 4 | `ff224efa-e38c-86e4-b7bc-10984bf2ccc2` |
-| `merkaba-axis-null` | 4 / 4 | `9ee3ed69-3f56-8276-b172-3826dd2dea9f` |
-| `colour-maps` | 3 / 3 | `6389fa3c-852d-88bc-b9e9-cb7f4404d28b` |
+| `vortex-axis-bridge` | 5 / 5 | `6c1b7d41-0fb9-8a00-9dd5-c69b15b8221a` |
+| `rosetta-rotation` | 4 / 4 | `caaa9c30-07c3-80f2-8792-969fe579dc83` |
+| `water-involution` | 5 / 5 | `1ecc4ec2-ff32-8ae3-bdd9-6218f9c13f3d` |
+| `pollution-is-fuel` | 4 / 4 | `5a31f9b0-3f43-8920-9ae4-f67bb352d029` |
+| `drift-measures` | 6 / 6 | `3b28f5da-ad92-8368-913c-38af66dbe9c6` |
+| `cross-uuid-is-a-mac` | 6 / 6 | `833e0a1b-0566-889d-b0a7-07dbf9bf7f02` |
+| `census-derived` | 8 / 8 | `8ba447f7-9943-8076-a5f6-dd761dcb1e80` |
+| `magic-numbers` | 4 / 4 | `22ea284e-e85c-81bb-8f37-740431e3a07e` |
+| `432-acoustic` | 4 / 4 | `c08f9981-0f45-828d-ab87-32784bf44ccb` |
+| `merkaba-axis-null` | 4 / 4 | `e0efd9b5-e71f-864a-afbf-dd37b68435ab` |
+| `colour-maps` | 3 / 3 | `abc6b36d-a5f6-8251-ba15-ce0718679125` |
 
 ## Not claimed
 

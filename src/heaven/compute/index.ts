@@ -9,7 +9,7 @@ import type {
 import { atoms } from '../atoms/index.ts'
 import { DIGEST_BITS, GATES, abs, applyGate, asMerkaba, asMerkle, asTorus, asTrace, asVortex, cnot, computesGate, coverageCostLog2, floor, fold, foldPair, humanBreath, humanEase, isUuid, log10, log2, max, maxTamperingCostLog2, maxTamperingCostReached, measure, memoByRoot, merge, merkabaFoldUrl, merkleFold, min, probabilities, qubits, resourceCooperationPolicy, round, roundTo, runQuantumCircuit, sample, sealFacets, seedFromText, tamperCostLog2, toUuid, uuidHero, sqrt } from '../../0/index.ts'
 import { digitalRoot, VORTEX_SEQUENCE, foldVortex, modUnits, multiplicativeOrder, prng, referralAddress } from '../../0/index.ts'
-import { FORGE_FLOOR_BITS, addressEntropyBits, findLaneMulticollision, forgeFloor, sha256Sync, toUuidSha256 } from '../../0/index.ts'
+import { FORGE_FLOOR_BITS, addressEntropyBits, findLaneMulticollision, forgeFloor, sha256Sync, toUuidFnv, toUuidSha256 } from '../../0/index.ts'
 import { THEOREM_ATOM_SEED, IDENTITY_JUDGED_PROCESS } from '../../4/6/index.ts'
 import { foldMagmaLaws } from '../../5/5/index.ts'
 import { A432_FOLDED, CANONICAL_HOST, EULER_CHI, FOLDED_CENSUS, HOMOLOGY_LOOPS, SQRT1_2, UNFOLDED_CENSUS, algebraicStatementOf, demarcate, earned, extractAlgebraicStatement, landauerLimit, rat, ratAdd, ratEq, ratMul, foldVerdict} from '../../3/7/index.ts'
@@ -933,11 +933,11 @@ export function tamperingCostAndUuidLiveInZero(matrix: MindMatrix = buildMatrix(
   const proof = proofReport(matrix)
   const sample = merkabaFoldUrl('https://example.com/a/b')
   const laneTwins = findLaneMulticollision(2)
-  const hexOf = (seed: string): string => toUuid(seed).replace(/-/g, '')
+  const hexOf = (seed: string): string => toUuidFnv(seed).replace(/-/g, '')
   const facets = [
     { facet: 'the cost MATH is pure and at the origin — coverageCostLog2(1,n)=∞, coverageCostLog2(0,n)=0', on: coverageCostLog2(1, (5 * 2)) === Number.POSITIVE_INFINITY && coverageCostLog2(0, (5 * 2)) === 0 },
-    { facet: 'the forge floor is MEASURED — tamperCostLog2(0,n) = FORGE_FLOOR_BITS, the Joux floor of the four iterated lanes, below the birthday ceiling', on: tamperCostLog2(0, (5 * 2)) === FORGE_FLOOR_BITS && FORGE_FLOOR_BITS < forgeFloor().birthdayCeilingLog2 },
-    { facet: 'the floor is exhibited, not argued — findLaneMulticollision returns two distinct inputs whose toUuid agree on exactly the first two lanes', on: laneTwins.a !== laneTwins.b && hexOf(laneTwins.a).slice(0, 16) === hexOf(laneTwins.b).slice(0, 16) && hexOf(laneTwins.a).slice(16) !== hexOf(laneTwins.b).slice(16) },
+    { facet: 'the forge floor is MEASURED — tamperCostLog2(0,n) = FORGE_FLOOR_BITS; SHA-256 meets its birthday ceiling, the retired FNV lanes fell below it by Joux', on: tamperCostLog2(0, (5 * 2)) === FORGE_FLOOR_BITS && FORGE_FLOOR_BITS === forgeFloor().birthdayCeilingLog2 && forgeFloor().fnv.jouxCollisionLog2 < FORGE_FLOOR_BITS },
+    { facet: 'the retirement is exhibited, not argued — findLaneMulticollision returns two distinct inputs whose toUuidFnv agree on exactly the first two lanes, and toUuid tells them apart', on: laneTwins.a !== laneTwins.b && hexOf(laneTwins.a).slice(0, 16) === hexOf(laneTwins.b).slice(0, 16) && hexOf(laneTwins.a).slice(16) !== hexOf(laneTwins.b).slice(16) && toUuid(laneTwins.a) !== toUuid(laneTwins.b) },
     { facet: 'DIGEST_BITS is half the address (128 / 2), a width and not the floor', on: DIGEST_BITS * 2 === addressEntropyBits().nominalBits && DIGEST_BITS !== FORGE_FLOOR_BITS },
     { facet: 'max cost reached only at coverage=1 ∧ entropy=0', on: maxTamperingCostReached(1, 0) === true && maxTamperingCostReached((1 - 1 / (100 * 5 * 2)), 0) === false && maxTamperingCostReached(1, (1 / (5 * 2))) === false },
     { facet: 'T_max is the one value: ∞ iff the seal closes, else the finite cost — proofReport and the build report both read it', on: maxTamperingCostLog2(true, 5) === Number.POSITIVE_INFINITY && maxTamperingCostLog2(false, 64) === 64 && proofReport(matrix).maxTamperingCostLog2 === maxTamperingCostLog2(proofReport(matrix).maxTamperingCostReached, proofReport(matrix).tamperCostLog2) },
@@ -956,7 +956,7 @@ export function tamperingCostAndUuidLiveInZero(matrix: MindMatrix = buildMatrix(
     statement:
       'All uuid logic and the maximum tampering cost live in src/0. The content-address is the security model — toUuid is the atom of identity and the maximum tampering cost is the cost to forge a content-addressed seal — so both are homed at the origin. The cost math (FORGE_FLOOR_BITS from forgeFloor, coverageCostLog2, tamperCostLog2, maxTamperingCostReached, tamperEvident, the principle) is pure: proofReport now only measures the matrix\'s coverage and reciprocal entropy and passes them in, owning the measurement not the math. The uuid logic at the origin spans the kernel (toUuid, isUuid, seedFromText, merge, foldPair, merkleFold) plus the Uuid type, the URL merkaba fold (merkabaFoldUrl), entry, and uuidHero — all importing nothing, the library and the core re-exporting them byte-for-byte.',
     boundary:
-      'A manifest of the consolidation, verified by recomputation, not a filesystem probe. The relocations are byte-identical: merkabaFoldUrl keeps its own FNV digest (moved verbatim), uuidHero is unchanged, and proofReport\'s finite cost reads FORGE_FLOOR_BITS (the Joux floor, 2^28) and no longer DIGEST_BITS=64, the half-address width it was mistaken for until a full toUuid collision was found at ~2^33. The finite forge cost is that of a forged twin: tamper-EVIDENT, not tamper-resistant. EXACT vs metaphor stays honest: the "infinite" maximum tampering cost is the log2 forge cost UNDER the model\'s coverage/entropy measurement (a structural claim about the content-addressed seal), not a physical impossibility proof.' }
+      'A manifest of the consolidation, verified by recomputation, not a filesystem probe. The relocations are byte-identical: merkabaFoldUrl keeps its own FNV digest (moved verbatim), uuidHero is unchanged, and proofReport\'s finite cost reads FORGE_FLOOR_BITS and no longer DIGEST_BITS=64, the half-address width it was mistaken for. The four FNV lanes under toUuid collided at ~2^33 (Joux, floor 2^28), so toUuid was cut over to SHA-256 (RFC 9562 v8 over its first 16 octets), whose floor is the birthday bound of its 122 free bits, 2^61. The finite forge cost is that of a forged twin. EXACT vs metaphor stays honest: the "infinite" maximum tampering cost is the log2 forge cost UNDER the model\'s coverage/entropy measurement (a structural claim about the content-addressed seal), not a physical impossibility proof.' }
 }
 
 export function typesMakeTheRealGraph(matrix: MindMatrix = buildMatrix()) {
@@ -8262,7 +8262,7 @@ export function mapStandardsToTheoremsMakesCodeProseBidirectionalAtOnce() {
     asTheorem('NIST FIPS 180-4 (SHA-256)', () => sha256Sync('abc') === 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'),
     // Checked the way its neighbour checks SHA-256 — against a fixed vector, not against itself. A
     // conformance check that compares a function with itself conforms to nothing.
-    asTheorem('content-address determinism', () => toUuid('x') === '7dacc13e-069b-8280-b30d-1a11be1486b4'),
+    asTheorem('content-address determinism', () => toUuid('x') === '2d711642-b726-8044-8162-7ca9fbac32f5'),
     asTheorem('zero-egress by default', () => true),
   ]
   const proseToCode = mapped.every((m) => typeof m.result === 'boolean') // each prose requirement is a computing check

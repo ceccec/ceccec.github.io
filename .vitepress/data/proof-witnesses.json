@@ -70,7 +70,7 @@
    0.828427,
    1,
    0,
-   699.976
+   640.048
   ],
   "holds": true,
   "caption": "the quantities mechanicalToolsEntangleBinaryAndAnalogBellBounds computes for this theorem (classicalCHSH, quantumCHSH, bellGap, bellConcurrence, productConcurrence, analogHz), drawn from its own run — no other proof returns them"
@@ -184,8 +184,8 @@
  "the movie wires theorems by natural entanglements, not by index — the circle’s coordinates become the transpose-symmetric 42-cell area": {
   "form": "bars",
   "values": [
-   41,
-   0.0852
+   42,
+   0.0839
   ],
   "holds": true,
   "caption": "the quantities theMovieWiresTheoremsByNaturalEntanglementsNotByIndex computes for this theorem (spokes, linearNeighbourFraction), drawn from its own run — no other proof returns them"
@@ -227,7 +227,7 @@
  "rosters derive or ledger — a hand-list inside a fold is the hardcoded-value crack one level up": {
   "form": "bars",
   "values": [
-   1124,
+   1214,
    78,
    168,
    986,
@@ -298,47 +298,48 @@
  "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
   "form": "bars",
   "values": [
-   12,
-   29,
-   36,
-   56,
-   56,
-   47,
-   7,
-   48,
-   29,
-   41,
-   16,
-   36,
-   19,
-   4,
-   13,
-   24,
-   11,
-   33,
-   13,
-   13,
-   12,
-   11,
    8,
-   10,
-   52,
-   9,
-   9,
-   4,
-   8,
-   12,
-   10,
-   4,
-   7,
-   11,
-   10,
-   11,
-   9,
+   35,
+   34,
+   40,
+   54,
    6,
+   39,
+   61,
+   57,
+   9,
+   7,
+   12,
+   10,
+   49,
+   11,
+   30,
+   36,
+   31,
+   12,
+   21,
+   9,
+   12,
+   12,
+   6,
+   12,
+   19,
+   15,
+   14,
    8,
-   3,
-   7
+   9,
+   7,
+   19,
+   2,
+   10,
+   9,
+   10,
+   6,
+   5,
+   8,
+   4,
+   4,
+   2
   ],
   "holds": true,
   "caption": "numbers animationsNaturalEntanglementsByTheorems computes for this theorem (cells[].members), drawn from its own run — no other proof returns them"
@@ -699,7 +700,7 @@
   "form": "bars",
   "values": [
    7680,
-   0.21042,
+   0.210148,
    0.2
   ],
   "holds": true,
@@ -1050,7 +1051,7 @@
    764,
    764,
    12,
-   107
+   105
   ],
   "holds": true,
   "caption": "the quantities everyAnimationIsItselfAUniqueTheorem computes for this theorem (total, uniqueTheorems, rungOnly, withPhase), drawn from its own run — no other proof returns them"
@@ -1157,8 +1158,8 @@
   "form": "bars",
   "values": [
    64,
-   193,
-   20
+   120,
+   147
   ],
   "holds": true,
   "caption": "the quantities improvingIChingAndRosettaInChatHexagramColourAndContentAddressedCombinationDedup computes for this theorem (hexCount, hue1, hue2), drawn from its own run — no other proof returns them"
@@ -1223,7 +1224,7 @@
   "form": "bars",
   "values": [
    0,
-   174,
+   153,
    5
   ],
   "holds": true,
@@ -1270,7 +1271,7 @@
  "clay is not 0 but completed/total in gravity units — the completed related gravity (Σ digital-root) is real mass, while the center solution stays 0/1 (completion ≠ solution)": {
   "form": "bars",
   "values": [
-   174,
+   153,
    0
   ],
   "holds": true,
@@ -1288,7 +1289,7 @@
  "gravity comes from the reverse-engineering cost — astronomical but FINITE (2^128/2^256), not infinite; \"infinite\" is the harmony, the truth is a finite bound": {
   "form": "bars",
   "values": [
-   1955,
+   1898,
    128,
    256
   ],
@@ -1309,12 +1310,12 @@
  "the gravity units are real bits of computation — the content-address bit-content of each related theorem (~64/128 bits), summed per problem; the solved-bit center stays 0": {
   "form": "bars",
   "values": [
-   333,
-   322,
-   329,
-   335,
-   323,
-   313
+   303,
+   306,
+   328,
+   308,
+   337,
+   316
   ],
   "holds": true,
   "caption": "numbers theGravityUnitsAreRealBitsOfComputationTheContentAddressBitsOfTheRelatedTheorems computes for this theorem (perProblemBits), drawn from its own run — no other proof returns them"
@@ -1342,12 +1343,12 @@
  "the diamonds are an index AND a solver — clay marks the boundary: solver where the theorem computes, index-only where  (the open Millennium cells)": {
   "form": "bars",
   "values": [
-   846,
-   147,
-   857,
-   143,
-   1022,
-   971
+   727,
+   330,
+   665,
+   961,
+   791,
+   505
   ],
   "holds": true,
   "caption": "numbers theDiamondsAreAnIndexAndASolverClayMarksTheOpenCellsThatIndexOnly computes for this theorem (clayDiamonds), drawn from its own run — no other proof returns them"
@@ -1356,8 +1357,8 @@
   "form": "bars",
   "values": [
    1024,
-   231,
-   666
+   179,
+   391
   ],
   "holds": true,
   "caption": "the quantities learningToUseTheDiamondsInChatEachIsAContentAddressedProblemToSolutionSlot computes for this theorem (diamonds, slotQ1, slotQ2), drawn from its own run — no other proof returns them"
@@ -1403,8 +1404,8 @@
  "the animation generator now emits the double-torus channels (direction cw/ccw + amplitude) from independent address halves — real visible distinctness (559 vs 107), not just proven": {
   "form": "bars",
   "values": [
-   599,
-   107,
+   598,
+   105,
    764
   ],
   "holds": true,
@@ -1423,18 +1424,27 @@
  "improving animation visible distinctness — derive direction (1 bit) and amplitude (1..9) from the content-address, orthogonal to the rung, so animations look distinct beyond colour": {
   "form": "bars",
   "values": [
-   620,
+   612,
    12
   ],
   "holds": true,
   "caption": "the quantities improvingAnimationVisibleDistinctnessByDerivingDirectionAndAmplitudeFromTheContentAddressNotColourAlone computes for this theorem (distinctVisibleSignatures, divisorsOf108), drawn from its own run — no other proof returns them"
  },
- "wiring public APIs to theorems in chat emerges new content-addressed animations — new API data → new animation, all rungs of the one 108s clock": {
+ "animation generation from prose is computed from the content-algebra — each prose a unique animation (rung/phase from its address), a rung of the 108s clock": {
   "form": "bars",
   "values": [
    18,
+   54
+  ],
+  "holds": true,
+  "caption": "the quantities animationGenerationFromProseIsComputedFromTheContentAlgebraEachProseAUniqueAnimationRungOfTheClock computes for this theorem (rungP1, rungP2), drawn from its own run — no other proof returns them"
+ },
+ "wiring public APIs to theorems in chat emerges new content-addressed animations — new API data → new animation, all rungs of the one 108s clock": {
+  "form": "bars",
+  "values": [
+   9,
    54,
-   108
+   12
   ],
   "holds": true,
   "caption": "the quantities wiringPublicApisToTheoremsInChatEmergesNewContentAddressedAnimations computes for this theorem (baseRung, wiredRungA, wiredRungB), drawn from its own run — no other proof returns them"
@@ -1635,6 +1645,15 @@
   "holds": true,
   "caption": "the quantities theoremAsStandardScientificPaperCompletesTheImradMappingEverySectionComputedWithHonestClassification computes for this theorem (sections, resultsInSample), drawn from its own run — no other proof returns them"
  },
+ "what a theorem is here — a computational claim with refutable facets, NOT a formal-logic theorem; its standard scientific format mapping begun, not complete": {
+  "form": "bars",
+  "values": [
+   5,
+   30
+  ],
+  "holds": true,
+  "caption": "the quantities whatATheoremIsInThisCorpusIsAComputationalClaimWithRefutableFacetsAndItsStandardScientificFormatMapping computes for this theorem (sampleFacets, pages), drawn from its own run — no other proof returns them"
+ },
  "ranking hubs by src-folder gravity destroys SEO — the gravity must be over the semantic slug taxonomy, not architecture (t.home is not a URL)": {
   "form": "bars",
   "values": [
@@ -1648,7 +1667,7 @@
   "form": "bars",
   "values": [
    57,
-   681
+   653
   ],
   "holds": true,
   "caption": "the quantities theTopLevelHubRoutesAreComputableFromTheoremGravityAndDistributionNotAHardcodedListEmptyPlaceholdersFallAway computes for this theorem (domainCount, topGravity), drawn from its own run — no other proof returns them"
@@ -1675,7 +1694,7 @@
   "form": "bars",
   "values": [
    5,
-   54
+   1
   ],
   "holds": true,
   "caption": "the quantities theChatDesignsArtifactsAsComputedRenderSpecsFiguresAnimationsColoursContentAddressed computes for this theorem (controls, animationRung), drawn from its own run — no other proof returns them"
@@ -1922,6 +1941,15 @@
   ],
   "holds": true,
   "caption": "the quantities siteAuditsItselfThroughChatForUsabilityAndAccessibilityBounded computes for this theorem (automatableCount, manualCount), drawn from its own run — no other proof returns them"
+ },
+ "UI tools in chat wave 1: the answer is a rich render-spec (card, figure, animation, colour, links, controls)": {
+  "form": "bars",
+  "values": [
+   5,
+   83.3333
+  ],
+  "holds": true,
+  "caption": "the quantities uiToolsForChatRenderSpecComponentsWaveOne computes for this theorem (relatedCount, hue), drawn from its own run — no other proof returns them"
  },
  "the 1024 diamonds are a 32² square matrix of theorem references — a content-addressed problem→solution index, ": {
   "form": "bars",
@@ -2659,12 +2687,12 @@
  "the two bits are the duality gateways — teleportation, superdense, the xiàng and the coins share one V₄": {
   "form": "bars",
   "values": [
+   1,
    0,
-   0,
-   1
+   0
   ],
   "holds": true,
-  "caption": "numbers twoBitsAreTheDualityGateways computes for this theorem (crossings[].b1), drawn from its own run — no other proof returns them"
+  "caption": "numbers twoBitsAreTheDualityGateways computes for this theorem (crossings[].b2), drawn from its own run — no other proof returns them"
  },
  "the discovery economy is the core of competition and education — first new 0 wins the attaching bits": {
   "form": "bars",
@@ -2939,9 +2967,9 @@
  "The disjoint minds' work fuses into one corpus by the merkle union — no theorem escapes": {
   "form": "bars",
   "values": [
-   11,
    13,
-   8
+   8,
+   11
   ],
   "holds": true,
   "caption": "numbers theDisjointMindsWorkFusesIntoOneCorpusByTheMerkleUnionSoNoTheoremEscapes computes for this theorem (shares), drawn from its own run — no other proof returns them"
@@ -3135,8 +3163,8 @@
   "values": [
    129,
    77,
-   118,
-   0.915
+   119,
+   0.922
   ],
   "holds": true,
   "caption": "the quantities theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost computes for this theorem (files, rosettaNamed, contentAddress, usedInMostFiles), drawn from its own run — no other proof returns them"

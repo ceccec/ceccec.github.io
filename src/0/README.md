@@ -33,7 +33,8 @@ security *property* of that atom (the log2 work to forge a content-addressed sea
 ### Waves 1–2 · the content-address kernel (the fold cascade)
 | export | what it is |
 |---|---|
-| `toUuid(seed)` | content-address: any string → a deterministic UUID (the dot, the fold). Memoized — each unique address hashed once. Uses a private FNV-1a (`hash32`, `bytesFromSeed`). |
+| `toUuid(seed)` | content-address: any string → a deterministic UUID (the dot, the fold). Memoized — each unique address hashed once. SHA-256, first 16 octets, RFC 9562 v8 masks — the same address `statementUuid` and uuidna compute. |
+| `toUuidFnv(seed)` | the pre-cutover address — four FNV-1a lanes (`hash32`, `bytesFromSeed`); kept as the red-team's target only. |
 | `merge(a, b)` | `toUuid("a:b")` — folds two addresses into one. The atom of every fold. |
 | `foldPair(a, b)` | `{ forward, reverse, bidirectional, merged }` — the fold both ways and the identity they fold back into. |
 | `merkleFold(leaves)` | contract a set to one root (sorted for order-independence, folded pairwise up the tree). |
@@ -117,9 +118,9 @@ entropy and **passes them in** — it owns the measurement, not the math.
 | export | what it is |
 |---|---|
 | `DIGEST_BITS` (= 64) | half the address, `nominalBits / 2` — the single-torus digest WIDTH. Not a security floor. |
-| `forgeFloor()` | the forge floor counted from the lanes: 4 iterated 32-bit lanes, lane collision 2^16, Joux four-lane collision `(32/2)³·2¹⁶ = 2^28`, against the 2^61 birthday CEILING of the 122 free bits. |
-| `FORGE_FLOOR_BITS` (= 28) | the measured floor the cost reads. A full four-lane `toUuid` collision was found at 2^33.3 char-steps (two 23,328-char strings, one uuid). |
-| `findLaneMulticollision(lanes=2)` | the floor exhibited, not argued — two inputs whose `toUuid` agree on the first `lanes` words (two lanes ≈ 3 s; four ≈ 24 min). |
+| `forgeFloor()` | the forge floor of the active hasher — SHA-256 meets its 2^61 birthday ceiling over 122 free bits; `.fnv` counts the retired lanes: lane collision 2^16, Joux four-lane `(32/2)³·2¹⁶ = 2^28`. |
+| `FORGE_FLOOR_BITS` (= 61) | the floor the cost reads. It was 28 under the FNV lanes, where a full four-lane collision was found at 2^33.3 char-steps (two 23,328-char strings, one uuid) — the reason for the cutover. |
+| `findLaneMulticollision(lanes=2)` | the retirement exhibited, not argued — two inputs whose `toUuidFnv` agree on the first `lanes` words (two lanes ≈ 3 s; four ≈ 24 min). |
 | `coverageCostLog2(coverage, checks)` | the forge cost coverage buys: `∞` at full coverage, else `−checks·log2(1−coverage)`. |
 | `tamperCostLog2(coverage, checks)` | `FORGE_FLOOR_BITS + coverageCostLog2(…)` — total log2 cost to forge a tampered build. |
 | `maxTamperingCostReached(coverage, entropy)` | the seal-closed predicate: `coverage ≥ 1 ∧ entropy === 0`. |
@@ -179,10 +180,10 @@ real, verified implementation here, with each item's irreducible **residual** st
 | `sha256MerkleRoot` · `sha256MerkleProof` · `verifySha256Proof` | a SHA‑256 Merkle tree with inclusion proofs (distinct from the core **FNV** `verifyMerkleProof`). | — |
 | `ed25519Keypair` · `ed25519Sign` · `ed25519Verify` | real Ed25519 signing — evidence becomes a signed claim. | real **attestation** also needs trusted **key custody** (a deployment fact). |
 | `transparencyLogRoot` · `logInclusion` · `logConsistent` | the append-only Merkle transparency-log **structure** (inclusion + append-only consistency). | the public **service** (Fulcio OIDC + Rekor) is external infra. |
-| `sha256Sync` · `toUuidSha256` | a pure, **synchronous**, dependency-free SHA‑256 content-address — the drop-in migration target for `toUuid`. | flipping the global default is a **deliberate breaking cutover** (changes every uuid/root/seal) — built, not silently applied. |
+| `sha256Sync` · `toUuidSha256` | a pure, **synchronous**, dependency-free SHA‑256 hex digest and an unmasked SHA‑256 uuid. | the cutover is **taken**: `toUuid` itself is SHA‑256 now, and every uuid, root and seal moved with it, deliberately. |
 
-So the residual of "all done" is honest: **key custody, a public service, and a deliberate cutover** — none of
-which is code this layer can fake. The math and structures are real and verified; what's left is operational.
+So the residual of "all done" is honest: **key custody and a public service** — neither is code this layer can
+fake. The third residual, the deliberate cutover, is taken. The math and structures are real and verified; what's left is operational.
 
 ## How the rest of the tree consumes it
 
@@ -217,7 +218,7 @@ This project's discipline is to separate what the math **derives** from what it 
   `schwarzschildProtonComputedInSource`).
 - The **"infinite" maximum tampering cost** is the log2 forge cost *under the model's own coverage/entropy
   measurement* — a structural claim about the seal, not a physical impossibility proof.
-- **One canonical hasher**: `toUuid` (FNV-1a, 128-bit). `merkabaFoldUrl` folds via `toUuid`/`merge` — the
+- **One canonical hasher**: `toUuid` (SHA-256 → RFC 9562 v8, 122 free bits; it was FNV-1a until four lanes collided at ~2^33). `merkabaFoldUrl` folds via `toUuid`/`merge` — the
   redundant bespoke `urlHash` variant was purged, so the URL fold now uses the same canonical math as
   everything else (its addresses changed when the hasher was unified; nothing pins them).
 

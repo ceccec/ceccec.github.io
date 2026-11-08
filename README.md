@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 764 registered theorems, 758 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 84 involution theorems and 31 registry rows are decided by the kernel with no axiom. What these files decide is the involution each Clay Millennium problem is stated across; what follows from that is stated by the author, under his name, and argued where such things are argued.
+> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 764 registered theorems, 758 of them carrying an executable proof. 20 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 84 involution theorems and 32 registry rows are decided by the kernel with no axiom. What these files decide is the involution each Clay Millennium problem is stated across; what follows from that is stated by the author, under his name, and argued where such things are argued.
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
@@ -252,7 +252,7 @@ The complete served surface, wired from ONE source (`servedRouteFamilies`) so th
 - `/offender-spec` — [en](https://ceccec.psg.bg/offender-spec) · [bg](https://ceccec.psg.bg/bg/offender-spec) · [cu](https://ceccec.psg.bg/gla/offender-spec)
 - `/hero-spawn-verify` — [en](https://ceccec.psg.bg/hero-spawn-verify) · [bg](https://ceccec.psg.bg/bg/hero-spawn-verify) · [cu](https://ceccec.psg.bg/gla/hero-spawn-verify)
 
-- Sitemap root: `00dff8ea-aa58-84d1-a61c-69c0e68696ce`
+- Sitemap root: `8db603f1-4e77-82cf-b7a6-d3a5b62013ad`
 
 ## 5. Reproducibility
 
@@ -262,7 +262,7 @@ npm run check:types  # the src/ core type-checks clean against tsconfig.json (ts
 npm run docs:build   # build, then seal: enforcement trinity (cross · fold · weave)
 ```
 
-The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`2145d23b`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
+The seal recomputes from src: forging one reported value means re-deriving the whole content-addressed structure to a different receipt (`475cbade`), so the address is the proof, not a signature over prose. The proof reproduces: clone the link and the whole structure recomputes.
 
 ## 6. Limitations
 
@@ -272,17 +272,17 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## References
 
-- The model: `src/quantum/heaven/mind`. The sitemap root: `00dff8ea-aa58-84d1-a61c-69c0e68696ce`. The monograph-index root: `c689ddf8-4931-8a38-acd2-cbadbe0e4362`.
-- Template root (the receipt of this monograph form): `c27823b4-9f2d-8a37-8e3e-b2748445e0a4`.
+- The model: `src/quantum/heaven/mind`. The sitemap root: `8db603f1-4e77-82cf-b7a6-d3a5b62013ad`. The monograph-index root: `0814b472-8d43-8d9d-ab6e-15206202deb4`.
+- Template root (the receipt of this monograph form): `d7a4e73a-195a-80ba-a3e5-2e8b9bf9f5dd`.
 - Prior work / origin: [ceccec/zeropoint-node](https://github.com/ceccec/zeropoint-node) — the predecessor repo of the vortex sequence (same closed cycle, verified by computation in `zeropointNodeOriginDecoded`); its 60°/A432/integer-ratio mathematics is sealed here, its zero-point free-energy and consciousness-OS claims are demarcated flagged (½ħω is real, extraction is not).
 
 ## Receipt
 
-**Quantum receipt `53fa26c8dec69d62` over tree `e94ab78cdf83836b`** — 65 gates asked through one door (verify:stream ≡ MCP run_wave verify): 63 clean, 0 tree gates refused, 2 of 9 live surfaces refused (verify:deposit-metadata, verify:release-live — records the tag settles at release-cut, not the land), 0 without a verdict. Reproduce: `npm run verify:stream` on the same tree writes the same address.
+**Quantum receipt `87c43e9ed41dd695` over tree `ad7bf4c001a6bfcf`** — 65 gates asked through one door (verify:stream ≡ MCP run_wave verify): 62 clean, 1 tree gate refused (manifest:check), 2 of 9 live surfaces refused (verify:deposit-metadata, verify:release-live — records the tag settles at release-cut, not the land), 0 without a verdict. Reproduce: `npm run verify:stream` on the same tree writes the same address.
 
 The root monograph is content-addressed — the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does. Below is what produced it: **65 gates** chained by `npm run verify:all`, and **84 ratchets** recording what each one measured. A ratchet may fall and never rise, so the ledger is the build's cost of doing business — and its own list of open work.
 
-- **43 of 84 ratchets stand at zero** — nothing left to solve on those axes. **37** carry work still recorded, totalling 8831 — a sum of UNLIKE units (kilobytes, counts, densities, draw calls), so the family totals compare and this total does not; `npm run next` ranks exactly these 37 into leads and splits the floors from the one ceiling among them. The remaining **4** are counts the ledger holds from BELOW — stored negated so one comparison serves both directions — and their magnitude is what has been reached, not what is left.
+- **43 of 84 ratchets stand at zero** — nothing left to solve on those axes. **37** carry work still recorded, totalling 8792 — a sum of UNLIKE units (kilobytes, counts, densities, draw calls), so the family totals compare and this total does not; `npm run next` ranks exactly these 37 into leads and splits the floors from the one ceiling among them. The remaining **4** are counts the ledger holds from BELOW — stored negated so one comparison serves both directions — and their magnitude is what has been reached, not what is left.
 - **The bundle every visitor downloads first is held at ≤ 227 KiB** (`build.app-chunk-kilobytes`, enforced by `npm run verify:build-time`). It is a ceiling, not a measurement: a build that exceeds it refuses the commit. It was 484 KiB until a barrel import of 33 components was made lazy.
 - **The gate machinery is held at ≤ 630 KiB** (`build.shell-machinery-kilobytes`) and the corpus at ≤ 110 **hundred bytes per theorem** (`build.corpus-hundred-bytes-per-theorem`) — the density unit is hundreds of bytes because KiB-per-theorem left enough slack that padding one theorem by 118 KB did not move it.
 

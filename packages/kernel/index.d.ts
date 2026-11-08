@@ -1,5 +1,18 @@
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+/**
+ * THE SHA-256 COMPRESSION OVER BYTES — the core sha256Sync always was, now reachable.
+ *
+ * sha256Sync took a string, encoded it and returned hex, which is everything a content-address needs
+ * and not enough for anything built ON the hash: HMAC keys are arbitrary bytes, and HMAC's outer hash
+ * consumes the inner DIGEST as bytes, never as text. Routing a digest back through a string would
+ * re-encode it. So the compression is a function of bytes and the two string-shaped callers wrap it;
+ * sha256Sync below is now that wrapper and returns exactly what it returned before.
+ */
+export declare function sha256Bytes(input: Uint8Array): Uint8Array;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function toUuid(seed: string): string;
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export declare function toUuidFnv(seed: string): string;
 /** referralAddress — the ONE deterministic path every referrer-consumer routes through, so referrals are PREDICTABLE
  * and zero-stored. VARIADIC in the keys: a 2-key hop `(referrer, node)` addresses to `${kind}:${referrer}|${node}` (a
  * linear seam — binds only the endpoints), while a full 4-key tamper-evident surface `(referrer, id, prev, next)`
@@ -859,8 +872,8 @@ export declare function foldVortex(): {
     valid: boolean;
     pairs: {
         position: number;
-        forward: 2 | 4 | 8 | 3 | 6 | 5 | 1 | 9 | 7;
-        reverse: 2 | 4 | 8 | 3 | 6 | 5 | 1 | 9 | 7;
+        forward: 2 | 4 | 8 | 3 | 6 | 1 | 7 | 5 | 9;
+        reverse: 2 | 4 | 8 | 3 | 6 | 1 | 7 | 5 | 9;
         sum: number;
         root: number;
     }[];
@@ -903,23 +916,28 @@ export declare function asTrace(f: Fold, timeMs?: number): {
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare const DIGEST_BITS: number;
 /**
- * THE FORGE FLOOR, COUNTED FROM THE LANES — the cheapest known way to land two inputs on one address.
+ * THE FORGE FLOOR — the cheapest known way to land two inputs on one address.
  *
- * toUuid is four iterated 32-bit lanes over the same input. The generic birthday bound of its 122 free bits
+ * toUuidFnv (toUuid before the cutover) is four iterated 32-bit lanes over the same input. The generic birthday bound of its 122 free bits
  * (2^61) is a CEILING no attacker has to pay: Joux (Crypto 2004) collides one lane at its own birthday bound,
  * chains laneBits/2 such collisions into 2^(laneBits/2) inputs that all agree on that lane, and birthdays the
  * next lane among them — so all four lanes collide for (laneBits/2)^(lanes−1) · 2^(laneBits/2) lane steps.
  * Every lane step is a bijection, so one lane's second preimage meets in the middle at 2^(laneBits/2) too.
  * findLaneMulticollision exhibits the mechanism; a four-lane run (2^33.3 char-steps) gave two 23,328-char
- * strings with one toUuid. FORGE_FLOOR_BITS is the collision floor, the cost of a forged twin.
+ * strings with one address. That retired the FNV lanes: toUuid is SHA-256, whose floor is the birthday bound
+ * itself; forgeFloor().fnv keeps the lane count for toUuidFnv. FORGE_FLOOR_BITS is the cost of a forged twin.
  */
 export declare function forgeFloor(): {
-    lanes: number;
-    laneBits: number;
-    laneCollisionLog2: number;
-    lanePreimageLog2: number;
-    jouxCollisionLog2: number;
+    hasher: 'sha256';
+    collisionLog2: number;
     birthdayCeilingLog2: number;
+    fnv: {
+        lanes: number;
+        laneBits: number;
+        laneCollisionLog2: number;
+        lanePreimageLog2: number;
+        jouxCollisionLog2: number;
+    };
 };
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare const FORGE_FLOOR_BITS: number;
@@ -1126,17 +1144,6 @@ export declare function logInclusion(entries: readonly string[], index: number):
 }>;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function logConsistent(oldRoot: string, entries: readonly string[], oldSize: number): Promise<boolean>;
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-/**
- * THE SHA-256 COMPRESSION OVER BYTES — the core sha256Sync always was, now reachable.
- *
- * sha256Sync took a string, encoded it and returned hex, which is everything a content-address needs
- * and not enough for anything built ON the hash: HMAC keys are arbitrary bytes, and HMAC's outer hash
- * consumes the inner DIGEST as bytes, never as text. Routing a digest back through a string would
- * re-encode it. So the compression is a function of bytes and the two string-shaped callers wrap it;
- * sha256Sync below is now that wrapper and returns exactly what it returned before.
- */
-export declare function sha256Bytes(input: Uint8Array): Uint8Array;
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export declare function sha256Sync(text: string): string;
 /**

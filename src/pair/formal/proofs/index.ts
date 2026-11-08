@@ -1512,6 +1512,9 @@ export const LEAN_SEALED_REGISTRY: readonly { readonly theorem: string; readonly
   // rungs INCLUDING n = 1, where there is no advantage, and the widening gap cross-multiplied so no division
   // enters the statement. Nothing linked it either.
   { theorem: "hexbit receipt beats rebuild", leanFile: "src/pair/lean/proofs/corpus.lean", theorems: ["hexbit_receipt_beats_rebuild", "hexbit_advantage_widens"], scope: 'instances' },
+  // SEALED 2026-11-08. toUuid moved to SHA-256, and a direction's face is the digital root of the row's address, so
+  // every row re-drew its face and ray 5 · counter lost its sealed row. This row lands there and the kernel decides it.
+  { theorem: "the circle of fifths does not close", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["circle_of_fifths_does_not_close"], scope: 'exact' },
 ] as const
 
 /** The stream's tracked receipt summary (.vitepress/receipts/latest.json), as the README reads it: the verdict vector

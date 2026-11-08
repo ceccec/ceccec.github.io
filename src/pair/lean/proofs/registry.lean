@@ -389,4 +389,10 @@ theorem z_fibonacci_period_returns_and_is_even_beyond_two :
     ∧ (List.range 45).all (fun i => pisano (i + 3) % 2 == 0) = true := ⟨by decide +kernel, by decide +kernel⟩
 theorem z_nine_orbit_is_the_vortex_sequence : zOrbit 9 9 1 = [1, 2, 4, 8, 7, 5] := by decide +kernel
 
+/-! The circle of fifths does not close: twelve perfect fifths overshoot seven octaves by the Pythagorean comma,
+    (3/2)¹² / 2⁷ = 3¹² / 2¹⁹ = 531441 / 524288. Cross-multiplied, so no division enters; 3¹² sits strictly between
+    2¹⁹ and 2²⁰, so no number of octaves meets it. -/
+theorem circle_of_fifths_does_not_close :
+    3 ^ 12 = 531441 ∧ 2 ^ 19 = 524288 ∧ 2 ^ 19 < 3 ^ 12 ∧ 3 ^ 12 < 2 ^ 20 := by decide +kernel
+
 end Registry

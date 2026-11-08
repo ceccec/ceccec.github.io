@@ -29,17 +29,137 @@ var UUID_VERSION_KEEPS = 15;
 var UUID_VERSION_SETS = 128;
 var UUID_VARIANT_KEEPS = 63;
 var UUID_VARIANT_SETS = 128;
+var SHA256_K = [
+  1116352408,
+  1899447441,
+  3049323471,
+  3921009573,
+  961987163,
+  1508970993,
+  2453635748,
+  2870763221,
+  3624381080,
+  310598401,
+  607225278,
+  1426881987,
+  1925078388,
+  2162078206,
+  2614888103,
+  3248222580,
+  3835390401,
+  4022224774,
+  264347078,
+  604807628,
+  770255983,
+  1249150122,
+  1555081692,
+  1996064986,
+  2554220882,
+  2821834349,
+  2952996808,
+  3210313671,
+  3336571891,
+  3584528711,
+  113926993,
+  338241895,
+  666307205,
+  773529912,
+  1294757372,
+  1396182291,
+  1695183700,
+  1986661051,
+  2177026350,
+  2456956037,
+  2730485921,
+  2820302411,
+  3259730800,
+  3345764771,
+  3516065817,
+  3600352804,
+  4094571909,
+  275423344,
+  430227734,
+  506948616,
+  659060556,
+  883997877,
+  958139571,
+  1322822218,
+  1537002063,
+  1747873779,
+  1955562222,
+  2024104815,
+  2227730452,
+  2361852424,
+  2428436474,
+  2756734187,
+  3204031479,
+  3329325298
+];
+function sha256Bytes(input) {
+  const rotr = (x, n) => x >>> n | x << 16 * 2 - n;
+  const bitLen = input.length * 8;
+  const bytes = new Uint8Array(((input.length + 8 >>> 6) + 1) * 64);
+  bytes.set(input);
+  bytes[input.length] = 128;
+  for (let i = 7; i >= 0; i--) bytes[bytes.length - 1 - i] = Math.floor(bitLen / 2 ** (8 * i)) & 255;
+  const h = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225];
+  const w = new Int32Array(64);
+  for (let i = 0; i < bytes.length; i += 64) {
+    for (let t = 0; t < 16; t++) w[t] = bytes[i + 4 * t] << 8 * 3 | bytes[i + 4 * t + 1] << 16 | bytes[i + 4 * t + 2] << 8 | bytes[i + 4 * t + 3] | 0;
+    for (let t = 16; t < 64; t++) {
+      const s0 = rotr(w[t - 5 * 3], 7) ^ rotr(w[t - 5 * 3], 9 * 2) ^ w[t - 5 * 3] >>> 3;
+      const s1 = rotr(w[t - 2], 17) ^ rotr(w[t - 2], 19) ^ w[t - 2] >>> 5 * 2;
+      w[t] = w[t - 16] + s0 + w[t - 7] + s1 | 0;
+    }
+    let [a, b, c, d, e, f, g, hh] = h;
+    for (let t = 0; t < 64; t++) {
+      const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 5 * 5);
+      const t1 = hh + S1 + (e & f ^ ~e & g) + SHA256_K[t] + w[t] | 0;
+      const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
+      const t2 = S0 + (a & b ^ a & c ^ b & c) | 0;
+      hh = g;
+      g = f;
+      f = e;
+      e = d + t1 | 0;
+      d = c;
+      c = b;
+      b = a;
+      a = t1 + t2 | 0;
+    }
+    h[0] = h[0] + a | 0;
+    h[1] = h[1] + b | 0;
+    h[2] = h[2] + c | 0;
+    h[3] = h[3] + d | 0;
+    h[4] = h[4] + e | 0;
+    h[5] = h[5] + f | 0;
+    h[6] = h[6] + g | 0;
+    h[7] = h[7] + hh | 0;
+  }
+  const out = new Uint8Array(8 * 4);
+  for (let i = 0; i < 8; i += 1) {
+    out[4 * i] = h[i] >>> 8 * 3 & 255;
+    out[4 * i + 1] = h[i] >>> 16 & 255;
+    out[4 * i + 2] = h[i] >>> 8 & 255;
+    out[4 * i + 3] = h[i] & 255;
+  }
+  return out;
+}
 var _uuidCache = /* @__PURE__ */ new Map();
 function toUuid(seed) {
   const cached = _uuidCache.get(seed);
   if (cached !== void 0) return cached;
-  const bytes = bytesFromSeed(seed);
+  const uuid = shapeUuid(Array.from(sha256Bytes(new TextEncoder().encode(seed)).subarray(0, 16)));
+  _uuidCache.set(seed, uuid);
+  return uuid;
+}
+function shapeUuid(bytes) {
   bytes[6] = bytes[6] & UUID_VERSION_KEEPS | UUID_VERSION_SETS;
   bytes[8] = bytes[8] & UUID_VARIANT_KEEPS | UUID_VARIANT_SETS;
   const hex = bytes.map(hexByte).join("");
-  const uuid = `${hex.slice(0, 8)}-${hex.slice(8, 6 * 2)}-${hex.slice(6 * 2, 16)}-${hex.slice(16, 5 * 4)}-${hex.slice(5 * 4)}`;
-  _uuidCache.set(seed, uuid);
-  return uuid;
+  return `${hex.slice(0, 8)}-${hex.slice(8, 6 * 2)}-${hex.slice(6 * 2, 16)}-${hex.slice(16, 5 * 4)}-${hex.slice(5 * 4)}`;
+}
+function toUuidFnv(seed) {
+  return shapeUuid(bytesFromSeed(seed));
 }
 function referralAddress(kind, ...keys) {
   return toUuid(`${kind}:${keys.join("|")}`);
@@ -892,21 +1012,26 @@ function forgeFloor() {
   const laneBits = nominalBits / lanes;
   const laneCollisionLog2 = laneBits / 2;
   return {
-    lanes,
-    laneBits,
-    laneCollisionLog2,
-    lanePreimageLog2: laneBits / 2,
-    // meet in the middle over a bijective step
-    jouxCollisionLog2: (lanes - 1) * Math.log2(laneCollisionLog2) + laneCollisionLog2,
-    birthdayCeilingLog2: birthdayLog2
+    // SHA-256 has no known shortcut, so the floor IS the birthday bound of the free bits — floor meets ceiling
+    hasher: "sha256",
+    collisionLog2: birthdayLog2,
+    birthdayCeilingLog2: birthdayLog2,
+    fnv: {
+      lanes,
+      laneBits,
+      laneCollisionLog2,
+      lanePreimageLog2: laneBits / 2,
+      // meet in the middle over a bijective step
+      jouxCollisionLog2: (lanes - 1) * Math.log2(laneCollisionLog2) + laneCollisionLog2
+    }
   };
 }
-var FORGE_FLOOR_BITS = forgeFloor().jouxCollisionLog2;
+var FORGE_FLOOR_BITS = forgeFloor().collisionLog2;
 var _multicollisionCache = /* @__PURE__ */ new Map();
 function findLaneMulticollision(lanes = 2) {
   const cached = _multicollisionCache.get(lanes);
   if (cached) return cached;
-  const PATHS = forgeFloor().laneBits / 2 + 2;
+  const PATHS = forgeFloor().fnv.laneBits / 2 + 2;
   let steps = 0, counter = 0;
   const run = (h, s) => {
     for (let i = 0; i < s.length; i++) h = laneStep(h, s.charCodeAt(i));
@@ -1340,121 +1465,6 @@ async function logInclusion(entries, index) {
 async function logConsistent(oldRoot, entries, oldSize) {
   return await sha256MerkleRoot(entries.slice(0, oldSize)) === oldRoot;
 }
-var SHA256_K = [
-  1116352408,
-  1899447441,
-  3049323471,
-  3921009573,
-  961987163,
-  1508970993,
-  2453635748,
-  2870763221,
-  3624381080,
-  310598401,
-  607225278,
-  1426881987,
-  1925078388,
-  2162078206,
-  2614888103,
-  3248222580,
-  3835390401,
-  4022224774,
-  264347078,
-  604807628,
-  770255983,
-  1249150122,
-  1555081692,
-  1996064986,
-  2554220882,
-  2821834349,
-  2952996808,
-  3210313671,
-  3336571891,
-  3584528711,
-  113926993,
-  338241895,
-  666307205,
-  773529912,
-  1294757372,
-  1396182291,
-  1695183700,
-  1986661051,
-  2177026350,
-  2456956037,
-  2730485921,
-  2820302411,
-  3259730800,
-  3345764771,
-  3516065817,
-  3600352804,
-  4094571909,
-  275423344,
-  430227734,
-  506948616,
-  659060556,
-  883997877,
-  958139571,
-  1322822218,
-  1537002063,
-  1747873779,
-  1955562222,
-  2024104815,
-  2227730452,
-  2361852424,
-  2428436474,
-  2756734187,
-  3204031479,
-  3329325298
-];
-function sha256Bytes(input) {
-  const rotr = (x, n) => x >>> n | x << 16 * 2 - n;
-  const bitLen = input.length * 8;
-  const bytes = new Uint8Array(((input.length + 8 >>> 6) + 1) * 64);
-  bytes.set(input);
-  bytes[input.length] = 128;
-  for (let i = 7; i >= 0; i--) bytes[bytes.length - 1 - i] = Math.floor(bitLen / 2 ** (8 * i)) & 255;
-  const h = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225];
-  const w = new Int32Array(64);
-  for (let i = 0; i < bytes.length; i += 64) {
-    for (let t = 0; t < 16; t++) w[t] = bytes[i + 4 * t] << 8 * 3 | bytes[i + 4 * t + 1] << 16 | bytes[i + 4 * t + 2] << 8 | bytes[i + 4 * t + 3] | 0;
-    for (let t = 16; t < 64; t++) {
-      const s0 = rotr(w[t - 5 * 3], 7) ^ rotr(w[t - 5 * 3], 9 * 2) ^ w[t - 5 * 3] >>> 3;
-      const s1 = rotr(w[t - 2], 17) ^ rotr(w[t - 2], 19) ^ w[t - 2] >>> 5 * 2;
-      w[t] = w[t - 16] + s0 + w[t - 7] + s1 | 0;
-    }
-    let [a, b, c, d, e, f, g, hh] = h;
-    for (let t = 0; t < 64; t++) {
-      const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 5 * 5);
-      const t1 = hh + S1 + (e & f ^ ~e & g) + SHA256_K[t] + w[t] | 0;
-      const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
-      const t2 = S0 + (a & b ^ a & c ^ b & c) | 0;
-      hh = g;
-      g = f;
-      f = e;
-      e = d + t1 | 0;
-      d = c;
-      c = b;
-      b = a;
-      a = t1 + t2 | 0;
-    }
-    h[0] = h[0] + a | 0;
-    h[1] = h[1] + b | 0;
-    h[2] = h[2] + c | 0;
-    h[3] = h[3] + d | 0;
-    h[4] = h[4] + e | 0;
-    h[5] = h[5] + f | 0;
-    h[6] = h[6] + g | 0;
-    h[7] = h[7] + hh | 0;
-  }
-  const out = new Uint8Array(8 * 4);
-  for (let i = 0; i < 8; i += 1) {
-    out[4 * i] = h[i] >>> 8 * 3 & 255;
-    out[4 * i + 1] = h[i] >>> 16 & 255;
-    out[4 * i + 2] = h[i] >>> 8 & 255;
-    out[4 * i + 3] = h[i] & 255;
-  }
-  return out;
-}
 function sha256Sync(text) {
   return [...sha256Bytes(new TextEncoder().encode(text))].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
@@ -1509,7 +1519,7 @@ function addressEntropyBits() {
   const effectiveBits = nominalBits - discardedBits;
   return { nominalBits, discardedBits, effectiveBits, birthdayLog2: Math.floor(effectiveBits / 2) };
 }
-var FORGE_COST_CEILING = `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits promise a birthday bound of 2^${addressEntropyBits().birthdayLog2}, but ${forgeFloor().lanes} iterated ${forgeFloor().laneBits}-bit lanes collide by Joux multicollision at 2^${FORGE_FLOOR_BITS} \u2014 the FLOOR this hash offers (findLaneMulticollision exhibits it; a full four-lane collision was found at 2^33 char-steps; toUuidSha256 is the vetted path)`;
+var FORGE_COST_CEILING = `forging means landing on the SAME address: SHA-256 over ${addressEntropyBits().effectiveBits} free bits, a birthday bound of 2^${FORGE_FLOOR_BITS} with no known shortcut. The ${forgeFloor().fnv.lanes} FNV lanes it replaced collided by Joux multicollision at 2^${forgeFloor().fnv.jouxCollisionLog2} (findLaneMulticollision exhibits it on toUuidFnv; a full four-lane collision was found at 2^33 char-steps)`;
 function gcd(a, b) {
   a = Math.abs(Math.round(a));
   b = Math.abs(Math.round(b));
@@ -1828,6 +1838,7 @@ export {
   tamperCostLog2,
   tan,
   toUuid,
+  toUuidFnv,
   toUuidSha256,
   toffoli,
   topologicalOrder,

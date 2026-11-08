@@ -44,7 +44,8 @@ function bytesFromSeed(seed: string): number[] {
   ])
 }
 
-// Compute each dot once. toUuid is the content-address — the dot, the fold — and the same seed is
+// Compute each dot once. toUuid is the content-address — the dot, the fold — SHA-256 since the cutover (it was
+// four FNV lanes, which collide at ~2^33: toUuidFnv, forgeFloor). The same seed is
 // hashed millions of times as the folds recompute each other. Memoizing it by seed caches every dot
 // at the source: each unique address hashed once, reused everywhere. merge, merkleFold and
 // seedFromText all route through here, so one cache makes the whole cascade cheap (and realtime).
@@ -61,18 +62,107 @@ function bytesFromSeed(seed: string): number[] {
 const UUID_VERSION_KEEPS = 0x0f, UUID_VERSION_SETS = 0x80
 const UUID_VARIANT_KEEPS = 0x3f, UUID_VARIANT_SETS = 0x80
 
+// SHA-256 (FIPS 180-4), pure and SYNCHRONOUS — no Web Crypto, no dependency. Since the cutover it is the hash
+// under toUuid, so it sits above it: toUuid runs at module init and SHA256_K must already exist.
+const SHA256_K = [
+  0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+  0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+  0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+  0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+  0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+  0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+  0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+  0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
+]
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+// SHA-256, synchronous, hand-written because Web Crypto is async. The ALGORITHM is unchanged — same
+// rotations, same schedule, same rounds, same |0 wrapping. Only the MEMORY LAYOUT moved:
+//
+//   the message is padded into one Uint8Array instead of being spread into a boxed JS array and pushed
+//   to length — for a 1 MiB input that was a million-element array of numbers; and the 64-word schedule
+//   is one Int32Array per call instead of a fresh Array for every 64-byte block — for 1 MiB that was
+//   16,384 allocations. Int32Array rather than Uint32Array so each stored word keeps the signed |0 value
+//   the rounds already produce: identical arithmetic, not merely equal output.
+//
+// Measured before landing, against CPython hashlib on 18 known answers (every padding residue that
+// matters, multi-byte UTF-8, NUL) and 2,000 seeded random strings: 2,018/2,018 identical, and identical
+// to the previous implementation on every one. 1 MiB: 31 -> 154 MiB/s (5.0x). 10,000 x 64 B: 220k ->
+// 317k hashes/s (1.4x). Replacing the per-block destructuring with named locals measured no better and
+// was left out: a change to the kernel earns its lines.
+//
+// The literal expressions are the ones already here — (16 * 2), (5 * 3), (9 * 2), (8 * 3) — so the
+// numeral ledger sees what it saw before. verify:hashes holds this function against Web Crypto over
+// every message length 0-129 and against the FIPS 180-4 examples on every run.
+/**
+ * THE SHA-256 COMPRESSION OVER BYTES — the core sha256Sync always was, now reachable.
+ *
+ * sha256Sync took a string, encoded it and returned hex, which is everything a content-address needs
+ * and not enough for anything built ON the hash: HMAC keys are arbitrary bytes, and HMAC's outer hash
+ * consumes the inner DIGEST as bytes, never as text. Routing a digest back through a string would
+ * re-encode it. So the compression is a function of bytes and the two string-shaped callers wrap it;
+ * sha256Sync below is now that wrapper and returns exactly what it returned before.
+ */
+export function sha256Bytes(input: Uint8Array): Uint8Array {
+  const rotr = (x: number, n: number) => (x >>> n) | (x << ((16 * 2) - n))
+  const bitLen = input.length * 8
+  const bytes = new Uint8Array((((input.length + 8) >>> 6) + 1) * 64)
+  bytes.set(input)
+  bytes[input.length] = 0x80
+  for (let i = 7; i >= 0; i--) bytes[bytes.length - 1 - i] = Math.floor(bitLen / 2 ** (8 * i)) & 0xff
+  const h = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19]
+  const w = new Int32Array(64)
+  for (let i = 0; i < bytes.length; i += 64) {
+    for (let t = 0; t < 16; t++) w[t] = ((bytes[i + 4 * t] << (8 * 3)) | (bytes[i + 4 * t + 1] << 16) | (bytes[i + 4 * t + 2] << 8) | bytes[i + 4 * t + 3]) | 0
+    for (let t = 16; t < 64; t++) {
+      const s0 = rotr(w[t - (5 * 3)], 7) ^ rotr(w[t - (5 * 3)], (9 * 2)) ^ (w[t - (5 * 3)] >>> 3)
+      const s1 = rotr(w[t - 2], 17) ^ rotr(w[t - 2], 19) ^ (w[t - 2] >>> (5 * 2))
+      w[t] = (w[t - 16] + s0 + w[t - 7] + s1) | 0
+    }
+    let [a, b, c, d, e, f, g, hh] = h
+    for (let t = 0; t < 64; t++) {
+      const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, (5 * 5))
+      const t1 = (hh + S1 + ((e & f) ^ (~e & g)) + SHA256_K[t] + w[t]) | 0
+      const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22)
+      const t2 = (S0 + ((a & b) ^ (a & c) ^ (b & c))) | 0
+      hh = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0
+    }
+    h[0] = (h[0] + a) | 0; h[1] = (h[1] + b) | 0; h[2] = (h[2] + c) | 0; h[3] = (h[3] + d) | 0
+    h[4] = (h[4] + e) | 0; h[5] = (h[5] + f) | 0; h[6] = (h[6] + g) | 0; h[7] = (h[7] + hh) | 0
+  }
+  const out = new Uint8Array(8 * 4)
+  for (let i = 0; i < 8; i += 1) {
+    out[4 * i] = (h[i]! >>> (8 * 3)) & 0xff
+    out[4 * i + 1] = (h[i]! >>> 16) & 0xff
+    out[4 * i + 2] = (h[i]! >>> 8) & 0xff
+    out[4 * i + 3] = h[i]! & 0xff
+  }
+  return out
+}
+
 const _uuidCache = new Map<string, string>()
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function toUuid(seed: string): string {
   const cached = _uuidCache.get(seed)
   if (cached !== undefined) return cached
-  const bytes = bytesFromSeed(seed)
-  bytes[6] = (bytes[6] & UUID_VERSION_KEEPS) | UUID_VERSION_SETS
-  bytes[8] = (bytes[8] & UUID_VARIANT_KEEPS) | UUID_VARIANT_SETS
-  const hex = bytes.map(hexByte).join('')
-  const uuid = `${hex.slice(0, 8)}-${hex.slice(8, (6 * 2))}-${hex.slice((6 * 2), 16)}-${hex.slice(16, (5 * 4))}-${hex.slice((5 * 4))}`
+  const uuid = shapeUuid(Array.from(sha256Bytes(new TextEncoder().encode(seed)).subarray(0, 16)))
   _uuidCache.set(seed, uuid)
   return uuid
+}
+
+// The uuid shape over any 16 bytes: the version and variant masks, then 8-4-4-4-12. RFC 9562 §5.8 (v8) over the
+// first 16 octets of SHA-256 — the same address statementUuid and uuidna compute, minus their normaliser.
+function shapeUuid(bytes: number[]): string {
+  bytes[6] = (bytes[6]! & UUID_VERSION_KEEPS) | UUID_VERSION_SETS
+  bytes[8] = (bytes[8]! & UUID_VARIANT_KEEPS) | UUID_VARIANT_SETS
+  const hex = bytes.map(hexByte).join('')
+  return `${hex.slice(0, 8)}-${hex.slice(8, (6 * 2))}-${hex.slice((6 * 2), 16)}-${hex.slice(16, (5 * 4))}-${hex.slice((5 * 4))}`
+}
+
+// THE PRE-CUTOVER ADDRESS — four FNV lanes, kept as the red-team's target and nothing else. Every address in the
+// corpus before the cutover was this; forgeFloor().fnv counts why it was retired (a full collision at ~2^33).
+/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
+export function toUuidFnv(seed: string): string {
+  return shapeUuid(bytesFromSeed(seed))
 }
 
 /** referralAddress — the ONE deterministic path every referrer-consumer routes through, so referrals are PREDICTABLE
@@ -1399,40 +1489,47 @@ export function asTrace(f: Fold, timeMs = 0): { x: number; y: number } {
 // math. (tamperingCostAndUuidLiveInZero.)
 
 // HALF THE ADDRESS — the single-torus digest, 128 / 2 = 64 (dimensionalBit's 2⁶). A WIDTH, not a security
-// floor: it was read as the forge floor until a full toUuid collision was found at ~2^33 (forgeFloor). The
+// floor: it was read as the forge floor until a full FNV-lane collision was found at ~2^33 (forgeFloor). The
 // width keeps its value and every root folded from it; the cost now reads FORGE_FLOOR_BITS.
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export const DIGEST_BITS = addressEntropyBits().nominalBits / 2
 
 /**
- * THE FORGE FLOOR, COUNTED FROM THE LANES — the cheapest known way to land two inputs on one address.
+ * THE FORGE FLOOR — the cheapest known way to land two inputs on one address.
  *
- * toUuid is four iterated 32-bit lanes over the same input. The generic birthday bound of its 122 free bits
+ * toUuidFnv (toUuid before the cutover) is four iterated 32-bit lanes over the same input. The generic birthday bound of its 122 free bits
  * (2^61) is a CEILING no attacker has to pay: Joux (Crypto 2004) collides one lane at its own birthday bound,
  * chains laneBits/2 such collisions into 2^(laneBits/2) inputs that all agree on that lane, and birthdays the
  * next lane among them — so all four lanes collide for (laneBits/2)^(lanes−1) · 2^(laneBits/2) lane steps.
  * Every lane step is a bijection, so one lane's second preimage meets in the middle at 2^(laneBits/2) too.
  * findLaneMulticollision exhibits the mechanism; a four-lane run (2^33.3 char-steps) gave two 23,328-char
- * strings with one toUuid. FORGE_FLOOR_BITS is the collision floor, the cost of a forged twin.
+ * strings with one address. That retired the FNV lanes: toUuid is SHA-256, whose floor is the birthday bound
+ * itself; forgeFloor().fnv keeps the lane count for toUuidFnv. FORGE_FLOOR_BITS is the cost of a forged twin.
  */
-export function forgeFloor(): { lanes: number; laneBits: number; laneCollisionLog2: number; lanePreimageLog2: number; jouxCollisionLog2: number; birthdayCeilingLog2: number } {
+export function forgeFloor(): {
+  hasher: 'sha256'; collisionLog2: number; birthdayCeilingLog2: number
+  fnv: { lanes: number; laneBits: number; laneCollisionLog2: number; lanePreimageLog2: number; jouxCollisionLog2: number }
+} {
   const { nominalBits, birthdayLog2 } = addressEntropyBits()
   const lanes = LANE_SEEDS.length
   const laneBits = nominalBits / lanes
   const laneCollisionLog2 = laneBits / 2
   return {
-    lanes, laneBits, laneCollisionLog2,
-    lanePreimageLog2: laneBits / 2, // meet in the middle over a bijective step
-    jouxCollisionLog2: (lanes - 1) * Math.log2(laneCollisionLog2) + laneCollisionLog2,
-    birthdayCeilingLog2: birthdayLog2,
+    // SHA-256 has no known shortcut, so the floor IS the birthday bound of the free bits — floor meets ceiling
+    hasher: 'sha256', collisionLog2: birthdayLog2, birthdayCeilingLog2: birthdayLog2,
+    fnv: {
+      lanes, laneBits, laneCollisionLog2,
+      lanePreimageLog2: laneBits / 2, // meet in the middle over a bijective step
+      jouxCollisionLog2: (lanes - 1) * Math.log2(laneCollisionLog2) + laneCollisionLog2,
+    },
   }
 }
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-export const FORGE_FLOOR_BITS = forgeFloor().jouxCollisionLog2
+export const FORGE_FLOOR_BITS = forgeFloor().collisionLog2
 
 /**
- * Joux multicollision on the first `lanes` lanes of toUuid, exhibited rather than argued. Two distinct inputs
- * whose toUuid agree on the first `lanes` 32-bit words — all four words is a full collision (minutes); two is
+ * Joux multicollision on the first `lanes` lanes of toUuidFnv, exhibited rather than argued. Two distinct inputs
+ * whose toUuidFnv agree on the first `lanes` 32-bit words — all four words is a full collision (minutes); two is
  * the gate's size (seconds). Deterministic: blocks come from a counter, so the same pair returns every run.
  */
 const _multicollisionCache = new Map<number, { a: string; b: string; lanes: number; steps: number }>()
@@ -1441,7 +1538,7 @@ export function findLaneMulticollision(lanes = 2): { a: string; b: string; lanes
   const cached = _multicollisionCache.get(lanes)
   if (cached) return cached
   // 2^(laneBits/2 + 2) paths into a laneBits-bit lane: 2^(2·PATHS − laneBits − 1) = 2^3 ≈ 8 meets expected; a miss rebuilds
-  const PATHS = forgeFloor().laneBits / 2 + 2
+  const PATHS = forgeFloor().fnv.laneBits / 2 + 2
   let steps = 0, counter = 0
   const run = (h: number, s: string): number => { for (let i = 0; i < s.length; i++) h = laneStep(h, s.charCodeAt(i)); steps += s.length; return h }
   const pair = (lane: number, start: readonly number[]): [string, string] => {
@@ -2082,84 +2179,6 @@ export async function logConsistent(oldRoot: string, entries: readonly string[],
   return (await sha256MerkleRoot(entries.slice(0, oldSize))) === oldRoot // the prefix still commits to the recorded root
 }
 
-// The SHA-256 content-address — the migration TARGET for toUuid, pure and SYNCHRONOUS (FIPS 180-4, no Web
-// Crypto, no dependency), so it is a true drop-in for the FNV toUuid. HONEST RESIDUAL: flipping the global
-// default is a DELIBERATE breaking cutover — it changes every uuid, root and seal in the project — so it is
-// provided + verified here, NOT silently applied (that would invalidate every committed baseline).
-const SHA256_K = [
-  0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
-  0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
-  0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
-  0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
-  0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
-  0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
-  0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
-  0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
-]
-/** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
-// SHA-256, synchronous, hand-written because Web Crypto is async. The ALGORITHM is unchanged — same
-// rotations, same schedule, same rounds, same |0 wrapping. Only the MEMORY LAYOUT moved:
-//
-//   the message is padded into one Uint8Array instead of being spread into a boxed JS array and pushed
-//   to length — for a 1 MiB input that was a million-element array of numbers; and the 64-word schedule
-//   is one Int32Array per call instead of a fresh Array for every 64-byte block — for 1 MiB that was
-//   16,384 allocations. Int32Array rather than Uint32Array so each stored word keeps the signed |0 value
-//   the rounds already produce: identical arithmetic, not merely equal output.
-//
-// Measured before landing, against CPython hashlib on 18 known answers (every padding residue that
-// matters, multi-byte UTF-8, NUL) and 2,000 seeded random strings: 2,018/2,018 identical, and identical
-// to the previous implementation on every one. 1 MiB: 31 -> 154 MiB/s (5.0x). 10,000 x 64 B: 220k ->
-// 317k hashes/s (1.4x). Replacing the per-block destructuring with named locals measured no better and
-// was left out: a change to the kernel earns its lines.
-//
-// The literal expressions are the ones already here — (16 * 2), (5 * 3), (9 * 2), (8 * 3) — so the
-// numeral ledger sees what it saw before. verify:hashes holds this function against Web Crypto over
-// every message length 0-129 and against the FIPS 180-4 examples on every run.
-/**
- * THE SHA-256 COMPRESSION OVER BYTES — the core sha256Sync always was, now reachable.
- *
- * sha256Sync took a string, encoded it and returned hex, which is everything a content-address needs
- * and not enough for anything built ON the hash: HMAC keys are arbitrary bytes, and HMAC's outer hash
- * consumes the inner DIGEST as bytes, never as text. Routing a digest back through a string would
- * re-encode it. So the compression is a function of bytes and the two string-shaped callers wrap it;
- * sha256Sync below is now that wrapper and returns exactly what it returned before.
- */
-export function sha256Bytes(input: Uint8Array): Uint8Array {
-  const rotr = (x: number, n: number) => (x >>> n) | (x << ((16 * 2) - n))
-  const bitLen = input.length * 8
-  const bytes = new Uint8Array((((input.length + 8) >>> 6) + 1) * 64)
-  bytes.set(input)
-  bytes[input.length] = 0x80
-  for (let i = 7; i >= 0; i--) bytes[bytes.length - 1 - i] = Math.floor(bitLen / 2 ** (8 * i)) & 0xff
-  const h = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19]
-  const w = new Int32Array(64)
-  for (let i = 0; i < bytes.length; i += 64) {
-    for (let t = 0; t < 16; t++) w[t] = ((bytes[i + 4 * t] << (8 * 3)) | (bytes[i + 4 * t + 1] << 16) | (bytes[i + 4 * t + 2] << 8) | bytes[i + 4 * t + 3]) | 0
-    for (let t = 16; t < 64; t++) {
-      const s0 = rotr(w[t - (5 * 3)], 7) ^ rotr(w[t - (5 * 3)], (9 * 2)) ^ (w[t - (5 * 3)] >>> 3)
-      const s1 = rotr(w[t - 2], 17) ^ rotr(w[t - 2], 19) ^ (w[t - 2] >>> (5 * 2))
-      w[t] = (w[t - 16] + s0 + w[t - 7] + s1) | 0
-    }
-    let [a, b, c, d, e, f, g, hh] = h
-    for (let t = 0; t < 64; t++) {
-      const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, (5 * 5))
-      const t1 = (hh + S1 + ((e & f) ^ (~e & g)) + SHA256_K[t] + w[t]) | 0
-      const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22)
-      const t2 = (S0 + ((a & b) ^ (a & c) ^ (b & c))) | 0
-      hh = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0
-    }
-    h[0] = (h[0] + a) | 0; h[1] = (h[1] + b) | 0; h[2] = (h[2] + c) | 0; h[3] = (h[3] + d) | 0
-    h[4] = (h[4] + e) | 0; h[5] = (h[5] + f) | 0; h[6] = (h[6] + g) | 0; h[7] = (h[7] + hh) | 0
-  }
-  const out = new Uint8Array(8 * 4)
-  for (let i = 0; i < 8; i += 1) {
-    out[4 * i] = (h[i]! >>> (8 * 3)) & 0xff
-    out[4 * i + 1] = (h[i]! >>> 16) & 0xff
-    out[4 * i + 2] = (h[i]! >>> 8) & 0xff
-    out[4 * i + 3] = h[i]! & 0xff
-  }
-  return out
-}
 
 /** @rosetta ✦₄ · Earth · receptive (the primitive kernel — imports nothing, exports everything foundational) */
 export function sha256Sync(text: string): string {
@@ -2258,9 +2277,9 @@ export function addressEntropyBits(): { nominalBits: number; discardedBits: numb
  * restate it and none has to overstate it.
  */
 export const FORGE_COST_CEILING =
-  `forging means landing on the SAME address: ${addressEntropyBits().effectiveBits} effective bits promise a birthday bound of 2^${addressEntropyBits().birthdayLog2}, `
-  + `but ${forgeFloor().lanes} iterated ${forgeFloor().laneBits}-bit lanes collide by Joux multicollision at 2^${FORGE_FLOOR_BITS} — the FLOOR this hash offers `
-  + '(findLaneMulticollision exhibits it; a full four-lane collision was found at 2^33 char-steps; toUuidSha256 is the vetted path)'
+  `forging means landing on the SAME address: SHA-256 over ${addressEntropyBits().effectiveBits} free bits, a birthday bound of 2^${FORGE_FLOOR_BITS} `
+  + `with no known shortcut. The ${forgeFloor().fnv.lanes} FNV lanes it replaced collided by Joux multicollision at 2^${forgeFloor().fnv.jouxCollisionLog2} `
+  + '(findLaneMulticollision exhibits it on toUuidFnv; a full four-lane collision was found at 2^33 char-steps)'
 
 // ── Ring algebra — the algebra implicit in the digit folders, made explicit ──────────────────────
 // The digit folders hold the vortex ring (ℤ/9ℤ)* without naming it. These primitives pull that

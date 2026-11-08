@@ -1,9 +1,10 @@
 {
-  "tree": "c150f7c67b4e5be6",
-  "address": "13462fdcfeb3b50b",
+  "tree": "ad7bf4c001a6bfcf",
+  "address": "87c43e9ed41dd695",
   "gates": 65,
-  "clean": 63,
+  "clean": 62,
   "violated": [
+    "manifest:check",
     "verify:deposit-metadata",
     "verify:release-live"
   ],

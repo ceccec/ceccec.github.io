@@ -6631,7 +6631,7 @@ export function fixedLimitsOfTheoremRelatedToolsAreTheorems(matrix: MindMatrix =
         'Content-address digest width = 64 bits',
         'Theorem. DIGEST_BITS = 64 is half the 128-bit content address (src/0) — a width, not the forge floor.',
         'DIGEST_BITS = 128 / 2 = 64',
-        'Proof. DIGEST_BITS = addressEntropyBits().nominalBits / 2, the nominal bits counted from an emitted address; the forge floor is FORGE_FLOOR_BITS (Joux, 2^28), a separate measured value.',
+        'Proof. DIGEST_BITS = addressEntropyBits().nominalBits / 2, the nominal bits counted from an emitted address; the forge floor is FORGE_FLOOR_BITS (SHA-256 birthday bound, 2^61; the retired FNV lanes fell to 2^28 by Joux), a separate measured value.',
         DIGEST_BITS,
         DIGEST_BITS === 64,
         'src/0',
