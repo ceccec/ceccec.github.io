@@ -294,7 +294,8 @@ export function redTeam(matrix: MindMatrix = buildMatrix()) {
     { attack: 'substitute a saved skill atom and keep the memory root', caught: merge(skillAtoms(matrix).memory, toUuid('swap')) !== skillAtoms(matrix).memory },
     { attack: 'claim one file short of the census forms a gapless Fibonacci run', caught: !harmonicBands(UNFOLDED_CENSUS - 1).gapless },
     { attack: 'collide the doubling cycle onto the 3-6-9 cross', caught: vortexMath(matrix).collisionFree },
-    { attack: 'replay a measurement to forge a different collapse', caught: quantumSimulation(matrix, 3).measured === quantumSimulation(matrix, 3).measured },
+    // PURGED 2026-11-13: 'replay a measurement to forge a different collapse', caught by comparing a call with the same call.
+    // That catches nothing: it is true of any deterministic function and says nothing about a forged collapse.
     { attack: 'pass two identical values off as one (skip the duality)', caught: vortexMath(matrix).identicalRoutesToDuality },
   ].map((entry) => ({ ...entry, receipt: toUuid(`attack:${entry.attack}:${entry.caught}`) }))
   const caught = attacks.filter((entry) => entry.caught).length

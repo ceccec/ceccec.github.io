@@ -322,17 +322,21 @@ export function sphereIsTheBoundaryOfRotatingPlatonicSolids(matrix: MindMatrix =
   const corners = Array.from({ length: 8 }, (_, a) => [a & 1 ? 1 : -1, a & 2 ? 1 : -1, a & 4 ? 1 : -1])
   const allOnCircumsphere = corners.every((c) => abs(hypot(c[0], c[1], c[2]) - circumradius) < 1e-9)
   const merkabaVerticesAreCubeCorners = [0, 3, 5, 6].length + [1, 2, 4, 7].length === corners.length
-  const PLATONIC = 5
+  // THE FIVE ARE COUNTED, NOT TYPED. This was `const PLATONIC = 5` checked by `PLATONIC === 5` under a facet that began
+  // HONEST — a constant proving itself. A regular solid {p, q} closes exactly when (p − 2)(q − 2) < 4 (the angle
+  // defect at a vertex must be positive), and the pairs with p, q ≥ 3 that satisfy it are counted here.
+  const SIDES = [3, 4, 5, 6, 7]
+  const platonicSolids = SIDES.flatMap((p) => SIDES.map((q) => [p, q] as const)).filter(([p, q]) => (p - 2) * (q - 2) < 4)
   const facets = [
     { facet: 'every platonic solid is inscribed in its CIRCUMSPHERE — all vertices at the circumradius (cube: √3), concyclic on one sphere', on: allOnCircumsphere },
     { facet: 'rotating the solid, each vertex traces a circle; the orbit-closure under all rotations IS the circumsphere — the sphere is the BOUNDARY the motion sweeps', on: circumradius > 0 },
     { facet: 'the merkaba (two tetrahedra) rides the cube\'s 8 corners — same vertices, same circumsphere', on: merkabaVerticesAreCubeCorners },
-    { facet: 'HONEST — exact Euclidean geometry (the circumsphere is a vertex orbit under SO(3)); the sphere EMERGES from motion.', on: PLATONIC === 5 },
+    { facet: 'HONEST — exact Euclidean geometry (the circumsphere is a vertex orbit under SO(3)); the sphere EMERGES from motion.', on: platonicSolids.map(([p, q]) => `${p},${q}`).join(" ") === "3,3 3,4 3,5 4,3 5,3" },
   ].map((entry) => ({ ...entry, receipt: toUuid(`platonic-sphere:${entry.facet}:${entry.on}`) }))
   return {
     decoded: facets.every((entry) => entry.on),
     circumradius,
-    platonicSolids: PLATONIC,
+    platonicSolids: platonicSolids.length,
     cubeCorners: corners.length,
     count: facets.length,
     facets,

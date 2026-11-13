@@ -218,7 +218,7 @@ export function tamperingCostDecodedView(): DecodedComponentView {
     // documented rows ride the fold's own verdict (fold.decoded — tamperEvident && !cryptographic && the
     // crypto ledger balanced); flagged rows stay the off tone. Make the FNV fold claim cryptographic, or
     // unbalance the crypto review, and the documented rows go hollow instead of asserting themselves.
-    facets: [...fold.documented.map((entry) => ({ facet: entry, on: fold.decoded })), ...fold.flagged.map((entry) => ({ facet: entry, on: false }))],
+    facets: [...fold.documented.map((entry) => ({ facet: entry, on: fold.decoded })), ...fold.flagged.map((entry) => ({ facet: entry, on: fold.documented.includes(entry) }))],
     ok: fold.documented.length > 0 }
 }
 

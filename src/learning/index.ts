@@ -1413,11 +1413,17 @@ const scientistsMemoized = matrixMemo(scientistsImpl)
 export function scientists(matrix: MindMatrix = buildMatrix()) {
   return scientistsMemoized(matrix)
 }
+const DISTINCT_SEEDS = ['x', 'y', 'xy', 'yx', 'x:y', 'y:x'] as const
 function scientistsImpl(matrix: MindMatrix) {
   const leaves = livingTorus(matrix).coordinates.slice(0, 8).map((coordinate) => coordinate.receipt)
   const challenge = (claim: string, attack: string, withstood: boolean) => ({ claim, attack, withstood, receipt: toUuid(`challenge:${claim}:${withstood}`) })
   const challenges = [
-    challenge('Determinism', 'recompute toUuid twice and claim the results differ', toUuid('x') === toUuid('x')),
+    // REPLACED 2026-11-13, NOT REMOVED. This row compared toUuid('x') with toUuid('x'): an expression compared with itself
+    // withstands every attack because it cannot lose. Same input, same output is purity, held corpus-wide by verify:purity;
+    // what a hash CAN fail is collision, so that is what the row now risks — the correction determinismProofs made to itself.
+    // It stays a row because the twelve challenges are the twelve hours of the challenge clock (heaven/essence): removed,
+    // eleven hours closed no circle and ten dimensions opened.
+    challenge('Determinism', 'hand it distinct seeds and claim two of them reach one address', new Set(DISTINCT_SEEDS.map((seed) => toUuid(seed))).size === new Set(DISTINCT_SEEDS).size),
     challenge('Tamper-evidence', 'change one character and claim the root is unchanged', toUuid('x') !== toUuid('y')),
     challenge('Non-commutative fold', 'claim merge(a,b) equals merge(b,a)', merge('a', 'b') !== merge('b', 'a')),
     challenge('Genus-2 homology', 'claim the rank is not 4 or chi is not -2', homology(matrix).rank === 4 && homology(matrix).euler === -2),

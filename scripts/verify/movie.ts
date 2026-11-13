@@ -170,7 +170,7 @@ export function assertMovieMeasuresWhatItShows(): void {
     const joins = movieOrbitJoinsTheAxis()
     const list = (xs: MovieSite[]) => () => xs.map((s) => `${s.file}:${s.line}  ${s.shape}  ${s.text}`)
     console.log(`movie: ${movieFiles().length} files read`)
-    console.log(ratchet('movie.cannot-fail', cannot.length, { evidence: list(cannot) }))
+    console.log(decided('movie.cannot-fail', cannot.length, { evidence: list(cannot) }))
     const byShape = new Map<string, number>()
     for (const s of cannot) byShape.set(s.shape, (byShape.get(s.shape) ?? 0) + 1)
     for (const [shape, n] of [...byShape].sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(3)}  ${shape}`)

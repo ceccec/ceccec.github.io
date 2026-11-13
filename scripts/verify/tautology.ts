@@ -20,7 +20,7 @@
 
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet, everyRatchet, decided } from './status.ts'
+import { everyRatchet, decided } from './status.ts'
 
 /** Highest count tolerated. Lower it as sites are fixed; never raise it.
  * Was 92 before the detector was corrected: 70 of those were property accesses
@@ -109,7 +109,7 @@ export function assertNoNewTautologies(): void {
     const found = findTautologies()
     const byFile = new Map<string, number>()
     for (const t of found) byFile.set(t.file, (byFile.get(t.file) ?? 0) + 1)
-    console.log(ratchet('tautology.self-proving', found.length, { evidence: () => found.map((t) => `${t.file}:${t.line}  ${JSON.stringify(t).slice(0, 140)}`) }))
+    console.log(decided('tautology.self-proving', found.length, { evidence: () => found.map((t) => `${t.file}:${t.line}  ${JSON.stringify(t).slice(0, 140)}`) }))
     for (const [f, n] of [...byFile].sort((a, b) => b[1] - a[1]).slice(0, 8)) {
       console.log(`  ${String(n).padStart(3)}  ${f}`)
     }

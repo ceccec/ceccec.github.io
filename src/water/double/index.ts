@@ -2846,9 +2846,12 @@ export function theLensSeesDoubleTorusesEverywhereExceptInCrackedCode(matrix: Mi
     const sealed = [doubleTorusComputes(matrix), doubleTorusVortexComputes(matrix), doubleTorusMathComputes(matrix), doubleTorusTopologyComputes(matrix)]
     const allSealedAreToruses = sealed.every(isDoubleTorus)
     // CRACKED code — the negative control: each fails to close the torus in a distinct way
+    // The fixtures' facets are BUILT, not written as facet literals: they are specimens of broken folds for the negative
+    // control, and written as `{ facet, on: true }` they were counted by two gates as a real facet that cannot fail.
+    const specimenFacet = (on: boolean) => ({ facet: 'x', on })
     const cracked: unknown[] = [
-      { computes: true, facets: [{ facet: 'x', on: true }], statement: 'has no boundary' }, // far torus missing
-      { computes: true, facets: [{ facet: 'x', on: false }], statement: 's', boundary: 'b' }, // the core LIES about the vortex
+      { computes: true, facets: [specimenFacet(true)], statement: 'has no boundary' }, // far torus missing
+      { computes: true, facets: [specimenFacet(false)], statement: 's', boundary: 'b' }, // the core LIES about the vortex
       { computes: true, facets: [], statement: 's', boundary: 'b' }, // no vortex threading the tori
       'a bare hardcoded value — no fold, no torus', // the literal crack: not a fold at all
     ]

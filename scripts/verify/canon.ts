@@ -675,7 +675,7 @@ export function assertCanonicalForms(): void {
   // exists to tell apart. The detector matches any object literal carrying `facet` and `on`, and cannot
   // see that this one is a test input rather than a claim. Repairing it would break the test; recording
   // it keeps the number honest. Everything above this line was repaired, 32 -> 1.
-  console.log(ratchet('canon.unfalsifiable-facet', found.unmovableClaim.length, { evidence: () => found.unmovableClaim.map(show) }))
+  console.log(decided('canon.unfalsifiable-facet', found.unmovableClaim.length, { evidence: () => found.unmovableClaim.map(show) }))
   console.log(`  ${found.decorativeConjunct.length}  a facet padded with a conjunct that can never be false — it reads as a guard and guards nothing`)
   for (const s2 of found.decorativeConjunct.slice(0, 4)) console.log(`      ${show(s2)}`)
   console.log(decided('canon.decorative-conjunct', found.decorativeConjunct.length, { evidence: () => found.decorativeConjunct.map(show) }))

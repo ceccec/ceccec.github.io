@@ -30250,7 +30250,8 @@ function redTeam(matrix = buildMatrix()) {
     { attack: "substitute a saved skill atom and keep the memory root", caught: merge(skillAtoms(matrix).memory, toUuid("swap")) !== skillAtoms(matrix).memory },
     { attack: "claim one file short of the census forms a gapless Fibonacci run", caught: !harmonicBands(UNFOLDED_CENSUS - 1).gapless },
     { attack: "collide the doubling cycle onto the 3-6-9 cross", caught: vortexMath(matrix).collisionFree },
-    { attack: "replay a measurement to forge a different collapse", caught: quantumSimulation(matrix, 3).measured === quantumSimulation(matrix, 3).measured },
+    // PURGED 2026-11-13: 'replay a measurement to forge a different collapse', caught by comparing a call with the same call.
+    // That catches nothing: it is true of any deterministic function and says nothing about a forged collapse.
     { attack: "pass two identical values off as one (skip the duality)", caught: vortexMath(matrix).identicalRoutesToDuality }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`attack:${entry2.attack}:${entry2.caught}`) }));
   const caught = attacks.filter((entry2) => entry2.caught).length;
@@ -53258,11 +53259,17 @@ var scientistsMemoized = matrixMemo2(scientistsImpl);
 function scientists(matrix = buildMatrix()) {
   return scientistsMemoized(matrix);
 }
+var DISTINCT_SEEDS = ["x", "y", "xy", "yx", "x:y", "y:x"];
 function scientistsImpl(matrix) {
   const leaves = livingTorus(matrix).coordinates.slice(0, 8).map((coordinate) => coordinate.receipt);
   const challenge = (claim, attack, withstood2) => ({ claim, attack, withstood: withstood2, receipt: toUuid(`challenge:${claim}:${withstood2}`) });
   const challenges = [
-    challenge("Determinism", "recompute toUuid twice and claim the results differ", toUuid("x") === toUuid("x")),
+    // REPLACED 2026-11-13, NOT REMOVED. This row compared toUuid('x') with toUuid('x'): an expression compared with itself
+    // withstands every attack because it cannot lose. Same input, same output is purity, held corpus-wide by verify:purity;
+    // what a hash CAN fail is collision, so that is what the row now risks — the correction determinismProofs made to itself.
+    // It stays a row because the twelve challenges are the twelve hours of the challenge clock (heaven/essence): removed,
+    // eleven hours closed no circle and ten dimensions opened.
+    challenge("Determinism", "hand it distinct seeds and claim two of them reach one address", new Set(DISTINCT_SEEDS.map((seed) => toUuid(seed))).size === new Set(DISTINCT_SEEDS).size),
     challenge("Tamper-evidence", "change one character and claim the root is unchanged", toUuid("x") !== toUuid("y")),
     challenge("Non-commutative fold", "claim merge(a,b) equals merge(b,a)", merge("a", "b") !== merge("b", "a")),
     challenge("Genus-2 homology", "claim the rank is not 4 or chi is not -2", homology(matrix).rank === 4 && homology(matrix).euler === -2),
