@@ -493,7 +493,7 @@ export declare const zeroCrossingEmergenceDefault: {
  * disagree with anything.
  *
  * They are read off the sources instead. `npm run verify:lean` proves the other half — that
- * the files compile, carry no `sorry`, and that every theorem depends on no axiom; this
+ * the files compile, carry no `sorry`, and rest on no axiom beyond propext and Quot.sound; this
  * counts what it proved. Deleting a theorem moves the README by itself.
  */
 export declare function leanInvolutionCorpus(root?: string): {

@@ -32,7 +32,7 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
          not after it — the same order the Zenodo abstract uses. -->
     <p class="claim">
       <strong>NOT A NOVELTY CLAIM.</strong> This is a <strong>machine-checked formalisation</strong>,
-      decided by the Lean&nbsp;4 kernel and depending on <strong>no axiom</strong>. It is dated and
+      checked by the Lean&nbsp;4 kernel and resting on <strong>no axiom beyond <code>propext</code> and <code>Quot.sound</code></strong> — most on none. It is dated and
       citable. Prior art, where it exists, is cited below. No discovery is claimed.
     </p>
 
@@ -45,7 +45,9 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
     <p>
       By <code>{{ row.tactic }}</code> in
       <a :href="`${REPO}/${row.sourcePath}`" rel="noopener">{{ row.file }}</a>.
-      The kernel reduces the proposition and reports no axiom dependency.
+      Checked by the Lean kernel. What it rests on is reported per theorem by <code>npm run verify:lean</code>:
+      most depend on no axiom at all, the general ones on <code>propext</code> and <code>Quot.sound</code>, and the gate
+      refuses any that reaches <code>Classical.choice</code>.
     </p>
 
     <h2>Sources and identifiers</h2>

@@ -16,7 +16,7 @@ const total = computed(() => leanPageRows().length)
 <template>
   <section>
     <p class="claim">
-      <strong>{{ total }} theorems, every one decided by the Lean&nbsp;4 kernel and depending on no axiom.</strong>
+      <strong>{{ total }} theorems, every one checked by the Lean&nbsp;4 kernel, none resting on an axiom beyond <code>propext</code> and <code>Quot.sound</code> — and most on none.</strong>
       Each is a <strong>formalisation</strong> of a stated result, dated and citable. None is a novelty claim.
     </p>
     <div v-for="[file, rows] in groups" :key="file">

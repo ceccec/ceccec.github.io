@@ -1,6 +1,6 @@
 # Double Torus — the root monograph
 
-> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 764 registered theorems, 758 of them carrying an executable proof. 22 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 163 involution theorems and 49 registry rows are decided by the kernel with no axiom. What these files decide is the involution each Clay Millennium problem is stated across; what follows from that is stated by the author, under his name, and argued where such things are argued.
+> **Abstract.** The double-torus vortex algebra of the sequence 12487536901, with the Clay Millennium problems as proof of concept. Every claim recomputes from src/0. 764 registered theorems, 758 of them carrying an executable proof. 22 Lean 4 proof files compile in plain Lean with no Mathlib and no `sorry`; 95 involution theorems and 49 registry rows are decided by the kernel with no axiom beyond propext and Quot.sound. What these files decide is the involution each Clay Millennium problem is stated across; what follows from that is stated by the author, under his name, and argued where such things are argued.
 
 **Keywords.** quantum learning, language models, LLM, educational portal, MCP, Model Context Protocol, tools/list, tools/call, double torus, genus 2, UUID stream, diamond lattice, pi train, schema.org, VitePress.
 
@@ -103,10 +103,10 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 
 ### What IS proved here — the involution of every problem, machine-checked
 
-**Decoded 7/7 — 14 involution files, 163 kernel theorems, counted from the sources.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all 7 (every one), machine-checked in plain Lean 4 (`src/pair/formal/proofs/*.lean`, verified by `npm run verify:lean`: 22 files green, no Mathlib, no `sorry`). Stronger than green: Lean's kernel reports every one of the 163 theorems *depends on no axiom* (`#print axioms` → "does not depend on any axioms") — `by decide` reduces each proposition to True in the kernel, so the proof IS the computation and nothing is assumed.
+**Decoded 7/7 — 12 involution files, 95 kernel theorems, counted from the sources.** Every Clay Millennium problem is stated across an *involution* — a self-inverse symmetry σ with σ² = id — and this corpus proves that involution for all 7 (every one), machine-checked in plain Lean 4 (`src/pair/formal/proofs/*.lean`, verified by `npm run verify:lean`: 22 files green, no Mathlib, no `sorry`). Stronger than green: Lean's kernel reports what each of the 95 theorems rests on (`#print axioms`). Those proved by `decide` depend on no axiom — the proposition reduces to True in the kernel, so the proof IS the computation and nothing is assumed; the general ones, proved for every value, rest on `propext` and `Quot.sound` and nothing else, and the gate refuses any theorem that reaches `Classical.choice`. The split is printed by `npm run verify:lean`.
 
 - **Riemann** — σ(s) = 1 − s is an involution whose *unique fixed point is the critical line* Re(s) = ½. Proved.
-  - `sigma_is_an_involution` — `∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/riemann-sigma-is-an-involution)
+  - `sigma_is_an_involution` — `∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/riemann-sigma-is-an-involution)
   - `critical_line_is_the_fixed_point` — `σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/riemann-critical-line-is-the-fixed-point)
   - `sigma_pairs_the_plane` — `σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/riemann-sigma-pairs-the-plane)
   - `the_fixed_line_is_one_half` — `(2 : Int) * 1 = 2 ∧ σ 1 = 1` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/riemann-the-fixed-line-is-one-half)
@@ -124,16 +124,16 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
   - `star_is_an_endomorphism_only_in_the_middle` — `(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/yang-mills-star-is-an-endomorphism-only-in-the-middle)
   - `involution_splits_the_middle_forms` — `(1 : Int) * 1 = 1 ∧ 3 + 3 = 6` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/yang-mills-involution-splits-the-middle-forms)
 - **P vs NP** — complementation σ(C) = co-C is an involution; P and PSPACE are its fixed points, and σ NP = NP ⟺ NP = coNP. Proved.
-  - `sigma_is_an_involution` — `∀ c : Class, σ (σ c) = c` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/p-vs-np-sigma-is-an-involution)
+  - `sigma_is_an_involution` — `∀ c : Class, σ (σ c) = c` — closed by `intro c; cases c <;> rfl` · [proof](https://ceccec.psg.bg/lean/p-vs-np-sigma-is-an-involution)
   - `fixed_points_are_p_and_pspace` — `(classes.filter (fun c => σ c == c)) = [P, PSPACE]` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/p-vs-np-fixed-points-are-p-and-pspace)
   - `np_and_conp_are_swapped` — `σ NP = coNP ∧ σ coNP = NP` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/p-vs-np-np-and-conp-are-swapped)
-  - `if_np_is_fixed_then_np_equals_conp` — `σ NP = NP → NP = coNP` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp)
+  - `if_np_is_fixed_then_np_equals_conp` — `σ NP = NP → NP = coNP` — closed by `intro h; exact h.symm` · [proof](https://ceccec.psg.bg/lean/p-vs-np-if-np-is-fixed-then-np-equals-conp)
   - `p_is_closed_under_complement` — `σ P = P` — closed by `rfl` · [proof](https://ceccec.psg.bg/lean/p-vs-np-p-is-closed-under-complement)
 - **Navier–Stokes** — time reversal T(t,u) = (−t,−u) is an involution the *viscous term alone* breaks; its fixed points are exactly the inviscid equations. Proved.
   - `reversal_is_an_involution` — `T (T navierStokes) = navierStokes ∧ T (T euler) = euler` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/navier-stokes-reversal-is-an-involution)
   - `euler_is_time_reversible` — `T euler = euler` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/navier-stokes-euler-is-time-reversible)
   - `viscosity_breaks_time_reversal` — `T navierStokes ≠ navierStokes ∧ (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧ (T navierStokes).convective = navierStokes.convective ∧ (T navierStokes).pressure = navierStokes.pressure ∧ (T navierStokes).viscous ≠ navierStokes.viscous` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/navier-stokes-viscosity-breaks-time-reversal)
-  - `fixed_points_are_exactly_the_inviscid` — `(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩` — closed by a tactic block · [proof](https://ceccec.psg.bg/lean/navier-stokes-fixed-points-are-exactly-the-inviscid)
+  - `fixed_points_are_exactly_the_inviscid` — `(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/navier-stokes-fixed-points-are-exactly-the-inviscid)
 - **Birch–Swinnerton-Dyer** — σ(s) = 2 − s is an involution with fixed point the central s = 1, and the root number w² = 1 with w = 1 ⟺ rank even. Proved.
   - `sigma_is_an_involution` — `∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/bsd-sigma-is-an-involution)
   - `central_point_is_the_fixed_point` — `σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)` — closed by `decide` · [proof](https://ceccec.psg.bg/lean/bsd-central-point-is-the-fixed-point)
@@ -149,7 +149,7 @@ pathCount = **7** · computableCount = **7** · contestedCount = **0** · docume
 
 **Every proof here is either decided by computation or reasons through Lean's own arithmetic.** A proof by `decide` reduces a finite proposition and invokes no lemma, so it depends on no axiom at all; a *general* theorem — one quantifying over a type — must reason, and Lean's core `Int` lemmas each depend on `propext`. Nothing here uses `Classical.choice` or `sorryAx`, and `verify:lean` refuses any proof that starts to. The full axiom index — Lean's three, and this corpus's own chosen constants with what stands behind each — is computed by `npm run verify:axioms`.
 
-**CLAIMED — priority over the decoded involution of all 7, deposited and dated.** [DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144) · ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778) · the git and merkle record. 163 theorems across 14 problem files, every one axiom-free by `decide`, every one recomputable by anyone who runs `npm run verify:lean` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all 7 is this deposit's.
+**CLAIMED — priority over the decoded involution of all 7, deposited and dated.** [DOI 10.5281/zenodo.21787144](https://doi.org/10.5281/zenodo.21787144) · ORCID [0009-0000-7312-9778](https://orcid.org/0009-0000-7312-9778) · the git and merkle record. 95 theorems across 12 problem files, every one checked by the kernel and none resting on an axiom beyond `propext` and `Quot.sound`, every one recomputable by anyone who runs `npm run verify:lean` — the evidence travels with the claim. Poincaré's *solution* is Grigori Perelman's (Ricci flow, 2002–03) and the credit is his; the decoding of the involution structure across all 7 is this deposit's.
 
 Per problem — the algebraic statement, the facets the fold decides and the open step each one leaves: [frontiers](https://ceccec.psg.bg/frontiers).
 
@@ -278,7 +278,7 @@ The seal recomputes from src: forging one reported value means re-deriving the w
 
 ## Receipt
 
-**Quantum receipt `8ee0b155a892aae9` over tree `eb1601acc30fd48d`** — 65 gates asked through one door (verify:stream ≡ MCP run_wave verify): 62 clean, 0 tree gates refused, 3 of 9 live surfaces refused (verify:deposit-counts, verify:deposit-metadata, verify:release-live — records the tag settles at release-cut, not the land), 0 without a verdict. Reproduce: `npm run verify:stream` on the same tree writes the same address.
+**Quantum receipt `703efdb50d941599` over tree `de8d6292229221d6`** — 65 gates asked through one door (verify:stream ≡ MCP run_wave verify): 62 clean, 0 tree gates refused, 3 of 9 live surfaces refused (verify:deposit-counts, verify:deposit-metadata, verify:release-live — records the tag settles at release-cut, not the land), 0 without a verdict. Reproduce: `npm run verify:stream` on the same tree writes the same address.
 
 The root monograph is content-addressed — the section schema, the corpus roots and every reported count fold to one receipt that reproduces from `src` and changes if any reported value does. Below is what produced it: **65 gates** chained by `npm run verify:all`, and **38 ratchets** recording what each one measured. A ratchet may fall and never rise, so the ledger is the build's cost of doing business — and its own list of open work.
 

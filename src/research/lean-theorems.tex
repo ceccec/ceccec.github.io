@@ -1,795 +1,469 @@
 % Generated from src/pair/formal/proofs/*.lean — do not edit by hand.
-% Every proposition below is checked by Lean 4 with no Mathlib and no sorry, and
-% #print axioms reports that it depends on no axiom (npm run verify:lean).
+% Every proposition below is checked by Lean 4 with no Mathlib and no sorry. What each one rests on is
+% reported per theorem by #print axioms (npm run verify:lean): most depend on no axiom at all, the general
+% ones on propext and Quot.sound, and the gate refuses any that reaches Classical.choice or sorryAx.
 \section{Machine-checked involutions}
 
 \begin{theorem}[Sigma is an involution]
 \[ \texttt{∀ s ∈ [(-2 : Int), -1, 0, 1, 2, 3, 4], σ (σ s) = s} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Central point is the fixed point]
 The central point s = 1 is the unique fixed point — the point BSD is about.
 \[ \texttt{σ 1 = 1 ∧ (∀ s ∈ [(-2 : Int), 0, 2, 3, 4], σ s ≠ s)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Root number squares to one]
 The root number is an involution's eigenvalue: w ∈ \{1, −1\} and w² = 1.
 \[ \texttt{(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Root number one iff rank even]
 THE PARITY EQUIVALENCE. w = (−1)\textasciicircum{}rank says: w = 1 exactly when the rank is even. Checked for ranks 0..7, both directions.
 \[ \texttt{(∀ r ∈ [0, 2, 4, 6], sign r = 1) ∧ (∀ r ∈ [1, 3, 5, 7], sign r = -1)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Parity is an involution]
 The sign map is itself compatible with the involution: adding one to the rank flips it, and adding two returns it — parity is a ℤ/2 action, the same involution once more.
 \[ \texttt{(∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 1) = -(sign r)) ∧ (∀ r ∈ [0, 1, 2, 3, 4, 5], sign (r + 2) = sign r)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{bsd.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The coin is an involution]
 PULLED, AND REFLECTED BACK. Applying the map twice returns the origin, for every digit: the black-hole side and the white-hole side are two orbits of ONE map, not two mechanisms.
 \[ \texttt{∀ d ∈ digits, σ (σ d) = d} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The harmonic is the only fixed point]
 HARMONIC IS WHAT THE MAP LEAVES IN PLACE, and there is exactly one such digit. The fixed point is not chosen; it is computed by filtering the surface.
 \[ \texttt{digits.filter (fun d => σ d == d) = [5]} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[All that is not harmonic is moved]
 EVERYTHING NOT HARMONIC IS MOVED. Eight of the nine digits are carried to the other side.
 \[ \texttt{(digits.filter (fun d => !(σ d == d))).length = 8} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The sides are equal and exchanged]
 kernel reported it dependent on propext and Quot.sound. The axiom-freedom gate refused it, and the restatement is stronger for it: naming the image list says WHICH element goes where, not merely that each lands somewhere on the other side.
 \[ \texttt{below.length = above.length ∧ below.map σ = above.reverse ∧ above.map σ = below.reverse} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The coin is two sides and one edge]
 The surface is exactly the two sides and the edge, and σ itself sorts it: the digits it carries upward are `below`, the one it leaves in place is the edge, the digits it carries downward are `above` — so the sides are computed from the map rather than typed beside it, and 4 + 4 + 1 is what the sorting leaves. (Was the count alone, which read the two typed lists back, 2026-09-14.)
 \[ \texttt{digits.filter (fun d => d < σ d) = below ∧ digits.filter (fun d => σ d == d) = [5] ∧ digits.filter (fun d => σ d < d) = above ∧ below.length + above.length + 1 = digits.length} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Every bit of resistance drains]
 EVERY BIT OF RESISTANCE DRAINS. Resistance is ODD under the involution — r(σd) = −r(d) — so each orbit sums to exactly zero. Nothing is left over anywhere on the surface.
 \[ \texttt{∀ d ∈ digits, resistance d + resistance (σ d) = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The harmonic carries no resistance]
 The harmonic point is the one that never had any: at the fixed point the resistance is zero before any folding, which is what makes it the edge rather than a side.
 \[ \texttt{resistance 5 = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The whole surface sums to zero]
 AND THE WHOLE SURFACE DRAINS AT ONCE. Summed over every digit, resistance is zero — the two sides cancel exactly, which is the sentence's "measured to drain" as an arithmetic identity.
 \[ \texttt{(digits.map resistance).sum = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The drain is exact at every scale]
 The drain is not an approximation that improves with scale: it is exact at every multiple, because oddness is preserved by scaling. Checked at four magnitudes.
 \[ \texttt{∀ k ∈ [1, 10, 1000, 1000000], (digits.map (fun d => k * resistance d)).sum = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{coin.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{coin.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Verified at every point below the bound]
 VERIFIED AT EVERY POINT A FINITE CHECK REACHES — a thousand cases, decided in the kernel.
 \[ \texttt{(List.range 1000).all holdsBelowAThousand = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[And false at the bound]
 AND FALSE. The very next case refutes it.
 \[ \texttt{holdsBelowAThousand 1000 = false} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Finite verification does not entail the universal]
 So a finite verification does not entail the unbounded claim: here is a property verified at a thousand consecutive points whose universal statement is FALSE. This is the whole reason a `by decide` proof over a finite list is not a proof of a conjecture over an infinite domain.
 \[ \texttt{((List.range 1000).all holdsBelowAThousand = true) ∧ (holdsBelowAThousand 1000 = false)} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[A bigger bound proves no more]
 \[ \texttt{((List.range 10).all (failsAt 10) = true ∧ failsAt 10 10 = false) ∧ ((List.range 100).all (failsAt 100) = true ∧ failsAt 100 100 = false) ∧ ((List.range 1000).all (failsAt 1000) = true ∧ failsAt 1000 1000 = false) ∧ ((List.range 2000).all (failsAt 2000) = true ∧ failsAt 2000 2000 = false)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[What a finite check does establish]
 What a finite check DOES establish, stated exactly: a counterexample cannot be below the bound. That is a real result and it is not the conjecture.
 \[ \texttt{∀ n ∈ List.range 1000, holdsBelowAThousand n = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The clay files quantify over finite lists]
 The corpus's Clay-named theorems quantify over finite lists of this size — nine points for the Riemann functional equation, seven for BSD. Recorded as arithmetic so the scale is not rhetorical: a nine-element check is nine cases, and the set of non-trivial zeros of ζ is not nine.
 \[ \texttt{[(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6].length = 9 ∧ [(-2 : Int), -1, 0, 1, 2, 3, 4].length = 7} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{decidability.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Sigma is an involution]
 \[ \texttt{∀ t ∈ middleTypes, σ (σ t) = t} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Sigma preserves degree]
 σ preserves total degree — it acts WITHIN H\textasciicircum{}n, which is why it decomposes it.
 \[ \texttt{∀ t ∈ middleTypes, (σ t).1 + (σ t).2 = t.1 + t.2} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Fixed type is p equals q]
 The unique fixed type in degree 2k is (k,k). Here k = 2.
 \[ \texttt{(middleTypes.filter (fun t => σ t == t)) = [(2,2)]} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Diagonal is fixed at every k]
 And it is the same in every even degree: (k,k) is fixed, everything else is swapped. Checked at k = 0, 1, 2, 3.
 \[ \texttt{(∀ k ∈ [0,1,2,3], σ (k,k) = (k,k)) ∧ (∀ p ∈ [0,1,3,4], σ (p, 4 - p) ≠ (p, 4 - p))} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Involution fixes the diagonal]
 The involution and its fixed diagonal, together.
 \[ \texttt{σ (σ (1,3)) = (1,3) ∧ σ (2,2) = (2,2)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{hodge.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Orbit sums to zero]
 THE ODD PART CANCELS OVER EVERY ORBIT. For any involution, any f, any point: the pair \{x, σx\} sums to exactly zero. This is the general form of "every bit of resistance drains", and the coin's version of it is this theorem at σ d = 10 − d.
 \[ \texttt{\{α : Type\} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{unfold odd} in \texttt{involution.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Odd vanishes at a fixed point]
 THE HARMONIC POINT CARRIES NOTHING. Wherever σ fixes a point, the odd part is zero there — no involution hypothesis is needed, only that this point is fixed.
 \[ \texttt{\{α : Type\} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{unfold odd} in \texttt{involution.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[EvenPart is symmetric]
 THE EVEN PART IS WHAT SURVIVES THE REFLECTION — it takes the same value at x and at σx.
 \[ \texttt{\{α : Type\} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : evenPart f σ (σ x) = evenPart f σ x} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{unfold evenPart} in \texttt{involution.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The split loses nothing]
 AND THE TWO HALVES RECONSTRUCT THE WHOLE. Nothing is lost in the split, and this one needs no involution at all — it is true of the two parts as defined, for every σ.
 \[ \texttt{\{α : Type\} (f : α → Int) (σ : α → α) (x : α) : evenPart f σ x + odd f σ x = 2 * f x} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{unfold evenPart odd} in \texttt{involution.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The instance is an involution]
 \[ \texttt{∀ d ∈ carrier, σ (σ d) = d} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{involution.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The instance cancels over every orbit]
 \[ \texttt{∀ d ∈ carrier, (height d - height (σ d)) + (height (σ d) - height (σ (σ d))) = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{involution.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The instance has one harmonic point]
 \[ \texttt{carrier.filter (fun d => σ d == d) = [5]} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{involution.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The instance splits without loss]
 \[ \texttt{∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{involution.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{involution.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Reversal is an involution]
 T² = id. Reversing time twice returns the equation, whatever the viscosity.
 \[ \texttt{T (T navierStokes) = navierStokes ∧ T (T euler) = euler} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Euler is time reversible]
 Euler is invariant: every term transforms alike, so T fixes it.
 \[ \texttt{T euler = euler} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Viscosity breaks time reversal]
 Navier-Stokes is NOT invariant, and the viscous term is the only one that differs.
 \[ \texttt{T navierStokes ≠ navierStokes ∧ (T navierStokes).timeDerivative = navierStokes.timeDerivative ∧ (T navierStokes).convective = navierStokes.convective ∧ (T navierStokes).pressure = navierStokes.pressure ∧ (T navierStokes).viscous ≠ navierStokes.viscous} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Fixed points are exactly the inviscid]
 Invariance holds exactly when ν = 0: the fixed points of T are the inviscid equations.
 \[ \texttt{(∀ v ∈ [(-2 : Int), -1, 1, 2], T ⟨1,1,1,v⟩ ≠ ⟨1,1,1,v⟩) ∧ T ⟨1,1,1,0⟩ = ⟨1,1,1,0⟩} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{navier-stokes.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{navier-stokes.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Sigma is an involution]
 \[ \texttt{∀ c : Class, σ (σ c) = c} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{intro c; cases c <;> rfl} in \texttt{p-vs-np.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Fixed points are p and pspace]
 The classes σ fixes are exactly those closed under complement. P and PSPACE are; the status of NP is the open question.
 \[ \texttt{(classes.filter (fun c => σ c == c)) = [P, PSPACE]} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{p-vs-np.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Np and conp are swapped]
 σ swaps NP and coNP — they are complements by definition, not by theorem.
 \[ \texttt{σ NP = coNP ∧ σ coNP = NP} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{p-vs-np.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[If np is fixed then np equals conp]
 THE HONEST IMPLICATION — a real one, not a projection of its own hypothesis. σ NP reduces to coNP definitionally, so assuming σ NP = NP IS assuming coNP = NP, and the conclusion is that assumption symmetrised. Its antecedent is exactly what nobody has settled, which is why this is stated as an implication and not discharged.  (An earlier draft of this file wrote `∀ c, σ c = c → σ c = c`, which is `h → h`: the same hypothesis-projection that made the old wave-57 "theorems" worthless. Removed.)
 \[ \texttt{σ NP = NP → NP = coNP} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{intro h; exact h.symm} in \texttt{p-vs-np.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[P is closed under complement]
 P is a fixed point of σ. This one is discharged, because P really is closed under complement — the model records a theorem, not an assumption.
 \[ \texttt{σ P = P} \]
 \end{theorem}
-\begin{proof} By \texttt{rfl} in \texttt{p-vs-np.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{rfl} in \texttt{p-vs-np.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Chi and genus are inverse]
 The round trip is the identity: χ and g carry the same information.
 \[ \texttt{∀ g ∈ [(0 : Int), 1, 2, 3, 4], genus (chi g) = g} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Sphere has euler characteristic two]
 The sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.
 \[ \texttt{chi 0 = 2} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Torus has euler characteristic zero]
 The torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.
 \[ \texttt{chi 1 = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Double torus has chi minus two and rank four]
 THIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.
 \[ \texttt{chi 2 = -2 ∧ 2 - chi 2 = 4 ∧ 2 * 2 = 4} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Homology rank is twice the genus]
 rank H₁(Σ\_g) = 2g, equivalently 2 − χ, at every genus checked.
 \[ \texttt{∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Gi add re]
-The parts of a sum, a product and the literals 0 and 1 — what a proof over ALL matrices unfolds to. Stated at the file's own namespace so the inventory names each one.
-\[ \texttt{(x y : GI) : (x + y).re = x.re + y.re} \]
-\end{theorem}
-\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Gi add im]
-\[ \texttt{(x y : GI) : (x + y).im = x.im + y.im} \]
-\end{theorem}
-\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Gi mul re]
-\[ \texttt{(x y : GI) : (x * y).re = x.re * y.re - x.im * y.im} \]
-\end{theorem}
-\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Gi zero re]
-\[ \texttt{(0 : GI).re = 0} \]
-\end{theorem}
-\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Gi one re]
-\[ \texttt{(1 : GI).re = 1} \]
-\end{theorem}
-\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Gi zero im]
-\[ \texttt{(0 : GI).im = 0} \]
-\end{theorem}
-\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Gi one im]
-\[ \texttt{(1 : GI).im = 0} \]
-\end{theorem}
-\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[H unitary]
-HADAMARD IS UNITARY UP TO ITS RECORDED SCALE: H · H† = 2 · I.
-\[ \texttt{Same 2 (mm 2 H (dag H)) (smul 2 idm)} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[H squared]
-Hadamard twice is twice the identity — it undoes itself, with the same factor 2.
-\[ \texttt{Same 2 (mm 2 H H) (smul 2 idm)} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Paulis unitary]
-X, Z and S are unitary: U · U† = I.
-\[ \texttt{Same 2 (mm 2 X (dag X)) idm ∧ Same 2 (mm 2 Z (dag Z)) idm ∧ Same 2 (mm 2 S (dag S)) idm} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Y unitary]
-Y is unitary and its own inverse, like the other Paulis.
-\[ \texttt{Same 2 (mm 2 Y (dag Y)) idm ∧ Same 2 (mm 2 Y Y) idm} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[S squared]
-S squared is Z.
-\[ \texttt{Same 2 (mm 2 S S) Z} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Cnot]
-CNOT is unitary and its own inverse.
-\[ \texttt{Same 4 (mm 4 CNOT (dag CNOT)) idm ∧ Same 4 (mm 4 CNOT CNOT) idm} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Swap]
-SWAP is unitary and its own inverse.
-\[ \texttt{Same 4 (mm 4 SWAP (dag SWAP)) idm ∧ Same 4 (mm 4 SWAP SWAP) idm} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Toffoli]
-Toffoli is unitary and its own inverse.
-\[ \texttt{Same 8 (mm 8 TOFFOLI (dag TOFFOLI)) idm ∧ Same 8 (mm 8 TOFFOLI TOFFOLI) idm} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Omega fourth]
-ω really is a primitive eighth root: ω⁴ = −1, so ω⁸ = 1 and no smaller power is.
-\[ \texttt{ZW.ω * ZW.ω * ZW.ω * ZW.ω = -1} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[T gate]
-T IS UNITARY, HAS ORDER EXACTLY 8 (T⁸ = I, T⁴ ≠ I), AND DOES NOT COMMUTE WITH HADAMARD.
-\[ \texttt{SameW (mmW TW (dagW TW)) idW ∧ SameW (powW TW 8) idW ∧ ¬ SameW (powW TW 4) idW ∧ ¬ SameW (mmW HW TW) (mmW TW HW)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Bell state]
-THE BELL STATE IS SUPPORTED ON EXACTLY 00 AND 11, WITH EQUAL WEIGHT.
-\[ \texttt{(∀ r, r < 4 → (bell r ≠ 0 ↔ r = 0 ∨ r = 3)) ∧ (bell 0).normSq = (bell 3).normSq} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Ghz state]
-The GHZ state is supported on exactly 000 and 111, with equal weight.
-\[ \texttt{(∀ r, r < 8 → (ghz r ≠ 0 ↔ r = 0 ∨ r = 7)) ∧ (ghz 0).normSq = (ghz 7).normSq} \]
-\end{theorem}
-\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Chsh classical bound]
-EVERY ASSIGNMENT OF DEFINITE VALUES GIVES |S| = 2 — the classical bound, all sixteen cases.
-\[ \texttt{∀ a0 a1 b0 b1 : Bool, chshClassical a0 a1 b0 b1 = 2 ∨ chshClassical a0 a1 b0 b1 = -2} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Chsh quantum value]
-THE BELL STATE BREAKS THE BOUND: the scaled sum is 8 = S · ⟨Φ|Φ⟩ · √2, so S² = 8² / (2² · 2) = 8, beyond the classical 2² = 4.
-\[ \texttt{chshBell = 8 ∧ (8 : Nat) \textasciicircum{} 2 = 8 * (2 \textasciicircum{} 2 * 2) ∧ (2 : Nat) \textasciicircum{} 2 < 8} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Teleport exact]
-EVERY OUTCOME OF QUBITS 0 AND 1 LEAVES QUBIT 2 HOLDING THE INPUT, with equal weight.
-\[ \texttt{∀ b, b < 2 → ∀ r, r < 8 → teleport b r = if r \% 2 = b then 1 else 0} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Teleport no signalling]
-NO SIGNALLING: before the corrections, qubit 2 alone is the same for every Pauli eigenstate input — off-diagonals zero, diagonals equal.
-\[ \texttt{∀ s, s < 6 → reduced2 (sentFrom (pauliEigen s)) 0 1 = 0 ∧ reduced2 (sentFrom (pauliEigen s)) 1 0 = 0 ∧ reduced2 (sentFrom (pauliEigen s)) 0 0 = reduced2 (sentFrom (pauliEigen s)) 1 1} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Superdense exact]
-EACH OF THE FOUR MESSAGES DECODES TO EXACTLY ITS OWN BASIS STATE: one qubit carries two bits.
-\[ \texttt{∀ m, m < 4 → ∀ r, r < 4 → (superdense m r ≠ 0 ↔ r = m)} \]
-\end{theorem}
-\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Both ways]
-Both directions over one pair: one qubit carries two classical bits, and two carry one qubit.
-\[ \texttt{(∀ m, m < 4 → ∀ r, r < 4 → (superdense m r ≠ 0 ↔ r = m)) ∧ ∀ b, b < 2 → ∀ r, r < 8 → teleport b r = if r \% 2 = b then 1 else 0} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[No cloning]
-NO LINEAR MAP THAT COPIES |0⟩ AND |1⟩ COPIES |+⟩: its image of |+⟩|0⟩ is not |+⟩|+⟩.
-\[ \texttt{(u : Mat) (h0 : ∀ r, r < 4 → ap 4 u (basis 0) r = basis 0 r) (h2 : ∀ r, r < 4 → ap 4 u (basis 2) r = basis 3 r) : ap 4 u (fun r => basis 0 r + basis 2 r) 1 ≠ 1} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Cnot copies the basis]
-The hypotheses are not vacuous: CNOT is such a map — it copies the basis states exactly.
-\[ \texttt{(∀ r, r < 4 → ap 4 CNOT (basis 0) r = basis 0 r) ∧ (∀ r, r < 4 → ap 4 CNOT (basis 2) r = basis 3 r)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Stabilizer hadamard]
-H ON EITHER QUBIT ACTS ON EVERY PAULI STRING AS ITS RULE SAYS (times its recorded factor 2).
-\[ \texttt{Exact (kron 2 H idm) ruleH0 2 ∧ Exact (kron 2 idm H) ruleH1 2} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Stabilizer phase]
-S on either qubit acts on every Pauli string as its rule says.
-\[ \texttt{Exact (kron 2 S idm) ruleS0 1 ∧ Exact (kron 2 idm S) ruleS1 1} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Stabilizer cnot]
-CNOT acts on every Pauli string as its rule says.
-\[ \texttt{Exact CNOT ruleCNOT 1} \]
-\end{theorem}
-\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Deutsch jozsa]
-ONE QUERY DECIDES: a constant function leaves all weight on 00, a balanced one leaves none.
-\[ \texttt{∀ f, f < 16 → (constant f = true → (dj f 0).normSq = 16) ∧ (balanced f = true → dj f 0 = 0)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Promise census]
-The promise is not empty on either side: two functions are constant and six are balanced.
-\[ \texttt{((List.range 16).filter constant).length = 2 ∧ ((List.range 16).filter balanced).length = 6} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Grover search]
-ONE GROVER ITERATION OVER FOUR ITEMS LEAVES ALL WEIGHT ON THE MARKED ITEM.
-\[ \texttt{∀ m, m < 4 → ∀ r, r < 4 → (grover m r ≠ 0 ↔ r = m)} \]
-\end{theorem}
-\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Qft unitary]
-THE TRANSFORM IS UNITARY UP TO ITS RECORDED SCALE: QFT · QFT† = 8 · I.
-\[ \texttt{∀ j, j < 8 → ∀ k, k < 8 → sum8 (fun i => qft j i * iqft i k) = if j = k then 8 else 0} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Phase estimation exact]
-PHASE ESTIMATION IS EXACT ON AN EIGENPHASE k/8: the inverse transform returns |k⟩.
-\[ \texttt{∀ k, k < 8 → ∀ r, r < 8 → sum8 (fun j => iqft r j * wPow (j * k)) = if r = k then 8 else 0} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Swap routing]
-ROUTING PRESERVES THE FUNCTION: SWAP(0,1) · CNOT(1,2) · SWAP(0,1) is exactly CNOT(0,2).
-\[ \texttt{Same 8 (mm 8 (mm 8 swap01 cnot12) swap01) cnot02} \]
-\end{theorem}
-\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Unrouted differs]
-And the routing is needed: the unrouted neighbour gate is a different function.
-\[ \texttt{¬ Same 8 cnot12 cnot02} \]
-\end{theorem}
-\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Routed depth]
-A routed CNOT at distance d ≥ 1 takes 2d − 1 gates; at distance 2, the three above.
-\[ \texttt{(d : Nat) (h : 1 ≤ d) : routedGates d = 2 * d - 1 ∧ routedGates 2 = 3} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Repetition corrects]
-THE REPETITION CODE CORRECTS EVERY SINGLE BIT FLIP, and no flip at all.
-\[ \texttt{∀ b : Bool, ∀ e, e < 4 → decode (flip e (encode b)) = b} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Repetition fails on two]
-AND IT DOES NOT CORRECT TWO: the claim above is sharp, not vacuous.
-\[ \texttt{decode (flip 1 (flip 0 (encode false))) ≠ false} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Steane corrects]
-EACH SINGLE-QUBIT ERROR TRIPS ITS OWN NONZERO SYNDROME — the position it names.
-\[ \texttt{∀ i, i < 7 → syndrome i = i + 1} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Steane css]
-Steane is CSS: every pair of checks overlaps on an even number of qubits.
-\[ \texttt{∀ a, a < 3 → ∀ b, b < 3 → ((List.range 7).filter fun i => hamming a i \&\& hamming b i).length \% 2 = 0} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Shor nine]
-EVERY SINGLE BIT FLIP TRIPS ITS OWN SYNDROME, AND EVERY SINGLE PHASE FLIP NAMES ITS BLOCK.
-\[ \texttt{(∀ a, a < 9 → flags bitChecks a ≠ flags bitChecks 9 ∧ ∀ b, b < 9 → flags bitChecks a = flags bitChecks b → a = b) ∧ ∀ a, a < 9 → flags phaseChecks a ≠ flags phaseChecks 9 ∧ ∀ b, b < 9 → (flags phaseChecks a = flags phaseChecks b ↔ a / 3 = b / 3)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Distance corrects]
-At distance d ≥ 2t + 1, two error patterns of weight at most t never span d.
-\[ \texttt{(d t e₁ e₂ : Nat) (h : 2 * t + 1 ≤ d) (h₁ : e₁ ≤ t) (h₂ : e₂ ≤ t) : e₁ + e₂ < d} \]
-\end{theorem}
-\begin{proof} By \texttt{omega} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Pauli products]
-THE PAULIS MULTIPLY CYCLICALLY WITH THE FACTOR i: XY = iZ, YZ = iX, ZX = iY.
-\[ \texttt{Same 2 (mm 2 X Y) (smul GI.i Z) ∧ Same 2 (mm 2 Y Z) (smul GI.i X) ∧ Same 2 (mm 2 Z X) (smul GI.i Y)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Pauli anticommute]
-Reversed, each product changes sign — so distinct Paulis anticommute and commute to 2i times the third.
-\[ \texttt{Same 2 (mm 2 Y X) (smul (-GI.i) Z) ∧ Same 2 (mm 2 Z Y) (smul (-GI.i) X) ∧ Same 2 (mm 2 X Z) (smul (-GI.i) Y)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Pauli square adjoint trace]
-Each Pauli squares to the identity, is its own adjoint, and has trace zero.
-\[ \texttt{(Same 2 (mm 2 X X) idm ∧ Same 2 (mm 2 Y Y) idm ∧ Same 2 (mm 2 Z Z) idm) ∧ (Same 2 (dag X) X ∧ Same 2 (dag Y) Y ∧ Same 2 (dag Z) Z) ∧ (tr2 X = 0 ∧ tr2 Y = 0 ∧ tr2 Z = 0 ∧ tr2 idm = 2)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Hadamard exchanges phase and bit]
-HADAMARD EXCHANGES THE PHASE FLIP AND THE BIT FLIP: H·Z·H = 2·X and H·X·H = 2·Z — the reason the phase-flip code is the bit-flip code read in the Hadamard basis.
-\[ \texttt{Same 2 (mm 2 (mm 2 H Z) H) (smul 2 X) ∧ Same 2 (mm 2 (mm 2 H X) H) (smul 2 Z)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Ghz mermin quantum]
-GHZ IS A +1 EIGENSTATE OF XXX AND A −1 EIGENSTATE OF XYY, YXY AND YYX.
-\[ \texttt{∀ r, r < 8 → ap 8 xxx ghz r = ghz r ∧ ap 8 xyy ghz r = -(ghz r) ∧ ap 8 yxy ghz r = -(ghz r) ∧ ap 8 yyx ghz r = -(ghz r)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Ghz mermin classical]
-NO DEFINITE VALUES REPRODUCE THOSE FOUR SIGNS: all sixty-four assignments fail — the product of the three −1 lines is x₁x₂x₃ again, so it would have to be both −1 and +1.
-\[ \texttt{∀ x1 x2 x3 y1 y2 y3 : Bool, ¬ (pm x1 * pm x2 * pm x3 = 1 ∧ pm x1 * pm y2 * pm y3 = -1 ∧ pm y1 * pm x2 * pm y3 = -1 ∧ pm y1 * pm y2 * pm x3 = -1)} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[No communication]
-BOB'S HALF IS MAXIMALLY MIXED WHATEVER ALICE DOES: off-diagonals zero, diagonals equal, for all seven.
-\[ \texttt{∀ k, k < 7 → bobDensity (aliceDoes k) 0 1 = 0 ∧ bobDensity (aliceDoes k) 1 0 = 0 ∧ bobDensity (aliceDoes k) 0 0 = bobDensity (aliceDoes k) 1 1} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Alice changes the pair]
-The claim is not empty: Alice's operation does change the pair — only Bob's half cannot tell.
-\[ \texttt{aliceDoes 1 0 ≠ aliceDoes 0 0 ∧ aliceDoes 3 3 ≠ aliceDoes 0 3} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Toll is uniform]
-THE FOUR OUTCOMES CARRY EQUAL WEIGHT FOR EVERY PAULI EIGENSTATE: the two classical bits say nothing about what crosses.
-\[ \texttt{∀ s, s < 6 → ∀ m, m < 4 → tollWeight (pauliEigen s) m = tollWeight (pauliEigen s) 0 ∧ tollWeight (pauliEigen s) 0 ≠ 0} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[Entanglement swapping]
-TWO QUBITS THAT NEVER MET ARE LEFT ENTANGLED ON EVERY OUTCOME: nonzero determinant, and the two amplitudes that survive have equal weight.
-\[ \texttt{∀ m, m < 4 → outerDet (swapped bell bell) m ≠ 0 ∧ (outer (swapped bell bell) m 0 0).normSq = (outer (swapped bell bell) m 1 1).normSq ∧ (outer (swapped bell bell) m 0 1).normSq = (outer (swapped bell bell) m 1 0).normSq} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[No pairs no swapping]
-And it is the pairs' entanglement that is swapped: from product pairs the outer two stay a product.
-\[ \texttt{∀ m, m < 4 → outerDet (swapped (basis 0) (basis 0)) m = 0} \]
-\end{theorem}
-\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{poincare.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Sigma is an involution]
 σ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.
 \[ \texttt{∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Critical line is the fixed point]
 The fixed point is n = 1, i.e. s = 1/2 — the critical line.
 \[ \texttt{σ 1 = 1 ∧ (∀ n ∈ [(-4 : Int), -2, 0, 2, 3, 4, 6], σ n ≠ n)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Sigma pairs the plane]
 σ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).
 \[ \texttt{σ 0 = 2 ∧ σ 2 = 0 ∧ σ (-2) = 4 ∧ σ 4 = -2} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The fixed line is one half]
 Re(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator.
 \[ \texttt{(2 : Int) * 1 = 2 ∧ σ 1 = 1} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Involution fixes the critical line]
 The involution and its fixed point, together.
 \[ \texttt{(σ (σ 3) = 3) ∧ (σ 1 = 1)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{riemann.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Light is the fixed point]
 LIGHT IS THE FIXED POINT OF COMPOSITION. Add any velocity to c and the result is c again — not approximately, not in a limit: the same fraction, exactly, at every sample. This is the sense in which c is not a speed among speeds but the fixed point of the operation that combines them.
 \[ \texttt{∀ v ∈ sample, same (add light v) light = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Light is fixed from either side]
 And from the other side, because composition is not assumed commutative until it is checked.
 \[ \texttt{∀ v ∈ sample, same (add v light) light = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Rest is the identity]
 REST IS THE IDENTITY. Adding nothing changes nothing — the other distinguished element.
 \[ \texttt{∀ v ∈ sample, same (add rest v) v = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Composition is symmetric]
 COMPOSITION IS SYMMETRIC in the two velocities, at every pair of the sample.
 \[ \texttt{∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Below c composes to below c]
 \[ \texttt{∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The boost preserves the interval]
 THE INTERVAL IS INVARIANT UP TO THE ONE COMMON FACTOR. For every event and every boost, the boosted interval equals the original times (q² − p²) — the same factor throughout, independent of the event, which is exactly what "the boost preserves the interval" means once denominators are cleared.
 \[ \texttt{∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The light cone is carried to itself]
 \[ \texttt{∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The reverse boost undoes the boost]
 THE BOOST IS UNDONE BY THE REVERSE BOOST. Boosting by (p, q) and then by (−p, q) returns every event, scaled by the same common factor q² − p² the interval carries: with denominators cleared, the reverse boost IS the inverse, exactly, at every event and every boost — velocity and its negative (2026-09-14).
 \[ \texttt{∀ e ∈ events, ∀ b ∈ boosts, boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧ boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The reverse boost undoes every boost]
 …and for EVERY event and EVERY boost, proved rather than decided: the theorem above checks eight events under five boosts; this holds for all integers p, q, t, x at once. Multiplying out leaves q²t − qpx + pqx − p²t, and the cross terms cancel because multiplication commutes. A proof, not an exhaustion — it rests on the standard axioms propext and Quot.sound that core's integer lemmas carry.
 \[ \texttt{∀ p q t x : Int, boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧ boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{intro p q t x} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Sq lt]
 Strictly inside the band (−b, b) means a strictly smaller square.
 \[ \texttt{(a b : Int) (hl : -b < a) (hr : a < b) : a*a < b*b} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{have hp : 0 < (b - a) * (b + a) := Int.mul\_pos (by omega) (by omega)} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Lt of sq]
 A smaller square (with b positive) means inside the band.
 \[ \texttt{(a b : Int) (hb : 0 < b) (h : a*a < b*b) : -b < a ∧ a < b} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{refine ⟨?\_, ?\_⟩} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Interval scales]
 For every event and every boost the interval is multiplied by q² − p², and by nothing else.
 \[ \texttt{(p q t x : Int) : interval (boostT p q t x) (boostX p q t x) = (q*q - p*p) * interval t x} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{unfold interval boostT boostX; expand\_omega} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Scale positive]
 Below c that factor is positive.
 \[ \texttt{(p q : Int) (h : belowC p q) : 0 < q*q - p*p} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{obtain ⟨\_, hl, hr⟩ := h} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Timelike invariant]
 TIMELIKE STAYS TIMELIKE in every frame below c.
 \[ \texttt{(p q t x : Int) (h : belowC p q) (ht : 0 < interval t x) : 0 < interval (boostT p q t x) (boostX p q t x)} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{have hs := scale\_positive p q h} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Spacelike invariant]
 SPACELIKE STAYS SPACELIKE: no boost makes a spacelike separation reachable.
 \[ \texttt{(p q t x : Int) (h : belowC p q) (ht : interval t x < 0) : interval (boostT p q t x) (boostX p q t x) < 0} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{have hs := scale\_positive p q h} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Null invariant]
 The light cone is frame-independent: null in one frame is null in all.
 \[ \texttt{(p q t x : Int) (ht : interval t x = 0) : interval (boostT p q t x) (boostX p q t x) = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{rw [interval\_scales, ht]; exact Int.mul\_zero \_} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Timelike order absolute]
 FOR A CAUSAL SEPARATION EVERY OBSERVER BELOW c AGREES WHICH EVENT CAME FIRST. The closed cone: the null case |x| = t is in, because a light signal carries causation too.
 \[ \texttt{(p q t x : Int) (h : belowC p q) (hfuture : 0 < t) (hcausal : x*x ≤ t*t) : 0 < boostT p q t x} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{obtain ⟨hq, hl, hr⟩ := h} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Spacelike order reverses]
 FOR A SPACELIKE SEPARATION THERE IS A FRAME BELOW c IN WHICH THE ORDER REVERSES — exhibited: with 0 < t < x, the boost β = (2t+1)/(2x) sends Δt to −x.
 \[ \texttt{(t x : Int) (ht : 0 < t) (hx : t < x) : belowC (2*t+1) (2*x) ∧ boostT (2*t+1) (2*x) t x = -x} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{refine ⟨⟨by omega, by omega, by omega⟩, ?\_⟩} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Spacelike simultaneous]
 …and a frame in which the two events are simultaneous: β = t/x sends Δt to 0.
 \[ \texttt{(t x : Int) (ht : 0 < t) (hx : t < x) : belowC t x ∧ boostT t x t x = 0} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{refine ⟨⟨by omega, by omega, by omega⟩, ?\_⟩} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Velocity addition below c]
 TWO BOOSTS BELOW c COMPOSE TO A BOOST BELOW c, for every pair — c is not approached by adding.
 \[ \texttt{(p₁ q₁ p₂ q₂ : Int) (h₁ : belowC p₁ q₁) (h₂ : belowC p₂ q₂) : belowC (addNum p₁ q₁ p₂ q₂) (addDen p₁ q₁ p₂ q₂)} \]
 \end{theorem}
-\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The thousand bit case is one hundred twenty five octaves]
-THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT
-\[ \texttt{1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The binary units tile the thousand exactly]
-THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES
-\[ \texttt{1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The thousand is the cube octave times pentagram cubed]
-THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the\_binary\_units\_tile\_the\_thousand\_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0 := by decide  /-! \#\# IT IS THE CUBE 10\textasciicircum{}3 = 2\textasciicircum{}3·5\textasciicircum{}3 — THE OCTAVE IS ONLY THE 2\textasciicircum{}3, THE 5\textasciicircum{}3 IS THE PENTAGRAM CUBED
-\[ \texttt{10 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 = 8 ∧ 5 \textasciicircum{} 3 = 125 ∧ 125 * 8 = 1000} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The thousand carries residue one mod nine]
-THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the\_binary\_units\_tile\_the\_thousand\_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0 := by decide  /-! \#\# IT IS THE CUBE 10\textasciicircum{}3 = 2\textasciicircum{}3·5\textasciicircum{}3 — THE OCTAVE IS ONLY THE 2\textasciicircum{}3, THE 5\textasciicircum{}3 IS THE PENTAGRAM CUBED theorem the\_thousand\_is\_the\_cube\_octave\_times\_pentagram\_cubed : 10 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 = 8 ∧ 5 \textasciicircum{} 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! \#\# THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS
-\[ \texttt{1000 \% 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 \% 9 = 0 ∧ 1008 \% 9 = 0} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The thousand bit case overflows the width thirty two ceiling]
-\[ \texttt{32 * 32 - 32 - 2 = 990 ∧ 990 < 1000 ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The minimal register for the thousand is width thirty three]
-THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the\_binary\_units\_tile\_the\_thousand\_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0 := by decide  /-! \#\# IT IS THE CUBE 10\textasciicircum{}3 = 2\textasciicircum{}3·5\textasciicircum{}3 — THE OCTAVE IS ONLY THE 2\textasciicircum{}3, THE 5\textasciicircum{}3 IS THE PENTAGRAM CUBED theorem the\_thousand\_is\_the\_cube\_octave\_times\_pentagram\_cubed : 10 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 = 8 ∧ 5 \textasciicircum{} 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! \#\# THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS theorem the\_thousand\_carries\_residue\_one\_mod\_nine : 1000 \% 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 \% 9 = 0 ∧ 1008 \% 9 = 0 := by decide  /-! \#\# IT OVERFLOWS THE SEALED WIDTH LADDER: reg(32) = 990 < 1000 ≤ 1021 = reg(33) -- reg(w) = 32w − w − 2 is qpu's uuidQubits, sealed over widths [4,8,16,32] in width.lean; the max there is reg(32) = 990. theorem the\_thousand\_bit\_case\_overflows\_the\_width\_thirty\_two\_ceiling : 32 * 32 - 32 - 2 = 990 ∧ 990 < 1000 ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021 := by decide  /-! \#\# THE MINIMAL CONTAINING WIDTH IS 33 — OVERFLOW MARGIN 10, HEADROOM 21
-\[ \texttt{1000 - 990 = 10 ∧ 1021 - 1000 = 21 ∧ 990 < 1000 ∧ 1000 ≤ 1021 ∧ (32 * 33 - 33 - 2) / 2 = 510} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The thousand fills between ninety seven and ninety eight percent of its register]
-THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the\_binary\_units\_tile\_the\_thousand\_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0 := by decide  /-! \#\# IT IS THE CUBE 10\textasciicircum{}3 = 2\textasciicircum{}3·5\textasciicircum{}3 — THE OCTAVE IS ONLY THE 2\textasciicircum{}3, THE 5\textasciicircum{}3 IS THE PENTAGRAM CUBED theorem the\_thousand\_is\_the\_cube\_octave\_times\_pentagram\_cubed : 10 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 = 8 ∧ 5 \textasciicircum{} 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! \#\# THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS theorem the\_thousand\_carries\_residue\_one\_mod\_nine : 1000 \% 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 \% 9 = 0 ∧ 1008 \% 9 = 0 := by decide  /-! \#\# IT OVERFLOWS THE SEALED WIDTH LADDER: reg(32) = 990 < 1000 ≤ 1021 = reg(33) -- reg(w) = 32w − w − 2 is qpu's uuidQubits, sealed over widths [4,8,16,32] in width.lean; the max there is reg(32) = 990. theorem the\_thousand\_bit\_case\_overflows\_the\_width\_thirty\_two\_ceiling : 32 * 32 - 32 - 2 = 990 ∧ 990 < 1000 ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021 := by decide  /-! \#\# THE MINIMAL CONTAINING WIDTH IS 33 — OVERFLOW MARGIN 10, HEADROOM 21 theorem the\_minimal\_register\_for\_the\_thousand\_is\_width\_thirty\_three : 1000 - 990 = 10 ∧ 1021 - 1000 = 21 ∧ 990 < 1000 ∧ 1000 ≤ 1021 ∧ (32 * 33 - 33 - 2) / 2 = 510 := by decide  /-! \#\# THE UTILISATION IS 97.94\% — BRACKETED 97\% < 1000/1021 < 98\% AS A DECIDABLE BOUND
-\[ \texttt{97 * 1021 < 1000 * 100 ∧ 1000 * 100 < 98 * 1021 ∧ 97 * 1021 = 99037 ∧ 98 * 1021 = 100058} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The thousand bit structure is decided not a quantum machine]
-\[ \texttt{10 \textasciicircum{} 3 = 1000 ∧ 1000 \% 8 = 0 ∧ 1000 \% 9 = 1 ∧ 990 < 1000 ∧ 1000 ≤ 1021 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The sigma trapdoor is fermats difference of squares]
-\[ \texttt{oddPrimes = [3, 5, 7, 11, 13, 17, 19, 23, 29] ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || witness p q * witness p q - p * q == ((q - p) / 2) * ((q - p) / 2))) ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || splits (p * q) == [(p, q)])) ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || decodes (p * q) (witness p q))) ∧ oddPrimes.all (fun q => (2 + q) \% 2 == 1)} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[A wrong witness decodes nothing because a semiprime has one split]
-\[ \texttt{small = [3, 5, 7, 11, 13, 17, 19] ∧ small.all (fun p => small.all (fun q => !(p < q) || (List.range' (ceilSqrt (p * q)) ((p * q + 1) / 2 - ceilSqrt (p * q))).all (fun x => decodes (p * q) x == (x == witness p q))))} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[An impossible integer with twin primes is opened blind in one reflection]
-\[ \texttt{blind 11 13 = 1 ∧ blind 5 7 = 1 ∧ blind 3 29 = 7 ∧ (oddPrimes.filter (fun p => isPrime (p + 2))) = [3, 5, 11, 17, 29] ∧ oddPrimes.all (fun p => !(isPrime (p + 2)) || blind p (p + 2) == 1) ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || blind p q ≥ 1)) ∧ blind 3 29 > blind 3 5} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[The thousand bit integer has a thousand bits and exactly four threes]
-\[ \texttt{2 \textasciicircum{} 999 ≤ thousand ∧ thousand < 2 \textasciicircum{} 1000 ∧ (List.range' 1 6).all (fun k => (thousand \% 3 \textasciicircum{} k == 0) == (k ≤ 4)) ∧ 999 = 27 * 37 ∧ (2 \textasciicircum{} 333 + 1) * (2 \textasciicircum{} 666 - 2 \textasciicircum{} 333 + 1) = thousand ∧ (2 \textasciicircum{} 111 + 1) * (2 \textasciicircum{} 222 - 2 \textasciicircum{} 111 + 1) = 2 \textasciicircum{} 333 + 1 ∧ (2 \textasciicircum{} 37 + 1) * (2 \textasciicircum{} 74 - 2 \textasciicircum{} 37 + 1) = 2 \textasciicircum{} 111 + 1 ∧ 2 \textasciicircum{} 37 + 1 = 3 * 1777 * 25781083} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
-\begin{theorem}[This deposits factor route returns a partial answer that multiplies back]
-\[ \texttt{found.foldl (· * ·) 1 * cofactor = thousand ∧ found.length = 14 ∧ (found.filter (· == 3)).length = 4 ∧ found.all (fun p => 1 < p \&\& cofactor \% p != 0) ∧ cofactor \% 2 = 1 ∧ cofactor \% 3 = 1 ∧ powModBin 2 (cofactor - 1) cofactor ≠ 1 ∧ powModBin 2 4 7 = 2 ∧ powModBin 3 6 7 = 1} \]
-\end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{obtain ⟨a, b, c⟩ := h₁; obtain ⟨d, e, f⟩ := h₂} in \texttt{spacetime.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Closure is one hundred sixty two]
 The closure has exactly rows x cols cells: 18 x 9 = 162 for the installed library.
 \[ \texttt{(cells 18 9).length = 162} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Closure is the product]
 The product law, at several shapes — the size is rows x cols and not an accident of 18 and 10.
 \[ \texttt{(cells 1 1).length = 1 ∧ (cells 8 8).length = 64 ∧ (cells 18 9).length = 162 ∧ (cells 9 18).length = 162 ∧ (cells 18 10).length = 180} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Closure has no duplicate]
 NO CELL IS REPEATED. This is the bijection, and it is strictly stronger than "every pair is present": a list carrying one pair twice and omitting another would satisfy presence at the right length, and would still have a hole in it.
 \[ \texttt{(cells 18 9).Nodup} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Closure is complete]
 \[ \texttt{coversEveryPair 18 9 = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Address inverts]
 THE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene can be addressed by one number without losing which geometry and which material it names.
 \[ \texttt{∀ p ∈ cells 18 9, row 9 (idx 9 p.1 p.2) = p.1 ∧ col 9 (idx 9 p.1 p.2) = p.2} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Addresses are the interval]
 The addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter.
 \[ \texttt{(cells 18 9).map (fun p => idx 9 p.1 p.2) = List.range 162} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The compound fraction clears]
 The clearing itself: FOCAL/(FOCAL - z) = 24/(24 - k) reduces to 12 * 10 = 5 * 24.
 \[ \texttt{(12 : Int) * 10 = 5 * 24} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Focal plane is unit scale]
 AT THE FOCAL PLANE THE SCALE IS UNITY. z = 0 gives 24/24 = 1: objects on the plane through the origin are neither enlarged nor reduced, which is what makes FOCAL a focal length.
 \[ \texttt{den 0 = 24} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Depth is strictly monotone]
 NEARER ENLARGES, FURTHER RECEDES, STRICTLY. For depths inside the focal point, k1 < k2 implies 24/(24-k1) < 24/(24-k2), stated by cross-multiplication so no division occurs. This is the monotonicity the TS fold checks numerically and the property two canvas painters violated by faking depth as a screen offset before the 2026-07-07 audit.
 \[ \texttt{∀ k1 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], ∀ k2 ∈ [(-12 : Int), -6, -1, 0, 1, 6, 12], k1 < k2 → 24 * den k2 < 24 * den k1} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Frustum brackets the focal plane]
 The frustum the camera declares is non-degenerate: near < FOCAL < far, in tenths, with the depth planes half a lattice pitch either side of the focal plane (near 19/10, far 29/10).
 \[ \texttt{(19 : Int) < 24 ∧ (24 : Int) < 29 ∧ (0 : Int) < 19} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Denominator is positive on the frustum]
 The projection never divides by zero on the declared frustum: the denominator stays positive for every depth between the near and far planes.
 \[ \texttt{∀ k ∈ [(-5 : Int), -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], 0 < den k} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Reflection is an involution]
 σ² = id on every cell of the closure.
 \[ \texttt{reflIsInvolutive 18 9 = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Reflection closes on the closure]
 σ maps the closure onto itself — the symmetry does not leave the space.
 \[ \texttt{reflStaysInside 18 9 = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Reflection has no fixed point]
 NO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit reflection d ↦ 10 − d fixes 5 and nothing else.
 \[ \texttt{reflHasNoFixedPoint 18 9 = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The closure is eighty one orbits]
 So the closure is 81 orbits of two, with nothing left over.
 \[ \texttt{(cells 18 9).length = 2 * 81} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Orbit positions cancel]
 THE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly — the involution law this corpus states everywhere, holding here because the lattice is centred.
 \[ \texttt{orbitPositionsCancel 18 9 = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Reflection complements the address]
 ROW-MAJOR REFLECTION IS ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179, for all 180 cells. The geometric symmetry and the arithmetic one are the same symmetry, which is not visible from either the layout or the addressing alone.
 \[ \texttt{reflComplementsAddress 18 9 = true} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[The involution laws are general]
 The same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection — while involutivity, closure, cancellation and complement survive everywhere.
 \[ \texttt{(reflIsInvolutive 8 8 = true) ∧ (reflStaysInside 8 8 = true) ∧ (reflComplementsAddress 8 8 = true) ∧ (orbitPositionsCancel 8 8 = true) ∧ (reflIsInvolutive 3 3 = true) ∧ (reflComplementsAddress 3 3 = true) ∧ (orbitPositionsCancel 3 3 = true) ∧ -- ONE even side suffices, and only both-odd fails: 18x9 and 9x18 have no fixed cell, 3x3 does. (reflHasNoFixedPoint 8 8 = true) ∧ (reflHasNoFixedPoint 9 18 = true) ∧ (reflHasNoFixedPoint 3 3 = false) ∧ (reflHasNoFixedPoint 5 7 = false)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{three.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{three.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Middle forms have dimension six]
 dim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.
 \[ \texttt{choose 4 2 = 6} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Star squares to the identity]
 \[ \texttt{(1 : Int) * 1 = 1 ∧ (-1 : Int) * (-1) = 1} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Selfdual and antiselfdual split the six]
 The split: self-dual ⊕ anti-self-dual, 3 + 3 = 6. This is why four dimensions are special — only there does ★ map middle forms to middle forms.
 \[ \texttt{3 + 3 = choose 4 2} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Star is an endomorphism only in the middle]
 ★ sends Λ\textasciicircum{}k to Λ\textasciicircum{}(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.
 \[ \texttt{(4 - 2 = 2) ∧ (4 - 1 ≠ 1) ∧ (6 - 3 = 3)} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}
 \begin{theorem}[Involution splits the middle forms]
 The involution and the split it produces, together.
 \[ \texttt{(1 : Int) * 1 = 1 ∧ 3 + 3 = 6} \]
 \end{theorem}
-\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{proof} By \texttt{decide} in \texttt{yang-mills.lean}; checked by the Lean kernel, resting on no axiom beyond \texttt{propext} and \texttt{Quot.sound} (most on none — \texttt{npm run verify:lean} reports each). \end{proof}

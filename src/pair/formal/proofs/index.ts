@@ -1160,7 +1160,7 @@ export const zeroCrossingEmergenceDefault = {
  * disagree with anything.
  *
  * They are read off the sources instead. `npm run verify:lean` proves the other half — that
- * the files compile, carry no `sorry`, and that every theorem depends on no axiom; this
+ * the files compile, carry no `sorry`, and rest on no axiom beyond propext and Quot.sound; this
  * counts what it proved. Deleting a theorem moves the README by itself.
  */
 export function leanInvolutionCorpus(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): {
@@ -1394,7 +1394,9 @@ export function leanTheoremsForLatex(root: string = typeof process !== 'undefine
         title: TITLE_OF(head[1] ?? ''),
         doc: doc.join(' ').trim(),
         proposition: (prop ?? '').trim().replace(/\s+/g, ' '),
-        tactic: (after ?? '').trim().replace(/^by\s+/, '') || 'decide',
+        // `:= by` at the end of a line means the tactic is on the NEXT one. Read only to `:=`, this reported the
+        // tactic as the word "by" — "By by in quantum.lean" — for every proof Lean had wrapped.
+        tactic: ((after ?? '').trim().replace(/^by\b\s*/, '') || (lines[j + 1] ?? '').trim().replace(/^by\b\s*/, '') || 'decide'),
       })
     }
   }
@@ -1406,8 +1408,9 @@ export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined
   const rows = leanTheoremsForLatex(root)
   const head = [
     '% Generated from src/pair/formal/proofs/*.lean — do not edit by hand.',
-    '% Every proposition below is checked by Lean 4 with no Mathlib and no sorry, and',
-    '% #print axioms reports that it depends on no axiom (npm run verify:lean).',
+    '% Every proposition below is checked by Lean 4 with no Mathlib and no sorry. What each one rests on is',
+    '% reported per theorem by #print axioms (npm run verify:lean): most depend on no axiom at all, the general',
+    '% ones on propext and Quot.sound, and the gate refuses any that reaches Classical.choice or sorryAx.',
     '\\section{Machine-checked involutions}',
     '',
   ]
@@ -1416,7 +1419,7 @@ export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined
     r.doc ? texEscape(r.doc) : '',
     `\\[ \\texttt{${texEscape(r.proposition)}} \\]`,
     '\\end{theorem}',
-    `\\begin{proof} By \\texttt{${texEscape(r.tactic)}} in \\texttt{${texEscape(r.file)}}; the kernel reduces the proposition and reports no axiom dependency. \\end{proof}`,
+    `\\begin{proof} By \\texttt{${texEscape(r.tactic)}} in \\texttt{${texEscape(r.file)}}; checked by the Lean kernel, resting on no axiom beyond \\texttt{propext} and \\texttt{Quot.sound} (most on none — \\texttt{npm run verify:lean} reports each). \\end{proof}`,
     '',
   ].filter((line) => line.length > 0).join('\n'))
   return [...head, ...body].join('\n')
@@ -1538,28 +1541,28 @@ export const LEAN_SEALED_REGISTRY: readonly { readonly theorem: string; readonly
   // two no-signalling rows (the file checks teleportation's third qubit, not Bob's half under Alice's local
   // operations), Pauli closure (unitarity is decided, the commutators are not) and GHZ–Mermin (the state, not
   // the parity argument).
-  { theorem: "Deutsch–Jozsa", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["deutsch_jozsa", "promise_census"], scope: 'instances' },
-  { theorem: "Grover amplification", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["grover_search"], scope: 'instances' },
-  { theorem: "Tsirelson bound", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["chsh_classical_bound", "chsh_quantum_value"], scope: 'instances' },
-  { theorem: "no-cloning", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["no_cloning", "cnot_copies_the_basis"], scope: 'instances' },
-  { theorem: "bit-flip code", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["repetition_corrects", "repetition_fails_on_two"], scope: 'instances' },
-  { theorem: "quantum teleportation fidelity 1", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["teleport_exact"], scope: 'instances' },
-  { theorem: "superdense coding 2 bits per qubit", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["superdense_exact"], scope: 'exact' },
-  { theorem: "Quantum Fourier Transform is unitary", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["qft_unitary"], scope: 'instances' },
-  { theorem: "the Klein four-group acts simply transitively on the Bell basis — two bits address maximal entanglement", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["superdense_exact"], scope: 'instances' },
+  { theorem: "Deutsch–Jozsa", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["deutsch_jozsa", "promise_census"], scope: 'instances' },
+  { theorem: "Grover amplification", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["grover_search"], scope: 'instances' },
+  { theorem: "Tsirelson bound", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["chsh_classical_bound", "chsh_quantum_value"], scope: 'instances' },
+  { theorem: "no-cloning", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["no_cloning", "cnot_copies_the_basis"], scope: 'instances' },
+  { theorem: "bit-flip code", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["repetition_corrects", "repetition_fails_on_two"], scope: 'instances' },
+  { theorem: "quantum teleportation fidelity 1", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["teleport_exact"], scope: 'instances' },
+  { theorem: "superdense coding 2 bits per qubit", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["superdense_exact"], scope: 'exact' },
+  { theorem: "Quantum Fourier Transform is unitary", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["qft_unitary"], scope: 'instances' },
+  { theorem: "the Klein four-group acts simply transitively on the Bell basis — two bits address maximal entanglement", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["superdense_exact"], scope: 'instances' },
   // SEALED 2026-11-13, second wave. The Witness section of quantum.lean was WRITTEN for these rows on the ported
   // matrices — the first wave left them unlinked because the kernel decided less than each row said, and the
   // remedy for that is a theorem, not a looser link. Still `instances` wherever the row speaks of every state or
   // every operation and the kernel checked a finite list: seven local operations, six input states, the involutions
   // of the reversible row (its universality and Landauer clauses are not decided). Minkowski is sealed by the general
   // proofs ported from erpax into spacetime.lean, in 1+1 dimensions — the row writes |x|², so `instances`.
-  { theorem: "Pauli algebra closure", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["pauli_products", "pauli_anticommute", "pauli_square_adjoint_trace"], scope: 'exact' },
-  { theorem: "GHZ–Mermin", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["ghz_state", "ghz_mermin_quantum", "ghz_mermin_classical"], scope: 'exact' },
-  { theorem: "the no-communication theorem — entanglement correlates but cannot signal", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["no_communication", "alice_changes_the_pair"], scope: 'instances' },
-  { theorem: "the phase-flip code corrects any Z error — the Hadamard dual of the bit-flip code", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["hadamard_exchanges_phase_and_bit", "repetition_corrects"], scope: 'instances' },
-  { theorem: "Bell measurement outcomes are uniform — the teleportation toll is fair and leaks nothing", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["toll_is_uniform"], scope: 'instances' },
-  { theorem: "entanglement swapping", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["entanglement_swapping", "no_pairs_no_swapping"], scope: 'instances' },
-  { theorem: "reversible computation decoded", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["cnot", "swap", "toffoli"], scope: 'instances' },
+  { theorem: "Pauli algebra closure", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["pauli_products", "pauli_anticommute", "pauli_square_adjoint_trace"], scope: 'exact' },
+  { theorem: "GHZ–Mermin", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["ghz_state", "ghz_mermin_quantum", "ghz_mermin_classical"], scope: 'exact' },
+  { theorem: "the no-communication theorem — entanglement correlates but cannot signal", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["no_communication", "alice_changes_the_pair"], scope: 'instances' },
+  { theorem: "the phase-flip code corrects any Z error — the Hadamard dual of the bit-flip code", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["hadamard_exchanges_phase_and_bit", "repetition_corrects"], scope: 'instances' },
+  { theorem: "Bell measurement outcomes are uniform — the teleportation toll is fair and leaks nothing", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["toll_is_uniform"], scope: 'instances' },
+  { theorem: "entanglement swapping", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["entanglement_swapping", "no_pairs_no_swapping"], scope: 'instances' },
+  { theorem: "reversible computation decoded", leanFile: "src/pair/lean/proofs/quantum.lean", theorems: ["cnot", "swap", "toffoli"], scope: 'instances' },
   { theorem: "Minkowski signature", leanFile: "src/pair/formal/proofs/spacetime.lean", theorems: ["timelike_invariant", "spacelike_invariant", "null_invariant"], scope: 'instances' },
 ] as const
 

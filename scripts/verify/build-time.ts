@@ -320,7 +320,7 @@ export function assertTheShellCarriesNoTheorem(shellFiles: readonly string[], co
 
 /**
  * THE SHELL, ACCOUNTED FOR — three statements on the pattern of the thousand-bit crypto tests (owner, 2026-11-13:
- * "close all gaps" · "solve via 1000bit crypto tests"). The pattern is src/pair/formal/proofs/thousand.lean: a factor
+ * "close all gaps" · "solve via 1000bit crypto tests"). The pattern is src/pair/lean/proofs/thousand.lean: a factor
  * route's PARTIAL answer on 2^999 + 1 is an IDENTITY — the found factors times the cofactor are the integer; no found
  * factor still divides the cofactor; and a wrong witness decodes nothing. The separation theorem above decides names
  * and left open what CODE is in the shell: the digit-root leak and the SHA-256 growth both passed it. The build now
@@ -416,6 +416,11 @@ export function assertTheShellIsAccountedFor(root: string, shellFiles: readonly 
   if (corpusFiles.length === 0 || foldsInCorpus.length === 0) throw new Error(`V is NOT MEASURED: ${corpusFiles.length} corpus chunk(s) carrying ${foldsInCorpus.length} fold(s) in the witness`)
   if (foreign.length > 0) throw new Error(`V is FALSE: the corpus chunk carries ${foreign.length} module(s) that are neither folds nor build substitutes — ${foreign.slice(0, 4).join(', ')}`)
   const outside = homes.filter((home) => !corpusModules.includes(homeModule(home)) && !shellModules.has(homeModule(home)))
-  if (outside.length > 0) console.log(`      ${outside.length} theorem home(s) are in neither the shell nor the corpus chunk — not in the entry closure at all: ${outside.join(', ')}`)
+  // WHERE IT IS, NOT ONLY WHERE IT IS NOT. "In neither chunk" read as a hole; measured, src/pair/enforcement/ops is in
+  // a chunk the app loads on demand. The witness names every chunk's modules, so the line can say which — or say none.
+  for (const home of outside) {
+    const carriers = Object.entries(witness).filter(([, entry]) => entry.modules.includes(homeModule(home))).map(([file]) => file.split('/').pop())
+    console.log(`      ${home} proves registered theorems and is outside the entry closure — ${carriers.length > 0 ? `loaded on demand in ${carriers.join(', ')}` : 'in NO client chunk: its proof does not run in a browser'}`)
+  }
   console.log('  ✓ the entry closure is accounted for: the shell sealed as built with no theorem home but the root, the app entry with no fold, the corpus chunk made of folds')
 }
