@@ -56,7 +56,7 @@ const siblings = (row: LeanPageRow) => ALL.filter((r) => r.file === row.file && 
       <li>Typeset paper · <a :href="`${REPO}/${row.texPath}`" rel="noopener">{{ row.texPath }}</a></li>
       <li>Repository deposit · <a :href="`https://doi.org/${DOI}`" rel="noopener">doi:{{ DOI }}</a></li>
       <li>Author · <a :href="`https://orcid.org/${ORCID}`" rel="noopener">ORCID {{ ORCID }}</a></li>
-      <li>Deposit record · <code>{{ row.depositId }}</code></li>
+      <li v-if="row.depositId">Deposit record · <code>{{ row.depositId }}</code></li>
     </ul>
 
     <h2 v-if="siblings(row).length">Proved in the same file</h2>

@@ -504,6 +504,9 @@ export declare function leanInvolutionCorpus(root?: string): {
         readonly file: string;
         readonly theorems: number;
     }[];
+    /** The registry corpus (src/pair/lean/proofs), counted the same way and never added to the involution count. */
+    readonly registryFiles: number;
+    readonly registryTheorems: number;
     readonly source: 'counted' | 'sealed' | 'absent';
 };
 /**
@@ -559,6 +562,8 @@ export declare function buildReceiptLedger(root?: string): {
  * the files verify:lean compiles.
  */
 export type LeanTheoremLatex = {
+    /** The folder the file is in, relative to the repository root — the involution corpus or the registry corpus. */
+    readonly dir: string;
     readonly file: string;
     readonly name: string;
     readonly title: string;
@@ -566,9 +571,37 @@ export type LeanTheoremLatex = {
     readonly proposition: string;
     readonly tactic: string;
 };
+/** The two Lean corpora. The INVOLUTION corpus is what the README, the abstract and the CLAIMED paragraph count; the
+ *  REGISTRY corpus holds every other kernel theorem — the rows sealed for the registry, the quantum register, the
+ *  thousand-bit tests. They are read by one reader and never counted as one another. */
+export declare const LEAN_INVOLUTION_DIR = "src/pair/formal/proofs";
+export declare const LEAN_REGISTRY_DIR = "src/pair/lean/proofs";
+/** For each line, whether it BEGINS inside a `/- … -/` block comment (they nest; a `--` line comment opens nothing). */
+export declare function leanBlockCommentLines(lines: readonly string[]): boolean[];
 /** Every theorem in the sealed involution proofs, read from the Lean itself. */
 export declare function leanTheoremsForLatex(root?: string): readonly LeanTheoremLatex[];
-/** The same theorems as a LaTeX section — amsthm environments, one per machine-checked proposition. */
+/** Every theorem in the registry corpus — the same reader over the other folder. */
+export declare function leanRegistryTheoremsForLatex(root?: string): readonly LeanTheoremLatex[];
+/**
+ * LEAN AND LATEX, MERGED INTO ONE DOCUMENT THAT COMPILES (owner, 2026-11-13: "merge lean latex tex in iso quality proof").
+ *
+ * This emitted a FRAGMENT: a \section with no document around it, each proposition in \[ \texttt{…} \] — display math,
+ * which does not break lines, around Lean source full of ∀ ∧ → ⟨ ⟩ that no declared font carried. Nothing compiled it,
+ * so nothing knew: it was a .tex file in the way the three Mathlib files were .lean files. Now it is a whole document,
+ * and scripts/verify/lean-latex.ts compiles it and decides that nothing is missing.
+ *
+ * WHAT "ISO QUALITY" IS TAKEN TO MEAN HERE, item by item, because a standard cited by its number alone is decoration:
+ *   ISO 216        the page is A4;
+ *   ISO 639-1      the document declares its language (en) in the PDF metadata, with title, author and subject;
+ *   ISO/IEC 10646  every character of the Lean source is typeset from a font that carries it — the gate counts
+ *                  missing glyphs and the statement is that there are none;
+ *   ISO 690        the sources are cited so that they can be found: the path of every .lean file, the command that
+ *                  re-checks it, and the prover;
+ *   ISO 80000-2    is NOT claimed. The propositions are Lean source, reproduced verbatim so the kernel's statement
+ *                  and the printed one cannot differ; they are not re-typeset in mathematical notation.
+ * No date is printed: the file is compared byte for byte with what the sources emit, and a date would make every
+ * build differ from the last. The document is dated by the commit that carries it.
+ */
 export declare function leanTheoremsAsLatex(root?: string): string;
 /**
  * THE LEAN THEOREMS AS PAGES — one canonical URL per kernel-checked proof.
@@ -612,8 +645,9 @@ export declare function leanPagePaths(root?: string): {
 export declare function leanPageBySlug(slug: string, root?: string): LeanPageRow | null;
 /**
  * LEAN_SEALED_REGISTRY — registry rows (THEOREM_ATOM_SEED, src/4/6) and the kernel theorems that decide them.
- * A row is SEALED when its statement is checked by the Lean kernel, not by a TypeScript string: every theorem
- * below is `by decide` over a finite carrier and depends on NO axiom (#print axioms, 2026-09-13).
+ * A row is SEALED when its statement is checked by the Lean kernel, not by a TypeScript string. Most theorems
+ * below are `by decide` over a finite carrier and depend on no axiom; the general ones rest on propext and
+ * Quot.sound and nothing else (#print axioms, per theorem, by verify:lean).
  * scope 'instances' = a general law decided at finite instances; its universal claim stays open.
  * Checked by scripts/verify/lean-registry.ts (verify:lean-registry, in verify:all).
  */

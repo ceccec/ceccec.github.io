@@ -10,7 +10,8 @@
  * different routes, so a disagreement means one of them is wrong about what is in the corpus — and a
  * generated paper section is exactly where that must not happen silently.
  */
-import { leanInvolutionCorpus, leanTheoremsAsLatex, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
+import { leanInvolutionCorpus, leanRegistryTheoremsForLatex, leanTheoremsAsLatex, leanTheoremsForLatex } from '../../src/pair/formal/proofs/index.ts'
+import { decided } from './status.ts'
 
 const OUT = 'src/research/lean-theorems.tex'
 
@@ -21,7 +22,15 @@ export function assertLeanLatexAgrees(): void {
   if (read !== counted) {
     throw new Error(`lean→latex: the reader found ${read} theorems and the counter ${counted} — one of them is wrong about the Lean corpus`)
   }
-  const empty = leanTheoremsForLatex().filter((r) => r.proposition.length === 0)
+  // THE REGISTRY CORPUS, BY THE SAME TWO ROUTES. It joined the document on 2026-11-13 and is held to the same check,
+  // counted apart: the involution number above is what the README and the abstract state, and it must not absorb it.
+  const readRegistry = leanRegistryTheoremsForLatex().length
+  const countedRegistry = leanInvolutionCorpus().registryTheorems
+  console.log(`lean→latex: ${readRegistry} registry theorems read · ${countedRegistry} counted`)
+  if (readRegistry !== countedRegistry) {
+    throw new Error(`lean→latex: the reader found ${readRegistry} registry theorems and the counter ${countedRegistry} — one of them is wrong about the registry corpus`)
+  }
+  const empty = [...leanTheoremsForLatex(), ...leanRegistryTheoremsForLatex()].filter((r) => r.proposition.length === 0)
   if (empty.length) throw new Error(`lean→latex: ${empty.length} theorem(s) parsed with an empty proposition: ${empty.map((e) => e.name).join(', ')}`)
 }
 
@@ -45,6 +54,7 @@ export function assertLeanLatexAgrees(): void {
 export function assertLeanLatexAndTheDocumentProveEachOther(): void {
   assertLeanLatexProveEachOther()
   assertLeanLatexAgrees()
+  assertTheDocumentCompiles()
 }
 
 export function assertLeanLatexProveEachOther(): void {
@@ -52,7 +62,7 @@ export function assertLeanLatexProveEachOther(): void {
   const emitted = leanTheoremsAsLatex() + '\n'
   let committed = ''
   try { committed = fs.readFileSync(OUT, 'utf8') } catch { committed = '' }
-  const rows = leanTheoremsForLatex()
+  const rows = [...leanTheoremsForLatex(), ...leanRegistryTheoremsForLatex()]
 
   // LEAN → LATEX
   const drift = committed !== emitted
@@ -90,5 +100,49 @@ export function writeLeanLatex(): void {
   assertLeanLatexAgrees()
   const fs = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule!('node:fs')
   fs.writeFileSync(OUT, leanTheoremsAsLatex() + '\n')
-  console.log(`wrote ${OUT} — ${leanTheoremsForLatex().length} theorem environments`)
+  console.log(`wrote ${OUT} — ${leanTheoremsForLatex().length} involution + ${leanRegistryTheoremsForLatex().length} registry theorem environments, one document`)
+}
+
+/**
+ * THE DOCUMENT MUST COMPILE — the same law as "every .lean file must compile", one format over.
+ *
+ * src/research/lean-theorems.tex was a fragment nothing ever typeset: a \section with no document, propositions in
+ * display math that cannot break a line, Lean's ∀ ∧ ⟨ ⟩ in a font that does not carry them. It was checked byte for
+ * byte against its generator and never once against TeX. The first compile found what four gates had not: a "Theorem
+ * [Is]" lifted from a comment line that begins with the word theorem, its proposition a `def` and its tactic a list
+ * literal — visible only because one box came out 150pt too wide.
+ *
+ * Four statements, decided on every run that has the engine, each "there are none":
+ *   compile errors · characters with no glyph in the declared fonts · undefined references · boxes wider than the page.
+ * THREE STATES. No tectonic on PATH is NOT MEASURED and says so — CI has none — never a pass and never a refusal.
+ */
+export function assertTheDocumentCompiles(): void {
+  const cp = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:child_process') }).getBuiltinModule!('node:child_process')
+  const fs = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule!('node:fs')
+  const path = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule!('node:path')
+  const os = (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:os') }).getBuiltinModule!('node:os')
+  const probe = cp.spawnSync('tectonic', ['--version'], { encoding: 'utf8' })
+  if (probe.error || probe.status !== 0) {
+    console.log('latex compile: NOT MEASURED — tectonic is not on PATH; the document was not typeset on this machine, and nothing is claimed about it')
+    return
+  }
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lean-latex-'))
+  try {
+    fs.copyFileSync(OUT, path.join(dir, 'doc.tex'))
+    const run = cp.spawnSync('tectonic', ['--keep-logs', 'doc.tex'], { cwd: dir, encoding: 'utf8', timeout: 600_000 })
+    const log = fs.existsSync(path.join(dir, 'doc.log')) ? fs.readFileSync(path.join(dir, 'doc.log'), 'utf8') : ''
+    const lines = (re: RegExp) => log.split('\n').filter((l) => re.test(l))
+    const errors = run.status === 0 && fs.existsSync(path.join(dir, 'doc.pdf')) ? [] : [`tectonic exit ${run.status}`, ...String(run.stderr ?? '').split('\n').filter((l) => /^error|^! /.test(l)).slice(0, 8)]
+    const missing = lines(/Missing character/)
+    const undefinedRefs = lines(/undefined/i)
+    const overfull = lines(/^Overfull/)
+    const pages = /\((\d+) pages?/.exec(log)?.[1] ?? '?'
+    console.log(`latex compile: ${probe.stdout.trim()} · ${pages} pages`)
+    console.log(decided('latex.compile-errors', errors.length, { evidence: () => errors }))
+    console.log(decided('latex.missing-glyphs', missing.length, { evidence: () => missing.map((l) => l.replace(/^.*There is no /, '')) }))
+    console.log(decided('latex.undefined-references', undefinedRefs.length, { evidence: () => undefinedRefs }))
+    console.log(decided('latex.overfull-boxes', overfull.length, { evidence: () => overfull }))
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true })
+  }
 }

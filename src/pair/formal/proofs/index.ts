@@ -1168,11 +1168,14 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
   readonly involutionFiles: number
   readonly involutionTheorems: number
   readonly byProblem: readonly { readonly file: string; readonly theorems: number }[]
+  /** The registry corpus (src/pair/lean/proofs), counted the same way and never added to the involution count. */
+  readonly registryFiles: number
+  readonly registryTheorems: number
   // Where the numbers came from: counted off the .lean sources here, read from the block sealed at build,
   // or neither — a caller that cannot tell these apart cannot tell a corpus from a zero.
   readonly source: 'counted' | 'sealed' | 'absent'
 } {
-  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [] as const, source: 'absent' as const }
+  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [] as const, registryFiles: 0, registryTheorems: 0, source: 'absent' as const }
   const fs = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
     : undefined
@@ -1194,12 +1197,19 @@ export function leanInvolutionCorpus(root: string = typeof process !== 'undefine
       .filter((p) => String(p).endsWith('.lean') && !String(p).split(/[\\/]/).some((seg) => seg.startsWith('.')))
     const proofsDir = path.join('pair', 'formal', 'proofs')
     // A `theorem` at the head of a line — the declaration, never the word inside prose.
-    const declared = (text: string) => (text.match(/^[ \t]*theorem[ \t]/gm) ?? []).length
+    // …and never the word at the head of a line of a block comment. Counted by a DIFFERENT route from the reader's
+    // line mask, so the two can still disagree: the comments are cut out of the text whole, then the heads counted.
+    const uncommented = (text: string) => { let out = '', depth = 0; for (let i = 0; i < text.length; i += 1) { if (text.startsWith('/-', i)) { depth += 1; i += 1 } else if (depth > 0 && text.startsWith('-/', i)) { depth -= 1; i += 1 } else if (depth === 0) out += text[i] } return out }
+    const declared = (text: string) => (uncommented(text).match(/^[ \t]*theorem[ \t]/gm) ?? []).length
     const byProblem = lean
       .filter((p) => String(p).startsWith(proofsDir))
       .map((p) => ({ file: path.basename(String(p)), theorems: declared(fs.readFileSync(path.join(src, String(p)), 'utf8')) }))
       .sort((a, b) => (a.file < b.file ? -1 : a.file > b.file ? 1 : 0))
+    const registryDir = path.join('pair', 'lean', 'proofs')
+    const registry = lean.filter((p) => String(p).startsWith(registryDir)).map((p) => declared(fs.readFileSync(path.join(src, String(p)), 'utf8')))
     return {
+      registryFiles: registry.length,
+      registryTheorems: registry.reduce((n, t) => n + t, 0),
       files: lean.length,
       involutionFiles: byProblem.length,
       involutionTheorems: byProblem.reduce((n, f) => n + f.theorems, 0),
@@ -1336,6 +1346,8 @@ export function buildReceiptLedger(root: string = typeof process !== 'undefined'
  * the files verify:lean compiles.
  */
 export type LeanTheoremLatex = {
+  /** The folder the file is in, relative to the repository root — the involution corpus or the registry corpus. */
+  readonly dir: string
   readonly file: string
   readonly name: string
   readonly title: string
@@ -1348,15 +1360,40 @@ const TITLE_OF = (name: string): string => name.replace(/_/g, ' ').replace(/^(.)
 
 /** Escape the characters TeX reads as markup. The proposition goes in \texttt, so it stays verbatim otherwise. */
 function texEscape(text: string): string {
-  return text
-    .replace(/\\/g, '\\textbackslash{}')
-    .replace(/([&%$#_{}])/g, '\\$1')
-    .replace(/~/g, '\\textasciitilde{}')
-    .replace(/\^/g, '\\textasciicircum{}')
+  // ONE PASS. Done as four replacements in a row, the braces of \textbackslash{} were escaped by the second and a
+  // backslash came out as \textbackslash\{\} — no proposition carried one until a set difference did.
+  const named: Record<string, string> = { '\\': '\\textbackslash{}', '~': '\\textasciitilde{}', '^': '\\textasciicircum{}' }
+  return text.replace(/[\\~^&%$#_{}]/g, (c) => named[c] ?? `\\${c}`)
+}
+
+/** The two Lean corpora. The INVOLUTION corpus is what the README, the abstract and the CLAIMED paragraph count; the
+ *  REGISTRY corpus holds every other kernel theorem — the rows sealed for the registry, the quantum register, the
+ *  thousand-bit tests. They are read by one reader and never counted as one another. */
+export const LEAN_INVOLUTION_DIR = 'src/pair/formal/proofs'
+export const LEAN_REGISTRY_DIR = 'src/pair/lean/proofs'
+
+/** For each line, whether it BEGINS inside a `/- … -/` block comment (they nest; a `--` line comment opens nothing). */
+export function leanBlockCommentLines(lines: readonly string[]): boolean[] {
+  let depth = 0
+  return lines.map((line) => {
+    const inside = depth > 0
+    for (let i = 0; i < line.length; i += 1) {
+      if (line.startsWith('/-', i)) { depth += 1; i += 1 } else if (depth > 0 && line.startsWith('-/', i)) { depth -= 1; i += 1 } else if (depth === 0 && line.startsWith('--', i)) break
+    }
+    return inside
+  })
 }
 
 /** Every theorem in the sealed involution proofs, read from the Lean itself. */
 export function leanTheoremsForLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanTheoremLatex[] {
+  return readLeanTheorems(root, LEAN_INVOLUTION_DIR)
+}
+/** Every theorem in the registry corpus — the same reader over the other folder. */
+export function leanRegistryTheoremsForLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanTheoremLatex[] {
+  return readLeanTheorems(root, LEAN_REGISTRY_DIR)
+}
+
+function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLatex[] {
   const fs = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
     : undefined
@@ -1364,12 +1401,18 @@ export function leanTheoremsForLatex(root: string = typeof process !== 'undefine
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:path') }).getBuiltinModule?.('node:path')
     : undefined
   if (!fs || !path) return []
-  const dir = path.join(root, 'src', 'pair', 'formal', 'proofs')
+  const dir = path.join(root, ...relDir.split('/'))
   if (!fs.existsSync(dir)) return []
   const out: LeanTheoremLatex[] = []
   for (const file of fs.readdirSync(dir).filter((f: string) => f.endsWith('.lean')).sort()) {
     const lines = fs.readFileSync(path.join(dir, file), 'utf8').split('\n')
+    // A LINE INSIDE A BLOCK COMMENT IS PROSE, WHATEVER WORD IT BEGINS WITH. wave-57-extraction-verified.lean has a
+    // comment line that starts "theorem is a snapshot that goes on proving…", and read line by line it became
+    // Theorem [Is] with a `def` for a proposition and a list literal for a tactic — a document stating a theorem the
+    // kernel never saw, found the first time the document was compiled and one box came out 150pt too wide.
+    const inComment = leanBlockCommentLines(lines)
     for (let i = 0; i < lines.length; i += 1) {
+      if (inComment[i]) continue
       const head = /^\s*theorem\s+([A-Za-z_][\w']*)\s*:?(.*)$/.exec(lines[i] ?? '')
       if (!head) continue
       // the proposition runs to `:=`, across however many lines Lean wrapped it over
@@ -1389,6 +1432,7 @@ export function leanTheoremsForLatex(root: string = typeof process !== 'undefine
         break
       }
       out.push({
+        dir: relDir,
         file,
         name: head[1] ?? '',
         title: TITLE_OF(head[1] ?? ''),
@@ -1403,26 +1447,82 @@ export function leanTheoremsForLatex(root: string = typeof process !== 'undefine
   return out
 }
 
-/** The same theorems as a LaTeX section — amsthm environments, one per machine-checked proposition. */
+/**
+ * LEAN AND LATEX, MERGED INTO ONE DOCUMENT THAT COMPILES (owner, 2026-11-13: "merge lean latex tex in iso quality proof").
+ *
+ * This emitted a FRAGMENT: a \section with no document around it, each proposition in \[ \texttt{…} \] — display math,
+ * which does not break lines, around Lean source full of ∀ ∧ → ⟨ ⟩ that no declared font carried. Nothing compiled it,
+ * so nothing knew: it was a .tex file in the way the three Mathlib files were .lean files. Now it is a whole document,
+ * and scripts/verify/lean-latex.ts compiles it and decides that nothing is missing.
+ *
+ * WHAT "ISO QUALITY" IS TAKEN TO MEAN HERE, item by item, because a standard cited by its number alone is decoration:
+ *   ISO 216        the page is A4;
+ *   ISO 639-1      the document declares its language (en) in the PDF metadata, with title, author and subject;
+ *   ISO/IEC 10646  every character of the Lean source is typeset from a font that carries it — the gate counts
+ *                  missing glyphs and the statement is that there are none;
+ *   ISO 690        the sources are cited so that they can be found: the path of every .lean file, the command that
+ *                  re-checks it, and the prover;
+ *   ISO 80000-2    is NOT claimed. The propositions are Lean source, reproduced verbatim so the kernel's statement
+ *                  and the printed one cannot differ; they are not re-typeset in mathematical notation.
+ * No date is printed: the file is compared byte for byte with what the sources emit, and a date would make every
+ * build differ from the last. The document is dated by the commit that carries it.
+ */
 export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): string {
-  const rows = leanTheoremsForLatex(root)
-  const head = [
-    '% Generated from src/pair/formal/proofs/*.lean — do not edit by hand.',
-    '% Every proposition below is checked by Lean 4 with no Mathlib and no sorry. What each one rests on is',
-    '% reported per theorem by #print axioms (npm run verify:lean): most depend on no axiom at all, the general',
-    '% ones on propext and Quot.sound, and the gate refuses any that reaches Classical.choice or sorryAx.',
-    '\\section{Machine-checked involutions}',
-    '',
-  ]
-  const body = rows.map((r) => [
+  const involution = leanTheoremsForLatex(root)
+  const registry = leanRegistryTheoremsForLatex(root)
+  const environment = (r: LeanTheoremLatex) => [
     `\\begin{theorem}[${texEscape(r.title)}]`,
     r.doc ? texEscape(r.doc) : '',
-    `\\[ \\texttt{${texEscape(r.proposition)}} \\]`,
+    `\\begin{lean}${texEscape(r.proposition)}\\end{lean}`,
     '\\end{theorem}',
-    `\\begin{proof} By \\texttt{${texEscape(r.tactic)}} in \\texttt{${texEscape(r.file)}}; checked by the Lean kernel, resting on no axiom beyond \\texttt{propext} and \\texttt{Quot.sound} (most on none — \\texttt{npm run verify:lean} reports each). \\end{proof}`,
+    `\\begin{proof}\\raggedright By \\texttt{${texEscape(r.tactic)}} in \\texttt{${texEscape(r.file)}}; checked by the Lean kernel, resting on no axiom beyond \\texttt{propext} and \\texttt{Quot.sound} (most on none — \\texttt{npm run verify:lean} reports each). \\end{proof}`,
     '',
-  ].filter((line) => line.length > 0).join('\n'))
-  return [...head, ...body].join('\n')
+  ].filter((line) => line.length > 0).join('\n')
+  const part = (title: string, dir: string, rows: readonly LeanTheoremLatex[]) => {
+    const files = [...new Set(rows.map((r) => r.file))]
+    return [
+      `\\section{${title}}`,
+      `\\noindent ${rows.length} theorems in ${files.length} files of \\texttt{${texEscape(dir)}}.`,
+      ...files.flatMap((file) => [`\\subsection{\\texttt{${texEscape(file)}}}`, ...rows.filter((r) => r.file === file).map(environment)]),
+    ]
+  }
+  return [
+    `% Generated from ${LEAN_INVOLUTION_DIR}/*.lean and ${LEAN_REGISTRY_DIR}/*.lean — do not edit by hand.`,
+    '% Compiled by scripts/verify/lean-latex.ts (tectonic): no error, no missing glyph, no undefined reference.',
+    '\\documentclass[11pt,a4paper]{article}',
+    '\\usepackage[a4paper,margin=25mm]{geometry}',
+    '\\usepackage{fontspec}',
+    '\\usepackage{amsthm}',
+    '\\usepackage[hidelinks]{hyperref}',
+    '\\setmainfont{FreeSerif.otf}[BoldFont=FreeSerifBold.otf,ItalicFont=FreeSerifItalic.otf,BoldItalicFont=FreeSerifBoldItalic.otf]',
+    '\\setmonofont{FreeMono.otf}[BoldFont=FreeMonoBold.otf,Scale=MatchLowercase]',
+    '\\hypersetup{pdftitle={Machine-checked theorems of the double-torus corpus},pdfauthor={Tsvetan Rouschev},pdfsubject={Lean 4 theorems, reproduced verbatim with the tactic that proves each},pdflang={en}}',
+    // upright theorem bodies: the italic face of the text font lacks ⟨ ⟩ ⊕ ★, which the doc comments use
+    '\\theoremstyle{definition}',
+    '\\newtheorem{theorem}{Theorem}[section]',
+    '\\newenvironment{lean}{\\begin{quote}\\ttfamily\\small\\raggedright}{\\end{quote}}',
+    '\\emergencystretch=3em',
+    '\\title{Machine-checked theorems of the double-torus corpus}',
+    '\\author{Tsvetan Rouschev}',
+    '\\date{}',
+    '\\begin{document}',
+    '\\maketitle',
+    '\\begin{abstract}',
+    `\\noindent ${involution.length + registry.length} theorems, each checked by the Lean 4 kernel with no Mathlib and no \\texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.`,
+    '\\end{abstract}',
+    '\\tableofcontents',
+    '\\section{How to read this document}',
+    '\\noindent Each theorem is printed as Lean source, not re-typeset in mathematical notation, so that the statement the kernel checked and the statement on the page cannot differ. A proof by \\texttt{decide} reduces a finite proposition in the kernel and depends on no axiom. A general theorem, proved for every value, rests on \\texttt{propext} and \\texttt{Quot.sound} and on nothing else; the gate refuses any theorem that reaches \\texttt{Classical.choice}. To re-check everything from a clone, run \\texttt{npm run verify:lean}.',
+    '',
+    ...part('Machine-checked involutions', LEAN_INVOLUTION_DIR, involution),
+    ...part('Machine-checked registry theorems', LEAN_REGISTRY_DIR, registry),
+    '\\section*{Sources}',
+    '\\begin{enumerate}',
+    `\\item Rouschev, Tsvetan. \\emph{Double-torus corpus}: Lean sources in \\texttt{${texEscape(LEAN_INVOLUTION_DIR)}} and \\texttt{${texEscape(LEAN_REGISTRY_DIR)}}. Repository: \\url{https://github.com/ceccec/ceccec.github.io}.`,
+    '\\item de Moura, Leonardo; Ullrich, Sebastian. The Lean 4 theorem prover and programming language. In: \\emph{Automated Deduction — CADE 28}. Springer, 2021.',
+    '\\end{enumerate}',
+    '\\end{document}',
+  ].join('\n')
 }
 
 /**
@@ -1462,7 +1562,10 @@ export function leanPageSlug(file: string, name: string): string {
 }
 
 export function leanPageRows(root: string = typeof process !== 'undefined' && process.cwd ? process.cwd() : '.'): readonly LeanPageRow[] {
-  return leanTheoremsForLatex(root).map((t) => ({
+  // BOTH CORPORA GET PAGES. The registry corpus had none: its theorems could seal a registry row and had no URL.
+  // A deposit record exists only for the involution corpus (scripts/verify/discoveries.ts), so the registry rows
+  // carry an empty depositId and the page shows no deposit line for them.
+  return [...leanTheoremsForLatex(root), ...leanRegistryTheoremsForLatex(root)].map((t) => ({
     slug: leanPageSlug(t.file, t.name),
     title: t.title,
     name: t.name,
@@ -1470,9 +1573,9 @@ export function leanPageRows(root: string = typeof process !== 'undefined' && pr
     proposition: t.proposition,
     tactic: t.tactic,
     doc: t.doc,
-    sourcePath: `src/pair/formal/proofs/${t.file}`,
+    sourcePath: `${t.dir}/${t.file}`,
     texPath: 'src/research/lean-theorems.tex',
-    depositId: `${t.file.replace(/\.lean$/, '')}--${t.name}`,
+    depositId: t.dir === LEAN_INVOLUTION_DIR ? `${t.file.replace(/\.lean$/, '')}--${t.name}` : '',
   }))
 }
 
@@ -1486,8 +1589,9 @@ export function leanPageBySlug(slug: string, root?: string): LeanPageRow | null 
 
 /**
  * LEAN_SEALED_REGISTRY — registry rows (THEOREM_ATOM_SEED, src/4/6) and the kernel theorems that decide them.
- * A row is SEALED when its statement is checked by the Lean kernel, not by a TypeScript string: every theorem
- * below is `by decide` over a finite carrier and depends on NO axiom (#print axioms, 2026-09-13).
+ * A row is SEALED when its statement is checked by the Lean kernel, not by a TypeScript string. Most theorems
+ * below are `by decide` over a finite carrier and depend on no axiom; the general ones rest on propext and
+ * Quot.sound and nothing else (#print axioms, per theorem, by verify:lean).
  * scope 'instances' = a general law decided at finite instances; its universal claim stays open.
  * Checked by scripts/verify/lean-registry.ts (verify:lean-registry, in verify:all).
  */

@@ -11852,7 +11852,7 @@ var riemann_proof_status = {
   `
 };
 function leanInvolutionCorpus(root = typeof process !== "undefined" && process.cwd ? process.cwd() : ".") {
-  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [], source: "absent" };
+  const empty = { files: 0, involutionFiles: 0, involutionTheorems: 0, byProblem: [], registryFiles: 0, registryTheorems: 0, source: "absent" };
   const fs = typeof process !== "undefined" ? process.getBuiltinModule?.("node:fs") : void 0;
   const path12 = typeof process !== "undefined" ? process.getBuiltinModule?.("node:path") : void 0;
   if (!fs || !path12) return empty;
@@ -11861,9 +11861,26 @@ function leanInvolutionCorpus(root = typeof process !== "undefined" && process.c
     if (!fs.existsSync(src)) return empty;
     const lean = fs.readdirSync(src, { recursive: true }).filter((p) => String(p).endsWith(".lean") && !String(p).split(/[\\/]/).some((seg) => seg.startsWith(".")));
     const proofsDir = path12.join("pair", "formal", "proofs");
-    const declared = (text) => (text.match(/^[ \t]*theorem[ \t]/gm) ?? []).length;
+    const uncommented = (text) => {
+      let out = "", depth = 0;
+      for (let i = 0; i < text.length; i += 1) {
+        if (text.startsWith("/-", i)) {
+          depth += 1;
+          i += 1;
+        } else if (depth > 0 && text.startsWith("-/", i)) {
+          depth -= 1;
+          i += 1;
+        } else if (depth === 0) out += text[i];
+      }
+      return out;
+    };
+    const declared = (text) => (uncommented(text).match(/^[ \t]*theorem[ \t]/gm) ?? []).length;
     const byProblem = lean.filter((p) => String(p).startsWith(proofsDir)).map((p) => ({ file: path12.basename(String(p)), theorems: declared(fs.readFileSync(path12.join(src, String(p)), "utf8")) })).sort((a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : 0);
+    const registryDir = path12.join("pair", "lean", "proofs");
+    const registry = lean.filter((p) => String(p).startsWith(registryDir)).map((p) => declared(fs.readFileSync(path12.join(src, String(p)), "utf8")));
     return {
+      registryFiles: registry.length,
+      registryTheorems: registry.reduce((n, t) => n + t, 0),
       files: lean.length,
       involutionFiles: byProblem.length,
       involutionTheorems: byProblem.reduce((n, f2) => n + f2.theorems, 0),
