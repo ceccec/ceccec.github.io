@@ -172,8 +172,24 @@ why_refused() {
     const live = new Set((r.violatedLive ?? []).map(String))
     const refused = (r.results ?? []).filter((x) => x.verdict !== "clean" && !live.has(String(x.gate)))
     if (refused.length) console.log("land: refused, and why (from " + process.argv[1] + "):")
-    for (const x of refused) console.log("  ✗ " + x.gate + " — " + String(x.detail ?? "").slice(0, 300))
-  ' "$receipt"
+    // THE RECEIPT KEEPS ONE LINE PER GATE, AND THE FIRST LINE OF A HELD REFUSAL IS "1 refusal(s) in this gate:". Measured the
+    // first time this printer ran for real (2026-11-13, verify:guards): it named the gate and not the reason, so the
+    // gate was run again after all. The reason is in the transcript of the run, in the section of that gate — the lines that
+    // decide, and the evidence listed under them. (No apostrophe may appear in this block: it sits inside a shell
+    // single-quoted string, and one ended the string and broke the script the first time this was written.)
+    const transcript = (process.argv[2] && require("fs").existsSync(process.argv[2])) ? require("fs").readFileSync(process.argv[2], "utf8") : ""
+    const section = (gate) => { const at = transcript.indexOf("\n=== " + gate + "\n"); if (at < 0) return []; const end = transcript.indexOf("\n=====", at + 8 + gate.length + 80); return transcript.slice(at, end < 0 ? undefined : end).split("\n") }
+    const DECIDING = /FALSE|REFUSED|NOT MEASURED|above the recorded|against the recorded|^Error\b|\bError:|has drifted|is not what/
+    for (const x of refused) {
+      console.log("  ✗ " + x.gate + " — " + String(x.detail ?? "").slice(0, 300))
+      const lines = section(String(x.gate))
+      const shown = new Set()
+      lines.forEach((line, i) => {
+        if (!DECIDING.test(line) || /^\s+at /.test(line) || /throw new Error/.test(line)) return
+        for (const l of [line, ...lines.slice(i + 1, i + 9).filter((n, k, all) => /^\s{4}\S/.test(n) && !/^\s+at /.test(n) && all.slice(0, k).every((m) => /^\s{4}\S/.test(m) && !/^\s+at /.test(m)))]) if (!shown.has(l) && shown.size < 24) { shown.add(l); console.log("      " + l.trim().slice(0, 220)) }
+      })
+    }
+  ' "$receipt" "$(grep -oE 'scripts/verify/receipts/gates-[A-Za-z0-9_-]+\.log' "$1" | tail -1)"
 }
 
 for g in "${gates[@]}"; do
