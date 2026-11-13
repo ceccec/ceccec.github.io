@@ -919,6 +919,7 @@
     "verify:decisions": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/decisions.ts assertDecisionsReasoned",
     "verify:axioms": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/axioms.ts assertAxiomIndex",
     "next": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/next.ts runNextExit",
+    "usage": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/usage.ts runSessionUsageExit",
     "release:cut": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/release-cut.ts runReleaseCutExit",
     "verify:deposit-counts": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts assertDepositCountsMatchTheProofs",
     "verify:precedence": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/deposit-metadata.ts assertDoiPrecedence",

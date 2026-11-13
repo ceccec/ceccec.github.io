@@ -94,6 +94,10 @@ const TOOL_DEF_LIST = [
           type: 'boolean',
           description: 'list what every floor this gate measures counted (VERIFY_EVIDENCE=1) — the lists next_leads points at, read through this door instead of rebuilt by hand',
         },
+        full: {
+          type: 'boolean',
+          description: 'return the whole stdout. Without it the answer is the verdict, the lines that decide it and a short tail — a passing gate is not re-read line by line by every later turn',
+        },
       },
       required: ['name'],
       additionalProperties: false,
@@ -109,6 +113,7 @@ const TOOL_DEF_LIST = [
           type: 'string',
           description: 'origin | decode | design | learn | tune | edit | rebuild | verify',
         },
+        full: { type: 'boolean', description: 'return the whole stdout instead of the verdict, the deciding lines and a short tail' },
       },
       required: ['kind'],
       additionalProperties: false,
@@ -278,5 +283,41 @@ export function listStdioCapabilities() {
     automationPath: 'npm-script / bootstrap CLI — local stdio MCP is IDE-only (not Cursor Automations dashboard)',
     package: '@ceccec/quantum-dev-sdk',
     mcpMount: '.cursor/mcp.json',
+  }
+}
+
+/**
+ * THE DOOR ANSWERS WITH WHAT DECIDES — NOT WITH EVERYTHING THE GATE PRINTED.
+ *
+ * Measured 2026-11-13 (scripts/verify/usage.ts): a whole session ran every gate through the shell and none through
+ * this door, and the cause was in the door. run_gate returned a passing gate's entire stdout — 5 KB for
+ * verify:lean-registry, forty-nine ✓ lines and four that mattered — where a shell pipe keeps the four. In a
+ * conversation every result is re-read by every later turn, so a door that hands back everything is the expensive
+ * route and the bypass is the rational one. "Why still bypassing mcp?" had a measured answer.
+ *
+ * So by default the answer is: the verdict; how much was printed; the lines that DECIDE — a statement holding or
+ * FALSE, a ratchet at its floor, tightened or refused, a NOT MEASURED, an Error, a ✗ — and a short tail. A failing
+ * gate gets a longer tail, because the reader is about to act on it. `full: true` returns everything, and so does
+ * `evidence: true`, whose whole point is the list. Nothing is hidden: the byte and line counts say what was left out.
+ */
+const DECIDING = /: holds — no counterexample|at the recorded floor|tightened, recorded|SEEDED|may only RISE|FALSE|REFUSED|NOT MEASURED|^\s*✗|^Error\b|\bError:|refus/
+export function decidingAnswer<T extends { ok: boolean; exitCode: number; stdout: string; stderr: string; durationMs?: number }>(result: T, full: boolean): T | {
+  ok: boolean; exitCode: number; durationMs?: number; stdoutLines: number; stdoutBytes: number; deciding: string[]; tail: string[]; stderrTail: string[]; full: false
+} {
+  if (full) return result
+  const lines = result.stdout.split('\n').filter((l) => l.trim().length > 0)
+  const cut = (l: string) => (l.length > 240 ? `${l.slice(0, 240)}…` : l)
+  const deciding = [...new Set(lines.filter((l) => DECIDING.test(l)).map(cut))]
+  const keep = result.ok ? 3 : 30
+  return {
+    ok: result.ok,
+    exitCode: result.exitCode,
+    durationMs: result.durationMs,
+    stdoutLines: lines.length,
+    stdoutBytes: result.stdout.length,
+    deciding: deciding.slice(0, result.ok ? 40 : 80),
+    tail: lines.slice(-keep).map(cut),
+    stderrTail: result.stderr.split('\n').filter((l) => l.trim().length > 0 && !/^\s+at /.test(l)).slice(-(result.ok ? 2 : 12)).map(cut),
+    full: false,
   }
 }

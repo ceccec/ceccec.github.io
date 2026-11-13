@@ -48,6 +48,20 @@ fi
 echo "$$ land $(date -u +%FT%TZ)" > "$LOCK"
 trap 'rm -f "$LOCK"' EXIT
 
+# 1b — ASK THE REMOTE BEFORE SPENDING TWENTY MINUTES ON A TREE IT WILL REFUSE.
+# Measured 2026-11-13 (npm run usage): landing was 41% of a session, and the first cost in it was a base two commits
+# behind origin/main — found only when the commit message was being written, after every gate had been run against a
+# tree that could not be pushed. The check costs one fetch. A remote that cannot be reached is said and not judged:
+# offline is not behind.
+if git fetch -q origin main 2>/dev/null; then
+  if ! git merge-base --is-ancestor origin/main HEAD; then
+    echo "land: STOP — main does not contain origin/main ($(git rev-list --count HEAD..origin/main) commit(s) there are not here). Fast-forward or rebase first; nothing was run."
+    exit 1
+  fi
+else
+  echo "land: origin could not be fetched — NOT CHECKED against the remote; the push will say"
+fi
+
 # 2 — the gates the change calls for
 changed=$( { git diff --name-only HEAD; for p in ${ADD[@]+"${ADD[@]}"}; do echo "$p"; done; } | sort -u)
 [ -n "$changed" ] || { echo "land: nothing to land"; exit 0; }
@@ -98,6 +112,16 @@ if grep -qE '\.lean$|^src/pair/formal/proofs/' <<<"$changed"; then
   echo "✓ $(grep -E '^lean-corpus:' "$LOGS/lean-corpus.log" | tail -1)"
   changed=$(printf '%s\n%s\n' "$changed" .vitepress/data/lean-corpus.json | sort -u)
   ADD+=(.vitepress/data/lean-corpus.json)
+  # AND THE TWO OTHER FILES THE SAME SOURCES GENERATE. A new .lean theorem moves three derived files, and this block
+  # regenerated one: verify:lean-latex and verify:discoveries each refused a landing on 2026-11-13 with the command to
+  # run printed in the refusal ("Run npm run paper:deposits"). A gate that names its own repair is describing a step
+  # this script should have taken.
+  for regen in paper:lean-latex paper:deposits; do
+    npm run -s "$regen" > "$LOGS/$regen.log" 2>&1 || { echo "✗ npm run $regen — the last lines of $LOGS/$regen.log:"; tail -20 "$LOGS/$regen.log"; exit 1; }
+    echo "✓ $regen — $(tail -1 "$LOGS/$regen.log" | cut -c1-120)"
+  done
+  changed=$(printf '%s\n%s\n%s\n' "$changed" src/research/lean-theorems.tex src/research/theorem-deposits.json | sort -u)
+  ADD+=(src/research/lean-theorems.tex src/research/theorem-deposits.json)
 fi
 # The stream's tracked receipt summary is written by verify:stream DURING the gates and read by readmeMarkdown();
 # it is staged at commit (the second ADD pass runs after the gates) so a fresh clone computes the same README.
@@ -134,6 +158,23 @@ echo "land: $(wc -l <<<"$changed" | tr -d ' ') path(s) · gates: ${gates[*]}"
 # otherwise every new file added through --add fails a gate that is correctly describing the tree.
 for p in ${ADD[@]+"${ADD[@]}"}; do [ -e "$p" ] && { git add -- "$p" || exit 1; }; done
 
+# A REFUSAL NAMES ITS GATES AND THEIR REASONS — READ FROM THE RECEIPT, NOT RE-RUN TO FIND OUT.
+# The stream's log ends with "N tree gate(s) refused: a, b" and a stack trace; WHY each refused is in the receipt it
+# wrote ("consume this, do not read a log tail"). Four refusals on 2026-11-13 each cost a second run of the refused
+# gate just to read one line that was already on disk. This prints that line for every refused tree gate.
+why_refused() {
+  local receipt
+  receipt=$(grep -oE 'scripts/verify/receipts/[A-Za-z0-9_-]+\.json' "$1" | tail -1)
+  [ -n "$receipt" ] && [ -f "$receipt" ] || return 0
+  node -e '
+    const r = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))
+    const live = new Set((r.violatedLive ?? []).map(String))
+    const refused = (r.results ?? []).filter((x) => x.verdict !== "clean" && !live.has(String(x.gate)))
+    if (refused.length) console.log("land: refused, and why (from " + process.argv[1] + "):")
+    for (const x of refused) console.log("  ✗ " + x.gate + " — " + String(x.detail ?? "").slice(0, 300))
+  ' "$receipt"
+}
+
 for g in "${gates[@]}"; do
   # docs:build skips VitePress when the src+.vitepress merkle looks unchanged — and the trinity gate above seals that
   # merkle first, so inside a landing the site was never really built and its dead-link check never ran (a37f6e51
@@ -160,11 +201,13 @@ for g in "${gates[@]}"; do
     else
       echo "✗ $g — refused again on the settled ledger; the last lines of $LOGS/$g.log:"
       tail -25 "$LOGS/$g.log"
+      why_refused "$LOGS/$g.log"
       exit 1
     fi
   else
     echo "✗ $g — the last lines of $LOGS/$g.log:"
     tail -25 "$LOGS/$g.log"
+    why_refused "$LOGS/$g.log"
     exit 1
   fi
 done

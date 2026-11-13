@@ -22,6 +22,7 @@ import {
   QUANTUM_DEV_TOOL_DEFS as TOOL_DEFS,
   censusStatus,
   computeFromSourceLocal,
+  decidingAnswer,
   listStdioCapabilities,
 } from '../src/pure.ts'
 
@@ -110,8 +111,9 @@ const HANDLERS: Record<string, Handler> = {
     if (!fold) return { ok: false, error: 'fold required' }
     return foldReport(fold)
   },
-  run_gate: (args) => runGate(String(args.name ?? '') as GateName, [], args.evidence === true ? { env: { VERIFY_EVIDENCE: '1' } } : undefined),
-  run_wave: (args) => runWave(String(args.kind ?? '') as WaveKind),
+  // evidence IS the list, so it is returned whole; otherwise the door answers with what decides (decidingAnswer)
+  run_gate: async (args) => decidingAnswer(await runGate(String(args.name ?? '') as GateName, [], args.evidence === true ? { env: { VERIFY_EVIDENCE: '1' } } : undefined), args.full === true || args.evidence === true),
+  run_wave: async (args) => decidingAnswer(await runWave(String(args.kind ?? '') as WaveKind), args.full === true),
   run_export: (args) => {
     const entryRel = String(args.entryRel ?? '')
     const exportName = String(args.exportName ?? '')
