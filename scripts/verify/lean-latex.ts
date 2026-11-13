@@ -14,6 +14,11 @@ import { leanInvolutionCorpus, leanRegistryTheoremsForLatex, leanTheoremsAsLatex
 import { decided } from './status.ts'
 
 const OUT = 'src/research/lean-theorems.tex'
+/** EVERY TeX DOCUMENT IN THE REPOSITORY IS TYPESET, NOT ONLY THE GENERATED ONE. The two authored papers each began
+ *  `\usepackage[utf-8]{inputenc}`, which stops tectonic at once (pdflatex is not installed here and was not tried), and one called \qed without the package that defines
+ *  it: neither had ever compiled, and nothing ran them, exactly as with the three Mathlib .lean files. Their preambles
+ *  are repaired and not one sentence is changed; the gate says they typeset, and says nothing about what they claim. */
+const DOCUMENTS = [OUT, 'src/research/paper.tex', 'docs/clay_millennium_sealed.tex'] as const
 
 export function assertLeanLatexAgrees(): void {
   const read = leanTheoremsForLatex().length
@@ -128,16 +133,21 @@ export function assertTheDocumentCompiles(): void {
   }
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lean-latex-'))
   try {
-    fs.copyFileSync(OUT, path.join(dir, 'doc.tex'))
-    const run = cp.spawnSync('tectonic', ['--keep-logs', 'doc.tex'], { cwd: dir, encoding: 'utf8', timeout: 600_000 })
-    const log = fs.existsSync(path.join(dir, 'doc.log')) ? fs.readFileSync(path.join(dir, 'doc.log'), 'utf8') : ''
-    const lines = (re: RegExp) => log.split('\n').filter((l) => re.test(l))
-    const errors = run.status === 0 && fs.existsSync(path.join(dir, 'doc.pdf')) ? [] : [`tectonic exit ${run.status}`, ...String(run.stderr ?? '').split('\n').filter((l) => /^error|^! /.test(l)).slice(0, 8)]
-    const missing = lines(/Missing character/)
-    const undefinedRefs = lines(/undefined/i)
-    const overfull = lines(/^Overfull/)
-    const pages = /\((\d+) pages?/.exec(log)?.[1] ?? '?'
-    console.log(`latex compile: ${probe.stdout.trim()} · ${pages} pages`)
+    const errors: string[] = [], missing: string[] = [], undefinedRefs: string[] = [], overfull: string[] = []
+    console.log(`latex compile: ${probe.stdout.trim()}`)
+    DOCUMENTS.forEach((doc, n) => {
+      if (!fs.existsSync(doc)) { errors.push(`${doc}: the document is not there`); return }
+      const stem = `doc${n}`
+      fs.copyFileSync(doc, path.join(dir, `${stem}.tex`))
+      const run = cp.spawnSync('tectonic', ['--keep-logs', `${stem}.tex`], { cwd: dir, encoding: 'utf8', timeout: 600_000 })
+      const log = fs.existsSync(path.join(dir, `${stem}.log`)) ? fs.readFileSync(path.join(dir, `${stem}.log`), 'utf8') : ''
+      const lines = (re: RegExp) => log.split('\n').filter((l) => re.test(l)).map((l) => `${doc}: ${l}`)
+      if (!(run.status === 0 && fs.existsSync(path.join(dir, `${stem}.pdf`)))) errors.push(`${doc}: tectonic exit ${run.status}`, ...String(run.stderr ?? '').split('\n').filter((l) => /^error|^! /.test(l)).slice(0, 8).map((l) => `${doc}: ${l}`))
+      missing.push(...lines(/Missing character/))
+      undefinedRefs.push(...lines(/undefined/i))
+      overfull.push(...lines(/^Overfull/))
+      console.log(`  ${doc} — ${/\((\d+) pages?/.exec(log)?.[1] ?? '?'} pages`)
+    })
     console.log(decided('latex.compile-errors', errors.length, { evidence: () => errors }))
     console.log(decided('latex.missing-glyphs', missing.length, { evidence: () => missing.map((l) => l.replace(/^.*There is no /, '')) }))
     console.log(decided('latex.undefined-references', undefinedRefs.length, { evidence: () => undefinedRefs }))

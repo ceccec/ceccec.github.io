@@ -1,5 +1,10 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[utf-8]{inputenc}
+% Typeset with a Unicode engine (tectonic / XeTeX): the line this replaces, \usepackage[utf-8]{inputenc},
+% stops tectonic at once (measured 2026-11-13; pdflatex is not installed here and was not tried). The fonts are the ones that carry the characters the text already uses (σ ≠ ✓).
+\usepackage{fontspec}
+\setmainfont{FreeSerif.otf}[BoldFont=FreeSerifBold.otf,ItalicFont=FreeSerifItalic.otf,BoldItalicFont=FreeSerifBoldItalic.otf]
+\setmonofont{FreeMono.otf}[BoldFont=FreeMonoBold.otf,Scale=MatchLowercase]
+\emergencystretch=3em
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathrsfs}
 \usepackage{geometry}
