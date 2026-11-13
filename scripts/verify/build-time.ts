@@ -254,8 +254,8 @@ export function assertBuildIsNotSlower(root: string = process.cwd()): void {
     console.log('    (land runs this gate a second time after docs:build, which is where these floors are actually enforced.)')
     return
   }
-  console.log(`  app entry chunk ${w.appChunkKb} KiB — the shell every visitor loads; this is what may not regress`)
-  console.log(ratchet('build.app-chunk-kilobytes', w.appChunkKb, { root, evidence: () => [`app entry chunk ${w.appChunkKb} KiB in ${root}/.vitepress/dist/assets (app.*.js) — the shell every visitor loads, across ${w.pages} page(s) totalling ${w.kilobytes} KiB`] }))
+  console.log(`  app entry chunk ${w.appChunkKb} KiB — the shell every visitor loads; MEASURED and printed; no number is remembered`)
+  // the app-chunk floor is gone (2026-11-13): statement IV in assertTheShellIsAccountedFor decides what it stood for
   console.log(`  entry STATIC CLOSURE ${w.entryClosureKb} KiB across ${w.entryClosureFiles} files — the app chunk PLUS every chunk it statically imports, which the browser must fetch before the module evaluates`)
   console.log(`  the gap is ${Math.round(w.entryClosureKb / Math.max(1, w.appChunkKb))}x: the line above this one measures one file, and a static import is not optional`)
   // ZERO RESISTANCE TO NOVELTY, AND STILL NO ROOM FOR BLOAT.
@@ -267,10 +267,10 @@ export function assertBuildIsNotSlower(root: string = process.cwd()): void {
   //   corpusKbPerTheorem the DENSITY, which holds when a theorem is added and rises when one gets fatter.
   // Adding a theorem adds bytes AND a theorem, so the density is unmoved and nothing refuses. Adding
   // machinery, or padding a theorem, still refuses — which is the whole of what the old floor was for.
-  console.log(`  entry closure ${w.entryClosureKb} KiB = ${w.machineryKb} KiB shell + ${w.corpusKb} KiB corpus over ${w.theorems} theorems — MEASURED, and only the parts below are ratcheted`)
+  console.log(`  entry closure ${w.entryClosureKb} KiB = ${w.machineryKb} KiB shell + ${w.corpusKb} KiB corpus over ${w.theorems} theorems — MEASURED; the statements below are decided, nothing is ratcheted`)
   assertTheShellCarriesNoTheorem(w.shellFiles, w.corpusFiles, w.machineryKb)
-  assertTheShellIsAccountedFor(root, w.shellFiles)
-  console.log(ratchet('build.corpus-hundred-bytes-per-theorem', w.corpusHundredBytesPerTheorem, { root, evidence: () => [`${w.corpusKb} KiB of corpus over ${w.theorems} theorems = ${w.corpusHundredBytesPerTheorem} hundred bytes each — a floor on the DENSITY, so adding a theorem is free and padding one is not`] }))
+  assertTheShellIsAccountedFor(root, w.shellFiles, w.corpusFiles)
+  console.log(`  corpus ${w.corpusKb} KiB over ${w.theorems} theorems = ${w.corpusHundredBytesPerTheorem} hundred bytes each — MEASURED and printed; the density floor is gone (2026-11-13), statement V decides the chunk's composition`)
 }
 
 /**
@@ -345,7 +345,7 @@ export function assertTheShellCarriesNoTheorem(shellFiles: readonly string[], co
  * kernel is a larger shell — II says so in so many words and refuses nothing about it. A statement that the kernel
  * may not grow would be a remembered number again.
  */
-export function assertTheShellIsAccountedFor(root: string, shellFiles: readonly string[]): void {
+export function assertTheShellIsAccountedFor(root: string, shellFiles: readonly string[], corpusFiles: readonly string[] = []): void {
   const dist = join(root, '.vitepress', 'dist')
   const witnessFile = join(dist, 'chunk-witness.json')
   if (!existsSync(witnessFile)) throw new Error('the shell account is NOT MEASURED: .vitepress/dist/chunk-witness.json is absent — this dist was not written by a build that records its witness')
@@ -387,5 +387,35 @@ export function assertTheShellIsAccountedFor(root: string, shellFiles: readonly 
   })
   console.log(`  III a wrong witness decodes nothing: one bit flipped in each of ${read.length} shell file(s) — ${read.length - insensitive.length}/${read.length} no longer carry the recorded seal`)
   if (insensitive.length > 0) throw new Error(`III is FALSE: ${insensitive.map((r) => rel(r.file)).join(', ')} keeps its seal with a bit flipped (an empty file has no bit to flip and seals nothing)`)
-  console.log('  ✓ the shell is accounted for: sealed as built, carrying no theorem home but the root')
+
+  // IV and V — THE TWO SIZE FLOORS THAT REMAINED, AS THE STATEMENTS THEY STOOD FOR (owner's rule, same day).
+  //
+  //   IV · THE APP ENTRY CARRIES NO FOLD. build.app-chunk-kilobytes was recorded at 484, then 227, after a barrel
+  //        import of 33 components dragged the corpus graph into the file every visitor loads first. The number
+  //        was the shadow of that event; the event is a proposition: no module of the app entry chunk is a fold
+  //        (src/**/index.ts). Measured when written: 128 modules — VitePress, the theme, three stylesheets, one
+  //        component — and no fold.
+  //
+  //   V  · THE CORPUS CHUNK IS MADE OF FOLDS. build.corpus-hundred-bytes-per-theorem was a density, kept because a
+  //        floor on corpus bytes refused every new theorem. What can be decided of the chunk now is its
+  //        composition: every module of the corpus chunk is a fold or a virtual module the build substituted
+  //        (a NUL-prefixed id — the Node shims). A vendor library or theme code entering it falsifies this.
+  //        WHAT V DOES NOT GUARD, and the density did: one theorem padded fat. Nothing present-tense was found
+  //        for that — built bytes ≤ source bytes holds with a factor of two to spare and would notice nothing.
+  const isFold = (id: string) => /^src\/.+\/index\.ts$/.test(id)
+  const isVirtual = (id: string) => id.charCodeAt(0) === 0
+  const entry = read.find((r) => /^assets\/app\.[A-Za-z0-9_-]+\.js$/.test(rel(r.file)))
+  if (!entry || entry.entry.modules.length === 0) throw new Error('IV is NOT MEASURED: the app entry chunk is not among the shell files, or the witness names no module for it')
+  const foldsInEntry = entry.entry.modules.filter(isFold)
+  console.log(`  IV  the app entry carries no fold: ${entry.entry.modules.length} module(s) in ${rel(entry.file)}, ${foldsInEntry.length} of them folds`)
+  if (foldsInEntry.length > 0) throw new Error(`IV is FALSE: the app entry chunk carries ${foldsInEntry.length} fold(s) — ${foldsInEntry.slice(0, 4).join(', ')}`)
+  const corpusModules = corpusFiles.flatMap((file) => witness[rel(file)]?.modules ?? [])
+  const foldsInCorpus = corpusModules.filter(isFold)
+  const foreign = corpusModules.filter((id) => !isFold(id) && !isVirtual(id))
+  console.log(`  V   the corpus chunk is made of folds: ${corpusModules.length} module(s) — ${foldsInCorpus.length} fold(s), ${corpusModules.length - foldsInCorpus.length - foreign.length} virtual, ${foreign.length} other; ${homes.filter((home) => corpusModules.includes(homeModule(home))).length} of ${homes.length} theorem homes are in it`)
+  if (corpusFiles.length === 0 || foldsInCorpus.length === 0) throw new Error(`V is NOT MEASURED: ${corpusFiles.length} corpus chunk(s) carrying ${foldsInCorpus.length} fold(s) in the witness`)
+  if (foreign.length > 0) throw new Error(`V is FALSE: the corpus chunk carries ${foreign.length} module(s) that are neither folds nor build substitutes — ${foreign.slice(0, 4).join(', ')}`)
+  const outside = homes.filter((home) => !corpusModules.includes(homeModule(home)) && !shellModules.has(homeModule(home)))
+  if (outside.length > 0) console.log(`      ${outside.length} theorem home(s) are in neither the shell nor the corpus chunk — not in the entry closure at all: ${outside.join(', ')}`)
+  console.log('  ✓ the entry closure is accounted for: the shell sealed as built with no theorem home but the root, the app entry with no fold, the corpus chunk made of folds')
 }

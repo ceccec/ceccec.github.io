@@ -139,8 +139,29 @@ for g in "${gates[@]}"; do
   # merkle first, so inside a landing the site was never really built and its dead-link check never ran (a37f6e51
   # passed here with 279 dead links that CI's fresh build refused). --force makes it build, as CI does.
   args=(); [ "$g" = docs:build ] && args=(-- --force)
+  ledger_before=$(shasum scripts/verify/status.json | cut -d' ' -f1)
   if npm run -s "$g" ${args[@]+"${args[@]}"} > "$LOGS/$g.log" 2>&1; then
     echo "✓ $g"
+  # A GATE BATCH THAT MOVED THE LEDGER JUDGED A TREE THAT NO LONGER EXISTS — SETTLE IT AND ASK ONCE MORE.
+  # README.md is computed from the ratchet ledger, and the regeneration above runs BEFORE the stream. But the
+  # stream's own gates tighten the ledger as they run, in parallel with manifest:check, which then compares a
+  # README written from the ledger as it was against the ledger as it now is. Measured 2026-11-13, twice in one
+  # day: removing a ratchet moved ratchets.mute 70 → 69 and then 69 → 67 inside the stream, manifest:check read
+  # "README.md DRIFTED", and the identical landing passed on a rerun because nothing was left to tighten. The
+  # refusal was true of a tree mid-change, not of the tree being landed. So: if the batch fails AND the ledger
+  # is not the ledger it started with, regenerate from the settled ledger and run the batch once more. A second
+  # failure, or a failure with the ledger unmoved, refuses exactly as before — this retries a moved tree, it
+  # does not retry a verdict.
+  elif [ "$(shasum scripts/verify/status.json | cut -d' ' -f1)" != "$ledger_before" ]; then
+    echo "… $g failed while the ledger moved underneath it — regenerating from the settled ledger and asking once more"
+    node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts verify > "$LOGS/settle-regen.log" 2>&1 || { echo "✗ land: could not regenerate after the ledger settled:"; tail -25 "$LOGS/settle-regen.log"; exit 1; }
+    if npm run -s "$g" ${args[@]+"${args[@]}"} > "$LOGS/$g.log" 2>&1; then
+      echo "✓ $g (second pass, on the settled ledger)"
+    else
+      echo "✗ $g — refused again on the settled ledger; the last lines of $LOGS/$g.log:"
+      tail -25 "$LOGS/$g.log"
+      exit 1
+    fi
   else
     echo "✗ $g — the last lines of $LOGS/$g.log:"
     tail -25 "$LOGS/$g.log"
@@ -150,7 +171,7 @@ done
 
 # THE BUILD FLOORS ARE ENFORCED HERE, AFTER THE BUILD — NOT INSIDE verify:stream, WHERE THEY READ THE LAST ONE.
 # verify:build-time only READS .vitepress/dist; it never builds. It runs inside verify:stream, which runs BEFORE
-# docs:build, so build.app-chunk-kilobytes and the shell's separation theorem were read against whatever
+# docs:build, so the build statements (the shell's separation and its account) were read against whatever
 # tree produced the dist still on disk — for a whole session, a dist two and a half hours old. The gate now
 # detects that and skips its ratchets loudly instead of recording another tree's numbers, which means the floors
 # are only ever enforced by this second call, where the dist is the one docs:build just produced.
