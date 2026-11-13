@@ -56,7 +56,7 @@ import { createRequire } from 'node:module'
 import { corpusFiles } from './corpus.ts'
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet, everyRatchet, floorsWithoutLaw } from './status.ts'
+import { ratchet, everyRatchet, floorsWithoutLaw, decided } from './status.ts'
 import { gateUniverse } from './status.ts'
 
 const require = createRequire(import.meta.url)
@@ -634,11 +634,11 @@ export function assertCanonicalForms(): void {
     console.log(`  ${found.emptyAsConstRead.length}  an empty \`[] as const\` read for its length — the clay and FTL construction`)
     for (const s of found.emptyAsConstRead.slice(0, 4)) console.log(`      ${show(s)}`)
     console.log(ratchet('canon.self-comparison', found.selfComparison.length, { evidence: () => found.selfComparison.map(show) }))
-    console.log(ratchet('canon.typed-boolean-conjunct', found.typedBoolean.length, { evidence: () => found.typedBoolean.map(show) }))
-    console.log(ratchet('canon.facet-missing-on', found.facetMissingOn.length, { evidence: () => found.facetMissingOn.map(show) }))
+    console.log(decided('canon.typed-boolean-conjunct', found.typedBoolean.length, { evidence: () => found.typedBoolean.map(show) }))
+    console.log(decided('canon.facet-missing-on', found.facetMissingOn.length, { evidence: () => found.facetMissingOn.map(show) }))
     console.log(`  ${found.elementBlindPredicate.length}  a predicate over a collection that never sees an element — holds for an empty list and a wrong one alike`)
     for (const s of found.elementBlindPredicate.slice(0, 4)) console.log(`      ${show(s)}`)
-    console.log(ratchet('canon.empty-as-const-read', found.emptyAsConstRead.length, { evidence: () => found.emptyAsConstRead.map(show) }))
+    console.log(decided('canon.empty-as-const-read', found.emptyAsConstRead.length, { evidence: () => found.emptyAsConstRead.map(show) }))
     console.log(`  ${found.unmovableClaim.length}  a claim gated on an unmovable \`true\` — a name that is never reassigned, so nothing can withdraw the claim`)
     for (const s of found.unmovableClaim.slice(0, 4)) console.log(`      ${show(s)}`)
     // A REFUSAL MUST NAME THE LAW IT DEFENDS, WHICH IS THIS FILE'S OWN ARGUMENT APPLIED TO FLOORS.
@@ -652,7 +652,7 @@ export function assertCanonicalForms(): void {
       law: 'a floor that cannot name the property its rise violates is an assertion, not a measurement — the same form this gate deletes in facets, boundaries and conjuncts',
       evidence: () => mute.map((m) => `${m.file}  ${m.key}`),
     }))
-    console.log(ratchet('canon.element-blind-predicate', found.elementBlindPredicate.length, { law: 'a predicate that ignores its element cannot be refuted by any element, so it certifies the set without reading it', evidence: () => found.elementBlindPredicate.map(show) }))
+    console.log(decided('canon.element-blind-predicate', found.elementBlindPredicate.length, { law: 'a predicate that ignores its element cannot be refuted by any element, so it certifies the set without reading it', evidence: () => found.elementBlindPredicate.map(show) }))
     // A NEW KEY, NOT A MOVED FLOOR — this file's own law, applied to itself.
   //
   // canon.unmovable-claim counted facets gated on an unmovable `true` using a predicate that could not
@@ -678,24 +678,24 @@ export function assertCanonicalForms(): void {
   console.log(ratchet('canon.unfalsifiable-facet', found.unmovableClaim.length, { evidence: () => found.unmovableClaim.map(show) }))
   console.log(`  ${found.decorativeConjunct.length}  a facet padded with a conjunct that can never be false — it reads as a guard and guards nothing`)
   for (const s2 of found.decorativeConjunct.slice(0, 4)) console.log(`      ${show(s2)}`)
-  console.log(ratchet('canon.decorative-conjunct', found.decorativeConjunct.length, { evidence: () => found.decorativeConjunct.map(show) }))
+  console.log(decided('canon.decorative-conjunct', found.decorativeConjunct.length, { evidence: () => found.decorativeConjunct.map(show) }))
   console.log(`  ${found.facetSealsAMeasurement.length}  a facet whose TEXT carries a measured duration or a rate derived from one — sealFacets seals the text, so the receipt is a timestamp and the address moves when nothing changed`)
   for (const s3 of found.facetSealsAMeasurement.slice(0, 4)) console.log(`      ${show(s3)}`)
-  console.log(ratchet('canon.facet-seals-a-measurement', found.facetSealsAMeasurement.length, {
+  console.log(decided('canon.facet-seals-a-measurement', found.facetSealsAMeasurement.length, {
     law: 'facet text is receipt input (sealFacets seals `${tag}:${facet}:${on}`), so it must not contain a measured duration or a rate derived from one — an address over a stopwatch is a timestamp, and it propagates: one leaf moved cpuGpuSelfBalance\'s root five folds away',
     evidence: () => found.facetSealsAMeasurement.map(show),
   }))
     const unverified = generatedArtefactsWithoutAVerifier()
   console.log(`  ${unverified.length}  a generated artefact nothing checks against its generator — "do not edit" enforced by nobody`)
   for (const u of unverified.slice(0, 4)) console.log(`      ${u}`)
-  console.log(ratchet('canon.generated-unverified', unverified.length, { evidence: () => unverified }))
+  console.log(decided('canon.generated-unverified', unverified.length, { evidence: () => unverified }))
   const unreachable = findUnreachableGates()
     console.log(`  ${unreachable.length}  a gate nothing on the commit path can run — written, chained nowhere, green by never being asked`)
     for (const u of unreachable.slice(0, 4)) console.log(`      ${u}`)
     const gatesElsewhere = findFacetGatesElsewhere()
   for (const g of gatesElsewhere.slice(0, 8)) console.log(`    ${g.file}:${g.line}  ${g.text}`)
   console.log(ratchet('canon.facet-gates-elsewhere', gatesElsewhere.length, { evidence: () => gatesElsewhere.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
-  console.log(ratchet('canon.gate-unreachable', unreachable.length, { evidence: () => unreachable }))
+  console.log(decided('canon.gate-unreachable', unreachable.length, { evidence: () => unreachable }))
 
     // ONE PAYLOAD, ONE ADDRESS — the content-address law applied to function bodies, which is canon and
     // belongs on the commit path. dryDupe has measured this since it was written and NOTHING ratcheted it:
@@ -710,8 +710,8 @@ export function assertCanonicalForms(): void {
     const dupe = dryDupe()
     console.log(`  ${dupe.groups}  true duplicate body groups (${dupe.duplicateBodies} redundant copies) — the same computation at two addresses`)
     for (const g of dupe.queue.slice(0, 4)) console.log(`      ${g}`)
-    console.log(ratchet('canon.duplicate-body-groups', dupe.groups, { evidence: () => dupe.queue }))
-    console.log(ratchet('canon.duplicate-body-copies', dupe.duplicateBodies, { evidence: () => dupe.queue }))
+    console.log(decided('canon.duplicate-body-groups', dupe.groups, { evidence: () => dupe.queue }))
+    console.log(decided('canon.duplicate-body-copies', dupe.duplicateBodies, { evidence: () => dupe.queue }))
   })
 }
 

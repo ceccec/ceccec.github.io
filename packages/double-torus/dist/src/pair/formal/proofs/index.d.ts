@@ -535,6 +535,8 @@ export declare function buildReceiptLedger(root?: string): {
     readonly open: number;
     readonly openUnits: number;
     readonly secured: number;
+    /** Statements decided on every run with nothing remembered — `decided('name', …)` call sites in scripts/verify. */
+    readonly decided: number;
     readonly bounds: readonly {
         readonly name: string;
         readonly value: number;

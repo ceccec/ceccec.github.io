@@ -29,7 +29,7 @@ import { everyRatchet, gateUniverse, recordedFloors } from './status.ts'
 
 const ROOT = process.cwd()
 
-type Site = { key: string; file: string; line: number; consumed: boolean }
+type Site = { key: string; file: string; line: number; consumed: boolean; decided: boolean }
 
 /** Every `ratchet('key', …)` call under scripts/, with whether anything reads what it returns. */
 export function ratchetSites(): Site[] {
@@ -45,21 +45,24 @@ export function ratchetSites(): Site[] {
         // ratchet('key', …) inside its OWN doc comment above and reported a ratchet named `key` as
         // unenforced — an instrument wrong about itself, in the way it exists to detect. Comment lines
         // are excluded, and the check that the gate is honest is that its own file contributes nothing.
-        if (/export function ratchet|from '.*status/.test(text)) return
+        if (/export function (ratchet|decided)|from '.*status/.test(text)) return
         // FIRST FIX MISSED ITS OWN JSDOC. Stripping `//` and skipping lines that begin `*` still let a
         // one-line /** … */ through, so the gate went on reporting a ratchet named `key` that is a word
         // in a sentence. All three comment forms are stripped now, and the gate's own file must
         // contribute zero call sites — which is the assertion, not the intention.
         const code = text.replace(/\/\*.*?\*\//g, '').replace(/\/\/.*$/, '').replace(/\/\*.*$/, '')
-        if (/^\s*[*]/.test(text) || !code.includes('ratchet(')) return
-        const m = /ratchet\('([^']+)'/.exec(code)
+        if (/^\s*[*]/.test(text) || !/\b(ratchet|decided)\(/.test(code)) return
+        // A DECIDED STATEMENT IS A CALL SITE TOO (2026-11-13). The forty-three entries that stood at zero left the ledger and
+        // became `decided('name', …)`. They keep both guarantees this gate gives a ratchet — reachable from verify:all,
+        // and their line read by someone — and are exempt from the one that no longer applies: they have no floor.
+        const m = /\b(?:ratchet|decided)\('([^']+)'/.exec(code)
         if (!m) return
         const before = text.slice(0, m.index)
         // CONSUMED means the returned line reaches a reader or a caller: printed, returned,
         // interpolated, or bound to a name. A bare statement `ratchet(...)` reaches nobody.
         const consumed = /(console\.log|return|=|`|\+)\s*$|\(\s*$/.test(before.trimEnd()) ||
           /(console\.log|return|const |let )/.test(before)
-        out.push({ key: m[1]!, file: p.replace(`${ROOT}/`, ''), line: i + 1, consumed })
+        out.push({ key: m[1]!, file: p.replace(`${ROOT}/`, ''), line: i + 1, consumed, decided: /\bdecided\('/.test(code) })
       })
     }
   }
@@ -107,7 +110,7 @@ export function assertEveryRatchetTicks(): void {
 
     const unenforced: string[] = []
     const silent: string[] = []
-    console.log(`ratchets: ${sites.length} call sites, ${Object.keys(floors).length} recorded floors`)
+    console.log(`ratchets: ${sites.filter((x) => !x.decided).length} call sites, ${Object.keys(floors).length} recorded floors · statements decided with no floor: ${sites.filter((x) => x.decided).length}`)
     for (const s of sites.sort((a, b) => a.key.localeCompare(b.key))) {
       const runners = scriptsRunning(s.file)
       const inChain = runners.filter((r) => closure.has(r))
@@ -115,7 +118,7 @@ export function assertEveryRatchetTicks(): void {
       if (!s.consumed) silent.push(`${s.key} (${s.file}:${s.line})`)
       const floor = floors[s.key]
       console.log(
-        `  ${String(floor ?? 'NO FLOOR').padStart(8)}  ${s.key.padEnd(38)} ` +
+        `  ${String(floor ?? (s.decided ? 'DECIDED' : 'NO FLOOR')).padStart(8)}  ${s.key.padEnd(38)} ` +
         `${inChain.length ? `enforced by ${inChain[0]}` : 'NOT ENFORCED'}${s.consumed ? '' : '  · RESULT DISCARDED'}`
       )
     }

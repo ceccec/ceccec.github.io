@@ -26,7 +26,7 @@
 import { execFileSync } from 'node:child_process'
 import { readFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet, everyRatchet } from './status.ts'
+import { everyRatchet, decided } from './status.ts'
 import { A432_FOLDED, DIMENSION_GATES, EULER_CHI, DIGIT_LATTICE, FOLDED_CENSUS, HOMOLOGY_LOOPS, UNFOLDED_CENSUS, fibonacci } from '../../src/3/7/index.ts'
 
 const CORPUS = 'src/pair/lean/proofs/corpus.lean'
@@ -249,6 +249,6 @@ export function assertLeanArbitrates(): void {
     for (const [file, count] of [...byFile.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12)) {
       console.log(`    ${String(count).padStart(4)}  ${file}`)
     }
-    console.log(ratchet('lean-arbiter.census-contradictions', rows.length, { evidence: () => rows.map((r) => `${r.file}  ${JSON.stringify(r).slice(0, 160)}`) }))
+    console.log(decided('lean-arbiter.census-contradictions', rows.length, { evidence: () => rows.map((r) => `${r.file}  ${JSON.stringify(r).slice(0, 160)}`) }))
   })
 }

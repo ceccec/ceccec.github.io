@@ -17,7 +17,7 @@ import { MCP_FAMILIES, MCP_TRINITY, QUANTUM_DEV_STDIO_TOOL_IDS } from '../../pac
 import { MCP_TRINITIES } from '../../src/thunder/verify/testing/index.ts'
 import { gateToBootstrap } from '../../packages/quantum-dev-sdk/src/bootstrap.ts'
 import { openLeads } from './next.ts'
-import { ratchet } from './status.ts'
+import { ratchet, decided } from './status.ts'
 import { quantumCliToolsCatalog } from '../../src/quantum/apps/index.ts'
 import { stripNonCode } from './corpus.ts'
 import { existsSync, readFileSync } from 'node:fs'
@@ -145,7 +145,7 @@ export function assertLeadGatesAreRunnable(root: string = process.cwd()): void {
   const unrunnable = leadGates.filter((gate) => !runnable(gate))
   console.log(`  mcp: next_leads names ${leadGates.length} gate(s) across the open floors — ${unrunnable.length} not runnable through run_gate (entry and export measured, not the name)`)
   for (const gate of unrunnable) console.log(`      ${gate}`)
-  console.log(ratchet('mcp.lead-gates-unrunnable', unrunnable.length, { evidence: () => unrunnable.map((gate) => `next_leads names ${gate} and run_gate cannot resolve it`) }))
+  console.log(decided('mcp.lead-gates-unrunnable', unrunnable.length, { evidence: () => unrunnable.map((gate) => `next_leads names ${gate} and run_gate cannot resolve it`) }))
 }
 
 export function assertMcpTransport(): void {

@@ -18,7 +18,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { PUBLICATION_CREDIT } from '../../src/research/index.ts'
-import { ratchet } from './status.ts'
+import { decided } from './status.ts'
 
 const DIST = '.vitepress/dist'
 const NOT_A_PUBLICATION = new Set(['404.html'])
@@ -73,5 +73,5 @@ export function assertEveryPageIsCredited(root: string = process.cwd()): void {
       `. Every page here is a scientific paper by this corpus's own law; one without an author or a licence is not.`
     )
   }
-  console.log(ratchet('credits.uncredited-pages', missing.size, { root, evidence: () => [...missing].map((m) => `uncredited page: ${String(m)}`) }))
+  console.log(decided('credits.uncredited-pages', missing.size, { root, evidence: () => [...missing].map((m) => `uncredited page: ${String(m)}`) }))
 }

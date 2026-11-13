@@ -15,7 +15,7 @@
  * discipline — state once, decide the instances) seals the row's finite content, not its universal claim.
  */
 import { existsSync, readFileSync } from 'node:fs'
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, decided } from './status.ts'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 import { LEAN_SEALED_REGISTRY } from '../../src/pair/formal/proofs/index.ts'
 import { stripLeanComments } from './lean.ts'
@@ -66,6 +66,6 @@ export function assertRegistrySealed(): void {
     const covered = new Set(LEAN_SEALED_REGISTRY.map((link) => direction(link.theorem)))
     const openDirections = directions.filter((d) => !covered.has(d))
     console.log(`  lattice: ${directions.length - openDirections.length}/${directions.length} directions hold a kernel-sealed row`)
-    console.log(ratchet('lean.lattice-unsealed-directions', openDirections.length, { evidence: () => openDirections.map((d) => `no kernel-sealed registry row in ${d}`) }))
+    console.log(decided('lean.lattice-unsealed-directions', openDirections.length, { evidence: () => openDirections.map((d) => `no kernel-sealed registry row in ${d}`) }))
   })
 }

@@ -20,7 +20,7 @@
 
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, decided } from './status.ts'
 
 /** Highest count tolerated. Lower it as sites are fixed; never raise it.
  * Was 92 before the detector was corrected: 70 of those were property accesses
@@ -114,6 +114,6 @@ export function assertNoNewTautologies(): void {
       console.log(`  ${String(n).padStart(3)}  ${f}`)
     }
     const identity = findIdentityWitnesses()
-    console.log(ratchet('tautology.identity-witnesses', identity.length, { evidence: () => identity.map((t) => `${t.file}:${t.line}  ${t.name} — ${t.value}`) }))
+    console.log(decided('tautology.identity-witnesses', identity.length, { evidence: () => identity.map((t) => `${t.file}:${t.line}  ${t.name} — ${t.value}`) }))
   })
 }

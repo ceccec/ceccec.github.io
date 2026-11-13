@@ -22,7 +22,7 @@
  * never rise, and nothing is claimed by default or by silence.
  */
 
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, decided } from './status.ts'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 
 /** A DOI, in the ISO 26324 form the enforcement gate already validates. */
@@ -3680,7 +3680,7 @@ export function assertPriorArtLedger(): void {
     const unanchoredPool = PRIOR_ART_POOL.filter((d) => looked(d).length === 0 || /^NOT SEARCHED/.test(looked(d)))
     const unanchored = unanchoredPool.length + unanchoredVerdicts.length
     console.log(`  hand marks with no search on record: ${unanchored} (${unanchoredPool.length} of ${PRIOR_ART_POOL.length} pool declarations carry no record of looking + ${unanchoredVerdicts.length} unanchored verdicts)`)
-    console.log(`  ${ratchet('prior-art.unanchored-hand-marks', unanchored, { evidence: () => [...unanchoredPool.map((d) => `pool ${d.pool}, nothing recorded about looking: ${d.theorem}`), ...unanchoredVerdicts.map((c) => `coverage '${c.coverage}' with no search row whose citation it could be judging: ${c.theorem}`)] })}`)
+    console.log(`  ${decided('prior-art.unanchored-hand-marks', unanchored, { evidence: () => [...unanchoredPool.map((d) => `pool ${d.pool}, nothing recorded about looking: ${d.theorem}`), ...unanchoredVerdicts.map((c) => `coverage '${c.coverage}' with no search row whose citation it could be judging: ${c.theorem}`)] })}`)
     const examined = new Set(coverage.map((c) => c.theorem))
     console.log(ratchet('prior-art.coverage-unexamined', l.attributed.length - coverage.length, { evidence: () => l.attributed.filter((n) => !examined.has(n)).map((n) => `no coverage verdict: ${n}`) }))
 
@@ -3755,7 +3755,7 @@ export function assertPriorArtLedger(): void {
       (d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim()),
     ).length
     console.log(`  of the ${PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded').length} unbounded declarations, ${unsearchedUnbounded} rest on READING ALONE — no query was run`)
-    console.log(`  ${ratchet('prior-art.unbounded-unsearched', unsearchedUnbounded, { evidence: () => PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim())).map((d) => `unbounded on reading alone: ${d.theorem}`) })}`)
+    console.log(`  ${decided('prior-art.unbounded-unsearched', unsearchedUnbounded, { evidence: () => PRIOR_ART_POOL.filter((d) => d.pool === 'unbounded' && /^NOT SEARCHED/.test((d.looked ?? '').trim())).map((d) => `unbounded on reading alone: ${d.theorem}`) })}`)
 
     const poolSeen = new Map<string, string[]>()
     for (const d of PRIOR_ART_POOL) {
@@ -3813,7 +3813,7 @@ export function assertPriorArtLedger(): void {
       law: 'a claim stated only in prose cannot be matched against another domain, because cross-formulation is performed on symbols — so a row without an algebraic form is unreachable by the mechanism that finds identities',
       evidence: () => mute.map((r) => String(r.theorem ?? '(unnamed)')),
     }))
-    console.log(ratchet('prior-art.citation-unaddressed', unaddressed.length, { law: 'a citation that resolves to nothing cannot be opened, so it is a claim about the literature rather than a reference to it', evidence: () => unaddressed.map((u) => `no DOI and no URL, so nothing to open: ${u.theorem} → ${u.found.slice(0, 110)}`) }))
+    console.log(decided('prior-art.citation-unaddressed', unaddressed.length, { law: 'a citation that resolves to nothing cannot be opened, so it is a claim about the literature rather than a reference to it', evidence: () => unaddressed.map((u) => `no DOI and no URL, so nothing to open: ${u.theorem} → ${u.found.slice(0, 110)}`) }))
     // A GAP IS AN UNCLASSIFIED ROW NOBODY HAS CHARACTERISED. A DECLARED FRONTIER IS NOT A GAP.
     //
     // `prior-art.unclassified` ratcheted the WHOLE bucket at a floor of 0, and that floor produced the
@@ -3835,6 +3835,6 @@ export function assertPriorArtLedger(): void {
     // available is leaving it, and what is no longer rewarded is claiming it.
     const undeclaredGaps = l.unclassified.filter((n) => !PRIOR_ART_POOL.some((d) => d.theorem === n))
     console.log(`  unclassified rows that are GAPS (no pool declaration): ${undeclaredGaps.length} of ${l.unclassified.length} — the rest are declared frontiers`)
-    console.log(ratchet('prior-art.unclassified-undeclared', undeclaredGaps.length, { evidence: () => undeclaredGaps.map((n) => `unclassified and undeclared — neither searched into a bucket nor declared as a frontier: ${n}`) }))
+    console.log(decided('prior-art.unclassified-undeclared', undeclaredGaps.length, { evidence: () => undeclaredGaps.map((n) => `unclassified and undeclared — neither searched into a bucket nor declared as a frontier: ${n}`) }))
   })
 }

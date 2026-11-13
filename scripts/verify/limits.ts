@@ -31,7 +31,7 @@
 
 import { createRequire } from 'node:module'
 import { eachFacet } from './corpus.ts'
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, decided } from './status.ts'
 
 const require = createRequire(`${process.cwd()}/`)
 
@@ -380,6 +380,6 @@ export function assertFacetsCanFail(): void {
     const constant = findConstantChecks()
     console.log(`  ${constant.length}  a check whose closure reaches nothing the tree can change — the sentence is asserted, not measured`)
     for (const c of constant.slice(0, 6)) console.log(`      ${c.file}:${c.line}  [${c.why}]  ${c.facet.slice(0, 58)}`)
-    console.log(ratchet('limits.constant-check', constant.length, { evidence: () => constant.map((c) => `${c.file}:${c.line}  [${c.why}]  ${c.facet}`) }))
+    console.log(decided('limits.constant-check', constant.length, { evidence: () => constant.map((c) => `${c.file}:${c.line}  [${c.why}]  ${c.facet}`) }))
   })
 }

@@ -21,7 +21,7 @@
 
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, decided } from './status.ts'
 import { VORTEX_SEQUENCE } from '../../src/0/index.ts'
 import { theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge } from '../../src/quantum/dynamics/index.ts'
 import { vortexStrokeKinds } from '../../src/mountain/vortex/index.ts'
@@ -174,7 +174,7 @@ export function assertMovieMeasuresWhatItShows(): void {
     const byShape = new Map<string, number>()
     for (const s of cannot) byShape.set(s.shape, (byShape.get(s.shape) ?? 0) + 1)
     for (const [shape, n] of [...byShape].sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(3)}  ${shape}`)
-    console.log(ratchet('movie.orbit-joins-the-axis', joins.length, { evidence: list(joins) }))
+    console.log(decided('movie.orbit-joins-the-axis', joins.length, { evidence: list(joins) }))
 
     // THE THEOREM ANIMATIONS DRAW THEIR OWN PROOFS. A theorem with a witness is drawn from the data its proof computes,
     // and that data must still prove the claim; a theorem without one falls back to a title-keyword template (731

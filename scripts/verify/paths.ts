@@ -28,7 +28,7 @@
 import { execFileSync } from 'node:child_process'
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, decided } from './status.ts'
 
 
 /** Segment-matched, never substring: this repository is named "ceccec.github.io", which
@@ -123,7 +123,7 @@ export function assertPathsResolve(): void {
     const deadScripts = findDeadScriptPaths()
     for (const d of deadScripts.slice(0, 12)) console.log(`  ${d.name}  -> ${d.path}`)
     if (deadScripts.length > 12) console.log(`  ...and ${deadScripts.length - 12} more`)
-    console.log(ratchet('paths.dead-scripts', deadScripts.length, { evidence: () => deadScripts.map((d) => `${d.name} -> ${d.path}`) }))
+    console.log(decided('paths.dead-scripts', deadScripts.length, { evidence: () => deadScripts.map((d) => `${d.name} -> ${d.path}`) }))
 
     const dead = findDeadPaths()
     const byExt = new Map<string, number>()

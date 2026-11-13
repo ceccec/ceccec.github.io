@@ -16,7 +16,7 @@
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { stripNonCode } from './corpus.ts'
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, decided } from './status.ts'
 
 const sources = (root: string): string[] => {
   const out: string[] = []
@@ -156,7 +156,7 @@ export function assertGuardsAndCaps(): void {
     const capTotal = caps.reduce((sum, entry) => sum + entry.caps, 0)
     console.log(`guards: ${browser.length} browser degradations · ${noFs.length} filesystem-absent empties · caps: ${capTotal} literal length bars in ${caps.length} facet-bearing files`)
     for (const entry of caps.slice(0, 5)) console.log(`  ${String(entry.caps).padStart(4)}  ${entry.file}`)
-    console.log(ratchet('guards.browser-degrades', browser.length, { evidence: () => browser.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
+    console.log(decided('guards.browser-degrades', browser.length, { evidence: () => browser.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
     console.log(ratchet('guards.no-filesystem-empty', noFs.length, { evidence: () => noFs.map((g) => `${g.file}:${g.line}  ${g.text}`) }))
     console.log(ratchet('caps.in-facet-folds', capTotal, { law: 'a threshold with no derivation is a hardcoded constant wearing a comparison — every bound in a facet must come from a theorem or a ledgered axiom', evidence: () => caps.flatMap((entry) => entry.sites) }))
   })

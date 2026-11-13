@@ -34,7 +34,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { publicationAbstract } from '../../src/quantum/dist/readme/index.ts'
 import { PUBLICATION_CREDIT } from '../../src/research/index.ts'
-import { ratchet } from './status.ts'
+import { decided } from './status.ts'
 
 // THE LOCATION IS PART OF THE MECHANISM, NOT A PREFERENCE.
 //
@@ -120,5 +120,5 @@ export function assertZenodoFresh(root: string = process.cwd()): void {
     }
   }
   for (const d of drift) console.log(`  ${d}`)
-  console.log(ratchet('zenodo.metadata-drift', drift.length, { evidence: () => drift }))
+  console.log(decided('zenodo.metadata-drift', drift.length, { evidence: () => drift }))
 }

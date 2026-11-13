@@ -1265,11 +1265,13 @@ export function buildReceiptLedger(root: string = typeof process !== 'undefined'
   readonly open: number
   readonly openUnits: number
   readonly secured: number
+  /** Statements decided on every run with nothing remembered — `decided('name', …)` call sites in scripts/verify. */
+  readonly decided: number
   readonly bounds: readonly { readonly name: string; readonly value: number }[]
   readonly gates: number
   readonly source: 'counted' | 'absent'
 } {
-  const absent = { ratchets: 0, closed: 0, open: 0, openUnits: 0, secured: 0, bounds: [] as const, gates: 0, source: 'absent' as const }
+  const absent = { ratchets: 0, closed: 0, open: 0, openUnits: 0, secured: 0, decided: 0, bounds: [] as const, gates: 0, source: 'absent' as const }
   const io = ledgerIo()
   if (!io) return absent
   const entries = Object.entries(readRatchetLedger(root)).filter(([, v]) => typeof v === 'number')
@@ -1294,7 +1296,20 @@ export function buildReceiptLedger(root: string = typeof process !== 'undefined'
     const pattern = new RegExp(String(pkg.config?.gatePattern ?? '^$')), runners = new RegExp(String(pkg.config?.gateRunners ?? '^$'))
     gates = Object.keys(pkg.scripts ?? {}).filter((n) => pattern.test(n) && !runners.test(n)).length
   } catch { gates = 0 }
+  // THE STATEMENTS THAT LEFT THE LEDGER ARE STILL COUNTED — OFF THE GATES' OWN SOURCE, NOT OFF A FILE THAT REMEMBERS.
+  // The entries that stood at zero became `decided('name', …)` (scripts/verify/status.ts): a statement refused at
+  // its first counterexample, with no number stored. Their count is read where they are made, by distinct name.
+  let decided = 0
+  try {
+    const dir = io.path.join(root, 'scripts', 'verify')
+    const names = new Set<string>()
+    for (const file of io.fs.readdirSync(dir).filter((f: string) => f.endsWith('.ts'))) {
+      for (const m of io.fs.readFileSync(io.path.join(dir, file), 'utf8').matchAll(/^[^*/\n]*?\bdecided\('([^']+)'/gm)) names.add(m[1] ?? '')
+    }
+    decided = names.size
+  } catch { decided = 0 }
   return {
+    decided,
     ratchets: entries.length,
     closed: entries.filter(([, v]) => v === 0).length,
     open: entries.filter(([, v]) => v > 0).length,

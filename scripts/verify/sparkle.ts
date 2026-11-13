@@ -27,7 +27,7 @@ import { execFileSync } from 'node:child_process'
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { ratchet } from './status.ts'
+import { decided } from './status.ts'
 import { blochGate, blochMeasure, blochQubit } from '../../src/quantum/science/index.ts'
 
 export const ALU_PACKAGE = 'src/heaven/compute'
@@ -134,7 +134,7 @@ export function assertAluIsMeasured(root: string = process.cwd()): void {
   // 2. The theorems are decided by computation or rest on propext alone.
   const ax = aluAxioms(pkg)
   console.log(`  theorems: ${ax.theorems.length}, beyond propext: ${ax.beyondPropext.length}`)
-  console.log(ratchet('sparkle.theorems-beyond-propext', ax.beyondPropext.length, { evidence: () => ax.beyondPropext }))
+  console.log(decided('sparkle.theorems-beyond-propext', ax.beyondPropext.length, { evidence: () => ax.beyondPropext }))
 
   // 3. The hardware, the spec and the TypeScript model agree row for row — and the trace is sealed.
   const traceText = run(['lake', 'exe', 'alu-trace'], pkg)
@@ -142,7 +142,7 @@ export function assertAluIsMeasured(root: string = process.cwd()): void {
   if (rows.length !== OPS.length * Object.keys(POLES).length) throw new Error(`trace has ${rows.length} rows, expected ${OPS.length * Object.keys(POLES).length}`)
   const disagreements = rows.map(rowDisagreement).filter((d): d is string => d !== null)
   console.log(`  trace: ${rows.length} rows (7 gates × 6 poles), hardware = spec = blochGate on ${rows.length - disagreements.length}`)
-  console.log(ratchet('sparkle.rows-disagreeing', disagreements.length, { evidence: () => disagreements }))
+  console.log(decided('sparkle.rows-disagreeing', disagreements.length, { evidence: () => disagreements }))
   const tracePath = join(pkg, ALU_TRACE)
   const csv = traceText.split('\n').filter((l) => /^(op,|[IXYZHST],)/.test(l)).join('\n') + '\n'
   if (!existsSync(tracePath)) throw new Error(`${ALU_PACKAGE}/${ALU_TRACE} is not sealed — write it from this run and commit it`)

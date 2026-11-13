@@ -14,7 +14,7 @@
  * That remainder is the ratchet: it may fall as rows are restated in symbols, and a new mute row raises it.
  */
 
-import { ratchet, everyRatchet } from './status.ts'
+import { everyRatchet, decided } from './status.ts'
 import { theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks } from '../../src/mountain/seals/index.ts'
 import { theCuratedIdentitiesAssertRelations } from '../../src/wind/routes/corpus/index.ts'
 
@@ -22,10 +22,10 @@ export function assertTitleGaps(): void {
   everyRatchet(() => {
     const titles = theCorpusTitlesAreAlgebraGapsToSolveAndDivergencesAreCracks()
     for (const f of titles.facets) console.log(`  ${f.on ? '✓' : '·'} ${f.facet.slice(0, 120)}${f.facet.length > 120 ? '…' : ''}`)
-    console.log(ratchet('titles.divergent', titles.divergent.length, { evidence: () => titles.divergent }))
-    console.log(ratchet('titles.algebra-gaps', titles.gaps.length, { evidence: () => titles.gaps }))
+    console.log(decided('titles.divergent', titles.divergent.length, { evidence: () => titles.divergent }))
+    console.log(decided('titles.algebra-gaps', titles.gaps.length, { evidence: () => titles.gaps }))
     const curated = theCuratedIdentitiesAssertRelations()
     for (const f of curated.facets) console.log(`  ${f.on ? '✓' : '·'} ${f.facet.slice(0, 120)}${f.facet.length > 120 ? '…' : ''}`)
-    console.log(ratchet('titles.symbolless-identities', curated.english, { evidence: () => curated.englishRows.map((r) => `${r.home} · ${r.statement}`) }))
+    console.log(decided('titles.symbolless-identities', curated.english, { evidence: () => curated.englishRows.map((r) => `${r.home} · ${r.statement}`) }))
   })
 }

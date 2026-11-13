@@ -130,7 +130,7 @@ export function everyRatchet<T>(body: () => T): T {
   } finally {
     collecting = outer
     if (failures.length > 0) {
-      throw new Error(`${failures.length} ratchet(s) refused in this gate:\n  ${failures.join('\n  ')}`)
+      throw new Error(`${failures.length} refusal(s) in this gate:\n  ${failures.join('\n  ')}`)
     }
   }
 }
@@ -217,6 +217,42 @@ export function ratchet(
     return `${name}: ${measured} (was ${recorded}) — tightened, recorded`
   }
   return `${name}: ${measured} (at the recorded floor)`
+}
+
+/**
+ * A STATEMENT, DECIDED — NO LEDGER (owner, 2026-11-13: "no other logic is approved but coming from the textbook
+ * meaning of a theorem").
+ *
+ * Forty-three of the ledger's entries stood at zero. A ratchet at zero already refuses the first counterexample, so
+ * each was a universal statement — "no X exists" — wearing a remembered number that could only ever be the number
+ * zero. The memory added nothing and cost something: a statement held in a ledger can be loosened by editing a file,
+ * and a zero that is stored reads as a measurement that happened to come out that way rather than as a claim.
+ *
+ * `decided` is the same refusal with nothing stored. The name is the statement's name; `counterexamples` is how
+ * many the gate found; `evidence` lists them all before the throw, exactly as a ratchet's does. There is no seed,
+ * no tightening and no floor: the statement holds on this tree or it does not. Inside everyRatchet() a FALSE is
+ * held and reported with the gate's other refusals, so one run still shows every red line the gate can produce.
+ */
+export function decided(
+  name: string,
+  counterexamples: number,
+  opts: { evidence: () => readonly string[]; root?: string; law?: string },
+): string {
+  if (typeof opts?.evidence !== 'function') {
+    throw new Error(`${name}: decided called with no evidence thunk. A statement that cannot show its counterexamples cannot be acted on when it is false.`)
+  }
+  if (!Number.isInteger(counterexamples) || counterexamples < 0) {
+    throw new Error(`${name}: NOT MEASURED — ${counterexamples} is not a count of counterexamples`)
+  }
+  if (counterexamples !== 0) {
+    const lines = opts.evidence()
+    console.log(`  ${name} — FALSE: ${counterexamples} counterexample(s); all ${lines.length} listed:`)
+    for (const l of lines) console.log(`    ${l}`)
+    const refusal = `${name}: FALSE — ${counterexamples} counterexample(s). The statement is that there are none.`
+    if (collecting) { collecting.push(refusal); return `${name}: FALSE (${counterexamples} counterexample(s)); held, reported at the end of this gate` }
+    throw new Error(refusal)
+  }
+  return `${name}: holds — no counterexample`
 }
 
 /** THE GATE UNIVERSE IS A PATTERN IN package.json (config.gatePattern), NOT A CHAIN. The 59-link `&&` chain was

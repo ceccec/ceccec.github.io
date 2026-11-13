@@ -16,7 +16,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { scanVueForHardcoded, ichingTokensCss } from '../../src/earth/architecture/index.ts'
-import { ratchet, everyRatchet } from './status.ts'
+import { everyRatchet, decided } from './status.ts'
 
 export function findVuePaintLiterals(root: string = process.cwd()): string[] {
   const files: string[] = []
@@ -55,7 +55,7 @@ export function assertVuePaintDerived(): void {
     const motion = found.filter((f) => /animation|transition|keyframe|cubic-bezier|fillStyle|strokeStyle|shadowColor|ctx\.font/i.test(f))
     console.log(`  of those, in MOTION or PAINT declarations: ${motion.length}`)
     for (const m of motion.slice(0, 6)) console.log(`      ${m.slice(0, 116)}`)
-    console.log(ratchet('vue.undreived-paint', found.length, { evidence: () => found }))
+    console.log(decided('vue.undreived-paint', found.length, { evidence: () => found }))
     assertNoPhantomTokens() // one surface: a value off the ladder, and a token the ladder never defined
   assertTokensCssMatchesGenerator() // …and the generated sheet still being what the generator emits
   })
@@ -126,7 +126,7 @@ export function findPhantomTokens(root: string = process.cwd()): string[] {
 export function assertNoPhantomTokens(): void {
   const phantom = findPhantomTokens()
   for (const p of phantom.slice(0, 12)) console.log(`  ${p}`)
-  console.log(ratchet('css.phantom-token', phantom.length, { evidence: () => phantom }))
+  console.log(decided('css.phantom-token', phantom.length, { evidence: () => phantom }))
 }
 
 /**
@@ -162,5 +162,5 @@ export function tokensCssDrift(root: string = process.cwd()): string[] {
 export function assertTokensCssMatchesGenerator(): void {
   const drift = tokensCssDrift()
   for (const d of drift.slice(0, 8)) console.log(`  ${d}`)
-  console.log(ratchet('css.tokens-drift', drift.length, { evidence: () => drift }))
+  console.log(decided('css.tokens-drift', drift.length, { evidence: () => drift }))
 }

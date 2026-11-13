@@ -7,7 +7,7 @@
  */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, normalize, relative } from 'node:path'
-import { ratchet, everyRatchet } from './status.ts'
+import { ratchet, everyRatchet, decided } from './status.ts'
 import { doubleTorusReferrerDiscovery, type ReferrerEdge } from '../../src/thunder/verify/testing/index.ts'
 
 const ROOT = process.cwd()
@@ -90,7 +90,7 @@ export function assertReferrerSuperpositions(): void {
     const single = d.measurements.single.filter((x) => !hasDual(x.fold))
     const lines = (f: string) => { try { return readFileSync(join(ROOT, 'src', f, 'index.ts'), 'utf8').split('\n').length } catch { return 0 } }
     console.log(ratchet('referrers.one-referrer', single.length, { law: 'gravity: a fold one src fold holds belongs inside it — one file where two stood; the census falls with it', evidence: () => single.map((x) => `src/${x.fold} (${lines(x.fold)} lines, ${x.names} names) ← src/${x.ref}`) }))
-    console.log(ratchet('referrers.ambiguous-names', d.measurements.ambiguous.length, { law: 'one-math: a referrer takes each name from one source — a name available from two folds is a definition with two homes', evidence: () => d.measurements.ambiguous.map((a) => `${a.ref}: ${a.name} ← ${a.sources.join(' | ')}`) }))
+    console.log(decided('referrers.ambiguous-names', d.measurements.ambiguous.length, { law: 'one-math: a referrer takes each name from one source — a name available from two folds is a definition with two homes', evidence: () => d.measurements.ambiguous.map((a) => `${a.ref}: ${a.name} ← ${a.sources.join(' | ')}`) }))
     console.log(ratchet('referrers.unreferred-logic', dead.length, { law: 'a fold no referrer imports and no display dual mounts is reachable by nothing — dead logic, or a missing dual', evidence: () => dead.map((f) => `src/${f}/index.ts`) }))
     console.log(`  ${d.statement}`)
     if (!d.computes) throw new Error(`the referrer laws do not all hold: ${d.facets.filter((f) => !f.on).map((f) => f.facet.slice(0, 90)).join(' · ')}`)

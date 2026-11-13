@@ -26,7 +26,7 @@
 
 import { createRequire } from 'node:module'
 import { corpusFiles } from './corpus.ts'
-import { ratchet, everyRatchet } from './status.ts'
+import { everyRatchet, decided } from './status.ts'
 
 const require = createRequire(`${process.cwd()}/`)
 
@@ -56,7 +56,7 @@ export function findTopLevelSideEffects(root: string = process.cwd()): SideEffec
 export function assertNoImportTimeSideEffects(): void {
   everyRatchet(() => {
     const found = findTopLevelSideEffects()
-    console.log(ratchet('side-effects.top-level', found.length, { evidence: () => found.map((f) => `${f.file}:${f.line}  ${f.text}`) }))
+    console.log(decided('side-effects.top-level', found.length, { evidence: () => found.map((f) => `${f.file}:${f.line}  ${f.text}`) }))
     for (const f of found.slice(0, 20)) console.log(`  ${f.file}:${f.line}  ${f.text}`)
   })
 }
