@@ -1278,4 +1278,95 @@ export declare function applyTransliterationCase(src: string, out: string): stri
  *  fold (Bulgarian Cyrillic, Greek, Runic, Hebrew, …) is this SAME algorithm over a different map, not a
  *  hand-written parallel implementation — the map is data, the engine is shared. Pure, zero-dependency. */
 export declare function transliterateByMap(text: string, map: TransliterationMap): string;
+export type UuidVariant = 'ncs' | 'rfc9562' | 'microsoft' | 'future';
+export type UuidReading = {
+    source: 'absent';
+    reason: string;
+} | {
+    source: 'parsed';
+    canonical: string;
+    bytes: number[];
+    version: number;
+    variant: UuidVariant;
+    nil: boolean;
+    max: boolean;
+    contentAddress: boolean;
+};
+/** Read an address under RFC 9562: strict 8-4-4-4-12 hex, the version nibble, the variant class (§4.1), nil and
+ *  max (§5.9, §5.10), and whether it is a v8 content address of the kind toUuid emits. Unreadable is `absent`. */
+export declare function readUuid(value: string): UuidReading;
+/** Sixteen octets as an address, masking nothing — the inverse of readUuid(...).bytes. Anything else is refused. */
+export declare function uuidOfBytes(bytes: readonly number[]): string;
+/** Seal a content as a v8 address: SHA-256, or HMAC-SHA-256 when a key is given. Unkeyed it IS toUuid(content) —
+ *  integrity, recomputable by anyone. Keyed it is authenticity: only a holder of the key reproduces it. */
+export declare function sealUuid(content: string, key?: string): {
+    uuid: string;
+    keyed: boolean;
+    hasher: 'sha256' | 'hmac-sha256';
+};
+/** Does this address seal this content (under this key)? Three states: an address that cannot be a seal at all
+ *  is `absent`, never `refuted` — an unreadable address says nothing about the content. */
+export declare function verifyUuid(uuid: string, content: string, key?: string): {
+    verdict: 'holds' | 'refuted' | 'absent';
+    reason: string;
+};
+/** The register an address of `width` qubits per hex digit holds: reg(w) = 32w − w − 2. The version digit and
+ *  the variant pair are decided, not free. At width 4 it is the 122 free bits of the address itself. */
+export declare function uuidRegister(width: number): {
+    digits: number;
+    width: number;
+    nominal: number;
+    version: number;
+    gateway: number;
+    free: number;
+};
+/** The least width whose register holds `bits`: ceil((bits + 2) / 31). The thousand-bit case needs width 33. */
+export declare function minimalRegisterWidth(bits: number): number;
+/** The DECIDED version nibble — the other seal an address can wear (uuidna/qpu's stamp, ported): the 31 digits
+ *  that are not the version digit, read as one number mod 91, raised to the 7th, folded to 1..8. An address whose
+ *  version digit is that nibble `agrees`. It is a keyless check that needs no content, and it misses about one
+ *  tamper in eight; a kernel address (version fixed at 8) agrees only when its residue folds to 8. */
+export declare function uuidStamp(value: string): {
+    source: 'absent';
+    reason: string;
+} | {
+    source: 'parsed';
+    residue: number;
+    found: number;
+    decided: number;
+    agrees: boolean;
+};
+/** The generic search costs of an address with `freeBits` free, in log2 — CITED results with the bit arithmetic
+ *  computed, not something a fold proves: a second preimage is 2^n classically and 2^(n/2) under Grover; a
+ *  collision is 2^(n/2) classically and 2^(n/3) under Brassard–Høyer–Tapp. Every figure is finite. */
+export declare function addressSearchCostsLog2(freeBits?: number): {
+    freeBits: number;
+    preimage: {
+        classical: number;
+        quantum: number;
+        by: string;
+    };
+    collision: {
+        classical: number;
+        quantum: number;
+        by: string;
+    };
+};
+/** The layout the functions above read, for the fold that holds them to their theorems. */
+export declare const UUID_LAYOUT: {
+    readonly groups: number[];
+    readonly hexDigits: number;
+    readonly radix: number;
+    readonly digitBits: number;
+    readonly byteCount: number;
+    readonly versionAt: number;
+    readonly variantAt: number;
+    readonly contentVersion: number;
+    readonly variantBits: number;
+    readonly stampModulus: number;
+    readonly stampExponent: 7;
+    readonly stampClasses: number;
+    readonly group: (hex: string) => string;
+    readonly stampOfResidue: (residue: number) => number;
+};
 export {};

@@ -1724,6 +1724,109 @@ function transliterateByMap(text, map) {
     return out;
   });
 }
+var UUID_GROUPS = toUuid("").split("-").map((group) => group.length);
+var UUID_HEX_DIGITS = UUID_GROUPS.reduce((sum, n) => sum + n, 0);
+var HEX_RADIX = Number.parseInt("f", UUID_HEX_DIGITS / 2) + 1;
+var HEX_DIGIT_BITS = log2(HEX_RADIX);
+var UUID_BYTE_COUNT = UUID_HEX_DIGITS / 2;
+var VERSION_AT = UUID_GROUPS[0] + UUID_GROUPS[1];
+var VARIANT_AT = VERSION_AT + UUID_GROUPS[2];
+var CONTENT_VERSION = Number.parseInt(toUuid("").replace(/-/g, "")[VERSION_AT], HEX_RADIX);
+var NIBBLE_KEEPS = HEX_RADIX - 1;
+var VARIANT_KEEPS = HEX_RADIX * HEX_DIGIT_BITS - 1;
+var HIGH_BIT = HEX_RADIX * (HEX_RADIX / 2);
+var VARIANT_BITS = addressEntropyBits().discardedBits - HEX_DIGIT_BITS;
+var groupUuid = (hex) => {
+  let at = 0;
+  return UUID_GROUPS.map((n) => hex.slice(at, at += n)).join("-");
+};
+function readUuid(value) {
+  if (typeof value !== "string") return { source: "absent", reason: "not a string" };
+  const groups = value.split("-");
+  if (groups.length !== UUID_GROUPS.length || groups.some((group, i) => group.length !== UUID_GROUPS[i])) return { source: "absent", reason: `not grouped ${UUID_GROUPS.join("-")}` };
+  const hex = groups.join("").toLowerCase();
+  if (!/^[0-9a-f]+$/.test(hex)) return { source: "absent", reason: "a character that is not a hex digit" };
+  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(hex.slice(2 * i, 2 * i + 2), HEX_RADIX));
+  const version = Number.parseInt(hex[VERSION_AT], HEX_RADIX);
+  const top = Number.parseInt(hex[VARIANT_AT], HEX_RADIX);
+  const half = HEX_RADIX / 2;
+  const variant = top < half ? "ncs" : top < half + HEX_DIGIT_BITS ? "rfc9562" : top < half + HEX_DIGIT_BITS + 2 ? "microsoft" : "future";
+  return {
+    source: "parsed",
+    canonical: groupUuid(hex),
+    bytes,
+    version,
+    variant,
+    nil: bytes.every((byte) => byte === 0),
+    max: bytes.every((byte) => byte === HEX_RADIX * HEX_RADIX - 1),
+    contentAddress: version === CONTENT_VERSION && variant === "rfc9562"
+  };
+}
+function uuidOfBytes(bytes) {
+  if (bytes.length !== UUID_BYTE_COUNT || bytes.some((byte) => !Number.isInteger(byte) || byte < 0 || byte >= HEX_RADIX * HEX_RADIX)) throw new RangeError(`uuidOfBytes: an address is ${UUID_BYTE_COUNT} octets, each 0..${HEX_RADIX * HEX_RADIX - 1}`);
+  return groupUuid(bytes.map((byte) => byte.toString(HEX_RADIX).padStart(2, "0")).join(""));
+}
+function sealUuid(content, key) {
+  const keyed = key !== void 0;
+  const digest = keyed ? hmacSha256(key, content) : sha256Sync(content);
+  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(digest.slice(2 * i, 2 * i + 2), HEX_RADIX));
+  bytes[VERSION_AT / 2] = bytes[VERSION_AT / 2] & NIBBLE_KEEPS | CONTENT_VERSION * HEX_RADIX;
+  bytes[VARIANT_AT / 2] = bytes[VARIANT_AT / 2] & VARIANT_KEEPS | HIGH_BIT;
+  return { uuid: uuidOfBytes(bytes), keyed, hasher: keyed ? "hmac-sha256" : "sha256" };
+}
+function verifyUuid(uuid, content, key) {
+  const read = readUuid(uuid);
+  if (read.source === "absent") return { verdict: "absent", reason: read.reason };
+  if (!read.contentAddress) return { verdict: "absent", reason: `version ${read.version}, variant ${read.variant} \u2014 not a v${CONTENT_VERSION} content address` };
+  const expected = sealUuid(content, key);
+  return read.canonical === expected.uuid ? { verdict: "holds", reason: `${expected.hasher} of the content is this address` } : { verdict: "refuted", reason: `${expected.hasher} of the content is another address` };
+}
+function uuidRegister(width) {
+  if (!Number.isInteger(width) || width < 1) throw new RangeError("uuidRegister: the width is a positive whole number of qubits per hex digit");
+  const nominal = UUID_HEX_DIGITS * width;
+  return { digits: UUID_HEX_DIGITS, width, nominal, version: width, gateway: VARIANT_BITS, free: nominal - width - VARIANT_BITS };
+}
+function minimalRegisterWidth(bits) {
+  if (!Number.isInteger(bits) || bits < 0) throw new RangeError("minimalRegisterWidth: bits is a whole number, zero or more");
+  return max(1, ceil((bits + VARIANT_BITS) / (UUID_HEX_DIGITS - 1)));
+}
+var STAMP_MODULUS = 7 * (3 * HEX_DIGIT_BITS + 1);
+var STAMP_EXPONENT = 7;
+var STAMP_CLASSES = 2 * HEX_DIGIT_BITS;
+var stampOfResidue = (residue) => 1 + residue ** STAMP_EXPONENT % STAMP_MODULUS % STAMP_CLASSES;
+function uuidStamp(value) {
+  const read = readUuid(value);
+  if (read.source === "absent") return read;
+  const hex = read.canonical.replace(/-/g, "");
+  let residue = 0;
+  for (let at = 0; at < hex.length; at += 1) if (at !== VERSION_AT) residue = (residue * HEX_RADIX + Number.parseInt(hex[at], HEX_RADIX)) % STAMP_MODULUS;
+  const decided = stampOfResidue(residue);
+  return { source: "parsed", residue, found: read.version, decided, agrees: read.version === decided };
+}
+function addressSearchCostsLog2(freeBits = addressEntropyBits().effectiveBits) {
+  if (!Number.isInteger(freeBits) || freeBits < 1) throw new RangeError("addressSearchCostsLog2: freeBits is a positive whole number");
+  return {
+    freeBits,
+    preimage: { classical: freeBits, quantum: floor(freeBits / 2), by: "Grover 1996, arXiv:quant-ph/9605043" },
+    collision: { classical: floor(freeBits / 2), quantum: floor(freeBits / 3), by: "Brassard, H\xF8yer, Tapp 1998, arXiv:quant-ph/9705002" }
+  };
+}
+var UUID_LAYOUT = {
+  groups: UUID_GROUPS,
+  hexDigits: UUID_HEX_DIGITS,
+  radix: HEX_RADIX,
+  digitBits: HEX_DIGIT_BITS,
+  byteCount: UUID_BYTE_COUNT,
+  versionAt: VERSION_AT,
+  variantAt: VARIANT_AT,
+  contentVersion: CONTENT_VERSION,
+  variantBits: VARIANT_BITS,
+  stampModulus: STAMP_MODULUS,
+  stampExponent: STAMP_EXPONENT,
+  stampClasses: STAMP_CLASSES,
+  group: groupUuid,
+  stampOfResidue
+};
 
 // ../../src/3/7/index.ts
 var SPEED_OF_LIGHT = 299792458;
@@ -27725,157 +27828,79 @@ function computeLatticeParams(nQubits = 8) {
   return { dimension, modulus, involutionFixed, nQubits };
 }
 var ML_KEM_QUANTUM = computeLatticeParams();
-var UUID_GROUPS = toUuid("").split("-").map((group) => group.length);
-var UUID_HEX_DIGITS = UUID_GROUPS.reduce((sum, n) => sum + n, 0);
-var HEX_RADIX = Number.parseInt("f", UUID_HEX_DIGITS / 2) + 1;
-var HEX_DIGIT_BITS = log2(HEX_RADIX);
-var UUID_BYTE_COUNT = UUID_HEX_DIGITS / 2;
-var VERSION_AT = UUID_GROUPS[0] + UUID_GROUPS[1];
-var VARIANT_AT = VERSION_AT + UUID_GROUPS[2];
-var CONTENT_VERSION = Number.parseInt(toUuid("").replace(/-/g, "")[VERSION_AT], HEX_RADIX);
-var NIBBLE_KEEPS = HEX_RADIX - 1;
-var VARIANT_KEEPS = HEX_RADIX * HEX_DIGIT_BITS - 1;
-var HIGH_BIT = HEX_RADIX * (HEX_RADIX / 2);
-var VARIANT_BITS = addressEntropyBits().discardedBits - HEX_DIGIT_BITS;
-var groupUuid = (hex) => {
-  let at = 0;
-  return UUID_GROUPS.map((n) => hex.slice(at, at += n)).join("-");
-};
-function readUuid(value) {
-  if (typeof value !== "string") return { source: "absent", reason: "not a string" };
-  const groups = value.split("-");
-  if (groups.length !== UUID_GROUPS.length || groups.some((group, i) => group.length !== UUID_GROUPS[i])) return { source: "absent", reason: `not grouped ${UUID_GROUPS.join("-")}` };
-  const hex = groups.join("").toLowerCase();
-  if (!/^[0-9a-f]+$/.test(hex)) return { source: "absent", reason: "a character that is not a hex digit" };
-  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(hex.slice(2 * i, 2 * i + 2), HEX_RADIX));
-  const version = Number.parseInt(hex[VERSION_AT], HEX_RADIX);
-  const top = Number.parseInt(hex[VARIANT_AT], HEX_RADIX);
-  const half = HEX_RADIX / 2;
-  const variant = top < half ? "ncs" : top < half + HEX_DIGIT_BITS ? "rfc9562" : top < half + HEX_DIGIT_BITS + 2 ? "microsoft" : "future";
-  return {
-    source: "parsed",
-    canonical: groupUuid(hex),
-    bytes,
-    version,
-    variant,
-    nil: bytes.every((byte) => byte === 0),
-    max: bytes.every((byte) => byte === HEX_RADIX * HEX_RADIX - 1),
-    contentAddress: version === CONTENT_VERSION && variant === "rfc9562"
-  };
-}
-function uuidOfBytes(bytes) {
-  if (bytes.length !== UUID_BYTE_COUNT || bytes.some((byte) => !Number.isInteger(byte) || byte < 0 || byte >= HEX_RADIX * HEX_RADIX)) throw new RangeError(`uuidOfBytes: an address is ${UUID_BYTE_COUNT} octets, each 0..${HEX_RADIX * HEX_RADIX - 1}`);
-  return groupUuid(bytes.map((byte) => byte.toString(HEX_RADIX).padStart(2, "0")).join(""));
-}
-function sealUuid(content, key) {
-  const keyed = key !== void 0;
-  const digest = keyed ? hmacSha256(key, content) : sha256Sync(content);
-  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(digest.slice(2 * i, 2 * i + 2), HEX_RADIX));
-  bytes[VERSION_AT / 2] = bytes[VERSION_AT / 2] & NIBBLE_KEEPS | CONTENT_VERSION * HEX_RADIX;
-  bytes[VARIANT_AT / 2] = bytes[VARIANT_AT / 2] & VARIANT_KEEPS | HIGH_BIT;
-  return { uuid: uuidOfBytes(bytes), keyed, hasher: keyed ? "hmac-sha256" : "sha256" };
-}
-function verifyUuid(uuid, content, key) {
-  const read = readUuid(uuid);
-  if (read.source === "absent") return { verdict: "absent", reason: read.reason };
-  if (!read.contentAddress) return { verdict: "absent", reason: `version ${read.version}, variant ${read.variant} \u2014 not a v${CONTENT_VERSION} content address` };
-  const expected = sealUuid(content, key);
-  return read.canonical === expected.uuid ? { verdict: "holds", reason: `${expected.hasher} of the content is this address` } : { verdict: "refuted", reason: `${expected.hasher} of the content is another address` };
-}
-function uuidRegister(width) {
-  if (!Number.isInteger(width) || width < 1) throw new RangeError("uuidRegister: the width is a positive whole number of qubits per hex digit");
-  const nominal = UUID_HEX_DIGITS * width;
-  return { digits: UUID_HEX_DIGITS, width, nominal, version: width, gateway: VARIANT_BITS, free: nominal - width - VARIANT_BITS };
-}
-function minimalRegisterWidth(bits) {
-  if (!Number.isInteger(bits) || bits < 0) throw new RangeError("minimalRegisterWidth: bits is a whole number, zero or more");
-  return max(1, ceil((bits + VARIANT_BITS) / (UUID_HEX_DIGITS - 1)));
-}
-var STAMP_MODULUS = 7 * (3 * HEX_DIGIT_BITS + 1);
-var STAMP_EXPONENT = 7;
-var STAMP_CLASSES = 2 * HEX_DIGIT_BITS;
-var stampOfResidue = (residue) => 1 + residue ** STAMP_EXPONENT % STAMP_MODULUS % STAMP_CLASSES;
-function uuidStamp(value) {
-  const read = readUuid(value);
-  if (read.source === "absent") return read;
-  const hex = read.canonical.replace(/-/g, "");
-  let residue = 0;
-  for (let at = 0; at < hex.length; at += 1) if (at !== VERSION_AT) residue = (residue * HEX_RADIX + Number.parseInt(hex[at], HEX_RADIX)) % STAMP_MODULUS;
-  const decided = stampOfResidue(residue);
-  return { source: "parsed", residue, found: read.version, decided, agrees: read.version === decided };
-}
+var { groups: UUID_GROUPS2, hexDigits: UUID_HEX_DIGITS2, radix: HEX_RADIX2, digitBits: HEX_DIGIT_BITS2, byteCount: UUID_BYTE_COUNT2, versionAt: VERSION_AT2, variantAt: VARIANT_AT2, contentVersion: CONTENT_VERSION2, variantBits: VARIANT_BITS2, stampModulus: STAMP_MODULUS2, stampExponent: STAMP_EXPONENT2, stampClasses: STAMP_CLASSES2, group: groupUuid2, stampOfResidue: stampOfResidue2 } = UUID_LAYOUT;
 var QUANTUM_UUID_THEOREM_FILE = "src/pair/lean/proofs/thousand.lean";
 function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix = buildMatrix()) {
   void matrix;
   const budget = addressEntropyBits();
   const THOUSAND = (5 * 2) ** 3;
-  const seeds = Array.from({ length: UUID_HEX_DIGITS }, (_, i) => `quantum-uuid:${i}`);
+  const seeds = Array.from({ length: UUID_HEX_DIGITS2 }, (_, i) => `quantum-uuid:${i}`);
   const addresses = seeds.map((seed) => toUuid(seed));
   const readings = addresses.map((address) => readUuid(address));
   const sample9 = addresses[0];
   const hexOf = (address) => address.replace(/-/g, "");
-  const withDigit = (address, at, digit2) => groupUuid(`${hexOf(address).slice(0, at)}${digit2.toString(HEX_RADIX)}${hexOf(address).slice(at + 1)}`);
-  const everyDigit = Array.from({ length: HEX_RADIX }, (_, digit2) => digit2);
+  const withDigit = (address, at, digit2) => groupUuid2(`${hexOf(address).slice(0, at)}${digit2.toString(HEX_RADIX2)}${hexOf(address).slice(at + 1)}`);
+  const everyDigit = Array.from({ length: HEX_RADIX2 }, (_, digit2) => digit2);
   const allOwn = readings.every((r2, i) => r2.source === "parsed" && r2.contentAddress && r2.canonical === addresses[i] && uuidOfBytes(r2.bytes) === addresses[i]);
   const hyphens = "-".repeat(sample9.length);
-  const variantClasses = everyDigit.map((digit2) => readUuid(withDigit(sample9, VARIANT_AT, digit2)));
+  const variantClasses = everyDigit.map((digit2) => readUuid(withDigit(sample9, VARIANT_AT2, digit2)));
   const classCount = (variant) => variantClasses.filter((r2) => r2.source === "parsed" && r2.variant === variant).length;
   const ownAmongVariants = variantClasses.filter((r2) => r2.source === "parsed" && r2.contentAddress).length;
   const ownAmongVersions = everyDigit.filter((digit2) => {
-    const r2 = readUuid(withDigit(sample9, VERSION_AT, digit2));
+    const r2 = readUuid(withDigit(sample9, VERSION_AT2, digit2));
     return r2.source === "parsed" && r2.contentAddress;
   });
-  const nil = readUuid(groupUuid("0".repeat(UUID_HEX_DIGITS))), top = readUuid(groupUuid("f".repeat(UUID_HEX_DIGITS)));
+  const nil = readUuid(groupUuid2("0".repeat(UUID_HEX_DIGITS2))), top = readUuid(groupUuid2("f".repeat(UUID_HEX_DIGITS2)));
   const upper = readUuid(sample9.toUpperCase());
   const sealsAreKernel = seeds.every((seed, i) => sealUuid(seed).uuid === addresses[i]);
-  const tampers = Array.from({ length: UUID_HEX_DIGITS }, (_, at) => everyDigit.filter((digit2) => digit2 !== Number.parseInt(hexOf(sample9)[at], HEX_RADIX)).map((digit2) => verifyUuid(withDigit(sample9, at, digit2), seeds[0]).verdict)).flat();
+  const tampers = Array.from({ length: UUID_HEX_DIGITS2 }, (_, at) => everyDigit.filter((digit2) => digit2 !== Number.parseInt(hexOf(sample9)[at], HEX_RADIX2)).map((digit2) => verifyUuid(withDigit(sample9, at, digit2), seeds[0]).verdict)).flat();
   const tamperHolds = tampers.filter((verdict) => verdict === "holds").length;
   const tamperAbsent = tampers.filter((verdict) => verdict === "absent").length;
-  const absentExpected = HEX_RADIX - 1 + (HEX_RADIX - HEX_DIGIT_BITS);
+  const absentExpected = HEX_RADIX2 - 1 + (HEX_RADIX2 - HEX_DIGIT_BITS2);
   const KEY = "Jefe", MESSAGE = "what do ya want for nothing?";
   const keyed = sealUuid(MESSAGE, KEY);
   const rfc4231Head = "5bdcc146bf60";
   const keyedVerdicts = [verifyUuid(keyed.uuid, MESSAGE, KEY).verdict, verifyUuid(keyed.uuid, MESSAGE, `${KEY}x`).verdict, verifyUuid(keyed.uuid, MESSAGE).verdict, verifyUuid(keyed.uuid, `${MESSAGE}x`, KEY).verdict];
-  const atFour = uuidRegister(HEX_DIGIT_BITS);
-  const widthsMeeting = Array.from({ length: 2 * HEX_DIGIT_BITS }, (_, i) => i + 1).filter((w) => uuidRegister(w).free === budget.effectiveBits);
+  const atFour = uuidRegister(HEX_DIGIT_BITS2);
+  const widthsMeeting = Array.from({ length: 2 * HEX_DIGIT_BITS2 }, (_, i) => i + 1).filter((w) => uuidRegister(w).free === budget.effectiveBits);
   const width = minimalRegisterWidth(THOUSAND);
   const searched = Array.from({ length: THOUSAND }, (_, i) => i + 1).find((w) => uuidRegister(w).free >= THOUSAND);
   const below = uuidRegister(width - 1).free, holds = uuidRegister(width).free;
   const PERCENT2 = (5 * 2) ** 2;
   const fillFloor = floor(THOUSAND * PERCENT2 / holds);
   const grover6 = floor(atFour.free / 2), collision = floor(atFour.free / 3);
-  const residues = Array.from({ length: STAMP_MODULUS }, (_, r2) => r2);
-  const classSizes = Array.from({ length: STAMP_CLASSES }, (_, i) => residues.filter((r2) => stampOfResidue(r2) === i + 1).length);
+  const residues = Array.from({ length: STAMP_MODULUS2 }, (_, r2) => r2);
+  const classSizes = Array.from({ length: STAMP_CLASSES2 }, (_, i) => residues.filter((r2) => stampOfResidue2(r2) === i + 1).length);
   const squares = classSizes.reduce((s, n) => s + n * n, 0);
-  const totient = (STAMP_EXPONENT - 1) * (STAMP_MODULUS / STAMP_EXPONENT - 1);
-  const inverse = Array.from({ length: totient }, (_, e) => e + 1).find((e) => STAMP_EXPONENT * e % totient === 1);
-  const undone = residues.every((r2) => Number((BigInt(r2) ** BigInt(STAMP_EXPONENT) % BigInt(STAMP_MODULUS)) ** BigInt(inverse ?? 1) % BigInt(STAMP_MODULUS)) === r2);
+  const totient = (STAMP_EXPONENT2 - 1) * (STAMP_MODULUS2 / STAMP_EXPONENT2 - 1);
+  const inverse = Array.from({ length: totient }, (_, e) => e + 1).find((e) => STAMP_EXPONENT2 * e % totient === 1);
+  const undone = residues.every((r2) => Number((BigInt(r2) ** BigInt(STAMP_EXPONENT2) % BigInt(STAMP_MODULUS2)) ** BigInt(inverse ?? 1) % BigInt(STAMP_MODULUS2)) === r2);
   const stamps = addresses.map((address) => uuidStamp(address));
   const residueByBigInt = (address) => {
     const hex = hexOf(address);
-    return Number(BigInt(`0x${hex.slice(0, VERSION_AT)}${hex.slice(VERSION_AT + 1)}`) % BigInt(STAMP_MODULUS));
+    return Number(BigInt(`0x${hex.slice(0, VERSION_AT2)}${hex.slice(VERSION_AT2 + 1)}`) % BigInt(STAMP_MODULUS2));
   };
   const routesAgree = stamps.every((s, i) => s.source === "parsed" && s.residue === residueByBigInt(addresses[i]));
   const oneNibbleEach = addresses.every((address) => everyDigit.filter((digit2) => {
-    const s = uuidStamp(withDigit(address, VERSION_AT, digit2));
+    const s = uuidStamp(withDigit(address, VERSION_AT2, digit2));
     return s.source === "parsed" && s.agrees;
   }).length === 1);
   const kernelAgreeing = stamps.filter((s) => s.source === "parsed" && s.agrees).length;
-  const kernelDecidedEight = stamps.filter((s) => s.source === "parsed" && s.decided === CONTENT_VERSION).length;
+  const kernelDecidedEight = stamps.filter((s) => s.source === "parsed" && s.decided === CONTENT_VERSION2).length;
   const facets = [
-    { facet: `READ \u2014 all ${addresses.length} addresses the kernel emits read as version ${CONTENT_VERSION}, variant rfc9562, content addresses, and their ${UUID_BYTE_COUNT} octets write back to the same address`, on: allOwn },
-    { facet: `STRICT \u2014 ${sample9.length} hyphens pass the kernel's shape test (isUuid: ${isUuid(hyphens)}) and are absent to the reader, which wants ${UUID_GROUPS.join("-")} hex`, on: isUuid(hyphens) && readUuid(hyphens).source === "absent" && readUuid(sample9.slice(1)).source === "absent" },
-    { facet: `VARIANT (RFC 9562 \xA74.1) \u2014 the ${HEX_RADIX} variant nibbles class as ncs ${classCount("ncs")}, rfc9562 ${classCount("rfc9562")}, microsoft ${classCount("microsoft")}, future ${classCount("future")}; ${ownAmongVariants} of them and ${ownAmongVersions.length} of the ${HEX_RADIX} version nibbles leave a content address`, on: classCount("ncs") === HEX_RADIX / 2 && classCount("rfc9562") === HEX_DIGIT_BITS && classCount("microsoft") === VARIANT_BITS && classCount("future") === VARIANT_BITS && ownAmongVariants === HEX_DIGIT_BITS && ownAmongVersions.length === 1 && ownAmongVersions[0] === CONTENT_VERSION },
+    { facet: `READ \u2014 all ${addresses.length} addresses the kernel emits read as version ${CONTENT_VERSION2}, variant rfc9562, content addresses, and their ${UUID_BYTE_COUNT2} octets write back to the same address`, on: allOwn },
+    { facet: `STRICT \u2014 ${sample9.length} hyphens pass the kernel's shape test (isUuid: ${isUuid(hyphens)}) and are absent to the reader, which wants ${UUID_GROUPS2.join("-")} hex`, on: isUuid(hyphens) && readUuid(hyphens).source === "absent" && readUuid(sample9.slice(1)).source === "absent" },
+    { facet: `VARIANT (RFC 9562 \xA74.1) \u2014 the ${HEX_RADIX2} variant nibbles class as ncs ${classCount("ncs")}, rfc9562 ${classCount("rfc9562")}, microsoft ${classCount("microsoft")}, future ${classCount("future")}; ${ownAmongVariants} of them and ${ownAmongVersions.length} of the ${HEX_RADIX2} version nibbles leave a content address`, on: classCount("ncs") === HEX_RADIX2 / 2 && classCount("rfc9562") === HEX_DIGIT_BITS2 && classCount("microsoft") === VARIANT_BITS2 && classCount("future") === VARIANT_BITS2 && ownAmongVariants === HEX_DIGIT_BITS2 && ownAmongVersions.length === 1 && ownAmongVersions[0] === CONTENT_VERSION2 },
     { facet: "NIL AND MAX (\xA75.9, \xA75.10) read as themselves and as no content address; an upper-case address reads to its lower-case canonical form", on: nil.source === "parsed" && nil.nil && !nil.max && !nil.contentAddress && top.source === "parsed" && top.max && !top.nil && !top.contentAddress && upper.source === "parsed" && upper.canonical === sample9 },
-    { facet: `SEAL \u2014 unkeyed, sealUuid is toUuid on all ${seeds.length} contents: this fold's masks over sha256Sync and the kernel's own agree`, on: sealsAreKernel && !sealUuid(seeds[0]).keyed },
-    { facet: `VERIFY \u2014 of the ${tampers.length} single-digit changes to a sealed address ${tamperHolds} still hold; ${tamperAbsent} are absent (no longer a v${CONTENT_VERSION} address) and the rest refuted; the true address holds and a one-character change to the content is refuted`, on: tamperHolds === 0 && tampers.length === UUID_HEX_DIGITS * (HEX_RADIX - 1) && tamperAbsent === absentExpected && verifyUuid(sample9, seeds[0]).verdict === "holds" && verifyUuid(sample9, `${seeds[0]}x`).verdict === "refuted" && verifyUuid(hyphens, seeds[0]).verdict === "absent" },
+    { facet: `SEAL \u2014 unkeyed, sealUuid is toUuid on all ${seeds.length} contents: sealUuid's masks over sha256Sync and toUuid's own agree`, on: sealsAreKernel && !sealUuid(seeds[0]).keyed },
+    { facet: `VERIFY \u2014 of the ${tampers.length} single-digit changes to a sealed address ${tamperHolds} still hold; ${tamperAbsent} are absent (no longer a v${CONTENT_VERSION2} address) and the rest refuted; the true address holds and a one-character change to the content is refuted`, on: tamperHolds === 0 && tampers.length === UUID_HEX_DIGITS2 * (HEX_RADIX2 - 1) && tamperAbsent === absentExpected && verifyUuid(sample9, seeds[0]).verdict === "holds" && verifyUuid(sample9, `${seeds[0]}x`).verdict === "refuted" && verifyUuid(hyphens, seeds[0]).verdict === "absent" },
     { facet: `KEYED \u2014 under RFC 4231 case 2's key the seal ${keyed.uuid} opens with ${rfc4231Head}, the standard's HMAC; it holds under that key and is refuted under another key, under no key, and for another message (${keyedVerdicts.join(", ")})`, on: keyed.keyed && hexOf(keyed.uuid).startsWith(rfc4231Head) && keyed.uuid !== sealUuid(MESSAGE).uuid && keyedVerdicts.join() === ["holds", "refuted", "refuted", "refuted"].join() },
-    { facet: `REGISTER \u2014 reg(${atFour.width}) = ${atFour.nominal} \u2212 ${atFour.version} \u2212 ${atFour.gateway} = ${atFour.free}, the ${budget.effectiveBits} bits the kernel's masks leave free, and of widths 1..${2 * HEX_DIGIT_BITS} only ${widthsMeeting.join()} meets it`, theorem: "the_free_register_is_one_hundred_twenty_two_only_at_width_four", decides: [atFour.free, atFour.nominal, budget.discardedBits], on: atFour.free === budget.effectiveBits && atFour.nominal === budget.nominalBits && atFour.version + atFour.gateway === budget.discardedBits && widthsMeeting.length === 1 && widthsMeeting[0] === HEX_DIGIT_BITS },
-    { facet: `THOUSAND \u2014 reg(${width - 1}) = ${below} < ${THOUSAND} \u2264 ${holds} = reg(${width}): the closed form ceil((bits + ${VARIANT_BITS}) / ${UUID_HEX_DIGITS - 1}) and a search from width 1 both give ${width}`, theorem: "the_thousand_bit_case_overflows_the_width_thirty_two_ceiling", decides: [below, holds, width], on: below < THOUSAND && THOUSAND <= holds && searched === width && width === UUID_HEX_DIGITS + 1 },
-    { facet: `MARGIN \u2014 the thousand overflows width ${width - 1} by ${THOUSAND - below} and leaves ${holds - THOUSAND} of width ${width}; it fills between ${fillFloor}% and ${fillFloor + 1}% of that register`, theorem: "the_thousand_fills_between_ninety_seven_and_ninety_eight_percent_of_its_register", decides: [fillFloor, fillFloor + 1, holds], on: fillFloor * holds < THOUSAND * PERCENT2 && THOUSAND * PERCENT2 < (fillFloor + 1) * holds && THOUSAND - below + (holds - THOUSAND) === UUID_HEX_DIGITS - 1 },
+    { facet: `REGISTER \u2014 reg(${atFour.width}) = ${atFour.nominal} \u2212 ${atFour.version} \u2212 ${atFour.gateway} = ${atFour.free}, the ${budget.effectiveBits} bits the kernel's masks leave free, and of widths 1..${2 * HEX_DIGIT_BITS2} only ${widthsMeeting.join()} meets it`, theorem: "the_free_register_is_one_hundred_twenty_two_only_at_width_four", decides: [atFour.free, atFour.nominal, budget.discardedBits], on: atFour.free === budget.effectiveBits && atFour.nominal === budget.nominalBits && atFour.version + atFour.gateway === budget.discardedBits && widthsMeeting.length === 1 && widthsMeeting[0] === HEX_DIGIT_BITS2 },
+    { facet: `THOUSAND \u2014 reg(${width - 1}) = ${below} < ${THOUSAND} \u2264 ${holds} = reg(${width}): the closed form ceil((bits + ${VARIANT_BITS2}) / ${UUID_HEX_DIGITS2 - 1}) and a search from width 1 both give ${width}`, theorem: "the_thousand_bit_case_overflows_the_width_thirty_two_ceiling", decides: [below, holds, width], on: below < THOUSAND && THOUSAND <= holds && searched === width && width === UUID_HEX_DIGITS2 + 1 },
+    { facet: `MARGIN \u2014 the thousand overflows width ${width - 1} by ${THOUSAND - below} and leaves ${holds - THOUSAND} of width ${width}; it fills between ${fillFloor}% and ${fillFloor + 1}% of that register`, theorem: "the_thousand_fills_between_ninety_seven_and_ninety_eight_percent_of_its_register", decides: [fillFloor, fillFloor + 1, holds], on: fillFloor * holds < THOUSAND * PERCENT2 && THOUSAND * PERCENT2 < (fillFloor + 1) * holds && THOUSAND - below + (holds - THOUSAND) === UUID_HEX_DIGITS2 - 1 },
     { facet: `GROVER \u2014 a square-root search of the ${atFour.free} free bits costs 2^${grover6}, the kernel's FORGE_FLOOR_BITS, ${budget.nominalBits - grover6} bits below ${budget.nominalBits}; a cube-root collision search 2^${collision}`, theorem: "one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under_grover", decides: [grover6, collision, budget.nominalBits - grover6], on: grover6 === FORGE_FLOOR_BITS && 3 * collision < atFour.free && atFour.free < 3 * (collision + 1) && grover6 < budget.nominalBits },
-    { facet: `STAMP \u2014 the ${STAMP_MODULUS} residues fold to the nibbles 1..${STAMP_CLASSES} in classes of ${classSizes.join(", ")}; a random tamper wears the right nibble ${squares} times in ${STAMP_MODULUS * STAMP_MODULUS}, ${STAMP_CLASSES * squares - STAMP_MODULUS * STAMP_MODULUS} above one in ${STAMP_CLASSES}; the exponent ${STAMP_EXPONENT} is undone by ${inverse} on every residue (${STAMP_EXPONENT} \xB7 ${inverse} \u2261 1 mod ${totient})`, theorem: "the_fold_mod_eight_misses_one_tamper_in_eight", decides: [STAMP_MODULUS, squares, STAMP_CLASSES * squares - STAMP_MODULUS * STAMP_MODULUS, classSizes[0], classSizes[STAMP_CLASSES - 1]], on: classSizes.every((n, i) => n === (i < 3 ? 3 * HEX_DIGIT_BITS : 3 * HEX_DIGIT_BITS - 1)) && classSizes.reduce((s, n) => s + n, 0) === STAMP_MODULUS && undone && inverse !== void 0 },
-    { facet: `STAMPED \u2014 on all ${addresses.length} addresses the residue read digit by digit is the 31-digit number mod ${STAMP_MODULUS}, and exactly one of the ${HEX_RADIX} version digits agrees with it; the kernel's fixed version ${CONTENT_VERSION} agrees on ${kernelAgreeing} of them, the ${kernelDecidedEight} whose residue folds to ${CONTENT_VERSION} \u2014 two seals, neither the other's`, theorem: "the_seal_exponent_seven_is_undone_by_thirty_one_mod_ninety_one", decides: [STAMP_MODULUS, totient, inverse ?? -1], on: routesAgree && oneNibbleEach && kernelAgreeing === kernelDecidedEight }
+    { facet: `STAMP \u2014 the ${STAMP_MODULUS2} residues fold to the nibbles 1..${STAMP_CLASSES2} in classes of ${classSizes.join(", ")}; a random tamper wears the right nibble ${squares} times in ${STAMP_MODULUS2 * STAMP_MODULUS2}, ${STAMP_CLASSES2 * squares - STAMP_MODULUS2 * STAMP_MODULUS2} above one in ${STAMP_CLASSES2}; the exponent ${STAMP_EXPONENT2} is undone by ${inverse} on every residue (${STAMP_EXPONENT2} \xB7 ${inverse} \u2261 1 mod ${totient})`, theorem: "the_fold_mod_eight_misses_one_tamper_in_eight", decides: [STAMP_MODULUS2, squares, STAMP_CLASSES2 * squares - STAMP_MODULUS2 * STAMP_MODULUS2, classSizes[0], classSizes[STAMP_CLASSES2 - 1]], on: classSizes.every((n, i) => n === (i < 3 ? 3 * HEX_DIGIT_BITS2 : 3 * HEX_DIGIT_BITS2 - 1)) && classSizes.reduce((s, n) => s + n, 0) === STAMP_MODULUS2 && undone && inverse !== void 0 },
+    { facet: `STAMPED \u2014 on all ${addresses.length} addresses the residue read digit by digit is the 31-digit number mod ${STAMP_MODULUS2}, and exactly one of the ${HEX_RADIX2} version digits agrees with it; the kernel's fixed version ${CONTENT_VERSION2} agrees on ${kernelAgreeing} of them, the ${kernelDecidedEight} whose residue folds to ${CONTENT_VERSION2} \u2014 two seals, neither the other's`, theorem: "the_seal_exponent_seven_is_undone_by_thirty_one_mod_ninety_one", decides: [STAMP_MODULUS2, totient, inverse ?? -1], on: routesAgree && oneNibbleEach && kernelAgreeing === kernelDecidedEight }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`quantum-uuid:${entry2.facet}:${entry2.on}`) }));
   return {
     computes: facets.every((entry2) => entry2.on),
@@ -27885,30 +27910,22 @@ function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix = buildMatrix(
     thousand: { width, below, holds },
     facets,
     root: merkleFold(facets.map((entry2) => entry2.receipt)),
-    statement: `An address is read (version ${CONTENT_VERSION}, variant rfc9562, ${UUID_GROUPS.join("-")}), sealed (SHA-256, or HMAC-SHA-256 under a key) and verified to one of three verdicts \u2014 holds, refuted, absent. Its register is reg(w) = ${UUID_HEX_DIGITS}w \u2212 w \u2212 ${VARIANT_BITS}: ${atFour.free} at width ${atFour.width}, and the thousand-bit case sits in width ${width} (${below} < ${THOUSAND} \u2264 ${holds}). The capacity integers are the ones ${QUANTUM_UUID_THEOREM_FILE} decides in the Lean kernel.`,
+    statement: `An address is read (version ${CONTENT_VERSION2}, variant rfc9562, ${UUID_GROUPS2.join("-")}), sealed (SHA-256, or HMAC-SHA-256 under a key) and verified to one of three verdicts \u2014 holds, refuted, absent. Its register is reg(w) = ${UUID_HEX_DIGITS2}w \u2212 w \u2212 ${VARIANT_BITS2}: ${atFour.free} at width ${atFour.width}, and the thousand-bit case sits in width ${width} (${below} < ${THOUSAND} \u2264 ${holds}). The capacity integers are the ones ${QUANTUM_UUID_THEOREM_FILE} decides in the Lean kernel.`,
     boundary: earned(
       "EXACT \u2014 reading, sealing and counting one address:",
       facets,
       [
         { facet: "the unkeyed seal is INTEGRITY, not authenticity \u2014 anyone recomputes it, which is why it equals toUuid; only the keyed seal needs a secret", on: sealsAreKernel && keyed.uuid !== sealUuid(MESSAGE).uuid },
-        { facet: `a register capacity is arithmetic on a CPU and no quantum machine \u2014 ${THOUSAND} = ${5 * 2}^3 is ${THOUSAND % (2 * HEX_DIGIT_BITS)} mod ${2 * HEX_DIGIT_BITS} and ${THOUSAND % (3 * 3)} mod ${3 * 3}, decided as integers (the_thousand_bit_structure_is_decided_not_a_quantum_machine)`, on: THOUSAND % (2 * HEX_DIGIT_BITS) === 0 && THOUSAND % (3 * 3) === 1 },
+        { facet: `a register capacity is arithmetic on a CPU and no quantum machine \u2014 ${THOUSAND} = ${5 * 2}^3 is ${THOUSAND % (2 * HEX_DIGIT_BITS2)} mod ${2 * HEX_DIGIT_BITS2} and ${THOUSAND % (3 * 3)} mod ${3 * 3}, decided as integers (the_thousand_bit_structure_is_decided_not_a_quantum_machine)`, on: THOUSAND % (2 * HEX_DIGIT_BITS2) === 0 && THOUSAND % (3 * 3) === 1 },
         { facet: `2^${grover6} is a bound on a fair hash under a square-root search, below the ${budget.nominalBits}-bit floor \u2014 one address is not post-quantum collision-resistant, and this says so`, on: grover6 < budget.nominalBits / 2 + 1 && grover6 < budget.nominalBits }
       ]
     )
   };
 }
-function addressSearchCostsLog2(freeBits = addressEntropyBits().effectiveBits) {
-  if (!Number.isInteger(freeBits) || freeBits < 1) throw new RangeError("addressSearchCostsLog2: freeBits is a positive whole number");
-  return {
-    freeBits,
-    preimage: { classical: freeBits, quantum: floor(freeBits / 2), by: "Grover 1996, arXiv:quant-ph/9605043" },
-    collision: { classical: floor(freeBits / 2), quantum: floor(freeBits / 3), by: "Brassard, H\xF8yer, Tapp 1998, arXiv:quant-ph/9705002" }
-  };
-}
 function theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected(matrix = buildMatrix()) {
   void matrix;
   const QUANTUM_LEAN = "src/pair/lean/proofs/quantum.lean";
-  const NINE = 3 * 3, TURN = NINE * (5 * 2) * HEX_DIGIT_BITS;
+  const NINE = 3 * 3, TURN = NINE * (5 * 2) * HEX_DIGIT_BITS2;
   const STEP = TURN / NINE;
   const digits = Array.from({ length: NINE }, (_, i) => i + 1);
   const same = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
@@ -27922,7 +27939,7 @@ function theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected(ma
   const twiceRealOfOmega = 2 * OMEGA[0] + OMEGA[1];
   const properDivisorSum = (n) => Array.from({ length: n - 1 }, (_, i) => i + 1).filter((d) => n % d === 0).reduce((s, d) => s + d, 0);
   const firstPerfect = Array.from({ length: NINE }, (_, i) => i + 2).find((n) => properDivisorSum(n) === n);
-  const SIXTY = TURN / (2 * 3), FACES = HEX_DIGIT_BITS, STRAIGHT = TURN / 2;
+  const SIXTY = TURN / (2 * 3), FACES = HEX_DIGIT_BITS2, STRAIGHT = TURN / 2;
   const tetrahedron = FACES * 3 * SIXTY;
   const A432 = TURN * (2 * 3) / 5;
   const angle = (d) => STEP * d % TURN;
@@ -27961,9 +27978,9 @@ function theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected(ma
   const facets = [
     { facet: `SIXTY \u2014 \u03C9 = e^{i\u03C0/3} has order ${order} in \u2124[\u03C9] (\u03C9\xB2 = \u03C9 \u2212 1, \u03C9\xB3 = \u22121), and rotating by it keeps all ${box.length} box elements integer-coordinated with their norm: (a, b) \u21A6 (\u2212b, a + b)`, theorem: "sixty_degrees_is_a_primitive_sixth_root_of_unity", file: QUANTUM_LEAN, decides: [3, order], on: order === 2 * 3 && same(mul(OMEGA, OMEGA), [-1, 1]) && same(powers[3], [-1, 0]) && rotationStays },
     { facet: `SIX \u2014 ${firstPerfect} is the first perfect number; a tetrahedron's ${FACES * 3} face angles of ${SIXTY}\xB0 sum to ${tetrahedron}\xB0 = ${FACES} \xD7 ${STRAIGHT}\xB0; ${A432} = ${TURN} \xD7 6/5`, theorem: "six_is_the_first_perfect_number_and_a_tetrahedron_sums_to_720", file: QUANTUM_LEAN, decides: [firstPerfect ?? -1, tetrahedron, STRAIGHT, A432, TURN], on: firstPerfect === 2 * 3 && tetrahedron === FACES * STRAIGHT && A432 * 5 === TURN * (2 * 3) },
-    { facet: `FORTY \u2014 the nine digits sit ${STEP}\xB0 apart; the doubling circuit ${circuit.join("\xB7")} steps ${steps.map((s) => s > 0 ? `+${s}` : `${s}`).join(", ")} and closes; 3\xB76\xB79 turns ${triangleTurns.join(", ")}`, theorem: "the_doubling_circuit_steps_forty_eighty_one_sixty_and_back", file: QUANTUM_LEAN, decides: [...steps.map((s) => abs(s)), ...triangleTurns, TURN], on: same(steps, [1, 2, HEX_DIGIT_BITS, -1, -2, -HEX_DIGIT_BITS].map((k) => k * STEP)) && steps.reduce((s, v) => s + v, 0) === 0 && triangleTurns.every((t) => t === TURN / 3) },
-    { facet: `STAR \u2014 {6/2} is the two triangles ${starFrom(1).slice(0, 3).join("\xB7")} and ${starFrom(2).slice(0, 3).join("\xB7")}, each closing in three steps of ${turn(1, HEX_DIGIT_BITS)}\xB0; the doubling circuit is one cycle of ${circuit.length} with unequal steps, so it is not that star`, theorem: "the_six_two_star_is_the_two_triangles_and_not_the_doubling_cycle", file: QUANTUM_LEAN, decides: [turn(1, HEX_DIGIT_BITS), circuit.length], on: same(starFrom(1), [1, HEX_DIGIT_BITS, 7, 1]) && same(starFrom(2), [2, 5, 2 * HEX_DIGIT_BITS, 2]) && new Set(steps.map((s) => abs(s))).size === 3 && new Set(circuit).size === circuit.length },
-    { facet: `REFLECTIONS \u2014 d \u21A6 ${NINE} \u2212 d fixes only ${digits.filter((d) => nines(d) === d).join()}, keeps 3\xB76\xB79 as ${[3, 6, 9].map(nines).join("\xB7")} and sends 1\xB74\xB77 to ${[1, 4, 7].map(nines).join("\xB7")}; d \u21A6 ${NINE + 1} \u2212 d fixes only ${digits.filter((d) => tens(d) === d).join()}, sends 3\xB76\xB79 to ${[3, 6, 9].map(tens).join("\xB7")} and keeps 2\xB75\xB78 as ${[2, 5, 8].map(tens).join("\xB7")}`, theorem: "the_two_reflections_connect_the_three_trinities", file: QUANTUM_LEAN, decides: [NINE, 5], on: digits.every((d) => nines(nines(d)) === d && tens(tens(d)) === d && trinity(nines(d)) === (3 - trinity(d)) % 3 && trinity(tens(d)) === (HEX_DIGIT_BITS - trinity(d)) % 3) && same(digits.filter((d) => nines(d) === d), [NINE]) && same(digits.filter((d) => tens(d) === d), [5]) },
+    { facet: `FORTY \u2014 the nine digits sit ${STEP}\xB0 apart; the doubling circuit ${circuit.join("\xB7")} steps ${steps.map((s) => s > 0 ? `+${s}` : `${s}`).join(", ")} and closes; 3\xB76\xB79 turns ${triangleTurns.join(", ")}`, theorem: "the_doubling_circuit_steps_forty_eighty_one_sixty_and_back", file: QUANTUM_LEAN, decides: [...steps.map((s) => abs(s)), ...triangleTurns, TURN], on: same(steps, [1, 2, HEX_DIGIT_BITS2, -1, -2, -HEX_DIGIT_BITS2].map((k) => k * STEP)) && steps.reduce((s, v) => s + v, 0) === 0 && triangleTurns.every((t) => t === TURN / 3) },
+    { facet: `STAR \u2014 {6/2} is the two triangles ${starFrom(1).slice(0, 3).join("\xB7")} and ${starFrom(2).slice(0, 3).join("\xB7")}, each closing in three steps of ${turn(1, HEX_DIGIT_BITS2)}\xB0; the doubling circuit is one cycle of ${circuit.length} with unequal steps, so it is not that star`, theorem: "the_six_two_star_is_the_two_triangles_and_not_the_doubling_cycle", file: QUANTUM_LEAN, decides: [turn(1, HEX_DIGIT_BITS2), circuit.length], on: same(starFrom(1), [1, HEX_DIGIT_BITS2, 7, 1]) && same(starFrom(2), [2, 5, 2 * HEX_DIGIT_BITS2, 2]) && new Set(steps.map((s) => abs(s))).size === 3 && new Set(circuit).size === circuit.length },
+    { facet: `REFLECTIONS \u2014 d \u21A6 ${NINE} \u2212 d fixes only ${digits.filter((d) => nines(d) === d).join()}, keeps 3\xB76\xB79 as ${[3, 6, 9].map(nines).join("\xB7")} and sends 1\xB74\xB77 to ${[1, 4, 7].map(nines).join("\xB7")}; d \u21A6 ${NINE + 1} \u2212 d fixes only ${digits.filter((d) => tens(d) === d).join()}, sends 3\xB76\xB79 to ${[3, 6, 9].map(tens).join("\xB7")} and keeps 2\xB75\xB78 as ${[2, 5, 8].map(tens).join("\xB7")}`, theorem: "the_two_reflections_connect_the_three_trinities", file: QUANTUM_LEAN, decides: [NINE, 5], on: digits.every((d) => nines(nines(d)) === d && tens(tens(d)) === d && trinity(nines(d)) === (3 - trinity(d)) % 3 && trinity(tens(d)) === (HEX_DIGIT_BITS2 - trinity(d)) % 3) && same(digits.filter((d) => nines(d) === d), [NINE]) && same(digits.filter((d) => tens(d) === d), [5]) },
     { facet: `MIRRORS \u2014 the two reflections are mirrors at 0\xB0 and ${STEP / 2}\xB0, so one after the other is the ${STEP}\xB0 step d \u21A6 d + 1 of order ${orderOfNext}, carrying each trinity to the next; with their turns they are ${maps.size} maps, acting on the three trinities as all ${onTrinities.size} permutations`, theorem: "the_two_mirrors_compose_to_the_forty_degree_step", file: QUANTUM_LEAN, decides: [maps.size, STEP, NINE], on: digits.every((d) => next(d) === d % NINE + 1 && (angle(nines(d)) + angle(d)) % TURN === 0 && (angle(tens(d)) + angle(d)) % TURN === STEP && trinity(next(d)) === (trinity(d) + 1) % 3) && orderOfNext === NINE && maps.size === 2 * NINE && onTrinities.size === 2 * 3 },
     { facet: `DOUBLING \u2014 the nines' reflection commutes with doubling and carries the circuit to ${circuit.map(nines).join("\xB7")}, itself half a turn round; the tens' reflection carries it to ${circuit.map(tens).join("\xB7")}, off the circuit`, theorem: "the_nines_reflection_carries_the_doubling_circuit_onto_itself", file: QUANTUM_LEAN, decides: circuit.map(tens), on: circuit.every((d) => nines(2 * d % NINE) === 2 * nines(d) % NINE) && same(circuit.map(nines), circuit.map((_, i) => circuit[(i + 3) % circuit.length])) && circuit.map(tens).some((d) => !circuit.includes(d)) },
     { facet: `MAGMA \u2014 merge is closed (all ${pairs.length} sample pairs give a content address), commutes on ${commuting} of them, associates on ${associating} of ${triples.length} triples, and ${identities} of the ${leaves.length} leaves acts as an identity; two addresses are ${inBits} bits in and at most ${budget.effectiveBits} free out, ${excess} bits over, so it is many-to-one by pigeonhole`, theorem: "a_two_to_one_fold_of_addresses_is_many_to_one_by_pigeonhole", file: QUANTUM_LEAN, decides: [inBits, budget.effectiveBits, excess], on: closed && commuting === 0 && associating === 0 && identities === 0 && excess === inBits - budget.effectiveBits && budget.effectiveBits < inBits && 2n ** BigInt(excess) * 2n ** BigInt(budget.effectiveBits) === 2n ** BigInt(inBits) },
@@ -73883,6 +73900,7 @@ export {
   TORUS_LOBE_OFFSET,
   TORUS_RING_R,
   TORUS_TUBE_R_BASE,
+  UUID_LAYOUT,
   VORTEX_DASH_ANGLE_DEG,
   VORTEX_DASH_ENCODED,
   VORTEX_REVERSE,

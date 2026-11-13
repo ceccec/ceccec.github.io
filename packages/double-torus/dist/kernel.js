@@ -1680,6 +1680,109 @@ function transliterateByMap(text, map) {
     return out;
   });
 }
+var UUID_GROUPS = toUuid("").split("-").map((group) => group.length);
+var UUID_HEX_DIGITS = UUID_GROUPS.reduce((sum, n) => sum + n, 0);
+var HEX_RADIX = Number.parseInt("f", UUID_HEX_DIGITS / 2) + 1;
+var HEX_DIGIT_BITS = log2(HEX_RADIX);
+var UUID_BYTE_COUNT = UUID_HEX_DIGITS / 2;
+var VERSION_AT = UUID_GROUPS[0] + UUID_GROUPS[1];
+var VARIANT_AT = VERSION_AT + UUID_GROUPS[2];
+var CONTENT_VERSION = Number.parseInt(toUuid("").replace(/-/g, "")[VERSION_AT], HEX_RADIX);
+var NIBBLE_KEEPS = HEX_RADIX - 1;
+var VARIANT_KEEPS = HEX_RADIX * HEX_DIGIT_BITS - 1;
+var HIGH_BIT = HEX_RADIX * (HEX_RADIX / 2);
+var VARIANT_BITS = addressEntropyBits().discardedBits - HEX_DIGIT_BITS;
+var groupUuid = (hex) => {
+  let at = 0;
+  return UUID_GROUPS.map((n) => hex.slice(at, at += n)).join("-");
+};
+function readUuid(value) {
+  if (typeof value !== "string") return { source: "absent", reason: "not a string" };
+  const groups = value.split("-");
+  if (groups.length !== UUID_GROUPS.length || groups.some((group, i) => group.length !== UUID_GROUPS[i])) return { source: "absent", reason: `not grouped ${UUID_GROUPS.join("-")}` };
+  const hex = groups.join("").toLowerCase();
+  if (!/^[0-9a-f]+$/.test(hex)) return { source: "absent", reason: "a character that is not a hex digit" };
+  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(hex.slice(2 * i, 2 * i + 2), HEX_RADIX));
+  const version = Number.parseInt(hex[VERSION_AT], HEX_RADIX);
+  const top = Number.parseInt(hex[VARIANT_AT], HEX_RADIX);
+  const half = HEX_RADIX / 2;
+  const variant = top < half ? "ncs" : top < half + HEX_DIGIT_BITS ? "rfc9562" : top < half + HEX_DIGIT_BITS + 2 ? "microsoft" : "future";
+  return {
+    source: "parsed",
+    canonical: groupUuid(hex),
+    bytes,
+    version,
+    variant,
+    nil: bytes.every((byte) => byte === 0),
+    max: bytes.every((byte) => byte === HEX_RADIX * HEX_RADIX - 1),
+    contentAddress: version === CONTENT_VERSION && variant === "rfc9562"
+  };
+}
+function uuidOfBytes(bytes) {
+  if (bytes.length !== UUID_BYTE_COUNT || bytes.some((byte) => !Number.isInteger(byte) || byte < 0 || byte >= HEX_RADIX * HEX_RADIX)) throw new RangeError(`uuidOfBytes: an address is ${UUID_BYTE_COUNT} octets, each 0..${HEX_RADIX * HEX_RADIX - 1}`);
+  return groupUuid(bytes.map((byte) => byte.toString(HEX_RADIX).padStart(2, "0")).join(""));
+}
+function sealUuid(content, key) {
+  const keyed = key !== void 0;
+  const digest = keyed ? hmacSha256(key, content) : sha256Sync(content);
+  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(digest.slice(2 * i, 2 * i + 2), HEX_RADIX));
+  bytes[VERSION_AT / 2] = bytes[VERSION_AT / 2] & NIBBLE_KEEPS | CONTENT_VERSION * HEX_RADIX;
+  bytes[VARIANT_AT / 2] = bytes[VARIANT_AT / 2] & VARIANT_KEEPS | HIGH_BIT;
+  return { uuid: uuidOfBytes(bytes), keyed, hasher: keyed ? "hmac-sha256" : "sha256" };
+}
+function verifyUuid(uuid, content, key) {
+  const read = readUuid(uuid);
+  if (read.source === "absent") return { verdict: "absent", reason: read.reason };
+  if (!read.contentAddress) return { verdict: "absent", reason: `version ${read.version}, variant ${read.variant} \u2014 not a v${CONTENT_VERSION} content address` };
+  const expected = sealUuid(content, key);
+  return read.canonical === expected.uuid ? { verdict: "holds", reason: `${expected.hasher} of the content is this address` } : { verdict: "refuted", reason: `${expected.hasher} of the content is another address` };
+}
+function uuidRegister(width) {
+  if (!Number.isInteger(width) || width < 1) throw new RangeError("uuidRegister: the width is a positive whole number of qubits per hex digit");
+  const nominal = UUID_HEX_DIGITS * width;
+  return { digits: UUID_HEX_DIGITS, width, nominal, version: width, gateway: VARIANT_BITS, free: nominal - width - VARIANT_BITS };
+}
+function minimalRegisterWidth(bits) {
+  if (!Number.isInteger(bits) || bits < 0) throw new RangeError("minimalRegisterWidth: bits is a whole number, zero or more");
+  return max(1, ceil((bits + VARIANT_BITS) / (UUID_HEX_DIGITS - 1)));
+}
+var STAMP_MODULUS = 7 * (3 * HEX_DIGIT_BITS + 1);
+var STAMP_EXPONENT = 7;
+var STAMP_CLASSES = 2 * HEX_DIGIT_BITS;
+var stampOfResidue = (residue) => 1 + residue ** STAMP_EXPONENT % STAMP_MODULUS % STAMP_CLASSES;
+function uuidStamp(value) {
+  const read = readUuid(value);
+  if (read.source === "absent") return read;
+  const hex = read.canonical.replace(/-/g, "");
+  let residue = 0;
+  for (let at = 0; at < hex.length; at += 1) if (at !== VERSION_AT) residue = (residue * HEX_RADIX + Number.parseInt(hex[at], HEX_RADIX)) % STAMP_MODULUS;
+  const decided = stampOfResidue(residue);
+  return { source: "parsed", residue, found: read.version, decided, agrees: read.version === decided };
+}
+function addressSearchCostsLog2(freeBits = addressEntropyBits().effectiveBits) {
+  if (!Number.isInteger(freeBits) || freeBits < 1) throw new RangeError("addressSearchCostsLog2: freeBits is a positive whole number");
+  return {
+    freeBits,
+    preimage: { classical: freeBits, quantum: floor(freeBits / 2), by: "Grover 1996, arXiv:quant-ph/9605043" },
+    collision: { classical: floor(freeBits / 2), quantum: floor(freeBits / 3), by: "Brassard, H\xF8yer, Tapp 1998, arXiv:quant-ph/9705002" }
+  };
+}
+var UUID_LAYOUT = {
+  groups: UUID_GROUPS,
+  hexDigits: UUID_HEX_DIGITS,
+  radix: HEX_RADIX,
+  digitBits: HEX_DIGIT_BITS,
+  byteCount: UUID_BYTE_COUNT,
+  versionAt: VERSION_AT,
+  variantAt: VARIANT_AT,
+  contentVersion: CONTENT_VERSION,
+  variantBits: VARIANT_BITS,
+  stampModulus: STAMP_MODULUS,
+  stampExponent: STAMP_EXPONENT,
+  stampClasses: STAMP_CLASSES,
+  group: groupUuid,
+  stampOfResidue
+};
 export {
   DIGEST_BITS,
   FORGE_COST_CEILING,
@@ -1691,6 +1794,7 @@ export {
   TORUS_LOBE_OFFSET,
   TORUS_RING_R,
   TORUS_TUBE_R_BASE,
+  UUID_LAYOUT,
   VORTEX_DASH_ANGLE_DEG,
   VORTEX_DASH_ENCODED,
   VORTEX_REVERSE,
@@ -1698,6 +1802,7 @@ export {
   abs,
   acos,
   addressEntropyBits,
+  addressSearchCostsLog2,
   admixToward,
   antichainLevels,
   applyGate,
@@ -1784,6 +1889,7 @@ export {
   merkabaFoldUrl,
   merkleFold,
   min,
+  minimalRegisterWidth,
   modUnits,
   multiplicativeOrder,
   nextDuality,
@@ -1801,6 +1907,7 @@ export {
   psample,
   qpu,
   qubits,
+  readUuid,
   realign,
   referralAddress,
   reflectDoubleTorus,
@@ -1819,6 +1926,7 @@ export {
   sample,
   sampleCounts,
   sealFacets,
+  sealUuid,
   seedFromText,
   sequenceBitBudget,
   sequenceCoverage,
@@ -1851,9 +1959,13 @@ export {
   trunc,
   unfoldWithinRing,
   uuidHero,
+  uuidOfBytes,
   uuidPoint,
+  uuidRegister,
+  uuidStamp,
   uuidSuffix,
   verifySha256Proof,
+  verifyUuid,
   vortexNext,
   vortexPrev
 };

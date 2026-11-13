@@ -132,6 +132,22 @@ entropy and **passes them in** — it owns the measurement, not the math.
 | `entry(url)` | any URL → a library entry (its merkaba uuid + host/path). |
 | `uuidHero(uuid)` | any uuid → its hero: hue, the two handle rotations, spin period, tone, projected tips — all from its bytes. |
 
+### The address, read, sealed and counted
+Additions beside `toUuid` and `isUuid` (2026-11-13). Nothing above them changes and no address or root moves. The
+fold that holds them to their Lean theorems is `theQuantumUuidIsReadSealedAndCountedByItsTheorems` in `src/quantum`,
+and `verify:hashes` perturbs them.
+| export | what it is |
+|---|---|
+| `readUuid(value)` | RFC 9562 reading: strict 8-4-4-4-12 hex, version, variant class, nil, max, and whether it is a v8 content address. Unreadable is `source: 'absent'` — thirty-six hyphens pass `isUuid` and are absent here. |
+| `uuidOfBytes(bytes)` | sixteen octets as an address, masking nothing — the inverse of `readUuid(…).bytes`. Anything else is refused. |
+| `sealUuid(content, key?)` | a v8 address of the content: SHA-256 (then it IS `toUuid`), or HMAC-SHA-256 under a key. |
+| `verifyUuid(uuid, content, key?)` | three verdicts: `holds`, `refuted`, `absent` (an address that cannot be a seal says nothing about the content). |
+| `uuidStamp(value)` | the other seal an address can wear: the version nibble decided by the other 31 digits (mod 91, 7th power, folded to 1..8). |
+| `uuidRegister(width)` | the register capacity `32w − w − 2`; 122 at width 4, the free bits of the address. Arithmetic, not a machine. |
+| `minimalRegisterWidth(bits)` | the least width whose register holds `bits`; 33 for the thousand-bit case. |
+| `addressSearchCostsLog2(freeBits?)` | cited generic costs with the arithmetic computed: preimage 2^122 / 2^61 (Grover), collision 2^61 / 2^40 (Brassard–Høyer–Tapp). |
+| `UUID_LAYOUT` | the layout those functions read, for the fold that checks them. |
+
 ### Wave 8 · encryption (content-addressed)
 The encryption **is** the content-address — the same fold that addresses also agrees keys and derives public
 from private. This is the **key layer** (pure, recomputable); the bulk cipher (AES-256-GCM) stays external.

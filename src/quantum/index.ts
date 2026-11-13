@@ -34,7 +34,7 @@ import { quantumProjectionParams, type QuantumProjection } from './apps/index.ts
 import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU, entangledArmField, type LatticeArm } from '../3/7/index.ts'
 import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational/index.ts'
 import { memoByRoot, gcd } from '../0/index.ts'
-import { FORGE_FLOOR_BITS, addressEntropyBits, hmacSha256, isUuid, merge, sha256Sync } from '../0/index.ts'
+import { FORGE_FLOOR_BITS, UUID_LAYOUT, addressEntropyBits, addressSearchCostsLog2, isUuid, merge, minimalRegisterWidth, readUuid, sealUuid, uuidOfBytes, uuidRegister, uuidStamp, verifyUuid, type UuidVariant } from '../0/index.ts'
 import { existsSync, rmSync, statSync, readFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { log } from '../0/index.ts'
@@ -10660,7 +10660,8 @@ export function quantumSystemFinalReport(matrix: MindMatrix = buildMatrix()): {
  * register the Lean corpus decides — reg(w) = 32w − w − 2, 122 free at width 4, the thousand-bit case in width
  * 33 — was a theorem with no function.
  *
- * Nothing here is a second hasher or a second shape. The reader derives the layout from an address the kernel
+ * The functions live in the kernel (src/0), so its own entry carries them; this fold is where they are held to
+ * their theorems. Nothing here is a second hasher or a second shape. The reader derives the layout from an address the kernel
  * emits; the seal is SHA-256 (or HMAC-SHA-256 under a key) through the RFC 9562 v8 masks, and its unkeyed form
  * must EQUAL toUuid or the fold goes dark; the register's 122 must equal the bits the kernel's own masks leave.
  * Each capacity facet names the kernel-checked theorem in src/pair/lean/proofs/thousand.lean that decides the
@@ -10668,109 +10669,10 @@ export function quantumSystemFinalReport(matrix: MindMatrix = buildMatrix()): {
  *
  * NOT A QUANTUM MACHINE. A register capacity is arithmetic about how many two-level places an address has.
  */
-const UUID_GROUPS = toUuid('').split('-').map((group) => group.length)            // 8-4-4-4-12, read off an emitted address
-const UUID_HEX_DIGITS = UUID_GROUPS.reduce((sum, n) => sum + n, 0)                // 32
-const HEX_RADIX = Number.parseInt('f', UUID_HEX_DIGITS / 2) + 1                   // 16 — one more than the last hex digit
-const HEX_DIGIT_BITS = log2(HEX_RADIX)                                            // 4
-const UUID_BYTE_COUNT = UUID_HEX_DIGITS / 2
-const VERSION_AT = UUID_GROUPS[0]! + UUID_GROUPS[1]!                              // hex digit 12 — the version nibble
-const VARIANT_AT = VERSION_AT + UUID_GROUPS[2]!                                   // hex digit 16 — the variant nibble
-const CONTENT_VERSION = Number.parseInt(toUuid('').replace(/-/g, '')[VERSION_AT]!, HEX_RADIX) // 8 — what the kernel stamps
-const NIBBLE_KEEPS = HEX_RADIX - 1                                                // 0x0f — the low nibble of the version byte
-const VARIANT_KEEPS = HEX_RADIX * HEX_DIGIT_BITS - 1                              // 0x3f — the low six bits of the variant byte
-const HIGH_BIT = HEX_RADIX * (HEX_RADIX / 2)                                      // 0x80
-const VARIANT_BITS = addressEntropyBits().discardedBits - HEX_DIGIT_BITS          // 2 — counted from the kernel's masks
-const groupUuid = (hex: string): string => {
-  let at = 0
-  return UUID_GROUPS.map((n) => hex.slice(at, (at += n))).join('-')
-}
-
-export type UuidVariant = 'ncs' | 'rfc9562' | 'microsoft' | 'future'
-export type UuidReading =
-  | { source: 'absent'; reason: string }
-  | { source: 'parsed'; canonical: string; bytes: number[]; version: number; variant: UuidVariant; nil: boolean; max: boolean; contentAddress: boolean }
-
-/** Read an address under RFC 9562: strict 8-4-4-4-12 hex, the version nibble, the variant class (§4.1), nil and
- *  max (§5.9, §5.10), and whether it is a v8 content address of the kind toUuid emits. Unreadable is `absent`. */
-export function readUuid(value: string): UuidReading {
-  if (typeof value !== 'string') return { source: 'absent', reason: 'not a string' }
-  const groups = value.split('-')
-  if (groups.length !== UUID_GROUPS.length || groups.some((group, i) => group.length !== UUID_GROUPS[i])) return { source: 'absent', reason: `not grouped ${UUID_GROUPS.join('-')}` }
-  const hex = groups.join('').toLowerCase()
-  if (!/^[0-9a-f]+$/.test(hex)) return { source: 'absent', reason: 'a character that is not a hex digit' }
-  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(hex.slice(2 * i, 2 * i + 2), HEX_RADIX))
-  const version = Number.parseInt(hex[VERSION_AT]!, HEX_RADIX)
-  const top = Number.parseInt(hex[VARIANT_AT]!, HEX_RADIX)
-  const half = HEX_RADIX / 2
-  const variant: UuidVariant = top < half ? 'ncs' : top < half + HEX_DIGIT_BITS ? 'rfc9562' : top < half + HEX_DIGIT_BITS + 2 ? 'microsoft' : 'future'
-  return {
-    source: 'parsed', canonical: groupUuid(hex), bytes, version, variant,
-    nil: bytes.every((byte) => byte === 0), max: bytes.every((byte) => byte === HEX_RADIX * HEX_RADIX - 1),
-    contentAddress: version === CONTENT_VERSION && variant === 'rfc9562',
-  }
-}
-
-/** Sixteen octets as an address, masking nothing — the inverse of readUuid(...).bytes. Anything else is refused. */
-export function uuidOfBytes(bytes: readonly number[]): string {
-  if (bytes.length !== UUID_BYTE_COUNT || bytes.some((byte) => !Number.isInteger(byte) || byte < 0 || byte >= HEX_RADIX * HEX_RADIX)) throw new RangeError(`uuidOfBytes: an address is ${UUID_BYTE_COUNT} octets, each 0..${HEX_RADIX * HEX_RADIX - 1}`)
-  return groupUuid(bytes.map((byte) => byte.toString(HEX_RADIX).padStart(2, '0')).join(''))
-}
-
-/** Seal a content as a v8 address: SHA-256, or HMAC-SHA-256 when a key is given. Unkeyed it IS toUuid(content) —
- *  integrity, recomputable by anyone. Keyed it is authenticity: only a holder of the key reproduces it. */
-export function sealUuid(content: string, key?: string): { uuid: string; keyed: boolean; hasher: 'sha256' | 'hmac-sha256' } {
-  const keyed = key !== undefined
-  const digest = keyed ? hmacSha256(key, content) : sha256Sync(content)
-  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(digest.slice(2 * i, 2 * i + 2), HEX_RADIX))
-  bytes[VERSION_AT / 2] = (bytes[VERSION_AT / 2]! & NIBBLE_KEEPS) | (CONTENT_VERSION * HEX_RADIX)
-  bytes[VARIANT_AT / 2] = (bytes[VARIANT_AT / 2]! & VARIANT_KEEPS) | HIGH_BIT
-  return { uuid: uuidOfBytes(bytes), keyed, hasher: keyed ? 'hmac-sha256' : 'sha256' }
-}
-
-/** Does this address seal this content (under this key)? Three states: an address that cannot be a seal at all
- *  is `absent`, never `refuted` — an unreadable address says nothing about the content. */
-export function verifyUuid(uuid: string, content: string, key?: string): { verdict: 'holds' | 'refuted' | 'absent'; reason: string } {
-  const read = readUuid(uuid)
-  if (read.source === 'absent') return { verdict: 'absent', reason: read.reason }
-  if (!read.contentAddress) return { verdict: 'absent', reason: `version ${read.version}, variant ${read.variant} — not a v${CONTENT_VERSION} content address` }
-  const expected = sealUuid(content, key)
-  return read.canonical === expected.uuid
-    ? { verdict: 'holds', reason: `${expected.hasher} of the content is this address` }
-    : { verdict: 'refuted', reason: `${expected.hasher} of the content is another address` }
-}
-
-/** The register an address of `width` qubits per hex digit holds: reg(w) = 32w − w − 2. The version digit and
- *  the variant pair are decided, not free. At width 4 it is the 122 free bits of the address itself. */
-export function uuidRegister(width: number): { digits: number; width: number; nominal: number; version: number; gateway: number; free: number } {
-  if (!Number.isInteger(width) || width < 1) throw new RangeError('uuidRegister: the width is a positive whole number of qubits per hex digit')
-  const nominal = UUID_HEX_DIGITS * width
-  return { digits: UUID_HEX_DIGITS, width, nominal, version: width, gateway: VARIANT_BITS, free: nominal - width - VARIANT_BITS }
-}
-
-/** The least width whose register holds `bits`: ceil((bits + 2) / 31). The thousand-bit case needs width 33. */
-export function minimalRegisterWidth(bits: number): number {
-  if (!Number.isInteger(bits) || bits < 0) throw new RangeError('minimalRegisterWidth: bits is a whole number, zero or more')
-  return max(1, ceil((bits + VARIANT_BITS) / (UUID_HEX_DIGITS - 1)))
-}
-
-const STAMP_MODULUS = 7 * (3 * HEX_DIGIT_BITS + 1)   // 91 = 7 · 13
-const STAMP_EXPONENT = 7
-const STAMP_CLASSES = 2 * HEX_DIGIT_BITS             // 8
-const stampOfResidue = (residue: number): number => 1 + ((residue ** STAMP_EXPONENT) % STAMP_MODULUS) % STAMP_CLASSES // residue^7 < 2^53, exact
-
-/** The DECIDED version nibble — the other seal an address can wear (uuidna/qpu's stamp, ported): the 31 digits
- *  that are not the version digit, read as one number mod 91, raised to the 7th, folded to 1..8. An address whose
- *  version digit is that nibble `agrees`. It is a keyless check that needs no content, and it misses about one
- *  tamper in eight; a kernel address (version fixed at 8) agrees only when its residue folds to 8. */
-export function uuidStamp(value: string): { source: 'absent'; reason: string } | { source: 'parsed'; residue: number; found: number; decided: number; agrees: boolean } {
-  const read = readUuid(value)
-  if (read.source === 'absent') return read
-  const hex = read.canonical.replace(/-/g, '')
-  let residue = 0
-  for (let at = 0; at < hex.length; at += 1) if (at !== VERSION_AT) residue = (residue * HEX_RADIX + Number.parseInt(hex[at]!, HEX_RADIX)) % STAMP_MODULUS
-  const decided = stampOfResidue(residue)
-  return { source: 'parsed', residue, found: read.version, decided, agrees: read.version === decided }
-}
+const { groups: UUID_GROUPS, hexDigits: UUID_HEX_DIGITS, radix: HEX_RADIX, digitBits: HEX_DIGIT_BITS, byteCount: UUID_BYTE_COUNT, versionAt: VERSION_AT, variantAt: VARIANT_AT, contentVersion: CONTENT_VERSION, variantBits: VARIANT_BITS, stampModulus: STAMP_MODULUS, stampExponent: STAMP_EXPONENT, stampClasses: STAMP_CLASSES, group: groupUuid, stampOfResidue } = UUID_LAYOUT
+// The functions themselves live in the kernel (src/0), so @ceccec/double-torus/kernel carries them; this fold holds them to their theorems.
+export { addressSearchCostsLog2, minimalRegisterWidth, readUuid, sealUuid, uuidOfBytes, uuidRegister, uuidStamp, verifyUuid } from '../0/index.ts'
+export type { UuidReading, UuidVariant } from '../0/index.ts'
 
 /** The kernel-checked theorems the capacity facets below rest on; verify:hashes reads their recorded axioms. */
 export const QUANTUM_UUID_THEOREM_FILE = 'src/pair/lean/proofs/thousand.lean'
@@ -10838,7 +10740,7 @@ export function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix: MindMa
     { facet: `STRICT — ${sample.length} hyphens pass the kernel's shape test (isUuid: ${isUuid(hyphens)}) and are absent to the reader, which wants ${UUID_GROUPS.join('-')} hex`, on: isUuid(hyphens) && readUuid(hyphens).source === 'absent' && readUuid(sample.slice(1)).source === 'absent' },
     { facet: `VARIANT (RFC 9562 §4.1) — the ${HEX_RADIX} variant nibbles class as ncs ${classCount('ncs')}, rfc9562 ${classCount('rfc9562')}, microsoft ${classCount('microsoft')}, future ${classCount('future')}; ${ownAmongVariants} of them and ${ownAmongVersions.length} of the ${HEX_RADIX} version nibbles leave a content address`, on: classCount('ncs') === HEX_RADIX / 2 && classCount('rfc9562') === HEX_DIGIT_BITS && classCount('microsoft') === VARIANT_BITS && classCount('future') === VARIANT_BITS && ownAmongVariants === HEX_DIGIT_BITS && ownAmongVersions.length === 1 && ownAmongVersions[0] === CONTENT_VERSION },
     { facet: 'NIL AND MAX (§5.9, §5.10) read as themselves and as no content address; an upper-case address reads to its lower-case canonical form', on: nil.source === 'parsed' && nil.nil && !nil.max && !nil.contentAddress && top.source === 'parsed' && top.max && !top.nil && !top.contentAddress && upper.source === 'parsed' && upper.canonical === sample },
-    { facet: `SEAL — unkeyed, sealUuid is toUuid on all ${seeds.length} contents: this fold's masks over sha256Sync and the kernel's own agree`, on: sealsAreKernel && !sealUuid(seeds[0]!).keyed },
+    { facet: `SEAL — unkeyed, sealUuid is toUuid on all ${seeds.length} contents: sealUuid's masks over sha256Sync and toUuid's own agree`, on: sealsAreKernel && !sealUuid(seeds[0]!).keyed },
     { facet: `VERIFY — of the ${tampers.length} single-digit changes to a sealed address ${tamperHolds} still hold; ${tamperAbsent} are absent (no longer a v${CONTENT_VERSION} address) and the rest refuted; the true address holds and a one-character change to the content is refuted`, on: tamperHolds === 0 && tampers.length === UUID_HEX_DIGITS * (HEX_RADIX - 1) && tamperAbsent === absentExpected && verifyUuid(sample, seeds[0]!).verdict === 'holds' && verifyUuid(sample, `${seeds[0]}x`).verdict === 'refuted' && verifyUuid(hyphens, seeds[0]!).verdict === 'absent' },
     { facet: `KEYED — under RFC 4231 case 2's key the seal ${keyed.uuid} opens with ${rfc4231Head}, the standard's HMAC; it holds under that key and is refuted under another key, under no key, and for another message (${keyedVerdicts.join(', ')})`, on: keyed.keyed && hexOf(keyed.uuid).startsWith(rfc4231Head) && keyed.uuid !== sealUuid(MESSAGE).uuid && keyedVerdicts.join() === ['holds', 'refuted', 'refuted', 'refuted'].join() },
     { facet: `REGISTER — reg(${atFour.width}) = ${atFour.nominal} − ${atFour.version} − ${atFour.gateway} = ${atFour.free}, the ${budget.effectiveBits} bits the kernel's masks leave free, and of widths 1..${2 * HEX_DIGIT_BITS} only ${widthsMeeting.join()} meets it`, theorem: 'the_free_register_is_one_hundred_twenty_two_only_at_width_four', decides: [atFour.free, atFour.nominal, budget.discardedBits], on: atFour.free === budget.effectiveBits && atFour.nominal === budget.nominalBits && atFour.version + atFour.gateway === budget.discardedBits && widthsMeeting.length === 1 && widthsMeeting[0] === HEX_DIGIT_BITS },
@@ -10867,18 +10769,6 @@ export function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix: MindMa
         { facet: `a register capacity is arithmetic on a CPU and no quantum machine — ${THOUSAND} = ${5 * 2}^3 is ${THOUSAND % (2 * HEX_DIGIT_BITS)} mod ${2 * HEX_DIGIT_BITS} and ${THOUSAND % (3 * 3)} mod ${3 * 3}, decided as integers (the_thousand_bit_structure_is_decided_not_a_quantum_machine)`, on: THOUSAND % (2 * HEX_DIGIT_BITS) === 0 && THOUSAND % (3 * 3) === 1 },
         { facet: `2^${grover} is a bound on a fair hash under a square-root search, below the ${budget.nominalBits}-bit floor — one address is not post-quantum collision-resistant, and this says so`, on: grover < budget.nominalBits / 2 + 1 && grover < budget.nominalBits },
       ]) }
-}
-
-/** The generic search costs of an address with `freeBits` free, in log2 — CITED results with the bit arithmetic
- *  computed, not something a fold proves: a second preimage is 2^n classically and 2^(n/2) under Grover; a
- *  collision is 2^(n/2) classically and 2^(n/3) under Brassard–Høyer–Tapp. Every figure is finite. */
-export function addressSearchCostsLog2(freeBits: number = addressEntropyBits().effectiveBits) {
-  if (!Number.isInteger(freeBits) || freeBits < 1) throw new RangeError('addressSearchCostsLog2: freeBits is a positive whole number')
-  return {
-    freeBits,
-    preimage: { classical: freeBits, quantum: floor(freeBits / 2), by: 'Grover 1996, arXiv:quant-ph/9605043' },
-    collision: { classical: floor(freeBits / 2), quantum: floor(freeBits / 3), by: 'Brassard, Høyer, Tapp 1998, arXiv:quant-ph/9705002' },
-  }
 }
 
 /**
