@@ -3486,6 +3486,20 @@ export declare function uuidRegister(width: number): {
 };
 /** The least width whose register holds `bits`: ceil((bits + 2) / 31). The thousand-bit case needs width 33. */
 export declare function minimalRegisterWidth(bits: number): number;
+/** The DECIDED version nibble — the other seal an address can wear (uuidna/qpu's stamp, ported): the 31 digits
+ *  that are not the version digit, read as one number mod 91, raised to the 7th, folded to 1..8. An address whose
+ *  version digit is that nibble `agrees`. It is a keyless check that needs no content, and it misses about one
+ *  tamper in eight; a kernel address (version fixed at 8) agrees only when its residue folds to 8. */
+export declare function uuidStamp(value: string): {
+    source: 'absent';
+    reason: string;
+} | {
+    source: 'parsed';
+    residue: number;
+    found: number;
+    decided: number;
+    agrees: boolean;
+};
 /** The kernel-checked theorems the capacity facets below rest on; verify:hashes reads their recorded axioms. */
 export declare const QUANTUM_UUID_THEOREM_FILE = "src/pair/lean/proofs/thousand.lean";
 export declare function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix?: MindMatrix): {

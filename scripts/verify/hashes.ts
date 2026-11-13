@@ -29,7 +29,7 @@
  */
 
 import { ed25519Verify, sha256, sha256Sync, toUuid } from '../../src/0'
-import { minimalRegisterWidth, readUuid, sealUuid, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected, theQuantumUuidIsReadSealedAndCountedByItsTheorems, uuidOfBytes, uuidRegister, verifyUuid } from '../../src/quantum/index.ts'
+import { minimalRegisterWidth, readUuid, sealUuid, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected, theQuantumUuidIsReadSealedAndCountedByItsTheorems, uuidOfBytes, uuidStamp, uuidRegister, verifyUuid } from '../../src/quantum/index.ts'
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { decided } from './status.ts'
@@ -138,6 +138,12 @@ export function quantumUuidFindings(root: string = process.cwd(), folds: readonl
     if (verifyUuid(sealed, content).verdict !== 'holds' || verifyUuid(keyed, content, `key:${s}`).verdict !== 'holds') findings.push(`${content}: a true seal did not hold`)
     if (verifyUuid(keyed, content, `key:${s + 1}`).verdict !== 'refuted' || verifyUuid(keyed, content).verdict !== 'refuted' || verifyUuid(sealed, content, `key:${s}`).verdict !== 'refuted') findings.push(`${content}: a seal held under the wrong key`)
     const hex = sealed.replace(/-/g, '')
+    const stamp = uuidStamp(sealed)
+    if (stamp.source !== 'parsed') findings.push(`${sealed}: a sealed address has no stamp`)
+    else for (let d = 0; d < 16; d += 1) {
+      const worn = `${sealed.slice(0, 14)}${d.toString(16)}${sealed.slice(15)}`, s = uuidStamp(worn)
+      if (s.source !== 'parsed' || s.residue !== stamp.residue || s.agrees !== (d === stamp.decided)) findings.push(`${worn}: the stamp agrees with version digit ${d} against the decided ${stamp.decided}`)
+    }
     for (let at = 0; at < hex.length; at += 1) for (let d = 0; d < 16; d += 1) {
       if (d.toString(16) === hex[at]) continue
       const h = hex.slice(0, at) + d.toString(16) + hex.slice(at + 1)

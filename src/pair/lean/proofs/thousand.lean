@@ -162,4 +162,19 @@ theorem one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under
   ∧ (List.range 300).all (fun n => (n / 2 ≥ 128) == (n ≥ 2 * 128))
   ∧ 128 < 2 * 128 := by decide
 
+/-! ## THE DECIDED VERSION NIBBLE: r ↦ 1 + (r^7 mod 91) mod 8 — AN RSA PERMUTATION FOLDED TO EIGHT CLASSES -/
+-- Ported from millennium-solutions qpu_crypto.lean §1, self-contained: uuidna/qpu decides the version nibble from the
+-- other 31; this corpus fixes it at 8. Two seals on one nibble, counted.
+def sealOf (r : Nat) : Nat := 1 + r ^ 7 % 91 % 8
+def nibbleCount (v : Nat) : Nat := ((List.range 91).filter (fun r => sealOf r == v)).length
+theorem the_seal_exponent_seven_is_undone_by_thirty_one_mod_ninety_one :
+  7 * 13 = 91 ∧ 6 * 12 = 72 ∧ 7 * 31 = 3 * 72 + 1
+  ∧ (List.range 91).all (fun r => (r ^ 7 % 91) ^ 31 % 91 == r) := by decide
+theorem the_fold_mod_eight_misses_one_tamper_in_eight :
+  (List.range' 1 8).all (fun v => nibbleCount v == (if v ≤ 3 then 12 else 11))
+  ∧ nibbleCount 0 = 0 ∧ nibbleCount 8 = 11
+  ∧ (List.range' 1 8).foldl (fun acc v => acc + nibbleCount v) 0 = 91
+  ∧ (List.range' 1 8).foldl (fun acc v => acc + nibbleCount v * nibbleCount v) 0 = 1037
+  ∧ 8 * 1037 - 91 * 91 = 15 := by decide
+
 end Thousand

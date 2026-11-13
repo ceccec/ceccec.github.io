@@ -10753,6 +10753,25 @@ export function minimalRegisterWidth(bits: number): number {
   return max(1, ceil((bits + VARIANT_BITS) / (UUID_HEX_DIGITS - 1)))
 }
 
+const STAMP_MODULUS = 7 * (3 * HEX_DIGIT_BITS + 1)   // 91 = 7 · 13
+const STAMP_EXPONENT = 7
+const STAMP_CLASSES = 2 * HEX_DIGIT_BITS             // 8
+const stampOfResidue = (residue: number): number => 1 + ((residue ** STAMP_EXPONENT) % STAMP_MODULUS) % STAMP_CLASSES // residue^7 < 2^53, exact
+
+/** The DECIDED version nibble — the other seal an address can wear (uuidna/qpu's stamp, ported): the 31 digits
+ *  that are not the version digit, read as one number mod 91, raised to the 7th, folded to 1..8. An address whose
+ *  version digit is that nibble `agrees`. It is a keyless check that needs no content, and it misses about one
+ *  tamper in eight; a kernel address (version fixed at 8) agrees only when its residue folds to 8. */
+export function uuidStamp(value: string): { source: 'absent'; reason: string } | { source: 'parsed'; residue: number; found: number; decided: number; agrees: boolean } {
+  const read = readUuid(value)
+  if (read.source === 'absent') return read
+  const hex = read.canonical.replace(/-/g, '')
+  let residue = 0
+  for (let at = 0; at < hex.length; at += 1) if (at !== VERSION_AT) residue = (residue * HEX_RADIX + Number.parseInt(hex[at]!, HEX_RADIX)) % STAMP_MODULUS
+  const decided = stampOfResidue(residue)
+  return { source: 'parsed', residue, found: read.version, decided, agrees: read.version === decided }
+}
+
 /** The kernel-checked theorems the capacity facets below rest on; verify:hashes reads their recorded axioms. */
 export const QUANTUM_UUID_THEOREM_FILE = 'src/pair/lean/proofs/thousand.lean'
 
@@ -10800,6 +10819,20 @@ export function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix: MindMa
   const PERCENT = (5 * 2) ** 2
   const fillFloor = floor((THOUSAND * PERCENT) / holds)
   const grover = floor(atFour.free / 2), collision = floor(atFour.free / 3)
+
+  // the other seal — the decided version nibble
+  const residues = Array.from({ length: STAMP_MODULUS }, (_, r) => r)
+  const classSizes = Array.from({ length: STAMP_CLASSES }, (_, i) => residues.filter((r) => stampOfResidue(r) === i + 1).length)
+  const squares = classSizes.reduce((s, n) => s + n * n, 0)
+  const totient = (STAMP_EXPONENT - 1) * (STAMP_MODULUS / STAMP_EXPONENT - 1)
+  const inverse = Array.from({ length: totient }, (_, e) => e + 1).find((e) => (STAMP_EXPONENT * e) % totient === 1)
+  const undone = residues.every((r) => Number((BigInt(r) ** BigInt(STAMP_EXPONENT) % BigInt(STAMP_MODULUS)) ** BigInt(inverse ?? 1) % BigInt(STAMP_MODULUS)) === r)
+  const stamps = addresses.map((address) => uuidStamp(address))
+  const residueByBigInt = (address: string) => { const hex = hexOf(address); return Number(BigInt(`0x${hex.slice(0, VERSION_AT)}${hex.slice(VERSION_AT + 1)}`) % BigInt(STAMP_MODULUS)) }
+  const routesAgree = stamps.every((s, i) => s.source === 'parsed' && s.residue === residueByBigInt(addresses[i]!))
+  const oneNibbleEach = addresses.every((address) => everyDigit.filter((digit) => { const s = uuidStamp(withDigit(address, VERSION_AT, digit)); return s.source === 'parsed' && s.agrees }).length === 1)
+  const kernelAgreeing = stamps.filter((s) => s.source === 'parsed' && s.agrees).length
+  const kernelDecidedEight = stamps.filter((s) => s.source === 'parsed' && s.decided === CONTENT_VERSION).length
   const facets = [
     { facet: `READ — all ${addresses.length} addresses the kernel emits read as version ${CONTENT_VERSION}, variant rfc9562, content addresses, and their ${UUID_BYTE_COUNT} octets write back to the same address`, on: allOwn },
     { facet: `STRICT — ${sample.length} hyphens pass the kernel's shape test (isUuid: ${isUuid(hyphens)}) and are absent to the reader, which wants ${UUID_GROUPS.join('-')} hex`, on: isUuid(hyphens) && readUuid(hyphens).source === 'absent' && readUuid(sample.slice(1)).source === 'absent' },
@@ -10812,6 +10845,8 @@ export function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix: MindMa
     { facet: `THOUSAND — reg(${width - 1}) = ${below} < ${THOUSAND} ≤ ${holds} = reg(${width}): the closed form ceil((bits + ${VARIANT_BITS}) / ${UUID_HEX_DIGITS - 1}) and a search from width 1 both give ${width}`, theorem: 'the_thousand_bit_case_overflows_the_width_thirty_two_ceiling', decides: [below, holds, width], on: below < THOUSAND && THOUSAND <= holds && searched === width && width === UUID_HEX_DIGITS + 1 },
     { facet: `MARGIN — the thousand overflows width ${width - 1} by ${THOUSAND - below} and leaves ${holds - THOUSAND} of width ${width}; it fills between ${fillFloor}% and ${fillFloor + 1}% of that register`, theorem: 'the_thousand_fills_between_ninety_seven_and_ninety_eight_percent_of_its_register', decides: [fillFloor, fillFloor + 1, holds], on: fillFloor * holds < THOUSAND * PERCENT && THOUSAND * PERCENT < (fillFloor + 1) * holds && (THOUSAND - below) + (holds - THOUSAND) === UUID_HEX_DIGITS - 1 },
     { facet: `GROVER — a square-root search of the ${atFour.free} free bits costs 2^${grover}, the kernel's FORGE_FLOOR_BITS, ${budget.nominalBits - grover} bits below ${budget.nominalBits}; a cube-root collision search 2^${collision}`, theorem: 'one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under_grover', decides: [grover, collision, budget.nominalBits - grover], on: grover === FORGE_FLOOR_BITS && 3 * collision < atFour.free && atFour.free < 3 * (collision + 1) && grover < budget.nominalBits },
+    { facet: `STAMP — the ${STAMP_MODULUS} residues fold to the nibbles 1..${STAMP_CLASSES} in classes of ${classSizes.join(', ')}; a random tamper wears the right nibble ${squares} times in ${STAMP_MODULUS * STAMP_MODULUS}, ${STAMP_CLASSES * squares - STAMP_MODULUS * STAMP_MODULUS} above one in ${STAMP_CLASSES}; the exponent ${STAMP_EXPONENT} is undone by ${inverse} on every residue (${STAMP_EXPONENT} · ${inverse} ≡ 1 mod ${totient})`, theorem: 'the_fold_mod_eight_misses_one_tamper_in_eight', decides: [STAMP_MODULUS, squares, STAMP_CLASSES * squares - STAMP_MODULUS * STAMP_MODULUS, classSizes[0]!, classSizes[STAMP_CLASSES - 1]!], on: classSizes.every((n, i) => n === (i < 3 ? 3 * HEX_DIGIT_BITS : 3 * HEX_DIGIT_BITS - 1)) && classSizes.reduce((s, n) => s + n, 0) === STAMP_MODULUS && undone && inverse !== undefined },
+    { facet: `STAMPED — on all ${addresses.length} addresses the residue read digit by digit is the 31-digit number mod ${STAMP_MODULUS}, and exactly one of the ${HEX_RADIX} version digits agrees with it; the kernel's fixed version ${CONTENT_VERSION} agrees on ${kernelAgreeing} of them, the ${kernelDecidedEight} whose residue folds to ${CONTENT_VERSION} — two seals, neither the other's`, theorem: 'the_seal_exponent_seven_is_undone_by_thirty_one_mod_ninety_one', decides: [STAMP_MODULUS, totient, inverse ?? -1], on: routesAgree && oneNibbleEach && kernelAgreeing === kernelDecidedEight },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-uuid:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

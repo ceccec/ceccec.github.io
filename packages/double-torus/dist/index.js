@@ -23437,7 +23437,6 @@ var PUBLICATION_CREDIT = {
       moves every January would make the same page cite differently on either side of midnight. */
   year: Number(paper_date.slice(0, 4))
 };
-console.log("planted");
 
 // ../../src/media/index.ts
 function speechIntonation(matrix = buildMatrix()) {
@@ -27792,6 +27791,19 @@ function minimalRegisterWidth(bits) {
   if (!Number.isInteger(bits) || bits < 0) throw new RangeError("minimalRegisterWidth: bits is a whole number, zero or more");
   return max(1, ceil((bits + VARIANT_BITS) / (UUID_HEX_DIGITS - 1)));
 }
+var STAMP_MODULUS = 7 * (3 * HEX_DIGIT_BITS + 1);
+var STAMP_EXPONENT = 7;
+var STAMP_CLASSES = 2 * HEX_DIGIT_BITS;
+var stampOfResidue = (residue) => 1 + residue ** STAMP_EXPONENT % STAMP_MODULUS % STAMP_CLASSES;
+function uuidStamp(value) {
+  const read = readUuid(value);
+  if (read.source === "absent") return read;
+  const hex = read.canonical.replace(/-/g, "");
+  let residue = 0;
+  for (let at = 0; at < hex.length; at += 1) if (at !== VERSION_AT) residue = (residue * HEX_RADIX + Number.parseInt(hex[at], HEX_RADIX)) % STAMP_MODULUS;
+  const decided = stampOfResidue(residue);
+  return { source: "parsed", residue, found: read.version, decided, agrees: read.version === decided };
+}
 var QUANTUM_UUID_THEOREM_FILE = "src/pair/lean/proofs/thousand.lean";
 function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix = buildMatrix()) {
   void matrix;
@@ -27832,6 +27844,24 @@ function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix = buildMatrix(
   const PERCENT2 = (5 * 2) ** 2;
   const fillFloor = floor(THOUSAND * PERCENT2 / holds);
   const grover6 = floor(atFour.free / 2), collision = floor(atFour.free / 3);
+  const residues = Array.from({ length: STAMP_MODULUS }, (_, r2) => r2);
+  const classSizes = Array.from({ length: STAMP_CLASSES }, (_, i) => residues.filter((r2) => stampOfResidue(r2) === i + 1).length);
+  const squares = classSizes.reduce((s, n) => s + n * n, 0);
+  const totient = (STAMP_EXPONENT - 1) * (STAMP_MODULUS / STAMP_EXPONENT - 1);
+  const inverse = Array.from({ length: totient }, (_, e) => e + 1).find((e) => STAMP_EXPONENT * e % totient === 1);
+  const undone = residues.every((r2) => Number((BigInt(r2) ** BigInt(STAMP_EXPONENT) % BigInt(STAMP_MODULUS)) ** BigInt(inverse ?? 1) % BigInt(STAMP_MODULUS)) === r2);
+  const stamps = addresses.map((address) => uuidStamp(address));
+  const residueByBigInt = (address) => {
+    const hex = hexOf(address);
+    return Number(BigInt(`0x${hex.slice(0, VERSION_AT)}${hex.slice(VERSION_AT + 1)}`) % BigInt(STAMP_MODULUS));
+  };
+  const routesAgree = stamps.every((s, i) => s.source === "parsed" && s.residue === residueByBigInt(addresses[i]));
+  const oneNibbleEach = addresses.every((address) => everyDigit.filter((digit2) => {
+    const s = uuidStamp(withDigit(address, VERSION_AT, digit2));
+    return s.source === "parsed" && s.agrees;
+  }).length === 1);
+  const kernelAgreeing = stamps.filter((s) => s.source === "parsed" && s.agrees).length;
+  const kernelDecidedEight = stamps.filter((s) => s.source === "parsed" && s.decided === CONTENT_VERSION).length;
   const facets = [
     { facet: `READ \u2014 all ${addresses.length} addresses the kernel emits read as version ${CONTENT_VERSION}, variant rfc9562, content addresses, and their ${UUID_BYTE_COUNT} octets write back to the same address`, on: allOwn },
     { facet: `STRICT \u2014 ${sample9.length} hyphens pass the kernel's shape test (isUuid: ${isUuid(hyphens)}) and are absent to the reader, which wants ${UUID_GROUPS.join("-")} hex`, on: isUuid(hyphens) && readUuid(hyphens).source === "absent" && readUuid(sample9.slice(1)).source === "absent" },
@@ -27843,7 +27873,9 @@ function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix = buildMatrix(
     { facet: `REGISTER \u2014 reg(${atFour.width}) = ${atFour.nominal} \u2212 ${atFour.version} \u2212 ${atFour.gateway} = ${atFour.free}, the ${budget.effectiveBits} bits the kernel's masks leave free, and of widths 1..${2 * HEX_DIGIT_BITS} only ${widthsMeeting.join()} meets it`, theorem: "the_free_register_is_one_hundred_twenty_two_only_at_width_four", decides: [atFour.free, atFour.nominal, budget.discardedBits], on: atFour.free === budget.effectiveBits && atFour.nominal === budget.nominalBits && atFour.version + atFour.gateway === budget.discardedBits && widthsMeeting.length === 1 && widthsMeeting[0] === HEX_DIGIT_BITS },
     { facet: `THOUSAND \u2014 reg(${width - 1}) = ${below} < ${THOUSAND} \u2264 ${holds} = reg(${width}): the closed form ceil((bits + ${VARIANT_BITS}) / ${UUID_HEX_DIGITS - 1}) and a search from width 1 both give ${width}`, theorem: "the_thousand_bit_case_overflows_the_width_thirty_two_ceiling", decides: [below, holds, width], on: below < THOUSAND && THOUSAND <= holds && searched === width && width === UUID_HEX_DIGITS + 1 },
     { facet: `MARGIN \u2014 the thousand overflows width ${width - 1} by ${THOUSAND - below} and leaves ${holds - THOUSAND} of width ${width}; it fills between ${fillFloor}% and ${fillFloor + 1}% of that register`, theorem: "the_thousand_fills_between_ninety_seven_and_ninety_eight_percent_of_its_register", decides: [fillFloor, fillFloor + 1, holds], on: fillFloor * holds < THOUSAND * PERCENT2 && THOUSAND * PERCENT2 < (fillFloor + 1) * holds && THOUSAND - below + (holds - THOUSAND) === UUID_HEX_DIGITS - 1 },
-    { facet: `GROVER \u2014 a square-root search of the ${atFour.free} free bits costs 2^${grover6}, the kernel's FORGE_FLOOR_BITS, ${budget.nominalBits - grover6} bits below ${budget.nominalBits}; a cube-root collision search 2^${collision}`, theorem: "one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under_grover", decides: [grover6, collision, budget.nominalBits - grover6], on: grover6 === FORGE_FLOOR_BITS && 3 * collision < atFour.free && atFour.free < 3 * (collision + 1) && grover6 < budget.nominalBits }
+    { facet: `GROVER \u2014 a square-root search of the ${atFour.free} free bits costs 2^${grover6}, the kernel's FORGE_FLOOR_BITS, ${budget.nominalBits - grover6} bits below ${budget.nominalBits}; a cube-root collision search 2^${collision}`, theorem: "one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under_grover", decides: [grover6, collision, budget.nominalBits - grover6], on: grover6 === FORGE_FLOOR_BITS && 3 * collision < atFour.free && atFour.free < 3 * (collision + 1) && grover6 < budget.nominalBits },
+    { facet: `STAMP \u2014 the ${STAMP_MODULUS} residues fold to the nibbles 1..${STAMP_CLASSES} in classes of ${classSizes.join(", ")}; a random tamper wears the right nibble ${squares} times in ${STAMP_MODULUS * STAMP_MODULUS}, ${STAMP_CLASSES * squares - STAMP_MODULUS * STAMP_MODULUS} above one in ${STAMP_CLASSES}; the exponent ${STAMP_EXPONENT} is undone by ${inverse} on every residue (${STAMP_EXPONENT} \xB7 ${inverse} \u2261 1 mod ${totient})`, theorem: "the_fold_mod_eight_misses_one_tamper_in_eight", decides: [STAMP_MODULUS, squares, STAMP_CLASSES * squares - STAMP_MODULUS * STAMP_MODULUS, classSizes[0], classSizes[STAMP_CLASSES - 1]], on: classSizes.every((n, i) => n === (i < 3 ? 3 * HEX_DIGIT_BITS : 3 * HEX_DIGIT_BITS - 1)) && classSizes.reduce((s, n) => s + n, 0) === STAMP_MODULUS && undone && inverse !== void 0 },
+    { facet: `STAMPED \u2014 on all ${addresses.length} addresses the residue read digit by digit is the 31-digit number mod ${STAMP_MODULUS}, and exactly one of the ${HEX_RADIX} version digits agrees with it; the kernel's fixed version ${CONTENT_VERSION} agrees on ${kernelAgreeing} of them, the ${kernelDecidedEight} whose residue folds to ${CONTENT_VERSION} \u2014 two seals, neither the other's`, theorem: "the_seal_exponent_seven_is_undone_by_thirty_one_mod_ninety_one", decides: [STAMP_MODULUS, totient, inverse ?? -1], on: routesAgree && oneNibbleEach && kernelAgreeing === kernelDecidedEight }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`quantum-uuid:${entry2.facet}:${entry2.on}`) }));
   return {
     computes: facets.every((entry2) => entry2.on),
@@ -74099,6 +74131,7 @@ export {
   uuidOfBytes,
   uuidPoint,
   uuidRegister,
+  uuidStamp,
   uuidSuffix,
   verifySha256Proof,
   verifyUuid,

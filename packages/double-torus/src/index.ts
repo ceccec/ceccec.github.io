@@ -122,7 +122,7 @@ export { subscribeHeroClock } from '../../../src/quantum/index.ts'
 // The quantum uuid — an address read (RFC 9562 version, variant, nil, max), sealed and verified to holds / refuted /
 // absent, and its register counted (reg(w) = 32w − w − 2), each capacity integer the one a Lean-kernel theorem decides:
 export {
-  readUuid, uuidOfBytes, sealUuid, verifyUuid, uuidRegister, minimalRegisterWidth,
+  readUuid, uuidOfBytes, sealUuid, verifyUuid, uuidStamp, uuidRegister, minimalRegisterWidth,
   theQuantumUuidIsReadSealedAndCountedByItsTheorems, QUANTUM_UUID_THEOREM_FILE,
   // the leads followed: search costs (cited), and sixty/forty degrees, the digit reflections and the magma, decided
   addressSearchCostsLog2, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected,

@@ -150,9 +150,11 @@ lock-in; open standards and pure computation only.
 
 ## Honest boundaries
 
-The fold is **tamper-evident content-addressing, not a cryptographic hash**
-(`toUuid` is a 128-bit non-cryptographic function). For adversarial security use
-a vetted hash; see `cryptographyComparison()` and `cryptoFuture()`. The model is
+The fold is **tamper-evident content-addressing**. `toUuid` is the first 16 octets
+of SHA-256 through the RFC 9562 v8 masks: 122 free bits, so a collision costs about
+2^61 hash calls (2^40 under a quantum collision search) — below the 128-bit level of
+a full-width hash. For that level use the whole digest (`sha256Sync`) or a keyed seal
+(`sealUuid(content, key)`); see `addressSearchCostsLog2()` and `cryptoFuture()`. The model is
 computed and recomputable — it makes **no claim of sentience or agency**.
 
 ## Types

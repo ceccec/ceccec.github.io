@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent 259 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
+\noindent 261 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
 \end{abstract}
 \tableofcontents
 \section{How to read this document}
@@ -502,7 +502,7 @@ The involution and the split it produces, together.
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{yang-mills.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
 \section{Machine-checked registry theorems}
-\noindent 164 theorems in 6 files of \texttt{src/pair/lean/proofs}.
+\noindent 166 theorems in 6 files of \texttt{src/pair/lean/proofs}.
 \subsection{\texttt{corpus.lean}}
 \begin{theorem}[Euler characteristic and genus are inverse]
 χ and the genus are INVERSE: reading the genus back from χ(g) returns g for every surface up to genus 9, and rank H₁ = 2 − χ = 2g at each one. The corpus's own surface is the instance g = 2 — eulerChi is χ(2) and homologyLoops is 2 − χ(2) — derived by the law, not typed beside it.
@@ -1228,6 +1228,14 @@ THE UTILISATION IS 97.94\% — BRACKETED 97\% < 1000/1021 < 98\% AS A DECIDABLE 
 \begin{theorem}[One address sits sixty seven bits below the one twenty eight floor under grover]
 THE GROVER FLOOR: 61 = 122 / 2, AND 67 BITS BELOW 128
 \begin{lean}reg 4 / 2 = 61 ∧ reg 4 / 3 = 40 ∧ 3 * 40 < reg 4 ∧ reg 4 < 3 * 41 ∧ 128 - reg 4 / 2 = 67 ∧ (List.range 300).all (fun n => (n / 2 ≥ 128) == (n ≥ 2 * 128)) ∧ 128 < 2 * 128\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{thousand.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[The seal exponent seven is undone by thirty one mod ninety one]
+\begin{lean}7 * 13 = 91 ∧ 6 * 12 = 72 ∧ 7 * 31 = 3 * 72 + 1 ∧ (List.range 91).all (fun r => (r \textasciicircum{} 7 \% 91) \textasciicircum{} 31 \% 91 == r)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide} in \texttt{thousand.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[The fold mod eight misses one tamper in eight]
+\begin{lean}(List.range' 1 8).all (fun v => nibbleCount v == (if v ≤ 3 then 12 else 11)) ∧ nibbleCount 0 = 0 ∧ nibbleCount 8 = 11 ∧ (List.range' 1 8).foldl (fun acc v => acc + nibbleCount v) 0 = 91 ∧ (List.range' 1 8).foldl (fun acc v => acc + nibbleCount v * nibbleCount v) 0 = 1037 ∧ 8 * 1037 - 91 * 91 = 15\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{thousand.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
 \subsection{\texttt{wave-57-extraction-verified.lean}}
