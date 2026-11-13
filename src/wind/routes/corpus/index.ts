@@ -1024,7 +1024,13 @@ function searchLightModel() {
       const text = [card.description.en, card.description.bg, card.keywords.join(' ')].filter(Boolean).join('\n')
       searchCardCache.set(card.slug, { title: card.title.en, text })
     }
-    searchTheoremLines = __ns_up_up_thunder_waves.theoremNavigation().searchLines
+    // EVERY THEOREM PAGE IS A SEARCH LINE — NOT ONLY THE REGISTRY'S. theoremPageRows serves the registry rows AND the card
+    // papers (pages morphed from card and discovery folds, tagged `card-paper`), and this fed the index the registry lines
+    // alone: measured 2026-11-13, 787 pages against 764 lines, 23 pages no search could find. theRosettaReconfiguresVitepress
+    // said so on every run — its facet "search covers all wired content" computed false — and it stood as the one recorded
+    // false verdict. The card papers join by the same shape of line; their rows are already computed for their pages.
+    const cardLines = theoremPageRows().filter((row) => row.tags.includes('card-paper')).map((row) => `${row.theorem} · ${row.provedBy} · ${row.home}`)
+    searchTheoremLines = [...__ns_up_up_thunder_waves.theoremNavigation().searchLines, ...cardLines]
   }
   return { cards: searchCardCache, theoremLines: searchTheoremLines! }
 }
@@ -2865,7 +2871,7 @@ export function theRosettaReconfiguresVitepress(matrix: MindMatrix = buildMatrix
   ])
   const facets = [
     { facet: `THE SIDEBAR IS RECONFIGURED FROM THE TAG CLOUD: ${sidebar.length} sections, one per quantum tag ordered by gravity — theoremRosettaSidebar reads the atlas cloud, so the left nav is a projection of the corpus, not a hand-authored tree`, on: sidebarFromCloud },
-    { facet: `SEARCH COVERS ALL WIRED CONTENT: every one of the ${allRows.length} registry theorems is a search line fed to the VitePress index (${searchCoversAllWired}) — the search the MCP uses finds any theorem, wired content is fully searchable`, on: searchCoversAllWired },
+    { facet: `SEARCH COVERS ALL WIRED CONTENT: every one of the ${allRows.length} theorem pages — registry rows and card papers alike — is a search line fed to the VitePress index (${searchCoversAllWired}) — the search the MCP uses finds any theorem, wired content is fully searchable`, on: searchCoversAllWired },
     { facet: `THE LENS AND THE WAVES RIDE THE SAME ATLAS: quantumLensDiscovery surfaces the ${lens.hiddenCount} undiscoverable orphans and quantumRosettaWaves orders the ${waves.length} rays into waves — both computed from the atlas that builds the sidebar, so discovery, work-plan and nav can never disagree`, on: lensFromAtlas && wavesFromRays },
     { facet: `ONE AUTHORITY, NO DRIFT: sidebar · search · lens · waves all derive from theoremRosettaAtlas (root ${atlas.root.slice(0, 8)}…) — change a theorem or move its home and every surface reflows together (${oneAuthority}); the rosetta reconfigures VitePress, VitePress does not configure itself`, on: oneAuthority },
   ]

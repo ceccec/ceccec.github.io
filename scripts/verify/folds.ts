@@ -21,7 +21,7 @@
  */
 import { corpusFiles } from './corpus.ts'
 import { MODULES } from './module-index.ts'
-import { ratchet, everyRatchet } from './status.ts'
+import { everyRatchet, decided } from './status.ts'
 
 /** Fold names that declare computed limits, read from source. No list is maintained anywhere. */
 export function foldsWithComputedLimits(root: string = process.cwd()): Map<string, string> {
@@ -84,7 +84,7 @@ export function assertFolds(): void {
     for (const b of bad) console.log(`  ✗ ${b}`)
     if (bad.length) throw new Error(`${bad.length} fold(s) with a limit OFF — a fold exceeding its own stated scope is never ratcheted`)
     if (falseVerdicts.length) console.log(`  standing measured failures (ratcheted, not errors): ${falseVerdicts.join(', ')}`)
-    console.log(`  ${ratchet('folds.false-verdicts', falseVerdicts.length, { evidence: () => falseVerdicts.map((f) => `false verdict: ${f}`) })}`)
+    console.log(`  ${decided('folds.false-verdicts', falseVerdicts.length, { evidence: () => falseVerdicts.map((f) => `false verdict: ${f}`) })}`)
     console.log('ALL LIMITS HOLD')
   })
 }

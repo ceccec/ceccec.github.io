@@ -2116,6 +2116,17 @@
   "holds": true,
   "caption": "the quantities quantumLensImprovesItself computes for this theorem (before, after, linked), drawn from its own run — no other proof returns them"
  },
+ "the rosetta reconfigures VitePress — one authority, four surfaces": {
+  "form": "bars",
+  "values": [
+   18,
+   787,
+   10,
+   7
+  ],
+  "holds": true,
+  "caption": "the quantities theRosettaReconfiguresVitepress computes for this theorem (sidebarSections, searchLines, undiscoverable, waves), drawn from its own run — no other proof returns them"
+ },
  "Shor period-finding factors — the full order-finding circuit runs": {
   "form": "bars",
   "values": [
@@ -2181,6 +2192,18 @@
   ],
   "holds": true,
   "caption": "numbers theoremScienceLens computes for this theorem (rays[].ray), drawn from its own run — no other proof returns them"
+ },
+ "VitePress shows science through the theorem-science lens — organised by the rosetta, wired in search and MCP": {
+  "form": "bars",
+  "values": [
+   30,
+   25,
+   764,
+   6,
+   787
+  ],
+  "holds": true,
+  "caption": "the quantities vitepressShowsOnlyScience computes for this theorem (visiblePages, hiddenPages, theoremCount, rays, searchLines), drawn from its own run — no other proof returns them"
  },
  "SEO speaks absolute, localised and lens-aligned — five computed corrections": {
   "form": "bars",
