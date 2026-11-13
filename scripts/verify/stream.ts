@@ -26,7 +26,7 @@
 
 import { spawn, spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
-import { appendFileSync, mkdirSync, readFileSync, readdirSync, statSync, unlinkSync, writeFileSync } from 'node:fs'
+import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, unlinkSync, writeFileSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 import { cpus } from 'node:os'
 import { treeDigest } from './every-fold.ts'
@@ -150,6 +150,12 @@ const SEALS = join(ROOT, 'scripts', 'verify', 'receipts', 'reads')
 // and none could ever fire. A gate whose VERDICT reads the previous receipt reads the previous tree's address — the tree
 // itself is in its inputs; the summary is excluded, and named here.
 const NOT_INPUTS = /^(node_modules|\.git|\.vitepress\/dist|\.vitepress\/receipts|scripts\/verify\/receipts)(\/|$)/
+/** THE RUNNER'S OWN CODE — in every gate's inputs once its tree-wide reads are not. These decide how ANY gate is run: which
+ *  script a gate name means (package.json), the process entry (the bootstrap), the dispatcher it loads (ops), the loader that
+ *  builds and calls the gate (cache/quantum, where runThinMount is), and the hook that records the reads at all. A change to
+ *  any of them unseals every gate. A named file that is not there throws: a runner that cannot be read cannot be sealed on. */
+const RUNNER_READS = ['package.json', 'scripts/verify/_reads.ts', 'src/pair/enforcement/script/cli/bootstrap/index.ts', 'src/pair/enforcement/ops/index.ts', 'src/pair/cache/quantum/index.ts'] as const
+for (const r of RUNNER_READS) if (!existsSync(join(ROOT, r))) throw new Error(`the stream seals on its runner's code and ${r} is not there`)
 const hex = (b: Buffer | string) => createHash('sha256').update(b).digest('hex')
 /** The hex of one path as the gate saw it: a file's bytes, a directory's listing, or its absence. */
 function pathHex(rel: string): string {
@@ -162,14 +168,25 @@ function observedReads(trace: string): { reads: string[]; spawned: string[] } {
   const spawned = new Set<string>()
   let text = ''
   try { text = readFileSync(trace, 'utf8') } catch { return { reads: [], spawned: ['(no trace)'] } }
-  for (const line of text.split('\n')) {
+  // TWO PHASES, SPLIT AT THE RUNNER'S OWN MARK. Before `M call` the process is the runner: npm, the bootstrap, and a cache
+  // key that reads every file of src and .vitepress. Counted as the gate's inputs, those reads were 579 paths shared by all
+  // 46 sealable gates — verify:normaliser had 581 inputs of which 2 were its own — so a landing that touched any fold
+  // reproduced NOTHING, and only the two that touched none reproduced 38 and 18. What the runner contributes to a verdict is
+  // its own code (RUNNER_READS, added to every gate below) and the bundle the gate was built from, which the mark names.
+  // A trace with no mark — a gate that does not go through runThinMount — is read whole, exactly as before.
+  const lines = text.split('\n')
+  const callAt = lines.indexOf('M call')
+  const gateBundles = new Set(lines.slice(0, Math.max(callAt, 0)).filter((l) => l.startsWith('M inputs ')).map((l) => relative(ROOT, resolve(ROOT, l.slice('M inputs '.length).trim()))))
+  if (callAt >= 0) for (const r of RUNNER_READS) reads.add(r)
+  for (const [index, line] of lines.entries()) {
     const kind = line.slice(0, 1)
     const p = line.slice(2).trim()
-    if (!p) continue
+    if (!p || kind === 'M') continue
     if (kind === 'S') { spawned.add(p); continue }
     const abs = resolve(ROOT, p)
     if (!abs.startsWith(`${ROOT}/`)) continue
     const rel = relative(ROOT, abs)
+    if (index < callAt && !(rel.endsWith('.inputs.json') && gateBundles.has(rel))) continue
     if (rel.endsWith('.inputs.json')) {
       try { for (const i of JSON.parse(readFileSync(abs, 'utf8')) as string[]) reads.add(i) } catch { spawned.add('(unreadable bundle inputs)') }
       continue

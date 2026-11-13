@@ -23437,6 +23437,7 @@ var PUBLICATION_CREDIT = {
       moves every January would make the same page cite differently on either side of midnight. */
   year: Number(paper_date.slice(0, 4))
 };
+console.log("planted");
 
 // ../../src/media/index.ts
 function speechIntonation(matrix = buildMatrix()) {

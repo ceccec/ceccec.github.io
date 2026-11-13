@@ -52,5 +52,13 @@ if (target) {
       return orig.apply(this, a)
     }
   }
+  // A MARK ENDS A PHASE. The runner reads the whole tree before the gate starts (its bundle cache is keyed on a merkle
+  // of src and .vitepress), and those reads were recorded as the gate's own: 579 paths common to all 46 sealable gates,
+  // so one changed fold unsealed every gate. runThinMount marks the moment it hands over to the gate's function; the
+  // de-duplication is cleared with it, or a file the runner read first would never be recorded when the gate reads it.
+  ;(globalThis as { __verifyReadsMark?: (text: string) => void }).__verifyReadsMark = (text: string) => {
+    seen.clear()
+    try { origAppend.call(fs, target, `M ${text}\n`) } catch { /* the trace is evidence, never a cause of failure */ }
+  }
   syncBuiltinESMExports()
 }

@@ -525,6 +525,11 @@ export async function runThinMount(entryRel: string, exportName: string, root: s
   // The name is the contract and the name is what is read. Every *Exit export takes root first — measured,
   // zero of them take a matrix — so `Exit` decides it, and fn.length only still admits the explicit
   // (root, argv) spellings that already worked.
+  // THE HANDOVER, MARKED FOR THE READ TRACE (scripts/verify/_reads.ts, present only under verify:stream). Everything read
+  // up to here is the RUNNER — this module's cache key walks every file of src and .vitepress — and none of it decides the
+  // gate's verdict except the bundle the gate was built from, which is named so the stream can still count its inputs.
+  const mark = (globalThis as { __verifyReadsMark?: (text: string) => void }).__verifyReadsMark
+  if (mark) { mark(`inputs ${cachePaths(root, entryRel).inputs}`); mark('call') }
   const exitStyle = /Exit$/.test(exportName) || fn.length >= 1
   const result = await (exitStyle ? fn(root, passArgv) : fn())
   if (typeof result === 'number') return result
