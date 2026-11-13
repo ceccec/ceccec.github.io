@@ -34,6 +34,7 @@ import { quantumProjectionParams, type QuantumProjection } from './apps/index.ts
 import { FIBONACCI, GOLDEN_ANGLE, GOLDEN_ANGLE_RAD, PHI, ROSETTA_RAYS, ROSETTA_SEVEN, TAU, entangledArmField, type LatticeArm } from '../3/7/index.ts'
 import { FOLDED_CENSUS } from '../pair/enforcement/gates/computational/index.ts'
 import { memoByRoot, gcd } from '../0/index.ts'
+import { FORGE_FLOOR_BITS, addressEntropyBits, hmacSha256, isUuid, merge, sha256Sync } from '../0/index.ts'
 import { existsSync, rmSync, statSync, readFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { log } from '../0/index.ts'
@@ -10648,4 +10649,303 @@ export function quantumSystemFinalReport(matrix: MindMatrix = buildMatrix()): {
       receipt: toUuid(`final-report:${loc}:${symbols}:${framework.testsPassed}`),
     }
   })
+}
+
+/**
+ * THE QUANTUM UUID — READ, SEALED AND COUNTED, EACH BY THE THEOREM THAT DECIDES IT.
+ *
+ * The kernel emits an address (toUuid) and tests a shape (isUuid). It could not READ one: which version, which
+ * variant, whether it is one of its own. Its shape test accepts thirty-six hyphens. It could seal a content but
+ * had no verdict for "this address is not that content" that told a wrong address from an unreadable one. And the
+ * register the Lean corpus decides — reg(w) = 32w − w − 2, 122 free at width 4, the thousand-bit case in width
+ * 33 — was a theorem with no function.
+ *
+ * Nothing here is a second hasher or a second shape. The reader derives the layout from an address the kernel
+ * emits; the seal is SHA-256 (or HMAC-SHA-256 under a key) through the RFC 9562 v8 masks, and its unkeyed form
+ * must EQUAL toUuid or the fold goes dark; the register's 122 must equal the bits the kernel's own masks leave.
+ * Each capacity facet names the kernel-checked theorem in src/pair/lean/proofs/thousand.lean that decides the
+ * same integers, and verify:hashes refuses a name the kernel did not record as axiom-free.
+ *
+ * NOT A QUANTUM MACHINE. A register capacity is arithmetic about how many two-level places an address has.
+ */
+const UUID_GROUPS = toUuid('').split('-').map((group) => group.length)            // 8-4-4-4-12, read off an emitted address
+const UUID_HEX_DIGITS = UUID_GROUPS.reduce((sum, n) => sum + n, 0)                // 32
+const HEX_RADIX = Number.parseInt('f', UUID_HEX_DIGITS / 2) + 1                   // 16 — one more than the last hex digit
+const HEX_DIGIT_BITS = log2(HEX_RADIX)                                            // 4
+const UUID_BYTE_COUNT = UUID_HEX_DIGITS / 2
+const VERSION_AT = UUID_GROUPS[0]! + UUID_GROUPS[1]!                              // hex digit 12 — the version nibble
+const VARIANT_AT = VERSION_AT + UUID_GROUPS[2]!                                   // hex digit 16 — the variant nibble
+const CONTENT_VERSION = Number.parseInt(toUuid('').replace(/-/g, '')[VERSION_AT]!, HEX_RADIX) // 8 — what the kernel stamps
+const NIBBLE_KEEPS = HEX_RADIX - 1                                                // 0x0f — the low nibble of the version byte
+const VARIANT_KEEPS = HEX_RADIX * HEX_DIGIT_BITS - 1                              // 0x3f — the low six bits of the variant byte
+const HIGH_BIT = HEX_RADIX * (HEX_RADIX / 2)                                      // 0x80
+const VARIANT_BITS = addressEntropyBits().discardedBits - HEX_DIGIT_BITS          // 2 — counted from the kernel's masks
+const groupUuid = (hex: string): string => {
+  let at = 0
+  return UUID_GROUPS.map((n) => hex.slice(at, (at += n))).join('-')
+}
+
+export type UuidVariant = 'ncs' | 'rfc9562' | 'microsoft' | 'future'
+export type UuidReading =
+  | { source: 'absent'; reason: string }
+  | { source: 'parsed'; canonical: string; bytes: number[]; version: number; variant: UuidVariant; nil: boolean; max: boolean; contentAddress: boolean }
+
+/** Read an address under RFC 9562: strict 8-4-4-4-12 hex, the version nibble, the variant class (§4.1), nil and
+ *  max (§5.9, §5.10), and whether it is a v8 content address of the kind toUuid emits. Unreadable is `absent`. */
+export function readUuid(value: string): UuidReading {
+  if (typeof value !== 'string') return { source: 'absent', reason: 'not a string' }
+  const groups = value.split('-')
+  if (groups.length !== UUID_GROUPS.length || groups.some((group, i) => group.length !== UUID_GROUPS[i])) return { source: 'absent', reason: `not grouped ${UUID_GROUPS.join('-')}` }
+  const hex = groups.join('').toLowerCase()
+  if (!/^[0-9a-f]+$/.test(hex)) return { source: 'absent', reason: 'a character that is not a hex digit' }
+  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(hex.slice(2 * i, 2 * i + 2), HEX_RADIX))
+  const version = Number.parseInt(hex[VERSION_AT]!, HEX_RADIX)
+  const top = Number.parseInt(hex[VARIANT_AT]!, HEX_RADIX)
+  const half = HEX_RADIX / 2
+  const variant: UuidVariant = top < half ? 'ncs' : top < half + HEX_DIGIT_BITS ? 'rfc9562' : top < half + HEX_DIGIT_BITS + 2 ? 'microsoft' : 'future'
+  return {
+    source: 'parsed', canonical: groupUuid(hex), bytes, version, variant,
+    nil: bytes.every((byte) => byte === 0), max: bytes.every((byte) => byte === HEX_RADIX * HEX_RADIX - 1),
+    contentAddress: version === CONTENT_VERSION && variant === 'rfc9562',
+  }
+}
+
+/** Sixteen octets as an address, masking nothing — the inverse of readUuid(...).bytes. Anything else is refused. */
+export function uuidOfBytes(bytes: readonly number[]): string {
+  if (bytes.length !== UUID_BYTE_COUNT || bytes.some((byte) => !Number.isInteger(byte) || byte < 0 || byte >= HEX_RADIX * HEX_RADIX)) throw new RangeError(`uuidOfBytes: an address is ${UUID_BYTE_COUNT} octets, each 0..${HEX_RADIX * HEX_RADIX - 1}`)
+  return groupUuid(bytes.map((byte) => byte.toString(HEX_RADIX).padStart(2, '0')).join(''))
+}
+
+/** Seal a content as a v8 address: SHA-256, or HMAC-SHA-256 when a key is given. Unkeyed it IS toUuid(content) —
+ *  integrity, recomputable by anyone. Keyed it is authenticity: only a holder of the key reproduces it. */
+export function sealUuid(content: string, key?: string): { uuid: string; keyed: boolean; hasher: 'sha256' | 'hmac-sha256' } {
+  const keyed = key !== undefined
+  const digest = keyed ? hmacSha256(key, content) : sha256Sync(content)
+  const bytes = Array.from({ length: UUID_BYTE_COUNT }, (_, i) => Number.parseInt(digest.slice(2 * i, 2 * i + 2), HEX_RADIX))
+  bytes[VERSION_AT / 2] = (bytes[VERSION_AT / 2]! & NIBBLE_KEEPS) | (CONTENT_VERSION * HEX_RADIX)
+  bytes[VARIANT_AT / 2] = (bytes[VARIANT_AT / 2]! & VARIANT_KEEPS) | HIGH_BIT
+  return { uuid: uuidOfBytes(bytes), keyed, hasher: keyed ? 'hmac-sha256' : 'sha256' }
+}
+
+/** Does this address seal this content (under this key)? Three states: an address that cannot be a seal at all
+ *  is `absent`, never `refuted` — an unreadable address says nothing about the content. */
+export function verifyUuid(uuid: string, content: string, key?: string): { verdict: 'holds' | 'refuted' | 'absent'; reason: string } {
+  const read = readUuid(uuid)
+  if (read.source === 'absent') return { verdict: 'absent', reason: read.reason }
+  if (!read.contentAddress) return { verdict: 'absent', reason: `version ${read.version}, variant ${read.variant} — not a v${CONTENT_VERSION} content address` }
+  const expected = sealUuid(content, key)
+  return read.canonical === expected.uuid
+    ? { verdict: 'holds', reason: `${expected.hasher} of the content is this address` }
+    : { verdict: 'refuted', reason: `${expected.hasher} of the content is another address` }
+}
+
+/** The register an address of `width` qubits per hex digit holds: reg(w) = 32w − w − 2. The version digit and
+ *  the variant pair are decided, not free. At width 4 it is the 122 free bits of the address itself. */
+export function uuidRegister(width: number): { digits: number; width: number; nominal: number; version: number; gateway: number; free: number } {
+  if (!Number.isInteger(width) || width < 1) throw new RangeError('uuidRegister: the width is a positive whole number of qubits per hex digit')
+  const nominal = UUID_HEX_DIGITS * width
+  return { digits: UUID_HEX_DIGITS, width, nominal, version: width, gateway: VARIANT_BITS, free: nominal - width - VARIANT_BITS }
+}
+
+/** The least width whose register holds `bits`: ceil((bits + 2) / 31). The thousand-bit case needs width 33. */
+export function minimalRegisterWidth(bits: number): number {
+  if (!Number.isInteger(bits) || bits < 0) throw new RangeError('minimalRegisterWidth: bits is a whole number, zero or more')
+  return max(1, ceil((bits + VARIANT_BITS) / (UUID_HEX_DIGITS - 1)))
+}
+
+/** The kernel-checked theorems the capacity facets below rest on; verify:hashes reads their recorded axioms. */
+export const QUANTUM_UUID_THEOREM_FILE = 'src/pair/lean/proofs/thousand.lean'
+
+export function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const budget = addressEntropyBits()
+  const THOUSAND = (5 * 2) ** 3
+  const seeds = Array.from({ length: UUID_HEX_DIGITS }, (_, i) => `quantum-uuid:${i}`)
+  const addresses = seeds.map((seed) => toUuid(seed))
+  const readings = addresses.map((address) => readUuid(address))
+  const sample = addresses[0]!
+  const hexOf = (address: string) => address.replace(/-/g, '')
+  const withDigit = (address: string, at: number, digit: number) => groupUuid(`${hexOf(address).slice(0, at)}${digit.toString(HEX_RADIX)}${hexOf(address).slice(at + 1)}`)
+  const everyDigit = Array.from({ length: HEX_RADIX }, (_, digit) => digit)
+
+  // reading
+  const allOwn = readings.every((r, i) => r.source === 'parsed' && r.contentAddress && r.canonical === addresses[i] && uuidOfBytes(r.bytes) === addresses[i])
+  const hyphens = '-'.repeat(sample.length)
+  const variantClasses = everyDigit.map((digit) => readUuid(withDigit(sample, VARIANT_AT, digit)))
+  const classCount = (variant: UuidVariant) => variantClasses.filter((r) => r.source === 'parsed' && r.variant === variant).length
+  const ownAmongVariants = variantClasses.filter((r) => r.source === 'parsed' && r.contentAddress).length
+  const ownAmongVersions = everyDigit.filter((digit) => { const r = readUuid(withDigit(sample, VERSION_AT, digit)); return r.source === 'parsed' && r.contentAddress })
+  const nil = readUuid(groupUuid('0'.repeat(UUID_HEX_DIGITS))), top = readUuid(groupUuid('f'.repeat(UUID_HEX_DIGITS)))
+  const upper = readUuid(sample.toUpperCase())
+
+  // sealing
+  const sealsAreKernel = seeds.every((seed, i) => sealUuid(seed).uuid === addresses[i])
+  const tampers = Array.from({ length: UUID_HEX_DIGITS }, (_, at) => everyDigit
+    .filter((digit) => digit !== Number.parseInt(hexOf(sample)[at]!, HEX_RADIX))
+    .map((digit) => verifyUuid(withDigit(sample, at, digit), seeds[0]!).verdict)).flat()
+  const tamperHolds = tampers.filter((verdict) => verdict === 'holds').length
+  const tamperAbsent = tampers.filter((verdict) => verdict === 'absent').length
+  const absentExpected = (HEX_RADIX - 1) + (HEX_RADIX - HEX_DIGIT_BITS) // every other version, every variant outside the RFC class
+  const KEY = 'Jefe', MESSAGE = 'what do ya want for nothing?' // RFC 4231 test case 2
+  const keyed = sealUuid(MESSAGE, KEY)
+  const rfc4231Head = '5bdcc146bf60' // the first six octets of RFC 4231 case 2's HMAC-SHA-256, before either mask
+  const keyedVerdicts = [verifyUuid(keyed.uuid, MESSAGE, KEY).verdict, verifyUuid(keyed.uuid, MESSAGE, `${KEY}x`).verdict, verifyUuid(keyed.uuid, MESSAGE).verdict, verifyUuid(keyed.uuid, `${MESSAGE}x`, KEY).verdict]
+
+  // counting
+  const atFour = uuidRegister(HEX_DIGIT_BITS)
+  const widthsMeeting = Array.from({ length: 2 * HEX_DIGIT_BITS }, (_, i) => i + 1).filter((w) => uuidRegister(w).free === budget.effectiveBits)
+  const width = minimalRegisterWidth(THOUSAND)
+  const searched = Array.from({ length: THOUSAND }, (_, i) => i + 1).find((w) => uuidRegister(w).free >= THOUSAND)
+  const below = uuidRegister(width - 1).free, holds = uuidRegister(width).free
+  const PERCENT = (5 * 2) ** 2
+  const fillFloor = floor((THOUSAND * PERCENT) / holds)
+  const grover = floor(atFour.free / 2), collision = floor(atFour.free / 3)
+  const facets = [
+    { facet: `READ — all ${addresses.length} addresses the kernel emits read as version ${CONTENT_VERSION}, variant rfc9562, content addresses, and their ${UUID_BYTE_COUNT} octets write back to the same address`, on: allOwn },
+    { facet: `STRICT — ${sample.length} hyphens pass the kernel's shape test (isUuid: ${isUuid(hyphens)}) and are absent to the reader, which wants ${UUID_GROUPS.join('-')} hex`, on: isUuid(hyphens) && readUuid(hyphens).source === 'absent' && readUuid(sample.slice(1)).source === 'absent' },
+    { facet: `VARIANT (RFC 9562 §4.1) — the ${HEX_RADIX} variant nibbles class as ncs ${classCount('ncs')}, rfc9562 ${classCount('rfc9562')}, microsoft ${classCount('microsoft')}, future ${classCount('future')}; ${ownAmongVariants} of them and ${ownAmongVersions.length} of the ${HEX_RADIX} version nibbles leave a content address`, on: classCount('ncs') === HEX_RADIX / 2 && classCount('rfc9562') === HEX_DIGIT_BITS && classCount('microsoft') === VARIANT_BITS && classCount('future') === VARIANT_BITS && ownAmongVariants === HEX_DIGIT_BITS && ownAmongVersions.length === 1 && ownAmongVersions[0] === CONTENT_VERSION },
+    { facet: 'NIL AND MAX (§5.9, §5.10) read as themselves and as no content address; an upper-case address reads to its lower-case canonical form', on: nil.source === 'parsed' && nil.nil && !nil.max && !nil.contentAddress && top.source === 'parsed' && top.max && !top.nil && !top.contentAddress && upper.source === 'parsed' && upper.canonical === sample },
+    { facet: `SEAL — unkeyed, sealUuid is toUuid on all ${seeds.length} contents: this fold's masks over sha256Sync and the kernel's own agree`, on: sealsAreKernel && !sealUuid(seeds[0]!).keyed },
+    { facet: `VERIFY — of the ${tampers.length} single-digit changes to a sealed address ${tamperHolds} still hold; ${tamperAbsent} are absent (no longer a v${CONTENT_VERSION} address) and the rest refuted; the true address holds and a one-character change to the content is refuted`, on: tamperHolds === 0 && tampers.length === UUID_HEX_DIGITS * (HEX_RADIX - 1) && tamperAbsent === absentExpected && verifyUuid(sample, seeds[0]!).verdict === 'holds' && verifyUuid(sample, `${seeds[0]}x`).verdict === 'refuted' && verifyUuid(hyphens, seeds[0]!).verdict === 'absent' },
+    { facet: `KEYED — under RFC 4231 case 2's key the seal ${keyed.uuid} opens with ${rfc4231Head}, the standard's HMAC; it holds under that key and is refuted under another key, under no key, and for another message (${keyedVerdicts.join(', ')})`, on: keyed.keyed && hexOf(keyed.uuid).startsWith(rfc4231Head) && keyed.uuid !== sealUuid(MESSAGE).uuid && keyedVerdicts.join() === ['holds', 'refuted', 'refuted', 'refuted'].join() },
+    { facet: `REGISTER — reg(${atFour.width}) = ${atFour.nominal} − ${atFour.version} − ${atFour.gateway} = ${atFour.free}, the ${budget.effectiveBits} bits the kernel's masks leave free, and of widths 1..${2 * HEX_DIGIT_BITS} only ${widthsMeeting.join()} meets it`, theorem: 'the_free_register_is_one_hundred_twenty_two_only_at_width_four', decides: [atFour.free, atFour.nominal, budget.discardedBits], on: atFour.free === budget.effectiveBits && atFour.nominal === budget.nominalBits && atFour.version + atFour.gateway === budget.discardedBits && widthsMeeting.length === 1 && widthsMeeting[0] === HEX_DIGIT_BITS },
+    { facet: `THOUSAND — reg(${width - 1}) = ${below} < ${THOUSAND} ≤ ${holds} = reg(${width}): the closed form ceil((bits + ${VARIANT_BITS}) / ${UUID_HEX_DIGITS - 1}) and a search from width 1 both give ${width}`, theorem: 'the_thousand_bit_case_overflows_the_width_thirty_two_ceiling', decides: [below, holds, width], on: below < THOUSAND && THOUSAND <= holds && searched === width && width === UUID_HEX_DIGITS + 1 },
+    { facet: `MARGIN — the thousand overflows width ${width - 1} by ${THOUSAND - below} and leaves ${holds - THOUSAND} of width ${width}; it fills between ${fillFloor}% and ${fillFloor + 1}% of that register`, theorem: 'the_thousand_fills_between_ninety_seven_and_ninety_eight_percent_of_its_register', decides: [fillFloor, fillFloor + 1, holds], on: fillFloor * holds < THOUSAND * PERCENT && THOUSAND * PERCENT < (fillFloor + 1) * holds && (THOUSAND - below) + (holds - THOUSAND) === UUID_HEX_DIGITS - 1 },
+    { facet: `GROVER — a square-root search of the ${atFour.free} free bits costs 2^${grover}, the kernel's FORGE_FLOOR_BITS, ${budget.nominalBits - grover} bits below ${budget.nominalBits}; a cube-root collision search 2^${collision}`, theorem: 'one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under_grover', decides: [grover, collision, budget.nominalBits - grover], on: grover === FORGE_FLOOR_BITS && 3 * collision < atFour.free && atFour.free < 3 * (collision + 1) && grover < budget.nominalBits },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-uuid:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    theoremFile: QUANTUM_UUID_THEOREM_FILE,
+    theorems: facets.flatMap((entry) => ('theorem' in entry && entry.theorem ? [{ theorem: entry.theorem, file: QUANTUM_UUID_THEOREM_FILE, decides: entry.decides ?? [] }] : [])),
+    register: atFour,
+    thousand: { width, below, holds },
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `An address is read (version ${CONTENT_VERSION}, variant rfc9562, ${UUID_GROUPS.join('-')}), sealed (SHA-256, or HMAC-SHA-256 under a key) and verified to one of three verdicts — holds, refuted, absent. `
+      + `Its register is reg(w) = ${UUID_HEX_DIGITS}w − w − ${VARIANT_BITS}: ${atFour.free} at width ${atFour.width}, and the thousand-bit case sits in width ${width} (${below} < ${THOUSAND} ≤ ${holds}). The capacity integers are the ones ${QUANTUM_UUID_THEOREM_FILE} decides in the Lean kernel.`,
+    boundary: earned(
+      'EXACT — reading, sealing and counting one address:',
+      facets,
+      [
+        { facet: 'the unkeyed seal is INTEGRITY, not authenticity — anyone recomputes it, which is why it equals toUuid; only the keyed seal needs a secret', on: sealsAreKernel && keyed.uuid !== sealUuid(MESSAGE).uuid },
+        { facet: `a register capacity is arithmetic on a CPU and no quantum machine — ${THOUSAND} = ${5 * 2}^3 is ${THOUSAND % (2 * HEX_DIGIT_BITS)} mod ${2 * HEX_DIGIT_BITS} and ${THOUSAND % (3 * 3)} mod ${3 * 3}, decided as integers (the_thousand_bit_structure_is_decided_not_a_quantum_machine)`, on: THOUSAND % (2 * HEX_DIGIT_BITS) === 0 && THOUSAND % (3 * 3) === 1 },
+        { facet: `2^${grover} is a bound on a fair hash under a square-root search, below the ${budget.nominalBits}-bit floor — one address is not post-quantum collision-resistant, and this says so`, on: grover < budget.nominalBits / 2 + 1 && grover < budget.nominalBits },
+      ]) }
+}
+
+/** The generic search costs of an address with `freeBits` free, in log2 — CITED results with the bit arithmetic
+ *  computed, not something a fold proves: a second preimage is 2^n classically and 2^(n/2) under Grover; a
+ *  collision is 2^(n/2) classically and 2^(n/3) under Brassard–Høyer–Tapp. Every figure is finite. */
+export function addressSearchCostsLog2(freeBits: number = addressEntropyBits().effectiveBits) {
+  if (!Number.isInteger(freeBits) || freeBits < 1) throw new RangeError('addressSearchCostsLog2: freeBits is a positive whole number')
+  return {
+    freeBits,
+    preimage: { classical: freeBits, quantum: floor(freeBits / 2), by: 'Grover 1996, arXiv:quant-ph/9605043' },
+    collision: { classical: floor(freeBits / 2), quantum: floor(freeBits / 3), by: 'Brassard, Høyer, Tapp 1998, arXiv:quant-ph/9705002' },
+  }
+}
+
+/**
+ * THE LEADS, FOLLOWED — sixty degrees, forty degrees, the two reflections of the nine digits, and the fold as a magma.
+ *
+ * A pasted text said multiplying by e^{iπ/3} makes everything an integer, that π becomes 3, that the doubling path
+ * is a {6/2} star, that the cost of forging stays infinite. Each is false as written. A false claim is not deleted
+ * here, it is reflected into the statement that IS true of it, and that statement is computed and named after the
+ * Lean theorem that decides the same integers: the rotation keeps ℤ[ω], not ℤ; the hexagon's ratio is 3 and π is
+ * above it; {6/2} is the two triangles 1·4·7 and 2·5·8; the costs are four finite numbers.
+ *
+ * THE REFLECTIONS. d ↦ 9 − d keeps 3·6·9 and exchanges 1·4·7 with 2·5·8. d ↦ 10 − d exchanges 3·6·9 with 7·4·1 and
+ * keeps 2·5·8. They are mirrors twenty degrees apart, so together they are the forty-degree step d ↦ d + 1, which
+ * carries each trinity to the next. That is what "connecting" computes to: the six permutations of three residue
+ * classes. It is not a statement about universes.
+ */
+export function theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected(matrix: MindMatrix = buildMatrix()) {
+  void matrix
+  const QUANTUM_LEAN = 'src/pair/lean/proofs/quantum.lean'
+  const NINE = 3 * 3, TURN = NINE * (5 * 2) * HEX_DIGIT_BITS // 360 degrees
+  const STEP = TURN / NINE // 40
+  const digits = Array.from({ length: NINE }, (_, i) => i + 1)
+  const same = (a: readonly number[], b: readonly number[]) => a.length === b.length && a.every((v, i) => v === b[i])
+
+  // ℤ[ω], ω = e^{iπ/3}, ω² = ω − 1 — pairs of integers
+  type EI = readonly [number, number]
+  const mul = ([a, b]: EI, [c, d]: EI): EI => [a * c - b * d, a * d + b * c + b * d]
+  const OMEGA: EI = [0, 1], ONE: EI = [1, 0]
+  const powers = Array.from({ length: 2 * 3 + 1 }, (_, k) => Array.from({ length: k }).reduce<EI>((acc) => mul(OMEGA, acc), ONE))
+  const order = powers.findIndex((p, k) => k > 0 && same(p, ONE))
+  const box = [-2, -1, 0, 1, 2].flatMap((a) => [-2, -1, 0, 1, 2].map((b): EI => [a, b]))
+  const norm = ([a, b]: EI) => a * a + a * b + b * b
+  const rotationStays = box.every((x) => same(mul(OMEGA, x), [-x[1], x[0] + x[1]]) && norm(mul(OMEGA, x)) === norm(x))
+  const twiceRealOfOmega = 2 * OMEGA[0] + OMEGA[1] // the real part of a + bω is a + b/2
+
+  // six, the tetrahedron, 432
+  const properDivisorSum = (n: number) => Array.from({ length: n - 1 }, (_, i) => i + 1).filter((d) => n % d === 0).reduce((s, d) => s + d, 0)
+  const firstPerfect = Array.from({ length: NINE }, (_, i) => i + 2).find((n) => properDivisorSum(n) === n)
+  const SIXTY = TURN / (2 * 3), FACES = HEX_DIGIT_BITS, STRAIGHT = TURN / 2
+  const tetrahedron = FACES * 3 * SIXTY
+  const A432 = (TURN * (2 * 3)) / 5
+
+  // the nine digits at forty degrees
+  const angle = (d: number) => (STEP * d) % TURN
+  const turn = (a: number, b: number) => ((angle(b) - angle(a) + TURN + STRAIGHT) % TURN) - STRAIGHT
+  const circuit = Array.from({ length: 2 * 3 }).reduce<number[]>((acc) => [...acc, (2 * acc[acc.length - 1]!) % NINE], [1]).slice(0, 2 * 3)
+  const steps = circuit.map((d, i) => turn(d, circuit[(i + 1) % circuit.length]!))
+  const triangleTurns = [turn(3, 2 * 3), turn(2 * 3, NINE), turn(NINE, 3)]
+  const stepThree = (d: number) => ((d + 3 - 1) % NINE) + 1
+  const starFrom = (d: number) => [d, stepThree(d), stepThree(stepThree(d)), stepThree(stepThree(stepThree(d)))]
+
+  // the two reflections
+  const nines = (d: number) => (d === NINE ? NINE : NINE - d)
+  const tens = (d: number) => NINE + 1 - d
+  const next = (d: number) => tens(nines(d))
+  const trinity = (d: number) => d % 3
+  const iterate = (f: (d: number) => number, k: number, d: number) => Array.from({ length: k }).reduce<number>((x) => f(x), d)
+  const maps = new Set([...digits.map((_, k) => digits.map((d) => iterate(next, k, d)).join()), ...digits.map((_, k) => digits.map((d) => iterate(next, k, nines(d))).join())])
+  const onTrinities = new Set([...maps].map((row) => { const image = row.split(',').map(Number); return [0, 1, 2].map((c) => trinity(image[digits.findIndex((d) => trinity(d) === c)]!)).join() }))
+  const orderOfNext = digits.find((k) => iterate(next, k, 1) === 1)
+
+  // the fold as a magma
+  const leaves = Array.from({ length: 2 * 3 }, (_, i) => toUuid(`leads:${i}`))
+  const pairs = leaves.flatMap((a, i) => leaves.slice(i + 1).map((b) => [a, b] as const))
+  const triples = leaves.flatMap((a, i) => leaves.slice(i + 1).flatMap((b, j) => leaves.slice(i + j + 2).map((c) => [a, b, c] as const)))
+  const closed = pairs.every(([a, b]) => { const r = readUuid(merge(a, b)); return r.source === 'parsed' && r.contentAddress })
+  const commuting = pairs.filter(([a, b]) => merge(a, b) === merge(b, a)).length
+  const associating = triples.filter(([a, b, c]) => merge(merge(a, b), c) === merge(a, merge(b, c))).length
+  const identities = leaves.filter((e) => leaves.every((a) => merge(e, a) === a || merge(a, e) === a)).length
+  const budget = addressEntropyBits()
+  const inBits = 2 * budget.nominalBits, excess = inBits - budget.effectiveBits
+  const costs = addressSearchCostsLog2()
+  const costList = [costs.preimage.classical, costs.preimage.quantum, costs.collision.classical, costs.collision.quantum]
+  const hexagonRatio = (2 * 3 * 1) / 2 // six unit sides round a circle of diameter two
+
+  const facets = [
+    { facet: `SIXTY — ω = e^{iπ/3} has order ${order} in ℤ[ω] (ω² = ω − 1, ω³ = −1), and rotating by it keeps all ${box.length} box elements integer-coordinated with their norm: (a, b) ↦ (−b, a + b)`, theorem: 'sixty_degrees_is_a_primitive_sixth_root_of_unity', file: QUANTUM_LEAN, decides: [3, order], on: order === 2 * 3 && same(mul(OMEGA, OMEGA), [-1, 1]) && same(powers[3]!, [-1, 0]) && rotationStays },
+    { facet: `SIX — ${firstPerfect} is the first perfect number; a tetrahedron's ${FACES * 3} face angles of ${SIXTY}° sum to ${tetrahedron}° = ${FACES} × ${STRAIGHT}°; ${A432} = ${TURN} × 6/5`, theorem: 'six_is_the_first_perfect_number_and_a_tetrahedron_sums_to_720', file: QUANTUM_LEAN, decides: [firstPerfect ?? -1, tetrahedron, STRAIGHT, A432, TURN], on: firstPerfect === 2 * 3 && tetrahedron === FACES * STRAIGHT && A432 * 5 === TURN * (2 * 3) },
+    { facet: `FORTY — the nine digits sit ${STEP}° apart; the doubling circuit ${circuit.join('·')} steps ${steps.map((s) => (s > 0 ? `+${s}` : `${s}`)).join(', ')} and closes; 3·6·9 turns ${triangleTurns.join(', ')}`, theorem: 'the_doubling_circuit_steps_forty_eighty_one_sixty_and_back', file: QUANTUM_LEAN, decides: [...steps.map((s) => abs(s)), ...triangleTurns, TURN], on: same(steps, [1, 2, HEX_DIGIT_BITS, -1, -2, -HEX_DIGIT_BITS].map((k) => k * STEP)) && steps.reduce((s, v) => s + v, 0) === 0 && triangleTurns.every((t) => t === TURN / 3) },
+    { facet: `STAR — {6/2} is the two triangles ${starFrom(1).slice(0, 3).join('·')} and ${starFrom(2).slice(0, 3).join('·')}, each closing in three steps of ${turn(1, HEX_DIGIT_BITS)}°; the doubling circuit is one cycle of ${circuit.length} with unequal steps, so it is not that star`, theorem: 'the_six_two_star_is_the_two_triangles_and_not_the_doubling_cycle', file: QUANTUM_LEAN, decides: [turn(1, HEX_DIGIT_BITS), circuit.length], on: same(starFrom(1), [1, HEX_DIGIT_BITS, 7, 1]) && same(starFrom(2), [2, 5, 2 * HEX_DIGIT_BITS, 2]) && new Set(steps.map((s) => abs(s))).size === 3 && new Set(circuit).size === circuit.length },
+    { facet: `REFLECTIONS — d ↦ ${NINE} − d fixes only ${digits.filter((d) => nines(d) === d).join()}, keeps 3·6·9 as ${[3, 6, 9].map(nines).join('·')} and sends 1·4·7 to ${[1, 4, 7].map(nines).join('·')}; d ↦ ${NINE + 1} − d fixes only ${digits.filter((d) => tens(d) === d).join()}, sends 3·6·9 to ${[3, 6, 9].map(tens).join('·')} and keeps 2·5·8 as ${[2, 5, 8].map(tens).join('·')}`, theorem: 'the_two_reflections_connect_the_three_trinities', file: QUANTUM_LEAN, decides: [NINE, 5], on: digits.every((d) => nines(nines(d)) === d && tens(tens(d)) === d && trinity(nines(d)) === (3 - trinity(d)) % 3 && trinity(tens(d)) === (HEX_DIGIT_BITS - trinity(d)) % 3) && same(digits.filter((d) => nines(d) === d), [NINE]) && same(digits.filter((d) => tens(d) === d), [5]) },
+    { facet: `MIRRORS — the two reflections are mirrors at 0° and ${STEP / 2}°, so one after the other is the ${STEP}° step d ↦ d + 1 of order ${orderOfNext}, carrying each trinity to the next; with their turns they are ${maps.size} maps, acting on the three trinities as all ${onTrinities.size} permutations`, theorem: 'the_two_mirrors_compose_to_the_forty_degree_step', file: QUANTUM_LEAN, decides: [maps.size, STEP, NINE], on: digits.every((d) => next(d) === (d % NINE) + 1 && (angle(nines(d)) + angle(d)) % TURN === 0 && (angle(tens(d)) + angle(d)) % TURN === STEP && trinity(next(d)) === (trinity(d) + 1) % 3) && orderOfNext === NINE && maps.size === 2 * NINE && onTrinities.size === 2 * 3 },
+    { facet: `DOUBLING — the nines' reflection commutes with doubling and carries the circuit to ${circuit.map(nines).join('·')}, itself half a turn round; the tens' reflection carries it to ${circuit.map(tens).join('·')}, off the circuit`, theorem: 'the_nines_reflection_carries_the_doubling_circuit_onto_itself', file: QUANTUM_LEAN, decides: circuit.map(tens), on: circuit.every((d) => nines((2 * d) % NINE) === (2 * nines(d)) % NINE) && same(circuit.map(nines), circuit.map((_, i) => circuit[(i + 3) % circuit.length]!)) && circuit.map(tens).some((d) => !circuit.includes(d)) },
+    { facet: `MAGMA — merge is closed (all ${pairs.length} sample pairs give a content address), commutes on ${commuting} of them, associates on ${associating} of ${triples.length} triples, and ${identities} of the ${leaves.length} leaves acts as an identity; two addresses are ${inBits} bits in and at most ${budget.effectiveBits} free out, ${excess} bits over, so it is many-to-one by pigeonhole`, theorem: 'a_two_to_one_fold_of_addresses_is_many_to_one_by_pigeonhole', file: QUANTUM_LEAN, decides: [inBits, budget.effectiveBits, excess], on: closed && commuting === 0 && associating === 0 && identities === 0 && excess === inBits - budget.effectiveBits && budget.effectiveBits < inBits && 2n ** BigInt(excess) * 2n ** BigInt(budget.effectiveBits) === 2n ** BigInt(inBits) },
+    { facet: `COSTS (cited, arithmetic computed) — over ${costs.freeBits} free bits a second preimage is 2^${costs.preimage.classical} classically and 2^${costs.preimage.quantum} under ${costs.preimage.by}; a collision 2^${costs.collision.classical} classically and 2^${costs.collision.quantum} under ${costs.collision.by}`, theorem: 'one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under_grover', file: QUANTUM_UUID_THEOREM_FILE, decides: [costs.preimage.quantum, costs.collision.quantum], on: costs.freeBits === budget.effectiveBits && costs.preimage.quantum === FORGE_FLOOR_BITS && costs.collision.classical === budget.birthdayLog2 && 3 * costs.collision.quantum <= costs.freeBits && costs.freeBits < 3 * (costs.collision.quantum + 1) },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`leads-sixty-forty:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    theorems: facets.map((entry) => ({ theorem: entry.theorem, file: entry.file, decides: entry.decides })),
+    steps, maps: maps.size, costs,
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement:
+      `Sixty degrees is the order-${order} unit ω of ℤ[ω]; the nine digits sit ${STEP}° apart and doubling steps ${steps.join(', ')}; the reflections d ↦ ${NINE} − d and d ↦ ${NINE + 1} − d are two mirrors ${STEP / 2}° apart that connect the trinities 3·6·9, 1·4·7 and 2·5·8 in all ${onTrinities.size} ways; `
+      + `merge is a non-commutative, non-associative magma that is many-to-one by ${excess} bits. Each integer is the one ${QUANTUM_LEAN} decides in the Lean kernel.`,
+    boundary: earned(
+      'EXACT — each lead followed to the statement that is true of it:',
+      facets,
+      [
+        { facet: `"everything becomes an integer" is false and its true half is ℤ[ω]: the real part of ω is ${twiceRealOfOmega}/2, the halves the claim's own list held`, on: twiceRealOfOmega % 2 === 1 && rotationStays },
+        { facet: `"π becomes 3" is false and its true half is Archimedes' first step: the inscribed hexagon's perimeter over the diameter is exactly ${hexagonRatio}, and π is above it`, on: hexagonRatio === 3 && Math.PI > hexagonRatio },
+        { facet: `"connecting universes" computes to the ${onTrinities.size} permutations of three residue classes mod 3 — arithmetic on nine digits, no statement about any universe`, on: onTrinities.size === 2 * 3 && maps.size === 2 * NINE },
+        { facet: `"the cost stays infinite" is false: the four search costs 2^${costList.join(', 2^')} are finite, and they are cited results over a fair hash, not something this fold proves`, on: costList.every((c) => Number.isFinite(c) && c < budget.nominalBits) },
+      ]) }
 }

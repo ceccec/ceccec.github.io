@@ -8,6 +8,8 @@ export { animationsAreGenuinely10DNotFaked } from '../../../src/quantum/mountain
 export type { Dims } from '../../../src/quantum/mountain/dimensions/index.ts';
 export { heroPhaseAt } from '../../../src/fire/plasma/ball/index.ts';
 export { subscribeHeroClock } from '../../../src/quantum/index.ts';
+export { readUuid, uuidOfBytes, sealUuid, verifyUuid, uuidRegister, minimalRegisterWidth, theQuantumUuidIsReadSealedAndCountedByItsTheorems, QUANTUM_UUID_THEOREM_FILE, addressSearchCostsLog2, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected, } from '../../../src/quantum/index.ts';
+export type { UuidReading, UuidVariant } from '../../../src/quantum/index.ts';
 export { movieCanvasHex, movieCanvasRgba, movieCanvasPolarity } from '../../../src/quantum/science/index.ts';
 export { TAU } from '../../../src/3/7/index.ts';
 export { drawHero, drawFlower, drawCalendars, drawArchitecture, drawBursts, buildArchNodes, makeBurst, branch, perspective, rotate3, seedOf, hueOf, armsOf, dimWalk, FOCAL, HEALING_PAIRS, sharedHeroAt, drawHeroMovieFrame, drawQuantumAppFrame, fieldLayers, rosettaPerspectiveFold, backgroundSceneFromShared, heroSceneFromShared, movieTextFromCopy, realtimeSubtitleAt, drawLivingTorusFrame, drawBothEarthsMerkabaFrame, HERO_CYCLE_MS, } from '../../../src/quantum/index.ts';

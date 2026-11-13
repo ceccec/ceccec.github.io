@@ -119,6 +119,16 @@ export type { Dims } from '../../../src/quantum/mountain/dimensions/index.ts'
 export { heroPhaseAt } from '../../../src/fire/plasma/ball/index.ts'
 export { subscribeHeroClock } from '../../../src/quantum/index.ts'
 
+// The quantum uuid — an address read (RFC 9562 version, variant, nil, max), sealed and verified to holds / refuted /
+// absent, and its register counted (reg(w) = 32w − w − 2), each capacity integer the one a Lean-kernel theorem decides:
+export {
+  readUuid, uuidOfBytes, sealUuid, verifyUuid, uuidRegister, minimalRegisterWidth,
+  theQuantumUuidIsReadSealedAndCountedByItsTheorems, QUANTUM_UUID_THEOREM_FILE,
+  // the leads followed: search costs (cited), and sixty/forty degrees, the digit reflections and the magma, decided
+  addressSearchCostsLog2, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected,
+} from '../../../src/quantum/index.ts'
+export type { UuidReading, UuidVariant } from '../../../src/quantum/index.ts'
+
 // Completely quantum surface — sealed palette + TAU + proof receipt (structural substrate, not QPU):
 export { movieCanvasHex, movieCanvasRgba, movieCanvasPolarity } from '../../../src/quantum/science/index.ts'
 export { TAU } from '../../../src/3/7/index.ts'

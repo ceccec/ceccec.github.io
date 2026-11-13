@@ -28,7 +28,11 @@
  * reported as such, never as clean. The FIPS anchors still run, because they need only sha256Sync.
  */
 
-import { ed25519Verify, sha256, sha256Sync } from '../../src/0'
+import { ed25519Verify, sha256, sha256Sync, toUuid } from '../../src/0'
+import { minimalRegisterWidth, readUuid, sealUuid, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected, theQuantumUuidIsReadSealedAndCountedByItsTheorems, uuidOfBytes, uuidRegister, verifyUuid } from '../../src/quantum/index.ts'
+import { existsSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { decided } from './status.ts'
 
 const FIPS: readonly { msg: string; digest: string; why: string }[] = [
   { msg: 'abc', digest: 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', why: 'FIPS 180-4 one-block example' },
@@ -90,6 +94,79 @@ export async function ed25519Findings(): Promise<{ findings: string[]; measured:
   return { findings, measured: true }
 }
 
+/**
+ * THE QUANTUM UUID, HELD TO ITS THEOREMS — and perturbed, because a seal nobody tried to break is a claim.
+ *
+ * src/quantum reads, seals and counts an address, and names the kernel-checked theorem behind each capacity
+ * integer. Naming is not resting: this reads what the Lean kernel RECORDED for each named theorem
+ * (.vitepress/data/lean-axioms.json), requires it axiom-free, and requires every integer the fold computed to
+ * stand in that theorem's own statement. Then it perturbs: every single-digit change to every sealed address,
+ * every wrong key, every malformed octet string — none may hold, and none may be answered instead of refused.
+ * Three states: a missing axiom record is NOT MEASURED, never a pass and never an empty list.
+ */
+type TheoremFold = () => { facets: readonly { facet: string; on: boolean }[]; theorems: readonly { theorem: string; file: string; decides: readonly number[] }[] }
+export function quantumUuidFindings(root: string = process.cwd(), folds: readonly TheoremFold[] = [theQuantumUuidIsReadSealedAndCountedByItsTheorems, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected]): { findings: string[]; theorems: number; tampers: number; axioms: 'measured' | 'NOT MEASURED' } {
+  const findings: string[] = []
+  const axiomsPath = join(root, '.vitepress', 'data', 'lean-axioms.json')
+  const record = existsSync(axiomsPath) ? (JSON.parse(readFileSync(axiomsPath, 'utf8')) as Record<string, Record<string, string[]>>) : undefined
+  if (record === undefined) findings.push('.vitepress/data/lean-axioms.json: NOT MEASURED — no axiom record; a theorem nobody recorded decides nothing')
+  let theorems = 0
+  for (const fold of folds) {
+    const r = fold()
+    for (const f of r.facets) if (!f.on) findings.push(`facet off: ${f.facet}`)
+    if (r.theorems.length === 0) findings.push('a fold names no theorem')
+    // the theorems, as the kernel recorded them
+    for (const t of r.theorems) {
+      theorems += 1
+      const recorded = record?.[t.file], leanPath = join(root, t.file)
+      const lean = existsSync(leanPath) ? readFileSync(leanPath, 'utf8') : undefined
+      if (recorded === undefined || lean === undefined) { if (record !== undefined) findings.push(`${t.theorem}: NOT MEASURED — ${t.file} has ${recorded === undefined ? 'no axiom record' : 'no source'}`); continue }
+      const axioms = recorded[t.theorem]
+      if (axioms === undefined) { findings.push(`${t.theorem}: named by the fold, not recorded by the kernel`); continue }
+      if (axioms.length) findings.push(`${t.theorem}: rests on ${axioms.join(', ')}`)
+      const from = lean.indexOf(`theorem ${t.theorem} :`), to = lean.indexOf(':= by', from)
+      if (from < 0 || to < 0) { findings.push(`${t.theorem}: no statement in ${t.file}`); continue }
+      const numbers = new Set(lean.slice(from, to).match(/\d+/g) ?? [])
+      for (const n of t.decides) if (!numbers.has(String(n))) findings.push(`${t.theorem}: the fold computed ${n}, which its statement does not decide`)
+    }
+  }
+  // perturbation — every sealed address, every single-digit change
+  let tampers = 0
+  for (let s = 0; s < 64; s += 1) {
+    const content = `perturb:${s}`, sealed = sealUuid(content).uuid, keyed = sealUuid(content, `key:${s}`).uuid
+    if (sealed !== toUuid(content)) findings.push(`sealUuid(${content}) is not toUuid`)
+    if (verifyUuid(sealed, content).verdict !== 'holds' || verifyUuid(keyed, content, `key:${s}`).verdict !== 'holds') findings.push(`${content}: a true seal did not hold`)
+    if (verifyUuid(keyed, content, `key:${s + 1}`).verdict !== 'refuted' || verifyUuid(keyed, content).verdict !== 'refuted' || verifyUuid(sealed, content, `key:${s}`).verdict !== 'refuted') findings.push(`${content}: a seal held under the wrong key`)
+    const hex = sealed.replace(/-/g, '')
+    for (let at = 0; at < hex.length; at += 1) for (let d = 0; d < 16; d += 1) {
+      if (d.toString(16) === hex[at]) continue
+      const h = hex.slice(0, at) + d.toString(16) + hex.slice(at + 1)
+      const forged = `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`
+      tampers += 1
+      if (verifyUuid(forged, content).verdict === 'holds') findings.push(`${forged}: a tampered address HELD for ${content}`)
+      const read = readUuid(forged)
+      if (read.source !== 'parsed' || uuidOfBytes(read.bytes) !== forged) findings.push(`${forged}: does not read back to itself`)
+    }
+  }
+  // refusals — answered instead of refused is the defect
+  const refuses = (label: string, run: () => unknown) => { try { run(); findings.push(`${label}: answered instead of refusing`) } catch { /* refused */ } }
+  refuses('uuidOfBytes(15 octets)', () => uuidOfBytes(Array.from({ length: 15 }, () => 0)))
+  refuses('uuidOfBytes(an octet of 256)', () => uuidOfBytes(Array.from({ length: 16 }, () => 256)))
+  refuses('uuidRegister(0)', () => uuidRegister(0))
+  refuses('uuidRegister(1.5)', () => uuidRegister(1.5))
+  refuses('minimalRegisterWidth(-1)', () => minimalRegisterWidth(-1))
+  for (const bad of ['', '-'.repeat(36), toUuid('x').slice(1), `${toUuid('x')}0`, toUuid('x').replace(/-/g, ''), toUuid('x').replace('-', '_'), `g${toUuid('x').slice(1)}`]) {
+    if (readUuid(bad).source !== 'absent') findings.push(`readUuid(${JSON.stringify(bad)}): read as an address`)
+    if (verifyUuid(bad, 'x').verdict !== 'absent') findings.push(`verifyUuid(${JSON.stringify(bad)}): not absent`)
+  }
+  // the register against a search, far past the widths the theorems pin
+  for (let bits = 0; bits <= 4096; bits += 1) {
+    const w = minimalRegisterWidth(bits)
+    if (uuidRegister(w).free < bits || (w > 1 && uuidRegister(w - 1).free >= bits)) findings.push(`minimalRegisterWidth(${bits}) = ${w} is not minimal`)
+  }
+  return { findings, theorems, tampers, axioms: record === undefined ? 'NOT MEASURED' : 'measured' }
+}
+
 export async function assertHashesHold(): Promise<void> {
   console.log('\n=== HASHES — sha256Sync against the standard and against an independent implementation ===')
   const s = await sha256Findings()
@@ -100,5 +177,8 @@ export async function assertHashesHold(): Promise<void> {
   const all = [...s.findings, ...e.findings]
   for (const f of all) console.log(`    ${f}`)
   if (all.length) throw new Error(`${all.length} hash/signature finding(s): ${all.join(' | ')}`)
+  const u = quantumUuidFindings()
+  console.log(`  quantum uuid: ${u.theorems} theorems read from the kernel record (${u.axioms}), ${u.tampers} single-digit tampers of sealed addresses`)
+  console.log(`  ${decided('hashes.quantum-uuid-counterexamples', u.findings.length, { evidence: () => u.findings })}`)
   console.log('  clean\n')
 }

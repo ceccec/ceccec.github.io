@@ -143,4 +143,23 @@ theorem this_deposits_factor_route_returns_a_partial_answer_that_multiplies_back
   ∧ powModBin 2 (cofactor - 1) cofactor ≠ 1
   ∧ powModBin 2 4 7 = 2 ∧ powModBin 3 6 7 = 1 := by decide
 
+/-! # The uuid register — ported from millennium-solutions qpu_crypto.lean §2–§3, self-contained -/
+
+/-! ## THE FREE REGISTER IS 122 AT WIDTH 4 AND AT NO OTHER WIDTH BELOW 9 -/
+-- reg(w) = 32w − w − 2 in qubits per hex digit; RFC 9562 reserves 4 version bits and 2 variant bits of 128.
+-- Two formulas, one integer, and only at width 4.
+def reg (w : Nat) : Nat := 32 * w - w - 2
+theorem the_free_register_is_one_hundred_twenty_two_only_at_width_four :
+  (List.range 9).all (fun w => (reg w == 128 - 6) == (w == 4))
+  ∧ reg 4 = 122 ∧ 32 * 4 = 128 ∧ 4 + 2 = 6 ∧ reg 4 = 128 - 6
+  ∧ reg 32 = 990 ∧ reg 33 = 1021 := by decide
+
+/-! ## THE GROVER FLOOR: 61 = 122 / 2, AND 67 BITS BELOW 128 -/
+theorem one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under_grover :
+  reg 4 / 2 = 61 ∧ reg 4 / 3 = 40
+  ∧ 3 * 40 < reg 4 ∧ reg 4 < 3 * 41
+  ∧ 128 - reg 4 / 2 = 67
+  ∧ (List.range 300).all (fun n => (n / 2 ≥ 128) == (n ≥ 2 * 128))
+  ∧ 128 < 2 * 128 := by decide
+
 end Thousand

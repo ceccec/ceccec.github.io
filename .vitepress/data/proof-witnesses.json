@@ -293,7 +293,7 @@
    850
   ],
   "holds": true,
-  "caption": "the first 64 of 1898 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1900 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
  },
  "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
   "form": "bars",
@@ -2218,8 +2218,8 @@
   "form": "bars",
   "values": [
    493,
-   491,
-   194,
+   492,
+   195,
    165,
    164,
    161,
@@ -2274,16 +2274,16 @@
    42,
    42,
    42,
+   42,
    41,
    41,
    41,
    41,
    40,
-   40,
-   39
+   40
   ],
   "holds": true,
-  "caption": "the first 64 of 1143 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1145 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
  },
  "science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum": {
   "form": "bars",

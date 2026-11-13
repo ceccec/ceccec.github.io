@@ -3442,3 +3442,151 @@ export declare function quantumSystemFinalReport(matrix?: MindMatrix): {
     readonly conclusion: string;
     readonly receipt: string;
 };
+export type UuidVariant = 'ncs' | 'rfc9562' | 'microsoft' | 'future';
+export type UuidReading = {
+    source: 'absent';
+    reason: string;
+} | {
+    source: 'parsed';
+    canonical: string;
+    bytes: number[];
+    version: number;
+    variant: UuidVariant;
+    nil: boolean;
+    max: boolean;
+    contentAddress: boolean;
+};
+/** Read an address under RFC 9562: strict 8-4-4-4-12 hex, the version nibble, the variant class (§4.1), nil and
+ *  max (§5.9, §5.10), and whether it is a v8 content address of the kind toUuid emits. Unreadable is `absent`. */
+export declare function readUuid(value: string): UuidReading;
+/** Sixteen octets as an address, masking nothing — the inverse of readUuid(...).bytes. Anything else is refused. */
+export declare function uuidOfBytes(bytes: readonly number[]): string;
+/** Seal a content as a v8 address: SHA-256, or HMAC-SHA-256 when a key is given. Unkeyed it IS toUuid(content) —
+ *  integrity, recomputable by anyone. Keyed it is authenticity: only a holder of the key reproduces it. */
+export declare function sealUuid(content: string, key?: string): {
+    uuid: string;
+    keyed: boolean;
+    hasher: 'sha256' | 'hmac-sha256';
+};
+/** Does this address seal this content (under this key)? Three states: an address that cannot be a seal at all
+ *  is `absent`, never `refuted` — an unreadable address says nothing about the content. */
+export declare function verifyUuid(uuid: string, content: string, key?: string): {
+    verdict: 'holds' | 'refuted' | 'absent';
+    reason: string;
+};
+/** The register an address of `width` qubits per hex digit holds: reg(w) = 32w − w − 2. The version digit and
+ *  the variant pair are decided, not free. At width 4 it is the 122 free bits of the address itself. */
+export declare function uuidRegister(width: number): {
+    digits: number;
+    width: number;
+    nominal: number;
+    version: number;
+    gateway: number;
+    free: number;
+};
+/** The least width whose register holds `bits`: ceil((bits + 2) / 31). The thousand-bit case needs width 33. */
+export declare function minimalRegisterWidth(bits: number): number;
+/** The kernel-checked theorems the capacity facets below rest on; verify:hashes reads their recorded axioms. */
+export declare const QUANTUM_UUID_THEOREM_FILE = "src/pair/lean/proofs/thousand.lean";
+export declare function theQuantumUuidIsReadSealedAndCountedByItsTheorems(matrix?: MindMatrix): {
+    computes: boolean;
+    theoremFile: string;
+    theorems: {
+        theorem: string;
+        file: string;
+        decides: number[];
+    }[];
+    register: {
+        digits: number;
+        width: number;
+        nominal: number;
+        version: number;
+        gateway: number;
+        free: number;
+    };
+    thousand: {
+        width: number;
+        below: number;
+        holds: number;
+    };
+    facets: ({
+        receipt: string;
+        facet: string;
+        on: boolean;
+        theorem?: undefined;
+        decides?: undefined;
+    } | {
+        receipt: string;
+        facet: string;
+        theorem: string;
+        decides: number[];
+        on: boolean;
+    })[];
+    root: string;
+    statement: string;
+    boundary: string;
+};
+/** The generic search costs of an address with `freeBits` free, in log2 — CITED results with the bit arithmetic
+ *  computed, not something a fold proves: a second preimage is 2^n classically and 2^(n/2) under Grover; a
+ *  collision is 2^(n/2) classically and 2^(n/3) under Brassard–Høyer–Tapp. Every figure is finite. */
+export declare function addressSearchCostsLog2(freeBits?: number): {
+    freeBits: number;
+    preimage: {
+        classical: number;
+        quantum: number;
+        by: string;
+    };
+    collision: {
+        classical: number;
+        quantum: number;
+        by: string;
+    };
+};
+/**
+ * THE LEADS, FOLLOWED — sixty degrees, forty degrees, the two reflections of the nine digits, and the fold as a magma.
+ *
+ * A pasted text said multiplying by e^{iπ/3} makes everything an integer, that π becomes 3, that the doubling path
+ * is a {6/2} star, that the cost of forging stays infinite. Each is false as written. A false claim is not deleted
+ * here, it is reflected into the statement that IS true of it, and that statement is computed and named after the
+ * Lean theorem that decides the same integers: the rotation keeps ℤ[ω], not ℤ; the hexagon's ratio is 3 and π is
+ * above it; {6/2} is the two triangles 1·4·7 and 2·5·8; the costs are four finite numbers.
+ *
+ * THE REFLECTIONS. d ↦ 9 − d keeps 3·6·9 and exchanges 1·4·7 with 2·5·8. d ↦ 10 − d exchanges 3·6·9 with 7·4·1 and
+ * keeps 2·5·8. They are mirrors twenty degrees apart, so together they are the forty-degree step d ↦ d + 1, which
+ * carries each trinity to the next. That is what "connecting" computes to: the six permutations of three residue
+ * classes. It is not a statement about universes.
+ */
+export declare function theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected(matrix?: MindMatrix): {
+    computes: boolean;
+    theorems: {
+        theorem: string;
+        file: string;
+        decides: number[];
+    }[];
+    steps: number[];
+    maps: number;
+    costs: {
+        freeBits: number;
+        preimage: {
+            classical: number;
+            quantum: number;
+            by: string;
+        };
+        collision: {
+            classical: number;
+            quantum: number;
+            by: string;
+        };
+    };
+    facets: {
+        receipt: string;
+        facet: string;
+        theorem: string;
+        file: string;
+        decides: number[];
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+    boundary: string;
+};

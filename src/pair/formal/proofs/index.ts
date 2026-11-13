@@ -1448,9 +1448,13 @@ function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLat
       const doc: string[] = []
       for (let k = i - 1; k >= 0; k -= 1) {
         const line = (lines[k] ?? '').trim()
-        if (line.endsWith('-/') || line.startsWith('/--') || (doc.length && !line.startsWith('/-'))) {
-          doc.unshift(line.replace(/^\/--\s?/, '').replace(/\s?-\/$/, ''))
-          if (line.startsWith('/--')) break
+        // THE BLOCK DIRECTLY ABOVE, AND NOTHING ABOVE IT. A one-line `/-! ## heading -/` both opens and closes, and
+        // this stopped only at `/--`: past such a heading it walked on up through blank lines, definitions and other
+        // theorems to the file header, and typeset all of it as one theorem's doc — found when a 244-digit constant
+        // in that run came out 880pt too wide. Whatever opens the comment (`/--`, `/-!`, `/-`) ends the walk.
+        if (line.endsWith('-/') || line.startsWith('/-') || doc.length) {
+          doc.unshift(line.replace(/^\/-[-!]?\s?#*\s?/, '').replace(/\s?-\/$/, ''))
+          if (line.startsWith('/-')) break
           continue
         }
         break

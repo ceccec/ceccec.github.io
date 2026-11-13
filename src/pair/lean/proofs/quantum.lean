@@ -816,4 +816,127 @@ theorem entanglement_swapping :
 theorem no_pairs_no_swapping : ∀ m, m < 4 → outerDet (swapped (basis 0) (basis 0)) m = 0 := by
   decide +kernel
 
+/-! ## Leads followed — sixty degrees, forty degrees, and the two reflections of the nine digits
+
+  A pasted text claimed that multiplying by e^{iπ/3} "makes everything integer", that π becomes 3, and that the
+  doubling path is a {6/2} star. Each claim is false as written and each has a true half, decided here:
+  rotation by sixty degrees keeps the Eisenstein integers ℤ[ω] in ℤ[ω] (not in ℤ); the nine digits sit forty
+  degrees apart and the doubling circuit's steps are ±40, ±80, ±160; {6/2} is the two triangles 1·4·7 and 2·5·8,
+  not the six-cycle. The reflections d ↦ 9 − d and d ↦ 10 − d connect the three trinities 3·6·9, 1·4·7, 2·5·8.
+  NOTHING HERE IS PHYSICS: "connecting universes" is a permutation of three residue classes.
+-/
+
+/-- An Eisenstein integer `a + b·ω`, ω = e^{iπ/3}, reduced by ω² = ω − 1. -/
+structure EI where
+  a : Int
+  b : Int
+deriving DecidableEq, Repr
+
+namespace EI
+instance (n : Nat) : OfNat EI n := ⟨⟨n, 0⟩⟩
+instance : Add EI := ⟨fun x y => ⟨x.a + y.a, x.b + y.b⟩⟩
+instance : Neg EI := ⟨fun x => ⟨-x.a, -x.b⟩⟩
+instance : Mul EI := ⟨fun x y => ⟨x.a * y.a - x.b * y.b, x.a * y.b + x.b * y.a + x.b * y.b⟩⟩
+/-- ω, the rotation by sixty degrees. -/
+def ω : EI := ⟨0, 1⟩
+/-- The norm a² + ab + b² — the squared length. -/
+def norm (x : EI) : Int := x.a * x.a + x.a * x.b + x.b * x.b
+/-- The `k`-th power. -/
+def pow (x : EI) : Nat → EI
+  | 0 => 1
+  | k + 1 => x * pow x k
+end EI
+
+/-- SIXTY DEGREES IS A PRIMITIVE SIXTH ROOT: ω² = ω − 1, ω³ = −1, ω⁶ = 1 and no smaller power is 1. -/
+theorem sixty_degrees_is_a_primitive_sixth_root_of_unity :
+  EI.ω * EI.ω = EI.ω + -1 ∧ EI.pow EI.ω 3 = -1 ∧ EI.pow EI.ω 6 = 1
+  ∧ (List.range' 1 5).all (fun k => EI.pow EI.ω k != 1) := by decide
+
+/-- ROTATING BY SIXTY DEGREES KEEPS ℤ[ω] IN ℤ[ω] — for EVERY element, with integer coordinates and no halves. -/
+theorem rotation_by_sixty_degrees_keeps_the_eisenstein_integers (x : EI) : EI.ω * x = ⟨-x.b, x.a + x.b⟩ := by
+  cases x with
+  | mk a b =>
+    show (⟨0 * a - 1 * b, 0 * b + 1 * a + 1 * b⟩ : EI) = ⟨-b, a + b⟩
+    rw [Int.zero_mul, Int.one_mul, Int.zero_mul, Int.one_mul, Int.zero_sub, Int.zero_add]
+
+/-- BUT NOT IN ℤ: the rotation of 1 is ω itself, which is no ordinary integer — the pasted claim's own list held
+    3/2 and −7/2, which are the real parts of exactly such elements. The norm is kept and is multiplicative on a box. -/
+theorem the_rotation_leaves_the_integers_and_keeps_the_norm :
+  EI.ω * 1 = EI.ω ∧ (EI.ω * 1).b ≠ 0
+  ∧ (List.range 5).all (fun a => (List.range 5).all (fun b =>
+      EI.norm (EI.ω * ⟨(a : Int) - 2, (b : Int) - 2⟩) == EI.norm ⟨(a : Int) - 2, (b : Int) - 2⟩))
+  ∧ (List.range 6).all (fun k => EI.norm (EI.pow EI.ω k) == 1) := by decide
+
+/-- SIX IS THE SMALLEST PERFECT NUMBER; A TETRAHEDRON'S TWELVE FACE ANGLES OF SIXTY SUM TO 720; 432 = 360 · 6/5. -/
+def properDivisorSum (n : Nat) : Nat := ((List.range' 1 (n - 1)).filter (fun d => n % d == 0)).foldl (· + ·) 0
+theorem six_is_the_first_perfect_number_and_a_tetrahedron_sums_to_720 :
+  properDivisorSum 6 = 6 ∧ (List.range' 1 5).all (fun n => properDivisorSum n != n)
+  ∧ 4 * 3 * 60 = 720 ∧ 4 * 180 = 720 ∧ 432 * 5 = 360 * 6 := by decide
+
+/-! ### The nine digits at forty degrees -/
+/-- The angle of digit `d` on the nine-point circle, in degrees: 9 sits at 0. -/
+def angle (d : Nat) : Nat := 40 * d % 360
+/-- The turn from `a` to `b`, counter-clockwise, in 0..359: a turn of 360 − k is k the other way. Over Nat, so
+    that deciding it rests on nothing. -/
+def turn (a b : Nat) : Nat := (angle b + 360 - angle a) % 360
+def circuit : List Nat := [1, 2, 4, 8, 7, 5]
+
+/-- THE DOUBLING CIRCUIT STEPS +40, +80, +160, −40, −80, −160 AND CLOSES; 3·6·9 IS EQUILATERAL AT 120. -/
+theorem the_doubling_circuit_steps_forty_eighty_one_sixty_and_back :
+  [turn 1 2, turn 2 4, turn 4 8, turn 8 7, turn 7 5, turn 5 1] = [40, 80, 160, 360 - 40, 360 - 80, 360 - 160]
+  ∧ circuit.map (fun d => 2 * d % 9) = [2, 4, 8, 7, 5, 1]
+  ∧ 9 * 40 = 360 ∧ turn 3 6 = 120 ∧ turn 6 9 = 120 ∧ turn 9 3 = 120 := by decide
+
+/-- {6/2} IS TWO TRIANGLES, NOT THE DOUBLING SIX-CYCLE: stepping by three closes after three digits. -/
+def stepThree (d : Nat) : Nat := if d + 3 > 9 then d + 3 - 9 else d + 3
+theorem the_six_two_star_is_the_two_triangles_and_not_the_doubling_cycle :
+  [1, stepThree 1, stepThree (stepThree 1), stepThree (stepThree (stepThree 1))] = [1, 4, 7, 1]
+  ∧ [2, stepThree 2, stepThree (stepThree 2), stepThree (stepThree (stepThree 2))] = [2, 5, 8, 2]
+  ∧ circuit.length = 6 ∧ turn 1 4 = 120 ∧ turn 1 2 ≠ turn 2 4 := by decide
+
+/-! ### The two reflections, and the three trinities they connect -/
+/-- The nines' reflection d ↦ 9 − d (9 fixed) and the tens' reflection d ↦ 10 − d, on the digits 1..9. -/
+def nines (d : Nat) : Nat := if d = 9 then 9 else 9 - d
+def tens (d : Nat) : Nat := 10 - d
+def digits : List Nat := List.range' 1 9
+def trinity (d : Nat) : Nat := d % 3
+
+/-- BOTH ARE INVOLUTIONS WITH ONE FIXED DIGIT EACH (9 and 5). THE NINES' REFLECTION KEEPS 3·6·9 AND EXCHANGES
+    1·4·7 WITH 2·5·8; THE TENS' REFLECTION EXCHANGES 3·6·9 WITH 7·4·1 AND KEEPS 2·5·8. -/
+theorem the_two_reflections_connect_the_three_trinities :
+  digits.all (fun d => nines (nines d) == d && tens (tens d) == d)
+  ∧ digits.filter (fun d => nines d == d) = [9] ∧ digits.filter (fun d => tens d == d) = [5]
+  ∧ [3, 6, 9].map nines = [6, 3, 9] ∧ [1, 4, 7].map nines = [8, 5, 2]
+  ∧ [3, 6, 9].map tens = [7, 4, 1] ∧ [2, 5, 8].map tens = [8, 5, 2]
+  ∧ digits.all (fun d => trinity (nines d) == (3 - trinity d) % 3)
+  ∧ digits.all (fun d => trinity (tens d) == (4 - trinity d) % 3) := by decide
+
+/-- THEY ARE MIRRORS TWENTY DEGREES APART, SO TOGETHER THEY ARE THE FORTY-DEGREE STEP: tens ∘ nines is d ↦ d + 1,
+    of order nine, and it carries each trinity to the next. Two mirrors and their turns are eighteen maps. -/
+def next (d : Nat) : Nat := tens (nines d)
+def iter (f : Nat → Nat) : Nat → Nat → Nat
+  | 0, d => d
+  | k + 1, d => f (iter f k d)
+theorem the_two_mirrors_compose_to_the_forty_degree_step :
+  digits.all (fun d => next d == d % 9 + 1)
+  ∧ digits.all (fun d => (angle (nines d) + angle d) % 360 == 0)
+  ∧ digits.all (fun d => (angle (tens d) + angle d) % 360 == 40)
+  ∧ digits.all (fun d => iter next 9 d == d) ∧ (List.range' 1 8).all (fun k => iter next k 1 != 1)
+  ∧ digits.all (fun d => trinity (next d) == (trinity d + 1) % 3)
+  ∧ ((List.range 9).map (fun k => digits.map (iter next k))
+      ++ (List.range 9).map (fun k => digits.map (fun d => iter next k (nines d)))).eraseDups.length = 18 := by decide
+
+/-- THE NINES' REFLECTION COMMUTES WITH DOUBLING, so it carries the circuit onto itself, half a turn round. -/
+theorem the_nines_reflection_carries_the_doubling_circuit_onto_itself :
+  circuit.map nines = [8, 7, 5, 1, 2, 4]
+  ∧ circuit.all (fun d => nines (2 * d % 9) == 2 * nines d % 9)
+  ∧ circuit.map tens = [9, 8, 6, 2, 3, 5] := by decide
+
+/-! ### The address as a magma: two to one -/
+/-- TWO ADDRESSES IN, ONE OUT: 256 bits fold to at most 122 free, so the fold is many-to-one by pigeonhole —
+    on average 2^134 pairs to an address. A count, not an attack. -/
+theorem a_two_to_one_fold_of_addresses_is_many_to_one_by_pigeonhole :
+  2 * 128 = 256 ∧ 128 - 6 = 122 ∧ 122 < 256 ∧ 256 - 122 = 134
+  ∧ (2 : Nat) ^ 134 * 2 ^ 122 = 2 ^ 256 ∧ (2 : Nat) ^ 122 < 2 ^ 256 := by decide
+
 end Quantum
