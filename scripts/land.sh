@@ -116,7 +116,8 @@ if grep -qE '\.lean$|^src/pair/formal/proofs/' <<<"$changed"; then
   # regenerated one: verify:lean-latex and verify:discoveries each refused a landing on 2026-11-13 with the command to
   # run printed in the refusal ("Run npm run paper:deposits"). A gate that names its own repair is describing a step
   # this script should have taken.
-  for regen in paper:lean-latex paper:deposits; do
+  # lean-axioms FIRST: the LaTeX proof lines, the /lean rows and the deposit words all read the per-theorem list it writes.
+  for regen in lean-axioms lean-corpus paper:lean-latex paper:deposits paper:file-deposits; do
     npm run -s "$regen" > "$LOGS/$regen.log" 2>&1 || { echo "✗ npm run $regen — the last lines of $LOGS/$regen.log:"; tail -20 "$LOGS/$regen.log"; exit 1; }
     echo "✓ $regen — $(tail -1 "$LOGS/$regen.log" | cut -c1-120)"
   done

@@ -570,6 +570,8 @@ export type LeanTheoremLatex = {
     readonly doc: string;
     readonly proposition: string;
     readonly tactic: string;
+    /** What the kernel reported this theorem rests on (.vitepress/data/lean-axioms.json): [] is "no axiom"; null is NOT RECORDED. */
+    readonly axioms: readonly string[] | null;
 };
 /** The two Lean corpora. The INVOLUTION corpus is what the README, the abstract and the CLAIMED paragraph count; the
  *  REGISTRY corpus holds every other kernel theorem — the rows sealed for the registry, the quantum register, the
@@ -582,6 +584,13 @@ export declare function leanBlockCommentLines(lines: readonly string[]): boolean
 export declare function leanTheoremsForLatex(root?: string): readonly LeanTheoremLatex[];
 /** Every theorem in the registry corpus — the same reader over the other folder. */
 export declare function leanRegistryTheoremsForLatex(root?: string): readonly LeanTheoremLatex[];
+/** The per-theorem axiom list verify:lean measures and `npm run lean-axioms` writes. No filesystem, or no file, SAYS
+ *  SO — source: 'absent' — and is never an empty record or a bare null: verify:guards refused both, the first because
+ *  `{}` reads as "measured, and nothing rests on anything", the second because a null says nothing a caller can tell
+ *  from a value. The fallback names what it is. */
+export declare const LEAN_AXIOMS_RECORD = ".vitepress/data/lean-axioms.json";
+/** One sentence per theorem, in the three states the record has. Plain text; the LaTeX and the page wrap the names. */
+export declare function leanAxiomSentence(axioms: readonly string[] | null, code?: (name: string) => string): string;
 /**
  * LEAN AND LATEX, MERGED INTO ONE DOCUMENT THAT COMPILES (owner, 2026-11-13: "merge lean latex tex in iso quality proof").
  *
@@ -632,6 +641,8 @@ export type LeanPageRow = {
     readonly texPath: string;
     /** The deposit this page is the landing page for. */
     readonly depositId: string;
+    /** What the kernel reported this theorem rests on; null when it is not recorded. */
+    readonly axioms: readonly string[] | null;
 };
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
 export declare function leanPageSlug(file: string, name: string): string;

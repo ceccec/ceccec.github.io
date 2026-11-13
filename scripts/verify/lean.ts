@@ -127,7 +127,7 @@ function leanFiles(root: string): string[] {
  * rest on Classical.choice or, worse, sorryAx, which `#print axioms` would surface and a plain
  * compile would not.
  */
-export function axiomFreedom(file: string, root: string = process.cwd()): { total: number; axiomFree: number; standardOnly: number; standardUse: Record<string, number>; dependent: string[]; notMeasured?: boolean } {
+export function axiomFreedom(file: string, root: string = process.cwd()): { total: number; axiomFree: number; standardOnly: number; standardUse: Record<string, number>; dependent: string[]; byTheorem?: Record<string, string[]>; notMeasured?: boolean } {
   const text = readFileSync(file, 'utf8')
   // A toolchain that is absent has said NOTHING about the axioms, which is not the same as zero axioms —
   // the caller prints the skip and makes no claim, exactly as verify:lean does.
@@ -188,7 +188,15 @@ export function axiomFreedom(file: string, root: string = process.cwd()): { tota
   const dependent = deps
     .filter((m) => /sorryAx|Classical\.choice/.test(m[2]!))
     .map((m) => `${m[1]} (${m[2]})`)
-  return { total: names.length, axiomFree, standardOnly: standard.length, standardUse, dependent }
+  // WHAT EACH THEOREM RESTS ON, KEPT — NOT ONLY HOW MANY. The probe has always been told this, one line per theorem,
+  // and returned three counts; the names were thrown away. So every reader downstream — the deposit plans, the
+  // LaTeX proof lines, the /lean pages — had to say one sentence of all theorems, and the sentence they said
+  // ("axiom-free") was false of every general one. A measurement nobody could read, one field short.
+  const strip = (qualified: string) => (ns && qualified.startsWith(`${ns}.`) ? qualified.slice(ns.length + 1) : qualified)
+  const byTheorem: Record<string, string[]> = {}
+  for (const m of out.matchAll(/'([^']+)' does not depend on any axioms/g)) byTheorem[strip(m[1]!)] = []
+  for (const m of deps) byTheorem[strip(m[1]!)] = axiomsOf(m).sort()
+  return { total: names.length, axiomFree, standardOnly: standard.length, standardUse, dependent, byTheorem }
 }
 
 // ---- THE SEAL, PER FILE: a proof's check depends on its text and on what it imports, and on nothing else ----
@@ -198,7 +206,7 @@ export function axiomFreedom(file: string, root: string = process.cwd()): { tota
 // equals the one recorded at its last clean check is reproduced — named as sealed, never as freshly compiled — and its axiom
 // probe with it. A changed import changes the key of every file that imports it. VERIFY_FRESH=1 compiles everything.
 const LEAN_SEALS = join(process.cwd(), 'scripts', 'verify', 'receipts', 'reads', 'lean-files.json')
-type AxiomReport = { total: number; axiomFree: number; standardOnly: number; standardUse: Record<string, number>; dependent: string[]; notMeasured?: boolean }
+type AxiomReport = { total: number; axiomFree: number; standardOnly: number; standardUse: Record<string, number>; dependent: string[]; byTheorem?: Record<string, string[]>; notMeasured?: boolean }
 type LeanSeal = { key: string; sorries: number; axioms?: AxiomReport }
 let leanSeals: Record<string, LeanSeal> = {}
 function readLeanSeals(): Record<string, LeanSeal> {
@@ -230,7 +238,7 @@ export function sealedAxioms(rel: string, root: string = process.cwd()): AxiomRe
   const file = join(root, rel)
   const key = leanKey(file, root)
   const seal = leanSeals[rel]
-  if (seal && seal.key === key && seal.axioms && !seal.axioms.notMeasured) return seal.axioms
+  if (seal && seal.key === key && seal.axioms && !seal.axioms.notMeasured && (seal.axioms.byTheorem || seal.axioms.total === 0)) return seal.axioms
   const a = axiomFreedom(file, root)
   if (!a.notMeasured) { leanSeals[rel] = { key, sorries: seal?.key === key ? seal.sorries : 0, axioms: a }; writeLeanSeals() }
   return a
@@ -351,6 +359,50 @@ export function assertLeanCompiles(): void {
   }
   console.log(`involution proofs: ${totalFree}/${totalThm} decided by computation with NO axiom · ${totalPropext} general, proved for every value on the standard axioms propext and Quot.sound`)
   if (cheats.length) throw new Error(`Lean theorem(s) depend on sorryAx or Classical.choice: ${cheats.join(' · ')}`)
+  assertLeanAxiomsFresh()
   const unaccounted = totalThm - totalFree - totalPropext
   if (unaccounted > 0) throw new Error(`${unaccounted} formal-proof theorem(s) depend on something other than propext and Quot.sound — every proof here is either decided by computation or reasons through Lean's core arithmetic, and nothing else is allowed`)
+}
+
+/**
+ * THE AXIOMS OF EVERY THEOREM, WRITTEN DOWN — .vitepress/data/lean-axioms.json, derived, never authored.
+ *
+ * { "<file>": { "<theorem>": ["propext", "Quot.sound"] | [] } } — an empty list is the kernel's "does not depend on
+ * any axioms". `npm run lean-axioms` measures and writes it; verify:lean refuses a committed file the kernel no
+ * longer says. The deposit plans, the LaTeX proof lines and the /lean pages read it, so each says of ITS theorem
+ * what the kernel said of that theorem. A theorem the file does not name is NOT RECORDED, and a reader must say the
+ * general sentence for it rather than the strong one.
+ */
+export const LEAN_AXIOMS_FILE = '.vitepress/data/lean-axioms.json'
+export function measureLeanAxioms(root: string = process.cwd()): { text: string; files: number; theorems: number } | null {
+  if (leanToolchainMissing().length > 0) return null
+  leanSeals = readLeanSeals()
+  const out: Record<string, Record<string, string[]>> = {}
+  let theorems = 0
+  for (const file of leanFiles(root)) {
+    const rel = relative(root, file)
+    const a = sealedAxioms(rel, root)
+    if (a.notMeasured || !a.byTheorem || a.total === 0) continue
+    out[rel] = Object.fromEntries(Object.entries(a.byTheorem).sort(([x], [y]) => (x < y ? -1 : x > y ? 1 : 0)))
+    theorems += Object.keys(a.byTheorem).length
+  }
+  const sorted = Object.fromEntries(Object.entries(out).sort(([x], [y]) => (x < y ? -1 : x > y ? 1 : 0)))
+  return { text: `${JSON.stringify(sorted, null, 1)}\n`, files: Object.keys(sorted).length, theorems }
+}
+/** npm run lean-axioms — measure and write. */
+export function writeLeanAxioms(): void {
+  const m = measureLeanAxioms()
+  if (!m) { console.log('lean-axioms: NOT MEASURED — lean and lake are not on PATH; the file is left as it is'); return }
+  mkdirSync(dirname(join(process.cwd(), LEAN_AXIOMS_FILE)), { recursive: true })
+  writeFileSync(join(process.cwd(), LEAN_AXIOMS_FILE), m.text)
+  console.log(`lean-axioms: ${m.theorems} theorems in ${m.files} files → ${LEAN_AXIOMS_FILE}`)
+}
+/** The committed list must be what the kernel says now. Called by assertLeanCompiles, which has just measured. */
+export function assertLeanAxiomsFresh(): void {
+  const m = measureLeanAxioms()
+  if (!m) { console.log('  lean-axioms: NOT MEASURED — no toolchain'); return }
+  const file = join(process.cwd(), LEAN_AXIOMS_FILE)
+  const committed = existsSync(file) ? readFileSync(file, 'utf8') : ''
+  if (committed !== m.text) throw new Error(`${LEAN_AXIOMS_FILE} is not what the kernel reports now (${m.theorems} theorems in ${m.files} files) — run \`npm run lean-axioms\``)
+  console.log(`  lean-axioms: ${m.theorems} theorems in ${m.files} files match ${LEAN_AXIOMS_FILE}`)
 }

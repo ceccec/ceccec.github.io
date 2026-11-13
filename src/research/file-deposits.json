@@ -40,10 +40,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+        "citation": "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       },
       "references": [
-        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature"
+        "the L-function functional equation relates s and 2−s with sign w ∈ {±1}; the parity conjecture states (−1)^rank = w — standard BSD literature (https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture)"
       ],
       "creators": [
         {
@@ -168,10 +168,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+        "citation": "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
       "references": [
-        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original."
+        "classical: an involution is a self-inverse map; on a finite set the number of elements and the number of fixed points have the same parity, so an odd-size set has at least one fixed point. d ↦ 10 − d on {1..9} is an INSTANCE of that, and r(d) = d − σ(d) summing to zero is the standard fact that an odd function sums to zero over a symmetric set. No source states this particular formulation, and none is needed — the general results cover it, so nothing here is claimed as original. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       ],
       "creators": [
         {
@@ -414,10 +414,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+        "citation": "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       },
       "references": [
-        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook"
+        "classical Hodge theory: complex conjugation gives H^{p,q} ≅ H^{q,p}, hence h^{p,q} = h^{q,p}, with the diagonal p = q its fixed set — textbook (https://en.wikipedia.org/wiki/Hodge_theory)"
       ],
       "creators": [
         {
@@ -489,10 +489,10 @@
     },
     {
       "id": "involution",
-      "title": "Machine-checked involution structure of involution (Lean 4, axiom-free)",
+      "title": "Machine-checked involution structure of involution (Lean 4, standard axioms only)",
       "file": "involution.lean",
       "theoremCount": 8,
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of involution: 8 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Orbit sums to zero — {α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0\n• Odd vanishes at a fixed point — {α : Type} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0\n• EvenPart is symmetric — {α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : evenPart f σ (σ x) = evenPart f σ x\n• The split loses nothing — {α : Type} (f : α → Int) (σ : α → α) (x : α) : evenPart f σ x + odd f σ x = 2 * f x\n• The instance is an involution — ∀ d ∈ carrier, σ (σ d) = d\n• The instance cancels over every orbit — ∀ d ∈ carrier, (height d - height (σ d)) + (height (σ d) - height (σ (σ d))) = 0\n• The instance has one harmonic point — carrier.filter (fun d => σ d == d) = [5]\n• The instance splits without loss — ∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on no axiom beyond propext and Quot.sound, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of involution: 8 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Orbit sums to zero — {α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0\n• Odd vanishes at a fixed point — {α : Type} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0\n• EvenPart is symmetric — {α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : evenPart f σ (σ x) = evenPart f σ x\n• The split loses nothing — {α : Type} (f : α → Int) (σ : α → α) (x : α) : evenPart f σ x + odd f σ x = 2 * f x\n• The instance is an involution — ∀ d ∈ carrier, σ (σ d) = d\n• The instance cancels over every orbit — ∀ d ∈ carrier, (height d - height (σ d)) + (height (σ d) - height (σ (σ d))) = 0\n• The instance has one harmonic point — carrier.filter (fun d => σ d == d) = [5]\n• The instance splits without loss — ∀ d ∈ carrier, (height d + height (σ d)) + (height d - height (σ d)) = 2 * height d",
       "theorems": [
         {
           "title": "Orbit sums to zero",
@@ -537,10 +537,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics."
+        "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
       "references": [
-        "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics."
+        "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       ],
       "creators": [
         {
@@ -615,7 +615,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "involution"
@@ -655,10 +655,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+        "citation": "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
       },
       "references": [
-        "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook"
+        "classical fluid dynamics: the inviscid equations are invariant under u → −u, t → −t, and the viscous term breaks that symmetry — textbook (https://en.wikipedia.org/wiki/Navier–Stokes_equations)"
       ],
       "creators": [
         {
@@ -758,10 +758,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+        "citation": "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       },
       "references": [
-        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook"
+        "classical complexity theory: P is closed under complement; NP closed under complement ⟺ NP = coNP, which is open — textbook (https://en.wikipedia.org/wiki/Co-NP)"
       ],
       "creators": [
         {
@@ -866,10 +866,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
+        "citation": "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       },
       "references": [
-        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow."
+        "Hatcher, A. (2002), Algebraic Topology, Cambridge University Press (author-hosted full text: https://pi.math.cornell.edu/~hatcher/AT/ATpage.html) — the standard reference for the classification of closed surfaces: χ = 2 − 2g for a closed orientable surface, H₁ ≅ ℤ^{2g}, β₁ = 2g. The result is older than any citable paper; the textbook is the locator a reader can follow. (https://en.wikipedia.org/wiki/Surface_%28topology%29)"
       ],
       "creators": [
         {
@@ -974,10 +974,10 @@
       ],
       "priorArt": {
         "kind": "attributed",
-        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
+        "citation": "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       },
       "references": [
-        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
+        "Riemann, B. (1859), Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse, Monatsberichte der Berliner Akademie, 671–680 — PREDATES THE DOI SYSTEM, no DOI exists — the manuscript is at https://www.claymath.org/collections/riemanns-1859-manuscript/ ; the functional equation relates s and 1−s and the critical line Re(s)=1/2 is exactly the fixed set of that reflection"
       ],
       "creators": [
         {
@@ -1049,10 +1049,10 @@
     },
     {
       "id": "spacetime",
-      "title": "Machine-checked involution structure of spacetime (Lean 4, axiom-free)",
+      "title": "Machine-checked involution structure of spacetime (Lean 4, standard axioms only)",
       "file": "spacetime.lean",
-      "theoremCount": 9,
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of spacetime: 9 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Light is the fixed point — ∀ v ∈ sample, same (add light v) light = true\n• Light is fixed from either side — ∀ v ∈ sample, same (add v light) light = true\n• Rest is the identity — ∀ v ∈ sample, same (add rest v) v = true\n• Composition is symmetric — ∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true\n• Below c composes to below c — ∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den\n• The boost preserves the interval — ∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2\n• The light cone is carried to itself — ∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0\n• The reverse boost undoes the boost — ∀ e ∈ events, ∀ b ∈ boosts, boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧ boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2\n• The reverse boost undoes every boost — ∀ p q t x : Int, boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧ boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x",
+      "theoremCount": 20,
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on no axiom beyond propext and Quot.sound, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA Lean 4 development of spacetime: 20 theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n• Light is the fixed point — ∀ v ∈ sample, same (add light v) light = true\n• Light is fixed from either side — ∀ v ∈ sample, same (add v light) light = true\n• Rest is the identity — ∀ v ∈ sample, same (add rest v) v = true\n• Composition is symmetric — ∀ u ∈ sample, ∀ v ∈ sample, same (add u v) (add v u) = true\n• Below c composes to below c — ∀ u ∈ subluminal, ∀ v ∈ subluminal, (add u v).num < (add u v).den\n• The boost preserves the interval — ∀ e ∈ events, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * interval e.1 e.2\n• The light cone is carried to itself — ∀ e ∈ lightlike, ∀ b ∈ boosts, interval (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = 0\n• The reverse boost undoes the boost — ∀ e ∈ events, ∀ b ∈ boosts, boostT (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.1 ∧ boostX (-b.1) b.2 (boostT b.1 b.2 e.1 e.2) (boostX b.1 b.2 e.1 e.2) = (b.2 * b.2 - b.1 * b.1) * e.2\n• The reverse boost undoes every boost — ∀ p q t x : Int, boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧ boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x\n• Sq lt — (a b : Int) (hl : -b < a) (hr : a < b) : a*a < b*b\n• Lt of sq — (a b : Int) (hb : 0 < b) (h : a*a < b*b) : -b < a ∧ a < b\n• Interval scales — (p q t x : Int) : interval (boostT p q t x) (boostX p q t x) = (q*q - p*p) * interval t x\n• Scale positive — (p q : Int) (h : belowC p q) : 0 < q*q - p*p\n• Timelike invariant — (p q t x : Int) (h : belowC p q) (ht : 0 < interval t x) : 0 < interval (boostT p q t x) (boostX p q t x)\n• Spacelike invariant — (p q t x : Int) (h : belowC p q) (ht : interval t x < 0) : interval (boostT p q t x) (boostX p q t x) < 0\n• Null invariant — (p q t x : Int) (ht : interval t x = 0) : interval (boostT p q t x) (boostX p q t x) = 0\n• Timelike order absolute — (p q t x : Int) (h : belowC p q) (hfuture : 0 < t) (hcausal : x*x ≤ t*t) : 0 < boostT p q t x\n• Spacelike order reverses — (t x : Int) (ht : 0 < t) (hx : t < x) : belowC (2*t+1) (2*x) ∧ boostT (2*t+1) (2*x) t x = -x\n• Spacelike simultaneous — (t x : Int) (ht : 0 < t) (hx : t < x) : belowC t x ∧ boostT t x t x = 0\n• Velocity addition below c — (p₁ q₁ p₂ q₂ : Int) (h₁ : belowC p₁ q₁) (h₂ : belowC p₂ q₂) : belowC (addNum p₁ q₁ p₂ q₂) (addDen p₁ q₁ p₂ q₂)",
       "theorems": [
         {
           "title": "Light is the fixed point",
@@ -1098,6 +1098,61 @@
           "title": "The reverse boost undoes every boost",
           "proposition": "∀ p q t x : Int, boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧ boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x",
           "page": "https://ceccec.github.io/lean/spacetime-the-reverse-boost-undoes-every-boost"
+        },
+        {
+          "title": "Sq lt",
+          "proposition": "(a b : Int) (hl : -b < a) (hr : a < b) : a*a < b*b",
+          "page": "https://ceccec.github.io/lean/spacetime-sq-lt"
+        },
+        {
+          "title": "Lt of sq",
+          "proposition": "(a b : Int) (hb : 0 < b) (h : a*a < b*b) : -b < a ∧ a < b",
+          "page": "https://ceccec.github.io/lean/spacetime-lt-of-sq"
+        },
+        {
+          "title": "Interval scales",
+          "proposition": "(p q t x : Int) : interval (boostT p q t x) (boostX p q t x) = (q*q - p*p) * interval t x",
+          "page": "https://ceccec.github.io/lean/spacetime-interval-scales"
+        },
+        {
+          "title": "Scale positive",
+          "proposition": "(p q : Int) (h : belowC p q) : 0 < q*q - p*p",
+          "page": "https://ceccec.github.io/lean/spacetime-scale-positive"
+        },
+        {
+          "title": "Timelike invariant",
+          "proposition": "(p q t x : Int) (h : belowC p q) (ht : 0 < interval t x) : 0 < interval (boostT p q t x) (boostX p q t x)",
+          "page": "https://ceccec.github.io/lean/spacetime-timelike-invariant"
+        },
+        {
+          "title": "Spacelike invariant",
+          "proposition": "(p q t x : Int) (h : belowC p q) (ht : interval t x < 0) : interval (boostT p q t x) (boostX p q t x) < 0",
+          "page": "https://ceccec.github.io/lean/spacetime-spacelike-invariant"
+        },
+        {
+          "title": "Null invariant",
+          "proposition": "(p q t x : Int) (ht : interval t x = 0) : interval (boostT p q t x) (boostX p q t x) = 0",
+          "page": "https://ceccec.github.io/lean/spacetime-null-invariant"
+        },
+        {
+          "title": "Timelike order absolute",
+          "proposition": "(p q t x : Int) (h : belowC p q) (hfuture : 0 < t) (hcausal : x*x ≤ t*t) : 0 < boostT p q t x",
+          "page": "https://ceccec.github.io/lean/spacetime-timelike-order-absolute"
+        },
+        {
+          "title": "Spacelike order reverses",
+          "proposition": "(t x : Int) (ht : 0 < t) (hx : t < x) : belowC (2*t+1) (2*x) ∧ boostT (2*t+1) (2*x) t x = -x",
+          "page": "https://ceccec.github.io/lean/spacetime-spacelike-order-reverses"
+        },
+        {
+          "title": "Spacelike simultaneous",
+          "proposition": "(t x : Int) (ht : 0 < t) (hx : t < x) : belowC t x ∧ boostT t x t x = 0",
+          "page": "https://ceccec.github.io/lean/spacetime-spacelike-simultaneous"
+        },
+        {
+          "title": "Velocity addition below c",
+          "proposition": "(p₁ q₁ p₂ q₂ : Int) (h₁ : belowC p₁ q₁) (h₂ : belowC p₂ q₂) : belowC (addNum p₁ q₁ p₂ q₂) (addDen p₁ q₁ p₂ q₂)",
+          "page": "https://ceccec.github.io/lean/spacetime-velocity-addition-below-c"
         }
       ],
       "priorArt": {
@@ -1178,6 +1233,61 @@
           "identifier": "https://ceccec.github.io/lean/spacetime-the-reverse-boost-undoes-every-boost",
           "relation": "isDocumentedBy",
           "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-sq-lt",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-lt-of-sq",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-interval-scales",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-scale-positive",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-timelike-invariant",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-spacelike-invariant",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-null-invariant",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-timelike-order-absolute",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-spacelike-order-reverses",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-spacelike-simultaneous",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
+        },
+        {
+          "identifier": "https://ceccec.github.io/lean/spacetime-velocity-addition-below-c",
+          "relation": "isDocumentedBy",
+          "scheme": "url"
         }
       ],
       "license": "CC-BY-NC-ND-4.0",
@@ -1185,7 +1295,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"

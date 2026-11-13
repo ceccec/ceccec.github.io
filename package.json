@@ -958,6 +958,7 @@
     "verify:canon": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/canon.ts assertCanonicalForms",
     "verify:guards": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/guards.ts assertGuardsAndCaps",
     "lean-corpus": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-corpus.ts writeLeanCorpus",
+    "lean-axioms": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean.ts writeLeanAxioms",
     "verify:lean-corpus": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-corpus.ts assertLeanCorpusFresh",
     "verify:lean-registry": "node --experimental-strip-types src/pair/enforcement/script/cli/bootstrap/index.ts run scripts/verify/lean-registry.ts assertRegistrySealed",
     "fold-bounds": "node --experimental-strip-types scripts/verify/fold-bounds.ts",

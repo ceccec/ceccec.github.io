@@ -97,6 +97,14 @@ function statusFor(title: string, file: string, ledger: ReturnType<typeof priorA
  * anything else on the page. A deposit whose claim has to be looked for is a deposit that leans on not
  * being read carefully.
  */
+/** THE WORD A RECORD CARRIES IS THE KERNEL'S, PER THEOREM (2026-11-13). Every record said "axiom-free"; sixteen of
+ *  the theorems rest on propext and Quot.sound. The list is .vitepress/data/lean-axioms.json, written from the probe
+ *  verify:lean already ran. Three states: [] is axiom-free, a list is named, and NOT RECORDED claims neither. */
+const axiomWord = (axioms: readonly string[] | null): string =>
+  axioms === null ? 'kernel-checked' : axioms.length === 0 ? 'axiom-free' : 'standard axioms only'
+const axiomClause = (axioms: readonly string[] | null): string =>
+  axioms === null ? 'checked by the kernel' : axioms.length === 0 ? 'axiom-free' : `resting on ${axioms.join(' and ')} and on no other axiom`
+
 const ASSERTS = {
   'attributed': 'NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.',
   'searched-none-found': 'CANDIDATE ORIGINAL — PRIORITY CLAIMED OVER THIS EXPRESSION. A literature search is on record, named below with its date, and it returned nothing. The claim is over the expression and its date. It is NOT a proof that no prior art exists.',
@@ -118,9 +126,9 @@ export function depositRecords(root: string = process.cwd()): DepositRecord[] {
       proposition: t.proposition,
       // The claim first, then the mathematics. A Zenodo abstract is read top-down and this is what a
       // reader needs before the statement, not after it.
-      description: `${ASSERTS[status.kind]}\n\n${t.doc || t.title}`,
+      description: `${ASSERTS[status.kind].replace('axiom-free', axiomClause(t.axioms))}\n\n${t.doc || t.title}`,
       priorArt: status,
-      asserts: ASSERTS[status.kind],
+      asserts: ASSERTS[status.kind].replace('axiom-free', axiomClause(t.axioms)),
       // EVERY IDENTIFIER EITHER RESOLVES ON DISK OR IS AN EXTERNAL ID OF KNOWN FORM. No landing-page
       // URL is emitted, because the 43 Lean theorems have no page in the 785-page theorem corpus yet —
       // that corpus is built from the registry, not from the .lean sources. Pointing a permanent
@@ -139,7 +147,7 @@ export function depositRecords(root: string = process.cwd()): DepositRecord[] {
       creators: [{ name: 'Rouschev, Tsvetan', orcid: ORCID }],
       license: LICENSE,
       language: 'eng',
-      keywords: ['machine-checked proof', 'Lean 4', 'axiom-free', 'formalisation', 'involution', t.file.replace(/\.lean$/, '')],
+      keywords: ['machine-checked proof', 'Lean 4', axiomWord(t.axioms), 'formalisation', 'involution', t.file.replace(/\.lean$/, '')],
       subjects: [
         { term: 'Mathematics', identifier: 'https://id.loc.gov/authorities/subjects/sh85082139' },
         { term: 'Proof theory', identifier: 'https://id.loc.gov/authorities/subjects/sh85107437' },
@@ -203,7 +211,10 @@ export function assertDepositsAreHonest(): void {
   // ledger holds, enforced at the point where it would become a public, permanent record.
   const overclaiming = records.filter((r) => /CANDIDATE ORIGINAL/.test(r.asserts) && r.priorArt.kind !== 'searched-none-found')
   if (overclaiming.length) throw new Error(`${overclaiming.length} deposit(s) describe themselves as original with no search on record`)
-  const misdescribed = records.filter((r) => r.asserts !== ASSERTS[r.priorArt.kind])
+  // The one clause that now varies per theorem — what the kernel reported it rests on — is compared as a slot; every
+  // other word of the claim must still be the status's own, exactly.
+  const slot = (text: string) => text.replace(/axiom-free|resting on [^,]*? and on no other axiom|checked by the kernel/, '‹axioms›')
+  const misdescribed = records.filter((r) => slot(r.asserts) !== slot(ASSERTS[r.priorArt.kind]))
   if (misdescribed.length) throw new Error(`${misdescribed.length} deposit(s) carry a description that does not match their prior-art status`)
   console.log(`  every record's description matches its ledger status`)
 
@@ -311,11 +322,16 @@ export function fileDeposits(root: string = process.cwd()): FileDeposit[] {
   return [...byFile.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([file, rows]) => {
     const subject = FILE_SUBJECT[file] ?? file.replace(/\.lean$/, '')
     const first = rows[0]!
-    const claim = first.description.split('\n\n')[0]!
+    // A FILE SAYS OF ITSELF WHAT IS TRUE OF ALL ITS THEOREMS. The claim was the first theorem's, so a file whose first
+    // proof is by decide called itself axiom-free whatever came after it.
+    const words = rows.map((r) => r.keywords.find((k) => k === 'axiom-free' || k === 'standard axioms only' || k === 'kernel-checked') ?? 'kernel-checked')
+    const fileWord = words.every((w) => w === 'axiom-free') ? 'axiom-free' : words.every((w) => w !== 'kernel-checked') ? 'standard axioms only' : 'kernel-checked'
+    const fileClause = fileWord === 'axiom-free' ? 'axiom-free' : fileWord === 'standard axioms only' ? 'resting on no axiom beyond propext and Quot.sound' : 'checked by the kernel'
+    const claim = first.description.split('\n\n')[0]!.replace(/axiom-free|resting on [^,]*? and on no other axiom|checked by the kernel/, fileClause)
     const body = rows.map((r) => `• ${r.title} — ${r.proposition}`).join('\n')
     return {
       id: file.replace(/\.lean$/, ''),
-      title: `Machine-checked involution structure of ${subject} (Lean 4, axiom-free)`,
+      title: `Machine-checked involution structure of ${subject} (Lean 4, ${fileWord})`,
       file,
       theoremCount: rows.length,
       description: `${claim}\n\nA Lean 4 development of ${subject}: ${rows.length} theorems, each decided by the kernel with no axiom dependency and no Mathlib import. The propositions:\n\n${body}`,
@@ -332,7 +348,7 @@ export function fileDeposits(root: string = process.cwd()): FileDeposit[] {
       ],
       license: LICENSE,
       language: 'eng',
-      keywords: ['machine-checked proof', 'Lean 4', 'axiom-free', 'formalisation', 'involution', file.replace(/\.lean$/, '')],
+      keywords: ['machine-checked proof', 'Lean 4', fileWord, 'formalisation', 'involution', file.replace(/\.lean$/, '')],
       repoPaths: [`src/pair/formal/proofs/${file}`, 'src/research/lean-theorems.tex'],
     }
   })

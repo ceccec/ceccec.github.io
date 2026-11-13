@@ -2225,12 +2225,12 @@
       "title": "Orbit sums to zero",
       "file": "involution.lean",
       "proposition": "{α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : odd f σ x + odd f σ (σ x) = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ODD PART CANCELS OVER EVERY ORBIT. For any involution, any f, any point: the pair {x, σx} sums to exactly zero. This is the general form of \"every bit of resistance drains\", and the coin's version of it is this theorem at σ d = 10 − d.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE ODD PART CANCELS OVER EVERY ORBIT. For any involution, any f, any point: the pair {x, σx} sums to exactly zero. This is the general form of \"every bit of resistance drains\", and the coin's version of it is this theorem at σ d = 10 − d.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2277,7 +2277,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "involution"
@@ -2313,12 +2313,12 @@
       "title": "Odd vanishes at a fixed point",
       "file": "involution.lean",
       "proposition": "{α : Type} (f : α → Int) (σ : α → α) (x : α) (hx : σ x = x) : odd f σ x = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE HARMONIC POINT CARRIES NOTHING. Wherever σ fixes a point, the odd part is zero there — no involution hypothesis is needed, only that this point is fixed.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE HARMONIC POINT CARRIES NOTHING. Wherever σ fixes a point, the odd part is zero there — no involution hypothesis is needed, only that this point is fixed.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2365,7 +2365,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "involution"
@@ -2401,12 +2401,12 @@
       "title": "EvenPart is symmetric",
       "file": "involution.lean",
       "proposition": "{α : Type} (f : α → Int) (σ : α → α) (h : IsInvolution σ) (x : α) : evenPart f σ (σ x) = evenPart f σ x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE EVEN PART IS WHAT SURVIVES THE REFLECTION — it takes the same value at x and at σx.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTHE EVEN PART IS WHAT SURVIVES THE REFLECTION — it takes the same value at x and at σx.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2453,7 +2453,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "involution"
@@ -2489,12 +2489,12 @@
       "title": "The split loses nothing",
       "file": "involution.lean",
       "proposition": "{α : Type} (f : α → Int) (σ : α → α) (x : α) : evenPart f σ x + odd f σ x = 2 * f x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND THE TWO HALVES RECONSTRUCT THE WHOLE. Nothing is lost in the split, and this one needs no involution at all — it is true of the two parts as defined, for every σ.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nAND THE TWO HALVES RECONSTRUCT THE WHOLE. Nothing is lost in the split, and this one needs no involution at all — it is true of the two parts as defined, for every σ.",
       "priorArt": {
         "kind": "attributed",
         "citation": "classical linear algebra, the eigenspace decomposition of an involution: a linear involution on a vector space has eigenvalues ±1 and every element splits uniquely into its +1 (symmetric) and −1 (antisymmetric) parts. f(x) − f(σx) IS the antisymmetric part, and it cancels over every orbit because the two contributions differ only in sign. The same decomposition gives every square matrix as symmetric plus antisymmetric. Standard textbook material; the contribution here is the machine-checked statement, not the mathematics. (https://en.wikipedia.org/wiki/Involution_%28mathematics%29)"
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -2541,7 +2541,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "involution"
@@ -5305,12 +5305,12 @@
       "title": "The reverse boost undoes every boost",
       "file": "spacetime.lean",
       "proposition": "∀ p q t x : Int, boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧ boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n…and for EVERY event and EVERY boost, proved rather than decided: the theorem above checks eight events under five boosts; this holds for all integers p, q, t, x at once. Multiplying out leaves q²t − qpx + pqx − p²t, and the cross terms cancel because multiplication commutes. A proof, not an exhaustion — it rests on the standard axioms propext and Quot.sound that core's integer lemmas carry.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n…and for EVERY event and EVERY boost, proved rather than decided: the theorem above checks eight events under five boosts; this holds for all integers p, q, t, x at once. Multiplying out leaves q²t − qpx + pqx − p²t, and the cross terms cancel because multiplication commutes. A proof, not an exhaustion — it rests on the standard axioms propext and Quot.sound that core's integer lemmas carry.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5357,7 +5357,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -5393,12 +5393,12 @@
       "title": "Sq lt",
       "file": "spacetime.lean",
       "proposition": "(a b : Int) (hl : -b < a) (hr : a < b) : a*a < b*b",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nStrictly inside the band (−b, b) means a strictly smaller square.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nStrictly inside the band (−b, b) means a strictly smaller square.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5445,7 +5445,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -5481,12 +5481,12 @@
       "title": "Lt of sq",
       "file": "spacetime.lean",
       "proposition": "(a b : Int) (hb : 0 < b) (h : a*a < b*b) : -b < a ∧ a < b",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA smaller square (with b positive) means inside the band.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nA smaller square (with b positive) means inside the band.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5533,7 +5533,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -5569,12 +5569,12 @@
       "title": "Interval scales",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) : interval (boostT p q t x) (boostX p q t x) = (q*q - p*p) * interval t x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFor every event and every boost the interval is multiplied by q² − p², and by nothing else.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFor every event and every boost the interval is multiplied by q² − p², and by nothing else.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5621,7 +5621,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -5657,12 +5657,12 @@
       "title": "Scale positive",
       "file": "spacetime.lean",
       "proposition": "(p q : Int) (h : belowC p q) : 0 < q*q - p*p",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nBelow c that factor is positive.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nBelow c that factor is positive.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5709,7 +5709,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -5745,12 +5745,12 @@
       "title": "Timelike invariant",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) (h : belowC p q) (ht : 0 < interval t x) : 0 < interval (boostT p q t x) (boostX p q t x)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTIMELIKE STAYS TIMELIKE in every frame below c.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTIMELIKE STAYS TIMELIKE in every frame below c.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5797,7 +5797,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -5833,12 +5833,12 @@
       "title": "Spacelike invariant",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) (h : belowC p q) (ht : interval t x < 0) : interval (boostT p q t x) (boostX p q t x) < 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSPACELIKE STAYS SPACELIKE: no boost makes a spacelike separation reachable.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nSPACELIKE STAYS SPACELIKE: no boost makes a spacelike separation reachable.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5885,7 +5885,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -5921,12 +5921,12 @@
       "title": "Null invariant",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) (ht : interval t x = 0) : interval (boostT p q t x) (boostX p q t x) = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe light cone is frame-independent: null in one frame is null in all.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nThe light cone is frame-independent: null in one frame is null in all.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -5973,7 +5973,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -6009,12 +6009,12 @@
       "title": "Timelike order absolute",
       "file": "spacetime.lean",
       "proposition": "(p q t x : Int) (h : belowC p q) (hfuture : 0 < t) (hcausal : x*x ≤ t*t) : 0 < boostT p q t x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFOR A CAUSAL SEPARATION EVERY OBSERVER BELOW c AGREES WHICH EVENT CAME FIRST. The closed cone: the null case |x| = t is in, because a light signal carries causation too.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFOR A CAUSAL SEPARATION EVERY OBSERVER BELOW c AGREES WHICH EVENT CAME FIRST. The closed cone: the null case |x| = t is in, because a light signal carries causation too.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6061,7 +6061,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -6097,12 +6097,12 @@
       "title": "Spacelike order reverses",
       "file": "spacetime.lean",
       "proposition": "(t x : Int) (ht : 0 < t) (hx : t < x) : belowC (2*t+1) (2*x) ∧ boostT (2*t+1) (2*x) t x = -x",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFOR A SPACELIKE SEPARATION THERE IS A FRAME BELOW c IN WHICH THE ORDER REVERSES — exhibited: with 0 < t < x, the boost β = (2t+1)/(2x) sends Δt to −x.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nFOR A SPACELIKE SEPARATION THERE IS A FRAME BELOW c IN WHICH THE ORDER REVERSES — exhibited: with 0 < t < x, the boost β = (2t+1)/(2x) sends Δt to −x.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6149,7 +6149,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -6185,12 +6185,12 @@
       "title": "Spacelike simultaneous",
       "file": "spacetime.lean",
       "proposition": "(t x : Int) (ht : 0 < t) (hx : t < x) : belowC t x ∧ boostT t x t x = 0",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n…and a frame in which the two events are simultaneous: β = t/x sends Δt to 0.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\n…and a frame in which the two events are simultaneous: β = t/x sends Δt to 0.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6237,7 +6237,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"
@@ -6273,12 +6273,12 @@
       "title": "Velocity addition below c",
       "file": "spacetime.lean",
       "proposition": "(p₁ q₁ p₂ q₂ : Int) (h₁ : belowC p₁ q₁) (h₂ : belowC p₂ q₂) : belowC (addNum p₁ q₁ p₂ q₂) (addDen p₁ q₁ p₂ q₂)",
-      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTWO BOOSTS BELOW c COMPOSE TO A BOOST BELOW c, for every pair — c is not approached by adding.",
+      "description": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.\n\nTWO BOOSTS BELOW c COMPOSE TO A BOOST BELOW c, for every pair — c is not approached by adding.",
       "priorArt": {
         "kind": "attributed",
         "citation": "Einstein (1905), Zur Elektrodynamik bewegter Körper, Annalen der Physik 322(10), 891–921, doi:10.1002/andp.19053221004 — the velocity composition law and the invariance of the interval under Lorentz transformation. That c is the absorbing element of the composition and that the interval is the boost invariant are standard consequences, in every relativity textbook. The contribution here is the machine-checked arithmetic, not the physics, and no theorem in the file mentions an experiment."
       },
-      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, axiom-free, dated and citable. The prior art is cited in the references. No discovery is claimed.",
+      "asserts": "NOT A NOVELTY CLAIM. This is a FORMALISATION of a known result: machine-checked in Lean 4, resting on Quot.sound and propext and on no other axiom, dated and citable. The prior art is cited in the references. No discovery is claimed.",
       "relatedIdentifiers": [
         {
           "identifier": "10.5281/zenodo.21787144",
@@ -6325,7 +6325,7 @@
       "keywords": [
         "machine-checked proof",
         "Lean 4",
-        "axiom-free",
+        "standard axioms only",
         "formalisation",
         "involution",
         "spacetime"

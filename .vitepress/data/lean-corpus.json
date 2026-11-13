@@ -9,6 +9,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "bsd--sigma_is_an_involution"
  },
  {
@@ -21,6 +22,7 @@
   "doc": "The central point s = 1 is the unique fixed point — the point BSD is about.",
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "bsd--central_point_is_the_fixed_point"
  },
  {
@@ -33,6 +35,7 @@
   "doc": "The root number is an involution's eigenvalue: w ∈ {1, −1} and w² = 1.",
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "bsd--root_number_squares_to_one"
  },
  {
@@ -45,6 +48,7 @@
   "doc": "THE PARITY EQUIVALENCE. w = (−1)^rank says: w = 1 exactly when the rank is even. Checked for ranks 0..7, both directions.",
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "bsd--root_number_one_iff_rank_even"
  },
  {
@@ -57,6 +61,7 @@
   "doc": "The sign map is itself compatible with the involution: adding one to the rank flips it, and adding two returns it — parity is a ℤ/2 action, the same involution once more.",
   "sourcePath": "src/pair/formal/proofs/bsd.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "bsd--parity_is_an_involution"
  },
  {
@@ -69,6 +74,7 @@
   "doc": "PULLED, AND REFLECTED BACK. Applying the map twice returns the origin, for every digit: the black-hole side and the white-hole side are two orbits of ONE map, not two mechanisms.",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--the_coin_is_an_involution"
  },
  {
@@ -81,6 +87,7 @@
   "doc": "HARMONIC IS WHAT THE MAP LEAVES IN PLACE, and there is exactly one such digit. The fixed point is not chosen; it is computed by filtering the surface.",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--the_harmonic_is_the_only_fixed_point"
  },
  {
@@ -93,6 +100,7 @@
   "doc": "EVERYTHING NOT HARMONIC IS MOVED. Eight of the nine digits are carried to the other side.",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--all_that_is_not_harmonic_is_moved"
  },
  {
@@ -105,6 +113,7 @@
   "doc": "kernel reported it dependent on propext and Quot.sound. The axiom-freedom gate refused it, and the restatement is stronger for it: naming the image list says WHICH element goes where, not merely that each lands somewhere on the other side.",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--the_sides_are_equal_and_exchanged"
  },
  {
@@ -117,6 +126,7 @@
   "doc": "The surface is exactly the two sides and the edge, and σ itself sorts it: the digits it carries upward are `below`, the one it leaves in place is the edge, the digits it carries downward are `above` — so the sides are computed from the map rather than typed beside it, and 4 + 4 + 1 is what the sorting leaves. (Was the count alone, which read the two typed lists back, 2026-09-14.)",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--the_coin_is_two_sides_and_one_edge"
  },
  {
@@ -129,6 +139,7 @@
   "doc": "EVERY BIT OF RESISTANCE DRAINS. Resistance is ODD under the involution — r(σd) = −r(d) — so each orbit sums to exactly zero. Nothing is left over anywhere on the surface.",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--every_bit_of_resistance_drains"
  },
  {
@@ -141,6 +152,7 @@
   "doc": "The harmonic point is the one that never had any: at the fixed point the resistance is zero before any folding, which is what makes it the edge rather than a side.",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--the_harmonic_carries_no_resistance"
  },
  {
@@ -153,6 +165,7 @@
   "doc": "AND THE WHOLE SURFACE DRAINS AT ONCE. Summed over every digit, resistance is zero — the two sides cancel exactly, which is the sentence's \"measured to drain\" as an arithmetic identity.",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--the_whole_surface_sums_to_zero"
  },
  {
@@ -165,6 +178,7 @@
   "doc": "The drain is not an approximation that improves with scale: it is exact at every multiple, because oddness is preserved by scaling. Checked at four magnitudes.",
   "sourcePath": "src/pair/formal/proofs/coin.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "coin--the_drain_is_exact_at_every_scale"
  },
  {
@@ -177,6 +191,7 @@
   "doc": "VERIFIED AT EVERY POINT A FINITE CHECK REACHES — a thousand cases, decided in the kernel.",
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "decidability--verified_at_every_point_below_the_bound"
  },
  {
@@ -189,6 +204,7 @@
   "doc": "AND FALSE. The very next case refutes it.",
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "decidability--and_false_at_the_bound"
  },
  {
@@ -201,6 +217,7 @@
   "doc": "So a finite verification does not entail the unbounded claim: here is a property verified at a thousand consecutive points whose universal statement is FALSE. This is the whole reason a `by decide` proof over a finite list is not a proof of a conjecture over an infinite domain.",
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "decidability--finite_verification_does_not_entail_the_universal"
  },
  {
@@ -213,6 +230,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "decidability--a_bigger_bound_proves_no_more"
  },
  {
@@ -225,6 +243,7 @@
   "doc": "What a finite check DOES establish, stated exactly: a counterexample cannot be below the bound. That is a real result and it is not the conjecture.",
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "decidability--what_a_finite_check_does_establish"
  },
  {
@@ -237,6 +256,7 @@
   "doc": "The corpus's Clay-named theorems quantify over finite lists of this size — nine points for the Riemann functional equation, seven for BSD. Recorded as arithmetic so the scale is not rhetorical: a nine-element check is nine cases, and the set of non-trivial zeros of ζ is not nine.",
   "sourcePath": "src/pair/formal/proofs/decidability.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "decidability--the_clay_files_quantify_over_finite_lists"
  },
  {
@@ -249,6 +269,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "hodge--sigma_is_an_involution"
  },
  {
@@ -261,6 +282,7 @@
   "doc": "σ preserves total degree — it acts WITHIN H^n, which is why it decomposes it.",
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "hodge--sigma_preserves_degree"
  },
  {
@@ -273,6 +295,7 @@
   "doc": "The unique fixed type in degree 2k is (k,k). Here k = 2.",
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "hodge--fixed_type_is_p_equals_q"
  },
  {
@@ -285,6 +308,7 @@
   "doc": "And it is the same in every even degree: (k,k) is fixed, everything else is swapped. Checked at k = 0, 1, 2, 3.",
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "hodge--diagonal_is_fixed_at_every_k"
  },
  {
@@ -297,6 +321,7 @@
   "doc": "The involution and its fixed diagonal, together.",
   "sourcePath": "src/pair/formal/proofs/hodge.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "hodge--involution_fixes_the_diagonal"
  },
  {
@@ -309,6 +334,9 @@
   "doc": "THE ODD PART CANCELS OVER EVERY ORBIT. For any involution, any f, any point: the pair {x, σx} sums to exactly zero. This is the general form of \"every bit of resistance drains\", and the coin's version of it is this theorem at σ d = 10 − d.",
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": "involution--orbit_sums_to_zero"
  },
  {
@@ -321,6 +349,9 @@
   "doc": "THE HARMONIC POINT CARRIES NOTHING. Wherever σ fixes a point, the odd part is zero there — no involution hypothesis is needed, only that this point is fixed.",
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": "involution--odd_vanishes_at_a_fixed_point"
  },
  {
@@ -333,6 +364,9 @@
   "doc": "THE EVEN PART IS WHAT SURVIVES THE REFLECTION — it takes the same value at x and at σx.",
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": "involution--evenPart_is_symmetric"
  },
  {
@@ -345,6 +379,9 @@
   "doc": "AND THE TWO HALVES RECONSTRUCT THE WHOLE. Nothing is lost in the split, and this one needs no involution at all — it is true of the two parts as defined, for every σ.",
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": "involution--the_split_loses_nothing"
  },
  {
@@ -357,6 +394,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "involution--the_instance_is_an_involution"
  },
  {
@@ -369,6 +407,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "involution--the_instance_cancels_over_every_orbit"
  },
  {
@@ -381,6 +420,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "involution--the_instance_has_one_harmonic_point"
  },
  {
@@ -393,6 +433,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/involution.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "involution--the_instance_splits_without_loss"
  },
  {
@@ -405,6 +446,7 @@
   "doc": "T² = id. Reversing time twice returns the equation, whatever the viscosity.",
   "sourcePath": "src/pair/formal/proofs/navier-stokes.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "navier-stokes--reversal_is_an_involution"
  },
  {
@@ -417,6 +459,7 @@
   "doc": "Euler is invariant: every term transforms alike, so T fixes it.",
   "sourcePath": "src/pair/formal/proofs/navier-stokes.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "navier-stokes--euler_is_time_reversible"
  },
  {
@@ -429,6 +472,7 @@
   "doc": "Navier-Stokes is NOT invariant, and the viscous term is the only one that differs.",
   "sourcePath": "src/pair/formal/proofs/navier-stokes.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "navier-stokes--viscosity_breaks_time_reversal"
  },
  {
@@ -441,6 +485,7 @@
   "doc": "Invariance holds exactly when ν = 0: the fixed points of T are the inviscid equations.",
   "sourcePath": "src/pair/formal/proofs/navier-stokes.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "navier-stokes--fixed_points_are_exactly_the_inviscid"
  },
  {
@@ -453,6 +498,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "p-vs-np--sigma_is_an_involution"
  },
  {
@@ -465,6 +511,7 @@
   "doc": "The classes σ fixes are exactly those closed under complement. P and PSPACE are; the status of NP is the open question.",
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "p-vs-np--fixed_points_are_p_and_pspace"
  },
  {
@@ -477,6 +524,7 @@
   "doc": "σ swaps NP and coNP — they are complements by definition, not by theorem.",
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "p-vs-np--np_and_conp_are_swapped"
  },
  {
@@ -489,6 +537,7 @@
   "doc": "THE HONEST IMPLICATION — a real one, not a projection of its own hypothesis. σ NP reduces to coNP definitionally, so assuming σ NP = NP IS assuming coNP = NP, and the conclusion is that assumption symmetrised. Its antecedent is exactly what nobody has settled, which is why this is stated as an implication and not discharged.  (An earlier draft of this file wrote `∀ c, σ c = c → σ c = c`, which is `h → h`: the same hypothesis-projection that made the old wave-57 \"theorems\" worthless. Removed.)",
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "p-vs-np--if_np_is_fixed_then_np_equals_conp"
  },
  {
@@ -501,6 +550,7 @@
   "doc": "P is a fixed point of σ. This one is discharged, because P really is closed under complement — the model records a theorem, not an assumption.",
   "sourcePath": "src/pair/formal/proofs/p-vs-np.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "p-vs-np--p_is_closed_under_complement"
  },
  {
@@ -513,6 +563,7 @@
   "doc": "The round trip is the identity: χ and g carry the same information.",
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "poincare--chi_and_genus_are_inverse"
  },
  {
@@ -525,6 +576,7 @@
   "doc": "The sphere: g = 0, χ = 2. This is the surface Poincaré's 3-dimensional analogue is about.",
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "poincare--sphere_has_euler_characteristic_two"
  },
  {
@@ -537,6 +589,7 @@
   "doc": "The torus is flat: g = 1, χ = 0 — the boundary between positive and negative curvature.",
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "poincare--torus_has_euler_characteristic_zero"
  },
  {
@@ -549,6 +602,7 @@
   "doc": "THIS CORPUS: genus 2, χ = −2, and rank H₁ = 2 − χ = 4 — the band count the census uses.",
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "poincare--double_torus_has_chi_minus_two_and_rank_four"
  },
  {
@@ -561,6 +615,7 @@
   "doc": "rank H₁(Σ_g) = 2g, equivalently 2 − χ, at every genus checked.",
   "sourcePath": "src/pair/formal/proofs/poincare.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "poincare--homology_rank_is_twice_the_genus"
  },
  {
@@ -573,6 +628,7 @@
   "doc": "σ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.",
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "riemann--sigma_is_an_involution"
  },
  {
@@ -585,6 +641,7 @@
   "doc": "The fixed point is n = 1, i.e. s = 1/2 — the critical line.",
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "riemann--critical_line_is_the_fixed_point"
  },
  {
@@ -597,6 +654,7 @@
   "doc": "σ pairs s with 1−s: the trivial-zero side and the far side reflect onto each other, s = 0 ↔ s = 1, s = −2 ↔ s = 4 (in halves: −1 ↔ 2).",
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "riemann--sigma_pairs_the_plane"
  },
  {
@@ -609,6 +667,7 @@
   "doc": "Re(s) = 1/2 is the ONLY line σ fixes: doubling, 2·(1/2) = 1 = the fixed numerator.",
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "riemann--the_fixed_line_is_one_half"
  },
  {
@@ -621,6 +680,7 @@
   "doc": "The involution and its fixed point, together.",
   "sourcePath": "src/pair/formal/proofs/riemann.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "riemann--involution_fixes_the_critical_line"
  },
  {
@@ -633,6 +693,7 @@
   "doc": "LIGHT IS THE FIXED POINT OF COMPOSITION. Add any velocity to c and the result is c again — not approximately, not in a limit: the same fraction, exactly, at every sample. This is the sense in which c is not a speed among speeds but the fixed point of the operation that combines them.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "spacetime--light_is_the_fixed_point"
  },
  {
@@ -645,6 +706,7 @@
   "doc": "And from the other side, because composition is not assumed commutative until it is checked.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "spacetime--light_is_fixed_from_either_side"
  },
  {
@@ -657,6 +719,7 @@
   "doc": "REST IS THE IDENTITY. Adding nothing changes nothing — the other distinguished element.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "spacetime--rest_is_the_identity"
  },
  {
@@ -669,6 +732,7 @@
   "doc": "COMPOSITION IS SYMMETRIC in the two velocities, at every pair of the sample.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "spacetime--composition_is_symmetric"
  },
  {
@@ -681,6 +745,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "spacetime--below_c_composes_to_below_c"
  },
  {
@@ -693,6 +758,7 @@
   "doc": "THE INTERVAL IS INVARIANT UP TO THE ONE COMMON FACTOR. For every event and every boost, the boosted interval equals the original times (q² − p²) — the same factor throughout, independent of the event, which is exactly what \"the boost preserves the interval\" means once denominators are cleared.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "spacetime--the_boost_preserves_the_interval"
  },
  {
@@ -705,6 +771,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "spacetime--the_light_cone_is_carried_to_itself"
  },
  {
@@ -717,6 +784,7 @@
   "doc": "THE BOOST IS UNDONE BY THE REVERSE BOOST. Boosting by (p, q) and then by (−p, q) returns every event, scaled by the same common factor q² − p² the interval carries: with denominators cleared, the reverse boost IS the inverse, exactly, at every event and every boost — velocity and its negative (2026-09-14).",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "spacetime--the_reverse_boost_undoes_the_boost"
  },
  {
@@ -729,6 +797,10 @@
   "doc": "…and for EVERY event and EVERY boost, proved rather than decided: the theorem above checks eight events under five boosts; this holds for all integers p, q, t, x at once. Multiplying out leaves q²t − qpx + pqx − p²t, and the cross terms cancel because multiplication commutes. A proof, not an exhaustion — it rests on the standard axioms propext and Quot.sound that core's integer lemmas carry.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--the_reverse_boost_undoes_every_boost"
  },
  {
@@ -741,6 +813,10 @@
   "doc": "Strictly inside the band (−b, b) means a strictly smaller square.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--sq_lt"
  },
  {
@@ -753,6 +829,10 @@
   "doc": "A smaller square (with b positive) means inside the band.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--lt_of_sq"
  },
  {
@@ -765,6 +845,10 @@
   "doc": "For every event and every boost the interval is multiplied by q² − p², and by nothing else.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--interval_scales"
  },
  {
@@ -777,6 +861,10 @@
   "doc": "Below c that factor is positive.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--scale_positive"
  },
  {
@@ -789,6 +877,10 @@
   "doc": "TIMELIKE STAYS TIMELIKE in every frame below c.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--timelike_invariant"
  },
  {
@@ -801,6 +893,10 @@
   "doc": "SPACELIKE STAYS SPACELIKE: no boost makes a spacelike separation reachable.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--spacelike_invariant"
  },
  {
@@ -813,6 +909,10 @@
   "doc": "The light cone is frame-independent: null in one frame is null in all.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--null_invariant"
  },
  {
@@ -825,6 +925,10 @@
   "doc": "FOR A CAUSAL SEPARATION EVERY OBSERVER BELOW c AGREES WHICH EVENT CAME FIRST. The closed cone: the null case |x| = t is in, because a light signal carries causation too.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--timelike_order_absolute"
  },
  {
@@ -837,6 +941,10 @@
   "doc": "FOR A SPACELIKE SEPARATION THERE IS A FRAME BELOW c IN WHICH THE ORDER REVERSES — exhibited: with 0 < t < x, the boost β = (2t+1)/(2x) sends Δt to −x.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--spacelike_order_reverses"
  },
  {
@@ -849,6 +957,10 @@
   "doc": "…and a frame in which the two events are simultaneous: β = t/x sends Δt to 0.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--spacelike_simultaneous"
  },
  {
@@ -861,6 +973,10 @@
   "doc": "TWO BOOSTS BELOW c COMPOSE TO A BOOST BELOW c, for every pair — c is not approached by adding.",
   "sourcePath": "src/pair/formal/proofs/spacetime.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": "spacetime--velocity_addition_below_c"
  },
  {
@@ -873,6 +989,7 @@
   "doc": "The closure has exactly rows x cols cells: 18 x 9 = 162 for the installed library.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--closure_is_one_hundred_sixty_two"
  },
  {
@@ -885,6 +1002,7 @@
   "doc": "The product law, at several shapes — the size is rows x cols and not an accident of 18 and 10.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--closure_is_the_product"
  },
  {
@@ -897,6 +1015,7 @@
   "doc": "NO CELL IS REPEATED. This is the bijection, and it is strictly stronger than \"every pair is present\": a list carrying one pair twice and omitting another would satisfy presence at the right length, and would still have a hole in it.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--closure_has_no_duplicate"
  },
  {
@@ -909,6 +1028,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--closure_is_complete"
  },
  {
@@ -921,6 +1041,7 @@
   "doc": "THE ADDRESS INVERTS. Row-major indexing recovers both coordinates for every cell, so a scene can be addressed by one number without losing which geometry and which material it names.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--address_inverts"
  },
  {
@@ -933,6 +1054,7 @@
   "doc": "The addresses are exactly 0 … 179, each used once: the closure is an interval, not a scatter.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--addresses_are_the_interval"
  },
  {
@@ -945,6 +1067,7 @@
   "doc": "The clearing itself: FOCAL/(FOCAL - z) = 24/(24 - k) reduces to 12 * 10 = 5 * 24.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--the_compound_fraction_clears"
  },
  {
@@ -957,6 +1080,7 @@
   "doc": "AT THE FOCAL PLANE THE SCALE IS UNITY. z = 0 gives 24/24 = 1: objects on the plane through the origin are neither enlarged nor reduced, which is what makes FOCAL a focal length.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--focal_plane_is_unit_scale"
  },
  {
@@ -969,6 +1093,7 @@
   "doc": "NEARER ENLARGES, FURTHER RECEDES, STRICTLY. For depths inside the focal point, k1 < k2 implies 24/(24-k1) < 24/(24-k2), stated by cross-multiplication so no division occurs. This is the monotonicity the TS fold checks numerically and the property two canvas painters violated by faking depth as a screen offset before the 2026-07-07 audit.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--depth_is_strictly_monotone"
  },
  {
@@ -981,6 +1106,7 @@
   "doc": "The frustum the camera declares is non-degenerate: near < FOCAL < far, in tenths, with the depth planes half a lattice pitch either side of the focal plane (near 19/10, far 29/10).",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--frustum_brackets_the_focal_plane"
  },
  {
@@ -993,6 +1119,7 @@
   "doc": "The projection never divides by zero on the declared frustum: the denominator stays positive for every depth between the near and far planes.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--denominator_is_positive_on_the_frustum"
  },
  {
@@ -1005,6 +1132,7 @@
   "doc": "σ² = id on every cell of the closure.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--reflection_is_an_involution"
  },
  {
@@ -1017,6 +1145,7 @@
   "doc": "σ maps the closure onto itself — the symmetry does not leave the space.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--reflection_closes_on_the_closure"
  },
  {
@@ -1029,6 +1158,7 @@
   "doc": "NO cell is its own reflection. ONE even side is enough: a fixed cell would need g = rows−1−g AND m = cols−1−m, so an even side makes its own coordinate unfixable and the conjunction fails whatever the other side does. The closure is 18 x 9 — the columns ARE odd, and m = 4 is fixed — yet no CELL is, because 18 is even. Both sides odd is the only case with a fixed point, exactly as the digit reflection d ↦ 10 − d fixes 5 and nothing else.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--reflection_has_no_fixed_point"
  },
  {
@@ -1041,6 +1171,7 @@
   "doc": "So the closure is 81 orbits of two, with nothing left over.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--the_closure_is_eighty_one_orbits"
  },
  {
@@ -1053,6 +1184,7 @@
   "doc": "THE ORBITS SUM TO ZERO. Each pair of reflected cells cancels in both coordinates, exactly — the involution law this corpus states everywhere, holding here because the lattice is centred.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--orbit_positions_cancel"
  },
  {
@@ -1065,6 +1197,7 @@
   "doc": "ROW-MAJOR REFLECTION IS ADDRESS COMPLEMENT: idx(σ c) + idx(c) = 179, for all 180 cells. The geometric symmetry and the arithmetic one are the same symmetry, which is not visible from either the layout or the addressing alone.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--reflection_complements_the_address"
  },
  {
@@ -1077,6 +1210,7 @@
   "doc": "The same four laws at other shapes, so none of them is an accident of 18 and 10. Both sides odd breaks the no-fixed-point law and only that one — 3×3 has a centre cell that is its own reflection — while involutivity, closure, cancellation and complement survive everywhere.",
   "sourcePath": "src/pair/formal/proofs/three.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "three--the_involution_laws_are_general"
  },
  {
@@ -1089,6 +1223,7 @@
   "doc": "dim Λ²(ℝ⁴) = 6 — the middle degree in four dimensions, where ★ maps 2-forms to 2-forms.",
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "yang-mills--middle_forms_have_dimension_six"
  },
  {
@@ -1101,6 +1236,7 @@
   "doc": "",
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "yang-mills--star_squares_to_the_identity"
  },
  {
@@ -1113,6 +1249,7 @@
   "doc": "The split: self-dual ⊕ anti-self-dual, 3 + 3 = 6. This is why four dimensions are special — only there does ★ map middle forms to middle forms.",
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "yang-mills--selfdual_and_antiselfdual_split_the_six"
  },
  {
@@ -1125,6 +1262,7 @@
   "doc": "★ sends Λ^k to Λ^(n−k), so it is an ENDOMORPHISM exactly when k = n − k. At n = 4 that holds for k = 2 and fails for k = 1, which is why the self-dual split is a statement about 2-forms in four dimensions and not about forms in general.",
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "yang-mills--star_is_an_endomorphism_only_in_the_middle"
  },
  {
@@ -1137,6 +1275,7 @@
   "doc": "The involution and the split it produces, together.",
   "sourcePath": "src/pair/formal/proofs/yang-mills.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": "yang-mills--involution_splits_the_middle_forms"
  },
  {
@@ -1149,6 +1288,7 @@
   "doc": "χ and the genus are INVERSE: reading the genus back from χ(g) returns g for every surface up to genus 9, and rank H₁ = 2 − χ = 2g at each one. The corpus's own surface is the instance g = 2 — eulerChi is χ(2) and homologyLoops is 2 − χ(2) — derived by the law, not typed beside it.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1161,6 +1301,10 @@
   "doc": "…and at EVERY genus, proved rather than decided: the theorem above checks the first ten surfaces; this reads the genus back from χ(g) for all of them at once. A proof, not an exhaustion — it rests on the standard axioms propext and Quot.sound that core's integer lemmas carry, and the axiom probe reports it as general.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -1173,6 +1317,7 @@
   "doc": "The band ladder: `homologyLoops` consecutive Fibonacci terms descending from F(10).",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1185,6 +1330,7 @@
   "doc": "UNFOLDED_CENSUS = ΣF(7..10) = 123, and the same by the closed form F(12) − F(8).",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1197,6 +1343,7 @@
   "doc": "Σ_{i=a}^{b} F(i) = F(b+2) − F(a+1), at five windows — the census is an instance of a theorem, not a coincidence at one window.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1209,6 +1356,7 @@
   "doc": "Folding by χ and unfolding by −χ are inverse at every count below 200, and the folded census is the unfolded one folded: ΣF(7..10) + χ = 121, with the unfolded census recomputed from fib.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1221,6 +1369,7 @@
   "doc": "r is an involution on 1…9: r(r(d)) = d for every nonzero digit.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1233,6 +1382,7 @@
   "doc": "The pairs 1↔9, 2↔8, 3↔7, 4↔6 and the single fixed point 5↔5.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1245,6 +1395,7 @@
   "doc": "r maps the nonzero digits INTO the nonzero digits. At base 11 it would not: r(1) = 10.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1257,6 +1408,7 @@
   "doc": "The reflection is an involution on the WHOLE lattice 0…10, and every pair sums to it: the ten is the constant the involution preserves, not a number asserted beside it.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1269,6 +1421,7 @@
   "doc": "`φ ≈ 1.618` as an exact two-sided bound on a Fibonacci ratio: F(n+1)/F(n) → φ.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1281,6 +1434,7 @@
   "doc": "`φ − 1 ≈ 0.618` — the same statement one octave down, since φ − 1 = 1/φ and F(n−1)/F(n) → 1/φ. Stated as a two-sided bound, NOT as a disjunction: a disjunction here would be satisfiable by either half and so would assert almost nothing.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1293,6 +1447,7 @@
   "doc": "σ² = id on the energy ledger: burning what was split returns the starting energy exactly, at every ledger value below 1000 and at every molar scale. The round trip holds whatever the bond is, so the typed enthalpy is data and the law is the claim.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1305,6 +1460,7 @@
   "doc": "To trust a result conventionally you re-run it, O(N); a Merkle receipt is verified along one path of depth log₂ N. Cited from uuidna's Cipher.lean, address 5040eb7c.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1317,6 +1473,7 @@
   "doc": "A full binary tree over 2^n leaves costs 2^n − 1 merges to rebuild; a receipt costs n, one per line of the hexagram. Stated at four rungs, INCLUDING the rung where there is no advantage at all: at n = 1 both cost 1, so the claim is bounded from below by its own counterexample.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1329,6 +1486,7 @@
   "doc": "The gap WIDENS: (2^n − 1)/n is increasing, checked as a cross-multiplied integer inequality so no division and no rounding enters the statement.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1341,6 +1499,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1353,6 +1512,7 @@
   "doc": "The three state vectors the simulation materialises: 2^(t+w) amplitudes for (t,w) = (8,4), (10,5), (12,6). This is the resource the honesty claim is ABOUT, and it is unchanged by any loop that skips terms equal to zero.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1365,6 +1525,7 @@
   "doc": "Each vector dwarfs the number it factors by more than a hundredfold — the exponential a physical device would not spend, stated as three inequalities.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1377,6 +1538,7 @@
   "doc": "RSA is out of reach by an inequality between EXPONENTS, not by a shortage of patience: a 2048-bit modulus needs ~2^(3·2048) amplitudes against the 2^60 that already exhausts addressable memory.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1389,6 +1551,7 @@
   "doc": "Visiting only the non-zero amplitudes divides the inner-loop count by the work-register size W exactly, because the oracle writes one entry per x: dense W·T², sparse T². An exact factor, so the speedup claim is arithmetic and not a benchmark.",
   "sourcePath": "src/pair/lean/proofs/corpus.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1401,6 +1564,7 @@
   "doc": "The parts of a sum, a product and the literals 0 and 1 — what a proof over ALL matrices unfolds to. Stated at the file's own namespace so the inventory names each one.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1413,6 +1577,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1425,6 +1590,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1437,6 +1603,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1449,6 +1616,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1461,6 +1629,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1473,6 +1642,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1485,6 +1655,7 @@
   "doc": "HADAMARD IS UNITARY UP TO ITS RECORDED SCALE: H · H† = 2 · I.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1497,6 +1668,7 @@
   "doc": "Hadamard twice is twice the identity — it undoes itself, with the same factor 2.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1509,6 +1681,7 @@
   "doc": "X, Z and S are unitary: U · U† = I.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1521,6 +1694,7 @@
   "doc": "Y is unitary and its own inverse, like the other Paulis.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1533,6 +1707,7 @@
   "doc": "S squared is Z.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1545,6 +1720,7 @@
   "doc": "CNOT is unitary and its own inverse.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1557,6 +1733,7 @@
   "doc": "SWAP is unitary and its own inverse.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1569,6 +1746,7 @@
   "doc": "Toffoli is unitary and its own inverse.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1581,6 +1759,7 @@
   "doc": "ω really is a primitive eighth root: ω⁴ = −1, so ω⁸ = 1 and no smaller power is.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1593,6 +1772,7 @@
   "doc": "T IS UNITARY, HAS ORDER EXACTLY 8 (T⁸ = I, T⁴ ≠ I), AND DOES NOT COMMUTE WITH HADAMARD.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1605,6 +1785,7 @@
   "doc": "THE BELL STATE IS SUPPORTED ON EXACTLY 00 AND 11, WITH EQUAL WEIGHT.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1617,6 +1798,7 @@
   "doc": "The GHZ state is supported on exactly 000 and 111, with equal weight.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1629,6 +1811,7 @@
   "doc": "EVERY ASSIGNMENT OF DEFINITE VALUES GIVES |S| = 2 — the classical bound, all sixteen cases.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1641,6 +1824,7 @@
   "doc": "THE BELL STATE BREAKS THE BOUND: the scaled sum is 8 = S · ⟨Φ|Φ⟩ · √2, so S² = 8² / (2² · 2) = 8, beyond the classical 2² = 4.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1653,6 +1837,7 @@
   "doc": "EVERY OUTCOME OF QUBITS 0 AND 1 LEAVES QUBIT 2 HOLDING THE INPUT, with equal weight.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1665,6 +1850,7 @@
   "doc": "NO SIGNALLING: before the corrections, qubit 2 alone is the same for every Pauli eigenstate input — off-diagonals zero, diagonals equal.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1677,6 +1863,7 @@
   "doc": "EACH OF THE FOUR MESSAGES DECODES TO EXACTLY ITS OWN BASIS STATE: one qubit carries two bits.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1689,6 +1876,7 @@
   "doc": "Both directions over one pair: one qubit carries two classical bits, and two carry one qubit.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1701,6 +1889,10 @@
   "doc": "NO LINEAR MAP THAT COPIES |0⟩ AND |1⟩ COPIES |+⟩: its image of |+⟩|0⟩ is not |+⟩|+⟩.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -1713,6 +1905,7 @@
   "doc": "The hypotheses are not vacuous: CNOT is such a map — it copies the basis states exactly.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1725,6 +1918,7 @@
   "doc": "H ON EITHER QUBIT ACTS ON EVERY PAULI STRING AS ITS RULE SAYS (times its recorded factor 2).",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1737,6 +1931,7 @@
   "doc": "S on either qubit acts on every Pauli string as its rule says.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1749,6 +1944,7 @@
   "doc": "CNOT acts on every Pauli string as its rule says.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1761,6 +1957,7 @@
   "doc": "ONE QUERY DECIDES: a constant function leaves all weight on 00, a balanced one leaves none.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1773,6 +1970,7 @@
   "doc": "The promise is not empty on either side: two functions are constant and six are balanced.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1785,6 +1983,7 @@
   "doc": "ONE GROVER ITERATION OVER FOUR ITEMS LEAVES ALL WEIGHT ON THE MARKED ITEM.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1797,6 +1996,7 @@
   "doc": "THE TRANSFORM IS UNITARY UP TO ITS RECORDED SCALE: QFT · QFT† = 8 · I.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1809,6 +2009,7 @@
   "doc": "PHASE ESTIMATION IS EXACT ON AN EIGENPHASE k/8: the inverse transform returns |k⟩.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1821,6 +2022,9 @@
   "doc": "ROUTING PRESERVES THE FUNCTION: SWAP(0,1) · CNOT(1,2) · SWAP(0,1) is exactly CNOT(0,2).",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -1833,6 +2037,9 @@
   "doc": "And the routing is needed: the unrouted neighbour gate is a different function.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -1845,6 +2052,10 @@
   "doc": "A routed CNOT at distance d ≥ 1 takes 2d − 1 gates; at distance 2, the three above.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -1857,6 +2068,9 @@
   "doc": "THE REPETITION CODE CORRECTS EVERY SINGLE BIT FLIP, and no flip at all.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -1869,6 +2083,9 @@
   "doc": "AND IT DOES NOT CORRECT TWO: the claim above is sharp, not vacuous.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -1881,6 +2098,7 @@
   "doc": "EACH SINGLE-QUBIT ERROR TRIPS ITS OWN NONZERO SYNDROME — the position it names.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1893,6 +2111,7 @@
   "doc": "Steane is CSS: every pair of checks overlaps on an even number of qubits.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1905,6 +2124,7 @@
   "doc": "EVERY SINGLE BIT FLIP TRIPS ITS OWN SYNDROME, AND EVERY SINGLE PHASE FLIP NAMES ITS BLOCK.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1917,6 +2137,10 @@
   "doc": "At distance d ≥ 2t + 1, two error patterns of weight at most t never span d.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -1929,6 +2153,7 @@
   "doc": "THE PAULIS MULTIPLY CYCLICALLY WITH THE FACTOR i: XY = iZ, YZ = iX, ZX = iY.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1941,6 +2166,7 @@
   "doc": "Reversed, each product changes sign — so distinct Paulis anticommute and commute to 2i times the third.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1953,6 +2179,7 @@
   "doc": "Each Pauli squares to the identity, is its own adjoint, and has trace zero.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1965,6 +2192,7 @@
   "doc": "HADAMARD EXCHANGES THE PHASE FLIP AND THE BIT FLIP: H·Z·H = 2·X and H·X·H = 2·Z — the reason the phase-flip code is the bit-flip code read in the Hadamard basis.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1977,6 +2205,7 @@
   "doc": "GHZ IS A +1 EIGENSTATE OF XXX AND A −1 EIGENSTATE OF XYY, YXY AND YYX.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -1989,6 +2218,7 @@
   "doc": "NO DEFINITE VALUES REPRODUCE THOSE FOUR SIGNS: all sixty-four assignments fail — the product of the three −1 lines is x₁x₂x₃ again, so it would have to be both −1 and +1.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2001,6 +2231,7 @@
   "doc": "BOB'S HALF IS MAXIMALLY MIXED WHATEVER ALICE DOES: off-diagonals zero, diagonals equal, for all seven.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2013,6 +2244,7 @@
   "doc": "The claim is not empty: Alice's operation does change the pair — only Bob's half cannot tell.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2025,6 +2257,7 @@
   "doc": "THE FOUR OUTCOMES CARRY EQUAL WEIGHT FOR EVERY PAULI EIGENSTATE: the two classical bits say nothing about what crosses.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2037,6 +2270,7 @@
   "doc": "TWO QUBITS THAT NEVER MET ARE LEFT ENTANGLED ON EVERY OUTCOME: nonzero determinant, and the two amplitudes that survive have equal weight.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2049,6 +2283,7 @@
   "doc": "And it is the pairs' entanglement that is swapped: from product pairs the outer two stay a product.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2061,6 +2296,7 @@
   "doc": "Addition commutes — checked on representatives, not inherited from a library.",
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2073,6 +2309,7 @@
   "doc": "Addition associates.",
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2085,6 +2322,7 @@
   "doc": "Multiplication commutes.",
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2097,6 +2335,7 @@
   "doc": "1/2 + 1/3 = 5/6, exactly — no floating point anywhere in the corpus's arithmetic.",
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2109,6 +2348,7 @@
   "doc": "Amplitude normalisation |α|² + |β|² = 1, exactly, on the 3-4-5 triple: (3/5)² + (4/5)² = 1. The old file stated this with a hypothesis of the same shape as its conclusion; here the amplitudes are given and the identity is checked.",
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2121,6 +2361,7 @@
   "doc": "The same, as rationals: 9/25 + 16/25 = 1.",
   "sourcePath": "src/pair/lean/proofs/rational.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2133,6 +2374,7 @@
   "doc": "THE REGISTRY'S FINITE FACTS, DECIDED BY THE KERNEL.  Rows of THEOREM_ATOM_SEED (src/4/6) whose algebraic statement is a finite fact — checkable by computation over a finite carrier — are proved here by `decide`: no library, no axiom, the kernel evaluates them. Where a row states a general law, this proves finite INSTANCES of it (the involution discipline of src/pair/formal/proofs/involution.lean: state once, decide the instances) and says which. Out of `decide`'s reach and therefore NOT here: R(3,4) = 9 and R(3,5) = 14 (2^36 and more colourings), Kaprekar over all 4-digit numbers. A missing theorem is an open row, not a failed one.   namespace Registry  /-! ## The Sothic cycle meshes the Egyptian civil year — 1461 × 365 = 1460 × 365.25, in whole quarter-days.",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2145,6 +2387,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2157,6 +2400,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2169,6 +2413,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2181,6 +2426,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2193,6 +2439,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2205,6 +2452,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2217,6 +2465,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2229,6 +2478,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2241,6 +2491,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2253,6 +2504,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2265,6 +2517,7 @@
   "doc": "THE LATTICE DIRECTIONS, EACH HOLDING A KERNEL-DECIDED ROW (2026-09-14). The registry spreads over 14 directions (rosetta ray × face). The release waits until every direction holds at least one row the kernel decides; before this block 5 of 14 did. One finite fact per empty direction, each by `decide` with no axiom. Where a row states a general law, the scope is its stated instances and says so.   /-! 0·counter — τ(6) = τ(2)·τ(3): the stated values multiply (−24)(252) = −6048. Instances, not Hecke's law.",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2277,6 +2530,7 @@
   "doc": "THE LATTICE DIRECTIONS, EACH HOLDING A KERNEL-DECIDED ROW (2026-09-14). The registry spreads over 14 directions (rosetta ray × face). The release waits until every direction holds at least one row the kernel decides; before this block 5 of 14 did. One finite fact per empty direction, each by `decide` with no axiom. Where a row states a general law, the scope is its stated instances and says so.   /-! 0·counter — τ(6) = τ(2)·τ(3): the stated values multiply (−24)(252) = −6048. Instances, not Hecke's law. theorem tau_six_is_product : ((-24 : Int) * 252 = -6048) := by decide  /-! 0·forward — K₅ and K₃,₃ break the planar bounds e ≤ 3v−6 and (bipartite) e ≤ 2v−4.",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2289,6 +2543,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2301,6 +2556,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2313,6 +2569,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2325,6 +2582,7 @@
   "doc": "THE LATTICE DIRECTIONS, EACH HOLDING A KERNEL-DECIDED ROW (2026-09-14). The registry spreads over 14 directions (rosetta ray × face). The release waits until every direction holds at least one row the kernel decides; before this block 5 of 14 did. One finite fact per empty direction, each by `decide` with no axiom. Where a row states a general law, the scope is its stated instances and says so.   /-! 0·counter — τ(6) = τ(2)·τ(3): the stated values multiply (−24)(252) = −6048. Instances, not Hecke's law. theorem tau_six_is_product : ((-24 : Int) * 252 = -6048) := by decide  /-! 0·forward — K₅ and K₃,₃ break the planar bounds e ≤ 3v−6 and (bipartite) e ≤ 2v−4. theorem k5_k33_break_planar_bounds : (10 > 3 * 5 - 6) ∧ (9 > 2 * 6 - 4) := by decide  /-! 1·counter — Catalan by its convolution recurrence: 1,1,2,5,14,42, so C₅ = 42 triangulations of the heptagon. def nth0 : List Nat → Nat → Nat | [], _ => 0 | x :: _, 0 => x | _ :: xs, k + 1 => nth0 xs k def catalanList : Nat → List Nat | 0 => [1] | n + 1 => let cs := catalanList n cs ++ [((List.range (n + 1)).map (fun i => nth0 cs i * nth0 cs (n - i))).foldl (· + ·) 0] theorem catalan_heptagon : catalanList 5 = [1, 1, 2, 5, 14, 42] := by decide  /-! 2·counter — exactly 3 regular tilings: (p−2)(q−2) = 4 has exactly {3,6},{4,4},{6,3} for p,q ≥ 3 (p or q ≥ 7 forces a factor ≥ 5). def tilings : List (Nat × Nat) := ((List.range' 3 18).flatMap fun p => (List.range' 3 18).map fun q => (p, q)).filter fun pq => (pq.1 - 2) * (pq.2 - 2) == 4 theorem exactly_three_regular_tilings : tilings = [(3, 6), (4, 4), (6, 3)] := by decide  /-! 2·forward — Steiner S(2,3,7): the 7 lines {i, i+1, i+3} mod 7 cover each of the C(7,2) = 21 pairs exactly once. def fano (i : Nat) : List Nat := [i % 7, (i + 1) % 7, (i + 3) % 7] def covers (a b : Nat) : Nat := ((List.range 7).filter fun i => (fano i).any (· == a) && (fano i).any (· == b)).length set_option maxRecDepth 100000 in theorem steiner_two_three_seven : (List.range 7).all (fun a => (List.range 7).all (fun b => a == b || covers a b == 1)) = true := by decide +kernel  /-! 3·counter — the Moore bound for a (3,6)-cage: 2(k² − k + 1) = 14 at k = 3 (the value; cagehood is cited, not proved).",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2337,6 +2595,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2349,6 +2608,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2361,6 +2621,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2373,6 +2634,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2385,6 +2647,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2397,6 +2660,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2409,6 +2676,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2421,6 +2692,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2433,6 +2705,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2445,6 +2721,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2457,6 +2737,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2469,6 +2753,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2481,6 +2769,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2493,6 +2785,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2505,6 +2801,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2517,6 +2817,9 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2529,6 +2832,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2541,6 +2845,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2553,6 +2858,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2565,6 +2871,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2577,6 +2884,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2589,6 +2897,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2601,6 +2910,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2613,6 +2923,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2625,6 +2939,10 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [
+   "Quot.sound",
+   "propext"
+  ],
   "depositId": ""
  },
  {
@@ -2637,6 +2955,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2649,6 +2968,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2661,6 +2981,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2673,6 +2994,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2685,6 +3007,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2697,6 +3020,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2709,6 +3033,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2721,6 +3046,7 @@
   "doc": "(3/2)¹² / 2⁷ = 3¹² / 2¹⁹ = 531441 / 524288. Cross-multiplied, so no division enters; 3¹² sits strictly between 2¹⁹ and 2²⁰, so no number of octaves meets it.",
   "sourcePath": "src/pair/lean/proofs/registry.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2733,6 +3059,7 @@
   "doc": "THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2^999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2^999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set_option maxRecDepth 10000  namespace Thousand  /-! # The thousand-bit case  /-! ## 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2745,6 +3072,7 @@
   "doc": "THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2^999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2^999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set_option maxRecDepth 10000  namespace Thousand  /-! # The thousand-bit case  /-! ## 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the_thousand_bit_case_is_one_hundred_twenty_five_octaves : 1000 = 125 * 8 ∧ 1000 % 8 = 0 ∧ 999 % 8 ≠ 0 := by decide  /-! ## EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2757,6 +3085,7 @@
   "doc": "THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2^999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2^999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set_option maxRecDepth 10000  namespace Thousand  /-! # The thousand-bit case  /-! ## 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the_thousand_bit_case_is_one_hundred_twenty_five_octaves : 1000 = 125 * 8 ∧ 1000 % 8 = 0 ∧ 999 % 8 ≠ 0 := by decide  /-! ## EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the_binary_units_tile_the_thousand_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 % 2 = 0 ∧ 1000 % 4 = 0 ∧ 1000 % 8 = 0 := by decide  /-! ## IT IS THE CUBE 10^3 = 2^3·5^3 — THE OCTAVE IS ONLY THE 2^3, THE 5^3 IS THE PENTAGRAM CUBED",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2769,6 +3098,7 @@
   "doc": "THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2^999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2^999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set_option maxRecDepth 10000  namespace Thousand  /-! # The thousand-bit case  /-! ## 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the_thousand_bit_case_is_one_hundred_twenty_five_octaves : 1000 = 125 * 8 ∧ 1000 % 8 = 0 ∧ 999 % 8 ≠ 0 := by decide  /-! ## EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the_binary_units_tile_the_thousand_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 % 2 = 0 ∧ 1000 % 4 = 0 ∧ 1000 % 8 = 0 := by decide  /-! ## IT IS THE CUBE 10^3 = 2^3·5^3 — THE OCTAVE IS ONLY THE 2^3, THE 5^3 IS THE PENTAGRAM CUBED theorem the_thousand_is_the_cube_octave_times_pentagram_cubed : 10 ^ 3 = 1000 ∧ 2 ^ 3 * 5 ^ 3 = 1000 ∧ 2 ^ 3 = 8 ∧ 5 ^ 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! ## THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2781,6 +3111,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2793,6 +3124,7 @@
   "doc": "THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2^999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2^999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set_option maxRecDepth 10000  namespace Thousand  /-! # The thousand-bit case  /-! ## 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the_thousand_bit_case_is_one_hundred_twenty_five_octaves : 1000 = 125 * 8 ∧ 1000 % 8 = 0 ∧ 999 % 8 ≠ 0 := by decide  /-! ## EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the_binary_units_tile_the_thousand_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 % 2 = 0 ∧ 1000 % 4 = 0 ∧ 1000 % 8 = 0 := by decide  /-! ## IT IS THE CUBE 10^3 = 2^3·5^3 — THE OCTAVE IS ONLY THE 2^3, THE 5^3 IS THE PENTAGRAM CUBED theorem the_thousand_is_the_cube_octave_times_pentagram_cubed : 10 ^ 3 = 1000 ∧ 2 ^ 3 * 5 ^ 3 = 1000 ∧ 2 ^ 3 = 8 ∧ 5 ^ 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! ## THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS theorem the_thousand_carries_residue_one_mod_nine : 1000 % 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 % 9 = 0 ∧ 1008 % 9 = 0 := by decide  /-! ## IT OVERFLOWS THE SEALED WIDTH LADDER: reg(32) = 990 < 1000 ≤ 1021 = reg(33) -- reg(w) = 32w − w − 2 is qpu's uuidQubits, sealed over widths [4,8,16,32] in width.lean; the max there is reg(32) = 990. theorem the_thousand_bit_case_overflows_the_width_thirty_two_ceiling : 32 * 32 - 32 - 2 = 990 ∧ 990 < 1000 ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021 := by decide  /-! ## THE MINIMAL CONTAINING WIDTH IS 33 — OVERFLOW MARGIN 10, HEADROOM 21",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2805,6 +3137,7 @@
   "doc": "THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2^999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2^999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set_option maxRecDepth 10000  namespace Thousand  /-! # The thousand-bit case  /-! ## 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the_thousand_bit_case_is_one_hundred_twenty_five_octaves : 1000 = 125 * 8 ∧ 1000 % 8 = 0 ∧ 999 % 8 ≠ 0 := by decide  /-! ## EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the_binary_units_tile_the_thousand_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 % 2 = 0 ∧ 1000 % 4 = 0 ∧ 1000 % 8 = 0 := by decide  /-! ## IT IS THE CUBE 10^3 = 2^3·5^3 — THE OCTAVE IS ONLY THE 2^3, THE 5^3 IS THE PENTAGRAM CUBED theorem the_thousand_is_the_cube_octave_times_pentagram_cubed : 10 ^ 3 = 1000 ∧ 2 ^ 3 * 5 ^ 3 = 1000 ∧ 2 ^ 3 = 8 ∧ 5 ^ 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! ## THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS theorem the_thousand_carries_residue_one_mod_nine : 1000 % 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 % 9 = 0 ∧ 1008 % 9 = 0 := by decide  /-! ## IT OVERFLOWS THE SEALED WIDTH LADDER: reg(32) = 990 < 1000 ≤ 1021 = reg(33) -- reg(w) = 32w − w − 2 is qpu's uuidQubits, sealed over widths [4,8,16,32] in width.lean; the max there is reg(32) = 990. theorem the_thousand_bit_case_overflows_the_width_thirty_two_ceiling : 32 * 32 - 32 - 2 = 990 ∧ 990 < 1000 ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021 := by decide  /-! ## THE MINIMAL CONTAINING WIDTH IS 33 — OVERFLOW MARGIN 10, HEADROOM 21 theorem the_minimal_register_for_the_thousand_is_width_thirty_three : 1000 - 990 = 10 ∧ 1021 - 1000 = 21 ∧ 990 < 1000 ∧ 1000 ≤ 1021 ∧ (32 * 33 - 33 - 2) / 2 = 510 := by decide  /-! ## THE UTILISATION IS 97.94% — BRACKETED 97% < 1000/1021 < 98% AS A DECIDABLE BOUND",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2817,6 +3150,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2829,6 +3163,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2841,6 +3176,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2853,6 +3189,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2865,6 +3202,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2877,6 +3215,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/thousand.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2889,6 +3228,7 @@
   "doc": "The first descent wave: six folds dissolved, 160 → 154. Measured, then checked here.",
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2901,6 +3241,7 @@
   "doc": "The target is the census theorem, recomputed rather than repeated: ΣF(7..10).",
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2913,6 +3254,7 @@
   "doc": "THE RATCHET LAW over the real history, read newest-first: each count is strictly below the one before it. A wave that added an index.ts would make this proof fail, which is exactly what \"the count may fall, never rise\" means when it is checkable.  The pairs are DERIVED from `recorded` — `recorded.zip recorded.tail` is the consecutive pairing — because they used to be typed out a second time and that second copy rotted: the corpus descended to 138, the record above followed, and this list did not. It went on proving a true fact about a history that had stopped being the whole history, which is the exact failure the comment on `recorded` describes, committed one definition further down. A record read twice is a record that can disagree with itself.",
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2925,6 +3267,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2937,6 +3280,7 @@
   "doc": "The distance to the target round-trips on the record: adding the target back to what remains returns every recorded count. That holds exactly when a count is at or above the target, so the record is read through the inverse of `remaining` instead of being compared to a literal.",
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2949,6 +3293,7 @@
   "doc": "The ratchet law in its general form: dissolving a leaf strictly decreases the count.",
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  },
  {
@@ -2961,6 +3306,7 @@
   "doc": "",
   "sourcePath": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
   "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
   "depositId": ""
  }
 ]

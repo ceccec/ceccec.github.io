@@ -1354,6 +1354,8 @@ export type LeanTheoremLatex = {
   readonly doc: string
   readonly proposition: string
   readonly tactic: string
+  /** What the kernel reported this theorem rests on (.vitepress/data/lean-axioms.json): [] is "no axiom"; null is NOT RECORDED. */
+  readonly axioms: readonly string[] | null
 }
 
 const TITLE_OF = (name: string): string => name.replace(/_/g, ' ').replace(/^(.)/, (c) => c.toUpperCase())
@@ -1393,6 +1395,27 @@ export function leanRegistryTheoremsForLatex(root: string = typeof process !== '
   return readLeanTheorems(root, LEAN_REGISTRY_DIR)
 }
 
+/** The per-theorem axiom list verify:lean measures and `npm run lean-axioms` writes. No filesystem, or no file, SAYS
+ *  SO — source: 'absent' — and is never an empty record or a bare null: verify:guards refused both, the first because
+ *  `{}` reads as "measured, and nothing rests on anything", the second because a null says nothing a caller can tell
+ *  from a value. The fallback names what it is. */
+export const LEAN_AXIOMS_RECORD = '.vitepress/data/lean-axioms.json'
+type LeanAxiomsRecord = { readonly source: 'recorded' | 'absent'; readonly byFile: Record<string, Record<string, string[]>> | null }
+function leanAxiomsRecorded(root: string): LeanAxiomsRecord {
+  const absent: LeanAxiomsRecord = { source: 'absent', byFile: null }
+  const fs = typeof process !== 'undefined'
+    ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
+    : undefined
+  if (!fs) return absent
+  try { return { source: 'recorded', byFile: JSON.parse(fs.readFileSync(`${root.replace(/\/+$/, '')}/${LEAN_AXIOMS_RECORD}`, 'utf8')) as Record<string, Record<string, string[]>> } } catch { return absent }
+}
+/** One sentence per theorem, in the three states the record has. Plain text; the LaTeX and the page wrap the names. */
+export function leanAxiomSentence(axioms: readonly string[] | null, code: (name: string) => string = (name) => name): string {
+  if (axioms === null) return `what it rests on is not recorded here — ${code('npm run verify:lean')} reports it`
+  if (axioms.length === 0) return 'it depends on no axiom'
+  return `it rests on ${axioms.map(code).join(' and ')} and on no other axiom`
+}
+
 function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLatex[] {
   const fs = typeof process !== 'undefined'
     ? (process as NodeJS.Process & { getBuiltinModule?: (id: string) => typeof import('node:fs') }).getBuiltinModule?.('node:fs')
@@ -1404,6 +1427,7 @@ function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLat
   const dir = path.join(root, ...relDir.split('/'))
   if (!fs.existsSync(dir)) return []
   const out: LeanTheoremLatex[] = []
+  const recorded = leanAxiomsRecorded(root)
   for (const file of fs.readdirSync(dir).filter((f: string) => f.endsWith('.lean')).sort()) {
     const lines = fs.readFileSync(path.join(dir, file), 'utf8').split('\n')
     // A LINE INSIDE A BLOCK COMMENT IS PROSE, WHATEVER WORD IT BEGINS WITH. wave-57-extraction-verified.lean has a
@@ -1440,6 +1464,7 @@ function readLeanTheorems(root: string, relDir: string): readonly LeanTheoremLat
         proposition: (prop ?? '').trim().replace(/\s+/g, ' '),
         // `:= by` at the end of a line means the tactic is on the NEXT one. Read only to `:=`, this reported the
         // tactic as the word "by" — "By by in quantum.lean" — for every proof Lean had wrapped.
+        axioms: recorded.byFile?.[`${relDir}/${file}`]?.[head[1] ?? ''] ?? null,
         tactic: ((after ?? '').trim().replace(/^by\b\s*/, '') || (lines[j + 1] ?? '').trim().replace(/^by\b\s*/, '') || 'decide'),
       })
     }
@@ -1475,7 +1500,7 @@ export function leanTheoremsAsLatex(root: string = typeof process !== 'undefined
     r.doc ? texEscape(r.doc) : '',
     `\\begin{lean}${texEscape(r.proposition)}\\end{lean}`,
     '\\end{theorem}',
-    `\\begin{proof}\\raggedright By \\texttt{${texEscape(r.tactic)}} in \\texttt{${texEscape(r.file)}}; checked by the Lean kernel, resting on no axiom beyond \\texttt{propext} and \\texttt{Quot.sound} (most on none — \\texttt{npm run verify:lean} reports each). \\end{proof}`,
+    `\\begin{proof}\\raggedright By \\texttt{${texEscape(r.tactic)}} in \\texttt{${texEscape(r.file)}}. Checked by the Lean kernel; ${leanAxiomSentence(r.axioms, (name) => `\\texttt{${texEscape(name)}}`)}. \\end{proof}`,
     '',
   ].filter((line) => line.length > 0).join('\n')
   const part = (title: string, dir: string, rows: readonly LeanTheoremLatex[]) => {
@@ -1554,6 +1579,8 @@ export type LeanPageRow = {
   readonly texPath: string
   /** The deposit this page is the landing page for. */
   readonly depositId: string
+  /** What the kernel reported this theorem rests on; null when it is not recorded. */
+  readonly axioms: readonly string[] | null
 }
 
 /** Slug from the theorem's own name: snake_case is already URL-shaped, so nothing is invented. */
@@ -1575,6 +1602,7 @@ export function leanPageRows(root: string = typeof process !== 'undefined' && pr
     doc: t.doc,
     sourcePath: `${t.dir}/${t.file}`,
     texPath: 'src/research/lean-theorems.tex',
+    axioms: t.axioms,
     depositId: t.dir === LEAN_INVOLUTION_DIR ? `${t.file.replace(/\.lean$/, '')}--${t.name}` : '',
   }))
 }

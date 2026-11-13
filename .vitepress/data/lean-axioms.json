@@ -1,0 +1,416 @@
+{
+ "src/heaven/compute/Alu.lean": {
+  "born_rule_on_poles": [],
+  "c_is_floor_of_2pow14_over_sqrt2": [],
+  "clifford_keeps_poles": [
+   "propext"
+  ],
+  "dec_undoes_enc": [],
+  "hardware_t_is_tFloor_on_poles": [
+   "propext"
+  ],
+  "involutions": [
+   "propext"
+  ],
+  "t_floor_bound": [
+   "propext"
+  ],
+  "t_leaves_poles": [
+   "propext"
+  ]
+ },
+ "src/pair/formal/proofs/bsd.lean": {
+  "central_point_is_the_fixed_point": [],
+  "parity_is_an_involution": [],
+  "root_number_one_iff_rank_even": [],
+  "root_number_squares_to_one": [],
+  "sigma_is_an_involution": []
+ },
+ "src/pair/formal/proofs/coin.lean": {
+  "all_that_is_not_harmonic_is_moved": [],
+  "every_bit_of_resistance_drains": [],
+  "the_coin_is_an_involution": [],
+  "the_coin_is_two_sides_and_one_edge": [],
+  "the_drain_is_exact_at_every_scale": [],
+  "the_harmonic_carries_no_resistance": [],
+  "the_harmonic_is_the_only_fixed_point": [],
+  "the_sides_are_equal_and_exchanged": [],
+  "the_whole_surface_sums_to_zero": []
+ },
+ "src/pair/formal/proofs/decidability.lean": {
+  "a_bigger_bound_proves_no_more": [],
+  "and_false_at_the_bound": [],
+  "finite_verification_does_not_entail_the_universal": [],
+  "the_clay_files_quantify_over_finite_lists": [],
+  "verified_at_every_point_below_the_bound": [],
+  "what_a_finite_check_does_establish": []
+ },
+ "src/pair/formal/proofs/hodge.lean": {
+  "diagonal_is_fixed_at_every_k": [],
+  "fixed_type_is_p_equals_q": [],
+  "involution_fixes_the_diagonal": [],
+  "sigma_is_an_involution": [],
+  "sigma_preserves_degree": []
+ },
+ "src/pair/formal/proofs/involution.lean": {
+  "evenPart_is_symmetric": [
+   "propext"
+  ],
+  "odd_vanishes_at_a_fixed_point": [
+   "propext"
+  ],
+  "orbit_sums_to_zero": [
+   "propext"
+  ],
+  "the_instance_cancels_over_every_orbit": [],
+  "the_instance_has_one_harmonic_point": [],
+  "the_instance_is_an_involution": [],
+  "the_instance_splits_without_loss": [],
+  "the_split_loses_nothing": [
+   "propext"
+  ]
+ },
+ "src/pair/formal/proofs/navier-stokes.lean": {
+  "euler_is_time_reversible": [],
+  "fixed_points_are_exactly_the_inviscid": [],
+  "reversal_is_an_involution": [],
+  "viscosity_breaks_time_reversal": []
+ },
+ "src/pair/formal/proofs/p-vs-np.lean": {
+  "fixed_points_are_p_and_pspace": [],
+  "if_np_is_fixed_then_np_equals_conp": [],
+  "np_and_conp_are_swapped": [],
+  "p_is_closed_under_complement": [],
+  "sigma_is_an_involution": []
+ },
+ "src/pair/formal/proofs/poincare.lean": {
+  "chi_and_genus_are_inverse": [],
+  "double_torus_has_chi_minus_two_and_rank_four": [],
+  "homology_rank_is_twice_the_genus": [],
+  "sphere_has_euler_characteristic_two": [],
+  "torus_has_euler_characteristic_zero": []
+ },
+ "src/pair/formal/proofs/riemann.lean": {
+  "critical_line_is_the_fixed_point": [],
+  "involution_fixes_the_critical_line": [],
+  "sigma_is_an_involution": [],
+  "sigma_pairs_the_plane": [],
+  "the_fixed_line_is_one_half": []
+ },
+ "src/pair/formal/proofs/spacetime.lean": {
+  "below_c_composes_to_below_c": [],
+  "composition_is_symmetric": [],
+  "interval_scales": [
+   "Quot.sound",
+   "propext"
+  ],
+  "light_is_fixed_from_either_side": [],
+  "light_is_the_fixed_point": [],
+  "lt_of_sq": [
+   "Quot.sound",
+   "propext"
+  ],
+  "null_invariant": [
+   "Quot.sound",
+   "propext"
+  ],
+  "rest_is_the_identity": [],
+  "scale_positive": [
+   "Quot.sound",
+   "propext"
+  ],
+  "spacelike_invariant": [
+   "Quot.sound",
+   "propext"
+  ],
+  "spacelike_order_reverses": [
+   "Quot.sound",
+   "propext"
+  ],
+  "spacelike_simultaneous": [
+   "Quot.sound",
+   "propext"
+  ],
+  "sq_lt": [
+   "Quot.sound",
+   "propext"
+  ],
+  "the_boost_preserves_the_interval": [],
+  "the_light_cone_is_carried_to_itself": [],
+  "the_reverse_boost_undoes_every_boost": [
+   "Quot.sound",
+   "propext"
+  ],
+  "the_reverse_boost_undoes_the_boost": [],
+  "timelike_invariant": [
+   "Quot.sound",
+   "propext"
+  ],
+  "timelike_order_absolute": [
+   "Quot.sound",
+   "propext"
+  ],
+  "velocity_addition_below_c": [
+   "Quot.sound",
+   "propext"
+  ]
+ },
+ "src/pair/formal/proofs/three.lean": {
+  "address_inverts": [],
+  "addresses_are_the_interval": [],
+  "closure_has_no_duplicate": [],
+  "closure_is_complete": [],
+  "closure_is_one_hundred_sixty_two": [],
+  "closure_is_the_product": [],
+  "denominator_is_positive_on_the_frustum": [],
+  "depth_is_strictly_monotone": [],
+  "focal_plane_is_unit_scale": [],
+  "frustum_brackets_the_focal_plane": [],
+  "orbit_positions_cancel": [],
+  "reflection_closes_on_the_closure": [],
+  "reflection_complements_the_address": [],
+  "reflection_has_no_fixed_point": [],
+  "reflection_is_an_involution": [],
+  "the_closure_is_eighty_one_orbits": [],
+  "the_compound_fraction_clears": [],
+  "the_involution_laws_are_general": []
+ },
+ "src/pair/formal/proofs/yang-mills.lean": {
+  "involution_splits_the_middle_forms": [],
+  "middle_forms_have_dimension_six": [],
+  "selfdual_and_antiselfdual_split_the_six": [],
+  "star_is_an_endomorphism_only_in_the_middle": [],
+  "star_squares_to_the_identity": []
+ },
+ "src/pair/intelligence/harmonisation/lean-proofs.lean": {
+  "confidence_is_one_minus_loss_by_definition": [],
+  "declared_losses_are_not_involution_symmetric": [],
+  "exactly_one_fixed_point": [],
+  "golden_ratio_bounds": [],
+  "inverse_golden_ratio_bounds": [],
+  "sigma_is_an_involution": [],
+  "sigma_permutes_the_levels": [
+   "propext"
+  ],
+  "three_pairs_and_a_fixed_point": []
+ },
+ "src/pair/lean/proofs/corpus.lean": {
+  "census_bands_are_gapless_and_descending": [],
+  "census_is_one_hundred_twenty_three": [],
+  "euler_characteristic_and_genus_are_inverse": [],
+  "fibonacci_partial_sum_identity": [],
+  "folding_by_chi_is_undone_by_unfolding": [],
+  "golden_ratio_bounds": [],
+  "golden_ratio_minus_one_bounds": [],
+  "hexbit_advantage_widens": [],
+  "hexbit_receipt_beats_rebuild": [],
+  "reflection_closes_on_the_digits": [],
+  "reflection_is_an_involution": [],
+  "reflection_is_an_involution_on_the_whole_lattice": [],
+  "reflection_pairs_and_one_fixed_point": [],
+  "shor_rsa_gap_is_between_exponents": [],
+  "shor_state_vectors_unchanged": [],
+  "shor_vector_dwarfs_the_number": [],
+  "shor_zero_skipping_divides_by_the_work_register": [],
+  "sixty_four_components": [],
+  "splitting_then_burning_water_is_the_identity": [],
+  "the_genus_reads_back_from_chi_at_every_genus": [
+   "Quot.sound",
+   "propext"
+  ],
+  "verify_beats_recompute_by_magnitudes": []
+ },
+ "src/pair/lean/proofs/quantum.lean": {
+  "alice_changes_the_pair": [],
+  "bell_state": [],
+  "both_ways": [],
+  "chsh_classical_bound": [],
+  "chsh_quantum_value": [],
+  "cnot": [],
+  "cnot_copies_the_basis": [],
+  "deutsch_jozsa": [],
+  "distance_corrects": [
+   "Quot.sound",
+   "propext"
+  ],
+  "entanglement_swapping": [],
+  "ghz_mermin_classical": [],
+  "ghz_mermin_quantum": [],
+  "ghz_state": [],
+  "gi_add_im": [],
+  "gi_add_re": [],
+  "gi_mul_re": [],
+  "gi_one_im": [],
+  "gi_one_re": [],
+  "gi_zero_im": [],
+  "gi_zero_re": [],
+  "grover_search": [],
+  "h_squared": [],
+  "h_unitary": [],
+  "hadamard_exchanges_phase_and_bit": [],
+  "no_cloning": [
+   "Quot.sound",
+   "propext"
+  ],
+  "no_communication": [],
+  "no_pairs_no_swapping": [],
+  "omega_fourth": [],
+  "pauli_anticommute": [],
+  "pauli_products": [],
+  "pauli_square_adjoint_trace": [],
+  "paulis_unitary": [],
+  "phase_estimation_exact": [],
+  "promise_census": [],
+  "qft_unitary": [],
+  "repetition_corrects": [
+   "propext"
+  ],
+  "repetition_fails_on_two": [
+   "propext"
+  ],
+  "routed_depth": [
+   "Quot.sound",
+   "propext"
+  ],
+  "s_squared": [],
+  "shor_nine": [],
+  "stabilizer_cnot": [],
+  "stabilizer_hadamard": [],
+  "stabilizer_phase": [],
+  "steane_corrects": [],
+  "steane_css": [],
+  "superdense_exact": [],
+  "swap": [],
+  "swap_routing": [
+   "propext"
+  ],
+  "t_gate": [],
+  "teleport_exact": [],
+  "teleport_no_signalling": [],
+  "toffoli": [],
+  "toll_is_uniform": [],
+  "unrouted_differs": [
+   "propext"
+  ],
+  "y_unitary": []
+ },
+ "src/pair/lean/proofs/rational.lean": {
+  "add_assoc_sample": [],
+  "add_comm_sample": [],
+  "amplitude_normalisation": [],
+  "amplitude_normalisation_rational": [],
+  "exact_addition": [],
+  "mul_comm_sample": []
+ },
+ "src/pair/lean/proofs/registry.lean": {
+  "amicable_220_284_is_the_smallest": [],
+  "cassini_for_every_n": [
+   "Quot.sound",
+   "propext"
+  ],
+  "cassini_step_negates": [
+   "Quot.sound",
+   "propext"
+  ],
+  "catalan_heptagon": [],
+  "catalan_parity_is_mersenne": [],
+  "circle_of_fifths_does_not_close": [],
+  "condorcet_profiles_are_216": [],
+  "condorcet_six_cycle": [],
+  "euler_polynomial_is_prime_to_39_then_41_squared": [],
+  "exactly_five_platonic_solids": [],
+  "exactly_three_regular_tilings": [],
+  "fermat_five_is_composite": [],
+  "fibonacci_partial_sum_for_every_n": [
+   "Quot.sound",
+   "propext"
+  ],
+  "frobenius_six_nine_twenty_misses_43": [
+   "Quot.sound",
+   "propext"
+  ],
+  "frobenius_six_nine_twenty_reaches_every_n_from_44": [
+   "Quot.sound",
+   "propext"
+  ],
+  "graeco_latin_none_of_order_two": [],
+  "graeco_latin_order_five": [],
+  "graeco_latin_order_four": [],
+  "graeco_latin_order_three": [],
+  "gray_code_is_a_one_bit_cycle_to_twelve": [
+   "propext"
+  ],
+  "heawood_moore_bound": [],
+  "hockey_stick_to_twenty": [],
+  "k5_k33_break_planar_bounds": [],
+  "kummer_instances": [],
+  "lucas_fibonacci_identity_for_every_n": [
+   "Quot.sound",
+   "propext"
+  ],
+  "lucas_is_the_sum_of_the_fibonacci_neighbours": [
+   "Quot.sound",
+   "propext"
+  ],
+  "nicomachus_for_every_n": [
+   "Quot.sound",
+   "propext"
+  ],
+  "odd_sum_is_a_square_for_every_n": [
+   "Quot.sound",
+   "propext"
+  ],
+  "pisano_is_even_from_three_to_fifty": [],
+  "pisano_nine_is_twenty_four": [],
+  "pisano_reads_sixty_at_ten": [],
+  "pisano_ten_is_sixty": [],
+  "pyramidal_closed_form_for_every_n": [
+   "Quot.sound",
+   "propext"
+  ],
+  "schur_two_is_four": [],
+  "sothic_cycle_days": [],
+  "sothic_cycle_meshes": [],
+  "steiner_two_three_seven": [],
+  "tau_six_is_product": [],
+  "taxicab_two_is_1729": [],
+  "the_three_digit_armstrong_numbers_are_four": [],
+  "triangular_closed_form_for_every_n": [
+   "Quot.sound",
+   "propext"
+  ],
+  "vandermonde_convolution_to_twelve": [],
+  "vdw_eight_escapes": [],
+  "vdw_nine_forces": [],
+  "z_doubling_orbit_lies_in_the_units_on_odd_moduli": [],
+  "z_fibonacci_period_returns_and_is_even_beyond_two": [],
+  "z_nine_orbit_is_the_vortex_sequence": [],
+  "z_order_of_two_divides_the_unit_count_on_odd_moduli": [],
+  "z_reflection_is_an_involution_and_partitions": [],
+  "z_two_is_no_unit_on_even_moduli": []
+ },
+ "src/pair/lean/proofs/thousand.lean": {
+  "a_wrong_witness_decodes_nothing_because_a_semiprime_has_one_split": [],
+  "an_impossible_integer_with_twin_primes_is_opened_blind_in_one_reflection": [],
+  "the_binary_units_tile_the_thousand_exactly": [],
+  "the_minimal_register_for_the_thousand_is_width_thirty_three": [],
+  "the_sigma_trapdoor_is_fermats_difference_of_squares": [],
+  "the_thousand_bit_case_is_one_hundred_twenty_five_octaves": [],
+  "the_thousand_bit_case_overflows_the_width_thirty_two_ceiling": [],
+  "the_thousand_bit_integer_has_a_thousand_bits_and_exactly_four_threes": [],
+  "the_thousand_bit_structure_is_decided_not_a_quantum_machine": [],
+  "the_thousand_carries_residue_one_mod_nine": [],
+  "the_thousand_fills_between_ninety_seven_and_ninety_eight_percent_of_its_register": [],
+  "the_thousand_is_the_cube_octave_times_pentagram_cubed": [],
+  "this_deposits_factor_route_returns_a_partial_answer_that_multiplies_back": []
+ },
+ "src/pair/lean/proofs/wave-57-extraction-verified.lean": {
+  "descent_target_is_the_census": [],
+  "first_descent_is_six": [],
+  "line_ceiling_is_fibonacci": [],
+  "merging_strictly_decreases": [],
+  "remaining_falls_with_the_count": [],
+  "the_descent_is_strictly_monotone": [],
+  "the_distance_to_the_target_round_trips_on_the_record": []
+ }
+}
