@@ -5,6 +5,7 @@ import type { Plugin } from 'vite'
 import { fileURLToPath } from 'node:url'
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { createHash } from 'node:crypto'
 
 // ── build lock — DISSOLVED here from .vitepress/build-lock.mjs, which a strict-gate warning asked to fold into this
 // index (residual:vitepress-thin-mount). Moved verbatim; the docs:build shell now imports it from this file.
@@ -180,6 +181,35 @@ export function buildVerbosePlugin(): Plugin {
     },
     buildEnd(error) {
       if (on()) log('buildEnd', error ? `error: ${error.message}` : 'ok')
+    },
+  }
+}
+
+// ── THE BUILD'S WITNESS — which source modules each client chunk was made from, and each chunk's digest.
+// The built files do not say what they are made of: a chunk is minified text with a hashed name. So the question
+// "what is in the shell every visitor loads" could only be answered by grepping for strings that happened to
+// survive — which is how a refusal on its size took an hour to attribute. The bundler knows the answer at
+// writeBundle and this records it beside the assets, once, for the client build (the one that carries the app
+// entry). verify:build-time reads it and decides its statements against the files on disk; nothing here judges.
+export const CHUNK_WITNESS_FILE = 'chunk-witness.json'
+export function chunkWitnessPlugin(): Plugin {
+  return {
+    name: 'double-torus:chunk-witness',
+    apply: 'build',
+    writeBundle(options, bundle) {
+      const chunks = Object.values(bundle).filter((file) => file.type === 'chunk')
+      if (!options.dir || !chunks.some((chunk) => /^assets\/app\.[A-Za-z0-9_-]+\.js$/.test(chunk.fileName))) return
+      const root = process.cwd()
+      const rel = (id: string) => (id.startsWith(root) ? id.slice(root.length + 1) : id).split('?')[0]
+      // A SEAL OF 1024 BITS PER CHUNK — two independent 512-bit digests of the bytes as written, so the reader can
+      // decide that the file on disk is the file this build produced, and that no other file is.
+      const seal = (code: string) => createHash('sha512').update(code).digest('hex') + createHash('sha3-512').update(code).digest('hex')
+      const witness: Record<string, { modules: string[]; bytes: number; seal: string }> = {}
+      for (const chunk of chunks) {
+        if (chunk.type !== 'chunk') continue
+        witness[chunk.fileName] = { modules: [...new Set(chunk.moduleIds.map(rel))].sort(), bytes: Buffer.byteLength(chunk.code), seal: seal(chunk.code) }
+      }
+      writeFileSync(join(options.dir, CHUNK_WITNESS_FILE), JSON.stringify(witness))
     },
   }
 }

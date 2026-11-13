@@ -608,6 +608,34 @@ export declare function solarSystem(matrix?: MindMatrix, timeYears?: number): {
     computed: boolean;
     root: string;
 };
+export declare function moonsSplitByPiAndPrimes(matrix?: MindMatrix): {
+    computes: boolean;
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    rows: {
+        name: "Io" | "Europa" | "Ganymede" | "Callisto" | "Titan" | "Triton";
+        parent: "Jupiter" | "Saturn" | "Neptune";
+        periodDays: 1.769 | 3.551 | 7.155 | 16.689 | 15.945 | 5.877;
+        orbitRadiusKm: 421700 | 671100 | 1070400 | 1882700 | 1221830 | 354759;
+        muPercentOfParent: number;
+        derivedPeriodDays: number;
+        derivedPercentOfCatalogue: number;
+        primes: readonly number[];
+        primesExact: boolean;
+        digitalRoot: number;
+        seal: string;
+    }[];
+    muOf: Record<string, number>;
+    laplace: {
+        europaOverIo: number;
+        ganymedeOverIo: number;
+    };
+    root: string;
+    statement: string;
+};
 /** @rosetta ✦₁ · Fire · clarity */
 export declare function majorMoons(matrix?: MindMatrix, timeDays?: number): {
     moons: ({

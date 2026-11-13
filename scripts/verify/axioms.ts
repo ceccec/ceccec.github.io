@@ -25,7 +25,7 @@
 
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { axiomFreedom, leanToolchainMissing } from './lean.ts'
+import { leanToolchainMissing, sealedAxioms } from './lean.ts'
 import { ratchet, everyRatchet } from './status.ts'
 import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 
@@ -115,7 +115,7 @@ export function axiomsInUse(root: string = process.cwd()): Map<string, number> {
     return here
   }
   for (const rel of walk('src')) {
-    const a = axiomFreedom(join(root, rel), root)
+    const a = sealedAxioms(rel, root) // sealed on the file and its import closure — the probe runs only for a changed proof
     for (const [axiom, n] of Object.entries(a.standardUse)) out.set(axiom, (out.get(axiom) ?? 0) + n)
     for (const d of a.dependent) {
       for (const name of ['Classical.choice', 'sorryAx', 'Quot.sound']) if (d.includes(name)) out.set(name, (out.get(name) ?? 0) + 1)

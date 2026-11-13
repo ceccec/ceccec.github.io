@@ -933,7 +933,6 @@ function buildReceiptLines(): string[] {
   }
   const bound = (name: string) => receipt.bounds.find((b) => b.name === name)?.value
   const chunk = bound('build.app-chunk-kilobytes')
-  const shell = bound('build.shell-machinery-kilobytes')
   const density = bound('build.corpus-hundred-bytes-per-theorem')
   return [
     ...streamReceiptLines(),
@@ -946,7 +945,10 @@ function buildReceiptLines(): string[] {
     // construction, and the unlike-units caveat is next's own sentence rather than a cleaner number than exists.
     `- **${receipt.closed} of ${receipt.ratchets} ratchets stand at zero** — nothing left to solve on those axes. **${receipt.open}** carry work still recorded, totalling ${receipt.openUnits} — a sum of UNLIKE units (kilobytes, counts, densities, draw calls), so the family totals compare and this total does not; \`npm run next\` ranks exactly these ${receipt.open} into leads and splits the floors from the one ceiling among them. The remaining **${receipt.secured}** are counts the ledger holds from BELOW — stored negated so one comparison serves both directions — and their magnitude is what has been reached, not what is left.`,
     ...(chunk === undefined ? [] : [`- **The bundle every visitor downloads first is held at ≤ ${chunk} KiB** (\`build.app-chunk-kilobytes\`, enforced by \`npm run verify:build-time\`). It is a ceiling, not a measurement: a build that exceeds it refuses the commit. It was 484 KiB until a barrel import of 33 components was made lazy.`]),
-    ...(shell === undefined ? [] : [`- **The gate machinery is held at ≤ ${shell} KiB** (\`build.shell-machinery-kilobytes\`) and the corpus at ≤ ${density === undefined ? '—' : density} **hundred bytes per theorem** (\`build.corpus-hundred-bytes-per-theorem\`) — the density unit is hundreds of bytes because KiB-per-theorem left enough slack that padding one theorem by 118 KB did not move it.`]),
+    // The shell's size floor is gone (2026-11-13): a remembered number is not a proposition. What guards the shell is the
+    // separation theorem decided by verify:build-time on every build, and it is stated here with no number in it.
+    '- **The shell every visitor loads is guarded by a theorem, not a floor**: no file of the shell contains a registry theorem name, decided by exhaustion on every build (`npm run verify:build-time`). The build also writes a witness of what each chunk is made of, and three more statements are decided on it, on the pattern of the thousand-bit crypto tests: every shell file carries the length and the 1024-bit seal its build recorded; of the modules that prove registered theorems, the shell carries only those that import no other source — the root; and one flipped bit breaks the seal of every shell file. The shell size is measured and printed; nothing remembers it and nothing refuses on it.',
+    ...(density === undefined ? [] : [`- **The corpus is held at ≤ ${density} hundred bytes per theorem** (\`build.corpus-hundred-bytes-per-theorem\`) — the density unit is hundreds of bytes because KiB-per-theorem left enough slack that padding one theorem by 118 KB did not move it.`]),
     '',
   ]
 }

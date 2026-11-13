@@ -67,7 +67,11 @@ export function assertLeanLatexProveEachOther(): void {
   // the document, and the kind of finding that must be diagnosed rather than accepted. Stripping
   // backslashes and whitespace compares symbol content, which is what "does the kernel know this
   // proposition" actually asks.
-  const bare = (t: string) => t.replace(/\\/g, '').replace(/\s+/g, '').trim()
+  // AND THE NAMED MACROS ARE THE SAME FALSE POSITIVE, ONE CHARACTER ON. texEscape writes `^` as
+  // \textasciicircum{} and `~` as \textasciitilde{}, which stripping backslashes leaves as a word, not the
+  // symbol — so the first proposition with an exponent (quantum.lean, `8 ^ 2 = 8 * (2 ^ 2 * 2)`) was called
+  // unbacked while the kernel had decided it. No earlier theorem used `^`, so nothing had asked.
+  const bare = (t: string) => t.replace(/\\textasciicircum\{\}/g, '^').replace(/\\textasciitilde\{\}/g, '~').replace(/\\/g, '').replace(/\s+/g, '').trim()
   const known = rows.map((r) => bare(r.proposition)).filter((k) => k.length > 0)
   const unbacked = propositions.filter((p) => !known.some((k) => bare(p).includes(k)))
   console.log(`latex→lean: ${propositions.length} environment(s) in the document · ${unbacked.length} state a proposition the Lean corpus does not`)

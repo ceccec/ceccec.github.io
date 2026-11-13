@@ -20179,6 +20179,7 @@ function solarSystem(matrix = buildMatrix(), timeYears = 0) {
     root: merkleFold(planets.map((entry2) => entry2.receipt))
   };
 }
+var PERCENT = (5 * 2) ** 2;
 function majorMoons(matrix = buildMatrix(), timeDays = 0) {
   const round3 = (value) => round(value * 1e3) / 1e3;
   const moons = MAJOR_MOONS.map((body) => {
@@ -38001,6 +38002,8 @@ function theFivePlatonicSolidsAreATheoremTheTeslaMappingIsFlagged() {
     boundary: earned("EXACT \u2014 this fold is verified by its facets:", facets, "the claim is computed from the facets and refutable, not hand-asserted")
   };
 }
+var WARM_RATIO = 1 / 9;
+var COLD_RATIO = 3 ** 3;
 var SOUND_SPEED_AIR = 7 ** 3;
 var SITESWAP_MAX_HEIGHT = VORTEX_SEQUENCE.reduce((a, b) => b > a ? b : a, 0);
 

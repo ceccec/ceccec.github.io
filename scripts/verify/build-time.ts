@@ -42,8 +42,10 @@
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { dirname, join } from 'node:path'
 import { ratchet } from './status.ts'
+import { THEOREM_ATOM_SEED } from '../../src/4/6/index.ts'
 
 /**
  * IS THE DIST THIS TREE'S, OR AN OLDER TREE'S? THIS GATE NEVER ASKED, AND THAT MADE ITS FLOORS FICTION.
@@ -121,6 +123,8 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
   let entryClosureFiles = 0
   let corpusKb = 0
   let machineryKb = 0
+  const shellFiles: string[] = []
+  const corpusFiles: string[] = []
   const assets = join(dist, 'assets')
   if (existsSync(assets)) {
     let entry = ''
@@ -163,8 +167,8 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
         // corpus grows every time a theorem, an identity or a formula is added — which is the work — so a
         // floor on the TOTAL refuses novelty and calls it a regression. It did exactly that three times in
         // one day: two curated identities, a computed site formula, and a witness quantity.
-        if (/diamonds/.test(file)) corpusKb += statSync(file).size
-        else machineryKb += statSync(file).size
+        if (/diamonds/.test(file)) { corpusKb += statSync(file).size; corpusFiles.push(file) }
+        else { machineryKb += statSync(file).size; shellFiles.push(file) }
         const text = readFileSync(file, 'utf8')
         const specs = new Set<string>()
         for (const m of text.matchAll(/(?<!\.)\b(?:import|export)\b[^;()]*?from\s*["']([^"']+)["']/g)) specs.add(m[1]!)
@@ -187,6 +191,8 @@ export function distWeight(root: string = process.cwd()): { pages: number; kilob
     appChunkKb,
     entryClosureKb,
     entryClosureFiles,
+    shellFiles,
+    corpusFiles,
     machineryKb: Math.round(machineryKb / 1024),
     corpusKb: Math.round(corpusKb / 1024),
     theorems,
@@ -262,6 +268,124 @@ export function assertBuildIsNotSlower(root: string = process.cwd()): void {
   // Adding a theorem adds bytes AND a theorem, so the density is unmoved and nothing refuses. Adding
   // machinery, or padding a theorem, still refuses — which is the whole of what the old floor was for.
   console.log(`  entry closure ${w.entryClosureKb} KiB = ${w.machineryKb} KiB shell + ${w.corpusKb} KiB corpus over ${w.theorems} theorems — MEASURED, and only the parts below are ratcheted`)
-  console.log(ratchet('build.shell-machinery-kilobytes', w.machineryKb, { evidence: () => [`${w.machineryKb} KiB of shell in the entry closure across ${w.entryClosureFiles} files — the corpus chunk excluded, so this number does not move when a theorem is added`] }))
+  assertTheShellCarriesNoTheorem(w.shellFiles, w.corpusFiles, w.machineryKb)
+  assertTheShellIsAccountedFor(root, w.shellFiles)
   console.log(ratchet('build.corpus-hundred-bytes-per-theorem', w.corpusHundredBytesPerTheorem, { root, evidence: () => [`${w.corpusKb} KiB of corpus over ${w.theorems} theorems = ${w.corpusHundredBytesPerTheorem} hundred bytes each — a floor on the DENSITY, so adding a theorem is free and padding one is not`] }))
+}
+
+/**
+ * THE SHELL IS GUARDED BY A THEOREM, NOT BY A FLOOR (owner, 2026-11-13: "remove and use theorems to guard. no other
+ * logic is approved but coming from the textbook meaning of a theorem").
+ *
+ * build.shell-machinery-kilobytes was a remembered number — 836, then 728, then 630 — and a remembered number is not a
+ * proposition: it is true of whichever tree last wrote it. It refused a landing at 635 against 630 when a cold build of
+ * the commit underneath, alone, measured the same 635; the change in hand had put nothing in the shell. The floor had
+ * been standing in for a statement it never made, and the statement can be made:
+ *
+ *   DEFINITIONS. C is the static import closure of the app entry (assets/app.*.js). The corpus K is the chunk of C
+ *   that carries the registry; the shell is S = C \ K. N is the set of theorem names in THEOREM_ATOM_SEED.
+ *
+ *   THEOREM (separation). No file of S contains a member of N.
+ *
+ *   COROLLARY. The bytes of S are not a function of N: registering, renaming or removing a theorem cannot move the
+ *   shell — "mathematics changes the corpus, never the shell", stated so that it can be false.
+ *
+ *   PROOF. By exhaustion: |S| × |N| substring decisions over the build on disk, each of which could fail. The lemma
+ *   that keeps it from being vacuous is decided beside it: K contains members of N. A build whose corpus chunk
+ *   carries none has not been read correctly, and that is NOT MEASURED — a throw — never a pass.
+ *
+ * WHAT THIS DOES NOT GUARD, said once: the SIZE of the shell. A heavier dependency, or fold code that carries no
+ * theorem name, enters S without contradicting the theorem. The size is still measured and printed on every run;
+ * nothing remembers it, and nothing refuses on it.
+ */
+export function assertTheShellCarriesNoTheorem(shellFiles: readonly string[], corpusFiles: readonly string[], machineryKb: number): void {
+  const names = [...new Set(THEOREM_ATOM_SEED.map((row) => row.theorem))]
+  // A name sits in a chunk as a JavaScript string, so it is compared in both spellings a bundler writes: raw, and
+  // JSON-escaped (quotes, backslashes and non-ASCII as \u escapes).
+  const spellings = (name: string) => [...new Set([name, JSON.stringify(name).slice(1, -1), JSON.stringify(name).slice(1, -1).replace(/[\u0080-\uffff]/g, (c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'))])]
+  const carriedBy = (file: string) => { const text = readFileSync(file, 'utf8'); return names.filter((name) => spellings(name).some((sp) => text.includes(sp))) }
+  const inCorpus = new Set(corpusFiles.flatMap(carriedBy))
+  const inShell = shellFiles.map((file) => ({ file, names: carriedBy(file) })).filter((hit) => hit.names.length > 0)
+  console.log(`  shell ${machineryKb} KiB across ${shellFiles.length} file(s) — MEASURED and printed; no number is remembered and none refuses`)
+  console.log(`  theorem (separation): no shell file contains a registry theorem name — ${shellFiles.length} file(s) × ${names.length} name(s) decided; the corpus chunk carries ${inCorpus.size} of them`)
+  if (corpusFiles.length === 0 || inCorpus.size === 0) {
+    throw new Error(`separation NOT MEASURED: ${corpusFiles.length} corpus chunk(s) in the entry closure carrying ${inCorpus.size} registry name(s) — the build was not read as shell and corpus, so nothing was decided`)
+  }
+  if (inShell.length > 0) {
+    for (const hit of inShell) console.log(`    ✗ ${hit.file.split('/').pop()} carries ${hit.names.length}: ${hit.names.slice(0, 3).map((n) => n.slice(0, 60)).join(' · ')}`)
+    throw new Error(`separation is FALSE on this build: ${inShell.length} shell file(s) carry ${inShell.reduce((n, h) => n + h.names.length, 0)} registry theorem name(s) — the corpus has entered the shell every visitor loads`)
+  }
+  console.log('  ✓ separation holds: the shell is not a function of the registry')
+}
+
+/**
+ * THE SHELL, ACCOUNTED FOR — three statements on the pattern of the thousand-bit crypto tests (owner, 2026-11-13:
+ * "close all gaps" · "solve via 1000bit crypto tests"). The pattern is src/pair/formal/proofs/thousand.lean: a factor
+ * route's PARTIAL answer on 2^999 + 1 is an IDENTITY — the found factors times the cofactor are the integer; no found
+ * factor still divides the cofactor; and a wrong witness decodes nothing. The separation theorem above decides names
+ * and left open what CODE is in the shell: the digit-root leak and the SHA-256 growth both passed it. The build now
+ * writes a witness (.vitepress/dist/chunk-witness.json: for every client chunk, the source modules it was made from,
+ * its byte length, and a 1024-bit seal — SHA-512 and SHA3-512 of the bytes as written), and these are decided on it.
+ *
+ *   I · THE ACCOUNT MULTIPLIES BACK. Every file of the shell S is named by the witness, and the bytes on disk have
+ *       the length and the 1024-bit seal the build recorded. Both sides are computed now — the build's and the
+ *       disk's — and nothing is remembered between builds.
+ *
+ *   II · THE SHELL CARRIES ONLY THE ROOT. H is the set of theorem homes (the module <home>/index.ts of every registry
+ *       row); R ⊆ H is the homes that import no source module — the roots of the import graph, computed from the
+ *       sources, not named. Then (modules of S) ∩ H ⊆ R. Measured when written: H has 57 members, R = {src/0}, and
+ *       the intersection is {src/0} — the kernel every fold recomputes from, which is WHY the SHA-256 cutover moved
+ *       the shell. Any other home entering the shell imports the kernel, is therefore not a root, and falsifies this:
+ *       the digit-root leak, stated so that it can be false.
+ *
+ *   III · A WRONG WITNESS DECODES NOTHING. For every file of S, the same bytes with one bit flipped do not carry the
+ *       recorded seal. The identity in I is sensitive at every shell file, not only true of it.
+ *
+ * WHAT IS STILL NOT GUARDED, and is not hidden: growth INSIDE the root. The shell is a function of src/0, and a larger
+ * kernel is a larger shell — II says so in so many words and refuses nothing about it. A statement that the kernel
+ * may not grow would be a remembered number again.
+ */
+export function assertTheShellIsAccountedFor(root: string, shellFiles: readonly string[]): void {
+  const dist = join(root, '.vitepress', 'dist')
+  const witnessFile = join(dist, 'chunk-witness.json')
+  if (!existsSync(witnessFile)) throw new Error('the shell account is NOT MEASURED: .vitepress/dist/chunk-witness.json is absent — this dist was not written by a build that records its witness')
+  const witness = JSON.parse(readFileSync(witnessFile, 'utf8')) as Record<string, { modules: string[]; bytes: number; seal: string }>
+  const seal = (bytes: Buffer) => createHash('sha512').update(bytes).digest('hex') + createHash('sha3-512').update(bytes).digest('hex')
+  const sealBits = 4 * seal(Buffer.alloc(0)).length
+
+  // I — the account multiplies back
+  const rel = (file: string) => file.slice(dist.length + 1)
+  const unnamed = shellFiles.filter((file) => witness[rel(file)] === undefined)
+  if (unnamed.length > 0) throw new Error(`I is FALSE: ${unnamed.length} shell file(s) are named by no witness entry — ${unnamed.map(rel).join(', ')}`)
+  const read = shellFiles.map((file) => ({ file, bytes: readFileSync(file), entry: witness[rel(file)]! }))
+  const drifted = read.filter((r) => r.bytes.length !== r.entry.bytes || seal(r.bytes) !== r.entry.seal)
+  console.log(`  I   the account multiplies back: ${read.length} shell file(s), each with the length and the ${sealBits}-bit seal its build recorded — ${read.length - drifted.length}/${read.length}`)
+  if (drifted.length > 0) throw new Error(`I is FALSE: ${drifted.map((r) => rel(r.file)).join(', ')} on disk is not the file the build sealed`)
+
+  // II — the shell carries only the root
+  const homes = [...new Set(THEOREM_ATOM_SEED.map((row) => (row as { home?: string }).home).filter((h): h is string => typeof h === 'string'))]
+  const homeModule = (home: string) => `${home}/index.ts`
+  const importsSource = (home: string) => {
+    const file = join(root, homeModule(home))
+    if (!existsSync(file)) return true // a home that cannot be read is not shown to be a root
+    return [...readFileSync(file, 'utf8').matchAll(/^\s*(?:import|export)\b[^;'"]*?from\s*['"]([^'"]+)['"]/gm)].some((m) => m[1]!.startsWith('.') || m[1]!.startsWith('@src'))
+  }
+  const roots = homes.filter((home) => !importsSource(home))
+  const shellModules = new Set(read.flatMap((r) => r.entry.modules))
+  const homesInShell = homes.filter((home) => shellModules.has(homeModule(home)))
+  const notRoots = homesInShell.filter((home) => !roots.includes(home))
+  console.log(`  II  the shell carries only the root: ${homes.length} theorem home(s), ${roots.length} root(s) [${roots.join(', ')}], in the shell [${homesInShell.join(', ')}] across ${shellModules.size} module(s)`)
+  if (homes.length === 0 || shellModules.size === 0) throw new Error(`II is NOT MEASURED: ${homes.length} home(s) read from the registry and ${shellModules.size} module(s) from the witness`)
+  if (notRoots.length > 0) throw new Error(`II is FALSE: ${notRoots.join(', ')} prove(s) registered theorems, import(s) other source, and sit(s) in the shell every visitor loads`)
+
+  // III — a wrong witness decodes nothing
+  const insensitive = read.filter((r) => {
+    if (r.bytes.length === 0) return true
+    const flipped = Buffer.from(r.bytes)
+    flipped[flipped.length >> 1] = flipped[flipped.length >> 1]! ^ 1
+    return seal(flipped) === r.entry.seal
+  })
+  console.log(`  III a wrong witness decodes nothing: one bit flipped in each of ${read.length} shell file(s) — ${read.length - insensitive.length}/${read.length} no longer carry the recorded seal`)
+  if (insensitive.length > 0) throw new Error(`III is FALSE: ${insensitive.map((r) => rel(r.file)).join(', ')} keeps its seal with a bit flipped (an empty file has no bit to flip and seals nothing)`)
+  console.log('  ✓ the shell is accounted for: sealed as built, carrying no theorem home but the root')
 }

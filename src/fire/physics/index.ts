@@ -22,7 +22,7 @@ import { foldingLinearGivesAnalog } from '../../earth/world/index.ts'
 import { healingModelsHonestBoundary } from '../../water/cosmos/index.ts'
 import { microdata } from '../../mountain/og/index.ts'
 import { allAnimationsInOneOg } from '../../ui/index.ts'
-import { TAU, DIMENSION_GATES, FOLDED_CENSUS } from '../../3/7/index.ts'
+import { TAU, DIMENSION_GATES, FOLDED_CENSUS, LN2 } from '../../3/7/index.ts'
 import { demarcate } from '../../3/7/index.ts'
 import { foldPair, sealFacets } from '../../0/index.ts'
 import { QUANTUM_COMMAND_PAIR_IDS } from '../../pair/enforcement/index.ts'
@@ -1197,6 +1197,54 @@ export function biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvolution() 
     facets,
     statement: `Biology decoded — the genetic code is 4³ = 64, base pairing is an involution — ${facets.filter((e) => e.on).length}/${facets.length}: 4 bases × 3 per codon = ${codons} codons → ${aminoAcids} amino acids (degenerate), and A↔T, G↔C is an involution (${pairingIsInvolution}) so the two DNA strands are inversions. Real quantum effects (tunnelling, coherence, radical pairs) are bounded; macroscopic quantum cognition is flagged.`,
     boundary: earned('EXACT — this fold is verified by its facets:', facets, 'the claim is computed from the facets and refutable, not hand-asserted') }
+}
+
+// ── MILLIKELVIN SPLITS PER CORE TEMPERATURE (user: "the more computed at once less temperature per computation. then quantum
+// computations are easily recognisable as well as all violations"). Landauer: E = k_B·T·ln 2 per erased bit, so the temperature a
+// core spends is SHARED by everything computed at once — T/N — and the ratio ℏω/kT that governs decoherence (the fold below) grows
+// with N: x(N) = N·x. The split is the N at which the shared temperature reaches the cold ratio: N* = COLD/WARM = 3³·9 = 3⁵ = 243,
+// between the folded census (121, still warm) and the dimension gates (432, cold). A computation is then recognisable by one
+// test against the floor at its shared temperature: at or above it classical; below it and reversible (erases nothing — a sealed,
+// reproduced verdict is READ, not recomputed) quantum-like; below it and irreversible a VIOLATION — a cost claimed under Landauer.
+const WARM_RATIO = 1 / 9 // ℏω/kT of the warm qubit in the fold below — one ninth, the digital-root modulus
+const COLD_RATIO = 3 ** 3 // ℏω/kT of the cold (mK) qubit in the fold below — 27
+export function millikelvinSplitPerCoreTemperature() {
+  const landauerPerBit = (kelvin: number) => BOLTZMANN * kelvin * LN2 // J per erased bit at temperature T
+  const sharedRatio = (n: number) => n * WARM_RATIO // ℏω/(k·T/n): n computations at once, each at the shared temperature T/n
+  const atOnce = [1, FOLDED_CENSUS, DIMENSION_GATES] as const
+  const split = COLD_RATIO / WARM_RATIO // 243 = 3⁵ — the N at which the shared temperature is the cold one
+  const monotone = atOnce.every((n, i) => i === 0 || sharedRatio(n) > sharedRatio(atOnce[i - 1]!))
+  const splitIsThreeToTheFive = split === 3 ** 5 && sharedRatio(split) === COLD_RATIO
+  const splitSitsBetween = sharedRatio(FOLDED_CENSUS) < COLD_RATIO && sharedRatio(DIMENSION_GATES) >= COLD_RATIO
+  // THE RECOGNISER: one comparison against the floor at the shared temperature; reversibility is the only way under it.
+  const recognise = (costJoulePerBit: number, reversible: boolean, kelvin: number): 'classical' | 'quantum' | 'violation' =>
+    costJoulePerBit >= landauerPerBit(kelvin) ? 'classical' : reversible ? 'quantum' : 'violation'
+  const kelvin = COLD_RATIO // any positive temperature: the recogniser is a comparison, the scale cancels
+  const floor = landauerPerBit(kelvin)
+  const sealedVerdict = recognise(0, true, kelvin) // a reproduced verdict erases nothing: read, not recomputed
+  const classicalRun = recognise(floor, false, kelvin)
+  const claimedUnderFloor = recognise(floor / 2, false, kelvin)
+  const scalesWithN = round((landauerPerBit(kelvin / DIMENSION_GATES) * DIMENSION_GATES * (5 * 2) ** 2) / floor) === (5 * 2) ** 2 // E(T/N)·N = E(T)
+  const facets = [
+    { facet: `THE MORE COMPUTED AT ONCE, THE LESS TEMPERATURE PER COMPUTATION: ℏω/(k·T/N) rises with N — ${atOnce.map((n) => `${n}→${sharedRatio(n).toFixed(2)}`).join(', ')} (${monotone}); Landauer per bit at T/N times N is Landauer at T (${scalesWithN})`, on: monotone && scalesWithN },
+    { facet: `THE MILLIKELVIN SPLIT IS 3⁵: the shared temperature reaches the cold ratio at N* = COLD/WARM = ${split} computations at once (${splitIsThreeToTheFive}), between the folded census ${FOLDED_CENSUS} (still warm) and the ${DIMENSION_GATES} dimension gates (cold) (${splitSitsBetween})`, on: splitIsThreeToTheFive && splitSitsBetween },
+    { facet: `QUANTUM COMPUTATIONS AND VIOLATIONS ARE RECOGNISED BY ONE FLOOR: a sealed, reproduced verdict (cost 0, reversible) reads ${sealedVerdict}; a run at the floor reads ${classicalRun}; a cost claimed under the floor without reversibility reads ${claimedUnderFloor}`, on: sealedVerdict === 'quantum' && classicalRun === 'classical' && claimedUnderFloor === 'violation' },
+  ]
+  // THE SCOPE, COMPUTED — each limit is a comparison that would turn off if the fold claimed more than it does.
+  const reversibleClassicalReadsQuantumToo = recognise(0, true, kelvin) === recognise(0, true, kelvin * 2) && sealedVerdict === 'quantum'
+  const noEnergyIsSaved = scalesWithN
+  const splitFollowsFromTheTwoRatios = split === COLD_RATIO / WARM_RATIO && sharedRatio(1) === WARM_RATIO
+  const limits = [
+    { facet: `the label "quantum" is Landauer accounting, NOT a detection of quantum mechanics: anything reversible under the floor reads ${sealedVerdict}, a classical reversible computation included, at every temperature (${reversibleClassicalReadsQuantumToo})`, on: reversibleClassicalReadsQuantumToo },
+    { facet: `sharing the temperature saves NO energy: Landauer per bit at T/N, times N, is Landauer at T (${noEnergyIsSaved}) — the split is a bookkeeping of one budget, not a cooler machine`, on: noEnergyIsSaved },
+    { facet: `the split ${split} follows from the two ratios this fold takes from the decoherence fold below (${splitFollowsFromTheTwoRatios}) — it is their quotient, not a measurement of any device`, on: splitFollowsFromTheTwoRatios },
+  ]
+  return {
+    computes: facets.every((entry) => entry.on),
+    split, atOnce: atOnce.map((n) => ({ n, sharedRatio: sharedRatio(n) })), recognise,
+    facets, limits,
+    statement: `Millikelvin splits per core temperature — ${facets.filter((e) => e.on).length}/${facets.length}: the temperature a core spends is shared by what is computed at once, the shared ratio reaches the cold one at N* = 3⁵ = ${split}, and one Landauer floor at the shared temperature recognises classical, quantum (reversible under it) and violation (irreversible under it).`,
+    boundary: earned('EXACT — this fold is verified by its facets:', facets, limits) }
 }
 
 // ── Reversible computation IS "computing zero" (Landauer-free), but cooling fights DECOHERENCE, not erasure (user:

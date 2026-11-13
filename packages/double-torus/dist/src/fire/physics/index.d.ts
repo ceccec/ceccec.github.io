@@ -660,6 +660,25 @@ export declare function biologyDecodedGeneticCodeIsFourCubedBasePairingIsAnInvol
     statement: string;
     boundary: string;
 };
+export declare function millikelvinSplitPerCoreTemperature(): {
+    computes: boolean;
+    split: number;
+    atOnce: {
+        n: number;
+        sharedRatio: number;
+    }[];
+    recognise: (costJoulePerBit: number, reversible: boolean, kelvin: number) => "classical" | "quantum" | "violation";
+    facets: {
+        facet: string;
+        on: boolean;
+    }[];
+    limits: {
+        facet: string;
+        on: boolean;
+    }[];
+    statement: string;
+    boundary: string;
+};
 export declare function reversibleComputationIsComputingZeroButCoolingFightsDecoherenceNotErasure(): {
     computes: boolean;
     reversibleIsLandauerFree: boolean;

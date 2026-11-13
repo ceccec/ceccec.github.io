@@ -1515,6 +1515,37 @@ export const LEAN_SEALED_REGISTRY: readonly { readonly theorem: string; readonly
   // SEALED 2026-11-08. toUuid moved to SHA-256, and a direction's face is the digital root of the row's address, so
   // every row re-drew its face and ray 5 · counter lost its sealed row. This row lands there and the kernel decides it.
   { theorem: "the circle of fifths does not close", leanFile: "src/pair/lean/proofs/registry.lean", theorems: ["circle_of_fifths_does_not_close"], scope: 'exact' },
+  // SEALED 2026-11-13 by quantum.lean — the exact-amplitude register ported from erpax (src/verify/lean) and
+  // qpu, fused into one import-free file. Every link is `instances` except superdense coding, whose whole
+  // statement (four messages, four basis states) is the finite check. NOT linked, because the kernel decides
+  // less than the row said AT THAT POINT (the second wave below decides most of them): the Shor nine-qubit row
+  // (syndrome tables only, no amplitudes, no threshold — still unlinked), the
+  // two no-signalling rows (the file checks teleportation's third qubit, not Bob's half under Alice's local
+  // operations), Pauli closure (unitarity is decided, the commutators are not) and GHZ–Mermin (the state, not
+  // the parity argument).
+  { theorem: "Deutsch–Jozsa", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["deutsch_jozsa", "promise_census"], scope: 'instances' },
+  { theorem: "Grover amplification", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["grover_search"], scope: 'instances' },
+  { theorem: "Tsirelson bound", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["chsh_classical_bound", "chsh_quantum_value"], scope: 'instances' },
+  { theorem: "no-cloning", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["no_cloning", "cnot_copies_the_basis"], scope: 'instances' },
+  { theorem: "bit-flip code", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["repetition_corrects", "repetition_fails_on_two"], scope: 'instances' },
+  { theorem: "quantum teleportation fidelity 1", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["teleport_exact"], scope: 'instances' },
+  { theorem: "superdense coding 2 bits per qubit", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["superdense_exact"], scope: 'exact' },
+  { theorem: "Quantum Fourier Transform is unitary", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["qft_unitary"], scope: 'instances' },
+  { theorem: "the Klein four-group acts simply transitively on the Bell basis — two bits address maximal entanglement", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["superdense_exact"], scope: 'instances' },
+  // SEALED 2026-11-13, second wave. The Witness section of quantum.lean was WRITTEN for these rows on the ported
+  // matrices — the first wave left them unlinked because the kernel decided less than each row said, and the
+  // remedy for that is a theorem, not a looser link. Still `instances` wherever the row speaks of every state or
+  // every operation and the kernel checked a finite list: seven local operations, six input states, the involutions
+  // of the reversible row (its universality and Landauer clauses are not decided). Minkowski is sealed by the general
+  // proofs ported from erpax into spacetime.lean, in 1+1 dimensions — the row writes |x|², so `instances`.
+  { theorem: "Pauli algebra closure", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["pauli_products", "pauli_anticommute", "pauli_square_adjoint_trace"], scope: 'exact' },
+  { theorem: "GHZ–Mermin", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["ghz_state", "ghz_mermin_quantum", "ghz_mermin_classical"], scope: 'exact' },
+  { theorem: "the no-communication theorem — entanglement correlates but cannot signal", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["no_communication", "alice_changes_the_pair"], scope: 'instances' },
+  { theorem: "the phase-flip code corrects any Z error — the Hadamard dual of the bit-flip code", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["hadamard_exchanges_phase_and_bit", "repetition_corrects"], scope: 'instances' },
+  { theorem: "Bell measurement outcomes are uniform — the teleportation toll is fair and leaks nothing", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["toll_is_uniform"], scope: 'instances' },
+  { theorem: "entanglement swapping", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["entanglement_swapping", "no_pairs_no_swapping"], scope: 'instances' },
+  { theorem: "reversible computation decoded", leanFile: "src/pair/formal/proofs/quantum.lean", theorems: ["cnot", "swap", "toffoli"], scope: 'instances' },
+  { theorem: "Minkowski signature", leanFile: "src/pair/formal/proofs/spacetime.lean", theorems: ["timelike_invariant", "spacelike_invariant", "null_invariant"], scope: 'instances' },
 ] as const
 
 /** The stream's tracked receipt summary (.vitepress/receipts/latest.json), as the README reads it: the verdict vector

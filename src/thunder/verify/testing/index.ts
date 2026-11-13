@@ -1681,7 +1681,8 @@ export async function runLiveTestingExit(_root = '', _argv: readonly string[] = 
 // ---- THE PI-TRAIN READ. The nine digit roots (src/1 … src/9) compute and seal their own physics from src/0 and nothing imported
 // them: nine sealed measurements nobody read, which verify:referrers counted as dead logic. The referrer is this fold, which the
 // corpus chunk carries — read from water/digit the roots' side-effectful module bodies entered the SHELL (+2 KiB in spirit.js,
-// build.shell-machinery-kilobytes refused 633 > 630); mathematics changes the corpus, never the shell. Held as nine namespaces:
+// the shell floor of the day refused 633 > 630 — that floor is gone since 2026-11-13, replaced by the separation theorem in
+// verify:build-time, which decides names and would NOT have caught this); mathematics changes the corpus, never the shell. Held as nine namespaces:
 // every root exports `digit`, and one name from nine sources reads as nine homes to the referrer gate.
 const TENS = 5 * 2 // the 180° fold pairs d with 10 − d; the 90° fold with 9 − d (mod 9) — src/0 reflectFold
 const DIGIT_ROOTS = [digit1.digit, digit2.digit, digit3.digit, digit4.digit, digit5.digit, digit6.digit, digit7.digit, digit8.digit, digit9.digit] as const

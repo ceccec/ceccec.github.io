@@ -21,7 +21,7 @@ import { CRITICAL_MAGNETIC_FIELD_T, MOND_ACCELERATION_A0, OMEGA_BARYON, qcdMassF
 import { casimirEnergyPerArea, HUBBLE_CONSTANT_LOCAL } from '../../6/4/index.ts'
 import { OMEGA_DARK_MATTER, unruhTemperature } from '../../5/5/index.ts'
 import { DARK_ENERGY_EOS_W, ELECTRONVOLT, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, NEWTON_G, SPEED_OF_LIGHT, otuPerMin } from '../../3/7/index.ts'
-import { SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB, MEGAPARSEC_M } from '../../7/3/index.ts'
+import { SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB, MEGAPARSEC_M, nthPrimeAt } from '../../7/3/index.ts'
 import { BARYON_TO_PHOTON_RATIO, hawkingTemperature } from '../../4/6/index.ts'
 import { ELECTRON_G_FACTOR_ANOMALY, zeroPointEnergy, casimirPressure, rebreatherInertBar } from '../../1/9/index.ts'
 import { NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHalfOnTop, equivalentAirDepthM } from '../../2/8/index.ts'
@@ -1207,6 +1207,61 @@ export function solarSystem(matrix: MindMatrix = buildMatrix(), timeYears = 0) {
     count: planets.length,
     computed: planets.length === 8 && planets.every((entry) => Number.isFinite(entry.x) && Number.isFinite(entry.y)),
     root: merkleFold(planets.map((entry) => entry.receipt)) }
+}
+
+// ---- SPLIT THE ASTRONOMICAL VALUES WITH π AND PRIMES, AND SEAL THEM ----
+//
+// The vault (src/3/7 · MAJOR_MOONS) holds JPL numbers as data: six periods, six semi-major axes, six radii. Data they stay —
+// an observed axis is an axiom of the ledger — but a PERIOD is not independent of its axis: Kepler's third law, with π, makes
+// it a theorem of (a, μ). So each parent's μ = 4π²a³/T² is read from its own moons, every period is re-derived from the
+// parent's mean μ, and the vault literal is held to it at the derived precision (percent, rounded — no tolerance typed).
+// The axes split into primes from 7/3's ladder and multiply back exactly; the Galilean periods stand in the Laplace resonance,
+// whose ratios round to the primes 2 and 2². Each row seals as a content address and the six fold to one Merkle root.
+const PERCENT = (5 * 2) ** 2 // 100 — the derived precision at which a Keplerian period is held to its catalogued value
+/** n as a product of primes from the kernel's ladder, defined once here: trial division by nthPrimeAt(k) up to √n. */
+function primeSplit(n: number): readonly number[] {
+  const out: number[] = []
+  let m = n
+  for (let k = 1; ; k++) {
+    const p = nthPrimeAt(k)
+    if (p * p > m) break
+    while (m % p === 0) { out.push(p); m /= p }
+  }
+  if (m > 1) out.push(m)
+  return out
+}
+export function moonsSplitByPiAndPrimes(matrix: MindMatrix = buildMatrix()) {
+  return memoByRoot('moonsSplitByPiAndPrimes', matrix, () => {
+    const mu = (aKm: number, tDays: number) => TAU * TAU * aKm ** 3 / tDays ** 2 // km³/day², 4π² = TAU²
+    const parents = [...new Set(MAJOR_MOONS.map((m) => m.parent))]
+    const muOf = Object.fromEntries(parents.map((p) => {
+      const own = MAJOR_MOONS.filter((m) => m.parent === p).map((m) => mu(m.orbitRadiusKm, m.periodDays))
+      return [p, own.reduce((x, y) => x + y, 0) / own.length]
+    })) as Record<string, number>
+    const rows = MAJOR_MOONS.map((m) => {
+      const muMoon = mu(m.orbitRadiusKm, m.periodDays)
+      const derivedDays = TAU * sqrt(m.orbitRadiusKm ** 3 / muOf[m.parent]!)
+      const primes = primeSplit(m.orbitRadiusKm)
+      return {
+        name: m.name, parent: m.parent, periodDays: m.periodDays, orbitRadiusKm: m.orbitRadiusKm,
+        muPercentOfParent: round((PERCENT * muMoon) / muOf[m.parent]!),
+        derivedPeriodDays: derivedDays, derivedPercentOfCatalogue: round((PERCENT * derivedDays) / m.periodDays),
+        primes, primesExact: primes.reduce((x, y) => x * y, 1) === m.orbitRadiusKm, digitalRoot: digitalRoot(m.orbitRadiusKm),
+        seal: toUuid(`moon:${m.name}:${m.orbitRadiusKm}:${m.periodDays}:${primes.join('·')}`),
+      }
+    })
+    const period = (name: string) => MAJOR_MOONS.find((m) => m.name === name)!.periodDays
+    const laplace = { europaOverIo: round(period('Europa') / period('Io')), ganymedeOverIo: round(period('Ganymede') / period('Io')) }
+    const root = merkleFold(rows.map((r) => r.seal))
+    const facets = [
+      { facet: `Kepler's third law holds on the catalogue with π: every moon's μ = 4π²a³/T² rounds to ${PERCENT} % of its parent's mean — ${rows.filter((r) => r.muPercentOfParent === PERCENT).length} of ${rows.length}`, on: rows.every((r) => r.muPercentOfParent === PERCENT) },
+      { facet: `every catalogued period is a theorem of its axis: T = 2π√(a³/μ) re-derives it to ${PERCENT} % — ${rows.filter((r) => r.derivedPercentOfCatalogue === PERCENT).length} of ${rows.length}`, on: rows.every((r) => r.derivedPercentOfCatalogue === PERCENT) },
+      { facet: `the Laplace resonance splits into primes: Europa/Io rounds to ${laplace.europaOverIo} and Ganymede/Io to ${laplace.ganymedeOverIo} = 2²`, on: laplace.europaOverIo === nthPrimeAt(1) && laplace.ganymedeOverIo === nthPrimeAt(1) ** 2 },
+      { facet: `every axis splits into primes from the kernel's ladder and multiplies back exactly — ${rows.filter((r) => r.primesExact).length} of ${rows.length} (${rows.map((r) => `${r.name} ${r.primes.join('·')}`).join('; ')})`, on: rows.every((r) => r.primesExact) },
+      { facet: `each row seals as a content address and the six fold to one root ${root.slice(0, 8)}`, on: rows.every((r) => isUuid(r.seal)) && isUuid(root) },
+    ].map((entry) => ({ ...entry, receipt: toUuid(`moons-split:${entry.facet}:${entry.on}`) }))
+    return { computes: facets.every((f) => f.on), facets, rows, muOf, laplace, root, statement: `The astronomical values of the vault split with π and primes: ${rows.length} moons of ${parents.length} parents, each period a theorem of its axis through 4π²a³/T² at ${PERCENT} %, each axis an exact prime product, the Galilean resonance the primes 2 and 2², six seals under one Merkle root.` }
+  })
 }
 
 // MAJOR_MOONS is hosted in the zero-import leaf src/3/7 (imported + re-exported above) to break the SSR TDZ.

@@ -8,7 +8,7 @@ import { defineConfig } from 'vitepress'
 // One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
-import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin } from './plugins/index.mts'
+import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin, chunkWitnessPlugin } from './plugins/index.mts'
 import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
 
 /** Root pages live under pages/ without bg|gla prefix — default locale is English (canonical bare URLs). */
@@ -406,7 +406,7 @@ export default defineConfig({
         },
       },
     },
-    plugins: [nodeBuiltinBrowserShimPlugin(), nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), ...srcFolderPlugins(projectRoot)],
+    plugins: [nodeBuiltinBrowserShimPlugin(), nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), chunkWitnessPlugin(), ...srcFolderPlugins(projectRoot)],
     // Imports are folders only, with NO file extensions (the strict barrel rule, enforced on all of src):
     // a specifier names the module by its folder path and the resolver finds the file. '.vue' is appended
     // so extensionless component imports (`./components/Foo`, never `./components/Foo.vue`) resolve too —

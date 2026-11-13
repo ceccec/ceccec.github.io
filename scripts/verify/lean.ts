@@ -19,13 +19,14 @@
  */
 
 import { execFileSync } from 'node:child_process'
-import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join, relative } from 'node:path'
 
 const SKIP = new Set(['node_modules', 'cache', 'dist', '.git', '.temp', 'worktrees'])
 
-export type LeanResult = { file: string; ok: boolean; sorries: number; ms: number; error: string; timedOut: boolean }
+export type LeanResult = { file: string; ok: boolean; sorries: number; ms: number; error: string; timedOut: boolean; sealed?: boolean }
 
 /** Lean comments: `-- line` and nested `/- block -/`. Stripped before scanning for `sorry`. */
 export function stripLeanComments(text: string): string {
@@ -190,8 +191,70 @@ export function axiomFreedom(file: string, root: string = process.cwd()): { tota
   return { total: names.length, axiomFree, standardOnly: standard.length, standardUse, dependent }
 }
 
+// ---- THE SEAL, PER FILE: a proof's check depends on its text and on what it imports, and on nothing else ----
+//
+// "Slow means hex is a wrap." This compiled 1,016 files on every run (178 s) while almost none had changed. A file's KEY is
+// the hex of its own text and of every file its `import` lines resolve to inside its package, transitively; a file whose key
+// equals the one recorded at its last clean check is reproduced — named as sealed, never as freshly compiled — and its axiom
+// probe with it. A changed import changes the key of every file that imports it. VERIFY_FRESH=1 compiles everything.
+const LEAN_SEALS = join(process.cwd(), 'scripts', 'verify', 'receipts', 'reads', 'lean-files.json')
+type AxiomReport = { total: number; axiomFree: number; standardOnly: number; standardUse: Record<string, number>; dependent: string[]; notMeasured?: boolean }
+type LeanSeal = { key: string; sorries: number; axioms?: AxiomReport }
+let leanSeals: Record<string, LeanSeal> = {}
+function readLeanSeals(): Record<string, LeanSeal> {
+  if (process.env.VERIFY_FRESH === '1') return {}
+  try { return JSON.parse(readFileSync(LEAN_SEALS, 'utf8')) as Record<string, LeanSeal> } catch { return {} }
+}
+function writeLeanSeals(): void {
+  try { mkdirSync(dirname(LEAN_SEALS), { recursive: true }); writeFileSync(LEAN_SEALS, `${JSON.stringify(leanSeals)}\n`) } catch { /* a seal that cannot be written costs one more compile, never a verdict */ }
+}
+const keyCache = new Map<string, string>()
+/** The hex of a file and its import closure within its package. */
+export function leanKey(file: string, root: string = process.cwd(), seen: Set<string> = new Set()): string {
+  if (keyCache.has(file)) return keyCache.get(file)!
+  if (seen.has(file)) return 'cycle'
+  seen.add(file)
+  const text = readFileSync(file, 'utf8')
+  const h = createHash('sha256').update(text)
+  const pkg = leanCommand(file, root).cwd
+  for (const m of text.matchAll(/^import\s+([\w.]+)/gm)) {
+    const dep = join(pkg, `${m[1]!.replace(/\./g, '/')}.lean`)
+    if (dep !== file && existsSync(dep)) h.update(`\n${relative(root, dep)}:${leanKey(dep, root, seen)}`)
+  }
+  const key = h.digest('hex').slice(0, 16)
+  keyCache.set(file, key)
+  return key
+}
+/** The axiom probe, sealed on the same key as the compile. */
+export function sealedAxioms(rel: string, root: string = process.cwd()): AxiomReport {
+  const file = join(root, rel)
+  const key = leanKey(file, root)
+  const seal = leanSeals[rel]
+  if (seal && seal.key === key && seal.axioms && !seal.axioms.notMeasured) return seal.axioms
+  const a = axiomFreedom(file, root)
+  if (!a.notMeasured) { leanSeals[rel] = { key, sorries: seal?.key === key ? seal.sorries : 0, axioms: a }; writeLeanSeals() }
+  return a
+}
+
 export function compileLean(root: string = process.cwd()): LeanResult[] {
-  return leanFiles(root).map((file) => {
+  leanSeals = readLeanSeals()
+  const results = leanFiles(root).map((file) => {
+    const rel = relative(root, file)
+    const key = leanKey(file, root)
+    const seal = leanSeals[rel]
+    if (seal && seal.key === key) return { file: rel, ok: true, sorries: seal.sorries, ms: 0, error: '', timedOut: false, sealed: true }
+    const r = compileOne(file, rel, root)
+    if (r.ok) leanSeals[rel] = { key, sorries: r.sorries, ...(seal?.axioms ? {} : {}) }
+    return r
+  })
+  writeLeanSeals()
+  const sealed = results.filter((r) => r.sealed).length
+  if (sealed > 0) console.log(`  ${sealed} of ${results.length} lean files reproduced by seal (text and import closure unchanged) — VERIFY_FRESH=1 compiles everything`)
+  return results
+}
+
+function compileOne(file: string, rel: string, root: string): LeanResult {
+  return ((): LeanResult => {
     const rel = relative(root, file)
     // `sorry` admits any goal, so a file full of them compiles green and proves nothing.
     // Comments are stripped first: this counted the word in its own header prose ("no
@@ -213,7 +276,7 @@ export function compileLean(root: string = process.cwd()): LeanResult[] {
       return { file: rel, ok: false, sorries, ms: Date.now() - started, timedOut,
         error: (text || err.message || 'failed').split('\n').slice(0, 3).join(' · ') }
     }
-  })
+  })()
 }
 
 export function assertLeanCompiles(): void {
@@ -279,7 +342,7 @@ export function assertLeanCompiles(): void {
     // can compile and still rest on Classical.choice, or on sorryAx, which would make green a lie. Asked
     // for the first time, it answers 18/18 with no axiom. Not measuring it was not evidence.
     if (!r.file.includes('/proofs/')) continue
-    const a = axiomFreedom(join(process.cwd(), r.file))
+    const a = sealedAxioms(r.file)
     totalThm += a.total
     totalFree += a.axiomFree
     totalPropext += a.standardOnly

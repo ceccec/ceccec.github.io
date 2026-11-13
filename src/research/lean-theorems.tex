@@ -230,6 +230,275 @@ rank H₁(Σ\_g) = 2g, equivalently 2 − χ, at every genus checked.
 \[ \texttt{∀ g ∈ [(0 : Int), 1, 2, 3, 4], 2 - chi g = 2 * g} \]
 \end{theorem}
 \begin{proof} By \texttt{decide} in \texttt{poincare.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Gi add re]
+The parts of a sum, a product and the literals 0 and 1 — what a proof over ALL matrices unfolds to. Stated at the file's own namespace so the inventory names each one.
+\[ \texttt{(x y : GI) : (x + y).re = x.re + y.re} \]
+\end{theorem}
+\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Gi add im]
+\[ \texttt{(x y : GI) : (x + y).im = x.im + y.im} \]
+\end{theorem}
+\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Gi mul re]
+\[ \texttt{(x y : GI) : (x * y).re = x.re * y.re - x.im * y.im} \]
+\end{theorem}
+\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Gi zero re]
+\[ \texttt{(0 : GI).re = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Gi one re]
+\[ \texttt{(1 : GI).re = 1} \]
+\end{theorem}
+\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Gi zero im]
+\[ \texttt{(0 : GI).im = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Gi one im]
+\[ \texttt{(1 : GI).im = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{rfl} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[H unitary]
+HADAMARD IS UNITARY UP TO ITS RECORDED SCALE: H · H† = 2 · I.
+\[ \texttt{Same 2 (mm 2 H (dag H)) (smul 2 idm)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[H squared]
+Hadamard twice is twice the identity — it undoes itself, with the same factor 2.
+\[ \texttt{Same 2 (mm 2 H H) (smul 2 idm)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Paulis unitary]
+X, Z and S are unitary: U · U† = I.
+\[ \texttt{Same 2 (mm 2 X (dag X)) idm ∧ Same 2 (mm 2 Z (dag Z)) idm ∧ Same 2 (mm 2 S (dag S)) idm} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Y unitary]
+Y is unitary and its own inverse, like the other Paulis.
+\[ \texttt{Same 2 (mm 2 Y (dag Y)) idm ∧ Same 2 (mm 2 Y Y) idm} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[S squared]
+S squared is Z.
+\[ \texttt{Same 2 (mm 2 S S) Z} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Cnot]
+CNOT is unitary and its own inverse.
+\[ \texttt{Same 4 (mm 4 CNOT (dag CNOT)) idm ∧ Same 4 (mm 4 CNOT CNOT) idm} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Swap]
+SWAP is unitary and its own inverse.
+\[ \texttt{Same 4 (mm 4 SWAP (dag SWAP)) idm ∧ Same 4 (mm 4 SWAP SWAP) idm} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Toffoli]
+Toffoli is unitary and its own inverse.
+\[ \texttt{Same 8 (mm 8 TOFFOLI (dag TOFFOLI)) idm ∧ Same 8 (mm 8 TOFFOLI TOFFOLI) idm} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Omega fourth]
+ω really is a primitive eighth root: ω⁴ = −1, so ω⁸ = 1 and no smaller power is.
+\[ \texttt{ZW.ω * ZW.ω * ZW.ω * ZW.ω = -1} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[T gate]
+T IS UNITARY, HAS ORDER EXACTLY 8 (T⁸ = I, T⁴ ≠ I), AND DOES NOT COMMUTE WITH HADAMARD.
+\[ \texttt{SameW (mmW TW (dagW TW)) idW ∧ SameW (powW TW 8) idW ∧ ¬ SameW (powW TW 4) idW ∧ ¬ SameW (mmW HW TW) (mmW TW HW)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Bell state]
+THE BELL STATE IS SUPPORTED ON EXACTLY 00 AND 11, WITH EQUAL WEIGHT.
+\[ \texttt{(∀ r, r < 4 → (bell r ≠ 0 ↔ r = 0 ∨ r = 3)) ∧ (bell 0).normSq = (bell 3).normSq} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Ghz state]
+The GHZ state is supported on exactly 000 and 111, with equal weight.
+\[ \texttt{(∀ r, r < 8 → (ghz r ≠ 0 ↔ r = 0 ∨ r = 7)) ∧ (ghz 0).normSq = (ghz 7).normSq} \]
+\end{theorem}
+\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Chsh classical bound]
+EVERY ASSIGNMENT OF DEFINITE VALUES GIVES |S| = 2 — the classical bound, all sixteen cases.
+\[ \texttt{∀ a0 a1 b0 b1 : Bool, chshClassical a0 a1 b0 b1 = 2 ∨ chshClassical a0 a1 b0 b1 = -2} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Chsh quantum value]
+THE BELL STATE BREAKS THE BOUND: the scaled sum is 8 = S · ⟨Φ|Φ⟩ · √2, so S² = 8² / (2² · 2) = 8, beyond the classical 2² = 4.
+\[ \texttt{chshBell = 8 ∧ (8 : Nat) \textasciicircum{} 2 = 8 * (2 \textasciicircum{} 2 * 2) ∧ (2 : Nat) \textasciicircum{} 2 < 8} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Teleport exact]
+EVERY OUTCOME OF QUBITS 0 AND 1 LEAVES QUBIT 2 HOLDING THE INPUT, with equal weight.
+\[ \texttt{∀ b, b < 2 → ∀ r, r < 8 → teleport b r = if r \% 2 = b then 1 else 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Teleport no signalling]
+NO SIGNALLING: before the corrections, qubit 2 alone is the same for every Pauli eigenstate input — off-diagonals zero, diagonals equal.
+\[ \texttt{∀ s, s < 6 → reduced2 (sentFrom (pauliEigen s)) 0 1 = 0 ∧ reduced2 (sentFrom (pauliEigen s)) 1 0 = 0 ∧ reduced2 (sentFrom (pauliEigen s)) 0 0 = reduced2 (sentFrom (pauliEigen s)) 1 1} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Superdense exact]
+EACH OF THE FOUR MESSAGES DECODES TO EXACTLY ITS OWN BASIS STATE: one qubit carries two bits.
+\[ \texttt{∀ m, m < 4 → ∀ r, r < 4 → (superdense m r ≠ 0 ↔ r = m)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Both ways]
+Both directions over one pair: one qubit carries two classical bits, and two carry one qubit.
+\[ \texttt{(∀ m, m < 4 → ∀ r, r < 4 → (superdense m r ≠ 0 ↔ r = m)) ∧ ∀ b, b < 2 → ∀ r, r < 8 → teleport b r = if r \% 2 = b then 1 else 0} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[No cloning]
+NO LINEAR MAP THAT COPIES |0⟩ AND |1⟩ COPIES |+⟩: its image of |+⟩|0⟩ is not |+⟩|+⟩.
+\[ \texttt{(u : Mat) (h0 : ∀ r, r < 4 → ap 4 u (basis 0) r = basis 0 r) (h2 : ∀ r, r < 4 → ap 4 u (basis 2) r = basis 3 r) : ap 4 u (fun r => basis 0 r + basis 2 r) 1 ≠ 1} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Cnot copies the basis]
+The hypotheses are not vacuous: CNOT is such a map — it copies the basis states exactly.
+\[ \texttt{(∀ r, r < 4 → ap 4 CNOT (basis 0) r = basis 0 r) ∧ (∀ r, r < 4 → ap 4 CNOT (basis 2) r = basis 3 r)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Stabilizer hadamard]
+H ON EITHER QUBIT ACTS ON EVERY PAULI STRING AS ITS RULE SAYS (times its recorded factor 2).
+\[ \texttt{Exact (kron 2 H idm) ruleH0 2 ∧ Exact (kron 2 idm H) ruleH1 2} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Stabilizer phase]
+S on either qubit acts on every Pauli string as its rule says.
+\[ \texttt{Exact (kron 2 S idm) ruleS0 1 ∧ Exact (kron 2 idm S) ruleS1 1} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Stabilizer cnot]
+CNOT acts on every Pauli string as its rule says.
+\[ \texttt{Exact CNOT ruleCNOT 1} \]
+\end{theorem}
+\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Deutsch jozsa]
+ONE QUERY DECIDES: a constant function leaves all weight on 00, a balanced one leaves none.
+\[ \texttt{∀ f, f < 16 → (constant f = true → (dj f 0).normSq = 16) ∧ (balanced f = true → dj f 0 = 0)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Promise census]
+The promise is not empty on either side: two functions are constant and six are balanced.
+\[ \texttt{((List.range 16).filter constant).length = 2 ∧ ((List.range 16).filter balanced).length = 6} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Grover search]
+ONE GROVER ITERATION OVER FOUR ITEMS LEAVES ALL WEIGHT ON THE MARKED ITEM.
+\[ \texttt{∀ m, m < 4 → ∀ r, r < 4 → (grover m r ≠ 0 ↔ r = m)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Qft unitary]
+THE TRANSFORM IS UNITARY UP TO ITS RECORDED SCALE: QFT · QFT† = 8 · I.
+\[ \texttt{∀ j, j < 8 → ∀ k, k < 8 → sum8 (fun i => qft j i * iqft i k) = if j = k then 8 else 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Phase estimation exact]
+PHASE ESTIMATION IS EXACT ON AN EIGENPHASE k/8: the inverse transform returns |k⟩.
+\[ \texttt{∀ k, k < 8 → ∀ r, r < 8 → sum8 (fun j => iqft r j * wPow (j * k)) = if r = k then 8 else 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Swap routing]
+ROUTING PRESERVES THE FUNCTION: SWAP(0,1) · CNOT(1,2) · SWAP(0,1) is exactly CNOT(0,2).
+\[ \texttt{Same 8 (mm 8 (mm 8 swap01 cnot12) swap01) cnot02} \]
+\end{theorem}
+\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Unrouted differs]
+And the routing is needed: the unrouted neighbour gate is a different function.
+\[ \texttt{¬ Same 8 cnot12 cnot02} \]
+\end{theorem}
+\begin{proof} By \texttt{decide +kernel} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Routed depth]
+A routed CNOT at distance d ≥ 1 takes 2d − 1 gates; at distance 2, the three above.
+\[ \texttt{(d : Nat) (h : 1 ≤ d) : routedGates d = 2 * d - 1 ∧ routedGates 2 = 3} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Repetition corrects]
+THE REPETITION CODE CORRECTS EVERY SINGLE BIT FLIP, and no flip at all.
+\[ \texttt{∀ b : Bool, ∀ e, e < 4 → decode (flip e (encode b)) = b} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Repetition fails on two]
+AND IT DOES NOT CORRECT TWO: the claim above is sharp, not vacuous.
+\[ \texttt{decode (flip 1 (flip 0 (encode false))) ≠ false} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Steane corrects]
+EACH SINGLE-QUBIT ERROR TRIPS ITS OWN NONZERO SYNDROME — the position it names.
+\[ \texttt{∀ i, i < 7 → syndrome i = i + 1} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Steane css]
+Steane is CSS: every pair of checks overlaps on an even number of qubits.
+\[ \texttt{∀ a, a < 3 → ∀ b, b < 3 → ((List.range 7).filter fun i => hamming a i \&\& hamming b i).length \% 2 = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Shor nine]
+EVERY SINGLE BIT FLIP TRIPS ITS OWN SYNDROME, AND EVERY SINGLE PHASE FLIP NAMES ITS BLOCK.
+\[ \texttt{(∀ a, a < 9 → flags bitChecks a ≠ flags bitChecks 9 ∧ ∀ b, b < 9 → flags bitChecks a = flags bitChecks b → a = b) ∧ ∀ a, a < 9 → flags phaseChecks a ≠ flags phaseChecks 9 ∧ ∀ b, b < 9 → (flags phaseChecks a = flags phaseChecks b ↔ a / 3 = b / 3)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Distance corrects]
+At distance d ≥ 2t + 1, two error patterns of weight at most t never span d.
+\[ \texttt{(d t e₁ e₂ : Nat) (h : 2 * t + 1 ≤ d) (h₁ : e₁ ≤ t) (h₂ : e₂ ≤ t) : e₁ + e₂ < d} \]
+\end{theorem}
+\begin{proof} By \texttt{omega} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Pauli products]
+THE PAULIS MULTIPLY CYCLICALLY WITH THE FACTOR i: XY = iZ, YZ = iX, ZX = iY.
+\[ \texttt{Same 2 (mm 2 X Y) (smul GI.i Z) ∧ Same 2 (mm 2 Y Z) (smul GI.i X) ∧ Same 2 (mm 2 Z X) (smul GI.i Y)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Pauli anticommute]
+Reversed, each product changes sign — so distinct Paulis anticommute and commute to 2i times the third.
+\[ \texttt{Same 2 (mm 2 Y X) (smul (-GI.i) Z) ∧ Same 2 (mm 2 Z Y) (smul (-GI.i) X) ∧ Same 2 (mm 2 X Z) (smul (-GI.i) Y)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Pauli square adjoint trace]
+Each Pauli squares to the identity, is its own adjoint, and has trace zero.
+\[ \texttt{(Same 2 (mm 2 X X) idm ∧ Same 2 (mm 2 Y Y) idm ∧ Same 2 (mm 2 Z Z) idm) ∧ (Same 2 (dag X) X ∧ Same 2 (dag Y) Y ∧ Same 2 (dag Z) Z) ∧ (tr2 X = 0 ∧ tr2 Y = 0 ∧ tr2 Z = 0 ∧ tr2 idm = 2)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Hadamard exchanges phase and bit]
+HADAMARD EXCHANGES THE PHASE FLIP AND THE BIT FLIP: H·Z·H = 2·X and H·X·H = 2·Z — the reason the phase-flip code is the bit-flip code read in the Hadamard basis.
+\[ \texttt{Same 2 (mm 2 (mm 2 H Z) H) (smul 2 X) ∧ Same 2 (mm 2 (mm 2 H X) H) (smul 2 Z)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Ghz mermin quantum]
+GHZ IS A +1 EIGENSTATE OF XXX AND A −1 EIGENSTATE OF XYY, YXY AND YYX.
+\[ \texttt{∀ r, r < 8 → ap 8 xxx ghz r = ghz r ∧ ap 8 xyy ghz r = -(ghz r) ∧ ap 8 yxy ghz r = -(ghz r) ∧ ap 8 yyx ghz r = -(ghz r)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Ghz mermin classical]
+NO DEFINITE VALUES REPRODUCE THOSE FOUR SIGNS: all sixty-four assignments fail — the product of the three −1 lines is x₁x₂x₃ again, so it would have to be both −1 and +1.
+\[ \texttt{∀ x1 x2 x3 y1 y2 y3 : Bool, ¬ (pm x1 * pm x2 * pm x3 = 1 ∧ pm x1 * pm y2 * pm y3 = -1 ∧ pm y1 * pm x2 * pm y3 = -1 ∧ pm y1 * pm y2 * pm x3 = -1)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[No communication]
+BOB'S HALF IS MAXIMALLY MIXED WHATEVER ALICE DOES: off-diagonals zero, diagonals equal, for all seven.
+\[ \texttt{∀ k, k < 7 → bobDensity (aliceDoes k) 0 1 = 0 ∧ bobDensity (aliceDoes k) 1 0 = 0 ∧ bobDensity (aliceDoes k) 0 0 = bobDensity (aliceDoes k) 1 1} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Alice changes the pair]
+The claim is not empty: Alice's operation does change the pair — only Bob's half cannot tell.
+\[ \texttt{aliceDoes 1 0 ≠ aliceDoes 0 0 ∧ aliceDoes 3 3 ≠ aliceDoes 0 3} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Toll is uniform]
+THE FOUR OUTCOMES CARRY EQUAL WEIGHT FOR EVERY PAULI EIGENSTATE: the two classical bits say nothing about what crosses.
+\[ \texttt{∀ s, s < 6 → ∀ m, m < 4 → tollWeight (pauliEigen s) m = tollWeight (pauliEigen s) 0 ∧ tollWeight (pauliEigen s) 0 ≠ 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Entanglement swapping]
+TWO QUBITS THAT NEVER MET ARE LEFT ENTANGLED ON EVERY OUTCOME: nonzero determinant, and the two amplitudes that survive have equal weight.
+\[ \texttt{∀ m, m < 4 → outerDet (swapped bell bell) m ≠ 0 ∧ (outer (swapped bell bell) m 0 0).normSq = (outer (swapped bell bell) m 1 1).normSq ∧ (outer (swapped bell bell) m 0 1).normSq = (outer (swapped bell bell) m 1 0).normSq} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[No pairs no swapping]
+And it is the pairs' entanglement that is swapped: from product pairs the outer two stay a product.
+\[ \texttt{∀ m, m < 4 → outerDet (swapped (basis 0) (basis 0)) m = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{quantum.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
 \begin{theorem}[Sigma is an involution]
 σ² = id. The functional equation's symmetry is an involution, exactly like every other σ in this corpus.
 \[ \texttt{∀ n ∈ [(-4 : Int), -2, -1, 0, 1, 2, 3, 4, 6], σ (σ n) = n} \]
@@ -298,6 +567,119 @@ THE BOOST IS UNDONE BY THE REVERSE BOOST. Boosting by (p, q) and then by (−p, 
 \[ \texttt{∀ p q t x : Int, boostT (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * t ∧ boostX (-p) q (boostT p q t x) (boostX p q t x) = (q * q - p * p) * x} \]
 \end{theorem}
 \begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Sq lt]
+Strictly inside the band (−b, b) means a strictly smaller square.
+\[ \texttt{(a b : Int) (hl : -b < a) (hr : a < b) : a*a < b*b} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Lt of sq]
+A smaller square (with b positive) means inside the band.
+\[ \texttt{(a b : Int) (hb : 0 < b) (h : a*a < b*b) : -b < a ∧ a < b} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Interval scales]
+For every event and every boost the interval is multiplied by q² − p², and by nothing else.
+\[ \texttt{(p q t x : Int) : interval (boostT p q t x) (boostX p q t x) = (q*q - p*p) * interval t x} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Scale positive]
+Below c that factor is positive.
+\[ \texttt{(p q : Int) (h : belowC p q) : 0 < q*q - p*p} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Timelike invariant]
+TIMELIKE STAYS TIMELIKE in every frame below c.
+\[ \texttt{(p q t x : Int) (h : belowC p q) (ht : 0 < interval t x) : 0 < interval (boostT p q t x) (boostX p q t x)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Spacelike invariant]
+SPACELIKE STAYS SPACELIKE: no boost makes a spacelike separation reachable.
+\[ \texttt{(p q t x : Int) (h : belowC p q) (ht : interval t x < 0) : interval (boostT p q t x) (boostX p q t x) < 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Null invariant]
+The light cone is frame-independent: null in one frame is null in all.
+\[ \texttt{(p q t x : Int) (ht : interval t x = 0) : interval (boostT p q t x) (boostX p q t x) = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Timelike order absolute]
+FOR A CAUSAL SEPARATION EVERY OBSERVER BELOW c AGREES WHICH EVENT CAME FIRST. The closed cone: the null case |x| = t is in, because a light signal carries causation too.
+\[ \texttt{(p q t x : Int) (h : belowC p q) (hfuture : 0 < t) (hcausal : x*x ≤ t*t) : 0 < boostT p q t x} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Spacelike order reverses]
+FOR A SPACELIKE SEPARATION THERE IS A FRAME BELOW c IN WHICH THE ORDER REVERSES — exhibited: with 0 < t < x, the boost β = (2t+1)/(2x) sends Δt to −x.
+\[ \texttt{(t x : Int) (ht : 0 < t) (hx : t < x) : belowC (2*t+1) (2*x) ∧ boostT (2*t+1) (2*x) t x = -x} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Spacelike simultaneous]
+…and a frame in which the two events are simultaneous: β = t/x sends Δt to 0.
+\[ \texttt{(t x : Int) (ht : 0 < t) (hx : t < x) : belowC t x ∧ boostT t x t x = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[Velocity addition below c]
+TWO BOOSTS BELOW c COMPOSE TO A BOOST BELOW c, for every pair — c is not approached by adding.
+\[ \texttt{(p₁ q₁ p₂ q₂ : Int) (h₁ : belowC p₁ q₁) (h₂ : belowC p₂ q₂) : belowC (addNum p₁ q₁ p₂ q₂) (addDen p₁ q₁ p₂ q₂)} \]
+\end{theorem}
+\begin{proof} By \texttt{by} in \texttt{spacetime.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The thousand bit case is one hundred twenty five octaves]
+THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT
+\[ \texttt{1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The binary units tile the thousand exactly]
+THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES
+\[ \texttt{1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The thousand is the cube octave times pentagram cubed]
+THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the\_binary\_units\_tile\_the\_thousand\_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0 := by decide  /-! \#\# IT IS THE CUBE 10\textasciicircum{}3 = 2\textasciicircum{}3·5\textasciicircum{}3 — THE OCTAVE IS ONLY THE 2\textasciicircum{}3, THE 5\textasciicircum{}3 IS THE PENTAGRAM CUBED
+\[ \texttt{10 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 = 8 ∧ 5 \textasciicircum{} 3 = 125 ∧ 125 * 8 = 1000} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The thousand carries residue one mod nine]
+THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the\_binary\_units\_tile\_the\_thousand\_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0 := by decide  /-! \#\# IT IS THE CUBE 10\textasciicircum{}3 = 2\textasciicircum{}3·5\textasciicircum{}3 — THE OCTAVE IS ONLY THE 2\textasciicircum{}3, THE 5\textasciicircum{}3 IS THE PENTAGRAM CUBED theorem the\_thousand\_is\_the\_cube\_octave\_times\_pentagram\_cubed : 10 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 = 8 ∧ 5 \textasciicircum{} 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! \#\# THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS
+\[ \texttt{1000 \% 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 \% 9 = 0 ∧ 1008 \% 9 = 0} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The thousand bit case overflows the width thirty two ceiling]
+\[ \texttt{32 * 32 - 32 - 2 = 990 ∧ 990 < 1000 ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The minimal register for the thousand is width thirty three]
+THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the\_binary\_units\_tile\_the\_thousand\_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0 := by decide  /-! \#\# IT IS THE CUBE 10\textasciicircum{}3 = 2\textasciicircum{}3·5\textasciicircum{}3 — THE OCTAVE IS ONLY THE 2\textasciicircum{}3, THE 5\textasciicircum{}3 IS THE PENTAGRAM CUBED theorem the\_thousand\_is\_the\_cube\_octave\_times\_pentagram\_cubed : 10 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 = 8 ∧ 5 \textasciicircum{} 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! \#\# THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS theorem the\_thousand\_carries\_residue\_one\_mod\_nine : 1000 \% 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 \% 9 = 0 ∧ 1008 \% 9 = 0 := by decide  /-! \#\# IT OVERFLOWS THE SEALED WIDTH LADDER: reg(32) = 990 < 1000 ≤ 1021 = reg(33) -- reg(w) = 32w − w − 2 is qpu's uuidQubits, sealed over widths [4,8,16,32] in width.lean; the max there is reg(32) = 990. theorem the\_thousand\_bit\_case\_overflows\_the\_width\_thirty\_two\_ceiling : 32 * 32 - 32 - 2 = 990 ∧ 990 < 1000 ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021 := by decide  /-! \#\# THE MINIMAL CONTAINING WIDTH IS 33 — OVERFLOW MARGIN 10, HEADROOM 21
+\[ \texttt{1000 - 990 = 10 ∧ 1021 - 1000 = 21 ∧ 990 < 1000 ∧ 1000 ≤ 1021 ∧ (32 * 33 - 33 - 2) / 2 = 510} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The thousand fills between ninety seven and ninety eight percent of its register]
+THOUSAND — the thousand-bit case, decided, and the crypto tests that go with it.  Two things, both ported unchanged from millennium-solutions (same author) on 2026-11-13:  the structure of the integer 1000 and where a thousand-bit case sits against a register of capacity reg(w) = 32w − w − 2                (src/iso/80000-2-mathematics/thousandbit.lean)  the σ-trapdoor as Fermat's difference of squares, the uniqueness of its witness, the twin-prime control, and the thousand-bit integer 2\textasciicircum{}999 + 1 with a factor route's PARTIAL answer that multiplies back                              (src/iso/iec-18033-cryptography/qpu\_crypto.lean, §5–§6)  NONE OF THE MATHEMATICS IS NEW: Fermat's factorisation (1643), the lifting-the-exponent lemma, the split a³ + 1 = (a + 1)(a² − a + 1), Fermat's little theorem as a compositeness witness. What is kept is the SHAPE of the test, because this corpus now guards its own build with it (scripts/verify/build-time.ts): an account is an IDENTITY — the found factors times the cofactor are the integer; no found factor still divides the cofactor; and a wrong witness decodes nothing.  WHAT THIS DOES NOT PROVE: that 2\textasciicircum{}999 + 1 is factored — the 244-digit cofactor is composite by a Fermat witness and is not split here. Nothing is said about any device: the register capacity is arithmetic on a CPU. The names qpu, uuidQubits, createImpossible and decodeImpossible in the notes below are the uuidna/qpu service's own constructions, recorded where the source recorded them.   set\_option maxRecDepth 10000  namespace Thousand  /-! \# The thousand-bit case  /-! \#\# 1000 BITS IS 125 OCTAVES EXACTLY — CONTROL: 999 IS NOT theorem the\_thousand\_bit\_case\_is\_one\_hundred\_twenty\_five\_octaves : 1000 = 125 * 8 ∧ 1000 \% 8 = 0 ∧ 999 \% 8 ≠ 0 := by decide  /-! \#\# EVERY BINARY UNIT TILES IT EXACTLY — 500 COINS, 250 HEXBITS, 125 OCTAVES theorem the\_binary\_units\_tile\_the\_thousand\_exactly : 1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8 ∧ 1000 \% 2 = 0 ∧ 1000 \% 4 = 0 ∧ 1000 \% 8 = 0 := by decide  /-! \#\# IT IS THE CUBE 10\textasciicircum{}3 = 2\textasciicircum{}3·5\textasciicircum{}3 — THE OCTAVE IS ONLY THE 2\textasciicircum{}3, THE 5\textasciicircum{}3 IS THE PENTAGRAM CUBED theorem the\_thousand\_is\_the\_cube\_octave\_times\_pentagram\_cubed : 10 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000 ∧ 2 \textasciicircum{} 3 = 8 ∧ 5 \textasciicircum{} 3 = 125 ∧ 125 * 8 = 1000 := by decide  /-! \#\# THE TRINITY RESIDUE IS ONE — NOT A WHOLE NUMBER OF NONETS — CONTROL: 999 IS theorem the\_thousand\_carries\_residue\_one\_mod\_nine : 1000 \% 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 \% 9 = 0 ∧ 1008 \% 9 = 0 := by decide  /-! \#\# IT OVERFLOWS THE SEALED WIDTH LADDER: reg(32) = 990 < 1000 ≤ 1021 = reg(33) -- reg(w) = 32w − w − 2 is qpu's uuidQubits, sealed over widths [4,8,16,32] in width.lean; the max there is reg(32) = 990. theorem the\_thousand\_bit\_case\_overflows\_the\_width\_thirty\_two\_ceiling : 32 * 32 - 32 - 2 = 990 ∧ 990 < 1000 ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021 := by decide  /-! \#\# THE MINIMAL CONTAINING WIDTH IS 33 — OVERFLOW MARGIN 10, HEADROOM 21 theorem the\_minimal\_register\_for\_the\_thousand\_is\_width\_thirty\_three : 1000 - 990 = 10 ∧ 1021 - 1000 = 21 ∧ 990 < 1000 ∧ 1000 ≤ 1021 ∧ (32 * 33 - 33 - 2) / 2 = 510 := by decide  /-! \#\# THE UTILISATION IS 97.94\% — BRACKETED 97\% < 1000/1021 < 98\% AS A DECIDABLE BOUND
+\[ \texttt{97 * 1021 < 1000 * 100 ∧ 1000 * 100 < 98 * 1021 ∧ 97 * 1021 = 99037 ∧ 98 * 1021 = 100058} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The thousand bit structure is decided not a quantum machine]
+\[ \texttt{10 \textasciicircum{} 3 = 1000 ∧ 1000 \% 8 = 0 ∧ 1000 \% 9 = 1 ∧ 990 < 1000 ∧ 1000 ≤ 1021 ∧ 2 \textasciicircum{} 3 * 5 \textasciicircum{} 3 = 1000} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The sigma trapdoor is fermats difference of squares]
+\[ \texttt{oddPrimes = [3, 5, 7, 11, 13, 17, 19, 23, 29] ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || witness p q * witness p q - p * q == ((q - p) / 2) * ((q - p) / 2))) ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || splits (p * q) == [(p, q)])) ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || decodes (p * q) (witness p q))) ∧ oddPrimes.all (fun q => (2 + q) \% 2 == 1)} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[A wrong witness decodes nothing because a semiprime has one split]
+\[ \texttt{small = [3, 5, 7, 11, 13, 17, 19] ∧ small.all (fun p => small.all (fun q => !(p < q) || (List.range' (ceilSqrt (p * q)) ((p * q + 1) / 2 - ceilSqrt (p * q))).all (fun x => decodes (p * q) x == (x == witness p q))))} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[An impossible integer with twin primes is opened blind in one reflection]
+\[ \texttt{blind 11 13 = 1 ∧ blind 5 7 = 1 ∧ blind 3 29 = 7 ∧ (oddPrimes.filter (fun p => isPrime (p + 2))) = [3, 5, 11, 17, 29] ∧ oddPrimes.all (fun p => !(isPrime (p + 2)) || blind p (p + 2) == 1) ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || blind p q ≥ 1)) ∧ blind 3 29 > blind 3 5} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[The thousand bit integer has a thousand bits and exactly four threes]
+\[ \texttt{2 \textasciicircum{} 999 ≤ thousand ∧ thousand < 2 \textasciicircum{} 1000 ∧ (List.range' 1 6).all (fun k => (thousand \% 3 \textasciicircum{} k == 0) == (k ≤ 4)) ∧ 999 = 27 * 37 ∧ (2 \textasciicircum{} 333 + 1) * (2 \textasciicircum{} 666 - 2 \textasciicircum{} 333 + 1) = thousand ∧ (2 \textasciicircum{} 111 + 1) * (2 \textasciicircum{} 222 - 2 \textasciicircum{} 111 + 1) = 2 \textasciicircum{} 333 + 1 ∧ (2 \textasciicircum{} 37 + 1) * (2 \textasciicircum{} 74 - 2 \textasciicircum{} 37 + 1) = 2 \textasciicircum{} 111 + 1 ∧ 2 \textasciicircum{} 37 + 1 = 3 * 1777 * 25781083} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
+\begin{theorem}[This deposits factor route returns a partial answer that multiplies back]
+\[ \texttt{found.foldl (· * ·) 1 * cofactor = thousand ∧ found.length = 14 ∧ (found.filter (· == 3)).length = 4 ∧ found.all (fun p => 1 < p \&\& cofactor \% p != 0) ∧ cofactor \% 2 = 1 ∧ cofactor \% 3 = 1 ∧ powModBin 2 (cofactor - 1) cofactor ≠ 1 ∧ powModBin 2 4 7 = 2 ∧ powModBin 3 6 7 = 1} \]
+\end{theorem}
+\begin{proof} By \texttt{decide} in \texttt{thousand.lean}; the kernel reduces the proposition and reports no axiom dependency. \end{proof}
 \begin{theorem}[Closure is one hundred sixty two]
 The closure has exactly rows x cols cells: 18 x 9 = 162 for the installed library.
 \[ \texttt{(cells 18 9).length = 162} \]

@@ -26,8 +26,8 @@
 
 import { spawn, spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
-import { appendFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { appendFileSync, mkdirSync, readFileSync, readdirSync, statSync, unlinkSync, writeFileSync } from 'node:fs'
+import { join, relative, resolve } from 'node:path'
 import { cpus } from 'node:os'
 import { treeDigest } from './every-fold.ts'
 import { universeGates } from './status.ts'
@@ -36,7 +36,7 @@ const ROOT = process.cwd()
 
 /** clean = ran and passed. violated = ran and refused. NOT RUN = never asked, or could not answer. */
 type Verdict = 'clean' | 'violated' | 'NOT RUN'
-type Result = { readonly gate: string; readonly verdict: Verdict; readonly code: number | null; readonly ms: number; readonly detail: string; readonly tree?: string }
+type Result = { readonly gate: string; readonly verdict: Verdict; readonly code: number | null; readonly ms: number; readonly detail: string; readonly tree?: string; readonly reproduced?: boolean; readonly sealed?: boolean; readonly inputs?: number; readonly inputDigest?: string | null; readonly unsealable?: readonly string[] }
 
 /**
  * THE GATE LIST IS DERIVED FROM package.json, NOT TYPED HERE. A hand-copied list would drift from
@@ -134,7 +134,84 @@ function priorClean(dir: string, tree: string, gate: string): string | null {
   return null
 }
 
+// ---- THE SEAL: verdict = f(gate, inputDigest) — the cross formula over the hex of exactly what a gate read ----
+//
+// "Slow means hex is a wrap." Measured on the archive: 65 gates, 1,327 gate-seconds, and reproduced-from-receipt: 0 —
+// the whole-tree key below never fires, because the tree moves every wave while most gates read a sliver of it.
+// Each gate process is observed through scripts/verify/_reads.ts (every file, listing, existence check and spawn), the
+// bundle cache's own `.inputs.json` stands for the static closure esbuild read natively, and the hex over that read
+// set is the gate's INPUT DIGEST. A later run whose digest is unchanged reproduces the clean verdict instead of
+// re-running. Sound only where every read was seen: a live surface, a gate that spawned anything but node, or a gate
+// with no observed reads is UNSEALABLE and runs every time. A reproduction is named as one, never as a fresh run.
+const READS_HOOK = join(ROOT, 'scripts', 'verify', '_reads.ts') // underscore: a hook, not a gate — census.ts shapes every other file here as one
+const SEALS = join(ROOT, 'scripts', 'verify', 'receipts', 'reads')
+// THE STREAM'S OWN OUTPUT IS NOT ONE OF ITS INPUTS. .vitepress/receipts/latest.json is written at the end of every run and was
+// read by all 44 sealable gates (latestReceipt, at module init), so every seal keyed on a file the sealing run then replaced
+// and none could ever fire. A gate whose VERDICT reads the previous receipt reads the previous tree's address — the tree
+// itself is in its inputs; the summary is excluded, and named here.
+const NOT_INPUTS = /^(node_modules|\.git|\.vitepress\/dist|\.vitepress\/receipts|scripts\/verify\/receipts)(\/|$)/
+const hex = (b: Buffer | string) => createHash('sha256').update(b).digest('hex')
+/** The hex of one path as the gate saw it: a file's bytes, a directory's listing, or its absence. */
+function pathHex(rel: string): string {
+  const p = join(ROOT, rel)
+  try { const st = statSync(p); return st.isDirectory() ? hex(readdirSync(p).sort().join('\n')) : hex(readFileSync(p)) } catch { return 'absent' }
+}
+/** The reads one gate process made, expanded: every `.inputs.json` it touched is the bundle esbuild built from those files. */
+function observedReads(trace: string): { reads: string[]; spawned: string[] } {
+  const reads = new Set<string>()
+  const spawned = new Set<string>()
+  let text = ''
+  try { text = readFileSync(trace, 'utf8') } catch { return { reads: [], spawned: ['(no trace)'] } }
+  for (const line of text.split('\n')) {
+    const kind = line.slice(0, 1)
+    const p = line.slice(2).trim()
+    if (!p) continue
+    if (kind === 'S') { spawned.add(p); continue }
+    const abs = resolve(ROOT, p)
+    if (!abs.startsWith(`${ROOT}/`)) continue
+    const rel = relative(ROOT, abs)
+    if (rel.endsWith('.inputs.json')) {
+      try { for (const i of JSON.parse(readFileSync(abs, 'utf8')) as string[]) reads.add(i) } catch { spawned.add('(unreadable bundle inputs)') }
+      continue
+    }
+    if (rel.startsWith('.vitepress/cache/') || NOT_INPUTS.test(rel)) continue
+    reads.add(rel)
+  }
+  return { reads: [...reads].sort(), spawned: [...spawned] }
+}
+/** A spawn is node-like when its command is node, or a shell whose `-c` script starts with node or npm — the chain npm itself runs a gate through. */
+const nodeLike = (line: string): boolean => {
+  const [cmd = '', ...rest] = line.split(' ')
+  if (cmd === process.execPath || /(^|\/)(node|npm|npx)$/.test(cmd)) return true
+  // esbuild is a native binary the bootstrap spawns for every bundle; what it read is exactly what its metafile — the
+  // `.inputs.json` this stream expands — records, so the spawn is OBSERVED through the bundle inputs, not foreign.
+  if (/\/@esbuild\/[^/]+\/bin\/esbuild$/.test(cmd) && rest[0]?.startsWith('--service')) return true
+  if (/(^|\/)(sh|bash|zsh)$/.test(cmd) && rest[0] === '-c') {
+    const script = rest.slice(1).join(' ').trim().replace(/^"|"$/g, '')
+    return /^(node|npm|npx)\b/.test(script) || script.startsWith(process.execPath) || binRunsNode(script.split(/\s+/)[0] ?? '')
+  }
+  return binRunsNode(cmd)
+}
+/** A node_modules/.bin command (tsc, vitepress …) is a pnpm shim that execs node, so the process it starts inherits the hook
+ *  and is observed; a shim that does not name node (a native binary's launcher) stays foreign. Read from the shim's text. */
+function binRunsNode(cmd: string): boolean {
+  const bin = join(ROOT, 'node_modules', '.bin', cmd.split('/').pop() ?? '')
+  try { return /\bnode\b/.test(readFileSync(bin, 'utf8').slice(0, 2048)) } catch { return false }
+}
+function inputDigest(reads: readonly string[]): string {
+  const h = createHash('sha256')
+  for (const k of Object.keys(process.env).filter((k) => k.startsWith('VERIFY_')).sort()) h.update(`${k}=${process.env[k]}\n`)
+  for (const r of reads) h.update(`${r}:${pathHex(r)}\n`)
+  return h.digest('hex').slice(0, 16)
+}
+type Seal = { readonly inputDigest: string; readonly reads: readonly string[]; readonly address: string }
+function sealOf(gate: string): Seal | null {
+  try { return JSON.parse(readFileSync(join(SEALS, `${gate}.json`), 'utf8')) as Seal } catch { return null }
+}
+const pendingSeals = new Map<string, { inputDigest: string; reads: string[] }>()
+
 async function runPool(gates: readonly string[], dir: string, width: number, transcriptFile: string): Promise<Result[]> {
+  const surfaceOf = new Map(universeGates(ROOT).map((g) => [g.gate, g.surface] as const))
   const results = new Array<Result>(gates.length)
   let next = 0
   const worker = async (): Promise<void> => {
@@ -163,15 +240,30 @@ async function runPool(gates: readonly string[], dir: string, width: number, tra
         console.log(`  = ${gate.padEnd(30)} ${'reproduced'.padEnd(9)} ${'0'.padStart(4)}s from ${reused}`)
         continue
       }
+      // THE SEAL: the same gate, over the same hex of everything it read last time it came back clean.
+      const seal = process.env.VERIFY_FRESH === '1' || surfaceOf.get(gate) === 'live' ? null : sealOf(gate)
+      if (seal && seal.reads.length > 0 && inputDigest(seal.reads) === seal.inputDigest) {
+        const r = { gate, verdict: 'clean' as const, code: 0, ms: 0, detail: `reproduced by seal ${seal.inputDigest} — ${seal.reads.length} input(s) unchanged since receipt ${seal.address}`, tree: at, reproduced: true, sealed: true, inputs: seal.reads.length, inputDigest: seal.inputDigest }
+        results[i] = r
+        console.log(`  ≡ ${gate.padEnd(30)} ${'sealed'.padEnd(9)} ${'0'.padStart(4)}s ${seal.reads.length} inputs unchanged (${seal.inputDigest})`)
+        continue
+      }
+      const trace = join(dir, `reads-${gate.replace(/[^\w.-]/g, '_')}-${process.pid}.log`)
       const out = await new Promise<{ status: number | null; text: string; err?: string }>((resolve) => {
-        const child = spawn('npm', ['run', gate], { cwd: ROOT })
+        const child = spawn('npm', ['run', gate], { cwd: ROOT, env: { ...process.env, VERIFY_READS: trace, NODE_OPTIONS: `${process.env.NODE_OPTIONS ?? ''} --experimental-strip-types --import file://${READS_HOOK}`.trim() } })
         let text = ''
         child.stdout.on('data', (b) => { text += b })
         child.stderr.on('data', (b) => { text += b })
         child.on('error', (e) => resolve({ status: null, text, err: e.message }))
         child.on('close', (code) => resolve({ status: code, text }))
       })
-      const r = { ...classify(gate, out.status, Date.now() - t0, out.text, out.err), tree: at }
+      const seen = observedReads(trace)
+      try { unlinkSync(trace) } catch { /* a trace that was never written is a gate that never started */ }
+      const foreign = seen.spawned.filter((c) => !nodeLike(c))
+      const unsealable = surfaceOf.get(gate) === 'live' ? ['(live surface)'] : foreign.length > 0 ? foreign.slice(0, 3) : seen.reads.length === 0 ? ['(no observed reads)'] : []
+      const digest = unsealable.length > 0 ? null : inputDigest(seen.reads)
+      const r: Result = { ...classify(gate, out.status, Date.now() - t0, out.text, out.err), tree: at, inputs: seen.reads.length, inputDigest: digest, ...(unsealable.length > 0 ? { unsealable } : {}) }
+      if (r.verdict === 'clean' && digest) pendingSeals.set(gate, { inputDigest: digest, reads: seen.reads })
       transcript(transcriptFile, gate, out.text)
       results[i] = r
       const mark = r.verdict === 'clean' ? '✓' : r.verdict === 'violated' ? '✗' : '?'
@@ -305,8 +397,17 @@ export async function runVerificationStream(): Promise<void> {
     violatedLive: violatedLive.map((r) => r.gate),
     surfaces: Object.fromEntries(surfaceOf),
     notRun: notRun.map((r) => r.gate),
+    // THE COST AND THE SEALS, in the archive and never in the tracked summary: seconds move with the machine and a
+    // sealed count with the previous run, and the tracked summary must write the same bytes for the same tree.
+    gateSeconds: Math.round(results.reduce((n, r) => n + r.ms, 0) / 1000),
+    sealed: results.filter((r) => r.sealed).length,
+    unsealable: results.filter((r) => r.unsealable).map((r) => r.gate),
+    slowest: [...results].sort((a, b) => b.ms - a.ms).slice(0, 5).map((r) => ({ gate: r.gate, s: Math.round(r.ms / 1000) })),
     results,
   }
+  // A seal is written only for a clean verdict of a sealable gate, and it names the receipt it came from.
+  mkdirSync(SEALS, { recursive: true })
+  for (const [gate, seal] of pendingSeals) writeFileSync(join(SEALS, `${gate}.json`), `${JSON.stringify({ ...seal, address })}\n`)
   // ONE OUTPUT, AND NOT A LITERAL PATH TO A FILE THAT DOES NOT EXIST YET.
   //
   // This wrote a second copy to a fixed receipt file beside this one, named by a literal. That
@@ -330,6 +431,9 @@ export async function runVerificationStream(): Promise<void> {
   console.log(`\n  ${clean}/${gates.length} clean · ${violated.length} violated · ${notRun.length} NOT RUN`)
   if (violatedLive.length > 0) console.log(`  ${violatedLive.length} of the violated are LIVE SURFACES (${violatedLive.map((r) => r.gate).join(', ')}) — records the tag settles at release-cut, not the land`)
   if (reproduced > 0) console.log(`  ${reproduced} of those were REPRODUCED from a receipt over this same tree, not re-run — VERIFY_FRESH=1 runs everything`)
+  const sealed = results.filter((r) => r.sealed).length
+  const unsealable = results.filter((r) => r.unsealable)
+  console.log(`  ${receipt.gateSeconds} gate-seconds · ${sealed} reproduced by seal (inputs unchanged) · ${pendingSeals.size} seal(s) written · ${unsealable.length} unsealable (${unsealable.map((r) => r.gate).join(', ') || 'none'})`)
   console.log(`  receipt ${address} over tree ${before}${before === after ? '' : ` — TREE MOVED to ${after} during the run`}`)
   console.log(`  ${file.replace(`${ROOT}/`, '')} — consume this, do not read a log tail`)
   console.log(`  transcript of THIS run only: ${transcriptFile.replace(`${ROOT}/`, '')}`)

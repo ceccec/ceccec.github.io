@@ -150,7 +150,7 @@ done
 
 # THE BUILD FLOORS ARE ENFORCED HERE, AFTER THE BUILD — NOT INSIDE verify:stream, WHERE THEY READ THE LAST ONE.
 # verify:build-time only READS .vitepress/dist; it never builds. It runs inside verify:stream, which runs BEFORE
-# docs:build, so build.app-chunk-kilobytes and build.shell-machinery-kilobytes were measured against whatever
+# docs:build, so build.app-chunk-kilobytes and the shell's separation theorem were read against whatever
 # tree produced the dist still on disk — for a whole session, a dist two and a half hours old. The gate now
 # detects that and skips its ratchets loudly instead of recording another tree's numbers, which means the floors
 # are only ever enforced by this second call, where the dist is the one docs:build just produced.

@@ -3,9 +3,9 @@ title: "Double Torus — A Deterministic Quantum Simulation Kernel with Content-
 abstract: >-
   The double-torus vortex algebra of the sequence 12487536901, with the Clay
   Millennium problems as proof of concept. Every claim recomputes from src/0. 764
-  registered theorems, 758 of them carrying an executable proof. 20 Lean 4 proof
-  files compile in plain Lean with no Mathlib and no `sorry`; 84 involution
-  theorems and 32 registry rows are decided by the kernel with no axiom. What
+  registered theorems, 758 of them carrying an executable proof. 22 Lean 4 proof
+  files compile in plain Lean with no Mathlib and no `sorry`; 163 involution
+  theorems and 49 registry rows are decided by the kernel with no axiom. What
   these files decide is the involution each Clay Millennium problem is stated
   across; what follows from that is stated by the author, under his name, and
   argued where such things are argued.

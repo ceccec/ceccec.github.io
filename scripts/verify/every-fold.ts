@@ -54,11 +54,12 @@
  *   plus a Born distribution over 761 discoveries summing to 0.7339 rather than 1.
  */
 
-import { readFileSync, readdirSync } from 'node:fs'
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
 import { MODULES } from './module-index.ts'
 import { ratchet } from './status.ts'
+import { referrerEdges } from './referrers.ts'
 
 /**
  * THE CENSUS MUTATES WHAT IT MEASURES, AND THAT IS WHY ITS COUNT NEVER REPRODUCED.
@@ -149,9 +150,46 @@ export function treeDigest(root: string): string {
   try { h.update(readFileSync(join(root, 'package.json'))) } catch { h.update('package.json:GONE') }
   return h.digest('hex').slice(0, 16)
 }
+// ---- THE SEAL, PER MODULE: a fold's verdict depends on its module's import closure, and on nothing else in the tree ----
+//
+// "Slow means hex is a wrap." This gate is the critical path of the stream (280 s) and executes every fold of every module
+// on every run. Its one HARD assertion is that no fold writes to the tree; its counts are reports. A module whose import
+// closure — itself and everything it imports, transitively, read from the same graph verify:referrers measures — has the
+// same hex as at its last walk is deterministic over the same inputs: it did not write then, it will not write now, and its
+// reported counts are carried forward named as sealed. Only modules whose closure changed are executed. The second pass
+// (warm-to-warm order dependence) runs over the executed modules, as before. VERIFY_FRESH=1 walks everything.
+const FOLD_SEALS = join(process.cwd(), 'scripts', 'verify', 'receipts', 'reads', 'every-fold.modules.json')
+type ModuleSeal = { digest: string; called: number; folds: number; threw: number; off: number }
+function closureDigests(root: string): Map<string, string> {
+  const { edges } = referrerEdges(root)
+  const out = new Map<string, Set<string>>()
+  for (const e of edges) { if (!out.has(e.ref)) out.set(e.ref, new Set()); out.get(e.ref)!.add(e.to) }
+  const fileHex = new Map<string, string>()
+  const hexOf = (fold: string) => {
+    if (!fileHex.has(fold)) { try { fileHex.set(fold, createHash('sha256').update(readFileSync(join(root, 'src', fold, 'index.ts'))).digest('hex')) } catch { fileHex.set(fold, 'absent') } }
+    return fileHex.get(fold)!
+  }
+  const digests = new Map<string, string>()
+  for (const [mod] of MODULES) {
+    const fold = mod.replace(/^src\//, '').replace(/\/index\.ts$/, '')
+    const seen = new Set<string>([fold])
+    const stack = [fold]
+    while (stack.length) { const cur = stack.pop()!; for (const to of out.get(cur) ?? []) if (!seen.has(to)) { seen.add(to); stack.push(to) } }
+    const h = createHash('sha256')
+    for (const f of [...seen].sort()) h.update(`${f}:${hexOf(f)}\n`)
+    digests.set(mod, h.digest('hex').slice(0, 16))
+  }
+  return digests
+}
+
 export function main() {
   const LIMIT = Number(process.env.FOLD_LIMIT ?? '0')
   const root = process.cwd()
+  const digests = closureDigests(root)
+  let seals: Record<string, ModuleSeal> = {}
+  if (process.env.VERIFY_FRESH !== '1') { try { seals = JSON.parse(readFileSync(FOLD_SEALS, 'utf8')) as Record<string, ModuleSeal> } catch { seals = {} } }
+  const nextSeals: Record<string, ModuleSeal> = {}
+  let sealedModules = 0, sealedFolds = 0, sealedCalled = 0
   const digestBefore = treeDigest(root)
   const started = Date.now()
   let called = 0, folds = 0, verdictFalse = 0, threw = 0, facetsOff = 0, aliased = 0, thrown = false
@@ -163,6 +201,10 @@ export function main() {
   for (const [mod, ns] of MODULES) {
     mi += 1
     if (LIMIT && mi > LIMIT) break
+    const digest = digests.get(mod) ?? ''
+    const seal = seals[mod]
+    if (seal && seal.digest === digest) { sealedModules++; sealedFolds += seal.folds; sealedCalled += seal.called; nextSeals[mod] = seal; continue }
+    const before = { called, folds, threw, off: facetsOff }
     const t0 = Date.now()
     if (mi % 5 === 1) console.log('  … module ' + mi + '/' + MODULES.length + ' ' + mod)
     for (const [name, v] of Object.entries(ns)) {
@@ -252,8 +294,9 @@ export function main() {
       }
     }
     if (Date.now() - t0 > 5000) console.log(`  SLOW MODULE ${mod}: ${Date.now() - t0}ms`)
+    nextSeals[mod] = { digest, called: called - before.called, folds: folds - before.folds, threw: threw - before.threw, off: facetsOff - before.off }
   }
-  console.log(`modules walked ${mi}`)
+  console.log(`modules walked ${mi} — ${sealedModules} reproduced by seal (import closure unchanged: ${sealedFolds} folds, ${sealedCalled} calls carried as reports), ${mi - sealedModules} executed — VERIFY_FRESH=1 walks everything`)
   console.log(`called ${called} zero-arg exports · ${folds} returned facets · ${threw} threw`)
   console.log(`skipped ${aliased} alias call(s) — the same function reached through another barrel, which cannot discover a fold the first call did not`)
   console.log(`FOLDS WITH A FALSE VERDICT OR AN OFF FACET: ${verdictFalse}  (facets off: ${facetsOff})`)
@@ -287,6 +330,8 @@ export function main() {
     )
   }
   console.log(`tree digest unchanged across the walk: ${digestBefore} — the census read and wrote nothing`)
+  // A seal is written only once the walk is known to have written nothing: a module sealed here was executed on this tree and left it unchanged.
+  try { mkdirSync(dirname(FOLD_SEALS), { recursive: true }); writeFileSync(FOLD_SEALS, `${JSON.stringify(nextSeals)}\n`) } catch { /* a seal that cannot be written costs one more walk, never a verdict */ }
 
   // ── THE THREE COUNTS ABOVE ARE REPORTS NOW, NOT RATCHETS, AND THIS IS WHY.
   //
