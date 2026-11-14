@@ -407,8 +407,10 @@ export const COMPONENT_FOLD_LOADERS: Record<string, AnyFoldLoader> = {
     }
   },
   ProofRenderer: async () => {
-    const { proofRendererDecodedView } = await import('../../src/thunder/movie/glass')
-    return proofRendererDecodedView()
+    // Measured once by the build (measuredOncePlugin): the registry behind this card is the whole audit —
+    // 8.5 s for one fold in a reader's browser, where it then threw — so the card reads the build's measurement.
+    const { data } = await import('virtual:proof-renderer')
+    return data
   },
   KnowledgeAtlas: async () => {
     const { decodeKnowledge } = await import('../../src/learning/index')

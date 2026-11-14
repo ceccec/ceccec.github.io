@@ -32494,6 +32494,47 @@ export type PageComputedGapClass = {
     readonly on: boolean;
     readonly receipt: string;
 };
+/** The part of the gaps verdict a page strip reads: every class with its counts, and the root that seals them. */
+export type PageGapsMeasured = {
+    readonly classes: readonly {
+        readonly id: string;
+        readonly open: number;
+        readonly closed: number;
+        readonly theorem: string;
+    }[];
+    readonly root: string;
+};
+/**
+ * The gaps verdict as the build measured it — the one expensive step (the whole audit), taken once.
+ * The site build calls this in its data loader; a browser never does, it reads what the build measured.
+ */
+export declare function pageGapsMeasured(matrix?: MindMatrix, at?: number): PageGapsMeasured;
+/**
+ * One page's strip from an already measured verdict: select the classes of the page kind and seal them.
+ * Cheap (a filter and a few addresses), so the browser can run it on what the build measured.
+ */
+export declare function pageComputedGapsFrom(gaps: PageGapsMeasured, route: string, pageKind?: PageGapsKind): {
+    computes: boolean;
+    route: string;
+    pageKind: PageGapsKind;
+    classes: PageComputedGapClass[];
+    openCount: number;
+    closedCount: number;
+    classCount: number;
+    facets: ({
+        facet: string;
+        on: boolean;
+        receipt: string;
+    } & {
+        receipt: string;
+    })[];
+    root: string;
+    pair: "page/gaps";
+    qpuRequired: false;
+    heading: string;
+    statement: string;
+    boundary: string;
+};
 /**
  * Recompute gaps/invisible classes relevant to one route/pageKind at call time.
  * Pair: page/gaps · compose gaps/invisible · meaning/compute · format/canon · gate/monitor · vite/mirror.

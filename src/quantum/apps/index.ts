@@ -17151,6 +17151,70 @@ export type PageComputedGapClass = {
   readonly receipt: string
 }
 
+/** The part of the gaps verdict a page strip reads: every class with its counts, and the root that seals them. */
+export type PageGapsMeasured = {
+  readonly classes: readonly { readonly id: string; readonly open: number; readonly closed: number; readonly theorem: string }[]
+  readonly root: string
+}
+
+/**
+ * The gaps verdict as the build measured it — the one expensive step (the whole audit), taken once.
+ * The site build calls this in its data loader; a browser never does, it reads what the build measured.
+ */
+export function pageGapsMeasured(matrix: MindMatrix = buildMatrix(), at = 0): PageGapsMeasured {
+  const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
+  return {
+    classes: gaps.classes.map((c) => ({ id: c.id, open: c.open, closed: c.closed, theorem: c.theorem })),
+    root: gaps.root,
+  }
+}
+
+/**
+ * One page's strip from an already measured verdict: select the classes of the page kind and seal them.
+ * Cheap (a filter and a few addresses), so the browser can run it on what the build measured.
+ */
+export function pageComputedGapsFrom(gaps: PageGapsMeasured, route: string, pageKind?: PageGapsKind) {
+  const kind = pageGapsKindFromRoute(route, pageKind)
+  const relevant = new Set(PAGE_GAP_CLASS_IDS[kind])
+  const classes: PageComputedGapClass[] = gaps.classes
+    .filter((c) => relevant.has(c.id))
+    .map((c) => ({
+      id: c.id,
+      severity: 'HARD' as const,
+      open: c.open,
+      closed: c.closed,
+      theorem: c.theorem,
+      on: c.open === 0,
+      receipt: toUuid(`page-gaps:${kind}:${route}:${c.id}:${c.open}`),
+    }))
+  const openCount = classes.reduce((n, c) => n + c.open, 0)
+  const closedCount = classes.reduce((n, c) => n + (c.open === 0 ? c.closed : 0), 0)
+  const facets = classes.map((c) => ({
+    facet: `${c.id} · ${c.theorem}`,
+    on: c.on,
+    receipt: c.receipt,
+  }))
+  const sealed = sealFacets(`page-computed-gaps:${kind}`, facets.length > 0
+    ? facets
+    : [{ facet: 'page gaps class set empty', on: false, receipt: toUuid(`page-gaps:empty:${kind}`) }])
+  return {
+    computes: sealed.ok && classes.length > 0,
+    route,
+    pageKind: kind,
+    classes,
+    openCount,
+    closedCount,
+    classCount: classes.length,
+    facets: sealed.facets,
+    root: merkleFold([sealed.root, gaps.root, toUuid(`page-gaps-kind:${kind}:${route}`)]),
+    pair: 'page/gaps' as const,
+    qpuRequired: false as const,
+    heading: 'Page · gaps',
+    statement: `pageComputedGapsAt(${kind}) open=${openCount} closed=${closedCount} classes=${classes.length}`,
+    boundary: 'Per-page gaps/invisible subset at call time — not global-only panel. Facet receipts.',
+  }
+}
+
 /**
  * Recompute gaps/invisible classes relevant to one route/pageKind at call time.
  * Pair: page/gaps · compose gaps/invisible · meaning/compute · format/canon · gate/monitor · vite/mirror.
@@ -17162,47 +17226,8 @@ export function pageComputedGapsAt(
   at = 0,
 ) {
   const kind = pageGapsKindFromRoute(route, pageKind)
-  return memoByRoot(`pageComputedGapsAt:${route}:${kind}:${floor(at / (100 * 5 * 2))}`, matrix, () => {
-    const gaps = invisibleGapsCaughtByGatesBody(matrix, at)
-    const relevant = new Set(PAGE_GAP_CLASS_IDS[kind])
-    const classes: PageComputedGapClass[] = gaps.classes
-      .filter((c) => relevant.has(c.id))
-      .map((c) => ({
-        id: c.id,
-        severity: 'HARD' as const,
-        open: c.open,
-        closed: c.closed,
-        theorem: c.theorem,
-        on: c.open === 0,
-        receipt: toUuid(`page-gaps:${kind}:${route}:${c.id}:${c.open}`),
-      }))
-    const openCount = classes.reduce((n, c) => n + c.open, 0)
-    const closedCount = classes.reduce((n, c) => n + (c.open === 0 ? c.closed : 0), 0)
-    const facets = classes.map((c) => ({
-      facet: `${c.id} · ${c.theorem}`,
-      on: c.on,
-      receipt: c.receipt,
-    }))
-    const sealed = sealFacets(`page-computed-gaps:${kind}`, facets.length > 0
-      ? facets
-      : [{ facet: 'page gaps class set empty', on: false, receipt: toUuid(`page-gaps:empty:${kind}`) }])
-    return {
-      computes: sealed.ok && classes.length > 0,
-      route,
-      pageKind: kind,
-      classes,
-      openCount,
-      closedCount,
-      classCount: classes.length,
-      facets: sealed.facets,
-      root: merkleFold([sealed.root, gaps.root, toUuid(`page-gaps-kind:${kind}:${route}`)]),
-      pair: 'page/gaps' as const,
-      qpuRequired: false as const,
-      heading: 'Page · gaps',
-      statement: `pageComputedGapsAt(${kind}) open=${openCount} closed=${closedCount} classes=${classes.length}`,
-      boundary: 'Per-page gaps/invisible subset at call time — not global-only panel. Facet receipts.',
-    }
-  })
+  return memoByRoot(`pageComputedGapsAt:${route}:${kind}:${floor(at / (100 * 5 * 2))}`, matrix, () =>
+    pageComputedGapsFrom(pageGapsMeasured(matrix, at), route, kind))
 }
 
 /**

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { onlyVitePressApi } from '../../render'
-import { vitepressConfigComputesAll } from '../../render'
+// Measured once by the build (measuredOncePlugin) — the browser reads it instead of recomputing the navigation (2 s).
+import { data as configMeasured } from 'virtual:vitepress-config'
 import { vitepressDocsResearchImprovements } from '../../render'
 import { useSiteLocale } from '../../lib/mounts'
 import UiAsideShell from './UiAsideShell.vue'
@@ -9,7 +10,7 @@ import UiAsideShell from './UiAsideShell.vue'
 const { pick, t } = useSiteLocale()
 
 const vpApi = computed(() => onlyVitePressApi())
-const config = computed(() => vitepressConfigComputesAll())
+const config = computed(() => configMeasured)
 const research = computed(() => vitepressDocsResearchImprovements())
 
 const seedParts = computed(() => ['vitepress-possibilities', vpApi.value.root.slice(0, 8)] as const)

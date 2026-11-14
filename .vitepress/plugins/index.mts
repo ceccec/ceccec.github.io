@@ -213,3 +213,24 @@ export function chunkWitnessPlugin(): Plugin {
     },
   }
 }
+
+// ── Measured once by the build, read by the page ────────────────────────────────────────────────────────────
+// A component that calls an audit fold recomputes the audit in every reader's browser: the gaps strip froze the
+// page for 14.6 s there and, with no filesystem to read, printed a different verdict than the build had. This
+// serves what `measure` returns as the module `id`, taken on first request (once per build process, shared by
+// the client and the server bundle), so the page states the build's measurement and never repeats it.
+export function measuredOncePlugin(id: string, measure: () => unknown): Plugin {
+  const resolved = '\0' + id
+  let source: string | undefined
+  return {
+    name: `double-torus:measured-once:${id}`,
+    resolveId(request) {
+      return request === id ? resolved : null
+    },
+    load(request) {
+      if (request !== resolved) return null
+      source ??= `export const data = ${JSON.stringify(measure())}`
+      return source
+    },
+  }
+}

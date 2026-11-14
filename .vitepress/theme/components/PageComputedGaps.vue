@@ -1,11 +1,13 @@
 <script setup lang="ts">
-// Per-page gaps strip — binds pageComputedGapsAt(route, pageKind) only (USER LAW: each page shows its own computed gaps).
+// Per-page gaps strip — binds pageComputedGapsFrom(measured, route, pageKind) (USER LAW: each page shows its own computed gaps).
+// The verdict is measured once by the build (the measured-once module in .vitepress/plugins); the browser selects from it and never recomputes the audit.
 import { computed } from 'vue'
 import { useRoute } from 'vitepress'
 import {
-  pageComputedGapsAt,
+  pageComputedGapsFrom,
   type PageGapsKind,
 } from '../../render'
+import { data as measured } from 'virtual:page-gaps'
 import UiBadge from './ui/Badge.vue'
 import { useSiteLocale } from '../../lib/mounts'
 
@@ -17,14 +19,14 @@ const props = defineProps<{
 const { t } = useSiteLocale()
 const route = useRoute()
 const gaps = computed(() =>
-  pageComputedGapsAt(props.routeOverride ?? route.path, props.pageKind),
+  pageComputedGapsFrom(measured, props.routeOverride ?? route.path, props.pageKind),
 )
 </script>
 
 <template>
   <aside
     class="page-computed-gaps"
-    data-logic="src/quantum/apps/index.ts#pageComputedGapsAt"
+    data-logic="src/quantum/apps/index.ts#pageComputedGapsFrom"
     :data-page-kind="gaps.pageKind"
     :aria-label="gaps.heading"
   >
