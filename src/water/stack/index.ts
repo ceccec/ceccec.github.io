@@ -3319,7 +3319,10 @@ export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
       soft('import', 'fractal')
     const hologramFractalOn = importFractal.envelopeRoundTripIdentity && importFractal.roundTripIdentity
     const physicalQuantumOn = qpu.qpuEqualsCpuGpu && thermo.computes && clock.schemaComplete
-    const ftlSpeedMetrics = qpu.metrics.filter((row) => row.metric.includes('reuse') || row.metric.includes('build') || row.metric.includes('round-trip'))
+    // The three families a speed metric here can belong to. The filter keeps what belongs to ANY; the facet below
+    // asks that EVERY family is represented, so a metric dropped upstream is a facet that goes off.
+    const ftlSpeedFamilies = ['reuse', 'build', 'round-trip'] as const
+    const ftlSpeedMetrics = qpu.metrics.filter((row) => ftlSpeedFamilies.some((family) => row.metric.includes(family)))
     const securityMetrics = [
       { metric: 'mcp/security structural', on: security.computes, source: 'mcpQuantumSecurity' },
       { metric: 'tamper/max wired', on: tamperOn, source: 'wiredToForgeMaxTamperingCost' },
@@ -3333,6 +3336,14 @@ export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
       'honesty:ftl-speed=memo-reuse-metrics-only',
     ] as const
     const residualNamed = [...honestOpenNamed]
+    // WHAT THE NAMES OWE. A `residual:` name is owed per gap measured open, and an `honesty:` name per metaphor this
+    // fold claims a facet for (the hologram, the ftl speed). Counted from the measurements, not from the list.
+    const gapsMeasuredOpen = [envelopeAfter !== toolTotal, !bind.families?.every((f: { present: boolean }) => f.present)].filter(Boolean)
+    const metaphorsClaimed = ['hologram', 'ftl-speed'] as const
+    const residualNamesWhatIsOwed =
+      residualNamed.filter((id) => id.startsWith('residual:')).length === gapsMeasuredOpen.length &&
+      metaphorsClaimed.every((metaphor) => residualNamed.filter((id) => id.startsWith(`honesty:${metaphor}=`)).length === 1) &&
+      new Set(residualNamed).size === residualNamed.length
     const fuseInTrinities = dir.computes && trinity.computes
     const on =
       apisStandardised &&
@@ -3386,9 +3397,9 @@ export function apiFuse(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'sacredGeometryOn', on: sacredGeometryOn },
       { facet: 'hologramFractalOn', on: hologramFractalOn },
       { facet: 'physicalQuantumOn', on: physicalQuantumOn },
-      { facet: `ftlSpeedMetrics=${ftlSpeedMetrics.length}`, on: ftlSpeedMetrics.length >= 1 },
+      { facet: `ftlSpeedMetrics=${ftlSpeedMetrics.length}`, on: ftlSpeedFamilies.every((family) => ftlSpeedMetrics.some((row) => row.metric.includes(family))) },
       { facet: `securityMetrics=${securityMetrics.filter((r) => r.on).length}/${securityMetrics.length}`, on: security.computes },
-      { facet: `residualNamed=${residualNamed.length}`, on: residualNamed.length >= 1 },
+      { facet: `residualNamed=${residualNamed.length}`, on: residualNamesWhatIsOwed },
       { facet: `envelopeCoverage=${roundTo(apiSchemaCoverage, 4)}`, on: envelopeAfter === toolTotal && toolTotal > 0 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`api-fuse:${entry.facet.slice(0, 64)}:${entry.on}`) }))
     const sealed = sealFacets('api-fuse-trinity-hologram', facets)

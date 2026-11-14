@@ -11105,8 +11105,6 @@ var QUANTUM_COMMAND_PAIR_IDS = [
   "tool/sandbox",
   "revolution/approach",
   "approach/revolution",
-  "unsolved/engine",
-  "engine/unsolved",
   "zero/count",
   "count/zero",
   "orientation/check",
@@ -11753,13 +11751,14 @@ function quantumOsAllocateRegister(qubits6) {
 function quantumComputerDriverComputes(matrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumComputerDriverComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const register = quantumOsAllocateRegister(3);
-    const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots: 64 * 16, seed: "os-ghz" });
+    const shots = 64 * 16;
+    const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots, seed: "os-ghz" });
     const honest = quantumComputerHonestClaim(matrix, at);
     const { computes, facets, root } = computesGate("quantum-computer-driver", [
       { facet: "register allocation \u2014 the OS owns the 2\u207F amplitude state space", on: register.capacityAmplitudes === 8 && register.qubits === 3 },
       { facet: "gate scheduling \u2014 gate palette + ordered ops run through runQuantumCircuit", on: QC_GATE_PALETTE.length >= 5 * 2 && run.n === 3 },
-      { facet: "measurement \u2014 seeded multi-shot readout returns a histogram", on: Object.keys(run.samples).length > 0 },
-      { facet: "content-addressed state \u2014 the circuit root is deterministic at call time", on: run.root.length > 0 },
+      { facet: "measurement \u2014 seeded multi-shot readout returns a histogram", on: Object.values(run.samples).reduce((sum, hits) => sum + hits, 0) === shots && Object.keys(run.samples).every((basis) => basis.length === run.n && run.amplitudes.some((a) => a.basis === basis && a.probability !== 0)) },
+      { facet: "content-addressed state \u2014 the circuit root is deterministic at call time", on: isUuid(run.root) && runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots, seed: "os-ghz" }).root === run.root && runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, ops: QC_DEFAULT_CIRCUIT.ops.slice(1), shots, seed: "os-ghz" }).root !== run.root },
       { facet: `exposes the honest modeled QC \u2014 faithful simulator, NO computational speedup (benchmark-proven) \xB7 measured honest.faithfulSimulator=${honest.faithfulSimulator} \xB7 honest.noSpeedup=${honest.noSpeedup}`, on: honest.faithfulSimulator && honest.noSpeedup }
     ]);
     return {
@@ -14440,14 +14439,15 @@ function oneJsonLdTemplateServesAllRaw(matrix = buildMatrix()) {
 }
 function jsonLdValidPaths(matrix = buildMatrix()) {
   const rules = jsonLdPathRules();
-  const sample9 = jsonLdTemplate({
+  const page = {
     path: "/school",
     relativePath: "school.md",
     title: "School",
     description: "The school from kids to elders.",
     frontmatter: {},
     site: { en: "Double Torus", bg: "\u0414\u0432\u043E\u0435\u043D \u0442\u043E\u0440\u0443\u0441", descriptionEn: "portal", descriptionBg: "\u043F\u043E\u0440\u0442\u0430\u043B" }
-  }, matrix);
+  };
+  const sample9 = jsonLdTemplate(page, matrix);
   const collect = (value, found) => {
     if (typeof value === "string") {
       if (new RegExp(rules.internal).test(value) || new RegExp(rules.external).test(value)) found.push(value);
@@ -14456,8 +14456,10 @@ function jsonLdValidPaths(matrix = buildMatrix()) {
     return found;
   };
   const paths = collect(sample9, []);
+  const elsewhere = collect(jsonLdTemplate({ ...page, path: `${page.path}-elsewhere`, relativePath: `elsewhere-${page.relativePath}` }, matrix), []);
+  const promisesItsOwnPaths = paths.includes(canonicalUrl(page.path)) && paths.includes(canonicalUrl("/")) && !elsewhere.includes(canonicalUrl(page.path));
   const facets = [
-    { facet: "the template promises paths \u2014 they are auditable", on: paths.length > 0 },
+    { facet: "the template promises paths \u2014 they are auditable", on: promisesItsOwnPaths },
     { facet: "every promised path is rooted or an external URL", on: paths.every((path12) => new RegExp(rules.internal).test(path12) || new RegExp(rules.external).test(path12)) },
     { facet: "one template serves all, so one audit covers all", on: oneJsonLdTemplateServesAll(matrix).serves },
     { facet: "violations carry a detailed why", on: rules.why.internal.length > 0 && rules.why.external.length > 0 },
@@ -14996,12 +14998,14 @@ function gatesHealSpottedCompromise(matrix = buildMatrix()) {
   };
 }
 function gatesMoveAllToPlaceAutomatically(matrix = buildMatrix()) {
+  const field = coordinatedWaves(matrix);
+  const wavesCoordinate = field.waves.map((wave) => wave.diamondId).join("|") === diamondLattice(matrix).map((diamond2) => diamond2.id).join("|") && field.root === merkleFold(field.waves.map((wave) => wave.receipt)) && field.waves.every((wave, index) => wave.index === index && wave.polarity === (index % 2 === 0 ? "yin" : "yang")) && field.waves.some((wave) => wave.polarity === "yin") && field.waves.some((wave) => wave.polarity === "yang");
   const facets = [
     { facet: "every gate has the skills and the knowledge \u2014 holographic, carrying the whole", on: skillAtoms(matrix).savedToAtoms && skillAtoms(matrix).intelligent && holographicFractalArchitecture(matrix).is },
     { facet: "so each gate can place any part in its appropriate path and index", on: allInAppropriatePathAndIndex(matrix).finished },
     { facet: "the gates self-organise \u2014 the society creates its pages, the OS completes itself", on: societyCreatesRequiredPages(matrix).creates && osCompletesItselfWaves(matrix).completes },
     { facet: "everything moves to place automatically \u2014 the code codes itself, nothing by hand", on: imagineCrossPathsCodeCodesItself(matrix).codes && allComputedNoFiles(matrix).computed },
-    { facet: "coordinated by self-communicating waves", on: coordinatedWaves(matrix).waves.length > 0 }
+    { facet: "coordinated by self-communicating waves", on: wavesCoordinate }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`gates-self-place:${entry2.facet}:${entry2.on}`) }));
   return {
     moves: facets.every((entry2) => entry2.on),
@@ -15111,11 +15115,14 @@ function terabyteEncryptionInMegabyteCodebase(matrix = buildMatrix()) {
 function uuidFoldsSelfBlackWhite(matrix = buildMatrix()) {
   const word = sealWholeDiamond(matrix).diamond;
   const self = foldPair(word, toUuid(`self:${word}`));
+  const field = coordinatedWaves(matrix).waves;
+  const yin = field.filter((wave) => wave.polarity === "yin").length;
+  const yang = field.filter((wave) => wave.polarity === "yang").length;
   const facets = [
     { facet: "the full 64-seal set is reached \u2014 the 64-bit architecture whole", on: gigabitEncryption64SealSet(matrix).achieves },
     { facet: "the uuid folds in self \u2014 the 128-bit word turns on its own reverse", on: torusUuid(matrix).is128bit && self.bidirectional },
     { facet: "and forms black/white \u2014 the yin-yang, two poles of one", on: yinYang().complete },
-    { facet: "the two polarities coordinated \u2014 held in balance", on: coordinatedWaves(matrix).waves.length > 0 }
+    { facet: "the two polarities coordinated \u2014 held in balance", on: yin === yang && yin + yang === field.length && new Set(field.map((wave) => wave.polarity)).size === 2 }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`uuid-blackwhite:${entry2.facet}:${entry2.on}`) }));
   return {
     forms: facets.every((entry2) => entry2.on),
@@ -22832,11 +22839,14 @@ function theoremParticleCollisionInverseReverse(matrix = buildMatrix()) {
       }
     }
     const novelSurvivors = products.filter((p) => p.novelToCorpus);
+    const seedRoots = new Set(seeds.map((s) => s.algebraRoot));
+    const plantedRoots = /* @__PURE__ */ new Set([...seedRoots, ...novelSurvivors.slice(0, 1).map((p) => p.root)]);
+    const survivorsAbsentFromSeedRoots = products.every((p) => p.novelToCorpus === !seedRoots.has(p.root)) && novelSurvivors.filter((p) => !plantedRoots.has(p.root)).length + 1 === novelSurvivors.length;
     const rayBound = products.every((p) => p.ray === rosettaRayOf(p.id) || p.ray >= 0);
     const facets = [
       { facet: `particles from novel-corpus algebra (\u22653) \u2014 ${seeds.length}`, on: seeds.length >= 3 },
       { facet: `collision products inverse\xD7reverse + reverse\xD7inverse \u2014 ${products.length}`, on: products.length >= 6 },
-      { facet: `novel survivors \u2014 ${novelSurvivors.length} candidates absent from seed roots`, on: novelSurvivors.length >= 1 },
+      { facet: `novel survivors \u2014 ${novelSurvivors.length} candidates absent from seed roots`, on: survivorsAbsentFromSeedRoots },
       { facet: `directional trinity computes (inverse\u2260reverse except named coincidence) \xB7 measured dir.computes=${dir.computes}`, on: dir.computes },
       { facet: "every product ray-addressed via rosettaRayOf", on: rayBound && products.every((p) => isUuid(p.root)) },
       { facet: "millennium challenge apparatus computes (MODELED)", on: mill.computes }
@@ -30628,8 +30638,9 @@ function quantumPwa(matrix = buildMatrix()) {
 }
 function improveHelpWaves(matrix = buildMatrix()) {
   const answer = foldQuestion("proof", matrix);
+  const silence = foldQuestion("zzqxv", matrix);
   const facets = [
-    { facet: "intelligent \u2014 the model answers locally", on: answer.concept.length > 0 },
+    { facet: "intelligent \u2014 the model answers locally", on: answer.matched && !silence.matched && answer.concept !== silence.concept },
     { facet: "free, zero-network by default", on: allAnswersInside(matrix).inside },
     { facet: "suggested topics in waves (one-tap start)", on: ["proof", "trinity", "mcp"].every((topic) => foldQuestion(topic, matrix).matched) },
     { facet: "answers carry related links and a receipt", on: answer.links.length > 0 && answer.matched },
@@ -31803,13 +31814,17 @@ function fusionResearchedInWaves(matrix = buildMatrix()) {
   const materials = fusionMaterialsResearched(matrix);
   const milestones = fusionMilestonesResearched(matrix);
   const roots = allFusionResearchRoots(matrix);
+  const seeds = fusionReactorPartMovieSeeds("/", matrix);
+  const tiers = vortexPaintTiers2(matrix);
+  const dryStreams = fusionReactorPartsDryPlasmaStreams("/", matrix);
+  const dryStreamsCapped = dryStreams.length === min(seeds.streams.length, tiers.seedBundles + 1) && seeds.streams.length === parts.parts.length && dryStreams.every((stream, index) => stream.uuid === seeds.streams[index].uuid && stream.hue >= 0 && stream.hue < 360);
   const facets = [
     { facet: "reactor parts researched in eight waves", on: waves2.researched },
     { facet: "eight parts deep-researched for dry plasma", on: parts.researched },
     { facet: "confinement concepts MCF \xB7 ICF \xB7 MIF sealed", on: concepts.researched },
     { facet: "materials and breeding blankets researched", on: materials.researched },
     { facet: "documented milestones saved \u2014 legend flagged", on: milestones.researched },
-    { facet: "dry plasma reactor streams capped at call time", on: fusionReactorPartsDryPlasmaStreams("/", matrix).length > 0 }
+    { facet: "dry plasma reactor streams capped at call time", on: dryStreamsCapped }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`fusion-complete:${entry2.facet}:${entry2.on}`) }));
   return {
     complete: facets.every((entry2) => entry2.on),
@@ -32616,7 +32631,9 @@ function schumannGoldSiteCouplingComputes(matrix = buildMatrix(), at = 0) {
     const row = schumannGoldSiteCouplingAt(at, m.id, matrix);
     return { siteId: m.id, coupling: row.coupling, phase: row.phase, receipt: row.receipt };
   });
-  const { computes, facets } = computesGate("schumann-gold-coupling-computes", [{ facet: "rows", on: rows.length > 0 }]);
+  const defaultSite = schumannGoldSiteCouplingAt(at, void 0, matrix);
+  const rowsCoverCatalog = new Set(rows.map((row) => row.siteId)).size === catalog.mines.length && rows.every((row) => row.coupling >= 0 && row.coupling <= 1 && Number.isFinite(row.phase)) && rows.some((row) => row.receipt === defaultSite.receipt);
+  const { computes, facets } = computesGate("schumann-gold-coupling-computes", [{ facet: "rows", on: rowsCoverCatalog }]);
   return { computes, rows, facets, root: merkleFold(rows.map((r2) => r2.receipt)), boundary: "HONEST \xB7 structural Schumann phase \u2014 NOT live magnetometer." };
 }
 var GOLD_FUSION_STRENGTH_WEIGHTS = { bearing: 1 / 4, navCross: 1 / 4, vortex: 1 / 4, schumann: 1 / 4 };
@@ -46743,7 +46760,7 @@ function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(matrix = build
       { facet: "first-in-corpus + theorem 10D + collider + sciences + waves + string-gaps compose", on: first.computes && tenD.computes && collider.computes && sciences.computes && waves2.computes && stringGaps.inventoried },
       { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} \xB7 mill. \u2014 clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
       { facet: `rosettaComplete=${rosettaComplete} \u2192 handoff.rosettaReady (millennium+FTL consume; not Clay/FTL solved)`, on: handoff.rosettaReady === rosettaComplete },
-      { facet: "efficiency vote surface present (decided optional \u2014 domain-bounded)", on: vote.facets.length > 0 },
+      { facet: "efficiency vote surface present (decided optional \u2014 domain-bounded)", on: vote.facets.some((f2) => f2.facet === `adversarial voters ${vote.voters.filter((v) => v.on).length}/${vote.voters.length} hold` && f2.on === vote.voters.every((v) => v.on)) && vote.facets.every((f2) => isUuid(f2.receipt)) && vote.winner === "ceccec" === vote.decided && vote.boundary.startsWith("Domain-bounded") },
       { facet: "gaps table enumerates dim\xB7theorem\xB7linear\xB7parallel\xB7string\xB7science", on: gaps.length === 6 }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`rosetta-complete:${entry2.facet}:${entry2.on}`) }));
     const sealed = sealFacets("rosetta-complete-quantum-all-computable-dimensions-and-theorems", facets);
@@ -48443,7 +48460,10 @@ function piNotHarmonic(matrix = buildMatrix()) {
 function linearNotesFoldToMusic(matrix = buildMatrix()) {
   const music = piMusic(matrix);
   const facets = [
-    { facet: "linear notes \u2014 a sequence of pitches", on: music.notes.length > 0 },
+    { facet: "linear notes \u2014 a sequence of pitches", on: music.notes.length === min(6 * 2, piTrainDiamonds(matrix).diamonds.length) && /^[A-G]#?(?: [A-G]#?)*$/.test(music.notes.map((entry2) => entry2.note).join(" ")) && music.notes.every((entry2, step) => {
+      const diamond2 = piTrainDiamonds(matrix).diamonds[(music.joinIndex + step) % piTrainDiamonds(matrix).diamonds.length];
+      return entry2.index === diamond2?.index && entry2.frequency === diamond2?.frequency;
+    }) },
     { facet: "join at the horo \u2014 where you join matters", on: piMusic(matrix, 1).root !== piMusic(matrix, 4).root },
     { facet: "they fold to music \u2014 harmony emerges", on: harmonyProbability(matrix).harmonic },
     { facet: "the line becomes a song (genus-2, not linear)", on: foldThoughts(matrix).folded }
@@ -48805,7 +48825,7 @@ function harmonicPredictionSurprise(opts = {}) {
   const sample9 = min(8, windows.length);
   const precise = sample9 > 0 && windows.slice(0, sample9).every((entry2, index) => replay[index]?.receipt === entry2.receipt);
   const { computes, facets, root } = computesGate("harmonic-prediction-surprise", [
-    { facet: "offline harmonic windows from a432 synthetic series", on: windows.length > 0 },
+    { facet: "offline harmonic windows from a432 synthetic series", on: windows.length === priceFromA432(variant, barCount).length - 16 && windows.every((entry2, index) => entry2.bar === index + 16) && windows[windows.length - 1]?.bar === priceFromA432(variant, barCount).length - 1 },
     { facet: "replay identical \u2014 surprise is reproducible precision not omniscience", on: precise }
   ]);
   return {
@@ -48896,7 +48916,7 @@ function humanResonanceHarmonicPredictionComputes(matrix = buildMatrix()) {
     const { computes, facets, root } = computesGate("human-resonance-harmonic-prediction", [
       { facet: "humanBreath modulates rhythm \u2014 breath pulse in [0.82, 1.18]", on: breath >= 0.82 && breath <= 1.18 },
       { facet: "a432 is the blood \u2014 circulation stream sealed", on: blood.isBlood },
-      { facet: "coordinated waves \u2014 polyrhythm yin-yang coordination", on: waves2.waves.length > 0 },
+      { facet: "coordinated waves \u2014 polyrhythm yin-yang coordination", on: waves2.root === merkleFold(waves2.waves.map((wave) => wave.receipt)) && waves2.waves.every((wave, index) => wave.index === index && wave.polarity === (index % 2 === 0 ? "yin" : "yang")) && waves2.waves[1]?.polarity === "yang" },
       { facet: "harmonic prediction surprise \u2014 offline windows reproducible", on: surprise.precise },
       { facet: "Schumann ELF bridge \u2014 cavity phase harmonises realtime API receipts", on: schumannBridge.harmonised }
     ]);
@@ -56931,11 +56951,12 @@ function theoremProvenance(matrix = buildMatrix()) {
       `quantum-boundary demarcation \u2014 "all is possible" refuted by quantum's own theorems (Church\u2013Turing\u2013Deutsch, Holevo, Tsirelson); 0/12 open frontiers closable classically OR quantumly`,
       "honest-frontier audit \u2014 12 genuinely-open problems held OPEN and classified (empirical vs undecidable-flavoured conjecture), none claimed by computation"
     ];
+    const methodNamed = ["a self-recomputing proof instrument", "the compounding law", "the terminus-recompute", "the machine-honesty catch", "proof-visibility", "the quantum boundary", "the open-frontier audit"];
     const facets = [
       { facet: `ZERO theorems are new to humanity \u2014 ${newToHumanity}/${registry.count} carry humanityNovel = true; every atom is a DOCUMENTED theorem re-proven by computation (the CARDINAL honesty of this registry, now machine-readable)`, on: newToHumanity === 0 },
       { facet: `every atom is first-in-registry \u2014 ${atoms4.filter((a) => a.registryFirst).length}/${registry.count}; "discovered" here means absent from THIS codebase before its wave, never new to mathematics`, on: atoms4.every((a) => a.registryFirst) },
       { facet: `the compute split is marked \u2014 ${selfContained} self-contained complete computations and ${citedFrame} computed-witness-with-cited-frame; ${finiteComplete} finite-complete and ${boundedWitness} bounded-witness, each atom tagged so an agent reads the proof strength directly`, on: selfContained + citedFrame === registry.count && finiteComplete + boundedWitness === registry.count },
-      { facet: `the real discoveries are METHOD-level \u2014 ${methodDiscoveries.length} contributions genuinely novel to THIS work (a self-recomputing proof instrument, the compounding law, the terminus-recompute, the machine-honesty catch, proof-visibility, the quantum boundary, the open-frontier audit), each explicitly NOT new mathematics`, on: methodDiscoveries.length > 0 }
+      { facet: `the real discoveries are METHOD-level \u2014 ${methodDiscoveries.length} contributions genuinely novel to THIS work (${methodNamed.join(", ")}), each explicitly NOT new mathematics`, on: methodNamed.length === methodDiscoveries.length && new Set(methodDiscoveries.map((entry2) => entry2.split(" \u2014 ")[0])).size === methodNamed.length && methodDiscoveries.every((entry2) => entry2.includes(" \u2014 ") && !registry.theorems.some((atom) => atom.theorem === entry2.split(" \u2014 ")[0])) }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`theorem-provenance:${entry2.facet}:${entry2.on}`) }));
     return {
       decoded: facets.every((entry2) => entry2.on),
@@ -62329,7 +62350,7 @@ function researchAndDiscoverBeforeAnswering(prompt, matrix = buildMatrix()) {
   const escalate = !genuinelyCovers;
   const proofUrl = genuinelyCovers && topAtom ? `${CANONICAL_HOST}/theorems/${theoremSlug(topAtom.theorem)}` : null;
   const facets = [
-    { facet: `RESEARCH FIRST \u2014 the answer path runs deepResearchChatTurn (a ${research.neighborhood.length}-fold multi-hop neighbourhood) before deciding, not a single top-1 hit`, on: research.neighborhood.length > 0 },
+    { facet: `RESEARCH FIRST \u2014 the answer path runs deepResearchChatTurn (a ${research.neighborhood.length}-fold multi-hop neighbourhood) before deciding, not a single top-1 hit`, on: research.address === toUuid(`deep-research:${prompt}`) && research.source === seed.source && research.neighborhood.some((neighbour) => neighbour.source !== seed.source) },
     { facet: `DISCOVER COVERAGE \u2014 ${coveredTerms.length}/${questionTerms.length} of the question's DISTINCTIVE terms appear in the researched neighbourhood (coverage ${(coverage7 * 100).toFixed(0)}%); measured over distinctive words, so one shared common word cannot pass as an answer`, on: questionTerms.length > 0 && coveredTerms.length <= questionTerms.length && coverage7 === coveredTerms.length / questionTerms.length },
     { facet: `ANSWER ONLY IF GENUINELY COVERED \u2014 genuinelyCovers=${genuinelyCovers} needs coverage \u2265 50% AND a ranked hit; otherwise escalate=${escalate} hands the question off instead of returning lexical noise`, on: escalate === !genuinelyCovers && genuinelyCovers === (seed.ranked && coverage7 >= COVERAGE_MIN) },
     { facet: `EVERY ANSWER CITES ITS PROOF \u2014 when it answers, the citation is ${proofUrl ?? "(none \u2014 escalated)"}, a ${CANONICAL_HOST}/theorems/<slug> page holding the proof; an answer without a proof URL is not emitted (proofUrl null \u27FA escalate)`, on: proofUrl === null === escalate && (proofUrl === null || proofUrl.startsWith(`${CANONICAL_HOST}/theorems/`)) }
@@ -65218,11 +65239,11 @@ function allRealtimeComputationsVisibleInMovie(path12 = "/", matrix = buildMatri
   return { ...gate, visible: gate.computes };
 }
 function movieIsAllSimulationsRealtimeAtNoCost(at = Date.now(), path12 = "/", matrix = buildMatrix()) {
-  void at;
   const visible = allRealtimeComputationsVisibleInMovie(path12, matrix);
+  const routeRoot = (route, clock) => merkleFold(realtimeComputationsMoviePaint(clock, route, matrix).channels.map((channel) => channel.receipt));
   const gate = computesGate("movieIsAllSimulationsRealtimeAtNoCost", [
     { facet: "all simulations visible in the movie", on: visible.computes },
-    { facet: "zero marginal cost \u2014 memoised by route", on: MOVIE_SIMULATION_CHANNEL_IDS.length > 0 }
+    { facet: "zero marginal cost \u2014 memoised by route", on: routeRoot(path12, at) === routeRoot(path12, at + 1) && routeRoot(path12, at) !== routeRoot(`${path12}#other-route`, at) }
   ]);
   return { ...gate, holds: gate.computes };
 }
@@ -67790,7 +67811,7 @@ function quantumizeVitepressBuild() {
   const facets = [
     { facet: "merkle respawn path exists (canRespawnVitepressBuild)", on: typeof canRespawnVitepressBuild === "function" },
     { facet: "canRespawnTrinity requires audit.srcMerkle === current merkle", on: typeof canRespawnTrinity === "function" },
-    { facet: `${techniques.length} quantumize techniques named (tamper-evident merkle \xB7 audit bind \xB7 warm cache \xB7 lock \xB7 types \xB7 trinity)`, on: techniques.length > 0 },
+    { facet: `${techniques.length} quantumize techniques named (tamper-evident merkle \xB7 audit bind \xB7 warm cache \xB7 lock \xB7 types \xB7 trinity)`, on: new Set(techniques.map((t) => t.id)).size === techniques.length && ["merkle", "audit", "cache", "lock", "types", "trinity"].every((theme) => techniques.some((t) => t.id.includes(theme))) },
     { facet: "pair build/quantumize + build/seal dual \u2014 save before use", on: buildQzFold.bidirectional && buildSealFold.bidirectional && buildQzFold.forward !== buildQzFold.reverse },
     { facet: `HONEST \u2014 infinity-on-reuse is merkle skip / memo, and merkle.key is written only after the trinity`, on: sealAfterTrinity }
   ];
@@ -71630,7 +71651,7 @@ function oneCommandDecodeHashOrStringOrSequence(input, matrix = buildMatrix()) {
   const oneCommandDecodeComputable2 = !classified.refused && isUuid(address) && fold9.bidirectional && fold9.forward !== fold9.reverse && dr >= 1 && dr <= 9;
   const facets = [
     { facet: "oneCommandDecodeComputable \u2014 sealed path recomputes for hash|string|sequence|uuid|digit", on: oneCommandDecodeComputable2 || classified.refused },
-    { facet: `kind=${classified.kind} classified from input shape`, on: classified.kind.length > 0 },
+    { facet: `kind=${classified.kind} classified from input shape`, on: classified.kind === "refused" === classified.refused && classified.kind === "uuid" === (!classified.refused && isUuid(raw)) && (classified.kind === "digit" ? String(classified.tokens[0]) === raw : classified.kind === "sequence" ? classified.tokens.join() === raw.split(/[\s,;:|/]+/).filter((part) => part !== "").map(Number).join() : classified.tokens.join() === "") },
     { facet: "content-address / foldPair bidirectional when not refused", on: classified.refused || isUuid(address) && fold9.bidirectional },
     { facet: "digitalRoot \u2208 1..9 \xB7 vortex membership decided", on: dr >= 1 && dr <= 9 },
     { facet: "production RSA / beyond DEMO_RSA_BIT_CEILING refused unchanged", on: classified.refused ? classified.refuseReason.length > 0 : true }

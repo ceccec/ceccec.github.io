@@ -1271,8 +1271,12 @@ export function quantumAccess(matrix: MindMatrix = buildMatrix()) {
 // tongues. Help that meets you before you know what to ask.
 export function improveHelpWaves(matrix: MindMatrix = buildMatrix()) {
   const answer = foldQuestion('proof', matrix)
+  // The negative control: a string no atom, command, page or theorem contains. An answerer that names a concept
+  // for THIS has not answered anything, so the facet is the pair — a confident concept for a real topic and
+  // silence for a non-word — and it goes off if either side moves.
+  const silence = foldQuestion('zzqxv', matrix)
   const facets = [
-    { facet: 'intelligent — the model answers locally', on: answer.concept.length > 0 },
+    { facet: 'intelligent — the model answers locally', on: answer.matched && !silence.matched && answer.concept !== silence.concept },
     { facet: 'free, zero-network by default', on: allAnswersInside(matrix).inside },
     { facet: 'suggested topics in waves (one-tap start)', on: ['proof', 'trinity', 'mcp'].every((topic) => foldQuestion(topic, matrix).matched) },
     { facet: 'answers carry related links and a receipt', on: answer.links.length > 0 && answer.matched },

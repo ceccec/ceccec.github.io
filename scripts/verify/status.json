@@ -14,7 +14,7 @@
   "independence.cross-checked": -473,
   "independence.gate-exercised": -26,
   "lean.registry-sealed": -49,
-  "limits.weakest-bar": 58,
+  "limits.weakest-bar": 4,
   "mcp.browser-claim-unverified": 19,
   "movie.animation-clocks": 3,
   "movie.draw-calls-per-frame": 1355,
@@ -30,6 +30,6 @@
   "release.incomplete-live": 1,
   "release.open-leads": 2,
   "scope.boundaries": 2597,
-  "scope.narrated": 522,
+  "scope.narrated": 521,
   "theorems.without-algebraic-statement": 532
 }

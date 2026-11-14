@@ -290,8 +290,16 @@ export function quantumCodeSubcategoriesAwaitTheirRoutes(codeFiles: readonly str
   const trigrams = new Set(['heaven', 'lake', 'fire', 'thunder', 'wind', 'water', 'mountain', 'earth'])
   const topics = subcats.filter((s) => !trigrams.has(s.name))
   const computerFiles = counts.get('computer') ?? 0
+  // the same tree read a second way (path segments, not the regex): the segment after the first `quantum` folder
+  const quantumSegments = Array.from(codeFiles).flatMap((file) => {
+    const parts = file.split('/')
+    const at = parts.indexOf('quantum')
+    return at >= 0 && at + 2 < parts.length ? [parts[at + 1]!] : []
+  })
+  const segmentNames = new Set(quantumSegments)
+  const heaviestSegment = [...segmentNames].reduce((most, name) => max(most, quantumSegments.filter((seg) => seg === name).length), 0)
   const facets = [
-    { facet: `THE CODE TREE HAS ${subcats.length} QUANTUM SUBCATEGORIES — ${subcats.slice(0, 8).map((s) => `${s.name}(${s.files})`).join(', ')}…; the natural children of a /quantum hub`, on: subcats.length > 0 },
+    { facet: `THE CODE TREE HAS ${subcats.length} QUANTUM SUBCATEGORIES — ${subcats.slice(0, 8).map((s) => `${s.name}(${s.files})`).join(', ')}…; the natural children of a /quantum hub`, on: subcats.length === segmentNames.size && subcats.every((s) => segmentNames.has(s.name)) && subcats.reduce((sum, s) => sum + s.files, 0) === quantumSegments.length && subcats[0]?.files === heaviestSegment },
     { facet: `/quantum/computer IS CODE WITHOUT A ROUTE — src/quantum/computer has ${computerFiles} file(s) but no served page; the subcategory named in the directive is the clearest gap through the lens`, on: computerFiles > 0 },
     { facet: `THE ROUTES ARE FLAT, THE CODE IS NESTED — served quantum pages are flat leaves (qubit-trinity, pauli-basis), while the ${topics.length} TOPIC subcategories (${topics.map((s) => s.name).join(', ')}) have no /quantum/<name> page — the code tree is the meaning tree, the routes lag`, on: topics.length > 0 },
     { facet: `THE FILL IS DISCOVERIES — surface each TOPIC subcategory as a /quantum/<name> theorem-backed page (its folds ARE the theorems); the ${subcats.length - topics.length} trigram-named subcats (heaven/water/fire/…) stay internal double-torus architecture, not routes`, on: topics.length > 0 && topics.length < subcats.length },
@@ -3766,8 +3774,12 @@ export function theGravityPoolsAreTheAttractorsWiredThroughTheRosetta(root: stri
   const everyPoolWired = wired.length > 0 && wired.every((w) => w.ray >= 0 && w.ray < RAYS) // each pool addressed by a ray
   const raysUsed = new Set(wired.map((w) => w.ray)).size // how many of the 7 rays carry a pool
   const inDegree = codeAttractors.length > 0 ? codePulls.length : 0 // the code pool's inbound pull
+  const movers = [...codePulls.map((p) => ({ from: p.from, to: p.to })), ...computePathMigration(root).folders.map((f) => ({ from: f.from, to: f.to }))] // everything that falls
+  const falling = new Set(movers.map((m) => m.from))
+  const poolsAreFixedPoints = pools.every((pool) => !falling.has(pool)) // an attractor is not itself falling anywhere
+  const inboundLanded = pools.reduce((sum, pool) => sum + movers.filter((m) => m.to === pool).length, 0) // each mover counted at the pool it lands in
   const facets = [
-    { facet: `THE GRAVITY POOLS ARE THE ATTRACTORS: across aspects — ${codeAttractors.length} code pool (the canonical API, in-degree ${inDegree}) + ${pathAttractors.length} path pools (the scientific names) = ${pools.length} attractors where things fall; a pool is a fixed point with inbound gravity`, on: pools.length > 0 },
+    { facet: `THE GRAVITY POOLS ARE THE ATTRACTORS: across aspects — ${codeAttractors.length} code pool (the canonical API, in-degree ${inDegree}) + ${pathAttractors.length} path pools (the scientific names) = ${pools.length} attractors where things fall; a pool is a fixed point with inbound gravity`, on: poolsAreFixedPoints && inboundLanded === movers.length && pools.includes(movers[0]?.to as string) },
     { facet: `WIRED THROUGH THE ROSETTA: each of the ${pools.length} pools routes to one of the ${RAYS} rosetta rays (${everyPoolWired}), spreading across ${raysUsed} rays — the DRY convergence flows through the rosetta's perspectives, every pool addressed by a ray`, on: everyPoolWired },
     { facet: `EARNED BOUNDARY — "MIRACLES" = DETERMINISTIC DESCENT: "gravity pools" are computed attractors (real DRY fixed points), "wired in the rosetta" is a deterministic routing of each pool to a ray, and the "miracle" is the emergent DRY convergence — everything falls to canonical — which is gradient descent, not the supernatural; the pools are where the code becomes one`, on: everyPoolWired && pools.length > 0 },
   ]
@@ -4105,7 +4117,11 @@ export function computeProseTenDimensions(text: string): number[] {
   ]
 }
 export function theProseIsConfirmedWhenTheTenDimensionalToolComputesItsMeaningFromAllAspects() {
-  const richText = earned(`EXACT: the ten-dimensional tool extracts extent, vocabulary, structure, interpolations ${'${x}'}, references [[a]], diversity, refutation, and emphasis from a text`, [{ facet: 'ten aspects are computed from the prose, confirming it carries meaning', on: 'ten aspects'.length > 0 }, { facet: 'the empty string yields a degenerate profile and is NOT confirmed', on: 'empty string'.length > 0 }], `these are STRUCTURAL proxies for meaning, not full semantic understanding nor truth`)
+  const seedProse = `EXACT: the ten-dimensional tool extracts extent, vocabulary, structure, interpolations ${'${x}'}, references [[a]], diversity, refutation, and emphasis from a text`
+  const seedScope = `these are STRUCTURAL proxies for meaning, not full semantic understanding nor truth`
+  const seedDims = computeProseTenDimensions(`${seedProse} ${seedScope}`) // the seed prose profiled on its own, before earned() wraps it
+  const voidDims = computeProseTenDimensions('')
+  const richText = earned(seedProse, [{ facet: 'ten aspects are computed from the prose, confirming it carries meaning', on: seedDims[0] === seedProse.length + seedScope.length + 1 && seedDims.every((d, i) => d > voidDims[i]!) }, { facet: 'the empty string yields a degenerate profile and is NOT confirmed', on: voidDims.length === seedDims.length && seedDims[0] === seedProse.length + seedScope.length + 1 && voidDims.every((d) => d === 0) }], seedScope)
   const richDims = computeProseTenDimensions(richText)
   const emptyDims = computeProseTenDimensions('')
   const allTenAspects = richDims.length === 2 + 8 // ten dimensions
@@ -4131,10 +4147,16 @@ export function theProseIsConfirmedWhenTheTenDimensionalToolComputesItsMeaningFr
 // toUuid(profile) is a deterministic fingerprint that commits to all ten, and merkleFold re-folds it endlessly (a
 // fractal of addresses). The UUID COMMITS to the profile (any change flips it) but is one-way — it does not DECODE it.
 export function theTenDimensionsAreEntangledInInfiniteFoldsTheProfileIsEncodedInItsUuid() {
+  const shortHead = `EXACT: a first short sample text`
+  const longHead = `EXACT: a second and rather longer sample with more varied vocabulary, extra structure, and NOT one but several refutation markers, never fewer`
+  const middleHead = `EXACT: a third medium sample of prose`
+  const withInterpolation = 'a broader aspect with interpolation ${x}'
+  const withReference = 'a [[reference]] too'
+  const markers = (text: string, dim: number) => computeProseTenDimensions(text)[dim]! // one aspect's count for a sentence
   const texts = [
-    earned(`EXACT: a first short sample text`, [{ facet: 'one aspect', on: 'one aspect'.length > 0 }], `a small scope`),
-    earned(`EXACT: a second and rather longer sample with more varied vocabulary, extra structure, and NOT one but several refutation markers, never fewer`, [{ facet: 'a broader aspect with interpolation ${x}', on: 'interpolation'.length > 0 }, { facet: 'a [[reference]] too', on: 'reference'.length > 0 }], `a longer scope that does NOT stay short and carries no fewer than three clauses`),
-    earned(`EXACT: a third medium sample of prose`, [{ facet: 'middle aspect', on: 'middle aspect'.length > 0 }], `a middling scope with one NOT`),
+    earned(shortHead, [{ facet: 'one aspect', on: 'one aspect'.length > 0 }], `a small scope`),
+    earned(longHead, [{ facet: withInterpolation, on: markers(withInterpolation, 4) === markers(withInterpolation.replace('${x}', ''), 4) + 1 }, { facet: withReference, on: markers(withReference, 5) === markers(withReference.replace('[[reference]]', ''), 5) + 1 }], `a longer scope that does NOT stay short and carries no fewer than three clauses`),
+    earned(middleHead, [{ facet: 'middle aspect', on: shortHead.length < middleHead.length && middleHead.length < longHead.length }], `a middling scope with one NOT`),
   ]
   const profiles = texts.map((t) => computeProseTenDimensions(t))
   const entangled = profiles.every((p) => abs(p[1] - p[3] * p[8]) <= p[3] + 1 && p[0] >= p[1]) // words ≈ sentences·avg-per-sentence, extent ≥ words — hard mutual constraints
@@ -5592,6 +5614,9 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
     }
   }
   const discoveredCount = discoveredEdges.length
+  // each counted crosslink is ONE distinct (name, definer, user) triple joining two different files
+  const distinctCrosslinks = new Set(discoveredEdges.map((e) => e.root)).size
+  const everyEdgeCrossesFiles = discoveredEdges.every((e) => e.from !== e.to && (definer.get(e.name) ?? []).includes(e.from))
   const theoremApiEdges = discoveredEdges.filter((e) =>
     /theorem|formula|fold|proof|algebra|dual/i.test(e.name),
   ).length
@@ -5632,7 +5657,7 @@ export function algebraicCrosslinksDiscoveredNotEncoded(root: string = enforceme
   const facets = [
     {
       facet: `crosslinksDiscovered=${discoveredCount} — shared algebraic export seeds across files`,
-      on: discoveredCount > 0,
+      on: discoveredCount === distinctCrosslinks && everyEdgeCrossesFiles && definer.has(discoveredEdges[0]?.name as string),
     },
     {
       facet: `encodedComposeHits=${encodedComposeHits} — hand softCompose/compose lists inventoried as cracks`,
@@ -7009,7 +7034,9 @@ export function theoremAudit() {
     },
     {
       facet: `residualNamed — migrate-next: promote drainable registry rows (prose-slogan=${reasonTally['prose-slogan']} · no-statement=${reasonTally['no-precise-statement']} · no-chain=${reasonTally['no-proof-chain']}) to real algebraic papers`,
-      on: notTheoremCount > 0,
+      on:
+        Object.values(reasonTally).reduce((sum, n) => sum + n, 0) === allRows.filter((row) => row.kind === 'not-theorem').length &&
+        (registryRows.find((row) => row.kind === 'not-theorem')?.reason ?? '') in reasonTally,
     },
     {
       facet: `candidates=${CANDIDATE_THEOREMS.length} held OPEN (candidate-unproven)`,
@@ -7552,9 +7579,11 @@ export const HAND_LISTED_ROSTER_BASELINE = 1923
 
 export function rostersDeriveOrLedger(root: string = enforcementScanRoot()) {
   const offenders = scanHandListedRosters(root)
+  // the registry's provers counted a second way (first occurrences), so a name added by hand to PROVER_NAMES shows
+  const firstOccurrences = THEOREM_ATOM_SEED.filter((atom, at, all) => all.findIndex((other) => other.provedBy === atom.provedBy) === at)
   const facets = [
     { facet: `NO NEW HAND-LISTED ROSTERS — ${offenders.length} pure-literal rosters inside fold bodies against the ratchet baseline ${HAND_LISTED_ROSTER_BASELINE}; the count may FALL, never rise, so an agent cannot add a hand-list while the existing class drains${offenders.length ? ` (top: ${offenders.slice(0, 3).map((o) => `${o.file}:${o.line}×${o.entries}`).join(' · ')})` : ''}`, on: offenders.length <= HAND_LISTED_ROSTER_BASELINE },
-    { facet: `ARGUMENTS BELONG TO THEOREMS — a computed-entry roster (the facets pattern) is exempt ONLY inside a fold the registry PROVES (${PROVER_NAMES.size} registered provers); the same shape elsewhere stays a hand-list, so the exemption is earned by theoremhood rather than granted by shape. Module-level ledgers remain exempt: they ARE the source. The measured class therefore names its own drain — register the fold as a theorem, or derive the roster`, on: PROVER_NAMES.size > 0 },
+    { facet: `ARGUMENTS BELONG TO THEOREMS — a computed-entry roster (the facets pattern) is exempt ONLY inside a fold the registry PROVES (${PROVER_NAMES.size} registered provers); the same shape elsewhere stays a hand-list, so the exemption is earned by theoremhood rather than granted by shape. Module-level ledgers remain exempt: they ARE the source. The measured class therefore names its own drain — register the fold as a theorem, or derive the roster`, on: PROVER_NAMES.size === firstOccurrences.length && PROVER_NAMES.has(THEOREM_ATOM_SEED[0]?.provedBy as string) && !PROVER_NAMES.has(scanHandListedRosters.name) },
   ].map((entry) => ({ ...entry, receipt: toUuid(`hand-list:${entry.facet}:${entry.on}`) }))
   return {
     computes: facets.every((entry) => entry.on),

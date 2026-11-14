@@ -1256,8 +1256,6 @@ export const QUANTUM_COMMAND_PAIR_IDS: readonly string[] = [
   'tool/sandbox',
   'revolution/approach',
   'approach/revolution',
-  'unsolved/engine',
-  'engine/unsolved',
   'zero/count',
   'count/zero',
   'orientation/check',

@@ -2,7 +2,7 @@ import { A432_FOLDED, DIMENSION_GATES, FOLDED_CENSUS, HOMOLOGY_LOOPS, TAU, UNFOL
 import { initialBearing, phase } from '../../6/4/index.ts'
 import { buildMatrix, fleetCacheEconomicsDecoded, maxEfficiencyCpuGpuMemoryStorageCooperation } from '../../heaven/compute/index.ts'
 import { completeCorpus } from '../routes/corpus/index.ts'
-import { FORGE_COST_CEILING, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, isUuid, max, memoByRoot, merge, merkleFold, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../0/index.ts'
+import { FORGE_COST_CEILING, VORTEX_SEQUENCE, abs, computesGate, digitalRoot, floor, foldPair, humanBreath, humanEase, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, sealFacets, seedFromText, sin, toUuid } from '../../0/index.ts'
 import { hopfieldEnergy, hopfieldRecall, hopfieldStore } from '../../8/2/index.ts'
 import { animationTamperingCost, fusionCipher, virtualOS } from '../../water/crypto/index.ts'
 import { deviceSensors, dimensions, harmonicBands, openGraph } from '../../quantum/icons/index.ts'
@@ -1363,13 +1363,22 @@ export function fusionResearchedInWaves(matrix: MindMatrix = buildMatrix()) {
   const materials = fusionMaterialsResearched(matrix)
   const milestones = fusionMilestonesResearched(matrix)
   const roots = allFusionResearchRoots(matrix)
+  // CAPPED MEANS: the streams are the leading seeds, as many as the tier cap allows and no more than there are
+  // seeds — and there is one seed per researched part. Read against the seeds and the tiers, not against zero.
+  const seeds = fusionReactorPartMovieSeeds('/', matrix)
+  const tiers = vortexPaintTiers(matrix)
+  const dryStreams = fusionReactorPartsDryPlasmaStreams('/', matrix)
+  const dryStreamsCapped =
+    dryStreams.length === min(seeds.streams.length, tiers.seedBundles + 1) &&
+    seeds.streams.length === parts.parts.length &&
+    dryStreams.every((stream, index) => stream.uuid === seeds.streams[index]!.uuid && stream.hue >= 0 && stream.hue < 360)
   const facets = [
     { facet: 'reactor parts researched in eight waves', on: waves.researched },
     { facet: 'eight parts deep-researched for dry plasma', on: parts.researched },
     { facet: 'confinement concepts MCF · ICF · MIF sealed', on: concepts.researched },
     { facet: 'materials and breeding blankets researched', on: materials.researched },
     { facet: 'documented milestones saved — legend flagged', on: milestones.researched },
-    { facet: 'dry plasma reactor streams capped at call time', on: fusionReactorPartsDryPlasmaStreams('/', matrix).length > 0 },
+    { facet: 'dry plasma reactor streams capped at call time', on: dryStreamsCapped },
   ].map((entry) => ({ ...entry, receipt: toUuid(`fusion-complete:${entry.facet}:${entry.on}`) }))
   return {
     complete: facets.every((entry) => entry.on),
@@ -2478,7 +2487,14 @@ export function schumannGoldSiteCouplingAt(at = 0, siteId = 'witwatersrand', mat
 export function schumannGoldSiteCouplingComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   const catalog = goldMineMapCatalog(matrix)
   const rows: SchumannGoldSiteCouplingRow[] = catalog.mines.map((m) => { const row = schumannGoldSiteCouplingAt(at, m.id, matrix); return { siteId: m.id, coupling: row.coupling, phase: row.phase, receipt: row.receipt } })
-  const { computes, facets } = computesGate('schumann-gold-coupling-computes', [{ facet: 'rows', on: rows.length > 0 }])
+  // One row per catalogued mine, each a coupling in [0, 1] with a finite phase — and the site the coupling fold
+  // falls back to when none is named is itself one of those mines, which the catalogue does not guarantee.
+  const defaultSite = schumannGoldSiteCouplingAt(at, undefined, matrix)
+  const rowsCoverCatalog =
+    new Set(rows.map((row) => row.siteId)).size === catalog.mines.length &&
+    rows.every((row) => row.coupling >= 0 && row.coupling <= 1 && Number.isFinite(row.phase)) &&
+    rows.some((row) => row.receipt === defaultSite.receipt)
+  const { computes, facets } = computesGate('schumann-gold-coupling-computes', [{ facet: 'rows', on: rowsCoverCatalog }])
   return { computes, rows, facets, root: merkleFold(rows.map((r) => r.receipt)), boundary: 'HONEST · structural Schumann phase — NOT live magnetometer.' }
 }
 

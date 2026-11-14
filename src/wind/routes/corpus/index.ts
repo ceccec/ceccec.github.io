@@ -11,7 +11,7 @@ import { abs, ceil, cos, digitalRoot, floor, isUuid, log, log10, log2, max, memo
 import { THEOREM_ATOM_SEED, discoveryDomain } from '../../../4/6/index.ts'
 import { localeFromRoute, localePath, localizeMonolingual, pickLocale, pageForgeMaxTamper, staticPages, monographAsScientificPaper, monographTemplate, proofAcknowledgment, type LocaleName, type PageForgeSeal, type ProofAcknowledgment } from '../../site/index.ts'
 import { ROSETTA_RAYS, ROSETTA_RAY_HUBS, rosettaComputesAll, rosettaDecodesUrlPath, rosettaRayHub, rosettaRayOf, rosettaRayOfContent, type RosettaRayHub } from '../../../water/digit/index.ts'
-import { conceptCommands } from '../../../heaven/atoms/index.ts'
+import { REQUIRED_DIAMOND_KINDS, conceptCommands } from '../../../heaven/atoms/index.ts'
 import { sixtyDegreesDecodesPi, tkIsPrime } from '../../../9/1/index.ts'
 import { cardMovieColorVars, cardMoviePath, cardMovieSeed } from '../../../thunder/movie/movievars/index.ts'
 import { heroMoviePhaseHue, heroPhaseAt, plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball/index.ts'
@@ -711,7 +711,7 @@ function corpusIndexPage(kind: CorpusKind, locale: LocaleName, matrix: MindMatri
         : localizeMonolingual(locale, cc.boundary),
       facets: kind === 'diamonds' && purged && lattice
         ? [
-            { facet: localizeMonolingual(locale, `${lattice.length} lattice kinds — computed at call time`), on: lattice.length > 0 },
+            { facet: localizeMonolingual(locale, `${lattice.length} lattice kinds — computed at call time`), on: lattice.length === REQUIRED_DIAMOND_KINDS.length && REQUIRED_DIAMOND_KINDS.every((required) => lattice.some((diamond) => diamond.kind === required)) },
             { facet: localizeMonolingual(locale, `${purged.merkleLeaves} Merkle leaves — no static [id] pages`), on: purged.purged },
             { facet: localizeMonolingual(locale, '432 papers — materialized [id] SSG'), on: routing.ssgPathCount('papers') === 432, link: localePath('/papers/', locale) },
           ]
@@ -1870,9 +1870,19 @@ export function frontiersChatDiscoverInWaves(matrix: MindMatrix = buildMatrix())
     }
     const discovery = wavesOf(frontiers[0]!.frontier)
     const deterministic = JSON.stringify(wavesOf(frontiers[0]!.frontier).waves) === JSON.stringify(discovery.waves)
+    // WITH EACH OTHER, COUNTED: every frontier is an endpoint of some edge (none talks to nobody), every edge's
+    // shared theorems were heard by BOTH of its ends, and the degrees sum to twice the edges. One isolated
+    // frontier and this is off — which a bare edge count never noticed.
+    const heardBy = new Map(voices.map((v) => [v.frontier, v.heard]))
+    const chatting = new Set(edges.flatMap((edge) => [edge.a, edge.b]))
+    const degreeSum = [...adjacency.values()].reduce((sum, partners) => sum + partners.size, 0)
+    const everyFrontierChats =
+      chatting.size === frontiers.length &&
+      degreeSum === edges.length * 2 &&
+      edges.every((edge) => edge.shared.every((slug) => heardBy.get(edge.a)!.includes(slug) && heardBy.get(edge.b)!.includes(slug)))
     const facets = [
       { facet: `EACH FRONTIER CHATS THROUGH THE BM25 API — ${voices.length} frontiers each speak their term into the chat retrieval and hear back a neighbourhood of theorems (top ${TOP})`, on: voices.length === frontiers.length && voices.every((v) => v.heard.length > 0) },
-      { facet: `FRONTIERS CHAT WITH EACH OTHER — ${edges.length} cross-frontier edges where two frontiers' retrieved neighbourhoods overlap (a shared theorem is a conversation)`, on: edges.length > 0 },
+      { facet: `FRONTIERS CHAT WITH EACH OTHER — ${edges.length} cross-frontier edges where two frontiers' retrieved neighbourhoods overlap (a shared theorem is a conversation)`, on: everyFrontierChats },
       { facet: `DISCOVERY IN WAVES — BFS over the chat graph reaches ${discovery.reached}/${frontiers.length} frontiers in ${discovery.waves.length} waves from "${frontiers[0]!.frontier}"`, on: discovery.waves.length >= 1 && discovery.reached >= 1 && discovery.reached <= frontiers.length },
       { facet: `DETERMINISTIC, ZERO-EGRESS — the whole conversation is BM25 lexical retrieval over the sealed corpus; recomputed waves match (${deterministic}); no LLM, no network`, on: deterministic },
     ].map((entry) => ({ ...entry, receipt: toUuid(`frontiers-chat:${entry.facet}:${entry.on}`) }))
@@ -2651,13 +2661,22 @@ export function quantumRoutesNestUnderAgnosticHub(matrix: MindMatrix = buildMatr
   // could read the tree and this cannot. The claim is narrowed to what it can support and the rest moves to
   // a limit that says so.
   const leaves = mapping.map((m) => m.hierarchical)
+  // ONE HUB, FLAT TODAY: every mapped address sits under a single first segment and that segment is the hub's
+  // name; every page's present slug has no level at all and is not already its hierarchical address.
+  const hubs = [...new Set(mapping.map((m) => m.hierarchical.split('/')[1]))]
+  const flatUnderOneHub = hubs.join() === 'quantum' && mapping.every((m) => !m.flat.includes('/') && `/${m.flat}` !== m.hierarchical)
+  // COMPOSES, MEASURED: the consolidation plan and this nesting plan act on the SAME pages — a page nested here
+  // is an attractor or a merged member there — so neither can run without the other. With no shared page there
+  // is nothing to compose and this goes off.
+  const consolidated = new Set(pagesConsolidateByTheoremGravity(matrix).clusters.flatMap((cluster) => [cluster.attractor, ...cluster.merges]))
+  const composesWithConsolidation = mapping.some((m) => consolidated.has(m.flat)) && mapping.every((m) => m.hierarchical.startsWith('/quantum/'))
   const codeMirrored = leaves.length > 0 && new Set(leaves).size === distinctLeaves && leaves.every((h) => h.startsWith('/quantum/') && h.length > '/quantum/'.length)
   const facets = [
-    { facet: `/quantum IS THE AGNOSTIC HUB — ${quantumPages.length} quantum-themed pages use FLAT payload-bound slugs (${quantumPages.slice(0, 4).map((p) => p.slug).join(', ')}…); they should nest under /quantum/<leaf>, the hub a GENERAL address, the leaf the payload`, on: quantumPages.length > 0 },
+    { facet: `/quantum IS THE AGNOSTIC HUB — ${quantumPages.length} quantum-themed pages use FLAT payload-bound slugs (${quantumPages.slice(0, 4).map((p) => p.slug).join(', ')}…); they should nest under /quantum/<leaf>, the hub a GENERAL address, the leaf the payload`, on: flatUnderOneHub },
     { facet: `THE MAPPING IS COMPUTED — flat → hierarchical, ${distinctLeaves} distinct addresses: ${mapping.slice(0, 6).map((m) => `${m.flat}→${m.hierarchical}`).join(', ')}…`, on: mapping.length > 0 && distinctLeaves === mapping.length },
     { facet: `EVERY ROUTE RESOLVES TO A NON-EMPTY /quantum/ LEAF — ${distinctLeaves} distinct, each derived from its slug rather than written down. That src/quantum/ is ALREADY the hierarchy (computer, science, dynamics, os, apps, …); /quantum/computer ↔ src/quantum/computer, so path = meaning = code location — the routes just haven't caught up to the folders`, on: codeMirrored },
     { facet: `AGNOSTIC RESOLVES THE PAYLOAD CONFLICT — a hierarchical address (/quantum/trading) never binds to one member the way a flat content-slug (quantum-trading-hub) does; each path level is general, so consolidating members under /quantum/<leaf> carries the union without a slug fight`, on: distinctLeaves > 0 && quantumPages.length > 0 },
-    { facet: `THE DEMARCATION — composes with censusAndSlugsAreTheoremDerivedNotLinear + pagesConsolidateByTheoremGravity into one unified execution (quantumize the census gate · nest routes under /quantum/* as agnostic addresses · consolidate); creating nested routes + redirecting flat slugs is outward-facing surgery, run deliberately`, on: mapping.length > 0 },
+    { facet: `THE DEMARCATION — composes with censusAndSlugsAreTheoremDerivedNotLinear + pagesConsolidateByTheoremGravity into one unified execution (quantumize the census gate · nest routes under /quantum/* as agnostic addresses · consolidate); creating nested routes + redirecting flat slugs is outward-facing surgery, run deliberately`, on: composesWithConsolidation },
   ].map((entry) => ({ ...entry, receipt: toUuid(`quantum-hub:${entry.facet}:${entry.on}`) }))
   return {
     nests: facets.every((entry) => entry.on),
@@ -2927,13 +2946,21 @@ export function quantumLensImprovesItself(matrix: MindMatrix = buildMatrix()) {
   // holds for any link set at all. What makes the facet mean something is that after < before REQUIRES a
   // non-empty improvement set — with nothing to link, the two counts are equal and the facet goes off.
   const strictlyRequiresLinks = (improvedHiddenCount < before.length) === (emitted > 0 && linked.length > 0)
+  // EVERY LINK IS WHAT THE SENTENCE SAYS IT IS: a different theorem in the orphan's own ray, and the ray's hub
+  // unless the orphan IS the hub; the orphans that gain one are exactly those whose ray has more than one member
+  // (counted from the ray sizes, not from the links); and at least one of them lands on a hub proper.
+  const raySlugs = new Map(atlas.rays.map((g) => [g.ray, g.theorems.map((m) => m.slug)]))
+  const linksAreRaySiblings = linked.every((i) => i.linkTo !== i.slug && (raySlugs.get(i.ray) ?? []).includes(i.linkTo ?? '')
+    && (i.linkTo === rayHubSlug.get(i.ray) || i.slug === rayHubSlug.get(i.ray)))
+  const linkedIsThePopulatedRays = linked.length === before.filter((orphan) => (raySize.get(orphan.ray) ?? 0) !== 1).length
+  const someLandOnAHub = linked.some((i) => i.linkTo === rayHubSlug.get(i.ray))
   const limits = computedLimits([
     { facet: `${emitted} LINKS EMITTED, ${written} WRITTEN — this fold returns a plan (slug → linkTo) and touches no page, route or file. The rendered related-sections are theRosettaReconfiguresVitepress's job, and until it runs the discoverability computed here exists only as a list`, on: planNotApplied },
     { facet: `${improvedHiddenCount} SURVIVORS${residualIsEmpty ? ' — THE RESIDUAL IS EMPTY, so the singleton-ray claim is VACUOUS today and asserts nothing; every orphan found a sibling, and this becomes a real check the moment one does not' : `, ${singletonRays} OF THEM IN SINGLETON RAYS — a ray with one member has no sibling to cross-link to, so the floor is a property of the ray partition rather than remaining work`}`, on: floorIsStructural },
     { facet: `MONOTONE FOR ANY LINK SET — linking only removes from the undiscoverable set, so after ≤ before holds trivially; the facet earns its content because after < before requires a non-empty link set (${linked.length} here), and with nothing to link the counts are equal and it goes off`, on: strictlyRequiresLinks },
   ])
   const facets = [
-    { facet: `THE LENS COMPUTES ITS OWN IMPROVEMENT: for each of the ${before.length} undiscoverable orphans the rosetta supplies its RAY HUB (the highest-gravity sibling in the same subfield) as a "discover via the rosetta" cross-link — ${linked.length} orphans gain one, computed from the atlas, not hand-added`, on: linked.length > 0 },
+    { facet: `THE LENS COMPUTES ITS OWN IMPROVEMENT: for each of the ${before.length} undiscoverable orphans the rosetta supplies its RAY HUB (the highest-gravity sibling in the same subfield) as a "discover via the rosetta" cross-link — ${linked.length} orphans gain one, computed from the atlas, not hand-added`, on: linksAreRaySiblings && linkedIsThePopulatedRays && someLandOnAHub },
     { facet: `THE BLIND SPOT SHRINKS, MONOTONE: after the rosetta cross-links the undiscoverable set falls from ${before.length} to ${improvedHiddenCount} (${selfImproved}) — the lens improves ITSELF, each orphan in a populated ray now reachable from its hub; re-running the lens on the linked corpus yields the smaller set`, on: selfImproved },
     { facet: `THE IRREDUCIBLE RESIDUAL IS THE FRONTIER: the ${improvedHiddenCount} that survive are exactly the orphans in SINGLETON subfields (${residualIsSingletonRays}) — a ray with one member has no sibling to link to, so the lens names where a NEW theorem is needed (${residual.map((r) => r.subfield).join(', ') || 'none'}); it improves itself AND points beyond itself`, on: residualIsSingletonRays },
   ]

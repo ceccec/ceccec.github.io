@@ -20,7 +20,7 @@ import { aksakRatioWalk, NEUTRINO_DM2_ATM_EV2, hubbleTensionSigma, gasReserveHal
 import { BARYON_TO_PHOTON_RATIO, MAX_TAMPERING_COST_PRINCIPLE, rcnot, cycleAdvance, groupOrbit, hawkingTemperature, soundPressureLevelDb } from '../../4/6/index.ts'
 import { qieaRotate, lunarStandstillDeclinationDeg, SCALAR_SPECTRAL_INDEX_NS, NEUTRINO_DM2_SOLAR_EV2, OMEGA_DARK_ENERGY, HUBBLE_CONSTANT_CMB } from '../../7/3/index.ts'
 import { derivePublicKey, greatCircleKm, OMEGA_DARK_MATTER, setAzimuthDeg, tamperEvident, unruhTemperature, carnotEfficiency, uuidDuality } from '../../5/5/index.ts'
-import { DARK_ENERGY_EOS_W, DEMARCATION_REGISTRY, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7/index.ts'
+import { DARK_ENERGY_EOS_W, DEMARCATION_REGISTRY, demarcate, HIGGS_VEV_GEV, JARLSKOG_INVARIANT, otuPerMin, radarRange, riseAzimuthDeg } from '../../3/7/index.ts'
 import { movieCanvasHex } from '../../quantum/science/index.ts'
 // Strict barrel rule: enter src/0 through its index — bell/ca/hopfield/bump are folded into the 0 barrel.
 import { bellPair } from '../../0/index.ts'
@@ -1441,7 +1441,7 @@ export function theoryHarmonyMarkers(matrix: MindMatrix = buildMatrix()) {
     { facet: 'demarcation is multi-criterial, not a single rule — broad agreement on cases despite unsettled general criteria (Laudan 1983); the markers are heuristics, not a clean line', on: harmonic.length === 5 && flagged.length === 5 },
     { facet: 'falsifiability alone is inadequate — most pseudosciences HAVE been falsified and refuse to accept it; "falsified yet unrevised" flags better than "unfalsifiable"', on: flagged.some((f) => f.includes('refuse')) },
     { facet: 'harmonic theories converge on the markers — risky predictions that succeed, consilience, mechanism, revision, replication and consensus', on: harmonic.some((h) => h.includes('consilience')) },
-    { facet: `genuinely contested ≠ pseudoscience — open, in-principle testable frontiers are off neither path; honesty keeps them separate · measured examples.contested.length=${examples.contested.length}`, on: examples.contested.length > 0 },
+    { facet: `genuinely contested ≠ pseudoscience — open, in-principle testable frontiers are off neither path; honesty keeps them separate · measured examples.contested.length=${examples.contested.length}`, on: examples.contested.every((term) => demarcate(term) === 'contested') && examples.pseudoscience.every((term) => demarcate(term) === 'flagged') && new Set(Object.values(examples).flat().map((term) => demarcate(term))).size === Object.keys(examples).length },
   ].map((entry) => ({ ...entry, receipt: toUuid(`theory-markers:${entry.facet}:${entry.on}`) }))
   const sealed = sealFacets('theory-harmony-markers', facets)
   return {

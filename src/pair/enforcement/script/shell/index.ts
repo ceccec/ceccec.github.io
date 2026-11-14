@@ -241,7 +241,7 @@ export function quantumizeVitepressBuild() {
   const facets = [
     { facet: 'merkle respawn path exists (canRespawnVitepressBuild)', on: typeof canRespawnVitepressBuild === 'function' },
     { facet: 'canRespawnTrinity requires audit.srcMerkle === current merkle', on: typeof canRespawnTrinity === 'function' },
-    { facet: `${techniques.length} quantumize techniques named (tamper-evident merkle · audit bind · warm cache · lock · types · trinity)`, on: techniques.length > 0 },
+    { facet: `${techniques.length} quantumize techniques named (tamper-evident merkle · audit bind · warm cache · lock · types · trinity)`, on: new Set(techniques.map((t) => t.id)).size === techniques.length && ['merkle', 'audit', 'cache', 'lock', 'types', 'trinity'].every((theme) => techniques.some((t) => t.id.includes(theme))) },
     { facet: 'pair build/quantumize + build/seal dual — save before use', on: buildQzFold.bidirectional && buildSealFold.bidirectional && buildQzFold.forward !== buildQzFold.reverse },
     { facet: `HONEST — infinity-on-reuse is merkle skip / memo, and merkle.key is written only after the trinity`, on: sealAfterTrinity },
   ]

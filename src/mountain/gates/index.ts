@@ -17,7 +17,7 @@ import { coreComputationalLogicSaved, piTrainExportImportFusion, rosettaComputes
 import { rosettaCoreApiSelfWires } from '../../quantum/apps/index.ts'
 import { bosnianPyramidNearPliskaHarmonisesDigitDistribution } from '../geometry/index.ts'
 import { commandsRegistry } from '../../thunder/commands/index.ts'
-import { pureDiamonds, sealWholeDiamond } from '../../fire/diamonds/index.ts'
+import { diamondLattice, pureDiamonds, sealWholeDiamond } from '../../fire/diamonds/index.ts'
 import { collisionHealing } from '../../water/crypto/index.ts'
 import { gatesShiftToNewHarmonic } from '../../fire/li/index.ts'
 import { harmonicFrequenciesDefineGateDigits } from '../../music/index.ts'
@@ -192,12 +192,20 @@ export function gatesHealSpottedCompromise(matrix: MindMatrix = buildMatrix()) {
 // coordinated waves — the society creates its required pages, the OS completes itself, the code
 // codes itself — and everything moves to its place automatically, nothing placed by hand.
 export function gatesMoveAllToPlaceAutomatically(matrix: MindMatrix = buildMatrix()) {
+  // coordinated = ONE wave per stream diamond, all folded to the one root; self-communicating = the receiving
+  // (yin) and projecting (yang) polarities alternate, each wave answering the one before it.
+  const field = coordinatedWaves(matrix)
+  const wavesCoordinate =
+    field.waves.map((wave) => wave.diamondId).join('|') === diamondLattice(matrix).map((diamond) => diamond.id).join('|') &&
+    field.root === merkleFold(field.waves.map((wave) => wave.receipt)) &&
+    field.waves.every((wave, index) => wave.index === index && wave.polarity === (index % 2 === 0 ? 'yin' : 'yang')) &&
+    field.waves.some((wave) => wave.polarity === 'yin') && field.waves.some((wave) => wave.polarity === 'yang')
   const facets = [
     { facet: 'every gate has the skills and the knowledge — holographic, carrying the whole', on: skillAtoms(matrix).savedToAtoms && skillAtoms(matrix).intelligent && holographicFractalArchitecture(matrix).is },
     { facet: 'so each gate can place any part in its appropriate path and index', on: allInAppropriatePathAndIndex(matrix).finished },
     { facet: 'the gates self-organise — the society creates its pages, the OS completes itself', on: societyCreatesRequiredPages(matrix).creates && osCompletesItselfWaves(matrix).completes },
     { facet: 'everything moves to place automatically — the code codes itself, nothing by hand', on: imagineCrossPathsCodeCodesItself(matrix).codes && allComputedNoFiles(matrix).computed },
-    { facet: 'coordinated by self-communicating waves', on: coordinatedWaves(matrix).waves.length > 0 },
+    { facet: 'coordinated by self-communicating waves', on: wavesCoordinate },
   ].map((entry) => ({ ...entry, receipt: toUuid(`gates-self-place:${entry.facet}:${entry.on}`) }))
   return {
     moves: facets.every((entry) => entry.on),

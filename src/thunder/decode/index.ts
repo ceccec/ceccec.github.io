@@ -1639,7 +1639,7 @@ export function oneCommandDecodeHashOrStringOrSequence(
     dr <= 9
   const facets = [
     { facet: 'oneCommandDecodeComputable — sealed path recomputes for hash|string|sequence|uuid|digit', on: oneCommandDecodeComputable || classified.refused },
-    { facet: `kind=${classified.kind} classified from input shape`, on: classified.kind.length > 0 },
+    { facet: `kind=${classified.kind} classified from input shape`, on: (classified.kind === 'refused') === classified.refused && (classified.kind === 'uuid') === (!classified.refused && isUuid(raw)) && (classified.kind === 'digit' ? String(classified.tokens[0]) === raw : classified.kind === 'sequence' ? classified.tokens.join() === raw.split(/[\s,;:|/]+/).filter((part) => part !== '').map(Number).join() : classified.tokens.join() === '') },
     { facet: 'content-address / foldPair bidirectional when not refused', on: classified.refused || (isUuid(address) && fold.bidirectional) },
     { facet: 'digitalRoot ∈ 1..9 · vortex membership decided', on: dr >= 1 && dr <= 9 },
     { facet: 'production RSA / beyond DEMO_RSA_BIT_CEILING refused unchanged', on: classified.refused ? classified.refuseReason.length > 0 : true },

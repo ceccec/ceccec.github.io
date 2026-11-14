@@ -2457,9 +2457,13 @@ export function everyElementIsALinkedNodeOrUseless(matrix: MindMatrix = buildMat
   const linked = pages.filter((page) => page.keywords.some((tag) => !META.has(tag) && (cloud.get(tag) ?? 0) >= 2)).length
   const isolated = pages.length - linked
   const everyPageHasKeywords = pages.every((page) => page.keywords.length > 0)
+  // the navigation fold recomputes the SAME keyword cloud over its lens survivors (a subset of these pages):
+  // every tag it clusters on is a tag of this graph, carried by at least as many elements here.
+  const navigation = siteNavigation(matrix)
+  const navigationIsThisCloud = navigation.computed && navigation.clusters.every((tag) => cloud.has(tag)) && navigation.tagCloud.every((entry) => META.has(entry.tag) || (cloud.get(entry.tag) ?? 0) >= entry.count)
   const facets = [
     { facet: 'every element is a NODE — each page/component carries keywords, so it can link; an element with no keywords is an isolated node', on: everyPageHasKeywords },
-    { facet: 'one graph, three projections — the top nav, sidebar and footer are all the keyword tag-cloud (siteNavigation) recomputed; collide them and they are one element-graph, nothing hardcoded', on: cloud.size > 0 },
+    { facet: 'one graph, three projections — the top nav, sidebar and footer are all the keyword tag-cloud (siteNavigation) recomputed; collide them and they are one element-graph, nothing hardcoded', on: navigationIsThisCloud },
     { facet: `an element WITHOUT links is useless — a node with no edge is unreachable by relation; ${linked}/${pages.length} elements share a cluster, the graph wants all of them linked`, on: linked > 0 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`linked-node:${entry.facet}:${entry.on}`) }))
   return {

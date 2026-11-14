@@ -9,7 +9,7 @@ import * as __ns_up_dynamics from '../dynamics/index.ts'
 import * as __ns_up_up_computer from '../computer/index.ts'
 import type { MindMatrix } from '../../types/index.ts'
 import { buildMatrix } from '../../heaven/compute/index.ts'
-import { VORTEX_SEQUENCE, computesGate, digitalRoot, floor, max, memoByRoot, merkleFold, min, round, roundTo, runQuantumCircuit, toUuid } from '../../0/index.ts'
+import { VORTEX_SEQUENCE, computesGate, digitalRoot, floor, isUuid, max, memoByRoot, merkleFold, min, round, roundTo, runQuantumCircuit, toUuid } from '../../0/index.ts'
 import type { CircuitOp, CircuitResult } from '../../0/index.ts'
 import {
   busDriverProbe,
@@ -264,13 +264,14 @@ export function quantumOsAllocateRegister(qubits: number): QuantumRegisterAlloca
 export function quantumComputerDriverComputes(matrix: MindMatrix = buildMatrix(), at = 0) {
   return memoByRoot(`quantumComputerDriverComputes:${floor(at / (100 * 5 * 2))}`, matrix, () => {
     const register = quantumOsAllocateRegister(3)
-    const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots: (64 * 16), seed: 'os-ghz' })
+    const shots = 64 * 16
+    const run = runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots, seed: 'os-ghz' })
     const honest = quantumComputerHonestClaim(matrix, at)
     const { computes, facets, root } = computesGate('quantum-computer-driver', [
       { facet: 'register allocation — the OS owns the 2ⁿ amplitude state space', on: register.capacityAmplitudes === 8 && register.qubits === 3 },
       { facet: 'gate scheduling — gate palette + ordered ops run through runQuantumCircuit', on: QC_GATE_PALETTE.length >= (5 * 2) && run.n === 3 },
-      { facet: 'measurement — seeded multi-shot readout returns a histogram', on: Object.keys(run.samples).length > 0 },
-      { facet: 'content-addressed state — the circuit root is deterministic at call time', on: run.root.length > 0 },
+      { facet: 'measurement — seeded multi-shot readout returns a histogram', on: Object.values(run.samples).reduce((sum, hits) => sum + hits, 0) === shots && Object.keys(run.samples).every((basis) => basis.length === run.n && run.amplitudes.some((a) => a.basis === basis && a.probability !== 0)) },
+      { facet: 'content-addressed state — the circuit root is deterministic at call time', on: isUuid(run.root) && runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, shots, seed: 'os-ghz' }).root === run.root && runQuantumCircuit({ ...QC_DEFAULT_CIRCUIT, ops: QC_DEFAULT_CIRCUIT.ops.slice(1), shots, seed: 'os-ghz' }).root !== run.root },
       { facet: `exposes the honest modeled QC — faithful simulator, NO computational speedup (benchmark-proven) · measured honest.faithfulSimulator=${honest.faithfulSimulator} · honest.noSpeedup=${honest.noSpeedup}`, on: honest.faithfulSimulator && honest.noSpeedup },
     ])
     return {

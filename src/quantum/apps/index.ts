@@ -2007,6 +2007,11 @@ export function measureDecide(matrix: MindMatrix = buildMatrix(), at = 0) {
             'migrate-next:drain-judgment-patterns-repo-wide',
           ]
         : (['measure:judgment-pattern-hit-count-zero'] as const)
+    // The residual is NAMED when it carries the inventory's totals as recounted from the hit rows themselves —
+    // a second path to the same two numbers, so a drifted total or a wrong branch reds the facet.
+    const hitsRecounted = inventory.hits.reduce((sum, hit) => sum + hit.count, 0)
+    const hitFilesRecounted = new Set(inventory.hits.map((hit) => hit.file)).size
+    const residualNames: readonly string[] = residualNamed
     const drainableClosed = judgmentFacetDebtZeroInNewFolds && importFractal.computes
     const composeOn = soft('claim', 'audit') && soft('gate', 'analytics') && (soft('theorem', 'audit') || soft('audit', 'theorem'))
     const pairMeasure = soft('measure', 'decide')
@@ -2036,7 +2041,7 @@ export function measureDecide(matrix: MindMatrix = buildMatrix(), at = 0) {
         facet: `theoremAudit theorem=${theoremCount} not-theorem=${notTheoremCount} majorityNotTheorem=${majorityNotTheorem}`,
         on: theoremAuditOn,
       },
-      { facet: 'residualInventoryNamed', on: residualNamed.length >= 1 },
+      { facet: 'residualInventoryNamed', on: inventory.computes && residualNames.includes(hitsRecounted === 0 ? 'measure:judgment-pattern-hit-count-zero' : `residual:judgment-pattern-hit-count=${hitsRecounted}`) && (hitsRecounted === 0 || residualNames.includes(`residual:judgment-pattern-file-count=${hitFilesRecounted}`)) },
       { facet: 'compose claim/audit · theorem/audit · gate/analytics', on: composeOn },
       { facet: 'pair measure/decide · decide/measure', on: pairsOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`measure-decide:${entry.facet.slice(0, 64)}:${entry.on}`) }))
@@ -2144,6 +2149,10 @@ export function importAudit(matrix: MindMatrix = buildMatrix(), at = 0) {
       Boolean(meta) &&
       meta!.fold === 'importAudit' &&
       Boolean(metaDual)
+    // Spread re-derived from the sprawl ROWS (files touched, definitions off their canonical site): the named
+    // residual must be the residual branch exactly when the rows show spread, and the zero-measure otherwise.
+    const offCanonicalDefinitions = sprawl.rows.filter((row) => !row.canonicalSite).reduce((sum, row) => sum + row.definitionCount, 0)
+    const spreadFromRows = max(new Set(sprawl.rows.map((row) => row.file)).size, 1 + offCanonicalDefinitions) > 1
     const facets = [
       { facet: 'importAudit', on },
       { facet: 'importExportAudited', on: sprawl.importExportAudited },
@@ -2153,7 +2162,7 @@ export function importAudit(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: `unstandardisedFunctions=${sprawl.unstandardisedFunctions}`, on: sprawl.unstandardisedFunctions >= 0 },
       { facet: `unstandardisedConstants=${sprawl.unstandardisedConstants}`, on: sprawl.unstandardisedConstants >= 0 },
       { facet: `definitionSiteCount=${sprawl.definitionSiteCount}`, on: sprawl.definitionSiteCount >= 0 },
-      { facet: 'standardiseResidualNamed', on: sprawl.standardiseResidualNamed.length >= 1 },
+      { facet: 'standardiseResidualNamed', on: sprawl.standardiseResidualNamed.some((name) => name.startsWith('residual:')) === spreadFromRows && sprawl.standardiseResidualNamed.some((name) => name.startsWith('measure:')) === !spreadFromRows },
       { facet: 'dupeInventoryComplete', on: dupeInventoryComplete },
       { facet: 'compose import/export · import/distance · import/fractal · measure/decide', on: composeOn },
       { facet: 'pair import/audit · audit/import bidirectional', on: pairsOn },
@@ -4431,7 +4440,7 @@ export function rosettaCompleteQuantumAllComputableDimensionsAndTheorems(
       { facet: 'first-in-corpus + theorem 10D + collider + sciences + waves + string-gaps compose', on: first.computes && tenD.computes && collider.computes && sciences.computes && waves.computes && stringGaps.inventoried },
       { facet: `millenniumSolvedByThisFold=${millenniumSolvedByThisFold} · mill. — clay axis over ${millenniumClaim.rows} of this fold's own catalog row(s)`, on: millenniumClaim.rows > 0 && millenniumSolvedByThisFold === 0 },
       { facet: `rosettaComplete=${rosettaComplete} → handoff.rosettaReady (millennium+FTL consume; not Clay/FTL solved)`, on: handoff.rosettaReady === rosettaComplete },
-      { facet: 'efficiency vote surface present (decided optional — domain-bounded)', on: vote.facets.length > 0 },
+      { facet: 'efficiency vote surface present (decided optional — domain-bounded)', on: vote.facets.some((f) => f.facet === `adversarial voters ${vote.voters.filter((v) => v.on).length}/${vote.voters.length} hold` && f.on === vote.voters.every((v) => v.on)) && vote.facets.every((f) => isUuid(f.receipt)) && (vote.winner === 'ceccec') === vote.decided && vote.boundary.startsWith('Domain-bounded') },
       { facet: 'gaps table enumerates dim·theorem·linear·parallel·string·science', on: gaps.length === 6 },
     ].map((entry) => ({ ...entry, receipt: toUuid(`rosetta-complete:${entry.facet}:${entry.on}`) }))
     const sealed = sealFacets('rosetta-complete-quantum-all-computable-dimensions-and-theorems', facets)
@@ -4841,7 +4850,7 @@ export function mcpBrowserParity(matrix: MindMatrix = buildMatrix(), at = 0) {
       { facet: 'PRIMARY mcp tools/list ids ≡ standardToolboxIoCatalog (auto-wire advertise)', on: mcpMatchesToolbox },
       { facet: 'mcp tools/list ids ≡ quantumCliToolsCatalog (one registry)', on: mcpMatchesCatalog },
       { facet: `toolbox mcp tools published — ${mcpList.count}`, on: mcpList.computes && mcpList.count > 0 },
-      { facet: `parity matrix — ${rows.length} rows (${closed.length} browser · ${residualGaps.length} residual)`, on: rows.length > 0 },
+      { facet: `parity matrix — ${rows.length} rows (${closed.length} browser · ${residualGaps.length} residual)`, on: rows.length === catalog.tools.length + toolbox.envelopes.length + session.tools.length + STDIO_MCP_CAPABILITY_SEEDS.length && new Set(rows.map((row) => row.id)).size === rows.length },
       { facet: 'residual Node/CI catalog gaps are exactly the honest sealed set', on: residualOnlyHonestCi },
       { facet: `stdio MCP — ${STDIO_MCP_CAPABILITY_SEEDS.length} caps · ${stdioResiduals.length} Node residuals listed`, on: STDIO_MCP_CAPABILITY_SEEDS.length === ROSETTA_SEVEN },
       { facet: 'allAchievableInBrowser OR listed residual gaps only', on: allAchievableInBrowser || (residualOnlyHonestCi && stdioResiduals.length === STDIO_MCP_CAPABILITY_SEEDS.filter((s) => !s.browserAchievable).length) },
@@ -13960,7 +13969,7 @@ export function auditPlanTip(
         facet: `nextTip=${nextTip?.id ?? 'none'} source=${nextTip?.source ?? 'none'} score=${scored?.score ?? 0}`,
         on: planToNextTip,
       },
-      { facet: 'residualNamed', on: honestOpenNamed.length >= 1 },
+      { facet: 'residualNamed', on: new Set(honestOpenNamed).size === honestOpenNamed.length && honestOpenNamed.filter((name) => audit.residualNamed.includes(name)).length === min(3, audit.residualNamed.length) && honestOpenNamed.every((name) => !/undefined|NaN/.test(name)) },
       {
         facet: 'compose chat/audit · plan/trinity · next/research · imagine/next · waves/feed · todo/wave · gate/light · dry/dupe · merge/wave',
         on: composeOn,
@@ -25443,6 +25452,11 @@ export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typ
       { class: 'mesh', metric: 'theorem mesh', landed: mesh.theoremMesh ? 'saved+onWay' : 'partial', residual: mesh.autosaveOn ? 'none' : 'autosave' },
       { class: 'chat', metric: 'research feed', landed: research.throughChatApi ? 'wired' : 'partial', residual: research.externalResearchOn ? 'ephemeral bootstrap only' : 'local' },
     ] as const
+    // The hit count this audit names, read back from measureDecide's OWN named residual (a second path): the
+    // zero-measure names 0, the residual branch names its count.
+    const hitCountNamedByMeasure = measure.residualNamed.includes('measure:judgment-pattern-hit-count-zero')
+      ? '0'
+      : (measure.residualNamed.map((name) => /^residual:judgment-pattern-hit-count=(\d+)$/.exec(name)?.[1]).find((n) => n !== undefined) ?? 'unnamed')
     const chatWorkAudited = commitsInventoried && tipsLanded >= CHAT_WAVE_SEALED_TIPS.length - 5
     const on =
       chatWorkAudited &&
@@ -25459,7 +25473,7 @@ export function chatAudit(matrix: MindMatrix = buildMatrix(), at = 0, root = typ
       { facet: 'gapsFilledOnWay', on: gapsFilledOnWay },
       { facet: `commitsInventoried=${git.commitCount} anchor=${CHAT_WAVE_AUDIT_ANCHOR} head=${git.head}`, on: commitsInventoried },
       { facet: `tipsLanded=${tipsLanded}/${CHAT_WAVE_SEALED_TIPS.length}`, on: tipsLanded >= CHAT_WAVE_SEALED_TIPS.length - 5 },
-      { facet: 'residualNamed', on: honestOpenNamed.length >= 1 },
+      { facet: 'residualNamed', on: new Set(honestOpenNamed).size === honestOpenNamed.length && honestOpenNamed.every((name) => !/undefined|NaN/.test(name)) && honestOpenNamed.some((name) => name === `judgmentPatternHitCount=${hitCountNamedByMeasure}`) },
       { facet: 'metricsOn', on: metricsOn },
       { facet: 'compose measure/decide · dry/dupe · dry/clean · gaps/invisible · theorem/audit · gate/light · wave/complete · merge/wave · feed-mo · chat/research', on: composeOn },
     ].map((entry) => ({ ...entry, receipt: toUuid(`chat-audit:${entry.facet}:${entry.on}`) }))
@@ -25782,7 +25796,7 @@ export function erpaxLearn(_matrix: MindMatrix = buildMatrix(), _at = 0) {
   const on = patterns.length >= (2 + 2 + 2) && adoptedCount >= 4
   const facets = [
     { facet: 'erpaxLearn', on },
-    { facet: `patterns=${patterns.length} adopted=${adoptedCount} gaps=${gapCount}`, on: patterns.length > 0 },
+    { facet: `patterns=${patterns.length} adopted=${adoptedCount} gaps=${gapCount}`, on: new Set(patterns.map((row) => row.id)).size === adoptedCount + gapCount && patterns.filter((row) => !row.adopted && !row.measuredGap.startsWith('none')).length === gapCount && patterns.filter((row) => row.measuredGap.startsWith('none')).every((row) => row.adopted) },
     { facet: `every row MAPS an erpax pattern onto a ceccec surface rather than copying it — ${patterns.length}/${patterns.length} differ from their source`, on: patterns.length > 0 && patterns.every((row) => String(row.ceccecSurface) !== String(row.erpaxPattern)) },
     { facet: `rows originating here rather than at the reference: ${patterns.filter((row) => String(row.erpaxPattern).length === 0).length} — every row cites its erpax origin`, on: patterns.length > 0 && patterns.filter((row) => String(row.erpaxPattern).length === 0).length === 0 },
     { facet: `the accounting closes: ${adoptedCount} adopted + ${gapCount} open = ${patterns.length} rows, credit staying with the source`, on: adoptedCount + gapCount === patterns.length && patterns.length > 0 },
@@ -30574,7 +30588,7 @@ export function scientificTerminologyIsQuantumComputableMeasurableComparable(
         { facet: `intelligencePossibilityYield=${intelligencePossibilityYield}`, on: intelligencePossibilityOn },
         { facet: 'significance←scienceDomainSignificanceScores', on: sig.computes },
         { facet: 'implications←directional trinity faces', on: dir.computes },
-        { facet: 'efficiency←answers÷tokens when vote.decided', on: vote.facets.length > 0 },
+        { facet: 'efficiency←answers÷tokens when vote.decided', on: terms.some((t) => t.term === 'efficiency' && t.fold === 'compareCeccecEfficiencyByVote' && (t.value === 1) === vote.decided) && vote.decided === (vote.winner === 'ceccec') && (!vote.decided || vote.runtimeTokens === 0) },
         { facet: 'pair term/measure', on: pairRegistered && pairFold.bidirectional },
       ].map((entry) => ({ ...entry, receipt: toUuid(`term-measure:${entry.facet}:${entry.on}`) }))
       const sealed = sealFacets('scientific-terminology-quantum-computable-measurable-comparable', facets)

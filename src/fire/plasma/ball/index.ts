@@ -964,11 +964,14 @@ export function allRealtimeComputationsVisibleInMovie(path = '/', matrix: MindMa
 }
 
 export function movieIsAllSimulationsRealtimeAtNoCost(at: number = Date.now(), path = '/', matrix: MindMatrix = buildMatrix()) {
-  void at
   const visible = allRealtimeComputationsVisibleInMovie(path, matrix)
+  // the route IS the key: the painted channels of one route fold to the same root at two different clocks
+  // (a frame adds nothing to compute), and another route folds to a different root (the negative control —
+  // an empty channel list fails it too, both roots being the empty fold).
+  const routeRoot = (route: string, clock: number) => merkleFold(realtimeComputationsMoviePaint(clock, route, matrix).channels.map((channel) => channel.receipt))
   const gate = computesGate('movieIsAllSimulationsRealtimeAtNoCost', [
     { facet: 'all simulations visible in the movie', on: visible.computes },
-    { facet: 'zero marginal cost — memoised by route', on: MOVIE_SIMULATION_CHANNEL_IDS.length > 0 },
+    { facet: 'zero marginal cost — memoised by route', on: routeRoot(path, at) === routeRoot(path, at + 1) && routeRoot(path, at) !== routeRoot(`${path}#other-route`, at) },
   ])
   return { ...gate, holds: gate.computes }
 }

@@ -1459,42 +1459,11 @@ declare function buildLinkProofReport(n: number, pathLen: number, rootValid: boo
 };
 /** npm run quantum:link-proof — exit 0 iff the real inclusion path proves membership at O(log N). */
 export declare function runLinkProofExit(root: string, argv: readonly string[]): Promise<number>;
-/**
- * unsolvedEngine — USER LAW (2026-07-24): unsolved problems lead to revolution. The honest inversion of
- * the whole arc:  is NOT a confession of limitation — it is the FUEL. The unsolved set (the open
- * candidate races, the OPEN frontiers, RH) is exactly what GENERATES the tools: RH-unsolved spawns
- * clayProbe, the open frontiers spawn frontierQuantum/fractalMap, every OPEN question drives a
- * compute-toward fold that approaches without claiming solution. A solved world would need no revolution.
- * DEMARCATION: the tools APPROACH the unsolved (probes · partials · bounded witnesses), never claim to
- * close it; clay stays 0 — and that zero is the engine, not the failure.
- */
-export declare function unsolvedEngine(): {
-    computes: boolean;
-    unsolvedEngine: boolean;
-    openRaces: number;
-    boundedWitness: number;
-    qpuRequired: false;
-    facets: {
-        receipt: string;
-        facet: string;
-        on: boolean;
-    }[];
-    root: string;
-    pair: "unsolved/engine";
-    dualPair: "engine/unsolved";
-    cli: string;
-    route: string;
-    heading: string;
-    statement: string;
-    boundary: string;
-};
-/** npm run quantum:unsolved-engine — exit 0 iff the open set computes as the generator,  the fuel. */
-export declare function runUnsolvedEngineExit(root?: string, _argv?: readonly string[]): number;
 /** Riemann–von Mangoldt zero-count N(T) ≈ (T/2π)ln(T/2π) − T/2π + 7/8 — the analytic number of
  *  nontrivial ζ zeros with 0 < Im ρ < T (main terms; the S(T) oscillation is the bounded remainder). */
 export declare function riemannZeroCountAnalytic(t: number): number;
 /**
- * riemannZeroCount — advance the RH probe (unsolvedEngine's fuel): not just "these zeros lie on the
+ * riemannZeroCount — advance the RH probe: not just "these zeros lie on the
  * line" (clayProbe) but "these are ALL of them below T" — the analytic count N(T) matches the number
  * of localized zeros, a Turing-method-class COMPLETENESS check. Below T = 31 the formula predicts 4 and
  * clayProbe localizes exactly 4 — no zero missed in the interval. DEMARCATION: completeness holds only

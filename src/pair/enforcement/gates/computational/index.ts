@@ -1499,7 +1499,10 @@ export function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDangling
     let text = ''
     try { text = readFileSync(join(root, A, 'index.ts'), 'utf8') } catch { continue }
     for (const match of text.matchAll(/from\s+'(\.[^']+)'/g)) {
-      const target = relative(root, resolve(join(root, A), match[1]!)).replace(/\\/g, '/')
+      // A HOME IS A FOLDER AND AN IMPORT NAMES ITS FILE. The specifier is `../0/index.ts`, the registry home is `src/0`; compared as
+      // written, no target was ever a home and this fold measured ZERO import edges among 57 homes — every home dangling by the
+      // relation it calls the real one — and reported computes=false for as long as imports have carried their file name.
+      const target = relative(root, resolve(join(root, A), match[1]!)).replace(/\\/g, '/').replace(/\/index(\.ts)?$/, '')
       if (homeSet.has(target) && target !== A) edges.add(`${A} -> ${target}`)
     }
   }
@@ -1510,7 +1513,7 @@ export function theoremRelationsAreTheImportExportGraphNotTagSharingZeroDangling
   const syntheticDegree: Record<string, number> = { a: 3, b: 2, lonely: 1 }
   const methodCatchesDangling = Object.keys(syntheticDegree).filter((k) => syntheticDegree[k]! < 2).length === 1
   const facets = [
-    { facet: `TAG/HOME-SHARING IS A CRACK — it flags ${tagCrackDangling.length} singleton-home theorems as dangling (${tagCrackDangling.slice(0, 3).join(', ')}…), but home-sharing is a coincidence, not a relation — unfalsifiable and wrong`, on: tagCrackDangling.length > 0 },
+    { facet: `TAG/HOME-SHARING IS A CRACK — it flags ${tagCrackDangling.length} singleton-home theorems as dangling (${tagCrackDangling.slice(0, 3).join(', ')}…), but home-sharing is a coincidence, not a relation — unfalsifiable and wrong`, on: tagCrackDangling.every((home) => homeCount[home] === 1) && tagCrackDangling.some((home) => degree[home]! >= 2) },
     { facet: `THE REAL RELATION IS THE IMPORT GRAPH — A relates to B iff A's module imports B, a parseable refutable edge: ${homes.length} theorem-homes, ${edges.size} import-edges among them (computed live from the source)`, on: edges.size > homes.length },
     { facet: `ZERO DANGLING BY THE REAL RELATION — every theorem-home has import-degree ≥ 2 (${importDangling.length} dangling): the ${tagCrackDangling.length} the tag-crack flagged are all connected by imports, so by the honest relation the corpus IS balanced — no theorem is isolated`, on: importDangling.length === 0 },
     { facet: `THE METHOD IS REFUTABLE — a home with import-degree < 2 WOULD be flagged (${methodCatchesDangling}): the check can fail, so 0 dangling is a computed result, not a tautology — unlike tag-sharing, which cannot fail meaningfully`, on: methodCatchesDangling },
@@ -1594,7 +1597,7 @@ export function theFacetsMustComputeDebtIsHardcodedTrueFacetsManyDeclaredHonest(
   const facets = [
     { facet: `THE DEBT — ${total} facets across ${Object.keys(perFile).length} files are gated on hardcoded on: true, so each PROVES NOTHING (it always passes); the facets-must-compute violation at corpus scale, measured live not asserted`, on: total > 0 && files.length > 0 },
     { facet: `DECLARED HONESTY — ${declaredHonest} of the ${total} are labelled "honest": a boundary sentence dressed as a facet, the declared-honesty crack (honesty asserted, unrefutable) — the exact class the declared-honesty gate flags`, on: declaredHonest >= 0 && declaredHonest <= total },
-    { facet: `A TRACKED WORKLIST — the count is computed from the live source (${files.length} .ts files walked), so it is refutable and DECREASES as each facet is fixed: give it a refutable computation, or move the prose to the boundary and drop the facet. Top: ${topFiles.map(([f, n]) => `${f.replace('src/', '')}:${n}`).join(', ')}`, on: topFiles.length > 0 },
+    { facet: `A TRACKED WORKLIST — the count is computed from the live source (${files.length} .ts files walked), so it is refutable and DECREASES as each facet is fixed: give it a refutable computation, or move the prose to the boundary and drop the facet. Top: ${topFiles.map(([f, n]) => `${f.replace('src/', '')}:${n}`).join(', ')}`, on: topFiles.length === min(2 * 3, Object.keys(perFile).length) && topFiles[0]?.[1] === max(...Object.values(perFile)) && topFiles.every(([file, count], index) => perFile[file] === count && count <= topFiles[max(0, index - 1)]![1]) },
     { facet: `COMPUTED, NOT DECLARED — the debt number itself is scanned, not a hand-typed figure (${total} recomputed each run); the paydown is measurable, and a NEW on: true facet raises the count — the guard against regression`, on: total === Object.values(perFile).reduce((s, n) => s + n, 0) },
   ]
   return {

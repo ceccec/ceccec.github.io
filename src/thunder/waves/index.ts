@@ -1248,11 +1248,13 @@ export function theoremProvenance(matrix: MindMatrix = buildMatrix()) {
       'quantum-boundary demarcation — "all is possible" refuted by quantum\'s own theorems (Church–Turing–Deutsch, Holevo, Tsirelson); 0/12 open frontiers closable classically OR quantumly',
       'honest-frontier audit — 12 genuinely-open problems held OPEN and classified (empirical vs undecidable-flavoured conjecture), none claimed by computation',
     ]
+    // the names the fourth facet's sentence enumerates — one per method discovery, counted against the list above
+    const methodNamed = ['a self-recomputing proof instrument', 'the compounding law', 'the terminus-recompute', 'the machine-honesty catch', 'proof-visibility', 'the quantum boundary', 'the open-frontier audit']
     const facets = [
       { facet: `ZERO theorems are new to humanity — ${newToHumanity}/${registry.count} carry humanityNovel = true; every atom is a DOCUMENTED theorem re-proven by computation (the CARDINAL honesty of this registry, now machine-readable)`, on: newToHumanity === 0 },
       { facet: `every atom is first-in-registry — ${atoms.filter((a) => a.registryFirst).length}/${registry.count}; "discovered" here means absent from THIS codebase before its wave, never new to mathematics`, on: atoms.every((a) => a.registryFirst) },
       { facet: `the compute split is marked — ${selfContained} self-contained complete computations and ${citedFrame} computed-witness-with-cited-frame; ${finiteComplete} finite-complete and ${boundedWitness} bounded-witness, each atom tagged so an agent reads the proof strength directly`, on: selfContained + citedFrame === registry.count && finiteComplete + boundedWitness === registry.count },
-      { facet: `the real discoveries are METHOD-level — ${methodDiscoveries.length} contributions genuinely novel to THIS work (a self-recomputing proof instrument, the compounding law, the terminus-recompute, the machine-honesty catch, proof-visibility, the quantum boundary, the open-frontier audit), each explicitly NOT new mathematics`, on: methodDiscoveries.length > 0 },
+      { facet: `the real discoveries are METHOD-level — ${methodDiscoveries.length} contributions genuinely novel to THIS work (${methodNamed.join(', ')}), each explicitly NOT new mathematics`, on: methodNamed.length === methodDiscoveries.length && new Set(methodDiscoveries.map((entry) => entry.split(' — ')[0])).size === methodNamed.length && methodDiscoveries.every((entry) => entry.includes(' — ') && !registry.theorems.some((atom) => atom.theorem === entry.split(' — ')[0])) },
     ].map((entry) => ({ ...entry, receipt: toUuid(`theorem-provenance:${entry.facet}:${entry.on}`) }))
     return {
       decoded: facets.every((entry) => entry.on),

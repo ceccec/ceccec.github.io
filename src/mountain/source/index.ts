@@ -2323,7 +2323,7 @@ export function intend(
   const facets = [
     { facet: 'every intended step is SAVED IN ADVANCE — content-addressed before it is taken (the proactive save-every-step)', on: intended.length > 0 && intended.every((step) => isUuid(step.address)) && saveEveryStepIsMandatory(matrix).saved },
     { facet: 'saving in advance AVOIDS COLLISIONS — two agents on one resource would share a lock address, detected before either acts (here: none)', on: collisions === 0 },
-    { facet: 'the GAPS around resources are revealed immediately — the declared steps name every resource needed, surfaced now not at runtime', on: resources.size > 0 },
+    { facet: 'the GAPS around resources are revealed immediately — the declared steps name every resource needed, surfaced now not at runtime', on: resources.size === claimants.size && [...resources].every((resource) => claimants.has(toUuid(`resource:${resource}`))) && intended.every((step) => claimants.get(step.lock)?.has(step.agent) === true) },
     { facet: 'refactor WHILE implementing — an agent\'s implement + refactor on one resource are one saved stream, not a collision', on: intended.some((step) => step.action === 'refactor') && intended.some((step) => step.action === 'implement') },
   ].map((entry) => ({ ...entry, receipt: toUuid(`intend:${entry.facet}:${entry.on}`) }))
   return {

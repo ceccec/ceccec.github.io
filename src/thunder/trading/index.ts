@@ -834,7 +834,7 @@ export function historicalTrainWavesViaRosetta(matrix: MindMatrix = buildMatrix(
     const facets = [
       { facet: 'rosettaCoreApi computes — train schedule through core API', on: core.computes },
       { facet: `seven ray train-waves (${rayRuns.length}) with short·long windows`, on: rayRuns.length === ROSETTA_RAYS.length },
-      { facet: 'coordinated waves feed calendar/sequence flip spine', on: waves.waves.length > 0 },
+      { facet: 'coordinated waves feed calendar/sequence flip spine', on: waves.root === merkleFold(waves.waves.map((wave) => wave.receipt)) && waves.waves.every((wave, index) => wave.index === index && wave.polarity === (index % 2 === 0 ? 'yin' : 'yang')) && waves.waves[1]?.polarity === 'yang' },
       { facet: 'every ray shelved compute address is UUID', on: rayRuns.every((r) => isUuid(r.address) && isUuid(r.receipt)) },
       { facet: 'offline a432 historical proxy — zero network', on: prices.length > 64 },
       { facet: `NOT ad-hoc — schedule length === ROSETTA_RAYS.length · measured rayRuns.length=${rayRuns.length}`, on: rayRuns.length === ROSETTA_RAYS.length },

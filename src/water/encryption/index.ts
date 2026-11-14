@@ -152,11 +152,16 @@ export function terabyteEncryptionInMegabyteCodebase(matrix: MindMatrix = buildM
 export function uuidFoldsSelfBlackWhite(matrix: MindMatrix = buildMatrix()) {
   const word = sealWholeDiamond(matrix).diamond // the 128-bit word — the now
   const self = foldPair(word, toUuid(`self:${word}`)) // the uuid folds in self (onto its own reverse)
+  // BALANCE IS A COUNT, NOT A PRESENCE: the wave field holds exactly two polarities and as many of one as of the
+  // other. One wave, or an odd lattice, is a field that exists and is not balanced.
+  const field = coordinatedWaves(matrix).waves
+  const yin = field.filter((wave) => wave.polarity === 'yin').length
+  const yang = field.filter((wave) => wave.polarity === 'yang').length
   const facets = [
     { facet: 'the full 64-seal set is reached — the 64-bit architecture whole', on: gigabitEncryption64SealSet(matrix).achieves },
     { facet: 'the uuid folds in self — the 128-bit word turns on its own reverse', on: torusUuid(matrix).is128bit && self.bidirectional },
     { facet: 'and forms black/white — the yin-yang, two poles of one', on: yinYang().complete },
-    { facet: 'the two polarities coordinated — held in balance', on: coordinatedWaves(matrix).waves.length > 0 },
+    { facet: 'the two polarities coordinated — held in balance', on: yin === yang && yin + yang === field.length && new Set(field.map((wave) => wave.polarity)).size === 2 },
   ].map((entry) => ({ ...entry, receipt: toUuid(`uuid-blackwhite:${entry.facet}:${entry.on}`) }))
   return {
     forms: facets.every((entry) => entry.on),

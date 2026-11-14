@@ -1444,6 +1444,15 @@ export function piTrainPhysicalCutWaveFive(matrix: MindMatrix = buildMatrix()) {
   const station46 = dissolve.byStation.find((row) => row.digit === 4)!
   const wave1 = piTrainStationsOpenWaveOne(matrix)
   const tierAInCatalog = PI_TRAIN_WAVE5_TIER_A.every((name) => station46.exports.includes(name))
+  // PROSE THAT SPEAKS ITS OWN NAME. The tier-A symbol is XXX_PRINCIPLE; what precedes the kind word is what the
+  // principle is about, and prose about it has to say those words. An empty string, a placeholder or a swapped
+  // constant fails this; a length test passed all three.
+  const principleName = PI_TRAIN_WAVE5_TIER_A.find((name) => name.endsWith('_PRINCIPLE'))
+  const principleSubject = (principleName ?? '').split('_').slice(0, -1).map((word) => word.toLowerCase())
+  const principleProse = MAX_TAMPERING_COST_PRINCIPLE.toLowerCase().split(/[^a-z]+/).filter(Boolean)
+  const principleSpeaksItsName = principleName !== undefined
+    && principleSubject.every((word) => principleProse.some((spoken) => spoken.startsWith(word)))
+    && new Set(principleProse).size > principleSubject.length
   const facets = [
     { facet: 'wave 1 station 4/6 open on disk', on: wave1.stations.some((entry) => entry.folder === '4/6') },
     { facet: 'tier-A fused at src/4/6', on: station46.path === 'src/4/6' && tierAInCatalog },
@@ -1454,7 +1463,7 @@ export function piTrainPhysicalCutWaveFive(matrix: MindMatrix = buildMatrix()) {
     { facet: 'helmholtz free energy decreases with entropy', on: helmholtzFreeEnergy(10, 300, 0) > helmholtzFreeEnergy(10, 300, 0.01) },
     { facet: 'sound pressure level at reference is 0 dB', on: abs(soundPressureLevelDb(20e-6)) < 1e-9 },
     { facet: 'cycleAdvance wraps coupled ring phases', on: cycleAdvance([{ name: 'a', period: 10, phase: 9 }], 2)[0].phase === 1 },
-    { facet: `tampering cost principle is non-empty prose — ${FORGE_COST_CEILING}`, on: MAX_TAMPERING_COST_PRINCIPLE.length > 0 },
+    { facet: `tampering cost principle is non-empty prose — ${FORGE_COST_CEILING}`, on: principleSpeaksItsName },
   ].map((entry) => ({ ...entry, receipt: toUuid(`pi-train-wave5:${entry.facet}:${entry.on}`) }))
   return {
     cut: facets.every((entry) => entry.on),

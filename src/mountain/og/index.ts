@@ -498,13 +498,14 @@ function oneJsonLdTemplateServesAllRaw(matrix: MindMatrix = buildMatrix()) {
 // JSON-LD contains valid paths, every violation carrying a detailed why.
 export function jsonLdValidPaths(matrix: MindMatrix = buildMatrix()) {
   const rules = jsonLdPathRules()
-  const sample = jsonLdTemplate({
+  const page = {
     path: '/school',
     relativePath: 'school.md',
     title: 'School',
     description: 'The school from kids to elders.',
     frontmatter: {},
-    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' } }, matrix)
+    site: { en: 'Double Torus', bg: 'Двоен торус', descriptionEn: 'portal', descriptionBg: 'портал' } }
+  const sample = jsonLdTemplate(page, matrix)
   const collect = (value: unknown, found: string[]): string[] => {
     if (typeof value === 'string') {
       if (new RegExp(rules.internal).test(value) || new RegExp(rules.external).test(value)) found.push(value)
@@ -513,8 +514,12 @@ export function jsonLdValidPaths(matrix: MindMatrix = buildMatrix()) {
     return found
   }
   const paths = collect(sample, [])
+  // the promise, read back: the page's own absolute URL and the site root are among the collected paths, and
+  // the SAME template run for another route does not promise this page's URL (the negative control).
+  const elsewhere = collect(jsonLdTemplate({ ...page, path: `${page.path}-elsewhere`, relativePath: `elsewhere-${page.relativePath}` }, matrix), [])
+  const promisesItsOwnPaths = paths.includes(canonicalUrl(page.path)) && paths.includes(canonicalUrl('/')) && !elsewhere.includes(canonicalUrl(page.path))
   const facets = [
-    { facet: 'the template promises paths — they are auditable', on: paths.length > 0 },
+    { facet: 'the template promises paths — they are auditable', on: promisesItsOwnPaths },
     { facet: 'every promised path is rooted or an external URL', on: paths.every((path) => new RegExp(rules.internal).test(path) || new RegExp(rules.external).test(path)) },
     { facet: 'one template serves all, so one audit covers all', on: oneJsonLdTemplateServesAll(matrix).serves },
     { facet: 'violations carry a detailed why', on: rules.why.internal.length > 0 && rules.why.external.length > 0 },

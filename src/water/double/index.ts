@@ -23,7 +23,7 @@ import {
   doubleTorusMathAtAllScalesFlowsInMovie } from '../../mountain/geometry/index.ts'
 import { livingTorus } from '../../fire/diamonds/index.ts'
 import { HERO_CYCLE_MS, heroPhaseAt } from '../../fire/plasma/ball/index.ts'
-import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, earned, foldVerdict} from '../../3/7/index.ts'
+import { A432_HUE, A432_FOLDED, FOLDED_CENSUS, HOMOLOGY_LOOPS, ICHING_TRIGRAMS, REQUIRED_DIAMOND_KINDS, SCIENCE_DOMAINS, SPEED_OF_LIGHT, TAU, earned, foldVerdict} from '../../3/7/index.ts'
 import { MEEUS_J2000_JD, meeusT, sunEclipticLongitudeDeg } from '../../heaven/sky/astronomy/index.ts'
 import { animationsAreGenuinely10DNotFaked, tenDimensionalAnimation } from '../../quantum/mountain/dimensions/index.ts'
 import { quantumDynamicsComputes, quantumChemistryToyComputes } from '../../quantum/dynamics/index.ts'
@@ -384,7 +384,9 @@ export function doubleTorusDiamondsComputes(matrix: MindMatrix = buildMatrix()) 
     const { computes, facets } = computesGate('double-torus-diamonds-computes', [
       { facet: 'quantum double torus is the machine', on: torus.is },
       { facet: '1024 pure Merkle leaves', on: leaves.count === (64 * 16) && leaves.pure },
-      { facet: 'diamond lattice kinds on index', on: lattice.length > 0 },
+      // The lattice is hand-built diamond by diamond in fire/diamonds; REQUIRED_DIAMOND_KINDS is the kernel's list of
+      // the kinds there must be. Neither is derived from the other, so their agreement is a measurement.
+      { facet: 'diamond lattice kinds on index', on: lattice.length === REQUIRED_DIAMOND_KINDS.length && REQUIRED_DIAMOND_KINDS.every((required) => lattice.some((diamond) => diamond.kind === required)) },
       { facet: 'zero diamond [id] SSG — compute-only', on: routing.ssgPathCount('diamonds') === 0 && purged.purged },
     ])
     return {

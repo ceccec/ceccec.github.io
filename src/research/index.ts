@@ -4889,11 +4889,18 @@ export function theoremParticleCollisionInverseReverse(matrix: MindMatrix = buil
       }
     }
     const novelSurvivors = products.filter((p) => p.novelToCorpus)
+    // absence re-read from the seed roots themselves, and a negative control: plant ONE survivor's root among
+    // the seed roots and exactly that one stops being novel (an empty survivor list cannot pass 0 + 1 === 0).
+    const seedRoots = new Set(seeds.map((s) => s.algebraRoot))
+    const plantedRoots = new Set([...seedRoots, ...novelSurvivors.slice(0, 1).map((p) => p.root)])
+    const survivorsAbsentFromSeedRoots =
+      products.every((p) => p.novelToCorpus === !seedRoots.has(p.root)) &&
+      novelSurvivors.filter((p) => !plantedRoots.has(p.root)).length + 1 === novelSurvivors.length
     const rayBound = products.every((p) => p.ray === __ns_water_digit.rosettaRayOf(p.id) || p.ray >= 0)
     const facets = [
       { facet: `particles from novel-corpus algebra (≥3) — ${seeds.length}`, on: seeds.length >= 3 },
       { facet: `collision products inverse×reverse + reverse×inverse — ${products.length}`, on: products.length >= 6 },
-      { facet: `novel survivors — ${novelSurvivors.length} candidates absent from seed roots`, on: novelSurvivors.length >= 1 },
+      { facet: `novel survivors — ${novelSurvivors.length} candidates absent from seed roots`, on: survivorsAbsentFromSeedRoots },
       { facet: `directional trinity computes (inverse≠reverse except named coincidence) · measured dir.computes=${dir.computes}`, on: dir.computes },
       { facet: 'every product ray-addressed via rosettaRayOf', on: rayBound && products.every((p) => isUuid(p.root)) },
       { facet: 'millennium challenge apparatus computes (MODELED)', on: mill.computes },

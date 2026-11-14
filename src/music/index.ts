@@ -851,7 +851,7 @@ export function piNotHarmonic(matrix: MindMatrix = buildMatrix()) {
 export function linearNotesFoldToMusic(matrix: MindMatrix = buildMatrix()) {
   const music = piMusic(matrix)
   const facets = [
-    { facet: 'linear notes — a sequence of pitches', on: music.notes.length > 0 },
+    { facet: 'linear notes — a sequence of pitches', on: music.notes.length === min(6 * 2, piTrainDiamonds(matrix).diamonds.length) && /^[A-G]#?(?: [A-G]#?)*$/.test(music.notes.map((entry) => entry.note).join(' ')) && music.notes.every((entry, step) => { const diamond = piTrainDiamonds(matrix).diamonds[(music.joinIndex + step) % piTrainDiamonds(matrix).diamonds.length]; return entry.index === diamond?.index && entry.frequency === diamond?.frequency }) },
     { facet: 'join at the horo — where you join matters', on: piMusic(matrix, 1).root !== piMusic(matrix, 4).root },
     { facet: 'they fold to music — harmony emerges', on: harmonyProbability(matrix).harmonic },
     { facet: 'the line becomes a song (genus-2, not linear)', on: foldThoughts(matrix).folded },
@@ -1344,7 +1344,7 @@ export function harmonicPredictionSurprise(opts: { priceVariant?: string; barCou
   const sample = min(8, windows.length)
   const precise = sample > 0 && windows.slice(0, sample).every((entry, index) => replay[index]?.receipt === entry.receipt)
   const { computes, facets, root } = computesGate('harmonic-prediction-surprise', [
-    { facet: 'offline harmonic windows from a432 synthetic series', on: windows.length > 0 },
+    { facet: 'offline harmonic windows from a432 synthetic series', on: windows.length === __ns_up_up_vortex_math.priceFromA432(variant, barCount).length - 16 && windows.every((entry, index) => entry.bar === index + 16) && windows[windows.length - 1]?.bar === __ns_up_up_vortex_math.priceFromA432(variant, barCount).length - 1 },
     { facet: 'replay identical — surprise is reproducible precision not omniscience', on: precise },
   ])
   return {
@@ -1448,7 +1448,7 @@ export function humanResonanceHarmonicPredictionComputes(matrix: MindMatrix = bu
     const { computes, facets, root } = computesGate('human-resonance-harmonic-prediction', [
       { facet: 'humanBreath modulates rhythm — breath pulse in [0.82, 1.18]', on: breath >= 0.82 && breath <= 1.18 },
       { facet: 'a432 is the blood — circulation stream sealed', on: blood.isBlood },
-      { facet: 'coordinated waves — polyrhythm yin-yang coordination', on: waves.waves.length > 0 },
+      { facet: 'coordinated waves — polyrhythm yin-yang coordination', on: waves.root === merkleFold(waves.waves.map((wave) => wave.receipt)) && waves.waves.every((wave, index) => wave.index === index && wave.polarity === (index % 2 === 0 ? 'yin' : 'yang')) && waves.waves[1]?.polarity === 'yang' },
       { facet: 'harmonic prediction surprise — offline windows reproducible', on: surprise.precise },
       { facet: 'Schumann ELF bridge — cavity phase harmonises realtime API receipts', on: schumannBridge.harmonised },
     ])

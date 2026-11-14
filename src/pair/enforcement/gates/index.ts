@@ -1540,7 +1540,6 @@ export const COMMAND_PLACEMENT_AUDIT_MAP: readonly CommandPlacementRow[] = [
   { fold: 'resourceLeakGate', pair: 'resource/leak', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'sandboxTools', pair: 'sandbox/tool', currentBarrel: 'src/pair/enforcement/gates/strict/scan', bestPlace: 'src/pair/enforcement/gates/strict/scan', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'revolutionaryApproach', pair: 'revolution/approach', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
-  { fold: 'unsolvedEngine', pair: 'unsolved/engine', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'riemannZeroCount', pair: 'zero/count', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'orientationCheck', pair: 'orientation/check', currentBarrel: 'src/pair/enforcement/gates', bestPlace: 'src/pair/enforcement/gates', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
   { fold: 'riemannZeroScan', pair: 'zero/scan', currentBarrel: 'src/4/6', bestPlace: 'src/4/6', action: 'moved', reason: 'registered via quantum:register (the sealed registration quartet)' },
@@ -1904,7 +1903,6 @@ export const PROSE_FRACTAL_MERGE_MAP = [
   // claim compute-or-refute (overclaimComputes) · zero-token deterministic runtime. The name resolves
   // to the laws; the laws compute; clay stays 0. The revolution is that grand claims became refutable.
   { from: 'quantumRevolution', to: 'revolutionaryApproach', pair: 'approach/revolution' },
-  { from: 'unsolvedProblemsLeadToRevolution', to: 'unsolvedEngine', pair: 'unsolved/engine' },
   { from: 'nextAdvanceRhProbeToCompletenessCount', to: 'riemannZeroCount', pair: 'zero/count' },
   // USE TOKENS WISELY, MAX DISCOVERIES IN NO TIME (user 2026-07-24): the standing efficiency law —
   // silence-is-green (only reds speak), the O(1) ritual (quantum:next · wave:land · quantum:register),
@@ -2609,7 +2607,7 @@ export function autosaveMatrix() {
     { facet: `INVERT — the autosave projection is invertible: to→{from} recovers every directive (round-trip identity over ${mergeRows.length} rows), doubleMapped=${doubleMapped.length}`, on: invertible },
     { facet: `REVERT — all ${distinctPairs.length} merge pairs fold bidirectionally in both orders: an undone row is a measured branch, never a silent loss`, on: reverted },
     { facet: 'superposition COMPLETE — save · invert · revert all compute; the measurement algebra is saved WITH its inverse', on: invertible && reverted && unsaved.length === 0 },
-    { facet: `flagged is FLAGGED by algebra — ${mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length} flagged rows, each held by a computed FLAGGED row (the flag is algebra output, never a label)`, on: mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length >= 1 },
+    { facet: `flagged is FLAGGED by algebra — ${mergeRows.filter((row) => row.from.endsWith('FLAGGED')).length} flagged rows, each held by a computed FLAGGED row (the flag is algebra output, never a label)`, on: mergeRows.filter((row) => row.from.endsWith('FLAGGED')).every((row) => COMMAND_PLACEMENT_AUDIT_MAP.some((slot) => slot.fold === row.to && slot.pair === row.pair && slot.reason.includes('UNCLAIMED'))) && mergeRows.some((row) => row.from.endsWith('FLAGGED') && row.to === 'millenniumProblemsChallenge') },
     { facet: `named entries — ${honestOpen.length} honest-open rows (${honestOpen.filter((entry) => entry.startsWith('formed:')).length} formed · ${honestOpen.filter((entry) => entry.startsWith('migrate-next:')).length} migrate-next); a formed entry keeps its history, a migrate-next names its wave`, on: honestOpen.length === 5 && honestOpen.every((entry) => entry.startsWith('formed:') || entry.startsWith('migrate-next:')) },
     { facet: `autosaved — ${targets.length - unsaved.length}/${targets.length} prose-merge targets hold a matrix row · unsaved=[${unsaved.join(',')}]`, on: allSaved },
     { facet: 'merge rows well-formed — every slot compresses its longest prose name · pair is a dual · slot is a fold name', on: rowsWellFormed },
@@ -2905,7 +2903,7 @@ export function gateAnalytics(root: string = enforcementScanRoot()) {
     { facet: 'gatesLensChatSameCore', on: gatesLensChatSameCore },
     { facet: `noFatHardcodedToolBodies onTrueInSlimFolds=${fatHardcodedInSlimTools}`, on: noFatHardcodedToolBodies },
     { facet: `hardcodedOnTrueDebt=${hardcodedOnTrueDebt}`, on: debt.computes && hardcodedOnTrueDebt >= 0 },
-    { facet: `handListAllowlistResidual=${handListAllowlistResidual}`, on: gateFiles.length > 0 },
+    { facet: `handListAllowlistResidual=${handListAllowlistResidual}`, on: gateFiles.some((file) => file.rel === 'src/pair/enforcement/gates/index.ts') && handLists.every((list) => gateFiles.some((file) => file.rel === list.file)) },
     { facet: `noConfusion=${noConfusion ? 1 : 0}`, on: noConfusion },
     { facet: 'compose gate/lens · mcp/chat · chat/all · gate/monitor · tool/matrix · dry/* · formula/code · analytics/self', on: composeOn },
     { facet: 'pair gate/analytics bidirectional', on: pairOn },
@@ -4073,7 +4071,7 @@ export function planTrinity(root: string = enforcementScanRoot(), facts?: Enforc
     { facet: `cross=audit migrate-next=${crossCandidates.length}`, on: crossAudit },
     { facet: 'fold=merge prose plan → planTrinity · place/prose matrix', on: foldMerge },
     { facet: `weave=seal matrixNext=${matrixNext.id}`, on: weaveSeal },
-    { facet: `matrixNext pair=${matrixNext.pair}`, on: matrixNext.pair.length > 0 },
+    { facet: `matrixNext pair=${matrixNext.pair}`, on: /^[^/]+\/[^/]+$/.test(matrixNext.pair) && COMMAND_PLACEMENT_AUDIT_MAP.some((slot) => slot.fold === matrixNext.fold && slot.pair === matrixNext.pair) },
     { facet: 'prosePlanRejected', on: prosePlanRejected },
     { facet: 'drainableClosed', on: drainableClosed },
     { facet: `honestOpenNamed=${honestOpenNamed.length}`, on: honestOpenNamedOn },

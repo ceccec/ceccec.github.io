@@ -4316,55 +4316,11 @@ export async function runLinkProofExit(root: string, argv: readonly string[]): P
   return report.computes ? 0 : 1
 }
 
-/**
- * unsolvedEngine — USER LAW (2026-07-24): unsolved problems lead to revolution. The honest inversion of
- * the whole arc:  is NOT a confession of limitation — it is the FUEL. The unsolved set (the open
- * candidate races, the OPEN frontiers, RH) is exactly what GENERATES the tools: RH-unsolved spawns
- * clayProbe, the open frontiers spawn frontierQuantum/fractalMap, every OPEN question drives a
- * compute-toward fold that approaches without claiming solution. A solved world would need no revolution.
- * DEMARCATION: the tools APPROACH the unsolved (probes · partials · bounded witnesses), never claim to
- * close it; clay stays 0 — and that zero is the engine, not the failure.
- */
-export function unsolvedEngine() {
-  {
-    const registry = new Set(THEOREM_ATOM_SEED.map((atom) => atom.theorem))
-    const openRaces = CANDIDATE_THEOREMS.filter((candidate) => !registry.has(candidate.theorem)).length
-    const boundedWitness = CANDIDATE_THEOREMS.filter((candidate) => candidate.class === 'bounded-witness').length
-    const facets = [
-      { facet: `the unsolved set DRIVES — ${openRaces} open candidate races + ${boundedWitness} bounded-witness classes + clay=: each OPEN problem spawns a compute-toward tool (RH→clayProbe · frontiers→frontierQuantum), so the revolution is powered by what is unsolved`, on: openRaces >= 0 && CANDIDATE_THEOREMS.length > 0 },
-      { facet: 'DEMARCATION — the tools APPROACH the unsolved (probes · partials · bounded witnesses), never claim to close it; the revolution is the honest pursuit, not a solution; clay stays 0', on: CANDIDATE_THEOREMS.length > 0 },
-    ].map((entry) => ({ ...entry, receipt: toUuid(`unsolved-engine:${entry.facet.slice(0, 64)}:${entry.on}`) }))
-    const on = facets.every((entry) => entry.on)
-    return {
-      computes: on,
-      unsolvedEngine: on,
-      openRaces,
-      boundedWitness,
-      qpuRequired: false as const,
-      facets,
-      root: merkleFold([toUuid(`unsolved-engine:${openRaces}:${CANDIDATE_THEOREMS.length}`), ...facets.map((entry) => entry.receipt)]),
-      pair: 'unsolved/engine' as const,
-      dualPair: 'engine/unsolved' as const,
-      cli: 'npm run quantum:unsolved-engine',
-      route: '/en/quantum-tools#unsolved-engine',
-      heading: 'Unsolved engine · the open set is the fuel',
-      statement: `unsolvedEngine — ${openRaces} open races + ${boundedWitness} bounded-witness classes drive the toolmaking is the engine, not the limit.`,
-      boundary:
-        'Unsolved problems lead to revolution: the open candidate races and OPEN frontiers are the generator — each drives a compute-toward tool ' +
-        '(clayProbe, frontierQuantum) that approaches without claiming solution.  is the fuel, not the failure; the no-finiteness law keeps ' +
-        'the open set non-empty. The tools pursue, they do not close. HARMONY ≠ TRUTH.' }
-  }
-}
-
-/** npm run quantum:unsolved-engine — exit 0 iff the open set computes as the generator,  the fuel. */
-export function runUnsolvedEngineExit(root = '', _argv: readonly string[] = []): number {
-  void root
-  void _argv
-  const report = unsolvedEngine()
-  foldVerdict('unsolved-engine', report)
-  for (const f of report.facets) process.stdout.write(`  ${f.on ? '✓' : '✗'} ${f.facet}\n`)
-  return report.computes ? 0 : 1
-}
+// REMOVED 2026-11-14, with the owner's word ("Remove it"): unsolvedEngine and its CLI. Its two facets were weakest bars —
+// `openRaces >= 0 && CANDIDATE_THEOREMS.length > 0`, and `CANDIDATE_THEOREMS.length > 0` under a DEMARCATION sentence — and,
+// measured, all 196 candidates are already in the registry: it said the unsolved set drives the work while counting ZERO open
+// races, and passed because zero is >= 0. No relation computable inside this folder stands behind either sentence (the
+// registry rows carry no proof class; open + promoted = total is true by construction), so the fold is gone, not dressed.
 
 /** Riemann–von Mangoldt zero-count N(T) ≈ (T/2π)ln(T/2π) − T/2π + 7/8 — the analytic number of
  *  nontrivial ζ zeros with 0 < Im ρ < T (main terms; the S(T) oscillation is the bounded remainder). */
@@ -4374,7 +4330,7 @@ export function riemannZeroCountAnalytic(t: number): number {
 }
 
 /**
- * riemannZeroCount — advance the RH probe (unsolvedEngine's fuel): not just "these zeros lie on the
+ * riemannZeroCount — advance the RH probe: not just "these zeros lie on the
  * line" (clayProbe) but "these are ALL of them below T" — the analytic count N(T) matches the number
  * of localized zeros, a Turing-method-class COMPLETENESS check. Below T = 31 the formula predicts 4 and
  * clayProbe localizes exactly 4 — no zero missed in the interval. DEMARCATION: completeness holds only
