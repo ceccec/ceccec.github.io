@@ -3877,8 +3877,8 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
             multiClockOpen: boolean;
             endless: {
                 endless: any;
-                perPage: boolean;
-                matchesContent: boolean;
+                perPage: any;
+                matchesContent: any;
                 count: number;
                 properties: {
                     receipt: string;
@@ -3993,6 +3993,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                 merkabaNoShell: boolean;
                 torusNoCenterRing: boolean;
                 srcReadable: boolean;
+                source: "read" | "absent";
                 count: number;
                 facets: {
                     receipt: string;
@@ -4171,8 +4172,8 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                 multiClockOpen: boolean;
                 endless: {
                     endless: any;
-                    perPage: boolean;
-                    matchesContent: boolean;
+                    perPage: any;
+                    matchesContent: any;
                     count: number;
                     properties: {
                         receipt: string;
@@ -4287,6 +4288,7 @@ export declare function manageComputationalDrift(matrix?: MindMatrix, at?: numbe
                     merkabaNoShell: boolean;
                     torusNoCenterRing: boolean;
                     srcReadable: boolean;
+                    source: "read" | "absent";
                     count: number;
                     facets: {
                         receipt: string;
@@ -6897,8 +6899,8 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                 multiClockOpen: boolean;
                 endless: {
                     endless: any;
-                    perPage: boolean;
-                    matchesContent: boolean;
+                    perPage: any;
+                    matchesContent: any;
                     count: number;
                     properties: {
                         receipt: string;
@@ -7013,6 +7015,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                     merkabaNoShell: boolean;
                     torusNoCenterRing: boolean;
                     srcReadable: boolean;
+                    source: "read" | "absent";
                     count: number;
                     facets: {
                         receipt: string;
@@ -7191,8 +7194,8 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -7307,6 +7310,7 @@ export declare function driftInvertedIsTrinityGateway(matrix?: MindMatrix, at?: 
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -10460,8 +10464,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                 multiClockOpen: boolean;
                 endless: {
                     endless: any;
-                    perPage: boolean;
-                    matchesContent: boolean;
+                    perPage: any;
+                    matchesContent: any;
                     count: number;
                     properties: {
                         receipt: string;
@@ -10576,6 +10580,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                     merkabaNoShell: boolean;
                     torusNoCenterRing: boolean;
                     srcReadable: boolean;
+                    source: "read" | "absent";
                     count: number;
                     facets: {
                         receipt: string;
@@ -10754,8 +10759,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -10870,6 +10875,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -13472,8 +13478,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -13588,6 +13594,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -13766,8 +13773,8 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -13882,6 +13889,7 @@ export declare function hexInsteadOfTheoremIsCrack(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -16911,8 +16919,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -17027,6 +17035,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -17205,8 +17214,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -17321,6 +17330,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -19923,8 +19933,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -20039,6 +20049,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -20217,8 +20228,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -20333,6 +20344,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -23039,8 +23051,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                 multiClockOpen: boolean;
                 endless: {
                     endless: any;
-                    perPage: boolean;
-                    matchesContent: boolean;
+                    perPage: any;
+                    matchesContent: any;
                     count: number;
                     properties: {
                         receipt: string;
@@ -23155,6 +23167,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     merkabaNoShell: boolean;
                     torusNoCenterRing: boolean;
                     srcReadable: boolean;
+                    source: "read" | "absent";
                     count: number;
                     facets: {
                         receipt: string;
@@ -23333,8 +23346,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -23449,6 +23462,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -26051,8 +26065,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -26167,6 +26181,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -26345,8 +26360,8 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -26461,6 +26476,7 @@ export declare function computationsUseOnlyQuantumTheoremsAsConstants(matrix?: M
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -29662,8 +29678,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -29778,6 +29794,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -29956,8 +29973,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -30072,6 +30089,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -33019,8 +33037,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -33135,6 +33153,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -33313,8 +33332,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -33429,6 +33448,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -36031,8 +36051,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -36147,6 +36167,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -36325,8 +36346,8 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -36441,6 +36462,7 @@ export declare function clayIsGravityRosettaOneRayThisDimensionRestBeyond(matrix
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;

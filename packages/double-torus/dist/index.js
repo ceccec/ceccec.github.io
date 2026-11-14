@@ -2641,7 +2641,7 @@ var CRACK_LEDGER = [
   { file: "src/quantum/wind/geometry/index.ts", literal: "*", count: 5, kind: "tuned", source: "attested residue \u2014 hand-fixed values + FoL/Fruit lattice counts (1+6+12 / 1+6+6)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/commands/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/decode/index.ts", literal: "*", count: 403, kind: "data", source: "attested residue \u2014 ancient numeral corpora \u2014 Sumerian/Maya/Egyptian/If\xE1 documented values (334\u2192412 one-command-decode wave)" },
-  { file: "src/thunder/movie/canvas/index.ts", literal: "*", count: 4, kind: "tuned", source: "attested residue \u2014 hand-fixed values (PR#63 movie-all-elements 1\u21924), derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
+  { file: "src/thunder/movie/canvas/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values (PR#63 movie-all-elements 1\u21924), derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/resonance/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; Wave C1 drawResonanceProjection (ratcheted 1\u21922)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/verify/index.ts", literal: "*", count: 5, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins relocated from cosmos 2026-07-08", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/waves/index.ts", literal: "*", count: 22, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins + wave/domain (#101) encode slice\xB7percent (19\u219220)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
@@ -27987,6 +27987,7 @@ function theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected(ma
   const hexagonRatio = 2 * 3 * 1 / 2;
   const facets = [
     { facet: `SIXTY \u2014 \u03C9 = e^{i\u03C0/3} has order ${order} in \u2124[\u03C9] (\u03C9\xB2 = \u03C9 \u2212 1, \u03C9\xB3 = \u22121), and rotating by it keeps all ${box.length} box elements integer-coordinated with their norm: (a, b) \u21A6 (\u2212b, a + b)`, theorem: "sixty_degrees_is_a_primitive_sixth_root_of_unity", file: QUANTUM_LEAN, decides: [3, order], on: order === 2 * 3 && same(mul(OMEGA, OMEGA), [-1, 1]) && same(powers[3], [-1, 0]) && rotationStays },
+    { facet: `ROTATION \u2014 for EVERY element of \u2124[\u03C9], not a box: \u03C9 \xB7 (a + b\u03C9) = \u2212b + (a + b)\u03C9, proved in the kernel on the two shapes of an integer and resting on no axiom; the ${box.length} box elements computed here agree with it`, theorem: "rotation_by_sixty_degrees_keeps_the_eisenstein_integers", file: QUANTUM_LEAN, decides: [], on: rotationStays && box.every((x) => Number.isInteger(mul(OMEGA, x)[0]) && Number.isInteger(mul(OMEGA, x)[1])) },
     { facet: `SIX \u2014 ${firstPerfect} is the first perfect number; a tetrahedron's ${FACES * 3} face angles of ${SIXTY}\xB0 sum to ${tetrahedron}\xB0 = ${FACES} \xD7 ${STRAIGHT}\xB0; ${A432} = ${TURN} \xD7 6/5`, theorem: "six_is_the_first_perfect_number_and_a_tetrahedron_sums_to_720", file: QUANTUM_LEAN, decides: [firstPerfect ?? -1, tetrahedron, STRAIGHT, A432, TURN], on: firstPerfect === 2 * 3 && tetrahedron === FACES * STRAIGHT && A432 * 5 === TURN * (2 * 3) },
     { facet: `FORTY \u2014 the nine digits sit ${STEP}\xB0 apart; the doubling circuit ${circuit.join("\xB7")} steps ${steps.map((s) => s > 0 ? `+${s}` : `${s}`).join(", ")} and closes; 3\xB76\xB79 turns ${triangleTurns.join(", ")}`, theorem: "the_doubling_circuit_steps_forty_eighty_one_sixty_and_back", file: QUANTUM_LEAN, decides: [...steps.map((s) => abs(s)), ...triangleTurns, TURN], on: same(steps, [1, 2, HEX_DIGIT_BITS2, -1, -2, -HEX_DIGIT_BITS2].map((k) => k * STEP)) && steps.reduce((s, v) => s + v, 0) === 0 && triangleTurns.every((t) => t === TURN / 3) },
     { facet: `STAR \u2014 {6/2} is the two triangles ${starFrom(1).slice(0, 3).join("\xB7")} and ${starFrom(2).slice(0, 3).join("\xB7")}, each closing in three steps of ${turn(1, HEX_DIGIT_BITS2)}\xB0; the doubling circuit is one cycle of ${circuit.length} with unequal steps, so it is not that star`, theorem: "the_six_two_star_is_the_two_triangles_and_not_the_doubling_cycle", file: QUANTUM_LEAN, decides: [turn(1, HEX_DIGIT_BITS2), circuit.length], on: same(starFrom(1), [1, HEX_DIGIT_BITS2, 7, 1]) && same(starFrom(2), [2, 5, 2 * HEX_DIGIT_BITS2, 2]) && new Set(steps.map((s) => abs(s))).size === 3 && new Set(circuit).size === circuit.length },
@@ -28479,9 +28480,9 @@ function endlessBackgroundMovie2(matrix = buildMatrix()) {
     { property: "behind everything", via: "fixed, pointer-through and aria-hidden \u2014 it never steals a click or a screen-reader" }
   ].map((entry2) => ({ ...entry2, receipt: toUuid(`endless-bg:${entry2.property}`) }));
   return {
-    endless: properties.length === 6 && base.plays && base.dryMath,
-    perPage: true,
-    matchesContent: true,
+    endless: base.plays && base.dryMath && base.perPage && base.matchesContent,
+    perPage: base.perPage,
+    matchesContent: base.matchesContent,
     count: properties.length,
     properties,
     root: merkleFold([base.root, ...properties.map((entry2) => entry2.receipt)]),
@@ -28509,13 +28510,22 @@ function backgroundMovieRaw(matrix = buildMatrix()) {
   const cardHero = cardHeroLinkWiresInUi(matrix);
   const toolPlacement = rosettaIChingTrinityPlacesAllTools(matrix);
   const paintPath = clientMoviePaintPathSealed("/", matrix);
+  const streamsHere = plasmaMovieStreams("/", "alpha beta gamma", matrix);
+  const streamsAgain = plasmaMovieStreams("/", "alpha beta gamma", matrix);
+  const streamsElsewhere = plasmaMovieStreams("/elsewhere/", "alpha beta gamma", matrix);
+  const streamsOtherWords = plasmaMovieStreams("/", "alpha beta delta", matrix);
+  const addressed2 = streamsHere.count === streamsHere.streams.length && streamsHere.streams.every((stream) => isUuid(stream.uuid));
+  const dryMath = addressed2 && streamsHere.root === streamsAgain.root;
+  const perPage = streamsHere.root !== streamsElsewhere.root;
+  const matchesContent = streamsHere.root !== streamsOtherWords.root;
+  const interactive = colorAudio.flows && silentDefault.offByDefault;
   const features2 = [
-    { feature: "entangled groups of digits", via: "deterministic digit groups, content-addressed" },
-    { feature: "colourful watermarks", via: "hue from the digit (the quantum colour wheel), low-opacity behind the content" },
-    { feature: "fold into letters, words and sentences", via: "digit \u2192 glyph \u2192 word \u2192 the three-word phrases as they near the void" },
-    { feature: "colourful streams to the void", via: "the streams converge on the centre, shrinking into it" },
-    { feature: "resurrect as split streams in new dimensions", via: "at the void they resurrect outbound at the golden angle \u2014 a new dimension each time" },
-    { feature: "the same dry math", via: "every digit, colour and path a seeded fold \u2014 deterministic, zero random" },
+    { feature: "entangled groups of digits", via: `${streamsHere.count} streams, each a content address \u2014 deterministic digit groups`, on: addressed2 },
+    { feature: "colourful watermarks", via: "hue from the digit (the quantum colour wheel), low-opacity behind the content", on: addressed2 },
+    { feature: "fold into letters, words and sentences", via: "digit \u2192 glyph \u2192 word \u2192 the three-word phrases as they near the void", on: matchesContent },
+    { feature: "colourful streams to the void", via: "the streams converge on the centre, shrinking into it", on: addressed2 },
+    { feature: "resurrect as split streams in new dimensions", via: "at the void they resurrect outbound at the golden angle \u2014 a new dimension each time", on: addressed2 },
+    { feature: "the same dry math", via: "every digit, colour and path a seeded fold \u2014 the same page and words twice give one root, another page or other words another", on: dryMath && perPage && matchesContent },
     { feature: "harmonic and efficiency math in every stream", via: `${math.proofCount} harmonic + ${efficiency6.proofCount} efficiency proofs wired into plasma streams and movie copy at call time`, on: math.flows && efficiency6.flows },
     { feature: "Matrix RGB decode in the movie", via: `${matrixRgb.channelCount} RGB channels (R red pill \xB7 G heart gateway \xB7 B blue pill) + ${matrixRgb.proofCount} proofs wired into plasma streams at call time`, on: matrixRgb.flows },
     { feature: "Rosetta decode waves in the movie", via: `${rosettaDecode.rayCount} rosetta rays + ${rosettaDecode.proofCount} proofs (send-waves \xB7 global key \xB7 dialect) wired into plasma streams at call time`, on: rosettaDecode.flows },
@@ -28528,18 +28538,20 @@ function backgroundMovieRaw(matrix = buildMatrix()) {
     { feature: "all seed bundles render in the plasma ball", via: `${plasmaWired.expectedCount} proof streams from seven bundles wired into plasmaMovieStreams at call time`, on: plasmaWired.flows },
     { feature: "card hero link hub and tag browser", via: "LinkedHeroCard surfaces fusion-gated through rosettaIChingTrinityPlacesAllTools", on: cardHero.wired && toolPlacement.fused },
     { feature: "client paint path sealed \u2014 browser never walks gate-graph seeds", via: "clientMoviePaintPathSealed simulates typeof window; blank canvas / stack overflow fails the gate", on: paintPath.sealed },
-    { feature: "interactive movie game with sound and vibration", via: "when audio is enabled, a tap off the controls plays a tone whose pitch maps to the spot, a light haptic, and a ripple that scatters the streams" }
+    { feature: "interactive movie game with sound and vibration", via: "when audio is enabled, a tap off the controls plays a tone whose pitch maps to the spot, a light haptic, and a ripple that scatters the streams \u2014 the colour\u2192sound decode it plays round-trips, and audio is off by default", on: interactive }
   ].map((entry2) => ({ ...entry2, holographic: foldPair(toUuid(`bg-movie:${entry2.feature}`), whole).bidirectional, receipt: toUuid(`bg-movie:${entry2.feature}:${whole}`) }));
   return {
-    plays: features2.length === 19 && features2.every((entry2) => entry2.holographic) && math.flows && efficiency6.flows && matrixRgb.flows && rosettaDecode.flows && doubleTorusEarthWeather.flows && hingeMovie.flows && doubleTorusAllScales.flows && rosettaSunMoon.flows && colorAudio.flows && silentDefault.offByDefault && staticFusion.fused && plasmaWired.flows && cardHero.wired && toolPlacement.fused && paintPath.sealed,
+    plays: features2.every((entry2) => entry2.on && entry2.holographic) && math.flows && efficiency6.flows && matrixRgb.flows && rosettaDecode.flows && doubleTorusEarthWeather.flows && hingeMovie.flows && doubleTorusAllScales.flows && rosettaSunMoon.flows && colorAudio.flows && silentDefault.offByDefault && staticFusion.fused && plasmaWired.flows && cardHero.wired && toolPlacement.fused && paintPath.sealed,
     mathFlows: math.flows,
     efficiencyFlows: efficiency6.flows,
     matrixRgbFlows: matrixRgb.flows,
     rosettaDecodeFlows: rosettaDecode.flows,
     staticFused: staticFusion.fused,
-    dryMath: true,
-    interactive: true,
-    // sound and vibration fused into the game
+    dryMath,
+    interactive,
+    // the colour→sound decode the tap plays round-trips; audio off by default
+    perPage,
+    matchesContent,
     count: features2.length,
     features: features2,
     root: merkleFold(features2.map((entry2) => entry2.receipt)),
@@ -28662,24 +28674,24 @@ function movieAllElementsAreTheorems(matrix = buildMatrix(), at = 0) {
     const geomSrc = readMoviePainterSource("src/quantum/wind/geometry/index.ts");
     const quantumSrc = readMoviePainterSource("src/quantum/index.ts");
     const srcReadable = geomSrc.length > 0 && quantumSrc.length > 0;
-    const calendarsNoRing = !srcReadable || geomSrc.includes("VORTEX_SEQUENCE") && geomSrc.includes("Phase marker only") && !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*radius/.test(geomSrc.slice(geomSrc.indexOf("export function drawCalendars")));
+    const calendarsNoRing = srcReadable && (geomSrc.includes("VORTEX_SEQUENCE") && geomSrc.includes("Phase marker only") && !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*radius/.test(geomSrc.slice(geomSrc.indexOf("export function drawCalendars"))));
     const ballSlice = quantumSrc.slice(quantumSrc.indexOf("function drawPlasmaBall"), quantumSrc.indexOf("function drawPlasmaBall") + 900);
-    const voidSoft = !srcReadable || ballSlice.includes("fillRect") && !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*void/.test(ballSlice) && (ballSlice.includes("Soft throat") || ballSlice.includes("screen") || ballSlice.includes("confluence"));
+    const voidSoft = srcReadable && (ballSlice.includes("fillRect") && !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*void/.test(ballSlice) && (ballSlice.includes("Soft throat") || ballSlice.includes("screen") || ballSlice.includes("confluence")));
     const merkabaSlice = quantumSrc.slice(
       quantumSrc.indexOf("export function drawBothEarthsMerkabaFrame"),
       quantumSrc.indexOf("export function drawBothEarthsMerkabaFrame") + 1200
     );
-    const merkabaNoShell = !srcReadable || !merkabaSlice.includes("setLineDash") && !merkabaSlice.includes("4 * scale");
+    const merkabaNoShell = srcReadable && (!merkabaSlice.includes("setLineDash") && !merkabaSlice.includes("4 * scale"));
     const dtSlice = quantumSrc.slice(
       quantumSrc.indexOf("function drawDoubleTorusProjection"),
       quantumSrc.indexOf("function drawDoubleTorusProjection") + 2200
     );
-    const torusNoCenterRing = !srcReadable || !dtSlice.includes("ctx.arc(cx, cy, r * (4 / (5 * 5))") && dtSlice.includes("lemniscate");
+    const torusNoCenterRing = srcReadable && (!dtSlice.includes("ctx.arc(cx, cy, r * (4 / (5 * 5))") && dtSlice.includes("lemniscate"));
     const vitepressRoutesOnly = MOVIE_CLOCK_SURFACE_ATTESTATION.every(
       (row) => row.route.startsWith("/") && !row.route.includes("location.") && !row.route.includes("vue-router")
     );
     const noBallInTheMiddle = voidSoft && merkabaNoShell && torusNoCenterRing;
-    const plasmaScreenBinds = noBallInTheMiddle && (!srcReadable || (ballSlice.includes("Plasma screen") || ballSlice.includes("screen holding") || ballSlice.includes("Soft throat")));
+    const plasmaScreenBinds = noBallInTheMiddle && (srcReadable && (ballSlice.includes("Plasma screen") || ballSlice.includes("screen holding") || ballSlice.includes("Soft throat")));
     const elements = [
       { id: "plasma-field", theorem: "endlessBackgroundMovie", binds: endless.endless },
       { id: "death-counter-flow", theorem: "theMovieLeavesTwoBitsAtTheVoid", binds: twoBits.seen },
@@ -28728,6 +28740,9 @@ function movieAllElementsAreTheorems(matrix = buildMatrix(), at = 0) {
       merkabaNoShell,
       torusNoCenterRing,
       srcReadable,
+      // ABSENT IS NOT A PASS. Every painter-source check was `!srcReadable || …`: with no source to read (a browser,
+      // the published bundle) all of them passed having checked nothing. They are `srcReadable && …` now, and this says which.
+      source: srcReadable ? "read" : "absent",
       count: facets.length,
       facets,
       root: merkleFold([
@@ -49002,7 +49017,7 @@ function harmonizeField(o, field) {
   const hueDelta = (heartHue - field.hue + 9 * 5 * 8) % 360 - 9 * 5 * 4;
   const hue2 = ((field.hue + hueDelta * ease) % 360 + 360) % 360;
   const p = o.reduce ? field.p : ((field.p + (breath - 1) * (1 / (5 * 5))) % 1 + 1) % 1;
-  const t = o.reduce ? field.t : p;
+  const t = o.reduce ? field.t : p * (HERO_CYCLE_MS3 / (100 * 5 * 2));
   return { ...field, at: o.at, hue: hue2, p, t };
 }
 function harmonizeFieldComputes(matrix = buildMatrix(), at = 0) {
@@ -49019,7 +49034,10 @@ function harmonizeFieldComputes(matrix = buildMatrix(), at = 0) {
       visible: true,
       watchMs: 0
     };
-    const seed = { at, t: observer.p, p: observer.p, hue: 5 };
+    const cycleSeconds = HERO_CYCLE_MS3 / (100 * 5 * 2);
+    const seed = { at, t: observer.p * cycleSeconds, p: observer.p, hue: 5 };
+    const quarter = { ...observer, at: HERO_CYCLE_MS3 / 4, p: 1 / 4 };
+    const quarterField = harmonizeField(quarter, { at: quarter.at, t: quarter.p * cycleSeconds, p: quarter.p, hue: 5 });
     const cadence = breathCoherenceCadence(at, 1 / 2);
     const field = harmonizeField(observer, seed);
     const coherence = observerObservationCoherenceAt(observer, seed);
@@ -49028,6 +49046,7 @@ function harmonizeFieldComputes(matrix = buildMatrix(), at = 0) {
       { facet: "breathCoherenceCadence eases toward 10 s as coherence rises", on: cadence > HERO_CYCLE_MS3 / (9 * 2) && cadence <= 100 * 100 },
       { facet: "observerObservationCoherenceAt \u2208 [0,1)", on: coherence >= 0 && coherence < 1 },
       { facet: "harmonizeField returns field with hue/p/t recomputed", on: field.hue >= 0 && field.hue < 360 && field.p >= 0 && field.p < 1 },
+      { facet: `the clock law survives harmonizing \u2014 a quarter cycle in, t = ${roundTo(quarterField.t, 3)} s is p \xD7 ${cycleSeconds} s (p = ${roundTo(quarterField.p, 4)}), seconds and not a phase`, on: abs(quarterField.t - quarterField.p * cycleSeconds) < 1 / (100 * 100 * 100) && quarterField.t > 1 && abs(field.t - field.p * cycleSeconds) < 1 / (100 * 100 * 100) },
       { facet: "no stored state \u2014 same at \u21D2 same field", on: harmonizeField(observer, seed).hue === field.hue }
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`harmonize-field-computes:${entry2.facet}:${entry2.on}`) }));
     return {
@@ -57711,15 +57730,20 @@ function theoremKeywords() {
   if (!theoremKeywordCache) theoremKeywordCache = theoremNavigation().keywords.map((name) => name.toLowerCase());
   return theoremKeywordCache;
 }
+var staticPageCatalogue;
+var staticPageLens;
 function staticPagesAll() {
-  return STATIC_PAGE_SEED.map((page) => ({
+  staticPageCatalogue ??= STATIC_PAGE_SEED.map((page) => ({
     ...page,
     keywords: page.slug === "frontiers" ? [...page.keywords, ...theoremKeywords()] : [...page.keywords],
     components: [...page.components]
   }));
+  return staticPageCatalogue.map((page) => ({ ...page, keywords: [...page.keywords], components: [...page.components] }));
 }
 function staticPages() {
-  return staticPagesAll().filter((page) => theoremScienceVisible(page.slug, page.keywords));
+  const all = staticPagesAll();
+  staticPageLens ??= new Set(all.filter((page) => theoremScienceVisible(page.slug, page.keywords)).map((page) => page.slug));
+  return all.filter((page) => staticPageLens.has(page.slug));
 }
 function isServedRoute(route) {
   const pages = staticPages();
@@ -64880,10 +64904,10 @@ function plasmaPaintHardcodedPlanesDiscovered(matrix = buildMatrix()) {
     ].map((entry2) => ({ ...entry2, receipt: toUuid(`plasma-hardcoded-planes:${entry2.facet}:${entry2.on}`) }));
     return {
       discovered: facets.every((entry2) => entry2.on),
-      realized: facets.every((entry2) => entry2.on),
+      realized: offLattice.length === 0 && facets.every((entry2) => entry2.on),
       planes: planeCount,
       ratios: entries.length,
-      remaining: [],
+      remaining: offLattice.map(([name]) => name),
       chroma: { value: CHROMA2, lattice: `9/64=${9 / 64}` },
       count: facets.length,
       facets,
@@ -65198,20 +65222,20 @@ function plasmaClientWorkBoundedByPureMath(path12 = "/", matrix = buildMatrix())
   const sealed = clientMoviePaintPathSealed(path12, matrix);
   const gate = computesGate("plasmaClientWorkBoundedByPureMath", [
     { facet: "movie streams computed without gate walk", on: streams.count > 0 },
-    { facet: "client catalog page ops stay 0 on client", on: typeof window === "undefined" ? true : plasmaClientCatalogPageOps() === 0 },
-    { facet: "work budget tiers are the vortex paint tiers", on: TIERS2.length === 3 }
+    { facet: "client catalog page ops stay 0 on client", on: plasmaClientCatalogPageOps() === 0 },
+    { facet: `work budget tiers ${TIERS2.join("\xB7")} are the vortex paint tiers \u2014 each the sum of the two before it`, on: TIERS2.every((tier, i) => i < 2 || tier === TIERS2[i - 1] + TIERS2[i - 2]) }
   ]);
   return { ...gate, bounded: gate.computes, paintPathSealed: sealed.sealed };
 }
 var MOVIE_SIMULATION_CHANNEL_IDS = ["astronomy", "resonance", "dynamics", "gold-fusion", "weather", "gateway"];
 function realtimeComputationsMovieStreams(path12 = "/", matrix = buildMatrix()) {
   void matrix;
-  void realtimeSources();
-  return MOVIE_SIMULATION_CHANNEL_IDS.slice(0, REALTIME_COMPUTE_MOVIE_CAP).map((id) => ({
+  const NINE = VORTEX_SEQUENCE.length, TURN_DEGREES = NINE * (5 * 2) * 4, STATION_DEGREES = TURN_DEGREES / NINE;
+  return MOVIE_SIMULATION_CHANNEL_IDS.slice(0, REALTIME_COMPUTE_MOVIE_CAP).map((id, i) => ({
     id,
-    label: id,
-    value: seedFromText(`${path12}:${id}`, 100) % 100 / 100,
-    hue: seedFromText(`${path12}:${id}:hue`, 360) % 360,
+    label: `${id} \xB7 station ${VORTEX_SEQUENCE[i % (NINE - 3)]}`,
+    value: VORTEX_SEQUENCE[i % (NINE - 3)] / NINE,
+    hue: VORTEX_SEQUENCE[i % (NINE - 3)] * STATION_DEGREES % TURN_DEGREES,
     receipt: toUuid(`rt-channel:${path12}:${id}`)
   }));
 }

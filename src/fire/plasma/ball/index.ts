@@ -20,7 +20,7 @@ import * as __ns_up_up_heaven_laws from '../../../heaven/laws/index.ts'
 import * as __ns_up_up_thunder_trading from '../../../thunder/trading/index.ts'
 import type { MindMatrix, StaticPage } from '../../../types/index.ts'
 import { buildMatrix, coverage } from '../../../heaven/compute/index.ts'
-import { abs, asTrace, computesGate, cos, exp, floor, fold, foldPair, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../../0/index.ts'
+import { VORTEX_SEQUENCE, abs, asTrace, computesGate, cos, exp, floor, fold, foldPair, hypot, isUuid, max, memoByRoot, merge, merkleFold, min, round, roundTo, seedFromText, sin, sqrt, toUuid } from '../../../0/index.ts'
 import { A432_OCTAVES, EULER_CHI, FOLDED_CENSUS, PHI, ROSETTA_AREAS, SPEED_OF_LIGHT, TAU } from '../../../3/7/index.ts'
 import { creationWave, completeAllInWaves } from '../../../thunder/waves/index.ts'
 import { A432_HUE, GOLDEN_ANGLE, quantumHueFromHz, quantumScaleHue, scaleColor, scaleColorRgba } from '../../../quantum/science/index.ts'
@@ -35,7 +35,6 @@ import { circulateDoubleTorus } from '../../../heaven/compute/index.ts'
 import { invertedEarthSameTimespaceProvenByMath, formingDoubleTorusEarthsProvenByMath, compassAroundEarthGatewaysImpossibleProvenByMath, sixtyDegreeAngleReachesCardinalForFreeProvenByMath, earthGatewayNavigationSolutionsResearched, earthGatewayNavigationResearchSentInWaves, trinityGatewayDefs } from '../../../water/double/earth/index.ts'
 import { doubleTorusMathAtAllScalesMovieSeeds, twoTrinitiesCardinalPyramidPolesProvenByMath } from '../../../mountain/geometry/index.ts'
 import { vortexPaintTiers } from '../../../mountain/vortex/index.ts'
-import { realtimeSources } from '../../../mountain/vortex/index.ts'
 import { staticPages } from '../../../wind/site/index.ts'
 import { componentGraph } from '../../../heaven/core/index.ts'
 import { fusionReactorPartsDryPlasmaStreams } from '../../../wind/fusion/index.ts'
@@ -434,10 +433,10 @@ export function plasmaPaintHardcodedPlanesDiscovered(matrix: MindMatrix = buildM
     ].map((entry) => ({ ...entry, receipt: toUuid(`plasma-hardcoded-planes:${entry.facet}:${entry.on}`) }))
     return {
       discovered: facets.every((entry) => entry.on),
-      realized: facets.every((entry) => entry.on),
+      realized: offLattice.length === 0 && facets.every((entry) => entry.on),
       planes: planeCount,
       ratios: entries.length,
-      remaining: [],
+      remaining: offLattice.map(([name]) => name),
       chroma: { value: CHROMA, lattice: `9/64=${9 / 64}` },
       count: facets.length,
       facets,
@@ -885,8 +884,8 @@ export function plasmaClientWorkBoundedByPureMath(path = '/', matrix: MindMatrix
   const sealed = clientMoviePaintPathSealed(path, matrix)
   const gate = computesGate('plasmaClientWorkBoundedByPureMath', [
     { facet: 'movie streams computed without gate walk', on: streams.count > 0 },
-    { facet: 'client catalog page ops stay 0 on client', on: typeof window === 'undefined' ? true : plasmaClientCatalogPageOps() === 0 },
-    { facet: 'work budget tiers are the vortex paint tiers', on: TIERS.length === 3 },
+    { facet: 'client catalog page ops stay 0 on client', on: plasmaClientCatalogPageOps() === 0 },
+    { facet: `work budget tiers ${TIERS.join('·')} are the vortex paint tiers — each the sum of the two before it`, on: TIERS.every((tier, i) => i < 2 || tier === TIERS[i - 1]! + TIERS[i - 2]!) },
   ])
   return { ...gate, bounded: gate.computes, paintPathSealed: sealed.sealed }
 }
@@ -930,12 +929,16 @@ export type RealtimeComputationsMoviePaint = { phase: number; palette: PlasmaMov
 
 export function realtimeComputationsMovieStreams(path = '/', matrix: MindMatrix = buildMatrix()): RealtimeComputeMovieChannel[] {
   void matrix
-  void realtimeSources()
-  return MOVIE_SIMULATION_CHANNEL_IDS.slice(0, REALTIME_COMPUTE_MOVIE_CAP).map((id) => ({
+  // A CHANNEL NAMED "weather" CARRIED A HASH OF THE ROUTE. value was seedFromText(path:id) % 100 and hue another hash — a
+  // number with a measurement's name and no measurement behind it, beside a `void realtimeSources()` that computed and
+  // discarded. Each channel now sits on a station of the doubling circuit 1·2·4·8·7·5 — forty degrees a digit, the
+  // integers quantum.lean decides (the_doubling_circuit_steps_forty_eighty_one_sixty_and_back). Not a reading of any sky.
+  const NINE = VORTEX_SEQUENCE.length, TURN_DEGREES = NINE * (5 * 2) * 4, STATION_DEGREES = TURN_DEGREES / NINE
+  return MOVIE_SIMULATION_CHANNEL_IDS.slice(0, REALTIME_COMPUTE_MOVIE_CAP).map((id, i) => ({
     id,
-    label: id,
-    value: (seedFromText(`${path}:${id}`, 100) % 100) / 100,
-    hue: seedFromText(`${path}:${id}:hue`, 360) % 360,
+    label: `${id} · station ${VORTEX_SEQUENCE[i % (NINE - 3)]}`,
+    value: VORTEX_SEQUENCE[i % (NINE - 3)]! / NINE,
+    hue: (VORTEX_SEQUENCE[i % (NINE - 3)]! * STATION_DEGREES) % TURN_DEGREES,
     receipt: toUuid(`rt-channel:${path}:${id}`) }))
 }
 

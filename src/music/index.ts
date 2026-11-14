@@ -1585,7 +1585,10 @@ export function harmonizeField<T extends HarmonizeableField>(o: ObserverContext,
   const hueDelta = ((heartHue - field.hue + (9 * 5 * 8)) % 360) - (9 * 5 * 4) // shortest arc ±180
   const hue = ((field.hue + hueDelta * ease) % 360 + 360) % 360
   const p = o.reduce ? field.p : (((field.p + (breath - 1) * (1 / (5 * 5))) % 1) + 1) % 1
-  const t = o.reduce ? field.t : p
+  // THE CLOCK LAW SURVIVES: the field carries t in SECONDS, t = p × one cycle (sharedHeroAt). This line read `: p`,
+  // which handed the painters a phase in [0,1) where they expect seconds — every sin(t·rate) and t·speed in the
+  // movie ran one cycle-length (108×) too slow. The fold fed its own test t = p, so it could not see it.
+  const t = o.reduce ? field.t : p * (HERO_CYCLE_MS / (100 * 5 * 2))
   return { ...field, at: o.at, hue, p, t }
 }
 
@@ -1603,7 +1606,10 @@ export function harmonizeFieldComputes(matrix: MindMatrix = buildMatrix(), at = 
       idle: false,
       visible: true,
       watchMs: 0 }
-    const seed: HarmonizeableField = { at, t: observer.p, p: observer.p, hue: 5 }
+    const cycleSeconds = HERO_CYCLE_MS / (100 * 5 * 2)
+    const seed: HarmonizeableField = { at, t: observer.p * cycleSeconds, p: observer.p, hue: 5 }
+    const quarter = { ...observer, at: HERO_CYCLE_MS / 4, p: 1 / 4 }
+    const quarterField = harmonizeField(quarter, { at: quarter.at, t: quarter.p * cycleSeconds, p: quarter.p, hue: 5 })
     const cadence = breathCoherenceCadence(at, (1 / 2))
     const field = harmonizeField(observer, seed)
     const coherence = observerObservationCoherenceAt(observer, seed)
@@ -1612,6 +1618,7 @@ export function harmonizeFieldComputes(matrix: MindMatrix = buildMatrix(), at = 
       { facet: 'breathCoherenceCadence eases toward 10 s as coherence rises', on: cadence > HERO_CYCLE_MS / (9 * 2) && cadence <= 100 * 100 },
       { facet: 'observerObservationCoherenceAt ∈ [0,1)', on: coherence >= 0 && coherence < 1 },
       { facet: 'harmonizeField returns field with hue/p/t recomputed', on: field.hue >= 0 && field.hue < 360 && field.p >= 0 && field.p < 1 },
+      { facet: `the clock law survives harmonizing — a quarter cycle in, t = ${roundTo(quarterField.t, 3)} s is p × ${cycleSeconds} s (p = ${roundTo(quarterField.p, 4)}), seconds and not a phase`, on: abs(quarterField.t - quarterField.p * cycleSeconds) < 1 / (100 * 100 * 100) && quarterField.t > 1 && abs(field.t - field.p * cycleSeconds) < 1 / (100 * 100 * 100) },
       { facet: 'no stored state — same at ⇒ same field', on: harmonizeField(observer, seed).hue === field.hue },
     ].map((entry) => ({ ...entry, receipt: toUuid(`harmonize-field-computes:${entry.facet}:${entry.on}`) }))
     return {

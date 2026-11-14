@@ -25,7 +25,8 @@ import {
   audioOffByDefault,
   clientMoviePaintPathSealed,
   computedMovieThemeColors,
-  plasmaClientWorkBoundedByPureMath } from '../../../fire/plasma/ball/index.ts'
+  plasmaClientWorkBoundedByPureMath,
+  plasmaMovieStreams } from '../../../fire/plasma/ball/index.ts'
 import { backgroundMovieColorVars } from '../movievars/index.ts'
 import { computedIconSvg, tenDimensionalHeroSvg, animatedHeroes } from '../../../ui/index.ts'
 import { computedWebManifest, siteConfig } from '../../../wind/site/index.ts'
@@ -127,9 +128,9 @@ export function endlessBackgroundMovie(matrix: MindMatrix = buildMatrix()) {
     { property: 'behind everything', via: 'fixed, pointer-through and aria-hidden — it never steals a click or a screen-reader' },
   ].map((entry) => ({ ...entry, receipt: toUuid(`endless-bg:${entry.property}`) }))
   return {
-    endless: properties.length === 6 && base.plays && base.dryMath,
-    perPage: true,
-    matchesContent: true,
+    endless: base.plays && base.dryMath && base.perPage && base.matchesContent,
+    perPage: base.perPage,
+    matchesContent: base.matchesContent,
     count: properties.length,
     properties,
     root: merkleFold([base.root, ...properties.map((entry) => entry.receipt)]),
@@ -165,13 +166,24 @@ function backgroundMovieRaw(matrix: MindMatrix = buildMatrix()) {
   const cardHero = cardHeroLinkWiresInUi(matrix)
   const toolPlacement = rosettaIChingTrinityPlacesAllTools(matrix)
   const paintPath = clientMoviePaintPathSealed('/', matrix)
+  // DRY MATH, PER PAGE, MATCHES THE CONTENT — MEASURED. These were `dryMath: true`, `perPage: true`, `matchesContent: true`.
+  // The same page and words twice is one root (determinism); another page is another root; other words are another root.
+  const streamsHere = plasmaMovieStreams('/', 'alpha beta gamma', matrix)
+  const streamsAgain = plasmaMovieStreams('/', 'alpha beta gamma', matrix)
+  const streamsElsewhere = plasmaMovieStreams('/elsewhere/', 'alpha beta gamma', matrix)
+  const streamsOtherWords = plasmaMovieStreams('/', 'alpha beta delta', matrix)
+  const addressed = streamsHere.count === streamsHere.streams.length && streamsHere.streams.every((stream) => isUuid(stream.uuid))
+  const dryMath = addressed && streamsHere.root === streamsAgain.root
+  const perPage = streamsHere.root !== streamsElsewhere.root
+  const matchesContent = streamsHere.root !== streamsOtherWords.root
+  const interactive = colorAudio.flows && silentDefault.offByDefault
   const features = [
-    { feature: 'entangled groups of digits', via: 'deterministic digit groups, content-addressed' },
-    { feature: 'colourful watermarks', via: 'hue from the digit (the quantum colour wheel), low-opacity behind the content' },
-    { feature: 'fold into letters, words and sentences', via: 'digit → glyph → word → the three-word phrases as they near the void' },
-    { feature: 'colourful streams to the void', via: 'the streams converge on the centre, shrinking into it' },
-    { feature: 'resurrect as split streams in new dimensions', via: 'at the void they resurrect outbound at the golden angle — a new dimension each time' },
-    { feature: 'the same dry math', via: 'every digit, colour and path a seeded fold — deterministic, zero random' },
+    { feature: 'entangled groups of digits', via: `${streamsHere.count} streams, each a content address — deterministic digit groups`, on: addressed },
+    { feature: 'colourful watermarks', via: 'hue from the digit (the quantum colour wheel), low-opacity behind the content', on: addressed },
+    { feature: 'fold into letters, words and sentences', via: 'digit → glyph → word → the three-word phrases as they near the void', on: matchesContent },
+    { feature: 'colourful streams to the void', via: 'the streams converge on the centre, shrinking into it', on: addressed },
+    { feature: 'resurrect as split streams in new dimensions', via: 'at the void they resurrect outbound at the golden angle — a new dimension each time', on: addressed },
+    { feature: 'the same dry math', via: 'every digit, colour and path a seeded fold — the same page and words twice give one root, another page or other words another', on: dryMath && perPage && matchesContent },
     { feature: 'harmonic and efficiency math in every stream', via: `${math.proofCount} harmonic + ${efficiency.proofCount} efficiency proofs wired into plasma streams and movie copy at call time`, on: math.flows && efficiency.flows },
     { feature: 'Matrix RGB decode in the movie', via: `${matrixRgb.channelCount} RGB channels (R red pill · G heart gateway · B blue pill) + ${matrixRgb.proofCount} proofs wired into plasma streams at call time`, on: matrixRgb.flows },
     { feature: 'Rosetta decode waves in the movie', via: `${rosettaDecode.rayCount} rosetta rays + ${rosettaDecode.proofCount} proofs (send-waves · global key · dialect) wired into plasma streams at call time`, on: rosettaDecode.flows },
@@ -184,17 +196,19 @@ function backgroundMovieRaw(matrix: MindMatrix = buildMatrix()) {
     { feature: 'all seed bundles render in the plasma ball', via: `${plasmaWired.expectedCount} proof streams from seven bundles wired into plasmaMovieStreams at call time`, on: plasmaWired.flows },
     { feature: 'card hero link hub and tag browser', via: 'LinkedHeroCard surfaces fusion-gated through rosettaIChingTrinityPlacesAllTools', on: cardHero.wired && toolPlacement.fused },
     { feature: 'client paint path sealed — browser never walks gate-graph seeds', via: 'clientMoviePaintPathSealed simulates typeof window; blank canvas / stack overflow fails the gate', on: paintPath.sealed },
-    { feature: 'interactive movie game with sound and vibration', via: 'when audio is enabled, a tap off the controls plays a tone whose pitch maps to the spot, a light haptic, and a ripple that scatters the streams' },
+    { feature: 'interactive movie game with sound and vibration', via: 'when audio is enabled, a tap off the controls plays a tone whose pitch maps to the spot, a light haptic, and a ripple that scatters the streams — the colour→sound decode it plays round-trips, and audio is off by default', on: interactive },
   ].map((entry) => ({ ...entry, holographic: foldPair(toUuid(`bg-movie:${entry.feature}`), whole).bidirectional, receipt: toUuid(`bg-movie:${entry.feature}:${whole}`) }))
   return {
-    plays: features.length === 19 && features.every((entry) => entry.holographic) && math.flows && efficiency.flows && matrixRgb.flows && rosettaDecode.flows && doubleTorusEarthWeather.flows && hingeMovie.flows && doubleTorusAllScales.flows && rosettaSunMoon.flows && colorAudio.flows && silentDefault.offByDefault && staticFusion.fused && plasmaWired.flows && cardHero.wired && toolPlacement.fused && paintPath.sealed,
+    plays: features.every((entry) => entry.on && entry.holographic) && math.flows && efficiency.flows && matrixRgb.flows && rosettaDecode.flows && doubleTorusEarthWeather.flows && hingeMovie.flows && doubleTorusAllScales.flows && rosettaSunMoon.flows && colorAudio.flows && silentDefault.offByDefault && staticFusion.fused && plasmaWired.flows && cardHero.wired && toolPlacement.fused && paintPath.sealed,
     mathFlows: math.flows,
     efficiencyFlows: efficiency.flows,
     matrixRgbFlows: matrixRgb.flows,
     rosettaDecodeFlows: rosettaDecode.flows,
     staticFused: staticFusion.fused,
-    dryMath: true,
-    interactive: true, // sound and vibration fused into the game
+    dryMath,
+    interactive, // the colour→sound decode the tap plays round-trips; audio off by default
+    perPage,
+    matchesContent,
     count: features.length,
     features,
     root: merkleFold(features.map((entry) => entry.receipt)),
@@ -383,14 +397,14 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
     const srcReadable = geomSrc.length > 0 && quantumSrc.length > 0
     // Calendars: phase markers only — must NOT stroke a full circumference at (cx,cy).
     const calendarsNoRing =
-      !srcReadable ||
+      srcReadable &&
       (geomSrc.includes('VORTEX_SEQUENCE') &&
         geomSrc.includes('Phase marker only') &&
         !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*radius/.test(geomSrc.slice(geomSrc.indexOf('export function drawCalendars'))))
     // Void: soft fillRect confluence — must NOT arc+fill a circular disk path (plasma screen, not a ball).
     const ballSlice = quantumSrc.slice(quantumSrc.indexOf('function drawPlasmaBall'), quantumSrc.indexOf('function drawPlasmaBall') + 900)
     const voidSoft =
-      !srcReadable ||
+      srcReadable &&
       (ballSlice.includes('fillRect') &&
         !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*void/.test(ballSlice) &&
         (ballSlice.includes('Soft throat') || ballSlice.includes('screen') || ballSlice.includes('confluence')))
@@ -400,7 +414,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       quantumSrc.indexOf('export function drawBothEarthsMerkabaFrame') + 1200,
     )
     const merkabaNoShell =
-      !srcReadable ||
+      srcReadable &&
       (!merkabaSlice.includes('setLineDash') && !merkabaSlice.includes('4 * scale'))
     // Double-torus projection: no orphan stroked centre throat circle.
     const dtSlice = quantumSrc.slice(
@@ -408,7 +422,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       quantumSrc.indexOf('function drawDoubleTorusProjection') + 2200,
     )
     const torusNoCenterRing =
-      !srcReadable ||
+      srcReadable &&
       (!dtSlice.includes('ctx.arc(cx, cy, r * (4 / (5 * 5))') && dtSlice.includes('lemniscate'))
     // Surface routes are VitePress site paths — theme LinkedHeroCard uses plain `<a href>` + localize (onlyVitePressApi).
     const vitepressRoutesOnly = MOVIE_CLOCK_SURFACE_ATTESTATION.every(
@@ -419,7 +433,7 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
     const noBallInTheMiddle = voidSoft && merkabaNoShell && torusNoCenterRing
     const plasmaScreenBinds =
       noBallInTheMiddle &&
-      (!srcReadable || (ballSlice.includes('Plasma screen') || ballSlice.includes('screen holding') || ballSlice.includes('Soft throat')))
+      (srcReadable && (ballSlice.includes('Plasma screen') || ballSlice.includes('screen holding') || ballSlice.includes('Soft throat')))
     const elements = [
       { id: 'plasma-field', theorem: 'endlessBackgroundMovie', binds: endless.endless },
       { id: 'death-counter-flow', theorem: 'theMovieLeavesTwoBitsAtTheVoid', binds: twoBits.seen },
@@ -468,6 +482,9 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
       merkabaNoShell,
       torusNoCenterRing,
       srcReadable,
+      // ABSENT IS NOT A PASS. Every painter-source check was `!srcReadable || …`: with no source to read (a browser,
+      // the published bundle) all of them passed having checked nothing. They are `srcReadable && …` now, and this says which.
+      source: srcReadable ? ('read' as const) : ('absent' as const),
       count: facets.length,
       facets,
       root: merkleFold([
@@ -603,12 +620,12 @@ export function movieUnbalancedAroundCenterIsCrack(matrix: MindMatrix = buildMat
     const layoutSrc = readMoviePainterSource('.vitepress/theme/Layout.vue')
     const srcReadable = proofSrc.length > 0 && layoutSrc.length > 0
     const proofCentered =
-      !srcReadable ||
+      srcReadable &&
       (!proofSrc.includes('ctx.translate((s / 9)') &&
         !proofSrc.includes('ctx.translate((s/9)') &&
         proofSrc.includes('movieUnbalancedAroundCenterIsCrack'))
     const layoutBackdropCentered =
-      !srcReadable ||
+      srcReadable &&
       (layoutSrc.includes('vp-with-hero-movie__backdrop') &&
         /inset:\s*0/.test(layoutSrc.slice(layoutSrc.indexOf('vp-with-hero-movie__backdrop'))))
     const h = 432

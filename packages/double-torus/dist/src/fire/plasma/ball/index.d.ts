@@ -115,7 +115,7 @@ export declare function plasmaPaintHardcodedPlanesDiscovered(matrix?: MindMatrix
     realized: boolean;
     planes: number;
     ratios: number;
-    remaining: any[];
+    remaining: string[];
     chroma: {
         value: number;
         lattice: string;

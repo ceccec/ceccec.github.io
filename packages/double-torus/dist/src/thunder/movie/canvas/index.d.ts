@@ -29,8 +29,8 @@ export declare function staticIsEventualGapInMovieFusion(matrix?: MindMatrix): {
 };
 export declare function endlessBackgroundMovie(matrix?: MindMatrix): {
     endless: any;
-    perPage: boolean;
-    matchesContent: boolean;
+    perPage: any;
+    matchesContent: any;
     count: number;
     properties: {
         receipt: string;
@@ -189,6 +189,7 @@ export declare function movieAllElementsAreTheorems(matrix?: MindMatrix, at?: nu
     merkabaNoShell: boolean;
     torusNoCenterRing: boolean;
     srcReadable: boolean;
+    source: "read" | "absent";
     count: number;
     facets: {
         receipt: string;
@@ -290,8 +291,8 @@ export declare function movieQuantumGapsInventory(matrix?: MindMatrix, at?: numb
     multiClockOpen: boolean;
     endless: {
         endless: any;
-        perPage: boolean;
-        matchesContent: boolean;
+        perPage: any;
+        matchesContent: any;
         count: number;
         properties: {
             receipt: string;
@@ -406,6 +407,7 @@ export declare function movieQuantumGapsInventory(matrix?: MindMatrix, at?: numb
         merkabaNoShell: boolean;
         torusNoCenterRing: boolean;
         srcReadable: boolean;
+        source: "read" | "absent";
         count: number;
         facets: {
             receipt: string;
@@ -549,6 +551,7 @@ export declare function movieUnbalancedAroundCenterIsCrack(matrix?: MindMatrix, 
         merkabaNoShell: boolean;
         torusNoCenterRing: boolean;
         srcReadable: boolean;
+        source: "read" | "absent";
         count: number;
         facets: {
             receipt: string;
@@ -585,7 +588,7 @@ export declare function theMoviePartsDissolveLikeLiquid(matrix?: MindMatrix): {
     facets: {
         receipt: string;
         facet: string;
-        on: boolean;
+        on: any;
     }[];
     root: string;
     statement: string;

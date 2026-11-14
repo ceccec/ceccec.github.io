@@ -852,12 +852,25 @@ theorem sixty_degrees_is_a_primitive_sixth_root_of_unity :
   EI.ω * EI.ω = EI.ω + -1 ∧ EI.pow EI.ω 3 = -1 ∧ EI.pow EI.ω 6 = 1
   ∧ (List.range' 1 5).all (fun k => EI.pow EI.ω k != 1) := by decide
 
+/-- 0 + a = a, by the two shapes of an integer — proved here because core's Int.zero_add rests on propext. -/
+theorem zero_plus_an_integer_is_that_integer (a : Int) : 0 + a = a := by
+  cases a with
+  | ofNat n => exact congrArg Int.ofNat (Nat.zero_add n)
+  | negSucc n => rfl
+
+/-- 0 · a = 0, by the two shapes of an integer — core's Int.zero_mul rests on propext too. -/
+theorem zero_times_an_integer_is_zero (a : Int) : 0 * a = 0 := by
+  cases a with
+  | ofNat n => exact congrArg Int.ofNat (Nat.zero_mul n)
+  | negSucc n => exact congrArg Int.negOfNat (Nat.zero_mul (n + 1))
+
 /-- ROTATING BY SIXTY DEGREES KEEPS ℤ[ω] IN ℤ[ω] — for EVERY element, with integer coordinates and no halves. -/
 theorem rotation_by_sixty_degrees_keeps_the_eisenstein_integers (x : EI) : EI.ω * x = ⟨-x.b, x.a + x.b⟩ := by
   cases x with
   | mk a b =>
     show (⟨0 * a - 1 * b, 0 * b + 1 * a + 1 * b⟩ : EI) = ⟨-b, a + b⟩
-    rw [Int.zero_mul, Int.one_mul, Int.zero_mul, Int.one_mul, Int.zero_sub, Int.zero_add]
+    rw [zero_times_an_integer_is_zero a, zero_times_an_integer_is_zero b, Int.one_mul a, Int.one_mul b, zero_plus_an_integer_is_that_integer a]
+    exact congrArg (fun t => (⟨t, a + b⟩ : EI)) (zero_plus_an_integer_is_that_integer (-b))
 
 /-- BUT NOT IN ℤ: the rotation of 1 is ω itself, which is no ordinary integer — the pasted claim's own list held
     3/2 and −7/2, which are the real parts of exactly such elements. The norm is kept and is multiplicative on a box. -/

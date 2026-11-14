@@ -269,9 +269,7 @@
   "repetition_fails_on_two": [
    "propext"
   ],
-  "rotation_by_sixty_degrees_keeps_the_eisenstein_integers": [
-   "propext"
-  ],
+  "rotation_by_sixty_degrees_keeps_the_eisenstein_integers": [],
   "routed_depth": [
    "Quot.sound",
    "propext"
@@ -304,7 +302,9 @@
   "unrouted_differs": [
    "propext"
   ],
-  "y_unitary": []
+  "y_unitary": [],
+  "zero_plus_an_integer_is_that_integer": [],
+  "zero_times_an_integer_is_zero": []
  },
  "src/pair/lean/proofs/rational.lean": {
   "add_assoc_sample": [],

@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent 261 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
+\noindent 263 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
 \end{abstract}
 \tableofcontents
 \section{How to read this document}
@@ -502,7 +502,7 @@ The involution and the split it produces, together.
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{yang-mills.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
 \section{Machine-checked registry theorems}
-\noindent 166 theorems in 6 files of \texttt{src/pair/lean/proofs}.
+\noindent 168 theorems in 6 files of \texttt{src/pair/lean/proofs}.
 \subsection{\texttt{corpus.lean}}
 \begin{theorem}[Euler characteristic and genus are inverse]
 χ and the genus are INVERSE: reading the genus back from χ(g) returns g for every surface up to genus 9, and rank H₁ = 2 − χ = 2g at each one. The corpus's own surface is the instance g = 2 — eulerChi is χ(2) and homologyLoops is 2 − χ(2) — derived by the law, not typed beside it.
@@ -883,11 +883,21 @@ SIXTY DEGREES IS A PRIMITIVE SIXTH ROOT: ω² = ω − 1, ω³ = −1, ω⁶ = 1
 \begin{lean}EI.ω * EI.ω = EI.ω + -1 ∧ EI.pow EI.ω 3 = -1 ∧ EI.pow EI.ω 6 = 1 ∧ (List.range' 1 5).all (fun k => EI.pow EI.ω k != 1)\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{quantum.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[Zero plus an integer is that integer]
+0 + a = a, by the two shapes of an integer — proved here because core's Int.zero\_add rests on propext.
+\begin{lean}(a : Int) : 0 + a = a\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{cases a with} in \texttt{quantum.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[Zero times an integer is zero]
+0 · a = 0, by the two shapes of an integer — core's Int.zero\_mul rests on propext too.
+\begin{lean}(a : Int) : 0 * a = 0\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{cases a with} in \texttt{quantum.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
 \begin{theorem}[Rotation by sixty degrees keeps the eisenstein integers]
 ROTATING BY SIXTY DEGREES KEEPS ℤ[ω] IN ℤ[ω] — for EVERY element, with integer coordinates and no halves.
 \begin{lean}(x : EI) : EI.ω * x = ⟨-x.b, x.a + x.b⟩\end{lean}
 \end{theorem}
-\begin{proof}\raggedright By \texttt{cases x with} in \texttt{quantum.lean}. Checked by the Lean kernel; it rests on \texttt{propext} and on no other axiom. \end{proof}
+\begin{proof}\raggedright By \texttt{cases x with} in \texttt{quantum.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
 \begin{theorem}[The rotation leaves the integers and keeps the norm]
 BUT NOT IN ℤ: the rotation of 1 is ω itself, which is no ordinary integer — the pasted claim's own list held 3/2 and −7/2, which are the real parts of exactly such elements. The norm is kept and is multiplicative on a box.
 \begin{lean}EI.ω * 1 = EI.ω ∧ (EI.ω * 1).b ≠ 0 ∧ (List.range 5).all (fun a => (List.range 5).all (fun b => EI.norm (EI.ω * ⟨(a : Int) - 2, (b : Int) - 2⟩) == EI.norm ⟨(a : Int) - 2, (b : Int) - 2⟩)) ∧ (List.range 6).all (fun k => EI.norm (EI.pow EI.ω k) == 1)\end{lean}

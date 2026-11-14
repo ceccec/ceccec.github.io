@@ -2300,6 +2300,32 @@
   "depositId": ""
  },
  {
+  "slug": "quantum-zero-plus-an-integer-is-that-integer",
+  "title": "Zero plus an integer is that integer",
+  "name": "zero_plus_an_integer_is_that_integer",
+  "file": "quantum.lean",
+  "proposition": "(a : Int) : 0 + a = a",
+  "tactic": "cases a with",
+  "doc": "0 + a = a, by the two shapes of an integer — proved here because core's Int.zero_add rests on propext.",
+  "sourcePath": "src/pair/lean/proofs/quantum.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
+  "slug": "quantum-zero-times-an-integer-is-zero",
+  "title": "Zero times an integer is zero",
+  "name": "zero_times_an_integer_is_zero",
+  "file": "quantum.lean",
+  "proposition": "(a : Int) : 0 * a = 0",
+  "tactic": "cases a with",
+  "doc": "0 · a = 0, by the two shapes of an integer — core's Int.zero_mul rests on propext too.",
+  "sourcePath": "src/pair/lean/proofs/quantum.lean",
+  "texPath": "src/research/lean-theorems.tex",
+  "axioms": [],
+  "depositId": ""
+ },
+ {
   "slug": "quantum-rotation-by-sixty-degrees-keeps-the-eisenstein-integers",
   "title": "Rotation by sixty degrees keeps the eisenstein integers",
   "name": "rotation_by_sixty_degrees_keeps_the_eisenstein_integers",
@@ -2309,9 +2335,7 @@
   "doc": "ROTATING BY SIXTY DEGREES KEEPS ℤ[ω] IN ℤ[ω] — for EVERY element, with integer coordinates and no halves.",
   "sourcePath": "src/pair/lean/proofs/quantum.lean",
   "texPath": "src/research/lean-theorems.tex",
-  "axioms": [
-   "propext"
-  ],
+  "axioms": [],
   "depositId": ""
  },
  {

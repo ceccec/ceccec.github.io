@@ -1009,8 +1009,6 @@ export interface HomeHeroFrontmatter {
 /** Computed VitePress home hero — VitePress shows only science (theoremScienceLens): the hero states the
  * registry and the lens roster, and every action lands on a lens-visible surface; injected in transformPageData. */
 export declare function homeHero(locale?: LocaleName): HomeHeroFrontmatter;
-/** The FULL curated catalog (seed + enrichment) — the lens's domain. Data is preserved here;
- * VitePress never routes from this set directly. */
 export declare function staticPagesAll(): StaticPage[];
 /** THE SERVED PAGE SET (user law: ONLY science theorems and related pages — remove the rest from
  * VitePress completely). staticPages() IS the theorem-science lens roster: every consumer — routes,

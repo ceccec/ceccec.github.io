@@ -1246,13 +1246,22 @@ function theoremKeywords(): string[] {
 
 /** The FULL curated catalog (seed + enrichment) — the lens's domain. Data is preserved here;
  * VitePress never routes from this set directly. */
+// COMPUTED ONCE, HANDED OUT FRESH. Measured 2026-11-14 with a CPU profile of the site build: staticPages() is read by
+// routes, sitemap, search, nav and every page transform, and each call rebuilt this list — the frontiers page alone
+// gains every theorem name as a keyword — then re-ran the lens over all of it, lower-casing a string of hundreds of
+// names per page per call: about 7 s of a 116 s build inside theoremScienceVisible. The enriched catalogue and the lens
+// verdict per slug are pure functions of the seed and the registry, so they are computed once; every call still
+// returns new page objects with new arrays, exactly as before, so no caller can reach another's copy.
+let staticPageCatalogue: readonly StaticPage[] | undefined
+let staticPageLens: ReadonlySet<string> | undefined
 export function staticPagesAll(): StaticPage[] {
   // the seed is pure data; the one computed enrichment (every theorem name as a frontiers keyword)
   // happens here, operator-side — the reason the spread could not live in the seed.
-  return STATIC_PAGE_SEED.map((page) => ({
+  staticPageCatalogue ??= STATIC_PAGE_SEED.map((page) => ({
     ...page,
     keywords: page.slug === 'frontiers' ? [...page.keywords, ...theoremKeywords()] : [...page.keywords],
     components: [...page.components] }))
+  return staticPageCatalogue.map((page) => ({ ...page, keywords: [...page.keywords], components: [...page.components] }))
 }
 
 /** THE SERVED PAGE SET (user law: ONLY science theorems and related pages — remove the rest from
@@ -1261,7 +1270,9 @@ export function staticPagesAll(): StaticPage[] {
  * no route, no build, no search entry, no sitemap line. The full catalog stays in staticPagesAll (data,
  * not surface); restoring a page = giving it a science keyword, never re-wiring VitePress. */
 export function staticPages(): StaticPage[] {
-  return staticPagesAll().filter((page) => theoremScienceVisible(page.slug, page.keywords))
+  const all = staticPagesAll()
+  staticPageLens ??= new Set(all.filter((page) => theoremScienceVisible(page.slug, page.keywords)).map((page) => page.slug))
+  return all.filter((page) => staticPageLens!.has(page.slug))
 }
 
 // ── THE THEOREM-SCIENCE LENS (user law: VitePress shows only science) — the visible page set is COMPUTED,
@@ -1297,7 +1308,7 @@ export function isServedRoute(route: string): boolean {
 // the 6×7/7×6 transpose (build up, clean down). The 4 legacy links are ONE collection — Reference is ray 6 (a
 // domain), atlas/papers are views. Completing a domain = filling its 6 subdomains. [[quantum-speed-is-content-addressed-naming]]
 export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndDynamics() {
-  const collection = staticPagesAll().filter((page) => theoremScienceVisible(page.slug, page.keywords))
+  const collection = staticPages()
   const rays = ROSETTA_RAYS.map((ray) => ({
     ray: ray.ray, domain: ray.nameEn, hue: ray.hue,
     subdomains: ROSETTA_RAY_CONTENT_LENSES.find((lens) => lens.ray === ray.ray)?.stems ?? [],
@@ -1330,7 +1341,7 @@ export function theNavigationIsTheOneCollectionScopedByTheRosettaProportionsAndD
 // atom-feed source) DERIVES from the pages + the taxonomy with zero manual integration. When a scientist's
 // discovery lands, it shelves itself. [[feedback-thinking-means-lack-of-local-tools]] [[science-aligned-domains]]
 export function thePapersCollectionAutoClassifiesEveryPageFieldByMode() {
-  const collection = staticPagesAll().filter((page) => theoremScienceVisible(page.slug, page.keywords))
+  const collection = staticPages()
   const classified = collection.map((page) => ({ slug: page.slug, field: fieldOfContent(page.slug, page.keywords), mode: modeOfContent(page.slug, page.keywords) }))
   const shelved = classified.filter((entry) => entry.field !== null)
   const byField = SCIENCE_DOMAINS.map((domain, index) => ({ field: domain.field, pages: shelved.filter((entry) => entry.field === index).length }))

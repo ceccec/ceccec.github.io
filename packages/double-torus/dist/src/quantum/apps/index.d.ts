@@ -4524,8 +4524,8 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
         multiClockOpen: boolean;
         endless: {
             endless: any;
-            perPage: boolean;
-            matchesContent: boolean;
+            perPage: any;
+            matchesContent: any;
             count: number;
             properties: {
                 receipt: string;
@@ -4640,6 +4640,7 @@ export declare function linearWithoutRosettaFoldIsGap(matrix?: MindMatrix, at?: 
             merkabaNoShell: boolean;
             torusNoCenterRing: boolean;
             srcReadable: boolean;
+            source: "read" | "absent";
             count: number;
             facets: {
                 receipt: string;
@@ -5049,8 +5050,8 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
         multiClockOpen: boolean;
         endless: {
             endless: any;
-            perPage: boolean;
-            matchesContent: boolean;
+            perPage: any;
+            matchesContent: any;
             count: number;
             properties: {
                 receipt: string;
@@ -5165,6 +5166,7 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             merkabaNoShell: boolean;
             torusNoCenterRing: boolean;
             srcReadable: boolean;
+            source: "read" | "absent";
             count: number;
             facets: {
                 receipt: string;
@@ -5343,8 +5345,8 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
             multiClockOpen: boolean;
             endless: {
                 endless: any;
-                perPage: boolean;
-                matchesContent: boolean;
+                perPage: any;
+                matchesContent: any;
                 count: number;
                 properties: {
                     receipt: string;
@@ -5459,6 +5461,7 @@ export declare function animationsFindRedundancyOrInaccuracy(matrix?: MindMatrix
                 merkabaNoShell: boolean;
                 torusNoCenterRing: boolean;
                 srcReadable: boolean;
+                source: "read" | "absent";
                 count: number;
                 facets: {
                     receipt: string;
@@ -6221,8 +6224,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
             multiClockOpen: boolean;
             endless: {
                 endless: any;
-                perPage: boolean;
-                matchesContent: boolean;
+                perPage: any;
+                matchesContent: any;
                 count: number;
                 properties: {
                     receipt: string;
@@ -6337,6 +6340,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 merkabaNoShell: boolean;
                 torusNoCenterRing: boolean;
                 srcReadable: boolean;
+                source: "read" | "absent";
                 count: number;
                 facets: {
                     receipt: string;
@@ -6515,8 +6519,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                 multiClockOpen: boolean;
                 endless: {
                     endless: any;
-                    perPage: boolean;
-                    matchesContent: boolean;
+                    perPage: any;
+                    matchesContent: any;
                     count: number;
                     properties: {
                         receipt: string;
@@ -6631,6 +6635,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     merkabaNoShell: boolean;
                     torusNoCenterRing: boolean;
                     srcReadable: boolean;
+                    source: "read" | "absent";
                     count: number;
                     facets: {
                         receipt: string;
@@ -8049,8 +8054,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -8165,6 +8170,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -8343,8 +8349,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -8459,6 +8465,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -11406,8 +11413,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -11522,6 +11529,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -11700,8 +11708,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -11816,6 +11824,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -14418,8 +14427,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -14534,6 +14543,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -14712,8 +14722,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -14828,6 +14838,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -17841,8 +17852,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -17957,6 +17968,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -18135,8 +18147,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -18251,6 +18263,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -20853,8 +20866,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -20969,6 +20982,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -21147,8 +21161,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -21263,6 +21277,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -23969,8 +23984,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -24085,6 +24100,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -24263,8 +24279,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -24379,6 +24395,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -26981,8 +26998,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -27097,6 +27114,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -27275,8 +27293,8 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -27391,6 +27409,7 @@ export declare function animationsReviewColorsForPolarityGaps(matrix?: MindMatri
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -33782,8 +33801,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                 multiClockOpen: boolean;
                 endless: {
                     endless: any;
-                    perPage: boolean;
-                    matchesContent: boolean;
+                    perPage: any;
+                    matchesContent: any;
                     count: number;
                     properties: {
                         receipt: string;
@@ -33898,6 +33917,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     merkabaNoShell: boolean;
                     torusNoCenterRing: boolean;
                     srcReadable: boolean;
+                    source: "read" | "absent";
                     count: number;
                     facets: {
                         receipt: string;
@@ -34076,8 +34096,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -34192,6 +34212,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -35610,8 +35631,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -35726,6 +35747,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -35904,8 +35926,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -36020,6 +36042,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -38967,8 +38990,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -39083,6 +39106,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -39261,8 +39285,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -39377,6 +39401,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -41979,8 +42004,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -42095,6 +42120,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -42273,8 +42299,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -42389,6 +42415,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -45402,8 +45429,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -45518,6 +45545,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -45696,8 +45724,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -45812,6 +45840,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -48414,8 +48443,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -48530,6 +48559,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -48708,8 +48738,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     multiClockOpen: boolean;
                                     endless: {
                                         endless: any;
-                                        perPage: boolean;
-                                        matchesContent: boolean;
+                                        perPage: any;
+                                        matchesContent: any;
                                         count: number;
                                         properties: {
                                             receipt: string;
@@ -48824,6 +48854,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                         merkabaNoShell: boolean;
                                         torusNoCenterRing: boolean;
                                         srcReadable: boolean;
+                                        source: "read" | "absent";
                                         count: number;
                                         facets: {
                                             receipt: string;
@@ -51530,8 +51561,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -51646,6 +51677,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -51824,8 +51856,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -51940,6 +51972,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -54542,8 +54575,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -54658,6 +54691,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -54836,8 +54870,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -54952,6 +54986,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -58164,8 +58199,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -58280,6 +58315,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -58458,8 +58494,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -58574,6 +58610,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -61176,8 +61213,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -61292,6 +61329,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -61470,8 +61508,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -61586,6 +61624,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -64599,8 +64638,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -64715,6 +64754,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -64893,8 +64933,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -65009,6 +65049,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -67611,8 +67652,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -67727,6 +67768,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -67905,8 +67947,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -68021,6 +68063,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -70727,8 +70770,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -70843,6 +70886,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -71021,8 +71065,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -71137,6 +71181,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -73739,8 +73784,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -73855,6 +73900,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -74033,8 +74079,8 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -74149,6 +74195,7 @@ export declare function allColorsDryCleanWiredToRosettaAndThemes(matrix?: MindMa
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -76751,8 +76798,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -76867,6 +76914,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -77045,8 +77093,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -77161,6 +77209,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -78579,8 +78628,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -78695,6 +78744,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -78873,8 +78923,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -78989,6 +79039,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -81936,8 +81987,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -82052,6 +82103,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -82230,8 +82282,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -82346,6 +82398,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -84948,8 +85001,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -85064,6 +85117,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -85242,8 +85296,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     multiClockOpen: boolean;
                                     endless: {
                                         endless: any;
-                                        perPage: boolean;
-                                        matchesContent: boolean;
+                                        perPage: any;
+                                        matchesContent: any;
                                         count: number;
                                         properties: {
                                             receipt: string;
@@ -85358,6 +85412,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         merkabaNoShell: boolean;
                                         torusNoCenterRing: boolean;
                                         srcReadable: boolean;
+                                        source: "read" | "absent";
                                         count: number;
                                         facets: {
                                             receipt: string;
@@ -88371,8 +88426,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -88487,6 +88542,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -88665,8 +88721,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     multiClockOpen: boolean;
                                     endless: {
                                         endless: any;
-                                        perPage: boolean;
-                                        matchesContent: boolean;
+                                        perPage: any;
+                                        matchesContent: any;
                                         count: number;
                                         properties: {
                                             receipt: string;
@@ -88781,6 +88837,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         merkabaNoShell: boolean;
                                         torusNoCenterRing: boolean;
                                         srcReadable: boolean;
+                                        source: "read" | "absent";
                                         count: number;
                                         facets: {
                                             receipt: string;
@@ -91383,8 +91440,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     multiClockOpen: boolean;
                                     endless: {
                                         endless: any;
-                                        perPage: boolean;
-                                        matchesContent: boolean;
+                                        perPage: any;
+                                        matchesContent: any;
                                         count: number;
                                         properties: {
                                             receipt: string;
@@ -91499,6 +91556,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         merkabaNoShell: boolean;
                                         torusNoCenterRing: boolean;
                                         srcReadable: boolean;
+                                        source: "read" | "absent";
                                         count: number;
                                         facets: {
                                             receipt: string;
@@ -91677,8 +91735,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         multiClockOpen: boolean;
                                         endless: {
                                             endless: any;
-                                            perPage: boolean;
-                                            matchesContent: boolean;
+                                            perPage: any;
+                                            matchesContent: any;
                                             count: number;
                                             properties: {
                                                 receipt: string;
@@ -91793,6 +91851,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                             merkabaNoShell: boolean;
                                             torusNoCenterRing: boolean;
                                             srcReadable: boolean;
+                                            source: "read" | "absent";
                                             count: number;
                                             facets: {
                                                 receipt: string;
@@ -94499,8 +94558,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -94615,6 +94674,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -94793,8 +94853,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -94909,6 +94969,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -97511,8 +97572,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -97627,6 +97688,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -97805,8 +97867,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     multiClockOpen: boolean;
                                     endless: {
                                         endless: any;
-                                        perPage: boolean;
-                                        matchesContent: boolean;
+                                        perPage: any;
+                                        matchesContent: any;
                                         count: number;
                                         properties: {
                                             receipt: string;
@@ -97921,6 +97983,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         merkabaNoShell: boolean;
                                         torusNoCenterRing: boolean;
                                         srcReadable: boolean;
+                                        source: "read" | "absent";
                                         count: number;
                                         facets: {
                                             receipt: string;
@@ -101133,8 +101196,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -101249,6 +101312,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -101427,8 +101491,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -101543,6 +101607,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -104145,8 +104210,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -104261,6 +104326,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -104439,8 +104505,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -104555,6 +104621,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -107568,8 +107635,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -107684,6 +107751,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -107862,8 +107930,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -107978,6 +108046,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -110580,8 +110649,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -110696,6 +110765,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -110874,8 +110944,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     multiClockOpen: boolean;
                                     endless: {
                                         endless: any;
-                                        perPage: boolean;
-                                        matchesContent: boolean;
+                                        perPage: any;
+                                        matchesContent: any;
                                         count: number;
                                         properties: {
                                             receipt: string;
@@ -110990,6 +111060,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                         merkabaNoShell: boolean;
                                         torusNoCenterRing: boolean;
                                         srcReadable: boolean;
+                                        source: "read" | "absent";
                                         count: number;
                                         facets: {
                                             receipt: string;
@@ -113696,8 +113767,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -113812,6 +113883,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -113990,8 +114062,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -114106,6 +114178,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -116708,8 +116781,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -116824,6 +116897,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -117002,8 +117076,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -117118,6 +117192,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -120336,8 +120411,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -120452,6 +120527,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -120630,8 +120706,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -120746,6 +120822,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -123348,8 +123425,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -123464,6 +123541,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -123642,8 +123720,8 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -123758,6 +123836,7 @@ export declare function cssShowsTheHiddenGapsInDryFusion(matrix?: MindMatrix, at
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -126543,8 +126622,8 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
             multiClockOpen: boolean;
             endless: {
                 endless: any;
-                perPage: boolean;
-                matchesContent: boolean;
+                perPage: any;
+                matchesContent: any;
                 count: number;
                 properties: {
                     receipt: string;
@@ -126659,6 +126738,7 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 merkabaNoShell: boolean;
                 torusNoCenterRing: boolean;
                 srcReadable: boolean;
+                source: "read" | "absent";
                 count: number;
                 facets: {
                     receipt: string;
@@ -126837,8 +126917,8 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                 multiClockOpen: boolean;
                 endless: {
                     endless: any;
-                    perPage: boolean;
-                    matchesContent: boolean;
+                    perPage: any;
+                    matchesContent: any;
                     count: number;
                     properties: {
                         receipt: string;
@@ -126953,6 +127033,7 @@ export declare function selfImproveAnimationGenerationAndSiteBuilder(matrix?: Mi
                     merkabaNoShell: boolean;
                     torusNoCenterRing: boolean;
                     srcReadable: boolean;
+                    source: "read" | "absent";
                     count: number;
                     facets: {
                         receipt: string;
@@ -128124,6 +128205,7 @@ export declare function everyFormulaIsAnimationItselfInteractingFormulasAreInter
         merkabaNoShell: boolean;
         torusNoCenterRing: boolean;
         srcReadable: boolean;
+        source: "read" | "absent";
         count: number;
         facets: {
             receipt: string;
@@ -136228,8 +136310,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
             multiClockOpen: boolean;
             endless: {
                 endless: any;
-                perPage: boolean;
-                matchesContent: boolean;
+                perPage: any;
+                matchesContent: any;
                 count: number;
                 properties: {
                     receipt: string;
@@ -136344,6 +136426,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 merkabaNoShell: boolean;
                 torusNoCenterRing: boolean;
                 srcReadable: boolean;
+                source: "read" | "absent";
                 count: number;
                 facets: {
                     receipt: string;
@@ -136755,8 +136838,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                 multiClockOpen: boolean;
                 endless: {
                     endless: any;
-                    perPage: boolean;
-                    matchesContent: boolean;
+                    perPage: any;
+                    matchesContent: any;
                     count: number;
                     properties: {
                         receipt: string;
@@ -136871,6 +136954,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     merkabaNoShell: boolean;
                     torusNoCenterRing: boolean;
                     srcReadable: boolean;
+                    source: "read" | "absent";
                     count: number;
                     facets: {
                         receipt: string;
@@ -137049,8 +137133,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -137165,6 +137249,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -138583,8 +138668,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -138699,6 +138784,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -138877,8 +138963,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -138993,6 +139079,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -141940,8 +142027,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -142056,6 +142143,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -142234,8 +142322,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -142350,6 +142438,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -144952,8 +145041,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -145068,6 +145157,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -145246,8 +145336,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -145362,6 +145452,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -148375,8 +148466,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -148491,6 +148582,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -148669,8 +148761,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -148785,6 +148877,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -151387,8 +151480,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -151503,6 +151596,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -151681,8 +151775,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     multiClockOpen: boolean;
                                     endless: {
                                         endless: any;
-                                        perPage: boolean;
-                                        matchesContent: boolean;
+                                        perPage: any;
+                                        matchesContent: any;
                                         count: number;
                                         properties: {
                                             receipt: string;
@@ -151797,6 +151891,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                         merkabaNoShell: boolean;
                                         torusNoCenterRing: boolean;
                                         srcReadable: boolean;
+                                        source: "read" | "absent";
                                         count: number;
                                         facets: {
                                             receipt: string;
@@ -154503,8 +154598,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -154619,6 +154714,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -154797,8 +154893,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -154913,6 +155009,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -157515,8 +157612,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -157631,6 +157728,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -157809,8 +157907,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -157925,6 +158023,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -161137,8 +161236,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -161253,6 +161352,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -161431,8 +161531,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -161547,6 +161647,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -164149,8 +164250,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -164265,6 +164366,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -164443,8 +164545,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -164559,6 +164661,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -167572,8 +167675,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -167688,6 +167791,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -167866,8 +167970,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -167982,6 +168086,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -170584,8 +170689,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -170700,6 +170805,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;
@@ -170878,8 +170984,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 multiClockOpen: boolean;
                                 endless: {
                                     endless: any;
-                                    perPage: boolean;
-                                    matchesContent: boolean;
+                                    perPage: any;
+                                    matchesContent: any;
                                     count: number;
                                     properties: {
                                         receipt: string;
@@ -170994,6 +171100,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                     merkabaNoShell: boolean;
                                     torusNoCenterRing: boolean;
                                     srcReadable: boolean;
+                                    source: "read" | "absent";
                                     count: number;
                                     facets: {
                                         receipt: string;
@@ -173700,8 +173807,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                     multiClockOpen: boolean;
                     endless: {
                         endless: any;
-                        perPage: boolean;
-                        matchesContent: boolean;
+                        perPage: any;
+                        matchesContent: any;
                         count: number;
                         properties: {
                             receipt: string;
@@ -173816,6 +173923,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         merkabaNoShell: boolean;
                         torusNoCenterRing: boolean;
                         srcReadable: boolean;
+                        source: "read" | "absent";
                         count: number;
                         facets: {
                             receipt: string;
@@ -173994,8 +174102,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -174110,6 +174218,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -176712,8 +176821,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                         multiClockOpen: boolean;
                         endless: {
                             endless: any;
-                            perPage: boolean;
-                            matchesContent: boolean;
+                            perPage: any;
+                            matchesContent: any;
                             count: number;
                             properties: {
                                 receipt: string;
@@ -176828,6 +176937,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             merkabaNoShell: boolean;
                             torusNoCenterRing: boolean;
                             srcReadable: boolean;
+                            source: "read" | "absent";
                             count: number;
                             facets: {
                                 receipt: string;
@@ -177006,8 +177116,8 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                             multiClockOpen: boolean;
                             endless: {
                                 endless: any;
-                                perPage: boolean;
-                                matchesContent: boolean;
+                                perPage: any;
+                                matchesContent: any;
                                 count: number;
                                 properties: {
                                     receipt: string;
@@ -177122,6 +177232,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
                                 merkabaNoShell: boolean;
                                 torusNoCenterRing: boolean;
                                 srcReadable: boolean;
+                                source: "read" | "absent";
                                 count: number;
                                 facets: {
                                     receipt: string;

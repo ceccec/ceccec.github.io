@@ -124,7 +124,8 @@ export function quantumUuidFindings(root: string = process.cwd(), folds: readonl
       const axioms = recorded[t.theorem]
       if (axioms === undefined) { findings.push(`${t.theorem}: named by the fold, not recorded by the kernel`); continue }
       if (axioms.length) findings.push(`${t.theorem}: rests on ${axioms.join(', ')}`)
-      const from = lean.indexOf(`theorem ${t.theorem} :`), to = lean.indexOf(':= by', from)
+      // a theorem with binders is `theorem name (x : T) : …`, one without is `theorem name :` — the name ends at a space either way
+      const from = lean.indexOf(`theorem ${t.theorem} `), to = lean.indexOf(':= by', from)
       if (from < 0 || to < 0) { findings.push(`${t.theorem}: no statement in ${t.file}`); continue }
       const numbers = new Set(lean.slice(from, to).match(/\d+/g) ?? [])
       for (const n of t.decides) if (!numbers.has(String(n))) findings.push(`${t.theorem}: the fold computed ${n}, which its statement does not decide`)
