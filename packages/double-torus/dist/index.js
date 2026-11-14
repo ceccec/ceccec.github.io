@@ -194,10 +194,17 @@ var _uuidCache = /* @__PURE__ */ new Map();
 function toUuid(seed) {
   const cached2 = _uuidCache.get(seed);
   if (cached2 !== void 0) return cached2;
-  const uuid = shapeUuid(Array.from(sha256Bytes(new TextEncoder().encode(seed)).subarray(0, 16)));
+  const digest = sha256Bytes(UUID_TEXT.encode(seed));
+  let uuid = "";
+  for (let i = 0; i < 16; i += 1) {
+    const octet = i === 6 ? digest[i] & UUID_VERSION_KEEPS | UUID_VERSION_SETS : i === 8 ? digest[i] & UUID_VARIANT_KEEPS | UUID_VARIANT_SETS : digest[i];
+    uuid += i === 4 || i === 6 || i === 8 || i === 5 * 2 ? `-${HEX_OF_BYTE[octet]}` : HEX_OF_BYTE[octet];
+  }
   _uuidCache.set(seed, uuid);
   return uuid;
 }
+var UUID_TEXT = new TextEncoder();
+var HEX_OF_BYTE = Array.from({ length: 16 * 16 }, (_, value) => hexByte(value));
 function shapeUuid(bytes) {
   bytes[6] = bytes[6] & UUID_VERSION_KEEPS | UUID_VERSION_SETS;
   bytes[8] = bytes[8] & UUID_VARIANT_KEEPS | UUID_VARIANT_SETS;

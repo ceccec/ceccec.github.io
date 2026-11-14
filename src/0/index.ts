@@ -144,10 +144,23 @@ const _uuidCache = new Map<string, string>()
 export function toUuid(seed: string): string {
   const cached = _uuidCache.get(seed)
   if (cached !== undefined) return cached
-  const uuid = shapeUuid(Array.from(sha256Bytes(new TextEncoder().encode(seed)).subarray(0, 16)))
+  // THE SAME ADDRESS, BUILT WITHOUT THE THROWAWAY OBJECTS (2026-11-14, with the owner's approval). A CPU profile of
+  // the site build put this function at 13 s of 116 — millions of distinct seeds — and two thirds of each call was
+  // not SHA-256: a new TextEncoder, an Array.from copy, sixteen strings mapped and joined, five slices. One encoder,
+  // one table of the 256 two-digit bytes, and the masks and hyphens applied while the string is written. shapeUuid
+  // below is unchanged and still shapes every other address. verify:hashes holds this function equal to sealUuid, which
+  // builds the same address by another route (sha256Sync, its own masks, uuidOfBytes) — so a slip here is refused.
+  const digest = sha256Bytes(UUID_TEXT.encode(seed))
+  let uuid = ''
+  for (let i = 0; i < 16; i += 1) {
+    const octet = i === 6 ? (digest[i]! & UUID_VERSION_KEEPS) | UUID_VERSION_SETS : i === 8 ? (digest[i]! & UUID_VARIANT_KEEPS) | UUID_VARIANT_SETS : digest[i]!
+    uuid += i === 4 || i === 6 || i === 8 || i === (5 * 2) ? `-${HEX_OF_BYTE[octet]!}` : HEX_OF_BYTE[octet]!
+  }
   _uuidCache.set(seed, uuid)
   return uuid
 }
+const UUID_TEXT = new TextEncoder()
+const HEX_OF_BYTE: readonly string[] = Array.from({ length: 16 * 16 }, (_, value) => hexByte(value))
 
 // The uuid shape over any 16 bytes: the version and variant masks, then 8-4-4-4-12. RFC 9562 §5.8 (v8) over the
 // first 16 octets of SHA-256 — the same address statementUuid and uuidna compute, minus their normaliser.
