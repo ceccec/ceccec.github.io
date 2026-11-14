@@ -241,7 +241,7 @@ export function measuredOncePlugin(id: string, measure: () => unknown): Plugin {
 }
 
 /** Paths inside `value` that a JSON round trip would drop or change — a function, a Map, a Set, a bigint, a non-finite number. */
-function lostInJson(value: unknown, at = 'data', seen = new Set<unknown>()): string[] {
+export function lostInJson(value: unknown, at = 'data', seen = new Set<unknown>()): string[] {
   if (typeof value === 'function' || typeof value === 'bigint' || value instanceof Map || value instanceof Set) return [at]
   if (typeof value === 'number') return Number.isFinite(value) ? [] : [at]
   if (value === null || typeof value !== 'object' || seen.has(value)) return []

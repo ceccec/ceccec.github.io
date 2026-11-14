@@ -62,3 +62,6 @@ export { paperAbstractOmitsTitleEcho, rosettaIChingNavItems } from '../../src/ui
 export { researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay } from '../../src/research'
 export { harmonizeScienceDomainsInWavesOfWaves } from '../../src/thunder/waves'
 export { componentCrosslinks } from '../../src/learning'
+export { quantumAppsPanelComputes, cryptoRelatedSurfacesAreDry } from '../../src/quantum/apps'
+export { allChatCapabilitiesFusedAndAuditedByStandards } from '../../src/heaven/compute'
+export * as quantumAppsFolds from '../../src/quantum/apps'

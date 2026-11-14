@@ -14,7 +14,7 @@ import { atomInclusionProof } from '../../../ledger/index.ts'
 import { agentEducation } from '../../../learning/index.ts'
 import { staticPages, pickLocale, displayText, type LocaleName } from '../../../wind/site/index.ts'
 import { tamperingCostDecoded } from '../../../water/crypto/index.ts'
-import { proofRegistry } from '../../../mountain/seals/index.ts'
+import { proofRegistry, proofRegistryHead } from '../../../mountain/seals/index.ts'
 
 export function movieAllDimensionsAtOnce(matrix: MindMatrix = buildMatrix()) {
   const facets = [
@@ -223,7 +223,7 @@ export function tamperingCostDecodedView(): DecodedComponentView {
 }
 
 export function proofRendererDecodedView(): DecodedComponentView {
-  const proofs = proofRegistry()
+  const proofs = proofRegistryHead()
   return {
     title: 'Proof renderer',
     statement: 'Every proof in the registry is computed from sealed src — one renderer, zero per-proof components.',

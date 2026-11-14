@@ -8,10 +8,56 @@ import { defineConfig } from 'vitepress'
 // One index serves all: each src folder index is a quantum VitePress router; srcFolderPlugins gathers
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
-import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin, chunkWitnessPlugin, measuredOncePlugin } from './plugins/index.mts'
-import { pageGapsMeasured, proofRendererDecodedView, vitepressConfigComputesAll, collectiveContentAddressedMeshComputes, componentCrosslinks, researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay, harmonizeScienceDomainsInWavesOfWaves } from './render'
+import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin, chunkWitnessPlugin, measuredOncePlugin, lostInJson } from './plugins/index.mts'
+import { pageGapsMeasured, proofRendererDecodedView, vitepressConfigComputesAll, collectiveContentAddressedMeshComputes, componentCrosslinks, researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay, harmonizeScienceDomainsInWavesOfWaves, quantumAppsPanelComputes, allChatCapabilitiesFusedAndAuditedByStandards, cryptoRelatedSurfacesAreDry, quantumAppsFolds } from './render'
 import { COMPONENT_FOLD_LOADERS } from './lib/component-folds'
 import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
+
+/**
+ * The argument-less folds the quantum tools panel renders, each taken once by the build — and only the part of
+ * each that the panel reads. Names and parts are both read from the panel itself: a line
+ * `const <ref> = computed(() => (measured.folds.<name> ?? <name>()) …)` names the fold, and every `<ref>.<key>`
+ * in the panel names a part. (Whole values do not fit: one fold is 46 MB of nested audits for a page that
+ * renders 144 KB.) A ref the panel uses whole keeps its whole value. A value may embed methods (the registry
+ * core rides inside several): they are dropped when the panel never calls a method of that name; a fold with a
+ * method the panel does call, with anything else JSON cannot carry, or that lives outside src/quantum/apps, is
+ * left out and the panel computes it live.
+ */
+function argumentLessFoldsThePanelRenders(): Record<string, unknown> {
+  const panel = readFileSync(join(projectRoot, 'src/quantum/apps/index.vue'), 'utf8')
+  const folds = quantumAppsFolds as unknown as Record<string, unknown>
+  const measured: Record<string, unknown> = {}
+  for (const [declaration, ref, name] of panel.matchAll(/const ([A-Za-z0-9]+) = computed\(\(\) => \(measured\.folds\.([A-Za-z0-9]+) \?\? \2\(\)\)/g)) {
+    const fold = folds[name!]
+    if (typeof fold !== 'function') continue
+    const value = (fold as () => unknown)()
+    const read = partsThePanelReads(panel.replace(declaration, ''), ref!)
+    const part = read === 'whole' || value === null || typeof value !== 'object'
+      ? value
+      : Object.fromEntries(read.filter((key) => key in (value as object)).map((key) => [key, (value as Record<string, unknown>)[key]]))
+    if (carriesWithoutUncalledMethods(part, panel)) measured[name!] = JSON.parse(JSON.stringify(part))
+  }
+  return measured
+}
+
+/** The keys of `ref` that `reader` reads as `ref.key` / `ref.value.key` — or 'whole' when it uses `ref` any other way. */
+function partsThePanelReads(reader: string, ref: string): readonly string[] | 'whole' {
+  const keys = new Set<string>()
+  for (const use of reader.matchAll(new RegExp(`(?<![A-Za-z0-9_$.])${ref}(?![A-Za-z0-9_$])((?:\\.value(?![A-Za-z0-9_$]))?)(\\??\\.([A-Za-z_$][A-Za-z0-9_$]*))?`, 'g'))) {
+    if (use[3] === undefined) return 'whole'
+    keys.add(use[3])
+  }
+  return [...keys]
+}
+
+/** True when everything JSON would lose from `value` is a method whose name `reader` never calls. */
+function carriesWithoutUncalledMethods(value: unknown, reader: string): boolean {
+  return lostInJson(value).every((path) => {
+    const keys = path.split('.').slice(1)
+    const held = keys.reduce<unknown>((at, key) => (at as Record<string, unknown> | undefined)?.[key], value)
+    return typeof held === 'function' && !reader.includes(`.${keys[keys.length - 1]!}(`)
+  })
+}
 
 /** Root pages live under pages/ without bg|gla prefix — default locale is English (canonical bare URLs). */
 function siteLocaleForRelative(relative: string) {
@@ -408,7 +454,7 @@ export default defineConfig({
         },
       },
     },
-    plugins: [nodeBuiltinBrowserShimPlugin(), nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), chunkWitnessPlugin(), measuredOncePlugin('virtual:page-gaps', () => pageGapsMeasured()), measuredOncePlugin('virtual:proof-renderer', () => proofRendererDecodedView()), measuredOncePlugin('virtual:vitepress-config', () => vitepressConfigComputesAll()), measuredOncePlugin('virtual:collective-mesh', () => collectiveContentAddressedMeshComputes()), measuredOncePlugin('virtual:research-panel', () => ({ panel: researchPanelComputes(), millennium: millenniumPanelComputes(), domainProofs: domainProofPanelComputes(), clayProse: proseStandardisedToClay(), domainHarm: harmonizeScienceDomainsInWavesOfWaves() })), measuredOncePlugin('virtual:component-crosslinks', () => Object.fromEntries(SITE_LOCALES.map((locale) => [locale.name, Object.fromEntries(Object.keys(COMPONENT_FOLD_LOADERS).map((name) => [name, componentCrosslinks(name, locale.name)]))]))), ...srcFolderPlugins(projectRoot)],
+    plugins: [nodeBuiltinBrowserShimPlugin(), nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), chunkWitnessPlugin(), measuredOncePlugin('virtual:page-gaps', () => pageGapsMeasured()), measuredOncePlugin('virtual:proof-renderer', () => proofRendererDecodedView()), measuredOncePlugin('virtual:vitepress-config', () => vitepressConfigComputesAll()), measuredOncePlugin('virtual:quantum-apps-panel', () => { const { capstone: _registryWithMethods, ...panel } = quantumAppsPanelComputes(); return { panel: JSON.parse(JSON.stringify(panel)), chatAudit: allChatCapabilitiesFusedAndAuditedByStandards(), cryptoMeshDry: cryptoRelatedSurfacesAreDry(), folds: argumentLessFoldsThePanelRenders() } }), measuredOncePlugin('virtual:collective-mesh', () => collectiveContentAddressedMeshComputes()), measuredOncePlugin('virtual:research-panel', () => ({ panel: researchPanelComputes(), millennium: millenniumPanelComputes(), domainProofs: domainProofPanelComputes(), clayProse: proseStandardisedToClay(), domainHarm: harmonizeScienceDomainsInWavesOfWaves() })), measuredOncePlugin('virtual:component-crosslinks', () => Object.fromEntries(SITE_LOCALES.map((locale) => [locale.name, Object.fromEntries(Object.keys(COMPONENT_FOLD_LOADERS).map((name) => [name, componentCrosslinks(name, locale.name)]))]))), ...srcFolderPlugins(projectRoot)],
     // Imports are folders only, with NO file extensions (the strict barrel rule, enforced on all of src):
     // a specifier names the module by its folder path and the resolver finds the file. '.vue' is appended
     // so extensionless component imports (`./components/Foo`, never `./components/Foo.vue`) resolve too —

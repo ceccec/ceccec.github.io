@@ -226,6 +226,238 @@ export declare function holyBooksGeometry64SealedDiamonds(matrix?: MindMatrix): 
     statement: string;
     boundary: string;
 };
+/** The registry's first twelve entries, titled as proofRegistry() titles them, without computing the rest. */
+export declare function proofRegistryHead(matrix?: MindMatrix): ({
+    title: string;
+    slug: string;
+    proof: {
+        trinity: readonly [3, 6, 9];
+        doubling: number[];
+        piInteger: number;
+        sequence: number[];
+        opensOnTrinity: boolean;
+        circuitMissesTrinity: boolean;
+        nineIsAxis: boolean;
+        trinityIsOne: number;
+        trinitiesInThree: number;
+        threeTrinitiesAreNine: boolean;
+        nineFolds: number;
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        pauliAxes: string[];
+        dimSU2: number;
+        isTrinity: boolean;
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        alphabet: string[];
+        qubits: number;
+        count: number;
+        matchesCube: boolean;
+        parallels: {
+            pauliBasis: string;
+            codon: string;
+            hexagram: string;
+            bits: string;
+            word: string;
+        };
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        parityBits: number;
+        positions: number;
+        dataBits: number;
+        hammingOk: boolean;
+        quantumBoundSaturated: boolean;
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        address: string;
+        deterministic: boolean;
+        idempotent: boolean;
+        collisionResistant: boolean;
+        dedup: boolean;
+        avalanches: boolean;
+        precedents: ({
+            name: string;
+            year: string;
+            kind: string;
+            source: string;
+            domain: string;
+        } | {
+            name: string;
+            year: number;
+            kind: string;
+            source: string;
+            domain: string;
+        })[];
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        bases: string[];
+        positions: number;
+        codons: number;
+        sense: number;
+        stop: number;
+        aminoAcids: number;
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        units: number[];
+        nonUnits: number[];
+        orbitOf2: number[];
+        twoIsPrimitiveRoot: boolean;
+        trinityIsNonUnits: boolean;
+        realThreefolds: string[];
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        colors: string[];
+        black: string;
+        white: string;
+        allDistinct: boolean;
+        blackWhiteDuality: boolean;
+        complementIsInverse: boolean;
+        trigramsAreCubeCorners: boolean;
+        pairsIntoThreeBaseFour: boolean;
+        sameAsCodonAndPauli: boolean;
+        asThreeBaseFour: {
+            sixBit: string;
+            codon: string;
+            pauli: string;
+            color: string;
+        }[];
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        groupings: {
+            bitsPerDigit: number;
+            digits: number;
+            base: number;
+            count: number;
+            system: string;
+        }[];
+        allSixtyFour: boolean;
+        sixIsDualityTimesTrinity: boolean;
+        samples: {
+            word: number;
+            bits: string;
+            baseFour: string;
+            trigrams: string;
+        }[];
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        pairs: {
+            additive: string;
+            a: string;
+            subtractive: string;
+            b: string;
+        }[];
+        cyanIsInverseRed: boolean;
+        magentaIsInverseGreen: boolean;
+        yellowIsInverseBlue: boolean;
+        cmyk: string[];
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        trinities: number[];
+        hues: number[];
+        anglesDeg: number[];
+        channels: string[];
+        isRgbTriad: boolean;
+        ninefolds: number;
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+} | {
+    title: string;
+    slug: string;
+    proof: {
+        total: number;
+        proven: number;
+        purge: string[];
+        gateDiscriminates: boolean;
+        facets: {
+            receipt: string;
+            facet: string;
+            on: boolean;
+        }[];
+        pureProof: boolean;
+        holds: boolean;
+        root: string;
+        statement: string;
+        boundary: string;
+    };
+})[];
 export declare function proofRegistry(matrix?: MindMatrix): ({
     title: string;
     slug: string;

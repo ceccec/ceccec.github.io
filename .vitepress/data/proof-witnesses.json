@@ -2287,7 +2287,7 @@
    47,
    47,
    46,
-   45,
+   46,
    45,
    44,
    44,
@@ -3021,8 +3021,8 @@
  "Config files detach to theorems where they can; the remainder is honest policy axiom": {
   "form": "bars",
   "values": [
-   3,
-   3,
+   9,
+   9,
    1
   ],
   "holds": true,

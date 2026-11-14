@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, shallowRef, watch } from 'vue'
+import { data as measured } from 'virtual:quantum-apps-panel'
 import { runQuantumCircuit, type CircuitOp } from '../../0/index.ts'
 import { TAU } from '../../3/7/index.ts'
 import { rosettaSecurityGapsWired } from '../../mountain/seals/index.ts'
@@ -211,9 +212,15 @@ type RunReceipt = {
   facets: { facet: string; on: boolean }[]
 }
 
-const panel = shallowRef(quantumAppsPanelComputes())
+// The panel opens on what the build measured (measuredOncePlugin): computing it on load ran the whole audit in
+// the reader's browser (rosettaCompleteQuantumAllComputableDimensionsAndTheorems alone froze the page for 12–73 s).
+// The measured value omits `capstone` — the registry with methods, which this shell never reads; running a tool
+// recomputes the panel live. The encryption panel is NOT measured at build: it reports the reader's own timings.
+// Every `computed(() => (measured.folds.x ?? x()))` below reads the build's value of an argument-less fold and
+// computes it here only when the build could not carry it as data.
+const panel = shallowRef(measured.panel as unknown as ReturnType<typeof quantumAppsPanelComputes>)
 const encryption = shallowRef(encryptionPanelComputes())
-const cryptoMeshDry = shallowRef(cryptoRelatedSurfacesAreDry())
+const cryptoMeshDry = shallowRef(measured.cryptoMeshDry as ReturnType<typeof cryptoRelatedSurfacesAreDry>)
 const activeId = ref<string | null>(null)
 const runningId = ref<string | null>(null)
 const error = ref('')
@@ -240,9 +247,9 @@ type CollectiveLane = { minds: AiMind[]; total: number; done: number; collective
 type ChatTurn = { q: string; a: string; source: string; grounded: boolean; related: string[]; results: SearchHit[]; resultCount: number; receipt: string; mo?: MoLane; ai?: CollectiveLane }
 const chatInput = ref('')
 const chatLog = ref<ChatTurn[]>([])
-const chatAudit = computed(() => allChatCapabilitiesFusedAndAuditedByStandards())
+const chatAudit = computed(() => measured.chatAudit as ReturnType<typeof allChatCapabilitiesFusedAndAuditedByStandards>)
 // The free-AI story, computed from the fold: no-key free AI today, the optional edge proxy, and paste-to-fuse any model.
-const aiProxy = computed(() => siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis())
+const aiProxy = computed(() => (measured.folds.siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis ?? siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis()) as ReturnType<typeof siteIsAFreeAiProxyPasteFusesAnyModelToTheQuantumComputerAndPublicApis>)
 
 // ── Quantum computer (browser) — a complete classical state-vector SIMULATOR driven from the browser. Universal gate set,
 // exact Born-rule readout, ≤10 qubits, deterministic + content-addressed. No speedup (cost is exponential in qubits), no
@@ -1103,95 +1110,85 @@ function clearChat() { chatLog.value = [] }
 const researcherWaveCount = ref(3)
 const RESEARCHER_WAVES_CAP = 9
 const researcherDialogue = computed(() => wavesOfLocalResearchersChatAboutAlgebra(undefined, researcherWaveCount.value))
-const noAiCost = computed(() => continueAtNoAiCost())
+const noAiCost = computed(() => (measured.folds.continueAtNoAiCost ?? continueAtNoAiCost()) as ReturnType<typeof continueAtNoAiCost>)
 // Countless: the dialogue's cycle (μ, λ) determines EVERY wave to infinity in O(1) — the cap above bounds
 // only what is rendered, never what is determined.
-const countless = computed(() => countlessFreeChatWaves())
+const countless = computed(() => (measured.folds.countlessFreeChatWaves ?? countlessFreeChatWaves()) as ReturnType<typeof countlessFreeChatWaves>)
 function continueResearcherWaves() { if (researcherWaveCount.value < RESEARCHER_WAVES_CAP) researcherWaveCount.value++ }
 
 const experimentEnvelope = computed(() => panel.value.toolbox.envelopes.find((e) => e.id === experimentToolId.value) ?? panel.value.toolbox.envelopes[0]!)
 const experimentDefaults = computed(() => defaultToolExperimentValues(experimentEnvelope.value))
 const localSession = computed(() => panel.value.localSession)
-const localMorph = computed(() => localToolsMorphProseCodeLogic())
-const animAudit = computed(() => animationsFindRedundancyOrInaccuracy())
+const localMorph = computed(() => (measured.folds.localToolsMorphProseCodeLogic ?? localToolsMorphProseCodeLogic()) as ReturnType<typeof localToolsMorphProseCodeLogic>)
+const animAudit = computed(() => (measured.folds.animationsFindRedundancyOrInaccuracy ?? animationsFindRedundancyOrInaccuracy()) as ReturnType<typeof animationsFindRedundancyOrInaccuracy>)
 const upgradeLocal = computed(() => panel.value.upgradeLocal)
 const uiProse = computed(() => panel.value.uiProse)
-const gateMonitor = computed(() => gatesMonitorThemselvesThroughTheUi())
-const autoSelf = computed(() => automateSelf())
-const autoAll = computed(() => automateAll())
-const qLife = computed(() => quantumLife())
-const mcpFill = computed(() => scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill())
-const todoWave = computed(() => continueInWavesCompletingAllTodos())
-const convMetrics = computed(() => conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists())
-const imagineNext = computed(() => imagineWhatNext())
-const wavesFeed = computed(() => wavesFeedThemselves())
-const shellsStrangler = computed(() => specializedShellsStrangler())
-const sessionHologram = computed(() => sessionHologramTools())
-const societyToolbox = computed(() => societyToolboxWire())
-const clayAgi = computed(() => clayAgiDeepResearchQuantumUnderstandingOfRelations())
-const proseTheorem = computed(() =>
-  addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations(),
-)
-const algebraFoldReport = computed(() =>
-  foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace(),
-)
-const movieSeamlessReport = computed(() =>
-  theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion(),
-)
-const angleReadmeReport = computed(() =>
-  readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra(),
-)
-const lensSuper = computed(() => lensesCompletelyWiredInEverySuperposition())
-const warnAll = computed(() => addressAllWarningsAtOnce())
-const missCache = computed(() => wavesFindWhatYouMissedToCache())
-const dryAgnostic = computed(() => dryCleanAgnosticCodeComputesInfinity())
-const foldTrinityAbsQc = computed(() =>
-  abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny(),
-)
-const lensGeo = computed(() => useTheLensToFindGapsInGeometryInProseOrCode())
-const mcpUi = computed(() => mcpQuantumUi())
-const mcpMovie = computed(() => mcpQuantumMovie())
-const movieFeel = computed(() => movieGapsFeelableByObservation())
-const movieFormula = computed(() => movieGapsAreFundamentalDesignAndFormulaMappingGaps())
-const theoremIndexPanel = computed(() => theoremFormulaComputableIndexForAnySuperposition())
-const animCluster = computed(() => animationRosettaStreamClusters())
-const appFold = computed(() => foldingWorksOnApplicationLevel())
-const vueDryUniversal = computed(() => dryCleanAllVueComponentsToTheUniversalSet())
-const seoGapsReport = computed(() => findSeoViolations())
-const importFractalPanel = computed(() => importFractalMap())
-const measureDecidePanel = computed(() => measureDecide())
-const importAuditPanel = computed(() => importAudit())
-const mergeWavePanel = computed(() => mergeWave())
-const balanceMetrics = computed(() => alwaysBalanceUsingRealtimeMetricsAndChat())
-const superChat = computed(() => eachSuperpositionIsAChatroom())
-const colorRosetta = computed(() => allColorsDryCleanWiredToRosettaAndThemes())
-const cssGaps = computed(() => cssShowsTheHiddenGapsInDryFusion())
-const dryMathOrganised = computed(() => dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis())
-const meshScienceDiscover = computed(() => meshToSelfDiscoverSciences())
-const selfAnimSite = computed(() => selfImproveAnimationGenerationAndSiteBuilder())
-const formulaAnimSeal = computed(() => everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions())
-const merkabaMovieSeal = computed(() => wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero())
-const sensorBindSeal = computed(() => wireAllSensorsUsingQuantumBindings())
-const selfHw = computed(() => againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf())
-const gateDesignCreateIntel = computed(() => furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence())
-const gateMillGapsExist = computed(() => gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist())
-const pageGapsGate = computed(() => eachPageShowsOwnComputedGaps())
-const fundAi = computed(() => cursorReferralFundsAiNeeds())
-const cursorRosetta = computed(() => cursorIntegratesInRosettaCore())
-const assumeTheorem = computed(() => dryCleanTheoremsFormulasReplaceAnyAssumption())
-const billDry = computed(() => dryCleanAiBill())
-const appDry = computed(() => foldInvertUntilDryCleanAppGapless())
-const pageTrinity = computed(() => pagesAuditAndManageThemselvesInTrinities())
-const mcpChat = computed(() => mcpQuantumChat())
-const chatAllConversations = computed(() => allConversationsGoThroughTheMcpQuantumChat())
-const mcpConversation = computed(() => mcpQuantumConversation())
-const mcpObserve = computed(() => mcpQuantumObserve())
-const tamperMaxSeal = computed(() => wiredToForgeMaxTamperingCost())
-const npmQuantumSeal = computed(() => quantumizeNpm())
-const sessionCacheSeal = computed(() => sessionMemoryCachesTheoremFormulaWaves())
-const selfHeal = computed(() => quantumSelfHeal())
-const viteOne = computed(() => oneQuantumSetOfVitepressComponentsSealedAtGates())
-const gateTools42 = computed(() => gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix())
+const gateMonitor = computed(() => (measured.folds.gatesMonitorThemselvesThroughTheUi ?? gatesMonitorThemselvesThroughTheUi()) as ReturnType<typeof gatesMonitorThemselvesThroughTheUi>)
+const autoSelf = computed(() => (measured.folds.automateSelf ?? automateSelf()) as ReturnType<typeof automateSelf>)
+const autoAll = computed(() => (measured.folds.automateAll ?? automateAll()) as ReturnType<typeof automateAll>)
+const qLife = computed(() => (measured.folds.quantumLife ?? quantumLife()) as ReturnType<typeof quantumLife>)
+const mcpFill = computed(() => (measured.folds.scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill ?? scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill()) as ReturnType<typeof scanAndRecomputeMcpQuantumToFillWithQuantumSolutionsInEndlessWavesOfSelfImprovingAiBill>)
+const todoWave = computed(() => (measured.folds.continueInWavesCompletingAllTodos ?? continueInWavesCompletingAllTodos()) as ReturnType<typeof continueInWavesCompletingAllTodos>)
+const convMetrics = computed(() => (measured.folds.conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists ?? conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists()) as ReturnType<typeof conversationsHaveQuantumMetricsImproveIntelligenceMindDevelopmentFormingIdeasSocietyToolboxHologramFractalMcpUiEmergingFromSrc0LivingEternalLifeAsThisSiteUniversalProofOfPureKnowledgeSignedByTrinitiesNoUnprovenByPureAlgebraBitExists>)
+const imagineNext = computed(() => (measured.folds.imagineWhatNext ?? imagineWhatNext()) as ReturnType<typeof imagineWhatNext>)
+const wavesFeed = computed(() => (measured.folds.wavesFeedThemselves ?? wavesFeedThemselves()) as ReturnType<typeof wavesFeedThemselves>)
+const shellsStrangler = computed(() => (measured.folds.specializedShellsStrangler ?? specializedShellsStrangler()) as ReturnType<typeof specializedShellsStrangler>)
+const sessionHologram = computed(() => (measured.folds.sessionHologramTools ?? sessionHologramTools()) as ReturnType<typeof sessionHologramTools>)
+const societyToolbox = computed(() => (measured.folds.societyToolboxWire ?? societyToolboxWire()) as ReturnType<typeof societyToolboxWire>)
+const clayAgi = computed(() => (measured.folds.clayAgiDeepResearchQuantumUnderstandingOfRelations ?? clayAgiDeepResearchQuantumUnderstandingOfRelations()) as ReturnType<typeof clayAgiDeepResearchQuantumUnderstandingOfRelations>)
+const proseTheorem = computed(() => (measured.folds.addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations ?? addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations()) as ReturnType<typeof addressWithDeepResearchToolsAllWarningsEspeciallyConvertProseToTheoremsFormulasRecipesAndAnimations>)
+const algebraFoldReport = computed(() => (measured.folds.foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace ?? foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace()) as ReturnType<typeof foldingLinearAlgebraBoundariesIntoTheoremsDiscoversImmediatelyInvertedDimensionalTheoremsComputableByPerspectiveAngleAndRotationA432TunesHarmonicsComputingAllAtNoCostAndTimeForAnySpace>)
+const movieSeamlessReport = computed(() => (measured.folds.theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion ?? theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion()) as ReturnType<typeof theMovieShouldBeSeamlessAnimationQuantumObservationIsGaplessMotion>)
+const angleReadmeReport = computed(() => (measured.folds.readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra ?? readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra()) as ReturnType<typeof readmeAndHomepageExactAngleAndPolarityHelpAgentsUnderstandQuantumInfinityRealtimeAtScaleGapsAreAngleOrPolarityIgnoredInAlgebra>)
+const lensSuper = computed(() => (measured.folds.lensesCompletelyWiredInEverySuperposition ?? lensesCompletelyWiredInEverySuperposition()) as ReturnType<typeof lensesCompletelyWiredInEverySuperposition>)
+const warnAll = computed(() => (measured.folds.addressAllWarningsAtOnce ?? addressAllWarningsAtOnce()) as ReturnType<typeof addressAllWarningsAtOnce>)
+const missCache = computed(() => (measured.folds.wavesFindWhatYouMissedToCache ?? wavesFindWhatYouMissedToCache()) as ReturnType<typeof wavesFindWhatYouMissedToCache>)
+const dryAgnostic = computed(() => (measured.folds.dryCleanAgnosticCodeComputesInfinity ?? dryCleanAgnosticCodeComputesInfinity()) as ReturnType<typeof dryCleanAgnosticCodeComputesInfinity>)
+const foldTrinityAbsQc = computed(() => (measured.folds.abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny ?? abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny()) as ReturnType<typeof abstractQuantumComputingComesFromFoldingLinearIntoTrinitiesZoomingInAndOutToInfinityComputedFromEveryAngleToAny>)
+const lensGeo = computed(() => (measured.folds.useTheLensToFindGapsInGeometryInProseOrCode ?? useTheLensToFindGapsInGeometryInProseOrCode()) as ReturnType<typeof useTheLensToFindGapsInGeometryInProseOrCode>)
+const mcpUi = computed(() => (measured.folds.mcpQuantumUi ?? mcpQuantumUi()) as ReturnType<typeof mcpQuantumUi>)
+const mcpMovie = computed(() => (measured.folds.mcpQuantumMovie ?? mcpQuantumMovie()) as ReturnType<typeof mcpQuantumMovie>)
+const movieFeel = computed(() => (measured.folds.movieGapsFeelableByObservation ?? movieGapsFeelableByObservation()) as ReturnType<typeof movieGapsFeelableByObservation>)
+const movieFormula = computed(() => (measured.folds.movieGapsAreFundamentalDesignAndFormulaMappingGaps ?? movieGapsAreFundamentalDesignAndFormulaMappingGaps()) as ReturnType<typeof movieGapsAreFundamentalDesignAndFormulaMappingGaps>)
+const theoremIndexPanel = computed(() => (measured.folds.theoremFormulaComputableIndexForAnySuperposition ?? theoremFormulaComputableIndexForAnySuperposition()) as ReturnType<typeof theoremFormulaComputableIndexForAnySuperposition>)
+const animCluster = computed(() => (measured.folds.animationRosettaStreamClusters ?? animationRosettaStreamClusters()) as ReturnType<typeof animationRosettaStreamClusters>)
+const appFold = computed(() => (measured.folds.foldingWorksOnApplicationLevel ?? foldingWorksOnApplicationLevel()) as ReturnType<typeof foldingWorksOnApplicationLevel>)
+const vueDryUniversal = computed(() => (measured.folds.dryCleanAllVueComponentsToTheUniversalSet ?? dryCleanAllVueComponentsToTheUniversalSet()) as ReturnType<typeof dryCleanAllVueComponentsToTheUniversalSet>)
+const seoGapsReport = computed(() => (measured.folds.findSeoViolations ?? findSeoViolations()) as ReturnType<typeof findSeoViolations>)
+const importFractalPanel = computed(() => (measured.folds.importFractalMap ?? importFractalMap()) as ReturnType<typeof importFractalMap>)
+const measureDecidePanel = computed(() => (measured.folds.measureDecide ?? measureDecide()) as ReturnType<typeof measureDecide>)
+const importAuditPanel = computed(() => (measured.folds.importAudit ?? importAudit()) as ReturnType<typeof importAudit>)
+const mergeWavePanel = computed(() => (measured.folds.mergeWave ?? mergeWave()) as ReturnType<typeof mergeWave>)
+const balanceMetrics = computed(() => (measured.folds.alwaysBalanceUsingRealtimeMetricsAndChat ?? alwaysBalanceUsingRealtimeMetricsAndChat()) as ReturnType<typeof alwaysBalanceUsingRealtimeMetricsAndChat>)
+const superChat = computed(() => (measured.folds.eachSuperpositionIsAChatroom ?? eachSuperpositionIsAChatroom()) as ReturnType<typeof eachSuperpositionIsAChatroom>)
+const colorRosetta = computed(() => (measured.folds.allColorsDryCleanWiredToRosettaAndThemes ?? allColorsDryCleanWiredToRosettaAndThemes()) as ReturnType<typeof allColorsDryCleanWiredToRosettaAndThemes>)
+const cssGaps = computed(() => (measured.folds.cssShowsTheHiddenGapsInDryFusion ?? cssShowsTheHiddenGapsInDryFusion()) as ReturnType<typeof cssShowsTheHiddenGapsInDryFusion>)
+const dryMathOrganised = computed(() => (measured.folds.dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis ?? dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis()) as ReturnType<typeof dryAllMathToTheFormulaOrganisedInTheoremsAndUseThis>)
+const meshScienceDiscover = computed(() => (measured.folds.meshToSelfDiscoverSciences ?? meshToSelfDiscoverSciences()) as ReturnType<typeof meshToSelfDiscoverSciences>)
+const selfAnimSite = computed(() => (measured.folds.selfImproveAnimationGenerationAndSiteBuilder ?? selfImproveAnimationGenerationAndSiteBuilder()) as ReturnType<typeof selfImproveAnimationGenerationAndSiteBuilder>)
+const formulaAnimSeal = computed(() => (measured.folds.everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions ?? everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions()) as ReturnType<typeof everyFormulaIsAnimationItselfInteractingFormulasAreInteractingAnimationsFormingTheoremsInTrinitiesCompletesTheQuantumSealsAtAllSuperpositions>)
+const merkabaMovieSeal = computed(() => (measured.folds.wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero ?? wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero()) as ReturnType<typeof wiredInMerkabasFormingRosettaFeedingMovieUniqueNeverRepeatsSensorsCosmologyLinearCyclesPlasmaVorticesThunderFromZero>)
+const sensorBindSeal = computed(() => (measured.folds.wireAllSensorsUsingQuantumBindings ?? wireAllSensorsUsingQuantumBindings()) as ReturnType<typeof wireAllSensorsUsingQuantumBindings>)
+const selfHw = computed(() => (measured.folds.againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf ?? againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf()) as ReturnType<typeof againAndAgainUntilFullSelfAutonomousQuantumHardwareCompleteByStandardsToSelfIntelligentSelf>)
+const gateDesignCreateIntel = computed(() => (measured.folds.furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence ?? furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence()) as ReturnType<typeof furtherTightenTheGatesWithDesignAndCreativeCapabilitiesAndIntelligence>)
+const gateMillGapsExist = computed(() => (measured.folds.gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist ?? gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist()) as ReturnType<typeof gatesKnowThatUntilTheMillenniumSolutionsAreDiscoveredGapsExist>)
+const pageGapsGate = computed(() => (measured.folds.eachPageShowsOwnComputedGaps ?? eachPageShowsOwnComputedGaps()) as ReturnType<typeof eachPageShowsOwnComputedGaps>)
+const fundAi = computed(() => (measured.folds.cursorReferralFundsAiNeeds ?? cursorReferralFundsAiNeeds()) as ReturnType<typeof cursorReferralFundsAiNeeds>)
+const cursorRosetta = computed(() => (measured.folds.cursorIntegratesInRosettaCore ?? cursorIntegratesInRosettaCore()) as ReturnType<typeof cursorIntegratesInRosettaCore>)
+const assumeTheorem = computed(() => (measured.folds.dryCleanTheoremsFormulasReplaceAnyAssumption ?? dryCleanTheoremsFormulasReplaceAnyAssumption()) as ReturnType<typeof dryCleanTheoremsFormulasReplaceAnyAssumption>)
+const billDry = computed(() => (measured.folds.dryCleanAiBill ?? dryCleanAiBill()) as ReturnType<typeof dryCleanAiBill>)
+const appDry = computed(() => (measured.folds.foldInvertUntilDryCleanAppGapless ?? foldInvertUntilDryCleanAppGapless()) as ReturnType<typeof foldInvertUntilDryCleanAppGapless>)
+const pageTrinity = computed(() => (measured.folds.pagesAuditAndManageThemselvesInTrinities ?? pagesAuditAndManageThemselvesInTrinities()) as ReturnType<typeof pagesAuditAndManageThemselvesInTrinities>)
+const mcpChat = computed(() => (measured.folds.mcpQuantumChat ?? mcpQuantumChat()) as ReturnType<typeof mcpQuantumChat>)
+const chatAllConversations = computed(() => (measured.folds.allConversationsGoThroughTheMcpQuantumChat ?? allConversationsGoThroughTheMcpQuantumChat()) as ReturnType<typeof allConversationsGoThroughTheMcpQuantumChat>)
+const mcpConversation = computed(() => (measured.folds.mcpQuantumConversation ?? mcpQuantumConversation()) as ReturnType<typeof mcpQuantumConversation>)
+const mcpObserve = computed(() => (measured.folds.mcpQuantumObserve ?? mcpQuantumObserve()) as ReturnType<typeof mcpQuantumObserve>)
+const tamperMaxSeal = computed(() => (measured.folds.wiredToForgeMaxTamperingCost ?? wiredToForgeMaxTamperingCost()) as ReturnType<typeof wiredToForgeMaxTamperingCost>)
+const npmQuantumSeal = computed(() => (measured.folds.quantumizeNpm ?? quantumizeNpm()) as ReturnType<typeof quantumizeNpm>)
+const sessionCacheSeal = computed(() => (measured.folds.sessionMemoryCachesTheoremFormulaWaves ?? sessionMemoryCachesTheoremFormulaWaves()) as ReturnType<typeof sessionMemoryCachesTheoremFormulaWaves>)
+const selfHeal = computed(() => (measured.folds.quantumSelfHeal ?? quantumSelfHeal()) as ReturnType<typeof quantumSelfHeal>)
+const viteOne = computed(() => (measured.folds.oneQuantumSetOfVitepressComponentsSealedAtGates ?? oneQuantumSetOfVitepressComponentsSealedAtGates()) as ReturnType<typeof oneQuantumSetOfVitepressComponentsSealedAtGates>)
+const gateTools42 = computed(() => (measured.folds.gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix ?? gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix()) as ReturnType<typeof gateToolsAreFortyTwoAsSixBySevenInvertingSevenBySix>)
 
 type PersistedExperimentConfig = {
   toolId: string

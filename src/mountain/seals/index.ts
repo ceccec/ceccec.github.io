@@ -671,13 +671,12 @@ export function holyBooksGeometry64SealedDiamonds(matrix: MindMatrix = buildMatr
 // and the full proof on its own [page] route. One model-driven renderer replaces 17 per-proof component
 // files; to add a proof, add a fold and one line here — no new component, and the census (encryption per
 // byte) does not reward the file count anyway.
-export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
-  // ONE title home (the naming matrix): the sidebar can only address the SEED (wind/site → seals would cycle),
-  // so the canonical title lives in STATIC_PAGE_SEED and BOTH the sidebar and this proof registry address it by
-  // slug — no second string, no divergence by construction. The registry's own strings below are the fallback
-  // for slugs with no seed page. [[title-is-algebra-computed-payload]]
-  const seedTitleEn = new Map(STATIC_PAGE_SEED.map((page) => [page.slug, page.title.en]))
-  const entries = [
+/**
+ * The first twelve registry entries — the ones the Proof renderer card lists. They are small algebra; the rest of
+ * the registry reaches the whole audit (23 s at build), which a card of twelve titles has no reason to compute.
+ */
+function proofRegistryHeadEntries(matrix: MindMatrix) {
+  return [
     { slug: 'pi-trinity', title: '⌊π⌋ = 3 opens 3-6-9, the multiples of 3 the doubling 1-2-4-8-7-5 misses', proof: piThreeOpensTheTrinity(matrix) },
     { slug: 'qubit-trinity', title: 'the qubit\'s trinity · X Y Z', proof: qubitTrinityPauliBloch(matrix) },
     { slug: 'pauli-basis', title: '64 = the 3-qubit Pauli basis · 4³', proof: sixtyFourThreeQubitPauliBasis(matrix) },
@@ -690,6 +689,23 @@ export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
     { slug: 'rgb-cmyk', title: 'the complement is the CMYK duality', proof: rgbCmyComplementIsCmykDuality(matrix) },
     { slug: 'trinity-rgb', title: 'three trinities render as RGB · 0° 120° 240°', proof: threeTrinitiesRenderAsRgb(matrix) },
     { slug: 'proven-or-purged', title: 'what is not proven is purged', proof: whatIsNotProvenIsPurged(matrix) },
+  ]
+}
+
+/** The registry's first twelve entries, titled as proofRegistry() titles them, without computing the rest. */
+export function proofRegistryHead(matrix: MindMatrix = buildMatrix()) {
+  const seedTitleEn = new Map(STATIC_PAGE_SEED.map((page) => [page.slug, page.title.en]))
+  return proofRegistryHeadEntries(matrix).map((entry) => ({ ...entry, title: seedTitleEn.get(entry.slug) ?? entry.title }))
+}
+
+export function proofRegistry(matrix: MindMatrix = buildMatrix()) {
+  // ONE title home (the naming matrix): the sidebar can only address the SEED (wind/site → seals would cycle),
+  // so the canonical title lives in STATIC_PAGE_SEED and BOTH the sidebar and this proof registry address it by
+  // slug — no second string, no divergence by construction. The registry's own strings below are the fallback
+  // for slugs with no seed page. [[title-is-algebra-computed-payload]]
+  const seedTitleEn = new Map(STATIC_PAGE_SEED.map((page) => [page.slug, page.title.en]))
+  const entries = [
+    ...proofRegistryHeadEntries(matrix),
     { slug: 'kernel-zero', title: 'the primitive kernel lives in src/0', proof: primitiveKernelLivesInZero(matrix) },
     { slug: 'engine-zero', title: 'the animation engine + motion math live in src/0', proof: animationEngineLivesInZero(matrix) },
     { slug: 'one-math', title: 'one address, many projections — every projection a pure function of one address, asMerkle(f).root = the source', proof: oneMathManyPresentations(matrix) },
