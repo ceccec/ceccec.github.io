@@ -59,3 +59,6 @@ export type { FigRole, TheoremFigureData, TheoremPageRow, TheoremTagGroup, Unive
 export { bulgarianHomeFromEnglish, githubPermalink, homeHero, localeNavLinks, localeSidebarKeys, revolutChannel, siteConfig, staticPages, vitepressDocsResearchImprovements, vitepressNativeDocsConfig } from '../../src/wind/site'
 export type { LocalAnswer } from '../../src/types'
 export { paperAbstractOmitsTitleEcho, rosettaIChingNavItems } from '../../src/ui'
+export { researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay } from '../../src/research'
+export { harmonizeScienceDomainsInWavesOfWaves } from '../../src/thunder/waves'
+export { componentCrosslinks } from '../../src/learning'

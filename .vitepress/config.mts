@@ -9,7 +9,8 @@ import { defineConfig } from 'vitepress'
 // them into the computed plugin list this config spreads (no hand-wired plugins). See .vitepress/src-plugins.mts.
 import { srcFolderPlugins } from './src-plugins.mts'
 import { buildLockPlugin, releaseDirectBuildLock, buildVerbosePlugin, chunkWitnessPlugin, measuredOncePlugin } from './plugins/index.mts'
-import { pageGapsMeasured, proofRendererDecodedView, vitepressConfigComputesAll } from './render'
+import { pageGapsMeasured, proofRendererDecodedView, vitepressConfigComputesAll, collectiveContentAddressedMeshComputes, componentCrosslinks, researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay, harmonizeScienceDomainsInWavesOfWaves } from './render'
+import { COMPONENT_FOLD_LOADERS } from './lib/component-folds'
 import { computedSeo, jsonLdTemplate, localeNavLinks, localeSidebarKeys, pageHreflangAlternates, seoMetaDescription, openGraphCardFromRoute, siteConfig, siteNavigation, vitepressSidebar, toGlagolitic, SITE_LOCALES, homeHero, vitepressNativeDocsConfig } from './lib/vitepress-seo'
 
 /** Root pages live under pages/ without bg|gla prefix — default locale is English (canonical bare URLs). */
@@ -407,7 +408,7 @@ export default defineConfig({
         },
       },
     },
-    plugins: [nodeBuiltinBrowserShimPlugin(), nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), chunkWitnessPlugin(), measuredOncePlugin('virtual:page-gaps', () => pageGapsMeasured()), measuredOncePlugin('virtual:proof-renderer', () => proofRendererDecodedView()), measuredOncePlugin('virtual:vitepress-config', () => vitepressConfigComputesAll()), ...srcFolderPlugins(projectRoot)],
+    plugins: [nodeBuiltinBrowserShimPlugin(), nodeOnlyClientStubPlugin(), vpLibNestedResolvePlugin(), buildLockPlugin(), buildVerbosePlugin(), chunkWitnessPlugin(), measuredOncePlugin('virtual:page-gaps', () => pageGapsMeasured()), measuredOncePlugin('virtual:proof-renderer', () => proofRendererDecodedView()), measuredOncePlugin('virtual:vitepress-config', () => vitepressConfigComputesAll()), measuredOncePlugin('virtual:collective-mesh', () => collectiveContentAddressedMeshComputes()), measuredOncePlugin('virtual:research-panel', () => ({ panel: researchPanelComputes(), millennium: millenniumPanelComputes(), domainProofs: domainProofPanelComputes(), clayProse: proseStandardisedToClay(), domainHarm: harmonizeScienceDomainsInWavesOfWaves() })), measuredOncePlugin('virtual:component-crosslinks', () => Object.fromEntries(SITE_LOCALES.map((locale) => [locale.name, Object.fromEntries(Object.keys(COMPONENT_FOLD_LOADERS).map((name) => [name, componentCrosslinks(name, locale.name)]))]))), ...srcFolderPlugins(projectRoot)],
     // Imports are folders only, with NO file extensions (the strict barrel rule, enforced on all of src):
     // a specifier names the module by its folder path and the resolver finds the file. '.vue' is appended
     // so extensionless component imports (`./components/Foo`, never `./components/Foo.vue`) resolve too —

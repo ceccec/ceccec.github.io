@@ -2,7 +2,8 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
 import { selfDevelopment } from '../../render'
-import { collectiveContentAddressedMeshComputes } from '../../render'
+// Measured once by the build (measuredOncePlugin) — it has no input a browser could change.
+import { data as meshMeasured } from 'virtual:collective-mesh'
 import { useSiteLocale } from '../../lib/mounts'
 import UiAsideShell from './UiAsideShell.vue'
 
@@ -18,7 +19,7 @@ const open = ref(false)
 const seedParts = computed(() => ['collective-mind', String(visits.value.length)] as const)
 const development = computed(() => selfDevelopment(visits.value))
 // The content-addressed mesh — peers fold to one collective root, recalled like an associative memory.
-const mesh = computed(() => collectiveContentAddressedMeshComputes())
+const mesh = computed(() => meshMeasured)
 
 const labels = computed(() => ({
   summary: pick('Collective mind', 'Колективен ум'),

@@ -229,8 +229,22 @@ export function measuredOncePlugin(id: string, measure: () => unknown): Plugin {
     },
     load(request) {
       if (request !== resolved) return null
-      source ??= `export const data = ${JSON.stringify(measure())}`
+      if (source === undefined) {
+        const value = measure()
+        const lost = lostInJson(value)
+        if (lost.length) throw new Error(`measured-once ${id}: JSON cannot carry ${lost.length} value(s), first at ${lost[0]}`)
+        source = `export const data = ${JSON.stringify(value)}`
+      }
       return source
     },
   }
+}
+
+/** Paths inside `value` that a JSON round trip would drop or change — a function, a Map, a Set, a bigint, a non-finite number. */
+function lostInJson(value: unknown, at = 'data', seen = new Set<unknown>()): string[] {
+  if (typeof value === 'function' || typeof value === 'bigint' || value instanceof Map || value instanceof Set) return [at]
+  if (typeof value === 'number') return Number.isFinite(value) ? [] : [at]
+  if (value === null || typeof value !== 'object' || seen.has(value)) return []
+  seen.add(value)
+  return Object.entries(value).flatMap(([key, inner]) => lostInJson(inner, `${at}.${key}`, seen))
 }

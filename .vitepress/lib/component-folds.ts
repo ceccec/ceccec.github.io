@@ -44,9 +44,11 @@ export async function withCrosslinks(
   view: DecodedFoldView,
   locale: LocaleName = 'en',
 ): Promise<DecodedFoldView> {
-  const { componentCrosslinks } = await import('../../src/learning/index')
+  // Measured once by the build for every card and locale: computing them here rebuilt the site navigation
+  // in the reader's browser (0.4–9.5 s on a card page). A name the build did not measure still computes.
+  const { data: measured } = await import('virtual:component-crosslinks')
   const localized = localizeDecodedView(view, locale)
-  const computed = componentCrosslinks(name, locale)
+  const computed: ComponentCrosslink[] = measured[locale]?.[name] ?? (await import('../../src/learning/index')).componentCrosslinks(name, locale)
   const seen = new Set(computed.map((entry) => entry.link))
   const normalizeLink = (link: string) => (
     /^(https?:|mailto:|#)/.test(link) || /\.(json|txt|webmanifest)$/.test(link)

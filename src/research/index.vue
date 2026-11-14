@@ -2,6 +2,7 @@
 import { ref, shallowRef } from 'vue'
 import { researchPanelComputes, millenniumPanelComputes, domainProofPanelComputes, proseStandardisedToClay } from './index.ts'
 import { harmonizeScienceDomainsInWavesOfWaves } from '../thunder/waves/index.ts'
+import { data as measured } from 'virtual:research-panel'
 import UiCard from '../../.vitepress/theme/components/ui/Card.vue'
 import UiCardContent from '../../.vitepress/theme/components/ui/CardContent.vue'
 import UiBadge from '../../.vitepress/theme/components/ui/Badge.vue'
@@ -9,11 +10,13 @@ import UiButton from '../../.vitepress/theme/components/ui/Button.vue'
 import UiSeparator from '../../.vitepress/theme/components/ui/Separator.vue'
 import { round } from '../0/index.ts'
 
-const panel = shallowRef(researchPanelComputes())
-const millennium = shallowRef(millenniumPanelComputes())
-const domainProofs = shallowRef(domainProofPanelComputes())
-const clayProse = shallowRef(proseStandardisedToClay())
-const domainHarm = shallowRef(harmonizeScienceDomainsInWavesOfWaves())
+// The panel opens on what the build measured (measuredOncePlugin): computing it on load froze the page for
+// over a minute. The Run button below still recomputes every fold live, in the reader's browser.
+const panel = shallowRef(measured.panel as ReturnType<typeof researchPanelComputes>)
+const millennium = shallowRef(measured.millennium as ReturnType<typeof millenniumPanelComputes>)
+const domainProofs = shallowRef(measured.domainProofs as ReturnType<typeof domainProofPanelComputes>)
+const clayProse = shallowRef(measured.clayProse as ReturnType<typeof proseStandardisedToClay>)
+const domainHarm = shallowRef(measured.domainHarm as ReturnType<typeof harmonizeScienceDomainsInWavesOfWaves>)
 const running = ref(false)
 const error = ref('')
 
@@ -33,7 +36,6 @@ function runMillennium() {
   }
 }
 
-runMillennium()
 </script>
 
 <template>
