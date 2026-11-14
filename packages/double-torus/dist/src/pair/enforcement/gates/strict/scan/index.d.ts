@@ -1463,6 +1463,7 @@ export type StrictGateSnapshot = {
     readonly digitReceipt: string;
     readonly receipt: string;
 };
+export declare function importSpecs(text: string): readonly string[];
 export declare function relativeImportSpecs(text: string): string[];
 export declare function importGapCount(spec: string): number;
 declare function scanImportGaps(root: string, codeFiles: readonly string[], bodies: ReadonlyMap<string, string>): StrictImportGapOffender[];

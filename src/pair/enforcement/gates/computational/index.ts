@@ -4,7 +4,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join, relative, resolve, dirname } from 'node:path'
 import { GATES, abs, antichainLevels, applyGate, ceil, cnot, floor, foldPair, isUuid, log, log2, max, merkleFold, min, probabilities, qubits, round, roundTo, sqrt, toUuid, type QuantumState } from '../../../../0/index.ts'
 import { computeCodeGravity, computePathMigration, stripStringsAndComments } from '../strict/scan/index.ts'
-import { stringMass, enforcementScanRoot } from '../strict/scan/index.ts'
+import { stringMass, enforcementScanRoot, importSpecs } from '../strict/scan/index.ts'
 export { enforcementScanRoot } from '../strict/scan/index.ts'
 import { leafFromPathTail, methodNameFromFolderTail } from '../../../../9/1/index.ts'
 import { splitCamelSegment, EIGHT_FOLD_SCIENCES, RENDER_UI_SCIENCE_MASK } from '../../../../8/2/index.ts'
@@ -284,14 +284,6 @@ const VAULT_PRIMITIVE_DEF =
   /^\s*(?:export\s+)?function\s+(toUuid|merge|merkleFold|foldPair|hash32|bytesFromSeed|seedFromText)\s*\(/m
 const REEXPORT_LINE = /^\s*export\s+(?:type\s+)?(?:\{[^}]*\}|[^;]+)\s+from\s+['"]/
 
-function relativeImportSpecs(text: string): string[] {
-  return [
-    ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]!),
-    ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]!),
-    ...[...text.matchAll(/\bimport\s+['"]([^'"]+)['"]/g)].map((m) => m[1]!),
-  ]
-}
-
 function censusDelta(actual: number, target: number): { delta: number; detail: string } {
   const delta = target - actual
   if (delta === 0) return { delta: 0, detail: 'exact — not less, not more' }
@@ -376,7 +368,7 @@ export function scanVaultViolations(
     const inVault = full.startsWith(vaultAbs)
 
     if (inVault) {
-      for (const spec of relativeImportSpecs(text)) {
+      for (const spec of importSpecs(text)) {
         if (!spec.startsWith('.')) {
           offenders.push({
             file: rel,

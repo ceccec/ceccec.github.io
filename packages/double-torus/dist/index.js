@@ -8632,13 +8632,6 @@ var VAULT_STATION = "src/0";
 var COMPUTATIONAL_LIMITS_LAW = `${NOT_LESS_NOT_MORE_LAW}; vault only in src/0; index.ts under src/; index.vue co-located at ${SRC_SCIENCE_MODEL_ACTION_SCHEMA}; paths computed at render \u2014 enforced from this fold only`;
 var VAULT_PRIMITIVE_DEF = /^\s*(?:export\s+)?function\s+(toUuid|merge|merkleFold|foldPair|hash32|bytesFromSeed|seedFromText)\s*\(/m;
 var REEXPORT_LINE = /^\s*export\s+(?:type\s+)?(?:\{[^}]*\}|[^;]+)\s+from\s+['"]/;
-function relativeImportSpecs(text) {
-  return [
-    ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]),
-    ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]),
-    ...[...text.matchAll(/\bimport\s+['"]([^'"]+)['"]/g)].map((m) => m[1])
-  ];
-}
 function censusDelta(actual, target) {
   const delta = target - actual;
   if (delta === 0) return { delta: 0, detail: "exact \u2014 not less, not more" };
@@ -8704,7 +8697,7 @@ function scanVaultViolations(root, codeFiles, bodies) {
     const text = stripComments(bodies.get(rel) ?? "");
     const inVault = full.startsWith(vaultAbs);
     if (inVault) {
-      for (const spec of relativeImportSpecs(text)) {
+      for (const spec of importSpecs(text)) {
         if (!spec.startsWith(".")) {
           offenders.push({
             file: rel,
@@ -67224,7 +67217,7 @@ function importPathTreeHopDistance(importerDirRel, importeeDirRel) {
   while (common < from.length && common < to.length && from[common] === to[common]) common += 1;
   return from.length - common + (to.length - common);
 }
-var relativeImportSpecsFromBody = relativeImportSpecs2;
+var relativeImportSpecsFromBody = relativeImportSpecs;
 function collectImportPathDistanceEdges(facts) {
   const edges = [];
   for (const file of facts.srcCodeFiles) {
@@ -67897,8 +67890,14 @@ var BYTES_PER_MEGABYTE = (2 ** (2 * 5)) ** 2;
 var CORPUS_SIZE_BUDGET_BYTES = 432 * BYTES_PER_MEGABYTE;
 var SEED_FLOOR_BYTES = 2 ** (2 * 5);
 var BYTE_EXTENT_FACTOR = 2 ** (6 * 5);
+var STRIPPED_COMMENTS = /* @__PURE__ */ new Map();
 function stripComments3(text) {
-  return text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
+  let stripped = STRIPPED_COMMENTS.get(text);
+  if (stripped === void 0) {
+    stripped = text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
+    STRIPPED_COMMENTS.set(text, stripped);
+  }
+  return stripped;
 }
 var oneMathFormulas = () => {
   const goldenDeg = String(GOLDEN_ANGLE).slice(0, 7).replace(".", "\\.");
@@ -67947,12 +67946,37 @@ function scanOneMathOffenders(root, codeFiles, bodies) {
   }
   return offenders;
 }
-function relativeImportSpecs2(text) {
-  return [
-    ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]),
+var IMPORT_SPECS = /* @__PURE__ */ new Map();
+function importSpecs(text) {
+  const known = IMPORT_SPECS.get(text);
+  if (known) return known;
+  const clause = /\bfrom\s*['"]([^'"]+)['"]/y;
+  const clauses = [];
+  for (let at = text.indexOf("from"); at !== -1; at = text.indexOf("from", at + 1)) {
+    clause.lastIndex = at;
+    const match = clause.exec(text);
+    if (match) clauses.push({ at, end: at + match[0].length, spec: match[1] });
+  }
+  const fromForms = [];
+  const keyword = /\b(?:import|export)\b/g;
+  let next = 0;
+  for (let match = keyword.exec(text); match && next < clauses.length; match = keyword.exec(text)) {
+    const end = match.index + match[0].length;
+    while (next < clauses.length && clauses[next].at < end) next += 1;
+    if (next === clauses.length) break;
+    fromForms.push(clauses[next].spec);
+    keyword.lastIndex = clauses[next].end;
+  }
+  const specs = [
+    ...fromForms,
     ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]),
     ...[...text.matchAll(/\bimport\s+['"]([^'"]+)['"]/g)].map((m) => m[1])
-  ].filter((spec) => spec.startsWith("."));
+  ];
+  IMPORT_SPECS.set(text, specs);
+  return specs;
+}
+function relativeImportSpecs(text) {
+  return importSpecs(text).filter((spec) => spec.startsWith("."));
 }
 function importGapCount(spec) {
   const match = spec.match(/^(\.\.\/)+/);
@@ -67969,7 +67993,7 @@ function scanImportGaps(root, codeFiles, bodies) {
     const maxMindGaps = depth;
     const maxSrcGaps = depth + 3;
     const rel = relative(root, file);
-    for (const spec of relativeImportSpecs2(stripComments3(bodies.get(rel) ?? ""))) {
+    for (const spec of relativeImportSpecs(stripComments3(bodies.get(rel) ?? ""))) {
       const gaps = importGapCount(spec);
       if (gaps === 0) continue;
       const resolved = resolve(dirname(file), spec);
@@ -67993,7 +68017,7 @@ function scanImports(root, codeFiles, bodies) {
   const offenders = [];
   for (const file of codeFiles) {
     const rel = relative(root, file);
-    const specs = relativeImportSpecs2(stripComments3(bodies.get(rel) ?? ""));
+    const specs = relativeImportSpecs(stripComments3(bodies.get(rel) ?? ""));
     for (const spec of specs) {
       if (!spec.startsWith(".")) continue;
       const last = spec.split("/").pop() ?? "";

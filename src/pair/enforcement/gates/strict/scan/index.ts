@@ -643,8 +643,16 @@ export function dryCleanComplete(root: string = enforcementScanRoot()) {
   }
 }
 
+// One answer per text: eight scans strip the same file bodies, and the site build runs them all (4.6 s of it
+// was this replace, repeated). The key is the text itself, so a changed file is a different key.
+const STRIPPED_COMMENTS = new Map<string, string>()
 export function stripComments(text: string): string {
-  return text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
+  let stripped = STRIPPED_COMMENTS.get(text)
+  if (stripped === undefined) {
+    stripped = text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1')
+    STRIPPED_COMMENTS.set(text, stripped)
+  }
+  return stripped
 }
 
 // ── HARDCODED-LOGIC HUNT — hand-typed string ROSTERS and their cross-file MIRRORS. A hand-list is
@@ -2616,12 +2624,46 @@ function filenameModuleExists(parentDir: string, base: string): boolean {
   return existsSync(join(parentDir, `${base}.ts`))
 }
 
-export function relativeImportSpecs(text: string): string[] {
-  return [
-    ...[...text.matchAll(/\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g)].map((m) => m[1]!),
+/**
+ * Every module specifier `text` imports or re-exports: `import|export … from 'x'`, `import('x')`, `import 'x'`.
+ *
+ * The first form used to be one regex, /\b(?:import|export)\b[\s\S]*?\bfrom\s*['"]([^'"]+)['"]/g, which rescans
+ * from every `export` word to the next `from` clause — 7.5 s of the site build on megabyte folds. This walks the
+ * same matches in one pass: the `from` clauses are located once, and each keyword takes the first clause that
+ * begins at or after its end, exactly as the lazy `[\s\S]*?` did; the search resumes after that clause.
+ */
+const IMPORT_SPECS = new Map<string, readonly string[]>()
+export function importSpecs(text: string): readonly string[] {
+  const known = IMPORT_SPECS.get(text)
+  if (known) return known
+  const clause = /\bfrom\s*['"]([^'"]+)['"]/y
+  const clauses: { at: number; end: number; spec: string }[] = []
+  for (let at = text.indexOf('from'); at !== -1; at = text.indexOf('from', at + 1)) {
+    clause.lastIndex = at
+    const match = clause.exec(text)
+    if (match) clauses.push({ at, end: at + match[0].length, spec: match[1]! })
+  }
+  const fromForms: string[] = []
+  const keyword = /\b(?:import|export)\b/g
+  let next = 0
+  for (let match = keyword.exec(text); match && next < clauses.length; match = keyword.exec(text)) {
+    const end = match.index + match[0].length
+    while (next < clauses.length && clauses[next]!.at < end) next += 1
+    if (next === clauses.length) break
+    fromForms.push(clauses[next]!.spec)
+    keyword.lastIndex = clauses[next]!.end
+  }
+  const specs = [
+    ...fromForms,
     ...[...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((m) => m[1]!),
     ...[...text.matchAll(/\bimport\s+['"]([^'"]+)['"]/g)].map((m) => m[1]!),
-  ].filter((spec) => spec.startsWith('.'))
+  ]
+  IMPORT_SPECS.set(text, specs)
+  return specs
+}
+
+export function relativeImportSpecs(text: string): string[] {
+  return importSpecs(text).filter((spec) => spec.startsWith('.'))
 }
 
 export function importGapCount(spec: string): number {
