@@ -6,18 +6,12 @@
  * nothing to find: the file is citationCff() of the sources (src/quantum/dist/readme), or the gate refuses and says which
  * line differs. npm run citation writes it; land runs it with the other generated artefacts.
  */
-import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { citationCff } from '../../src/quantum/dist/readme/index.ts'
+import { citationTreeFacts } from '../../src/pair/enforcement/ops/index.ts'
 
-/** The tree facts: package.json's version, the last commit's date (the pair .zenodo.json uses), and that version's tag. */
-function treeFacts(root: string): { version: string; date: string; tag: string | null } {
-  const version = (JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { version: string }).version
-  const date = execFileSync('git', ['-C', root, 'log', '-1', '--format=%cs'], { encoding: 'utf8' }).trim()
-  const tags = execFileSync('git', ['-C', root, 'tag', '--list', `v${version}`], { encoding: 'utf8' }).trim()
-  return { version, date, tag: tags ? `v${version}` : null }
-}
+const treeFacts = citationTreeFacts
 
 /** npm run citation — write CITATION.cff from the sources. */
 export function writeCitation(root: string = process.cwd()): void {

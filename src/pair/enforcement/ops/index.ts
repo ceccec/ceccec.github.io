@@ -115,6 +115,20 @@ export async function runMissionGateExit(root: string): Promise<number> {
   return runSlowBuildIsQuantumGapGateExit(root)
 }
 
+/**
+ * THE CITATION'S TREE FACTS, ONE READER: package.json's version, that version's tag, and the day the version was CUT —
+ * the tag's date, else the first commit that wrote this version into package.json. It was the last commit's date, which
+ * no file can carry: committing the file moves the last commit, so CITATION.cff drifted whenever a commit crossed midnight
+ * (2026-11-16, measured). A version that no commit has written yet is not released: it carries the last commit's date.
+ */
+export function citationTreeFacts(root: string): { version: string; date: string; tag: string | null } {
+  const version = (JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { version: string }).version
+  const git = (...args: string[]) => spawnSync('git', ['-C', root, ...args], { encoding: 'utf8' }).stdout.trim()
+  const tag = git('tag', '--list', `v${version}`) ? `v${version}` : null
+  const cut = tag ? git('log', '-1', '--format=%cs', tag) : git('log', `-S"version": "${version}"`, '--format=%cs', '--', 'package.json').split('\n').filter(Boolean).pop() ?? ''
+  return { version, date: cut || git('log', '-1', '--format=%cs'), tag }
+}
+
 export function runVerifyLimitsExit(root: string): number {
   const facts = collectEnforcementFacts(root)
   const audit = auditComputationalGates(facts.computational)
@@ -559,13 +573,10 @@ export async function runSyncReadmeExit(root: string, _argv: readonly string[] =
     if (after !== before) writeFileSync(join(root, rel), after)
     return { rel, placed: flat(after).includes(flat(abstract)), changed: after !== before }
   })
-  // CITATION.cff, WHOLE, FROM ITS GENERATOR — the tree facts are package.json's version, the last commit's date, and that
-  // version's tag; the same reader verify:citation and `npm run citation` use, so all three write the same bytes.
+  // CITATION.cff, WHOLE, FROM ITS GENERATOR — the tree facts come from citationTreeFacts, the one reader verify:citation
+  // and `npm run citation` use too, so all three write the same bytes.
   {
-    const version = (JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { version: string }).version
-    const date = spawnSync('git', ['-C', root, 'log', '-1', '--format=%cs'], { encoding: 'utf8' }).stdout.trim()
-    const tag = spawnSync('git', ['-C', root, 'tag', '--list', `v${version}`], { encoding: 'utf8' }).stdout.trim() ? `v${version}` : null
-    const cff = dist.citationCff({ version, date, tag })
+    const cff = dist.citationCff(citationTreeFacts(root))
     const before = readFileSync(join(root, 'CITATION.cff'), 'utf8')
     if (cff !== before) writeFileSync(join(root, 'CITATION.cff'), cff)
     surfaces.push({ rel: 'CITATION.cff (generated whole)', placed: true, changed: cff !== before })
