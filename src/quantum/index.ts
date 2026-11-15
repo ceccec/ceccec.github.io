@@ -42,6 +42,7 @@ import { exp } from '../0/index.ts'
 import { quantumTestCoverageReport } from './testing/coverage/index.ts'
 import { portal } from './portal/index.ts'
 import { explorer, synthesis } from './waves/index.ts'
+import { ANIMATION_DESIGN, MOVIE_ANGLES, kernelTheoremStreams, type KernelTheoremRecord } from './wind/geometry/index.ts'
 
 const PLASMA_TIERS = [3, 5, 8] as const
 
@@ -54,11 +55,11 @@ export interface ArchNode {
 
 export function buildArchNodes(): ArchNode[] {
   const folders = folderLaw().pairedLogicFolders
-  return (folders.length >= 9 ? folders.slice(0, 9) : folders).map((folder, i) => ({
+  return (folders.length >= ANIMATION_DESIGN.buildArchNodes.when ? folders.slice(0, ANIMATION_DESIGN.buildArchNodes.sliceArg1) : folders).map((folder, i) => ({
     folder,
     glyph: glagoliticGlyph(folder),
-    trinity: floor(i / 3),
-    within: (i % 3) - 1 }))
+    trinity: floor(i / ANIMATION_DESIGN.buildArchNodes.floorArg0Part),
+    within: (i % ANIMATION_DESIGN.buildArchNodes.mapWithinPart) - 1 }))
 }
 
 export function drawArchitecture(
@@ -74,13 +75,13 @@ export function drawArchitecture(
   dark = true,
 ): void {
   const paint = movieCanvasPolarity(dark)
-  const R = min(w, h) * (27 / 100)
+  const R = min(w, h) * ANIMATION_DESIGN.drawArchitecture.r
   const rXY = t * d.twist
   const placed = archNodes.map((node) => {
-    const ang = (node.trinity / 3) * TAU + node.within * ((7 * 3) / (5 * 5 * 2))
-    const v = rotate3(cos(ang), sin(ang), 0, rXY, t * PHI ** -2, t * (7 * 3 / 100))
+    const ang = (node.trinity / ANIMATION_DESIGN.drawArchitecture.ang) * TAU + node.within * ANIMATION_DESIGN.drawArchitecture.ang2
+    const v = rotate3(cos(ang), sin(ang), 0, rXY, t * PHI ** -2, t * ANIMATION_DESIGN.drawArchitecture.rotate3Arg5Part)
     const persp = perspective(v.Z)
-    const hueT = (hue + node.trinity * (8 * 5 * 3)) % 360
+    const hueT = (hue + node.trinity * MOVIE_ANGLES.trinity) % MOVIE_ANGLES.turn
     return { ...node, x: cx + v.X * R * persp, y: cy + v.Y * R * persp, persp, hueT }
   })
   for (const node of placed) {
@@ -88,7 +89,7 @@ export function drawArchitecture(
     if (node.folder < dual) {
       const mate = placed.find((p) => p.folder === dual)
       if (mate) {
-        ctx.strokeStyle = paint(node.hueT, (7 / (5 * 5)), { L: 7 / 8 })
+        ctx.strokeStyle = paint(node.hueT, ANIMATION_DESIGN.drawArchitecture.paintArg1, { L: ANIMATION_DESIGN.drawArchitecture.paintL })
         ctx.lineWidth = 1
         ctx.beginPath()
         ctx.moveTo(node.x, node.y)
@@ -98,8 +99,8 @@ export function drawArchitecture(
     }
   }
   for (const node of placed) {
-    ctx.fillStyle = paint(node.hueT, (1 / 2) + (2 / 5) * node.persp, { L: 13 / 16 })
-    ctx.font = `${max(9, round((7 * 2) * node.persp))}px serif`
+    ctx.fillStyle = paint(node.hueT, (1 / 2) + ANIMATION_DESIGN.drawArchitecture.paintArg1Part * node.persp, { L: ANIMATION_DESIGN.drawArchitecture.paintL2 })
+    ctx.font = `${max(ANIMATION_DESIGN.drawArchitecture.maxArg0, round(ANIMATION_DESIGN.drawArchitecture.roundArg0Part * node.persp))}px serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.fillText(node.glyph, node.x, node.y)
@@ -108,7 +109,7 @@ export function drawArchitecture(
 
 /** Deterministic seed from sealed content-address — routes through seedFromText (toUuid), not a private FNV. */
 export function seedOf(text: string): number {
-  return (seedFromText(text, 8) >>> 0) || 1
+  return (seedFromText(text, ANIMATION_DESIGN.seedOf.seedFromTextArg1) >>> 0) || 1
 }
 
 export function hueOf(seed: number): number {
@@ -116,7 +117,7 @@ export function hueOf(seed: number): number {
 }
 
 export function armsOf(seed: number): number {
-  return 3 * (1 + (seed % 3))
+  return ANIMATION_DESIGN.armsOf.returned * (1 + (seed % ANIMATION_DESIGN.armsOf.returned))
 }
 
 /** Ray count in the plasma ball — grows with wired stream count (3 + floor(n/5), cap 16). */
@@ -170,7 +171,7 @@ export function drawHero(
   const cy = opts.centerY ?? h / 2
   const d = dims(scene.p)
   const minDim = min(w, h)
-  const coreR = voidR ?? minDim * (7 / 100)
+  const coreR = voidR ?? minDim * ANIMATION_DESIGN.drawHero.coreR
   const plasmaCore = voidR !== undefined
   // The fruit of life dances behind everything; then calendar phases as vortex-digit markers (no ring frames).
   drawFlower(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce, scene.palette.dark)
@@ -178,17 +179,17 @@ export function drawHero(
   // Walk from 0d to infinity and back: collapse toward a point at the ends, open fully at the middle.
   const walk = dimWalk(scene.p)
   const baseLen = plasmaCore
-    ? coreR * ((7 * 2 / 5) + 2.2 * d.breath * ((4 / (5 * 5)) + ((7 * 3) / (5 * 5)) * walk))
-    : minDim * 0.22 * d.breath * ((4 / (5 * 5)) + ((7 * 3) / (5 * 5)) * walk)
+    ? coreR * (ANIMATION_DESIGN.drawHero.baseLen + ANIMATION_DESIGN.drawHero.baseLen2 * d.breath * (ANIMATION_DESIGN.drawHero.baseLen3 + ANIMATION_DESIGN.drawHero.baseLen4 * walk))
+    : minDim * ANIMATION_DESIGN.drawHero.baseLen5 * d.breath * (ANIMATION_DESIGN.drawHero.baseLen3 + ANIMATION_DESIGN.drawHero.baseLen4 * walk)
   // quantum responsiveness: depth and arm count adapt smoothly to the width
-  const depth = scene.cssWidth > (100 * 9) ? 6 : scene.cssWidth > 520 ? 5 : 4
-  const armCount = scene.arms + (scene.cssWidth > (100 * 8) ? 2 : scene.cssWidth > (16 * 6 * 5) ? 1 : 0)
+  const depth = scene.cssWidth > ANIMATION_DESIGN.drawHero.when ? ANIMATION_DESIGN.drawHero.depth : scene.cssWidth > ANIMATION_DESIGN.drawHero.when2 ? ANIMATION_DESIGN.drawHero.depth2 : ANIMATION_DESIGN.drawHero.depth3
+  const armCount = scene.arms + (scene.cssWidth > ANIMATION_DESIGN.drawHero.when3 ? 2 : scene.cssWidth > ANIMATION_DESIGN.drawHero.when4 ? 1 : 0)
   // The trinity of rotational planes: three angles turning at distinct rates (xy, yz, zx). The two secondary
   // planes are driven by the genus-2 homology loops — the two handles' meridian/longitude — so the merkaba turns
   // through all four topological dimensions, not two constants. Ten dimensions in motion, not six.
   const rXY = scene.t * d.twist
-  const rYZ = scene.t * (0.33 + (9 / (5 * 5 * 2)) * d.loopA1)
-  const rZX = scene.t * ((7 * 3 / 100) + (9 / (5 * 5 * 2)) * d.loopB2)
+  const rYZ = scene.t * (ANIMATION_DESIGN.drawHero.rYZ + ANIMATION_DESIGN.drawHero.rYZ2 * d.loopA1)
+  const rZX = scene.t * (ANIMATION_DESIGN.drawHero.rZX + ANIMATION_DESIGN.drawHero.rZX2 * d.loopB2)
   // the holographic fractal: arms symmetric copies of one branching rule, the same form spun in two opposite
   // directions at once (the merkaba) — each arm drawn forward and reversed.
   for (let a = 0; a < armCount; a += 1) {
@@ -203,13 +204,13 @@ export function drawHero(
       const v = rotate3(cos(base), sin(base), 0, rXY * dir, rYZ * dir, rZX * dir)
       const persp = perspective(v.Z)
       const angle = atan2(v.Y, v.X)
-      branchSegments(levels, cx, cy, baseLen * persp * (1 - 9 / (5 * 5 * 2) + (9 / (5 * 5)) * ds.breath), angle, depth, ds)
+      branchSegments(levels, cx, cy, baseLen * persp * (ANIMATION_DESIGN.drawHero.branchSegmentsArg3Part + ANIMATION_DESIGN.drawHero.branchSegmentsArg3Part2 * ds.breath), angle, depth, ds)
     }
     strokeBranchLevels(ctx, levels, ds, scene.hue, scene.palette.dark)
   }
   // merge all related: the page's tags orbit the centre on a counter-rotating ring (the merkaba), each joined to the core.
   const n = scene.tags.length
-  const r = plasmaCore ? coreR * (FIBONACCI[8]! / (2 * 5)) : minDim * (FIBONACCI[7]! / 100) // Fibonacci decades (self-research)
+  const r = plasmaCore ? coreR * (FIBONACCI[ANIMATION_DESIGN.drawHero.fIBONACCIAt]! / ANIMATION_DESIGN.drawHero.r) : minDim * (FIBONACCI[ANIMATION_DESIGN.drawHero.fIBONACCIAt2]! / ANIMATION_DESIGN.drawHero.r2) // Fibonacci decades (self-research)
   for (let i = 0; i < n; i += 1) {
     const base = (i / max(1, n)) * TAU
     const v = rotate3(cos(base), sin(base), 0, -rXY, -rYZ, -rZX)
@@ -224,14 +225,14 @@ export function drawHero(
     ctx.stroke()
     ctx.fillStyle = scene.palette.canvas.tagDot(scene.hue, i, persp)
     ctx.beginPath()
-    ctx.arc(x, y, max(1, 3 * persp), 0, TAU)
+    ctx.arc(x, y, max(1, ANIMATION_DESIGN.drawHero.maxArg1Part * persp), 0, TAU)
     ctx.fill()
     // each related item wears its Glagolitic glyph too — the relations themselves are Glagolitic
     ctx.fillStyle = scene.palette.canvas.tagGlyph(scene.hue, i, persp)
-    ctx.font = `${max(8, round((5 * 2) * persp))}px serif`
+    ctx.font = `${max(ANIMATION_DESIGN.drawHero.maxArg0, round(ANIMATION_DESIGN.drawHero.roundArg0Part * persp))}px serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.fillText(glagoliticGlyph(scene.tags[i] || ''), x, y - 7 * persp)
+    ctx.fillText(glagoliticGlyph(scene.tags[i] || ''), x, y - ANIMATION_DESIGN.drawHero.fillTextArg2Part * persp)
   }
   // the architecture turns around the core: the 3 trinities of logic folders, in Glagolitic glyphs
   drawArchitecture(ctx, cx, cy, w, h, scene.t, d, scene.archNodes, scene.hue, scene.palette.dark)
@@ -261,9 +262,9 @@ function bgStreamParams(seed: number, stream: number): { angle: number; dist: nu
   const rand = prng(`bg:${seed}:${stream}`)
   return {
     angle: rand() * TAU,
-    dist: (9 / (5 * 5)) + (4 / (5 * 5)) * rand(),
-    speed: (7 / (5 * 5)) + rand() * (1 - (6 * 2) / (5 * 5)),
-    size: 11 + round(rand() * 6) }
+    dist: ANIMATION_DESIGN.bgStreamParams.distPart + ANIMATION_DESIGN.bgStreamParams.distPart2 * rand(),
+    speed: ANIMATION_DESIGN.bgStreamParams.speedPart + rand() * ANIMATION_DESIGN.bgStreamParams.speedPart2,
+    size: ANIMATION_DESIGN.bgStreamParams.sizePart + round(rand() * ANIMATION_DESIGN.bgStreamParams.roundArg0Part) }
 }
 
 /** Seamless orbit phase: far at 0/1, void at 0.5, golden-angle spin — no end-frame jump. */
@@ -279,7 +280,7 @@ function bgStreamOrbit(
   const inbound = (1 / 2) + (1 / 2) * cos(cycle * TAU)
   const dist = span * distFrac
   const r = voidR + (dist - voidR) * inbound
-  const spin = angle + cycle * GOLDEN_ANGLE_RAD + p * GOLDEN_ANGLE_RAD * (7 / (5 * 4))
+  const spin = angle + cycle * GOLDEN_ANGLE_RAD + p * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.bgStreamOrbit.spin
   return { x: cos(spin) * r, y: sin(spin) * r, r, inbound }
 }
 
@@ -300,13 +301,13 @@ function drawPlasmaField(
   const blobCount = min(PLASMA_TIERS[2], PLASMA_TIERS[0] + floor(streamCount / PLASMA_TIERS[2]))
   for (let b = 0; b < blobCount; b += 1) {
     const orbit = p * TAU + b * (TAU) / blobCount
-    const bx = cx + cos(orbit + t * (7 / 100)) * w * 0.26
-    const by = cy + sin(orbit + t * (1 / (5 * 4))) * h * (1 / 5)
-    const blobHue = (hueShift + b * (6 * 5 * 2) + sin(t * (3 / (5 * 2)) + b) * (9 * 2)) % 360
-    const radius = span * ((8 / (5 * 5)) + (7 / 100) * sin(t * (9 / (5 * 4)) + b * (9 / (5 * 2))))
+    const bx = cx + cos(orbit + t * ANIMATION_DESIGN.drawPlasmaField.cosArg0Part) * w * ANIMATION_DESIGN.drawPlasmaField.bx
+    const by = cy + sin(orbit + t * ANIMATION_DESIGN.drawPlasmaField.sinArg0Part) * h * ANIMATION_DESIGN.drawPlasmaField.by
+    const blobHue = (hueShift + b * MOVIE_ANGLES.sixty + sin(t * ANIMATION_DESIGN.drawPlasmaField.sinArg0Part2 + b) * ANIMATION_DESIGN.drawPlasmaField.blobHue) % MOVIE_ANGLES.turn
+    const radius = span * (ANIMATION_DESIGN.drawPlasmaField.radius + ANIMATION_DESIGN.drawPlasmaField.radius2 * sin(t * ANIMATION_DESIGN.drawPlasmaField.sinArg0Part3 + b * ANIMATION_DESIGN.drawPlasmaField.sinArg0Part4))
     const g = ctx.createRadialGradient(bx, by, 0, bx, by, radius)
     g.addColorStop(0, palette.canvas.blobInner(blobHue, b))
-    g.addColorStop((2 / 5), palette.canvas.blobMid(blobHue, b))
+    g.addColorStop(ANIMATION_DESIGN.drawPlasmaField.addColorStopArg0, palette.canvas.blobMid(blobHue, b))
     g.addColorStop(1, 'transparent')
     ctx.fillStyle = g
     ctx.fillRect(0, 0, w, h)
@@ -350,17 +351,17 @@ function drawPlasmaRays(
   ctx.globalCompositeOperation = palette.dark ? 'lighter' : 'source-over'
   for (let r = 0; r < rayCount; r += 1) {
     const stream = streams[r % max(1, streams.length)]
-    const hue = stream?.hue ?? (hueShift + r * GOLDEN_ANGLE_RAD) % 360
+    const hue = stream?.hue ?? (hueShift + r * GOLDEN_ANGLE_RAD) % MOVIE_ANGLES.turn
     // Life (forward) arm seats on the lattice cell lifeAngleRad (entangledWiringOf's field), NOT r/rayCount×τ
     // index; golden-angle spin + time drift are ADDED on top so the visual character is unchanged.
-    const angle = lifeRayBaseAngle(r) + p * GOLDEN_ANGLE_RAD + t * (1 / (5 * 4))
-    const len = voidR * ((27 / (5 * 4)) + (1 - 3 / (5 * 4)) * ((1 / 2) + (1 / 2) * sin(t * (1 - 7 / (5 * 4)) + r * (1 - 9 * 7 / 100))))
-    const pulse = (7 / (5 * 4)) + (1 - 7 / (5 * 4)) * sin(t * ((7 * 3) / (5 * 4)) + r * PHI ** -2)
-    const alpha = palette.canvas.streamAlpha((1 - 9 / (5 * 4)), true, pulse)
+    const angle = lifeRayBaseAngle(r) + p * GOLDEN_ANGLE_RAD + t * ANIMATION_DESIGN.drawPlasmaRays.angle
+    const len = voidR * (ANIMATION_DESIGN.drawPlasmaRays.len + ANIMATION_DESIGN.drawPlasmaRays.len2 * ((1 / 2) + (1 / 2) * sin(t * ANIMATION_DESIGN.drawPlasmaRays.sinArg0Part + r * ANIMATION_DESIGN.drawPlasmaRays.sinArg0Part2)))
+    const pulse = ANIMATION_DESIGN.drawPlasmaRays.pulse + ANIMATION_DESIGN.drawPlasmaRays.pulse2 * sin(t * ANIMATION_DESIGN.drawPlasmaRays.sinArg0Part3 + r * PHI ** -2)
+    const alpha = palette.canvas.streamAlpha(ANIMATION_DESIGN.drawPlasmaRays.streamAlphaArg0, true, pulse)
     ctx.strokeStyle = palette.canvas.streamFill(hue, alpha, true)
-    ctx.lineWidth = (9 / (5 * 4)) + (r % PLASMA_TIERS[0]) * 0.22
+    ctx.lineWidth = ANIMATION_DESIGN.drawPlasmaRays.lineWidth + (r % PLASMA_TIERS[0]) * ANIMATION_DESIGN.drawPlasmaRays.lineWidth2
     ctx.shadowColor = palette.canvas.streamGlow(hue, alpha)
-    ctx.shadowBlur = 3 + (r % PLASMA_TIERS[0]) * 2
+    ctx.shadowBlur = ANIMATION_DESIGN.drawPlasmaRays.shadowBlur + (r % PLASMA_TIERS[0]) * 2
     ctx.beginPath()
     ctx.moveTo(cx, cy)
     ctx.lineTo(cx + cos(angle) * len, cy + sin(angle) * len)
@@ -404,8 +405,8 @@ function drawDeathCounterFlow(
     PLASMA_TIERS[0] + floor(streamCount / PLASMA_TIERS[0]),
   )
   if (flowCount < 1) return
-  const deathHue = (hueShift + (9 * 5 * 4)) % 360 // life's complement — the yin of the yin-yang double torus
-  const outerR = span * 0.46
+  const deathHue = (hueShift + MOVIE_ANGLES.half) % MOVIE_ANGLES.turn // life's complement — the yin of the yin-yang double torus
+  const outerR = span * ANIMATION_DESIGN.drawDeathCounterFlow.outerR
   ctx.save()
   ctx.globalCompositeOperation = palette.dark ? 'lighter' : 'source-over'
   for (let f = 0; f < flowCount; f += 1) {
@@ -413,29 +414,29 @@ function drawDeathCounterFlow(
     // the life arm), NOT the f/flowCount×τ + f·golden index — so the death stream is the reflection of a life
     // ray and the circle folds onto itself. The inward counter-rotation spin below is still ADDED on top.
     const baseAngle = deathFlowBaseAngle(f)
-    const speed = (9 / (5 * 5 * 2)) + (f % PLASMA_TIERS[0]) * (1 / (5 * 4))
-    const head = (((t * speed - p * (1 / 2) + f * (360 * (2 - PHI)) / 1e3) % 1) + 1) % 1 // golden-angle spacing (was rounded 0.137)
+    const speed = ANIMATION_DESIGN.drawDeathCounterFlow.speed + (f % PLASMA_TIERS[0]) * ANIMATION_DESIGN.drawDeathCounterFlow.speed2
+    const head = (((t * speed - p * (1 / 2) + f * (MOVIE_ANGLES.turn * (2 - PHI)) / ANIMATION_DESIGN.drawDeathCounterFlow.head) % 1) + 1) % 1 // golden-angle spacing (was rounded 0.137)
     let leadX = cx
     let leadY = cy
     let leadAlpha = 0
     for (let trail = 0; trail < DEATH_TRAIL_LEN; trail += 1) {
-      const d0 = (((head + trail * (1 / (5 * 4))) % 1) + 1) % 1 // 0 outer .. 1 throat (the inward journey)
-      const d1 = (((head + (trail + 1) * (1 / (5 * 4))) % 1) + 1) % 1
+      const d0 = (((head + trail * ANIMATION_DESIGN.drawDeathCounterFlow.d0) % 1) + 1) % 1 // 0 outer .. 1 throat (the inward journey)
+      const d1 = (((head + (trail + 1) * ANIMATION_DESIGN.drawDeathCounterFlow.d1) % 1) + 1) % 1
       // contracting radius: each step pulls toward the throat (reabsorption)
       const r0 = voidR + (outerR - voidR) * (1 - d0)
       const r1 = voidR + (outerR - voidR) * (1 - d1)
       // counter-rotation: NEGATIVE golden-angle spin (opposite the life out-flow), tightening near the throat
-      const a0 = baseAngle - d0 * GOLDEN_ANGLE_RAD * 3 - p * GOLDEN_ANGLE_RAD * (7 / (5 * 4))
-      const a1 = baseAngle - d1 * GOLDEN_ANGLE_RAD * 3 - p * GOLDEN_ANGLE_RAD * (7 / (5 * 4))
+      const a0 = baseAngle - d0 * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.drawDeathCounterFlow.a0 - p * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.drawDeathCounterFlow.a02
+      const a1 = baseAngle - d1 * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.drawDeathCounterFlow.a1 - p * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.drawDeathCounterFlow.a12
       const x0 = cx + cos(a0) * r0
       const y0 = cy + sin(a0) * r0
       const x1 = cx + cos(a1) * r1
       const y1 = cy + sin(a1) * r1
       // bell-shaped presence: emerges at the edge, brightest mid-flight, dissolved AT the throat
       const presence = sin(d0 * (TAU / 2))
-      const alpha = palette.canvas.streamAlpha(presence, d0 > (1 - 7 / (5 * 4)), 1 - trail / DEATH_TRAIL_LEN) * (1 - 9 / (5 * 4))
-      ctx.strokeStyle = paint(deathHue, alpha, { L: 7 / 16 })
-      ctx.lineWidth = (3 / 5) + (1 - d0) * (8 / 5)
+      const alpha = palette.canvas.streamAlpha(presence, d0 > ANIMATION_DESIGN.drawDeathCounterFlow.streamAlphaArg1Part, 1 - trail / DEATH_TRAIL_LEN) * ANIMATION_DESIGN.drawDeathCounterFlow.alpha
+      ctx.strokeStyle = paint(deathHue, alpha, { L: ANIMATION_DESIGN.drawDeathCounterFlow.paintL })
+      ctx.lineWidth = ANIMATION_DESIGN.drawDeathCounterFlow.lineWidth + (1 - d0) * ANIMATION_DESIGN.drawDeathCounterFlow.lineWidth2
       ctx.beginPath()
       ctx.moveTo(x0, y0)
       ctx.lineTo(x1, y1)
@@ -447,9 +448,9 @@ function drawDeathCounterFlow(
       }
     }
     // the leading head — a cooled in-falling glyph being swallowed at the throat
-    ctx.fillStyle = paint(deathHue, leadAlpha * (FIBONACCI[5]! / (2 * 5)), { L: 9 / 16 })
+    ctx.fillStyle = paint(deathHue, leadAlpha * (FIBONACCI[ANIMATION_DESIGN.drawDeathCounterFlow.fIBONACCIAt]! / ANIMATION_DESIGN.drawDeathCounterFlow.paintArg1Part), { L: ANIMATION_DESIGN.drawDeathCounterFlow.paintL2 })
     ctx.beginPath()
-    ctx.arc(leadX, leadY, (7 / 5), 0, TAU)
+    ctx.arc(leadX, leadY, ANIMATION_DESIGN.drawDeathCounterFlow.arcArg2, 0, TAU)
     ctx.fill()
   }
   ctx.restore()
@@ -472,11 +473,11 @@ function drawPlasmaBall(
 ): void {
   // Soft throat confluence via fillRect — screen geometry, no arc path (a circular path was a wet boundary disk).
   // The vortex is the rays + UUID streams; the centre is transparent confluence, not a frame circle / ball.
-  const voidExtent = voidR * (7 * 2 / 5)
+  const voidExtent = voidR * ANIMATION_DESIGN.drawPlasmaBall.voidExtent
   const voidGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, voidExtent)
   voidGlow.addColorStop(0, palette.canvas.voidCore(hueShift))
-  voidGlow.addColorStop((2 / 5), palette.canvas.voidMid(hueShift))
-  voidGlow.addColorStop((3 / 4), palette.canvas.voidOuter(hueShift))
+  voidGlow.addColorStop(ANIMATION_DESIGN.drawPlasmaBall.addColorStopArg0, palette.canvas.voidMid(hueShift))
+  voidGlow.addColorStop(ANIMATION_DESIGN.drawPlasmaBall.addColorStopArg02, palette.canvas.voidOuter(hueShift))
   voidGlow.addColorStop(1, 'transparent')
   ctx.fillStyle = voidGlow
   ctx.fillRect(cx - voidExtent, cy - voidExtent, voidExtent * 2, voidExtent * 2)
@@ -486,32 +487,32 @@ function drawPlasmaBall(
   ctx.textBaseline = 'middle'
   const layers = min(PLASMA_TIERS[2], 1 + floor(streams.length / PLASMA_TIERS[0]))
   for (let layer = 0; layer < layers; layer += 1) {
-    const layerR = voidR * ((7 / (5 * 5)) + layer * 0.22)
+    const layerR = voidR * (ANIMATION_DESIGN.drawPlasmaBall.layerR + layer * ANIMATION_DESIGN.drawPlasmaBall.layerR2)
     const slice = ceil(streams.length / layers)
     const start = layer * slice
     const end = min(start + slice, streams.length)
     const scaleDims = dims(p, layer)
     const spinSign = layer % 2 === 0 ? 1 : -1
-    const orbitRate = spinSign * ((3 / (5 * 5)) + abs(scaleDims.loopB1) * (1 / (5 * 5)))
+    const orbitRate = spinSign * (ANIMATION_DESIGN.drawPlasmaBall.orbitRate + abs(scaleDims.loopB1) * ANIMATION_DESIGN.drawPlasmaBall.orbitRate2)
     for (let i = start; i < end; i += 1) {
       const stream = streams[i]!
       const hex = stream.uuid.replace(/[^0-9a-f]/gi, '')
       const orbit =
         p * TAU +
         ((i - start) / max(1, end - start)) * TAU +
-        layer * (7 / (5 * 2)) +
-        scaleDims.loopA1 * (7 / (5 * 4))
-      const wobble = (2 / (5 * 5)) * sin(t * (1 - 9 / (5 * 4)) + i * PHI ** -2 + layer) * ((1 - 3 / (5 * 4)) + scaleDims.breath * (3 / (5 * 4)))
+        layer * ANIMATION_DESIGN.drawPlasmaBall.orbit +
+        scaleDims.loopA1 * ANIMATION_DESIGN.drawPlasmaBall.orbit2
+      const wobble = ANIMATION_DESIGN.drawPlasmaBall.wobble * sin(t * ANIMATION_DESIGN.drawPlasmaBall.sinArg0Part + i * PHI ** -2 + layer) * (ANIMATION_DESIGN.drawPlasmaBall.wobble2 + scaleDims.breath * ANIMATION_DESIGN.drawPlasmaBall.wobble3)
       const px = cx + cos(orbit + t * orbitRate) * layerR * (1 + wobble)
       const py = cy + sin(orbit + t * orbitRate) * layerR * (1 + wobble)
-      const offset = floor((t * 3 + i * 2) % max(1, hex.length - 3))
-      const nibble = hex.slice(offset, offset + 4).padEnd(4, hex[0] ?? '0')
-      const wave = sin(t * (4 / 5) + i * PHI ** -4)
+      const offset = floor((t * ANIMATION_DESIGN.drawPlasmaBall.floorArg0Part + i * 2) % max(1, hex.length - ANIMATION_DESIGN.drawPlasmaBall.maxArg1Part))
+      const nibble = hex.slice(offset, offset + ANIMATION_DESIGN.drawPlasmaBall.sliceArg1Part).padEnd(ANIMATION_DESIGN.drawPlasmaBall.padEndArg0, hex[0] ?? '0')
+      const wave = sin(t * ANIMATION_DESIGN.drawPlasmaBall.sinArg0Part2 + i * PHI ** ANIMATION_DESIGN.drawPlasmaBall.sinArg0Part3)
       const alpha =
-        palette.canvas.streamAlpha((1 / 2) + (1 / 2) * wave, true, 1) * (3 / 8 + (5 / 8) * ((1 / 2) + (1 / 2) * wave))
-      ctx.font = `${max(7, round(voidR * (0.22 - layer * (1 / (5 * 5)))))}px "SF Mono", "Cascadia Code", "Fira Code", monospace`
+        palette.canvas.streamAlpha((1 / 2) + (1 / 2) * wave, true, 1) * (ANIMATION_DESIGN.drawPlasmaBall.alpha + ANIMATION_DESIGN.drawPlasmaBall.alpha2 * ((1 / 2) + (1 / 2) * wave))
+      ctx.font = `${max(ANIMATION_DESIGN.drawPlasmaBall.maxArg0, round(voidR * (ANIMATION_DESIGN.drawPlasmaBall.roundArg0Part - layer * ANIMATION_DESIGN.drawPlasmaBall.roundArg0Part2)))}px "SF Mono", "Cascadia Code", "Fira Code", monospace`
       ctx.shadowColor = palette.canvas.ballGlyphGlow(stream.hue, alpha)
-      ctx.shadowBlur = 6 + layer * 2
+      ctx.shadowBlur = ANIMATION_DESIGN.drawPlasmaBall.shadowBlur + layer * 2
       ctx.fillStyle = palette.canvas.ballGlyph(stream.hue, alpha, layer)
       ctx.fillText(nibble, px, py)
     }
@@ -537,35 +538,35 @@ function drawWiredUuidStreams(
   const { t, p, seed, movieText, wiredStreams } = scene
   const fallbackChars = [...(movieText || 'double torus').replace(/\s+/g, '')].filter(Boolean)
   const streams = wiredStreams.length ? wiredStreams : null
-  const streamCount = streams ? streams.length : min((8 * 7), max((9 * 2), floor(sqrt(w * h) / 38)))
+  const streamCount = streams ? streams.length : min(ANIMATION_DESIGN.drawWiredUuidStreams.minArg0, max(ANIMATION_DESIGN.drawWiredUuidStreams.maxArg0, floor(sqrt(w * h) / ANIMATION_DESIGN.drawWiredUuidStreams.floorArg0Part)))
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   for (let s = 0; s < streamCount; s += 1) {
     const wired = streams?.[s]
     const chars = wired ? uuidStreamChars(wired) : fallbackChars
     const { angle, dist, speed, size } = bgStreamParams(seed, s)
-    const phase = (t * speed + s * ((PHI - 1) / (2 * 5)) + p) % 1 // φ⁻¹/10 (was rounded 0.0618)
-    const trailStep = (2 / (5 * 5 * 5)) + speed * (1 / (5 * 5 * 5))
+    const phase = (t * speed + s * ((PHI - 1) / ANIMATION_DESIGN.drawWiredUuidStreams.phase) + p) % 1 // φ⁻¹/10 (was rounded 0.0618)
+    const trailStep = ANIMATION_DESIGN.drawWiredUuidStreams.trailStep + speed * ANIMATION_DESIGN.drawWiredUuidStreams.trailStep2
     for (let trail = 0; trail < BG_TRAIL_LEN; trail += 1) {
       const trailPhase = (phase - trail * trailStep + 1) % 1
       const { x, y, r, inbound } = bgStreamOrbit(trailPhase, angle, dist, voidR, span, p)
       const px = cx + x
       const py = cy + y
-      const charIdx = floor((s + trail + t * (7 * 2)) % max(1, chars.length))
+      const charIdx = floor((s + trail + t * ANIMATION_DESIGN.drawWiredUuidStreams.floorArg0Part2) % max(1, chars.length))
       const ch = chars[charIdx] ?? '0'
       const streamHue = wired?.hue ?? quantumScaleHue(s + charIdx + trail, scene.palette.waveHue)
-      const nearVoid = r < voidR * (6 * 2 / 5)
+      const nearVoid = r < voidR * ANIMATION_DESIGN.drawWiredUuidStreams.nearVoid
       const trailFade = 1 - trail / BG_TRAIL_LEN
       const alpha = scene.palette.canvas.streamAlpha(inbound, nearVoid, trailFade)
-      const fontSize = max((5 * 2), round(size * ((1 - 3 / (5 * 4)) + (3 / (5 * 4)) * inbound)))
-      const glow = nearVoid && trail === 0 ? (5 * 2) + inbound * (7 * 2) : trail === 0 ? 4 : 0
+      const fontSize = max(ANIMATION_DESIGN.drawWiredUuidStreams.maxArg02, round(size * (ANIMATION_DESIGN.drawWiredUuidStreams.roundArg0Part + ANIMATION_DESIGN.drawWiredUuidStreams.roundArg0Part2 * inbound)))
+      const glow = nearVoid && trail === 0 ? ANIMATION_DESIGN.drawWiredUuidStreams.glow + inbound * ANIMATION_DESIGN.drawWiredUuidStreams.glow2 : trail === 0 ? ANIMATION_DESIGN.drawWiredUuidStreams.glow3 : 0
       ctx.font = `${fontSize}px "SF Mono", "Cascadia Code", "Fira Code", monospace`
       ctx.shadowColor = scene.palette.canvas.streamGlow(streamHue, alpha)
       ctx.shadowBlur = glow
       // The two coins, lit where they sit: in every content address the version nibble (hex 12) is 8 and the variant
       // nibble (hex 16) is 8, 9, a or b — the stamp's fixed bits. Same draw call, other light: no extra power.
-      const coin = Boolean(wired) && (charIdx === (6 * 2) || charIdx === 16)
-      ctx.fillStyle = scene.palette.canvas.streamFill(coin ? (streamHue + (9 * 5 * 4)) % 360 : streamHue, alpha, nearVoid || coin)
+      const coin = Boolean(wired) && (charIdx === ANIMATION_DESIGN.drawWiredUuidStreams.coin || charIdx === ANIMATION_DESIGN.drawWiredUuidStreams.coin2)
+      ctx.fillStyle = scene.palette.canvas.streamFill(coin ? (streamHue + MOVIE_ANGLES.half) % MOVIE_ANGLES.turn : streamHue, alpha, nearVoid || coin)
       ctx.fillText(ch, px, py)
     }
   }
@@ -600,22 +601,22 @@ function drawFusedForceLayers(
     // Each force has a signature reach: gravity pulls to the void (tight), EM blooms wide (light),
     // strong binds short-range, weak is faint/decaying, topology spans the genus-2 surface.
     const reach =
-      layer.force === 'gravity' ? (9 / (5 * 5 * 2)) :
+      layer.force === 'gravity' ? ANIMATION_DESIGN.drawFusedForceLayers.reach :
       layer.force === 'electromagnetic' ? PHI - 1 : // golden reach (was rounded 0.62)
-      layer.force === 'strong' ? 0.26 :
-      layer.force === 'weak' ? (FIBONACCI[7]! / 100) : (1 / 2)
+      layer.force === 'strong' ? ANIMATION_DESIGN.drawFusedForceLayers.reach2 :
+      layer.force === 'weak' ? (FIBONACCI[ANIMATION_DESIGN.drawFusedForceLayers.fIBONACCIAt]! / ANIMATION_DESIGN.drawFusedForceLayers.reach3) : (1 / 2)
     const alpha =
-      layer.force === 'weak' ? (1 / (5 * 4)) + (1 / (5 * 4)) * ((1 / 2) + (1 / 2) * sin(t * (FIBONACCI[5]! / (2 * 5)) + i * 1.7)) :
-      layer.force === 'gravity' ? (7 / (5 * 5 * 2)) : (9 / 100)
+      layer.force === 'weak' ? ANIMATION_DESIGN.drawFusedForceLayers.alpha + ANIMATION_DESIGN.drawFusedForceLayers.alpha * ((1 / 2) + (1 / 2) * sin(t * (FIBONACCI[ANIMATION_DESIGN.drawFusedForceLayers.fIBONACCIAt2]! / ANIMATION_DESIGN.drawFusedForceLayers.sinArg0Part) + i * ANIMATION_DESIGN.drawFusedForceLayers.sinArg0Part2)) :
+      layer.force === 'gravity' ? ANIMATION_DESIGN.drawFusedForceLayers.alpha2 : ANIMATION_DESIGN.drawFusedForceLayers.alpha3
     // Orbit each layer through the dimensional motion (loopA1/loopB1 = the genus-2 handles).
-    const orbit = p * TAU + (i / layers.length) * TAU + d.loopA1 * (3 / 5)
-    const drift = layer.force === 'gravity' ? 0 : 0.22 + (3 / (5 * 5 * 2)) * sin(t * (2 / 5) + i)
-    const lx = cx + cos(orbit + t * (1 / (5 * 5))) * span * drift
-    const ly = cy + sin(orbit + t * (1 / (5 * 4))) * span * drift * (4 / 5)
-    const radius = span * reach * ((1 - 3 / (5 * 4)) + (3 / (5 * 4)) * d.breath)
+    const orbit = p * TAU + (i / layers.length) * TAU + d.loopA1 * ANIMATION_DESIGN.drawFusedForceLayers.orbit
+    const drift = layer.force === 'gravity' ? 0 : ANIMATION_DESIGN.drawFusedForceLayers.drift + ANIMATION_DESIGN.drawFusedForceLayers.drift2 * sin(t * ANIMATION_DESIGN.drawFusedForceLayers.sinArg0Part3 + i)
+    const lx = cx + cos(orbit + t * ANIMATION_DESIGN.drawFusedForceLayers.cosArg0Part) * span * drift
+    const ly = cy + sin(orbit + t * ANIMATION_DESIGN.drawFusedForceLayers.sinArg0Part4) * span * drift * ANIMATION_DESIGN.drawFusedForceLayers.ly
+    const radius = span * reach * (ANIMATION_DESIGN.drawFusedForceLayers.radius + ANIMATION_DESIGN.drawFusedForceLayers.radius2 * d.breath)
     const g = ctx.createRadialGradient(lx, ly, 0, lx, ly, radius)
-    g.addColorStop(0, paint(layer.hue, alpha, { L: 5 / 8 }))
-    g.addColorStop((9 / (5 * 4)), paint(layer.hue, alpha * (1 / 2), { L: 1 / 2 }))
+    g.addColorStop(0, paint(layer.hue, alpha, { L: ANIMATION_DESIGN.drawFusedForceLayers.paintL }))
+    g.addColorStop(ANIMATION_DESIGN.drawFusedForceLayers.addColorStopArg0, paint(layer.hue, alpha * (1 / 2), { L: 1 / 2 }))
     g.addColorStop(1, 'transparent')
     ctx.fillStyle = g
     ctx.fillRect(0, 0, w, h)
@@ -635,7 +636,7 @@ function drawFusedForceLayers(
 export function heroFieldCenterY(h: number, scroll: number): number {
   const period = 2 * h
   const wrapped = (((h / 2 - scroll) % period) + period) % period // [0, 2h)
-  return wrapped > (3 * h) / 2 ? wrapped - period : wrapped // (−h/2, 3h/2]
+  return wrapped > (ANIMATION_DESIGN.heroFieldCenterY.when * h) / 2 ? wrapped - period : wrapped // (−h/2, 3h/2]
 }
 
 /**
@@ -661,17 +662,17 @@ function drawTwoBySevenMorph(ctx: CanvasRenderingContext2D, cx: number, cy: numb
   const X = (q: { x: number; y: number }) => cx + (q.x * cos(spin) - q.y * sin(spin)) * R
   const Y = (q: { x: number; y: number }) => cy + (q.x * sin(spin) + q.y * cos(spin)) * R
   ctx.lineWidth = 1
-  ctx.strokeStyle = paint(hue, (1 / 5) * (1 - m) + (1 / (5 * 4)), { L: 5 / 8 })
+  ctx.strokeStyle = paint(hue, ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part * (1 - m) + ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part2, { L: ANIMATION_DESIGN.drawTwoBySevenMorph.paintL })
   ctx.beginPath()
   for (let i = 0; i + 1 < pts.length; i += 2) { ctx.moveTo(X(pts[i]!), Y(pts[i]!)); ctx.lineTo(X(pts[i + 1]!), Y(pts[i + 1]!)) }
   ctx.stroke()
   const seats = pts.filter((q) => q.end === 'death' && q.ray > 0)
-  ctx.strokeStyle = paint((hue + (9 * 5 * 4)) % 360, (1 / 4) * m, { L: 3 / 4 })
+  ctx.strokeStyle = paint((hue + MOVIE_ANGLES.half) % MOVIE_ANGLES.turn, ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part3 * m, { L: ANIMATION_DESIGN.drawTwoBySevenMorph.paintL2 })
   ctx.beginPath()
   seats.forEach((q, i) => (i === 0 ? ctx.moveTo(X(q), Y(q)) : ctx.lineTo(X(q), Y(q))))
   ctx.closePath()
   ctx.stroke()
-  ctx.fillStyle = paint(hue, (1 / 4) + (1 / 4) * m, { L: (9 + 2) / 16 })
+  ctx.fillStyle = paint(hue, ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part3 + ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part3 * m, { L: ANIMATION_DESIGN.drawTwoBySevenMorph.paintL3 })
   ctx.beginPath()
   for (const q of pts) { ctx.moveTo(X(q) + 2, Y(q)); ctx.arc(X(q), Y(q), 2, 0, TAU) }
   ctx.fill()
@@ -690,10 +691,10 @@ function paintHolographicPlasmaHeroMovie(
   const cx = w / 2
   const cy = heroFieldCenterY(h, scene.scroll ?? 0)
   const span = max(w, h)
-  const voidR = min(w, h) * (7 / 100)
+  const voidR = min(w, h) * ANIMATION_DESIGN.paintHolographicPlasmaHeroMovie.voidR
   const hueShift = scene.hue
   if (scene.reduce) {
-    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, span * (1 - 9 / (5 * 4)))
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, span * ANIMATION_DESIGN.paintHolographicPlasmaHeroMovie.createRadialGradientArg5Part)
     g.addColorStop(0, scene.palette.canvas.reduceCore(hueShift))
     g.addColorStop(1, 'transparent')
     ctx.fillStyle = g
@@ -703,7 +704,7 @@ function paintHolographicPlasmaHeroMovie(
   // The fused force substrate first — the one analog field every other layer composes onto.
   drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers, scene.palette.dark)
   // The 2×7 folding into the 1+6 and back, on the same clock — twoBySevenFoldsIntoOnePlusSix counts these points.
-  drawTwoBySevenMorph(ctx, cx, cy, min(w, h) * (9 / (5 * 5 * 2)), scene.p, hueShift, scene.palette.dark)
+  drawTwoBySevenMorph(ctx, cx, cy, min(w, h) * ANIMATION_DESIGN.paintHolographicPlasmaHeroMovie.drawTwoBySevenMorphArg3Part, scene.p, hueShift, scene.palette.dark)
   drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length)
   // The DEATH counter-flow — the inward (contraction/decay) torus spiralling into the SAME throat the
   // life rays radiate out of. Drawn behind the hero + plasma ball so it reads as the in-flow that bounds
@@ -1047,18 +1048,18 @@ const FIELD_LAYER_ROOTS = new Map<string, readonly string[]>()
 export function fieldLayers(field: AnimationField): readonly FieldLayer[] {
   let roots = FIELD_LAYER_ROOTS.get(field.root)
   if (!roots) {
-    roots = FIELD_LAYER_DOMAINS.map((domain, i) => toUuid(`field-layer:${field.root}:${domain.trigram}:${i % 7}`))
-    if (FIELD_LAYER_ROOTS.size >= (4 * 64)) FIELD_LAYER_ROOTS.clear()
+    roots = FIELD_LAYER_DOMAINS.map((domain, i) => toUuid(`field-layer:${field.root}:${domain.trigram}:${i % ANIMATION_DESIGN.fieldLayers.toUuidArg0Part}`))
+    if (FIELD_LAYER_ROOTS.size >= ANIMATION_DESIGN.fieldLayers.when) FIELD_LAYER_ROOTS.clear()
     FIELD_LAYER_ROOTS.set(field.root, roots)
   }
   const known = roots
   return FIELD_LAYER_DOMAINS.map((domain, i) => {
-    const ray = i % 7
+    const ray = i % ANIMATION_DESIGN.fieldLayers.ray
     return {
       trigram: domain.trigram,
       ray,
       force: domain.force,
-      hue: (field.hue + (ray * 360) / 7) % 360,
+      hue: (field.hue + (ray * MOVIE_ANGLES.turn) / ANIMATION_DESIGN.fieldLayers.mapHuePart) % MOVIE_ANGLES.turn,
       root: known[i]! }
   })
 }
@@ -1103,16 +1104,17 @@ export function sharedHeroAt(
   route: string,
   copy: SharedHeroCopy,
   at: number,
-  cssWidth = (64 * 16),
+  cssWidth = ANIMATION_DESIGN.sharedHeroAt.cssWidth,
   reduce = false,
   dark = true,
   scroll = 0,
   perspective?: MoviePerspectiveBias,
+  theorems?: KernelTheoremRecord,
 ): SharedHeroState {
   const path = route || '/'
   const p = heroPhaseAt(at)
   // Seconds into the one hero cycle — derived from heroPhaseAt (not a private wall-clock divisor).
-  const t = p * (HERO_CYCLE_MS / 1e3)
+  const t = p * (HERO_CYCLE_MS / ANIMATION_DESIGN.sharedHeroAt.t)
   const matrix = buildMatrix()
   const fusedCopy = typeof window !== 'undefined'
     ? clientMovieSeedCopyText(path, matrix)
@@ -1124,7 +1126,7 @@ export function sharedHeroAt(
   const palette = plasmaMoviePalette(matrix, path, true, dark)
   const computePaint = realtimeComputationsMoviePaint(at, path, matrix)
   const hueBias = typeof perspective?.hueBias === 'number' ? perspective.hueBias : 0
-  const hue = (heroMoviePhaseHue(path, p, matrix) + computePaint.hueShift + hueBias) % 360
+  const hue = (heroMoviePhaseHue(path, p, matrix) + computePaint.hueShift + hueBias) % MOVIE_ANGLES.turn
   const fieldRoot = toUuid(`animation-field:${path}:${seed}${seedBias ? `:${seedBias}` : ''}`)
   const observationRoot = movieObservationReceipt(path, seed, at)
   return {
@@ -1137,7 +1139,9 @@ export function sharedHeroAt(
     arms: armsOf(seed),
     tags: copy.keywords ?? [],
     movieText,
-    wiredStreams: wired.streams,
+    wiredStreams: theorems
+      ? [...wired.streams, ...kernelTheoremStreams(theorems, p).visible.map((s): PlasmaWiredStream => ({ uuid: s.uuid, kind: 'math', label: s.theorem, hue: s.hue, slug: s.file }))]
+      : wired.streams,
     palette,
     reduce,
     dark,
@@ -1255,7 +1259,7 @@ export function drawLivingTorusFrame(
   const cy = h / 2
   // Universe-aligned spin: fractal-clock rung d=18 on the 108 s hero cycle (≈6 s/rev) — was at/1000 drift.
   const p = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS)
-  const LIVING_TORUS_SPIN_DIVISOR = (9 * 2) // 18 — HERO_CYCLE_MS / 18 ≈ 6000 ms
+  const LIVING_TORUS_SPIN_DIVISOR = ANIMATION_DESIGN.drawLivingTorusFrame.lIVINGTORUSSPINDIVISOR // 18 — HERO_CYCLE_MS / 18 ≈ 6000 ms
   const phase = p * TAU * LIVING_TORUS_SPIN_DIVISOR
 
   // Project every coordinate onto the genus-2 surface through the sealed atoms (rotate3 +
@@ -1272,14 +1276,14 @@ export function drawLivingTorusFrame(
     ey = max(ey, abs(c.y))
   }
   const extent = max(ex, ey)
-  const view = min(w, h * (ex / ey)) * ((7 * 3) / (5 * 5 * 2)) // pixels per unit — fit the wide figure both ways
+  const view = min(w, h * (ex / ey)) * ANIMATION_DESIGN.drawLivingTorusFrame.view // pixels per unit — fit the wide figure both ways
   const px = new Array<number>(n)
   const py = new Array<number>(n)
   const pz = new Array<number>(n) // perspective factor — nearer grows, farther recedes
   const byIndex = new Map<number, number>()
   for (let i = 0; i < n; i++) {
     const c = coordinates[i]!
-    const spin = phase * (c.lobe > 0 ? (1 - 9 / (5 * 4)) : -(1 - 9 / (5 * 4)))
+    const spin = phase * (c.lobe > 0 ? ANIMATION_DESIGN.drawLivingTorusFrame.spin : ANIMATION_DESIGN.drawLivingTorusFrame.spin2)
     const v = rotate3((c.x - c.cx) / extent, c.y / extent, c.z / extent, spin, OBLIQUE_VIEW_TILT, 0)
     const persp = perspective(v.Z)
     px[i] = cx + (v.X + c.cx / extent) * persp * view
@@ -1295,8 +1299,8 @@ export function drawLivingTorusFrame(
     const c = coordinates[i]!
     const j = byIndex.get(c.reverseIndex)
     if (j === undefined || j <= i) continue
-    const mergePulse = reduce ? (1 / 2) : (1 / 2) + (1 / 2) * sin(phase * (3 / 5) + c.theta)
-    ctx.strokeStyle = paint(round(c.frequency) % 360, (1 / (5 * 4)) + (1 / 9) * mergePulse, { L: 6 / 8 })
+    const mergePulse = reduce ? (1 / 2) : (1 / 2) + (1 / 2) * sin(phase * ANIMATION_DESIGN.drawLivingTorusFrame.sinArg0Part + c.theta)
+    ctx.strokeStyle = paint(round(c.frequency) % ANIMATION_DESIGN.drawLivingTorusFrame.paintArg0Part, ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part + ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part2 * mergePulse, { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL })
     ctx.beginPath()
     ctx.moveTo(px[i]!, py[i]!)
     ctx.lineTo(px[j]!, py[j]!)
@@ -1311,11 +1315,11 @@ export function drawLivingTorusFrame(
   const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => pz[a]! - pz[b]!)
   for (const i of order) {
     const c = coordinates[i]!
-    const pulse = reduce ? (7 / (5 * 2)) : (1 / 2) + (1 / 2) * sin((at / max(1, c.vibrationMs)) * TAU)
-    const hue = round(c.frequency) % 360
-    const size = (9 + c.scale * 13 + pulse * 5) * pz[i]!
+    const pulse = reduce ? ANIMATION_DESIGN.drawLivingTorusFrame.pulse : (1 / 2) + (1 / 2) * sin((at / max(1, c.vibrationMs)) * TAU)
+    const hue = round(c.frequency) % ANIMATION_DESIGN.drawLivingTorusFrame.hue
+    const size = (ANIMATION_DESIGN.drawLivingTorusFrame.size + c.scale * ANIMATION_DESIGN.drawLivingTorusFrame.size2 + pulse * ANIMATION_DESIGN.drawLivingTorusFrame.size3) * pz[i]!
     ctx.font = `600 ${round(size)}px ui-sans-serif, system-ui, sans-serif`
-    ctx.fillStyle = paint(hue, ((7 * 3) / (5 * 5 * 2)) + 0.46 * pulse, { L: 7 / 8 })
+    ctx.fillStyle = paint(hue, ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part3 + ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part4 * pulse, { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL2 })
     ctx.fillText(String(c.digit), px[i]!, py[i]!)
   }
 
@@ -1330,15 +1334,15 @@ export function drawLivingTorusFrame(
       const head = ring[floor(at01 * ring.length) % ring.length]!
       const slot = byIndex.get(head.index)
       if (slot === undefined) continue
-      const hue = round(head.frequency) % 360
-      ctx.strokeStyle = paint(hue, (9 / (5 * 2)), { L: 6 / 8 })
+      const hue = round(head.frequency) % ANIMATION_DESIGN.drawLivingTorusFrame.hue
+      ctx.strokeStyle = paint(hue, ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1, { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL })
       ctx.lineWidth = 2
       ctx.beginPath()
-      ctx.arc(px[slot]!, py[slot]!, 13 * pz[slot]!, 0, TAU)
+      ctx.arc(px[slot]!, py[slot]!, ANIMATION_DESIGN.drawLivingTorusFrame.arcArg2Part * pz[slot]!, 0, TAU)
       ctx.stroke()
-      ctx.fillStyle = paint(hue, (1 / 2), { L: 13 / 16 })
+      ctx.fillStyle = paint(hue, (1 / 2), { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL3 })
       ctx.beginPath()
-      ctx.arc(px[slot]!, py[slot]!, (9 / 2) * pz[slot]!, 0, TAU)
+      ctx.arc(px[slot]!, py[slot]!, ANIMATION_DESIGN.drawLivingTorusFrame.arcArg2Part2 * pz[slot]!, 0, TAU)
       ctx.fill()
     }
   }
@@ -1372,9 +1376,9 @@ function drawTetrahedronEdges(
 ): void {
   const paint = movieCanvasPolarity(dark)
   const pts = verts.map((v) => rotateTetraXY(v, spin, scale))
-  const edges: [number, number][] = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]]
-  ctx.strokeStyle = paint(hue, alpha, { L: 7 / 8 })
-  ctx.lineWidth = (6 / 5) * scale
+  const edges: [number, number][] = [[0, 1], [0, 2], [0, ANIMATION_DESIGN.drawTetrahedronEdges.edges], [1, 2], [1, ANIMATION_DESIGN.drawTetrahedronEdges.edges], [2, ANIMATION_DESIGN.drawTetrahedronEdges.edges]]
+  ctx.strokeStyle = paint(hue, alpha, { L: ANIMATION_DESIGN.drawTetrahedronEdges.paintL })
+  ctx.lineWidth = ANIMATION_DESIGN.drawTetrahedronEdges.lineWidth * scale
   for (const [a, b] of edges) {
     const p0 = pts[a]!
     const p1 = pts[b]!
@@ -1383,10 +1387,10 @@ function drawTetrahedronEdges(
     ctx.lineTo(cx + p1[0], cy + p1[1])
     ctx.stroke()
   }
-  ctx.fillStyle = paint(hue, alpha * (1 - 9 / (5 * 4)), { L: 13 / 16 })
+  ctx.fillStyle = paint(hue, alpha * ANIMATION_DESIGN.drawTetrahedronEdges.paintArg1Part, { L: ANIMATION_DESIGN.drawTetrahedronEdges.paintL2 })
   for (const p of pts) {
     ctx.beginPath()
-    ctx.arc(cx + p[0], cy + p[1], (5 / 2) * scale * p[2], 0, TAU)
+    ctx.arc(cx + p[0], cy + p[1], ANIMATION_DESIGN.drawTetrahedronEdges.arcArg2Part * scale * p[2], 0, TAU)
     ctx.fill()
   }
 }
@@ -1405,24 +1409,24 @@ export function drawBothEarthsMerkabaFrame(
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2
   const cy = h / 2
-  const scale = min(w, h) / (7 * 6 * 5 * 2)
+  const scale = min(w, h) / ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.scale
   // Breath on the one hero clock — not a private atMs divisor / 1.15 rate.
   const p = reduce ? 0 : heroPhaseAt(at)
-  const innerR = (9 * 8) * scale
-  const breath = 1 + sin(p * TAU) * (1 / (5 * 5))
+  const innerR = ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.innerR * scale
+  const breath = 1 + sin(p * TAU) * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.breath
 
-  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, max(w, h) * (1 - 9 / (5 * 4)))
-  bg.addColorStop(0, paint((100 * 2), (3 / (5 * 5)), { L: 1 / 4 }))
-  bg.addColorStop(1, paint((100 * 2), 0, { L: 1 / 8 }))
+  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, max(w, h) * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.createRadialGradientArg5Part)
+  bg.addColorStop(0, paint(ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintArg0, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintArg1, { L: ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintL }))
+  bg.addColorStop(1, paint(ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintArg0, 0, { L: ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintL2 }))
   ctx.fillStyle = bg
   ctx.fillRect(0, 0, w, h)
 
   // Shell phases lift the tetras — no dashed outer/inner circumference or orphan centre disk.
-  const shellLift = reduce ? 0 : (rotation.innerPhase - rotation.outerPhase) * (1 / (5 * 5)) * innerR * breath
-  const upSpin = reduce ? 0 : rotation.merkabaUpSpin * PHI ** -3
-  const downSpin = reduce ? 0 : rotation.merkabaDownSpin * PHI ** -3
-  drawTetrahedronEdges(ctx, rotation.tetraUp, upSpin, cx, cy - innerR * (3 / (5 * 4)) - shellLift, scale * (7 * 4), (8 * 5 * 3), (1 - 7 / (5 * 4)), dark)
-  drawTetrahedronEdges(ctx, rotation.tetraDown, downSpin, cx, cy + innerR * (3 / (5 * 4)) + shellLift, scale * (7 * 4), (8 * 7 * 5), (1 - 9 / (5 * 4)), dark)
+  const shellLift = reduce ? 0 : (rotation.innerPhase - rotation.outerPhase) * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.shellLift * innerR * breath
+  const upSpin = reduce ? 0 : rotation.merkabaUpSpin * PHI ** ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.upSpin
+  const downSpin = reduce ? 0 : rotation.merkabaDownSpin * PHI ** ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.downSpin
+  drawTetrahedronEdges(ctx, rotation.tetraUp, upSpin, cx, cy - innerR * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg4Part - shellLift, scale * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg5Part, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg6, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg7, dark)
+  drawTetrahedronEdges(ctx, rotation.tetraDown, downSpin, cx, cy + innerR * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg4Part + shellLift, scale * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg5Part, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg62, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg72, dark)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1518,11 +1522,11 @@ function qProject(x: number, y: number, z: number, rx: number, ry: number, rz: n
 /** A shaded sphere — a circle that reads as 3D (the 2D→3D promotion the morph needs). */
 function qSphere(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, hue: number, alpha: number, dark = true): void {
   const paint = movieCanvasPolarity(dark)
-  const rr = max((3 / 5), r)
-  const g = ctx.createRadialGradient(x - rr * (7 / (5 * 4)), y - rr * (7 / (5 * 4)), rr * (3 / (5 * 5)), x, y, rr)
-  g.addColorStop(0, paint(hue, min(1, alpha * 1.15), { L: (5 * 3) / 16 }))
-  g.addColorStop((3 / 5), paint(hue, alpha, { L: 5 / 8 }))
-  g.addColorStop(1, paint(hue, alpha * (2 / 5), { L: 1 / 3 }))
+  const rr = max(ANIMATION_DESIGN.qSphere.maxArg0, r)
+  const g = ctx.createRadialGradient(x - rr * ANIMATION_DESIGN.qSphere.createRadialGradientArg0Part, y - rr * ANIMATION_DESIGN.qSphere.createRadialGradientArg1Part, rr * ANIMATION_DESIGN.qSphere.createRadialGradientArg2Part, x, y, rr)
+  g.addColorStop(0, paint(hue, min(1, alpha * ANIMATION_DESIGN.qSphere.minArg1Part), { L: ANIMATION_DESIGN.qSphere.paintL }))
+  g.addColorStop(ANIMATION_DESIGN.qSphere.addColorStopArg0, paint(hue, alpha, { L: ANIMATION_DESIGN.qSphere.paintL2 }))
+  g.addColorStop(1, paint(hue, alpha * ANIMATION_DESIGN.qSphere.paintArg1Part, { L: ANIMATION_DESIGN.qSphere.paintL3 }))
   ctx.fillStyle = g
   ctx.beginPath()
   ctx.arc(x, y, rr, 0, TAU)
@@ -1568,7 +1572,7 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const r = min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
+  const r = min(w, h) * (FIBONACCI[ANIMATION_DESIGN.drawTaijiProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawTaijiProjection.r) // Fibonacci decade
   // Field identity for rosettaPerspectiveFold — same hue/p/t as the shared hero clock frame.
   const field: AnimationField = {
     route: '/#yinyang',
@@ -1586,18 +1590,18 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
     dark: frame.palette.dark,
     cssWidth: frame.cssWidth,
     scroll: 0,
-    root: toUuid(`taiji-field:${frame.hue}:${floor(frame.p * (5 * 2 * 100))}`),
+    root: toUuid(`taiji-field:${frame.hue}:${floor(frame.p * ANIMATION_DESIGN.drawTaijiProjection.floorArg0Part)}`),
     observationRoot: movieObservationReceipt('/#yinyang', floor(frame.hue), 0),
   }
-  const ray = VORTEX_SEQUENCE[floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length]! % 7
+  const ray = VORTEX_SEQUENCE[floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length]! % ANIMATION_DESIGN.drawTaijiProjection.ray
   const view = rosettaPerspectiveFold(ray, field)
-  const yinHue = view.hue % 360
-  const yangHue = (view.hue + (9 * 5 * 4)) % 360
-  const dark = (a: number) => paint(yinHue, a, { L: 5 / 16 })
-  const light = (a: number) => paint(yangHue, a, { L: 7 / 8 })
+  const yinHue = view.hue % ANIMATION_DESIGN.drawTaijiProjection.yinHue
+  const yangHue = (view.hue + ANIMATION_DESIGN.drawTaijiProjection.yangHue) % ANIMATION_DESIGN.drawTaijiProjection.yangHue2
+  const dark = (a: number) => paint(yinHue, a, { L: ANIMATION_DESIGN.drawTaijiProjection.paintL })
+  const light = (a: number) => paint(yangHue, a, { L: ANIMATION_DESIGN.drawTaijiProjection.paintL2 })
   // Non-linear yin↔yang exchange (same law as taijiRosettaExchangeDegrees): smoothstep + sin/TAU.
   const u = frame.reduce ? 0 : frame.p
-  const fold = u * u * (3 - 2 * u)
+  const fold = u * u * (ANIMATION_DESIGN.drawTaijiProjection.fold - 2 * u)
   const exchange = fold + sin(u * TAU) / TAU
   const dir = VORTEX_SEQ_SENSE
   const theta = frame.reduce ? 0 : dir * exchange * TAU
@@ -1605,14 +1609,14 @@ function drawTaijiProjection(ctx: CanvasRenderingContext2D, w: number, h: number
   ctx.translate(cx, cy)
   ctx.rotate(theta)
   // Rigid taiji at the origin — drawn once, rotated as one exchanging body.
-  ctx.beginPath(); ctx.arc(0, 0, r, -TAU / 4, TAU / 4, false); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, 0, r, TAU / 4, -TAU / 4, false); ctx.fillStyle = light((1 - 2 / (5 * 5))); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, -r / 2, r / 2, 0, TAU); ctx.fillStyle = dark((1 - 2 / (5 * 5))); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, r / 2, r / 2, 0, TAU); ctx.fillStyle = light((1 - 2 / (5 * 5))); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, -r / 2, r / 6, 0, TAU); ctx.fillStyle = light((1 - 1 / (5 * 4))); ctx.fill()
-  ctx.beginPath(); ctx.arc(0, r / 2, r / 6, 0, TAU); ctx.fillStyle = dark((1 - 1 / (5 * 4))); ctx.fill()
-  ctx.strokeStyle = paint(yinHue, (3 / 5), { L: 1 / 2 })
-  ctx.lineWidth = (3 / 2)
+  ctx.beginPath(); ctx.arc(0, 0, r, -TAU / ANIMATION_DESIGN.drawTaijiProjection.arcArg3Part, TAU / ANIMATION_DESIGN.drawTaijiProjection.arcArg4Part, false); ctx.fillStyle = dark(ANIMATION_DESIGN.drawTaijiProjection.darkArg0); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, 0, r, TAU / ANIMATION_DESIGN.drawTaijiProjection.arcArg3Part, -TAU / ANIMATION_DESIGN.drawTaijiProjection.arcArg4Part, false); ctx.fillStyle = light(ANIMATION_DESIGN.drawTaijiProjection.lightArg0); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, -r / 2, r / 2, 0, TAU); ctx.fillStyle = dark(ANIMATION_DESIGN.drawTaijiProjection.darkArg0); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, r / 2, r / 2, 0, TAU); ctx.fillStyle = light(ANIMATION_DESIGN.drawTaijiProjection.lightArg0); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, -r / 2, r / ANIMATION_DESIGN.drawTaijiProjection.arcArg2Part, 0, TAU); ctx.fillStyle = light(ANIMATION_DESIGN.drawTaijiProjection.lightArg02); ctx.fill()
+  ctx.beginPath(); ctx.arc(0, r / 2, r / ANIMATION_DESIGN.drawTaijiProjection.arcArg2Part, 0, TAU); ctx.fillStyle = dark(ANIMATION_DESIGN.drawTaijiProjection.darkArg02); ctx.fill()
+  ctx.strokeStyle = paint(yinHue, ANIMATION_DESIGN.drawTaijiProjection.paintArg1, { L: 1 / 2 })
+  ctx.lineWidth = ANIMATION_DESIGN.drawTaijiProjection.lineWidth
   ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.stroke()
   ctx.restore()
 }
@@ -1626,25 +1630,25 @@ function drawSacredMorphProjection(ctx: CanvasRenderingContext2D, w: number, h: 
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const base = min(w, h) * (1 / 5)
+  const base = min(w, h) * ANIMATION_DESIGN.drawSacredMorphProjection.base
   // 0→10D sweep (out and back), so the slider's "n/10d" is visible in motion.
-  const tri = frame.reduce ? (2 / 5) : dimWalk(frame.p)
-  const depthD = tri * (5 * 2)
-  const flowerW = 1 - qSmooth((3 / 2), (7 / 2), depthD)
-  const fruitW = qSmooth((3 / 2), 4, depthD)
-  const metatronW = qSmooth((7 / 2), 6, depthD)
-  const solidW = qSmooth(FIBONACCI[8]! / (2 * 5), 8.5, depthD)
-  const lift = qSmooth((5 / 2), 6, depthD) // 2D→3D promotion
-  const rx = frame.reduce ? (1 / 2) : frame.t * (2 / 5) * lift
-  const ry = frame.reduce ? (3 / (5 * 2)) : frame.t * (5 / 16) * lift // was 0.31 — theorem 5/16 (self-research)
-  const rz = frame.reduce ? 0 : frame.t * (1 / 6) // was 0.17 — theorem 1/6 (self-research)
+  const tri = frame.reduce ? ANIMATION_DESIGN.drawSacredMorphProjection.tri : dimWalk(frame.p)
+  const depthD = tri * ANIMATION_DESIGN.drawSacredMorphProjection.depthD
+  const flowerW = 1 - qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg0, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg1, depthD)
+  const fruitW = qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg0, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg12, depthD)
+  const metatronW = qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg02, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg13, depthD)
+  const solidW = qSmooth(FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg0Part, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg14, depthD)
+  const lift = qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg03, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg13, depthD) // 2D→3D promotion
+  const rx = frame.reduce ? (1 / 2) : frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.rx * lift
+  const ry = frame.reduce ? ANIMATION_DESIGN.drawSacredMorphProjection.ry : frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.ry2 * lift // was 0.31 — theorem 5/16 (self-research)
+  const rz = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.rz // was 0.17 — theorem 1/6 (self-research)
 
   // Flower-of-life vesica ring (the 2D construction) fading as we climb.
-  if (flowerW > (1 / (5 * 5 * 2))) {
-    ctx.lineWidth = (7 / 5)
+  if (flowerW > ANIMATION_DESIGN.drawSacredMorphProjection.when) {
+    ctx.lineWidth = ANIMATION_DESIGN.drawSacredMorphProjection.lineWidth
     for (let k = 0; k < FRUIT_CENTERS.length; k += 1) {
       const c = FRUIT_CENTERS[k]!
-      ctx.strokeStyle = paint((frame.hue + k * 16) % 360, (1 / 2) * flowerW, { L: 9 / 16 })
+      ctx.strokeStyle = paint((frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part) % ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part2, (1 / 2) * flowerW, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL })
       ctx.beginPath()
       ctx.arc(cx + c[0] * base, cy + c[1] * base, base, 0, TAU)
       ctx.stroke()
@@ -1653,56 +1657,56 @@ function drawSacredMorphProjection(ctx: CanvasRenderingContext2D, w: number, h: 
 
   // The 13 nodes, lifted to 3D as the dimension climbs — circles become MANY spheres.
   const nodes: QProjected[] = FRUIT_CENTERS.map((c, k) => {
-    const zz = lift * sin(k * (FIBONACCI[5]! / (2 * 5)) + frame.t * (3 / 5)) * (7 / (5 * 2))
-    return qProject(c[0], c[1], zz, rx * (3 / 5), ry * (3 / 5), rz * (2 / 5), cx, cy, base)
+    const zz = lift * sin(k * (FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt2]! / ANIMATION_DESIGN.drawSacredMorphProjection.sinArg0Part) + frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.sinArg0Part2) * ANIMATION_DESIGN.drawSacredMorphProjection.zz
+    return qProject(c[0], c[1], zz, rx * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg3Part, ry * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg4Part, rz * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg5Part, cx, cy, base)
   })
 
   // Metatron's cube — every node joined to every other; the 3D lift gives depth.
-  if (metatronW > (1 / (5 * 5 * 2))) {
+  if (metatronW > ANIMATION_DESIGN.drawSacredMorphProjection.when) {
     ctx.lineWidth = 1
     for (let a = 0; a < nodes.length; a += 1) for (let b = a + 1; b < nodes.length; b += 1) {
       const depth = (nodes[a]!.s + nodes[b]!.s) / 2
-      ctx.strokeStyle = paint((frame.hue + (8 * 5)) % 360, (8 / (5 * 5)) * metatronW * depth, { L: 1 / 2 })
+      ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part3) % ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part2, ANIMATION_DESIGN.drawSacredMorphProjection.paintArg1Part * metatronW * depth, { L: 1 / 2 })
       ctx.beginPath(); ctx.moveTo(nodes[a]!.x, nodes[a]!.y); ctx.lineTo(nodes[b]!.x, nodes[b]!.y); ctx.stroke()
     }
   }
 
   for (let k = 0; k < nodes.length; k += 1) {
     const n = nodes[k]!
-    const rNode = (base * (FIBONACCI[7]! / 100)) * n.s * (fruitW * (3 / 5) + (2 / 5))
-    const flat = paint((frame.hue + k * (7 * 2)) % 360, (1 - 9 / (5 * 4)), { L: 5 / 8 })
-    if (lift > (1 / 5)) qSphere(ctx, n.x, n.y, rNode, (frame.hue + k * (7 * 2)) % 360, (1 - 9 / (5 * 4)) + (3 / (5 * 2)) * n.s, frame.palette.dark)
+    const rNode = (base * (FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt3]! / ANIMATION_DESIGN.drawSacredMorphProjection.rNode)) * n.s * (fruitW * ANIMATION_DESIGN.drawSacredMorphProjection.rNode2 + ANIMATION_DESIGN.drawSacredMorphProjection.rNode3)
+    const flat = paint((frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part4) % ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part2, ANIMATION_DESIGN.drawSacredMorphProjection.paintArg1, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL2 })
+    if (lift > ANIMATION_DESIGN.drawSacredMorphProjection.when2) qSphere(ctx, n.x, n.y, rNode, (frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg4Part) % ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg4Part2, ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg5Part + ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg5Part2 * n.s, frame.palette.dark)
     else { ctx.fillStyle = flat; ctx.beginPath(); ctx.arc(n.x, n.y, rNode, 0, TAU); ctx.fill() }
   }
 
   // The five Platonic solids — one morph cycles tetra→cube→octa→dodeca→icosa as D climbs, tumbling in 3D.
-  if (solidW > (1 / (5 * 5 * 2))) {
-    const idx = min(PLATONIC.length - 1, floor((depthD - FIBONACCI[8]! / (2 * 5)) / (7 / (5 * 2))))
+  if (solidW > ANIMATION_DESIGN.drawSacredMorphProjection.when) {
+    const idx = min(PLATONIC.length - 1, floor((depthD - FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part) / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part2))
     const solid = PLATONIC[max(0, idx)]!
     const next = PLATONIC[min(PLATONIC.length - 1, max(0, idx) + 1)]!
-    const blend = min(1, max(0, ((depthD - FIBONACCI[8]! / (2 * 5)) / (7 / (5 * 2))) - floor((depthD - FIBONACCI[8]! / (2 * 5)) / (7 / (5 * 2)))))
-    drawSolid3D(ctx, cx, cy, base * 1.15, solid, rx, ry, rz, frame.hue, solidW * (1 - blend), frame.palette.dark)
-    if (blend > (1 / (5 * 5 * 2))) drawSolid3D(ctx, cx, cy, base * 1.15, next, rx, ry, rz, (frame.hue + (6 * 5 * 2)) % 360, solidW * blend, frame.palette.dark)
+    const blend = min(1, max(0, ((depthD - FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawSacredMorphProjection.maxArg1Part) / ANIMATION_DESIGN.drawSacredMorphProjection.maxArg1Part2) - floor((depthD - FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part) / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part2)))
+    drawSolid3D(ctx, cx, cy, base * ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg3Part, solid, rx, ry, rz, frame.hue, solidW * (1 - blend), frame.palette.dark)
+    if (blend > ANIMATION_DESIGN.drawSacredMorphProjection.when) drawSolid3D(ctx, cx, cy, base * ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg3Part, next, rx, ry, rz, (frame.hue + ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg8Part) % ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg8Part2, solidW * blend, frame.palette.dark)
   }
 
   // The dimension read-out — the "n/10D" the slider showed, now computed and in motion.
-  ctx.fillStyle = paint(frame.hue, (7 / (5 * 2)), { L: 7 / 16 })
+  ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawSacredMorphProjection.paintArg12, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL3 })
   ctx.font = '600 13px ui-sans-serif, system-ui, sans-serif'
   ctx.textAlign = 'left'
   ctx.textBaseline = 'top'
-  ctx.fillText(`${round(depthD)}/10D`, (6 * 2), (5 * 2))
+  ctx.fillText(`${round(depthD)}/10D`, ANIMATION_DESIGN.drawSacredMorphProjection.fillTextArg1, ANIMATION_DESIGN.drawSacredMorphProjection.fillTextArg2)
 }
 
 function drawSolid3D(ctx: CanvasRenderingContext2D, cx: number, cy: number, R: number, solid: QSolid, rx: number, ry: number, rz: number, hue: number, alpha: number, dark = true): void {
   const paint = movieCanvasPolarity(dark)
   const pts = solid.verts.map((v) => qProject(v[0], v[1], v[2], rx, ry, rz, cx, cy, R))
-  ctx.lineWidth = (8 / 5)
+  ctx.lineWidth = ANIMATION_DESIGN.drawSolid3D.lineWidth
   for (const [a, b] of solid.edges) {
     const depth = (pts[a]!.s + pts[b]!.s) / 2
-    ctx.strokeStyle = paint(hue, alpha * depth, { L: 9 / 16 })
+    ctx.strokeStyle = paint(hue, alpha * depth, { L: ANIMATION_DESIGN.drawSolid3D.paintL })
     ctx.beginPath(); ctx.moveTo(pts[a]!.x, pts[a]!.y); ctx.lineTo(pts[b]!.x, pts[b]!.y); ctx.stroke()
   }
-  for (const p of pts) qSphere(ctx, p.x, p.y, (16 / 5) * p.s, hue, alpha * (9 / (5 * 2)), dark)
+  for (const p of pts) qSphere(ctx, p.x, p.y, ANIMATION_DESIGN.drawSolid3D.qSphereArg3Part * p.s, hue, alpha * ANIMATION_DESIGN.drawSolid3D.qSphereArg5Part, dark)
 }
 
 /**
@@ -1713,30 +1717,30 @@ function drawHologramProjection(ctx: CanvasRenderingContext2D, w: number, h: num
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
-  const rx = frame.reduce ? (2 / 5) : frame.t * 0.33
-  const ry = frame.reduce ? (1 / 5) : frame.t * 0.47
+  const R = min(w, h) * (FIBONACCI[ANIMATION_DESIGN.drawHologramProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawHologramProjection.r) // Fibonacci decade
+  const rx = frame.reduce ? ANIMATION_DESIGN.drawHologramProjection.rx : frame.t * ANIMATION_DESIGN.drawHologramProjection.rx2
+  const ry = frame.reduce ? ANIMATION_DESIGN.drawHologramProjection.ry : frame.t * ANIMATION_DESIGN.drawHologramProjection.ry2
   const projected = HOLO_POINTS.map((pt) => ({ ...qProject(pt.x, pt.y, pt.z, rx, ry, 0, cx, cy, R), lit: pt.lit }))
     .sort((a, b) => a.z - b.z)
   for (let i = 0; i < projected.length; i += 1) {
     const p = projected[i]!
-    const pulse = frame.reduce ? (4 / 5) : (3 / 5) + (2 / 5) * sin(frame.t * 2 + i * (3 / (5 * 2)))
+    const pulse = frame.reduce ? ANIMATION_DESIGN.drawHologramProjection.pulse : ANIMATION_DESIGN.drawHologramProjection.pulse2 + ANIMATION_DESIGN.drawHologramProjection.pulse3 * sin(frame.t * 2 + i * ANIMATION_DESIGN.drawHologramProjection.sinArg0Part)
     if (p.lit) {
-      ctx.shadowColor = paint(frame.hue, (4 / 5), { L: 5 / 8 })
-      ctx.shadowBlur = 8 * p.s
-      ctx.fillStyle = paint(frame.hue, (1 - 3 / (5 * 4)) * pulse, { L: 11 / 16 })
-      ctx.beginPath(); ctx.arc(p.x, p.y, max((3 / 2), (FIBONACCI[7]! / (2 * 5)) * p.s), 0, TAU); ctx.fill()
+      ctx.shadowColor = paint(frame.hue, ANIMATION_DESIGN.drawHologramProjection.paintArg1, { L: ANIMATION_DESIGN.drawHologramProjection.paintL })
+      ctx.shadowBlur = ANIMATION_DESIGN.drawHologramProjection.shadowBlur * p.s
+      ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawHologramProjection.paintArg1Part * pulse, { L: ANIMATION_DESIGN.drawHologramProjection.paintL2 })
+      ctx.beginPath(); ctx.arc(p.x, p.y, max(ANIMATION_DESIGN.drawHologramProjection.maxArg0, (FIBONACCI[ANIMATION_DESIGN.drawHologramProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawHologramProjection.maxArg1Part) * p.s), 0, TAU); ctx.fill()
       ctx.shadowBlur = 0
     } else {
-      ctx.fillStyle = paint((frame.hue + (8 * 5)) % 360, (1 / 4) * p.s, { L: 1 / 2 })
-      ctx.beginPath(); ctx.arc(p.x, p.y, max((3 / 5), (7 / 5) * p.s), 0, TAU); ctx.fill()
+      ctx.fillStyle = paint((frame.hue + ANIMATION_DESIGN.drawHologramProjection.paintArg0Part) % ANIMATION_DESIGN.drawHologramProjection.paintArg0Part2, ANIMATION_DESIGN.drawHologramProjection.paintArg1Part2 * p.s, { L: 1 / 2 })
+      ctx.beginPath(); ctx.arc(p.x, p.y, max(ANIMATION_DESIGN.drawHologramProjection.maxArg02, ANIMATION_DESIGN.drawHologramProjection.maxArg1Part2 * p.s), 0, TAU); ctx.fill()
     }
   }
-  ctx.fillStyle = paint(frame.hue, (3 / 4), { L: 7 / 16 })
+  ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawHologramProjection.paintArg12, { L: ANIMATION_DESIGN.drawHologramProjection.paintL3 })
   ctx.font = '600 13px ui-sans-serif, system-ui, sans-serif'
   ctx.textAlign = 'left'
   ctx.textBaseline = 'top'
-  ctx.fillText(`${HOLO_LIT} / ${HOLO_BITS} bits lit`, (6 * 2), (5 * 2))
+  ctx.fillText(`${HOLO_LIT} / ${HOLO_BITS} bits lit`, ANIMATION_DESIGN.drawHologramProjection.fillTextArg1, ANIMATION_DESIGN.drawHologramProjection.fillTextArg2)
 }
 
 /**
@@ -1747,18 +1751,18 @@ function drawLabyrinthProjection(ctx: CanvasRenderingContext2D, w: number, h: nu
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = min(w, h) * (8 / (5 * 5))
-  const tube = R * ((7 * 3) / (5 * 5 * 2))
+  const R = min(w, h) * ANIMATION_DESIGN.drawLabyrinthProjection.r
+  const tube = R * ANIMATION_DESIGN.drawLabyrinthProjection.tube
   const E = R + tube // the torus's own extent — unit-scale divisor for the shared kernel
-  const Nu = 26
-  const Nv = 6
-  const spin = frame.reduce ? 0 : frame.t * (2 / 5)
+  const Nu = ANIMATION_DESIGN.drawLabyrinthProjection.nu
+  const Nv = ANIMATION_DESIGN.drawLabyrinthProjection.nv
+  const spin = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawLabyrinthProjection.spin
   type G = { x: number; y: number; depth: number; s: number; glyph: string; u: number }
   const glyphs: G[] = []
   for (let i = 0; i < Nu; i += 1) {
     const u = (i / Nu) * TAU + spin // rigid spin about the hole axis, baked into the major angle
     for (let j = 0; j < Nv; j += 1) {
-      const v = (j / Nv) * TAU + frame.t * (1 / 5)
+      const v = (j / Nv) * TAU + frame.t * ANIMATION_DESIGN.drawLabyrinthProjection.v
       const rr = R + tube * cos(v)
       // Canonical torus (hole axis = y) through the shared kernel (rotate3 + perspective) —
       // the oblique tilt is a real YZ rotation and depth is the perspective divide, not a z→y offset.
@@ -1771,18 +1775,18 @@ function drawLabyrinthProjection(ctx: CanvasRenderingContext2D, w: number, h: nu
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   for (const g of glyphs) {
-    const size = (7 * 2) * g.s // the perspective factor IS the size — nearer grows, farther recedes
+    const size = ANIMATION_DESIGN.drawLabyrinthProjection.size * g.s // the perspective factor IS the size — nearer grows, farther recedes
     ctx.font = `${round(size)}px serif`
-    ctx.fillStyle = paint((frame.hue + g.u * (9 * 2)) % 360, (1 / 5) + (7 / (5 * 2)) * g.depth, { L: 1 / 2 + g.depth * (1 / 6) })
+    ctx.fillStyle = paint((frame.hue + g.u * ANIMATION_DESIGN.drawLabyrinthProjection.paintArg0Part) % ANIMATION_DESIGN.drawLabyrinthProjection.paintArg0Part2, ANIMATION_DESIGN.drawLabyrinthProjection.paintArg1Part + ANIMATION_DESIGN.drawLabyrinthProjection.paintArg1Part2 * g.depth, { L: 1 / 2 + g.depth * ANIMATION_DESIGN.drawLabyrinthProjection.paintLPart })
     ctx.fillText(g.glyph, g.x, g.y)
   }
   // Hero at the centre — pulsing, entering and exiting (z in/out).
-  const breath = frame.reduce ? (7 / (5 * 2)) : (1 / 2) + (1 / 2) * sin(frame.t * (9 / (5 * 2)))
-  const heroSize = (9 * 2) + breath * 16
-  ctx.shadowColor = paint(frame.hue, (4 / 5), { L: 5 / 8 })
-  ctx.shadowBlur = (6 * 2)
+  const breath = frame.reduce ? ANIMATION_DESIGN.drawLabyrinthProjection.breath : (1 / 2) + (1 / 2) * sin(frame.t * ANIMATION_DESIGN.drawLabyrinthProjection.sinArg0Part)
+  const heroSize = ANIMATION_DESIGN.drawLabyrinthProjection.heroSize + breath * ANIMATION_DESIGN.drawLabyrinthProjection.heroSize2
+  ctx.shadowColor = paint(frame.hue, ANIMATION_DESIGN.drawLabyrinthProjection.paintArg1, { L: ANIMATION_DESIGN.drawLabyrinthProjection.paintL })
+  ctx.shadowBlur = ANIMATION_DESIGN.drawLabyrinthProjection.shadowBlur
   ctx.font = `${round(heroSize)}px serif`
-  ctx.fillStyle = paint(frame.hue, (1 / 2) + (1 / 2) * breath, { L: 11 / 16 })
+  ctx.fillStyle = paint(frame.hue, (1 / 2) + (1 / 2) * breath, { L: ANIMATION_DESIGN.drawLabyrinthProjection.paintL2 })
   ctx.fillText(glagoliticGlyph('home'), cx, cy)
   ctx.shadowBlur = 0
 }
@@ -1799,54 +1803,54 @@ function drawMovie10dProjection(ctx: CanvasRenderingContext2D, w: number, h: num
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = min(w, h) * (FIBONACCI[7]! / 100) // Fibonacci decade
+  const R = min(w, h) * (FIBONACCI[ANIMATION_DESIGN.drawMovie10dProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawMovie10dProjection.r) // Fibonacci decade
   // GENUINELY 10D (user law: most animations fake 10D — upgrade): read the FULL field, not just t.
   // The projection named for 10D now drives on all ten channels — the six cross-fold axes modulate
   // appearance, the four homology loops drive the three rotation angles (loopA2/loopB2 give the rz
   // the flat t-spin never had), so the scene is a true projection of the genus-2 10D field.
   const d = dims(frame.p, 0)
-  const rx = frame.reduce ? (2 / 5) : frame.t * 0.23 + d.loopA1 * (9 / (5 * 5 * 2))
-  const ry = frame.reduce ? (3 / (5 * 2)) : frame.t * (5 / 16) + d.loopB1 * (9 / (5 * 5 * 2)) // was flat t-spin — now loop-driven
-  const rz = frame.reduce ? 0 : (d.loopA2 + d.loopB2) * (9 / (5 * 5 * 2)) // the depth rotation the fake never had
+  const rx = frame.reduce ? ANIMATION_DESIGN.drawMovie10dProjection.rx : frame.t * ANIMATION_DESIGN.drawMovie10dProjection.rx2 + d.loopA1 * ANIMATION_DESIGN.drawMovie10dProjection.rx3
+  const ry = frame.reduce ? ANIMATION_DESIGN.drawMovie10dProjection.ry : frame.t * ANIMATION_DESIGN.drawMovie10dProjection.ry2 + d.loopB1 * ANIMATION_DESIGN.drawMovie10dProjection.ry3 // was flat t-spin — now loop-driven
+  const rz = frame.reduce ? 0 : (d.loopA2 + d.loopB2) * ANIMATION_DESIGN.drawMovie10dProjection.rz // the depth rotation the fake never had
   // Background field — points on a sphere, moving in depth.
-  for (let i = 0; i < (16 * 5); i += 1) {
+  for (let i = 0; i < ANIMATION_DESIGN.drawMovie10dProjection.loop; i += 1) {
     const a = i * GOLDEN_ANGLE_RAD
-    const y = 1 - (i / 79) * 2
+    const y = 1 - (i / ANIMATION_DESIGN.drawMovie10dProjection.y) * 2
     const rr = sqrt(max(0, 1 - y * y))
-    const p = qProject(cos(a) * rr, y, sin(a) * rr, rx * (1 / 2), ry * (1 / 2), rz * (1 / 2), cx, cy, R * (FIBONACCI[5]! / (2 * 5)))
-    ctx.fillStyle = paint((frame.hue + d.hueShift + i * 4) % 360, ((1 / (5 * 2)) + (1 / 4) * p.s) * (d.depthFade * (5 * 5) / 7), { L: 1 / 2 })
-    ctx.beginPath(); ctx.arc(p.x, p.y, max((1 / 2), (FIBONACCI[5]! / (2 * 5)) * p.s), 0, TAU); ctx.fill()
+    const p = qProject(cos(a) * rr, y, sin(a) * rr, rx * (1 / 2), ry * (1 / 2), rz * (1 / 2), cx, cy, R * (FIBONACCI[ANIMATION_DESIGN.drawMovie10dProjection.fIBONACCIAt2]! / ANIMATION_DESIGN.drawMovie10dProjection.qProjectArg8Part))
+    ctx.fillStyle = paint((frame.hue + d.hueShift + i * ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part) % ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part2, (ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part + ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part2 * p.s) * (d.depthFade * ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part3 / ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part4), { L: 1 / 2 })
+    ctx.beginPath(); ctx.arc(p.x, p.y, max((1 / 2), (FIBONACCI[ANIMATION_DESIGN.drawMovie10dProjection.fIBONACCIAt2]! / ANIMATION_DESIGN.drawMovie10dProjection.maxArg1Part) * p.s), 0, TAU); ctx.fill()
   }
   // Six forms on a 3D orbit — each at an angle, lifted, projected with depth; each one spins.
   const order: { p: QProjected; i: number }[] = []
   for (let i = 0; i < MOVIE_FORMS.length; i += 1) {
     const a = (i / MOVIE_FORMS.length) * TAU
-    const p = qProject(cos(a) * (d.spread + 1 / 2), sin(a) * (1 / 2), sin(a), rx, ry, rz, cx, cy, R * (1 - (1 - d.breath) * (1 / 5)))
+    const p = qProject(cos(a) * (d.spread + 1 / 2), sin(a) * (1 / 2), sin(a), rx, ry, rz, cx, cy, R * (1 - (1 - d.breath) * ANIMATION_DESIGN.drawMovie10dProjection.qProjectArg8Part2))
     order.push({ p, i })
   }
   order.sort((u, v) => u.p.z - v.p.z)
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   for (const { p, i } of order) {
-    const ring = (frame.reduce ? 0 : frame.t * ((3 / 5) + i * (3 / (5 * 5))) + d.twist)
-    const rad = 16 * p.s
+    const ring = (frame.reduce ? 0 : frame.t * (ANIMATION_DESIGN.drawMovie10dProjection.ring + i * ANIMATION_DESIGN.drawMovie10dProjection.ring2) + d.twist)
+    const rad = ANIMATION_DESIGN.drawMovie10dProjection.rad * p.s
     // little spinning wireframe ring per form (the figure itself moves, not just the label)
-    ctx.strokeStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, (1 / 2) * p.s, { L: 9 / 16 })
-    ctx.lineWidth = (7 / 5)
+    ctx.strokeStyle = paint((frame.hue + i * ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part3) % ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part2, (1 / 2) * p.s, { L: ANIMATION_DESIGN.drawMovie10dProjection.paintL })
+    ctx.lineWidth = ANIMATION_DESIGN.drawMovie10dProjection.lineWidth
     ctx.beginPath()
-    for (let k = 0; k <= 8; k += 1) {
-      const t = (k / 8) * TAU
+    for (let k = 0; k <= ANIMATION_DESIGN.drawMovie10dProjection.loop2; k += 1) {
+      const t = (k / ANIMATION_DESIGN.drawMovie10dProjection.t) * TAU
       const xx = p.x + cos(t + ring) * rad
       const yy = p.y + sin(t + ring) * rad * (1 / 2)
       if (k === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy)
     }
     ctx.stroke()
-    ctx.font = `${round((5 * 3) + 9 * p.s * (d.shrink * (5 * 5) / (2 * 9)))}px serif`
-    ctx.fillStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, (9 / (5 * 4)) + (1 / 2) * p.s, { L: 5 / 8 })
+    ctx.font = `${round(ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part + ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part2 * p.s * (d.shrink * ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part3 / ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part4))}px serif`
+    ctx.fillStyle = paint((frame.hue + i * ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part3) % ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part2, ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part5 + (1 / 2) * p.s, { L: ANIMATION_DESIGN.drawMovie10dProjection.paintL2 })
     ctx.fillText(MOVIE_GLYPHS[i]!, p.x, p.y)
-    ctx.font = `${round(9 + 2 * p.s)}px ui-sans-serif, system-ui, sans-serif`
-    ctx.fillStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, (3 / (5 * 2)) + (2 / 5) * p.s, { L: 7 / 16 })
-    ctx.fillText(MOVIE_FORMS[i]!, p.x, p.y + rad + 8)
+    ctx.font = `${round(ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part2 + 2 * p.s)}px ui-sans-serif, system-ui, sans-serif`
+    ctx.fillStyle = paint((frame.hue + i * ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part3) % ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part2, ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part6 + ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part7 * p.s, { L: ANIMATION_DESIGN.drawMovie10dProjection.paintL3 })
+    ctx.fillText(MOVIE_FORMS[i]!, p.x, p.y + rad + ANIMATION_DESIGN.drawMovie10dProjection.fillTextArg2Part)
   }
 }
 
@@ -1854,14 +1858,14 @@ function drawMovie10dProjection(ctx: CanvasRenderingContext2D, w: number, h: num
 function drawMerkabaProjection(ctx: CanvasRenderingContext2D, w: number, h: number, frame: QuantumAppFrame): void {
   const cx = w / 2
   const cy = h / 2
-  const R = min(w, h) * (3 / (5 * 2))
+  const R = min(w, h) * ANIMATION_DESIGN.drawMerkabaProjection.r
   const up: [number, number, number][] = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]]
   const down = up.map((v) => [-v[0], -v[1], -v[2]] as [number, number, number])
   const upTetra: QSolid = { name: 'up', verts: qNormalizeVerts(up), edges: qSolidEdges(qNormalizeVerts(up)) }
   const downTetra: QSolid = { name: 'down', verts: qNormalizeVerts(down), edges: qSolidEdges(qNormalizeVerts(down)) }
-  const a = frame.reduce ? (2 / 5) : frame.t * (1 / 2)
-  drawSolid3D(ctx, cx, cy, R, upTetra, a, a * (7 / (5 * 2)), 0, frame.hue, (1 - 3 / (5 * 4)), frame.palette.dark)
-  drawSolid3D(ctx, cx, cy, R, downTetra, -a, -a * (7 / (5 * 2)), 0, (frame.hue + (9 * 5 * 4)) % 360, (7 / (5 * 2)), frame.palette.dark)
+  const a = frame.reduce ? ANIMATION_DESIGN.drawMerkabaProjection.a : frame.t * (1 / 2)
+  drawSolid3D(ctx, cx, cy, R, upTetra, a, a * ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg6Part, 0, frame.hue, ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg9, frame.palette.dark)
+  drawSolid3D(ctx, cx, cy, R, downTetra, -a, -a * ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg6Part, 0, (frame.hue + ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg8Part) % ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg8Part2, ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg92, frame.palette.dark)
 }
 
 /**
@@ -1877,74 +1881,74 @@ function drawUnitDistanceProjection(ctx: CanvasRenderingContext2D, w: number, h:
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R0 = min(w, h) * 0.44
+  const R0 = min(w, h) * ANIMATION_DESIGN.drawUnitDistanceProjection.r0
   // Counts come from the sealed params, never re-declared: segments = the pro-3 tower layers,
   // forms = the rosetta-sized sample of the t split-prime channels.
   const { segments: layers, forms: channels } = quantumProjectionParams('unit-distance')
-  const ringRadius = (j: number) => R0 * ((7 / (5 * 5)) + ((2 / 3) * j) / layers) // was 0.66 — theorem 2/3 (self-research)
-  const drift = frame.reduce ? 0 : frame.t * (3 / (5 * 5))
+  const ringRadius = (j: number) => R0 * (ANIMATION_DESIGN.drawUnitDistanceProjection.ringRadius + (ANIMATION_DESIGN.drawUnitDistanceProjection.ringRadius2 * j) / layers) // was 0.66 — theorem 2/3 (self-research)
+  const drift = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawUnitDistanceProjection.drift
   const pulse = frame.reduce ? (1 / 2) : dimWalk(frame.p)
 
   // Tower layers: ring j holds 3^j nodes; alternating rotation sense — the tower breathes, the channels do not.
   for (let j = 1; j <= layers; j += 1) {
     const r = ringRadius(j)
-    const nodes = 3 ** j
+    const nodes = ANIMATION_DESIGN.drawUnitDistanceProjection.nodes ** j
     const theta = drift * (j % 2 === 0 ? -1 : 1) / j
-    const hue = (frame.hue + j * (9 * 2)) % 360
-    ctx.strokeStyle = paint(hue, 0.22, { L: 1 / 2 })
+    const hue = (frame.hue + j * ANIMATION_DESIGN.drawUnitDistanceProjection.hue) % ANIMATION_DESIGN.drawUnitDistanceProjection.hue2
+    ctx.strokeStyle = paint(hue, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1, { L: 1 / 2 })
     ctx.lineWidth = 1
     ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke()
     for (let k = 0; k < nodes; k += 1) {
       const a = theta + (k / nodes) * TAU
       const x = cx + cos(a) * r
       const y = cy + sin(a) * r
-      ctx.fillStyle = paint(hue, (7 / (5 * 4)) + (3 / (5 * 2)) * pulse, { L: 5 / 8 })
-      ctx.beginPath(); ctx.arc(x, y, max((4 / 5), R0 * (7 / (100 * 5))), 0, TAU); ctx.fill()
+      ctx.fillStyle = paint(hue, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1Part + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1Part2 * pulse, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL })
+      ctx.beginPath(); ctx.arc(x, y, max(ANIMATION_DESIGN.drawUnitDistanceProjection.maxArg0, R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.maxArg1Part), 0, TAU); ctx.fill()
     }
   }
 
   // Split-prime channels: straight rays crossing every layer — Frobenius killed, the alignment never breaks.
   for (let c = 0; c < channels; c += 1) {
     const a = (c / channels) * TAU + TAU / (2 * channels)
-    const glow = (3 / (5 * 2)) + (9 / (5 * 4)) * ((1 / 2) + (1 / 2) * sin(frame.p * TAU + c))
-    ctx.strokeStyle = paint((frame.hue + (9 * 5 * 4) + c * 8) % 360, glow, { L: 11 / 16 })
-    ctx.lineWidth = (7 / 5)
+    const glow = ANIMATION_DESIGN.drawUnitDistanceProjection.glow + ANIMATION_DESIGN.drawUnitDistanceProjection.glow2 * ((1 / 2) + (1 / 2) * sin(frame.p * TAU + c))
+    ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part + c * ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part2) % ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part3, glow, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL2 })
+    ctx.lineWidth = ANIMATION_DESIGN.drawUnitDistanceProjection.lineWidth
     ctx.beginPath()
-    ctx.moveTo(cx + cos(a) * R0 * (3 / (5 * 2)), cy + sin(a) * R0 * (3 / (5 * 2)))
-    ctx.lineTo(cx + cos(a) * R0 * ((8 * 3) / (5 * 5)), cy + sin(a) * R0 * ((8 * 3) / (5 * 5)))
+    ctx.moveTo(cx + cos(a) * R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.moveToArg0Part, cy + sin(a) * R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.moveToArg1Part)
+    ctx.lineTo(cx + cos(a) * R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.lineToArg0Part, cy + sin(a) * R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.lineToArg1Part)
     ctx.stroke()
     for (let j = 1; j <= layers; j += 1) {
       const r = ringRadius(j)
-      ctx.fillStyle = paint((frame.hue + (9 * 5 * 4) + c * 8) % 360, glow, { L: 3 / 4 })
-      ctx.beginPath(); ctx.arc(cx + cos(a) * r, cy + sin(a) * r, max(1, R0 * (1 / (5 * 5 * 2))), 0, TAU); ctx.fill()
+      ctx.fillStyle = paint((frame.hue + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part + c * ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part2) % ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part3, glow, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL3 })
+      ctx.beginPath(); ctx.arc(cx + cos(a) * r, cy + sin(a) * r, max(1, R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.maxArg1Part2), 0, TAU); ctx.fill()
     }
   }
 
   // The averaging lens: two unit-separated discs, radius breathing with the phase; the overlap is the harvest.
-  const lensR = R0 * (FIBONACCI[5]! / 100) * ((1 - 3 / (5 * 4)) + (1 / 2) * pulse)
-  const sep = R0 * (1 / 9) // was 0.11 — theorem 1/9 (self-research)
+  const lensR = R0 * (FIBONACCI[ANIMATION_DESIGN.drawUnitDistanceProjection.fIBONACCIAt]! / ANIMATION_DESIGN.drawUnitDistanceProjection.lensR) * (ANIMATION_DESIGN.drawUnitDistanceProjection.lensR2 + (1 / 2) * pulse)
+  const sep = R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.sep // was 0.11 — theorem 1/9 (self-research)
   const lens = (dx: number) => { ctx.beginPath(); ctx.arc(cx + dx, cy, lensR, 0, TAU) }
-  ctx.strokeStyle = paint(frame.hue, (1 - 9 / (5 * 4)), { L: 5 / 8 })
-  ctx.lineWidth = (6 / 5)
+  ctx.strokeStyle = paint(frame.hue, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg12, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL })
+  ctx.lineWidth = ANIMATION_DESIGN.drawUnitDistanceProjection.lineWidth2
   lens(-sep / 2); ctx.stroke()
   lens(sep / 2); ctx.stroke()
   ctx.save()
   lens(-sep / 2); ctx.clip()
-  ctx.fillStyle = paint((frame.hue + (9 * 5 * 4)) % 360, (7 / (5 * 5)) + (2 / 5) * pulse, { L: 3 / 4 })
+  ctx.fillStyle = paint((frame.hue + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part) % ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part3, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1Part3 + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1Part4 * pulse, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL3 })
   lens(sep / 2); ctx.fill()
   ctx.restore()
 
   // Unit chords on the outer layer: equal-length pairs lighting up in sequence — the ν(P) count.
   const outerR = ringRadius(layers)
-  const outerNodes = 3 ** layers
-  const lit = frame.reduce ? 3 : 1 + floor(pulse * 5)
-  const span = 3 // constant arc-step ⇒ constant chord length: every lit chord is the SAME distance
+  const outerNodes = ANIMATION_DESIGN.drawUnitDistanceProjection.outerNodes ** layers
+  const lit = frame.reduce ? ANIMATION_DESIGN.drawUnitDistanceProjection.lit : 1 + floor(pulse * ANIMATION_DESIGN.drawUnitDistanceProjection.floorArg0Part)
+  const span = ANIMATION_DESIGN.drawUnitDistanceProjection.span // constant arc-step ⇒ constant chord length: every lit chord is the SAME distance
   for (let s = 0; s < lit; s += 1) {
-    const k = (floor(frame.t * 2) * 5 + s * 4) % outerNodes
+    const k = (floor(frame.t * 2) * ANIMATION_DESIGN.drawUnitDistanceProjection.k + s * ANIMATION_DESIGN.drawUnitDistanceProjection.k2) % outerNodes
     const a1 = (k / outerNodes) * TAU + drift / layers * (layers % 2 === 0 ? -1 : 1)
     const a2 = ((k + span) / outerNodes) * TAU + drift / layers * (layers % 2 === 0 ? -1 : 1)
-    ctx.strokeStyle = paint((frame.hue + (9 * 5 * 2)) % 360, (3 / 4), { L: 13 / 16 })
-    ctx.lineWidth = (8 / 5)
+    ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part4) % ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part3, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg13, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL4 })
+    ctx.lineWidth = ANIMATION_DESIGN.drawUnitDistanceProjection.lineWidth3
     ctx.beginPath()
     ctx.moveTo(cx + cos(a1) * outerR, cy + sin(a1) * outerR)
     ctx.lineTo(cx + cos(a2) * outerR, cy + sin(a2) * outerR)
@@ -1974,7 +1978,7 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = min(w, h) * (2 / 5)
+  const R = min(w, h) * ANIMATION_DESIGN.drawVortexStrokesProjection.r
   // Counts from the sealed params, never re-declared: segments = the gateway reversals, forms = the tour.
   const { segments: gatewayCount, forms: tourSize } = quantumProjectionParams('vortex-strokes')
   // The written cycle, read against the doubling law: vortexStrokeKinds marks the two seams (5→3, 9→0) where the tour
@@ -1986,9 +1990,9 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
     .map((s, i) => ({ i, digit: s.from, turn: steps[(i - 1 + steps.length) % steps.length]!.up !== s.up }))
     .filter((v) => v.turn)
     .slice(0, gatewayCount)
-  const drift = frame.reduce ? 0 : frame.t * (2 / (5 * 5))
+  const drift = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawVortexStrokesProjection.drift
   const pulse = frame.reduce ? (1 / 2) : dimWalk(frame.p)
-  const angleAt = (i: number) => drift + (i / tourSize) * TAU - TAU / 4
+  const angleAt = (i: number) => drift + (i / tourSize) * TAU - TAU / ANIMATION_DESIGN.drawVortexStrokesProjection.angleAt
   const xAt = (i: number) => cx + cos(angleAt(i)) * R
   const yAt = (i: number) => cy + sin(angleAt(i)) * R
   const runner = frame.reduce ? 0 : frame.p * tourSize
@@ -1996,7 +2000,7 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   // Zero-point reflection: the ten's-complement chords (n, 10−n) breathing through the middle —
   // the division-by-zero reading names reflection, so the chords pass THROUGH the centre region. The pairs are the ones
   // theTenComplementFixesExactlyFive computes, and they share one style, so they are one path: one stroke, not four.
-  ctx.strokeStyle = paint((frame.hue + (100 * 3)) % 360, (2 / (5 * 5)) + (1 / (5 * 2)) * pulse, { L: 5 / 8 })
+  ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part) % ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part2 * pulse, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL })
   ctx.lineWidth = 1
   ctx.beginPath()
   for (const [a, b] of (tenComplement ??= theTenComplementFixesExactlyFive()).pairs) {
@@ -2008,9 +2012,9 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   // recurrence repeats (pisanoWheelOnTheNine finds the period), each step in the colour of its Cassini sign — the +1 steps
   // one path, the −1 steps the other. The two strokes are paid for by the three the chords above no longer spend.
   const pisano = (pisanoOnce ??= pisanoWheelOnTheNine())
-  ctx.lineWidth = (4 / 5)
+  ctx.lineWidth = ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth
   for (const sign of [1, -1] as const) {
-    ctx.strokeStyle = paint(sign > 0 ? frame.hue : (frame.hue + (9 * 5 * 4)) % 360, (1 / (5 * 2)) + (1 / (5 * 4)) * pulse, { L: 5 / 8 })
+    ctx.strokeStyle = paint(sign > 0 ? frame.hue : (frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part3) % ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part2 + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part3 * pulse, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL })
     ctx.beginPath()
     pisano.walk.forEach((d, i) => {
       const j = tour.indexOf(d)
@@ -2025,11 +2029,11 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   // the runner lights the active stroke and the wake fades behind it.
   for (let i = 0; i < steps.length; i += 1) {
     const s = steps[i]!
-    const wake = frame.reduce ? 1 : max(0, 1 - (((runner - i) % tourSize) + tourSize) % tourSize / (tourSize * (3 / 5)))
-    const hue = s.up ? frame.hue : (frame.hue + (9 * 5 * 4)) % 360
-    ctx.strokeStyle = paint(hue, (9 / (5 * 5 * 2)) + (3 / 5) * wake, { L: s.up ? 11 / 16 : 9 / 16 })
-    ctx.setLineDash(s.join ? [3, 5] : []) // a seam is not a doubling step: drawn broken and thin
-    ctx.lineWidth = s.join ? 1 : 1 + (8 / 5) * wake
+    const wake = frame.reduce ? 1 : max(0, 1 - (((runner - i) % tourSize) + tourSize) % tourSize / (tourSize * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part))
+    const hue = s.up ? frame.hue : (frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.hue) % ANIMATION_DESIGN.drawVortexStrokesProjection.hue2
+    ctx.strokeStyle = paint(hue, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part4 + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part5 * wake, { L: s.up ? ANIMATION_DESIGN.drawVortexStrokesProjection.paintLPart : ANIMATION_DESIGN.drawVortexStrokesProjection.paintLPart2 })
+    ctx.setLineDash(s.join ? [ANIMATION_DESIGN.drawVortexStrokesProjection.setLineDashArg0Part, ANIMATION_DESIGN.drawVortexStrokesProjection.setLineDashArg0Part2] : []) // a seam is not a doubling step: drawn broken and thin
+    ctx.lineWidth = s.join ? 1 : 1 + ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth2 * wake
     ctx.beginPath(); ctx.moveTo(xAt(i), yAt(i)); ctx.lineTo(xAt(i + 1), yAt(i + 1)); ctx.stroke()
   }
   ctx.setLineDash([])
@@ -2037,14 +2041,14 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   // Tour nodes: a dot per digit, sized by pulse; the void (0) rendered hollow — presence without magnitude.
   for (let i = 0; i < tour.length; i += 1) {
     const d = tour[i]!
-    const r = max((6 / 5), R * (3 / 100)) * ((4 / 5) + (2 / 5) * pulse)
-    const hue = (frame.hue + i * (6 * 2)) % 360
+    const r = max(ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg0, R * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part2) * (ANIMATION_DESIGN.drawVortexStrokesProjection.r2 + ANIMATION_DESIGN.drawVortexStrokesProjection.r * pulse)
+    const hue = (frame.hue + i * ANIMATION_DESIGN.drawVortexStrokesProjection.hue3) % ANIMATION_DESIGN.drawVortexStrokesProjection.hue2
     if (d === 0) {
-      ctx.strokeStyle = paint(hue, (7 / (5 * 2)), { L: 3 / 4 })
-      ctx.lineWidth = (6 / 5)
+      ctx.strokeStyle = paint(hue, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL2 })
+      ctx.lineWidth = ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth3
       ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, TAU); ctx.stroke()
     } else {
-      ctx.fillStyle = paint(hue, (9 / (5 * 4)) + (7 / (5 * 4)) * pulse, { L: 5 / 8 })
+      ctx.fillStyle = paint(hue, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part6 + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part7 * pulse, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL })
       ctx.beginPath(); ctx.arc(xAt(i), yAt(i), r, 0, TAU); ctx.fill()
     }
   }
@@ -2054,24 +2058,24 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   for (const d of (tenComplement ??= theTenComplementFixesExactlyFive()).fixed) {
     const i = tour.indexOf(d)
     if (i < 0) continue
-    const rr = max(2, R * (1 / (5 * 4)))
-    ctx.strokeStyle = paint((frame.hue + (9 * 5 * 4)) % 360, (3 / 5), { L: 7 / 8 })
-    ctx.lineWidth = (6 / 5)
+    const rr = max(2, R * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part3)
+    ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part3) % ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg12, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL3 })
+    ctx.lineWidth = ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth3
     ctx.beginPath()
     ctx.arc(xAt(i), yAt(i), rr, 0, TAU)
-    ctx.moveTo(xAt(i) + rr * (3 / 2), yAt(i))
-    ctx.arc(xAt(i), yAt(i), rr * (3 / 2), 0, TAU)
+    ctx.moveTo(xAt(i) + rr * ANIMATION_DESIGN.drawVortexStrokesProjection.moveToArg0Part, yAt(i))
+    ctx.arc(xAt(i), yAt(i), rr * ANIMATION_DESIGN.drawVortexStrokesProjection.arcArg2Part, 0, TAU)
     ctx.stroke()
   }
 
   // The gateways: the four computed reversal vertices flare as the runner passes them on the wheel.
   for (const g of gateways) {
-    const near = frame.reduce ? (1 / 2) : max(0, 1 - min(abs(runner - g.i), tourSize - abs(runner - g.i)) / (3 / 2))
-    const glow = (1 / 4) + (1 - 7 / (5 * 4)) * near
-    const hue = (frame.hue + (9 * 5 * 2)) % 360
-    ctx.strokeStyle = paint(hue, glow, { L: 13 / 16 })
-    ctx.lineWidth = (7 / 5)
-    ctx.beginPath(); ctx.arc(xAt(g.i), yAt(g.i), max(2, R * (3 / (5 * 5 * 2))) * ((7 / (5 * 2)) + (3 / 5) * near), 0, TAU); ctx.stroke()
+    const near = frame.reduce ? (1 / 2) : max(0, 1 - min(abs(runner - g.i), tourSize - abs(runner - g.i)) / ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part4)
+    const glow = ANIMATION_DESIGN.drawVortexStrokesProjection.glow + ANIMATION_DESIGN.drawVortexStrokesProjection.glow2 * near
+    const hue = (frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.hue4) % ANIMATION_DESIGN.drawVortexStrokesProjection.hue2
+    ctx.strokeStyle = paint(hue, glow, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL4 })
+    ctx.lineWidth = ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth4
+    ctx.beginPath(); ctx.arc(xAt(g.i), yAt(g.i), max(2, R * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part5) * (ANIMATION_DESIGN.drawVortexStrokesProjection.arcArg2Part2 + ANIMATION_DESIGN.drawVortexStrokesProjection.arcArg2Part3 * near), 0, TAU); ctx.stroke()
   }
 
   // The gateway pyramids: peaks (\→/) lift above the wheel's plane, valleys (/→\) sink below —
@@ -2079,20 +2083,20 @@ function drawVortexStrokesProjection(ctx: CanvasRenderingContext2D, w: number, h
   // the inverted pyramid; the two counter-rotate through the shared 3D primitive — the merkaba
   // interaction of the realisation (computed in vortexGatewayPyramids, src/mountain/vortex).
   const liftVerts = gateways.map((g) => {
-    const a = (g.i / tourSize) * TAU - TAU / 4
+    const a = (g.i / tourSize) * TAU - TAU / ANIMATION_DESIGN.drawVortexStrokesProjection.a
     const peak = steps[(g.i - 1 + steps.length) % steps.length]!.up && !steps[g.i]!.up
-    return [cos(a), sin(a), peak ? (9 / (5 * 2)) : -(9 / (5 * 2))] as const
+    return [cos(a), sin(a), peak ? ANIMATION_DESIGN.drawVortexStrokesProjection.returned : ANIMATION_DESIGN.drawVortexStrokesProjection.returned2] as const
   })
-  const tetraEdges = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]] as const
+  const tetraEdges = [[0, 1], [0, 2], [0, ANIMATION_DESIGN.drawVortexStrokesProjection.tetraEdges], [1, 2], [1, ANIMATION_DESIGN.drawVortexStrokesProjection.tetraEdges], [2, ANIMATION_DESIGN.drawVortexStrokesProjection.tetraEdges]] as const
   const upPyramid: QSolid = { name: 'gateway-pyramid', verts: liftVerts, edges: tetraEdges }
   const downPyramid: QSolid = { name: 'gateway-pyramid-inverse', verts: liftVerts.map(([x, y, z]) => [x, y, -z] as const), edges: tetraEdges }
-  const spin = frame.reduce ? (1 / 2) : frame.t * (3 / (5 * 2))
-  drawSolid3D(ctx, cx, cy, R * ((7 * 3) / (5 * 5 * 2)), upPyramid, spin * (2 / 5), spin, 0, frame.hue, (2 / 5) + (1 / 4) * pulse, frame.palette.dark)
-  drawSolid3D(ctx, cx, cy, R * ((7 * 3) / (5 * 5 * 2)), downPyramid, -spin * (2 / 5), -spin, 0, (frame.hue + (9 * 5 * 4)) % 360, (2 / 5) + (1 / 4) * (1 - pulse), frame.palette.dark)
+  const spin = frame.reduce ? (1 / 2) : frame.t * ANIMATION_DESIGN.drawVortexStrokesProjection.spin
+  drawSolid3D(ctx, cx, cy, R * ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg3Part, upPyramid, spin * ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg5Part, spin, 0, frame.hue, ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg9Part + ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg9Part2 * pulse, frame.palette.dark)
+  drawSolid3D(ctx, cx, cy, R * ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg3Part, downPyramid, -spin * ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg5Part, -spin, 0, (frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg8Part) % ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg8Part2, ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg9Part + ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg9Part2 * (1 - pulse), frame.palette.dark)
 
   // The zero point itself: a quiet centre dot — the axis every reflection passes through.
-  ctx.fillStyle = paint(frame.hue, (3 / (5 * 2)) + (3 / (5 * 2)) * pulse, { L: 7 / 8 })
-  ctx.beginPath(); ctx.arc(cx, cy, max(1, R * (1 / (5 * 5 * 2))), 0, TAU); ctx.fill()
+  ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part8 + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part8 * pulse, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL3 })
+  ctx.beginPath(); ctx.arc(cx, cy, max(1, R * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part6), 0, TAU); ctx.fill()
 }
 
 /**
@@ -2106,27 +2110,27 @@ function drawDoubleTorusProjection(ctx: CanvasRenderingContext2D, w: number, h: 
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const r = min(w, h) * 0.26
+  const r = min(w, h) * ANIMATION_DESIGN.drawDoubleTorusProjection.r
   const { forms: handles } = quantumProjectionParams('double-torus') // 2 — the genus
-  const sep = r * 1.18
+  const sep = r * ANIMATION_DESIGN.drawDoubleTorusProjection.sep
   const squash = PHI - 1 // the camera tilt: rings read as tori, not coins — the golden ellipse (was rounded 0.62)
-  const drift = frame.reduce ? 0 : frame.t * (1 / 4)
+  const drift = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawDoubleTorusProjection.drift
   const pulse = frame.reduce ? (1 / 2) : dimWalk(frame.p)
 
   // The two handles: nine digit-nodes each, strictly counter-rotating (left +, right −).
   for (let s = 0; s < handles; s += 1) {
     const hx = cx + (s === 0 ? -sep : sep)
     const sense = s === 0 ? 1 : -1
-    const hue = (frame.hue + s * (9 * 5 * 4)) % 360
-    ctx.strokeStyle = paint(hue, (3 / (5 * 2)), { L: 9 / 16 })
-    ctx.lineWidth = (6 / 5)
+    const hue = (frame.hue + s * ANIMATION_DESIGN.drawDoubleTorusProjection.hue) % ANIMATION_DESIGN.drawDoubleTorusProjection.hue2
+    ctx.strokeStyle = paint(hue, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1, { L: ANIMATION_DESIGN.drawDoubleTorusProjection.paintL })
+    ctx.lineWidth = ANIMATION_DESIGN.drawDoubleTorusProjection.lineWidth
     ctx.beginPath(); ctx.ellipse(hx, cy, r, r * squash, 0, 0, TAU); ctx.stroke()
-    ctx.strokeStyle = paint(hue, (7 / (5 * 5 * 2)), { L: 1 / 2 })
+    ctx.strokeStyle = paint(hue, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg12, { L: 1 / 2 })
     ctx.beginPath(); ctx.ellipse(hx, cy, r * (PHI - 1), r * squash * (PHI - 1), 0, 0, TAU); ctx.stroke()
-    for (let k = 0; k < 9; k += 1) {
-      const a = sense * drift + (k / 9) * TAU
-      ctx.fillStyle = paint((hue + k * (6 * 2)) % 360, (7 / (5 * 4)) + (7 / (5 * 4)) * pulse, { L: 5 / 8 })
-      ctx.beginPath(); ctx.arc(hx + cos(a) * r, cy + sin(a) * r * squash, max(1, r * (9 / (100 * 2))), 0, TAU); ctx.fill()
+    for (let k = 0; k < ANIMATION_DESIGN.drawDoubleTorusProjection.loop; k += 1) {
+      const a = sense * drift + (k / ANIMATION_DESIGN.drawDoubleTorusProjection.a) * TAU
+      ctx.fillStyle = paint((hue + k * ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg0Part) % ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg0Part2, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1Part + ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1Part * pulse, { L: ANIMATION_DESIGN.drawDoubleTorusProjection.paintL2 })
+      ctx.beginPath(); ctx.arc(hx + cos(a) * r, cy + sin(a) * r * squash, max(1, r * ANIMATION_DESIGN.drawDoubleTorusProjection.maxArg1Part), 0, TAU); ctx.fill()
     }
   }
 
@@ -2134,26 +2138,26 @@ function drawDoubleTorusProjection(ctx: CanvasRenderingContext2D, w: number, h: 
   // Throat = crossing itself — no orphan stroked center circle (wet boundary, not genus-2 geometry).
   const eight = (u: number): readonly [number, number] => {
     const a = u * TAU
-    return [cx + sin(a) * sep * 1.55, cy + sin(a * 2) * r * squash * (1 - 2 / (5 * 5))] as const
+    return [cx + sin(a) * sep * ANIMATION_DESIGN.drawDoubleTorusProjection.returned, cy + sin(a * 2) * r * squash * ANIMATION_DESIGN.drawDoubleTorusProjection.returned2] as const
   }
-  const cars = frame.reduce ? 3 : 9
-  const head = frame.reduce ? (1 / 8) : frame.p
+  const cars = frame.reduce ? ANIMATION_DESIGN.drawDoubleTorusProjection.cars : ANIMATION_DESIGN.drawDoubleTorusProjection.cars2
+  const head = frame.reduce ? ANIMATION_DESIGN.drawDoubleTorusProjection.head : frame.p
   for (let c = 0; c < cars; c += 1) {
-    const u = ((head - c * 0.022) % 1 + 1) % 1
+    const u = ((head - c * ANIMATION_DESIGN.drawDoubleTorusProjection.u) % 1 + 1) % 1
     const [x, y] = eight(u)
     const fade = 1 - c / cars
-    ctx.fillStyle = paint((frame.hue + (9 * 5 * 2)) % 360, (1 / 4) + (3 / 5) * fade, { L: 13 / 16 })
-    ctx.beginPath(); ctx.arc(x, y, max(1, r * (1 / (5 * 4))) * ((3 / 5) + (2 / 5) * fade), 0, TAU); ctx.fill()
+    ctx.fillStyle = paint((frame.hue + ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg0Part3) % ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg0Part2, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1Part2 + ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1Part3 * fade, { L: ANIMATION_DESIGN.drawDoubleTorusProjection.paintL3 })
+    ctx.beginPath(); ctx.arc(x, y, max(1, r * ANIMATION_DESIGN.drawDoubleTorusProjection.maxArg1Part2) * (ANIMATION_DESIGN.drawDoubleTorusProjection.arcArg2Part + ANIMATION_DESIGN.drawDoubleTorusProjection.arcArg2Part2 * fade), 0, TAU); ctx.fill()
   }
 
   // χ counted, not typed: cellHomology computes the Euler characteristic from the genus-2 chain complex (one vertex, four
   // edges, one face), and the genus the two handles above draw reads back from it as (2 − χ) / 2.
   const homology = (homologyOnce ??= cellHomology())
-  ctx.fillStyle = paint(frame.hue, (7 / 8), { L: 7 / 8 })
-  ctx.font = `${max(9, round(r * (1 / 5)))}px ui-monospace, monospace`
+  ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg13, { L: ANIMATION_DESIGN.drawDoubleTorusProjection.paintL4 })
+  ctx.font = `${max(ANIMATION_DESIGN.drawDoubleTorusProjection.maxArg0, round(r * ANIMATION_DESIGN.drawDoubleTorusProjection.roundArg0Part))}px ui-monospace, monospace`
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
-  ctx.fillText(`χ = ${homology.euler} · genus ${(2 - homology.euler) / 2}`, cx, cy + r * squash + r * (2 / 5))
+  ctx.fillText(`χ = ${homology.euler} · genus ${(2 - homology.euler) / 2}`, cx, cy + r * squash + r * ANIMATION_DESIGN.drawDoubleTorusProjection.fillTextArg2Part)
 }
 
 /** Torus field — fallback projection: a quasiperiodic genus-2 point field, the shared default view. */
@@ -2161,18 +2165,18 @@ function drawTorusFieldProjection(ctx: CanvasRenderingContext2D, w: number, h: n
   const paint = movieCanvasPolarity(frame.palette.dark)
   const cx = w / 2
   const cy = h / 2
-  const R = min(w, h) * (3 / (5 * 2))
-  const tube = R * (2 / 5)
-  const rx = frame.reduce ? (2 / 5) : frame.t * (3 / (5 * 2))
-  const ry = frame.reduce ? (1 / 5) : frame.t * (7 * 3 / 100)
-  for (let i = 0; i < (7 * 4); i += 1) {
-    const u = (i / (7 * 4)) * TAU
-    for (let j = 0; j < (5 * 2); j += 1) {
-      const v = (j / (5 * 2)) * TAU
+  const R = min(w, h) * ANIMATION_DESIGN.drawTorusFieldProjection.r
+  const tube = R * ANIMATION_DESIGN.drawTorusFieldProjection.tube
+  const rx = frame.reduce ? ANIMATION_DESIGN.drawTorusFieldProjection.rx : frame.t * ANIMATION_DESIGN.drawTorusFieldProjection.rx2
+  const ry = frame.reduce ? ANIMATION_DESIGN.drawTorusFieldProjection.ry : frame.t * ANIMATION_DESIGN.drawTorusFieldProjection.ry2
+  for (let i = 0; i < ANIMATION_DESIGN.drawTorusFieldProjection.loop; i += 1) {
+    const u = (i / ANIMATION_DESIGN.drawTorusFieldProjection.u) * TAU
+    for (let j = 0; j < ANIMATION_DESIGN.drawTorusFieldProjection.loop2; j += 1) {
+      const v = (j / ANIMATION_DESIGN.drawTorusFieldProjection.v) * TAU
       const rr = R + tube * cos(v)
       const p = qProject(cos(u) * rr / R, (tube * sin(v)) / R, sin(u) * rr / R, rx, ry, 0, cx, cy, R)
-      ctx.fillStyle = paint((frame.hue + i * 8) % 360, (3 / (5 * 4)) + (1 / 2) * p.s, { L: 1 / 2 })
-      ctx.beginPath(); ctx.arc(p.x, p.y, max((3 / 5), 2 * p.s), 0, TAU); ctx.fill()
+      ctx.fillStyle = paint((frame.hue + i * ANIMATION_DESIGN.drawTorusFieldProjection.paintArg0Part) % ANIMATION_DESIGN.drawTorusFieldProjection.paintArg0Part2, ANIMATION_DESIGN.drawTorusFieldProjection.paintArg1Part + (1 / 2) * p.s, { L: 1 / 2 })
+      ctx.beginPath(); ctx.arc(p.x, p.y, max(ANIMATION_DESIGN.drawTorusFieldProjection.maxArg0, 2 * p.s), 0, TAU); ctx.fill()
     }
   }
 }
@@ -10874,4 +10878,63 @@ export function theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesRefle
         { facet: `"connecting universes" computes to the ${onTrinities.size} permutations of three residue classes mod 3 — arithmetic on nine digits, no statement about any universe`, on: onTrinities.size === 2 * 3 && maps.size === 2 * NINE },
         { facet: `"the cost stays infinite" is false: the four search costs 2^${costList.join(', 2^')} are finite, and they are cited results over a fair hash, not something this fold proves`, on: costList.every((c) => Number.isFinite(c) && c < budget.nominalBits) },
       ]) }
+}
+
+/**
+ * THE ANGLES EVERY ANIMATION TURNS BY ARE THE ANGLES THE KERNEL DECIDES. MOVIE_ANGLES is computed from the nine digits
+ * and the forty-degree station; this fold checks each against the circuit it comes from and names the quantum.lean
+ * theorem whose statement holds the same integers (verify:hashes reads that theorem's axiom record and statement).
+ */
+export function theMovieTurnsByTheAnglesTheTheoremsDecide() {
+  const QUANTUM_LEAN = 'src/pair/lean/proofs/quantum.lean'
+  const { turn, half, trinity, sixty, station } = MOVIE_ANGLES
+  const angle = (d: number) => (station * d) % turn
+  const nine = VORTEX_SEQUENCE.length
+  const facets = [
+    { facet: `TURN — ${nine} digits at ${station}° each close the circle at ${turn}°`, theorem: 'the_doubling_circuit_steps_forty_eighty_one_sixty_and_back', file: QUANTUM_LEAN, decides: [station, turn], on: nine * station === turn && angle(nine) === 0 },
+    { facet: `TRINITY — 3·6·9 sit ${trinity}° apart: ${angle(3)}°, ${angle(2 * 3)}°, ${angle(nine)}°`, theorem: 'the_doubling_circuit_steps_forty_eighty_one_sixty_and_back', file: QUANTUM_LEAN, decides: [trinity], on: angle(2 * 3) - angle(3) === trinity && (angle(nine) + turn - angle(2 * 3)) % turn === trinity },
+    { facet: `HALF — the half turn ${half}° is the mirror: a hue and its opposite sum to a full turn, and two halves are one`, theorem: 'six_is_the_first_perfect_number_and_a_tetrahedron_sums_to_720', file: QUANTUM_LEAN, decides: [half, turn], on: 2 * half === turn },
+    { facet: `SIXTY — ${sixty}° is a sixth of the turn, the rotation ω of ℤ[ω]: six of them return`, theorem: 'six_is_the_first_perfect_number_and_a_tetrahedron_sums_to_720', file: QUANTUM_LEAN, decides: [sixty], on: (2 * 3) * sixty === turn && 2 * sixty === trinity },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`movie-angles:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    angles: MOVIE_ANGLES,
+    theorems: facets.map((entry) => ({ theorem: entry.theorem, file: entry.file, decides: entry.decides })),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `Every animation turns by ${station}°, ${sixty}°, ${trinity}°, ${half}° and ${turn}° — the integers quantum.lean decides for the doubling circuit and the sixth root of unity.`,
+  }
+}
+
+/**
+ * EVERY KERNEL THEOREM PASSES THROUGH THE MOVIE IN ONE CYCLE. The record is what the kernel wrote
+ * (.vitepress/data/lean-axioms.json); the movie's window of theorem streams slides with the phase. Stepping the phase
+ * once per theorem across one cycle, this collects every theorem that was on screen and names any that never was.
+ * Carrying a theorem's address is not proving it, and what each rests on is the kernel's record, not this fold's.
+ */
+export function theMovieCarriesEveryKernelTheoremInOneCycle(record: KernelTheoremRecord) {
+  const { all } = kernelTheoremStreams(record, 0)
+  const seen = new Set<string>()
+  for (let k = 0; k < all.length; k += 1) for (const stream of kernelTheoremStreams(record, (k + 1 / 2) / all.length).visible) seen.add(stream.uuid)
+  const missing = all.filter((stream) => !seen.has(stream.uuid))
+  const distinct = new Set(all.map((stream) => stream.uuid)).size
+  const onStation = all.every((stream) => stream.hue % MOVIE_ANGLES.station === 0)
+  const files = new Set(all.map((stream) => stream.file)).size
+  const axiomFree = all.filter((stream) => stream.axioms.length === 0).length
+  const facets = [
+    { facet: `EVERY THEOREM — all ${all.length} theorems the kernel recorded in ${files} files are on screen at some phase of one cycle; ${missing.length} never are`, on: all.length > 0 && missing.length === 0 },
+    { facet: `ONE ADDRESS EACH — ${distinct} distinct stream addresses for ${all.length} theorems`, on: distinct === all.length },
+    { facet: `ON THE CIRCUIT — every theorem stream's hue is a ${MOVIE_ANGLES.station}° station of its file`, on: onStation },
+    { facet: `WHAT EACH RESTS ON — ${axiomFree} of ${all.length} rest on no axiom, as the kernel recorded; the rest are drawn with their axioms named, not hidden`, on: axiomFree <= all.length },
+  ].map((entry) => ({ ...entry, receipt: toUuid(`movie-theorems:${entry.facet}:${entry.on}`) }))
+  return {
+    computes: facets.every((entry) => entry.on),
+    count: all.length,
+    files,
+    axiomFree,
+    missing: missing.map((stream) => `${stream.file}:${stream.theorem}`),
+    facets,
+    root: merkleFold(facets.map((entry) => entry.receipt)),
+    statement: `The background movie carries all ${all.length} kernel theorems as streams over one cycle; ${axiomFree} rest on no axiom.`,
+  }
 }

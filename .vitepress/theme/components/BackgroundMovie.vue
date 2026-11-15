@@ -18,6 +18,8 @@ import {
 import { useHeroCopy } from '../../lib/hero-copy'
 import { proveAllDeterministicCore, proveAllDeterministicCoreBeatAt } from '../../render'
 import { harmonizeField, type ObserverContext } from '../../render'
+// Every theorem the Lean kernel recorded, with what each rests on — the movie's streams carry them all over one cycle.
+import kernelTheorems from '../../data/lean-axioms.json'
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const { route, copy } = useHeroCopy()
@@ -64,7 +66,7 @@ const { repaint } = useVisibleMovieCanvas({
     // The page field centre is FIXED (scroll 0 ⇒ h/2): the background movie does not scroll. The
     // CARD movies pan their mini-fields (cardFieldScroll) to MEET this centre as they cross — the
     // meet is the fusion; the one algebra, two frames of reference.
-    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value)
+    const shared = sharedHeroAt(route.path, copy.value, atMs, w, reduce, isDark.value, 0, undefined, kernelTheorems)
     const observer: ObserverContext = {
       route: route.path,
       at: atMs,

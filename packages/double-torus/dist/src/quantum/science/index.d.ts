@@ -1295,8 +1295,8 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 root: string;
             };
             rows: {
-                tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-                action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                 ray: number;
                 rayMeta: {
                     readonly ray: 0;
@@ -1353,7 +1353,7 @@ export declare function quantumComputerComputes(matrix?: MindMatrix, at?: number
                 legacyBare: string;
                 schemaTarget: string;
                 canonical: string;
-                importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                 wave: 2 | 1;
                 applied: boolean;
                 receipt: string;
@@ -2216,8 +2216,8 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-                    action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                    action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
@@ -2274,7 +2274,7 @@ export declare function quantumComputerPanelComputes(matrix?: MindMatrix, at?: n
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                     wave: 2 | 1;
                     applied: boolean;
                     receipt: string;
@@ -3474,8 +3474,8 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-                    action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                    action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
@@ -3532,7 +3532,7 @@ export declare function quantumComputerLabComputes(matrix?: MindMatrix, at?: num
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                     wave: 2 | 1;
                     applied: boolean;
                     receipt: string;

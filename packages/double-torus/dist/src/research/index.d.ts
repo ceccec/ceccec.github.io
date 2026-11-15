@@ -3182,7 +3182,7 @@ export declare function algebraicTheoremPaperMustContain(matrix?: MindMatrix, at
     optional: readonly ["corollaries"];
     template: AlgebraicPaperSections;
     scores: readonly AlgebraicPaperSectionScore[];
-    missing: readonly ("statement" | "title" | "references" | "theorems" | "proofs" | "status" | "formulas" | "abstract" | "definitions")[];
+    missing: readonly ("statement" | "title" | "references" | "theorems" | "proofs" | "status" | "formulas" | "definitions" | "abstract")[];
     incompleteIfMissingRequired: true;
     facets: ({
         receipt: string;
@@ -3210,7 +3210,7 @@ export declare function algebraicTheoremPaperComplete(paperId: string, matrix?: 
     kind: "unknown" | "corpus-paper" | "domain-proof";
     sections: AlgebraicPaperSections;
     scores: readonly AlgebraicPaperSectionScore[];
-    missing: readonly ("statement" | "title" | "references" | "theorems" | "proofs" | "status" | "formulas" | "abstract" | "definitions")[];
+    missing: readonly ("statement" | "title" | "references" | "theorems" | "proofs" | "status" | "formulas" | "definitions" | "abstract")[];
     facets: ({
         receipt: string;
         facet: string;
@@ -3347,7 +3347,7 @@ export declare function theoremGapsFilledInWaves(matrix?: MindMatrix, at?: numbe
     samples: {
         id: "p001" | "ancient-calendars" | "secp256k1-field-prime" | "plasma-thunder-phenomena";
         complete: boolean;
-        missing: readonly ("statement" | "title" | "references" | "theorems" | "proofs" | "status" | "formulas" | "abstract" | "definitions")[];
+        missing: readonly ("statement" | "title" | "references" | "theorems" | "proofs" | "status" | "formulas" | "definitions" | "abstract")[];
         root: string;
     }[];
     papersFill: {
@@ -43483,9 +43483,9 @@ export declare function getAnalystTrinityCurriculum(matrix?: MindMatrix): {
     computes: boolean;
     rows: {
         id: "collide" | "analyse" | "realise";
-        fold: "realiseSessionQuantumMeaning" | "analyseFaceOfAnalystTrinity" | "trainQuantumTeamsCollideBecomeWavesObserveManifest";
+        fold: "realiseSessionQuantumMeaning" | "trainQuantumTeamsCollideBecomeWavesObserveManifest" | "analyseFaceOfAnalystTrinity";
         home: "src/research" | "src/thunder/waves" | "src/quantum/apps";
-        pair: "team/collide" | "analyse/realise" | "realise/meaning";
+        pair: "team/collide" | "realise/meaning" | "analyse/realise";
         ray: number;
         cli: string;
         address: string;
@@ -43511,8 +43511,8 @@ export declare function validateQuantumAnalystTrain(matrix?: MindMatrix, at?: nu
     computes: boolean;
     runs: {
         module: "collide" | "analyse" | "realise";
-        fold: "realiseSessionQuantumMeaning" | "analyseFaceOfAnalystTrinity" | "trainQuantumTeamsCollideBecomeWavesObserveManifest";
-        pair: "team/collide" | "analyse/realise" | "realise/meaning";
+        fold: "realiseSessionQuantumMeaning" | "trainQuantumTeamsCollideBecomeWavesObserveManifest" | "analyseFaceOfAnalystTrinity";
+        pair: "team/collide" | "realise/meaning" | "analyse/realise";
         ray: number;
         ok: boolean;
         receipt: string;
@@ -43556,9 +43556,9 @@ export declare function trainTrinitiesOfAnalystsToAnalyseAndRealise(matrix?: Min
         computes: boolean;
         rows: {
             id: "collide" | "analyse" | "realise";
-            fold: "realiseSessionQuantumMeaning" | "analyseFaceOfAnalystTrinity" | "trainQuantumTeamsCollideBecomeWavesObserveManifest";
+            fold: "realiseSessionQuantumMeaning" | "trainQuantumTeamsCollideBecomeWavesObserveManifest" | "analyseFaceOfAnalystTrinity";
             home: "src/research" | "src/thunder/waves" | "src/quantum/apps";
-            pair: "team/collide" | "analyse/realise" | "realise/meaning";
+            pair: "team/collide" | "realise/meaning" | "analyse/realise";
             ray: number;
             cli: string;
             address: string;
@@ -43581,8 +43581,8 @@ export declare function trainTrinitiesOfAnalystsToAnalyseAndRealise(matrix?: Min
         computes: boolean;
         runs: {
             module: "collide" | "analyse" | "realise";
-            fold: "realiseSessionQuantumMeaning" | "analyseFaceOfAnalystTrinity" | "trainQuantumTeamsCollideBecomeWavesObserveManifest";
-            pair: "team/collide" | "analyse/realise" | "realise/meaning";
+            fold: "realiseSessionQuantumMeaning" | "trainQuantumTeamsCollideBecomeWavesObserveManifest" | "analyseFaceOfAnalystTrinity";
+            pair: "team/collide" | "realise/meaning" | "analyse/realise";
             ray: number;
             ok: boolean;
             receipt: string;
@@ -45980,7 +45980,7 @@ export declare function getGeodesyCurriculum(matrix?: MindMatrix): {
         id: "obliquity-epoch" | "great-circle" | "initial-bearing" | "mean-ellipsoid" | "torus-invert";
         fold: "EARTH_RADIUS_KM" | "greatCircleKm" | "initialBearing" | "obliquityAtEpoch" | "geodesyDecodedIsDoubleTorusInverted";
         home: "src/5/5" | "src/research" | "src/3/7" | "src/6/4";
-        pair: "geo/torus" | "geo/train";
+        pair: "geo/train" | "geo/torus";
         ray: number;
         cli: string;
         address: string;
@@ -46005,7 +46005,7 @@ export declare function validateQuantumGeodesyTrain(matrix?: MindMatrix, at?: nu
     runs: {
         module: "obliquity-epoch" | "great-circle" | "initial-bearing" | "mean-ellipsoid" | "torus-invert";
         fold: "EARTH_RADIUS_KM" | "greatCircleKm" | "initialBearing" | "obliquityAtEpoch" | "geodesyDecodedIsDoubleTorusInverted";
-        pair: "geo/torus" | "geo/train";
+        pair: "geo/train" | "geo/torus";
         ray: number;
         ok: boolean;
         receipt: string;
@@ -46067,7 +46067,7 @@ export declare function trainGeodesyAsQuantumWave(matrix?: MindMatrix, at?: numb
             id: "obliquity-epoch" | "great-circle" | "initial-bearing" | "mean-ellipsoid" | "torus-invert";
             fold: "EARTH_RADIUS_KM" | "greatCircleKm" | "initialBearing" | "obliquityAtEpoch" | "geodesyDecodedIsDoubleTorusInverted";
             home: "src/5/5" | "src/research" | "src/3/7" | "src/6/4";
-            pair: "geo/torus" | "geo/train";
+            pair: "geo/train" | "geo/torus";
             ray: number;
             cli: string;
             address: string;
@@ -46091,7 +46091,7 @@ export declare function trainGeodesyAsQuantumWave(matrix?: MindMatrix, at?: numb
         runs: {
             module: "obliquity-epoch" | "great-circle" | "initial-bearing" | "mean-ellipsoid" | "torus-invert";
             fold: "EARTH_RADIUS_KM" | "greatCircleKm" | "initialBearing" | "obliquityAtEpoch" | "geodesyDecodedIsDoubleTorusInverted";
-            pair: "geo/torus" | "geo/train";
+            pair: "geo/train" | "geo/torus";
             ray: number;
             ok: boolean;
             receipt: string;

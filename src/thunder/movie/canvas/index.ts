@@ -402,28 +402,34 @@ export function movieAllElementsAreTheorems(matrix: MindMatrix = buildMatrix(), 
         geomSrc.includes('Phase marker only') &&
         !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*radius/.test(geomSrc.slice(geomSrc.indexOf('export function drawCalendars'))))
     // Void: soft fillRect confluence — must NOT arc+fill a circular disk path (plasma screen, not a ball).
-    const ballSlice = quantumSrc.slice(quantumSrc.indexOf('function drawPlasmaBall'), quantumSrc.indexOf('function drawPlasmaBall') + 900)
+    // THE WHOLE PAINTER, NOT A WINDOW OF IT. These read the first 900, 1200 and 2200 characters of a painter and looked
+    // for words inside them. When the painters' numbers moved into ANIMATION_DESIGN each literal became a longer name,
+    // the words slid past the window, and three checks went off on unchanged geometry. A painter's body now runs from
+    // its declaration to the next top-level function, so no character count decides what is read.
+    const painterBody = (src: string, head: string): string => {
+      const at = src.indexOf(head)
+      if (at < 0) return ''
+      const next = src.slice(at + head.length).search(/\n(?:export )?function /)
+      return next < 0 ? src.slice(at) : src.slice(at, at + head.length + next)
+    }
+    const ballSlice = painterBody(quantumSrc, 'function drawPlasmaBall')
     const voidSoft =
       srcReadable &&
       (ballSlice.includes('fillRect') &&
         !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*void/.test(ballSlice) &&
         (ballSlice.includes('Soft throat') || ballSlice.includes('screen') || ballSlice.includes('confluence')))
     // Merkaba: no shell ring strokes / orphan centre disk.
-    const merkabaSlice = quantumSrc.slice(
-      quantumSrc.indexOf('export function drawBothEarthsMerkabaFrame'),
-      quantumSrc.indexOf('export function drawBothEarthsMerkabaFrame') + 1200,
-    )
+    const merkabaSlice = painterBody(quantumSrc, 'export function drawBothEarthsMerkabaFrame')
     const merkabaNoShell =
       srcReadable &&
       (!merkabaSlice.includes('setLineDash') && !merkabaSlice.includes('4 * scale'))
     // Double-torus projection: no orphan stroked centre throat circle.
-    const dtSlice = quantumSrc.slice(
-      quantumSrc.indexOf('function drawDoubleTorusProjection'),
-      quantumSrc.indexOf('function drawDoubleTorusProjection') + 2200,
-    )
+    const dtSlice = painterBody(quantumSrc, 'function drawDoubleTorusProjection')
+    // No arc stroked at the centre at all — the old test forbade one exact radius written as (4 / (5 * 5)), text that can
+    // no longer appear now that the radius is a table name, so it could not fail. The rule is the geometry, not the spelling.
     const torusNoCenterRing =
       srcReadable &&
-      (!dtSlice.includes('ctx.arc(cx, cy, r * (4 / (5 * 5))') && dtSlice.includes('lemniscate'))
+      (!/ctx\.arc\(\s*cx\s*,\s*cy\s*,/.test(dtSlice) && dtSlice.includes('lemniscate'))
     // Surface routes are VitePress site paths — theme LinkedHeroCard uses plain `<a href>` + localize (onlyVitePressApi).
     const vitepressRoutesOnly = MOVIE_CLOCK_SURFACE_ATTESTATION.every(
       (row) => row.route.startsWith('/') && !row.route.includes('location.') && !row.route.includes('vue-router'),

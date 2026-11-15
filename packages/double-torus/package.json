@@ -16,10 +16,12 @@
       "types": "./dist/kernel.d.ts",
       "import": "./dist/kernel.js",
       "default": "./dist/kernel.js"
-    }
+    },
+    "./double-torus.scss": "./double-torus.scss"
   },
   "files": [
     "dist",
+    "double-torus.scss",
     "README.md",
     "LICENSE"
   ],

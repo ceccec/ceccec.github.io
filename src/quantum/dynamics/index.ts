@@ -27,6 +27,7 @@ import {
 import { A432_HUE, TAU } from '../../3/7/index.ts'
 import { movieCanvasPolarity } from '../science/index.ts'
 import { heroPhaseAt } from '../../fire/plasma/ball/index.ts'
+import { ANIMATION_DESIGN } from '../wind/geometry/index.ts'
 
 /** One amplitude slot in the discrete wavefunction proxy. */
 export type QuantumDynamicsAmplitude = {
@@ -782,40 +783,40 @@ export function drawDynamicsProjection(
   const dark = opts.dark !== false
   const reduce = opts.reduce === true
   const paint = movieCanvasPolarity(dark)
-  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
+  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: ANIMATION_DESIGN.drawDynamicsProjection.paintL, C: ANIMATION_DESIGN.drawDynamicsProjection.paintC })
   const p = heroPhaseAt(sim.at)
   ctx.clearRect(0, 0, w, h)
-  const labelPx = max(9, round(h / 27))
-  const barW = min((16 * 3), (w - (8 * 5)) / max(sim.amplitudes.length, 1))
-  const baseY = h * ((7 / (5 * 2)) + (1 / (5 * 5)) * sin(p * TAU))
-  const maxH = h * (1 - 9 / (5 * 4))
+  const labelPx = max(ANIMATION_DESIGN.drawDynamicsProjection.maxArg0, round(h / ANIMATION_DESIGN.drawDynamicsProjection.roundArg0Part))
+  const barW = min(ANIMATION_DESIGN.drawDynamicsProjection.minArg0, (w - ANIMATION_DESIGN.drawDynamicsProjection.minArg1Part) / max(sim.amplitudes.length, 1))
+  const baseY = h * (ANIMATION_DESIGN.drawDynamicsProjection.baseY + ANIMATION_DESIGN.drawDynamicsProjection.baseY2 * sin(p * TAU))
+  const maxH = h * ANIMATION_DESIGN.drawDynamicsProjection.maxH
   sim.amplitudes.forEach((amp, index) => {
-    const x = (5 * 4) + index * (barW + 8)
+    const x = ANIMATION_DESIGN.drawDynamicsProjection.x + index * (barW + ANIMATION_DESIGN.drawDynamicsProjection.x2)
     const barH = amp.probability * maxH
-    ctx.fillStyle = paint(amp.hue, 1 - 3 / (5 * 4))
+    ctx.fillStyle = paint(amp.hue, ANIMATION_DESIGN.drawDynamicsProjection.paintArg1)
     ctx.fillRect(x, baseY - barH, barW, barH)
-    ctx.strokeStyle = ink(7 / (5 * 4))
+    ctx.strokeStyle = ink(ANIMATION_DESIGN.drawDynamicsProjection.inkArg0)
     ctx.strokeRect(x, baseY - barH, barW, barH)
-    ctx.fillStyle = ink(4 / 5)
+    ctx.fillStyle = ink(ANIMATION_DESIGN.drawDynamicsProjection.inkArg02)
     ctx.font = `${labelPx}px monospace`
-    ctx.fillText(`|${amp.basis}⟩`, x, baseY + (7 * 2))
+    ctx.fillText(`|${amp.basis}⟩`, x, baseY + ANIMATION_DESIGN.drawDynamicsProjection.fillTextArg2Part)
     if (!reduce) {
-      ctx.fillText(amp.probability.toFixed(3), x, baseY - barH - 6)
+      ctx.fillText(amp.probability.toFixed(ANIMATION_DESIGN.drawDynamicsProjection.toFixedArg0), x, baseY - barH - ANIMATION_DESIGN.drawDynamicsProjection.fillTextArg2Part2)
     }
   })
   if (sim.entangled && sim.amplitudes.length >= 2) {
-    const x0 = (5 * 4) + barW / 2
-    const x1 = (5 * 4) + (sim.amplitudes.length - 1) * (barW + 8) + barW / 2
-    const linkY = h * ((1 / 5) + (1 / (5 * 5)) * cos(p * TAU))
-    ctx.strokeStyle = paint(A432_HUE, 1 - 9 / (5 * 4), { L: 13 / 16 })
+    const x0 = ANIMATION_DESIGN.drawDynamicsProjection.x0 + barW / 2
+    const x1 = ANIMATION_DESIGN.drawDynamicsProjection.x1 + (sim.amplitudes.length - 1) * (barW + ANIMATION_DESIGN.drawDynamicsProjection.x12) + barW / 2
+    const linkY = h * (ANIMATION_DESIGN.drawDynamicsProjection.linkY + ANIMATION_DESIGN.drawDynamicsProjection.linkY2 * cos(p * TAU))
+    ctx.strokeStyle = paint(A432_HUE, ANIMATION_DESIGN.drawDynamicsProjection.paintArg12, { L: ANIMATION_DESIGN.drawDynamicsProjection.paintL2 })
     ctx.lineWidth = 2
     ctx.beginPath()
     ctx.moveTo(x0, linkY)
     ctx.lineTo(x1, linkY)
     ctx.stroke()
-    ctx.fillStyle = ink(3 / 4)
+    ctx.fillStyle = ink(ANIMATION_DESIGN.drawDynamicsProjection.inkArg03)
     ctx.font = `${labelPx}px sans-serif`
-    ctx.fillText('entangled phase lock', x0, linkY - 8)
+    ctx.fillText('entangled phase lock', x0, linkY - ANIMATION_DESIGN.drawDynamicsProjection.fillTextArg2Part3)
   }
 }
 

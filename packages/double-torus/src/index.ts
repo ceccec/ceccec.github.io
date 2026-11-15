@@ -129,6 +129,13 @@ export {
 } from '../../../src/quantum/index.ts'
 export type { UuidReading, UuidVariant } from '../../../src/quantum/index.ts'
 
+// The one animation SDK — every number the animations paint with (decided in movie.lean), the theorem angles, the kernel
+// theorems as movie streams, and the stylesheet double-torus.scss is emitted from (shipped beside this bundle):
+export {
+  ANIMATION_DESIGN, MOVIE_ANGLES, animationScss, animationToken, bindAnimationDesign, kernelTheoremStreams,
+} from '../../../src/quantum/wind/geometry/index.ts'
+export type { KernelTheoremRecord, KernelTheoremStream } from '../../../src/quantum/wind/geometry/index.ts'
+
 // Completely quantum surface — sealed palette + TAU + proof receipt (structural substrate, not QPU):
 export { movieCanvasHex, movieCanvasRgba, movieCanvasPolarity } from '../../../src/quantum/science/index.ts'
 export { TAU } from '../../../src/3/7/index.ts'

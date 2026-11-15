@@ -19,7 +19,19 @@ import {
   encodeWatchMsPersist,
   parseWatchMsPersist,
   attunementTier,
+  bindAnimationDesign,
 } from '../render'
+
+// EVERY CANVAS READS ITS NUMBERS FROM THE ONE CSS SDK. double-torus.scss publishes each painter number as a custom
+// property; the first canvas to mount binds the painters from the computed stylesheet, once per page load.
+let animationSdkBound = false
+function bindAnimationSdkOnce(): void {
+  if (animationSdkBound || typeof document === 'undefined') return
+  animationSdkBound = true
+  const style = getComputedStyle(document.documentElement)
+  const bound = bindAnimationDesign((name) => style.getPropertyValue(name))
+  if (import.meta.env.DEV && bound.source === 'absent') console.warn(`animation SDK: double-torus.scss not loaded — ${bound.absent} painter numbers fall back to the table`)
+}
 
 export type MovieIntensity = 'full' | 'soft' | 'whisper'
 
@@ -391,6 +403,7 @@ export function useVisibleMovieCanvas(options: VisibleMovieCanvasOptions) {
 
   onMounted(async () => {
     await nextTick()
+    bindAnimationSdkOnce()
     if (options.visibility === 'document') {
       onVisibility = (): void => {
         visible = typeof document !== 'undefined' ? !document.hidden : true

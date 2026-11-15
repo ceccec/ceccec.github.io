@@ -19,8 +19,11 @@
  * is not thereby measured.
  */
 
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { createRequire } from 'node:module'
+import { ANIMATION_DESIGN, animationScss, type KernelTheoremRecord } from '../../src/quantum/wind/geometry/index.ts'
+import { theMovieCarriesEveryKernelTheoremInOneCycle, theMovieTurnsByTheAnglesTheTheoremsDecide } from '../../src/quantum/index.ts'
 import { ratchet, everyRatchet, decided } from './status.ts'
 import { VORTEX_SEQUENCE } from '../../src/0/index.ts'
 import { theVortexNeverTouchesTheAxisAndReflectionIsTheOnlyBridge } from '../../src/quantum/dynamics/index.ts'
@@ -164,8 +167,101 @@ export function reportMovieSites(): void {
   for (const s of joins) console.log(`  ${s.file}:${s.line}  ${s.text}  ${s.shape}`)
 }
 
+/**
+ * THE ONE ANIMATION SDK, HELD. Every animation in src takes its numbers from ANIMATION_DESIGN and MOVIE_ANGLES
+ * (src/quantum/wind/geometry), each design value is DEFINED in movie.lean where the kernel decides its law, and
+ * double-torus.scss is what the browser binds them from. Five statements, one count of counterexamples:
+ *   no painter carries a bare number outside {0, 1, 2}          (painters found by their canvas parameter, not listed)
+ *   every design value equals its movie.lean definition, and each definition sits under a law
+ *   every movie.lean theorem rests on no axiom, as the kernel recorded
+ *   double-torus.scss is what animationScss() emits
+ *   every kernel theorem passes through the movie in one cycle, and the angles are the theorem angles
+ */
+export function animationSdkFindings(root: string = ROOT): { findings: string[]; painters: number; values: number; laws: number; theorems: number } {
+  const findings: string[] = []
+  const ts = createRequire(join(root, 'package.json'))('typescript') as typeof import('typescript')
+  // 1 — the painters
+  const files = walk(join(root, 'src'), (p) => p.endsWith('index.ts')).filter((p) => readFileSync(p, 'utf8').includes('CanvasRenderingContext2D'))
+  const fns = new Map<string, { file: string; sf: import('typescript').SourceFile; node: import('typescript').FunctionDeclaration }>()
+  const painters = new Set<string>()
+  for (const file of files) {
+    const sf = ts.createSourceFile(file, readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true)
+    ts.forEachChild(sf, (n) => {
+      if (!ts.isFunctionDeclaration(n) || !n.name || !n.body) return
+      fns.set(n.name.text, { file, sf, node: n })
+      if (n.parameters.some((p) => p.type?.getText() === 'CanvasRenderingContext2D')) painters.add(n.name.text)
+    })
+  }
+  const scope = new Set(painters), queue = ['drawHeroMovieFrame', 'sharedHeroAt']
+  for (const entry of queue) scope.add(entry)
+  while (queue.length) {
+    const f = fns.get(queue.shift()!)
+    if (!f) continue
+    const visit = (k: import('typescript').Node): void => {
+      if (ts.isCallExpression(k) && ts.isIdentifier(k.expression) && fns.has(k.expression.text) && !scope.has(k.expression.text)) { scope.add(k.expression.text); queue.push(k.expression.text) }
+      ts.forEachChild(k, visit)
+    }
+    visit(f.node.body!)
+  }
+  for (const name of scope) {
+    const f = fns.get(name)
+    if (!f) continue
+    const visit = (k: import('typescript').Node): void => {
+      if (ts.isNumericLiteral(k) && ![0, 1, 2].includes(Number(k.text))) findings.push(`${f.file.slice(root.length + 1)}:${f.sf.getLineAndCharacterOfPosition(k.getStart()).line + 1} ${name} — a bare ${k.text}; it belongs in ANIMATION_DESIGN and movie.lean`)
+      ts.forEachChild(k, visit)
+    }
+    visit(f.node)
+  }
+  // 2 — the design values against the kernel's definitions
+  const leanPath = join(root, 'src/pair/lean/proofs/movie.lean')
+  const lean = existsSync(leanPath) ? readFileSync(leanPath, 'utf8') : ''
+  if (!lean) findings.push('src/pair/lean/proofs/movie.lean: NOT MEASURED — absent; no design value is decided')
+  const defs = new Map([...lean.matchAll(/^def (\w+) : Q := ⟨(true|false), (\d+), (\d+)⟩$/gm)].map((m) => [m[1]!, (m[2] === 'true' ? -1 : 1) * Number(m[3]) / Number(m[4])]))
+  const listed = new Set([...lean.matchAll(/^def \w+ : List Q := \[(.*)\]$/gm)].flatMap((m) => m[1]!.split(',').map((s) => s.trim())))
+  const laws = [...lean.matchAll(/^theorem (\w+) :/gm)].map((m) => m[1]!)
+  let values = 0
+  const named = new Set<string>()
+  for (const [painter, entries] of Object.entries(ANIMATION_DESIGN as Record<string, Record<string, number>>)) {
+    for (const [key, value] of Object.entries(entries)) {
+      values += 1
+      const id = `${painter}_${key}`
+      named.add(id)
+      const kernel = defs.get(id)
+      if (kernel === undefined) { if (lean) findings.push(`${id}: a painter number movie.lean does not define`); continue }
+      if (Math.abs(kernel - value) > 1e-12 * Math.max(1, Math.abs(value))) findings.push(`${id}: the painter draws ${value}, the kernel defines ${kernel}`)
+      if (!listed.has(id)) findings.push(`${id}: defined but under no law`)
+    }
+  }
+  for (const id of defs.keys()) if (!named.has(id)) findings.push(`${id}: movie.lean defines a number no painter reads`)
+  // 3 — what the kernel recorded for the laws
+  const axiomsPath = join(root, '.vitepress/data/lean-axioms.json')
+  const recorded = existsSync(axiomsPath) ? (JSON.parse(readFileSync(axiomsPath, 'utf8')) as KernelTheoremRecord) : undefined
+  const movieRecord = recorded?.['src/pair/lean/proofs/movie.lean']
+  if (!movieRecord) findings.push('movie.lean: NOT MEASURED — the kernel recorded nothing for it (npm run lean-axioms)')
+  else for (const law of laws) {
+    const axioms = movieRecord[law]
+    if (axioms === undefined) findings.push(`${law}: not recorded by the kernel`)
+    else if (axioms.length) findings.push(`${law}: rests on ${axioms.join(', ')}`)
+  }
+  // 4 — the stylesheet the browser binds from
+  const scssPath = join(root, 'packages/double-torus/double-torus.scss')
+  if (!existsSync(scssPath)) findings.push('packages/double-torus/double-torus.scss: absent — the animations have no CSS SDK to bind from')
+  else if (readFileSync(scssPath, 'utf8') !== animationScss()) findings.push('packages/double-torus/double-torus.scss: drifted from animationScss() — regenerate it (npm run gen dist)')
+  // 5 — the theorems in the movie, and the angles
+  if (recorded) {
+    const carried = theMovieCarriesEveryKernelTheoremInOneCycle(recorded)
+    for (const f of carried.facets) if (!f.on) findings.push(`facet off: ${f.facet}`)
+    for (const m of carried.missing) findings.push(`${m}: never on screen in a cycle`)
+  }
+  for (const f of theMovieTurnsByTheAnglesTheTheoremsDecide().facets) if (!f.on) findings.push(`facet off: ${f.facet}`)
+  return { findings, painters: scope.size, values, laws: laws.length, theorems: recorded ? Object.values(recorded).reduce((n, r) => n + Object.keys(r).length, 0) : 0 }
+}
+
 export function assertMovieMeasuresWhatItShows(): void {
   everyRatchet(() => {
+    const sdk = animationSdkFindings()
+    console.log(`animation SDK: ${sdk.painters} functions read, ${sdk.values} design values against movie.lean, ${sdk.laws} laws, ${sdk.theorems} kernel theorems in the movie`)
+    console.log(decided('movie.animation-sdk', sdk.findings.length, { evidence: () => sdk.findings }))
     const cannot = movieCannotFail()
     const joins = movieOrbitJoinsTheAxis()
     const list = (xs: MovieSite[]) => () => xs.map((s) => `${s.file}:${s.line}  ${s.shape}  ${s.text}`)

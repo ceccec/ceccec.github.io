@@ -7,6 +7,7 @@ import type { MindMatrix } from '../types/index.ts';
 import { type BothEarthsMerkabaRotation } from '../mountain/geometry/index.ts';
 import { type QuantumProjection } from './apps/index.ts';
 import { type LatticeArm } from '../3/7/index.ts';
+import { type KernelTheoremRecord } from './wind/geometry/index.ts';
 export interface ArchNode {
     folder: string;
     glyph: string;
@@ -336,7 +337,7 @@ export interface RosettaPerspective {
  */
 export declare function rosettaPerspectiveFold(ray: number, field: AnimationField): RosettaPerspective;
 export { HERO_CYCLE_MS, heroPhaseAt } from '../fire/plasma/ball/index.ts';
-export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean, dark?: boolean, scroll?: number, perspective?: MoviePerspectiveBias): SharedHeroState;
+export declare function sharedHeroAt(route: string, copy: SharedHeroCopy, at: number, cssWidth?: number, reduce?: boolean, dark?: boolean, scroll?: number, perspective?: MoviePerspectiveBias, theorems?: KernelTheoremRecord): SharedHeroState;
 /** Page copy folded to one movie/subtitle seed string. */
 export declare function movieTextFromCopy(copy: SharedHeroCopy): string;
 /** One subtitle cue at instant `at` — same phase clock as `sharedHeroAt`. */
@@ -3531,4 +3532,54 @@ export declare function theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHal
     root: string;
     statement: string;
     boundary: string;
+};
+/**
+ * THE ANGLES EVERY ANIMATION TURNS BY ARE THE ANGLES THE KERNEL DECIDES. MOVIE_ANGLES is computed from the nine digits
+ * and the forty-degree station; this fold checks each against the circuit it comes from and names the quantum.lean
+ * theorem whose statement holds the same integers (verify:hashes reads that theorem's axiom record and statement).
+ */
+export declare function theMovieTurnsByTheAnglesTheTheoremsDecide(): {
+    computes: boolean;
+    angles: {
+        readonly turn: number;
+        readonly half: number;
+        readonly trinity: number;
+        readonly sixty: number;
+        readonly station: number;
+    };
+    theorems: {
+        theorem: string;
+        file: string;
+        decides: number[];
+    }[];
+    facets: {
+        receipt: string;
+        facet: string;
+        theorem: string;
+        file: string;
+        decides: number[];
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
+};
+/**
+ * EVERY KERNEL THEOREM PASSES THROUGH THE MOVIE IN ONE CYCLE. The record is what the kernel wrote
+ * (.vitepress/data/lean-axioms.json); the movie's window of theorem streams slides with the phase. Stepping the phase
+ * once per theorem across one cycle, this collects every theorem that was on screen and names any that never was.
+ * Carrying a theorem's address is not proving it, and what each rests on is the kernel's record, not this fold's.
+ */
+export declare function theMovieCarriesEveryKernelTheoremInOneCycle(record: KernelTheoremRecord): {
+    computes: boolean;
+    count: number;
+    files: number;
+    axiomFree: number;
+    missing: string[];
+    facets: {
+        receipt: string;
+        facet: string;
+        on: boolean;
+    }[];
+    root: string;
+    statement: string;
 };

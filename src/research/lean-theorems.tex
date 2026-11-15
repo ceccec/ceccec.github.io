@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent 263 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
+\noindent 272 theorems, each checked by the Lean 4 kernel with no Mathlib and no \texttt{sorry}. Every proposition is the Lean source, reproduced verbatim, with the tactic that proves it and the file it is in. This is a record of what the kernel checked. It is not a claim of novelty for any statement, and it does not say that any open problem is solved.
 \end{abstract}
 \tableofcontents
 \section{How to read this document}
@@ -502,7 +502,7 @@ The involution and the split it produces, together.
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{yang-mills.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
 \section{Machine-checked registry theorems}
-\noindent 168 theorems in 6 files of \texttt{src/pair/lean/proofs}.
+\noindent 177 theorems in 7 files of \texttt{src/pair/lean/proofs}.
 \subsection{\texttt{corpus.lean}}
 \begin{theorem}[Euler characteristic and genus are inverse]
 χ and the genus are INVERSE: reading the genus back from χ(g) returns g for every surface up to genus 9, and rank H₁ = 2 − χ = 2g at each one. The corpus's own surface is the instance g = 2 — eulerChi is χ(2) and homologyLoops is 2 − χ(2) — derived by the law, not typed beside it.
@@ -608,6 +608,52 @@ Visiting only the non-zero amplitudes divides the inner-loop count by the work-r
 \begin{lean}64 * (4096 * 4096) = 1073741824 ∧ 4096 * 4096 = 16777216 ∧ 1073741824 / 16777216 = 64\end{lean}
 \end{theorem}
 \begin{proof}\raggedright By \texttt{decide} in \texttt{corpus.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\subsection{\texttt{movie.lean}}
+\begin{theorem}[Every colour stop lies in the unit interval]
+A colour stop outside [0, 1] makes addColorStop throw IndexSizeError (HTML Canvas).
+\begin{lean}colourStops.all (fun s => !s.neg \&\& s.n ≤ s.d \&\& 0 < s.d)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[Every alpha is a visible fraction]
+An alpha is positive (else the layer is invisible) and at most one (Canvas clamps above).
+\begin{lean}alphas.all (fun a => a.positive \&\& a.n ≤ a.d)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[Every lightness is between black and white]
+A lightness of 0 is black and 1 is white; the movie paints neither as a colour.
+\begin{lean}lightnesses.all (fun l => l.positive \&\& l.n < l.d)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[Every fibonacci index falls inside the table]
+FIBONACCI has 32 terms; an index past them reads undefined.
+\begin{lean}fibonacciIndices.all (fun i => !i.neg \&\& i.d == 1 \&\& i.n < 32)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[The void is one radius in every painter]
+Three painters draw the void; they draw the same one.
+\begin{lean}voids.length = 3 ∧ voids.all (fun v => v.same paintHolographicPlasmaHeroMovie\_voidR \&\& v.positive)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[The width breakpoints rise]
+The depth steps up past 520 and 900 pixels, the arm bonus past 480 and 800; each pair rises.
+\begin{lean}drawHero\_when2.lt drawHero\_when ∧ drawHero\_when4.lt drawHero\_when3 ∧ drawHero\_when4.lt drawHero\_when\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[Every count and index is whole]
+Counts, slice bounds and radices are positive whole numbers.
+\begin{lean}wholes.all (fun w => !w.neg \&\& w.d == 1 \&\& 0 < w.n)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[Every negative value is nonzero]
+The negative values are counter-spins and negative powers of φ; none is a signed zero.
+\begin{lean}negatives.all (fun v => v.neg \&\& 0 < v.n \&\& 0 < v.d)\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
+\begin{theorem}[Every rate radius and width is positive]
+Rates, radii, widths and offsets are positive; a zero freezes or hides a layer. The weakest law here: it rules out zero and sign, not size.
+\begin{lean}positives.all Q.positive\end{lean}
+\end{theorem}
+\begin{proof}\raggedright By \texttt{decide +kernel} in \texttt{movie.lean}. Checked by the Lean kernel; it depends on no axiom. \end{proof}
 \subsection{\texttt{quantum.lean}}
 \begin{theorem}[Gi add re]
 The parts of a sum, a product and the literals 0 and 1 — what a proof over ALL matrices unfolds to. Stated at the file's own namespace so the inventory names each one.

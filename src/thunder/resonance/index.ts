@@ -12,6 +12,7 @@ import { VORTEX_SEQUENCE, computesGate, cos, digitalRoot, floor, isUuid, max, me
 import { A432_HUE, TAU } from '../../3/7/index.ts'
 import { movieCanvasPolarity } from '../../quantum/science/index.ts'
 import { heroPhaseAt } from '../../fire/plasma/ball/index.ts'
+import { ANIMATION_DESIGN } from '../../quantum/wind/geometry/index.ts'
 
 /** One paint-ready harmonic mode at instant `at`. */
 export type ResonanceSimulationMode = {
@@ -290,28 +291,28 @@ export function drawResonanceProjection(
   const dark = opts.dark !== false
   const reduce = opts.reduce === true
   const paint = movieCanvasPolarity(dark)
-  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
+  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: ANIMATION_DESIGN.drawResonanceProjection.paintL, C: ANIMATION_DESIGN.drawResonanceProjection.paintC })
   const p = heroPhaseAt(sim.at)
   ctx.clearRect(0, 0, w, h)
-  const labelPx = max(9, round(h / 27))
+  const labelPx = max(ANIMATION_DESIGN.drawResonanceProjection.maxArg0, round(h / ANIMATION_DESIGN.drawResonanceProjection.roundArg0Part))
   const cx = w / 2
-  const cy = h * (1 - 9 / (5 * 4))
+  const cy = h * ANIMATION_DESIGN.drawResonanceProjection.cy
   // Scale from field phase + css width — breath on the one clock, not a private rate.
-  const baseR = min(w, h) * (8 / (5 * 5)) * ((1 - 1 / (5 * 5)) + (1 / (5 * 5)) * sin(p * TAU))
-  ctx.strokeStyle = ink(2 / (5 * 5))
+  const baseR = min(w, h) * ANIMATION_DESIGN.drawResonanceProjection.baseR * (ANIMATION_DESIGN.drawResonanceProjection.baseR2 + ANIMATION_DESIGN.drawResonanceProjection.baseR3 * sin(p * TAU))
+  ctx.strokeStyle = ink(ANIMATION_DESIGN.drawResonanceProjection.inkArg0)
   ctx.beginPath()
   ctx.arc(cx, cy, baseR, 0, TAU)
   ctx.stroke()
   sim.modes.forEach((mode, index) => {
-    const angle = mode.phase * TAU + index * (2 / 5)
-    const r = baseR * ((1 - 9 / (5 * 4)) + mode.amplitude * (9 / (5 * 4)))
+    const angle = mode.phase * TAU + index * ANIMATION_DESIGN.drawResonanceProjection.angle
+    const r = baseR * (ANIMATION_DESIGN.drawResonanceProjection.r + mode.amplitude * ANIMATION_DESIGN.drawResonanceProjection.r2)
     const x = cx + cos(angle) * r
     const y = cy + sin(angle) * r
-    ctx.fillStyle = paint(mode.hue, (7 / (5 * 4)) + mode.amplitude * (1 - 9 / (5 * 4)))
+    ctx.fillStyle = paint(mode.hue, ANIMATION_DESIGN.drawResonanceProjection.paintArg1Part + mode.amplitude * ANIMATION_DESIGN.drawResonanceProjection.paintArg1Part2)
     ctx.beginPath()
-    ctx.arc(x, y, 6 + mode.amplitude * (5 * 2), 0, TAU)
+    ctx.arc(x, y, ANIMATION_DESIGN.drawResonanceProjection.arcArg2Part + mode.amplitude * ANIMATION_DESIGN.drawResonanceProjection.arcArg2Part2, 0, TAU)
     ctx.fill()
-    ctx.strokeStyle = paint(mode.hue, 1 / 2, { L: 13 / 16 })
+    ctx.strokeStyle = paint(mode.hue, 1 / 2, { L: ANIMATION_DESIGN.drawResonanceProjection.paintL2 })
     ctx.lineWidth = 1
     ctx.beginPath()
     ctx.moveTo(cx, cy)
@@ -319,8 +320,8 @@ export function drawResonanceProjection(
     ctx.stroke()
     if (!reduce) {
       ctx.font = `${labelPx}px sans-serif`
-      ctx.fillStyle = ink(3 / 4)
-      ctx.fillText(`${mode.hz} Hz`, x + 8, y - 4)
+      ctx.fillStyle = ink(ANIMATION_DESIGN.drawResonanceProjection.inkArg02)
+      ctx.fillText(`${mode.hz} Hz`, x + ANIMATION_DESIGN.drawResonanceProjection.fillTextArg1Part, y - ANIMATION_DESIGN.drawResonanceProjection.fillTextArg2Part)
     }
   })
 }

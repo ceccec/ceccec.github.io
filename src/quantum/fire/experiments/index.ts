@@ -21,6 +21,7 @@ import { phase } from '../../../6/4/index.ts'
 import { ELECTRONVOLT, PLANCK } from '../../../3/7/index.ts'
 import { inductionStep } from '../../../mountain/vortex/index.ts'
 import { exp, hypot, prng } from '../../../0/index.ts'
+import { ANIMATION_DESIGN, MOVIE_ANGLES } from '../../wind/geometry/index.ts'
 
 // ☳ Zhèn · Thunder · arousing (shared-experiment folds) · upper·yang · depthFade — exported folds
 // ElectroMagnetic radiation decoded across the spectrum — the physics under X-ray, MRI-RF and microwave
@@ -252,22 +253,22 @@ export function makeBurst(xRatio: number, yRatio: number, w: number, h: number, 
 export function drawBursts(ctx: CanvasRenderingContext2D, w: number, h: number, bursts: Burst[], dark = true): void {
   const paint = movieCanvasPolarity(dark)
   const now = performance.now()
-  for (let i = bursts.length - 1; i >= 0; i -= 1) if (now - bursts[i].born >= 1100) bursts.splice(i, 1)
+  for (let i = bursts.length - 1; i >= 0; i -= 1) if (now - bursts[i].born >= ANIMATION_DESIGN.drawBursts.when) bursts.splice(i, 1)
   for (const b of bursts) {
-    const age = (now - b.born) / 1100
-    const ring = age * min(w, h) * ((7 * 3) / (5 * 5 * 2))
-    ctx.strokeStyle = paint(b.hue, (1 - age) * (3 / 5), { L: 13 / 16 })
+    const age = (now - b.born) / ANIMATION_DESIGN.drawBursts.age
+    const ring = age * min(w, h) * ANIMATION_DESIGN.drawBursts.ring
+    ctx.strokeStyle = paint(b.hue, (1 - age) * ANIMATION_DESIGN.drawBursts.paintArg1Part, { L: ANIMATION_DESIGN.drawBursts.paintL })
     ctx.lineWidth = 2 * (1 - age)
     ctx.beginPath()
     ctx.arc(b.x, b.y, ring, 0, TAU)
     ctx.stroke()
     for (const s of b.sparks) {
-      const reach = age * s.speed * min(w, h) * (2 / 5)
+      const reach = age * s.speed * min(w, h) * ANIMATION_DESIGN.drawBursts.reach
       const sx = b.x + cos(s.angle) * reach
       const sy = b.y + sin(s.angle) * reach
-      ctx.fillStyle = paint((b.hue + s.angle * (6 * 5)) % 360, (1 - age) * (4 / 5), { L: 7 / 8 })
+      ctx.fillStyle = paint((b.hue + s.angle * ANIMATION_DESIGN.drawBursts.paintArg0Part) % MOVIE_ANGLES.turn, (1 - age) * ANIMATION_DESIGN.drawBursts.paintArg1Part2, { L: ANIMATION_DESIGN.drawBursts.paintL2 })
       ctx.beginPath()
-      ctx.arc(sx, sy, (6 * 2 / 5) * (1 - age), 0, TAU)
+      ctx.arc(sx, sy, ANIMATION_DESIGN.drawBursts.arcArg2Part * (1 - age), 0, TAU)
       ctx.fill()
     }
   }

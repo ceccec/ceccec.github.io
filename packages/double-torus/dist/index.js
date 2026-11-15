@@ -2598,7 +2598,7 @@ var CRACK_LEDGER = [
   { file: "src/heaven/essence/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/heaven/laws/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue cleared \u2014 the three census 123 literals now derive from UNFOLDED_CENSUS (census retarget 2026-08-03); no bare hand-fixed values remain", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/heaven/site/index.ts", literal: "*", count: 28, kind: "data", source: "attested residue \u2014 site metadata/config values (FoL\u2192Fruit\u219210D facet wave) + om/futhark/alchemy + Glagolitic SMIL \xB7 torus-knot SVG emitters ratchet (28\u219230, then down again: the periodic table stopped being a pair of copied literals and became the Madelung order that generates them)" },
-  { file: "src/heaven/sky/astronomy/index.ts", literal: "*", count: 135, kind: "data", source: "attested residue \u2014 astronomical constants (periods, distances) + HD W4 sealed Meeus reduced-precision coefficients (Jean Meeus, Astronomical Algorithms; NOT JPL DE440) + HD W5 chart + BodyGraph Vue layout pins + HD W7 SVG chroma pin (131\u2192132)" },
+  { file: "src/heaven/sky/astronomy/index.ts", literal: "*", count: 134, kind: "data", source: "attested residue \u2014 astronomical constants (periods, distances) + HD W4 sealed Meeus reduced-precision coefficients (Jean Meeus, Astronomical Algorithms; NOT JPL DE440) + HD W5 chart + BodyGraph Vue layout pins + HD W7 SVG chroma pin (131\u2192132)" },
   { file: "src/clean/index.ts", literal: "*", count: 0, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/ledger/index.ts", literal: "*", count: 70, kind: "data", source: "attested residue \u2014 entropy\u2194energy ledger measurements" },
   { file: "src/music/index.ts", literal: "*", count: 38, kind: "data", source: "attested residue \u2014 frequency corpora (Hz tables, solfeggio/documented pitches; main-merge ratchet)" },
@@ -2636,20 +2636,18 @@ var CRACK_LEDGER = [
   { file: "src/quantum/dynamics/index.ts", literal: "38", count: 1, kind: "tuned", source: "electrical efficiency of a biogas CHP engine (38/100)", frontier: "engine duty parameter" },
   { file: "src/quantum/dynamics/index.ts", literal: "3600", count: 1, kind: "unit", source: "kJ per kWh \u2014 SI conversion", frontier: "SI scale, terminal" },
   { file: "src/quantum/dynamics/index.ts", literal: "50", count: 1, kind: "data", source: "COD of distillery vinasse in g/L \u2014 the strong-effluent test point", frontier: "a representative stream value" },
-  { file: "src/quantum/dynamics/index.ts", literal: "13", count: 1, kind: "tuned", source: "pre-existing dynamics residue", frontier: "not yet derived" },
-  { file: "src/quantum/fire/experiments/index.ts", literal: "*", count: 25, kind: "data", source: "attested residue \u2014 EM band/physics demo data" },
+  { file: "src/quantum/fire/experiments/index.ts", literal: "*", count: 22, kind: "data", source: "attested residue \u2014 EM band/physics demo data" },
   { file: "src/quantum/fire/forecasts/index.ts", literal: "*", count: 13, kind: "data", source: "attested residue \u2014 weather-model coefficients (documented physics)" },
   { file: "src/quantum/heaven/library/index.ts", literal: "*", count: 186, kind: "data", source: "attested residue \u2014 library catalogue data (works, dates, counts)" },
-  { file: "src/quantum/index.ts", literal: "*", count: 169, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; time/phase rates on the \u03C6-ladder; Wave B retired orphan hinge renderer; anim-convert ratchet; +1 from the drift-detection fold, whose sample sizes 0/1/2/5/18 witness that k(k\u22121) counts ordered pairs; 180\u2192176 as the four fabricating research endpoints were replaced by refusals \u2014 their Math.random() coefficients and typed-in accuracy/confidence went with them \xB7 includes the quantum/empirical production-readiness thresholds dissolved here by gravity (0.95 PRODUCTION, 0.85 CONDITIONAL, 0.9 export-coverage target), whose own rows were folded into this wildcard because the file holds other occurrences of the same literals", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
+  { file: "src/quantum/index.ts", literal: "*", count: 134, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; time/phase rates on the \u03C6-ladder; Wave B retired orphan hinge renderer; anim-convert ratchet; +1 from the drift-detection fold, whose sample sizes 0/1/2/5/18 witness that k(k\u22121) counts ordered pairs; 180\u2192176 as the four fabricating research endpoints were replaced by refusals \u2014 their Math.random() coefficients and typed-in accuracy/confidence went with them \xB7 includes the quantum/empirical production-readiness thresholds dissolved here by gravity (0.95 PRODUCTION, 0.85 CONDITIONAL, 0.9 export-coverage target), whose own rows were folded into this wildcard because the file holds other occurrences of the same literals", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/quantum/dist/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/quantum/spirit/index.ts", literal: "*", count: 178, kind: "data", source: "attested residue \u2014 HD W3 Rave Mandala wheel + HD W5 sealed BodyGraph lattice (36 channel gate-pairs + 9-center gate homes; public structure tables, zero keynote prose; 62\u2192178)", frontier: "channel/center tables are documented BodyGraph combinatorics (data), not lattice-derivable; predictive claims stay flagged elsewhere" },
   { file: "src/quantum/os/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/quantum/water/cache/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/quantum/wind/geometry/index.ts", literal: "*", count: 5, kind: "tuned", source: "attested residue \u2014 hand-fixed values + FoL/Fruit lattice counts (1+6+12 / 1+6+6)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
+  { file: "src/quantum/wind/geometry/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values + FoL/Fruit lattice counts (1+6+12 / 1+6+6)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/commands/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/decode/index.ts", literal: "*", count: 403, kind: "data", source: "attested residue \u2014 ancient numeral corpora \u2014 Sumerian/Maya/Egyptian/If\xE1 documented values (334\u2192412 one-command-decode wave)" },
-  { file: "src/thunder/movie/canvas/index.ts", literal: "*", count: 3, kind: "tuned", source: "attested residue \u2014 hand-fixed values (PR#63 movie-all-elements 1\u21924), derivation not yet known", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
-  { file: "src/thunder/resonance/index.ts", literal: "*", count: 2, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; Wave C1 drawResonanceProjection (ratcheted 1\u21922)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
+  { file: "src/thunder/resonance/index.ts", literal: "*", count: 1, kind: "tuned", source: "attested residue \u2014 hand-fixed values, derivation not yet known; Wave C1 drawResonanceProjection (ratcheted 1\u21922)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/verify/index.ts", literal: "*", count: 5, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins relocated from cosmos 2026-07-08", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/thunder/waves/index.ts", literal: "*", count: 22, kind: "tuned", source: "attested residue \u2014 hand-fixed values + discovery-wave pins + wave/domain (#101) encode slice\xB7percent (19\u219220)", frontier: "epistemic law: fixed at discovery, may eventually be computed \u2014 each value a research target" },
   { file: "src/water/cosmos/index.ts", literal: "0.2056", count: 2, kind: "data", source: "Mercury orbital eccentricity \u2014 JPL J2000 elements (value + its facet check)" },
@@ -2700,7 +2698,7 @@ var CRACK_LEDGER = [
   { file: "src/ui/harmonic/index.ts", literal: "3600", count: 1, kind: "unit", source: "seconds per hour \u2014 SI scale", frontier: "unit conversion, terminal" },
   // ── quantum/integration — the same modelled device specs as quantum/devices, per adapter ──
   { file: "src/quantum/index.ts", literal: "127", count: 2, kind: "data", source: "IBM Eagle-class qubit count in the adapter capability table \u2014 mirrors quantum/devices, unverified against vendor documentation", frontier: "single-source these with quantum/devices so the two cannot drift apart" },
-  { file: "src/quantum/index.ts", literal: "11", count: 7, kind: "data", source: "IonQ qubit count in the adapter capability table \u2014 mirrors quantum/devices, unverified", frontier: "single-source with quantum/devices" },
+  { file: "src/quantum/index.ts", literal: "11", count: 2, kind: "data", source: "IonQ qubit count in the adapter capability table \u2014 mirrors quantum/devices, unverified", frontier: "single-source with quantum/devices" },
   { file: "src/quantum/index.ts", literal: "0.001", count: 4, kind: "data", source: "IBM modelled gate error rate \u2014 mirrors quantum/devices", frontier: "single-source with quantum/devices" },
   { file: "src/quantum/index.ts", literal: "0.0005", count: 2, kind: "data", source: "IonQ modelled gate error rate \u2014 mirrors quantum/devices", frontier: "single-source with quantum/devices" },
   { file: "src/quantum/index.ts", literal: "20", count: 8, kind: "tuned", source: "local simulator qubit ceiling \u2014 mirrors quantum/devices", frontier: "host memory budget; single-source with quantum/devices" },
@@ -13667,6 +13665,857 @@ function zeroTokenLawForAgentsAndForever(matrix = buildMatrix()) {
 }
 
 // ../../src/quantum/wind/geometry/index.ts
+var MOVIE_DIGITS = VORTEX_SEQUENCE.length;
+var MOVIE_STATION = 5 * 2 * 4;
+var MOVIE_TURN = MOVIE_DIGITS * MOVIE_STATION;
+var MOVIE_ANGLES = {
+  turn: MOVIE_TURN,
+  half: MOVIE_TURN / 2,
+  trinity: MOVIE_TURN / 3,
+  sixty: MOVIE_TURN / (2 * 3),
+  station: MOVIE_STATION
+};
+var ANIMATION_DESIGN = {
+  drawEmfA432Field: {
+    maxR: 9 / (5 * 4) + 1 / (5 * 5 * 5),
+    shellFreqs: 6 * 5 * 2,
+    shellFreqs2: 8 * 5 * 3,
+    shellFreqs3: 7e8,
+    shellFreqs4: 35e8,
+    shellFreqs5: 24e8,
+    shellFreqs6: 58e8,
+    r: 9 / (5 * 5 * 2),
+    r2: 4 / 5,
+    paintArg1: 1 / (5 * 2),
+    paintL: 5 / 8,
+    paintArg12: 2 / (5 * 5),
+    paintL2: 5 * 3 / 16,
+    paintC: 1 / 64,
+    dw: 1 / 5 + 7 / (5 * 5 * 2),
+    dh: 3 / 5,
+    breathLo: 1 - 9 / (5 * 5 * 2),
+    humanBreathArg1Part: 9 * 2,
+    pulseR: 1 - 9 / (5 * 4),
+    paintArg13: 3 / 5,
+    rr: 1 - 9 / (5 * 4),
+    rr2: 9 * 2,
+    paintArg0Part: 8,
+    paintArg0Part2: 360,
+    paintArg1Part: 7 / (5 * 4),
+    paintArg1Part2: 2 / 5,
+    arcArg2Part: 3,
+    arcArg2Part2: 3 / 5
+  },
+  paintCenterShape: {
+    lineToArg0Part: 3 / 4,
+    lineToArg1Part: 3 / 5
+  },
+  drawHumanDesignBodyGraph: {
+    paintL: 5 * 3 / 16,
+    paintC: 1 / 64,
+    paintC2: 1 / 32,
+    pad: 8 * 2,
+    accentArg0: 7 / (5 * 2),
+    inkArg0: 2 / (5 * 5),
+    r: 8 * 3,
+    maxArg0: 9,
+    roundArg0Part: 8 * 4,
+    inkArg02: 1 / (5 * 2),
+    inkArg03: 3 / 5,
+    inkArg04: 7 / (5 * 2),
+    sliceArg1: 4
+  },
+  drawAstronomyProjection: {
+    paintL: 5 * 3 / 16,
+    paintC: 1 / 64,
+    maxArg0: 9,
+    roundArg0Part: 27,
+    scale: 2 / 5 - 1 / (5 * 5),
+    scale2: 1 - 1 / (5 * 5),
+    scale3: 1 / (5 * 5),
+    inkArg0: 3 / (5 * 5 * 2),
+    loop: 4,
+    arcArg2Part: 4,
+    size: 5 * 2,
+    size2: 5,
+    size3: 4,
+    paintArg1: 1 - 3 / (5 * 4),
+    inkArg02: 7 / (5 * 2),
+    fillTextArg1Part: 8,
+    fillTextArg2Part: 4
+  },
+  drawDynamicsProjection: {
+    paintL: 5 * 3 / 16,
+    paintC: 1 / 64,
+    maxArg0: 9,
+    roundArg0Part: 27,
+    minArg0: 16 * 3,
+    minArg1Part: 8 * 5,
+    baseY: 7 / (5 * 2),
+    baseY2: 1 / (5 * 5),
+    maxH: 1 - 9 / (5 * 4),
+    x: 5 * 4,
+    x2: 8,
+    paintArg1: 1 - 3 / (5 * 4),
+    inkArg0: 7 / (5 * 4),
+    inkArg02: 4 / 5,
+    fillTextArg2Part: 7 * 2,
+    toFixedArg0: 3,
+    fillTextArg2Part2: 6,
+    x0: 5 * 4,
+    x1: 5 * 4,
+    x12: 8,
+    linkY: 1 / 5,
+    linkY2: 1 / (5 * 5),
+    paintArg12: 1 - 9 / (5 * 4),
+    paintL2: 13 / 16,
+    inkArg03: 3 / 4,
+    fillTextArg2Part3: 8
+  },
+  drawBursts: {
+    when: 1100,
+    age: 1100,
+    ring: 7 * 3 / (5 * 5 * 2),
+    paintArg1Part: 3 / 5,
+    paintL: 13 / 16,
+    reach: 2 / 5,
+    paintArg0Part: 6 * 5,
+    paintArg1Part2: 4 / 5,
+    paintL2: 7 / 8,
+    arcArg2Part: 6 * 2 / 5
+  },
+  drawArchitecture: {
+    r: 27 / 100,
+    ang: 3,
+    ang2: 7 * 3 / (5 * 5 * 2),
+    rotate3Arg5Part: 7 * 3 / 100,
+    paintArg1: 7 / (5 * 5),
+    paintL: 7 / 8,
+    paintArg1Part: 2 / 5,
+    paintL2: 13 / 16,
+    maxArg0: 9,
+    roundArg0Part: 7 * 2
+  },
+  drawHero: {
+    coreR: 7 / 100,
+    baseLen: 7 * 2 / 5,
+    baseLen2: 2.2,
+    baseLen3: 4 / (5 * 5),
+    baseLen4: 7 * 3 / (5 * 5),
+    baseLen5: 0.22,
+    when: 100 * 9,
+    depth: 6,
+    when2: 520,
+    depth2: 5,
+    depth3: 4,
+    when3: 100 * 8,
+    when4: 16 * 6 * 5,
+    rYZ: 0.33,
+    rYZ2: 9 / (5 * 5 * 2),
+    rZX: 7 * 3 / 100,
+    rZX2: 9 / (5 * 5 * 2),
+    branchSegmentsArg3Part: 1 - 9 / (5 * 5 * 2),
+    branchSegmentsArg3Part2: 9 / (5 * 5),
+    fIBONACCIAt: 8,
+    r: 2 * 5,
+    fIBONACCIAt2: 7,
+    r2: 100,
+    maxArg1Part: 3,
+    maxArg0: 8,
+    roundArg0Part: 5 * 2,
+    fillTextArg2Part: 7
+  },
+  drawPlasmaField: {
+    cosArg0Part: 7 / 100,
+    bx: 0.26,
+    sinArg0Part: 1 / (5 * 4),
+    by: 1 / 5,
+    sinArg0Part2: 3 / (5 * 2),
+    blobHue: 9 * 2,
+    radius: 8 / (5 * 5),
+    radius2: 7 / 100,
+    sinArg0Part3: 9 / (5 * 4),
+    sinArg0Part4: 9 / (5 * 2),
+    addColorStopArg0: 2 / 5
+  },
+  drawPlasmaRays: {
+    angle: 1 / (5 * 4),
+    len: 27 / (5 * 4),
+    len2: 1 - 3 / (5 * 4),
+    sinArg0Part: 1 - 7 / (5 * 4),
+    sinArg0Part2: 1 - 9 * 7 / 100,
+    pulse: 7 / (5 * 4),
+    pulse2: 1 - 7 / (5 * 4),
+    sinArg0Part3: 7 * 3 / (5 * 4),
+    streamAlphaArg0: 1 - 9 / (5 * 4),
+    lineWidth: 9 / (5 * 4),
+    lineWidth2: 0.22,
+    shadowBlur: 3
+  },
+  drawDeathCounterFlow: {
+    outerR: 0.46,
+    speed: 9 / (5 * 5 * 2),
+    speed2: 1 / (5 * 4),
+    head: 1e3,
+    d0: 1 / (5 * 4),
+    d1: 1 / (5 * 4),
+    a0: 3,
+    a02: 7 / (5 * 4),
+    a1: 3,
+    a12: 7 / (5 * 4),
+    streamAlphaArg1Part: 1 - 7 / (5 * 4),
+    alpha: 1 - 9 / (5 * 4),
+    paintL: 7 / 16,
+    lineWidth: 3 / 5,
+    lineWidth2: 8 / 5,
+    fIBONACCIAt: 5,
+    paintArg1Part: 2 * 5,
+    paintL2: 9 / 16,
+    arcArg2: 7 / 5
+  },
+  drawPlasmaBall: {
+    voidExtent: 7 * 2 / 5,
+    addColorStopArg0: 2 / 5,
+    addColorStopArg02: 3 / 4,
+    layerR: 7 / (5 * 5),
+    layerR2: 0.22,
+    orbitRate: 3 / (5 * 5),
+    orbitRate2: 1 / (5 * 5),
+    orbit: 7 / (5 * 2),
+    orbit2: 7 / (5 * 4),
+    wobble: 2 / (5 * 5),
+    sinArg0Part: 1 - 9 / (5 * 4),
+    wobble2: 1 - 3 / (5 * 4),
+    wobble3: 3 / (5 * 4),
+    floorArg0Part: 3,
+    maxArg1Part: 3,
+    sliceArg1Part: 4,
+    padEndArg0: 4,
+    sinArg0Part2: 4 / 5,
+    sinArg0Part3: -4,
+    alpha: 3 / 8,
+    alpha2: 5 / 8,
+    maxArg0: 7,
+    roundArg0Part: 0.22,
+    roundArg0Part2: 1 / (5 * 5),
+    shadowBlur: 6
+  },
+  drawWiredUuidStreams: {
+    minArg0: 8 * 7,
+    maxArg0: 9 * 2,
+    floorArg0Part: 38,
+    phase: 2 * 5,
+    trailStep: 2 / (5 * 5 * 5),
+    trailStep2: 1 / (5 * 5 * 5),
+    floorArg0Part2: 7 * 2,
+    nearVoid: 6 * 2 / 5,
+    maxArg02: 5 * 2,
+    roundArg0Part: 1 - 3 / (5 * 4),
+    roundArg0Part2: 3 / (5 * 4),
+    glow: 5 * 2,
+    glow2: 7 * 2,
+    glow3: 4,
+    coin: 6 * 2,
+    coin2: 16
+  },
+  drawFusedForceLayers: {
+    reach: 9 / (5 * 5 * 2),
+    reach2: 0.26,
+    fIBONACCIAt: 7,
+    reach3: 100,
+    alpha: 1 / (5 * 4),
+    fIBONACCIAt2: 5,
+    sinArg0Part: 2 * 5,
+    sinArg0Part2: 1.7,
+    alpha2: 7 / (5 * 5 * 2),
+    alpha3: 9 / 100,
+    orbit: 3 / 5,
+    drift: 0.22,
+    drift2: 3 / (5 * 5 * 2),
+    sinArg0Part3: 2 / 5,
+    cosArg0Part: 1 / (5 * 5),
+    sinArg0Part4: 1 / (5 * 4),
+    ly: 4 / 5,
+    radius: 1 - 3 / (5 * 4),
+    radius2: 3 / (5 * 4),
+    paintL: 5 / 8,
+    addColorStopArg0: 9 / (5 * 4)
+  },
+  drawTwoBySevenMorph: {
+    paintArg1Part: 1 / 5,
+    paintArg1Part2: 1 / (5 * 4),
+    paintL: 5 / 8,
+    paintArg1Part3: 1 / 4,
+    paintL2: 3 / 4,
+    paintL3: (9 + 2) / 16
+  },
+  paintHolographicPlasmaHeroMovie: {
+    voidR: 7 / 100,
+    createRadialGradientArg5Part: 1 - 9 / (5 * 4),
+    drawTwoBySevenMorphArg3Part: 9 / (5 * 5 * 2)
+  },
+  drawLivingTorusFrame: {
+    lIVINGTORUSSPINDIVISOR: 9 * 2,
+    view: 7 * 3 / (5 * 5 * 2),
+    spin: 1 - 9 / (5 * 4),
+    spin2: -(1 - 9 / (5 * 4)),
+    sinArg0Part: 3 / 5,
+    paintArg0Part: 360,
+    paintArg1Part: 1 / (5 * 4),
+    paintArg1Part2: 1 / 9,
+    paintL: 6 / 8,
+    pulse: 7 / (5 * 2),
+    hue: 360,
+    size: 9,
+    size2: 13,
+    size3: 5,
+    paintArg1Part3: 7 * 3 / (5 * 5 * 2),
+    paintArg1Part4: 0.46,
+    paintL2: 7 / 8,
+    paintArg1: 9 / (5 * 2),
+    arcArg2Part: 13,
+    paintL3: 13 / 16,
+    arcArg2Part2: 9 / 2
+  },
+  drawTetrahedronEdges: {
+    edges: 3,
+    paintL: 7 / 8,
+    lineWidth: 6 / 5,
+    paintArg1Part: 1 - 9 / (5 * 4),
+    paintL2: 13 / 16,
+    arcArg2Part: 5 / 2
+  },
+  drawBothEarthsMerkabaFrame: {
+    scale: 7 * 6 * 5 * 2,
+    innerR: 9 * 8,
+    breath: 1 / (5 * 5),
+    createRadialGradientArg5Part: 1 - 9 / (5 * 4),
+    paintArg0: 100 * 2,
+    paintArg1: 3 / (5 * 5),
+    paintL: 1 / 4,
+    paintL2: 1 / 8,
+    shellLift: 1 / (5 * 5),
+    upSpin: -3,
+    downSpin: -3,
+    drawTetrahedronEdgesArg4Part: 3 / (5 * 4),
+    drawTetrahedronEdgesArg5Part: 7 * 4,
+    drawTetrahedronEdgesArg6: 8 * 5 * 3,
+    drawTetrahedronEdgesArg7: 1 - 7 / (5 * 4),
+    drawTetrahedronEdgesArg62: 8 * 7 * 5,
+    drawTetrahedronEdgesArg72: 1 - 9 / (5 * 4)
+  },
+  qSphere: {
+    maxArg0: 3 / 5,
+    createRadialGradientArg0Part: 7 / (5 * 4),
+    createRadialGradientArg1Part: 7 / (5 * 4),
+    createRadialGradientArg2Part: 3 / (5 * 5),
+    minArg1Part: 1.15,
+    paintL: 5 * 3 / 16,
+    addColorStopArg0: 3 / 5,
+    paintL2: 5 / 8,
+    paintArg1Part: 2 / 5,
+    paintL3: 1 / 3
+  },
+  drawTaijiProjection: {
+    fIBONACCIAt: 7,
+    r: 100,
+    floorArg0Part: 5 * 2 * 100,
+    ray: 7,
+    yinHue: 360,
+    yangHue: 9 * 5 * 4,
+    yangHue2: 360,
+    paintL: 5 / 16,
+    paintL2: 7 / 8,
+    fold: 3,
+    arcArg3Part: 4,
+    arcArg4Part: 4,
+    darkArg0: 1 - 2 / (5 * 5),
+    lightArg0: 1 - 2 / (5 * 5),
+    arcArg2Part: 6,
+    lightArg02: 1 - 1 / (5 * 4),
+    darkArg02: 1 - 1 / (5 * 4),
+    paintArg1: 3 / 5,
+    lineWidth: 3 / 2
+  },
+  drawSacredMorphProjection: {
+    base: 1 / 5,
+    tri: 2 / 5,
+    depthD: 5 * 2,
+    qSmoothArg0: 3 / 2,
+    qSmoothArg1: 7 / 2,
+    qSmoothArg12: 4,
+    qSmoothArg02: 7 / 2,
+    qSmoothArg13: 6,
+    fIBONACCIAt: 8,
+    qSmoothArg0Part: 2 * 5,
+    qSmoothArg14: 8.5,
+    qSmoothArg03: 5 / 2,
+    rx: 2 / 5,
+    ry: 3 / (5 * 2),
+    ry2: 5 / 16,
+    rz: 1 / 6,
+    when: 1 / (5 * 5 * 2),
+    lineWidth: 7 / 5,
+    paintArg0Part: 16,
+    paintArg0Part2: 360,
+    paintL: 9 / 16,
+    fIBONACCIAt2: 5,
+    sinArg0Part: 2 * 5,
+    sinArg0Part2: 3 / 5,
+    zz: 7 / (5 * 2),
+    qProjectArg3Part: 3 / 5,
+    qProjectArg4Part: 3 / 5,
+    qProjectArg5Part: 2 / 5,
+    paintArg0Part3: 8 * 5,
+    paintArg1Part: 8 / (5 * 5),
+    fIBONACCIAt3: 7,
+    rNode: 100,
+    rNode2: 3 / 5,
+    rNode3: 2 / 5,
+    paintArg0Part4: 7 * 2,
+    paintArg1: 1 - 9 / (5 * 4),
+    paintL2: 5 / 8,
+    when2: 1 / 5,
+    qSphereArg4Part: 7 * 2,
+    qSphereArg4Part2: 360,
+    qSphereArg5Part: 1 - 9 / (5 * 4),
+    qSphereArg5Part2: 3 / (5 * 2),
+    floorArg0Part: 2 * 5,
+    floorArg0Part2: 7 / (5 * 2),
+    maxArg1Part: 2 * 5,
+    maxArg1Part2: 7 / (5 * 2),
+    drawSolid3DArg3Part: 1.15,
+    drawSolid3DArg8Part: 6 * 5 * 2,
+    drawSolid3DArg8Part2: 360,
+    paintArg12: 7 / (5 * 2),
+    paintL3: 7 / 16,
+    fillTextArg1: 6 * 2,
+    fillTextArg2: 5 * 2
+  },
+  drawSolid3D: {
+    lineWidth: 8 / 5,
+    paintL: 9 / 16,
+    qSphereArg3Part: 16 / 5,
+    qSphereArg5Part: 9 / (5 * 2)
+  },
+  drawHologramProjection: {
+    fIBONACCIAt: 7,
+    r: 100,
+    rx: 2 / 5,
+    rx2: 0.33,
+    ry: 1 / 5,
+    ry2: 0.47,
+    pulse: 4 / 5,
+    pulse2: 3 / 5,
+    pulse3: 2 / 5,
+    sinArg0Part: 3 / (5 * 2),
+    paintArg1: 4 / 5,
+    paintL: 5 / 8,
+    shadowBlur: 8,
+    paintArg1Part: 1 - 3 / (5 * 4),
+    paintL2: 11 / 16,
+    maxArg0: 3 / 2,
+    maxArg1Part: 2 * 5,
+    paintArg0Part: 8 * 5,
+    paintArg0Part2: 360,
+    paintArg1Part2: 1 / 4,
+    maxArg02: 3 / 5,
+    maxArg1Part2: 7 / 5,
+    paintArg12: 3 / 4,
+    paintL3: 7 / 16,
+    fillTextArg1: 6 * 2,
+    fillTextArg2: 5 * 2
+  },
+  drawLabyrinthProjection: {
+    r: 8 / (5 * 5),
+    tube: 7 * 3 / (5 * 5 * 2),
+    nu: 26,
+    nv: 6,
+    spin: 2 / 5,
+    v: 1 / 5,
+    size: 7 * 2,
+    paintArg0Part: 9 * 2,
+    paintArg0Part2: 360,
+    paintArg1Part: 1 / 5,
+    paintArg1Part2: 7 / (5 * 2),
+    paintLPart: 1 / 6,
+    breath: 7 / (5 * 2),
+    sinArg0Part: 9 / (5 * 2),
+    heroSize: 9 * 2,
+    heroSize2: 16,
+    paintArg1: 4 / 5,
+    paintL: 5 / 8,
+    shadowBlur: 6 * 2,
+    paintL2: 11 / 16
+  },
+  drawMovie10dProjection: {
+    fIBONACCIAt: 7,
+    r: 100,
+    rx: 2 / 5,
+    rx2: 0.23,
+    rx3: 9 / (5 * 5 * 2),
+    ry: 3 / (5 * 2),
+    ry2: 5 / 16,
+    ry3: 9 / (5 * 5 * 2),
+    rz: 9 / (5 * 5 * 2),
+    loop: 16 * 5,
+    y: 79,
+    fIBONACCIAt2: 5,
+    qProjectArg8Part: 2 * 5,
+    paintArg0Part: 4,
+    paintArg0Part2: 360,
+    paintArg1Part: 1 / (5 * 2),
+    paintArg1Part2: 1 / 4,
+    paintArg1Part3: 5 * 5,
+    paintArg1Part4: 7,
+    maxArg1Part: 2 * 5,
+    qProjectArg8Part2: 1 / 5,
+    ring: 3 / 5,
+    ring2: 3 / (5 * 5),
+    rad: 16,
+    paintArg0Part3: 5 * 5 * 2,
+    paintL: 9 / 16,
+    lineWidth: 7 / 5,
+    loop2: 8,
+    t: 8,
+    roundArg0Part: 5 * 3,
+    roundArg0Part2: 9,
+    roundArg0Part3: 5 * 5,
+    roundArg0Part4: 2 * 9,
+    paintArg1Part5: 9 / (5 * 4),
+    paintL2: 5 / 8,
+    paintArg1Part6: 3 / (5 * 2),
+    paintArg1Part7: 2 / 5,
+    paintL3: 7 / 16,
+    fillTextArg2Part: 8
+  },
+  drawMerkabaProjection: {
+    r: 3 / (5 * 2),
+    a: 2 / 5,
+    drawSolid3DArg6Part: 7 / (5 * 2),
+    drawSolid3DArg9: 1 - 3 / (5 * 4),
+    drawSolid3DArg8Part: 9 * 5 * 4,
+    drawSolid3DArg8Part2: 360,
+    drawSolid3DArg92: 7 / (5 * 2)
+  },
+  drawUnitDistanceProjection: {
+    r0: 0.44,
+    ringRadius: 7 / (5 * 5),
+    ringRadius2: 2 / 3,
+    drift: 3 / (5 * 5),
+    nodes: 3,
+    hue: 9 * 2,
+    hue2: 360,
+    paintArg1: 0.22,
+    paintArg1Part: 7 / (5 * 4),
+    paintArg1Part2: 3 / (5 * 2),
+    paintL: 5 / 8,
+    maxArg0: 4 / 5,
+    maxArg1Part: 7 / (100 * 5),
+    glow: 3 / (5 * 2),
+    glow2: 9 / (5 * 4),
+    paintArg0Part: 9 * 5 * 4,
+    paintArg0Part2: 8,
+    paintArg0Part3: 360,
+    paintL2: 11 / 16,
+    lineWidth: 7 / 5,
+    moveToArg0Part: 3 / (5 * 2),
+    moveToArg1Part: 3 / (5 * 2),
+    lineToArg0Part: 8 * 3 / (5 * 5),
+    lineToArg1Part: 8 * 3 / (5 * 5),
+    paintL3: 3 / 4,
+    maxArg1Part2: 1 / (5 * 5 * 2),
+    fIBONACCIAt: 5,
+    lensR: 100,
+    lensR2: 1 - 3 / (5 * 4),
+    sep: 1 / 9,
+    paintArg12: 1 - 9 / (5 * 4),
+    lineWidth2: 6 / 5,
+    paintArg1Part3: 7 / (5 * 5),
+    paintArg1Part4: 2 / 5,
+    outerNodes: 3,
+    lit: 3,
+    floorArg0Part: 5,
+    span: 3,
+    k: 5,
+    k2: 4,
+    paintArg0Part4: 9 * 5 * 2,
+    paintArg13: 3 / 4,
+    paintL4: 13 / 16,
+    lineWidth3: 8 / 5
+  },
+  drawVortexStrokesProjection: {
+    r: 2 / 5,
+    drift: 2 / (5 * 5),
+    angleAt: 4,
+    paintArg0Part: 100 * 3,
+    paintArg0Part2: 360,
+    paintArg1Part: 2 / (5 * 5),
+    paintArg1Part2: 1 / (5 * 2),
+    paintL: 5 / 8,
+    lineWidth: 4 / 5,
+    paintArg0Part3: 9 * 5 * 4,
+    paintArg1Part3: 1 / (5 * 4),
+    maxArg1Part: 3 / 5,
+    hue: 9 * 5 * 4,
+    hue2: 360,
+    paintArg1Part4: 9 / (5 * 5 * 2),
+    paintArg1Part5: 3 / 5,
+    paintLPart: 11 / 16,
+    paintLPart2: 9 / 16,
+    setLineDashArg0Part: 3,
+    setLineDashArg0Part2: 5,
+    lineWidth2: 8 / 5,
+    maxArg0: 6 / 5,
+    maxArg1Part2: 3 / 100,
+    r2: 4 / 5,
+    hue3: 6 * 2,
+    paintArg1: 7 / (5 * 2),
+    paintL2: 3 / 4,
+    lineWidth3: 6 / 5,
+    paintArg1Part6: 9 / (5 * 4),
+    paintArg1Part7: 7 / (5 * 4),
+    maxArg1Part3: 1 / (5 * 4),
+    paintArg12: 3 / 5,
+    paintL3: 7 / 8,
+    moveToArg0Part: 3 / 2,
+    arcArg2Part: 3 / 2,
+    maxArg1Part4: 3 / 2,
+    glow: 1 / 4,
+    glow2: 1 - 7 / (5 * 4),
+    hue4: 9 * 5 * 2,
+    paintL4: 13 / 16,
+    lineWidth4: 7 / 5,
+    maxArg1Part5: 3 / (5 * 5 * 2),
+    arcArg2Part2: 7 / (5 * 2),
+    arcArg2Part3: 3 / 5,
+    a: 4,
+    returned: 9 / (5 * 2),
+    returned2: -(9 / (5 * 2)),
+    tetraEdges: 3,
+    spin: 3 / (5 * 2),
+    drawSolid3DArg3Part: 7 * 3 / (5 * 5 * 2),
+    drawSolid3DArg5Part: 2 / 5,
+    drawSolid3DArg9Part: 2 / 5,
+    drawSolid3DArg9Part2: 1 / 4,
+    drawSolid3DArg8Part: 9 * 5 * 4,
+    drawSolid3DArg8Part2: 360,
+    paintArg1Part8: 3 / (5 * 2),
+    maxArg1Part6: 1 / (5 * 5 * 2)
+  },
+  drawDoubleTorusProjection: {
+    r: 0.26,
+    sep: 1.18,
+    drift: 1 / 4,
+    hue: 9 * 5 * 4,
+    hue2: 360,
+    paintArg1: 3 / (5 * 2),
+    paintL: 9 / 16,
+    lineWidth: 6 / 5,
+    paintArg12: 7 / (5 * 5 * 2),
+    loop: 9,
+    a: 9,
+    paintArg0Part: 6 * 2,
+    paintArg0Part2: 360,
+    paintArg1Part: 7 / (5 * 4),
+    paintL2: 5 / 8,
+    maxArg1Part: 9 / (100 * 2),
+    returned: 1.55,
+    returned2: 1 - 2 / (5 * 5),
+    cars: 3,
+    cars2: 9,
+    head: 1 / 8,
+    u: 0.022,
+    paintArg0Part3: 9 * 5 * 2,
+    paintArg1Part2: 1 / 4,
+    paintArg1Part3: 3 / 5,
+    paintL3: 13 / 16,
+    maxArg1Part2: 1 / (5 * 4),
+    arcArg2Part: 3 / 5,
+    arcArg2Part2: 2 / 5,
+    paintArg13: 7 / 8,
+    paintL4: 7 / 8,
+    maxArg0: 9,
+    roundArg0Part: 1 / 5,
+    fillTextArg2Part: 2 / 5
+  },
+  drawTorusFieldProjection: {
+    r: 3 / (5 * 2),
+    tube: 2 / 5,
+    rx: 2 / 5,
+    rx2: 3 / (5 * 2),
+    ry: 1 / 5,
+    ry2: 7 * 3 / 100,
+    loop: 7 * 4,
+    u: 7 * 4,
+    loop2: 5 * 2,
+    v: 5 * 2,
+    paintArg0Part: 8,
+    paintArg0Part2: 360,
+    paintArg1Part: 3 / (5 * 4),
+    maxArg0: 3 / 5
+  },
+  kernelTheoremStreams: {
+    window: 16
+  },
+  sharedHeroAt: {
+    cssWidth: 64 * 16,
+    t: 1e3
+  },
+  fieldLayers: {
+    toUuidArg0Part: 7,
+    when: 4 * 64,
+    ray: 7,
+    mapHuePart: 7
+  },
+  seedOf: {
+    seedFromTextArg1: 8
+  },
+  armsOf: {
+    returned: 3
+  },
+  heroFieldCenterY: {
+    when: 3
+  },
+  buildArchNodes: {
+    when: 9,
+    sliceArg1: 9,
+    floorArg0Part: 3,
+    mapWithinPart: 3
+  },
+  bgStreamParams: {
+    distPart: 9 / (5 * 5),
+    distPart2: 4 / (5 * 5),
+    speedPart: 7 / (5 * 5),
+    speedPart2: 1 - 6 * 2 / (5 * 5),
+    sizePart: 11,
+    roundArg0Part: 6
+  },
+  bgStreamOrbit: {
+    spin: 7 / (5 * 4)
+  },
+  branch: {
+    when: 3,
+    paintArg0Part: 7 * 4,
+    paintArg0Part2: 360,
+    paintArg1Part: 1 / (5 * 2),
+    paintL: 7 / 8,
+    maxArg1Part: 3 / 5
+  },
+  strokeBranchLevels: {
+    paintArg0Part: 7 * 4,
+    paintArg1Part: 1 / (5 * 2),
+    paintL: 7 / 8,
+    maxArg1Part: 3 / 5,
+    loop: 3,
+    i: 4,
+    segAt: 3
+  },
+  drawFlower: {
+    r: 0.22,
+    loop: 6,
+    a: 3,
+    a2: 6,
+    sqrtArg0: 3,
+    trail: 8 * 5,
+    td: 8,
+    spin: 2 / 5,
+    hueC: 27,
+    tt: 1 / (5 * 4),
+    tt2: 3 / (5 * 2),
+    powArg1: 8 / 5,
+    globalAlpha: 7 * 3 / (5 * 5 * 2),
+    paintArg0Part: 3,
+    paintArg1Part: 7 * 3 / (5 * 5 * 2),
+    paintLPart: 1 - 3 / 16,
+    paintLPart2: 5 / (16 * 2),
+    maxArg1Part: 7 / (5 * 2),
+    maxArg1Part2: 1.7
+  },
+  drawCalendars: {
+    throatR: 7 / 100,
+    radius: 9,
+    hueC: 8 * 3,
+    ang: 4,
+    ang2: 1 / (5 * 4),
+    paintArg1: 7 / (5 * 2),
+    paintL: 1 - 3 / 16,
+    maxArg1Part: 3 / (100 * 5)
+  },
+  branchSegments: {
+    when: 3
+  },
+  drawResonanceProjection: {
+    paintL: 5 * 3 / 16,
+    paintC: 1 / 64,
+    maxArg0: 9,
+    roundArg0Part: 27,
+    cy: 1 - 9 / (5 * 4),
+    baseR: 8 / (5 * 5),
+    baseR2: 1 - 1 / (5 * 5),
+    baseR3: 1 / (5 * 5),
+    inkArg0: 2 / (5 * 5),
+    angle: 2 / 5,
+    r: 1 - 9 / (5 * 4),
+    r2: 9 / (5 * 4),
+    paintArg1Part: 7 / (5 * 4),
+    paintArg1Part2: 1 - 9 / (5 * 4),
+    arcArg2Part: 6,
+    arcArg2Part2: 5 * 2,
+    paintL2: 13 / 16,
+    inkArg02: 3 / 4,
+    fillTextArg1Part: 8,
+    fillTextArg2Part: 4
+  }
+};
+function kernelTheoremStreams(record, p) {
+  const circuit = VORTEX_SEQUENCE.filter((d) => d * MOVIE_STATION % MOVIE_ANGLES.trinity !== 0);
+  const files = Object.keys(record).sort();
+  const all = files.flatMap((file, fileIndex) => Object.keys(record[file] ?? {}).sort().map((theorem) => ({
+    uuid: toUuid(`lean:${file}:${theorem}`),
+    theorem,
+    file,
+    axioms: record[file]?.[theorem] ?? [],
+    hue: circuit[fileIndex % circuit.length] * MOVIE_STATION % MOVIE_TURN
+  })));
+  const count = all.length;
+  const start = count === 0 ? 0 : floor((p % 1 + 1) % 1 * count);
+  const window2 = min(count, ANIMATION_DESIGN.kernelTheoremStreams.window);
+  const visible = Array.from({ length: window2 }, (_, i) => all[(start + i) % count]);
+  return { all, visible, start };
+}
+var animationToken = (painter, key) => `--dt-${painter}-${key}`;
+function animationScss() {
+  const lines = [
+    "// @ceccec/double-torus \u2014 double-torus.scss. COMPUTED by animationScss() in src/quantum/wind/geometry; do not edit.",
+    "// Every number the animations paint with: the angles quantum.lean decides, and the design values movie.lean defines.",
+    `$double-torus-angles: (${Object.entries(MOVIE_ANGLES).map(([k, v]) => `${k}: ${v}`).join(", ")});`,
+    "",
+    ":root {"
+  ];
+  for (const [name, value] of Object.entries(MOVIE_ANGLES)) lines.push(`  --dt-angle-${name}: ${value};`);
+  for (const [painter, values] of Object.entries(ANIMATION_DESIGN)) for (const [key, value] of Object.entries(values)) lines.push(`  ${animationToken(painter, key)}: ${String(value)};`);
+  lines.push("}", "");
+  return lines.join("\n");
+}
+function bindAnimationDesign(read) {
+  let bound = 0, absent = 0, differed = 0;
+  const table = ANIMATION_DESIGN;
+  for (const [painter, values] of Object.entries(table)) {
+    for (const key of Object.keys(values)) {
+      const raw = read(animationToken(painter, key)).trim();
+      const value = raw === "" ? Number.NaN : Number(raw);
+      if (!Number.isFinite(value)) {
+        absent += 1;
+        continue;
+      }
+      if (value !== values[key]) differed += 1;
+      values[key] = value;
+      bound += 1;
+    }
+  }
+  return { source: bound === 0 ? "absent" : "read", bound, absent, differed };
+}
 var FOCAL = 6 * 2 / 5;
 function rot2(u, v, a) {
   const c = cos(a);
@@ -13707,12 +14556,12 @@ function depthIsThePerspectiveDivide() {
   };
 }
 function branch(ctx, x, y, len, angle, depth, d, hue2, dark = true) {
-  if (depth <= 0 || len < 3) return;
+  if (depth <= 0 || len < ANIMATION_DESIGN.branch.when) return;
   const paint = movieCanvasPolarity(dark);
   const x2 = x + cos(angle) * len;
   const y2 = y + sin(angle) * len;
-  ctx.strokeStyle = paint((hue2 + d.hueShift + depth * (7 * 4)) % 360, d.depthFade + depth * (1 / (5 * 2)), { L: 7 / 8 });
-  ctx.lineWidth = max(1 / 2, depth * (3 / 5));
+  ctx.strokeStyle = paint((hue2 + d.hueShift + depth * ANIMATION_DESIGN.branch.paintArg0Part) % ANIMATION_DESIGN.branch.paintArg0Part2, d.depthFade + depth * ANIMATION_DESIGN.branch.paintArg1Part, { L: ANIMATION_DESIGN.branch.paintL });
+  ctx.lineWidth = max(1 / 2, depth * ANIMATION_DESIGN.branch.maxArg1Part);
   ctx.beginPath();
   ctx.moveTo(x, y);
   ctx.lineTo(x2, y2);
@@ -13721,7 +14570,7 @@ function branch(ctx, x, y, len, angle, depth, d, hue2, dark = true) {
   branch(ctx, x2, y2, len * d.shrink, angle + d.spread, depth - 1, d, hue2, dark);
 }
 function branchSegments(levels, x, y, len, angle, depth, d) {
-  if (depth <= 0 || len < 3) return;
+  if (depth <= 0 || len < ANIMATION_DESIGN.branchSegments.when) return;
   const x2 = x + cos(angle) * len;
   const y2 = y + sin(angle) * len;
   if (!levels[depth]) levels[depth] = [];
@@ -13734,12 +14583,12 @@ function strokeBranchLevels(ctx, levels, d, hue2, dark = true) {
   for (let depth = levels.length - 1; depth > 0; depth -= 1) {
     const seg = levels[depth];
     if (!seg || seg.length === 0) continue;
-    ctx.strokeStyle = paint((hue2 + d.hueShift + depth * (7 * 4)) % 360, d.depthFade + depth * (1 / (5 * 2)), { L: 7 / 8 });
-    ctx.lineWidth = max(1 / 2, depth * (3 / 5));
+    ctx.strokeStyle = paint((hue2 + d.hueShift + depth * ANIMATION_DESIGN.strokeBranchLevels.paintArg0Part) % MOVIE_ANGLES.turn, d.depthFade + depth * ANIMATION_DESIGN.strokeBranchLevels.paintArg1Part, { L: ANIMATION_DESIGN.strokeBranchLevels.paintL });
+    ctx.lineWidth = max(1 / 2, depth * ANIMATION_DESIGN.strokeBranchLevels.maxArg1Part);
     ctx.beginPath();
-    for (let i = 0; i + 3 < seg.length; i += 4) {
+    for (let i = 0; i + ANIMATION_DESIGN.strokeBranchLevels.loop < seg.length; i += ANIMATION_DESIGN.strokeBranchLevels.i) {
       ctx.moveTo(seg[i], seg[i + 1]);
-      ctx.lineTo(seg[i + 2], seg[i + 3]);
+      ctx.lineTo(seg[i + 2], seg[i + ANIMATION_DESIGN.strokeBranchLevels.segAt]);
     }
     ctx.stroke();
   }
@@ -13784,30 +14633,30 @@ function flowerUnlocksFruitBySpin() {
 }
 function drawFlower(ctx, cx, cy, w, h, t, hue2, reduce, dark = true) {
   const paint = movieCanvasPolarity(dark);
-  const R = min(w, h) * 0.22;
+  const R = min(w, h) * ANIMATION_DESIGN.drawFlower.r;
   const centers = [{ x: 0, y: 0 }];
-  for (let k = 0; k < 6; k += 1) {
-    const a = k * (TAU / 2) / 3;
+  for (let k = 0; k < ANIMATION_DESIGN.drawFlower.loop; k += 1) {
+    const a = k * (TAU / 2) / ANIMATION_DESIGN.drawFlower.a;
     centers.push({ x: cos(a) * R, y: sin(a) * R });
   }
-  for (let k = 0; k < 6; k += 1) {
-    const a = k * (TAU / 2) / 3 + TAU / 2 / 6;
-    const d = R * sqrt(3);
+  for (let k = 0; k < ANIMATION_DESIGN.drawFlower.loop; k += 1) {
+    const a = k * (TAU / 2) / ANIMATION_DESIGN.drawFlower.a + TAU / 2 / ANIMATION_DESIGN.drawFlower.a2;
+    const d = R * sqrt(ANIMATION_DESIGN.drawFlower.sqrtArg0);
     centers.push({ x: cos(a) * d, y: sin(a) * d });
   }
   const localR = R * (1 / 2);
-  const trail = reduce ? 1 : 8 * 5;
-  const td = t * 8;
-  const spin = t * (2 / 5);
+  const trail = reduce ? 1 : ANIMATION_DESIGN.drawFlower.trail;
+  const td = t * ANIMATION_DESIGN.drawFlower.td;
+  const spin = t * ANIMATION_DESIGN.drawFlower.spin;
   ctx.save();
   ctx.globalCompositeOperation = dark ? "lighter" : "source-over";
   for (let ci = 0; ci < centers.length; ci += 1) {
     const c = centers[ci];
     const ox = cx + (c.x * cos(spin) - c.y * sin(spin));
     const oy = cy + (c.x * sin(spin) + c.y * cos(spin));
-    const hueC = (hue2 + ci * 27) % 360;
+    const hueC = (hue2 + ci * ANIMATION_DESIGN.drawFlower.hueC) % MOVIE_ANGLES.turn;
     for (let i = trail; i >= 0; i -= 1) {
-      const tt = td - i * (1 / (5 * 4)) + ci * (3 / (5 * 2));
+      const tt = td - i * ANIMATION_DESIGN.drawFlower.tt + ci * ANIMATION_DESIGN.drawFlower.tt2;
       let x = 0;
       let y = 0;
       for (const arm of FOL_ARMS) {
@@ -13815,10 +14664,10 @@ function drawFlower(ctx, cx, cy, w, h, t, hue2, reduce, dark = true) {
         y += arm.r * sin(arm.w * tt);
       }
       const age = i / trail;
-      ctx.globalAlpha = pow(1 - age, 8 / 5) * (7 * 3 / (5 * 5 * 2));
-      ctx.fillStyle = paint((hueC + i * 3) % 360, pow(1 - age, 8 / 5) * (7 * 3 / (5 * 5 * 2)), { L: 1 - 3 / 16 - age * (5 / (16 * 2)) });
+      ctx.globalAlpha = pow(1 - age, ANIMATION_DESIGN.drawFlower.powArg1) * ANIMATION_DESIGN.drawFlower.globalAlpha;
+      ctx.fillStyle = paint((hueC + i * ANIMATION_DESIGN.drawFlower.paintArg0Part) % MOVIE_ANGLES.turn, pow(1 - age, ANIMATION_DESIGN.drawFlower.powArg1) * ANIMATION_DESIGN.drawFlower.paintArg1Part, { L: ANIMATION_DESIGN.drawFlower.paintLPart - age * ANIMATION_DESIGN.drawFlower.paintLPart2 });
       ctx.beginPath();
-      ctx.arc(ox + x * localR, oy + y * localR, max(1 / 2, (1 - age * (7 / (5 * 2))) * 1.7), 0, TAU);
+      ctx.arc(ox + x * localR, oy + y * localR, max(1 / 2, (1 - age * ANIMATION_DESIGN.drawFlower.maxArg1Part) * ANIMATION_DESIGN.drawFlower.maxArg1Part2), 0, TAU);
       ctx.fill();
     }
   }
@@ -13840,18 +14689,18 @@ function drawCalendars(ctx, cx, cy, w, h, t, hue2, reduce, dark = true) {
   const paint = movieCanvasPolarity(dark);
   const days = t / TAU;
   const base = min(w, h);
-  const throatR = base * (7 / 100);
+  const throatR = base * ANIMATION_DESIGN.drawCalendars.throatR;
   ctx.save();
   for (let i = 0; i < CAL_CYCLES.length; i += 1) {
     const cyc = CAL_CYCLES[i];
     const cyclePhase = (days % cyc.days + cyc.days) % cyc.days / cyc.days;
     const digit2 = VORTEX_SEQUENCE[i % VORTEX_SEQUENCE.length];
-    const radius = throatR * (1 + digit2 / 9);
-    const hueC = (hue2 + i * (8 * 3)) % 360;
-    const ang = cyclePhase * TAU - TAU / 4 + (reduce ? 0 : t * (1 / (5 * 4)) * (i % 2 === 0 ? 1 : -1));
-    ctx.fillStyle = paint(hueC, 7 / (5 * 2), { L: 1 - 3 / 16 });
+    const radius = throatR * (1 + digit2 / ANIMATION_DESIGN.drawCalendars.radius);
+    const hueC = (hue2 + i * ANIMATION_DESIGN.drawCalendars.hueC) % MOVIE_ANGLES.turn;
+    const ang = cyclePhase * TAU - TAU / ANIMATION_DESIGN.drawCalendars.ang + (reduce ? 0 : t * ANIMATION_DESIGN.drawCalendars.ang2 * (i % 2 === 0 ? 1 : -1));
+    ctx.fillStyle = paint(hueC, ANIMATION_DESIGN.drawCalendars.paintArg1, { L: ANIMATION_DESIGN.drawCalendars.paintL });
     ctx.beginPath();
-    ctx.arc(cx + cos(ang) * radius, cy + sin(ang) * radius, max(1, base * (3 / (100 * 5))), 0, TAU);
+    ctx.arc(cx + cos(ang) * radius, cy + sin(ang) * radius, max(1, base * ANIMATION_DESIGN.drawCalendars.maxArg1Part), 0, TAU);
     ctx.fill();
   }
   ctx.restore();
@@ -25863,22 +26712,22 @@ function makeBurst(xRatio, yRatio, w, h, hue2) {
 function drawBursts(ctx, w, h, bursts, dark = true) {
   const paint = movieCanvasPolarity(dark);
   const now = performance.now();
-  for (let i = bursts.length - 1; i >= 0; i -= 1) if (now - bursts[i].born >= 1100) bursts.splice(i, 1);
+  for (let i = bursts.length - 1; i >= 0; i -= 1) if (now - bursts[i].born >= ANIMATION_DESIGN.drawBursts.when) bursts.splice(i, 1);
   for (const b of bursts) {
-    const age = (now - b.born) / 1100;
-    const ring = age * min(w, h) * (7 * 3 / (5 * 5 * 2));
-    ctx.strokeStyle = paint(b.hue, (1 - age) * (3 / 5), { L: 13 / 16 });
+    const age = (now - b.born) / ANIMATION_DESIGN.drawBursts.age;
+    const ring = age * min(w, h) * ANIMATION_DESIGN.drawBursts.ring;
+    ctx.strokeStyle = paint(b.hue, (1 - age) * ANIMATION_DESIGN.drawBursts.paintArg1Part, { L: ANIMATION_DESIGN.drawBursts.paintL });
     ctx.lineWidth = 2 * (1 - age);
     ctx.beginPath();
     ctx.arc(b.x, b.y, ring, 0, TAU);
     ctx.stroke();
     for (const s of b.sparks) {
-      const reach = age * s.speed * min(w, h) * (2 / 5);
+      const reach = age * s.speed * min(w, h) * ANIMATION_DESIGN.drawBursts.reach;
       const sx = b.x + cos(s.angle) * reach;
       const sy = b.y + sin(s.angle) * reach;
-      ctx.fillStyle = paint((b.hue + s.angle * (6 * 5)) % 360, (1 - age) * (4 / 5), { L: 7 / 8 });
+      ctx.fillStyle = paint((b.hue + s.angle * ANIMATION_DESIGN.drawBursts.paintArg0Part) % MOVIE_ANGLES.turn, (1 - age) * ANIMATION_DESIGN.drawBursts.paintArg1Part2, { L: ANIMATION_DESIGN.drawBursts.paintL2 });
       ctx.beginPath();
-      ctx.arc(sx, sy, 6 * 2 / 5 * (1 - age), 0, TAU);
+      ctx.arc(sx, sy, ANIMATION_DESIGN.drawBursts.arcArg2Part * (1 - age), 0, TAU);
       ctx.fill();
     }
   }
@@ -26308,22 +27157,22 @@ init_node_path();
 var PLASMA_TIERS = [3, 5, 8];
 function buildArchNodes() {
   const folders = folderLaw().pairedLogicFolders;
-  return (folders.length >= 9 ? folders.slice(0, 9) : folders).map((folder, i) => ({
+  return (folders.length >= ANIMATION_DESIGN.buildArchNodes.when ? folders.slice(0, ANIMATION_DESIGN.buildArchNodes.sliceArg1) : folders).map((folder, i) => ({
     folder,
     glyph: glagoliticGlyph(folder),
-    trinity: floor(i / 3),
-    within: i % 3 - 1
+    trinity: floor(i / ANIMATION_DESIGN.buildArchNodes.floorArg0Part),
+    within: i % ANIMATION_DESIGN.buildArchNodes.mapWithinPart - 1
   }));
 }
 function drawArchitecture(ctx, cx, cy, w, h, t, d, archNodes, hue2, dark = true) {
   const paint = movieCanvasPolarity(dark);
-  const R = min(w, h) * (27 / 100);
+  const R = min(w, h) * ANIMATION_DESIGN.drawArchitecture.r;
   const rXY = t * d.twist;
   const placed = archNodes.map((node) => {
-    const ang = node.trinity / 3 * TAU + node.within * (7 * 3 / (5 * 5 * 2));
-    const v = rotate3(cos(ang), sin(ang), 0, rXY, t * PHI ** -2, t * (7 * 3 / 100));
+    const ang = node.trinity / ANIMATION_DESIGN.drawArchitecture.ang * TAU + node.within * ANIMATION_DESIGN.drawArchitecture.ang2;
+    const v = rotate3(cos(ang), sin(ang), 0, rXY, t * PHI ** -2, t * ANIMATION_DESIGN.drawArchitecture.rotate3Arg5Part);
     const persp = perspective(v.Z);
-    const hueT = (hue2 + node.trinity * (8 * 5 * 3)) % 360;
+    const hueT = (hue2 + node.trinity * MOVIE_ANGLES.trinity) % MOVIE_ANGLES.turn;
     return { ...node, x: cx + v.X * R * persp, y: cy + v.Y * R * persp, persp, hueT };
   });
   for (const node of placed) {
@@ -26331,7 +27180,7 @@ function drawArchitecture(ctx, cx, cy, w, h, t, d, archNodes, hue2, dark = true)
     if (node.folder < dual) {
       const mate = placed.find((p) => p.folder === dual);
       if (mate) {
-        ctx.strokeStyle = paint(node.hueT, 7 / (5 * 5), { L: 7 / 8 });
+        ctx.strokeStyle = paint(node.hueT, ANIMATION_DESIGN.drawArchitecture.paintArg1, { L: ANIMATION_DESIGN.drawArchitecture.paintL });
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(node.x, node.y);
@@ -26341,21 +27190,21 @@ function drawArchitecture(ctx, cx, cy, w, h, t, d, archNodes, hue2, dark = true)
     }
   }
   for (const node of placed) {
-    ctx.fillStyle = paint(node.hueT, 1 / 2 + 2 / 5 * node.persp, { L: 13 / 16 });
-    ctx.font = `${max(9, round(7 * 2 * node.persp))}px serif`;
+    ctx.fillStyle = paint(node.hueT, 1 / 2 + ANIMATION_DESIGN.drawArchitecture.paintArg1Part * node.persp, { L: ANIMATION_DESIGN.drawArchitecture.paintL2 });
+    ctx.font = `${max(ANIMATION_DESIGN.drawArchitecture.maxArg0, round(ANIMATION_DESIGN.drawArchitecture.roundArg0Part * node.persp))}px serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(node.glyph, node.x, node.y);
   }
 }
 function seedOf(text) {
-  return seedFromText(text, 8) >>> 0 || 1;
+  return seedFromText(text, ANIMATION_DESIGN.seedOf.seedFromTextArg1) >>> 0 || 1;
 }
 function hueOf(seed) {
   return (seed >>> 0) * GOLDEN_ANGLE % 360;
 }
 function armsOf(seed) {
-  return 3 * (1 + seed % 3);
+  return ANIMATION_DESIGN.armsOf.returned * (1 + seed % ANIMATION_DESIGN.armsOf.returned);
 }
 function plasmaRayCount(streamCount) {
   return min(
@@ -26370,17 +27219,17 @@ function drawHero(ctx, w, h, scene, opts = {}) {
   const cy = opts.centerY ?? h / 2;
   const d = dims(scene.p);
   const minDim = min(w, h);
-  const coreR = voidR ?? minDim * (7 / 100);
+  const coreR = voidR ?? minDim * ANIMATION_DESIGN.drawHero.coreR;
   const plasmaCore = voidR !== void 0;
   drawFlower(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce, scene.palette.dark);
   drawCalendars(ctx, cx, cy, w, h, scene.t, scene.hue, scene.reduce, scene.palette.dark);
   const walk = dimWalk(scene.p);
-  const baseLen = plasmaCore ? coreR * (7 * 2 / 5 + 2.2 * d.breath * (4 / (5 * 5) + 7 * 3 / (5 * 5) * walk)) : minDim * 0.22 * d.breath * (4 / (5 * 5) + 7 * 3 / (5 * 5) * walk);
-  const depth = scene.cssWidth > 100 * 9 ? 6 : scene.cssWidth > 520 ? 5 : 4;
-  const armCount = scene.arms + (scene.cssWidth > 100 * 8 ? 2 : scene.cssWidth > 16 * 6 * 5 ? 1 : 0);
+  const baseLen = plasmaCore ? coreR * (ANIMATION_DESIGN.drawHero.baseLen + ANIMATION_DESIGN.drawHero.baseLen2 * d.breath * (ANIMATION_DESIGN.drawHero.baseLen3 + ANIMATION_DESIGN.drawHero.baseLen4 * walk)) : minDim * ANIMATION_DESIGN.drawHero.baseLen5 * d.breath * (ANIMATION_DESIGN.drawHero.baseLen3 + ANIMATION_DESIGN.drawHero.baseLen4 * walk);
+  const depth = scene.cssWidth > ANIMATION_DESIGN.drawHero.when ? ANIMATION_DESIGN.drawHero.depth : scene.cssWidth > ANIMATION_DESIGN.drawHero.when2 ? ANIMATION_DESIGN.drawHero.depth2 : ANIMATION_DESIGN.drawHero.depth3;
+  const armCount = scene.arms + (scene.cssWidth > ANIMATION_DESIGN.drawHero.when3 ? 2 : scene.cssWidth > ANIMATION_DESIGN.drawHero.when4 ? 1 : 0);
   const rXY = scene.t * d.twist;
-  const rYZ = scene.t * (0.33 + 9 / (5 * 5 * 2) * d.loopA1);
-  const rZX = scene.t * (7 * 3 / 100 + 9 / (5 * 5 * 2) * d.loopB2);
+  const rYZ = scene.t * (ANIMATION_DESIGN.drawHero.rYZ + ANIMATION_DESIGN.drawHero.rYZ2 * d.loopA1);
+  const rZX = scene.t * (ANIMATION_DESIGN.drawHero.rZX + ANIMATION_DESIGN.drawHero.rZX2 * d.loopB2);
   for (let a = 0; a < armCount; a += 1) {
     const base = a / armCount * TAU;
     const ds = dims(scene.p, a);
@@ -26389,12 +27238,12 @@ function drawHero(ctx, w, h, scene, opts = {}) {
       const v = rotate3(cos(base), sin(base), 0, rXY * dir, rYZ * dir, rZX * dir);
       const persp = perspective(v.Z);
       const angle = atan2(v.Y, v.X);
-      branchSegments(levels, cx, cy, baseLen * persp * (1 - 9 / (5 * 5 * 2) + 9 / (5 * 5) * ds.breath), angle, depth, ds);
+      branchSegments(levels, cx, cy, baseLen * persp * (ANIMATION_DESIGN.drawHero.branchSegmentsArg3Part + ANIMATION_DESIGN.drawHero.branchSegmentsArg3Part2 * ds.breath), angle, depth, ds);
     }
     strokeBranchLevels(ctx, levels, ds, scene.hue, scene.palette.dark);
   }
   const n = scene.tags.length;
-  const r2 = plasmaCore ? coreR * (FIBONACCI[8] / (2 * 5)) : minDim * (FIBONACCI[7] / 100);
+  const r2 = plasmaCore ? coreR * (FIBONACCI[ANIMATION_DESIGN.drawHero.fIBONACCIAt] / ANIMATION_DESIGN.drawHero.r) : minDim * (FIBONACCI[ANIMATION_DESIGN.drawHero.fIBONACCIAt2] / ANIMATION_DESIGN.drawHero.r2);
   for (let i = 0; i < n; i += 1) {
     const base = i / max(1, n) * TAU;
     const v = rotate3(cos(base), sin(base), 0, -rXY, -rYZ, -rZX);
@@ -26409,13 +27258,13 @@ function drawHero(ctx, w, h, scene, opts = {}) {
     ctx.stroke();
     ctx.fillStyle = scene.palette.canvas.tagDot(scene.hue, i, persp);
     ctx.beginPath();
-    ctx.arc(x, y, max(1, 3 * persp), 0, TAU);
+    ctx.arc(x, y, max(1, ANIMATION_DESIGN.drawHero.maxArg1Part * persp), 0, TAU);
     ctx.fill();
     ctx.fillStyle = scene.palette.canvas.tagGlyph(scene.hue, i, persp);
-    ctx.font = `${max(8, round(5 * 2 * persp))}px serif`;
+    ctx.font = `${max(ANIMATION_DESIGN.drawHero.maxArg0, round(ANIMATION_DESIGN.drawHero.roundArg0Part * persp))}px serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(glagoliticGlyph(scene.tags[i] || ""), x, y - 7 * persp);
+    ctx.fillText(glagoliticGlyph(scene.tags[i] || ""), x, y - ANIMATION_DESIGN.drawHero.fillTextArg2Part * persp);
   }
   drawArchitecture(ctx, cx, cy, w, h, scene.t, d, scene.archNodes, scene.hue, scene.palette.dark);
   drawBursts(ctx, w, h, scene.bursts, scene.palette.dark);
@@ -26425,9 +27274,9 @@ function bgStreamParams(seed, stream) {
   const rand = prng(`bg:${seed}:${stream}`);
   return {
     angle: rand() * TAU,
-    dist: 9 / (5 * 5) + 4 / (5 * 5) * rand(),
-    speed: 7 / (5 * 5) + rand() * (1 - 6 * 2 / (5 * 5)),
-    size: 11 + round(rand() * 6)
+    dist: ANIMATION_DESIGN.bgStreamParams.distPart + ANIMATION_DESIGN.bgStreamParams.distPart2 * rand(),
+    speed: ANIMATION_DESIGN.bgStreamParams.speedPart + rand() * ANIMATION_DESIGN.bgStreamParams.speedPart2,
+    size: ANIMATION_DESIGN.bgStreamParams.sizePart + round(rand() * ANIMATION_DESIGN.bgStreamParams.roundArg0Part)
   };
 }
 function bgStreamOrbit(phase6, angle, distFrac, voidR, span, p) {
@@ -26435,7 +27284,7 @@ function bgStreamOrbit(phase6, angle, distFrac, voidR, span, p) {
   const inbound = 1 / 2 + 1 / 2 * cos(cycle * TAU);
   const dist = span * distFrac;
   const r2 = voidR + (dist - voidR) * inbound;
-  const spin = angle + cycle * GOLDEN_ANGLE_RAD + p * GOLDEN_ANGLE_RAD * (7 / (5 * 4));
+  const spin = angle + cycle * GOLDEN_ANGLE_RAD + p * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.bgStreamOrbit.spin;
   return { x: cos(spin) * r2, y: sin(spin) * r2, r: r2, inbound };
 }
 function drawPlasmaField(ctx, w, h, cx, cy, hueShift, p, t, palette, streamCount) {
@@ -26443,13 +27292,13 @@ function drawPlasmaField(ctx, w, h, cx, cy, hueShift, p, t, palette, streamCount
   const blobCount = min(PLASMA_TIERS[2], PLASMA_TIERS[0] + floor(streamCount / PLASMA_TIERS[2]));
   for (let b = 0; b < blobCount; b += 1) {
     const orbit2 = p * TAU + b * TAU / blobCount;
-    const bx = cx + cos(orbit2 + t * (7 / 100)) * w * 0.26;
-    const by = cy + sin(orbit2 + t * (1 / (5 * 4))) * h * (1 / 5);
-    const blobHue = (hueShift + b * (6 * 5 * 2) + sin(t * (3 / (5 * 2)) + b) * (9 * 2)) % 360;
-    const radius = span * (8 / (5 * 5) + 7 / 100 * sin(t * (9 / (5 * 4)) + b * (9 / (5 * 2))));
+    const bx = cx + cos(orbit2 + t * ANIMATION_DESIGN.drawPlasmaField.cosArg0Part) * w * ANIMATION_DESIGN.drawPlasmaField.bx;
+    const by = cy + sin(orbit2 + t * ANIMATION_DESIGN.drawPlasmaField.sinArg0Part) * h * ANIMATION_DESIGN.drawPlasmaField.by;
+    const blobHue = (hueShift + b * MOVIE_ANGLES.sixty + sin(t * ANIMATION_DESIGN.drawPlasmaField.sinArg0Part2 + b) * ANIMATION_DESIGN.drawPlasmaField.blobHue) % MOVIE_ANGLES.turn;
+    const radius = span * (ANIMATION_DESIGN.drawPlasmaField.radius + ANIMATION_DESIGN.drawPlasmaField.radius2 * sin(t * ANIMATION_DESIGN.drawPlasmaField.sinArg0Part3 + b * ANIMATION_DESIGN.drawPlasmaField.sinArg0Part4));
     const g = ctx.createRadialGradient(bx, by, 0, bx, by, radius);
     g.addColorStop(0, palette.canvas.blobInner(blobHue, b));
-    g.addColorStop(2 / 5, palette.canvas.blobMid(blobHue, b));
+    g.addColorStop(ANIMATION_DESIGN.drawPlasmaField.addColorStopArg0, palette.canvas.blobMid(blobHue, b));
     g.addColorStop(1, "transparent");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
@@ -26468,15 +27317,15 @@ function drawPlasmaRays(ctx, cx, cy, voidR, hueShift, p, t, streams, palette) {
   ctx.globalCompositeOperation = palette.dark ? "lighter" : "source-over";
   for (let r2 = 0; r2 < rayCount; r2 += 1) {
     const stream = streams[r2 % max(1, streams.length)];
-    const hue2 = stream?.hue ?? (hueShift + r2 * GOLDEN_ANGLE_RAD) % 360;
-    const angle = lifeRayBaseAngle(r2) + p * GOLDEN_ANGLE_RAD + t * (1 / (5 * 4));
-    const len = voidR * (27 / (5 * 4) + (1 - 3 / (5 * 4)) * (1 / 2 + 1 / 2 * sin(t * (1 - 7 / (5 * 4)) + r2 * (1 - 9 * 7 / 100))));
-    const pulse = 7 / (5 * 4) + (1 - 7 / (5 * 4)) * sin(t * (7 * 3 / (5 * 4)) + r2 * PHI ** -2);
-    const alpha = palette.canvas.streamAlpha(1 - 9 / (5 * 4), true, pulse);
+    const hue2 = stream?.hue ?? (hueShift + r2 * GOLDEN_ANGLE_RAD) % MOVIE_ANGLES.turn;
+    const angle = lifeRayBaseAngle(r2) + p * GOLDEN_ANGLE_RAD + t * ANIMATION_DESIGN.drawPlasmaRays.angle;
+    const len = voidR * (ANIMATION_DESIGN.drawPlasmaRays.len + ANIMATION_DESIGN.drawPlasmaRays.len2 * (1 / 2 + 1 / 2 * sin(t * ANIMATION_DESIGN.drawPlasmaRays.sinArg0Part + r2 * ANIMATION_DESIGN.drawPlasmaRays.sinArg0Part2)));
+    const pulse = ANIMATION_DESIGN.drawPlasmaRays.pulse + ANIMATION_DESIGN.drawPlasmaRays.pulse2 * sin(t * ANIMATION_DESIGN.drawPlasmaRays.sinArg0Part3 + r2 * PHI ** -2);
+    const alpha = palette.canvas.streamAlpha(ANIMATION_DESIGN.drawPlasmaRays.streamAlphaArg0, true, pulse);
     ctx.strokeStyle = palette.canvas.streamFill(hue2, alpha, true);
-    ctx.lineWidth = 9 / (5 * 4) + r2 % PLASMA_TIERS[0] * 0.22;
+    ctx.lineWidth = ANIMATION_DESIGN.drawPlasmaRays.lineWidth + r2 % PLASMA_TIERS[0] * ANIMATION_DESIGN.drawPlasmaRays.lineWidth2;
     ctx.shadowColor = palette.canvas.streamGlow(hue2, alpha);
-    ctx.shadowBlur = 3 + r2 % PLASMA_TIERS[0] * 2;
+    ctx.shadowBlur = ANIMATION_DESIGN.drawPlasmaRays.shadowBlur + r2 % PLASMA_TIERS[0] * 2;
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.lineTo(cx + cos(angle) * len, cy + sin(angle) * len);
@@ -26493,32 +27342,32 @@ function drawDeathCounterFlow(ctx, cx, cy, voidR, span, hueShift, p, t, palette,
     PLASMA_TIERS[0] + floor(streamCount / PLASMA_TIERS[0])
   );
   if (flowCount < 1) return;
-  const deathHue = (hueShift + 9 * 5 * 4) % 360;
-  const outerR = span * 0.46;
+  const deathHue = (hueShift + MOVIE_ANGLES.half) % MOVIE_ANGLES.turn;
+  const outerR = span * ANIMATION_DESIGN.drawDeathCounterFlow.outerR;
   ctx.save();
   ctx.globalCompositeOperation = palette.dark ? "lighter" : "source-over";
   for (let f2 = 0; f2 < flowCount; f2 += 1) {
     const baseAngle = deathFlowBaseAngle(f2);
-    const speed = 9 / (5 * 5 * 2) + f2 % PLASMA_TIERS[0] * (1 / (5 * 4));
-    const head = ((t * speed - p * (1 / 2) + f2 * (360 * (2 - PHI)) / 1e3) % 1 + 1) % 1;
+    const speed = ANIMATION_DESIGN.drawDeathCounterFlow.speed + f2 % PLASMA_TIERS[0] * ANIMATION_DESIGN.drawDeathCounterFlow.speed2;
+    const head = ((t * speed - p * (1 / 2) + f2 * (MOVIE_ANGLES.turn * (2 - PHI)) / ANIMATION_DESIGN.drawDeathCounterFlow.head) % 1 + 1) % 1;
     let leadX = cx;
     let leadY = cy;
     let leadAlpha = 0;
     for (let trail = 0; trail < DEATH_TRAIL_LEN; trail += 1) {
-      const d0 = ((head + trail * (1 / (5 * 4))) % 1 + 1) % 1;
-      const d1 = ((head + (trail + 1) * (1 / (5 * 4))) % 1 + 1) % 1;
+      const d0 = ((head + trail * ANIMATION_DESIGN.drawDeathCounterFlow.d0) % 1 + 1) % 1;
+      const d1 = ((head + (trail + 1) * ANIMATION_DESIGN.drawDeathCounterFlow.d1) % 1 + 1) % 1;
       const r0 = voidR + (outerR - voidR) * (1 - d0);
       const r1 = voidR + (outerR - voidR) * (1 - d1);
-      const a0 = baseAngle - d0 * GOLDEN_ANGLE_RAD * 3 - p * GOLDEN_ANGLE_RAD * (7 / (5 * 4));
-      const a1 = baseAngle - d1 * GOLDEN_ANGLE_RAD * 3 - p * GOLDEN_ANGLE_RAD * (7 / (5 * 4));
+      const a0 = baseAngle - d0 * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.drawDeathCounterFlow.a0 - p * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.drawDeathCounterFlow.a02;
+      const a1 = baseAngle - d1 * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.drawDeathCounterFlow.a1 - p * GOLDEN_ANGLE_RAD * ANIMATION_DESIGN.drawDeathCounterFlow.a12;
       const x0 = cx + cos(a0) * r0;
       const y0 = cy + sin(a0) * r0;
       const x1 = cx + cos(a1) * r1;
       const y1 = cy + sin(a1) * r1;
       const presence = sin(d0 * (TAU / 2));
-      const alpha = palette.canvas.streamAlpha(presence, d0 > 1 - 7 / (5 * 4), 1 - trail / DEATH_TRAIL_LEN) * (1 - 9 / (5 * 4));
-      ctx.strokeStyle = paint(deathHue, alpha, { L: 7 / 16 });
-      ctx.lineWidth = 3 / 5 + (1 - d0) * (8 / 5);
+      const alpha = palette.canvas.streamAlpha(presence, d0 > ANIMATION_DESIGN.drawDeathCounterFlow.streamAlphaArg1Part, 1 - trail / DEATH_TRAIL_LEN) * ANIMATION_DESIGN.drawDeathCounterFlow.alpha;
+      ctx.strokeStyle = paint(deathHue, alpha, { L: ANIMATION_DESIGN.drawDeathCounterFlow.paintL });
+      ctx.lineWidth = ANIMATION_DESIGN.drawDeathCounterFlow.lineWidth + (1 - d0) * ANIMATION_DESIGN.drawDeathCounterFlow.lineWidth2;
       ctx.beginPath();
       ctx.moveTo(x0, y0);
       ctx.lineTo(x1, y1);
@@ -26529,19 +27378,19 @@ function drawDeathCounterFlow(ctx, cx, cy, voidR, span, hueShift, p, t, palette,
         leadAlpha = alpha;
       }
     }
-    ctx.fillStyle = paint(deathHue, leadAlpha * (FIBONACCI[5] / (2 * 5)), { L: 9 / 16 });
+    ctx.fillStyle = paint(deathHue, leadAlpha * (FIBONACCI[ANIMATION_DESIGN.drawDeathCounterFlow.fIBONACCIAt] / ANIMATION_DESIGN.drawDeathCounterFlow.paintArg1Part), { L: ANIMATION_DESIGN.drawDeathCounterFlow.paintL2 });
     ctx.beginPath();
-    ctx.arc(leadX, leadY, 7 / 5, 0, TAU);
+    ctx.arc(leadX, leadY, ANIMATION_DESIGN.drawDeathCounterFlow.arcArg2, 0, TAU);
     ctx.fill();
   }
   ctx.restore();
 }
 function drawPlasmaBall(ctx, cx, cy, voidR, hueShift, p, t, streams, palette) {
-  const voidExtent = voidR * (7 * 2 / 5);
+  const voidExtent = voidR * ANIMATION_DESIGN.drawPlasmaBall.voidExtent;
   const voidGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, voidExtent);
   voidGlow.addColorStop(0, palette.canvas.voidCore(hueShift));
-  voidGlow.addColorStop(2 / 5, palette.canvas.voidMid(hueShift));
-  voidGlow.addColorStop(3 / 4, palette.canvas.voidOuter(hueShift));
+  voidGlow.addColorStop(ANIMATION_DESIGN.drawPlasmaBall.addColorStopArg0, palette.canvas.voidMid(hueShift));
+  voidGlow.addColorStop(ANIMATION_DESIGN.drawPlasmaBall.addColorStopArg02, palette.canvas.voidOuter(hueShift));
   voidGlow.addColorStop(1, "transparent");
   ctx.fillStyle = voidGlow;
   ctx.fillRect(cx - voidExtent, cy - voidExtent, voidExtent * 2, voidExtent * 2);
@@ -26551,27 +27400,27 @@ function drawPlasmaBall(ctx, cx, cy, voidR, hueShift, p, t, streams, palette) {
   ctx.textBaseline = "middle";
   const layers = min(PLASMA_TIERS[2], 1 + floor(streams.length / PLASMA_TIERS[0]));
   for (let layer = 0; layer < layers; layer += 1) {
-    const layerR = voidR * (7 / (5 * 5) + layer * 0.22);
+    const layerR = voidR * (ANIMATION_DESIGN.drawPlasmaBall.layerR + layer * ANIMATION_DESIGN.drawPlasmaBall.layerR2);
     const slice = ceil(streams.length / layers);
     const start = layer * slice;
     const end = min(start + slice, streams.length);
     const scaleDims = dims(p, layer);
     const spinSign = layer % 2 === 0 ? 1 : -1;
-    const orbitRate = spinSign * (3 / (5 * 5) + abs(scaleDims.loopB1) * (1 / (5 * 5)));
+    const orbitRate = spinSign * (ANIMATION_DESIGN.drawPlasmaBall.orbitRate + abs(scaleDims.loopB1) * ANIMATION_DESIGN.drawPlasmaBall.orbitRate2);
     for (let i = start; i < end; i += 1) {
       const stream = streams[i];
       const hex = stream.uuid.replace(/[^0-9a-f]/gi, "");
-      const orbit2 = p * TAU + (i - start) / max(1, end - start) * TAU + layer * (7 / (5 * 2)) + scaleDims.loopA1 * (7 / (5 * 4));
-      const wobble = 2 / (5 * 5) * sin(t * (1 - 9 / (5 * 4)) + i * PHI ** -2 + layer) * (1 - 3 / (5 * 4) + scaleDims.breath * (3 / (5 * 4)));
+      const orbit2 = p * TAU + (i - start) / max(1, end - start) * TAU + layer * ANIMATION_DESIGN.drawPlasmaBall.orbit + scaleDims.loopA1 * ANIMATION_DESIGN.drawPlasmaBall.orbit2;
+      const wobble = ANIMATION_DESIGN.drawPlasmaBall.wobble * sin(t * ANIMATION_DESIGN.drawPlasmaBall.sinArg0Part + i * PHI ** -2 + layer) * (ANIMATION_DESIGN.drawPlasmaBall.wobble2 + scaleDims.breath * ANIMATION_DESIGN.drawPlasmaBall.wobble3);
       const px = cx + cos(orbit2 + t * orbitRate) * layerR * (1 + wobble);
       const py = cy + sin(orbit2 + t * orbitRate) * layerR * (1 + wobble);
-      const offset = floor((t * 3 + i * 2) % max(1, hex.length - 3));
-      const nibble = hex.slice(offset, offset + 4).padEnd(4, hex[0] ?? "0");
-      const wave = sin(t * (4 / 5) + i * PHI ** -4);
-      const alpha = palette.canvas.streamAlpha(1 / 2 + 1 / 2 * wave, true, 1) * (3 / 8 + 5 / 8 * (1 / 2 + 1 / 2 * wave));
-      ctx.font = `${max(7, round(voidR * (0.22 - layer * (1 / (5 * 5)))))}px "SF Mono", "Cascadia Code", "Fira Code", monospace`;
+      const offset = floor((t * ANIMATION_DESIGN.drawPlasmaBall.floorArg0Part + i * 2) % max(1, hex.length - ANIMATION_DESIGN.drawPlasmaBall.maxArg1Part));
+      const nibble = hex.slice(offset, offset + ANIMATION_DESIGN.drawPlasmaBall.sliceArg1Part).padEnd(ANIMATION_DESIGN.drawPlasmaBall.padEndArg0, hex[0] ?? "0");
+      const wave = sin(t * ANIMATION_DESIGN.drawPlasmaBall.sinArg0Part2 + i * PHI ** ANIMATION_DESIGN.drawPlasmaBall.sinArg0Part3);
+      const alpha = palette.canvas.streamAlpha(1 / 2 + 1 / 2 * wave, true, 1) * (ANIMATION_DESIGN.drawPlasmaBall.alpha + ANIMATION_DESIGN.drawPlasmaBall.alpha2 * (1 / 2 + 1 / 2 * wave));
+      ctx.font = `${max(ANIMATION_DESIGN.drawPlasmaBall.maxArg0, round(voidR * (ANIMATION_DESIGN.drawPlasmaBall.roundArg0Part - layer * ANIMATION_DESIGN.drawPlasmaBall.roundArg0Part2)))}px "SF Mono", "Cascadia Code", "Fira Code", monospace`;
       ctx.shadowColor = palette.canvas.ballGlyphGlow(stream.hue, alpha);
-      ctx.shadowBlur = 6 + layer * 2;
+      ctx.shadowBlur = ANIMATION_DESIGN.drawPlasmaBall.shadowBlur + layer * 2;
       ctx.fillStyle = palette.canvas.ballGlyph(stream.hue, alpha, layer);
       ctx.fillText(nibble, px, py);
     }
@@ -26585,33 +27434,33 @@ function drawWiredUuidStreams(ctx, scene, w, h, cx, cy, voidR, span, hueShift) {
   const { t, p, seed, movieText, wiredStreams } = scene;
   const fallbackChars = [...(movieText || "double torus").replace(/\s+/g, "")].filter(Boolean);
   const streams = wiredStreams.length ? wiredStreams : null;
-  const streamCount = streams ? streams.length : min(8 * 7, max(9 * 2, floor(sqrt(w * h) / 38)));
+  const streamCount = streams ? streams.length : min(ANIMATION_DESIGN.drawWiredUuidStreams.minArg0, max(ANIMATION_DESIGN.drawWiredUuidStreams.maxArg0, floor(sqrt(w * h) / ANIMATION_DESIGN.drawWiredUuidStreams.floorArg0Part)));
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   for (let s = 0; s < streamCount; s += 1) {
     const wired = streams?.[s];
     const chars = wired ? uuidStreamChars(wired) : fallbackChars;
     const { angle, dist, speed, size } = bgStreamParams(seed, s);
-    const phase6 = (t * speed + s * ((PHI - 1) / (2 * 5)) + p) % 1;
-    const trailStep = 2 / (5 * 5 * 5) + speed * (1 / (5 * 5 * 5));
+    const phase6 = (t * speed + s * ((PHI - 1) / ANIMATION_DESIGN.drawWiredUuidStreams.phase) + p) % 1;
+    const trailStep = ANIMATION_DESIGN.drawWiredUuidStreams.trailStep + speed * ANIMATION_DESIGN.drawWiredUuidStreams.trailStep2;
     for (let trail = 0; trail < BG_TRAIL_LEN; trail += 1) {
       const trailPhase = (phase6 - trail * trailStep + 1) % 1;
       const { x, y, r: r2, inbound } = bgStreamOrbit(trailPhase, angle, dist, voidR, span, p);
       const px = cx + x;
       const py = cy + y;
-      const charIdx = floor((s + trail + t * (7 * 2)) % max(1, chars.length));
+      const charIdx = floor((s + trail + t * ANIMATION_DESIGN.drawWiredUuidStreams.floorArg0Part2) % max(1, chars.length));
       const ch = chars[charIdx] ?? "0";
       const streamHue = wired?.hue ?? quantumScaleHue(s + charIdx + trail, scene.palette.waveHue);
-      const nearVoid = r2 < voidR * (6 * 2 / 5);
+      const nearVoid = r2 < voidR * ANIMATION_DESIGN.drawWiredUuidStreams.nearVoid;
       const trailFade = 1 - trail / BG_TRAIL_LEN;
       const alpha = scene.palette.canvas.streamAlpha(inbound, nearVoid, trailFade);
-      const fontSize = max(5 * 2, round(size * (1 - 3 / (5 * 4) + 3 / (5 * 4) * inbound)));
-      const glow = nearVoid && trail === 0 ? 5 * 2 + inbound * (7 * 2) : trail === 0 ? 4 : 0;
+      const fontSize = max(ANIMATION_DESIGN.drawWiredUuidStreams.maxArg02, round(size * (ANIMATION_DESIGN.drawWiredUuidStreams.roundArg0Part + ANIMATION_DESIGN.drawWiredUuidStreams.roundArg0Part2 * inbound)));
+      const glow = nearVoid && trail === 0 ? ANIMATION_DESIGN.drawWiredUuidStreams.glow + inbound * ANIMATION_DESIGN.drawWiredUuidStreams.glow2 : trail === 0 ? ANIMATION_DESIGN.drawWiredUuidStreams.glow3 : 0;
       ctx.font = `${fontSize}px "SF Mono", "Cascadia Code", "Fira Code", monospace`;
       ctx.shadowColor = scene.palette.canvas.streamGlow(streamHue, alpha);
       ctx.shadowBlur = glow;
-      const coin = Boolean(wired) && (charIdx === 6 * 2 || charIdx === 16);
-      ctx.fillStyle = scene.palette.canvas.streamFill(coin ? (streamHue + 9 * 5 * 4) % 360 : streamHue, alpha, nearVoid || coin);
+      const coin = Boolean(wired) && (charIdx === ANIMATION_DESIGN.drawWiredUuidStreams.coin || charIdx === ANIMATION_DESIGN.drawWiredUuidStreams.coin2);
+      ctx.fillStyle = scene.palette.canvas.streamFill(coin ? (streamHue + MOVIE_ANGLES.half) % MOVIE_ANGLES.turn : streamHue, alpha, nearVoid || coin);
       ctx.fillText(ch, px, py);
     }
   }
@@ -26624,19 +27473,19 @@ function drawFusedForceLayers(ctx, w, h, cx, cy, span, p, t, layers, dark = true
   ctx.save();
   ctx.globalCompositeOperation = dark ? "lighter" : "source-over";
   layers.forEach((layer, i) => {
-    const reach = layer.force === "gravity" ? 9 / (5 * 5 * 2) : layer.force === "electromagnetic" ? PHI - 1 : (
+    const reach = layer.force === "gravity" ? ANIMATION_DESIGN.drawFusedForceLayers.reach : layer.force === "electromagnetic" ? PHI - 1 : (
       // golden reach (was rounded 0.62)
-      layer.force === "strong" ? 0.26 : layer.force === "weak" ? FIBONACCI[7] / 100 : 1 / 2
+      layer.force === "strong" ? ANIMATION_DESIGN.drawFusedForceLayers.reach2 : layer.force === "weak" ? FIBONACCI[ANIMATION_DESIGN.drawFusedForceLayers.fIBONACCIAt] / ANIMATION_DESIGN.drawFusedForceLayers.reach3 : 1 / 2
     );
-    const alpha = layer.force === "weak" ? 1 / (5 * 4) + 1 / (5 * 4) * (1 / 2 + 1 / 2 * sin(t * (FIBONACCI[5] / (2 * 5)) + i * 1.7)) : layer.force === "gravity" ? 7 / (5 * 5 * 2) : 9 / 100;
-    const orbit2 = p * TAU + i / layers.length * TAU + d.loopA1 * (3 / 5);
-    const drift = layer.force === "gravity" ? 0 : 0.22 + 3 / (5 * 5 * 2) * sin(t * (2 / 5) + i);
-    const lx = cx + cos(orbit2 + t * (1 / (5 * 5))) * span * drift;
-    const ly = cy + sin(orbit2 + t * (1 / (5 * 4))) * span * drift * (4 / 5);
-    const radius = span * reach * (1 - 3 / (5 * 4) + 3 / (5 * 4) * d.breath);
+    const alpha = layer.force === "weak" ? ANIMATION_DESIGN.drawFusedForceLayers.alpha + ANIMATION_DESIGN.drawFusedForceLayers.alpha * (1 / 2 + 1 / 2 * sin(t * (FIBONACCI[ANIMATION_DESIGN.drawFusedForceLayers.fIBONACCIAt2] / ANIMATION_DESIGN.drawFusedForceLayers.sinArg0Part) + i * ANIMATION_DESIGN.drawFusedForceLayers.sinArg0Part2)) : layer.force === "gravity" ? ANIMATION_DESIGN.drawFusedForceLayers.alpha2 : ANIMATION_DESIGN.drawFusedForceLayers.alpha3;
+    const orbit2 = p * TAU + i / layers.length * TAU + d.loopA1 * ANIMATION_DESIGN.drawFusedForceLayers.orbit;
+    const drift = layer.force === "gravity" ? 0 : ANIMATION_DESIGN.drawFusedForceLayers.drift + ANIMATION_DESIGN.drawFusedForceLayers.drift2 * sin(t * ANIMATION_DESIGN.drawFusedForceLayers.sinArg0Part3 + i);
+    const lx = cx + cos(orbit2 + t * ANIMATION_DESIGN.drawFusedForceLayers.cosArg0Part) * span * drift;
+    const ly = cy + sin(orbit2 + t * ANIMATION_DESIGN.drawFusedForceLayers.sinArg0Part4) * span * drift * ANIMATION_DESIGN.drawFusedForceLayers.ly;
+    const radius = span * reach * (ANIMATION_DESIGN.drawFusedForceLayers.radius + ANIMATION_DESIGN.drawFusedForceLayers.radius2 * d.breath);
     const g = ctx.createRadialGradient(lx, ly, 0, lx, ly, radius);
-    g.addColorStop(0, paint(layer.hue, alpha, { L: 5 / 8 }));
-    g.addColorStop(9 / (5 * 4), paint(layer.hue, alpha * (1 / 2), { L: 1 / 2 }));
+    g.addColorStop(0, paint(layer.hue, alpha, { L: ANIMATION_DESIGN.drawFusedForceLayers.paintL }));
+    g.addColorStop(ANIMATION_DESIGN.drawFusedForceLayers.addColorStopArg0, paint(layer.hue, alpha * (1 / 2), { L: 1 / 2 }));
     g.addColorStop(1, "transparent");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, w, h);
@@ -26646,7 +27495,7 @@ function drawFusedForceLayers(ctx, w, h, cx, cy, span, p, t, layers, dark = true
 function heroFieldCenterY(h, scroll) {
   const period = 2 * h;
   const wrapped = ((h / 2 - scroll) % period + period) % period;
-  return wrapped > 3 * h / 2 ? wrapped - period : wrapped;
+  return wrapped > ANIMATION_DESIGN.heroFieldCenterY.when * h / 2 ? wrapped - period : wrapped;
 }
 function cardFieldScroll(rectTopCss, cardH, winH) {
   return cardH / 2 - (winH / 2 - rectTopCss);
@@ -26661,7 +27510,7 @@ function drawTwoBySevenMorph(ctx, cx, cy, R, p, hue2, dark) {
   const X = (q) => cx + (q.x * cos(spin) - q.y * sin(spin)) * R;
   const Y = (q) => cy + (q.x * sin(spin) + q.y * cos(spin)) * R;
   ctx.lineWidth = 1;
-  ctx.strokeStyle = paint(hue2, 1 / 5 * (1 - m) + 1 / (5 * 4), { L: 5 / 8 });
+  ctx.strokeStyle = paint(hue2, ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part * (1 - m) + ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part2, { L: ANIMATION_DESIGN.drawTwoBySevenMorph.paintL });
   ctx.beginPath();
   for (let i = 0; i + 1 < pts.length; i += 2) {
     ctx.moveTo(X(pts[i]), Y(pts[i]));
@@ -26669,12 +27518,12 @@ function drawTwoBySevenMorph(ctx, cx, cy, R, p, hue2, dark) {
   }
   ctx.stroke();
   const seats = pts.filter((q) => q.end === "death" && q.ray > 0);
-  ctx.strokeStyle = paint((hue2 + 9 * 5 * 4) % 360, 1 / 4 * m, { L: 3 / 4 });
+  ctx.strokeStyle = paint((hue2 + MOVIE_ANGLES.half) % MOVIE_ANGLES.turn, ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part3 * m, { L: ANIMATION_DESIGN.drawTwoBySevenMorph.paintL2 });
   ctx.beginPath();
   seats.forEach((q, i) => i === 0 ? ctx.moveTo(X(q), Y(q)) : ctx.lineTo(X(q), Y(q)));
   ctx.closePath();
   ctx.stroke();
-  ctx.fillStyle = paint(hue2, 1 / 4 + 1 / 4 * m, { L: (9 + 2) / 16 });
+  ctx.fillStyle = paint(hue2, ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part3 + ANIMATION_DESIGN.drawTwoBySevenMorph.paintArg1Part3 * m, { L: ANIMATION_DESIGN.drawTwoBySevenMorph.paintL3 });
   ctx.beginPath();
   for (const q of pts) {
     ctx.moveTo(X(q) + 2, Y(q));
@@ -26687,10 +27536,10 @@ function paintHolographicPlasmaHeroMovie(ctx, w, h, scene, hero, layers = []) {
   const cx = w / 2;
   const cy = heroFieldCenterY(h, scene.scroll ?? 0);
   const span = max(w, h);
-  const voidR = min(w, h) * (7 / 100);
+  const voidR = min(w, h) * ANIMATION_DESIGN.paintHolographicPlasmaHeroMovie.voidR;
   const hueShift = scene.hue;
   if (scene.reduce) {
-    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, span * (1 - 9 / (5 * 4)));
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, span * ANIMATION_DESIGN.paintHolographicPlasmaHeroMovie.createRadialGradientArg5Part);
     g.addColorStop(0, scene.palette.canvas.reduceCore(hueShift));
     g.addColorStop(1, "transparent");
     ctx.fillStyle = g;
@@ -26698,7 +27547,7 @@ function paintHolographicPlasmaHeroMovie(ctx, w, h, scene, hero, layers = []) {
     return;
   }
   drawFusedForceLayers(ctx, w, h, cx, cy, span, scene.p, scene.t, layers, scene.palette.dark);
-  drawTwoBySevenMorph(ctx, cx, cy, min(w, h) * (9 / (5 * 5 * 2)), scene.p, hueShift, scene.palette.dark);
+  drawTwoBySevenMorph(ctx, cx, cy, min(w, h) * ANIMATION_DESIGN.paintHolographicPlasmaHeroMovie.drawTwoBySevenMorphArg3Part, scene.p, hueShift, scene.palette.dark);
   drawPlasmaField(ctx, w, h, cx, cy, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length);
   drawDeathCounterFlow(ctx, cx, cy, voidR, span, hueShift, scene.p, scene.t, scene.palette, scene.wiredStreams.length);
   if (hero) {
@@ -26736,18 +27585,18 @@ var FIELD_LAYER_ROOTS = /* @__PURE__ */ new Map();
 function fieldLayers(field) {
   let roots = FIELD_LAYER_ROOTS.get(field.root);
   if (!roots) {
-    roots = FIELD_LAYER_DOMAINS.map((domain, i) => toUuid(`field-layer:${field.root}:${domain.trigram}:${i % 7}`));
-    if (FIELD_LAYER_ROOTS.size >= 4 * 64) FIELD_LAYER_ROOTS.clear();
+    roots = FIELD_LAYER_DOMAINS.map((domain, i) => toUuid(`field-layer:${field.root}:${domain.trigram}:${i % ANIMATION_DESIGN.fieldLayers.toUuidArg0Part}`));
+    if (FIELD_LAYER_ROOTS.size >= ANIMATION_DESIGN.fieldLayers.when) FIELD_LAYER_ROOTS.clear();
     FIELD_LAYER_ROOTS.set(field.root, roots);
   }
   const known = roots;
   return FIELD_LAYER_DOMAINS.map((domain, i) => {
-    const ray = i % 7;
+    const ray = i % ANIMATION_DESIGN.fieldLayers.ray;
     return {
       trigram: domain.trigram,
       ray,
       force: domain.force,
-      hue: (field.hue + ray * 360 / 7) % 360,
+      hue: (field.hue + ray * MOVIE_ANGLES.turn / ANIMATION_DESIGN.fieldLayers.mapHuePart) % MOVIE_ANGLES.turn,
       root: known[i]
     };
   });
@@ -26765,10 +27614,10 @@ function rosettaPerspectiveFold(ray, field) {
     root: toUuid(`rosetta-perspective:${field.root}:${r2}`)
   };
 }
-function sharedHeroAt(route, copy, at, cssWidth = 64 * 16, reduce = false, dark = true, scroll = 0, perspective2) {
+function sharedHeroAt(route, copy, at, cssWidth = ANIMATION_DESIGN.sharedHeroAt.cssWidth, reduce = false, dark = true, scroll = 0, perspective2, theorems) {
   const path12 = route || "/";
   const p = heroPhaseAt(at);
-  const t = p * (HERO_CYCLE_MS / 1e3);
+  const t = p * (HERO_CYCLE_MS / ANIMATION_DESIGN.sharedHeroAt.t);
   const matrix = buildMatrix();
   const fusedCopy = typeof window !== "undefined" ? clientMovieSeedCopyText(path12, matrix) : allMovieSeedCopyText(path12, matrix);
   const seedBias = perspective2?.seedBias && perspective2.seedBias !== "none" ? perspective2.seedBias : "";
@@ -26778,7 +27627,7 @@ function sharedHeroAt(route, copy, at, cssWidth = 64 * 16, reduce = false, dark 
   const palette = plasmaMoviePalette(matrix, path12, true, dark);
   const computePaint = realtimeComputationsMoviePaint(at, path12, matrix);
   const hueBias = typeof perspective2?.hueBias === "number" ? perspective2.hueBias : 0;
-  const hue2 = (heroMoviePhaseHue(path12, p, matrix) + computePaint.hueShift + hueBias) % 360;
+  const hue2 = (heroMoviePhaseHue(path12, p, matrix) + computePaint.hueShift + hueBias) % MOVIE_ANGLES.turn;
   const fieldRoot = toUuid(`animation-field:${path12}:${seed}${seedBias ? `:${seedBias}` : ""}`);
   const observationRoot = movieObservationReceipt(path12, seed, at);
   return {
@@ -26791,7 +27640,7 @@ function sharedHeroAt(route, copy, at, cssWidth = 64 * 16, reduce = false, dark 
     arms: armsOf(seed),
     tags: copy.keywords ?? [],
     movieText,
-    wiredStreams: wired.streams,
+    wiredStreams: theorems ? [...wired.streams, ...kernelTheoremStreams(theorems, p).visible.map((s) => ({ uuid: s.uuid, kind: "math", label: s.theorem, hue: s.hue, slug: s.file }))] : wired.streams,
     palette,
     reduce,
     dark,
@@ -26863,7 +27712,7 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
   const cx = w / 2;
   const cy = h / 2;
   const p = reduce ? 0 : heroPhaseAt(at, HERO_CYCLE_MS);
-  const LIVING_TORUS_SPIN_DIVISOR = 9 * 2;
+  const LIVING_TORUS_SPIN_DIVISOR = ANIMATION_DESIGN.drawLivingTorusFrame.lIVINGTORUSSPINDIVISOR;
   const phase6 = p * TAU * LIVING_TORUS_SPIN_DIVISOR;
   let ex = 1;
   let ey = 1;
@@ -26872,14 +27721,14 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
     ey = max(ey, abs(c.y));
   }
   const extent = max(ex, ey);
-  const view = min(w, h * (ex / ey)) * (7 * 3 / (5 * 5 * 2));
+  const view = min(w, h * (ex / ey)) * ANIMATION_DESIGN.drawLivingTorusFrame.view;
   const px = new Array(n);
   const py = new Array(n);
   const pz = new Array(n);
   const byIndex = /* @__PURE__ */ new Map();
   for (let i = 0; i < n; i++) {
     const c = coordinates[i];
-    const spin = phase6 * (c.lobe > 0 ? 1 - 9 / (5 * 4) : -(1 - 9 / (5 * 4)));
+    const spin = phase6 * (c.lobe > 0 ? ANIMATION_DESIGN.drawLivingTorusFrame.spin : ANIMATION_DESIGN.drawLivingTorusFrame.spin2);
     const v = rotate3((c.x - c.cx) / extent, c.y / extent, c.z / extent, spin, OBLIQUE_VIEW_TILT, 0);
     const persp = perspective(v.Z);
     px[i] = cx + (v.X + c.cx / extent) * persp * view;
@@ -26892,8 +27741,8 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
     const c = coordinates[i];
     const j = byIndex.get(c.reverseIndex);
     if (j === void 0 || j <= i) continue;
-    const mergePulse = reduce ? 1 / 2 : 1 / 2 + 1 / 2 * sin(phase6 * (3 / 5) + c.theta);
-    ctx.strokeStyle = paint(round(c.frequency) % 360, 1 / (5 * 4) + 1 / 9 * mergePulse, { L: 6 / 8 });
+    const mergePulse = reduce ? 1 / 2 : 1 / 2 + 1 / 2 * sin(phase6 * ANIMATION_DESIGN.drawLivingTorusFrame.sinArg0Part + c.theta);
+    ctx.strokeStyle = paint(round(c.frequency) % ANIMATION_DESIGN.drawLivingTorusFrame.paintArg0Part, ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part + ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part2 * mergePulse, { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL });
     ctx.beginPath();
     ctx.moveTo(px[i], py[i]);
     ctx.lineTo(px[j], py[j]);
@@ -26904,11 +27753,11 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
   const order = Array.from({ length: n }, (_, i) => i).sort((a, b) => pz[a] - pz[b]);
   for (const i of order) {
     const c = coordinates[i];
-    const pulse = reduce ? 7 / (5 * 2) : 1 / 2 + 1 / 2 * sin(at / max(1, c.vibrationMs) * TAU);
-    const hue2 = round(c.frequency) % 360;
-    const size = (9 + c.scale * 13 + pulse * 5) * pz[i];
+    const pulse = reduce ? ANIMATION_DESIGN.drawLivingTorusFrame.pulse : 1 / 2 + 1 / 2 * sin(at / max(1, c.vibrationMs) * TAU);
+    const hue2 = round(c.frequency) % ANIMATION_DESIGN.drawLivingTorusFrame.hue;
+    const size = (ANIMATION_DESIGN.drawLivingTorusFrame.size + c.scale * ANIMATION_DESIGN.drawLivingTorusFrame.size2 + pulse * ANIMATION_DESIGN.drawLivingTorusFrame.size3) * pz[i];
     ctx.font = `600 ${round(size)}px ui-sans-serif, system-ui, sans-serif`;
-    ctx.fillStyle = paint(hue2, 7 * 3 / (5 * 5 * 2) + 0.46 * pulse, { L: 7 / 8 });
+    ctx.fillStyle = paint(hue2, ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part3 + ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1Part4 * pulse, { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL2 });
     ctx.fillText(String(c.digit), px[i], py[i]);
   }
   if (!reduce) {
@@ -26920,15 +27769,15 @@ function drawLivingTorusFrame(ctx, w, h, at, coordinates, reduce = false, dark =
       const head = ring[floor(at01 * ring.length) % ring.length];
       const slot = byIndex.get(head.index);
       if (slot === void 0) continue;
-      const hue2 = round(head.frequency) % 360;
-      ctx.strokeStyle = paint(hue2, 9 / (5 * 2), { L: 6 / 8 });
+      const hue2 = round(head.frequency) % ANIMATION_DESIGN.drawLivingTorusFrame.hue;
+      ctx.strokeStyle = paint(hue2, ANIMATION_DESIGN.drawLivingTorusFrame.paintArg1, { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL });
       ctx.lineWidth = 2;
       ctx.beginPath();
-      ctx.arc(px[slot], py[slot], 13 * pz[slot], 0, TAU);
+      ctx.arc(px[slot], py[slot], ANIMATION_DESIGN.drawLivingTorusFrame.arcArg2Part * pz[slot], 0, TAU);
       ctx.stroke();
-      ctx.fillStyle = paint(hue2, 1 / 2, { L: 13 / 16 });
+      ctx.fillStyle = paint(hue2, 1 / 2, { L: ANIMATION_DESIGN.drawLivingTorusFrame.paintL3 });
       ctx.beginPath();
-      ctx.arc(px[slot], py[slot], 9 / 2 * pz[slot], 0, TAU);
+      ctx.arc(px[slot], py[slot], ANIMATION_DESIGN.drawLivingTorusFrame.arcArg2Part2 * pz[slot], 0, TAU);
       ctx.fill();
     }
   }
@@ -26942,9 +27791,9 @@ function rotateTetraXY(v, angle, scale2) {
 function drawTetrahedronEdges(ctx, verts, spin, cx, cy, scale2, hue2, alpha, dark = true) {
   const paint = movieCanvasPolarity(dark);
   const pts = verts.map((v) => rotateTetraXY(v, spin, scale2));
-  const edges = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
-  ctx.strokeStyle = paint(hue2, alpha, { L: 7 / 8 });
-  ctx.lineWidth = 6 / 5 * scale2;
+  const edges = [[0, 1], [0, 2], [0, ANIMATION_DESIGN.drawTetrahedronEdges.edges], [1, 2], [1, ANIMATION_DESIGN.drawTetrahedronEdges.edges], [2, ANIMATION_DESIGN.drawTetrahedronEdges.edges]];
+  ctx.strokeStyle = paint(hue2, alpha, { L: ANIMATION_DESIGN.drawTetrahedronEdges.paintL });
+  ctx.lineWidth = ANIMATION_DESIGN.drawTetrahedronEdges.lineWidth * scale2;
   for (const [a, b] of edges) {
     const p0 = pts[a];
     const p1 = pts[b];
@@ -26953,10 +27802,10 @@ function drawTetrahedronEdges(ctx, verts, spin, cx, cy, scale2, hue2, alpha, dar
     ctx.lineTo(cx + p1[0], cy + p1[1]);
     ctx.stroke();
   }
-  ctx.fillStyle = paint(hue2, alpha * (1 - 9 / (5 * 4)), { L: 13 / 16 });
+  ctx.fillStyle = paint(hue2, alpha * ANIMATION_DESIGN.drawTetrahedronEdges.paintArg1Part, { L: ANIMATION_DESIGN.drawTetrahedronEdges.paintL2 });
   for (const p of pts) {
     ctx.beginPath();
-    ctx.arc(cx + p[0], cy + p[1], 5 / 2 * scale2 * p[2], 0, TAU);
+    ctx.arc(cx + p[0], cy + p[1], ANIMATION_DESIGN.drawTetrahedronEdges.arcArg2Part * scale2 * p[2], 0, TAU);
     ctx.fill();
   }
 }
@@ -26965,20 +27814,20 @@ function drawBothEarthsMerkabaFrame(ctx, w, h, at, rotation, reduce = false, dar
   ctx.clearRect(0, 0, w, h);
   const cx = w / 2;
   const cy = h / 2;
-  const scale2 = min(w, h) / (7 * 6 * 5 * 2);
+  const scale2 = min(w, h) / ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.scale;
   const p = reduce ? 0 : heroPhaseAt(at);
-  const innerR = 9 * 8 * scale2;
-  const breath = 1 + sin(p * TAU) * (1 / (5 * 5));
-  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, max(w, h) * (1 - 9 / (5 * 4)));
-  bg.addColorStop(0, paint(100 * 2, 3 / (5 * 5), { L: 1 / 4 }));
-  bg.addColorStop(1, paint(100 * 2, 0, { L: 1 / 8 }));
+  const innerR = ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.innerR * scale2;
+  const breath = 1 + sin(p * TAU) * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.breath;
+  const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, max(w, h) * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.createRadialGradientArg5Part);
+  bg.addColorStop(0, paint(ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintArg0, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintArg1, { L: ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintL }));
+  bg.addColorStop(1, paint(ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintArg0, 0, { L: ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.paintL2 }));
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, w, h);
-  const shellLift = reduce ? 0 : (rotation.innerPhase - rotation.outerPhase) * (1 / (5 * 5)) * innerR * breath;
-  const upSpin = reduce ? 0 : rotation.merkabaUpSpin * PHI ** -3;
-  const downSpin = reduce ? 0 : rotation.merkabaDownSpin * PHI ** -3;
-  drawTetrahedronEdges(ctx, rotation.tetraUp, upSpin, cx, cy - innerR * (3 / (5 * 4)) - shellLift, scale2 * (7 * 4), 8 * 5 * 3, 1 - 7 / (5 * 4), dark);
-  drawTetrahedronEdges(ctx, rotation.tetraDown, downSpin, cx, cy + innerR * (3 / (5 * 4)) + shellLift, scale2 * (7 * 4), 8 * 7 * 5, 1 - 9 / (5 * 4), dark);
+  const shellLift = reduce ? 0 : (rotation.innerPhase - rotation.outerPhase) * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.shellLift * innerR * breath;
+  const upSpin = reduce ? 0 : rotation.merkabaUpSpin * PHI ** ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.upSpin;
+  const downSpin = reduce ? 0 : rotation.merkabaDownSpin * PHI ** ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.downSpin;
+  drawTetrahedronEdges(ctx, rotation.tetraUp, upSpin, cx, cy - innerR * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg4Part - shellLift, scale2 * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg5Part, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg6, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg7, dark);
+  drawTetrahedronEdges(ctx, rotation.tetraDown, downSpin, cx, cy + innerR * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg4Part + shellLift, scale2 * ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg5Part, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg62, ANIMATION_DESIGN.drawBothEarthsMerkabaFrame.drawTetrahedronEdgesArg72, dark);
 }
 var VORTEX_SEQ_SENSE = (VORTEX_SEQUENCE[1] ?? 2) > (VORTEX_SEQUENCE[0] ?? 1) ? 1 : -1;
 var FRUIT_CENTERS = (() => {
@@ -27054,11 +27903,11 @@ function qProject(x, y, z, rx2, ry2, rz2, cx, cy, R) {
 }
 function qSphere(ctx, x, y, r2, hue2, alpha, dark = true) {
   const paint = movieCanvasPolarity(dark);
-  const rr = max(3 / 5, r2);
-  const g = ctx.createRadialGradient(x - rr * (7 / (5 * 4)), y - rr * (7 / (5 * 4)), rr * (3 / (5 * 5)), x, y, rr);
-  g.addColorStop(0, paint(hue2, min(1, alpha * 1.15), { L: 5 * 3 / 16 }));
-  g.addColorStop(3 / 5, paint(hue2, alpha, { L: 5 / 8 }));
-  g.addColorStop(1, paint(hue2, alpha * (2 / 5), { L: 1 / 3 }));
+  const rr = max(ANIMATION_DESIGN.qSphere.maxArg0, r2);
+  const g = ctx.createRadialGradient(x - rr * ANIMATION_DESIGN.qSphere.createRadialGradientArg0Part, y - rr * ANIMATION_DESIGN.qSphere.createRadialGradientArg1Part, rr * ANIMATION_DESIGN.qSphere.createRadialGradientArg2Part, x, y, rr);
+  g.addColorStop(0, paint(hue2, min(1, alpha * ANIMATION_DESIGN.qSphere.minArg1Part), { L: ANIMATION_DESIGN.qSphere.paintL }));
+  g.addColorStop(ANIMATION_DESIGN.qSphere.addColorStopArg0, paint(hue2, alpha, { L: ANIMATION_DESIGN.qSphere.paintL2 }));
+  g.addColorStop(1, paint(hue2, alpha * ANIMATION_DESIGN.qSphere.paintArg1Part, { L: ANIMATION_DESIGN.qSphere.paintL3 }));
   ctx.fillStyle = g;
   ctx.beginPath();
   ctx.arc(x, y, rr, 0, TAU);
@@ -27097,7 +27946,7 @@ function drawTaijiProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const r2 = min(w, h) * (FIBONACCI[7] / 100);
+  const r2 = min(w, h) * (FIBONACCI[ANIMATION_DESIGN.drawTaijiProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawTaijiProjection.r);
   const field = {
     route: "/#yinyang",
     at: 0,
@@ -27114,17 +27963,17 @@ function drawTaijiProjection(ctx, w, h, frame) {
     dark: frame.palette.dark,
     cssWidth: frame.cssWidth,
     scroll: 0,
-    root: toUuid(`taiji-field:${frame.hue}:${floor(frame.p * (5 * 2 * 100))}`),
+    root: toUuid(`taiji-field:${frame.hue}:${floor(frame.p * ANIMATION_DESIGN.drawTaijiProjection.floorArg0Part)}`),
     observationRoot: movieObservationReceipt("/#yinyang", floor(frame.hue), 0)
   };
-  const ray = VORTEX_SEQUENCE[floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length] % 7;
+  const ray = VORTEX_SEQUENCE[floor(frame.p * VORTEX_SEQUENCE.length) % VORTEX_SEQUENCE.length] % ANIMATION_DESIGN.drawTaijiProjection.ray;
   const view = rosettaPerspectiveFold(ray, field);
-  const yinHue = view.hue % 360;
-  const yangHue = (view.hue + 9 * 5 * 4) % 360;
-  const dark = (a) => paint(yinHue, a, { L: 5 / 16 });
-  const light = (a) => paint(yangHue, a, { L: 7 / 8 });
+  const yinHue = view.hue % ANIMATION_DESIGN.drawTaijiProjection.yinHue;
+  const yangHue = (view.hue + ANIMATION_DESIGN.drawTaijiProjection.yangHue) % ANIMATION_DESIGN.drawTaijiProjection.yangHue2;
+  const dark = (a) => paint(yinHue, a, { L: ANIMATION_DESIGN.drawTaijiProjection.paintL });
+  const light = (a) => paint(yangHue, a, { L: ANIMATION_DESIGN.drawTaijiProjection.paintL2 });
   const u = frame.reduce ? 0 : frame.p;
-  const fold9 = u * u * (3 - 2 * u);
+  const fold9 = u * u * (ANIMATION_DESIGN.drawTaijiProjection.fold - 2 * u);
   const exchange = fold9 + sin(u * TAU) / TAU;
   const dir = VORTEX_SEQ_SENSE;
   const theta = frame.reduce ? 0 : dir * exchange * TAU;
@@ -27132,31 +27981,31 @@ function drawTaijiProjection(ctx, w, h, frame) {
   ctx.translate(cx, cy);
   ctx.rotate(theta);
   ctx.beginPath();
-  ctx.arc(0, 0, r2, -TAU / 4, TAU / 4, false);
-  ctx.fillStyle = dark(1 - 2 / (5 * 5));
+  ctx.arc(0, 0, r2, -TAU / ANIMATION_DESIGN.drawTaijiProjection.arcArg3Part, TAU / ANIMATION_DESIGN.drawTaijiProjection.arcArg4Part, false);
+  ctx.fillStyle = dark(ANIMATION_DESIGN.drawTaijiProjection.darkArg0);
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(0, 0, r2, TAU / 4, -TAU / 4, false);
-  ctx.fillStyle = light(1 - 2 / (5 * 5));
+  ctx.arc(0, 0, r2, TAU / ANIMATION_DESIGN.drawTaijiProjection.arcArg3Part, -TAU / ANIMATION_DESIGN.drawTaijiProjection.arcArg4Part, false);
+  ctx.fillStyle = light(ANIMATION_DESIGN.drawTaijiProjection.lightArg0);
   ctx.fill();
   ctx.beginPath();
   ctx.arc(0, -r2 / 2, r2 / 2, 0, TAU);
-  ctx.fillStyle = dark(1 - 2 / (5 * 5));
+  ctx.fillStyle = dark(ANIMATION_DESIGN.drawTaijiProjection.darkArg0);
   ctx.fill();
   ctx.beginPath();
   ctx.arc(0, r2 / 2, r2 / 2, 0, TAU);
-  ctx.fillStyle = light(1 - 2 / (5 * 5));
+  ctx.fillStyle = light(ANIMATION_DESIGN.drawTaijiProjection.lightArg0);
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(0, -r2 / 2, r2 / 6, 0, TAU);
-  ctx.fillStyle = light(1 - 1 / (5 * 4));
+  ctx.arc(0, -r2 / 2, r2 / ANIMATION_DESIGN.drawTaijiProjection.arcArg2Part, 0, TAU);
+  ctx.fillStyle = light(ANIMATION_DESIGN.drawTaijiProjection.lightArg02);
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(0, r2 / 2, r2 / 6, 0, TAU);
-  ctx.fillStyle = dark(1 - 1 / (5 * 4));
+  ctx.arc(0, r2 / 2, r2 / ANIMATION_DESIGN.drawTaijiProjection.arcArg2Part, 0, TAU);
+  ctx.fillStyle = dark(ANIMATION_DESIGN.drawTaijiProjection.darkArg02);
   ctx.fill();
-  ctx.strokeStyle = paint(yinHue, 3 / 5, { L: 1 / 2 });
-  ctx.lineWidth = 3 / 2;
+  ctx.strokeStyle = paint(yinHue, ANIMATION_DESIGN.drawTaijiProjection.paintArg1, { L: 1 / 2 });
+  ctx.lineWidth = ANIMATION_DESIGN.drawTaijiProjection.lineWidth;
   ctx.beginPath();
   ctx.arc(0, 0, r2, 0, TAU);
   ctx.stroke();
@@ -27166,36 +28015,36 @@ function drawSacredMorphProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const base = min(w, h) * (1 / 5);
-  const tri = frame.reduce ? 2 / 5 : dimWalk(frame.p);
-  const depthD = tri * (5 * 2);
-  const flowerW = 1 - qSmooth(3 / 2, 7 / 2, depthD);
-  const fruitW = qSmooth(3 / 2, 4, depthD);
-  const metatronW = qSmooth(7 / 2, 6, depthD);
-  const solidW = qSmooth(FIBONACCI[8] / (2 * 5), 8.5, depthD);
-  const lift = qSmooth(5 / 2, 6, depthD);
-  const rx2 = frame.reduce ? 1 / 2 : frame.t * (2 / 5) * lift;
-  const ry2 = frame.reduce ? 3 / (5 * 2) : frame.t * (5 / 16) * lift;
-  const rz2 = frame.reduce ? 0 : frame.t * (1 / 6);
-  if (flowerW > 1 / (5 * 5 * 2)) {
-    ctx.lineWidth = 7 / 5;
+  const base = min(w, h) * ANIMATION_DESIGN.drawSacredMorphProjection.base;
+  const tri = frame.reduce ? ANIMATION_DESIGN.drawSacredMorphProjection.tri : dimWalk(frame.p);
+  const depthD = tri * ANIMATION_DESIGN.drawSacredMorphProjection.depthD;
+  const flowerW = 1 - qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg0, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg1, depthD);
+  const fruitW = qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg0, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg12, depthD);
+  const metatronW = qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg02, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg13, depthD);
+  const solidW = qSmooth(FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg0Part, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg14, depthD);
+  const lift = qSmooth(ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg03, ANIMATION_DESIGN.drawSacredMorphProjection.qSmoothArg13, depthD);
+  const rx2 = frame.reduce ? 1 / 2 : frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.rx * lift;
+  const ry2 = frame.reduce ? ANIMATION_DESIGN.drawSacredMorphProjection.ry : frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.ry2 * lift;
+  const rz2 = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.rz;
+  if (flowerW > ANIMATION_DESIGN.drawSacredMorphProjection.when) {
+    ctx.lineWidth = ANIMATION_DESIGN.drawSacredMorphProjection.lineWidth;
     for (let k = 0; k < FRUIT_CENTERS.length; k += 1) {
       const c = FRUIT_CENTERS[k];
-      ctx.strokeStyle = paint((frame.hue + k * 16) % 360, 1 / 2 * flowerW, { L: 9 / 16 });
+      ctx.strokeStyle = paint((frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part) % ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part2, 1 / 2 * flowerW, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL });
       ctx.beginPath();
       ctx.arc(cx + c[0] * base, cy + c[1] * base, base, 0, TAU);
       ctx.stroke();
     }
   }
   const nodes = FRUIT_CENTERS.map((c, k) => {
-    const zz = lift * sin(k * (FIBONACCI[5] / (2 * 5)) + frame.t * (3 / 5)) * (7 / (5 * 2));
-    return qProject(c[0], c[1], zz, rx2 * (3 / 5), ry2 * (3 / 5), rz2 * (2 / 5), cx, cy, base);
+    const zz = lift * sin(k * (FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt2] / ANIMATION_DESIGN.drawSacredMorphProjection.sinArg0Part) + frame.t * ANIMATION_DESIGN.drawSacredMorphProjection.sinArg0Part2) * ANIMATION_DESIGN.drawSacredMorphProjection.zz;
+    return qProject(c[0], c[1], zz, rx2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg3Part, ry2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg4Part, rz2 * ANIMATION_DESIGN.drawSacredMorphProjection.qProjectArg5Part, cx, cy, base);
   });
-  if (metatronW > 1 / (5 * 5 * 2)) {
+  if (metatronW > ANIMATION_DESIGN.drawSacredMorphProjection.when) {
     ctx.lineWidth = 1;
     for (let a = 0; a < nodes.length; a += 1) for (let b = a + 1; b < nodes.length; b += 1) {
       const depth = (nodes[a].s + nodes[b].s) / 2;
-      ctx.strokeStyle = paint((frame.hue + 8 * 5) % 360, 8 / (5 * 5) * metatronW * depth, { L: 1 / 2 });
+      ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part3) % ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part2, ANIMATION_DESIGN.drawSacredMorphProjection.paintArg1Part * metatronW * depth, { L: 1 / 2 });
       ctx.beginPath();
       ctx.moveTo(nodes[a].x, nodes[a].y);
       ctx.lineTo(nodes[b].x, nodes[b].y);
@@ -27204,9 +28053,9 @@ function drawSacredMorphProjection(ctx, w, h, frame) {
   }
   for (let k = 0; k < nodes.length; k += 1) {
     const n = nodes[k];
-    const rNode = base * (FIBONACCI[7] / 100) * n.s * (fruitW * (3 / 5) + 2 / 5);
-    const flat = paint((frame.hue + k * (7 * 2)) % 360, 1 - 9 / (5 * 4), { L: 5 / 8 });
-    if (lift > 1 / 5) qSphere(ctx, n.x, n.y, rNode, (frame.hue + k * (7 * 2)) % 360, 1 - 9 / (5 * 4) + 3 / (5 * 2) * n.s, frame.palette.dark);
+    const rNode = base * (FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt3] / ANIMATION_DESIGN.drawSacredMorphProjection.rNode) * n.s * (fruitW * ANIMATION_DESIGN.drawSacredMorphProjection.rNode2 + ANIMATION_DESIGN.drawSacredMorphProjection.rNode3);
+    const flat = paint((frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part4) % ANIMATION_DESIGN.drawSacredMorphProjection.paintArg0Part2, ANIMATION_DESIGN.drawSacredMorphProjection.paintArg1, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL2 });
+    if (lift > ANIMATION_DESIGN.drawSacredMorphProjection.when2) qSphere(ctx, n.x, n.y, rNode, (frame.hue + k * ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg4Part) % ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg4Part2, ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg5Part + ANIMATION_DESIGN.drawSacredMorphProjection.qSphereArg5Part2 * n.s, frame.palette.dark);
     else {
       ctx.fillStyle = flat;
       ctx.beginPath();
@@ -27214,81 +28063,81 @@ function drawSacredMorphProjection(ctx, w, h, frame) {
       ctx.fill();
     }
   }
-  if (solidW > 1 / (5 * 5 * 2)) {
-    const idx = min(PLATONIC.length - 1, floor((depthD - FIBONACCI[8] / (2 * 5)) / (7 / (5 * 2))));
+  if (solidW > ANIMATION_DESIGN.drawSacredMorphProjection.when) {
+    const idx = min(PLATONIC.length - 1, floor((depthD - FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part) / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part2));
     const solid = PLATONIC[max(0, idx)];
     const next = PLATONIC[min(PLATONIC.length - 1, max(0, idx) + 1)];
-    const blend = min(1, max(0, (depthD - FIBONACCI[8] / (2 * 5)) / (7 / (5 * 2)) - floor((depthD - FIBONACCI[8] / (2 * 5)) / (7 / (5 * 2)))));
-    drawSolid3D(ctx, cx, cy, base * 1.15, solid, rx2, ry2, rz2, frame.hue, solidW * (1 - blend), frame.palette.dark);
-    if (blend > 1 / (5 * 5 * 2)) drawSolid3D(ctx, cx, cy, base * 1.15, next, rx2, ry2, rz2, (frame.hue + 6 * 5 * 2) % 360, solidW * blend, frame.palette.dark);
+    const blend = min(1, max(0, (depthD - FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawSacredMorphProjection.maxArg1Part) / ANIMATION_DESIGN.drawSacredMorphProjection.maxArg1Part2 - floor((depthD - FIBONACCI[ANIMATION_DESIGN.drawSacredMorphProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part) / ANIMATION_DESIGN.drawSacredMorphProjection.floorArg0Part2)));
+    drawSolid3D(ctx, cx, cy, base * ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg3Part, solid, rx2, ry2, rz2, frame.hue, solidW * (1 - blend), frame.palette.dark);
+    if (blend > ANIMATION_DESIGN.drawSacredMorphProjection.when) drawSolid3D(ctx, cx, cy, base * ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg3Part, next, rx2, ry2, rz2, (frame.hue + ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg8Part) % ANIMATION_DESIGN.drawSacredMorphProjection.drawSolid3DArg8Part2, solidW * blend, frame.palette.dark);
   }
-  ctx.fillStyle = paint(frame.hue, 7 / (5 * 2), { L: 7 / 16 });
+  ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawSacredMorphProjection.paintArg12, { L: ANIMATION_DESIGN.drawSacredMorphProjection.paintL3 });
   ctx.font = "600 13px ui-sans-serif, system-ui, sans-serif";
   ctx.textAlign = "left";
   ctx.textBaseline = "top";
-  ctx.fillText(`${round(depthD)}/10D`, 6 * 2, 5 * 2);
+  ctx.fillText(`${round(depthD)}/10D`, ANIMATION_DESIGN.drawSacredMorphProjection.fillTextArg1, ANIMATION_DESIGN.drawSacredMorphProjection.fillTextArg2);
 }
 function drawSolid3D(ctx, cx, cy, R, solid, rx2, ry2, rz2, hue2, alpha, dark = true) {
   const paint = movieCanvasPolarity(dark);
   const pts = solid.verts.map((v) => qProject(v[0], v[1], v[2], rx2, ry2, rz2, cx, cy, R));
-  ctx.lineWidth = 8 / 5;
+  ctx.lineWidth = ANIMATION_DESIGN.drawSolid3D.lineWidth;
   for (const [a, b] of solid.edges) {
     const depth = (pts[a].s + pts[b].s) / 2;
-    ctx.strokeStyle = paint(hue2, alpha * depth, { L: 9 / 16 });
+    ctx.strokeStyle = paint(hue2, alpha * depth, { L: ANIMATION_DESIGN.drawSolid3D.paintL });
     ctx.beginPath();
     ctx.moveTo(pts[a].x, pts[a].y);
     ctx.lineTo(pts[b].x, pts[b].y);
     ctx.stroke();
   }
-  for (const p of pts) qSphere(ctx, p.x, p.y, 16 / 5 * p.s, hue2, alpha * (9 / (5 * 2)), dark);
+  for (const p of pts) qSphere(ctx, p.x, p.y, ANIMATION_DESIGN.drawSolid3D.qSphereArg3Part * p.s, hue2, alpha * ANIMATION_DESIGN.drawSolid3D.qSphereArg5Part, dark);
 }
 function drawHologramProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const R = min(w, h) * (FIBONACCI[7] / 100);
-  const rx2 = frame.reduce ? 2 / 5 : frame.t * 0.33;
-  const ry2 = frame.reduce ? 1 / 5 : frame.t * 0.47;
+  const R = min(w, h) * (FIBONACCI[ANIMATION_DESIGN.drawHologramProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawHologramProjection.r);
+  const rx2 = frame.reduce ? ANIMATION_DESIGN.drawHologramProjection.rx : frame.t * ANIMATION_DESIGN.drawHologramProjection.rx2;
+  const ry2 = frame.reduce ? ANIMATION_DESIGN.drawHologramProjection.ry : frame.t * ANIMATION_DESIGN.drawHologramProjection.ry2;
   const projected = HOLO_POINTS.map((pt) => ({ ...qProject(pt.x, pt.y, pt.z, rx2, ry2, 0, cx, cy, R), lit: pt.lit })).sort((a, b) => a.z - b.z);
   for (let i = 0; i < projected.length; i += 1) {
     const p = projected[i];
-    const pulse = frame.reduce ? 4 / 5 : 3 / 5 + 2 / 5 * sin(frame.t * 2 + i * (3 / (5 * 2)));
+    const pulse = frame.reduce ? ANIMATION_DESIGN.drawHologramProjection.pulse : ANIMATION_DESIGN.drawHologramProjection.pulse2 + ANIMATION_DESIGN.drawHologramProjection.pulse3 * sin(frame.t * 2 + i * ANIMATION_DESIGN.drawHologramProjection.sinArg0Part);
     if (p.lit) {
-      ctx.shadowColor = paint(frame.hue, 4 / 5, { L: 5 / 8 });
-      ctx.shadowBlur = 8 * p.s;
-      ctx.fillStyle = paint(frame.hue, (1 - 3 / (5 * 4)) * pulse, { L: 11 / 16 });
+      ctx.shadowColor = paint(frame.hue, ANIMATION_DESIGN.drawHologramProjection.paintArg1, { L: ANIMATION_DESIGN.drawHologramProjection.paintL });
+      ctx.shadowBlur = ANIMATION_DESIGN.drawHologramProjection.shadowBlur * p.s;
+      ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawHologramProjection.paintArg1Part * pulse, { L: ANIMATION_DESIGN.drawHologramProjection.paintL2 });
       ctx.beginPath();
-      ctx.arc(p.x, p.y, max(3 / 2, FIBONACCI[7] / (2 * 5) * p.s), 0, TAU);
+      ctx.arc(p.x, p.y, max(ANIMATION_DESIGN.drawHologramProjection.maxArg0, FIBONACCI[ANIMATION_DESIGN.drawHologramProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawHologramProjection.maxArg1Part * p.s), 0, TAU);
       ctx.fill();
       ctx.shadowBlur = 0;
     } else {
-      ctx.fillStyle = paint((frame.hue + 8 * 5) % 360, 1 / 4 * p.s, { L: 1 / 2 });
+      ctx.fillStyle = paint((frame.hue + ANIMATION_DESIGN.drawHologramProjection.paintArg0Part) % ANIMATION_DESIGN.drawHologramProjection.paintArg0Part2, ANIMATION_DESIGN.drawHologramProjection.paintArg1Part2 * p.s, { L: 1 / 2 });
       ctx.beginPath();
-      ctx.arc(p.x, p.y, max(3 / 5, 7 / 5 * p.s), 0, TAU);
+      ctx.arc(p.x, p.y, max(ANIMATION_DESIGN.drawHologramProjection.maxArg02, ANIMATION_DESIGN.drawHologramProjection.maxArg1Part2 * p.s), 0, TAU);
       ctx.fill();
     }
   }
-  ctx.fillStyle = paint(frame.hue, 3 / 4, { L: 7 / 16 });
+  ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawHologramProjection.paintArg12, { L: ANIMATION_DESIGN.drawHologramProjection.paintL3 });
   ctx.font = "600 13px ui-sans-serif, system-ui, sans-serif";
   ctx.textAlign = "left";
   ctx.textBaseline = "top";
-  ctx.fillText(`${HOLO_LIT} / ${HOLO_BITS} bits lit`, 6 * 2, 5 * 2);
+  ctx.fillText(`${HOLO_LIT} / ${HOLO_BITS} bits lit`, ANIMATION_DESIGN.drawHologramProjection.fillTextArg1, ANIMATION_DESIGN.drawHologramProjection.fillTextArg2);
 }
 function drawLabyrinthProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const R = min(w, h) * (8 / (5 * 5));
-  const tube = R * (7 * 3 / (5 * 5 * 2));
+  const R = min(w, h) * ANIMATION_DESIGN.drawLabyrinthProjection.r;
+  const tube = R * ANIMATION_DESIGN.drawLabyrinthProjection.tube;
   const E = R + tube;
-  const Nu = 26;
-  const Nv = 6;
-  const spin = frame.reduce ? 0 : frame.t * (2 / 5);
+  const Nu = ANIMATION_DESIGN.drawLabyrinthProjection.nu;
+  const Nv = ANIMATION_DESIGN.drawLabyrinthProjection.nv;
+  const spin = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawLabyrinthProjection.spin;
   const glyphs = [];
   for (let i = 0; i < Nu; i += 1) {
     const u = i / Nu * TAU + spin;
     for (let j = 0; j < Nv; j += 1) {
-      const v = j / Nv * TAU + frame.t * (1 / 5);
+      const v = j / Nv * TAU + frame.t * ANIMATION_DESIGN.drawLabyrinthProjection.v;
       const rr = R + tube * cos(v);
       const p = qProject(cos(u) * rr / E, tube * sin(v) / E, sin(u) * rr / E, 0, OBLIQUE_VIEW_TILT, 0, cx, cy, E);
       const depth = (p.z + 1) / 2;
@@ -27299,17 +28148,17 @@ function drawLabyrinthProjection(ctx, w, h, frame) {
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   for (const g of glyphs) {
-    const size = 7 * 2 * g.s;
+    const size = ANIMATION_DESIGN.drawLabyrinthProjection.size * g.s;
     ctx.font = `${round(size)}px serif`;
-    ctx.fillStyle = paint((frame.hue + g.u * (9 * 2)) % 360, 1 / 5 + 7 / (5 * 2) * g.depth, { L: 1 / 2 + g.depth * (1 / 6) });
+    ctx.fillStyle = paint((frame.hue + g.u * ANIMATION_DESIGN.drawLabyrinthProjection.paintArg0Part) % ANIMATION_DESIGN.drawLabyrinthProjection.paintArg0Part2, ANIMATION_DESIGN.drawLabyrinthProjection.paintArg1Part + ANIMATION_DESIGN.drawLabyrinthProjection.paintArg1Part2 * g.depth, { L: 1 / 2 + g.depth * ANIMATION_DESIGN.drawLabyrinthProjection.paintLPart });
     ctx.fillText(g.glyph, g.x, g.y);
   }
-  const breath = frame.reduce ? 7 / (5 * 2) : 1 / 2 + 1 / 2 * sin(frame.t * (9 / (5 * 2)));
-  const heroSize = 9 * 2 + breath * 16;
-  ctx.shadowColor = paint(frame.hue, 4 / 5, { L: 5 / 8 });
-  ctx.shadowBlur = 6 * 2;
+  const breath = frame.reduce ? ANIMATION_DESIGN.drawLabyrinthProjection.breath : 1 / 2 + 1 / 2 * sin(frame.t * ANIMATION_DESIGN.drawLabyrinthProjection.sinArg0Part);
+  const heroSize = ANIMATION_DESIGN.drawLabyrinthProjection.heroSize + breath * ANIMATION_DESIGN.drawLabyrinthProjection.heroSize2;
+  ctx.shadowColor = paint(frame.hue, ANIMATION_DESIGN.drawLabyrinthProjection.paintArg1, { L: ANIMATION_DESIGN.drawLabyrinthProjection.paintL });
+  ctx.shadowBlur = ANIMATION_DESIGN.drawLabyrinthProjection.shadowBlur;
   ctx.font = `${round(heroSize)}px serif`;
-  ctx.fillStyle = paint(frame.hue, 1 / 2 + 1 / 2 * breath, { L: 11 / 16 });
+  ctx.fillStyle = paint(frame.hue, 1 / 2 + 1 / 2 * breath, { L: ANIMATION_DESIGN.drawLabyrinthProjection.paintL2 });
   ctx.fillText(glagoliticGlyph("home"), cx, cy);
   ctx.shadowBlur = 0;
 }
@@ -27319,79 +28168,79 @@ function drawMovie10dProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const R = min(w, h) * (FIBONACCI[7] / 100);
+  const R = min(w, h) * (FIBONACCI[ANIMATION_DESIGN.drawMovie10dProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawMovie10dProjection.r);
   const d = dims(frame.p, 0);
-  const rx2 = frame.reduce ? 2 / 5 : frame.t * 0.23 + d.loopA1 * (9 / (5 * 5 * 2));
-  const ry2 = frame.reduce ? 3 / (5 * 2) : frame.t * (5 / 16) + d.loopB1 * (9 / (5 * 5 * 2));
-  const rz2 = frame.reduce ? 0 : (d.loopA2 + d.loopB2) * (9 / (5 * 5 * 2));
-  for (let i = 0; i < 16 * 5; i += 1) {
+  const rx2 = frame.reduce ? ANIMATION_DESIGN.drawMovie10dProjection.rx : frame.t * ANIMATION_DESIGN.drawMovie10dProjection.rx2 + d.loopA1 * ANIMATION_DESIGN.drawMovie10dProjection.rx3;
+  const ry2 = frame.reduce ? ANIMATION_DESIGN.drawMovie10dProjection.ry : frame.t * ANIMATION_DESIGN.drawMovie10dProjection.ry2 + d.loopB1 * ANIMATION_DESIGN.drawMovie10dProjection.ry3;
+  const rz2 = frame.reduce ? 0 : (d.loopA2 + d.loopB2) * ANIMATION_DESIGN.drawMovie10dProjection.rz;
+  for (let i = 0; i < ANIMATION_DESIGN.drawMovie10dProjection.loop; i += 1) {
     const a = i * GOLDEN_ANGLE_RAD;
-    const y = 1 - i / 79 * 2;
+    const y = 1 - i / ANIMATION_DESIGN.drawMovie10dProjection.y * 2;
     const rr = sqrt(max(0, 1 - y * y));
-    const p = qProject(cos(a) * rr, y, sin(a) * rr, rx2 * (1 / 2), ry2 * (1 / 2), rz2 * (1 / 2), cx, cy, R * (FIBONACCI[5] / (2 * 5)));
-    ctx.fillStyle = paint((frame.hue + d.hueShift + i * 4) % 360, (1 / (5 * 2) + 1 / 4 * p.s) * (d.depthFade * (5 * 5) / 7), { L: 1 / 2 });
+    const p = qProject(cos(a) * rr, y, sin(a) * rr, rx2 * (1 / 2), ry2 * (1 / 2), rz2 * (1 / 2), cx, cy, R * (FIBONACCI[ANIMATION_DESIGN.drawMovie10dProjection.fIBONACCIAt2] / ANIMATION_DESIGN.drawMovie10dProjection.qProjectArg8Part));
+    ctx.fillStyle = paint((frame.hue + d.hueShift + i * ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part) % ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part2, (ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part + ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part2 * p.s) * (d.depthFade * ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part3 / ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part4), { L: 1 / 2 });
     ctx.beginPath();
-    ctx.arc(p.x, p.y, max(1 / 2, FIBONACCI[5] / (2 * 5) * p.s), 0, TAU);
+    ctx.arc(p.x, p.y, max(1 / 2, FIBONACCI[ANIMATION_DESIGN.drawMovie10dProjection.fIBONACCIAt2] / ANIMATION_DESIGN.drawMovie10dProjection.maxArg1Part * p.s), 0, TAU);
     ctx.fill();
   }
   const order = [];
   for (let i = 0; i < MOVIE_FORMS.length; i += 1) {
     const a = i / MOVIE_FORMS.length * TAU;
-    const p = qProject(cos(a) * (d.spread + 1 / 2), sin(a) * (1 / 2), sin(a), rx2, ry2, rz2, cx, cy, R * (1 - (1 - d.breath) * (1 / 5)));
+    const p = qProject(cos(a) * (d.spread + 1 / 2), sin(a) * (1 / 2), sin(a), rx2, ry2, rz2, cx, cy, R * (1 - (1 - d.breath) * ANIMATION_DESIGN.drawMovie10dProjection.qProjectArg8Part2));
     order.push({ p, i });
   }
   order.sort((u, v) => u.p.z - v.p.z);
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   for (const { p, i } of order) {
-    const ring = frame.reduce ? 0 : frame.t * (3 / 5 + i * (3 / (5 * 5))) + d.twist;
-    const rad = 16 * p.s;
-    ctx.strokeStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, 1 / 2 * p.s, { L: 9 / 16 });
-    ctx.lineWidth = 7 / 5;
+    const ring = frame.reduce ? 0 : frame.t * (ANIMATION_DESIGN.drawMovie10dProjection.ring + i * ANIMATION_DESIGN.drawMovie10dProjection.ring2) + d.twist;
+    const rad = ANIMATION_DESIGN.drawMovie10dProjection.rad * p.s;
+    ctx.strokeStyle = paint((frame.hue + i * ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part3) % ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part2, 1 / 2 * p.s, { L: ANIMATION_DESIGN.drawMovie10dProjection.paintL });
+    ctx.lineWidth = ANIMATION_DESIGN.drawMovie10dProjection.lineWidth;
     ctx.beginPath();
-    for (let k = 0; k <= 8; k += 1) {
-      const t = k / 8 * TAU;
+    for (let k = 0; k <= ANIMATION_DESIGN.drawMovie10dProjection.loop2; k += 1) {
+      const t = k / ANIMATION_DESIGN.drawMovie10dProjection.t * TAU;
       const xx = p.x + cos(t + ring) * rad;
       const yy = p.y + sin(t + ring) * rad * (1 / 2);
       if (k === 0) ctx.moveTo(xx, yy);
       else ctx.lineTo(xx, yy);
     }
     ctx.stroke();
-    ctx.font = `${round(5 * 3 + 9 * p.s * (d.shrink * (5 * 5) / (2 * 9)))}px serif`;
-    ctx.fillStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, 9 / (5 * 4) + 1 / 2 * p.s, { L: 5 / 8 });
+    ctx.font = `${round(ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part + ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part2 * p.s * (d.shrink * ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part3 / ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part4))}px serif`;
+    ctx.fillStyle = paint((frame.hue + i * ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part3) % ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part2, ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part5 + 1 / 2 * p.s, { L: ANIMATION_DESIGN.drawMovie10dProjection.paintL2 });
     ctx.fillText(MOVIE_GLYPHS[i], p.x, p.y);
-    ctx.font = `${round(9 + 2 * p.s)}px ui-sans-serif, system-ui, sans-serif`;
-    ctx.fillStyle = paint((frame.hue + i * (5 * 5 * 2)) % 360, 3 / (5 * 2) + 2 / 5 * p.s, { L: 7 / 16 });
-    ctx.fillText(MOVIE_FORMS[i], p.x, p.y + rad + 8);
+    ctx.font = `${round(ANIMATION_DESIGN.drawMovie10dProjection.roundArg0Part2 + 2 * p.s)}px ui-sans-serif, system-ui, sans-serif`;
+    ctx.fillStyle = paint((frame.hue + i * ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part3) % ANIMATION_DESIGN.drawMovie10dProjection.paintArg0Part2, ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part6 + ANIMATION_DESIGN.drawMovie10dProjection.paintArg1Part7 * p.s, { L: ANIMATION_DESIGN.drawMovie10dProjection.paintL3 });
+    ctx.fillText(MOVIE_FORMS[i], p.x, p.y + rad + ANIMATION_DESIGN.drawMovie10dProjection.fillTextArg2Part);
   }
 }
 function drawMerkabaProjection(ctx, w, h, frame) {
   const cx = w / 2;
   const cy = h / 2;
-  const R = min(w, h) * (3 / (5 * 2));
+  const R = min(w, h) * ANIMATION_DESIGN.drawMerkabaProjection.r;
   const up = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]];
   const down = up.map((v) => [-v[0], -v[1], -v[2]]);
   const upTetra = { name: "up", verts: qNormalizeVerts(up), edges: qSolidEdges(qNormalizeVerts(up)) };
   const downTetra = { name: "down", verts: qNormalizeVerts(down), edges: qSolidEdges(qNormalizeVerts(down)) };
-  const a = frame.reduce ? 2 / 5 : frame.t * (1 / 2);
-  drawSolid3D(ctx, cx, cy, R, upTetra, a, a * (7 / (5 * 2)), 0, frame.hue, 1 - 3 / (5 * 4), frame.palette.dark);
-  drawSolid3D(ctx, cx, cy, R, downTetra, -a, -a * (7 / (5 * 2)), 0, (frame.hue + 9 * 5 * 4) % 360, 7 / (5 * 2), frame.palette.dark);
+  const a = frame.reduce ? ANIMATION_DESIGN.drawMerkabaProjection.a : frame.t * (1 / 2);
+  drawSolid3D(ctx, cx, cy, R, upTetra, a, a * ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg6Part, 0, frame.hue, ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg9, frame.palette.dark);
+  drawSolid3D(ctx, cx, cy, R, downTetra, -a, -a * ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg6Part, 0, (frame.hue + ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg8Part) % ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg8Part2, ANIMATION_DESIGN.drawMerkabaProjection.drawSolid3DArg92, frame.palette.dark);
 }
 function drawUnitDistanceProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const R0 = min(w, h) * 0.44;
+  const R0 = min(w, h) * ANIMATION_DESIGN.drawUnitDistanceProjection.r0;
   const { segments: layers, forms: channels } = quantumProjectionParams("unit-distance");
-  const ringRadius = (j) => R0 * (7 / (5 * 5) + 2 / 3 * j / layers);
-  const drift = frame.reduce ? 0 : frame.t * (3 / (5 * 5));
+  const ringRadius = (j) => R0 * (ANIMATION_DESIGN.drawUnitDistanceProjection.ringRadius + ANIMATION_DESIGN.drawUnitDistanceProjection.ringRadius2 * j / layers);
+  const drift = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawUnitDistanceProjection.drift;
   const pulse = frame.reduce ? 1 / 2 : dimWalk(frame.p);
   for (let j = 1; j <= layers; j += 1) {
     const r2 = ringRadius(j);
-    const nodes = 3 ** j;
+    const nodes = ANIMATION_DESIGN.drawUnitDistanceProjection.nodes ** j;
     const theta = drift * (j % 2 === 0 ? -1 : 1) / j;
-    const hue2 = (frame.hue + j * (9 * 2)) % 360;
-    ctx.strokeStyle = paint(hue2, 0.22, { L: 1 / 2 });
+    const hue2 = (frame.hue + j * ANIMATION_DESIGN.drawUnitDistanceProjection.hue) % ANIMATION_DESIGN.drawUnitDistanceProjection.hue2;
+    ctx.strokeStyle = paint(hue2, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1, { L: 1 / 2 });
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.arc(cx, cy, r2, 0, TAU);
@@ -27400,37 +28249,37 @@ function drawUnitDistanceProjection(ctx, w, h, frame) {
       const a = theta + k / nodes * TAU;
       const x = cx + cos(a) * r2;
       const y = cy + sin(a) * r2;
-      ctx.fillStyle = paint(hue2, 7 / (5 * 4) + 3 / (5 * 2) * pulse, { L: 5 / 8 });
+      ctx.fillStyle = paint(hue2, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1Part + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1Part2 * pulse, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL });
       ctx.beginPath();
-      ctx.arc(x, y, max(4 / 5, R0 * (7 / (100 * 5))), 0, TAU);
+      ctx.arc(x, y, max(ANIMATION_DESIGN.drawUnitDistanceProjection.maxArg0, R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.maxArg1Part), 0, TAU);
       ctx.fill();
     }
   }
   for (let c = 0; c < channels; c += 1) {
     const a = c / channels * TAU + TAU / (2 * channels);
-    const glow = 3 / (5 * 2) + 9 / (5 * 4) * (1 / 2 + 1 / 2 * sin(frame.p * TAU + c));
-    ctx.strokeStyle = paint((frame.hue + 9 * 5 * 4 + c * 8) % 360, glow, { L: 11 / 16 });
-    ctx.lineWidth = 7 / 5;
+    const glow = ANIMATION_DESIGN.drawUnitDistanceProjection.glow + ANIMATION_DESIGN.drawUnitDistanceProjection.glow2 * (1 / 2 + 1 / 2 * sin(frame.p * TAU + c));
+    ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part + c * ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part2) % ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part3, glow, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL2 });
+    ctx.lineWidth = ANIMATION_DESIGN.drawUnitDistanceProjection.lineWidth;
     ctx.beginPath();
-    ctx.moveTo(cx + cos(a) * R0 * (3 / (5 * 2)), cy + sin(a) * R0 * (3 / (5 * 2)));
-    ctx.lineTo(cx + cos(a) * R0 * (8 * 3 / (5 * 5)), cy + sin(a) * R0 * (8 * 3 / (5 * 5)));
+    ctx.moveTo(cx + cos(a) * R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.moveToArg0Part, cy + sin(a) * R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.moveToArg1Part);
+    ctx.lineTo(cx + cos(a) * R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.lineToArg0Part, cy + sin(a) * R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.lineToArg1Part);
     ctx.stroke();
     for (let j = 1; j <= layers; j += 1) {
       const r2 = ringRadius(j);
-      ctx.fillStyle = paint((frame.hue + 9 * 5 * 4 + c * 8) % 360, glow, { L: 3 / 4 });
+      ctx.fillStyle = paint((frame.hue + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part + c * ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part2) % ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part3, glow, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL3 });
       ctx.beginPath();
-      ctx.arc(cx + cos(a) * r2, cy + sin(a) * r2, max(1, R0 * (1 / (5 * 5 * 2))), 0, TAU);
+      ctx.arc(cx + cos(a) * r2, cy + sin(a) * r2, max(1, R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.maxArg1Part2), 0, TAU);
       ctx.fill();
     }
   }
-  const lensR = R0 * (FIBONACCI[5] / 100) * (1 - 3 / (5 * 4) + 1 / 2 * pulse);
-  const sep = R0 * (1 / 9);
+  const lensR = R0 * (FIBONACCI[ANIMATION_DESIGN.drawUnitDistanceProjection.fIBONACCIAt] / ANIMATION_DESIGN.drawUnitDistanceProjection.lensR) * (ANIMATION_DESIGN.drawUnitDistanceProjection.lensR2 + 1 / 2 * pulse);
+  const sep = R0 * ANIMATION_DESIGN.drawUnitDistanceProjection.sep;
   const lens = (dx) => {
     ctx.beginPath();
     ctx.arc(cx + dx, cy, lensR, 0, TAU);
   };
-  ctx.strokeStyle = paint(frame.hue, 1 - 9 / (5 * 4), { L: 5 / 8 });
-  ctx.lineWidth = 6 / 5;
+  ctx.strokeStyle = paint(frame.hue, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg12, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL });
+  ctx.lineWidth = ANIMATION_DESIGN.drawUnitDistanceProjection.lineWidth2;
   lens(-sep / 2);
   ctx.stroke();
   lens(sep / 2);
@@ -27438,20 +28287,20 @@ function drawUnitDistanceProjection(ctx, w, h, frame) {
   ctx.save();
   lens(-sep / 2);
   ctx.clip();
-  ctx.fillStyle = paint((frame.hue + 9 * 5 * 4) % 360, 7 / (5 * 5) + 2 / 5 * pulse, { L: 3 / 4 });
+  ctx.fillStyle = paint((frame.hue + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part) % ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part3, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1Part3 + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg1Part4 * pulse, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL3 });
   lens(sep / 2);
   ctx.fill();
   ctx.restore();
   const outerR = ringRadius(layers);
-  const outerNodes = 3 ** layers;
-  const lit = frame.reduce ? 3 : 1 + floor(pulse * 5);
-  const span = 3;
+  const outerNodes = ANIMATION_DESIGN.drawUnitDistanceProjection.outerNodes ** layers;
+  const lit = frame.reduce ? ANIMATION_DESIGN.drawUnitDistanceProjection.lit : 1 + floor(pulse * ANIMATION_DESIGN.drawUnitDistanceProjection.floorArg0Part);
+  const span = ANIMATION_DESIGN.drawUnitDistanceProjection.span;
   for (let s = 0; s < lit; s += 1) {
-    const k = (floor(frame.t * 2) * 5 + s * 4) % outerNodes;
+    const k = (floor(frame.t * 2) * ANIMATION_DESIGN.drawUnitDistanceProjection.k + s * ANIMATION_DESIGN.drawUnitDistanceProjection.k2) % outerNodes;
     const a1 = k / outerNodes * TAU + drift / layers * (layers % 2 === 0 ? -1 : 1);
     const a2 = (k + span) / outerNodes * TAU + drift / layers * (layers % 2 === 0 ? -1 : 1);
-    ctx.strokeStyle = paint((frame.hue + 9 * 5 * 2) % 360, 3 / 4, { L: 13 / 16 });
-    ctx.lineWidth = 8 / 5;
+    ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part4) % ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg0Part3, ANIMATION_DESIGN.drawUnitDistanceProjection.paintArg13, { L: ANIMATION_DESIGN.drawUnitDistanceProjection.paintL4 });
+    ctx.lineWidth = ANIMATION_DESIGN.drawUnitDistanceProjection.lineWidth3;
     ctx.beginPath();
     ctx.moveTo(cx + cos(a1) * outerR, cy + sin(a1) * outerR);
     ctx.lineTo(cx + cos(a2) * outerR, cy + sin(a2) * outerR);
@@ -27466,19 +28315,19 @@ function drawVortexStrokesProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const R = min(w, h) * (2 / 5);
+  const R = min(w, h) * ANIMATION_DESIGN.drawVortexStrokesProjection.r;
   const { segments: gatewayCount, forms: tourSize } = quantumProjectionParams("vortex-strokes");
   const kinds = vortexKinds ??= vortexStrokeKinds();
   const tour = kinds.map((k) => k.from);
   const steps = kinds.map((k) => ({ from: k.from, to: k.to, up: k.to > k.from, join: k.kind === "join" }));
   const gateways = steps.map((s, i) => ({ i, digit: s.from, turn: steps[(i - 1 + steps.length) % steps.length].up !== s.up })).filter((v) => v.turn).slice(0, gatewayCount);
-  const drift = frame.reduce ? 0 : frame.t * (2 / (5 * 5));
+  const drift = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawVortexStrokesProjection.drift;
   const pulse = frame.reduce ? 1 / 2 : dimWalk(frame.p);
-  const angleAt = (i) => drift + i / tourSize * TAU - TAU / 4;
+  const angleAt = (i) => drift + i / tourSize * TAU - TAU / ANIMATION_DESIGN.drawVortexStrokesProjection.angleAt;
   const xAt = (i) => cx + cos(angleAt(i)) * R;
   const yAt = (i) => cy + sin(angleAt(i)) * R;
   const runner = frame.reduce ? 0 : frame.p * tourSize;
-  ctx.strokeStyle = paint((frame.hue + 100 * 3) % 360, 2 / (5 * 5) + 1 / (5 * 2) * pulse, { L: 5 / 8 });
+  ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part) % ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part2 * pulse, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL });
   ctx.lineWidth = 1;
   ctx.beginPath();
   for (const [a, b] of (tenComplement ??= theTenComplementFixesExactlyFive()).pairs) {
@@ -27487,9 +28336,9 @@ function drawVortexStrokesProjection(ctx, w, h, frame) {
   }
   ctx.stroke();
   const pisano = pisanoOnce ??= pisanoWheelOnTheNine();
-  ctx.lineWidth = 4 / 5;
+  ctx.lineWidth = ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth;
   for (const sign3 of [1, -1]) {
-    ctx.strokeStyle = paint(sign3 > 0 ? frame.hue : (frame.hue + 9 * 5 * 4) % 360, 1 / (5 * 2) + 1 / (5 * 4) * pulse, { L: 5 / 8 });
+    ctx.strokeStyle = paint(sign3 > 0 ? frame.hue : (frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part3) % ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part2 + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part3 * pulse, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL });
     ctx.beginPath();
     pisano.walk.forEach((d, i) => {
       const j = tour.indexOf(d);
@@ -27502,11 +28351,11 @@ function drawVortexStrokesProjection(ctx, w, h, frame) {
   }
   for (let i = 0; i < steps.length; i += 1) {
     const s = steps[i];
-    const wake = frame.reduce ? 1 : max(0, 1 - ((runner - i) % tourSize + tourSize) % tourSize / (tourSize * (3 / 5)));
-    const hue2 = s.up ? frame.hue : (frame.hue + 9 * 5 * 4) % 360;
-    ctx.strokeStyle = paint(hue2, 9 / (5 * 5 * 2) + 3 / 5 * wake, { L: s.up ? 11 / 16 : 9 / 16 });
-    ctx.setLineDash(s.join ? [3, 5] : []);
-    ctx.lineWidth = s.join ? 1 : 1 + 8 / 5 * wake;
+    const wake = frame.reduce ? 1 : max(0, 1 - ((runner - i) % tourSize + tourSize) % tourSize / (tourSize * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part));
+    const hue2 = s.up ? frame.hue : (frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.hue) % ANIMATION_DESIGN.drawVortexStrokesProjection.hue2;
+    ctx.strokeStyle = paint(hue2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part4 + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part5 * wake, { L: s.up ? ANIMATION_DESIGN.drawVortexStrokesProjection.paintLPart : ANIMATION_DESIGN.drawVortexStrokesProjection.paintLPart2 });
+    ctx.setLineDash(s.join ? [ANIMATION_DESIGN.drawVortexStrokesProjection.setLineDashArg0Part, ANIMATION_DESIGN.drawVortexStrokesProjection.setLineDashArg0Part2] : []);
+    ctx.lineWidth = s.join ? 1 : 1 + ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth2 * wake;
     ctx.beginPath();
     ctx.moveTo(xAt(i), yAt(i));
     ctx.lineTo(xAt(i + 1), yAt(i + 1));
@@ -27515,16 +28364,16 @@ function drawVortexStrokesProjection(ctx, w, h, frame) {
   ctx.setLineDash([]);
   for (let i = 0; i < tour.length; i += 1) {
     const d = tour[i];
-    const r2 = max(6 / 5, R * (3 / 100)) * (4 / 5 + 2 / 5 * pulse);
-    const hue2 = (frame.hue + i * (6 * 2)) % 360;
+    const r2 = max(ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg0, R * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part2) * (ANIMATION_DESIGN.drawVortexStrokesProjection.r2 + ANIMATION_DESIGN.drawVortexStrokesProjection.r * pulse);
+    const hue2 = (frame.hue + i * ANIMATION_DESIGN.drawVortexStrokesProjection.hue3) % ANIMATION_DESIGN.drawVortexStrokesProjection.hue2;
     if (d === 0) {
-      ctx.strokeStyle = paint(hue2, 7 / (5 * 2), { L: 3 / 4 });
-      ctx.lineWidth = 6 / 5;
+      ctx.strokeStyle = paint(hue2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL2 });
+      ctx.lineWidth = ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth3;
       ctx.beginPath();
       ctx.arc(xAt(i), yAt(i), r2, 0, TAU);
       ctx.stroke();
     } else {
-      ctx.fillStyle = paint(hue2, 9 / (5 * 4) + 7 / (5 * 4) * pulse, { L: 5 / 8 });
+      ctx.fillStyle = paint(hue2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part6 + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part7 * pulse, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL });
       ctx.beginPath();
       ctx.arc(xAt(i), yAt(i), r2, 0, TAU);
       ctx.fill();
@@ -27533,111 +28382,111 @@ function drawVortexStrokesProjection(ctx, w, h, frame) {
   for (const d of (tenComplement ??= theTenComplementFixesExactlyFive()).fixed) {
     const i = tour.indexOf(d);
     if (i < 0) continue;
-    const rr = max(2, R * (1 / (5 * 4)));
-    ctx.strokeStyle = paint((frame.hue + 9 * 5 * 4) % 360, 3 / 5, { L: 7 / 8 });
-    ctx.lineWidth = 6 / 5;
+    const rr = max(2, R * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part3);
+    ctx.strokeStyle = paint((frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part3) % ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg0Part2, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg12, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL3 });
+    ctx.lineWidth = ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth3;
     ctx.beginPath();
     ctx.arc(xAt(i), yAt(i), rr, 0, TAU);
-    ctx.moveTo(xAt(i) + rr * (3 / 2), yAt(i));
-    ctx.arc(xAt(i), yAt(i), rr * (3 / 2), 0, TAU);
+    ctx.moveTo(xAt(i) + rr * ANIMATION_DESIGN.drawVortexStrokesProjection.moveToArg0Part, yAt(i));
+    ctx.arc(xAt(i), yAt(i), rr * ANIMATION_DESIGN.drawVortexStrokesProjection.arcArg2Part, 0, TAU);
     ctx.stroke();
   }
   for (const g of gateways) {
-    const near = frame.reduce ? 1 / 2 : max(0, 1 - min(abs(runner - g.i), tourSize - abs(runner - g.i)) / (3 / 2));
-    const glow = 1 / 4 + (1 - 7 / (5 * 4)) * near;
-    const hue2 = (frame.hue + 9 * 5 * 2) % 360;
-    ctx.strokeStyle = paint(hue2, glow, { L: 13 / 16 });
-    ctx.lineWidth = 7 / 5;
+    const near = frame.reduce ? 1 / 2 : max(0, 1 - min(abs(runner - g.i), tourSize - abs(runner - g.i)) / ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part4);
+    const glow = ANIMATION_DESIGN.drawVortexStrokesProjection.glow + ANIMATION_DESIGN.drawVortexStrokesProjection.glow2 * near;
+    const hue2 = (frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.hue4) % ANIMATION_DESIGN.drawVortexStrokesProjection.hue2;
+    ctx.strokeStyle = paint(hue2, glow, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL4 });
+    ctx.lineWidth = ANIMATION_DESIGN.drawVortexStrokesProjection.lineWidth4;
     ctx.beginPath();
-    ctx.arc(xAt(g.i), yAt(g.i), max(2, R * (3 / (5 * 5 * 2))) * (7 / (5 * 2) + 3 / 5 * near), 0, TAU);
+    ctx.arc(xAt(g.i), yAt(g.i), max(2, R * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part5) * (ANIMATION_DESIGN.drawVortexStrokesProjection.arcArg2Part2 + ANIMATION_DESIGN.drawVortexStrokesProjection.arcArg2Part3 * near), 0, TAU);
     ctx.stroke();
   }
   const liftVerts = gateways.map((g) => {
-    const a = g.i / tourSize * TAU - TAU / 4;
+    const a = g.i / tourSize * TAU - TAU / ANIMATION_DESIGN.drawVortexStrokesProjection.a;
     const peak = steps[(g.i - 1 + steps.length) % steps.length].up && !steps[g.i].up;
-    return [cos(a), sin(a), peak ? 9 / (5 * 2) : -(9 / (5 * 2))];
+    return [cos(a), sin(a), peak ? ANIMATION_DESIGN.drawVortexStrokesProjection.returned : ANIMATION_DESIGN.drawVortexStrokesProjection.returned2];
   });
-  const tetraEdges = [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]];
+  const tetraEdges = [[0, 1], [0, 2], [0, ANIMATION_DESIGN.drawVortexStrokesProjection.tetraEdges], [1, 2], [1, ANIMATION_DESIGN.drawVortexStrokesProjection.tetraEdges], [2, ANIMATION_DESIGN.drawVortexStrokesProjection.tetraEdges]];
   const upPyramid = { name: "gateway-pyramid", verts: liftVerts, edges: tetraEdges };
   const downPyramid = { name: "gateway-pyramid-inverse", verts: liftVerts.map(([x, y, z]) => [x, y, -z]), edges: tetraEdges };
-  const spin = frame.reduce ? 1 / 2 : frame.t * (3 / (5 * 2));
-  drawSolid3D(ctx, cx, cy, R * (7 * 3 / (5 * 5 * 2)), upPyramid, spin * (2 / 5), spin, 0, frame.hue, 2 / 5 + 1 / 4 * pulse, frame.palette.dark);
-  drawSolid3D(ctx, cx, cy, R * (7 * 3 / (5 * 5 * 2)), downPyramid, -spin * (2 / 5), -spin, 0, (frame.hue + 9 * 5 * 4) % 360, 2 / 5 + 1 / 4 * (1 - pulse), frame.palette.dark);
-  ctx.fillStyle = paint(frame.hue, 3 / (5 * 2) + 3 / (5 * 2) * pulse, { L: 7 / 8 });
+  const spin = frame.reduce ? 1 / 2 : frame.t * ANIMATION_DESIGN.drawVortexStrokesProjection.spin;
+  drawSolid3D(ctx, cx, cy, R * ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg3Part, upPyramid, spin * ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg5Part, spin, 0, frame.hue, ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg9Part + ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg9Part2 * pulse, frame.palette.dark);
+  drawSolid3D(ctx, cx, cy, R * ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg3Part, downPyramid, -spin * ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg5Part, -spin, 0, (frame.hue + ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg8Part) % ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg8Part2, ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg9Part + ANIMATION_DESIGN.drawVortexStrokesProjection.drawSolid3DArg9Part2 * (1 - pulse), frame.palette.dark);
+  ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part8 + ANIMATION_DESIGN.drawVortexStrokesProjection.paintArg1Part8 * pulse, { L: ANIMATION_DESIGN.drawVortexStrokesProjection.paintL3 });
   ctx.beginPath();
-  ctx.arc(cx, cy, max(1, R * (1 / (5 * 5 * 2))), 0, TAU);
+  ctx.arc(cx, cy, max(1, R * ANIMATION_DESIGN.drawVortexStrokesProjection.maxArg1Part6), 0, TAU);
   ctx.fill();
 }
 function drawDoubleTorusProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const r2 = min(w, h) * 0.26;
+  const r2 = min(w, h) * ANIMATION_DESIGN.drawDoubleTorusProjection.r;
   const { forms: handles } = quantumProjectionParams("double-torus");
-  const sep = r2 * 1.18;
+  const sep = r2 * ANIMATION_DESIGN.drawDoubleTorusProjection.sep;
   const squash = PHI - 1;
-  const drift = frame.reduce ? 0 : frame.t * (1 / 4);
+  const drift = frame.reduce ? 0 : frame.t * ANIMATION_DESIGN.drawDoubleTorusProjection.drift;
   const pulse = frame.reduce ? 1 / 2 : dimWalk(frame.p);
   for (let s = 0; s < handles; s += 1) {
     const hx = cx + (s === 0 ? -sep : sep);
     const sense = s === 0 ? 1 : -1;
-    const hue2 = (frame.hue + s * (9 * 5 * 4)) % 360;
-    ctx.strokeStyle = paint(hue2, 3 / (5 * 2), { L: 9 / 16 });
-    ctx.lineWidth = 6 / 5;
+    const hue2 = (frame.hue + s * ANIMATION_DESIGN.drawDoubleTorusProjection.hue) % ANIMATION_DESIGN.drawDoubleTorusProjection.hue2;
+    ctx.strokeStyle = paint(hue2, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1, { L: ANIMATION_DESIGN.drawDoubleTorusProjection.paintL });
+    ctx.lineWidth = ANIMATION_DESIGN.drawDoubleTorusProjection.lineWidth;
     ctx.beginPath();
     ctx.ellipse(hx, cy, r2, r2 * squash, 0, 0, TAU);
     ctx.stroke();
-    ctx.strokeStyle = paint(hue2, 7 / (5 * 5 * 2), { L: 1 / 2 });
+    ctx.strokeStyle = paint(hue2, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg12, { L: 1 / 2 });
     ctx.beginPath();
     ctx.ellipse(hx, cy, r2 * (PHI - 1), r2 * squash * (PHI - 1), 0, 0, TAU);
     ctx.stroke();
-    for (let k = 0; k < 9; k += 1) {
-      const a = sense * drift + k / 9 * TAU;
-      ctx.fillStyle = paint((hue2 + k * (6 * 2)) % 360, 7 / (5 * 4) + 7 / (5 * 4) * pulse, { L: 5 / 8 });
+    for (let k = 0; k < ANIMATION_DESIGN.drawDoubleTorusProjection.loop; k += 1) {
+      const a = sense * drift + k / ANIMATION_DESIGN.drawDoubleTorusProjection.a * TAU;
+      ctx.fillStyle = paint((hue2 + k * ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg0Part) % ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg0Part2, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1Part + ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1Part * pulse, { L: ANIMATION_DESIGN.drawDoubleTorusProjection.paintL2 });
       ctx.beginPath();
-      ctx.arc(hx + cos(a) * r2, cy + sin(a) * r2 * squash, max(1, r2 * (9 / (100 * 2))), 0, TAU);
+      ctx.arc(hx + cos(a) * r2, cy + sin(a) * r2 * squash, max(1, r2 * ANIMATION_DESIGN.drawDoubleTorusProjection.maxArg1Part), 0, TAU);
       ctx.fill();
     }
   }
   const eight = (u) => {
     const a = u * TAU;
-    return [cx + sin(a) * sep * 1.55, cy + sin(a * 2) * r2 * squash * (1 - 2 / (5 * 5))];
+    return [cx + sin(a) * sep * ANIMATION_DESIGN.drawDoubleTorusProjection.returned, cy + sin(a * 2) * r2 * squash * ANIMATION_DESIGN.drawDoubleTorusProjection.returned2];
   };
-  const cars = frame.reduce ? 3 : 9;
-  const head = frame.reduce ? 1 / 8 : frame.p;
+  const cars = frame.reduce ? ANIMATION_DESIGN.drawDoubleTorusProjection.cars : ANIMATION_DESIGN.drawDoubleTorusProjection.cars2;
+  const head = frame.reduce ? ANIMATION_DESIGN.drawDoubleTorusProjection.head : frame.p;
   for (let c = 0; c < cars; c += 1) {
-    const u = ((head - c * 0.022) % 1 + 1) % 1;
+    const u = ((head - c * ANIMATION_DESIGN.drawDoubleTorusProjection.u) % 1 + 1) % 1;
     const [x, y] = eight(u);
     const fade = 1 - c / cars;
-    ctx.fillStyle = paint((frame.hue + 9 * 5 * 2) % 360, 1 / 4 + 3 / 5 * fade, { L: 13 / 16 });
+    ctx.fillStyle = paint((frame.hue + ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg0Part3) % ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg0Part2, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1Part2 + ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg1Part3 * fade, { L: ANIMATION_DESIGN.drawDoubleTorusProjection.paintL3 });
     ctx.beginPath();
-    ctx.arc(x, y, max(1, r2 * (1 / (5 * 4))) * (3 / 5 + 2 / 5 * fade), 0, TAU);
+    ctx.arc(x, y, max(1, r2 * ANIMATION_DESIGN.drawDoubleTorusProjection.maxArg1Part2) * (ANIMATION_DESIGN.drawDoubleTorusProjection.arcArg2Part + ANIMATION_DESIGN.drawDoubleTorusProjection.arcArg2Part2 * fade), 0, TAU);
     ctx.fill();
   }
   const homology3 = homologyOnce ??= cellHomology2();
-  ctx.fillStyle = paint(frame.hue, 7 / 8, { L: 7 / 8 });
-  ctx.font = `${max(9, round(r2 * (1 / 5)))}px ui-monospace, monospace`;
+  ctx.fillStyle = paint(frame.hue, ANIMATION_DESIGN.drawDoubleTorusProjection.paintArg13, { L: ANIMATION_DESIGN.drawDoubleTorusProjection.paintL4 });
+  ctx.font = `${max(ANIMATION_DESIGN.drawDoubleTorusProjection.maxArg0, round(r2 * ANIMATION_DESIGN.drawDoubleTorusProjection.roundArg0Part))}px ui-monospace, monospace`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText(`\u03C7 = ${homology3.euler} \xB7 genus ${(2 - homology3.euler) / 2}`, cx, cy + r2 * squash + r2 * (2 / 5));
+  ctx.fillText(`\u03C7 = ${homology3.euler} \xB7 genus ${(2 - homology3.euler) / 2}`, cx, cy + r2 * squash + r2 * ANIMATION_DESIGN.drawDoubleTorusProjection.fillTextArg2Part);
 }
 function drawTorusFieldProjection(ctx, w, h, frame) {
   const paint = movieCanvasPolarity(frame.palette.dark);
   const cx = w / 2;
   const cy = h / 2;
-  const R = min(w, h) * (3 / (5 * 2));
-  const tube = R * (2 / 5);
-  const rx2 = frame.reduce ? 2 / 5 : frame.t * (3 / (5 * 2));
-  const ry2 = frame.reduce ? 1 / 5 : frame.t * (7 * 3 / 100);
-  for (let i = 0; i < 7 * 4; i += 1) {
-    const u = i / (7 * 4) * TAU;
-    for (let j = 0; j < 5 * 2; j += 1) {
-      const v = j / (5 * 2) * TAU;
+  const R = min(w, h) * ANIMATION_DESIGN.drawTorusFieldProjection.r;
+  const tube = R * ANIMATION_DESIGN.drawTorusFieldProjection.tube;
+  const rx2 = frame.reduce ? ANIMATION_DESIGN.drawTorusFieldProjection.rx : frame.t * ANIMATION_DESIGN.drawTorusFieldProjection.rx2;
+  const ry2 = frame.reduce ? ANIMATION_DESIGN.drawTorusFieldProjection.ry : frame.t * ANIMATION_DESIGN.drawTorusFieldProjection.ry2;
+  for (let i = 0; i < ANIMATION_DESIGN.drawTorusFieldProjection.loop; i += 1) {
+    const u = i / ANIMATION_DESIGN.drawTorusFieldProjection.u * TAU;
+    for (let j = 0; j < ANIMATION_DESIGN.drawTorusFieldProjection.loop2; j += 1) {
+      const v = j / ANIMATION_DESIGN.drawTorusFieldProjection.v * TAU;
       const rr = R + tube * cos(v);
       const p = qProject(cos(u) * rr / R, tube * sin(v) / R, sin(u) * rr / R, rx2, ry2, 0, cx, cy, R);
-      ctx.fillStyle = paint((frame.hue + i * 8) % 360, 3 / (5 * 4) + 1 / 2 * p.s, { L: 1 / 2 });
+      ctx.fillStyle = paint((frame.hue + i * ANIMATION_DESIGN.drawTorusFieldProjection.paintArg0Part) % ANIMATION_DESIGN.drawTorusFieldProjection.paintArg0Part2, ANIMATION_DESIGN.drawTorusFieldProjection.paintArg1Part + 1 / 2 * p.s, { L: 1 / 2 });
       ctx.beginPath();
-      ctx.arc(p.x, p.y, max(3 / 5, 2 * p.s), 0, TAU);
+      ctx.arc(p.x, p.y, max(ANIMATION_DESIGN.drawTorusFieldProjection.maxArg0, 2 * p.s), 0, TAU);
       ctx.fill();
     }
   }
@@ -28672,18 +29521,18 @@ function movieAllElementsAreTheorems(matrix = buildMatrix(), at = 0) {
     const quantumSrc = readMoviePainterSource("src/quantum/index.ts");
     const srcReadable = geomSrc.length > 0 && quantumSrc.length > 0;
     const calendarsNoRing = srcReadable && (geomSrc.includes("VORTEX_SEQUENCE") && geomSrc.includes("Phase marker only") && !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*radius/.test(geomSrc.slice(geomSrc.indexOf("export function drawCalendars"))));
-    const ballSlice = quantumSrc.slice(quantumSrc.indexOf("function drawPlasmaBall"), quantumSrc.indexOf("function drawPlasmaBall") + 900);
+    const painterBody = (src, head) => {
+      const at2 = src.indexOf(head);
+      if (at2 < 0) return "";
+      const next = src.slice(at2 + head.length).search(/\n(?:export )?function /);
+      return next < 0 ? src.slice(at2) : src.slice(at2, at2 + head.length + next);
+    };
+    const ballSlice = painterBody(quantumSrc, "function drawPlasmaBall");
     const voidSoft = srcReadable && (ballSlice.includes("fillRect") && !/ctx\.arc\(\s*cx\s*,\s*cy\s*,\s*void/.test(ballSlice) && (ballSlice.includes("Soft throat") || ballSlice.includes("screen") || ballSlice.includes("confluence")));
-    const merkabaSlice = quantumSrc.slice(
-      quantumSrc.indexOf("export function drawBothEarthsMerkabaFrame"),
-      quantumSrc.indexOf("export function drawBothEarthsMerkabaFrame") + 1200
-    );
+    const merkabaSlice = painterBody(quantumSrc, "export function drawBothEarthsMerkabaFrame");
     const merkabaNoShell = srcReadable && (!merkabaSlice.includes("setLineDash") && !merkabaSlice.includes("4 * scale"));
-    const dtSlice = quantumSrc.slice(
-      quantumSrc.indexOf("function drawDoubleTorusProjection"),
-      quantumSrc.indexOf("function drawDoubleTorusProjection") + 2200
-    );
-    const torusNoCenterRing = srcReadable && (!dtSlice.includes("ctx.arc(cx, cy, r * (4 / (5 * 5))") && dtSlice.includes("lemniscate"));
+    const dtSlice = painterBody(quantumSrc, "function drawDoubleTorusProjection");
+    const torusNoCenterRing = srcReadable && (!/ctx\.arc\(\s*cx\s*,\s*cy\s*,/.test(dtSlice) && dtSlice.includes("lemniscate"));
     const vitepressRoutesOnly = MOVIE_CLOCK_SURFACE_ATTESTATION.every(
       (row) => row.route.startsWith("/") && !row.route.includes("location.") && !row.route.includes("vue-router")
     );
@@ -38959,40 +39808,40 @@ function drawDynamicsProjection(ctx, w, h, sim, opts = {}) {
   const dark = opts.dark !== false;
   const reduce = opts.reduce === true;
   const paint = movieCanvasPolarity(dark);
-  const ink = (alpha) => paint(A432_HUE, alpha, { L: 5 * 3 / 16, C: 1 / 64 });
+  const ink = (alpha) => paint(A432_HUE, alpha, { L: ANIMATION_DESIGN.drawDynamicsProjection.paintL, C: ANIMATION_DESIGN.drawDynamicsProjection.paintC });
   const p = heroPhaseAt(sim.at);
   ctx.clearRect(0, 0, w, h);
-  const labelPx = max(9, round(h / 27));
-  const barW = min(16 * 3, (w - 8 * 5) / max(sim.amplitudes.length, 1));
-  const baseY = h * (7 / (5 * 2) + 1 / (5 * 5) * sin(p * TAU));
-  const maxH = h * (1 - 9 / (5 * 4));
+  const labelPx = max(ANIMATION_DESIGN.drawDynamicsProjection.maxArg0, round(h / ANIMATION_DESIGN.drawDynamicsProjection.roundArg0Part));
+  const barW = min(ANIMATION_DESIGN.drawDynamicsProjection.minArg0, (w - ANIMATION_DESIGN.drawDynamicsProjection.minArg1Part) / max(sim.amplitudes.length, 1));
+  const baseY = h * (ANIMATION_DESIGN.drawDynamicsProjection.baseY + ANIMATION_DESIGN.drawDynamicsProjection.baseY2 * sin(p * TAU));
+  const maxH = h * ANIMATION_DESIGN.drawDynamicsProjection.maxH;
   sim.amplitudes.forEach((amp, index) => {
-    const x = 5 * 4 + index * (barW + 8);
+    const x = ANIMATION_DESIGN.drawDynamicsProjection.x + index * (barW + ANIMATION_DESIGN.drawDynamicsProjection.x2);
     const barH = amp.probability * maxH;
-    ctx.fillStyle = paint(amp.hue, 1 - 3 / (5 * 4));
+    ctx.fillStyle = paint(amp.hue, ANIMATION_DESIGN.drawDynamicsProjection.paintArg1);
     ctx.fillRect(x, baseY - barH, barW, barH);
-    ctx.strokeStyle = ink(7 / (5 * 4));
+    ctx.strokeStyle = ink(ANIMATION_DESIGN.drawDynamicsProjection.inkArg0);
     ctx.strokeRect(x, baseY - barH, barW, barH);
-    ctx.fillStyle = ink(4 / 5);
+    ctx.fillStyle = ink(ANIMATION_DESIGN.drawDynamicsProjection.inkArg02);
     ctx.font = `${labelPx}px monospace`;
-    ctx.fillText(`|${amp.basis}\u27E9`, x, baseY + 7 * 2);
+    ctx.fillText(`|${amp.basis}\u27E9`, x, baseY + ANIMATION_DESIGN.drawDynamicsProjection.fillTextArg2Part);
     if (!reduce) {
-      ctx.fillText(amp.probability.toFixed(3), x, baseY - barH - 6);
+      ctx.fillText(amp.probability.toFixed(ANIMATION_DESIGN.drawDynamicsProjection.toFixedArg0), x, baseY - barH - ANIMATION_DESIGN.drawDynamicsProjection.fillTextArg2Part2);
     }
   });
   if (sim.entangled && sim.amplitudes.length >= 2) {
-    const x0 = 5 * 4 + barW / 2;
-    const x1 = 5 * 4 + (sim.amplitudes.length - 1) * (barW + 8) + barW / 2;
-    const linkY = h * (1 / 5 + 1 / (5 * 5) * cos(p * TAU));
-    ctx.strokeStyle = paint(A432_HUE, 1 - 9 / (5 * 4), { L: 13 / 16 });
+    const x0 = ANIMATION_DESIGN.drawDynamicsProjection.x0 + barW / 2;
+    const x1 = ANIMATION_DESIGN.drawDynamicsProjection.x1 + (sim.amplitudes.length - 1) * (barW + ANIMATION_DESIGN.drawDynamicsProjection.x12) + barW / 2;
+    const linkY = h * (ANIMATION_DESIGN.drawDynamicsProjection.linkY + ANIMATION_DESIGN.drawDynamicsProjection.linkY2 * cos(p * TAU));
+    ctx.strokeStyle = paint(A432_HUE, ANIMATION_DESIGN.drawDynamicsProjection.paintArg12, { L: ANIMATION_DESIGN.drawDynamicsProjection.paintL2 });
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(x0, linkY);
     ctx.lineTo(x1, linkY);
     ctx.stroke();
-    ctx.fillStyle = ink(3 / 4);
+    ctx.fillStyle = ink(ANIMATION_DESIGN.drawDynamicsProjection.inkArg03);
     ctx.font = `${labelPx}px sans-serif`;
-    ctx.fillText("entangled phase lock", x0, linkY - 8);
+    ctx.fillText("entangled phase lock", x0, linkY - ANIMATION_DESIGN.drawDynamicsProjection.fillTextArg2Part3);
   }
 }
 var WATER_FORMATION_KJ_PER_MOL = -2858 / 10;
@@ -68374,11 +69223,32 @@ function scanCrackSurface(root) {
   for (const f2 of files) {
     const rel = relative(root, f2).replace(/\\/g, "/");
     const raw = readFileSync(f2, "utf8");
-    bodies.set(rel, f2.endsWith(".vue") ? vueValueSurface(raw) : raw);
+    bodies.set(rel, f2.endsWith(".vue") ? vueValueSurface(raw) : kernelDefinedValueSurface(root, raw));
   }
   const surface = scanHardcodedCrackOffenders(root, files, bodies);
   _crackSurfaceByRoot.set(root, surface);
   return surface;
+}
+function kernelDefinedValueSurface(root, raw) {
+  const open = raw.indexOf("export const ANIMATION_DESIGN = {");
+  if (open < 0) return raw;
+  const leanPath = join(root, "src/pair/lean/proofs/movie.lean");
+  if (!existsSync(leanPath)) return raw;
+  const defined = new Set([...readFileSync(leanPath, "utf8").matchAll(/^def (\w+) : Q := /gm)].map((m) => m[1]));
+  const close = raw.indexOf("\n}\n", open);
+  if (close < 0) return raw;
+  let painter = "";
+  const block = raw.slice(open, close).split("\n").map((line) => {
+    const group = /^ {2}(\w+): \{$/.exec(line);
+    if (group) {
+      painter = group[1];
+      return line;
+    }
+    const entry2 = /^( {4}(\w+): )(.*)(,)$/.exec(line);
+    if (!entry2 || !defined.has(`${painter}_${entry2[2]}`)) return line;
+    return entry2[1] + " ".repeat(entry2[3].length) + entry2[4];
+  }).join("\n");
+  return raw.slice(0, open) + block + raw.slice(close);
 }
 var STALL_STOP_MS = 3 * 60 * 1e3;
 var PROVER_NAMES = new Set(THEOREM_ATOM_SEED.map((atom) => atom.provedBy));
@@ -73998,6 +74868,7 @@ var LEVERHULME_FELLOWSHIPS = {
 };
 export {
   AKSAK,
+  ANIMATION_DESIGN,
   DIALECT_GLOSSARY,
   DIGEST_BITS,
   FOCAL,
@@ -74009,6 +74880,7 @@ export {
   HERO_CYCLE_MS,
   ICHING_NUMBERS,
   MEMO_CAP,
+  MOVIE_ANGLES,
   PESNOPOIKA,
   PESNOPOIKA_SOURCE,
   PROVENANCE,
@@ -74031,6 +74903,8 @@ export {
   aksak,
   aksakBeats,
   allMathSaved,
+  animationScss,
+  animationToken,
   animationsAreGenuinely10DNotFaked,
   antichainLevels,
   applyGate,
@@ -74047,6 +74921,7 @@ export {
   atan2,
   backgroundSceneFromShared,
   bellPair,
+  bindAnimationDesign,
   bothEarthsRotateWithinEachOther,
   boundedFlowSet,
   branch,
@@ -74142,6 +75017,7 @@ export {
   irrationalProvesRationalMeasurementInvertsSuperpositionAndPellIsExact,
   isHarmonic360,
   isUuid,
+  kernelTheoremStreams,
   lcm,
   log,
   log10,

@@ -293,7 +293,7 @@
    850
   ],
   "holds": true,
-  "caption": "the first 64 of 1895 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1896 numbers rostersDeriveOrLedger computes for this theorem (offenders[].line), drawn from its own run — no other proof returns them"
  },
  "all animations partition into the transpose-symmetric 7×6 = 42 entanglement lattice — every cell populated, addressed by theorems": {
   "form": "bars",
@@ -2242,16 +2242,16 @@
   "values": [
    492,
    492,
-   195,
+   196,
    165,
    164,
    162,
    155,
    139,
    136,
+   127,
    125,
-   125,
-   120,
+   122,
    106,
    101,
    92,
@@ -2266,7 +2266,7 @@
    75,
    71,
    69,
-   63,
+   64,
    63,
    61,
    57,
@@ -2306,7 +2306,7 @@
    40
   ],
   "holds": true,
-  "caption": "the first 64 of 1145 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
+  "caption": "the first 64 of 1146 numbers methodGravity computes for this theorem ([].pulls), drawn from its own run — no other proof returns them"
  },
  "science coverage is sub-linear — the corpus floor is the atom UNION, not the linear sum": {
   "form": "bars",
@@ -3186,8 +3186,8 @@
   "values": [
    129,
    77,
-   119,
-   0.922
+   120,
+   0.93
   ],
   "holds": true,
   "caption": "the quantities theRosettaTheoremIsFirstByComputationBecauseItIsUsedMost computes for this theorem (files, rosettaNamed, contentAddress, usedInMostFiles), drawn from its own run — no other proof returns them"

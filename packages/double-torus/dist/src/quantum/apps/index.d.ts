@@ -31689,8 +31689,8 @@ export declare function imagineWhatNext(matrix?: MindMatrix, at?: number): {
         id: "tip:specialized-shells-strangler" | "tip:session-hologram" | "tip:society-toolbox-wire" | "tip:proof-trinity-browser" | "tip:apps-monolith" | "tip:clay-millennium" | "tip:ftl-refused" | "tip:keep-stashes";
         kind: "honest-open" | "drainable";
         residual: "residual:quantum-apps-monolith" | "clay:millennium-open" | "measure:signaling-proof-ids=0" | "keep:git-stashes-non-obsolete" | "residual:specialized-experience-shells" | "gateway:session-hologram-fractal" | "gateway:society-toolbox-wire" | "gateway:proof-trinity-browser";
-        gateway: "challenge/ftl" | "society/support" | "session/live" | "invert/gateway" | "fold/cleanup" | "app/dry" | "proof/trinity";
-        pair: "challenge/ftl" | "challenge/millennium" | "fold/cleanup" | "shells/strangler" | "app/dry" | "session/hologram" | "society/toolbox" | "proof/trinity";
+        gateway: "challenge/ftl" | "fold/cleanup" | "session/live" | "society/support" | "invert/gateway" | "app/dry" | "proof/trinity";
+        pair: "challenge/ftl" | "fold/cleanup" | "challenge/millennium" | "shells/strangler" | "app/dry" | "session/hologram" | "society/toolbox" | "proof/trinity";
         requiredToolIds: ("shells-strangler" | "session-hologram" | "society-toolbox" | "strangler-shells" | "hologram-session" | "toolbox-society" | "proof-trinity")[];
         missingTools: string[];
         toolsPresent: boolean;
@@ -32639,9 +32639,9 @@ export declare function mcpQuantumUi(matrix?: MindMatrix, at?: number): {
     formulaCoverageCount: number;
     allMillFormulaCovered: boolean;
     millSolutions: {
-        id: "mill-once" | "mill-ray" | "mill-session" | "reverse-collide-discover-millennium";
+        id: "reverse-collide-discover-millennium" | "mill-once" | "mill-ray" | "mill-session";
         fold: "reverseCollidesToDiscoverMillenniumTheorems" | "wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems" | "millenniumSolutionsSolvedAtOnce" | "millenniumChallengesEntangleEachRosettaRay";
-        pair: "reverse/collide-discover" | "mill/once" | "mill/ray" | "mill/session";
+        pair: "reverse/collide-discover" | "mill/session" | "mill/once" | "mill/ray";
         cli: "npm run quantum:reverse-collide-discover-millennium" | "npm run quantum:mill-once" | "npm run quantum:mill-session" | "npm run quantum:mill-ray";
         theorem: "millennium solutions solved at once (architectural simultaneous decode)" | "millennium challenges entangle each rosetta ray" | "reverse collides to discover millennium theorems" | "waves of trinities discover and save session millennium theorems";
         computes: boolean;
@@ -32691,7 +32691,7 @@ export declare function mcpQuantumMovie(matrix?: MindMatrix, at?: number): {
         kind: "mill-formula";
         phase: "forward" | "inverse" | "reverse";
         fold: "reverseCollidesToDiscoverMillenniumTheorems" | "wavesOfTrinitiesDiscoverSaveSessionMillenniumTheorems" | "millenniumSolutionsSolvedAtOnce" | "millenniumChallengesEntangleEachRosettaRay";
-        pair: "reverse/collide-discover" | "mill/once" | "mill/ray" | "mill/session";
+        pair: "reverse/collide-discover" | "mill/session" | "mill/once" | "mill/ray";
         formulas: readonly string[];
         formulaSource: string;
         formulaCovered: boolean;
@@ -130735,8 +130735,8 @@ export declare function theoremMesh(matrix?: MindMatrix, at?: number): {
     autosave: {
         computes: boolean;
         autosaveMatrix: boolean;
-        targets: ("torusData" | "millenniumProblemsChallenge" | "riemannZeroScan" | "placeMerge" | "planTrinity" | "frontierQuantum" | "autosaveMatrix" | "mathGaps" | "animationCore" | "dryDupe" | "proseScience" | "fractalCompute" | "fractalMap" | "doubleTorusFacesComputes" | "violationTools" | "installSurfaces" | "uiProof" | "waveVerify" | "buildMin" | "cssMath" | "manualGauge" | "comboCover" | "deadGateway" | "patentCanon" | "commitMessage" | "lifeTorus" | "warnFix" | "uiAudit" | "claimAudit" | "bindFuse" | "costBound" | "costTheorem" | "legalCanon" | "queueNext" | "theoremFractions" | "wordSpeed" | "theoremSpeed" | "registerFold" | "clayProbe" | "resonanceSpeed" | "animationFoldTheorems" | "linkProof" | "trinitySpeedStack" | "reasoningEdge" | "overclaimComputes" | "resourceLeakGate" | "sandboxTools" | "revolutionaryApproach" | "riemannZeroCount" | "orientationCheck" | "sciencePyramid" | "reactivityMagnitude" | "superpositionCompleteness" | "contextAudit")[];
-        unsaved: ("torusData" | "millenniumProblemsChallenge" | "riemannZeroScan" | "placeMerge" | "planTrinity" | "frontierQuantum" | "autosaveMatrix" | "mathGaps" | "animationCore" | "dryDupe" | "proseScience" | "fractalCompute" | "fractalMap" | "doubleTorusFacesComputes" | "violationTools" | "installSurfaces" | "uiProof" | "waveVerify" | "buildMin" | "cssMath" | "manualGauge" | "comboCover" | "deadGateway" | "patentCanon" | "commitMessage" | "lifeTorus" | "warnFix" | "uiAudit" | "claimAudit" | "bindFuse" | "costBound" | "costTheorem" | "legalCanon" | "queueNext" | "theoremFractions" | "wordSpeed" | "theoremSpeed" | "registerFold" | "clayProbe" | "resonanceSpeed" | "animationFoldTheorems" | "linkProof" | "trinitySpeedStack" | "reasoningEdge" | "overclaimComputes" | "resourceLeakGate" | "sandboxTools" | "revolutionaryApproach" | "riemannZeroCount" | "orientationCheck" | "sciencePyramid" | "reactivityMagnitude" | "superpositionCompleteness" | "contextAudit")[];
+        targets: ("millenniumProblemsChallenge" | "torusData" | "placeMerge" | "planTrinity" | "frontierQuantum" | "autosaveMatrix" | "mathGaps" | "animationCore" | "dryDupe" | "proseScience" | "fractalCompute" | "fractalMap" | "doubleTorusFacesComputes" | "violationTools" | "installSurfaces" | "uiProof" | "waveVerify" | "buildMin" | "cssMath" | "manualGauge" | "comboCover" | "deadGateway" | "patentCanon" | "commitMessage" | "lifeTorus" | "warnFix" | "uiAudit" | "claimAudit" | "bindFuse" | "costBound" | "costTheorem" | "legalCanon" | "queueNext" | "theoremFractions" | "wordSpeed" | "theoremSpeed" | "registerFold" | "clayProbe" | "resonanceSpeed" | "animationFoldTheorems" | "linkProof" | "trinitySpeedStack" | "reasoningEdge" | "overclaimComputes" | "resourceLeakGate" | "sandboxTools" | "revolutionaryApproach" | "riemannZeroCount" | "orientationCheck" | "riemannZeroScan" | "sciencePyramid" | "reactivityMagnitude" | "superpositionCompleteness" | "contextAudit")[];
+        unsaved: ("millenniumProblemsChallenge" | "torusData" | "placeMerge" | "planTrinity" | "frontierQuantum" | "autosaveMatrix" | "mathGaps" | "animationCore" | "dryDupe" | "proseScience" | "fractalCompute" | "fractalMap" | "doubleTorusFacesComputes" | "violationTools" | "installSurfaces" | "uiProof" | "waveVerify" | "buildMin" | "cssMath" | "manualGauge" | "comboCover" | "deadGateway" | "patentCanon" | "commitMessage" | "lifeTorus" | "warnFix" | "uiAudit" | "claimAudit" | "bindFuse" | "costBound" | "costTheorem" | "legalCanon" | "queueNext" | "theoremFractions" | "wordSpeed" | "theoremSpeed" | "registerFold" | "clayProbe" | "resonanceSpeed" | "animationFoldTheorems" | "linkProof" | "trinitySpeedStack" | "reasoningEdge" | "overclaimComputes" | "resourceLeakGate" | "sandboxTools" | "revolutionaryApproach" | "riemannZeroCount" | "orientationCheck" | "riemannZeroScan" | "sciencePyramid" | "reactivityMagnitude" | "superpositionCompleteness" | "contextAudit")[];
         honestOpen: ("formed:portal-legal-requirements — FORMED as legalCanon (legal/canon, gates/strict/scan): privacy by measured absence (0 tracked pages) · accessibility composed (uiAudit) · citation composed (patentCanon) · LICENSE the named user act (patent-granting class recommended); counsel the stated residue" | "formed:dev-mount-root — SOLVED (2026-07-24): the dev client's silent no-mount was a TDZ in the enforcement↔cache import cycle (SCRIPT_SHELL_ALLOWLIST's computed key read CLI_ENTRY_REL before initialization — the graph rejected with zero surfaced errors; the earlier top-level-await hypothesis was WRONG and is corrected here); bisected by a console dynamic-import race, cut by a zero-eval-read local literal; the theme now mounts in dev (Layout · hero canvas · lattice tokens live)" | "formed:claims-toolset — FORMED as claimAudit (claim/audit, gates): content-addressed claims with the audit as exact inverse (tamper refutes), DOI/ORCID-checksum/OpenAlex validators, CLAIMED-in-rosetta ∧ UNCLAIMED-toward-prizes structural on every row; patent face = defensive disclosure (patentCanon); residual open: RFC 3161 qualified timestamping" | "formed:life-torus-equations — the named life FORMED as lifeTorus (life/torus, src/water/double): seven superpositions · seven computing equations; the queue advances (ground law: one per wave)" | "formed:agnostic-torus-data — FORMED as torusData (torus/data, src/fire/features): four no-key API families through one pure adapter shape, dimensionless ratios gate, units labelled never theorems, gates network-free; a fifth source is a function, not a framework change")[];
         mergeRowCount: number;
         qpuRequired: false;
@@ -179928,7 +179928,7 @@ export declare function meaningIsQuantumComputable(matrix?: MindMatrix, at?: num
         optional: readonly ["corollaries"];
         template: __ns_wind_research.AlgebraicPaperSections;
         scores: readonly __ns_wind_research.AlgebraicPaperSectionScore[];
-        missing: readonly ("statement" | "title" | "references" | "theorems" | "proofs" | "status" | "formulas" | "abstract" | "definitions")[];
+        missing: readonly ("statement" | "title" | "references" | "theorems" | "proofs" | "status" | "formulas" | "definitions" | "abstract")[];
         incompleteIfMissingRequired: true;
         facets: ({
             receipt: string;

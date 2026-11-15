@@ -1544,6 +1544,16 @@ export declare function vueValueSurface(text: string): string;
 /** The full crack surface: every src/**.{ts,vue} + .vitepress/**.{ts,mts,vue} (theme, lib, config —
  * the seal merkle already covers .vitepress), excluding caches and build output. Memoised by root. */
 export declare function scanCrackSurface(root: string): CrackOffender[];
+/**
+ * A NUMBER THE KERNEL DEFINES IS LEDGERED (owner, 2026-11-15: "teach the scanner"). The animation SDK's table,
+ * ANIMATION_DESIGN, holds every number the painters draw with, and each entry is DEFINED in
+ * src/pair/lean/proofs/movie.lean, where a kernel theorem decides the law it keeps; verify:movie refuses an entry that
+ * differs from its definition. That is a stricter account than a ledger row, so the scanner does not count those
+ * values again: the value text of every table line whose `<painter>_<key>` movie.lean defines is blanked (column
+ * positions kept). A line movie.lean does not define stays counted, and with no movie.lean every line stays counted —
+ * an absent kernel file ledgers nothing.
+ */
+export declare function kernelDefinedValueSurface(root: string, raw: string): string;
 /** CLI: `cracks` — the codebase-wide census; zero offenders or the exact list (gated in strict). */
 export declare function runCracksExit(root: string): number;
 export type EditNode = {
@@ -3110,7 +3120,7 @@ export declare function geoGebraEncode(): {
     theoremAuditAligned: number;
     encodeNotTheorem: number;
     apps: ("geometry" | "probability" | "graphing" | "3d" | "cas" | "scientific")[];
-    objectFamilies: ("function" | "cube" | "sphere" | "ray" | "line" | "path" | "angle" | "vector" | "segment" | "axis" | "parallel" | "distance" | "region" | "list" | "point" | "plane" | "conic" | "ellipse" | "parabola" | "hyperbola" | "arc" | "polygon" | "numeric" | "cone" | "cylinder" | "prism" | "polyhedron" | "midpoint" | "intersect" | "perpendicular")[];
+    objectFamilies: ("function" | "cube" | "sphere" | "ray" | "line" | "path" | "angle" | "axis" | "vector" | "segment" | "parallel" | "point" | "list" | "distance" | "region" | "plane" | "conic" | "ellipse" | "parabola" | "hyperbola" | "arc" | "polygon" | "numeric" | "cone" | "cylinder" | "prism" | "polyhedron" | "midpoint" | "intersect" | "perpendicular")[];
     apiMethods: ("evalCommand" | "evalLaTeX" | "evalCommandCAS" | "getObjectType" | "getAllObjectNames" | "setCoords" | "getCoords" | "setValue" | "getValue" | "setUndoPoint" | "registerObjectUpdateListener" | "registerAddListener" | "registerRemoveListener" | "getXcoord" | "getYcoord" | "getZcoord" | "setVisible" | "deleteObject" | "renameObject" | "evalGeoGEBRA")[];
     catalog: {
         auditKind: TheoremAuditKind;

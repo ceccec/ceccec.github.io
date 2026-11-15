@@ -70,7 +70,7 @@ export declare function shadcnComputes(matrix?: MindMatrix, at?: number): {
         deps: string[];
         depsPresent: string[];
         depsMissing: string[];
-        depsSource: "counted" | "absent";
+        depsSource: "absent" | "counted";
         pathBDeps: string[];
         paths: {
             A: string;

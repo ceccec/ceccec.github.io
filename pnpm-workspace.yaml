@@ -1,6 +1,7 @@
 packages:
   - 'packages/*'
 allowBuilds:
+  '@parcel/watcher': false
   esbuild: true
   vue-demi: true
 overrides:

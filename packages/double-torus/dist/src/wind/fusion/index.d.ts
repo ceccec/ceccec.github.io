@@ -13667,8 +13667,8 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
                     root: string;
                 };
                 rows: {
-                    tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-                    action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                    action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                     ray: number;
                     rayMeta: {
                         readonly ray: 0;
@@ -13725,7 +13725,7 @@ export declare function decodeAndComputeAllFromEarthToGalaxiesAndBeyond(at?: num
                     legacyBare: string;
                     schemaTarget: string;
                     canonical: string;
-                    importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                    importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                     wave: 2 | 1;
                     applied: boolean;
                     receipt: string;
@@ -29873,8 +29873,8 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                         root: string;
                     };
                     rows: {
-                        tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-                        action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                        tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                        action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                         ray: number;
                         rayMeta: {
                             readonly ray: 0;
@@ -29931,7 +29931,7 @@ export declare function allComputedAndUsedInComputations(matrix?: MindMatrix): {
                         legacyBare: string;
                         schemaTarget: string;
                         canonical: string;
-                        importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                        importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                         wave: 2 | 1;
                         applied: boolean;
                         receipt: string;
@@ -45556,8 +45556,8 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         root: string;
                     };
                     rows: {
-                        tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-                        action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                        tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                        action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                         ray: number;
                         rayMeta: {
                             readonly ray: 0;
@@ -45614,7 +45614,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                         legacyBare: string;
                         schemaTarget: string;
                         canonical: string;
-                        importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                        importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                         wave: 2 | 1;
                         applied: boolean;
                         receipt: string;
@@ -51779,8 +51779,8 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             root: string;
                         };
                         rows: {
-                            tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-                            action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                            tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                            action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                             ray: number;
                             rayMeta: {
                                 readonly ray: 0;
@@ -51837,7 +51837,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                             legacyBare: string;
                             schemaTarget: string;
                             canonical: string;
-                            importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                            importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                             wave: 2 | 1;
                             applied: boolean;
                             receipt: string;
@@ -68815,8 +68815,8 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                                 root: string;
                             };
                             rows: {
-                                tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-                                action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                                tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+                                action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                                 ray: number;
                                 rayMeta: {
                                     readonly ray: 0;
@@ -68873,7 +68873,7 @@ export declare function allIsFusedComputes(matrix?: MindMatrix): {
                                 legacyBare: string;
                                 schemaTarget: string;
                                 canonical: string;
-                                importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+                                importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
                                 wave: 2 | 1;
                                 applied: boolean;
                                 receipt: string;

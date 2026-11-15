@@ -220,6 +220,17 @@
   ],
   "verify_beats_recompute_by_magnitudes": []
  },
+ "src/pair/lean/proofs/movie.lean": {
+  "every_alpha_is_a_visible_fraction": [],
+  "every_colour_stop_lies_in_the_unit_interval": [],
+  "every_count_and_index_is_whole": [],
+  "every_fibonacci_index_falls_inside_the_table": [],
+  "every_lightness_is_between_black_and_white": [],
+  "every_negative_value_is_nonzero": [],
+  "every_rate_radius_and_width_is_positive": [],
+  "the_void_is_one_radius_in_every_painter": [],
+  "the_width_breakpoints_rise": []
+ },
  "src/pair/lean/proofs/quantum.lean": {
   "a_two_to_one_fold_of_addresses_is_many_to_one_by_pigeonhole": [],
   "alice_changes_the_pair": [],

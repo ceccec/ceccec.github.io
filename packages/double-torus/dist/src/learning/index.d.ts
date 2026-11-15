@@ -1176,10 +1176,10 @@ export declare function vitepressSidebar(matrix?: MindMatrix): {
         gaplessCensus: boolean;
         folders: {
             id: "papers" | "references" | "diamonds" | "model" | "theorems" | "proofs" | "pages-root" | "pages-bg" | "pages-gla" | "domain-tools" | "domain-trading" | "domain-encryption" | "domain-theorems" | "domain-research" | "domain-learn" | "domain-society" | "hub-origin" | "hub-proof" | "hub-explore" | "hub-learn" | "hub-apps" | "hub-frontier" | "hub-reference";
-            path: "/frontiers" | "/learn" | "/explore" | "/encryption" | "/quantum-tools" | ".vitepress/pages" | ".vitepress/pages/bg" | ".vitepress/pages/gla" | ".vitepress/pages/proofs" | ".vitepress/pages/theorems" | ".vitepress/pages/papers" | ".vitepress/pages/references" | ".vitepress/pages/diamonds" | ".vitepress/pages/model" | "/quantum-trading-hub" | "/research" | "/society-merkaba" | "/origin" | "/proof" | "/apps" | "/frontier" | "/reference";
+            path: "/frontiers" | "/learn" | "/explore" | "/research" | "/quantum-tools" | "/quantum-trading-hub" | "/encryption" | "/society-merkaba" | ".vitepress/pages" | ".vitepress/pages/bg" | ".vitepress/pages/gla" | ".vitepress/pages/proofs" | ".vitepress/pages/theorems" | ".vitepress/pages/papers" | ".vitepress/pages/references" | ".vitepress/pages/diamonds" | ".vitepress/pages/model" | "/origin" | "/proof" | "/apps" | "/frontier" | "/reference";
             role: "en-root locale mounts" | "bg locale" | "gla locale" | "Clay domain proofs" | "machine tag index" | "machine papers REST" | "machine references REST" | "machine diamonds REST" | "model cards" | "tools canonical" | "trading canonical" | "encryption canonical" | "theorem registry canonical" | "research canonical" | "learn canonical" | "society canonical" | "rosetta ray hub" | "rosetta ray hub (learn ray)";
             kind: "hub" | "domain" | "locale" | "corpus";
-            emitter: "references" | "toGlagolitic" | "sciencePortalParts" | "siteDomainRegistry" | "staticPages+computed-pages" | "localePath+bulgarianFromEnglish" | "domainProofCatalog" | "theoremRosettaSidebar" | "papers()" | "diamondLattice" | "ModelCardPages";
+            emitter: "references" | "sciencePortalParts" | "siteDomainRegistry" | "staticPages+computed-pages" | "localePath+bulgarianFromEnglish" | "toGlagolitic" | "domainProofCatalog" | "theoremRosettaSidebar" | "papers()" | "diamondLattice" | "ModelCardPages";
             domainId: any;
             status: "partial" | "migrated";
             note: string;
@@ -1482,8 +1482,8 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             root: string;
         };
         rows: {
-            tail: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
-            action: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+            tail: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
+            action: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
             ray: number;
             rayMeta: {
                 readonly ray: 0;
@@ -1540,7 +1540,7 @@ export declare function rosettaComputes(matrix?: MindMatrix, path?: string): {
             legacyBare: string;
             schemaTarget: string;
             canonical: string;
-            importBarrel: "language" | "ui" | "fusion" | "site" | "types" | "rosetta" | "routes" | "learning" | "iching";
+            importBarrel: "language" | "ui" | "fusion" | "site" | "rosetta" | "routes" | "learning" | "types" | "iching";
             wave: 2 | 1;
             applied: boolean;
             receipt: string;

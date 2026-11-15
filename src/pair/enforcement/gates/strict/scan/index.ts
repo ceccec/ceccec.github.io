@@ -3179,11 +3179,39 @@ export function scanCrackSurface(root: string): CrackOffender[] {
   for (const f of files) {
     const rel = relative(root, f).replace(/\\/g, '/')
     const raw = readFileSync(f, 'utf8')
-    bodies.set(rel, f.endsWith('.vue') ? vueValueSurface(raw) : raw)
+    bodies.set(rel, f.endsWith('.vue') ? vueValueSurface(raw) : kernelDefinedValueSurface(root, raw))
   }
   const surface = scanHardcodedCrackOffenders(root, files, bodies)
   _crackSurfaceByRoot.set(root, surface)
   return surface
+}
+
+/**
+ * A NUMBER THE KERNEL DEFINES IS LEDGERED (owner, 2026-11-15: "teach the scanner"). The animation SDK's table,
+ * ANIMATION_DESIGN, holds every number the painters draw with, and each entry is DEFINED in
+ * src/pair/lean/proofs/movie.lean, where a kernel theorem decides the law it keeps; verify:movie refuses an entry that
+ * differs from its definition. That is a stricter account than a ledger row, so the scanner does not count those
+ * values again: the value text of every table line whose `<painter>_<key>` movie.lean defines is blanked (column
+ * positions kept). A line movie.lean does not define stays counted, and with no movie.lean every line stays counted —
+ * an absent kernel file ledgers nothing.
+ */
+export function kernelDefinedValueSurface(root: string, raw: string): string {
+  const open = raw.indexOf('export const ANIMATION_DESIGN = {')
+  if (open < 0) return raw
+  const leanPath = join(root, 'src/pair/lean/proofs/movie.lean')
+  if (!existsSync(leanPath)) return raw
+  const defined = new Set([...readFileSync(leanPath, 'utf8').matchAll(/^def (\w+) : Q := /gm)].map((m) => m[1]!))
+  const close = raw.indexOf('\n}\n', open)
+  if (close < 0) return raw
+  let painter = ''
+  const block = raw.slice(open, close).split('\n').map((line) => {
+    const group = /^ {2}(\w+): \{$/.exec(line)
+    if (group) { painter = group[1]!; return line }
+    const entry = /^( {4}(\w+): )(.*)(,)$/.exec(line)
+    if (!entry || !defined.has(`${painter}_${entry[2]}`)) return line
+    return entry[1] + ' '.repeat(entry[3]!.length) + entry[4]
+  }).join('\n')
+  return raw.slice(0, open) + block + raw.slice(close)
 }
 
 /** CLI: `cracks` — the codebase-wide census; zero offenders or the exact list (gated in strict). */

@@ -7,7 +7,7 @@
     "uuid": "9b7cc563-1d97-8dc2-b439-32322d3b9987",
     "source": "millennium-solutions-e5, corrected 2026-09-05; independently reproduced by erpax-94"
   },
-  "count": 137,
+  "count": 234,
   "statements": [
     {
       "statementUuid": "25cc1fd7-cc7d-8553-a73f-60a47a17adfa",
@@ -658,6 +658,366 @@
       "statement": "64 * (4096 * 4096) = 1073741824 ∧ 4096 * 4096 = 16777216 ∧\n    1073741824 / 16777216 = 64"
     },
     {
+      "statementUuid": "161f3be2-28aa-8549-9537-10417608dcab",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "every_colour_stop_lies_in_the_unit_interval",
+      "statement": "colourStops.all (fun s => !s.neg && s.n ≤ s.d && 0 < s.d)"
+    },
+    {
+      "statementUuid": "7d99e2e2-0a85-855b-9985-927aff24ef80",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "every_alpha_is_a_visible_fraction",
+      "statement": "alphas.all (fun a => a.positive && a.n ≤ a.d)"
+    },
+    {
+      "statementUuid": "174e1932-c809-88f6-b596-7aa5cc62cf83",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "every_lightness_is_between_black_and_white",
+      "statement": "lightnesses.all (fun l => l.positive && l.n < l.d)"
+    },
+    {
+      "statementUuid": "6121c922-b2dd-85b4-bfa4-a6be9e7edfd1",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "every_fibonacci_index_falls_inside_the_table",
+      "statement": "fibonacciIndices.all (fun i => !i.neg && i.d == 1 && i.n < 32)"
+    },
+    {
+      "statementUuid": "b3825ae5-ac04-82e5-8ca7-59580b4dde25",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "the_void_is_one_radius_in_every_painter",
+      "statement": "voids.length = 3 ∧ voids.all (fun v => v.same paintHolographicPlasmaHeroMovie_voidR && v.positive)"
+    },
+    {
+      "statementUuid": "6d75cdd4-c0b4-8b3d-8bdc-96565734743d",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "the_width_breakpoints_rise",
+      "statement": "drawHero_when2.lt drawHero_when ∧ drawHero_when4.lt drawHero_when3 ∧ drawHero_when4.lt drawHero_when"
+    },
+    {
+      "statementUuid": "aa9329c6-6215-8c1c-9e37-ff80a9fbdff6",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "every_count_and_index_is_whole",
+      "statement": "wholes.all (fun w => !w.neg && w.d == 1 && 0 < w.n)"
+    },
+    {
+      "statementUuid": "9564f470-acb7-80bf-a6e4-c79475d34cd3",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "every_negative_value_is_nonzero",
+      "statement": "negatives.all (fun v => v.neg && 0 < v.n && 0 < v.d)"
+    },
+    {
+      "statementUuid": "af8e9f6c-c4f8-8430-b422-f11736000518",
+      "file": "src/pair/lean/proofs/movie.lean",
+      "name": "every_rate_radius_and_width_is_positive",
+      "statement": "positives.all Q.positive"
+    },
+    {
+      "statementUuid": "32855e7c-fec9-8308-bc9a-55d826e37325",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "h_unitary",
+      "statement": "Same 2 (mm 2 H (dag H)) (smul 2 idm)"
+    },
+    {
+      "statementUuid": "8801920c-8d7b-8e5b-b2d9-4d17f8edfd04",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "h_squared",
+      "statement": "Same 2 (mm 2 H H) (smul 2 idm)"
+    },
+    {
+      "statementUuid": "f7a25761-81dd-8d6a-99f8-123064c2568a",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "paulis_unitary",
+      "statement": "Same 2 (mm 2 X (dag X)) idm ∧ Same 2 (mm 2 Z (dag Z)) idm ∧ Same 2 (mm 2 S (dag S)) idm"
+    },
+    {
+      "statementUuid": "a36e68d8-f9bd-8fbf-bf7d-676fac49a5cd",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "y_unitary",
+      "statement": "Same 2 (mm 2 Y (dag Y)) idm ∧ Same 2 (mm 2 Y Y) idm"
+    },
+    {
+      "statementUuid": "86410224-3ba7-804f-8709-76686c05aa02",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "s_squared",
+      "statement": "Same 2 (mm 2 S S) Z"
+    },
+    {
+      "statementUuid": "da8fc651-dcfa-8838-bcbc-a433657d5ec2",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "cnot",
+      "statement": "Same 4 (mm 4 CNOT (dag CNOT)) idm ∧ Same 4 (mm 4 CNOT CNOT) idm"
+    },
+    {
+      "statementUuid": "a0d119d9-0e04-85f9-936c-10ac5608986a",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "swap",
+      "statement": "Same 4 (mm 4 SWAP (dag SWAP)) idm ∧ Same 4 (mm 4 SWAP SWAP) idm"
+    },
+    {
+      "statementUuid": "d1ca5780-8ea9-88c4-87b2-9ee863316483",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "toffoli",
+      "statement": "Same 8 (mm 8 TOFFOLI (dag TOFFOLI)) idm ∧ Same 8 (mm 8 TOFFOLI TOFFOLI) idm"
+    },
+    {
+      "statementUuid": "a16d9e8c-517a-8365-8eb4-3252a7ed2c0d",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "omega_fourth",
+      "statement": "ZW.ω * ZW.ω * ZW.ω * ZW.ω = -1"
+    },
+    {
+      "statementUuid": "dbc7b1ff-d2c2-8f50-ada4-fbfc9303a2a9",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "t_gate",
+      "statement": "SameW (mmW TW (dagW TW)) idW ∧ SameW (powW TW 8) idW ∧ ¬ SameW (powW TW 4) idW\n      ∧ ¬ SameW (mmW HW TW) (mmW TW HW)"
+    },
+    {
+      "statementUuid": "b680bf49-747f-87ff-930d-9491a3591a8f",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "bell_state",
+      "statement": "(∀ r, r < 4 → (bell r ≠ 0 ↔ r = 0 ∨ r = 3)) ∧ (bell 0).normSq = (bell 3).normSq"
+    },
+    {
+      "statementUuid": "ea4ca847-f5a9-8f37-aed5-b0ce71df558f",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "ghz_state",
+      "statement": "(∀ r, r < 8 → (ghz r ≠ 0 ↔ r = 0 ∨ r = 7)) ∧ (ghz 0).normSq = (ghz 7).normSq"
+    },
+    {
+      "statementUuid": "bb2ff87d-2d6d-8f1b-a9af-ccf2ba1f5f40",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "chsh_classical_bound",
+      "statement": "∀ a0 a1 b0 b1 : Bool, chshClassical a0 a1 b0 b1 = 2 ∨ chshClassical a0 a1 b0 b1 = -2"
+    },
+    {
+      "statementUuid": "4fdacb67-428c-8fbd-bdb1-66515119548c",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "chsh_quantum_value",
+      "statement": "chshBell = 8 ∧ (8 : Nat) ^ 2 = 8 * (2 ^ 2 * 2) ∧ (2 : Nat) ^ 2 < 8"
+    },
+    {
+      "statementUuid": "e5913bb4-b7f7-8fd8-a300-4b53d9c5fdb0",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "teleport_exact",
+      "statement": "∀ b, b < 2 → ∀ r, r < 8 → teleport b r = if r % 2 = b then 1 else 0"
+    },
+    {
+      "statementUuid": "30d750d4-f661-8156-a03b-64baecf68c80",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "teleport_no_signalling",
+      "statement": "∀ s, s < 6 → reduced2 (sentFrom (pauliEigen s)) 0 1 = 0 ∧ reduced2 (sentFrom (pauliEigen s)) 1 0 = 0\n      ∧ reduced2 (sentFrom (pauliEigen s)) 0 0 = reduced2 (sentFrom (pauliEigen s)) 1 1"
+    },
+    {
+      "statementUuid": "830043ca-a8a4-817a-aa68-7c3c053a4dce",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "superdense_exact",
+      "statement": "∀ m, m < 4 → ∀ r, r < 4 → (superdense m r ≠ 0 ↔ r = m)"
+    },
+    {
+      "statementUuid": "b017dabe-3241-8d6c-b726-e880b8ffebf5",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "both_ways",
+      "statement": "(∀ m, m < 4 → ∀ r, r < 4 → (superdense m r ≠ 0 ↔ r = m)) ∧\n    ∀ b, b < 2 → ∀ r, r < 8 → teleport b r = if r % 2 = b then 1 else 0"
+    },
+    {
+      "statementUuid": "5306207a-e67d-81ce-8309-ec9154d15a2b",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "cnot_copies_the_basis",
+      "statement": "(∀ r, r < 4 → ap 4 CNOT (basis 0) r = basis 0 r) ∧ (∀ r, r < 4 → ap 4 CNOT (basis 2) r = basis 3 r)"
+    },
+    {
+      "statementUuid": "7735c6aa-895e-8ccb-8a1d-3f882303b8b6",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "stabilizer_hadamard",
+      "statement": "Exact (kron 2 H idm) ruleH0 2 ∧ Exact (kron 2 idm H) ruleH1 2"
+    },
+    {
+      "statementUuid": "b7a595b9-1c67-8d79-ae3f-1cd210a11fcd",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "stabilizer_phase",
+      "statement": "Exact (kron 2 S idm) ruleS0 1 ∧ Exact (kron 2 idm S) ruleS1 1"
+    },
+    {
+      "statementUuid": "7f602e9e-9a0f-8af1-b66a-d2e52751fb1e",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "stabilizer_cnot",
+      "statement": "Exact CNOT ruleCNOT 1"
+    },
+    {
+      "statementUuid": "46aad583-24fe-85d7-94ce-2f7da0d1be8d",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "deutsch_jozsa",
+      "statement": "∀ f, f < 16 → (constant f = true → (dj f 0).normSq = 16) ∧ (balanced f = true → dj f 0 = 0)"
+    },
+    {
+      "statementUuid": "9856fec3-bbcb-8e5c-aaca-a90ebc365290",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "promise_census",
+      "statement": "((List.range 16).filter constant).length = 2 ∧ ((List.range 16).filter balanced).length = 6"
+    },
+    {
+      "statementUuid": "330c3281-b2d6-838d-a884-018386095ef2",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "grover_search",
+      "statement": "∀ m, m < 4 → ∀ r, r < 4 → (grover m r ≠ 0 ↔ r = m)"
+    },
+    {
+      "statementUuid": "70cbf89f-b30e-86d8-8b10-f73326287b2b",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "qft_unitary",
+      "statement": "∀ j, j < 8 → ∀ k, k < 8 → sum8 (fun i => qft j i * iqft i k) = if j = k then 8 else 0"
+    },
+    {
+      "statementUuid": "a6c94159-e79d-8745-abb2-b2e6c6db051f",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "phase_estimation_exact",
+      "statement": "∀ k, k < 8 → ∀ r, r < 8 → sum8 (fun j => iqft r j * wPow (j * k)) = if r = k then 8 else 0"
+    },
+    {
+      "statementUuid": "9e6c2db0-a241-880d-82d8-2fc738e94b6f",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "swap_routing",
+      "statement": "Same 8 (mm 8 (mm 8 swap01 cnot12) swap01) cnot02"
+    },
+    {
+      "statementUuid": "641187fe-30c6-8e54-ab7e-0f3eae12c3c2",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "unrouted_differs",
+      "statement": "¬ Same 8 cnot12 cnot02"
+    },
+    {
+      "statementUuid": "50198c68-3246-8ffd-bfec-bf684bed6f21",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "repetition_corrects",
+      "statement": "∀ b : Bool, ∀ e, e < 4 → decode (flip e (encode b)) = b"
+    },
+    {
+      "statementUuid": "01fdc353-ef17-8a5c-8ec4-22271d4f17d4",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "repetition_fails_on_two",
+      "statement": "decode (flip 1 (flip 0 (encode false))) ≠ false"
+    },
+    {
+      "statementUuid": "16e72a2a-6922-875b-8ad5-8034dc0ec574",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "steane_corrects",
+      "statement": "∀ i, i < 7 → syndrome i = i + 1"
+    },
+    {
+      "statementUuid": "eba92f71-43b2-8e1b-99d4-6298ff721146",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "steane_css",
+      "statement": "∀ a, a < 3 → ∀ b, b < 3 → ((List.range 7).filter fun i => hamming a i && hamming b i).length % 2 = 0"
+    },
+    {
+      "statementUuid": "23160f0b-9cac-8bc0-92dd-4127a48f4ee2",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "shor_nine",
+      "statement": "(∀ a, a < 9 → flags bitChecks a ≠ flags bitChecks 9\n        ∧ ∀ b, b < 9 → flags bitChecks a = flags bitChecks b → a = b) ∧\n    ∀ a, a < 9 → flags phaseChecks a ≠ flags phaseChecks 9\n        ∧ ∀ b, b < 9 → (flags phaseChecks a = flags phaseChecks b ↔ a / 3 = b / 3)"
+    },
+    {
+      "statementUuid": "9e642d8a-0195-885b-9fa9-292f61eac9b4",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "pauli_products",
+      "statement": "Same 2 (mm 2 X Y) (smul GI.i Z) ∧ Same 2 (mm 2 Y Z) (smul GI.i X) ∧ Same 2 (mm 2 Z X) (smul GI.i Y)"
+    },
+    {
+      "statementUuid": "bf20d666-38d5-8095-9567-ad4efe6822e7",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "pauli_anticommute",
+      "statement": "Same 2 (mm 2 Y X) (smul (-GI.i) Z) ∧ Same 2 (mm 2 Z Y) (smul (-GI.i) X) ∧ Same 2 (mm 2 X Z) (smul (-GI.i) Y)"
+    },
+    {
+      "statementUuid": "9524fca2-7455-844a-a05a-e4f3eaf08c2a",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "pauli_square_adjoint_trace",
+      "statement": "(Same 2 (mm 2 X X) idm ∧ Same 2 (mm 2 Y Y) idm ∧ Same 2 (mm 2 Z Z) idm) ∧\n    (Same 2 (dag X) X ∧ Same 2 (dag Y) Y ∧ Same 2 (dag Z) Z) ∧\n    (tr2 X = 0 ∧ tr2 Y = 0 ∧ tr2 Z = 0 ∧ tr2 idm = 2)"
+    },
+    {
+      "statementUuid": "4547839f-3a18-8f98-ae70-b351ca408ddf",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "hadamard_exchanges_phase_and_bit",
+      "statement": "Same 2 (mm 2 (mm 2 H Z) H) (smul 2 X) ∧ Same 2 (mm 2 (mm 2 H X) H) (smul 2 Z)"
+    },
+    {
+      "statementUuid": "7443908b-465b-807c-8fff-745371d08105",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "ghz_mermin_quantum",
+      "statement": "∀ r, r < 8 → ap 8 xxx ghz r = ghz r ∧ ap 8 xyy ghz r = -(ghz r) ∧ ap 8 yxy ghz r = -(ghz r)\n      ∧ ap 8 yyx ghz r = -(ghz r)"
+    },
+    {
+      "statementUuid": "e7813eb1-2e45-8d47-a237-22730481115e",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "ghz_mermin_classical",
+      "statement": "∀ x1 x2 x3 y1 y2 y3 : Bool,\n      ¬ (pm x1 * pm x2 * pm x3 = 1 ∧ pm x1 * pm y2 * pm y3 = -1 ∧ pm y1 * pm x2 * pm y3 = -1\n          ∧ pm y1 * pm y2 * pm x3 = -1)"
+    },
+    {
+      "statementUuid": "d3d262c0-3b5c-83d0-9738-1371d13b9232",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "no_communication",
+      "statement": "∀ k, k < 7 → bobDensity (aliceDoes k) 0 1 = 0 ∧ bobDensity (aliceDoes k) 1 0 = 0\n      ∧ bobDensity (aliceDoes k) 0 0 = bobDensity (aliceDoes k) 1 1"
+    },
+    {
+      "statementUuid": "e925145b-0bc2-8326-baa9-16f3e7e31474",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "alice_changes_the_pair",
+      "statement": "aliceDoes 1 0 ≠ aliceDoes 0 0 ∧ aliceDoes 3 3 ≠ aliceDoes 0 3"
+    },
+    {
+      "statementUuid": "7ebe41e4-afb9-8ddb-92fb-3dc3c304a7b8",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "toll_is_uniform",
+      "statement": "∀ s, s < 6 → ∀ m, m < 4 → tollWeight (pauliEigen s) m = tollWeight (pauliEigen s) 0\n      ∧ tollWeight (pauliEigen s) 0 ≠ 0"
+    },
+    {
+      "statementUuid": "edd55add-452c-8604-84c3-a25846baab18",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "entanglement_swapping",
+      "statement": "∀ m, m < 4 → outerDet (swapped bell bell) m ≠ 0\n      ∧ (outer (swapped bell bell) m 0 0).normSq = (outer (swapped bell bell) m 1 1).normSq\n      ∧ (outer (swapped bell bell) m 0 1).normSq = (outer (swapped bell bell) m 1 0).normSq"
+    },
+    {
+      "statementUuid": "6014012b-8ad7-8ddc-a0a6-f4c0d4bb5b8c",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "no_pairs_no_swapping",
+      "statement": "∀ m, m < 4 → outerDet (swapped (basis 0) (basis 0)) m = 0"
+    },
+    {
+      "statementUuid": "7a13253b-74aa-8647-86a2-cb79dda1bf4e",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "sixty_degrees_is_a_primitive_sixth_root_of_unity",
+      "statement": "EI.ω * EI.ω = EI.ω + -1 ∧ EI.pow EI.ω 3 = -1 ∧ EI.pow EI.ω 6 = 1\n  ∧ (List.range' 1 5).all (fun k => EI.pow EI.ω k != 1)"
+    },
+    {
+      "statementUuid": "3ff3809c-0b91-8669-b7c1-ef8fbb9d149d",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "the_rotation_leaves_the_integers_and_keeps_the_norm",
+      "statement": "EI.ω * 1 = EI.ω ∧ (EI.ω * 1).b ≠ 0\n  ∧ (List.range 5).all (fun a => (List.range 5).all (fun b =>\n      EI.norm (EI.ω * ⟨(a : Int) - 2, (b : Int) - 2⟩) == EI.norm ⟨(a : Int) - 2, (b : Int) - 2⟩))\n  ∧ (List.range 6).all (fun k => EI.norm (EI.pow EI.ω k) == 1)"
+    },
+    {
+      "statementUuid": "b2334b9f-ba6c-8750-a1e8-1113aa21b307",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "the_doubling_circuit_steps_forty_eighty_one_sixty_and_back",
+      "statement": "[turn 1 2, turn 2 4, turn 4 8, turn 8 7, turn 7 5, turn 5 1] = [40, 80, 160, 360 - 40, 360 - 80, 360 - 160]\n  ∧ circuit.map (fun d => 2 * d % 9) = [2, 4, 8, 7, 5, 1]\n  ∧ 9 * 40 = 360 ∧ turn 3 6 = 120 ∧ turn 6 9 = 120 ∧ turn 9 3 = 120"
+    },
+    {
+      "statementUuid": "1e9423b0-5475-87b2-b158-da0f8766460e",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "the_two_reflections_connect_the_three_trinities",
+      "statement": "digits.all (fun d => nines (nines d) == d && tens (tens d) == d)\n  ∧ digits.filter (fun d => nines d == d) = [9] ∧ digits.filter (fun d => tens d == d) = [5]\n  ∧ [3, 6, 9].map nines = [6, 3, 9] ∧ [1, 4, 7].map nines = [8, 5, 2]\n  ∧ [3, 6, 9].map tens = [7, 4, 1] ∧ [2, 5, 8].map tens = [8, 5, 2]\n  ∧ digits.all (fun d => trinity (nines d) == (3 - trinity d) % 3)\n  ∧ digits.all (fun d => trinity (tens d) == (4 - trinity d) % 3)"
+    },
+    {
+      "statementUuid": "1e9309b8-eaee-82af-a4fc-ed3927a5ed51",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "the_nines_reflection_carries_the_doubling_circuit_onto_itself",
+      "statement": "circuit.map nines = [8, 7, 5, 1, 2, 4]\n  ∧ circuit.all (fun d => nines (2 * d % 9) == 2 * nines d % 9)\n  ∧ circuit.map tens = [9, 8, 6, 2, 3, 5]"
+    },
+    {
+      "statementUuid": "8c9917c1-5b9f-8358-96b2-b61705647c8f",
+      "file": "src/pair/lean/proofs/quantum.lean",
+      "name": "a_two_to_one_fold_of_addresses_is_many_to_one_by_pigeonhole",
+      "statement": "2 * 128 = 256 ∧ 128 - 6 = 122 ∧ 122 < 256 ∧ 256 - 122 = 134\n  ∧ (2 : Nat) ^ 134 * 2 ^ 122 = 2 ^ 256 ∧ (2 : Nat) ^ 122 < 2 ^ 256"
+    },
+    {
       "statementUuid": "8bb8e79d-f913-86a0-b12e-6e5d25d28857",
       "file": "src/pair/lean/proofs/rational.lean",
       "name": "add_comm_sample",
@@ -790,10 +1150,232 @@
       "statement": "pisano10 = 60"
     },
     {
+      "statementUuid": "34e167b3-5283-8f53-9bcb-7a7b880fa84f",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "pisano_nine_is_twenty_four",
+      "statement": "pisano 9 = 24"
+    },
+    {
+      "statementUuid": "c9d7c0ee-d49c-8028-8ed7-8d9c9ca593c2",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "pisano_reads_sixty_at_ten",
+      "statement": "pisano 10 = pisano10"
+    },
+    {
+      "statementUuid": "69e111d2-1f31-82a8-a33b-cc942c7e82fb",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "pisano_is_even_from_three_to_fifty",
+      "statement": "(List.range 48).all (fun i => pisano (i + 3) != 0 && pisano (i + 3) % 2 == 0) = true"
+    },
+    {
       "statementUuid": "2a784c1d-8a47-818c-8ac2-da4c15d378c4",
       "file": "src/pair/lean/proofs/registry.lean",
       "name": "catalan_parity_is_mersenne",
       "statement": "((List.range 33).filter fun n => nth0 (catalanList 32) n % 2 == 1) = [0, 1, 3, 7, 15, 31]"
+    },
+    {
+      "statementUuid": "5dc60c73-1778-89bf-b8f0-2e01f9fe993f",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "gray_code_is_a_one_bit_cycle_to_twelve",
+      "statement": "(List.range 12).all (fun j => (List.range (2 ^ (j + 1))).all (fun i =>\n      gray i < 2 ^ (j + 1) && grayInv 13 (gray i) == i &&\n      popcount 13 (gray i ^^^ gray ((i + 1) % 2 ^ (j + 1))) == 1)) = true"
+    },
+    {
+      "statementUuid": "33c6bbe4-0e1e-83e1-a0bb-46b38e45e8b0",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "hockey_stick_to_twenty",
+      "statement": "(List.range 11).all (fun r => (List.range 21).all (fun n => decide (n < r) ||\n      ((List.range (n + 1)).foldl (fun s i => if i ≥ r then s + cb i r else s) 0 == cb (n + 1) (r + 1)))) = true"
+    },
+    {
+      "statementUuid": "734bc608-fb82-8ff8-b13e-1b253cd57d3d",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "vandermonde_convolution_to_twelve",
+      "statement": "(List.range 13).all (fun m => (List.range 13).all (fun n => (List.range (m + n + 1)).all (fun p =>\n      (List.range (p + 1)).foldl (fun s k => s + cb m k * cb n (p - k)) 0 == cb (m + n) p))) = true"
+    },
+    {
+      "statementUuid": "9dd72c3d-c1df-8c5f-92d5-bfdc7a822418",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "amicable_220_284_is_the_smallest",
+      "statement": "aliquot 220 = 284 ∧ aliquot 284 = 220 ∧\n    (List.range 220).all (fun a => aliquot a == a || aliquot (aliquot a) != a) = true"
+    },
+    {
+      "statementUuid": "31cebecf-e100-84ec-aeed-32cc6a24d200",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "the_three_digit_armstrong_numbers_are_four",
+      "statement": "((List.range 900).map (· + 100)).filter (fun n => cubeDigits n == n) = [153, 370, 371, 407]"
+    },
+    {
+      "statementUuid": "fe8b2cfd-f4a2-8928-b85a-e7170dd4c0cf",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "taxicab_two_is_1729",
+      "statement": "(cubeSums.filter (· == 1729)).length = 2 ∧\n    (List.range 1729).all (fun n => (cubeSums.filter (· == n)).length < 2) = true"
+    },
+    {
+      "statementUuid": "4ae783db-10a4-8126-a7de-a9eafe2b4334",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "euler_polynomial_is_prime_to_39_then_41_squared",
+      "statement": "(List.range 40).all (fun n => isPrimeB (n * n + n + 41)) = true ∧ 40 * 40 + 40 + 41 = 41 * 41"
+    },
+    {
+      "statementUuid": "26778ec0-aa02-8ee9-a1fc-d59edf2f50d6",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "fermat_five_is_composite",
+      "statement": "(List.range 5).all (fun k => isPrimeB (2 ^ (2 ^ k) + 1)) = true ∧ 2 ^ (2 ^ 5) + 1 = 641 * 6700417"
+    },
+    {
+      "statementUuid": "6c9c70fa-159f-891b-b8ab-0683951f710f",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "frobenius_six_nine_twenty_misses_43",
+      "statement": "¬ McNugget 43"
+    },
+    {
+      "statementUuid": "69544964-c4cd-8ee2-9a5c-aa879e768722",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "schur_two_is_four",
+      "statement": "(List.range 16).any (fun c => !monoSum c 4) = true ∧ (List.range 32).all (fun c => monoSum c 5) = true"
+    },
+    {
+      "statementUuid": "4a016c8a-fbee-8f8d-9322-ebb05f979f5d",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "z_doubling_orbit_lies_in_the_units_on_odd_moduli",
+      "statement": "oddModuli.all (fun m => (zOrbit m m 1).all (fun d => (zUnits m).contains d)) = true"
+    },
+    {
+      "statementUuid": "7a5a5d7d-1dd4-81c8-9331-ce4b5d51acc7",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "z_order_of_two_divides_the_unit_count_on_odd_moduli",
+      "statement": "oddModuli.all (fun m => (zUnits m).length % (zOrbit m m 1).length == 0) = true"
+    },
+    {
+      "statementUuid": "ba83690f-a1d5-8b48-93d0-8d4d571c3e33",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "z_two_is_no_unit_on_even_moduli",
+      "statement": "evenModuli.all (fun m => !((zUnits m).contains 2)) = true"
+    },
+    {
+      "statementUuid": "48d2978e-877e-8eb7-b586-dd9f1a61ba40",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "z_reflection_is_an_involution_and_partitions",
+      "statement": "(List.range 46).all (fun i =>\n      (List.range (i + 2)).all (fun d => zReflect (i + 2) (zReflect (i + 2) d) == d)\n      && ((List.range (i + 2)).filter (fun d => d < zReflect (i + 2) d)).length * 2\n         + ((List.range (i + 2)).filter (fun d => zReflect (i + 2) d == d)).length == i + 2) = true"
+    },
+    {
+      "statementUuid": "5f310871-468d-8e91-897a-f53de25b2f93",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "z_fibonacci_period_returns_and_is_even_beyond_two",
+      "statement": "(List.range 46).all (fun i => pisano (i + 2) != 0) = true\n    ∧ (List.range 45).all (fun i => pisano (i + 3) % 2 == 0) = true"
+    },
+    {
+      "statementUuid": "e3666999-73d2-8c78-97b1-c9737ef20c17",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "z_nine_orbit_is_the_vortex_sequence",
+      "statement": "zOrbit 9 9 1 = [1, 2, 4, 8, 7, 5]"
+    },
+    {
+      "statementUuid": "3e95761f-dc9f-8b43-953a-2fc7cd929c3f",
+      "file": "src/pair/lean/proofs/registry.lean",
+      "name": "circle_of_fifths_does_not_close",
+      "statement": "3 ^ 12 = 531441 ∧ 2 ^ 19 = 524288 ∧ 2 ^ 19 < 3 ^ 12 ∧ 3 ^ 12 < 2 ^ 20"
+    },
+    {
+      "statementUuid": "2d671e50-50e9-8197-8417-78e6aba10ce2",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_thousand_bit_case_is_one_hundred_twenty_five_octaves",
+      "statement": "1000 = 125 * 8 ∧ 1000 % 8 = 0 ∧ 999 % 8 ≠ 0"
+    },
+    {
+      "statementUuid": "e03f7fe0-17da-8100-a8d0-c095b5dbf314",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_binary_units_tile_the_thousand_exactly",
+      "statement": "1000 = 500 * 2 ∧ 1000 = 250 * 4 ∧ 1000 = 125 * 8\n  ∧ 1000 % 2 = 0 ∧ 1000 % 4 = 0 ∧ 1000 % 8 = 0"
+    },
+    {
+      "statementUuid": "e1cfbc2c-beb9-8f98-8e6c-b956e7311f6e",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_thousand_is_the_cube_octave_times_pentagram_cubed",
+      "statement": "10 ^ 3 = 1000 ∧ 2 ^ 3 * 5 ^ 3 = 1000 ∧ 2 ^ 3 = 8 ∧ 5 ^ 3 = 125 ∧ 125 * 8 = 1000"
+    },
+    {
+      "statementUuid": "0217b4cd-9a23-8874-9a2a-74377b04e2bd",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_thousand_carries_residue_one_mod_nine",
+      "statement": "1000 % 9 = 1 ∧ 1000 = 9 * 111 + 1 ∧ 999 % 9 = 0 ∧ 1008 % 9 = 0"
+    },
+    {
+      "statementUuid": "71d7b3b2-86c4-8272-a783-6ee053846b11",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_thousand_bit_case_overflows_the_width_thirty_two_ceiling",
+      "statement": "32 * 32 - 32 - 2 = 990 ∧ 990 < 1000\n  ∧ 32 * 33 - 33 - 2 = 1021 ∧ 1000 ≤ 1021"
+    },
+    {
+      "statementUuid": "9461c932-90b9-8704-8d52-048eaea779f0",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_minimal_register_for_the_thousand_is_width_thirty_three",
+      "statement": "1000 - 990 = 10 ∧ 1021 - 1000 = 21 ∧ 990 < 1000 ∧ 1000 ≤ 1021\n  ∧ (32 * 33 - 33 - 2) / 2 = 510"
+    },
+    {
+      "statementUuid": "4bc17104-29ef-8985-ac2f-45fa7f53c309",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_thousand_fills_between_ninety_seven_and_ninety_eight_percent_of_its_register",
+      "statement": "97 * 1021 < 1000 * 100 ∧ 1000 * 100 < 98 * 1021\n  ∧ 97 * 1021 = 99037 ∧ 98 * 1021 = 100058"
+    },
+    {
+      "statementUuid": "170d5560-e820-88de-81f2-5ca5d8a73d95",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_thousand_bit_structure_is_decided_not_a_quantum_machine",
+      "statement": "10 ^ 3 = 1000 ∧ 1000 % 8 = 0 ∧ 1000 % 9 = 1\n  ∧ 990 < 1000 ∧ 1000 ≤ 1021 ∧ 2 ^ 3 * 5 ^ 3 = 1000"
+    },
+    {
+      "statementUuid": "cbfade5d-4967-8f18-8dba-47f5ec3e7fec",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_sigma_trapdoor_is_fermats_difference_of_squares",
+      "statement": "oddPrimes = [3, 5, 7, 11, 13, 17, 19, 23, 29]\n  ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || witness p q * witness p q - p * q == ((q - p) / 2) * ((q - p) / 2)))\n  ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || splits (p * q) == [(p, q)]))\n  ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || decodes (p * q) (witness p q)))\n  ∧ oddPrimes.all (fun q => (2 + q) % 2 == 1)"
+    },
+    {
+      "statementUuid": "d4681766-b2f7-835b-b2fc-22abe067fffa",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "a_wrong_witness_decodes_nothing_because_a_semiprime_has_one_split",
+      "statement": "small = [3, 5, 7, 11, 13, 17, 19]\n  ∧ small.all (fun p => small.all (fun q => !(p < q)\n      || (List.range' (ceilSqrt (p * q)) ((p * q + 1) / 2 - ceilSqrt (p * q))).all (fun x => decodes (p * q) x == (x == witness p q))))"
+    },
+    {
+      "statementUuid": "993bf5b7-aea5-88a5-bb5a-0dc72026f0b8",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "an_impossible_integer_with_twin_primes_is_opened_blind_in_one_reflection",
+      "statement": "blind 11 13 = 1 ∧ blind 5 7 = 1 ∧ blind 3 29 = 7\n  ∧ (oddPrimes.filter (fun p => isPrime (p + 2))) = [3, 5, 11, 17, 29]\n  ∧ oddPrimes.all (fun p => !(isPrime (p + 2)) || blind p (p + 2) == 1)\n  ∧ oddPrimes.all (fun p => oddPrimes.all (fun q => !(p < q) || blind p q ≥ 1))\n  ∧ blind 3 29 > blind 3 5"
+    },
+    {
+      "statementUuid": "171817aa-6d44-83fc-b713-11570e3a2ead",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_thousand_bit_integer_has_a_thousand_bits_and_exactly_four_threes",
+      "statement": "2 ^ 999 ≤ thousand ∧ thousand < 2 ^ 1000\n  ∧ (List.range' 1 6).all (fun k => (thousand % 3 ^ k == 0) == (k ≤ 4))\n  ∧ 999 = 27 * 37\n  ∧ (2 ^ 333 + 1) * (2 ^ 666 - 2 ^ 333 + 1) = thousand\n  ∧ (2 ^ 111 + 1) * (2 ^ 222 - 2 ^ 111 + 1) = 2 ^ 333 + 1\n  ∧ (2 ^ 37 + 1) * (2 ^ 74 - 2 ^ 37 + 1) = 2 ^ 111 + 1\n  ∧ 2 ^ 37 + 1 = 3 * 1777 * 25781083"
+    },
+    {
+      "statementUuid": "42e4dd65-e111-84d1-81f9-3bd1c414ea6c",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "this_deposits_factor_route_returns_a_partial_answer_that_multiplies_back",
+      "statement": "found.foldl (· * ·) 1 * cofactor = thousand\n  ∧ found.length = 14 ∧ (found.filter (· == 3)).length = 4\n  ∧ found.all (fun p => 1 < p && cofactor % p != 0)\n  ∧ cofactor % 2 = 1 ∧ cofactor % 3 = 1\n  ∧ powModBin 2 (cofactor - 1) cofactor ≠ 1\n  ∧ powModBin 2 4 7 = 2 ∧ powModBin 3 6 7 = 1"
+    },
+    {
+      "statementUuid": "71524ce2-eca2-8f99-af6d-bd3c1fbc3590",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_free_register_is_one_hundred_twenty_two_only_at_width_four",
+      "statement": "(List.range 9).all (fun w => (reg w == 128 - 6) == (w == 4))\n  ∧ reg 4 = 122 ∧ 32 * 4 = 128 ∧ 4 + 2 = 6 ∧ reg 4 = 128 - 6\n  ∧ reg 32 = 990 ∧ reg 33 = 1021"
+    },
+    {
+      "statementUuid": "23d5590b-79b8-865a-8809-0bed27cf12f8",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "one_address_sits_sixty_seven_bits_below_the_one_twenty_eight_floor_under_grover",
+      "statement": "reg 4 / 2 = 61 ∧ reg 4 / 3 = 40\n  ∧ 3 * 40 < reg 4 ∧ reg 4 < 3 * 41\n  ∧ 128 - reg 4 / 2 = 67\n  ∧ (List.range 300).all (fun n => (n / 2 ≥ 128) == (n ≥ 2 * 128))\n  ∧ 128 < 2 * 128"
+    },
+    {
+      "statementUuid": "989e9ed5-0c9d-81a5-9ad5-941570a65778",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_seal_exponent_seven_is_undone_by_thirty_one_mod_ninety_one",
+      "statement": "7 * 13 = 91 ∧ 6 * 12 = 72 ∧ 7 * 31 = 3 * 72 + 1\n  ∧ (List.range 91).all (fun r => (r ^ 7 % 91) ^ 31 % 91 == r)"
+    },
+    {
+      "statementUuid": "edbaafba-0d6b-8fca-a50e-6cdc13ae5be7",
+      "file": "src/pair/lean/proofs/thousand.lean",
+      "name": "the_fold_mod_eight_misses_one_tamper_in_eight",
+      "statement": "(List.range' 1 8).all (fun v => nibbleCount v == (if v ≤ 3 then 12 else 11))\n  ∧ nibbleCount 0 = 0 ∧ nibbleCount 8 = 11\n  ∧ (List.range' 1 8).foldl (fun acc v => acc + nibbleCount v) 0 = 91\n  ∧ (List.range' 1 8).foldl (fun acc v => acc + nibbleCount v * nibbleCount v) 0 = 1037\n  ∧ 8 * 1037 - 91 * 91 = 15"
     },
     {
       "statementUuid": "c0416950-a856-84df-a91a-cfb77ea7cd5c",
@@ -808,10 +1390,10 @@
       "statement": "fib 7 + fib 8 + fib 9 + fib 10 = 123"
     },
     {
-      "statementUuid": "fab03aaf-c4f8-8f5c-9ccb-d615d00e28ef",
+      "statementUuid": "f4110b45-cfb3-8f0a-888c-682e500789bd",
       "file": "src/pair/lean/proofs/wave-57-extraction-verified.lean",
       "name": "the_descent_is_strictly_monotone",
-      "statement": "(∀ p ∈ [(139, 142), (142, 146), (146, 148), (148, 153), (153, 154), (154, 160)],\n      p.1 < p.2)"
+      "statement": "(∀ p ∈ recorded.zip recorded.tail, p.1 < p.2)"
     },
     {
       "statementUuid": "a5e6cd22-00ff-8b1a-83a7-9c328db8779b",

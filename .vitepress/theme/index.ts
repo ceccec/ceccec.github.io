@@ -8,6 +8,8 @@ import { registerVitePressComponents } from '../lib/register-components'
 import '../../src/ui/tokens.css'
 import '../../src/render/ui/tokens.css'
 import '../../src/render/ui/style.css'
+// the one animation SDK — every number the canvases paint with, as custom properties the painters bind from
+import '../../packages/double-torus/double-torus.scss'
 import { registerShadcnUi } from '../lib/shadcn-ui.ts'
 import './hero-glass.css'
 import './universal-page.css'

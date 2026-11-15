@@ -29,7 +29,7 @@
  */
 
 import { ed25519Verify, sha256, sha256Sync, toUuid } from '../../src/0'
-import { minimalRegisterWidth, readUuid, sealUuid, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected, theQuantumUuidIsReadSealedAndCountedByItsTheorems, uuidOfBytes, uuidStamp, uuidRegister, verifyUuid } from '../../src/quantum/index.ts'
+import { minimalRegisterWidth, readUuid, sealUuid, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected, theMovieTurnsByTheAnglesTheTheoremsDecide, theQuantumUuidIsReadSealedAndCountedByItsTheorems, uuidOfBytes, uuidStamp, uuidRegister, verifyUuid } from '../../src/quantum/index.ts'
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { decided } from './status.ts'
@@ -105,7 +105,7 @@ export async function ed25519Findings(): Promise<{ findings: string[]; measured:
  * Three states: a missing axiom record is NOT MEASURED, never a pass and never an empty list.
  */
 type TheoremFold = () => { facets: readonly { facet: string; on: boolean }[]; theorems: readonly { theorem: string; file: string; decides: readonly number[] }[] }
-export function quantumUuidFindings(root: string = process.cwd(), folds: readonly TheoremFold[] = [theQuantumUuidIsReadSealedAndCountedByItsTheorems, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected]): { findings: string[]; theorems: number; tampers: number; axioms: 'measured' | 'NOT MEASURED' } {
+export function quantumUuidFindings(root: string = process.cwd(), folds: readonly TheoremFold[] = [theQuantumUuidIsReadSealedAndCountedByItsTheorems, theLeadsOfSixtyAndFortyDegreesAreDecidedAndTheirFalseHalvesReflected, theMovieTurnsByTheAnglesTheTheoremsDecide]): { findings: string[]; theorems: number; tampers: number; axioms: 'measured' | 'NOT MEASURED' } {
   const findings: string[] = []
   const axiomsPath = join(root, '.vitepress', 'data', 'lean-axioms.json')
   const record = existsSync(axiomsPath) ? (JSON.parse(readFileSync(axiomsPath, 'utf8')) as Record<string, Record<string, string[]>>) : undefined

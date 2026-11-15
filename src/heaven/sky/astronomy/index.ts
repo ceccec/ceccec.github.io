@@ -27,6 +27,7 @@ import {
   RAVE_BODIES_13, RAVE_CENTER_GATES, RAVE_CENTERS_9, RAVE_CHANNELS_36, RAVE_DESIGN_SUN_ARC_DEG, RAVE_GATE_ARC_DEG, RAVE_LINE_ARC_DEG,
   humanDesignChannelsAndCenters, humanDesignVerifiedWheel,
   raveDefinedChannels, raveMandalaGateLineAt } from '../../../quantum/spirit/index.ts'
+import { ANIMATION_DESIGN } from '../../../quantum/wind/geometry/index.ts'
 
 /** One celestial body paint sample at instant `at`. */
 export type AstronomySimulationBody = {
@@ -1178,8 +1179,8 @@ function paintCenterShape(
     ctx.closePath()
   } else {
     ctx.moveTo(x, y - r)
-    ctx.lineTo(x + r * (3 / 4), y + r * (3 / 5))
-    ctx.lineTo(x - r * (3 / 4), y + r * (3 / 5))
+    ctx.lineTo(x + r * ANIMATION_DESIGN.paintCenterShape.lineToArg0Part, y + r * ANIMATION_DESIGN.paintCenterShape.lineToArg1Part)
+    ctx.lineTo(x - r * ANIMATION_DESIGN.paintCenterShape.lineToArg0Part, y + r * ANIMATION_DESIGN.paintCenterShape.lineToArg1Part)
     ctx.closePath()
   }
 }
@@ -1198,10 +1199,10 @@ export function drawHumanDesignBodyGraph(
   const dark = opts.dark !== false
   const reduce = opts.reduce === true
   const paint = movieCanvasPolarity(dark)
-  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
-  const accent = (alpha: number) => paint(A432_HUE + GOLDEN_ANGLE / (2 * 2), alpha, { L: (5 * 3) / 16, C: 1 / 32 })
+  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: ANIMATION_DESIGN.drawHumanDesignBodyGraph.paintL, C: ANIMATION_DESIGN.drawHumanDesignBodyGraph.paintC })
+  const accent = (alpha: number) => paint(A432_HUE + GOLDEN_ANGLE / (2 * 2), alpha, { L: ANIMATION_DESIGN.drawHumanDesignBodyGraph.paintL, C: ANIMATION_DESIGN.drawHumanDesignBodyGraph.paintC2 })
   ctx.clearRect(0, 0, w, h)
-  const pad = min(w, h) / (8 * 2)
+  const pad = min(w, h) / ANIMATION_DESIGN.drawHumanDesignBodyGraph.pad
   const bw = w - pad * 2
   const bh = h - pad * 2
   const definedCh = new Set(panel.definedKeys)
@@ -1216,33 +1217,33 @@ export function drawHumanDesignBodyGraph(
     const a = xy(ch.from as keyof typeof RAVE_CENTER_LAYOUT)
     const b = xy(ch.to as keyof typeof RAVE_CENTER_LAYOUT)
     const on = definedCh.has(ch.key)
-    ctx.strokeStyle = on ? accent(7 / (5 * 2)) : ink(2 / (5 * 5))
+    ctx.strokeStyle = on ? accent(ANIMATION_DESIGN.drawHumanDesignBodyGraph.accentArg0) : ink(ANIMATION_DESIGN.drawHumanDesignBodyGraph.inkArg0)
     ctx.lineWidth = on ? 2 : 1
     ctx.beginPath()
     ctx.moveTo(a.x, a.y)
     ctx.lineTo(b.x, b.y)
     ctx.stroke()
   }
-  const r = min(w, h) / (8 * 3)
-  const labelPx = max(9, round(h / (8 * 4)))
+  const r = min(w, h) / ANIMATION_DESIGN.drawHumanDesignBodyGraph.r
+  const labelPx = max(ANIMATION_DESIGN.drawHumanDesignBodyGraph.maxArg0, round(h / ANIMATION_DESIGN.drawHumanDesignBodyGraph.roundArg0Part))
   for (const center of panel.lattice.centers) {
     const key = center as keyof typeof RAVE_CENTER_LAYOUT
     const p = xy(key)
     const on = definedCtr.has(center)
-    ctx.fillStyle = on ? accent(1 / 2) : ink(1 / (5 * 2))
-    ctx.strokeStyle = on ? accent(1) : ink(3 / 5)
+    ctx.fillStyle = on ? accent(1 / 2) : ink(ANIMATION_DESIGN.drawHumanDesignBodyGraph.inkArg02)
+    ctx.strokeStyle = on ? accent(1) : ink(ANIMATION_DESIGN.drawHumanDesignBodyGraph.inkArg03)
     ctx.lineWidth = on ? 2 : 1
     paintCenterShape(ctx, p.x, p.y, r, p.shape)
     ctx.fill()
     ctx.stroke()
     if (!reduce) {
-      ctx.fillStyle = ink(7 / (5 * 2))
+      ctx.fillStyle = ink(ANIMATION_DESIGN.drawHumanDesignBodyGraph.inkArg04)
       ctx.font = `${labelPx}px sans-serif`
       ctx.textAlign = 'center'
       ctx.fillText(center, p.x, p.y - r - 2)
       const lit = (RAVE_CENTER_GATES[center as keyof typeof RAVE_CENTER_GATES] as readonly number[])
         .filter((g) => activated.has(g))
-        .slice(0, 4)
+        .slice(0, ANIMATION_DESIGN.drawHumanDesignBodyGraph.sliceArg1)
       if (lit.length) ctx.fillText(lit.join('·'), p.x, p.y + r + labelPx)
     }
   }
@@ -1465,18 +1466,18 @@ export function drawAstronomyProjection(
   const dark = opts.dark !== false
   const reduce = opts.reduce === true
   const paint = movieCanvasPolarity(dark)
-  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: (5 * 3) / 16, C: 1 / 64 })
+  const ink = (alpha: number) => paint(A432_HUE, alpha, { L: ANIMATION_DESIGN.drawAstronomyProjection.paintL, C: ANIMATION_DESIGN.drawAstronomyProjection.paintC })
   const p = heroPhaseAt(sim.at)
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2
   const cy = h / 2
-  const labelPx = max(9, round(h / 27))
+  const labelPx = max(ANIMATION_DESIGN.drawAstronomyProjection.maxArg0, round(h / ANIMATION_DESIGN.drawAstronomyProjection.roundArg0Part))
   // Scale breathes on the one clock — not a private rate.
-  const scale = min(w, h) * ((2 / 5) - (1 / (5 * 5))) * ((1 - 1 / (5 * 5)) + (1 / (5 * 5)) * sin(p * TAU))
-  ctx.strokeStyle = ink(3 / (5 * 5 * 2))
-  for (let ring = 1; ring <= 4; ring += 1) {
+  const scale = min(w, h) * ANIMATION_DESIGN.drawAstronomyProjection.scale * (ANIMATION_DESIGN.drawAstronomyProjection.scale2 + ANIMATION_DESIGN.drawAstronomyProjection.scale3 * sin(p * TAU))
+  ctx.strokeStyle = ink(ANIMATION_DESIGN.drawAstronomyProjection.inkArg0)
+  for (let ring = 1; ring <= ANIMATION_DESIGN.drawAstronomyProjection.loop; ring += 1) {
     ctx.beginPath()
-    ctx.arc(cx, cy, (scale * ring) / 4, 0, TAU)
+    ctx.arc(cx, cy, (scale * ring) / ANIMATION_DESIGN.drawAstronomyProjection.arcArg2Part, 0, TAU)
     ctx.stroke()
   }
   sim.bodies.forEach((body) => {
@@ -1484,15 +1485,15 @@ export function drawAstronomyProjection(
     const angle = atan2(body.y, body.x)
     const x = cx + cos(angle) * radius
     const y = cy + sin(angle) * radius
-    const size = body.kind === 'star' ? (5 * 2) : body.kind === 'satellite' ? 5 : 4
-    ctx.fillStyle = paint(body.hue, 1 - 3 / (5 * 4))
+    const size = body.kind === 'star' ? ANIMATION_DESIGN.drawAstronomyProjection.size : body.kind === 'satellite' ? ANIMATION_DESIGN.drawAstronomyProjection.size2 : ANIMATION_DESIGN.drawAstronomyProjection.size3
+    ctx.fillStyle = paint(body.hue, ANIMATION_DESIGN.drawAstronomyProjection.paintArg1)
     ctx.beginPath()
     ctx.arc(body.kind === 'star' ? cx : x, body.kind === 'star' ? cy : y, size, 0, TAU)
     ctx.fill()
     if (!reduce && (body.kind === 'planet' || body.kind === 'star' || body.kind === 'satellite')) {
       ctx.font = `${labelPx}px sans-serif`
-      ctx.fillStyle = ink(7 / (5 * 2))
-      ctx.fillText(body.name, (body.kind === 'star' ? cx : x) + 8, (body.kind === 'star' ? cy : y) - 4)
+      ctx.fillStyle = ink(ANIMATION_DESIGN.drawAstronomyProjection.inkArg02)
+      ctx.fillText(body.name, (body.kind === 'star' ? cx : x) + ANIMATION_DESIGN.drawAstronomyProjection.fillTextArg1Part, (body.kind === 'star' ? cy : y) - ANIMATION_DESIGN.drawAstronomyProjection.fillTextArg2Part)
     }
   })
 }

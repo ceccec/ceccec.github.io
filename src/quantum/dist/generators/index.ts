@@ -4,6 +4,7 @@
 // shape is written ONCE: each generator is a pure plan(ctx) → { files, messages, error? }, placed on
 // one of the eight trigrams. The imperative shell (scripts/iching.mjs) reads/writes/exits; the steps
 // live in src (the cardinal rule). Eight slots, eight filled — the complete eight-fold.
+import { animationScss } from '../../wind/geometry/index.ts'
 import { merkleFold, toUuid, foldVortex } from '../../../0/index.ts'
 import { BAGUA, cloudflareBindings, whatIsNotProvenIsPurged, siteNavigation, ichingTokensCss, scanCssForHardcoded, scanVueForHardcoded, tenDimensionalHeroSvg, computedIconSvg, computedWebManifest } from '../../heaven/mind/index.ts'
 import { glagoliticHomeFromEnglish } from '../../heaven/mind/index.ts'
@@ -200,6 +201,8 @@ export function generators(): Generator[] {
         // The computed I Ching design system — re-emit src/render/ui/tokens.css (the only place real numbers live, all
         // canonical) as part of the manifest. The body (src/render/ui/style.css) references only these tokens.
         if (!filter.length || filter.includes('src/render/ui/tokens.css')) out.push({ path: 'src/render/ui/tokens.css', content: ichingTokensCss() })
+        // The one animation SDK — every number the animations paint with, emitted from ANIMATION_DESIGN and MOVIE_ANGLES.
+        if (!filter.length || filter.includes('packages/double-torus/double-torus.scss')) out.push({ path: 'packages/double-torus/double-torus.scss', content: animationScss() })
 
         let error: string | undefined
         const skillsFile = write.find((file) => file.path === 'skills.json')

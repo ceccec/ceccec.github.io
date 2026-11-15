@@ -36,6 +36,7 @@
     "clsx": "^2.1.1",
     "esbuild": "0.28.1",
     "radix-vue": "^1.9.17",
+    "sass": "1.108.2",
     "tailwind-merge": "^3.6.0",
     "three": "^0.185.1",
     "typescript": "6.0.3",

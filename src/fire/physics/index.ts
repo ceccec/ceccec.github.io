@@ -37,6 +37,7 @@ import { speedOfSoundAir } from '../../8/2/index.ts'
 import { speedInMedium } from '../../3/7/index.ts'
 import { SOLAR_MASS_KG } from '../../3/7/index.ts'
 import { planeWaveField, planeWaveIntensity, VACUUM_PERMITTIVITY } from '../../quantum/fire/experiments/index.ts'
+import { ANIMATION_DESIGN } from '../../quantum/wind/geometry/index.ts'
 
 // Fill the gaps in quantum physics: every phenomenon the model needs to self-
 // compute, each bound to a measure it already computes over the UUID stream.
@@ -511,30 +512,30 @@ export function drawEmfA432Field(ctx: CanvasRenderingContext2D, w: number, h: nu
   const p = heroPhaseAt(atMs)
   ctx.clearRect(0, 0, w, h)
   const cx = w / 2, cy = h / 2
-  const maxR = min(w, h) * (9 / (5 * 4) + 1 / (5 * 5 * 5))
-  const shellFreqs = [(6 * 5 * 2), (8 * 5 * 3), 700e6, 3.5e9, 2.4e9, 5.8e9]
+  const maxR = min(w, h) * ANIMATION_DESIGN.drawEmfA432Field.maxR
+  const shellFreqs = [ANIMATION_DESIGN.drawEmfA432Field.shellFreqs, ANIMATION_DESIGN.drawEmfA432Field.shellFreqs2, ANIMATION_DESIGN.drawEmfA432Field.shellFreqs3, ANIMATION_DESIGN.drawEmfA432Field.shellFreqs4, ANIMATION_DESIGN.drawEmfA432Field.shellFreqs5, ANIMATION_DESIGN.drawEmfA432Field.shellFreqs6]
   shellFreqs.forEach((f, i) => {
-    const r = maxR * ((9 / (5 * 5 * 2)) + ((4 / 5) * (i + 1)) / shellFreqs.length)
-    ctx.strokeStyle = paint(frequencyToLight(f).hue, (1 / (5 * 2)), { L: 5 / 8 })
+    const r = maxR * (ANIMATION_DESIGN.drawEmfA432Field.r + (ANIMATION_DESIGN.drawEmfA432Field.r2 * (i + 1)) / shellFreqs.length)
+    ctx.strokeStyle = paint(frequencyToLight(f).hue, ANIMATION_DESIGN.drawEmfA432Field.paintArg1, { L: ANIMATION_DESIGN.drawEmfA432Field.paintL })
     ctx.lineWidth = 1
     ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke()
   })
-  ctx.fillStyle = paint(hue, (2 / (5 * 5)), { L: (5 * 3) / 16, C: 1 / 64 })
-  const dw = maxR * ((1 / 5) + 7 / (5 * 5 * 2)), dh = maxR * (3 / 5)
+  ctx.fillStyle = paint(hue, ANIMATION_DESIGN.drawEmfA432Field.paintArg12, { L: ANIMATION_DESIGN.drawEmfA432Field.paintL2, C: ANIMATION_DESIGN.drawEmfA432Field.paintC })
+  const dw = maxR * ANIMATION_DESIGN.drawEmfA432Field.dw, dh = maxR * ANIMATION_DESIGN.drawEmfA432Field.dh
   ctx.fillRect(cx - dw / 2, cy - dh / 2, dw, dh)
   // Breath on fractal clock: HERO_CYCLE_MS / 18 = 6 s; depth 9/50 → envelope 0.82–1.18.
-  const breathLo = 1 - 9 / (5 * 5 * 2)
-  const breath = humanBreath(atMs, HERO_CYCLE_MS / (9 * 2))
-  const pulseR = maxR * (1 - 9 / (5 * 4)) * breath
-  ctx.strokeStyle = paint(hue, (3 / 5), { L: 5 / 8 })
+  const breathLo = ANIMATION_DESIGN.drawEmfA432Field.breathLo
+  const breath = humanBreath(atMs, HERO_CYCLE_MS / ANIMATION_DESIGN.drawEmfA432Field.humanBreathArg1Part)
+  const pulseR = maxR * ANIMATION_DESIGN.drawEmfA432Field.pulseR * breath
+  ctx.strokeStyle = paint(hue, ANIMATION_DESIGN.drawEmfA432Field.paintArg13, { L: ANIMATION_DESIGN.drawEmfA432Field.paintL })
   ctx.lineWidth = 2
   ctx.beginPath(); ctx.arc(cx, cy, pulseR, 0, TAU); ctx.stroke()
   VORTEX_SEQUENCE.forEach((d, i) => {
     const ang = (i / VORTEX_SEQUENCE.length) * TAU + p * TAU
-    const rr = pulseR * ((1 - 9 / (5 * 4)) + d / (9 * 2))
+    const rr = pulseR * (ANIMATION_DESIGN.drawEmfA432Field.rr + d / ANIMATION_DESIGN.drawEmfA432Field.rr2)
     const x = cx + cos(ang) * rr, y = cy + sin(ang) * rr
-    ctx.fillStyle = paint((hue + d * 8) % 360, (7 / (5 * 4)) + (2 / 5) * (breath - breathLo))
-    ctx.beginPath(); ctx.arc(x, y, 3 + d * (3 / 5), 0, TAU); ctx.fill()
+    ctx.fillStyle = paint((hue + d * ANIMATION_DESIGN.drawEmfA432Field.paintArg0Part) % ANIMATION_DESIGN.drawEmfA432Field.paintArg0Part2, ANIMATION_DESIGN.drawEmfA432Field.paintArg1Part + ANIMATION_DESIGN.drawEmfA432Field.paintArg1Part2 * (breath - breathLo))
+    ctx.beginPath(); ctx.arc(x, y, ANIMATION_DESIGN.drawEmfA432Field.arcArg2Part + d * ANIMATION_DESIGN.drawEmfA432Field.arcArg2Part2, 0, TAU); ctx.fill()
   })
 }
 

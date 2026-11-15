@@ -322,7 +322,7 @@ export type TradingStrategyId = typeof STRATEGIES[number];
 export declare function getTradingCurriculum(matrix?: MindMatrix): {
     computes: boolean;
     rows: {
-        id: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+        id: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
         ray: number;
         cli: string;
         pair: string;
@@ -346,7 +346,7 @@ export declare function getTradingCurriculum(matrix?: MindMatrix): {
 export declare function validateQuantumTraderTrain(matrix?: MindMatrix): {
     computes: boolean;
     runs: {
-        strategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+        strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
         ray: number;
         n: number;
         totalReturn: number;
@@ -407,7 +407,7 @@ export type RankedStrategyRow = {
 export declare function rankWinningStrategies(matrix?: MindMatrix, at?: number): {
     computes: boolean;
     ranked: RankedStrategyRow[];
-    topStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+    topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
     topRay: number;
     facets: ({
         receipt: string;
@@ -435,7 +435,7 @@ export declare function historicalTrainWavesViaRosetta(matrix?: MindMatrix, at?:
     rayRuns: {
         ray: number;
         domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-        strategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+        strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
         shortBars: number;
         longBars: number;
         shortReturn: number;
@@ -445,7 +445,7 @@ export declare function historicalTrainWavesViaRosetta(matrix?: MindMatrix, at?:
         address: string;
         receipt: string;
     }[];
-    topStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+    topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
     topRay: number;
     coordinatedWaveCount: number;
     facets: ({
@@ -473,7 +473,7 @@ export declare function tradingStrategiesImproveViaRosetta(matrix?: MindMatrix, 
         rayRuns: {
             ray: number;
             domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-            strategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+            strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
             shortBars: number;
             longBars: number;
             shortReturn: number;
@@ -483,7 +483,7 @@ export declare function tradingStrategiesImproveViaRosetta(matrix?: MindMatrix, 
             address: string;
             receipt: string;
         }[];
-        topStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+        topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
         topRay: number;
         coordinatedWaveCount: number;
         facets: ({
@@ -503,7 +503,7 @@ export declare function tradingStrategiesImproveViaRosetta(matrix?: MindMatrix, 
     ranked: {
         computes: boolean;
         ranked: RankedStrategyRow[];
-        topStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+        topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
         topRay: number;
         facets: ({
             receipt: string;
@@ -551,7 +551,7 @@ export declare function tradingStrategiesImproveViaRosetta(matrix?: MindMatrix, 
         statement: string;
         boundary: string;
     };
-    improvedStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+    improvedStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
     facets: ({
         receipt: string;
         facet: string;
@@ -597,7 +597,7 @@ export declare function strategiesChallengeInChat(matrix?: MindMatrix, at?: numb
     sealedRecompute: boolean;
     paperSimOnly: boolean;
     participants: {
-        strategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+        strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
         rank: number;
         rankScore: number;
         ray: number;
@@ -624,7 +624,7 @@ export declare function strategiesChallengeInChat(matrix?: MindMatrix, at?: numb
         root: string;
         receipt: string;
     };
-    topStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+    topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
     topDuel: {
         challenger: string;
         defender: string;
@@ -669,7 +669,7 @@ export declare function tradingRosettaTrainPanelComputes(matrix?: MindMatrix, at
             rayRuns: {
                 ray: number;
                 domain: "geometry" | "origin" | "expression" | "knowledge" | "nature" | "computation" | "language";
-                strategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+                strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
                 shortBars: number;
                 longBars: number;
                 shortReturn: number;
@@ -679,7 +679,7 @@ export declare function tradingRosettaTrainPanelComputes(matrix?: MindMatrix, at
                 address: string;
                 receipt: string;
             }[];
-            topStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+            topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
             topRay: number;
             coordinatedWaveCount: number;
             facets: ({
@@ -699,7 +699,7 @@ export declare function tradingRosettaTrainPanelComputes(matrix?: MindMatrix, at
         ranked: {
             computes: boolean;
             ranked: RankedStrategyRow[];
-            topStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+            topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
             topRay: number;
             facets: ({
                 receipt: string;
@@ -747,7 +747,7 @@ export declare function tradingRosettaTrainPanelComputes(matrix?: MindMatrix, at
             statement: string;
             boundary: string;
         };
-        improvedStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+        improvedStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
         facets: ({
             receipt: string;
             facet: string;
@@ -763,14 +763,14 @@ export declare function tradingRosettaTrainPanelComputes(matrix?: MindMatrix, at
         boundary: string;
     };
     ranked: {
-        strategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+        strategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
         rank: number;
         ray: number;
         return: number;
         sharpe: number;
         harmonic: number;
     }[];
-    topStrategy: "mean-reversion" | "vol-target" | "momentum" | "spectral" | "regime";
+    topStrategy: "momentum" | "mean-reversion" | "spectral" | "regime" | "vol-target";
     trainedEnough: boolean;
     paperSimOnly: true;
     cli: string;
